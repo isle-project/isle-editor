@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 Um jogo interativo testando a habilidade do estudante em detectar a mediana e a média de uma determinada distribuição.
 
-## Options
+## Opções
 
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `false`.
 * __header__ | `string`: título do painel no qual será gerada a média e a mediana. Default: `none`.
@@ -17,7 +17,7 @@ Um jogo interativo testando a habilidade do estudante em detectar a mediana e a 
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnMeanVSMedian />

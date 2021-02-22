@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 绘画素描板，用于在讲义幻灯片或空页上做笔记。
 
-## Options
+## 选项
 
 * __autoSave__ | `boolean`: 控制编辑器是否应该在给定的时间间隔内将当前文本保存到浏览器的本地存储中。. Default: `true`.
 * __feedbackButtons__ | `boolean`: 控制是否在每个幻灯片上显示反馈按钮. Default: `false`.
@@ -36,7 +36,7 @@ sidebar_label: Sketchpad
 * __onChange__ | `function`: 每当有新的线条元素被绘制时，就会调用回调。. Default: `onChange() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

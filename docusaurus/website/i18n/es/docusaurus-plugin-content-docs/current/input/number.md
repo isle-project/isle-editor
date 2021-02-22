@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 Un componente de entrada de números. Puede ser usado como parte de un tablero de ISLE o independiente. En este último caso, quieres manejar los cambios a través del atributo "onChange" o vincular el valor a una variable global a través del atributo "bind".
 
-## Options
+## Opciones
 
 * __bind__ | `string`: nombre de la variable global para el número que se asignará a. Default: `''`.
 * __defaultValue__ | `number`: valor que indica el valor por defecto de la entrada en el arranque. Default: `0`.
@@ -29,7 +29,7 @@ Un componente de entrada de números. Puede ser usado como parte de un tablero d
 * __tooltipPlacement__ | `string`: dirección de la punta de la herramienta. Default: `'left'`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <NumberInput

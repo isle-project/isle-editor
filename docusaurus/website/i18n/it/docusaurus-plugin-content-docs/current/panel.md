@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Componente della scheda.
 
-## Options
+## Opzioni
 
 * __className__ | `string`: Nome della classe CSS. Default: `''`.
 * __header__ | `(string|node)`: intestazione del pannello (h3). Default: `none`.
@@ -20,7 +20,7 @@ Componente della scheda.
 * __onHide__ | `function`: richiamata quando si fa clic sul pulsante di chiusura. Default: `none`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

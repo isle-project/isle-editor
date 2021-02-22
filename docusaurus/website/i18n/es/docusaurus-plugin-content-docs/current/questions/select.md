@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 Un componente de pregunta selectiva.
 
-## Options
+## Opciones
 
 * __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que seleccionar una de las opciones de respuesta disponibles. Default: `''`.
 * __options__ | `array (required)`: opciones de respuesta disponibles de las cuales el estudiante puede seleccionar. Default: `none`.
@@ -26,7 +26,7 @@ Un componente de pregunta selectiva.
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como primer parámetro un "booleano" que indica si la respuesta fue contestada correctamente (si es aplicable, "nulo" en caso contrario) y la respuesta suministrada como segundo parámetro. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

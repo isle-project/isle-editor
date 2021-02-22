@@ -6,7 +6,7 @@ sidebar_label: Select Question Matrix
 
 Een vraag met een antwoord bestaande uit meerdere selectievakjes.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: vraag die bovenin de geselecteerde vragenmatrix moet worden weergegeven. Default: `''`.
 * __rows__ | `array`: rij-etiketten. Default: `[]`.
@@ -28,7 +28,7 @@ Een vraag met een antwoord bestaande uit meerdere selectievakjes.
 * __onSubmit__ | `function`: callback-functie die wordt aangeroepen bij de indiening met de antwoorden als eerste en een booleaanse functie die de juistheid als tweede parameter aangeeft. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <SelectQuestionMatrix

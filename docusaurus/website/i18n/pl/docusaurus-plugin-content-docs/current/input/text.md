@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 Komponent do wprowadzania tekstu. Może być używany jako część deski rozdzielczej ISLE lub autonomiczny. W tym ostatnim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.
 
-## Options
+## Opcje
 
 * __bind__ | `string`: nazwa zmiennej globalnej dla numeru, który ma być przypisany do. Default: `none`.
 * __defaultValue__ | `string`: Wartość wskazująca domyślną wartość wejścia na początku. Default: `''`.
@@ -23,7 +23,7 @@ Komponent do wprowadzania tekstu. Może być używany jako część deski rozdzi
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <TextInput

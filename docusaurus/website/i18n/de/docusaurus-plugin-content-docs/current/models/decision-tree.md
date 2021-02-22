@@ -6,7 +6,7 @@ sidebar_label: Decision Tree
 
 Regressions- und Klassifikationsbäume.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
@@ -20,7 +20,7 @@ Regressions- und Klassifikationsbäume.
 * __onPredict__ | `function`: Callback, der beim Klicken auf die Schaltfläche "Vorhersage" mit dem Modellobjekt aufgerufen wird. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <DecisionTree 

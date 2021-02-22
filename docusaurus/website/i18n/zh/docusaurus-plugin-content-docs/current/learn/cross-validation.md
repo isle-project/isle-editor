@@ -6,11 +6,11 @@ sidebar_label: Cross Validation
 
 解释交叉验证的可视化。
 
-## Options
+## 选项
 
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnCrossValidation />

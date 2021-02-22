@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 一个选择输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过 "onChange "属性来处理更改，或者通过 "bind "属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __bind__ | `string`: 全局变量的名称，用于分配到的数字。. Default: `''`.
 * __clearable__ | `boolean`: 表示是否可以清除所做选择的布尔值。. Default: `none`.
@@ -23,7 +23,7 @@ sidebar_label: Select Input
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <SelectInput

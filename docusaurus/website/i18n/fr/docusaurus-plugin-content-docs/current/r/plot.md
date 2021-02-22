@@ -20,7 +20,7 @@ Composant pour le rendu d'un tracé R dans une leçon d'ISLE.
 * __onDone__ | `function`: rappel invoqué avec les arguments "er", "img" et "body" une fois qu'un complot est créé. Default: `onDone() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

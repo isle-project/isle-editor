@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 Uma embalagem para o colhedor de cores [react-color](https://casesandberg.github.io/react-color/).
 
-## Options
+## Opções
 
 * __variant__ | `string`: variante do seletor de cores (seja "Compacto", "Esboço", "Material", ou "Bloqueio"). Default: `'Sketch'`.
 * __color__ | `(string|object)`: "string" contendo um código HeX ou um "objeto" contendo valores RGB ou HSL como "r: 255, g: 255, b: 255 }" ou "h: 0, s.": 0, l: .10 }`, que determina a cor ativa. Ambos aceitam uma propriedade `a' para valores alfa diferentes de um. Default: `'#fff'`.
@@ -35,7 +35,7 @@ Uma embalagem para o colhedor de cores [react-color](https://casesandberg.github
 * __onChangeComplete__ | `function`: chamada de retorno invocada quando uma mudança de cor é concluída. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

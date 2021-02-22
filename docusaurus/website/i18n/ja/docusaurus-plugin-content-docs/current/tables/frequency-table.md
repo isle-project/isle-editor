@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 度数表です。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示対象変数名. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Frequency Table
 * __nDecimalPlaces__ | `number`: 表中の相対周波数の小数点以下の桁数. Default: `3`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ## Examples
 

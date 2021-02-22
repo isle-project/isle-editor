@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 Um componente de entrada selecionado. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou ligar o valor a uma variável global através do atributo "ligar".
 
-## Options
+## Opções
 
 * __bind__ | `string`: nome da variável global para o número a ser atribuído a. Default: `''`.
 * __clearable__ | `boolean`: valor booleano indicando se a(s) escolha(ões) feita(s) pode(m) ser clara(s). Default: `none`.
@@ -23,7 +23,7 @@ Um componente de entrada selecionado. Pode ser usado como parte de um painel de 
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <SelectInput

@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 Een tekstverwerker voor het schrijven van aantekeningen of rapporten. Ondersteunt het exporteren van notities als HTML- of PDF-bestanden, evenals het automatisch aanleveren aan de ISLE-server.
 
-## Options
+## Opties
 
 * __allowSubmissions__ | `boolean`: controleert of de leerlingen hun rapporten mogen indienen bij de server. Default: `true`.
 * __canLoadHTML__ | `boolean`: bepaalt of een knop moet worden weergegeven om een opgeslagen HTML-bestand in de editor te laden. Default: `true`.
@@ -18,7 +18,7 @@ Een tekstverwerker voor het schrijven van aantekeningen of rapporten. Ondersteun
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <TextEditor />

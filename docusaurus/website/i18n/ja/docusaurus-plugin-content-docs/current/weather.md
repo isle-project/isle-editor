@@ -6,14 +6,14 @@ sidebar_label: Weather
 
 指定された場所に現在の天気を表示するためのコンポーネント。
 
-## Options
+## オプション
 
 * __location__ | `string`: 地名. Default: `none`.
 * __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

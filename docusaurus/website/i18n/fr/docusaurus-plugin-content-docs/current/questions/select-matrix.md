@@ -28,7 +28,7 @@ Une question dont la réponse consiste en plusieurs cases de sélection.
 * __onSubmit__ | `function`: fonction de rappel invoquée lors de la soumission avec les réponses comme premier paramètre et un booléen indiquant l'exactitude comme second paramètre. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <SelectQuestionMatrix

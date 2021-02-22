@@ -6,7 +6,7 @@ sidebar_label: Line Plot
 
 Una trama di linee.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto di array di valori per ogni variabile. Default: `none`.
 * __x__ | `string`: variabile dell'asse x. Default: `none`.
@@ -15,5 +15,5 @@ Una trama di linee.
 * __showPoints__ | `boolean`: controlla se sovrapporre punti ad ogni osservazione. Default: `false`.
 
 
-## Examples
+## Esempi
 

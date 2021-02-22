@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Componente che visualizza un'offerta estesa.
 
-## Options
+## Opzioni
 
 * __cite__ | `string`: fonte per il preventivo. Default: `none`.
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

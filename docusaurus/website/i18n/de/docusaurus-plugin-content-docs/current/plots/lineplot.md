@@ -6,7 +6,7 @@ sidebar_label: Line Plot
 
 Ein Liniendiagramm.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt mit Werte-Arrays für jede Variable. Default: `none`.
 * __x__ | `string`: x-Achse variabel. Default: `none`.
@@ -15,5 +15,5 @@ Ein Liniendiagramm.
 * __showPoints__ | `boolean`: steuert, ob Punkte bei jeder Beobachtung überlagert werden sollen. Default: `false`.
 
 
-## Examples
+## Beispiele
 

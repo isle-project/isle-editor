@@ -17,7 +17,7 @@ Composante de l'enquête dans laquelle l'instructeur peut recueillir des donnée
 * __onSubmit__ | `function`: fonction à appeler lors de la soumission d'une réponse. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <MultipleChoiceSurvey

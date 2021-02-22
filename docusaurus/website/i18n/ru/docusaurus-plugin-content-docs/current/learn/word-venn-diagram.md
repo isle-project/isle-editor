@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Венн диаграмма, визуализирующая соотт ветствие слов в документах поставляемой матрицы терминоо го документа.
 
-## Options
+## Варианты
 
 * __height__ | `number`: высота диаграммы Венна в пикселях. Default: `350`.
 * __nTexts__ | `number (required)`: количество источников, из которых был получен текст. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Word Venn Diagram
 * __width__ | `number`: ширина диаграммы Венна в пикселях. Default: `600`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnWordVennDiagram />

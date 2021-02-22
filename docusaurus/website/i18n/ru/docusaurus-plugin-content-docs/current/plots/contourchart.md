@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 Контурная диаграмма.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __x__ | `string (required)`: осевая переменная x. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contour Chart
 * __onSelected__ | `function`: обратный вызов при выделении точек со значениями x, y и выделенных точек. Default: `onSelected() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <ContourChart 

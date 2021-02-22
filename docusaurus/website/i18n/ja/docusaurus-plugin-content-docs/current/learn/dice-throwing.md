@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 サイコロ投げを使って大きな数の法則を説明する学習コンポーネント。
 
-## Options
+## オプション
 
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnDiceThrowing />

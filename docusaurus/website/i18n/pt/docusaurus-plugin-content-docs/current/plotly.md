@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Visualização parcelada.
 
-## Options
+## Opções
 
 * __data__ | `array (required)`: matriz de dados. Default: `none`.
 * __draggable__ | `boolean`: controla se a trama deve ser arrastada. Default: `false`.
@@ -30,7 +30,7 @@ Visualização parcelada.
 * __toggleFullscreen__ | `boolean`: controla se permite a exibição da trama em modo de tela cheia. Default: `true`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <Plotly

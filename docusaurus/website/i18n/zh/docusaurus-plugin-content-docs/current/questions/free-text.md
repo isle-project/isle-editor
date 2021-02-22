@@ -6,7 +6,7 @@ sidebar_label: Free Text Question
 
 一个ISLE组件，用于学生应以自由文本形式提供答案的问题。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 问题显示在自由文本问题组件的顶部。. Default: `''`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
@@ -32,7 +32,7 @@ sidebar_label: Free Text Question
 * __onSubmit__ | `function`: 当用户提交答案时调用的回调；接收提交的文本作为唯一参数。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

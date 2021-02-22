@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 メモやレポートを書くためのテキストエディタです。メモをHTMLやPDFファイルにエクスポートしたり、ISLEサーバーへの自動送信をサポートしています。
 
-## Options
+## オプション
 
 * __allowSubmissions__ | `boolean`: 学生がレポートをサーバーに提出するかどうかを制御します。. Default: `true`.
 * __canLoadHTML__ | `boolean`: 保存したHTMLファイルをエディタに読み込むためのボタンを表示するかどうかを制御します。. Default: `true`.
@@ -18,7 +18,7 @@ sidebar_label: Text Editor
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <TextEditor />

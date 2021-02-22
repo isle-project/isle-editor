@@ -6,13 +6,13 @@ sidebar_label: Unveil
 
 El componente de apariencia hará que todos sus hijos sean visibles después de un tiempo determinado.
 
-## Options
+## Opciones
 
 * __active__ | `boolean`: controla si el contador debe estar activo. Default: `false`.
 * __delay__ | `number`: número de milisegundos antes de que aparezca el componente. Default: `1000`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Unveil duration={5000} >

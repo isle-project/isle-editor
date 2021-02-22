@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 与えられた用語-文書マトリックスの文書内での単語の共起を可視化したベン図。
 
-## Options
+## オプション
 
 * __height__ | `number`: ピクセル単位でのベン図の高さ. Default: `350`.
 * __nTexts__ | `number (required)`: 集計部数. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Word Venn Diagram
 * __width__ | `number`: ピクセル単位でのベン図の幅. Default: `600`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnWordVennDiagram />

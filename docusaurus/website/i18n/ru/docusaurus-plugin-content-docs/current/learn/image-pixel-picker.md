@@ -6,11 +6,11 @@ sidebar_label: Image Pixel Picker
 
 Пиксельная палитра цветов, объясняющая цвета RGB на примере изображений.
 
-## Options
+## Варианты
 
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnImagePixelPicker />

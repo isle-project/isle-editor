@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Un blocco da disegno per prendere appunti sulle diapositive delle lezioni o sulle pagine vuote.
 
-## Options
+## Opzioni
 
 * __autoSave__ | `boolean`: controlla se l'editor deve salvare il testo corrente nella memoria locale del browser in un determinato intervallo di tempo. Default: `true`.
 * __feedbackButtons__ | `boolean`: controlla se visualizzare i pulsanti di feedback su ogni diapositiva. Default: `false`.
@@ -36,7 +36,7 @@ Un blocco da disegno per prendere appunti sulle diapositive delle lezioni o sull
 * __onChange__ | `function`: richiamata ogni volta che viene disegnato un nuovo elemento di linea. Default: `onChange() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 Ein dünner Wrapper um [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree), der alle Eigenschaften der genannten Komponente unterstützt.
 
-## Options
+## Optionen
 
 * __title__ | `string`: Kopfzeilen-Titel. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <SortableTree 

@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Element akordeonowy sterujący suwakami pionowymi.
 
-## Options
+## Opcje
 
 * __active__ | `number`: indeks suwaka, który ma być otwarty na początku. Default: `none`.
 * __canCloseAll__ | `boolean`: czy można zawalić wszystkie nagłówki. Default: `false`.
@@ -18,7 +18,7 @@ Element akordeonowy sterujący suwakami pionowymi.
 * __style__ | `object`: Style CSS w linii dla zewnętrznego podziału. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

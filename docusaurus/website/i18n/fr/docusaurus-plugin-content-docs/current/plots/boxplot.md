@@ -15,7 +15,7 @@ Une parcelle de terrain.
 * __overlayPoints__ | `boolean`: contrôle de la superposition des points. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <BoxPlot 

@@ -24,7 +24,7 @@ Un composant ISLE qui permet de rendre deux faces.
 * __onChange__ | `function`: rappel invoqué une fois que la carte est retournée ; reçoit comme seul argument le statut actuel de la carte retournée. Default: `onChange() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

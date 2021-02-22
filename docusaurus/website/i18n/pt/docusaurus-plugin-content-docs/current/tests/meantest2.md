@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 Teste médio de duas amostras.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __x__ | `string (required)`: nome da primeira variável. Default: `none`.
@@ -21,7 +21,7 @@ Teste médio de duas amostras.
 * __showDecision__ | `boolean`: controla se a hipótese nula deve ser rejeitada no nível de significância especificado. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <MeanTest2

@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 Un componente de formulario que combina diferentes componentes de la pregunta junto con un único botón de envío.
 
-## Options
+## Opciones
 
 * __buttonLabel__ | `string`: etiqueta del botón de envío. Default: `none`.
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se hace clic en el botón de envío. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <QuestionForm>

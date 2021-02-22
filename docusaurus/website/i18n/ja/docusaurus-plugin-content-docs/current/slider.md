@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 スライドショーやカルーセルで子を表示するコンポーネント。
 
-## Options
+## オプション
 
 * __title__ | `string`: スライドショー/カルーセルの上部に表示されるタイトル. Default: `''`.
 * __dots__ | `boolean`: 下部にドットを表示して、スライドにすばやく移動できるようにしました。. Default: `true`.
@@ -21,7 +21,7 @@ sidebar_label: Slider
 * __onClick__ | `function`: 前後ボタンをクリックした時に呼び出されるコールバック. Default: `onClick() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 
 import Tabs from '@theme/Tabs';

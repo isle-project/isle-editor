@@ -6,14 +6,14 @@ sidebar_label: Weather
 
 Een component voor het weergeven van het actuele weer op een aangewezen locatie.
 
-## Options
+## Opties
 
 * __location__ | `string`: locatienaam. Default: `none`.
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

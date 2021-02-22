@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 Działka sieciowa oparta na d3.
 
-## Options
+## Opcje
 
 * __width__ | `number`: szerokość działki (w px). Default: `900`.
 * __height__ | `number`: wysokość działki (w px). Default: `600`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <NetworkPlot

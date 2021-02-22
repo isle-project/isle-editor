@@ -6,14 +6,14 @@ sidebar_label: Chi-square Independence Test
 
 Тест на независимость хи-квадрат.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __var1__ | `string (required)`: имя первой переменной. Default: `none`.
 * __var2__ | `string (required)`: имя второй переменной. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Chi2Test

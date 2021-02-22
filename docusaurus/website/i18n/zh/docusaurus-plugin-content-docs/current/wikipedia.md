@@ -6,13 +6,13 @@ sidebar_label: Wikipedia
 
 **Wikipedia**组件扫描**Wikipedia**并返回一篇文章--如果在输入的搜索词下找到任何有效的文章。
 
-## Options
+## 选项
 
 * __defaultEntry__ | `string`: 默认显示的条目. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

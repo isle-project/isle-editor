@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 Eine Heatmap zur Visualisierung einer Beziehung zwischen zwei Variablen.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt mit Werte-Arrays für jede Variable. Default: `none`.
 * __x__ | `string (required)`: x-Achse variabel. Default: `none`.
@@ -19,7 +19,7 @@ Eine Heatmap zur Visualisierung einer Beziehung zwischen zwei Variablen.
 * __commonYAxis__ | `boolean`: steuert, ob bei der Erstellung mehrerer Heatmaps pro Wert einer Gruppierungsvariable eine gemeinsame y-Achse verwendet werden soll. Default: `false`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <HeatMap 

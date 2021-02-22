@@ -15,7 +15,7 @@ K- signifie regroupement.
 * __onResult__ | `function`: rappel invoqué avec l'objet modèle. Default: `onResult() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <KMeans 

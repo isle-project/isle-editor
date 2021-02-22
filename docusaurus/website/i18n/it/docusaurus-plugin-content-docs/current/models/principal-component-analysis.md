@@ -6,7 +6,7 @@ sidebar_label: Principal Component Analysis
 
 Analisi dei componenti principali.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variables__ | `array<string> (required)`: nomi delle variabili utilizzate per il clustering. Default: `none`.
@@ -16,7 +16,7 @@ Analisi dei componenti principali.
 * __onResult__ | `function`: richiamo richiamato con oggetto del modello e componenti. Default: `onResult() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <PrincipalComponentAnalysis 

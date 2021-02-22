@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 Een op d3 gebaseerde dichtheidscomponent van het perceel.
 
-## Options
+## Opties
 
 * __bandwidth__ | `number`: afvlakkingsparameter voor de kerneldichtheidsschatting. Default: `4`.
 * __histogram__ | `boolean`: laat een histogram zien naast het dichtheidsplaatje. Default: `true`.
@@ -18,7 +18,7 @@ Een op d3 gebaseerde dichtheidscomponent van het perceel.
 * __ymax__ | `number`: maximale waarde weergegeven op de y-as. Default: `0.15`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <DensityPlot

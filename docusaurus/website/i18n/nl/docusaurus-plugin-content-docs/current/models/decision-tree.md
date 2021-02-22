@@ -6,7 +6,7 @@ sidebar_label: Decision Tree
 
 Regressie- en classificatiebomen.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __y__ | `string (required)`: resultaatvariabele. Default: `none`.
@@ -20,7 +20,7 @@ Regressie- en classificatiebomen.
 * __onPredict__ | `function`: callback aangeroepen met modelobject bij het klikken op de voorspellingsknop. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <DecisionTree 

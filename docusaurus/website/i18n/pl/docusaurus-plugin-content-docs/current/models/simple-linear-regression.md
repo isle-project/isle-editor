@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 Prosta regresja liniowa.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __x__ | `string (required)`: zmienna objaśniająca. Default: `none`.
@@ -17,7 +17,7 @@ Prosta regresja liniowa.
 * __onPredict__ | `function`: wywołanie zwrotne z wartościami dopasowanymi i resztkami. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <SimpleLinearRegression 

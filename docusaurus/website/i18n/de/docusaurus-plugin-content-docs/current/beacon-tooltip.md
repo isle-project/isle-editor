@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Komponente, die eine Bake in der Lektion platziert, entweder unabhängig oder an ein "Ziel" angehängt. Wenn Sie den Mauszeiger über die Bake bewegen oder darauf klicken, wird eine QuickInfo angezeigt.
 
-## Options
+## Optionen
 
 * __title__ | `(string|node)`: Titel, der oben in der QuickInfo angezeigt werden soll. Default: `none`.
 * __content__ | `(string|node)`: Tooltip-Inhalt. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ Komponente, die eine Bake in der Lektion platziert, entweder unabhängig oder an
 * __onChange__ | `function`: Callback, der bei einer Zustandsänderung des Tooltips aufgerufen wird. Erhält zwei Argumente: die `Action` (`open` oder `close`) und die übergebenen `Pros`.. Default: `onChange() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <BeaconTooltip

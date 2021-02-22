@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 Eine Schieberegler-Eingabekomponente. Kann als Teil eines ISLE Dashboards oder eigenständig verwendet werden. Im letzteren Fall wollen Sie Änderungen über das Attribut `onChange` behandeln oder den Wert über das Attribut `bind` an eine globale Variable binden.
 
-## Options
+## Optionen
 
 * __defaultValue__ | `number`: Der Startwert des Schiebereglers. Default: `10`.
 * __disabled__ | `boolean`: steuert, ob der Schieberegler-Eingang aktiv ist oder nicht. Wenn auf true gesetzt, ist der Schieberegler auf dem Bildschirm vorhanden, wenn auch ausgegraut. Default: `false`.
@@ -25,7 +25,7 @@ Eine Schieberegler-Eingabekomponente. Kann als Teil eines ISLE Dashboards oder e
 * __rangeInputStyle__ | `object`: CSS-Inlinestil für Bereichseingabekomponente. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <SliderInput

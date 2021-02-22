@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 Een ISLE-component die het mogelijk maakt om twee kanten te renderen.
 
-## Options
+## Opties
 
 * __button__ | `string`: knoplabel. Default: `none`.
 * __draggable__ | `boolean`: controleert of de kaart mag worden versleept. Default: `false`.
@@ -24,7 +24,7 @@ Een ISLE-component die het mogelijk maakt om twee kanten te renderen.
 * __onChange__ | `function`: callback aangeroepen zodra de kaart is omgedraaid; ontvangt de huidige omgedraaide status als enige argument. Default: `onChange() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 Um componente de entrada deslizante. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou ligar o valor a uma variável global através do atributo "ligar".
 
-## Options
+## Opções
 
 * __defaultValue__ | `number`: O valor inicial do controle deslizante. Default: `10`.
 * __disabled__ | `boolean`: controla se a entrada do controle deslizante está ativa ou não. Se definido como verdadeiro, o controle deslizante estará presente na tela, embora acinzentado.. Default: `false`.
@@ -25,7 +25,7 @@ Um componente de entrada deslizante. Pode ser usado como parte de um painel de i
 * __rangeInputStyle__ | `object`: Estilo CSS em linha para o componente de entrada de gama. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <SliderInput

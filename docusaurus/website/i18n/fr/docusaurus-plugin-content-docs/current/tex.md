@@ -19,7 +19,7 @@ sidebar_label: LaTeX Equations
 * __onClick__ | `function`: la "fonction" de rappel est invoquée chaque fois qu'un utilisateur clique sur l'équation. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <TeX

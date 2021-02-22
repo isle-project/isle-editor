@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 一个ISLE组件，允许只向保留的受众显示其子女。
 
-## Options
+## 选项
 
 * __user__ | `boolean`: 当设置为门控内容时，会显示给用户。. Default: `false`.
 * __notUser__ | `boolean`: 当设置为 "门控内容 "时，**不向用户显示。. Default: `false`.
@@ -22,7 +22,7 @@ sidebar_label: Gate
 * __check__ | `function`: 回调函数，返回一个 "boolean"，表示gate是否应该显示子组件；每当session动作到达时，该函数被调用。. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Gate 

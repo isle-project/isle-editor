@@ -6,7 +6,7 @@ sidebar_label: Proportions Survey
 
 Komponente, die es einer Gruppe von Personen ermöglicht, über die Gewichtung und Wichtigkeit von gegebenen Optionen abzustimmen.
 
-## Options
+## Optionen
 
 * __allowMultipleAnswers__ | `boolean`: steuert, ob man den Teilnehmern erlauben möchte, die Umfrage mehrfach zu beantworten. Default: `false`.
 * __anonymous__ | `boolean`: steuert, ob Schülerantworten anonymisiert werden. Default: `false`.
@@ -23,7 +23,7 @@ Komponente, die es einer Gruppe von Personen ermöglicht, über die Gewichtung u
 * __step__ | `number`: die Stufe der Pfeile, die zu sehen sind, wenn der Cursor über dem Eingabefeld schwebt. Default: `0.25`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <ProportionsSurvey 

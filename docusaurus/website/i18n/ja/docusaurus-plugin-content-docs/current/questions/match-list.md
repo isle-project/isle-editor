@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 学習者が2つのリストの要素を正しい方法で一致させる問題を作成するISLEコンポーネントです。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: マッチリストの質問コンポーネントの先頭に表示される質問. Default: `''`.
 * __elements__ | `array<{a,b}>`: フリーテキスト問題コンポーネントの先頭に表示される正しいペアを保持する `array` です。各 `array` 要素は `a` と `b` プロパティを持つ `object` でなければなりません。. Default: `[]`.
@@ -27,7 +27,7 @@ sidebar_label: Match List Question
 * __onSubmit__ | `function`: 学生が回答を提出したときに呼び出されるコールバック. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

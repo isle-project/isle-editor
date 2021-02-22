@@ -6,13 +6,13 @@ sidebar_label: Wikipedia
 
 Il componente **Wikipedia** scansiona **Wikipedia** e restituisce un articolo - se viene trovato qualcosa di valido sotto il termine di ricerca inserito.
 
-## Options
+## Opzioni
 
 * __defaultEntry__ | `string`: voce predefinita da visualizzare. Default: `none`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 Um número de componentes de entrada. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou ligar o valor a uma variável global através do atributo "ligar".
 
-## Options
+## Opções
 
 * __bind__ | `string`: nome da variável global para o número a ser atribuído a. Default: `''`.
 * __defaultValue__ | `number`: valor que indica o valor padrão da entrada na partida. Default: `0`.
@@ -29,7 +29,7 @@ Um número de componentes de entrada. Pode ser usado como parte de um painel de 
 * __tooltipPlacement__ | `string`: direção da ponta da ferramenta. Default: `'left'`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <NumberInput

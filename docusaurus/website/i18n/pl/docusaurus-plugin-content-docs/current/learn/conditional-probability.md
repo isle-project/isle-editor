@@ -6,11 +6,11 @@ sidebar_label: Conditional Probability
 
 Komponent edukacyjny ilustrujący warunkowe prawdopodobieństwo dla dwóch zależnych od siebie zmiennych binarnych.
 
-## Options
+## Opcje
 
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnConditionalProbability />

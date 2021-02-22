@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 2つのレンダリングを可能にするISLEコンポーネント。
 
-## Options
+## オプション
 
 * __button__ | `string`: ボタンラベル. Default: `none`.
 * __draggable__ | `boolean`: は、カードをドラッグするかどうかを制御します。. Default: `false`.
@@ -24,7 +24,7 @@ sidebar_label: Flippable Card
 * __onChange__ | `function`: カードが反転されるとコールバックが起動され、現在の反転状態を唯一の引数として受け取ります。. Default: `onChange() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Mosaic Plot
 
 モザイクのプロット。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __variables__ | `array (required)`: 表示用変数の配列. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Mosaic Plot
 * __axisLabels__ | `string`: グループ化変数. Default: `'parallel to the axis'`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ## Examples
 

@@ -6,13 +6,13 @@ sidebar_label: Venn Diagram Builder
 
 Budowniczy diagramów Venna.
 
-## Options
+## Opcje
 
 * __nobs__ | `number`: całkowita liczba obserwacji. Default: `none`.
 * __three__ | `boolean`: kontroluje, czy mają być wyświetlane trzy kółka. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnVennDiagramBuilder />

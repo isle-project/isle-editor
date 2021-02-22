@@ -11,7 +11,7 @@ Une composante d'apprentissage illustrant le Théorème de la limite centrale (C
 * __showPopStdev__ | `boolean`: contrôle l'affichage ou non de l'écart type de la population. Default: `true`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnDiscreteCLT />

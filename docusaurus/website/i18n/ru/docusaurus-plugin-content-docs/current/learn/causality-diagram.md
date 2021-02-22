@@ -6,14 +6,14 @@ sidebar_label: Causality Diagram
 
 Учебный компонент, иллюстрирующий влияние путаницы при оценке причинно-следственной связи между двумя переменными и рандомизации.
 
-## Options
+## Варианты
 
 * __x__ | `(string|node)`: имя объясняющей переменной. Default: `'Lights at Night'`.
 * __y__ | `(string|node)`: имя ответной переменной. Default: `'Child Myopia'`.
 * __z__ | `(string|node)`: имя путающей переменной. Default: `'Parental Myopia'`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnCausalityDiagram x="X" y="Y" z="Z" />

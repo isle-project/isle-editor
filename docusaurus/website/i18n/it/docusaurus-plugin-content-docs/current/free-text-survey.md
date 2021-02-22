@@ -6,7 +6,7 @@ sidebar_label: Free Text Survey
 
 Un componente ISLE per le domande in cui le risposte degli studenti devono essere fornite sotto forma di testo libero. Ciò che differenzia questo componente dalla **FreeTextQuestion** è il fatto che i dati aggregati del gruppo vengono visualizzati a tutti in tempo reale.
 
-## Options
+## Opzioni
 
 * __question__ | `(string|node)`: la domanda da porre agli studenti. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controlla se si desidera consentire agli studenti di rispondere più volte al sondaggio. Default: `false`.
@@ -17,7 +17,7 @@ Un componente ISLE per le domande in cui le risposte degli studenti devono esser
 * __onSubmit__ | `function`: funzione di richiamo richiamata quando viene inviata una risposta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <FreeTextSurvey 

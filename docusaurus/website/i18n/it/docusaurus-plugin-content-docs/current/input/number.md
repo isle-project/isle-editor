@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 Un componente di input numerico. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si vuole gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __bind__ | `string`: nome della variabile globale per il numero da assegnare a. Default: `''`.
 * __defaultValue__ | `number`: valore che indica il valore di default dell'ingresso all'avvio. Default: `0`.
@@ -29,7 +29,7 @@ Un componente di input numerico. Può essere utilizzato come parte di un cruscot
 * __tooltipPlacement__ | `string`: direzione della punta dell'utensile. Default: `'left'`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <NumberInput

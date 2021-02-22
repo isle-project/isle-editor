@@ -23,7 +23,7 @@ Un élément de saisie de texte. Peut être utilisé dans le cadre d'un tableau 
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <TextInput

@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 Una trama de cajas.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `(array|string) (required)`: variable a mostrar. Default: `none`.
@@ -15,7 +15,7 @@ Una trama de cajas.
 * __overlayPoints__ | `boolean`: controla si se superponen los puntos. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <BoxPlot 

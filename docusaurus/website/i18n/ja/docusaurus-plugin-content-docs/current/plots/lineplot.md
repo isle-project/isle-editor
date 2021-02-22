@@ -6,7 +6,7 @@ sidebar_label: Line Plot
 
 線分プロット。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __x__ | `string`: Ｘ軸変数. Default: `none`.
@@ -15,5 +15,5 @@ sidebar_label: Line Plot
 * __showPoints__ | `boolean`: 各観測点をオーバーレイするかどうかを制御します。. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 

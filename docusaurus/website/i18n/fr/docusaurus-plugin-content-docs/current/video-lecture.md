@@ -17,7 +17,7 @@ Un composant de lecture vidéo qui affiche des vidéos intercalées d'éléments
 * __style__ | `object`: Style CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <VideoLecture steps={[

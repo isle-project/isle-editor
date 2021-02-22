@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Componente que exibe uma cotação estendida.
 
-## Options
+## Opções
 
 * __cite__ | `string`: fonte para a citação. Default: `none`.
 * __className__ | `string`: nome da classe. Default: `''`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

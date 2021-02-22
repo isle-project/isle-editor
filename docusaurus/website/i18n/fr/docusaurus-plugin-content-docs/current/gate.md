@@ -22,7 +22,7 @@ Un composant ISLE qui permet de présenter ses enfants uniquement à des publics
 * __check__ | `function`: fonction de rappel renvoyant un "booléen" indiquant si la porte doit afficher les composants enfants ; la fonction est invoquée à chaque fois que des actions de session arrivent. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Gate 

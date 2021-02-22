@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 Un componente de área de texto. Usado como un componente independiente, los cambios deben ser manejados a través del atributo "onChange".
 
-## Options
+## Opciones
 
 * __defaultValue__ | `string`: valor por defecto del área de texto. Default: `''`.
 * __value__ | `string`: valor de texto (para el componente controlado). Default: `none`.
@@ -20,7 +20,7 @@ Un componente de área de texto. Usado como un componente independiente, los cam
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <TextArea

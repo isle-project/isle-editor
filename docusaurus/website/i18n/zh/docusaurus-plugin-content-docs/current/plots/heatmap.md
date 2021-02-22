@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 热图用于可视化两个变量之间的关系。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __x__ | `string (required)`: x轴变量. Default: `none`.
@@ -19,7 +19,7 @@ sidebar_label: Heat Map
 * __commonYAxis__ | `boolean`: 控制在按分组变量的值创建多个热图时是否使用共同的Y轴。. Default: `false`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <HeatMap 

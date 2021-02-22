@@ -16,7 +16,7 @@ Code QR.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

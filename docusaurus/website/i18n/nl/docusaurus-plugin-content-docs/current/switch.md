@@ -6,7 +6,7 @@ sidebar_label: Switch Components
 
 De Switch-component maakt het mogelijk om één element uit een lijst van meerdere elementen weer te geven. Gebruikers kunnen door de verschillende kinderen van de Switch-tag bladeren door te klikken op de op dat moment getoonde tag.
 
-## Options
+## Opties
 
 * __active__ | `boolean`: regelt of de schakelaar actief is of niet. Default: `true`.
 * __tooltip__ | `string`: tooltip weergegeven bij het zweven over het schakelelement. Default: `none`.
@@ -16,7 +16,7 @@ De Switch-component maakt het mogelijk om één element uit een lijst van meerde
 * __onChange__ | `function`: terugbellen wordt aangeroepen wanneer elementen worden geschakeld. Ontvangt als eerste argument de index van het op dat moment getoonde kind. Default: `onChange() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

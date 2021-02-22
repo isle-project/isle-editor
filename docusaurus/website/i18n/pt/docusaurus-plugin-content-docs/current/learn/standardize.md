@@ -6,13 +6,13 @@ sidebar_label: Standardization
 
 Componente de aprendizagem que explica o processo de padronização de dados.
 
-## Options
+## Opções
 
 * __showProbabilities__ | `boolean`: controla se devem ser exibidas as probabilidades. Default: `false`.
 * __step__ | `object`: tamanho do passo da entrada do scroll. Default: `'any'`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnStandardize />

@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Eine Schaltfläche, die am Ende einer Lektion angezeigt wird und auf die die Schüler klicken können. Standardmäßig wird eine Nachricht zur Bestätigung des Abschlusses der Lektion an ihre E-Mail-Adresse gesendet.
 
-## Options
+## Optionen
 
 * __label__ | `string`: Beschriftung der Submit-Taste. Default: `none`.
 * __message__ | `string`: Nachricht für Bestätigungsmail. Default: `''`.
@@ -17,7 +17,7 @@ Eine Schaltfläche, die am Ende einer Lektion angezeigt wird und auf die die Sch
 * __onClick__ | `function`: Callback, der beim Klicken auf die Schaltfläche "Senden" aufgerufen wird. Default: `onClick() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 Wyświetla timer, który po upłynięciu czasu wyzwoli predefiniowane wywołanie zwrotne. Przykładowym przypadkiem użycia jest czas trwania quizów.
 
-## Options
+## Opcje
 
 * __id__ | `string`: unikalny `numer identyfikacyjny strun` dla timera. Jeśli ID jest ustawione, komponent timera jest stale odświeżany nad stroną.. Default: `none`.
 * __active__ | `boolean (required)`: flaga, która może być przełączana w celu uruchomienia lub wstrzymania timera. Default: `none`.
@@ -18,7 +18,7 @@ Wyświetla timer, który po upłynięciu czasu wyzwoli predefiniowane wywołanie
 * __onTimeUp__ | `function`: wywołanie zwrotne, gdy skończy się timer. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Timer 

@@ -6,13 +6,13 @@ sidebar_label: p
 
 Элемент параграфа.
 
-## Options
+## Варианты
 
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

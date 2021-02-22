@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Calcola il valore minimo e massimo di una matrice.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto di array di valori per ogni variabile. Default: `none`.
 * __xval__ | `string (required)`: variabile da visualizzare sull'asse x. Default: `none`.
@@ -23,7 +23,7 @@ Calcola il valore minimo e massimo di una matrice.
 * __smoothSpan__ | `number`: parametro dello span di lisciatura per la linea di regressione "liscio".. Default: `0.66`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <ScatterPlot 

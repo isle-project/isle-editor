@@ -13,7 +13,7 @@ Faites en sorte que les mots fassent apparaître la documentation R dans une fen
 * __visible__ | `boolean`: contrôle si la fenêtre modale d'aide doit être ouverte au démarrage. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <span><RHelp library="graphics">hist</RHelp> is used to create a histogram.</span>

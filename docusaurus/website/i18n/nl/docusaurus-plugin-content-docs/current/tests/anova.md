@@ -6,7 +6,7 @@ sidebar_label: ANOVA
 
 Analyse van de variantie.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: naam van de weer te geven variabele. Default: `none`.
@@ -14,7 +14,7 @@ Analyse van de variantie.
 * __showDecision__ | `boolean`: controleert of de testbeslissing wordt weergegeven. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Anova

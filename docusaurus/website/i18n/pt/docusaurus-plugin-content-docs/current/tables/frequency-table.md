@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 Uma tabela de freqüência.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `string (required)`: nome da variável a ser exibida. Default: `none`.
@@ -16,7 +16,7 @@ Uma tabela de freqüência.
 * __nDecimalPlaces__ | `number`: número de casas decimais para as freqüências relativas exibidas na tabela. Default: `3`.
 
 
-## Examples
+## Exemplos
 
 ## Examples
 

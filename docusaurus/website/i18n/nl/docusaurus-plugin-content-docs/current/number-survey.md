@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 Een enquêteonderdeel waarbij de docent in real-time numerieke enquêtegegevens van studenten kan verzamelen.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: de te tonen vraag. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: bepaalt of dezelfde gebruiker (of sessie indien anoniem) meerdere antwoorden mag indienen). Default: `false`.
@@ -16,7 +16,7 @@ Een enquêteonderdeel waarbij de docent in real-time numerieke enquêtegegevens 
 * __onSubmit__ | `function`: terugbelfunctie ingeroepen zodra de leerlingen een antwoord indienen. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <NumberSurvey

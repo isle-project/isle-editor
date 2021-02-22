@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 Eine ISLE-Komponente, die es erlaubt, ihre Kinder nur für reservierte Zielgruppen anzuzeigen.
 
-## Options
+## Optionen
 
 * __user__ | `boolean`: wenn gesetzt, wird der Gated Content den Benutzern angezeigt. Default: `false`.
 * __notUser__ | `boolean`: wenn gesetzt, wird der gesperrte Inhalt **nicht** für Benutzer angezeigt. Default: `false`.
@@ -22,7 +22,7 @@ Eine ISLE-Komponente, die es erlaubt, ihre Kinder nur für reservierte Zielgrupp
 * __check__ | `function`: Callback-Funktion, die ein "Boolean" zurückgibt, das angibt, ob Gate untergeordnete Komponenten anzeigen soll; die Funktion wird immer dann aufgerufen, wenn Sitzungsaktionen eintreffen. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <Gate 

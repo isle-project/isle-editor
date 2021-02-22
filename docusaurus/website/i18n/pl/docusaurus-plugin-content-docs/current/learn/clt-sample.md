@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 Komponent edukacyjny ilustrujący centralne twierdzenie graniczne (CLT) podczas pobierania próbek z dostarczonego zestawu danych.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt danych z kluczami odpowiada nazwom zmiennych i wartościom posiadającym wartości odpowiednich zmiennych. Default: `none`.
 * __hidePopulationStdev__ | `boolean`: ukryć wyświetlanie odchylenia standardowego populacji. Default: `false`.
@@ -16,7 +16,7 @@ Komponent edukacyjny ilustrujący centralne twierdzenie graniczne (CLT) podczas 
 * __variables__ | `array (required)`: nazwy zmiennych, z których można pobierać próbki. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnSampleCLT />

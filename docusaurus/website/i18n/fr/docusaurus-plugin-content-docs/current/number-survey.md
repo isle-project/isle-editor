@@ -16,7 +16,7 @@ Composante de l'enquête dans laquelle l'instructeur peut recueillir des donnée
 * __onSubmit__ | `function`: la fonction de rappel est activée dès que l'étudiant soumet une réponse. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <NumberSurvey

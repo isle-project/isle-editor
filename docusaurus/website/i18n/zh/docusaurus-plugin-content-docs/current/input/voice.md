@@ -6,7 +6,7 @@ sidebar_label: Voice Input
 
 一个语音输入组件。
 
-## Options
+## 选项
 
 * __autorecord__ | `boolean`: 控制是否自动开始录制. Default: `false`.
 * __defaultValue__ | `string`: 默认文本值. Default: `''`.
@@ -33,7 +33,7 @@ sidebar_label: Voice Input
 * __height__ | `number`: 语音输入高度(单位：px). Default: `36`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <VoiceInput

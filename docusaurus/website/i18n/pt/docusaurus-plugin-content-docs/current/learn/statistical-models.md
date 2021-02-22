@@ -6,12 +6,12 @@ sidebar_label: Statistical Models
 
 Componente para navegar pelas descrições de vários modelos estatísticos.
 
-## Options
+## Opções
 
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnStatisticalModels />

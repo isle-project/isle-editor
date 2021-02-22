@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 レッスンの最後に表示されるボタンです。デフォルトでは、レッスンの完了を確認するメッセージが学生のメールアドレスに送信されます。
 
-## Options
+## オプション
 
 * __label__ | `string`: 送信ボタンのラベル. Default: `none`.
 * __message__ | `string`: 確認メールのメッセージ. Default: `''`.
@@ -17,7 +17,7 @@ sidebar_label: Lesson Submit
 * __onClick__ | `function`: 投稿ボタンをクリックしたときに呼び出されるコールバック. Default: `onClick() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 Un componente de paginación ISLE que permite al usuario pasar por una secuencia de páginas.
 
-## Options
+## Opciones
 
 * __activePage__ | `number`: página activa. Default: `1`.
 * __disabled__ | `boolean`: controla si la barra de navegación está activa o no. Default: `false`.
@@ -19,7 +19,7 @@ Un componente de paginación ISLE que permite al usuario pasar por una secuencia
 * __onSelect__ | `function`: Función invocada cuando se cambia el cambio activo. Recibe el nuevo índice de páginas activas como único parámetro. Default: `onSelect() {}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

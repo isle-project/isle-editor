@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 Eine ISLE-Komponente, die zwei Rendering-Seiten ermöglicht.
 
-## Options
+## Optionen
 
 * __button__ | `string`: Tastenbeschriftung. Default: `none`.
 * __draggable__ | `boolean`: steuert, ob die Karte herumgezogen werden darf. Default: `false`.
@@ -24,7 +24,7 @@ Eine ISLE-Komponente, die zwei Rendering-Seiten ermöglicht.
 * __onChange__ | `function`: Callback, der aufgerufen wird, sobald die Karte umgedreht wurde; erhält den aktuellen umgedrehten Status als einziges Argument. Default: `onChange() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

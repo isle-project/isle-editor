@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 Histogram.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: zmienna do wyświetlania. Default: `none`.
@@ -21,7 +21,7 @@ Histogram.
 * __xBins__ | `{start,size,end}`: obiekt z "startem", "rozmiarem" i "końcowymi" właściwościami regulującymi zachowanie kosza.. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Histogram 

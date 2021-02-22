@@ -16,7 +16,7 @@ Un diagramme de Venn visualisant la cooccurrence des mots dans les documents d'u
 * __width__ | `number`: largeur du diagramme de Venn en pixels. Default: `600`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnWordVennDiagram />

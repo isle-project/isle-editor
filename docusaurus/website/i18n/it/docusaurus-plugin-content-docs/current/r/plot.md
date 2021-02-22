@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Componente per il rendering di un grafico R all'interno di una lezione ISLE.
 
-## Options
+## Opzioni
 
 * __code__ | `string`: Codice R per generare il grafico. Default: `''`.
 * __width__ | `(number|string)`: larghezza del terreno (in px). Default: `600`.
@@ -20,7 +20,7 @@ Componente per il rendering di un grafico R all'interno di una lezione ISLE.
 * __onDone__ | `function`: richiamata con argomenti `err`, `img` e `body` una volta creata la trama. Default: `onDone() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

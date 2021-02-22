@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 Eine interaktive R-Shell, die zum Ausführen von R-Befehlen in der Cloud mit [OpenCPU](https://www.opencpu.org/) verwendet werden kann.
 
-## Options
+## Optionen
 
 * __code__ | `string`: Zu bewertender R-Code. Default: `''`.
 * __solution__ | `string`: für Programmierfragen, R-Code `string`, der die offizielle Lösung für das Problem darstellt. Default: `''`.
@@ -25,7 +25,7 @@ Eine interaktive R-Shell, die zum Ausführen von R-Befehlen in der Cloud mit [Op
 * __onResult__ | `function`: Callback, der immer dann aufgerufen wird, wenn das Ergebnis einer Code-Ausführung aus der Cloud bezogen wird. Das Ergebnis `String` wird als einziges Argument an die Callback-Funktion übergeben. Default: `onResult() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <RShell

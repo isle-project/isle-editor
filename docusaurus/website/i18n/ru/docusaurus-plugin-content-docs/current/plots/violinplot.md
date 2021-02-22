@@ -6,7 +6,7 @@ sidebar_label: Violin Plot
 
 Сюжет для скрипки.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: переменная для отображения. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Violin Plot
 * __showBox__ | `boolean`: управляет тем, отображать ли на экране участок коробки внутри. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <ViolinPlot 

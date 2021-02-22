@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 指定した間隔でテキストのリストを循環させる動的な背景コンポーネントです。
 
-## Options
+## オプション
 
 * __text__ | `array<string>`: 表示する文字列. Default: `[]`.
 * __loop__ | `boolean`: はプロセスを無限に表示するかどうかを示します。. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Scrolling Text
 * __style__ | `object`: テキストのCSSスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 
 import Tabs from '@theme/Tabs';

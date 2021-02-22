@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 Компонент часов, отображающий текущее время.
 
-## Options
+## Варианты
 
 * __duration__ | `boolean`: если установлено, то отображается продолжительность сеанса (а не фактическое время).. Default: `false`.
 * __format__ | `string`: формат времени (либо `HH:MM`, либо `HH:MM:SS`, либо `HH`).. Default: `''`.
@@ -14,7 +14,7 @@ sidebar_label: Clock
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

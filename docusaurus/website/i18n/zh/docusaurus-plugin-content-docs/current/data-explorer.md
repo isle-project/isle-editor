@@ -6,7 +6,7 @@ sidebar_label: Data Explorer
 
 这一部分内容是由学生对呈现的数据进行简单的总结，并进行各种统计检验。
 
-## Options
+## 选项
 
 * __categorical__ | `array`: 表示每个分类变量名称的字符串数组。. Default: `[]`.
 * __quantitative__ | `array`: 表示每个定量变量名称的字符串数组。. Default: `[]`.
@@ -93,7 +93,7 @@ sidebar_label: Data Explorer
 * __onTutorialStart__ | `function`: 当用户启动数据资源管理器教程时调用的函数。. Default: `onTutorialStart() {}`.
 
 
-## Examples
+## 例子
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

@@ -15,7 +15,7 @@ Composant pour le rendu de la sortie R dans une leçon ISLE.
 * __onResult__ | `function`: rappel invoqué avec "erreur" ("nul" si l'opération a réussi) et "résultat" avec la sortie R. Default: `onResult() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ROutput code="runif(10)" />

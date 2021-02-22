@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 等高线图。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __x__ | `string (required)`: x轴变量. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contour Chart
 * __onSelected__ | `function`: 当用x，y值选择点时，回调被调用，并且被选择的点. Default: `onSelected() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ContourChart 

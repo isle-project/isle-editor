@@ -6,11 +6,11 @@ sidebar_label: Continuous Distribution
 
 Обучающий компонент для изучения определяемых пользователем непрерывных распределений вероятностей.
 
-## Options
+## Варианты
 
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnContinuousDistribution />

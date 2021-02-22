@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 Un componente ISLE che permette il rendering su due lati.
 
-## Options
+## Opzioni
 
 * __button__ | `string`: Etichetta a bottone. Default: `none`.
 * __draggable__ | `boolean`: controlla se la carta può essere trascinata. Default: `false`.
@@ -24,7 +24,7 @@ Un componente ISLE che permette il rendering su due lati.
 * __onChange__ | `function`: richiamata una volta che la carta è capovolta; riceve lo stato di capovolgimento corrente come unico argomento. Default: `onChange() {}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

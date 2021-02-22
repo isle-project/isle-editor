@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 Een interactieve Javascript-shell die gebruikt kan worden om JavaScript-commando's uit te voeren. De shell bevat een console die foutmeldingen, waarschuwingen etc. weergeeft.
 
-## Options
+## Opties
 
 * __code__ | `string`: Te evalueren JavaScript-code. Default: `''`.
 * __solution__ | `string`: voor programmeervragen, code `string` die de officiële oplossing voor het probleem vertegenwoordigt. Default: `''`.
@@ -24,7 +24,7 @@ Een interactieve Javascript-shell die gebruikt kan worden om JavaScript-commando
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <JSShell id = "jseditor" 

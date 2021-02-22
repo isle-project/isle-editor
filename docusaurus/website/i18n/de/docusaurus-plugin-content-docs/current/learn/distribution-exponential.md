@@ -6,7 +6,7 @@ sidebar_label: Exponential Distribution
 
 Eine Lernkomponente zur Berechnung von Wahrscheinlichkeiten einer Exponentialverteilung.
 
-## Options
+## Optionen
 
 * __hideCDF__ | `boolean`: steuert, ob die CDF-Darstellungen ausgeblendet werden sollen. Default: `false`.
 * __step__ | `(number|string)`: Schrittweite des Scrolleingangs. Default: `0.01`.
@@ -15,7 +15,7 @@ Eine Lernkomponente zur Berechnung von Wahrscheinlichkeiten einer Exponentialver
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnExponentialDistribution />

@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 Een tekstinvoercomponent. Kan gebruikt worden als onderdeel van een ISLE-dashboard of stand-alone. In het laatste geval wilt u wijzigingen verwerken via het `on-Change` attribuut of de waarde binden aan een globale variabele via het `bind` attribuut.
 
-## Options
+## Opties
 
 * __bind__ | `string`: naam van de globale variabele voor het toe te kennen nummer. Default: `none`.
 * __defaultValue__ | `string`: Een waarde die de standaardwaarde van de invoer bij het begin aangeeft. Default: `''`.
@@ -23,7 +23,7 @@ Een tekstinvoercomponent. Kan gebruikt worden als onderdeel van een ISLE-dashboa
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <TextInput

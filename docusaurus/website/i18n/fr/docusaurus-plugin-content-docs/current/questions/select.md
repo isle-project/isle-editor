@@ -26,7 +26,7 @@ Un volet de questions choisies.
 * __onSubmit__ | `function`: rappel invoqué lors de la soumission de la réponse ; a comme premier paramètre un "booléen" indiquant si la réponse a été correctement donnée (le cas échéant, "nul" sinon) et la réponse fournie comme second paramètre. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

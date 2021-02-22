@@ -6,7 +6,7 @@ sidebar_label: Image Question
 
 Een vraag die de gebruiker vraagt om een afbeelding te uploaden.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: vraag waarvoor de student de beschikbare `opties` in de juiste volgorde moet brengen. Default: `''`.
 * __hintPlacement__ | `string`: plaatsing van de hints (ofwel `top`, `left`, `right`, of `bottom`). Default: `'bottom'`.
@@ -23,4 +23,4 @@ Een vraag die de gebruiker vraagt om een afbeelding te uploaden.
 * __onSubmit__ | `function`: callback ingeroepen bij het indienen van een antwoord; heeft als enige parameter een `boolean` die aangeeft of de elementen in de juiste volgorde zijn geplaatst. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden

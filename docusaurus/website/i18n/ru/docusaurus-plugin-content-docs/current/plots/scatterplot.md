@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Вычисляет минимальное и максимальное значение массива.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __xval__ | `string (required)`: переменная для отображения по оси х. Default: `none`.
@@ -23,7 +23,7 @@ sidebar_label: Scatter Plot
 * __smoothSpan__ | `number`: параметр диапазона сглаживания для `слабой` линии регрессии. Default: `0.66`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <ScatterPlot 

@@ -6,7 +6,7 @@ sidebar_label: Image Question
 
 Una pregunta que pide al usuario que suba una imagen.
 
-## Options
+## Opciones
 
 * __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que poner las "opciones" disponibles en el orden correcto. Default: `''`.
 * __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
@@ -23,4 +23,4 @@ Una pregunta que pide al usuario que suba una imagen.
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como único parámetro un "booleano" que indica si los elementos fueron colocados en el orden correcto. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos

@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 質問コンポーネントを選択します。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 択一問題. Default: `''`.
 * __options__ | `array (required)`: 学生が選択できる解答の選択肢があります。. Default: `none`.
@@ -26,7 +26,7 @@ sidebar_label: Select Question
 * __onSubmit__ | `function`: 最初のパラメータとして、アンサーが正しく回答されたかどうかを示す `boolean` (該当する場合は `null`) と、2番目のパラメータとして与えられたアンサーを指定します。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

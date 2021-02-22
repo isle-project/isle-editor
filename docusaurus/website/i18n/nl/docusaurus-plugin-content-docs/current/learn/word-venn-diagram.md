@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Een venn diagram dat het samen voorkomen van woorden in documenten van een bijgeleverde term-document matrix visualiseert.
 
-## Options
+## Opties
 
 * __height__ | `number`: hoogte van het Venn-diagram in pixels. Default: `350`.
 * __nTexts__ | `number (required)`: aantal bronnen waaruit tekst is verzameld. Default: `none`.
@@ -16,7 +16,7 @@ Een venn diagram dat het samen voorkomen van woorden in documenten van een bijge
 * __width__ | `number`: breedte van het Venn-diagram in pixels. Default: `600`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnWordVennDiagram />

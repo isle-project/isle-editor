@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Proportions
 
 关于人口比例的假设检验的学习内容。
 
-## Options
+## 选项
 
 * __types__ | `array<string>`: 测试的类型("一个样本"，"两个样本")，小组件应该暴露出来。. Default: `[
   'One-Sample',
@@ -17,7 +17,7 @@ sidebar_label: Hypothesis Testing for Proportions
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnProportionTest />

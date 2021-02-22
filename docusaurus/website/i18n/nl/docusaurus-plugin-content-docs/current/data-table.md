@@ -6,7 +6,7 @@ sidebar_label: Data Table
 
 Een component die gegevens weergeeft in een tabelweergave. Gebouwd bovenop [reageer-tabel](https://react-table.js.org/).
 
-## Options
+## Opties
 
 * __data__ | `(array|object) (required)`: Een te bekijken data-object of -array. Als het een object is, komen de toetsen overeen met de kolomwaarden, terwijl een array een array verwacht met een veld met een naam die overeenkomt met elke kolom.. Default: `none`.
 * __dataInfo__ | `object`: object met `info` string array die de dataset beschrijft, de `naam` van de dataset, een `object` van `variabelen` met toetsen die overeenkomen met variabelennamen en -waarden bij variabelenbeschrijvingen, een `showOnStartup` boolean die bepaalt of de infomodal bij het opstarten wordt weergegeven. Default: `{
@@ -36,7 +36,7 @@ kolom, en de tabel instantie). Default: `none`.
 * __style__ | `object`: Een object dat een aangepaste css-styling mogelijk maakt. Standaardinstelling van een leeg object. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <DataTable

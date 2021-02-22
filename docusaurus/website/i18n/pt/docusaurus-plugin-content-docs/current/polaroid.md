@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 Um componente que exibe uma imagem no estilo de uma polaroid.
 
-## Options
+## Opções
 
 * __image__ | `string`: a URL da imagem a ser exibida na moldura polaroid. Default: `none`.
 * __draggable__ | `boolean`: controla se é possível arrastar a polaroide ao redor da tela. Default: `false`.
@@ -17,7 +17,7 @@ Um componente que exibe uma imagem no estilo de uma polaroid.
 * __onClick__ | `function`: manipulador de eventos invocado quando a imagem é clicada (recebe a identificação da Polaroid como parâmetro). Default: `none`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

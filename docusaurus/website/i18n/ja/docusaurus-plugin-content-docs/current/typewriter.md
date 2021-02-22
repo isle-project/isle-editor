@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 タイプライターエフェクトを作成できるISLEコンポーネント。
 
-## Options
+## オプション
 
 * __delay__ | `number`: タイプライタ起動前初期遅延時間. Default: `none`.
 * __hold__ | `number`: textが文字列の配列の場合、配列の次の項目に移動する前にフル表示される時間を指定します。. Default: `2000`.
@@ -17,7 +17,7 @@ sidebar_label: Typewriter
 * __text__ | `(string|array<string>)`: 表示する全文. Default: `''`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

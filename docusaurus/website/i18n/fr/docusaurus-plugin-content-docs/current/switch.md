@@ -16,7 +16,7 @@ Le composant "Switch" permet d'afficher un élément parmi une liste de plusieur
 * __onChange__ | `function`: rappel invoqué lors de la commutation des éléments. Reçoit comme premier argument l'index de l'enfant actuellement affiché. Default: `onChange() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

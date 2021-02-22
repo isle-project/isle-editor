@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 Komponent do odtwarzania plików multimedialnych i treści z serwisów YouTube, SoundCloud i Vimeo.
 
-## Options
+## Opcje
 
 * __url__ | `string`: URL filmu. Default: `''`.
 * __controls__ | `boolean`: wskazuje, czy mają być wyświetlane elementy sterujące odtwarzacza wideo. Default: `false`.
@@ -26,7 +26,7 @@ Komponent do odtwarzania plików multimedialnych i treści z serwisów YouTube, 
 * __onSeek__ | `function`: wywołanie zwrotne, gdy media poszukują wywołania z parametrem `sekundy'.. Default: `onSeek() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

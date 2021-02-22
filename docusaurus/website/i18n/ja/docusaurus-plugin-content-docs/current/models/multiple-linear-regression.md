@@ -6,7 +6,7 @@ sidebar_label: Multiple Linear Regression
 
 重線形回帰。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __y__ | `string (required)`: アウトカム変数. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Multiple Linear Regression
 * __onPredict__ | `function`: モデルフィッティング後の予測値と残差で呼び出されるコールバック. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <MultipleLinearRegression 

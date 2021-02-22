@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 Eine Konturenkarte.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt mit Werte-Arrays für jede Variable. Default: `none`.
 * __x__ | `string (required)`: x-Achse variabel. Default: `none`.
@@ -17,7 +17,7 @@ Eine Konturenkarte.
 * __onSelected__ | `function`: Callback, der aufgerufen wird, wenn Punkte mit x-, y-Werten ausgewählt werden und die ausgewählten Punkte. Default: `onSelected() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <ContourChart 

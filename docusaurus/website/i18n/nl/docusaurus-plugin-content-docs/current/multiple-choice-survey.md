@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Een enquêteonderdeel waarbij de docent in real-time meerkeuzegegevens van studenten kan verzamelen.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: tekenreeks die de vraag aan de leerlingen aangeeft. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controleert of men de studenten wil toestaan de enquête meerdere malen te beantwoorden. Default: `false`.
@@ -17,7 +17,7 @@ Een enquêteonderdeel waarbij de docent in real-time meerkeuzegegevens van stude
 * __onSubmit__ | `function`: functie die moet worden opgeroepen wanneer een antwoord wordt ingediend. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <MultipleChoiceSurvey

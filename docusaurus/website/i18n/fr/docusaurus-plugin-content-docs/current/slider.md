@@ -21,7 +21,7 @@ Un élément qui présente ses enfants dans un diaporama ou un carrousel.
 * __onClick__ | `function`: rappel invoqué lors du clic sur les boutons suivant / précédent. Default: `onClick() {}`.
 
 
-## Examples
+## Exemples
 
 
 import Tabs from '@theme/Tabs';

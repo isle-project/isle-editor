@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 盒状图。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `(array|string) (required)`: 变量显示. Default: `none`.
@@ -15,7 +15,7 @@ sidebar_label: Box Plot
 * __overlayPoints__ | `boolean`: 控制是否叠加点. Default: `false`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <BoxPlot 

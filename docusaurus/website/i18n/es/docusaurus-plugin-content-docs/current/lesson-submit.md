@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Un botón que se muestra al final de una lección para que los estudiantes hagan clic en él. Por defecto, se envía un mensaje de confirmación de la finalización de la lección a su dirección de correo electrónico.
 
-## Options
+## Opciones
 
 * __label__ | `string`: etiqueta del botón de envío. Default: `none`.
 * __message__ | `string`: mensaje para el correo electrónico de confirmación. Default: `''`.
@@ -17,7 +17,7 @@ Un botón que se muestra al final de una lección para que los estudiantes hagan
 * __onClick__ | `function`: llamada de retorno invocada al hacer clic en el botón de presentación. Default: `onClick() {}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

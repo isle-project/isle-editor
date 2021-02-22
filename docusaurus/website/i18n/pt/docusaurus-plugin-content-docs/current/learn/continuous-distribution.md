@@ -6,11 +6,11 @@ sidebar_label: Continuous Distribution
 
 Um componente de aprendizagem para explorar as distribuições de probabilidade contínua definidas pelo usuário.
 
-## Options
+## Opções
 
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnContinuousDistribution />

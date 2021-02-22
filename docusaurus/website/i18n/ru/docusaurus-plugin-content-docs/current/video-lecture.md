@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 Компонент видео лекции, который отображает видео, перемежающееся с интерактивными элементами.
 
-## Options
+## Варианты
 
 * __controls__ | `boolean`: указывает, следует ли отображать элементы управления видеоплеерами.. Default: `true`.
 * __instructorView__ | `boolean`: контроль включает ли мнение инструктора. Default: `true`.
@@ -17,7 +17,7 @@ sidebar_label: Video Lecture
 * __style__ | `object`: встроенный стиль CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <VideoLecture steps={[

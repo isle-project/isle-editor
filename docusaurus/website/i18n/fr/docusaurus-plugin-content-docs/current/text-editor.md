@@ -18,7 +18,7 @@ Un éditeur de texte pour la rédaction de notes ou de rapports. Prend en charge
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <TextEditor />

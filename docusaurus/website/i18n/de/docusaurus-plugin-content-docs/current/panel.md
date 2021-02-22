@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Kartenkomponente.
 
-## Options
+## Optionen
 
 * __className__ | `string`: CSS-Klassenname. Default: `''`.
 * __header__ | `(string|node)`: Panel-Überschrift (h3). Default: `none`.
@@ -20,7 +20,7 @@ Kartenkomponente.
 * __onHide__ | `function`: Callback, der aufgerufen wird, wenn die Schließen-Schaltfläche angeklickt wird. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

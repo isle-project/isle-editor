@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 收集用户反馈的按钮。
 
-## Options
+## 选项
 
 * __confusedMsg__ | `string`: 混乱的按钮将在工具提示中显示信息。. Default: `none`.
 * __feedbackMsg__ | `string`: 在工具提示中显示详细的反馈按钮的信息。. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Feedback Buttons
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

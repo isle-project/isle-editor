@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 Staafdiagram.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
@@ -21,7 +21,7 @@ Staafdiagram.
 * __direction__ | `string`: hoe bestelt u de staven naast de x-as ('neerwaarts' of 'neerwaarts')?. Default: `'ascending'`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <BarChart 

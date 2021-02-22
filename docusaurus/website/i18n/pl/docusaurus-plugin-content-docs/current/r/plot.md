@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Komponent do renderowania wykresu R wewnątrz lekcji ISLE.
 
-## Options
+## Opcje
 
 * __code__ | `string`: Kod R do wygenerowania wykresu. Default: `''`.
 * __width__ | `(number|string)`: szerokość działki (w px). Default: `600`.
@@ -20,7 +20,7 @@ Komponent do renderowania wykresu R wewnątrz lekcji ISLE.
 * __onDone__ | `function`: wywołanie zwrotne z `err`, `img` i `body` argumentami po stworzeniu fabuły. Default: `onDone() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

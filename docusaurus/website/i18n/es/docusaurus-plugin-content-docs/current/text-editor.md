@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 Un editor de texto para escribir notas o informes. Soporta la exportación de notas como archivos HTML o PDF, así como el envío automático al servidor de ISLE.
 
-## Options
+## Opciones
 
 * __allowSubmissions__ | `boolean`: controla si los estudiantes pueden enviar sus informes al servidor. Default: `true`.
 * __canLoadHTML__ | `boolean`: controla si se muestra el botón para cargar un archivo HTML guardado en el editor. Default: `true`.
@@ -18,7 +18,7 @@ Un editor de texto para escribir notas o informes. Soporta la exportación de no
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <TextEditor />

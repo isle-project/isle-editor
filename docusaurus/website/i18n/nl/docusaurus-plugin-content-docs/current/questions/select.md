@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 Een selecte vraagcomponent.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: vraag waarvoor de student een van de beschikbare antwoordmogelijkheden moet kiezen. Default: `''`.
 * __options__ | `array (required)`: beschikbare antwoordopties waaruit de student kan kiezen. Default: `none`.
@@ -26,7 +26,7 @@ Een selecte vraagcomponent.
 * __onSubmit__ | `function`: callback ingeroepen bij het inzenden van het antwoord; heeft als eerste parameter een `boolean` die aangeeft of het antwoord correct is beantwoord (indien van toepassing, `null` anders) en het verstrekte antwoord als tweede parameter. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

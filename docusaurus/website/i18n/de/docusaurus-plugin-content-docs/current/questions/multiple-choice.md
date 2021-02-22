@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 Eine ISLE-Komponente, die eine Multiple-Choice-Frage wiedergibt. Sie unterstützt den Fall, dass der Lerner eine einzelne Antwort auswählen muss und wenn es mehrere richtige Antworten geben kann und alle richtigen ausgewählt werden müssen.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: die oben in der Multiple-Choice-Komponente angezeigte Frage. Default: `''`.
 * __solution__ | `(number|array)`: Zahl, die angibt, welche Antwort richtig ist, oder eine "Reihe" der richtigen Antwortnummern, falls der Lernende mehrere Antworten auswählen kann. Default: `none`.
@@ -27,7 +27,7 @@ Eine ISLE-Komponente, die eine Multiple-Choice-Frage wiedergibt. Sie unterstütz
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, nachdem eine Antwort gesendet wurde. Default: `onSubmit(){}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

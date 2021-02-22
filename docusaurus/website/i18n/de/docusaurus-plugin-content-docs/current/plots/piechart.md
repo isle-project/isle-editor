@@ -6,7 +6,7 @@ sidebar_label: Pie Chart
 
 Eine Tortendiagramm-Komponente, die standardmäßig die Anzahl aller Kategorien einer ausgewählten Variablen anzeigt.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Variable zur Anzeige. Default: `none`.
@@ -14,7 +14,7 @@ Eine Tortendiagramm-Komponente, die standardmäßig die Anzahl aller Kategorien 
 * __summaryVariable__ | `string`: optionale Variable, deren Summe für jede `Variable`-Kategorie angezeigt werden soll. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <PieChart 

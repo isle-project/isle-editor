@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 Tabela częstotliwości.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: nazwa zmiennej, która ma być wyświetlana. Default: `none`.
@@ -16,7 +16,7 @@ Tabela częstotliwości.
 * __nDecimalPlaces__ | `number`: liczba miejsc po przecinku dla częstotliwości względnych wyświetlanych w tabeli. Default: `3`.
 
 
-## Examples
+## Przykłady
 
 ## Examples
 

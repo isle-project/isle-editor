@@ -6,13 +6,13 @@ sidebar_label: Unveil
 
 De verschijningscomponent zal ervoor zorgen dat alle kinderen na een bepaalde tijd zichtbaar worden.
 
-## Options
+## Opties
 
 * __active__ | `boolean`: controleert of de teller actief moet zijn. Default: `false`.
 * __delay__ | `number`: aantal milliseconden voordat de component verschijnt. Default: `1000`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Unveil duration={5000} >

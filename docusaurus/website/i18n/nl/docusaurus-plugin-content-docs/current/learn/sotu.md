@@ -6,12 +6,12 @@ sidebar_label: State of the Union Speeches
 
 Leercomponent om de toespraken van de Amerikaanse presidenten over de staat van de Unie te verkennen.
 
-## Options
+## Opties
 
 * __questions__ | `array<(node|element)>`: reeks vragen. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnSOTU />

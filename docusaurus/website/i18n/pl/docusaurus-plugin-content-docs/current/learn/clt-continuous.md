@@ -6,7 +6,7 @@ sidebar_label: Continuous CLT
 
 Komponent edukacyjny ilustrujący Twierdzenie Centralnej Granicy (CLT) dla wybranej dystrybucji ciągłej.
 
-## Options
+## Opcje
 
 * __distributions__ | `array<string>`: rozkłady statystyczne do wyboru ("jednolite", "wykładnicze" i/lub "normalne"). Default: `[
   'uniform',
@@ -16,7 +16,7 @@ Komponent edukacyjny ilustrujący Twierdzenie Centralnej Granicy (CLT) dla wybra
 * __hideFormulas__ | `boolean`: kontroluje, czy należy ukrywać formuły w tekście składnika. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnContinuousCLT />

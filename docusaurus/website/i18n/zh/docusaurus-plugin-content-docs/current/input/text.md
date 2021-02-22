@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 一个文本输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过`onChange`属性来处理更改，或者通过`bind`属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __bind__ | `string`: 全局变量的名称，用于分配到的数字。. Default: `none`.
 * __defaultValue__ | `string`: 表示启动时输入的默认值的数值。. Default: `''`.
@@ -23,7 +23,7 @@ sidebar_label: Text Input
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <TextInput

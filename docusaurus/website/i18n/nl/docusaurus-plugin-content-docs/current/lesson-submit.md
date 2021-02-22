@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Een knop die aan het einde van een les wordt weergegeven en waarop de leerlingen kunnen klikken. Standaard wordt een bericht ter bevestiging van de voltooiing van de les naar hun e-mailadres gestuurd.
 
-## Options
+## Opties
 
 * __label__ | `string`: label van verzendknop. Default: `none`.
 * __message__ | `string`: bericht ter bevestiging e-mail. Default: `''`.
@@ -17,7 +17,7 @@ Een knop die aan het einde van een les wordt weergegeven en waarop de leerlingen
 * __onClick__ | `function`: terugroeping aangeroepen bij het klikken op de indieningsknop. Default: `onClick() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

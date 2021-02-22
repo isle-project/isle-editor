@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 Balkendiagramm.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Variable zur Anzeige. Default: `none`.
@@ -21,7 +21,7 @@ Balkendiagramm.
 * __direction__ | `string`: wie die Balken entlang der x-Achse angeordnet werden sollen; `ascending` (aufsteigend) oder `descending` (absteigend). Default: `'ascending'`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <BarChart 

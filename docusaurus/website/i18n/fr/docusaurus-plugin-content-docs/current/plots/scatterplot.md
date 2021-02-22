@@ -23,7 +23,7 @@ Calcule la valeur minimale et maximale d'un tableau.
 * __smoothSpan__ | `number`: paramètre de lissage de la ligne de régression "lisse. Default: `0.66`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ScatterPlot 

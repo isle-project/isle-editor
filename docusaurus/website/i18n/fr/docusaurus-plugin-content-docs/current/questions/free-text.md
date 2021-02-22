@@ -32,7 +32,7 @@ Un volet ISLE pour les questions dont les réponses des étudiants doivent être
 * __onSubmit__ | `function`: rappel invoqué lorsque l'utilisateur soumet une réponse ; reçoit le texte soumis comme seul argument. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

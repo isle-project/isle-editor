@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 Lista elementów do przeciągania, które mogą być ponownie uporządkowane przez uczniów.
 
-## Options
+## Opcje
 
 * __data__ | `array (required)`: tablica obiektów z klawiszami `id` i `text`. Default: `none`.
 * __onChange__ | `function`: wywołanie zwrotne z nowo zamówioną tablicą danych przy każdej zmianie. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ Lista elementów do przeciągania, które mogą być ponownie uporządkowane prz
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <DraggableList

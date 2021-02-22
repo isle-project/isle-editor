@@ -6,7 +6,7 @@ sidebar_label: Select Question Matrix
 
 Вопрос с ответом, состоящим из нескольких квадратов.
 
-## Options
+## Варианты
 
 * __question__ | `(string|node)`: вопрос, который будет отображаться в верхней части матрицы выбранного вопроса.. Default: `''`.
 * __rows__ | `array`: строчные метки. Default: `[]`.
@@ -28,7 +28,7 @@ sidebar_label: Select Question Matrix
 * __onSubmit__ | `function`: функция обратного вызова, вызываемая при отправке с ответами в качестве первого и булевым указателем корректности в качестве второго параметра. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <SelectQuestionMatrix

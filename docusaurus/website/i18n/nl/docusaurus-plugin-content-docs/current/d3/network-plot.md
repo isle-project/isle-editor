@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 Een d3-gebaseerde netwerkplot.
 
-## Options
+## Opties
 
 * __width__ | `number`: breedte van het perceel (in px). Default: `900`.
 * __height__ | `number`: hoogte van het perceel (in px). Default: `600`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <NetworkPlot

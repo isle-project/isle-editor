@@ -6,7 +6,7 @@ sidebar_label: Multiple Linear Regression
 
 多线性回归。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __y__ | `string (required)`: 结果变量. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Multiple Linear Regression
 * __onPredict__ | `function`: 模型拟合后，调用回调来处理预测和残差。. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <MultipleLinearRegression 

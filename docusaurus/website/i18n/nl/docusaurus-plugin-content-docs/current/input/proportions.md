@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 Een proportionele invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-dashboard of stand-alone. In het laatste geval wilt u veranderingen verwerken via het `on-Change` attribuut of de waarde binden aan een globale variabele via het `bind` attribuut.
 
-## Options
+## Opties
 
 * __colors__ | `array<string>`: reeks kleuren voor de taartdiagrammen. Indien niet gedefinieerd, zal een aangepaste kleurenschaal worden gebruikt. Default: `none`.
 * __disabled__ | `boolean`: controleert of het invoerveld is gedeactiveerd. Default: `false`.
@@ -17,7 +17,7 @@ Een proportionele invoercomponent. Kan worden gebruikt als onderdeel van een ISL
 * __step__ | `number`: de stap van de pijlen gezien bij het zweven met de cursor boven het invoerveld. Default: `0.1`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ProportionsInput

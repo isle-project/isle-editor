@@ -19,7 +19,7 @@ Un composant ISLE pour l'enregistrement audio, écran et vidéo.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Recorder 

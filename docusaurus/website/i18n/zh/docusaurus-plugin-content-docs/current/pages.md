@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 一个ISLE分页组件，它允许用户在一个页面序列中分步。
 
-## Options
+## 选项
 
 * __activePage__ | `number`: 活动页. Default: `1`.
 * __disabled__ | `boolean`: 控制导航栏是否处于活动状态. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Pages
 * __onSelect__ | `function`: 主动变更时调用的函数。接收新的活动页面索引作为唯一参数。. Default: `onSelect() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

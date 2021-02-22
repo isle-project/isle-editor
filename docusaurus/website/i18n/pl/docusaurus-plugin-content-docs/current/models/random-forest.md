@@ -6,7 +6,7 @@ sidebar_label: Random Forest
 
 Drzewa regresji i klasyfikacji.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __y__ | `string (required)`: zmienna wynikowa. Default: `none`.
@@ -22,7 +22,7 @@ Drzewa regresji i klasyfikacji.
 * __onPredict__ | `function`: wywołanie zwrotne z obiektem modelu po kliknięciu na przycisk przewidywania. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <RandomForest 

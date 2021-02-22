@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 Een warmtekaart voor het visualiseren van een relatie tussen twee variabelen.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object of value arrays voor elke variabele. Default: `none`.
 * __x__ | `string (required)`: x-asvariabele. Default: `none`.
@@ -19,7 +19,7 @@ Een warmtekaart voor het visualiseren van een relatie tussen twee variabelen.
 * __commonYAxis__ | `boolean`: bepaalt of een gemeenschappelijke y-as moet worden gebruikt bij het maken van meerdere warmtekaarten per waarde van een groepsvariabele. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <HeatMap 

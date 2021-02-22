@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 Обучающий компонент, иллюстрирующий центральную предельную теорию (CLT) при выборке из предоставленного набора данных.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: объект данных с ключами соответствует именам переменных и значениям, содержащим значения соответствующих переменных. Default: `none`.
 * __hidePopulationStdev__ | `boolean`: скрытое отображение населения со стандартным отклонением. Default: `false`.
@@ -16,7 +16,7 @@ sidebar_label: CLT Sample
 * __variables__ | `array (required)`: имена переменных, которые могут быть выбраны из. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnSampleCLT />

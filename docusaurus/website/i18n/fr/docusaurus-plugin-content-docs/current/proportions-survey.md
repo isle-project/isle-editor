@@ -23,7 +23,7 @@ Composante qui permet à un groupe de personnes de voter sur les poids et l'impo
 * __step__ | `number`: le pas des flèches visibles lors du survol du curseur au-dessus de la zone de saisie. Default: `0.25`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ProportionsSurvey 

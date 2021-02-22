@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 Um componente de nuvem de palavras construído em cima de [d3-cloud](https://github.com/jasondavies/d3-cloud).
 
-## Options
+## Opções
 
 * __data__ | `array`: ou um conjunto de textos a partir dos quais se pode gerar a palavra nuvem ou, se `precalculado' está definido para `verdadeiro', e um conjunto de objetos de contagem de palavras (com teclas de `texto' e `valor'). Default: `[]`.
 * __font__ | `(string|function)`: função acessor especificando a face da fonte para cada palavra. Também aceita uma constante ao invés de uma função. Default: `'serif'`.
@@ -26,7 +26,7 @@ Um componente de nuvem de palavras construído em cima de [d3-cloud](https://git
 * __width__ | `number`: largura da palavra nuvem (em px). Default: `700`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <WordCloud data={[

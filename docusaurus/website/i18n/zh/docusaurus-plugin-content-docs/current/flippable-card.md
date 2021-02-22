@@ -6,7 +6,7 @@ sidebar_label: Flippable Card
 
 一个ISLE组件，允许两个渲染两面。
 
-## Options
+## 选项
 
 * __button__ | `string`: 纽扣标签. Default: `none`.
 * __draggable__ | `boolean`: 控制卡片是否可以在周围拖动. Default: `false`.
@@ -24,7 +24,7 @@ sidebar_label: Flippable Card
 * __onChange__ | `function`: 一旦卡片被翻转，就会调用回调；接收当前的翻转状态作为唯一的参数。. Default: `onChange() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

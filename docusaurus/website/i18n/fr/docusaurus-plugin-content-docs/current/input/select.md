@@ -23,7 +23,7 @@ Une composante d'entrée choisie. Peut être utilisé dans le cadre d'un tableau
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <SelectInput

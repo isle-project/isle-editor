@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 Учебный компонент, иллюстрирующий закон больших чисел, использующий бросание кубиков.
 
-## Options
+## Варианты
 
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnDiceThrowing />

@@ -6,7 +6,7 @@ sidebar_label: Continuous CLT
 
 Un componente de aprendizaje que ilustra el Teorema del Límite Central (CLT) para una distribución continua elegida.
 
-## Options
+## Opciones
 
 * __distributions__ | `array<string>`: distribuciones estadísticas a elegir ('uniforme', 'exponencial', y/o 'normal'). Default: `[
   'uniform',
@@ -16,7 +16,7 @@ Un componente de aprendizaje que ilustra el Teorema del Límite Central (CLT) pa
 * __hideFormulas__ | `boolean`: controla si se ocultan las fórmulas en el texto del componente. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LearnContinuousCLT />

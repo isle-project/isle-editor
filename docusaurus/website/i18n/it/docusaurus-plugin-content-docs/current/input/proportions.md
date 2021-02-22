@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 Un componente di ingresso proporzionato. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si vuole gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __colors__ | `array<string>`: gamma di colori per i componenti del grafico a torta. Se non definita, verrà utilizzata una scala di colori personalizzata. Default: `none`.
 * __disabled__ | `boolean`: controlla se il campo di ingresso è disattivato. Default: `false`.
@@ -17,7 +17,7 @@ Un componente di ingresso proporzionato. Può essere utilizzato come parte di un
 * __step__ | `number`: il passo delle frecce che si vedono quando si posiziona il cursore sopra la casella di immissione. Default: `0.1`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <ProportionsInput

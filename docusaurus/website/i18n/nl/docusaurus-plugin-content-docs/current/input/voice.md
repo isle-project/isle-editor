@@ -6,7 +6,7 @@ sidebar_label: Voice Input
 
 Een component voor spraakinvoer.
 
-## Options
+## Opties
 
 * __autorecord__ | `boolean`: regelt of de opname automatisch wordt gestart. Default: `false`.
 * __defaultValue__ | `string`: standaardtekstwaarde. Default: `''`.
@@ -33,7 +33,7 @@ Een component voor spraakinvoer.
 * __height__ | `number`: spraakinvoerhoogte (in px). Default: `36`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <VoiceInput

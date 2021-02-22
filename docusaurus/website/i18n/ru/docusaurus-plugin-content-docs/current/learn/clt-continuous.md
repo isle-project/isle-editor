@@ -6,7 +6,7 @@ sidebar_label: Continuous CLT
 
 Компонент обучения, иллюстрирующий центральную предельную теорию (CLT) для выбранного непрерывного распределения.
 
-## Options
+## Варианты
 
 * __distributions__ | `array<string>`: статистические распределения на выбор ("единообразные", "экспоненциальные" и/или "нормальные"). Default: `[
   'uniform',
@@ -16,7 +16,7 @@ sidebar_label: Continuous CLT
 * __hideFormulas__ | `boolean`: контролирует, скрывать ли формулы в тексте компонента. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnContinuousCLT />

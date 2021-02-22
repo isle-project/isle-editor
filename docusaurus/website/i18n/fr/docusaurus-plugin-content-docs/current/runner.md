@@ -13,7 +13,7 @@ La composante "runner" exécutera une fonction fournie soit une fois, soit à un
 * __onEvaluate__ | `function`: fonction à invoquer. Default: `onEvaluate() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Runner

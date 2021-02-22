@@ -6,7 +6,7 @@ sidebar_label: Logistic Regression
 
 Множественная линейная регрессия.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __y__ | `string (required)`: переменная результата. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Logistic Regression
 * __onPredict__ | `function`: вызов обратного вызова с предсказаниями и остатками после подгонки модели. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LogisticRegression 

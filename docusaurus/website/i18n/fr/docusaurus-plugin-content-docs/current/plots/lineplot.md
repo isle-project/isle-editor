@@ -15,5 +15,5 @@ Un tracé de ligne.
 * __showPoints__ | `boolean`: contrôle de la superposition éventuelle de points à chaque observation. Default: `false`.
 
 
-## Examples
+## Exemples
 

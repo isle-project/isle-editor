@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 剧情化的可视化。
 
-## Options
+## 选项
 
 * __data__ | `array (required)`: 数据阵列. Default: `none`.
 * __draggable__ | `boolean`: 控制情节是否可以拖动. Default: `false`.
@@ -30,7 +30,7 @@ sidebar_label: Plotly
 * __toggleFullscreen__ | `boolean`: 控制是否允许在全屏模式下显示图形。. Default: `true`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Plotly

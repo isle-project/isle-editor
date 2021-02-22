@@ -6,7 +6,7 @@ sidebar_label: Beta Distribution
 
 Eine Lernkomponente zur Berechnung von Wahrscheinlichkeiten einer Beta-Verteilung.
 
-## Options
+## Optionen
 
 * __domain__ | `object`: Objekt aus `x` und `y` Arrays mit den Anfangs- und Endpunkten für die jeweilige Achse. Default: `none`.
 * __step__ | `(number|string)`: Schrittweite des Scrolleingangs. Default: `0.01`.
@@ -18,7 +18,7 @@ Eine Lernkomponente zur Berechnung von Wahrscheinlichkeiten einer Beta-Verteilun
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnBetaDistribution />

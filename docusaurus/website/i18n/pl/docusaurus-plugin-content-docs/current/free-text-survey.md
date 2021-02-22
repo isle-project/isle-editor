@@ -6,7 +6,7 @@ sidebar_label: Free Text Survey
 
 Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczone w formie wolnego tekstu. To co odróżnia ten komponent od **FreeTextQuestion** to fakt, że zagregowane dane grupowe są wyświetlane wszystkim w czasie rzeczywistym.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, które należy zadać uczniom. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: kontroluje, czy chce się zezwolić uczniom na wielokrotne udzielanie odpowiedzi na ankietę. Default: `false`.
@@ -17,7 +17,7 @@ Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczon
 * __onSubmit__ | `function`: funkcja callback wywoływana po przesłaniu odpowiedzi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <FreeTextSurvey 

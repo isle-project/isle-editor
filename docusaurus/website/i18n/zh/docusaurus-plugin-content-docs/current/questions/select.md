@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 一个选择题组件。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 问题，学生必须选择一个可用的答案选项。. Default: `''`.
 * __options__ | `array (required)`: 可用的答案选项，学生可以从中选择. Default: `none`.
@@ -26,7 +26,7 @@ sidebar_label: Select Question
 * __onSubmit__ | `function`: 提交答案时调用的回调；第一个参数是一个 "boolean"，表示答案是否正确（如果适用，否则为 "null"），第二个参数是提供的答案。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

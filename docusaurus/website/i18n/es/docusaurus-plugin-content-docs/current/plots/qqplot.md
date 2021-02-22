@@ -6,13 +6,13 @@ sidebar_label: QQ Plot
 
 Función de comparación utilizada para clasificar los valores en orden ascendente.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: variable a mostrar. Default: `none`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <QQPlot 

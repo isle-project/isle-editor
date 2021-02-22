@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 Un componente ISLE che rende una domanda in cui l'allievo deve far corrispondere gli elementi di due liste tra loro nel modo corretto.
 
-## Options
+## Opzioni
 
 * __question__ | `(string|node)`: domanda da visualizzare in cima al componente domanda della lista delle partite. Default: `''`.
 * __elements__ | `array<{a,b}>`: un `array` che contiene le coppie corrette visualizzate nella parte superiore del componente di domanda a testo libero. Ogni elemento `array` deve essere un `oggetto` con proprietà `a` e `b`; fornire elementi con solo proprietà `a` o `b` per aggiungere le risposte del distrattore. Default: `[]`.
@@ -27,7 +27,7 @@ Un componente ISLE che rende una domanda in cui l'allievo deve far corrispondere
 * __onSubmit__ | `function`: richiamata invocata quando gli studenti inviano una risposta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

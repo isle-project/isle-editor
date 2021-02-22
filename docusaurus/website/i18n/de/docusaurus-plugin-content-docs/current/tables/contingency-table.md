@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 Eine Kontingenztabelle.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __rowVar__ | `string (required)`: Zeilenvariablenname. Default: `none`.
@@ -17,7 +17,7 @@ Eine Kontingenztabelle.
 * __nDecimalPlaces__ | `number`: Anzahl der Nachkommastellen für relative Häufigkeiten, die in der Tabelle angezeigt werden. Default: `3`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <ContingencyTable

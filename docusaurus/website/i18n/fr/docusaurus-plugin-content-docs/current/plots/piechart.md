@@ -14,7 +14,7 @@ Un camembert qui, par défaut, affiche les comptes de toutes les catégories d'u
 * __summaryVariable__ | `string`: variable optionnelle dont la somme doit être affichée pour chaque catégorie de "variable. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <PieChart 

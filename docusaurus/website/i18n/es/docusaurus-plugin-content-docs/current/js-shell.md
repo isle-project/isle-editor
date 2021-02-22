@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 Un shell interactivo de Javascript que puede ser usado para ejecutar comandos de Javascript. El shell contiene una consola que muestra mensajes de error, advertencias, etc.
 
-## Options
+## Opciones
 
 * __code__ | `string`: Código JavaScript a evaluar. Default: `''`.
 * __solution__ | `string`: para cuestiones de programación, el código "cadena" representa la solución oficial del problema. Default: `''`.
@@ -24,7 +24,7 @@ Un shell interactivo de Javascript que puede ser usado para ejecutar comandos de
 * __voiceID__ | `string`: identificador de control de voz. Default: `none`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <JSShell id = "jseditor" 

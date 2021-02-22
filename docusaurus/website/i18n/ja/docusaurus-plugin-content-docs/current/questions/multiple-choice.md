@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 多肢選択問題を表示するISLEコンポーネントです。学習者が1つの答えを選択しなければならない場合や、複数の正解があり、すべての正解を選択しなければならない場合をサポートします。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 多肢選択式コンポーネントの上部に表示されている問題. Default: `''`.
 * __solution__ | `(number|array)`: 正解数. Default: `none`.
@@ -27,7 +27,7 @@ sidebar_label: Multiple Choice Question
 * __onSubmit__ | `function`: アンサーが送信された後に呼び出されるコールバック. Default: `onSubmit(){}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

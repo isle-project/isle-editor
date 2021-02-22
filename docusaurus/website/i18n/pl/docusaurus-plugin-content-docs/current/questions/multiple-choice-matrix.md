@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Matrix
 
 Składnik ISLE, który tworzy matrycę pytań wielokrotnego wyboru z tymi samymi odpowiedziami.
 
-## Options
+## Opcje
 
 * __questions__ | `array (required)`: szereg pytań. Default: `none`.
 * __answers__ | `array (required)`: szereg odpowiedzi. Default: `none`.
@@ -18,7 +18,7 @@ Składnik ISLE, który tworzy matrycę pytań wielokrotnego wyboru z tymi samymi
 * __onSubmit__ | `function`: wywołanie zwrotne po kliknięciu przycisku "Prześlij"; wywołane dwuwymiarową tablicą boolean aktywnego stanu dla każdej z opcji odpowiedzi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <MultipleChoiceMatrix 

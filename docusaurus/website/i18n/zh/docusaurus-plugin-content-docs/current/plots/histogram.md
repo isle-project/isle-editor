@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 一个直方图。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 变量显示. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Histogram
 * __xBins__ | `{start,size,end}`: 对象，具有 "start"、"size "和 "end "属性，管理分批行为。. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Histogram 

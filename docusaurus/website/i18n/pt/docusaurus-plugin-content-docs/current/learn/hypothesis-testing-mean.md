@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Um componente de aprendizado sobre testes de hipóteses para uma média populacional.
 
-## Options
+## Opções
 
 * __types__ | `array<string>`: o(s) tipo(s) de teste ('Uma Amostra', 'Duas Amostra') que o widget deve expor. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ Um componente de aprendizado sobre testes de hipóteses para uma média populaci
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnMeanTest />

@@ -6,7 +6,7 @@ sidebar_label: F Distribution
 
 Um componente de aprendizagem para o cálculo das probabilidades de uma distribuição F.
 
-## Options
+## Opções
 
 * __domain__ | `object`: objeto dos conjuntos `x` e `y` com os pontos inicial e final para o respectivo eixo. Default: `none`.
 * __step__ | `(number|string)`: tamanho do passo da entrada do scroll. Default: `0.01`.
@@ -18,7 +18,7 @@ Um componente de aprendizagem para o cálculo das probabilidades de uma distribu
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnFDistribution />

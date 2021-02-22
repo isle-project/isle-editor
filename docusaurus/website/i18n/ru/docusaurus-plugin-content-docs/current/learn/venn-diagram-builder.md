@@ -6,13 +6,13 @@ sidebar_label: Venn Diagram Builder
 
 Строитель диаграмм Венна.
 
-## Options
+## Варианты
 
 * __nobs__ | `number`: общее число наблюдений. Default: `none`.
 * __three__ | `boolean`: управляет отображением трех кругов. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnVennDiagramBuilder />

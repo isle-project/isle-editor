@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 卡片组件。
 
-## Options
+## 选项
 
 * __className__ | `string`: CSS类名. Default: `''`.
 * __header__ | `(string|node)`: 板块标题(h3). Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Panel
 * __onHide__ | `function`: 当点击关闭按钮时调用回调。. Default: `none`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

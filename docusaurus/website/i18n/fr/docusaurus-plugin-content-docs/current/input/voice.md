@@ -33,7 +33,7 @@ Un élément de saisie vocale.
 * __height__ | `number`: hauteur d'entrée de la voix (en px). Default: `36`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <VoiceInput

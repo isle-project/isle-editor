@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 YouTube、SoundCloud、Vimeoのメディアファイルやコンテンツを再生するためのコンポーネント。
 
-## Options
+## オプション
 
 * __url__ | `string`: 動画のURL. Default: `''`.
 * __controls__ | `boolean`: は、ビデオプレーヤの制御要素を表示するかどうかを示します。. Default: `false`.
@@ -26,7 +26,7 @@ YouTube、SoundCloud、Vimeoのメディアファイルやコンテンツを再�
 * __onSeek__ | `function`: メディアシークが `seconds` パラメータで呼び出されたときのコールバック. Default: `onSeek() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

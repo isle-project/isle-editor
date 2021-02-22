@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 Komponent słowny chmury zbudowany na szczycie [d3-cloud](https://github.com/jasondavies/d3-cloud).
 
-## Options
+## Opcje
 
 * __data__ | `array`: albo tablicę tekstów, z której można wygenerować chmurę słów lub, jeśli `prekalkulowane` jest ustawione na `prawdziwe`, oraz tablicę obiektów zliczających słowa (z klawiszami `tekstowymi` i `wartościowymi`). Default: `[]`.
 * __font__ | `(string|function)`: funkcja dostępowa określająca oblicze czcionki dla każdego słowa. Przyjmuje również stałą zamiast funkcji. Default: `'serif'`.
@@ -26,7 +26,7 @@ Komponent słowny chmury zbudowany na szczycie [d3-cloud](https://github.com/jas
 * __width__ | `number`: szerokość słowa chmura (w px). Default: `700`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <WordCloud data={[

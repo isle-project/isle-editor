@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Componente de texto, que permite a renderização de texto bruto como Markdown e permite o controle por voz.
 
-## Options
+## Opções
 
 * __raw__ | `string`: texto a ser entregue. Default: `''`.
 * __className__ | `string`: nomes de classes. Default: `''`.
@@ -15,7 +15,7 @@ Componente de texto, que permite a renderização de texto bruto como Markdown e
 * __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 
 import Tabs from '@theme/Tabs';

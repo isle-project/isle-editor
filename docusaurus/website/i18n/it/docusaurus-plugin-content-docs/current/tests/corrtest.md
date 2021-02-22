@@ -6,7 +6,7 @@ sidebar_label: Correlation Test
 
 Test di correlazione.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __var1__ | `string (required)`: nome della prima variabile. Default: `none`.
@@ -17,7 +17,7 @@ Test di correlazione.
 * __showDecision__ | `boolean`: controlla se visualizzare se l'ipotesi nulla viene respinta al livello di significatività specificato. Default: `false`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <CorrTest

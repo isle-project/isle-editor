@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 Un histograma.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: variable a mostrar. Default: `none`.
@@ -21,7 +21,7 @@ Un histograma.
 * __xBins__ | `{start,size,end}`: con propiedades de "inicio", "tamaño" y "fin" que rigen el comportamiento de los contenedores.. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Histogram 

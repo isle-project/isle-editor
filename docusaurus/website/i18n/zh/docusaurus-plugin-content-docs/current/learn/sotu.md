@@ -6,12 +6,12 @@ sidebar_label: State of the Union Speeches
 
 学习内容，探讨美国总统的国情咨文演讲。
 
-## Options
+## 选项
 
 * __questions__ | `array<(node|element)>`: 一系列的问题. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnSOTU />

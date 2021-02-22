@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 Een woordwolkcomponent die bovenop [d3-cloud](https://github.com/jasondavies/d3-cloud) is gebouwd.
 
-## Options
+## Opties
 
 * __data__ | `array`: ofwel een reeks teksten waaruit de woordwolk wordt gegenereerd, ofwel, indien `voorgecalculeerd` is ingesteld op `waar`, en een reeks objecten voor het tellen van woorden (met `tekst` en `waarde` toetsen). Default: `[]`.
 * __font__ | `(string|function)`: Accessor-functie die het lettertype voor elk woord specificeert. Accepteert ook een constante in plaats van een functie. Default: `'serif'`.
@@ -26,7 +26,7 @@ Een woordwolkcomponent die bovenop [d3-cloud](https://github.com/jasondavies/d3-
 * __width__ | `number`: breedte van de woordwolk (in px). Default: `700`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <WordCloud data={[

@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Компонент, отображающий расширенное предложение.
 
-## Options
+## Варианты
 
 * __cite__ | `string`: источник цитаты. Default: `none`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

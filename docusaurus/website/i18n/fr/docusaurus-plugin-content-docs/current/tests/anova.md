@@ -14,7 +14,7 @@ Analyse de la variance.
 * __showDecision__ | `boolean`: contrôle l'affichage ou non de la décision de test. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Anova

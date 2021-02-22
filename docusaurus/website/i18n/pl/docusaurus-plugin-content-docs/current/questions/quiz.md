@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 Komponent quizu przedstawiający sekwencję komponentów pytania.
 
-## Options
+## Opcje
 
 * __confidence__ | `boolean`: czy wyświetlać skalę Likerta z zapytaniem o pewność odpowiedzi użytkownika. Default: `false`.
 * __forceConfidence__ | `boolean`: kontroluje, czy użytkownik musi dostarczyć poziom zaufania przed przejściem do następnego pytania. Default: `false`.
@@ -25,7 +25,7 @@ Komponent quizu przedstawiający sekwencję komponentów pytania.
 * __onSubmit__ | `function`: wywołanie zwrotne, gdy użytkownik udziela odpowiedzi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

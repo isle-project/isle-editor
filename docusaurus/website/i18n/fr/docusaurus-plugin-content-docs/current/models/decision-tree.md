@@ -20,7 +20,7 @@ Arbres de régression et de classification.
 * __onPredict__ | `function`: rappel invoqué avec l'objet modèle lors du clic sur le bouton de prédiction. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <DecisionTree 

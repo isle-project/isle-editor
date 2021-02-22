@@ -6,13 +6,13 @@ sidebar_label: Revealer
 
 Element ISLE, którego instruktorzy mogą używać do selektywnego ujawniania lub ukrywania treści dla dzieci wszystkim uczniom podczas lekcji.
 
-## Options
+## Opcje
 
 * __message__ | `(string|node)`: komunikat, który ma być wyświetlany, gdy zawartość jest ukryta. Default: `none`.
 * __show__ | `boolean`: kontroluje, czy początkowo mają być wyświetlane elementy dziecięce. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Revealer

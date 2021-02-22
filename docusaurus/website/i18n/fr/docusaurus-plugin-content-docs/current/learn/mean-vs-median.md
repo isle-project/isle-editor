@@ -17,7 +17,7 @@ Un jeu interactif qui teste la capacité des élèves à détecter la médiane e
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnMeanVSMedian />

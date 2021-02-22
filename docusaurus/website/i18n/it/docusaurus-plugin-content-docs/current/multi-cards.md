@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Un componente ISLE che permette di creare e controllare più carte capovolgibili (ad esempio in un gioco di memoria).
 
-## Options
+## Opzioni
 
 * __animation__ | `object`: se impostato il componente usa un'animazione di entrata; l'oggetto contiene un nome (come `anim-scale-up`) e una durata (come `1.7s` = 1.7 secondi). Default: `{}`.
 * __memory__ | `boolean`: se abilitare la modalità di gioco di memoria in cui si devono abbinare coppie di valori forniti. Default: `none`.
@@ -20,7 +20,7 @@ Un componente ISLE che permette di creare e controllare più carte capovolgibili
 * __backStyle__ | `object`: Stile CSS del retro delle carte. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <MultiCards

@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Naiwniacy Bayes, zakładając, że przewidywania dotyczące przynależności do klasy są zgodne z normalnym rozkładem.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __y__ | `string (required)`: zmienna wynikowa. Default: `none`.
@@ -16,7 +16,7 @@ Naiwniacy Bayes, zakładając, że przewidywania dotyczące przynależności do 
 * __onPredict__ | `function`: wywołanie zwrotne z przewidywaniami i pozostałościami po dopasowaniu modelu. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <NaiveBayes 

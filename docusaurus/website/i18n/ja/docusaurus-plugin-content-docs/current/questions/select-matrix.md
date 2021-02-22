@@ -6,7 +6,7 @@ sidebar_label: Select Question Matrix
 
 複数のセレクトボックスで構成された回答付きの問題。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 冒頭に表示される質問. Default: `''`.
 * __rows__ | `array`: 行ラベル. Default: `[]`.
@@ -28,7 +28,7 @@ sidebar_label: Select Question Matrix
 * __onSubmit__ | `function`: コールバック関数は、第一のパラメータとして答えを、第二のパラメータとして正しさを示すブール値を指定して、提出時に呼び出されます。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <SelectQuestionMatrix

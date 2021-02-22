@@ -6,13 +6,13 @@ sidebar_label: Poisson Distribution
 
 Een leercomponent voor het berekenen van de waarschijnlijkheid van een Poisson-verdeling.
 
-## Options
+## Opties
 
 * __step__ | `(number|string)`: stapgrootte van de scroll-ingang. Default: `0.1`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnPoissonDistribution />

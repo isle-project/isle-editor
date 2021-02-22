@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 垂直方向のスライダーを制御するアコーディオンコンポーネント。
 
-## Options
+## オプション
 
 * __active__ | `number`: 先頭に開くスライダーのインデックス. Default: `none`.
 * __canCloseAll__ | `boolean`: すべてのヘッダを折りたたむことができるかどうか. Default: `false`.
@@ -18,7 +18,7 @@ sidebar_label: Accordion
 * __style__ | `object`: 外側のdivのためのCSSインラインスタイル. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

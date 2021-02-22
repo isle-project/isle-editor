@@ -6,13 +6,13 @@ sidebar_label: span
 
 一般的なインラインコンテナ要素。
 
-## Options
+## オプション
 
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

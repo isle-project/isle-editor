@@ -13,7 +13,7 @@ Générer des réseaux à partir d'un modèle Erdős-Rényi.
 * __showTransitivities__ | `boolean`: s'il faut comptabiliser les transitivités / les coefficients de regroupement global pour les réseaux générés. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnNetworks />

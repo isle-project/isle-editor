@@ -6,7 +6,7 @@ sidebar_label: Map
 
 Mapa geograficzna, którą mogą być podane nazwy lokalizacji lub wartości długości i szerokości geograficznej.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __scope__ | `string`: zakres wyświetlanej mapy. Default: `'world'`.
@@ -17,4 +17,4 @@ Mapa geograficzna, którą mogą być podane nazwy lokalizacji lub wartości dł
 * __showLand__ | `boolean`: czy pokazać cechy geograficzne na mapie. Default: `false`.
 
 
-## Examples
+## Przykłady

@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 用于在ISLE课程中渲染R图的组件。
 
-## Options
+## 选项
 
 * __code__ | `string`: 生成图的R代码. Default: `''`.
 * __width__ | `(number|string)`: 绘图宽度(单位：px). Default: `600`.
@@ -20,7 +20,7 @@ sidebar_label: R Plot
 * __onDone__ | `function`: 一旦创建绘图，就会调用带有`err`、`img`和`body`参数的回调。. Default: `onDone() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

@@ -6,7 +6,7 @@ sidebar_label: Map
 
 一个地理地图，可以是提供的地点名称或经度/纬度值。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __scope__ | `string`: 显示的地图范围. Default: `'world'`.
@@ -17,4 +17,4 @@ sidebar_label: Map
 * __showLand__ | `boolean`: 是否在地图上显示地理特征. Default: `false`.
 
 
-## Examples
+## 例子

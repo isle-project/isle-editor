@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 一个[react-color](https://casesandberg.github.io/react-color/)颜色选择器的包装器。
 
-## Options
+## 选项
 
 * __variant__ | `string`: 挑色器变体("Compact"、"Sketch"、"Material "或 "Block "中的一种). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string 含有HeX代码或`object`含有RGB或HSL值，如`{ r: 255, g: 255, b: 255 }`或`{ h: 0, s. 0, l: .10 }`，它决定了活动颜色。0, l: .10 }`，它决定了活动颜色。两者都接受一个`a`属性，用于除一个以外的alpha值。. Default: `'#fff'`.
@@ -35,7 +35,7 @@ sidebar_label: Color Picker
 * __onChangeComplete__ | `function`: 在颜色改变完成后调用回调。. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

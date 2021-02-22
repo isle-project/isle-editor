@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Um painel de controle para combinar o manuseio de múltiplos campos de entrada de crianças.
 
-## Options
+## Opções
 
 * __autoStart__ | `boolean`: se definida como "verdadeira", a função "Gerar" é executada na inicialização com os valores de entrada padrão. Default: `true`.
 * __autoUpdate__ | `boolean`: controla se a função "Gerar" deve ser invocada automaticamente quando um dos campos de entrada de crianças muda. Default: `false`.
@@ -20,7 +20,7 @@ Um painel de controle para combinar o manuseio de múltiplos campos de entrada d
 * __title__ | `(string|node)`: título do cartão. Default: `''`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

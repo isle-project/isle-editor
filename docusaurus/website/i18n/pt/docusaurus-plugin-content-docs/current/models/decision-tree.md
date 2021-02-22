@@ -6,7 +6,7 @@ sidebar_label: Decision Tree
 
 Árvores de regressão e classificação.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __y__ | `string (required)`: variável de resultado. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Decision Tree
 * __onPredict__ | `function`: chamada de retorno invocada com o objeto modelo ao clicar no botão de previsão. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <DecisionTree 

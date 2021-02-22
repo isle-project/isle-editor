@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 Een frequentietabel.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: naam van de weer te geven variabele. Default: `none`.
@@ -16,7 +16,7 @@ Een frequentietabel.
 * __nDecimalPlaces__ | `number`: aantal decimalen voor relatieve frequenties weergegeven in de tabel. Default: `3`.
 
 
-## Examples
+## Voorbeelden
 
 ## Examples
 

@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Componente que coloca um farol na lição, seja independentemente ou ligado a um `alvo`. Ao pairar ou clicar na baliza, uma dica de ferramenta é exibida.
 
-## Options
+## Opções
 
 * __title__ | `(string|node)`: título a ser exibido na parte superior da ponta da ferramenta. Default: `none`.
 * __content__ | `(string|node)`: conteúdo da ponta da ferramenta. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ Componente que coloca um farol na lição, seja independentemente ou ligado a um
 * __onChange__ | `function`: chamada de retorno invocada quando da mudança de estado da ponta da ferramenta. Recebe dois argumentos: a "ação" (abrir ou fechar) e a passada "brocas".. Default: `onChange() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <BeaconTooltip

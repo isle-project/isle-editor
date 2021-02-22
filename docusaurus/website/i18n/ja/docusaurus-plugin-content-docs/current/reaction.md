@@ -6,13 +6,13 @@ sidebar_label: Reaction
 
 ユーザーのアクションに応じて異なるコンポーネントを表示します。
 
-## Options
+## オプション
 
 * __actionID__ | `string (required)`: ウォッチするコンポーネントのID. Default: `none`.
 * __show__ | `(object|function)`: 異なるレスポンスが与えられた場合に表示するコンポーネントのハッシュテーブル(`key` がレスポンスにマッチしない場合、`default` キーが設定されていればそれに対応する値が表示されます)、または表示するコンポーネントを返す関数(関数の唯一の引数は最新の結果です)です。. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <div>

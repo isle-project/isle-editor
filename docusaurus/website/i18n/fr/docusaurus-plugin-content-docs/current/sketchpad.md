@@ -36,7 +36,7 @@ Un carnet de croquis pour la prise de notes sur les diapositives des conférence
 * __onChange__ | `function`: rappel invoqué à chaque fois qu'un nouvel élément de ligne est tracé. Default: `onChange() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

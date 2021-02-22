@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Visualizzazione della trama.
 
-## Options
+## Opzioni
 
 * __data__ | `array (required)`: array di dati. Default: `none`.
 * __draggable__ | `boolean`: controlla se la trama deve essere trascinabile. Default: `false`.
@@ -30,7 +30,7 @@ Visualizzazione della trama.
 * __toggleFullscreen__ | `boolean`: controlla se consentire la visualizzazione del grafico in modalità a schermo intero. Default: `true`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Plotly

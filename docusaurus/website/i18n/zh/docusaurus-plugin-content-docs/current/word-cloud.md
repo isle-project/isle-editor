@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 建立在[d3-cloud](https://github.com/jasondavies/d3-cloud)之上的词云组件。
 
-## Options
+## 选项
 
 * __data__ | `array`: 生成词云的文本数组，或者，如果 "precalculated "设置为 "true"，则生成词数对象数组(有 "text "和 "value "键). Default: `[]`.
 * __font__ | `(string|function)`: 访问函数，指定每个字的字型。也接受一个常量而不是函数. Default: `'serif'`.
@@ -26,7 +26,7 @@ sidebar_label: Word Cloud
 * __width__ | `number`: 字云宽度(单位：px). Default: `700`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <WordCloud data={[

@@ -6,13 +6,13 @@ sidebar_label: Poisson Distribution
 
 Компонент обучения для расчета вероятностей распределения Пуассона.
 
-## Options
+## Варианты
 
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.1`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnPoissonDistribution />

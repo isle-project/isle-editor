@@ -6,7 +6,7 @@ sidebar_label: QR Code
 
 QRコードです。
 
-## Options
+## オプション
 
 * __text__ | `string`: QRコードでエンコードするテキスト (設定されていない場合のデフォルトはレッスンURL). Default: `none`.
 * __scale__ | `number`: モジュールあたりの画素数（黒点. Default: `8`.
@@ -16,7 +16,7 @@ QRコードです。
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

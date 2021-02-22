@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Un componente de ISLE que le permite crear y controlar múltiples cartas volteables (por ejemplo, en un juego de Memoria).
 
-## Options
+## Opciones
 
 * __animation__ | `object`: si se establece el componente utiliza una animación de entrada; el objeto contiene un nombre (como `anim-scale-up`) y una duración (como `1.7s` = 1.7 segundos). Default: `{}`.
 * __memory__ | `boolean`: si se activa el modo de juego de memoria en el que hay que hacer coincidir pares de los valores suministrados. Default: `none`.
@@ -20,7 +20,7 @@ Un componente de ISLE que le permite crear y controlar múltiples cartas volteab
 * __backStyle__ | `object`: Estilo CSS del reverso de las tarjetas. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <MultiCards

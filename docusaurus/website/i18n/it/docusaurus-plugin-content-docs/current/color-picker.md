@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 Un involucro per il raccoglitore di colore [react-color](https://casesandberg.github.io/react-color/).
 
-## Options
+## Opzioni
 
 * __variant__ | `string`: variante color picker (sia `Compact`, `Sketch`, `Material`, o `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: "stringa" che contiene un codice HeX o un "oggetto" che contiene valori RGB o HSL come `{ r: 255, g: 255, b: 255 }`` o `{ h: 0, s: 0, l: .10 }``, che determina il colore attivo. Entrambi accettano una proprietà `a` per valori alfa diversi da uno. Default: `'#fff'`.
@@ -35,7 +35,7 @@ Un involucro per il raccoglitore di colore [react-color](https://casesandberg.gi
 * __onChangeComplete__ | `function`: richiamata una volta completato il cambio di colore. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

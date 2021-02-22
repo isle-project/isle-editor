@@ -6,7 +6,7 @@ sidebar_label: Likert Scale
 
 一个显示问题的组件和一个供学生回答的五分制。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 拟印问题. Default: `''`.
 * __options__ | `array`: 一个由五个元素组成的数组，其中包含不同刻度级别的标签。. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Likert Scale
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LikertScale 

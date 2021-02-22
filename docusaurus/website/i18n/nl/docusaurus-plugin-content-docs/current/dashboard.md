@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Een dashboard voor het combineren van de afhandeling van meerdere kinderinvoervelden.
 
-## Options
+## Opties
 
 * __autoStart__ | `boolean`: indien ingesteld op `true`, wordt de functie `onGenerate` bij het opstarten uitgevoerd met de standaard invoerwaarden. Default: `true`.
 * __autoUpdate__ | `boolean`: bepaalt of de `onGenerate` functie automatisch moet worden aangeroepen als een van de invoervelden van het kind verandert. Default: `false`.
@@ -20,7 +20,7 @@ Een dashboard voor het combineren van de afhandeling van meerdere kinderinvoerve
 * __title__ | `(string|node)`: kaarttitel. Default: `''`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

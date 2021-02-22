@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 Een ISLE-component waarmee u een schrijfmachine-effect kunt creëren.
 
-## Options
+## Opties
 
 * __delay__ | `number`: aanvankelijke vertraging voor de start van de schrijfmachine (in milliseconden). Default: `none`.
 * __hold__ | `number`: Als tekst een array van strings is, houdt u de opgegeven duur aan voordat de volledige tekst naar het volgende item in de array gaat.. Default: `2000`.
@@ -17,7 +17,7 @@ Een ISLE-component waarmee u een schrijfmachine-effect kunt creëren.
 * __text__ | `(string|array<string>)`: de volledige tekst die moet worden weergegeven. Default: `''`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Een ISLE-component die u in staat stelt om meerdere flippable kaarten te maken en te besturen (bijvoorbeeld in een spel van Memory).
 
-## Options
+## Opties
 
 * __animation__ | `object`: als de component een invoeranimatie gebruikt; het object bevat een naam (zoals `anim-scal-up`) en een duur (zoals `1,7s` = 1,7 seconden). Default: `{}`.
 * __memory__ | `boolean`: of de geheugenspelmodus moet worden ingeschakeld waarin men paren van de geleverde waarden moet matchen. Default: `none`.
@@ -20,7 +20,7 @@ Een ISLE-component die u in staat stelt om meerdere flippable kaarten te maken e
 * __backStyle__ | `object`: CSS-stijl van de achterkant van de kaarten. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <MultiCards

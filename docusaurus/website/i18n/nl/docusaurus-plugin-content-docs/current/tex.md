@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 `TeX` is een ISLE-element dat kan worden gebruikt om LaTeX-vergelijkingen weer te geven. Onder de motorkap gebruikt het element [KaTeX](https://github.com/Khan/KaTeX) voor een razendsnelle weergave.
 
-## Options
+## Opties
 
 * __raw__ | `(string|number) (required)`: De letterlijke LaTeX `string` om weer te geven. Accepteert ook `cijfers`. Default: `none`.
 * __displayMode__ | `boolean`: Boolean' geeft aan of de vergelijking inline of in de weergavemodus moet worden weergegeven.. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: LaTeX Equations
 * __onClick__ | `function`: callback `functie` aangeroepen wanneer een gebruiker op de vergelijking klikt. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <TeX

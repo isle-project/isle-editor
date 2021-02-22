@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 Een ISLE-component die het mogelijk maakt om zijn kinderen alleen aan een gereserveerd publiek te tonen.
 
-## Options
+## Opties
 
 * __user__ | `boolean`: wanneer de gated content wordt weergegeven aan gebruikers. Default: `false`.
 * __notUser__ | `boolean`: wanneer de gated content is ingesteld wordt **niet** weergegeven aan gebruikers. Default: `false`.
@@ -22,7 +22,7 @@ Een ISLE-component die het mogelijk maakt om zijn kinderen alleen aan een gerese
 * __check__ | `function`: callback functie die een `boolean` retourneert en aangeeft of het hekje kinderonderdelen moet weergeven; de functie wordt aangeroepen wanneer de sessie-acties aankomen. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Gate 

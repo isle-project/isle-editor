@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 拡張引用符を表示するコンポーネント。
 
-## Options
+## オプション
 
 * __cite__ | `string`: 引用元. Default: `none`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

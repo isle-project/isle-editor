@@ -6,7 +6,7 @@ sidebar_label: Free Text Question
 
 Eine ISLE-Komponente für Fragen, bei denen die Antworten der Schüler in Form von Freitext geliefert werden sollen.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: die Frage, die oben in der Freitext-Fragenkomponente angezeigt wird. Default: `''`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
@@ -32,7 +32,7 @@ Eine ISLE-Komponente für Fragen, bei denen die Antworten der Schüler in Form v
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn der Benutzer eine Antwort abschickt; erhält den abgeschickten Text als einziges Argument. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

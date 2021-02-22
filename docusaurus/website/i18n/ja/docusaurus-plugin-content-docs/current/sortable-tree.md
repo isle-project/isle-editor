@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 このコンポーネントのすべてのプロパティをサポートする [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) の薄いラッパーです。
 
-## Options
+## オプション
 
 * __title__ | `string`: 見出しタイトル. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <SortableTree 

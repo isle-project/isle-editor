@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Een leercomponent op hypothesetests voor een populatie betekenen.
 
-## Options
+## Opties
 
 * __types__ | `array<string>`: het (de) type(n) test (`One-Sample`, `Two-Sample`) dat de widget moet blootleggen. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ Een leercomponent op hypothesetests voor een populatie betekenen.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnMeanTest />

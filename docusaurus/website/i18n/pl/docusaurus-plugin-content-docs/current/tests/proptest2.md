@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Proportion Test
 
 Test na dwie próbki.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __var1__ | `string (required)`: nazwa pierwszej zmiennej. Default: `none`.
@@ -19,7 +19,7 @@ Test na dwie próbki.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <PropTest2

@@ -6,11 +6,11 @@ sidebar_label: Image Pixel Picker
 
 Pikselowy zbieracz kolorów objaśniający kolory RGB za pomocą przykładowych obrazów.
 
-## Options
+## Opcje
 
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnImagePixelPicker />

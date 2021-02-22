@@ -6,7 +6,7 @@ sidebar_label: Mosaic Plot
 
 Мозаичный сюжет.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __variables__ | `array (required)`: массив переменных для отображения. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Mosaic Plot
 * __axisLabels__ | `string`: переменная группировки. Default: `'parallel to the axis'`.
 
 
-## Examples
+## Примеры
 
 ## Examples
 

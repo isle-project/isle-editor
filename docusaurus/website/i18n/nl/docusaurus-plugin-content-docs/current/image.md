@@ -6,7 +6,7 @@ sidebar_label: Image
 
 Onderdeel om een beeld weer te geven.
 
-## Options
+## Opties
 
 * __src__ | `string (required)`: beeldbronlocatie. Default: `none`.
 * __alt__ | `string`: beeldbeschrijving. Default: `''`.
@@ -21,7 +21,7 @@ Onderdeel om een beeld weer te geven.
 * __onShare__ | `function`: callback aangeroepen met de afbeelding als op de "share" knop wordt geklikt. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

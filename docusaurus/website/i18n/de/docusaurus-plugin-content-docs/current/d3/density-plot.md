@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 Eine d3-basierte Dichteplot-Komponente.
 
-## Options
+## Optionen
 
 * __bandwidth__ | `number`: Glättungsparameter für den Kernel-Dichte-Schätzer. Default: `4`.
 * __histogram__ | `boolean`: ein Histogramm neben dem Dichteplot anzeigen. Default: `true`.
@@ -18,7 +18,7 @@ Eine d3-basierte Dichteplot-Komponente.
 * __ymax__ | `number`: maximaler Wert, der auf der y-Achse angezeigt wird. Default: `0.15`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <DensityPlot

@@ -18,7 +18,7 @@ Un composant de diagramme de densité basé sur d3.
 * __ymax__ | `number`: valeur maximale affichée sur l'axe des y. Default: `0.15`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <DensityPlot

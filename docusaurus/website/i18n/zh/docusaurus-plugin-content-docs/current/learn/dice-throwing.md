@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 用掷骰子来说明大数法则的学习内容。
 
-## Options
+## 选项
 
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnDiceThrowing />

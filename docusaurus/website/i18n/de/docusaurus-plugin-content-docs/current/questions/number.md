@@ -6,7 +6,7 @@ sidebar_label: Number Question
 
 Eine Komponente für Zahlenfragen.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: Zahlenfrage. Default: `''`.
 * __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `left`, `right`, oder `unten`). Default: `'top'`.
@@ -28,7 +28,7 @@ Eine Komponente für Zahlenfragen.
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn die Antwort abgeschickt wurde; hat als ersten Parameter ein `boolean`, das angibt, ob die Antwort richtig beantwortet wurde (falls zutreffend, sonst `null`) und die gelieferte Antwort als zweiten Parameter. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <NumberQuestion

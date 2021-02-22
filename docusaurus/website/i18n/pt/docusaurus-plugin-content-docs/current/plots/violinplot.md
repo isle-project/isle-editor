@@ -6,7 +6,7 @@ sidebar_label: Violin Plot
 
 Uma trama de violino.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `string (required)`: variável a exibir. Default: `none`.
@@ -14,7 +14,7 @@ Uma trama de violino.
 * __showBox__ | `boolean`: controla se deve exibir um gráfico de caixa dentro. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <ViolinPlot 

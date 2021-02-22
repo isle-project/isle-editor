@@ -6,7 +6,7 @@ sidebar_label: Switch Components
 
 Die Switch-Komponente ermöglicht die Anzeige eines Elements aus einer Liste mit mehreren Elementen. Benutzer können die verschiedenen Kinder des Switch-Tags durchlaufen, indem sie auf das aktuell angezeigte klicken.
 
-## Options
+## Optionen
 
 * __active__ | `boolean`: steuert, ob der Schalter aktiv ist oder nicht. Default: `true`.
 * __tooltip__ | `string`: Tooltip, der angezeigt wird, wenn der Mauszeiger über dem Schalterelement steht. Default: `none`.
@@ -16,7 +16,7 @@ Die Switch-Komponente ermöglicht die Anzeige eines Elements aus einer Liste mit
 * __onChange__ | `function`: Callback, der aufgerufen wird, wenn Elemente umgeschaltet werden. Erhält als erstes Argument den Index des aktuell angezeigten Childs. Default: `onChange() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

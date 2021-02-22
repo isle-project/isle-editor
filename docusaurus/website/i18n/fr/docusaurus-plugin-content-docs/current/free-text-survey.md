@@ -17,7 +17,7 @@ Un volet ISLE pour les questions dont les réponses des étudiants doivent être
 * __onSubmit__ | `function`: fonction de rappel appelée lorsqu'une réponse est soumise. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <FreeTextSurvey 

@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Naive Bayes assumindo que os prognosticadores dados aos membros da classe seguem uma distribuição normal.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __y__ | `string (required)`: variável de resultado. Default: `none`.
@@ -16,7 +16,7 @@ Naive Bayes assumindo que os prognosticadores dados aos membros da classe seguem
 * __onPredict__ | `function`: chamada de retorno invocada com previsões e resíduos após a montagem do modelo. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <NaiveBayes 

@@ -12,7 +12,7 @@ Un constructeur de diagrammes de Venn.
 * __three__ | `boolean`: contrôle l'affichage ou non de trois cercles. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnVennDiagramBuilder />

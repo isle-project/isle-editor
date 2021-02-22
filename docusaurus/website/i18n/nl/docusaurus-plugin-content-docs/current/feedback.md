@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Knoppen voor het verzamelen van gebruikersfeedback.
 
-## Options
+## Opties
 
 * __confusedMsg__ | `string`: bericht dat moet worden weergegeven in tooltip voor verwarde knop. Default: `none`.
 * __feedbackMsg__ | `string`: bericht dat moet worden weergegeven in tooltip voor een gedetailleerde feedbackknop. Default: `none`.
@@ -17,7 +17,7 @@ Knoppen voor het verzamelen van gebruikersfeedback.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 複数の子入力フィールドの処理を組み合わせるためのダッシュボード。
 
-## Options
+## オプション
 
 * __autoStart__ | `boolean`: true` にセットされている場合、`onGenerate` 関数は起動時にデフォルトの入力値で実行される。. Default: `true`.
 * __autoUpdate__ | `boolean`: は、子入力フィールドの1つが変化したときに `onGenerate` 関数を自動的に呼び出すかどうかを制御します。. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Dashboard
 * __title__ | `(string|node)`: カードタイトル. Default: `''`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

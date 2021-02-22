@@ -29,7 +29,7 @@ Un élément de saisie de chiffres. Peut être utilisé dans le cadre d'un table
 * __tooltipPlacement__ | `string`: direction de l'infobulle. Default: `'left'`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <NumberInput

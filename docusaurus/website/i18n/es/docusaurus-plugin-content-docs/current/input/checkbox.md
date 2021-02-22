@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 Un componente de entrada de casilla de verificación. Puede ser usado como parte de un tablero de ISLE o independiente. En este último caso, usted quiere manejar los cambios a través del atributo "onChange" o vincular el valor a una variable global a través del atributo "bind".
 
-## Options
+## Opciones
 
 * __bind__ | `string`: nombre de la variable global para el valor de la casilla de verificación que se asignará a. Default: `''`.
 * __defaultValue__ | `boolean`: valor booleano que indica el valor por defecto de la casilla de verificación. Default: `false`.
@@ -20,7 +20,7 @@ Un componente de entrada de casilla de verificación. Puede ser usado como parte
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <CheckboxInput

@@ -6,7 +6,7 @@ sidebar_label: Image
 
 Komponent do wyświetlania obrazu.
 
-## Options
+## Opcje
 
 * __src__ | `string (required)`: lokalizacja źródła obrazu. Default: `none`.
 * __alt__ | `string`: opis obrazu. Default: `''`.
@@ -21,7 +21,7 @@ Komponent do wyświetlania obrazu.
 * __onShare__ | `function`: wywołanie zwrotne z obrazem po kliknięciu przycisku "share".. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

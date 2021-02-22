@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 Een noodtabel.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __rowVar__ | `string (required)`: rijtjesvariabele naam. Default: `none`.
@@ -17,7 +17,7 @@ Een noodtabel.
 * __nDecimalPlaces__ | `number`: aantal decimalen voor relatieve frequenties weergegeven in de tabel. Default: `3`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ContingencyTable

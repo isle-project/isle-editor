@@ -26,7 +26,7 @@ Une composante du nuage de mots construite sur le [d3-cloud] (https://github.com
 * __width__ | `number`: largeur du nuage de mots (en px). Default: `700`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <WordCloud data={[

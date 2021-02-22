@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Komponent wyświetlający rozszerzoną wycenę.
 
-## Options
+## Opcje
 
 * __cite__ | `string`: źródło cytatu. Default: `none`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Proportion Test
 
 Twee-steekproef proportionele test.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __var1__ | `string (required)`: naam van eerste variabele. Default: `none`.
@@ -19,7 +19,7 @@ Twee-steekproef proportionele test.
 * __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen.. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <PropTest2

@@ -25,7 +25,7 @@ Un Shell R interactif qui peut être utilisé pour exécuter des commandes R dan
 * __onResult__ | `function`: rappel invoqué chaque fois que le résultat de l'exécution d'un code est obtenu à partir du nuage. Le résultat "chaîne" est passé comme seul argument à la fonction de rappel. Default: `onResult() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <RShell

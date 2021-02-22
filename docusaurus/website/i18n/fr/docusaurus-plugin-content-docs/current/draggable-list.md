@@ -17,7 +17,7 @@ Une liste d'éléments pouvant être déplacés qui peuvent être réorganisés 
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <DraggableList

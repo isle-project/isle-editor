@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 講師が学生から多肢選択式のアンケートデータをリアルタイムで収集することができるアンケートコンポーネント。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 質問文字列. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: は、学生にアンケートに複数回回答させるかどうかを制御します。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Multiple Choice Survey
 * __onSubmit__ | `function`: 回答が提出されたときに呼び出される関数. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <MultipleChoiceSurvey

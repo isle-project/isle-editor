@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Onderdeel dat een baken in de les plaatst, zelfstandig of gekoppeld aan een `target`. Bij het zweven of klikken op het baken wordt een tooltip weergegeven.
 
-## Options
+## Opties
 
 * __title__ | `(string|node)`: titel die bovenaan de tooltip moet worden weergegeven. Default: `none`.
 * __content__ | `(string|node)`: tooltipgehalte. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ Onderdeel dat een baken in de les plaatst, zelfstandig of gekoppeld aan een `tar
 * __onChange__ | `function`: callback ingeroepen bij staatsverandering van de tooltip. Ontvangt twee argumenten: de `actie` (`openen` of `sluiten`) en de gepasseerde `props`.. Default: `onChange() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <BeaconTooltip

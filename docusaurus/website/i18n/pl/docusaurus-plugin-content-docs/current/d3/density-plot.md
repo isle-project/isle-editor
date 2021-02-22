@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 Składnik powierzchni o gęstości d3.
 
-## Options
+## Opcje
 
 * __bandwidth__ | `number`: parametr wygładzający dla estymatora gęstości jądra. Default: `4`.
 * __histogram__ | `boolean`: pokazać histogram obok wykresu gęstości. Default: `true`.
@@ -18,7 +18,7 @@ Składnik powierzchni o gęstości d3.
 * __ymax__ | `number`: maksymalna wartość wyświetlana na osi y. Default: `0.15`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <DensityPlot

@@ -23,4 +23,4 @@ Une question qui demande à l'utilisateur de télécharger une image.
 * __onSubmit__ | `function`: rappel invoqué lors de la soumission de la réponse ; a comme seul paramètre un "booléen" indiquant si les éléments ont été placés dans le bon ordre. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples

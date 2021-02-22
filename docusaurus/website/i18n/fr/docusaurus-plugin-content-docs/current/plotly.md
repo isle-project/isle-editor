@@ -30,7 +30,7 @@ Visualisation graphique.
 * __toggleFullscreen__ | `boolean`: contrôle si l'affichage de la parcelle en mode plein écran est autorisé. Default: `true`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Plotly

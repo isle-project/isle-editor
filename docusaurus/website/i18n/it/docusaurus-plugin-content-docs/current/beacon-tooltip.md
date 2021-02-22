@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Componente che posiziona un faro nella lezione, indipendentemente o collegato ad un `target`. Facendo hovering o cliccando sul beacon, viene visualizzato un tooltip.
 
-## Options
+## Opzioni
 
 * __title__ | `(string|node)`: titolo da visualizzare nella parte superiore del tooltip. Default: `none`.
 * __content__ | `(string|node)`: contenuto del tooltip. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ Componente che posiziona un faro nella lezione, indipendentemente o collegato ad
 * __onChange__ | `function`: richiamata al cambio di stato del tooltip. Riceve due argomenti: la `azione` (`aperta` o `chiusa`) e il `props` passato. Default: `onChange() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <BeaconTooltip

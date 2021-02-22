@@ -16,7 +16,7 @@ Un élément montrant une question et une échelle de cinq points à laquelle le
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LikertScale 

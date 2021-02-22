@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 Componente del reloj que muestra la hora actual.
 
-## Options
+## Opciones
 
 * __duration__ | `boolean`: si se ajusta, se muestra la duración de la sesión (no la hora real). Default: `false`.
 * __format__ | `string`: formato de tiempo (ya sea "HH:MM", "HH:MM:SS", o "HH"). Default: `''`.
@@ -14,7 +14,7 @@ Componente del reloj que muestra la hora actual.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

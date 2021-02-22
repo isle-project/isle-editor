@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 Un componente di input della casella di controllo. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si vuole gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __bind__ | `string`: nome della variabile globale per il valore della casella di controllo da assegnare a. Default: `''`.
 * __defaultValue__ | `boolean`: valore booleano che indica il valore predefinito della casella di controllo. Default: `false`.
@@ -20,7 +20,7 @@ Un componente di input della casella di controllo. Può essere utilizzato come p
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <CheckboxInput

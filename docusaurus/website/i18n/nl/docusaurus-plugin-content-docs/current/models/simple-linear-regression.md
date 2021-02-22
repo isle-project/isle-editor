@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 Eenvoudige lineaire regressie.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __x__ | `string (required)`: verklarende variabele. Default: `none`.
@@ -17,7 +17,7 @@ Eenvoudige lineaire regressie.
 * __onPredict__ | `function`: callback ingeroepen met aangepaste waarden en residuen. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <SimpleLinearRegression 

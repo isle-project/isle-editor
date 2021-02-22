@@ -6,7 +6,7 @@ sidebar_label: Number Question
 
 Компонент вопроса с номером.
 
-## Options
+## Варианты
 
 * __question__ | `(string|node)`: вопрос с номером. Default: `''`.
 * __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`).. Default: `'top'`.
@@ -28,7 +28,7 @@ sidebar_label: Number Question
 * __onSubmit__ | `function`: обратный вызов, вызываемый при отправке ответа; имеет в качестве первого параметра `булеан`, указывающий, был ли ответ правильным (если применимо, `нулеан` в противном случае), а в качестве второго параметра - ответ, который был отправлен.. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <NumberQuestion

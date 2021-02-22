@@ -6,7 +6,7 @@ sidebar_label: One-Sample Mean Test
 
 Een enkele gemiddelde test.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: naam van variabele. Default: `none`.
@@ -18,7 +18,7 @@ Een enkele gemiddelde test.
 * __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen.. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <MeanTest

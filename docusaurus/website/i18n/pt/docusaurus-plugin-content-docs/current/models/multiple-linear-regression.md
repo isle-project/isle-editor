@@ -6,7 +6,7 @@ sidebar_label: Multiple Linear Regression
 
 Regressão linear múltipla.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __y__ | `string (required)`: variável de resultado. Default: `none`.
@@ -18,7 +18,7 @@ Regressão linear múltipla.
 * __onPredict__ | `function`: chamada de retorno invocada com previsões e resíduos após a montagem do modelo. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <MultipleLinearRegression 

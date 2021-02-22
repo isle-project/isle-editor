@@ -11,7 +11,7 @@ Une fine enveloppe autour de [react-sortable-tree] (https://www.npmjs.com/packag
 * __title__ | `string`: titre de l'en-tête. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <SortableTree 

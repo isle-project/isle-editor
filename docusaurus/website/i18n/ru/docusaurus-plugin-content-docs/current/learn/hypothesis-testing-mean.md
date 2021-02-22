@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Учебный компонент по тестированию гипотез для средней популяции.
 
-## Options
+## Варианты
 
 * __types__ | `array<string>`: тип(ы) теста (`One-Sample`, `Two-Sample`), который виджет должен разоблачать. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ sidebar_label: Hypothesis Testing for Means
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnMeanTest />

@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Приборная панель для объединения работы с несколькими полями ввода дочерних элементов.
 
-## Options
+## Варианты
 
 * __autoStart__ | `boolean`: если установлено значение `true`, то функция `onGenerate` выполняется при запуске с входными значениями по умолчанию. Default: `true`.
 * __autoUpdate__ | `boolean`: управляет тем, должна ли функция `onGenerate` вызываться автоматически при изменении одного из полей дочернего входа. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Dashboard
 * __title__ | `(string|node)`: название карточки. Default: `''`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

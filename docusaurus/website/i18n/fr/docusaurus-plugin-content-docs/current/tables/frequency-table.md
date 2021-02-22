@@ -16,7 +16,7 @@ Un tableau de fréquences.
 * __nDecimalPlaces__ | `number`: nombre de décimales pour les fréquences relatives affichées dans le tableau. Default: `3`.
 
 
-## Examples
+## Exemples
 
 ## Examples
 

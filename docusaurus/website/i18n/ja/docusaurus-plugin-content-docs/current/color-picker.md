@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 react-color](https://casesandberg.github.io/react-color/) カラーピッカーのラッパー。
 
-## Options
+## オプション
 
 * __variant__ | `string`: カラーピッカーバリアント (`Compact`, `Sketch`, `Material`, `Block` のいずれか). Default: `'Sketch'`.
 * __color__ | `(string|object)`: 文字列`はHeXコードを、`オブジェクト`はRGBやHSLの値を保持します。または `{ h: 0, s: 0, l: .10 }` のようなRGBやHSLの値を保持する `オブジェクト` を保持します。どちらも、1つ以外のアルファ値に対しては `a` プロパティを受け付けます。. Default: `'#fff'`.
@@ -35,7 +35,7 @@ react-color](https://casesandberg.github.io/react-color/) カラーピッカー�
 * __onChangeComplete__ | `function`: 色の変更が完了したときに呼び出されるコールバック. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

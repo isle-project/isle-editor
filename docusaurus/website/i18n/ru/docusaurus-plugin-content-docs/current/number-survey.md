@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 Компонент опроса, в котором преподаватель может собирать числовые данные опроса от студентов в режиме реального времени.
 
-## Options
+## Варианты
 
 * __question__ | `(string|node)`: вопрос для отображения. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: контролирует, может ли один и тот же пользователь (или сеанс, если анонимно) предоставить несколько ответов). Default: `false`.
@@ -16,7 +16,7 @@ sidebar_label: Number Survey
 * __onSubmit__ | `function`: функция обратного вызова, вызываемая после того, как ученик отправит ответ.. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <NumberSurvey

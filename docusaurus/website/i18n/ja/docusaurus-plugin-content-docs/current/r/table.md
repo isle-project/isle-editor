@@ -6,7 +6,7 @@ sidebar_label: R Table
 
 Rデータフレームまたはマトリックスを表形式で表示するためのコンポーネントです。
 
-## Options
+## オプション
 
 * __code__ | `string`: テーブルに表示するデータを含むdata.frameを返すRコード. Default: `''`.
 * __libraries__ | `array`: 入力 `code` が実行されたときに自動的にロードされるべき R ライブラリ. Default: `[]`.
@@ -14,7 +14,7 @@ Rデータフレームまたはマトリックスを表形式で表示するた�
 * __width__ | `number`: 幅. Default: `0.5`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <RTable

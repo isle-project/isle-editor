@@ -17,7 +17,7 @@ Régression linéaire simple.
 * __onPredict__ | `function`: rappel invoqué avec valeurs ajustées et résidus. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <SimpleLinearRegression 

@@ -6,13 +6,13 @@ sidebar_label: Wikipedia
 
 Wikipedia**コンポーネントは**Wikipedia**をスキャンして記事を返します。
 
-## Options
+## オプション
 
 * __defaultEntry__ | `string`: デフォルトの表示項目. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

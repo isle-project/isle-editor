@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 JavaScript コマンドを実行するために使用できるインタラクティブな Javascript シェルです。シェルにはエラーメッセージや警告などを表示するコンソールが含まれています。
 
-## Options
+## オプション
 
 * __code__ | `string`: 評価されるJavaScriptコード. Default: `''`.
 * __solution__ | `string`: プログラミングの問題では、問題の公式な解答を表すコード `string` を指定します。. Default: `''`.
@@ -24,7 +24,7 @@ JavaScript コマンドを実行するために使用できるインタラクテ
 * __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <JSShell id = "jseditor" 

@@ -36,7 +36,7 @@ et l'instance du tableau). Default: `none`.
 * __style__ | `object`: Un objet permettant un style css personnalisé. Par défaut, un objet vide. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <DataTable

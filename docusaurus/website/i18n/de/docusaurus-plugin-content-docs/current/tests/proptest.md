@@ -6,7 +6,7 @@ sidebar_label: One-Sample Proportion Test
 
 Ein-Stichproben-Verhältnis-Test.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Name der Variablen. Default: `none`.
@@ -17,7 +17,7 @@ Ein-Stichproben-Verhältnis-Test.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <PropTest

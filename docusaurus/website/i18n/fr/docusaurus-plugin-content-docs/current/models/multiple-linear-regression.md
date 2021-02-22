@@ -18,7 +18,7 @@ Régression linéaire multiple.
 * __onPredict__ | `function`: rappel invoqué avec les prédictions et les résidus après ajustement du modèle. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <MultipleLinearRegression 

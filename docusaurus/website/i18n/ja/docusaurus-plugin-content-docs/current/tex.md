@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 TeX`はLaTeX方程式を表示するために使用できるISLE要素です。このコンポーネントは [KaTeX](https://github.com/Khan/KaTeX) を使用して、高速なレンダリングを実現しています。
 
-## Options
+## オプション
 
 * __raw__ | `(string|number) (required)`: レンダリングするLaTeXのリテラル `string`。また、`numbers` も受け付けます。. Default: `none`.
 * __displayMode__ | `boolean`: 式をインラインで表示するか表示モードで表示するかを示す `boolean`。. Default: `false`.
@@ -19,7 +19,7 @@ TeX`はLaTeX方程式を表示するために使用できるISLE要素です。�
 * __onClick__ | `function`: コールバック `function` は、ユーザが数式をクリックするたびに呼び出されます。. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <TeX

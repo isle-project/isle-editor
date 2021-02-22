@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 Um enredo de caixa.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `(array|string) (required)`: variável a exibir. Default: `none`.
@@ -15,7 +15,7 @@ Um enredo de caixa.
 * __overlayPoints__ | `boolean`: controla se devem ser sobrepostos pontos. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <BoxPlot 

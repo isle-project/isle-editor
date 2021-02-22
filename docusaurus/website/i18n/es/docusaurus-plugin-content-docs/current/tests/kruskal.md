@@ -6,7 +6,7 @@ sidebar_label: Kruskal Test
 
 Prueba de Kruskal-Wallis.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: nombre de la variable. Default: `none`.
@@ -14,7 +14,7 @@ Prueba de Kruskal-Wallis.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Kruskal

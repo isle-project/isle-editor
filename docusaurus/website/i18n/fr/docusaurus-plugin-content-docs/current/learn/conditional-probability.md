@@ -10,7 +10,7 @@ Une composante d'apprentissage illustrant la probabilité conditionnelle pour de
 
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnConditionalProbability />

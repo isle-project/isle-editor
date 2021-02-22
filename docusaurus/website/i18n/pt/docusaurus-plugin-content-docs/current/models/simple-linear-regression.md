@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 Regressão linear simples.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __x__ | `string (required)`: variável explicativa. Default: `none`.
@@ -17,7 +17,7 @@ Regressão linear simples.
 * __onPredict__ | `function`: chamada de retorno invocada com valores ajustados e resíduos. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <SimpleLinearRegression 

@@ -27,7 +27,7 @@ Un composant ISLE qui rend une question à choix multiple. Il permet à l'appren
 * __onSubmit__ | `function`: rappel invoqué après la présentation d'une réponse. Default: `onSubmit(){}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

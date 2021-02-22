@@ -6,7 +6,7 @@ sidebar_label: k-means Clustering
 
 K significa agrupamento.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variables__ | `array<string> (required)`: nomes de variáveis utilizadas para agrupamento. Default: `none`.
@@ -15,7 +15,7 @@ K significa agrupamento.
 * __onResult__ | `function`: chamada de retorno invocada com o objeto modelo. Default: `onResult() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <KMeans 

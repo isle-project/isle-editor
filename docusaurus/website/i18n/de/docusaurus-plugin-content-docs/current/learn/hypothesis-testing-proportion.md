@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Proportions
 
 Eine Lernkomponente zu Hypothesentests für einen Bevölkerungsanteil.
 
-## Options
+## Optionen
 
 * __types__ | `array<string>`: die Art(en) des Tests (`Eine-Stichprobe`, `Zwei-Stichprobe`), die das Widget darstellen soll. Default: `[
   'One-Sample',
@@ -17,7 +17,7 @@ Eine Lernkomponente zu Hypothesentests für einen Bevölkerungsanteil.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnProportionTest />

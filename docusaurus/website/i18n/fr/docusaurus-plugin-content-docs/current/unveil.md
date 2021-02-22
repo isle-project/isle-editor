@@ -12,7 +12,7 @@ La composante "apparaître" fera en sorte que tous ses enfants deviennent visibl
 * __delay__ | `number`: nombre de millisecondes avant l'apparition du composant. Default: `1000`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Unveil duration={5000} >

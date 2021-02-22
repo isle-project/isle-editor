@@ -12,7 +12,7 @@ Fonction de comparaison utilisée pour trier les valeurs par ordre croissant.
 * __variable__ | `string (required)`: variable à afficher. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <QQPlot 

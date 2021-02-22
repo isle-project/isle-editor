@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 简单的线性回归。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __x__ | `string (required)`: 解释变量. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Simple Linear Regression
 * __onPredict__ | `function`: 用拟合值和残差调用回调。. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <SimpleLinearRegression 

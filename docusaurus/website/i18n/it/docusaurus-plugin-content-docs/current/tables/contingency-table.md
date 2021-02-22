@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 Una tabella di contingenza.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __rowVar__ | `string (required)`: nome della variabile di riga. Default: `none`.
@@ -17,7 +17,7 @@ Una tabella di contingenza.
 * __nDecimalPlaces__ | `number`: numero di cifre decimali per le frequenze relative visualizzate nella tabella. Default: `3`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <ContingencyTable

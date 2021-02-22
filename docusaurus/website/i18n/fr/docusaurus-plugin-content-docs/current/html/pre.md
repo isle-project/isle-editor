@@ -12,7 +12,7 @@ sidebar_label: pre
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <pre>

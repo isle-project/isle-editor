@@ -19,7 +19,7 @@ Un élément d'arrière-plan dynamique qui parcourt une liste de textes à un in
 * __style__ | `object`: Les styles CSS du texte. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 
 import Tabs from '@theme/Tabs';

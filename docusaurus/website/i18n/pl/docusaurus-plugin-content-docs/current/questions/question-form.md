@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 Komponent formularza łączący różne komponenty pytania wraz z jednym przyciskiem zgłoszeniowym.
 
-## Options
+## Opcje
 
 * __buttonLabel__ | `string`: etykieta przycisku nadawania. Default: `none`.
 * __onSubmit__ | `function`: wywołanie zwrotne po kliknięciu przycisku wysyłania. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <QuestionForm>

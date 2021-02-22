@@ -6,7 +6,7 @@ sidebar_label: Kruskal Test
 
 Test Kruskala-Wallisa.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: zmienna nazwa. Default: `none`.
@@ -14,7 +14,7 @@ Test Kruskala-Wallisa.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Kruskal

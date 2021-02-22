@@ -6,12 +6,12 @@ sidebar_label: Discrete Distribution
 
 任意の離散分布を可視化し，そのCDFを評価するための学習コンポーネント．
 
-## Options
+## オプション
 
 * __numValues__ | `number`: しょきべつちすう. Default: `4`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnDiscreteDistribution />

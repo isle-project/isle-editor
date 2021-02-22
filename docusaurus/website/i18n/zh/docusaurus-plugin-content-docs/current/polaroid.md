@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 一个以宝丽来风格显示图像的组件。
 
-## Options
+## 选项
 
 * __image__ | `string`: 要在宝丽来相框中显示的图像的URL。. Default: `none`.
 * __draggable__ | `boolean`: 控制是否可以在屏幕上拖动宝丽来。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Polaroid
 * __onClick__ | `function`: 当图像被点击时调用的事件处理程序（接收Polaroid的id作为参数）。. Default: `none`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

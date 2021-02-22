@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 计算一个数组的最小值和最大值。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __xval__ | `string (required)`: 在X轴上显示的变量. Default: `none`.
@@ -23,7 +23,7 @@ sidebar_label: Scatter Plot
 * __smoothSpan__ | `number`: 平滑回归线的平滑跨度参数. Default: `0.66`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ScatterPlot 

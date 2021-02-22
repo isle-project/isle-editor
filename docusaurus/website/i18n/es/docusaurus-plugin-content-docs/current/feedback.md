@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Botones para recoger la información de los usuarios.
 
-## Options
+## Opciones
 
 * __confusedMsg__ | `string`: mensaje que se mostrará en el tooltip para el botón de confusión. Default: `none`.
 * __feedbackMsg__ | `string`: mensaje que se mostrará en el tooltip para el botón de retroalimentación detallada. Default: `none`.
@@ -17,7 +17,7 @@ Botones para recoger la información de los usuarios.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

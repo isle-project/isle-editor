@@ -6,13 +6,13 @@ sidebar_label: hr
 
 文書内のテーマ区切りを定義する水平規則。
 
-## Options
+## オプション
 
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

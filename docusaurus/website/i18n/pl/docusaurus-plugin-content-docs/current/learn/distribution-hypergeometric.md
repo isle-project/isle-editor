@@ -6,12 +6,12 @@ sidebar_label: Hypergeometric Distribution
 
 Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu hipergeometrycznego.
 
-## Options
+## Opcje
 
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnHypergeometricDistribution />

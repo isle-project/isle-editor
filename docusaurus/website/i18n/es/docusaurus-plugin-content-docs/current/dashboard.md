@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Un tablero para combinar el manejo de múltiples campos de entrada de niños.
 
-## Options
+## Opciones
 
 * __autoStart__ | `boolean`: si se establece en "true", la función "onGenerate" se ejecuta al inicio con los valores de entrada por defecto. Default: `true`.
 * __autoUpdate__ | `boolean`: controla si la función "onGenerate" debe ser invocada automáticamente cuando uno de los campos de entrada del niño cambia. Default: `false`.
@@ -20,7 +20,7 @@ Un tablero para combinar el manejo de múltiples campos de entrada de niños.
 * __title__ | `(string|node)`: título de la tarjeta. Default: `''`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

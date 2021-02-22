@@ -6,13 +6,13 @@ sidebar_label: Standardization
 
 Компонент обучения, объясняющий процесс стандартизации данных.
 
-## Options
+## Варианты
 
 * __showProbabilities__ | `boolean`: управляет отображением вероятностей. Default: `false`.
 * __step__ | `object`: размер шага прокрутки. Default: `'any'`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnStandardize />

@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 Dynamiczny element tła, który przechodzi cyklicznie przez listę tekstów w określonym odstępie czasu.
 
-## Options
+## Opcje
 
 * __text__ | `array<string>`: tekst lub lista tekstów do wyświetlenia. Default: `[]`.
 * __loop__ | `boolean`: wskazuje, czy proces powinien być wyświetlany w nieskończoność. Default: `false`.
@@ -19,7 +19,7 @@ Dynamiczny element tła, który przechodzi cyklicznie przez listę tekstów w ok
 * __style__ | `object`: Style CSS tekstu. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 
 import Tabs from '@theme/Tabs';

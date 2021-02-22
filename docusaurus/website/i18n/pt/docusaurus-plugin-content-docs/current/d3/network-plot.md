@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 Uma trama de rede baseada em d3.
 
-## Options
+## Opções
 
 * __width__ | `number`: largura da parcela (em px). Default: `900`.
 * __height__ | `number`: altura da parcela (em px). Default: `600`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <NetworkPlot

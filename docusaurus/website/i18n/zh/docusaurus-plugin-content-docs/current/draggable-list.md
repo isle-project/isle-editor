@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 一个可拖动的元素列表，可以由学生重新排序。
 
-## Options
+## 选项
 
 * __data__ | `array (required)`: `id`和`text`键的对象数组。. Default: `none`.
 * __onChange__ | `function`: 在每次变化时用新的有序数据数组调用回调。. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ sidebar_label: Draggable List
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <DraggableList

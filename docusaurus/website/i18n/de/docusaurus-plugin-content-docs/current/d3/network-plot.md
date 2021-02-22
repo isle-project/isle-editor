@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 Eine d3-basierte Netzwerkdarstellung.
 
-## Options
+## Optionen
 
 * __width__ | `number`: Breite des Plots (in px). Default: `900`.
 * __height__ | `number`: Höhe des Plots (in px). Default: `600`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <NetworkPlot

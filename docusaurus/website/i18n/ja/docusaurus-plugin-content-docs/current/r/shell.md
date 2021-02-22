@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 [OpenCPU](https://www.opencpu.org/)を使ってクラウド上でRコマンドを実行できる対話型Rシェル。
 
-## Options
+## オプション
 
 * __code__ | `string`: 評価対象のRコード. Default: `''`.
 * __solution__ | `string`: プログラミングの問題では、Rコード `string` が問題の公式な解答を表します。. Default: `''`.
@@ -25,7 +25,7 @@ sidebar_label: R Shell
 * __onResult__ | `function`: コールバックはコードの実行結果がクラウドから得られるたびに呼び出されます。結果 `string` はコールバック関数の唯一の引数として渡されます。. Default: `onResult() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <RShell

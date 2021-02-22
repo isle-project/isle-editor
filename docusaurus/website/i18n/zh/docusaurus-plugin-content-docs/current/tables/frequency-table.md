@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 一个频率表；
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 显示的变量名称. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Frequency Table
 * __nDecimalPlaces__ | `number`: 表中显示的相对频率的小数点位数. Default: `3`.
 
 
-## Examples
+## 例子
 
 ## Examples
 

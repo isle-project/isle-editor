@@ -6,7 +6,7 @@ sidebar_label: LASSO Regression
 
 Регрессия ЛАССО.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __y__ | `string (required)`: переменная результата. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: LASSO Regression
 * __intercept__ | `boolean`: контролирует, подходить ли к модели с термином перехвата. Default: `true`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LassoRegression

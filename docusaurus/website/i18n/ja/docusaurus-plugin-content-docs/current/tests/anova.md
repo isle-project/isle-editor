@@ -6,7 +6,7 @@ sidebar_label: ANOVA
 
 分散分析。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示対象変数名. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: ANOVA
 * __showDecision__ | `boolean`: テスト決定を表示するかどうかを制御します。. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Anova

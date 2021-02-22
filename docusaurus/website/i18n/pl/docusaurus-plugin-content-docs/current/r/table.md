@@ -6,7 +6,7 @@ sidebar_label: R Table
 
 Komponent do renderowania ramki danych R lub macierzy w postaci tabelarycznej.
 
-## Options
+## Opcje
 
 * __code__ | `string`: Kod R zwracający ramkę data.frame zawierającą dane, które mają być wyświetlane w tabeli. Default: `''`.
 * __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.. Default: `[]`.
@@ -14,7 +14,7 @@ Komponent do renderowania ramki danych R lub macierzy w postaci tabelarycznej.
 * __width__ | `number`: szerokość (między 0 a 1). Default: `0.5`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <RTable

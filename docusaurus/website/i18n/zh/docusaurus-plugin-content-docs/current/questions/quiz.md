@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 一个显示问题组件序列的测验组件。
 
-## Options
+## 选项
 
 * __confidence__ | `boolean`: 是否显示李克特量表，询问用户答案的可信度。. Default: `false`.
 * __forceConfidence__ | `boolean`: 控制用户在进入下一个问题之前是否需要提供一个置信度。. Default: `false`.
@@ -25,7 +25,7 @@ sidebar_label: Quiz
 * __onSubmit__ | `function`: 当用户提交回答时调用回调。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

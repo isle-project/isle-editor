@@ -16,7 +16,7 @@ Un élément d'apprentissage illustrant le Théorème des limites centrales (CLT
 * __variables__ | `array (required)`: les noms des variables qui peuvent être échantillonnées à partir. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnSampleCLT />

@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 显示一个定时器，当时间到时将触发一个预定义的回调。一个使用案例是测验的计时。
 
-## Options
+## 选项
 
 * __id__ | `string`: 计时器的唯一`string`ID。如果设置了一个ID，定时器组件在页面刷新时是持久的。. Default: `none`.
 * __active__ | `boolean (required)`: 标志，可以切换到启动或暂停定时器。. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Timer
 * __onTimeUp__ | `function`: 当计时器耗尽时调用回调。. Default: `onTimeUp() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Timer 

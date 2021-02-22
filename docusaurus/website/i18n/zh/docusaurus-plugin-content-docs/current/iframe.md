@@ -6,7 +6,7 @@ sidebar_label: IFrame
 
 一个iFrame组件。
 
-## Options
+## 选项
 
 * __src__ | `string (required)`: 源网址. Default: `none`.
 * __fullscreen__ | `boolean`: 控制是否在全屏模式下显示iFrame。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: IFrame
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

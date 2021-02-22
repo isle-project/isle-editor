@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Componente do cartão.
 
-## Options
+## Opções
 
 * __className__ | `string`: Nome da classe CSS. Default: `''`.
 * __header__ | `(string|node)`: título do painel (h3). Default: `none`.
@@ -20,7 +20,7 @@ Componente do cartão.
 * __onHide__ | `function`: chamada de retorno invocada quando o botão de fechamento é clicado. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

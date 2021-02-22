@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Berekent de minimale en maximale waarde van een array.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object of value arrays voor elke variabele. Default: `none`.
 * __xval__ | `string (required)`: variabele voor weergave op de x-as. Default: `none`.
@@ -23,7 +23,7 @@ Berekent de minimale en maximale waarde van een array.
 * __smoothSpan__ | `number`: afvlakkingsspanningsparameter voor `vloeiende` regressielijn. Default: `0.66`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ScatterPlot 

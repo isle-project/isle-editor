@@ -6,7 +6,7 @@ sidebar_label: LASSO Regression
 
 Regresión de LASSO.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __y__ | `string (required)`: variable de resultado. Default: `none`.
@@ -16,7 +16,7 @@ Regresión de LASSO.
 * __intercept__ | `boolean`: controla si se ajusta a un modelo con un término de intercepción. Default: `true`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LassoRegression

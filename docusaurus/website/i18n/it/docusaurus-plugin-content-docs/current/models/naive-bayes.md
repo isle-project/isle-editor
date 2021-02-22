@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Naive Bayes supponendo che i predittori data l'appartenenza alla classe seguano una distribuzione normale.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __y__ | `string (required)`: variabile di risultato. Default: `none`.
@@ -16,7 +16,7 @@ Naive Bayes supponendo che i predittori data l'appartenenza alla classe seguano 
 * __onPredict__ | `function`: richiamo invocato con previsioni e residui dopo il montaggio del modello. Default: `none`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <NaiveBayes 

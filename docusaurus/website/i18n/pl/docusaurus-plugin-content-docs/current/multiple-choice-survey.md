@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Komponent ankiety, w którym prowadzący może w czasie rzeczywistym zbierać od studentów dane z ankiety wielokrotnego wyboru.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: ciąg znaków wskazujący na pytanie, które należy zadać uczniom. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: kontroluje, czy chce się zezwolić uczniom na wielokrotne udzielanie odpowiedzi na ankietę. Default: `false`.
@@ -17,7 +17,7 @@ Komponent ankiety, w którym prowadzący może w czasie rzeczywistym zbierać od
 * __onSubmit__ | `function`: funkcja, która ma być wywołana po udzieleniu odpowiedzi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <MultipleChoiceSurvey

@@ -13,7 +13,7 @@ Test d'indépendance du chi carré.
 * __var2__ | `string (required)`: nom de la deuxième variable. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Chi2Test

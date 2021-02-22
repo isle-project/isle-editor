@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 Un componente ISLE che rende una domanda a scelta multipla. Supporta il caso in cui l'allievo deve selezionare una singola risposta e quando potrebbero esserci più risposte corrette e tutte le risposte corrette devono essere scelte.
 
-## Options
+## Opzioni
 
 * __question__ | `(string|node)`: la domanda visualizzata nella parte superiore del componente a scelta multipla. Default: `''`.
 * __solution__ | `(number|array)`: numero che indica quale risposta è corretta o un `array` dei numeri di risposta corretti nel caso in cui l'allievo debba essere in grado di selezionare più risposte. Default: `none`.
@@ -27,7 +27,7 @@ Un componente ISLE che rende una domanda a scelta multipla. Supporta il caso in 
 * __onSubmit__ | `function`: richiamata invocata dopo l'invio di una risposta. Default: `onSubmit(){}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 TeX" ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werden kann. Unter der Haube verwendet die Komponente [KaTeX](https://github.com/Khan/KaTeX) für rasend schnelles Rendering.
 
-## Options
+## Optionen
 
 * __raw__ | `(string|number) (required)`: Die wörtliche LaTeX-Zeichenkette, die wiedergegeben werden soll. Akzeptiert auch `Nummern`. Default: `none`.
 * __displayMode__ | `boolean`: `boolean`, das angibt, ob die Gleichung inline oder im Anzeigemodus angezeigt werden soll. Default: `false`.
@@ -19,7 +19,7 @@ TeX" ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werde
 * __onClick__ | `function`: Callback `Funktion`, die aufgerufen wird, wenn ein Benutzer auf die Gleichung klickt. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <TeX

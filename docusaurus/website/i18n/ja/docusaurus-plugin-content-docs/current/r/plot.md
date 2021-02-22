@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 ISLEレッスン内でRプロットをレンダリングするためのコンポーネントです。
 
-## Options
+## オプション
 
 * __code__ | `string`: プロットを生成するRコード. Default: `''`.
 * __width__ | `(number|string)`: プロットの幅. Default: `600`.
@@ -20,7 +20,7 @@ ISLEレッスン内でRプロットをレンダリングするためのコンポ
 * __onDone__ | `function`: プロットが作成されると `err`, `img`, `body` 引数で呼び出されるコールバック. Default: `onDone() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

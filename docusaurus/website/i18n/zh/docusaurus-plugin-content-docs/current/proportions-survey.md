@@ -6,7 +6,7 @@ sidebar_label: Proportions Survey
 
 允许一群人对给定选项的权重和重要性进行投票的组件。
 
-## Options
+## 选项
 
 * __allowMultipleAnswers__ | `boolean`: 控制是否允许学生多次回答调查问卷。. Default: `false`.
 * __anonymous__ | `boolean`: 控制学生的答案是否被匿名化. Default: `false`.
@@ -23,7 +23,7 @@ sidebar_label: Proportions Survey
 * __step__ | `number`: 当光标悬停在输入框上方时，所看到的箭头的步长。. Default: `0.25`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ProportionsSurvey 

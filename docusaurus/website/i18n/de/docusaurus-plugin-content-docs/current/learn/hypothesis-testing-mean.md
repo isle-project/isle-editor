@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Eine Lernkomponente zu Hypothesentests für einen Populationsmittelwert.
 
-## Options
+## Optionen
 
 * __types__ | `array<string>`: die Art(en) des Tests (`Eine-Stichprobe`, `Zwei-Stichprobe`), die das Widget darstellen soll. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ Eine Lernkomponente zu Hypothesentests für einen Populationsmittelwert.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnMeanTest />

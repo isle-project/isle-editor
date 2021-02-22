@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Przycisk, który ma być wyświetlany na końcu lekcji, na który uczniowie mogą kliknąć. Domyślnie, wiadomość potwierdzająca ukończenie lekcji jest wysyłana na ich adres e-mail.
 
-## Options
+## Opcje
 
 * __label__ | `string`: etykieta przycisku przedłożenia. Default: `none`.
 * __message__ | `string`: wiadomość do potwierdzenia e-mail. Default: `''`.
@@ -17,7 +17,7 @@ Przycisk, który ma być wyświetlany na końcu lekcji, na który uczniowie mog�
 * __onClick__ | `function`: wywołanie zwrotne po kliknięciu przycisku zgłoszenia. Default: `onClick() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

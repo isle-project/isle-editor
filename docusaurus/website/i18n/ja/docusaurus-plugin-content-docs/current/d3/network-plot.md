@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 d3ベースのネットワークプロット。
 
-## Options
+## オプション
 
 * __width__ | `number`: プロットの幅. Default: `900`.
 * __height__ | `number`: 区画の高さ. Default: `600`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <NetworkPlot

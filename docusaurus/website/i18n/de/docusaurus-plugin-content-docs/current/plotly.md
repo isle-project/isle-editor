@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Plotly-Visualisierung.
 
-## Options
+## Optionen
 
 * __data__ | `array (required)`: Daten-Array. Default: `none`.
 * __draggable__ | `boolean`: steuert, ob der Plot verschiebbar sein soll. Default: `false`.
@@ -30,7 +30,7 @@ Plotly-Visualisierung.
 * __toggleFullscreen__ | `boolean`: steuert, ob die Darstellung des Plots im Vollbildmodus möglich sein soll. Default: `true`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <Plotly

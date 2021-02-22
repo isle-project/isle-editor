@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 Eine Umfragekomponente, in der der Dozent numerische Umfragedaten von Studenten in Echtzeit sammeln kann.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: die Frage, die angezeigt werden soll. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: steuert, ob derselbe Benutzer (oder die Sitzung, wenn sie anonym ist) mehrere Antworten abgeben darf). Default: `false`.
@@ -16,7 +16,7 @@ Eine Umfragekomponente, in der der Dozent numerische Umfragedaten von Studenten 
 * __onSubmit__ | `function`: Callback-Funktion, die aufgerufen wird, sobald der Schüler eine Antwort abgeschickt hat. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <NumberSurvey

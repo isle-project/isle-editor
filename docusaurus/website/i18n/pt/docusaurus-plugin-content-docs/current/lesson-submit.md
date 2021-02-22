@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Um botão a ser exibido no final de uma aula para que os alunos possam clicar. Por padrão, uma mensagem confirmando a conclusão da lição é enviada para seu endereço de e-mail.
 
-## Options
+## Opções
 
 * __label__ | `string`: etiqueta do botão submeter. Default: `none`.
 * __message__ | `string`: mensagem para confirmação e-mail. Default: `''`.
@@ -17,7 +17,7 @@ Um botão a ser exibido no final de uma aula para que os alunos possam clicar. P
 * __onClick__ | `function`: chamada de retorno invocada ao clicar no botão de submissão. Default: `onClick() {}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

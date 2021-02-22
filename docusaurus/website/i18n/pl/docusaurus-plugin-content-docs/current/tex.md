@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 `TeX` to element ISLE, który może być użyty do wyświetlania równań LaTeX. Pod maską, element ten używa [KaTeX](https://github.com/Khan/KaTeX) do błyskawicznego renderowania.
 
-## Options
+## Opcje
 
 * __raw__ | `(string|number) (required)`: Dosłowne LaTeX-owe "sznurki" do oddania. Przyjmuje też `numery`. Default: `none`.
 * __displayMode__ | `boolean`: `boolean` wskazujący, czy równanie ma być wyświetlane w linii, czy w trybie wyświetlania. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: LaTeX Equations
 * __onClick__ | `function`: callback `funkcja` wywoływana za każdym razem, gdy użytkownik kliknie na równanie. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <TeX

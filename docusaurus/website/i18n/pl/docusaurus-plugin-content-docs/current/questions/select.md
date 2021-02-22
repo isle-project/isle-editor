@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 Komponent wyboru pytania.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, na które student musi wybrać jedną z dostępnych opcji odpowiedzi. Default: `''`.
 * __options__ | `array (required)`: dostępne opcje odpowiedzi, z których student może wybrać. Default: `none`.
@@ -26,7 +26,7 @@ Komponent wyboru pytania.
 * __onSubmit__ | `function`: callback wywoływany przy udzielaniu odpowiedzi; ma jako pierwszy parametr `boolean` wskazujący, czy odpowiedź została udzielona poprawnie (jeśli dotyczy, `nie ma znaczenia` inaczej), a udzielona odpowiedź jako drugi parametr. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

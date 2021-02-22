@@ -6,7 +6,7 @@ sidebar_label: Link
 
 Un componente per la visualizzazione di un link.
 
-## Options
+## Opzioni
 
 * __href__ | `string (required)`: URL del sito web da collegare a. Default: `none`.
 * __target__ | `string`: definisce dove il link viene aperto: impostato a `_blank` per la nuova finestra, `_self` proprio frame, `_parent` per il genitore, `_top` per l'intero corpo della finestra, o il nome del frame. Default: `'_blank'`.
@@ -14,7 +14,7 @@ Un componente per la visualizzazione di un link.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

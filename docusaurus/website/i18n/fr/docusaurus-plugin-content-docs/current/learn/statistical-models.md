@@ -11,7 +11,7 @@ Composant permettant de parcourir les descriptions de divers modèles statistiqu
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnStatisticalModels />

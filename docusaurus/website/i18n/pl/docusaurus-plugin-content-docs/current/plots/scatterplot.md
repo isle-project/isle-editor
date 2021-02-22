@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Oblicza minimalną i maksymalną wartość tablicy.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __xval__ | `string (required)`: zmienna do wyświetlania na osi x. Default: `none`.
@@ -23,7 +23,7 @@ Oblicza minimalną i maksymalną wartość tablicy.
 * __smoothSpan__ | `number`: parametr rozpiętości wygładzania dla linii regresji `gładkiej`. Default: `0.66`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ScatterPlot 

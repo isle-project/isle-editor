@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 Компонент ISLE-пагинации, позволяющий пользователю пройти через последовательность страниц.
 
-## Options
+## Варианты
 
 * __activePage__ | `number`: активная страница. Default: `1`.
 * __disabled__ | `boolean`: управляет тем, активна или нет панель навигации. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Pages
 * __onSelect__ | `function`: Функция вызывается при изменении активного изменения. Получает новый индекс активной страницы в качестве единственного параметра.. Default: `onSelect() {}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

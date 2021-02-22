@@ -20,7 +20,7 @@ Un élément de saisie à cases à cocher. Peut être utilisé dans le cadre d'u
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <CheckboxInput

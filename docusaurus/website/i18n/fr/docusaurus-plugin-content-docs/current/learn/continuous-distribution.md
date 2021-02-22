@@ -10,7 +10,7 @@ Un élément d'apprentissage pour explorer les distributions de probabilités co
 
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnContinuousDistribution />

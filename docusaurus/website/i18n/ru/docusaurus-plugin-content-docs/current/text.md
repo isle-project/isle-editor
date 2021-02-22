@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Текстовый компонент, позволяющий отрисовывать необработанный текст как Markdown и включающий голосовое управление.
 
-## Options
+## Варианты
 
 * __raw__ | `string`: текст для визуализации. Default: `''`.
 * __className__ | `string`: имена классов. Default: `''`.
@@ -15,7 +15,7 @@ sidebar_label: Text
 * __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 
 
-## Examples
+## Примеры
 
 
 import Tabs from '@theme/Tabs';

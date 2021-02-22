@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Eine ISLE-Komponente, mit der Sie mehrere umdrehbare Karten erstellen und steuern können (z. B. bei einem Memory-Spiel).
 
-## Options
+## Optionen
 
 * __animation__ | `object`: wenn gesetzt, verwendet die Komponente eine Eingangsanimation; das Objekt enthält einen Namen (z. B. `anim-scale-up`) und eine Dauer (z. B. `1.7s` = 1,7 Sekunden). Default: `{}`.
 * __memory__ | `boolean`: ob der Memory-Spielmodus aktiviert werden soll, bei dem man Paare der gelieferten Werte zuordnen muss. Default: `none`.
@@ -20,7 +20,7 @@ Eine ISLE-Komponente, mit der Sie mehrere umdrehbare Karten erstellen und steuer
 * __backStyle__ | `object`: CSS-Stil für die Rückseite der Karten. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <MultiCards

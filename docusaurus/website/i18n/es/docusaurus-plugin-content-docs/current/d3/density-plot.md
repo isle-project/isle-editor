@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 Un componente de densidad basado en d3.
 
-## Options
+## Opciones
 
 * __bandwidth__ | `number`: parámetro de suavizado para el estimador de la densidad del núcleo. Default: `4`.
 * __histogram__ | `boolean`: muestran un histograma junto a la gráfica de densidad. Default: `true`.
@@ -18,7 +18,7 @@ Un componente de densidad basado en d3.
 * __ymax__ | `number`: valor máximo mostrado en el eje y. Default: `0.15`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <DensityPlot

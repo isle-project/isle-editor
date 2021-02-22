@@ -20,7 +20,7 @@ Un composant ISLE qui vous permet de créer et de contrôler plusieurs cartes re
 * __backStyle__ | `object`: Style CSS du dos des cartes. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <MultiCards

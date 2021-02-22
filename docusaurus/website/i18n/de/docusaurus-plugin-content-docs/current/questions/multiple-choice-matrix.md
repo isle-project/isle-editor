@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Matrix
 
 Eine ISLE-Komponente, die eine Matrix von Multiple-Choice-Fragen mit gleichen Antworten wiedergibt.
 
-## Options
+## Optionen
 
 * __questions__ | `array (required)`: eine Vielzahl von Fragen. Default: `none`.
 * __answers__ | `array (required)`: eine Reihe von Antworten. Default: `none`.
@@ -18,7 +18,7 @@ Eine ISLE-Komponente, die eine Matrix von Multiple-Choice-Fragen mit gleichen An
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn der Benutzer auf die Schaltfläche "Senden" klickt; wird mit dem zweidimensionalen booleschen Array des aktiven Status für jede Antwortoption aufgerufen. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <MultipleChoiceMatrix 

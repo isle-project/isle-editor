@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 Un componente de ISLE que hace una pregunta en la que el aprendiz tiene que emparejar elementos de dos listas entre sí de manera correcta.
 
-## Options
+## Opciones
 
 * __question__ | `(string|node)`: pregunta que se mostrará en la parte superior del componente de la pregunta de la lista de coincidencia. Default: `''`.
 * __elements__ | `array<{a,b}>`: una "matriz" que contiene los pares correctos mostrados en la parte superior del componente de preguntas de texto libre. Cada elemento de la "matriz" debe ser un "objeto" con propiedades "a" y "b"; suministrar elementos con sólo propiedades "a" o "b" para añadir respuestas de distracción.. Default: `[]`.
@@ -27,7 +27,7 @@ Un componente de ISLE que hace una pregunta en la que el aprendiz tiene que empa
 * __onSubmit__ | `function`: la llamada de retorno invocada cuando los estudiantes presentan una respuesta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

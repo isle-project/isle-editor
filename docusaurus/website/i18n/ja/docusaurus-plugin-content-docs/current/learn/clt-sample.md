@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 与えられたデータセットからサンプリングするときの中心極限定理（CLT）を説明する学習コンポーネント。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: キーを持つデータオブジェクトは、変数名とそれぞれの変数の値を保持する値に対応しています。. Default: `none`.
 * __hidePopulationStdev__ | `boolean`: 母集団標準偏差の非表示. Default: `false`.
@@ -16,7 +16,7 @@ sidebar_label: CLT Sample
 * __variables__ | `array (required)`: サンプリング可能な変数名. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnSampleCLT />

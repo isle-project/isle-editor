@@ -17,4 +17,4 @@ Une carte géographique qui peut être fournie soit par des noms de lieux, soit 
 * __showLand__ | `boolean`: si les caractéristiques géographiques doivent être indiquées sur la carte. Default: `false`.
 
 
-## Examples
+## Exemples

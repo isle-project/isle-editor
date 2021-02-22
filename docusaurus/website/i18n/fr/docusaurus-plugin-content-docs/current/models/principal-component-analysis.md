@@ -16,7 +16,7 @@ Analyse des composantes principales.
 * __onResult__ | `function`: rappel invoqué avec l'objet modèle et les composants. Default: `onResult() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <PrincipalComponentAnalysis 

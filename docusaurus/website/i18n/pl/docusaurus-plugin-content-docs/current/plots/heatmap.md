@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 Mapa cieplna do wizualizacji zależności pomiędzy dwoma zmiennymi.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __x__ | `string (required)`: Zmienna x-axis. Default: `none`.
@@ -19,7 +19,7 @@ Mapa cieplna do wizualizacji zależności pomiędzy dwoma zmiennymi.
 * __commonYAxis__ | `boolean`: kontroluje, czy przy tworzeniu wielu map cieplnych na wartość zmiennej grupowania należy używać wspólnej osi y. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <HeatMap 

@@ -6,7 +6,7 @@ sidebar_label: Normal Distribution
 
 一个用于计算正态分布概率的学习组件。
 
-## Options
+## 选项
 
 * __domain__ | `object`: `x`和`y`数组的对象，其各自轴的起点和终点。. Default: `none`.
 * __hideCDF__ | `boolean`: 控制是否隐藏CDF图. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Normal Distribution
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnNormalDistribution />

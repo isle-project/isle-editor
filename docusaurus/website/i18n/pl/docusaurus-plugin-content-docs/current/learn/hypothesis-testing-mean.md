@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Komponent do nauki na testach hipotez dla średniej populacji.
 
-## Options
+## Opcje
 
 * __types__ | `array<string>`: typ(-y) badania (`Jedna Próbka`, `Dwie Próbki`), które widżet powinien eksponować. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ Komponent do nauki na testach hipotez dla średniej populacji.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnMeanTest />

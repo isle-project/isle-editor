@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 レッスン内にビーコンを配置するコンポーネントで、独立して、または `target` に添付して配置します。ビーコンの上にカーソルを置いたりクリックしたりすると、ツールチップが表示されます。
 
-## Options
+## オプション
 
 * __title__ | `(string|node)`: ツールチップの上部に表示されるタイトル. Default: `none`.
 * __content__ | `(string|node)`: ツールチップコンテンツ. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ sidebar_label: Beacon Tooltip
 * __onChange__ | `function`: コールバックはツールチップの状態が変化したときに呼び出されます。2つの引数を受け取ります: `action` (`open` または `close`) と渡された `props` です。. Default: `onChange() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <BeaconTooltip

@@ -6,7 +6,7 @@ sidebar_label: Image Question
 
 一个要求用户上传图片的问题。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 学生必须将可用的 "选项 "按正确的顺序排列出来。. Default: `''`.
 * __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'bottom'`.
@@ -23,4 +23,4 @@ sidebar_label: Image Question
 * __onSubmit__ | `function`: 提交答案时调用的回调；唯一的参数是一个 "boolean"，表示元素是否按正确的顺序放置。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子

@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 Komponent ankiety, w którym prowadzący może zbierać dane liczbowe z ankiety od studentów w czasie rzeczywistym.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, które ma zostać wyświetlone. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: kontroluje, czy ten sam użytkownik (lub sesja, jeśli jest anonimowy) może udzielić wielu odpowiedzi). Default: `false`.
@@ -16,7 +16,7 @@ Komponent ankiety, w którym prowadzący może zbierać dane liczbowe z ankiety 
 * __onSubmit__ | `function`: funkcja wywołania zwrotnego, wywoływana po udzieleniu odpowiedzi przez studentów. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <NumberSurvey

@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 Компонент графика плотности на основе d3.
 
-## Options
+## Варианты
 
 * __bandwidth__ | `number`: параметр сглаживания для ядро-оценщика плотности. Default: `4`.
 * __histogram__ | `boolean`: показать гистограмму рядом с графиком плотности. Default: `true`.
@@ -18,7 +18,7 @@ sidebar_label: Density Plot
 * __ymax__ | `number`: максимальное значение, отображаемое по оси Y. Default: `0.15`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <DensityPlot

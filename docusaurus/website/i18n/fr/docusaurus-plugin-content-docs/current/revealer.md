@@ -12,7 +12,7 @@ Un composant de l'ISLE que les instructeurs peuvent utiliser pour révéler ou c
 * __show__ | `boolean`: contrôle l'affichage initial des éléments enfantins. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Revealer

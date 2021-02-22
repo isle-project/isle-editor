@@ -6,7 +6,7 @@ sidebar_label: Map
 
 Una mappa geografica che può essere fornita con nomi di località o con valori di longitudine/latitudine.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto di array di valori per ogni variabile. Default: `none`.
 * __scope__ | `string`: portata della mappa da visualizzare. Default: `'world'`.
@@ -17,4 +17,4 @@ Una mappa geografica che può essere fornita con nomi di località o con valori 
 * __showLand__ | `boolean`: se mostrare le caratteristiche geografiche sulla mappa. Default: `false`.
 
 
-## Examples
+## Esempi

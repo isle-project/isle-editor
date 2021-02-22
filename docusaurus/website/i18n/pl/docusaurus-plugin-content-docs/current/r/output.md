@@ -6,7 +6,7 @@ sidebar_label: R Output
 
 Komponent do renderowania wyjścia R wewnątrz lekcji ISLE.
 
-## Options
+## Opcje
 
 * __code__ | `string`: Kod R używany do oceny. Default: `''`.
 * __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.. Default: `[]`.
@@ -15,7 +15,7 @@ Komponent do renderowania wyjścia R wewnątrz lekcji ISLE.
 * __onResult__ | `function`: wywołanie zwrotne z `błędem` (`nieważne`, jeśli operacja zakończyła się sukcesem) i `wynik` posiadania wyjścia R. Default: `onResult() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ROutput code="runif(10)" />

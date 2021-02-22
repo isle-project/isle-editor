@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 Un componente di ingresso selezionato. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si desidera gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __bind__ | `string`: nome della variabile globale per il numero da assegnare a. Default: `''`.
 * __clearable__ | `boolean`: valore booleano che indica se si può chiarire la scelta o le scelte effettuate. Default: `none`.
@@ -23,7 +23,7 @@ Un componente di ingresso selezionato. Può essere utilizzato come parte di un c
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <SelectInput

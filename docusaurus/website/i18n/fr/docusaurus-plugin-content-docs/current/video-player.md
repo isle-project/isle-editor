@@ -26,7 +26,7 @@ Un composant permettant de lire des fichiers et du contenu multimédia de YouTub
 * __onSeek__ | `function`: rappel lorsque le média cherche appelé avec le paramètre "secondes. Default: `onSeek() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

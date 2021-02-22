@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Calcula el valor mínimo y máximo de un conjunto.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de matrices de valores para cada variable. Default: `none`.
 * __xval__ | `string (required)`: variable para mostrar en el eje x. Default: `none`.
@@ -23,7 +23,7 @@ Calcula el valor mínimo y máximo de un conjunto.
 * __smoothSpan__ | `number`: parámetro de suavizado de la línea de regresión "suave".. Default: `0.66`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <ScatterPlot 

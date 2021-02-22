@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 Un componente de video conferencia que muestra videos intercalados con elementos interactivos.
 
-## Options
+## Opciones
 
 * __controls__ | `boolean`: indica si se muestran los elementos de control de los reproductores de vídeo. Default: `true`.
 * __instructorView__ | `boolean`: controla si se incluye la vista del instructor. Default: `true`.
@@ -17,7 +17,7 @@ Un componente de video conferencia que muestra videos intercalados con elementos
 * __style__ | `object`: Estilo en línea de CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <VideoLecture steps={[

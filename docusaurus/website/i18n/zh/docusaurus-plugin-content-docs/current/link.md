@@ -6,7 +6,7 @@ sidebar_label: Link
 
 一个用于显示链接的组件。
 
-## Options
+## 选项
 
 * __href__ | `string (required)`: 链接到的网站URL. Default: `none`.
 * __target__ | `string`: 定义打开链接的位置：设置为`_blank`代表新窗口，`_self`代表自己的框架，`_parent`代表上级，`_top`代表窗口的主体，或者框架的名称。. Default: `'_blank'`.
@@ -14,7 +14,7 @@ sidebar_label: Link
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 Element zegara wyświetlający aktualny czas.
 
-## Options
+## Opcje
 
 * __duration__ | `boolean`: jeśli jest ustawiony, wyświetlany jest czas trwania sesji (nie faktyczny czas). Default: `false`.
 * __format__ | `string`: format czasowy (`HH:MM`, `HH:MM:SS`, lub `HH`). Default: `''`.
@@ -14,7 +14,7 @@ Element zegara wyświetlający aktualny czas.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

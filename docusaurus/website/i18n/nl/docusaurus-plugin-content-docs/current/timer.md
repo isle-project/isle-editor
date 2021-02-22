@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 Geeft een timer weer die een voorgedefinieerde terugbeltijd activeert als de tijd verstreken is. Een voorbeeld van een use case is de timing van de quizzen.
 
-## Options
+## Opties
 
 * __id__ | `string`: de unieke `string` ID voor de timer. Als een ID is ingesteld, is de timercomponent blijvend over de pagina ververst.. Default: `none`.
 * __active__ | `boolean (required)`: vlag die kan worden omgeschakeld om de timer te starten of te pauzeren. Default: `none`.
@@ -18,7 +18,7 @@ Geeft een timer weer die een voorgedefinieerde terugbeltijd activeert als de tij
 * __onTimeUp__ | `function`: terugbellen wordt aangeroepen wanneer de timer afloopt. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Timer 

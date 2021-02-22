@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Matrix
 
 一个ISLE组件，它可以呈现一个具有相同答案的多选题矩阵。
 
-## Options
+## 选项
 
 * __questions__ | `array (required)`: 千头万绪. Default: `none`.
 * __answers__ | `array (required)`: 一系列答案. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Multiple Choice Matrix
 * __onSubmit__ | `function`: 当用户点击 "提交 "按钮时调用的回调；调用的是每个回答选项的活动状态的二维布尔数组。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <MultipleChoiceMatrix 

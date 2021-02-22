@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 一个基于d3的密度图组件。
 
-## Options
+## 选项
 
 * __bandwidth__ | `number`: 核密度估计器的平滑参数。. Default: `4`.
 * __histogram__ | `boolean`: 在密度图旁显示直方图。. Default: `true`.
@@ -18,7 +18,7 @@ sidebar_label: Density Plot
 * __ymax__ | `number`: Y轴上显示的最大值. Default: `0.15`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <DensityPlot

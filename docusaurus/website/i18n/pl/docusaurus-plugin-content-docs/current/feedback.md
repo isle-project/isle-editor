@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Przyciski do zbierania informacji zwrotnych od użytkowników.
 
-## Options
+## Opcje
 
 * __confusedMsg__ | `string`: komunikat, który ma być wyświetlany w tooltipie dla dezorientowanego przycisku. Default: `none`.
 * __feedbackMsg__ | `string`: komunikat, który ma być wyświetlany w tooltipie dla szczegółowej informacji zwrotnej. Default: `none`.
@@ -17,7 +17,7 @@ Przyciski do zbierania informacji zwrotnych od użytkowników.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

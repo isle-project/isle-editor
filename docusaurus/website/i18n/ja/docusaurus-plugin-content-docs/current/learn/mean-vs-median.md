@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 与えられた分布の中央値と平均値を検出する能力をテストするインタラクティブなゲーム．
 
-## Options
+## オプション
 
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `false`.
 * __header__ | `string`: 平均値と中央値が生成されるパネルのタイトル. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Mean vs. Median
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnMeanVSMedian />

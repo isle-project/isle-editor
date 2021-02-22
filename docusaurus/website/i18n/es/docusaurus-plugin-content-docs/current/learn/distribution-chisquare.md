@@ -6,7 +6,7 @@ sidebar_label: Chi-squared Distribution
 
 Un componente de aprendizaje para calcular las probabilidades de una distribución chi-cuadrado.
 
-## Options
+## Opciones
 
 * __step__ | `(number|string)`: tamaño del paso de la entrada de desplazamiento. Default: `0.01`.
 * __maxDF__ | `number`: grados máximos de libertad que pueden ser elegidos en el campo de entrada. Default: `50`.
@@ -14,7 +14,7 @@ Un componente de aprendizaje para calcular las probabilidades de una distribuci�
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LearnChisquareDistribution />

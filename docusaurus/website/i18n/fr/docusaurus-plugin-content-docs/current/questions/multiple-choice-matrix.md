@@ -18,7 +18,7 @@ Un composant ISLE qui rend une matrice de questions à choix multiples avec les 
 * __onSubmit__ | `function`: rappel invoqué lorsque l'utilisateur clique sur le bouton "Soumettre" ; invoqué avec le tableau booléen bidimensionnel de l'état actif pour chaque option de réponse. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <MultipleChoiceMatrix 

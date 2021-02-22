@@ -6,7 +6,7 @@ sidebar_label: Violin Plot
 
 Een vioolbouwplan.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
@@ -14,7 +14,7 @@ Een vioolbouwplan.
 * __showBox__ | `boolean`: bepaalt of er binnenin een boxplot moet worden weergegeven. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ViolinPlot 

@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 应急表；
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __rowVar__ | `string (required)`: 行变量名. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contingency Table
 * __nDecimalPlaces__ | `number`: 表中显示的相对频率的小数点位数. Default: `3`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ContingencyTable

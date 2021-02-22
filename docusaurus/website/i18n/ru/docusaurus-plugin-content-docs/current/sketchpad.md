@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Эскизный планшет для конспектирования слайдов лекций или пустых страниц.
 
-## Options
+## Варианты
 
 * __autoSave__ | `boolean`: управляет тем, должен ли редактор сохранять текущий текст в локальном хранилище браузера в заданный промежуток времени. Default: `true`.
 * __feedbackButtons__ | `boolean`: управляет отображением кнопок обратной связи на каждом слайде. Default: `false`.
@@ -36,7 +36,7 @@ sidebar_label: Sketchpad
 * __onChange__ | `function`: вызов обратного вызова всякий раз, когда рисуется новый элемент линии. Default: `onChange() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

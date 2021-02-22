@@ -6,7 +6,7 @@ sidebar_label: Map
 
 Un mapa geográfico que puede ser suministrado con nombres de lugares o valores de longitud/latitud.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de matrices de valores para cada variable. Default: `none`.
 * __scope__ | `string`: alcance del mapa que se mostrará. Default: `'world'`.
@@ -17,4 +17,4 @@ Un mapa geográfico que puede ser suministrado con nombres de lugares o valores 
 * __showLand__ | `boolean`: si mostrar los rasgos geográficos en el mapa. Default: `false`.
 
 
-## Examples
+## Ejemplos

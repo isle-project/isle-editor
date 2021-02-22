@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Ein Venn-Diagramm, das die Ko-Okzidenz von Wörtern in Dokumenten einer gelieferten Term-Dokument-Matrix visualisiert.
 
-## Options
+## Optionen
 
 * __height__ | `number`: Höhe des Venn-Diagramms in Pixel. Default: `350`.
 * __nTexts__ | `number (required)`: Anzahl der Quellen, aus denen der Text gesammelt wurde. Default: `none`.
@@ -16,7 +16,7 @@ Ein Venn-Diagramm, das die Ko-Okzidenz von Wörtern in Dokumenten einer geliefer
 * __width__ | `number`: Breite des Venn-Diagramms in Pixel. Default: `600`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnWordVennDiagram />

@@ -6,7 +6,7 @@ sidebar_label: Voice Input
 
 音声入力コンポーネント。
 
-## Options
+## オプション
 
 * __autorecord__ | `boolean`: 自動的に録音を開始するかどうかを制御します。. Default: `false`.
 * __defaultValue__ | `string`: デフォルトテキスト値. Default: `''`.
@@ -33,7 +33,7 @@ sidebar_label: Voice Input
 * __height__ | `number`: 音声入力高さ. Default: `36`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <VoiceInput

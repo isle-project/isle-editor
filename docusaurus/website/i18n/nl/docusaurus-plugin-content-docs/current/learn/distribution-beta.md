@@ -6,7 +6,7 @@ sidebar_label: Beta Distribution
 
 Een leercomponent voor het berekenen van de waarschijnlijkheid van een bèta-verdeling.
 
-## Options
+## Opties
 
 * __domain__ | `object`: object van `x` en `y` arrays met de begin- en eindpunten voor de respectievelijke as. Default: `none`.
 * __step__ | `(number|string)`: stapgrootte van de scroll-ingang. Default: `0.01`.
@@ -18,7 +18,7 @@ Een leercomponent voor het berekenen van de waarschijnlijkheid van een bèta-ver
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnBetaDistribution />

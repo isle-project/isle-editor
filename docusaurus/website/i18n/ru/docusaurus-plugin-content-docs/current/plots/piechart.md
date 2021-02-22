@@ -6,7 +6,7 @@ sidebar_label: Pie Chart
 
 Компонент круговой диаграммы, который по умолчанию отображает количество всех категорий из выбранной переменной.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: переменная для отображения. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Pie Chart
 * __summaryVariable__ | `string`: необязательная переменная, сумма которой должна отображаться для каждой категории "Переменная".. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <PieChart 

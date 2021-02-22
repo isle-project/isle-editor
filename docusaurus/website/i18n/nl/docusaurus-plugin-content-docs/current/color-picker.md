@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 Een wikkel voor de [reactiekleur](https://casesandberg.github.io/react-color/) kleurkiezer.
 
-## Options
+## Opties
 
 * __variant__ | `string`: kleurkiesvariant (ofwel `Compact`, `Sketch`, `Material`, of `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: String` met een HeX-code of een `object` met RGB- of HSL-waarden zoals `{ r: 255, g: 255, b: 255 }` of `{ h: 0, s: 0, l: .10 }`, die de actieve kleur bepaalt. Beide accepteren een `a` eigenschap voor andere alpha-waarden dan een. Default: `'#fff'`.
@@ -35,7 +35,7 @@ Een wikkel voor de [reactiekleur](https://casesandberg.github.io/react-color/) k
 * __onChangeComplete__ | `function`: terugroeping aangeroepen zodra een kleurverandering is voltooid. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

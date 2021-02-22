@@ -6,7 +6,7 @@ sidebar_label: Map
 
 Eine geografische Karte, die entweder mit Ortsnamen oder mit Längen-/Breitengraden versehen werden kann.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt mit Werte-Arrays für jede Variable. Default: `none`.
 * __scope__ | `string`: Umfang der anzuzeigenden Karte. Default: `'world'`.
@@ -17,4 +17,4 @@ Eine geografische Karte, die entweder mit Ortsnamen oder mit Längen-/Breitengra
 * __showLand__ | `boolean`: ob geografische Merkmale auf der Karte angezeigt werden sollen. Default: `false`.
 
 
-## Examples
+## Beispiele

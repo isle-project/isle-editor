@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 Element wejściowy suwaka. Może być używany jako część deski rozdzielczej ISLE lub autonomiczny. W tym ostatnim przypadku, chcesz obsługiwać zmiany za pomocą atrybutu `onChange` lub powiązać wartość ze zmienną globalną za pomocą atrybutu `bind`.
 
-## Options
+## Opcje
 
 * __defaultValue__ | `number`: Wartość początkowa suwaka. Default: `10`.
 * __disabled__ | `boolean`: kontroluje, czy wejście suwaka jest aktywne, czy nie. Jeśli jest ustawiona na wartość true, suwak będzie obecny na ekranie, choć wyszarzony.. Default: `false`.
@@ -25,7 +25,7 @@ Element wejściowy suwaka. Może być używany jako część deski rozdzielczej 
 * __rangeInputStyle__ | `object`: Styl CSS w linii dla komponentu wejściowego zakresu. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <SliderInput

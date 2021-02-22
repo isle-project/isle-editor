@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 テキストエリアコンポーネント。スタンドアロンのコンポーネントとして使用される場合、変更は `onChange` 属性で処理されなければなりません。
 
-## Options
+## オプション
 
 * __defaultValue__ | `string`: テキストエリアのデフォルト値. Default: `''`.
 * __value__ | `string`: テキスト値. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Text Area
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <TextArea

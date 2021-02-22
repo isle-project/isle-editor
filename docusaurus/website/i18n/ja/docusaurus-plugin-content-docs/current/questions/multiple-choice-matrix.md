@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Matrix
 
 同じ答えを持つ多肢選択問題のマトリックスを表示するISLEコンポーネント。
 
-## Options
+## オプション
 
 * __questions__ | `array (required)`: しゅうもんじゅもん. Default: `none`.
 * __answers__ | `array (required)`: 答え合わせ. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Multiple Choice Matrix
 * __onSubmit__ | `function`: ユーザーが "Submit "ボタンをクリックした時に呼び出されるコールバック。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <MultipleChoiceMatrix 

@@ -6,7 +6,7 @@ sidebar_label: ANOVA
 
 Дисперсионный анализ.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: имя переменной для отображения. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: ANOVA
 * __showDecision__ | `boolean`: контролирует, отображать ли решение о тестировании. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Anova

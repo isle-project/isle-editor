@@ -6,7 +6,7 @@ sidebar_label: Select Question Matrix
 
 Una domanda con una risposta composta da più caselle di selezione.
 
-## Options
+## Opzioni
 
 * __question__ | `(string|node)`: domanda da visualizzare nella parte superiore della matrice delle domande selezionate. Default: `''`.
 * __rows__ | `array`: etichette di fila. Default: `[]`.
@@ -28,7 +28,7 @@ Una domanda con una risposta composta da più caselle di selezione.
 * __onSubmit__ | `function`: funzione di callback invocata all'invio con le risposte come primo parametro e un booleano che indica la correttezza come secondo parametro. Default: `onSubmit() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <SelectQuestionMatrix

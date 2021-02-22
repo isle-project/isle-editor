@@ -6,7 +6,7 @@ sidebar_label: Pie Chart
 
 Een taartdiagramcomponent die standaard de tellingen van alle categorieën van een gekozen variabele weergeeft.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
@@ -14,7 +14,7 @@ Een taartdiagramcomponent die standaard de tellingen van alle categorieën van e
 * __summaryVariable__ | `string`: facultatieve variabele waarvan de som voor elke `variabele` categorie moet worden weergegeven. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <PieChart 

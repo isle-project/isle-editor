@@ -6,7 +6,7 @@ sidebar_label: R Table
 
 Componente per il rendering di un frame di dati R o di una matrice in un display tabulare.
 
-## Options
+## Opzioni
 
 * __code__ | `string`: Codice R che restituisce un data.frame contenente i dati da visualizzare nella tabella. Default: `''`.
 * __libraries__ | `array`: R librerie che dovrebbero essere caricate automaticamente quando viene eseguito il `codice` di input. Default: `[]`.
@@ -14,7 +14,7 @@ Componente per il rendering di un frame di dati R o di una matrice in un display
 * __width__ | `number`: larghezza (tra 0 e 1). Default: `0.5`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <RTable

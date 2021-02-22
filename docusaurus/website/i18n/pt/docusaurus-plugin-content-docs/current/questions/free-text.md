@@ -6,7 +6,7 @@ sidebar_label: Free Text Question
 
 Um componente ISLE para perguntas onde as respostas dos estudantes devem ser fornecidas na forma de texto livre.
 
-## Options
+## Opções
 
 * __question__ | `(string|node)`: a pergunta exibida na parte superior do componente de pergunta de texto livre. Default: `''`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
@@ -32,7 +32,7 @@ Um componente ISLE para perguntas onde as respostas dos estudantes devem ser for
 * __onSubmit__ | `function`: chamada de retorno invocada quando o usuário submete uma resposta; recebe o texto submetido como seu único argumento. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

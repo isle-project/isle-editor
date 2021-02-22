@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 一个ISLE组件，允许你创建一个打字机效果。
 
-## Options
+## 选项
 
 * __delay__ | `number`: 初始延时. Default: `none`.
 * __hold__ | `number`: 如果文本是一个字符串数组，则保持指定的完整显示持续时间，然后再传递到数组中的下一个项目。. Default: `2000`.
@@ -17,7 +17,7 @@ sidebar_label: Typewriter
 * __text__ | `(string|array<string>)`: 要显示的全文. Default: `''`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -17,7 +17,7 @@ Une carte de contour.
 * __onSelected__ | `function`: rappel invoqué lorsque des points sont sélectionnés avec des valeurs x, y et les points sélectionnés. Default: `onSelected() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ContourChart 

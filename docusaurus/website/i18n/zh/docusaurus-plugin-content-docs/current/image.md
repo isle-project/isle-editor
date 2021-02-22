@@ -6,7 +6,7 @@ sidebar_label: Image
 
 用于显示图像的组件。
 
-## Options
+## 选项
 
 * __src__ | `string (required)`: 图像源位置. Default: `none`.
 * __alt__ | `string`: 图片说明. Default: `''`.
@@ -21,7 +21,7 @@ sidebar_label: Image
 * __onShare__ | `function`: 如果点击 "分享 "按钮，则调用图片的回调。. Default: `none`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

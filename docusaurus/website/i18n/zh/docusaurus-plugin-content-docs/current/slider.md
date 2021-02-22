@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 一个在幻灯片或旋转木马中显示其子女的组件。
 
-## Options
+## 选项
 
 * __title__ | `string`: 幻灯片/旋转木马的标题要显示在其顶部。. Default: `''`.
 * __dots__ | `boolean`: 在底部显示圆点，以便快速导航到任何幻灯片。. Default: `true`.
@@ -21,7 +21,7 @@ sidebar_label: Slider
 * __onClick__ | `function`: 点击下一个/上一个按钮时调用的回调。. Default: `onClick() {}`.
 
 
-## Examples
+## 例子
 
 
 import Tabs from '@theme/Tabs';

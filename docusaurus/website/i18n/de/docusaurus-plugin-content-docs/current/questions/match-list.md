@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 Eine ISLE-Komponente, die eine Frage wiedergibt, bei der der Lerner Elemente aus zwei Listen richtig zuordnen muss.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: Frage, die oben in der Fragenkomponente der Übereinstimmungsliste angezeigt werden soll. Default: `''`.
 * __elements__ | `array<{a,b}>`: ein "Array", das die richtigen Paare enthält, die oben in der Freitext-Fragenkomponente angezeigt werden. Jedes "Array"-Element muss ein "Objekt" mit "a"- und "b"-Eigenschaften sein; liefern Sie Elemente mit nur "a"- oder "b"-Eigenschaften, um Ablenkungsantworten hinzuzufügen. Default: `[]`.
@@ -27,7 +27,7 @@ Eine ISLE-Komponente, die eine Frage wiedergibt, bei der der Lerner Elemente aus
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn der Schüler eine Antwort abgibt. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

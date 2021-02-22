@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 顺序问题组件，要求学生把一个元素的集合归入正确的顺序。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 学生必须将可用的 "选项 "按正确的顺序排列出来。. Default: `''`.
 * __options__ | `array (required)`: 课文数组，学生必须将课文按正确的顺序排列（假设为提供的顺序）。. Default: `none`.
@@ -25,7 +25,7 @@ sidebar_label: Order Question
 * __onSubmit__ | `function`: 提交答案时调用的回调；唯一的参数是一个 "boolean"，表示元素是否按正确的顺序放置。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 Een component voor het afspelen van mediabestanden en content van YouTube, SoundCloud en Vimeo.
 
-## Options
+## Opties
 
 * __url__ | `string`: URL van de video. Default: `''`.
 * __controls__ | `boolean`: geeft aan of er bedieningselementen van de videospeler moeten worden weergegeven. Default: `false`.
@@ -26,7 +26,7 @@ Een component voor het afspelen van mediabestanden en content van YouTube, Sound
 * __onSeek__ | `function`: terugbellen wanneer de media zoekt met `seconden` parameter. Default: `onSeek() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

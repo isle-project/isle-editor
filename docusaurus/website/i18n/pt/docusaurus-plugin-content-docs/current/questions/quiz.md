@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 Um componente de quiz exibindo uma seqüência de componentes de perguntas.
 
-## Options
+## Opções
 
 * __confidence__ | `boolean`: se deve exibir uma escala Likert pedindo a confiança da resposta do usuário. Default: `false`.
 * __forceConfidence__ | `boolean`: controla se um usuário tem que fornecer um nível de confiança antes de passar para a próxima pergunta. Default: `false`.
@@ -25,7 +25,7 @@ Um componente de quiz exibindo uma seqüência de componentes de perguntas.
 * __onSubmit__ | `function`: chamada de retorno invocada quando o usuário submete uma resposta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

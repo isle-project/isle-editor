@@ -6,7 +6,7 @@ sidebar_label: One-Sample Mean Test
 
 Teste de média de uma amostra.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `string (required)`: nome da variável. Default: `none`.
@@ -18,7 +18,7 @@ Teste de média de uma amostra.
 * __showDecision__ | `boolean`: controla se a hipótese nula deve ser rejeitada no nível de significância especificado. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <MeanTest

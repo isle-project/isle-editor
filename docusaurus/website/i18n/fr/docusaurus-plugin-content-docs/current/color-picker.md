@@ -35,7 +35,7 @@ Un emballage pour le sélecteur de couleurs [react-color](https://casesandberg.g
 * __onChangeComplete__ | `function`: rappel invoqué une fois le changement de couleur terminé. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

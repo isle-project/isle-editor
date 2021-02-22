@@ -6,7 +6,7 @@ sidebar_label: Text
 
 生のテキストをMarkdownとしてレンダリングし、音声コントロールを可能にするテキストコンポーネント。
 
-## Options
+## オプション
 
 * __raw__ | `string`: 描画対象文字. Default: `''`.
 * __className__ | `string`: クラス名. Default: `''`.
@@ -15,7 +15,7 @@ sidebar_label: Text
 * __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 
 import Tabs from '@theme/Tabs';

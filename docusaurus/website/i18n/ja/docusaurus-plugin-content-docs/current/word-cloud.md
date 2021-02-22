@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 [d3-cloud](https://github.com/jasondavies/d3-cloud)の上に構築されたワードクラウドコンポーネント。
 
-## Options
+## オプション
 
 * __data__ | `array`: 単語群を生成するテキストの配列、あるいは `precalculated` が `true` に設定されている場合は単語数オブジェクトの配列 (`text` と `value` のキーを持つ)。. Default: `[]`.
 * __font__ | `(string|function)`: アクセサ関数で、各単語のフォントフェイスを指定します。関数の代わりに定数を指定することもできます。. Default: `'serif'`.
@@ -26,7 +26,7 @@ sidebar_label: Word Cloud
 * __width__ | `number`: 語雲の幅. Default: `700`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <WordCloud data={[

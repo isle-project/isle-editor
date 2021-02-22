@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Schaltflächen zum Sammeln von Benutzer-Feedback.
 
-## Options
+## Optionen
 
 * __confusedMsg__ | `string`: Meldung, die im Tooltip für die verwirrte Schaltfläche angezeigt werden soll. Default: `none`.
 * __feedbackMsg__ | `string`: Meldung, die im Tooltip für die Schaltfläche für detailliertes Feedback angezeigt werden soll. Default: `none`.
@@ -17,7 +17,7 @@ Schaltflächen zum Sammeln von Benutzer-Feedback.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

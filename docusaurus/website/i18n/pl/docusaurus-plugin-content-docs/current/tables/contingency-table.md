@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 Tablica awaryjna.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __rowVar__ | `string (required)`: wiersz nazwa zmienna. Default: `none`.
@@ -17,7 +17,7 @@ Tablica awaryjna.
 * __nDecimalPlaces__ | `number`: liczba miejsc po przecinku dla częstotliwości względnych wyświetlanych w tabeli. Default: `3`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ContingencyTable

@@ -6,7 +6,7 @@ sidebar_label: Proportions Survey
 
 与えられた選択肢の重みと重要度をグループで投票できるようにするコンポーネント。
 
-## Options
+## オプション
 
 * __allowMultipleAnswers__ | `boolean`: は、学生にアンケートに複数回回答させるかどうかを制御します。. Default: `false`.
 * __anonymous__ | `boolean`: 学生の回答が匿名化されているかどうかを制御します。. Default: `false`.
@@ -23,7 +23,7 @@ sidebar_label: Proportions Survey
 * __step__ | `number`: 入力ボックスの上にカーソルを置いたときに表示される矢印のステップ. Default: `0.25`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ProportionsSurvey 

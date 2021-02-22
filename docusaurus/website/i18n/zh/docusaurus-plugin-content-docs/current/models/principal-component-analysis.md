@@ -6,7 +6,7 @@ sidebar_label: Principal Component Analysis
 
 主成分分析。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variables__ | `array<string> (required)`: 聚类变量的名称. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Principal Component Analysis
 * __onResult__ | `function`: 用模型对象和组件调用回调. Default: `onResult() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <PrincipalComponentAnalysis 

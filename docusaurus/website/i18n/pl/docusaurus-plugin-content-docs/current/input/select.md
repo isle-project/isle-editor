@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 Wybrany element wejściowy. Może być używany jako część deski rozdzielczej ISLE lub jako samodzielny element. W tym ostatnim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.
 
-## Options
+## Opcje
 
 * __bind__ | `string`: nazwa zmiennej globalnej dla numeru, który ma być przypisany do. Default: `''`.
 * __clearable__ | `boolean`: wartość boolean wskazująca, czy można dokonać jednoznacznego wyboru.. Default: `none`.
@@ -23,7 +23,7 @@ Wybrany element wejściowy. Może być używany jako część deski rozdzielczej
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <SelectInput

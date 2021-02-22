@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 Um invólucro fino em torno de [árvore reativa-estável] (https://www.npmjs.com/package/react-sortable-tree) que suporta todas as propriedades do referido componente.
 
-## Options
+## Opções
 
 * __title__ | `string`: título de cabeçalho. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <SortableTree 

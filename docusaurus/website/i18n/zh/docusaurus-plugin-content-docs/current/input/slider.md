@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 一个滑块输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过`onChange`属性来处理变化，或者通过`bind`属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __defaultValue__ | `number`: 滑块的起始值. Default: `10`.
 * __disabled__ | `boolean`: 控制滑块输入是否处于活动状态。如果设置为 "true"，滑块将出现在屏幕上，尽管是灰色的。. Default: `false`.
@@ -25,7 +25,7 @@ sidebar_label: Slider Input
 * __rangeInputStyle__ | `object`: 范围输入组件的CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <SliderInput

@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 複数のフリップ可能なカード（メモリーゲームなど）を作成してコントロールすることができるISLEのコンポーネント。
 
-## Options
+## オプション
 
 * __animation__ | `object`: オブジェクトには名前(`anim-scal-up` のような)と持続時間(`1.7s` = 1.7秒のような)が含まれます。. Default: `{}`.
 * __memory__ | `boolean`: 与えられた値のペアをマッチさせるメモリゲームモードを有効にするかどうか。. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Multi Cards
 * __backStyle__ | `object`: カード裏面のCSSスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <MultiCards

@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 Um componente de formulário que combina diferentes componentes de perguntas juntamente com um único botão de apresentação.
 
-## Options
+## Opções
 
 * __buttonLabel__ | `string`: etiqueta do botão submeter. Default: `none`.
 * __onSubmit__ | `function`: chamada de retorno invocada quando o botão submeter é clicado. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <QuestionForm>

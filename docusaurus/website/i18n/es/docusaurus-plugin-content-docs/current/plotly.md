@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Visualización gráfica.
 
-## Options
+## Opciones
 
 * __data__ | `array (required)`: matriz de datos. Default: `none`.
 * __draggable__ | `boolean`: controla si la trama debe ser arrastrable. Default: `false`.
@@ -30,7 +30,7 @@ Visualización gráfica.
 * __toggleFullscreen__ | `boolean`: controla si se permite mostrar la trama en modo de pantalla completa. Default: `true`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Plotly

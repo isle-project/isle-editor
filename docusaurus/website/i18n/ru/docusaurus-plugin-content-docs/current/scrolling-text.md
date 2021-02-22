@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 Динамическая фоновая составляющая, проходящая через список текстов с заданным интервалом.
 
-## Options
+## Варианты
 
 * __text__ | `array<string>`: текст или список текстов для отображения. Default: `[]`.
 * __loop__ | `boolean`: указывает, будет ли процесс отображаться бесконечно. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Scrolling Text
 * __style__ | `object`: CSS-стили текста. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 
 import Tabs from '@theme/Tabs';

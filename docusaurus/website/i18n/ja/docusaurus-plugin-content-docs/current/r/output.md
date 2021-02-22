@@ -6,7 +6,7 @@ sidebar_label: R Output
 
 ISLEレッスン内でR出力をレンダリングするためのコンポーネント。
 
-## Options
+## オプション
 
 * __code__ | `string`: 評価に使用されるRコード. Default: `''`.
 * __libraries__ | `array`: 入力 `code` が実行されたときに自動的にロードされるべき R ライブラリ. Default: `[]`.
@@ -15,7 +15,7 @@ ISLEレッスン内でR出力をレンダリングするためのコンポーネ
 * __onResult__ | `function`: コールバックは `error` (操作が成功した場合は `null`) と `result` で呼び出され、R の出力を保持します。. Default: `onResult() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ROutput code="runif(10)" />

@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 在课程中放置一个信标的组件，可以是独立的，也可以是附加在一个 "目标 "上的。当鼠标悬停或点击信标时，会显示一个工具提示。
 
-## Options
+## 选项
 
 * __title__ | `(string|node)`: 标题要显示在工具提示的顶部。. Default: `none`.
 * __content__ | `(string|node)`: 工具提示内容. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ sidebar_label: Beacon Tooltip
 * __onChange__ | `function`: 工具提示状态改变时调用的回调。接收两个参数："action"（"open "或 "close"）和传递的 "props"。. Default: `onChange() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <BeaconTooltip

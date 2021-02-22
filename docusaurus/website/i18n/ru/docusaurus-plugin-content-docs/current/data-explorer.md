@@ -6,7 +6,7 @@ sidebar_label: Data Explorer
 
 Этот компонент используется студентами для краткого обобщения данных по мере их представления и проведения различных статистических тестов.
 
-## Options
+## Варианты
 
 * __categorical__ | `array`: массив строк с указанием имени каждой категориальной переменной. Default: `[]`.
 * __quantitative__ | `array`: массив строк с указанием имени каждой количественной переменной. Default: `[]`.
@@ -93,7 +93,7 @@ sidebar_label: Data Explorer
 * __onTutorialStart__ | `function`: функция, вызываемая при запуске пользовательского учебного курса по исследованию данных. Default: `onTutorialStart() {}`.
 
 
-## Examples
+## Примеры
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

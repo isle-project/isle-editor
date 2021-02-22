@@ -6,12 +6,12 @@ sidebar_label: Hypergeometric Distribution
 
 Un componente di apprendimento per il calcolo delle probabilità di una distribuzione ipergeometrica.
 
-## Options
+## Opzioni
 
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnHypergeometricDistribution />

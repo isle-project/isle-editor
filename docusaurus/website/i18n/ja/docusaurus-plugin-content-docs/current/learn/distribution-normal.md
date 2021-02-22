@@ -6,7 +6,7 @@ sidebar_label: Normal Distribution
 
 正規分布の確率を計算するための学習コンポーネント。
 
-## Options
+## オプション
 
 * __domain__ | `object`: オブジェクトであり、それぞれの軸の始点と終点を持つ `x` と `y` の配列です。. Default: `none`.
 * __hideCDF__ | `boolean`: CDFプロットを隠すかどうかを制御します。. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Normal Distribution
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnNormalDistribution />

@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 Un componente de aprendizaje en pruebas de hipótesis para un promedio de población.
 
-## Options
+## Opciones
 
 * __types__ | `array<string>`: el tipo de prueba (una muestra, dos muestras) que el widget debe exponer.. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ Un componente de aprendizaje en pruebas de hipótesis para un promedio de poblac
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LearnMeanTest />

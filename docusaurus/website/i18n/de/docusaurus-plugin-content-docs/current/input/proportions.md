@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 Eine Komponente zur Eingabe von Proportionen. Kann als Teil eines ISLE Dashboards oder eigenständig verwendet werden. Im letzteren Fall möchten Sie Änderungen über das Attribut `onChange` behandeln oder den Wert über das Attribut `bind` an eine globale Variable binden.
 
-## Options
+## Optionen
 
 * __colors__ | `array<string>`: Array mit Farben für die Kreisdiagrammkomponenten. Wenn nicht definiert, wird eine benutzerdefinierte Farbskala verwendet. Default: `none`.
 * __disabled__ | `boolean`: steuert, ob das Eingabefeld deaktiviert ist. Default: `false`.
@@ -17,7 +17,7 @@ Eine Komponente zur Eingabe von Proportionen. Kann als Teil eines ISLE Dashboard
 * __step__ | `number`: die Stufe der Pfeile, die zu sehen sind, wenn der Cursor über dem Eingabefeld schwebt. Default: `0.1`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <ProportionsInput

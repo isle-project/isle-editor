@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 一个动态背景组件，以指定的时间间隔循环浏览文本列表。
 
-## Options
+## 选项
 
 * __text__ | `array<string>`: 文本或要显示的文本列表. Default: `[]`.
 * __loop__ | `boolean`: 表示该过程是否要无限显示。. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Scrolling Text
 * __style__ | `object`: 文本的CSS样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 
 import Tabs from '@theme/Tabs';

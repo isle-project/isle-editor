@@ -25,7 +25,7 @@ Un élément de question d'ordre qui demande à l'élève d'amener une collectio
 * __onSubmit__ | `function`: rappel invoqué lors de la soumission de la réponse ; a comme seul paramètre un "booléen" indiquant si les éléments ont été placés dans le bon ordre. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

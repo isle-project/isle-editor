@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 Een interactief spel dat het vermogen van de student om de mediaan en het gemiddelde van een bepaalde verdeling te detecteren, test.
 
-## Options
+## Opties
 
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `false`.
 * __header__ | `string`: titel van het panel waarin het gemiddelde en de mediaan worden gegenereerd. Default: `none`.
@@ -17,7 +17,7 @@ Een interactief spel dat het vermogen van de student om de mediaan en het gemidd
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnMeanVSMedian />

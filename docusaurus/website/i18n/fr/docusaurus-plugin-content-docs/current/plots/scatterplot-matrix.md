@@ -13,7 +13,7 @@ Une matrice de nuage de points.
 * __color__ | `string`: variable catégorielle à cartographier à la couleur des points. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ScatterPlotMatrix

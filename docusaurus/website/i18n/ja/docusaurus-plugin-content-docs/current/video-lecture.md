@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 インタラクティブな要素が散りばめられたビデオを表示するビデオレクチャーコンポーネント。
 
-## Options
+## オプション
 
 * __controls__ | `boolean`: は、ビデオプレーヤの制御要素を表示するかどうかを示します。. Default: `true`.
 * __instructorView__ | `boolean`: インストラクタービューを含めるかどうかを制御します。. Default: `true`.
@@ -17,7 +17,7 @@ sidebar_label: Video Lecture
 * __style__ | `object`: シーエスエスインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <VideoLecture steps={[

@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 Um componente de entrada de texto. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou vincular o valor a uma variável global através do atributo "vincular".
 
-## Options
+## Opções
 
 * __bind__ | `string`: nome da variável global para o número a ser atribuído a. Default: `none`.
 * __defaultValue__ | `string`: Um valor indicando o valor padrão da entrada no início. Default: `''`.
@@ -23,7 +23,7 @@ Um componente de entrada de texto. Pode ser usado como parte de um painel de ins
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <TextInput

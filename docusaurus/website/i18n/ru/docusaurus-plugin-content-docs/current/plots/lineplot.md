@@ -6,7 +6,7 @@ sidebar_label: Line Plot
 
 График линии.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __x__ | `string`: осевая переменная x. Default: `none`.
@@ -15,5 +15,5 @@ sidebar_label: Line Plot
 * __showPoints__ | `boolean`: контролирует, накладывать ли точки на каждое наблюдение. Default: `false`.
 
 
-## Examples
+## Примеры
 

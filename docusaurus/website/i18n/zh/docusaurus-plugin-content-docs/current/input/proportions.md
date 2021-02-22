@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 一个比例输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过 "onChange "属性处理变化，或者通过 "bind "属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __colors__ | `array<string>`: 饼图组件的颜色数组。如果没有定义，将使用自定义色标。. Default: `none`.
 * __disabled__ | `boolean`: 控制输入字段是否被停用。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Proportions Input
 * __step__ | `number`: 当光标悬停在输入框上方时，所看到的箭头的步长。. Default: `0.1`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <ProportionsInput

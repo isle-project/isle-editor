@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 Eine Häufigkeitstabelle.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Name der Variable, die angezeigt werden soll. Default: `none`.
@@ -16,7 +16,7 @@ Eine Häufigkeitstabelle.
 * __nDecimalPlaces__ | `number`: Anzahl der Nachkommastellen für relative Häufigkeiten, die in der Tabelle angezeigt werden. Default: `3`.
 
 
-## Examples
+## Beispiele
 
 ## Examples
 

@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 Een videocomponent die video's weergeeft, afgewisseld met interactieve elementen.
 
-## Options
+## Opties
 
 * __controls__ | `boolean`: geeft aan of de bedieningselementen van de videospelers moeten worden weergegeven. Default: `true`.
 * __instructorView__ | `boolean`: controleert of er een instructeursoverzicht moet worden opgenomen. Default: `true`.
@@ -17,7 +17,7 @@ Een videocomponent die video's weergeeft, afgewisseld met interactieve elementen
 * __style__ | `object`: CSS inline stijl. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <VideoLecture steps={[

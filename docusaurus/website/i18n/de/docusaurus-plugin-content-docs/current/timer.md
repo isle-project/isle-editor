@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 Zeigt einen Timer an, der einen vordefinierten Callback auslöst, wenn die Zeit abgelaufen ist. Ein Beispiel für einen Anwendungsfall ist die Zeitmessung von Quizzen.
 
-## Options
+## Optionen
 
 * __id__ | `string`: die eindeutige `String`-ID für den Timer. Wenn eine ID gesetzt ist, ist die Timer-Komponente über Seitenaktualisierungen hinweg beständig. Default: `none`.
 * __active__ | `boolean (required)`: Flagge, die umgeschaltet werden kann, um den Timer zu starten oder zu pausieren. Default: `none`.
@@ -18,7 +18,7 @@ Zeigt einen Timer an, der einen vordefinierten Callback auslöst, wenn die Zeit 
 * __onTimeUp__ | `function`: Callback, der aufgerufen wird, wenn der Timer abläuft. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <Timer 

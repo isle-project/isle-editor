@@ -17,7 +17,7 @@ Composant plaçant une balise dans la leçon, soit de manière indépendante, so
 * __onChange__ | `function`: rappel invoqué lors du changement d'état de l'infobulle. Reçoit deux arguments : l'action (open ou close) et les props passés. Default: `onChange() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <BeaconTooltip

@@ -6,14 +6,14 @@ sidebar_label: Scatter Plot Matrix
 
 Matryca rozproszona.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __variables__ | `array (required)`: tablica zmiennych do wyświetlania w macierzy. Default: `none`.
 * __color__ | `string`: zmienna kategoryczna do mapy do koloru punktów. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ScatterPlotMatrix

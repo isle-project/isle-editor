@@ -17,7 +17,7 @@ Un composant ISLE qui permet de créer un effet de machine à écrire.
 * __text__ | `(string|array<string>)`: le texte intégral à afficher. Default: `''`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

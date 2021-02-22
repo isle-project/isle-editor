@@ -6,7 +6,7 @@ sidebar_label: Normal Distribution
 
 Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu normalnego.
 
-## Options
+## Opcje
 
 * __domain__ | `object`: obiekt tablicy `x` i `y` z punktem początkowym i końcowym dla danej osi. Default: `none`.
 * __hideCDF__ | `boolean`: kontroluje, czy należy ukryć działki CDF. Default: `false`.
@@ -20,7 +20,7 @@ Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu normalnego.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnNormalDistribution />

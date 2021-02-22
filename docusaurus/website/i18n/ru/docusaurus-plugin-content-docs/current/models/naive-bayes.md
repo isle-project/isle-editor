@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Наив Бэйес предполагая, что предсказатели, дающие членство в классе, следуют нормальному распределению.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __y__ | `string (required)`: переменная результата. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Naive Bayes
 * __onPredict__ | `function`: вызов обратного вызова с предсказаниями и остатками после подгонки модели. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <NaiveBayes 

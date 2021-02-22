@@ -6,14 +6,14 @@ sidebar_label: Weather
 
 Компонент для отображения текущей погоды в указанном месте.
 
-## Options
+## Варианты
 
 * __location__ | `string`: название места. Default: `none`.
 * __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

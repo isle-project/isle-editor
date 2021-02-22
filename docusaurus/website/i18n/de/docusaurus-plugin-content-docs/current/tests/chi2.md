@@ -6,14 +6,14 @@ sidebar_label: Chi-square Independence Test
 
 Chi-Quadrat-Unabhängigkeitstest.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __var1__ | `string (required)`: Name der ersten Variablen. Default: `none`.
 * __var2__ | `string (required)`: Name der zweiten Variablen. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <Chi2Test

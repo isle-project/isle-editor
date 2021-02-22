@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Un pulsante da visualizzare alla fine di una lezione su cui gli studenti possono cliccare. Per impostazione predefinita, un messaggio di conferma del completamento della lezione viene inviato al loro indirizzo e-mail.
 
-## Options
+## Opzioni
 
 * __label__ | `string`: etichetta del pulsante di invio. Default: `none`.
 * __message__ | `string`: messaggio per e-mail di conferma. Default: `''`.
@@ -17,7 +17,7 @@ Un pulsante da visualizzare alla fine di una lezione su cui gli studenti possono
 * __onClick__ | `function`: richiamata quando si clicca sul pulsante di invio. Default: `onClick() {}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

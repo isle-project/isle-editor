@@ -6,7 +6,7 @@ sidebar_label: k-means Clustering
 
 K- significa raggruppamento.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variables__ | `array<string> (required)`: nomi delle variabili utilizzate per il clustering. Default: `none`.
@@ -15,7 +15,7 @@ K- significa raggruppamento.
 * __onResult__ | `function`: richiamo richiamato con oggetto modello. Default: `onResult() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <KMeans 

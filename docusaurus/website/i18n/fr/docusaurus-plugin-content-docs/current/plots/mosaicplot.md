@@ -14,7 +14,7 @@ Une trame en mosaïque.
 * __axisLabels__ | `string`: variable de regroupement. Default: `'parallel to the axis'`.
 
 
-## Examples
+## Exemples
 
 ## Examples
 

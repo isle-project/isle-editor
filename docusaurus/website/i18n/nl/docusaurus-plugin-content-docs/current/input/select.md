@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 Een selecte invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-dashboard of stand-alone. In het laatste geval wilt u veranderingen afhandelen via het `on-Change` attribuut of de waarde binden aan een globale variabele via het `bind` attribuut.
 
-## Options
+## Opties
 
 * __bind__ | `string`: naam van de globale variabele voor het toe te kennen nummer. Default: `''`.
 * __clearable__ | `boolean`: booleaanse waarde die aangeeft of men de gemaakte keuze(s) duidelijk kan maken. Default: `none`.
@@ -23,7 +23,7 @@ Een selecte invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-dash
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <SelectInput

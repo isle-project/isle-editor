@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 Обертка для цветного пикера [реакторный цвет](https://casesandberg.github.io/react-color/).
 
-## Options
+## Варианты
 
 * __variant__ | `string`: вариант выбора цвета (либо `Компакт`, либо `Эскиз`, `Материал`, либо `Блок`).. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `строка`, содержащая HeX-код или `объект`, содержащие RGB или HSL-значения, такие как { r: 255, g: 255, b: 255 }` или `{ h: 0, s: 0, l: .10 }`, что определяет активный цвет. Оба принимают свойство `a` для значений альфа, отличных от `a`.. Default: `'#fff'`.
@@ -35,7 +35,7 @@ sidebar_label: Color Picker
 * __onChangeComplete__ | `function`: обратный вызов после завершения смены цвета. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

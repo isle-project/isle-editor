@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 Een onderdeel dat zijn kinderen laat zien in een diashow of carrousel.
 
-## Options
+## Opties
 
 * __title__ | `string`: titel voor de diashow / carrousel die bovenaan wordt getoond. Default: `''`.
 * __dots__ | `boolean`: weergavepunten aan de onderkant om snel naar een willekeurige dia te kunnen navigeren. Default: `true`.
@@ -21,7 +21,7 @@ Een onderdeel dat zijn kinderen laat zien in een diashow of carrousel.
 * __onClick__ | `function`: terugroeping aangeroepen bij het klikken op de volgende/vorige knoppen. Default: `onClick() {}`.
 
 
-## Examples
+## Voorbeelden
 
 
 import Tabs from '@theme/Tabs';

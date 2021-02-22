@@ -6,11 +6,11 @@ sidebar_label: Cross Validation
 
 クロスバリデーションを説明するビジュアル化。
 
-## Options
+## オプション
 
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnCrossValidation />

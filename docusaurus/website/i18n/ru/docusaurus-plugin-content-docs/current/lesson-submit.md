@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 Кнопка, которая будет отображаться в конце лекции, чтобы ученики могли нажать на нее. По умолчанию на их электронный адрес отправляется сообщение с подтверждением завершения лекции.
 
-## Options
+## Варианты
 
 * __label__ | `string`: кнопка отправки. Default: `none`.
 * __message__ | `string`: письмо-подтверждение. Default: `''`.
@@ -17,7 +17,7 @@ sidebar_label: Lesson Submit
 * __onClick__ | `function`: вызов обратного вызова при нажатии кнопки подачи заявки. Default: `onClick() {}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

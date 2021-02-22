@@ -6,7 +6,7 @@ sidebar_label: IFrame
 
 iFrame コンポーネント。
 
-## Options
+## オプション
 
 * __src__ | `string (required)`: ソースＵＲＬ. Default: `none`.
 * __fullscreen__ | `boolean`: iFrameをフルスクリーンモードで表示するかどうかを制御します。. Default: `false`.
@@ -17,7 +17,7 @@ iFrame コンポーネント。
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

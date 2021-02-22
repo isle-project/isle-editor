@@ -17,7 +17,7 @@ Une composante d'entrée des proportions. Peut être utilisé dans le cadre d'un
 * __step__ | `number`: le pas des flèches visibles lors du survol du curseur au-dessus de la zone de saisie. Default: `0.1`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ProportionsInput

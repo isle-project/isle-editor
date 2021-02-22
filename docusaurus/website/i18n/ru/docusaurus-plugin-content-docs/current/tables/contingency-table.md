@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 Таблица непредвиденных обстоятельств.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __rowVar__ | `string (required)`: имя переменной строки. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contingency Table
 * __nDecimalPlaces__ | `number`: количество знаков после запятой для относительных частот, отображаемых в таблице. Default: `3`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <ContingencyTable

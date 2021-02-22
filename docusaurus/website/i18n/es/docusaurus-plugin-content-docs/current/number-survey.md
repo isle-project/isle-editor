@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 Un componente de encuesta en el que el instructor puede recopilar datos numéricos de encuesta de los estudiantes en tiempo real.
 
-## Options
+## Opciones
 
 * __question__ | `(string|node)`: la pregunta que se mostrará. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controla si el mismo usuario (o sesión si es anónimo) puede enviar múltiples respuestas). Default: `false`.
@@ -16,7 +16,7 @@ Un componente de encuesta en el que el instructor puede recopilar datos numéric
 * __onSubmit__ | `function`: La función de devolución de llamada se invoca una vez que los estudiantes envían una respuesta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <NumberSurvey

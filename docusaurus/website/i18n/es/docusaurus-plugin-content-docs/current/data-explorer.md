@@ -6,7 +6,7 @@ sidebar_label: Data Explorer
 
 Los estudiantes utilizan este componente para resumir brevemente los datos a medida que se presentan y realizar diversas pruebas estadísticas.
 
-## Options
+## Opciones
 
 * __categorical__ | `array`: una serie de cadenas que indican el nombre de cada variable categórica. Default: `[]`.
 * __quantitative__ | `array`: una serie de cadenas que indican el nombre de cada variable cuantitativa. Default: `[]`.
@@ -93,7 +93,7 @@ Los estudiantes utilizan este componente para resumir brevemente los datos a med
 * __onTutorialStart__ | `function`: función que se invoca cuando el usuario inicia el tutorial del explorador de datos. Default: `onTutorialStart() {}`.
 
 
-## Examples
+## Ejemplos
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

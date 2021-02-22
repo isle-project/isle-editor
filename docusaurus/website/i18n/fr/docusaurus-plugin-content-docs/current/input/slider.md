@@ -25,7 +25,7 @@ Un composant de saisie de curseur. Peut être utilisé dans le cadre d'un tablea
 * __rangeInputStyle__ | `object`: Style CSS en ligne pour le composant d'entrée de gamme. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <SliderInput

@@ -6,7 +6,7 @@ sidebar_label: Switch Components
 
 O componente Switch permite a exibição de um elemento de uma lista de vários elementos. Os usuários podem percorrer os diferentes filhos da tag Switch clicando na tag atualmente exibida.
 
-## Options
+## Opções
 
 * __active__ | `boolean`: controla se o interruptor está ativo ou não. Default: `true`.
 * __tooltip__ | `string`: ponteira de ferramentas exibida ao pairar sobre o elemento de comutação. Default: `none`.
@@ -16,7 +16,7 @@ O componente Switch permite a exibição de um elemento de uma lista de vários 
 * __onChange__ | `function`: chamada de retorno invocada quando os elementos são trocados. Recebe como seu primeiro argumento o índice da criança atualmente exibida. Default: `onChange() {}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Bayes ingenuo suponiendo que los pronosticadores dados la pertenencia a la clase siguen una distribución normal.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __y__ | `string (required)`: variable de resultado. Default: `none`.
@@ -16,7 +16,7 @@ Bayes ingenuo suponiendo que los pronosticadores dados la pertenencia a la clase
 * __onPredict__ | `function`: llamada de retorno invocada con predicciones y residuos después del ajuste del modelo. Default: `none`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <NaiveBayes 

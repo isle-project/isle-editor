@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Um bloco de esboços para anotações em slides de palestras ou páginas vazias.
 
-## Options
+## Opções
 
 * __autoSave__ | `boolean`: controla se o editor deve salvar o texto atual para o armazenamento local do navegador em um determinado intervalo de tempo. Default: `true`.
 * __feedbackButtons__ | `boolean`: controla se devem ser exibidos botões de feedback em cada slide. Default: `false`.
@@ -36,7 +36,7 @@ Um bloco de esboços para anotações em slides de palestras ou páginas vazias.
 * __onChange__ | `function`: chamada de retorno invocada sempre que um novo elemento de linha é desenhado. Default: `onChange() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

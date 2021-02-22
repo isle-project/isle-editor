@@ -6,7 +6,7 @@ sidebar_label: Frequency Table
 
 Una tabla de frecuencias.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: nombre de la variable a mostrar. Default: `none`.
@@ -16,7 +16,7 @@ Una tabla de frecuencias.
 * __nDecimalPlaces__ | `number`: número de decimales para las frecuencias relativas mostradas en la tabla. Default: `3`.
 
 
-## Examples
+## Ejemplos
 
 ## Examples
 

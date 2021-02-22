@@ -17,7 +17,7 @@ Un volet d'apprentissage sur les tests d'hypothèse pour une proportion de la po
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnProportionTest />

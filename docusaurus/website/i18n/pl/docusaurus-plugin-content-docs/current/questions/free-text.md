@@ -6,7 +6,7 @@ sidebar_label: Free Text Question
 
 Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczone w formie wolnego tekstu.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie wyświetlane w górnej części komponentu pytań tekstowych. Default: `''`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
@@ -32,7 +32,7 @@ Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczon
 * __onSubmit__ | `function`: wywołanie zwrotne, gdy użytkownik udziela odpowiedzi; otrzymuje nadesłany tekst jako jedyny argument. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

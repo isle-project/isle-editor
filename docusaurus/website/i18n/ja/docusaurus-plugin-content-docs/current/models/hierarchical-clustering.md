@@ -6,7 +6,7 @@ sidebar_label: Hierarchical Clustering
 
 階層的クラスタリング。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variables__ | `array<string> (required)`: クラスタリングに使用される変数名. Default: `none`.
@@ -15,7 +15,7 @@ sidebar_label: Hierarchical Clustering
 * __onResult__ | `function`: モデルオブジェクトで呼び出されるコールバック. Default: `onResult() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <HierarchicalClustering 

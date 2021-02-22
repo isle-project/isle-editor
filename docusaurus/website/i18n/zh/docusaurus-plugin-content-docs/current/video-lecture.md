@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 一个视频讲座组件，显示视频与交互式元素穿插在一起。
 
-## Options
+## 选项
 
 * __controls__ | `boolean`: 表示是否显示视频播放器的控制元素。. Default: `true`.
 * __instructorView__ | `boolean`: 控制是否包含教师视图. Default: `true`.
@@ -17,7 +17,7 @@ sidebar_label: Video Lecture
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <VideoLecture steps={[

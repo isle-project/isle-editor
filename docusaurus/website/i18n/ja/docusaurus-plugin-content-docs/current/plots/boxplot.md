@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 箱のプロット。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `(array|string) (required)`: 表示用変数. Default: `none`.
@@ -15,7 +15,7 @@ sidebar_label: Box Plot
 * __overlayPoints__ | `boolean`: ポイントをオーバーレイするかどうかを制御します。. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <BoxPlot 

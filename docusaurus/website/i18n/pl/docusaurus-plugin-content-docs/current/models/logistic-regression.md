@@ -6,7 +6,7 @@ sidebar_label: Logistic Regression
 
 Wielokrotna regresja liniowa.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __y__ | `string (required)`: zmienna wynikowa. Default: `none`.
@@ -18,7 +18,7 @@ Wielokrotna regresja liniowa.
 * __onPredict__ | `function`: wywołanie zwrotne z przewidywaniami i pozostałościami po dopasowaniu modelu. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LogisticRegression 

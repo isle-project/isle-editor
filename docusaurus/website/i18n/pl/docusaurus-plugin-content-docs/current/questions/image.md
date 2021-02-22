@@ -6,7 +6,7 @@ sidebar_label: Image Question
 
 Pytanie, które wymaga od użytkownika przesłania obrazu.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, na które student musi uporządkować dostępne `opcje` w odpowiedniej kolejności. Default: `''`.
 * __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'bottom'`.
@@ -23,4 +23,4 @@ Pytanie, które wymaga od użytkownika przesłania obrazu.
 * __onSubmit__ | `function`: wywołanie zwrotne wywołane podczas udzielania odpowiedzi; ma jako jedyny parametr `boolean` wskazujący, czy elementy zostały umieszczone we właściwej kolejności. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady

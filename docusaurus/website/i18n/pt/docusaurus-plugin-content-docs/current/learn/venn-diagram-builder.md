@@ -6,13 +6,13 @@ sidebar_label: Venn Diagram Builder
 
 Um construtor de diagramas Venn.
 
-## Options
+## Opções
 
 * __nobs__ | `number`: número total de observações. Default: `none`.
 * __three__ | `boolean`: controla se devem ser exibidos três círculos. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnVennDiagramBuilder />

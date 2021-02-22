@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 Интерактивная оболочка Javascript, которая может быть использована для выполнения команд JavaScript. Оболочка содержит консоль, которая отображает сообщения об ошибках, предупреждения и т.д.
 
-## Options
+## Варианты
 
 * __code__ | `string`: JavaScript-код для оценки. Default: `''`.
 * __solution__ | `string`: для вопросов программирования, код `string`, представляющий собой официальное решение проблемы.. Default: `''`.
@@ -24,7 +24,7 @@ sidebar_label: JavaScript Shell
 * __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <JSShell id = "jseditor" 

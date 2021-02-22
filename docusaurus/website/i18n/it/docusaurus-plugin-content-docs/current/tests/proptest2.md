@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Proportion Test
 
 Test delle proporzioni a due campioni.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __var1__ | `string (required)`: nome della prima variabile. Default: `none`.
@@ -19,7 +19,7 @@ Test delle proporzioni a due campioni.
 * __showDecision__ | `boolean`: controlla se visualizzare se l'ipotesi nulla viene respinta al livello di significatività specificato. Default: `false`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <PropTest2

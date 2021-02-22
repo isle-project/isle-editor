@@ -6,7 +6,7 @@ sidebar_label: Recorder
 
 一个用于录制音频、屏幕和视频的ISLE组件。
 
-## Options
+## 选项
 
 * __audio__ | `boolean`: 表示是否要录制音频。. Default: `false`.
 * __camera__ | `boolean`: 表示是否要录制网络摄像头。. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Recorder
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Recorder 

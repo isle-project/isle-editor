@@ -6,7 +6,7 @@ sidebar_label: IFrame
 
 Un componente de iFrame.
 
-## Options
+## Opciones
 
 * __src__ | `string (required)`: URL de la fuente. Default: `none`.
 * __fullscreen__ | `boolean`: controla si se muestra el iFrame en modo de pantalla completa. Default: `false`.
@@ -17,7 +17,7 @@ Un componente de iFrame.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

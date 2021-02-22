@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Tablica rozdzielcza do łączenia obsługi wielu pól wejściowych dla dzieci.
 
-## Options
+## Opcje
 
 * __autoStart__ | `boolean`: jeśli jest ustawiona na `true`, funkcja `onGenerate` jest wykonywana przy uruchamianiu z domyślnymi wartościami wejściowymi. Default: `true`.
 * __autoUpdate__ | `boolean`: kontroluje, czy funkcja `onGenerate` powinna być wywoływana automatycznie, gdy zmienia się jedno z pól wejściowych dziecka. Default: `false`.
@@ -20,7 +20,7 @@ Tablica rozdzielcza do łączenia obsługi wielu pól wejściowych dla dzieci.
 * __title__ | `(string|node)`: tytuł karty. Default: `''`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

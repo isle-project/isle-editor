@@ -6,7 +6,7 @@ sidebar_label: Exponential Distribution
 
 指数分布の確率を計算するための学習コンポーネント。
 
-## Options
+## オプション
 
 * __hideCDF__ | `boolean`: CDFプロットを隠すかどうかを制御します。. Default: `false`.
 * __step__ | `(number|string)`: スクロール入力のステップサイズ. Default: `0.01`.
@@ -15,7 +15,7 @@ sidebar_label: Exponential Distribution
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnExponentialDistribution />

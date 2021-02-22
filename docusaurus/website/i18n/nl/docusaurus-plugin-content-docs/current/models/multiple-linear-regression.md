@@ -6,7 +6,7 @@ sidebar_label: Multiple Linear Regression
 
 Meervoudige lineaire regressie.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __y__ | `string (required)`: resultaatvariabele. Default: `none`.
@@ -18,7 +18,7 @@ Meervoudige lineaire regressie.
 * __onPredict__ | `function`: callback ingeroepen met voorspellingen en restmateriaal na modelaanpassing. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <MultipleLinearRegression 

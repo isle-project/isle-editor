@@ -6,12 +6,12 @@ sidebar_label: Hypergeometric Distribution
 
 一个用于计算超几何分布概率的学习组件。
 
-## Options
+## 选项
 
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnHypergeometricDistribution />

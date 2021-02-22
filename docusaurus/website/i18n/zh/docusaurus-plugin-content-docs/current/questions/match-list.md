@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 一个ISLE组件，它渲染一个问题，在这个问题中，学习者必须以正确的方式将两个列表中的元素相互匹配。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 问题将显示在匹配列表问题组件的顶部。. Default: `''`.
 * __elements__ | `array<{a,b}>`: 一个 "数组"，其中包含显示在自由文本问题组件顶部的正确对子。每个 "array "元素必须是一个具有 "a "和 "b "属性的 "对象"；只提供具有 "a "或 "b "属性的元素来添加分散注意力的答案。. Default: `[]`.
@@ -27,7 +27,7 @@ sidebar_label: Match List Question
 * __onSubmit__ | `function`: 当学生提交答案时调用回调。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

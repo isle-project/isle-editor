@@ -6,12 +6,12 @@ sidebar_label: Discrete Distribution
 
 Eine Lernkomponente zur Visualisierung beliebiger diskreter Verteilungen und zur Auswertung ihrer CDF.
 
-## Options
+## Optionen
 
 * __numValues__ | `number`: anfängliche Anzahl der eindeutigen Werte. Default: `4`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnDiscreteDistribution />

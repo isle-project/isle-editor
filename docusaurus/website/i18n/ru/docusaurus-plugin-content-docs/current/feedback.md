@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Кнопки для сбора отзывов пользователей.
 
-## Options
+## Варианты
 
 * __confusedMsg__ | `string`: сообщение, которое будет отображаться во всплывающей подсказке для спутанной кнопки.. Default: `none`.
 * __feedbackMsg__ | `string`: сообщение, которое будет отображаться во всплывающей подсказке для получения подробной информации.. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Feedback Buttons
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

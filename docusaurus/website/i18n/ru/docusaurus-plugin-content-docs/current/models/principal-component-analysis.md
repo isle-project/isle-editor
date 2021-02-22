@@ -6,7 +6,7 @@ sidebar_label: Principal Component Analysis
 
 Анализ основных компонентов.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variables__ | `array<string> (required)`: имена переменных, используемых для кластеризации. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Principal Component Analysis
 * __onResult__ | `function`: вызов обратного вызова с помощью модельного объекта и компонентов. Default: `onResult() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <PrincipalComponentAnalysis 

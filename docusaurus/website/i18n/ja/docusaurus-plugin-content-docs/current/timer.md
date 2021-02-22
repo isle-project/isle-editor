@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 時間が経過したときに、事前に定義されたコールバックをトリガーするタイマーを表示します。使用例としては、クイズのタイミングを表示します。
 
-## Options
+## オプション
 
 * __id__ | `string`: タイマーの一意の `string` IDを指定します。IDが設定されている場合、タイマーコンポーネントはページの更新にわたって持続します。. Default: `none`.
 * __active__ | `boolean (required)`: タイマーの開始・停止を切り替えることができるフラグ. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: Timer
 * __onTimeUp__ | `function`: タイマー切れコールバック. Default: `onTimeUp() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Timer 

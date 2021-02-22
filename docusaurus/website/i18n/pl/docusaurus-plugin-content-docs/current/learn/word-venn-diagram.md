@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Schemat venn wizualizujący współwystępowanie słów w dokumentach dostarczonej matrycy termin-dokument.
 
-## Options
+## Opcje
 
 * __height__ | `number`: wysokość wykresu Venna w pikselach. Default: `350`.
 * __nTexts__ | `number (required)`: liczba źródeł, z których zebrano tekst. Default: `none`.
@@ -16,7 +16,7 @@ Schemat venn wizualizujący współwystępowanie słów w dokumentach dostarczon
 * __width__ | `number`: szerokość wykresu Venna w pikselach. Default: `600`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnWordVennDiagram />

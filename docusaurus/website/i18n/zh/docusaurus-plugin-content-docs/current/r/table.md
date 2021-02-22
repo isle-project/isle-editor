@@ -6,7 +6,7 @@ sidebar_label: R Table
 
 用于在表格显示中渲染R数据框架或矩阵的组件。
 
-## Options
+## 选项
 
 * __code__ | `string`: 返回一个data.frame的R代码，该frame包含要在表中显示的数据。. Default: `''`.
 * __libraries__ | `array`: 当输入的 "code "被执行时，应自动加载的R库。. Default: `[]`.
@@ -14,7 +14,7 @@ sidebar_label: R Table
 * __width__ | `number`: 幅宽. Default: `0.5`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <RTable

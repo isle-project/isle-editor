@@ -6,7 +6,7 @@ sidebar_label: Map
 
 Een geografische kaart die kan worden geleverd met plaatsnamen of met lengte- en breedtegraadwaarden.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object of value arrays voor elke variabele. Default: `none`.
 * __scope__ | `string`: omvang van de weer te geven kaart. Default: `'world'`.
@@ -17,4 +17,4 @@ Een geografische kaart die kan worden geleverd met plaatsnamen of met lengte- en
 * __showLand__ | `boolean`: of de geografische kenmerken op de kaart moeten worden weergegeven. Default: `false`.
 
 
-## Examples
+## Voorbeelden

@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 一个控制垂直滑块的手风琴组件。
 
-## Options
+## 选项
 
 * __active__ | `number`: 开头的滑块指数. Default: `none`.
 * __canCloseAll__ | `boolean`: 是否可以折叠所有的标题. Default: `false`.
@@ -18,7 +18,7 @@ sidebar_label: Accordion
 * __style__ | `object`: 外层div的CSS内联样式. Default: `none`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

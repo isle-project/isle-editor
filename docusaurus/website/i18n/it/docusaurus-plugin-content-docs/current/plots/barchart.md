@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 Grafico a barre.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variable__ | `string (required)`: variabile da visualizzare. Default: `none`.
@@ -21,7 +21,7 @@ Grafico a barre.
 * __direction__ | `string`: come ordinare le barre accanto all'asse delle x (in "ascesa" o in "discesa"). Default: `'ascending'`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <BarChart 

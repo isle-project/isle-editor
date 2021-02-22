@@ -6,13 +6,13 @@ sidebar_label: Unveil
 
 appearコンポーネントは、指定された時間後にそのすべての子が表示されるようになります。
 
-## Options
+## オプション
 
 * __active__ | `boolean`: カウンタをアクティブにするかどうかを制御します。. Default: `false`.
 * __delay__ | `number`: コンポーネントが表示されるまでのミリ秒数. Default: `1000`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Unveil duration={5000} >

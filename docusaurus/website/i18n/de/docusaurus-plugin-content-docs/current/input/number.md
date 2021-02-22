@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 Eine Zahleneingabekomponente. Kann als Teil eines ISLE Dashboards oder eigenständig verwendet werden. Im letzteren Fall wollen Sie Änderungen über das Attribut `onChange` behandeln oder den Wert über das Attribut `bind` an eine globale Variable binden.
 
-## Options
+## Optionen
 
 * __bind__ | `string`: Name der globalen Variablen, der die Nummer zugewiesen werden soll. Default: `''`.
 * __defaultValue__ | `number`: Wert, der den Standardwert des Eingangs beim Starten angibt. Default: `0`.
@@ -29,7 +29,7 @@ Eine Zahleneingabekomponente. Kann als Teil eines ISLE Dashboards oder eigenstä
 * __tooltipPlacement__ | `string`: Richtung des Tooltips. Default: `'left'`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <NumberInput

@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 Komponent do nauki ilustrujący prawo dużych liczb przy rzucaniu kostką.
 
-## Options
+## Opcje
 
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnDiceThrowing />

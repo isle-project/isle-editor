@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Una componente del sondaggio in cui l'istruttore può raccogliere in tempo reale i dati del sondaggio a scelta multipla degli studenti.
 
-## Options
+## Opzioni
 
 * __question__ | `(string|node)`: stringa che indica la domanda da porre agli studenti. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controlla se si desidera consentire agli studenti di rispondere più volte al sondaggio. Default: `false`.
@@ -17,7 +17,7 @@ Una componente del sondaggio in cui l'istruttore può raccogliere in tempo reale
 * __onSubmit__ | `function`: funzione da chiamare quando viene inviata una risposta. Default: `onSubmit() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <MultipleChoiceSurvey

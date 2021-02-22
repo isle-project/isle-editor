@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 Element pytania o porządek, który prosi ucznia o uporządkowanie zbioru elementów w odpowiedniej kolejności.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, na które student musi uporządkować dostępne `opcje` w odpowiedniej kolejności. Default: `''`.
 * __options__ | `array (required)`: szereg tekstów, które student musi wnieść do właściwego zamówienia (zakładając, że jest to zamówienie dostarczone). Default: `none`.
@@ -25,7 +25,7 @@ Element pytania o porządek, który prosi ucznia o uporządkowanie zbioru elemen
 * __onSubmit__ | `function`: wywołanie zwrotne wywołane podczas udzielania odpowiedzi; ma jako jedyny parametr `boolean` wskazujący, czy elementy zostały umieszczone we właściwej kolejności. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

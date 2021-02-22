@@ -6,12 +6,12 @@ sidebar_label: Discrete Distribution
 
 Komponent edukacyjny do wizualizacji każdej dyskretnej dystrybucji i oceny jej CDF.
 
-## Options
+## Opcje
 
 * __numValues__ | `number`: początkowa liczba różnych wartości. Default: `4`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnDiscreteDistribution />

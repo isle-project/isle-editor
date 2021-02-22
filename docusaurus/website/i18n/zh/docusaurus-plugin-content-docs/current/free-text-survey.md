@@ -6,7 +6,7 @@ sidebar_label: Free Text Survey
 
 一个ISLE组件，用于学生以自由文本形式提供答案的问题。该组件与**FreeTextQuestion**的不同之处在于，汇总的小组数据会实时显示给大家。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 问学生的问题. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: 控制是否允许学生多次回答调查问卷。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Free Text Survey
 * __onSubmit__ | `function`: 提交答案时调用的回调函数. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <FreeTextSurvey 

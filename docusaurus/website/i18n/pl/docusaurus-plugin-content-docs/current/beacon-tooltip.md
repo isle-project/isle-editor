@@ -6,7 +6,7 @@ sidebar_label: Beacon Tooltip
 
 Komponent umieszczający latarnię nawigacyjną na lekcji, albo samodzielnie, albo dołączony do `celu`. Po najechaniu lub kliknięciu na latarnię nawigacyjną, wyświetlana jest etykieta z narzędziami.
 
-## Options
+## Opcje
 
 * __title__ | `(string|node)`: tytuł, który ma być wyświetlany w górnej części etykiety narzędzia. Default: `none`.
 * __content__ | `(string|node)`: zawartość etykiety narzędzia. Default: `'`content` comes here...'`.
@@ -17,7 +17,7 @@ Komponent umieszczający latarnię nawigacyjną na lekcji, albo samodzielnie, al
 * __onChange__ | `function`: wywołanie zwrotne po zmianie stanu etykiety narzędzia. Otrzymuje dwa argumenty: `aktion` (`otwarcie` lub `zamknięcie`) oraz przekazane `propy`.. Default: `onChange() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <BeaconTooltip

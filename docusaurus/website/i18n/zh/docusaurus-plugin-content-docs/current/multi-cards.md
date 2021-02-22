@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 一个ISLE组件，允许您创建和控制多个可翻转的卡片（例如在记忆游戏中）。
 
-## Options
+## 选项
 
 * __animation__ | `object`: 如果设置组件使用一个入口动画；该对象包含一个名称（如`anim-scal-up`）和一个持续时间（如`1.7s`=1.7秒）。. Default: `{}`.
 * __memory__ | `boolean`: 是否开启记忆游戏模式，在该模式下，必须将所提供的值进行配对。. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Multi Cards
 * __backStyle__ | `object`: 卡片背面的CSS样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <MultiCards

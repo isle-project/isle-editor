@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 Гистограмма.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: переменная для отображения. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Histogram
 * __xBins__ | `{start,size,end}`: объект со свойствами `старт`, `размер` и `конец`, регулирующими поведение биннинга.. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Histogram 

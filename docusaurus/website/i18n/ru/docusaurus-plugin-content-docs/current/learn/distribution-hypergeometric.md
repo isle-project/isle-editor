@@ -6,12 +6,12 @@ sidebar_label: Hypergeometric Distribution
 
 Компонент обучения для расчета вероятностей гипергеометрического распределения.
 
-## Options
+## Варианты
 
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnHypergeometricDistribution />

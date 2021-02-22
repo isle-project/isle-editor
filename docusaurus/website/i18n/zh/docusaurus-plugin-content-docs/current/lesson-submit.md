@@ -6,7 +6,7 @@ sidebar_label: Lesson Submit
 
 在课程结束时显示的按钮，供学生点击。默认情况下，课程结束的确认信息会发送到学生的电子邮件地址。
 
-## Options
+## 选项
 
 * __label__ | `string`: 提交按钮的标签. Default: `none`.
 * __message__ | `string`: 确认邮件. Default: `''`.
@@ -17,7 +17,7 @@ sidebar_label: Lesson Submit
 * __onClick__ | `function`: 点击提交按钮时调用的回调。. Default: `onClick() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

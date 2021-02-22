@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 プロット的に可視化。
 
-## Options
+## オプション
 
 * __data__ | `array (required)`: データ配列. Default: `none`.
 * __draggable__ | `boolean`: プロットをドラッグ可能にするかどうかを制御します。. Default: `false`.
@@ -30,7 +30,7 @@ sidebar_label: Plotly
 * __toggleFullscreen__ | `boolean`: フルスクリーンモードでのプロット表示を許可するかどうかを制御します。. Default: `true`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Plotly

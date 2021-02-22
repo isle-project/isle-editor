@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Eine Umfragekomponente, in der der Kursleiter Multiple-Choice-Umfragedaten von Studenten in Echtzeit erfassen kann.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: Zeichenkette zur Angabe der Frage, die den Schülern gestellt werden soll. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: steuert, ob man den Studenten erlauben möchte, die Umfrage mehrfach zu beantworten. Default: `false`.
@@ -17,7 +17,7 @@ Eine Umfragekomponente, in der der Kursleiter Multiple-Choice-Umfragedaten von S
 * __onSubmit__ | `function`: Funktion, die aufgerufen wird, wenn eine Antwort gesendet wird. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <MultipleChoiceSurvey

@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 围绕[react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree)的一个薄包装，支持该组件的所有属性。
 
-## Options
+## 选项
 
 * __title__ | `string`: 标题. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <SortableTree 

@@ -13,7 +13,7 @@ Une composante d'apprentissage illustrant la couverture des intervalles de confi
 * __sampleStats__ | `boolean`: contrôle si l'on doit pouvoir passer de l'utilisation de la proportion de l'échantillon ou de la probabilité de succès connue dans la population au calcul de l'erreur type. Default: `true`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnConfidenceCoverageBinomial />

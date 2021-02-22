@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Botões para coletar o feedback do usuário.
 
-## Options
+## Opções
 
 * __confusedMsg__ | `string`: mensagem a ser exibida na ponta da ferramenta para botão confuso. Default: `none`.
 * __feedbackMsg__ | `string`: mensagem a ser exibida na ponta da ferramenta para um botão de feedback detalhado. Default: `none`.
@@ -17,7 +17,7 @@ Botões para coletar o feedback do usuário.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

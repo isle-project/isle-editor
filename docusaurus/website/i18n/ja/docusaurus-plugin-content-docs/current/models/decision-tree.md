@@ -6,7 +6,7 @@ sidebar_label: Decision Tree
 
 回帰と分類木。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __y__ | `string (required)`: アウトカム変数. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Decision Tree
 * __onPredict__ | `function`: 予測ボタンをクリックしたときにモデルオブジェクトで呼び出されるコールバック. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <DecisionTree 

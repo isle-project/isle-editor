@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 Eine Lernkomponente zur Veranschaulichung des zentralen Grenzwertsatzes (CLT) bei der Stichprobenziehung aus einem gelieferten Datensatz.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Datenobjekt, dessen Schlüssel den Variablennamen entsprechen und dessen Werte die Werte der jeweiligen Variablen enthalten. Default: `none`.
 * __hidePopulationStdev__ | `boolean`: Anzeige der Standardabweichung der Grundgesamtheit ausblenden. Default: `false`.
@@ -16,7 +16,7 @@ Eine Lernkomponente zur Veranschaulichung des zentralen Grenzwertsatzes (CLT) be
 * __variables__ | `array (required)`: Namen von Variablen, die abgetastet werden können. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnSampleCLT />

@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Un bloc de dibujo para tomar notas de las diapositivas de la conferencia o de las páginas vacías.
 
-## Options
+## Opciones
 
 * __autoSave__ | `boolean`: controla si el editor debe guardar el texto actual en el almacenamiento local del navegador en un intervalo de tiempo determinado. Default: `true`.
 * __feedbackButtons__ | `boolean`: controla si se muestran los botones de retroalimentación en cada diapositiva. Default: `false`.
@@ -36,7 +36,7 @@ Un bloc de dibujo para tomar notas de las diapositivas de la conferencia o de la
 * __onChange__ | `function`: llamada de retorno cada vez que se dibuja un nuevo elemento de línea. Default: `onChange() {}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

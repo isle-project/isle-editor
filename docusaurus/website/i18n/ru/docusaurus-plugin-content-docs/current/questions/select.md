@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 Компонент "Выбор вопроса".
 
-## Options
+## Варианты
 
 * __question__ | `(string|node)`: вопрос, для которого ученик должен выбрать один из доступных вариантов ответа.. Default: `''`.
 * __options__ | `array (required)`: доступные варианты ответов, из которых ученик может выбрать. Default: `none`.
@@ -26,7 +26,7 @@ sidebar_label: Select Question
 * __onSubmit__ | `function`: обратный вызов, вызываемый при отправке ответа; имеет в качестве первого параметра `булеан`, указывающий, был ли ответ правильным (если применимо, `нулеан` в противном случае), а в качестве второго параметра - ответ, который был отправлен.. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

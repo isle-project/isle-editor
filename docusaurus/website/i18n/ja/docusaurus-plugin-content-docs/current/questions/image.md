@@ -6,7 +6,7 @@ sidebar_label: Image Question
 
 ユーザーに画像をアップロードするように求める質問です。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 択一問題. Default: `''`.
 * __hintPlacement__ | `string`: ヒントの配置 (`top`, `left`, `right`, `bottom` のいずれか). Default: `'bottom'`.
@@ -23,4 +23,4 @@ sidebar_label: Image Question
 * __onSubmit__ | `function`: 回答が提出されたときに呼び出されるコールバック; 唯一のパラメータとして、要素が正しい順序で配置されているかどうかを示す `boolean` を持ちます。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。

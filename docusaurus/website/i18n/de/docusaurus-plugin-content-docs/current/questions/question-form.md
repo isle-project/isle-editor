@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 Eine Formularkomponente, die verschiedene Fragekomponenten mit einer einzigen Absendetaste kombiniert.
 
-## Options
+## Optionen
 
 * __buttonLabel__ | `string`: Beschriftung der Submit-Schaltfläche. Default: `none`.
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn die Schaltfläche "Submit" angeklickt wird. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <QuestionForm>

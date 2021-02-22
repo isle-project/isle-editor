@@ -11,7 +11,7 @@ Composante d'apprentissage pour explorer les discours sur l'état de l'Union des
 * __questions__ | `array<(node|element)>`: une série de questions. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnSOTU />

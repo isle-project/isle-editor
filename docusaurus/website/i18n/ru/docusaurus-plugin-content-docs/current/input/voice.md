@@ -6,7 +6,7 @@ sidebar_label: Voice Input
 
 Компонент голосового ввода.
 
-## Options
+## Варианты
 
 * __autorecord__ | `boolean`: управляет автоматическим запуском записи. Default: `false`.
 * __defaultValue__ | `string`: текстовое значение по умолчанию. Default: `''`.
@@ -33,7 +33,7 @@ sidebar_label: Voice Input
 * __height__ | `number`: высота голосового ввода (в px). Default: `36`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <VoiceInput

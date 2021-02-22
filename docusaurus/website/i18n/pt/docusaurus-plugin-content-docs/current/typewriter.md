@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 Um componente ISLE que lhe permite criar um efeito de máquina de escrever.
 
-## Options
+## Opções
 
 * __delay__ | `number`: atraso inicial antes do início da máquina de escrever (em milissegundos). Default: `none`.
 * __hold__ | `number`: se o texto for um conjunto de cordas, segure especificado a duração que o texto completo será exibido antes de passar para o próximo item do conjunto. Default: `2000`.
@@ -17,7 +17,7 @@ Um componente ISLE que lhe permite criar um efeito de máquina de escrever.
 * __text__ | `(string|array<string>)`: o texto completo a ser exibido. Default: `''`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

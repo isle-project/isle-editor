@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 Двухпробный средний тест.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __x__ | `string (required)`: имя первой переменной. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Two-Sample Mean Test
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <MeanTest2

@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Компонент карты.
 
-## Options
+## Варианты
 
 * __className__ | `string`: название класса CSS. Default: `''`.
 * __header__ | `(string|node)`: заголовок панели (h3). Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Panel
 * __onHide__ | `function`: вызов обратного вызова при нажатии кнопки закрытия. Default: `none`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

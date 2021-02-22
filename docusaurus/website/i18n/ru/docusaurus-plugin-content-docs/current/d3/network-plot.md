@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 Сетевой участок на основе d3.
 
-## Options
+## Варианты
 
 * __width__ | `number`: ширина участка (в px). Default: `900`.
 * __height__ | `number`: высота участка (в px). Default: `600`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <NetworkPlot

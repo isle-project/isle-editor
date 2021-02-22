@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 Un componente che mostra i suoi figli in una presentazione o in un carosello.
 
-## Options
+## Opzioni
 
 * __title__ | `string`: titolo per la presentazione / carosello da visualizzare nella sua parte superiore. Default: `''`.
 * __dots__ | `boolean`: visualizzare i punti in basso per navigare rapidamente verso qualsiasi diapositiva. Default: `true`.
@@ -21,7 +21,7 @@ Un componente che mostra i suoi figli in una presentazione o in un carosello.
 * __onClick__ | `function`: richiamata quando si fa clic sui pulsanti successivi/precedenti. Default: `onClick() {}`.
 
 
-## Examples
+## Esempi
 
 
 import Tabs from '@theme/Tabs';

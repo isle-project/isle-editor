@@ -6,13 +6,13 @@ sidebar_label: pre
 
 Element, das vorformatierten Text anzeigt.
 
-## Options
+## Optionen
 
 * __className__ | `string`: Klassenname. Default: `''`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <pre>

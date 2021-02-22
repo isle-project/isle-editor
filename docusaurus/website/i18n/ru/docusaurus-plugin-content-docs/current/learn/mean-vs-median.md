@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 Интерактивная игра, проверяющая способность студента определять медиану и среднее значение заданного распределения.
 
-## Options
+## Варианты
 
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `false`.
 * __header__ | `string`: заголовок панели, в которой будет сгенерировано среднее и медиана.. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Mean vs. Median
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnMeanVSMedian />

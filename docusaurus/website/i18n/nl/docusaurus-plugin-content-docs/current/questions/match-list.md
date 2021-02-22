@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 Een ISLE-component die een vraag stelt waarbij de leerling elementen uit twee lijsten op de juiste manier met elkaar moet matchen.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: vraag die boven aan de vraag van de wedstrijdlijst moet worden weergegeven. Default: `''`.
 * __elements__ | `array<{a,b}>`: een `array` met de juiste paren bovenin de vrije tekstvraagcomponent. Elk `array` element moet een `object` zijn met `a` en `b` eigenschappen; lever elementen met alleen `a` of `b` eigenschappen om afleidende antwoorden toe te voegen.. Default: `[]`.
@@ -27,7 +27,7 @@ Een ISLE-component die een vraag stelt waarbij de leerling elementen uit twee li
 * __onSubmit__ | `function`: terugbellen wordt ingeroepen als de studenten een antwoord indienen. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

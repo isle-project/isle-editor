@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 调查组件，教师可以实时收集学生的数字调查数据。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 题目. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: 控制同一用户（或匿名的会话）是否可以提交多个答案）。. Default: `false`.
@@ -16,7 +16,7 @@ sidebar_label: Number Survey
 * __onSubmit__ | `function`: 当学生提交答案时，调用回调函数。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <NumberSurvey

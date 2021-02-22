@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Proportions
 
 Una componente di apprendimento su test di ipotesi per una percentuale di popolazione.
 
-## Options
+## Opzioni
 
 * __types__ | `array<string>`: il tipo o i tipi di test (`One-Sample`, `Two-Sample`) che il widget dovrebbe esporre. Default: `[
   'One-Sample',
@@ -17,7 +17,7 @@ Una componente di apprendimento su test di ipotesi per una percentuale di popola
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnProportionTest />

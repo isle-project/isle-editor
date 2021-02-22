@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 Список перетаскиваемых элементов, которые могут быть переупорядочены учениками.
 
-## Options
+## Варианты
 
 * __data__ | `array (required)`: массив объектов с `id` и `text` ключами. Default: `none`.
 * __onChange__ | `function`: обратный вызов с новым упорядоченным массивом данных при каждом изменении. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ sidebar_label: Draggable List
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <DraggableList

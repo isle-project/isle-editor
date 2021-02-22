@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 Składnik wejściowy proporcji. Może być używany jako część deski rozdzielczej ISLE lub autonomiczny. W tym drugim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.
 
-## Options
+## Opcje
 
 * __colors__ | `array<string>`: Zestawienie kolorów dla elementów wykresu kołowego. Jeśli nie zostanie zdefiniowana, zostanie użyta niestandardowa skala kolorów. Default: `none`.
 * __disabled__ | `boolean`: kontroluje, czy pole wprowadzania danych jest nieaktywne. Default: `false`.
@@ -17,7 +17,7 @@ Składnik wejściowy proporcji. Może być używany jako część deski rozdziel
 * __step__ | `number`: krok strzałek widoczny po najechaniu kursorem nad pole wprowadzania danych. Default: `0.1`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ProportionsInput

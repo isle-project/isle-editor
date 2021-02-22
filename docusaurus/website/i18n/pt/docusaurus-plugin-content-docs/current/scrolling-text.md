@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 Um componente de fundo dinâmico que percorre uma lista de textos em um intervalo especificado.
 
-## Options
+## Opções
 
 * __text__ | `array<string>`: texto ou lista de textos a serem exibidos. Default: `[]`.
 * __loop__ | `boolean`: indica se o processo deve ser exibido infinitamente. Default: `false`.
@@ -19,7 +19,7 @@ Um componente de fundo dinâmico que percorre uma lista de textos em um interval
 * __style__ | `object`: Estilos de CSS do texto. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 
 import Tabs from '@theme/Tabs';

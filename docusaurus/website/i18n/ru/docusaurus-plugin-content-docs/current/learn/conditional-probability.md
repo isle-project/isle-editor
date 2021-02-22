@@ -6,11 +6,11 @@ sidebar_label: Conditional Probability
 
 Обучающий компонент, иллюстрирующий условную вероятность для двух зависимых двоичных переменных.
 
-## Options
+## Варианты
 
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnConditionalProbability />

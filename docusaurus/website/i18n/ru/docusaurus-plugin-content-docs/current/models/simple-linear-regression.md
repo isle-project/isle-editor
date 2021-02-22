@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 Простая линейная регрессия.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __x__ | `string (required)`: объясняющая переменная. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Simple Linear Regression
 * __onPredict__ | `function`: обратный вызов с установленными значениями и остатками. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <SimpleLinearRegression 

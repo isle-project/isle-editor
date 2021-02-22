@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Naive Bayes gaat ervan uit dat de voorspellers gezien het klassenlidmaatschap een normale verdeling volgen.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __y__ | `string (required)`: resultaatvariabele. Default: `none`.
@@ -16,7 +16,7 @@ Naive Bayes gaat ervan uit dat de voorspellers gezien het klassenlidmaatschap ee
 * __onPredict__ | `function`: callback ingeroepen met voorspellingen en restmateriaal na modelaanpassing. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <NaiveBayes 

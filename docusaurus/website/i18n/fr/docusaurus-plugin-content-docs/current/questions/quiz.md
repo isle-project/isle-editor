@@ -25,7 +25,7 @@ Un élément de quiz affichant une séquence d'éléments de questions.
 * __onSubmit__ | `function`: rappel invoqué lorsque l'utilisateur soumet une réponse. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

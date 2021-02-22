@@ -6,7 +6,7 @@ sidebar_label: One-Sample Proportion Test
 
 Prueba de proporción de una muestra.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: nombre de la variable. Default: `none`.
@@ -17,7 +17,7 @@ Prueba de proporción de una muestra.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <PropTest

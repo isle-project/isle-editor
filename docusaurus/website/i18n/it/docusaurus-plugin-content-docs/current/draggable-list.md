@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 Un elenco di elementi trascinabili che possono essere riordinati dagli studenti.
 
-## Options
+## Opzioni
 
 * __data__ | `array (required)`: array di oggetti con tasti `id` e `text`.. Default: `none`.
 * __onChange__ | `function`: richiamata con l'array di dati appena ordinato ad ogni modifica. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ Un elenco di elementi trascinabili che possono essere riordinati dagli studenti.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <DraggableList

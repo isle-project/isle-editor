@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Um diagrama venn que visualiza a co-ocorrência de palavras em documentos de uma matriz de termo-documentos fornecida.
 
-## Options
+## Opções
 
 * __height__ | `number`: altura do diagrama Venn em pixels. Default: `350`.
 * __nTexts__ | `number (required)`: número de fontes a partir das quais o texto foi coletado. Default: `none`.
@@ -16,7 +16,7 @@ Um diagrama venn que visualiza a co-ocorrência de palavras em documentos de uma
 * __width__ | `number`: largura do diagrama Venn em pixels. Default: `600`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnWordVennDiagram />

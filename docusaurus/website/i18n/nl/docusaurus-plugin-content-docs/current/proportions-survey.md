@@ -6,7 +6,7 @@ sidebar_label: Proportions Survey
 
 Onderdeel dat een groep mensen in staat stelt om te stemmen over de gewichten en het belang van bepaalde opties.
 
-## Options
+## Opties
 
 * __allowMultipleAnswers__ | `boolean`: controleert of men de studenten wil toestaan de enquête meerdere malen te beantwoorden. Default: `false`.
 * __anonymous__ | `boolean`: controleert of de antwoorden van de studenten geanonimiseerd zijn. Default: `false`.
@@ -23,7 +23,7 @@ Onderdeel dat een groep mensen in staat stelt om te stemmen over de gewichten en
 * __step__ | `number`: de stap van de pijlen gezien bij het zweven met de cursor boven het invoerveld. Default: `0.25`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ProportionsSurvey 

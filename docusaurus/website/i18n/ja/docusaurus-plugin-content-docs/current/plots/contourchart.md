@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 等高線図。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __x__ | `string (required)`: Ｘ軸変数. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contour Chart
 * __onSelected__ | `function`: 点が x, y の値で選択され、選択された点が選択されたときに呼び出されるコールバック. Default: `onSelected() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ContourChart 

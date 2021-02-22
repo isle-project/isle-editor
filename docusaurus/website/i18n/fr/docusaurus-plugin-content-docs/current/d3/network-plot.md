@@ -12,7 +12,7 @@ Une trame de réseau basée sur d3.
 * __height__ | `number`: hauteur de la parcelle (en px). Default: `600`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <NetworkPlot

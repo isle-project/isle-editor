@@ -6,7 +6,7 @@ sidebar_label: Gamma Distribution
 
 Un componente di apprendimento per il calcolo delle probabilità di una distribuzione gamma.
 
-## Options
+## Opzioni
 
 * __domain__ | `object`: oggetto di array `x` e `y` con i punti iniziali e finali per il rispettivo asse. Default: `none`.
 * __scaleParameterization__ | `boolean`: controlla se utilizzare la parametrizzazione che comporta un parametro di forma e scala invece di forma e velocità. Default: `false`.
@@ -20,7 +20,7 @@ Un componente di apprendimento per il calcolo delle probabilità di una distribu
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnGammaDistribution />

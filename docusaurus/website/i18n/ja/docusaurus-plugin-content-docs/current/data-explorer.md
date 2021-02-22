@@ -6,7 +6,7 @@ sidebar_label: Data Explorer
 
 このコンポーネントは、学生が提示されたデータを簡単に要約し、様々な統計的検定を行うために使用されます。
 
-## Options
+## オプション
 
 * __categorical__ | `array`: 各カテゴリ変数の名前を示す文字列の配列. Default: `[]`.
 * __quantitative__ | `array`: 各量的変数の名前を示す文字列の配列. Default: `[]`.
@@ -93,7 +93,7 @@ sidebar_label: Data Explorer
 * __onTutorialStart__ | `function`: データエクスプローラチュートリアルの起動時に呼び出される関数. Default: `onTutorialStart() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

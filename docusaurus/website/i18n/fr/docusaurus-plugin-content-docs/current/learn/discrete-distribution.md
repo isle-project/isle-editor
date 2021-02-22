@@ -11,7 +11,7 @@ Une composante d'apprentissage pour visualiser toute distribution discr√®te et √
 * __numValues__ | `number`: nombre initial de valeurs distinctes. Default: `4`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnDiscreteDistribution />

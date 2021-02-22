@@ -6,14 +6,14 @@ sidebar_label: Weather
 
 Un componente per la visualizzazione del tempo attuale in un luogo designato.
 
-## Options
+## Opzioni
 
 * __location__ | `string`: nome della località. Default: `none`.
 * __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

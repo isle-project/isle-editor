@@ -19,7 +19,7 @@ Une carte de chaleur pour visualiser une relation entre deux variables.
 * __commonYAxis__ | `boolean`: contrôle l'utilisation éventuelle d'un axe des y commun lors de la création de plusieurs cartes thermiques par valeur d'une variable de regroupement. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <HeatMap 

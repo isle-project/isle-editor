@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 Pole wyboru komponent wejściowy. Może być używany jako część deski rozdzielczej ISLE lub jako samodzielny element. W tym drugim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.
 
-## Options
+## Opcje
 
 * __bind__ | `string`: nazwa zmiennej globalnej dla wartości pola wyboru, która ma być przypisana do. Default: `''`.
 * __defaultValue__ | `boolean`: wartość boolean wskazująca domyślną wartość pola wyboru. Default: `false`.
@@ -20,7 +20,7 @@ Pole wyboru komponent wejściowy. Może być używany jako część deski rozdzi
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <CheckboxInput

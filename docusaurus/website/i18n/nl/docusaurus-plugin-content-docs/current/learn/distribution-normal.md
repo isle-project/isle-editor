@@ -6,7 +6,7 @@ sidebar_label: Normal Distribution
 
 Een leercomponent voor het berekenen van de waarschijnlijkheid van een normale verdeling.
 
-## Options
+## Opties
 
 * __domain__ | `object`: object van `x` en `y` arrays met de begin- en eindpunten voor de respectievelijke as. Default: `none`.
 * __hideCDF__ | `boolean`: controleert of de CDF-plots worden verborgen. Default: `false`.
@@ -20,7 +20,7 @@ Een leercomponent voor het berekenen van de waarschijnlijkheid van een normale v
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnNormalDistribution />

@@ -6,7 +6,7 @@ sidebar_label: Image
 
 Компонент для отображения изображения.
 
-## Options
+## Варианты
 
 * __src__ | `string (required)`: расположение источника изображения. Default: `none`.
 * __alt__ | `string`: описание изображения. Default: `''`.
@@ -21,7 +21,7 @@ sidebar_label: Image
 * __onShare__ | `function`: вызов обратного вызова с изображением, если нажать кнопку "share".. Default: `none`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

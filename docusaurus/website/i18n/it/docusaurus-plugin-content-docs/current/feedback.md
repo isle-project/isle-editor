@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 Pulsanti per raccogliere i feedback degli utenti.
 
-## Options
+## Opzioni
 
 * __confusedMsg__ | `string`: messaggio da visualizzare nel tooltip per il pulsante confuso. Default: `none`.
 * __feedbackMsg__ | `string`: messaggio da visualizzare nel tooltip per un feedback dettagliato pulsante di feedback. Default: `none`.
@@ -17,7 +17,7 @@ Pulsanti per raccogliere i feedback degli utenti.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

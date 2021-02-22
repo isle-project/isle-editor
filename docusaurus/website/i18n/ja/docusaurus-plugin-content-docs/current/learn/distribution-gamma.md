@@ -6,7 +6,7 @@ sidebar_label: Gamma Distribution
 
 ガンマ分布の確率を計算するための学習コンポーネント。
 
-## Options
+## オプション
 
 * __domain__ | `object`: オブジェクトであり、それぞれの軸の始点と終点を持つ `x` と `y` の配列です。. Default: `none`.
 * __scaleParameterization__ | `boolean`: shape と rate の代わりに shape と scale パラメータを含むパラメータ化を使用するかどうかを制御します.. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Gamma Distribution
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnGammaDistribution />

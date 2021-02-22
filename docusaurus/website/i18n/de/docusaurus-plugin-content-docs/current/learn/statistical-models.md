@@ -6,12 +6,12 @@ sidebar_label: Statistical Models
 
 Komponente zum Durchsuchen von Beschreibungen verschiedener statistischer Modelle.
 
-## Options
+## Optionen
 
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnStatisticalModels />

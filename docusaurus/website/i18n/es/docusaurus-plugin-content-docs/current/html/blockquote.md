@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Componente que muestra una cita ampliada.
 
-## Options
+## Opciones
 
 * __cite__ | `string`: fuente de la cita. Default: `none`.
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

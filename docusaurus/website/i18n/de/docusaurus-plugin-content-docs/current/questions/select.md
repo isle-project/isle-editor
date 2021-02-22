@@ -6,7 +6,7 @@ sidebar_label: Select Question
 
 Eine ausgewählte Fragekomponente.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: Frage, für die der Kursteilnehmer eine der verfügbaren Antwortmöglichkeiten auswählen muss. Default: `''`.
 * __options__ | `array (required)`: verfügbare Antwortoptionen, aus denen der Kursteilnehmer wählen kann. Default: `none`.
@@ -26,7 +26,7 @@ Eine ausgewählte Fragekomponente.
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn die Antwort abgeschickt wurde; hat als ersten Parameter ein `boolean`, das angibt, ob die Antwort richtig beantwortet wurde (falls zutreffend, sonst `null`) und die gelieferte Antwort als zweiten Parameter. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

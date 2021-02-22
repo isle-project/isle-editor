@@ -16,7 +16,7 @@ Régression de LASSO.
 * __intercept__ | `boolean`: contrôle s'il faut faire correspondre un modèle avec un terme d'interception. Default: `true`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LassoRegression

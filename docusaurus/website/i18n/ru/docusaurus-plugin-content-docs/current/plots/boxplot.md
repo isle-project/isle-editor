@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 Сюжет коробки.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `(array|string) (required)`: переменная для отображения. Default: `none`.
@@ -15,7 +15,7 @@ sidebar_label: Box Plot
 * __overlayPoints__ | `boolean`: контроль над тем, накладывать ли точки. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <BoxPlot 

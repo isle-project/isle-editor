@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 ヒストグラムです。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Histogram
 * __xBins__ | `{start,size,end}`: オブジェクトで、ビニング動作を制御する `start`, `size`, `end` プロパティを持ちます。. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Histogram 

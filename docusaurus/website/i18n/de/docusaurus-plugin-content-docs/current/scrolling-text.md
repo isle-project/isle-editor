@@ -6,7 +6,7 @@ sidebar_label: Scrolling Text
 
 Eine dynamische Hintergrundkomponente, die in einem festgelegten Intervall eine Liste von Texten durchläuft.
 
-## Options
+## Optionen
 
 * __text__ | `array<string>`: Text oder Liste von Texten, die angezeigt werden sollen. Default: `[]`.
 * __loop__ | `boolean`: gibt an, ob der Prozess unendlich angezeigt werden soll. Default: `false`.
@@ -19,7 +19,7 @@ Eine dynamische Hintergrundkomponente, die in einem festgelegten Intervall eine 
 * __style__ | `object`: CSS-Stile des Textes. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 
 import Tabs from '@theme/Tabs';

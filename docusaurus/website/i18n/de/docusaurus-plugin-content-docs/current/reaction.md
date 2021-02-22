@@ -6,13 +6,13 @@ sidebar_label: Reaction
 
 Zeigt je nach Benutzeraktion unterschiedliche Komponenten an.
 
-## Options
+## Optionen
 
 * __actionID__ | `string (required)`: ID der zu überwachenden Komponente. Default: `none`.
 * __show__ | `(object|function)`: Hash-Tabelle der Komponenten, die aufgrund der verschiedenen Antworten angezeigt werden sollen (wenn kein `Schlüssel` mit der Antwort übereinstimmt, wird der Wert angezeigt, der dem `Standard`-Schlüssel entspricht, falls er gesetzt ist) oder eine Funktion, die eine anzuzeigende Komponente zurückgibt (einziges Argument der Funktion ist das letzte Ergebnis). Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <div>

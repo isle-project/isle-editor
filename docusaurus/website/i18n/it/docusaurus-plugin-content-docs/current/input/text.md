@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 Un componente per l'inserimento di testo. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si desidera gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __bind__ | `string`: nome della variabile globale per il numero da assegnare a. Default: `none`.
 * __defaultValue__ | `string`: Un valore che indica il valore di default dell'ingresso all'inizio. Default: `''`.
@@ -23,7 +23,7 @@ Un componente per l'inserimento di testo. Può essere utilizzato come parte di u
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <TextInput

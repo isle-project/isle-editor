@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 Un diagramma di Venn che visualizza la co-occorrenza delle parole nei documenti di una matrice di termini-documento fornita.
 
-## Options
+## Opzioni
 
 * __height__ | `number`: altezza del diagramma di Venn in pixel. Default: `350`.
 * __nTexts__ | `number (required)`: numero di fonti da cui è stato raccolto il testo. Default: `none`.
@@ -16,7 +16,7 @@ Un diagramma di Venn che visualizza la co-occorrenza delle parole nei documenti 
 * __width__ | `number`: larghezza del diagramma di Venn in pixel. Default: `600`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnWordVennDiagram />

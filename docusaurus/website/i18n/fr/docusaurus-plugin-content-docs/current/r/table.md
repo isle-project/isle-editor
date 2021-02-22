@@ -14,7 +14,7 @@ Composant permettant de rendre un cadre ou une matrice de données R dans un aff
 * __width__ | `number`: largeur (entre 0 et 1). Default: `0.5`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <RTable

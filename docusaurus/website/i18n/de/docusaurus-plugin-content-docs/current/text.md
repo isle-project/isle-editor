@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Text-Komponente, die das Rendern von Rohtext als Markdown erlaubt und die Sprachsteuerung ermöglicht.
 
-## Options
+## Optionen
 
 * __raw__ | `string`: zu rendernder Text. Default: `''`.
 * __className__ | `string`: Klassennamen. Default: `''`.
@@ -15,7 +15,7 @@ Text-Komponente, die das Rendern von Rohtext als Markdown erlaubt und die Sprach
 * __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 
 import Tabs from '@theme/Tabs';

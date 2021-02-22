@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 Een schuifregelaar-ingangscomponent. Kan worden gebruikt als onderdeel van een ISLE-dashboard of stand-alone. In het laatste geval wilt u veranderingen verwerken via het `on-Change` attribuut of de waarde binden aan een globale variabele via het `bind` attribuut.
 
-## Options
+## Opties
 
 * __defaultValue__ | `number`: De startwaarde van de schuifregelaar. Default: `10`.
 * __disabled__ | `boolean`: regelt of de schuifingang actief is of niet. Indien ingesteld op true, zal de schuifregelaar op het scherm aanwezig zijn, zij het in het grijs.. Default: `false`.
@@ -25,7 +25,7 @@ Een schuifregelaar-ingangscomponent. Kan worden gebruikt als onderdeel van een I
 * __rangeInputStyle__ | `object`: CSS inline-stijl voor de ingangscomponent van het bereik. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <SliderInput

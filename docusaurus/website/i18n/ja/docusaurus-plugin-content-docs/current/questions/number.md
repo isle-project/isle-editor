@@ -6,7 +6,7 @@ sidebar_label: Number Question
 
 数字の質問成分。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: ナンバークエスチョン. Default: `''`.
 * __hintPlacement__ | `string`: ヒントの配置 (`top`, `left`, `right`, `bottom` のいずれか). Default: `'top'`.
@@ -28,7 +28,7 @@ sidebar_label: Number Question
 * __onSubmit__ | `function`: 最初のパラメータとして、アンサーが正しく回答されたかどうかを示す `boolean` (該当する場合は `null`) と、2番目のパラメータとして与えられたアンサーを指定します。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <NumberQuestion

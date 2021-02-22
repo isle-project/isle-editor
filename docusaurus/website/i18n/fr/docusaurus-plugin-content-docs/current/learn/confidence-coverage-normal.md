@@ -13,7 +13,7 @@ Un élément d'apprentissage illustrant la couverture des intervalles de confian
 * __sampleStats__ | `boolean`: contrôle si l'on doit pouvoir passer de l'utilisation de l'écart-type de l'échantillon à celle de l'écart-type de la population connue lors du calcul de l'erreur type. Default: `true`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnConfidenceCoverageNormal />

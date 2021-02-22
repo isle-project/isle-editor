@@ -6,7 +6,7 @@ sidebar_label: Histogram
 
 Een histogram.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
@@ -21,7 +21,7 @@ Een histogram.
 * __xBins__ | `{start,size,end}`: object met `start`, `grootte`, en `eind` eigenschappen die het eetgedrag regelen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Histogram 

@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 Een quizcomponent met een opeenvolging van vraagcomponenten.
 
-## Options
+## Opties
 
 * __confidence__ | `boolean`: of er een Likert-weegschaal moet worden getoond die het vertrouwen van de gebruiker vraagt. Default: `false`.
 * __forceConfidence__ | `boolean`: controleert of een gebruiker een vertrouwensniveau moet bieden voordat hij naar de volgende vraag overgaat.. Default: `false`.
@@ -25,7 +25,7 @@ Een quizcomponent met een opeenvolging van vraagcomponenten.
 * __onSubmit__ | `function`: terugbellen wordt aangeroepen wanneer de gebruiker een antwoord indient. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

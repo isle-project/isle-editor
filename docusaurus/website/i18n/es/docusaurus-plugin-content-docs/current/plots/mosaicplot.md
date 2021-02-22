@@ -6,7 +6,7 @@ sidebar_label: Mosaic Plot
 
 Una trama de mosaicos.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de matrices de valores para cada variable. Default: `none`.
 * __variables__ | `array (required)`: una serie de variables para mostrar. Default: `none`.
@@ -14,7 +14,7 @@ Una trama de mosaicos.
 * __axisLabels__ | `string`: variable de agrupación. Default: `'parallel to the axis'`.
 
 
-## Examples
+## Ejemplos
 
 ## Examples
 

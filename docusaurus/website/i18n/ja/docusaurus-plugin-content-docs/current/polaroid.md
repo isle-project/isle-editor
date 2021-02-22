@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 ポラロイド風の画像を表示するコンポーネント。
 
-## Options
+## オプション
 
 * __image__ | `string`: ポラロイドフレームに表示する画像のURL. Default: `none`.
 * __draggable__ | `boolean`: ポラロイドを画面の周りにドラッグするかどうかを制御します。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Polaroid
 * __onClick__ | `function`: 画像がクリックされたときに呼び出されるイベントハンドラ（ポラロイドのIDをパラメータとして受け取る. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

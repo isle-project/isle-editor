@@ -6,14 +6,14 @@ sidebar_label: Weather
 
 用于在指定地点显示当前天气的组件。
 
-## Options
+## 选项
 
 * __location__ | `string`: 地名. Default: `none`.
 * __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

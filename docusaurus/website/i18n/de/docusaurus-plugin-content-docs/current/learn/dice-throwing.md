@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 Eine Lernkomponente zur Veranschaulichung des Gesetzes der großen Zahlen anhand des Würfelwurfs.
 
-## Options
+## Optionen
 
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnDiceThrowing />

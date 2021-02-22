@@ -6,13 +6,13 @@ sidebar_label: QQ Plot
 
 値を昇順にソートするために使用するコンパレータ関数です。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <QQPlot 

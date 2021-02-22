@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 Interaktywna powłoka R, która może być używana do wykonywania poleceń R w chmurze za pomocą [OpenCPU](https://www.opencpu.org/).
 
-## Options
+## Opcje
 
 * __code__ | `string`: Kod R podlegający ocenie. Default: `''`.
 * __solution__ | `string`: dla pytań programowych, kod R `string` reprezentujący oficjalne rozwiązanie problemu. Default: `''`.
@@ -25,7 +25,7 @@ Interaktywna powłoka R, która może być używana do wykonywania poleceń R w 
 * __onResult__ | `function`: wywołanie zwrotne wywoływane za każdym razem, gdy wynik wykonania kodu zostanie uzyskany z chmury. Wynik `łańcuch` jest przekazywany jako jedyny argument do funkcji callback. Default: `onResult() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <RShell

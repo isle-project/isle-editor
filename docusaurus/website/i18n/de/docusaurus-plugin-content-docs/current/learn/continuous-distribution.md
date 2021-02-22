@@ -6,11 +6,11 @@ sidebar_label: Continuous Distribution
 
 Eine Lernkomponente zur Untersuchung von benutzerdefinierten kontinuierlichen Wahrscheinlichkeitsverteilungen.
 
-## Options
+## Optionen
 
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnContinuousDistribution />

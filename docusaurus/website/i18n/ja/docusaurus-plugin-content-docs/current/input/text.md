@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 テキスト入力コンポーネントです。ISLE ダッシュボードの一部として使うことも、スタンドアロンで使うこともできます。後者の場合、`onChange` 属性で変更を処理するか、`bind` 属性でグローバル変数に値をバインドします。
 
-## Options
+## オプション
 
 * __bind__ | `string`: 割り当てられる番号のグローバル変数名. Default: `none`.
 * __defaultValue__ | `string`: 開始時の入力のデフォルト値を示す値. Default: `''`.
@@ -23,7 +23,7 @@ sidebar_label: Text Input
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <TextInput

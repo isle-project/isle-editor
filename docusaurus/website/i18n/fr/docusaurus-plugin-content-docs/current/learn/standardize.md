@@ -12,7 +12,7 @@ Composante d'apprentissage expliquant le processus de normalisation des données
 * __step__ | `object`: la taille de l'étape de la saisie du défilement. Default: `'any'`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnStandardize />

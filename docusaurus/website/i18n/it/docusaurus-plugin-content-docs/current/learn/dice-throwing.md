@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 Una componente di apprendimento che illustra la legge dei grandi numeri con il lancio dei dadi.
 
-## Options
+## Opzioni
 
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnDiceThrowing />

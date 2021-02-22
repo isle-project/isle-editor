@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 Eine Textbereichskomponente. Wird sie als eigenständige Komponente verwendet, sollten Änderungen über das Attribut `onChange` behandelt werden.
 
-## Options
+## Optionen
 
 * __defaultValue__ | `string`: Standardwert des Textbereichs. Default: `''`.
 * __value__ | `string`: Textwert (für gesteuerte Komponente). Default: `none`.
@@ -20,7 +20,7 @@ Eine Textbereichskomponente. Wird sie als eigenständige Komponente verwendet, s
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <TextArea

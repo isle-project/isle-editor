@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 一連の問題コンポーネントを表示するクイズコンポーネント。
 
-## Options
+## オプション
 
 * __confidence__ | `boolean`: ユーザーの答えの信頼度を尋ねるリッカート尺度を表示するかどうか. Default: `false`.
 * __forceConfidence__ | `boolean`: は、次の質問に移る前に信頼度を提供するかどうかを制御します。. Default: `false`.
@@ -25,7 +25,7 @@ sidebar_label: Quiz
 * __onSubmit__ | `function`: ユーザーが回答を送信するとコールバックが呼び出されます。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

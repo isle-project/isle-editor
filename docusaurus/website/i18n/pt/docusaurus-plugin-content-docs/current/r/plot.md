@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Componente para render uma trama R dentro de uma lição ISLE.
 
-## Options
+## Opções
 
 * __code__ | `string`: Código R para gerar a trama. Default: `''`.
 * __width__ | `(number|string)`: largura da parcela (em px). Default: `600`.
@@ -20,7 +20,7 @@ Componente para render uma trama R dentro de uma lição ISLE.
 * __onDone__ | `function`: chamada de retorno invocada com argumentos de `err`, `img` e `corpo` uma vez criada uma trama. Default: `onDone() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

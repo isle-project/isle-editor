@@ -6,7 +6,7 @@ sidebar_label: Text
 
 文本组件，它允许将原始文本渲染为Markdown，并实现语音控制。
 
-## Options
+## 选项
 
 * __raw__ | `string`: 待发文字. Default: `''`.
 * __className__ | `string`: 班名. Default: `''`.
@@ -15,7 +15,7 @@ sidebar_label: Text
 * __voiceID__ | `string`: 声控识别器. Default: `none`.
 
 
-## Examples
+## 例子
 
 
 import Tabs from '@theme/Tabs';

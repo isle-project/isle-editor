@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 Cienka owijka wokół [reaktywnego drzewa sortowalnego] (https://www.npmjs.com/package/react-sortable-tree), która obsługuje wszystkie właściwości tego komponentu.
 
-## Options
+## Opcje
 
 * __title__ | `string`: tytuł nagłówka. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <SortableTree 

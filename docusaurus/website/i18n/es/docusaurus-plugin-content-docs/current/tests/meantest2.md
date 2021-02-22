@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 Prueba de media de dos muestras.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __x__ | `string (required)`: nombre de la primera variable. Default: `none`.
@@ -21,7 +21,7 @@ Prueba de media de dos muestras.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <MeanTest2

@@ -17,7 +17,7 @@ Test de corrélation.
 * __showDecision__ | `boolean`: contrôle s'il faut afficher si l'hypothèse nulle est rejetée au niveau de signification spécifié. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <CorrTest

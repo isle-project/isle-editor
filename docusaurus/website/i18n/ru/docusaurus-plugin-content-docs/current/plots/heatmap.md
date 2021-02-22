@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 Тепловая карта для визуализации связи между двумя переменными.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __x__ | `string (required)`: осевая переменная x. Default: `none`.
@@ -19,7 +19,7 @@ sidebar_label: Heat Map
 * __commonYAxis__ | `boolean`: контролирует использование общей оси y при создании нескольких тепловых карт на значение переменной группировки. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <HeatMap 

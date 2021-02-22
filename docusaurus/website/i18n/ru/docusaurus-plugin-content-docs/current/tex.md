@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 `TeX` - это ISLE-элемент, который может быть использован для отображения уравнений LaTeX. Под капотом компонент использует [KaTeX](https://github.com/Khan/KaTeX) для молниеносно быстрого рендеринга.
 
-## Options
+## Варианты
 
 * __raw__ | `(string|number) (required)`: Буквальный LaTeX `стринг` для рендеринга. Также принимает `номеры`. Default: `none`.
 * __displayMode__ | `boolean`: "Булеан", указывая, показывать ли уравнение в строке или в режиме отображения.. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: LaTeX Equations
 * __onClick__ | `function`: обратный вызов `функции` вызывается всякий раз, когда пользователь нажимает на уравнение.. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <TeX

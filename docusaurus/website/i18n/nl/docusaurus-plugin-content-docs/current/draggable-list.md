@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 Een lijst met versleepbare elementen die door de leerlingen opnieuw kunnen worden geordend.
 
-## Options
+## Opties
 
 * __data__ | `array (required)`: array van objecten met `id` en `tekst` toetsen. Default: `none`.
 * __onChange__ | `function`: callback ingeroepen met nieuw bestelde data-array bij elke wijziging. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ Een lijst met versleepbare elementen die door de leerlingen opnieuw kunnen worde
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <DraggableList

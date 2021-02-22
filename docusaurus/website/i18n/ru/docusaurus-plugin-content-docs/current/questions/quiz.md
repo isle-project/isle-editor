@@ -6,7 +6,7 @@ sidebar_label: Quiz
 
 Компонент теста, отображающий последовательность компонентов вопроса.
 
-## Options
+## Варианты
 
 * __confidence__ | `boolean`: отобразить ли шкалу Лайкерта, запрашивающую уверенность в ответе пользователя.. Default: `false`.
 * __forceConfidence__ | `boolean`: контролирует, должен ли пользователь предоставлять уровень уверенности перед переходом к следующему вопросу. Default: `false`.
@@ -25,7 +25,7 @@ sidebar_label: Quiz
 * __onSubmit__ | `function`: обратный вызов, когда пользователь отправляет ответ. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

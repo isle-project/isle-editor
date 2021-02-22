@@ -6,7 +6,7 @@ sidebar_label: Data Table
 
 Un componente che rende i dati di rendering dei componenti in una visualizzazione tabellare. Costruito sopra [react-table](https://react-table.js.org/).
 
-## Options
+## Opzioni
 
 * __data__ | `(array|object) (required)`: Un oggetto dati o un array da visualizzare. Se si tratta di un oggetto, le chiavi corrispondono ai valori delle colonne, mentre un array si aspetterà un array di oggetti con un campo denominato corrispondente ad ogni colonna. Default: `none`.
 * __dataInfo__ | `object`: con un array di stringhe `info` che descrive il set di dati, il `nome` del set di dati, un `oggetto` di `variabili` con chiavi corrispondenti ai nomi delle variabili e valori alle descrizioni delle variabili, un booleano `showOnStartup` che controlla se visualizzare il modale informativo all'avvio. Default: `{
@@ -36,7 +36,7 @@ colonna, e l'istanza della tabella). Default: `none`.
 * __style__ | `object`: Un oggetto che consente uno stile css personalizzato. Impostazioni predefinite per un oggetto vuoto. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <DataTable

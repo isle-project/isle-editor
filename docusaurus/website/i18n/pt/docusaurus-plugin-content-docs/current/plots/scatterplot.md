@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 Compromete o valor mínimo e máximo de uma matriz.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor para cada variável. Default: `none`.
 * __xval__ | `string (required)`: variável a ser exibida no eixo x. Default: `none`.
@@ -23,7 +23,7 @@ Compromete o valor mínimo e máximo de uma matriz.
 * __smoothSpan__ | `number`: parâmetro de suavização do vão para a linha de regressão "lisa. Default: `0.66`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <ScatterPlot 

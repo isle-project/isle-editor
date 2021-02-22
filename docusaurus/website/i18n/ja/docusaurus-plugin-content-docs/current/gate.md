@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 予約された視聴者のみにその子供を表示することができるISLEコンポーネント。
 
-## Options
+## オプション
 
 * __user__ | `boolean`: 設定されている場合、ゲーテッドコンテンツがユーザーに表示されます。. Default: `false`.
 * __notUser__ | `boolean`: 設定されている場合、ゲーテッドコンテンツはユーザーに表示されません。. Default: `false`.
@@ -22,7 +22,7 @@ sidebar_label: Gate
 * __check__ | `function`: コールバック関数は、ゲートが子コンポーネントを表示するかどうかを示す `boolean` を返します。. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Gate 

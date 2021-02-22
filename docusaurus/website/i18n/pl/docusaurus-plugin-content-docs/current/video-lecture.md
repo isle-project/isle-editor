@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 Komponent wykładu wideo, w którym wyświetlane są filmy przeplatane elementami interaktywnymi.
 
-## Options
+## Opcje
 
 * __controls__ | `boolean`: wskazuje, czy mają być wyświetlane elementy sterujące odtwarzaczy wideo. Default: `true`.
 * __instructorView__ | `boolean`: kontroluje, czy włączyć widok instruktora. Default: `true`.
@@ -17,7 +17,7 @@ Komponent wykładu wideo, w którym wyświetlane są filmy przeplatane elementam
 * __style__ | `object`: Styl CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <VideoLecture steps={[

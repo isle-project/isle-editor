@@ -6,13 +6,13 @@ sidebar_label: Reaction
 
 Mostra diferentes componentes, dependendo das ações do usuário.
 
-## Options
+## Opções
 
 * __actionID__ | `string (required)`: Identificação do componente a ser observado. Default: `none`.
 * __show__ | `(object|function)`: tabela hash de componentes a exibir dadas as diferentes respostas (se nenhuma `chave` corresponder à resposta, o valor correspondente à tecla `default` será exibido se definida) ou uma função que retorna um componente a exibir (o único argumento da função é o resultado mais recente). Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <div>

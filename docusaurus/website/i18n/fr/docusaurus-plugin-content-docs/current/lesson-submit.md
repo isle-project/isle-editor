@@ -17,7 +17,7 @@ Un bouton qui s'affiche à la fin d'une leçon et sur lequel les élèves peuven
 * __onClick__ | `function`: rappel invoqué lors du clic sur le bouton de soumission. Default: `onClick() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

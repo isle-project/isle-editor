@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Компонент опроса, в котором преподаватель может собирать данные опроса по нескольким вариантам ответов от студентов в режиме реального времени.
 
-## Options
+## Варианты
 
 * __question__ | `(string|node)`: строка, указывающая на вопрос, который нужно задать ученикам. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: контролирует, можно ли разрешить учащимся отвечать на опрос несколько раз.. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Multiple Choice Survey
 * __onSubmit__ | `function`: функция, вызываемая при получении ответа. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <MultipleChoiceSurvey

@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 Een ISLE-component die een meerkeuzevraag maakt. Het ondersteunt het geval waarin de leerling een enkel antwoord moet selecteren en wanneer er mogelijk meerdere juiste antwoorden zijn en alle juiste antwoorden moeten worden gekozen.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: de vraag die bovenaan de meerkeuzecomponent wordt getoond. Default: `''`.
 * __solution__ | `(number|array)`: nummer dat aangeeft welk antwoord juist is of een 'raster' van de juiste antwoordnummers voor het geval de cursist meerdere antwoorden zou moeten kunnen selecteren.. Default: `none`.
@@ -27,7 +27,7 @@ Een ISLE-component die een meerkeuzevraag maakt. Het ondersteunt het geval waari
 * __onSubmit__ | `function`: terugbellen na het indienen van een antwoord. Default: `onSubmit(){}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

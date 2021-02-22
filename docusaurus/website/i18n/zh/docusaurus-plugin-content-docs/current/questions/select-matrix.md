@@ -6,7 +6,7 @@ sidebar_label: Select Question Matrix
 
 一道题的答案由多个选择框组成。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 在选择问题矩阵的顶部显示的问题。. Default: `''`.
 * __rows__ | `array`: 行标签. Default: `[]`.
@@ -28,7 +28,7 @@ sidebar_label: Select Question Matrix
 * __onSubmit__ | `function`: 提交时调用的回调函数，第一个参数是答案，第二个参数是表示正确性的布尔值。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <SelectQuestionMatrix

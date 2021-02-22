@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 Komponent ISLE, który pozwala na stworzenie efektu maszyny do pisania.
 
-## Options
+## Opcje
 
 * __delay__ | `number`: początkowe opóźnienie przed uruchomieniem maszyny do pisania (w milisekundach). Default: `none`.
 * __hold__ | `number`: jeśli tekst jest tablicą łańcuchów, przytrzymaj określony czas trwania, pełny zostanie wyświetlony zanim przejdzie do następnego elementu tablicy. Default: `2000`.
@@ -17,7 +17,7 @@ Komponent ISLE, który pozwala na stworzenie efektu maszyny do pisania.
 * __text__ | `(string|array<string>)`: pełny tekst, który ma zostać wyświetlony. Default: `''`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

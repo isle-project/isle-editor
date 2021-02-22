@@ -6,7 +6,7 @@ sidebar_label: Proportions Input
 
 Um componente de entrada de proporções. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou ligar o valor a uma variável global através do atributo "ligar".
 
-## Options
+## Opções
 
 * __colors__ | `array<string>`: variedade de cores para os componentes da carta de tortas. Se não for definida, será utilizada uma escala de cores personalizada. Default: `none`.
 * __disabled__ | `boolean`: controla se o campo de entrada está desativado. Default: `false`.
@@ -17,7 +17,7 @@ Um componente de entrada de proporções. Pode ser usado como parte de um painel
 * __step__ | `number`: o passo das setas vistas ao passar o cursor por cima da caixa de entrada. Default: `0.1`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <ProportionsInput

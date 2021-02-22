@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 Eine Ordnungsfragekomponente, die den Schüler auffordert, eine Sammlung von Elementen in die richtige Reihenfolge zu bringen.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: Frage, bei der der Schüler die verfügbaren `Optionen` in die richtige Reihenfolge bringen muss. Default: `''`.
 * __options__ | `array (required)`: eine Reihe von Texten, die der Kursteilnehmer in die richtige Reihenfolge bringen muss (es wird angenommen, dass es sich um die mitgelieferte Reihenfolge handelt). Default: `none`.
@@ -25,7 +25,7 @@ Eine Ordnungsfragekomponente, die den Schüler auffordert, eine Sammlung von Ele
 * __onSubmit__ | `function`: Callback, der beim Absenden der Antwort aufgerufen wird; hat als einzigen Parameter ein `Boolesches`, das angibt, ob die Elemente in der richtigen Reihenfolge platziert wurden. Default: `onSubmit() {}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

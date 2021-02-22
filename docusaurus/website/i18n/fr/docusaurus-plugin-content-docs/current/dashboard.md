@@ -20,7 +20,7 @@ Un tableau de bord permettant de combiner le traitement de plusieurs champs de s
 * __title__ | `(string|node)`: titre de la carte. Default: `''`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

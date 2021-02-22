@@ -21,7 +21,7 @@ Diagramme en barres.
 * __direction__ | `string`: comment ordonner les barres le long de l'axe des x ("ascendant" ou "descendant"). Default: `'ascending'`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <BarChart 

@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 2標本平均検定。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __x__ | `string (required)`: 先頭変数名. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Two-Sample Mean Test
 * __showDecision__ | `boolean`: は，指定された有意水準で帰無仮説が棄却されたかどうかを表示するかどうかを制御します．. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <MeanTest2

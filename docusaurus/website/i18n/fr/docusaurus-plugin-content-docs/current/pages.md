@@ -19,7 +19,7 @@ Un composant de pagination ISLE qui permet à l'utilisateur de se déplacer dans
 * __onSelect__ | `function`: Fonction invoquée lorsque le changement actif est modifié. Reçoit le nouvel index de la page active comme seul paramètre. Default: `onSelect() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

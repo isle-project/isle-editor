@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 Eine Komponente, die ihre Kinder in einer Diashow oder einem Karussell anzeigt.
 
-## Options
+## Optionen
 
 * __title__ | `string`: Titel für die Diashow / das Karussell, der im oberen Bereich angezeigt werden soll. Default: `''`.
 * __dots__ | `boolean`: Anzeigepunkte am unteren Rand zum schnellen Navigieren zu jeder Folie. Default: `true`.
@@ -21,7 +21,7 @@ Eine Komponente, die ihre Kinder in einer Diashow oder einem Karussell anzeigt.
 * __onClick__ | `function`: Callback, der beim Klicken auf die Schaltflächen next/previous aufgerufen wird. Default: `onClick() {}`.
 
 
-## Examples
+## Beispiele
 
 
 import Tabs from '@theme/Tabs';

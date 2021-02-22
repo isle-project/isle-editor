@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 Wykres konturów.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __x__ | `string (required)`: Zmienna x-axis. Default: `none`.
@@ -17,7 +17,7 @@ Wykres konturów.
 * __onSelected__ | `function`: wywołanie zwrotne, gdy punkty są wybierane za pomocą wartości x, y i wybranych punktów. Default: `onSelected() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ContourChart 

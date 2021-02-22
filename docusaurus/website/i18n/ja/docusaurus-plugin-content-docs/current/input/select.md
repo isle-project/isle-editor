@@ -6,7 +6,7 @@ sidebar_label: Select Input
 
 選択入力コンポーネント。ISLE ダッシュボードの一部として使用することも、スタンドアロンで使用することもできます。後者の場合、`onChange` 属性で変更を処理するか、`bind` 属性でグローバル変数に値をバインドします。
 
-## Options
+## オプション
 
 * __bind__ | `string`: 割り当てられる番号のグローバル変数名. Default: `''`.
 * __clearable__ | `boolean`: 選択をクリアしてもよいかどうかを示すブール値. Default: `none`.
@@ -23,7 +23,7 @@ sidebar_label: Select Input
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <SelectInput

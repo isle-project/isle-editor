@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Сплошная визуализация.
 
-## Options
+## Варианты
 
 * __data__ | `array (required)`: массив данных. Default: `none`.
 * __draggable__ | `boolean`: контролирует, следует ли перетаскивать участок. Default: `false`.
@@ -30,7 +30,7 @@ sidebar_label: Plotly
 * __toggleFullscreen__ | `boolean`: управляет тем, позволять ли отображать график в полноэкранном режиме. Default: `true`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <Plotly

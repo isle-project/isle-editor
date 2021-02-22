@@ -6,7 +6,7 @@ sidebar_label: Naive Bayes
 
 Naive Bayes unter der Annahme, dass die Prädiktoren angesichts der Klassenzugehörigkeit einer Normalverteilung folgen.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
@@ -16,7 +16,7 @@ Naive Bayes unter der Annahme, dass die Prädiktoren angesichts der Klassenzugeh
 * __onPredict__ | `function`: Callback, der mit Vorhersagen und Residuen nach der Modellanpassung aufgerufen wird. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <NaiveBayes 

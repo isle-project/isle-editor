@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 講義のスライドや空のページにメモを取るためのドローイングスケッチパッド。
 
-## Options
+## オプション
 
 * __autoSave__ | `boolean`: は、エディタが現在のテキストをブラウザのローカルストレージに保存するかどうかを制御します。. Default: `true`.
 * __feedbackButtons__ | `boolean`: 各スライドにフィードバックボタンを表示するかどうかを制御します。. Default: `false`.
@@ -36,7 +36,7 @@ sidebar_label: Sketchpad
 * __onChange__ | `function`: 新しい線要素が描画されるたびに呼び出されるコールバック. Default: `onChange() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

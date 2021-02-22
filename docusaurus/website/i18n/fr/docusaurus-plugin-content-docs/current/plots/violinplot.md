@@ -14,7 +14,7 @@ Une intrigue au violon.
 * __showBox__ | `boolean`: contrôle l'affichage ou non d'un box plot à l'intérieur. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <ViolinPlot 

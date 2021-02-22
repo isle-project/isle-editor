@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 一个用于编写笔记或报告的文本编辑器。支持将笔记导出为HTML或PDF文件，以及自动提交到ISLE服务器。
 
-## Options
+## 选项
 
 * __allowSubmissions__ | `boolean`: 控制学生是否可以向服务器提交他们的报告. Default: `true`.
 * __canLoadHTML__ | `boolean`: 控制是否显示将保存的HTML文件加载到编辑器中的按钮。. Default: `true`.
@@ -18,7 +18,7 @@ sidebar_label: Text Editor
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <TextEditor />

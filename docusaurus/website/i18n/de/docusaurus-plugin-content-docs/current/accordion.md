@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Eine Akkordeon-Komponente, die vertikale Schieberegler steuert.
 
-## Options
+## Optionen
 
 * __active__ | `number`: Index des anfangs zu öffnenden Schiebers. Default: `none`.
 * __canCloseAll__ | `boolean`: ob man alle Kopfzeilen einklappen kann. Default: `false`.
@@ -18,7 +18,7 @@ Eine Akkordeon-Komponente, die vertikale Schieberegler steuert.
 * __style__ | `object`: CSS-Inline-Stile für äußeres div. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

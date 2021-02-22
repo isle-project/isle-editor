@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 Een bestelvraagcomponent die de student vraagt om een verzameling elementen in de juiste volgorde te brengen.
 
-## Options
+## Opties
 
 * __question__ | `(string|node)`: vraag waarvoor de student de beschikbare `opties` in de juiste volgorde moet brengen. Default: `''`.
 * __options__ | `array (required)`: een reeks teksten die de student in de juiste volgorde moet brengen (verondersteld wordt de geleverde bestelling te zijn). Default: `none`.
@@ -25,7 +25,7 @@ Een bestelvraagcomponent die de student vraagt om een verzameling elementen in d
 * __onSubmit__ | `function`: callback ingeroepen bij het indienen van een antwoord; heeft als enige parameter een `boolean` die aangeeft of de elementen in de juiste volgorde zijn geplaatst. Default: `onSubmit() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

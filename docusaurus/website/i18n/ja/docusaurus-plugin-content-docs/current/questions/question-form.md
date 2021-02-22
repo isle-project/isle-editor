@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 異なる質問コンポーネントを1つの送信ボタンと一緒に組み合わせたフォームコンポーネントです。
 
-## Options
+## オプション
 
 * __buttonLabel__ | `string`: 送信ボタンのラベル. Default: `none`.
 * __onSubmit__ | `function`: 送信ボタンがクリックされたときに呼び出されるコールバック. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <QuestionForm>

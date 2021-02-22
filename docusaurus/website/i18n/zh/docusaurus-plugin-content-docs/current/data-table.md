@@ -6,7 +6,7 @@ sidebar_label: Data Table
 
 一个以表格形式显示数据的组件。建立在[react-table](https://react-table.js.org/)之上。
 
-## Options
+## 选项
 
 * __data__ | `(array|object) (required)`: 要查看的数据对象或数组。如果是对象，键对应于列值，而数组则是一个对象数组，每个列对应一个命名字段。. Default: `none`.
 * __dataInfo__ | `object`: 对象中包含描述数据集的 "info "字符串数组、数据集的 "name"、"variables "的 "object"，其键值与变量名称和变量描述相对应，一个 "showOnStartup "布尔值控制是否在启动时显示信息模式。. Default: `{
@@ -36,7 +36,7 @@ sidebar_label: Data Table
 * __style__ | `object`: 一个允许自定义css样式的对象。默认为空对象。. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <DataTable

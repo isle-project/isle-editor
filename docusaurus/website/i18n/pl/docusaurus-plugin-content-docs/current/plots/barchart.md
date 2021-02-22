@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 Wykres słupkowy.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: zmienna do wyświetlania. Default: `none`.
@@ -21,7 +21,7 @@ Wykres słupkowy.
 * __direction__ | `string`: jak zamawiać pręty wzdłuż osi x (`skośne` lub `skośne`). Default: `'ascending'`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <BarChart 

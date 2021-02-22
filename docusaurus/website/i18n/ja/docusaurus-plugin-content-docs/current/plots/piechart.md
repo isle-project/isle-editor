@@ -6,7 +6,7 @@ sidebar_label: Pie Chart
 
 デフォルトでは、選択された変数からのすべてのカテゴリのカウントを表示する円グラフコンポーネントです。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Pie Chart
 * __summaryVariable__ | `string`: 各 `variable` カテゴリの合計を表示するオプションの変数. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <PieChart 

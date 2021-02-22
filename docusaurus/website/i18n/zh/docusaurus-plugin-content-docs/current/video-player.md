@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 一个用于播放YouTube、SoundCloud和Vimeo的媒体文件和内容的组件。
 
-## Options
+## 选项
 
 * __url__ | `string`: 视频的URL. Default: `''`.
 * __controls__ | `boolean`: 表示是否显示视频播放器的控制元素。. Default: `false`.
@@ -26,7 +26,7 @@ sidebar_label: Video Player
 * __onSeek__ | `function`: 当用 "秒 "参数调用媒体搜索时，回调。. Default: `onSeek() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

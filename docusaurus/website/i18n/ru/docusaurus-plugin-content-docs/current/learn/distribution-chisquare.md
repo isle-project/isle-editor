@@ -6,7 +6,7 @@ sidebar_label: Chi-squared Distribution
 
 Компонент обучения для расчета вероятностей распределения хи-квадрат.
 
-## Options
+## Варианты
 
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.01`.
 * __maxDF__ | `number`: максимальные степени свободы, которые могут быть выбраны в поле ввода. Default: `50`.
@@ -14,7 +14,7 @@ sidebar_label: Chi-squared Distribution
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnChisquareDistribution />

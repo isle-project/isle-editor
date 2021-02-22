@@ -18,7 +18,7 @@ Affiche une minuterie qui déclenche un rappel prédéfini lorsque le temps est 
 * __onTimeUp__ | `function`: rappel invoqué lorsque le délai est écoulé. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Timer 

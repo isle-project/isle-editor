@@ -16,7 +16,7 @@ Une composante d'apprentissage illustrant le Théorème des limites centrales (C
 * __hideFormulas__ | `boolean`: contrôle si les formules doivent être cachées dans le texte du composant. Default: `false`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnContinuousCLT />

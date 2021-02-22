@@ -6,7 +6,7 @@ sidebar_label: Feedback Buttons
 
 ユーザーのフィードバックを収集するためのボタン。
 
-## Options
+## オプション
 
 * __confusedMsg__ | `string`: 混乱したボタンのツールチップに表示されるメッセージ. Default: `none`.
 * __feedbackMsg__ | `string`: 詳細フィードバックボタンのツールチップに表示されるメッセージ. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Feedback Buttons
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

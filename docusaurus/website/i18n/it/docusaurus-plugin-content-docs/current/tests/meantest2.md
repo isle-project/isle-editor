@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 Test della media a due campioni.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __x__ | `string (required)`: nome della prima variabile. Default: `none`.
@@ -21,7 +21,7 @@ Test della media a due campioni.
 * __showDecision__ | `boolean`: controlla se visualizzare se l'ipotesi nulla viene respinta al livello di significatività specificato. Default: `false`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <MeanTest2

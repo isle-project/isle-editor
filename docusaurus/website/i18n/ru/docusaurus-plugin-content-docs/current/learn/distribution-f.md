@@ -6,7 +6,7 @@ sidebar_label: F Distribution
 
 Компонент обучения для расчета вероятностей распределения F.
 
-## Options
+## Варианты
 
 * __domain__ | `object`: объект массивов `x` и `y` с начальной и конечной точками для соответствующей оси. Default: `none`.
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.01`.
@@ -18,7 +18,7 @@ sidebar_label: F Distribution
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnFDistribution />

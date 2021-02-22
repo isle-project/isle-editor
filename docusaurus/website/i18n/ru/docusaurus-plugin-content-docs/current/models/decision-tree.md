@@ -6,7 +6,7 @@ sidebar_label: Decision Tree
 
 Деревья регрессии и классификации.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __y__ | `string (required)`: переменная результата. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Decision Tree
 * __onPredict__ | `function`: вызов обратного вызова с помощью объекта модели при нажатии кнопки предикта. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <DecisionTree 

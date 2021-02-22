@@ -6,7 +6,7 @@ sidebar_label: F Distribution
 
 F分布の確率を計算するための学習コンポーネント。
 
-## Options
+## オプション
 
 * __domain__ | `object`: オブジェクトであり、それぞれの軸の始点と終点を持つ `x` と `y` の配列です。. Default: `none`.
 * __step__ | `(number|string)`: スクロール入力のステップサイズ. Default: `0.01`.
@@ -18,7 +18,7 @@ F分布の確率を計算するための学習コンポーネント。
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnFDistribution />

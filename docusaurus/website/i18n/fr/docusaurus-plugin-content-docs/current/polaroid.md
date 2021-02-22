@@ -17,7 +17,7 @@ Composant affichant une image dans le style d'un polaroid.
 * __onClick__ | `function`: gestionnaire d'événements invoqué lorsque l'image est cliquée (reçoit l'identifiant du Polaroïd comme paramètre). Default: `none`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

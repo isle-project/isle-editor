@@ -6,7 +6,7 @@ sidebar_label: Draggable List
 
 学生が再注文できるドラッグ可能な要素のリスト。
 
-## Options
+## オプション
 
 * __data__ | `array (required)`: id` と `text` キーを持つオブジェクトの配列. Default: `none`.
 * __onChange__ | `function`: コールバックは、変更のたびに新しい順序のデータ配列で呼び出されます。. Default: `onChange(){}`.
@@ -17,7 +17,7 @@ sidebar_label: Draggable List
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <DraggableList

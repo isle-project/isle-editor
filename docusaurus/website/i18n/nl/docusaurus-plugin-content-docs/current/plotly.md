@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Korte visualisatie.
 
-## Options
+## Opties
 
 * __data__ | `array (required)`: gegevensreeks. Default: `none`.
 * __draggable__ | `boolean`: controleert of het perceel versleepbaar moet zijn. Default: `false`.
@@ -30,7 +30,7 @@ Korte visualisatie.
 * __toggleFullscreen__ | `boolean`: bepaalt of het mogelijk is de plot op volledig scherm weer te geven.. Default: `true`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Plotly

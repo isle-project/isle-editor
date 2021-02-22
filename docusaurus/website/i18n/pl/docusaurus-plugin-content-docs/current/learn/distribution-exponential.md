@@ -6,7 +6,7 @@ sidebar_label: Exponential Distribution
 
 Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu wykładniczego.
 
-## Options
+## Opcje
 
 * __hideCDF__ | `boolean`: kontroluje, czy należy ukryć działki CDF. Default: `false`.
 * __step__ | `(number|string)`: wielkość kroku wejścia przewijania. Default: `0.01`.
@@ -15,7 +15,7 @@ Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu wykładniczego.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnExponentialDistribution />

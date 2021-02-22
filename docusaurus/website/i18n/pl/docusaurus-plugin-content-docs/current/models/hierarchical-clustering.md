@@ -6,7 +6,7 @@ sidebar_label: Hierarchical Clustering
 
 Hierarchiczne zgrupowanie.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variables__ | `array<string> (required)`: nazwy zmiennych wykorzystywanych do tworzenia klastrów. Default: `none`.
@@ -15,7 +15,7 @@ Hierarchiczne zgrupowanie.
 * __onResult__ | `function`: wywołanie zwrotne z obiektem wzorcowym. Default: `onResult() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <HierarchicalClustering 

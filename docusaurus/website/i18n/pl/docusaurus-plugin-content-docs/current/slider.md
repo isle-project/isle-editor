@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 Element, który wyświetla swoje dzieci w pokazie slajdów lub na karuzeli.
 
-## Options
+## Opcje
 
 * __title__ | `string`: tytuł pokazu slajdów / karuzeli, która ma być wyświetlana u góry. Default: `''`.
 * __dots__ | `boolean`: Kropki na dole wyświetlacza pozwalają na szybką nawigację do dowolnego slajdu. Default: `true`.
@@ -21,7 +21,7 @@ Element, który wyświetla swoje dzieci w pokazie slajdów lub na karuzeli.
 * __onClick__ | `function`: wywołanie zwrotne po kliknięciu na następny/poprzedni przycisk. Default: `onClick() {}`.
 
 
-## Examples
+## Przykłady
 
 
 import Tabs from '@theme/Tabs';

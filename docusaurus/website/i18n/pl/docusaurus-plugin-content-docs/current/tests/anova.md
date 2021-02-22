@@ -6,7 +6,7 @@ sidebar_label: ANOVA
 
 Analiza wariancji.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: nazwa zmiennej, która ma być wyświetlana. Default: `none`.
@@ -14,7 +14,7 @@ Analiza wariancji.
 * __showDecision__ | `boolean`: kontroluje, czy należy wyświetlić decyzję o badaniu. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Anova

@@ -6,13 +6,13 @@ sidebar_label: span
 
 Ogólny element kontenerowy inline.
 
-## Options
+## Opcje
 
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

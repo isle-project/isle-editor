@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Komponente zum Rendern eines R-Plots innerhalb einer ISLE-Lektion.
 
-## Options
+## Optionen
 
 * __code__ | `string`: R-Code zum Erzeugen des Plots. Default: `''`.
 * __width__ | `(number|string)`: Breite des Plots (in px). Default: `600`.
@@ -20,7 +20,7 @@ Komponente zum Rendern eines R-Plots innerhalb einer ISLE-Lektion.
 * __onDone__ | `function`: Callback, der mit den Argumenten `err`, `img` und `body` aufgerufen wird, sobald ein Plot erstellt ist. Default: `onDone() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

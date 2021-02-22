@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 Een tekstveldonderdeel. Gebruikt als een stand-alone component, moeten wijzigingen worden afgehandeld via het `on-Change` attribuut.
 
-## Options
+## Opties
 
 * __defaultValue__ | `string`: standaardwaarde van het tekstgebied. Default: `''`.
 * __value__ | `string`: tekstwaarde (voor gecontroleerde component). Default: `none`.
@@ -20,7 +20,7 @@ Een tekstveldonderdeel. Gebruikt als een stand-alone component, moeten wijziging
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <TextArea

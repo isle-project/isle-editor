@@ -6,7 +6,7 @@ sidebar_label: Typewriter
 
 Eine ISLE-Komponente, mit der Sie einen Schreibmaschineneffekt erzeugen können.
 
-## Options
+## Optionen
 
 * __delay__ | `number`: Anfangsverzögerung vor dem Start der Schreibmaschine (in Millisekunden). Default: `none`.
 * __hold__ | `number`: wenn text ein Array von Zeichenketten ist, halten Sie die Dauer fest, die der Volltext angezeigt wird, bevor er zum nächsten Element im Array übergeht. Default: `2000`.
@@ -17,7 +17,7 @@ Eine ISLE-Komponente, mit der Sie einen Schreibmaschineneffekt erzeugen können.
 * __text__ | `(string|array<string>)`: der anzuzeigende Volltext. Default: `''`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

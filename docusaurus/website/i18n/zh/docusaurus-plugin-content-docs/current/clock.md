@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 显示当前时间的时钟组件。
 
-## Options
+## 选项
 
 * __duration__ | `boolean`: 如果设置，则显示会话的持续时间（不是实际时间）。. Default: `false`.
 * __format__ | `string`: 时间格式(可以是`HH:MM`，`HH:MM:SS`，或`HH`). Default: `''`.
@@ -14,7 +14,7 @@ sidebar_label: Clock
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

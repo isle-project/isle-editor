@@ -13,7 +13,7 @@ Une composante d'apprentissage pour le calcul des probabilités d'une distributi
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnBinomialDistribution />

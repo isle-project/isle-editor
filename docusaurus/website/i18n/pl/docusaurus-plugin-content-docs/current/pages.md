@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 Komponent paginacyjny ISLE, który pozwala użytkownikowi na przejście przez sekwencję stron.
 
-## Options
+## Opcje
 
 * __activePage__ | `number`: strona aktywna. Default: `1`.
 * __disabled__ | `boolean`: kontroluje, czy pasek nawigacyjny jest aktywny, czy nie. Default: `false`.
@@ -19,7 +19,7 @@ Komponent paginacyjny ISLE, który pozwala użytkownikowi na przejście przez se
 * __onSelect__ | `function`: Funkcja wywoływana po zmianie aktywnej zmiany. Otrzymuje nowy aktywny indeks strony jako jedyny parametr. Default: `onSelect() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

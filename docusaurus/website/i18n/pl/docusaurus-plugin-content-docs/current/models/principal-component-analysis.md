@@ -6,7 +6,7 @@ sidebar_label: Principal Component Analysis
 
 Analiza głównych składników.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variables__ | `array<string> (required)`: nazwy zmiennych wykorzystywanych do tworzenia klastrów. Default: `none`.
@@ -16,7 +16,7 @@ Analiza głównych składników.
 * __onResult__ | `function`: wywołanie zwrotne z obiektem i komponentami modelu. Default: `onResult() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <PrincipalComponentAnalysis 

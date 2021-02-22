@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 Element wejściowy numeru. Może być używany jako część deski rozdzielczej ISLE lub autonomiczny. W tym ostatnim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.
 
-## Options
+## Opcje
 
 * __bind__ | `string`: nazwa zmiennej globalnej dla numeru, który ma być przypisany do. Default: `''`.
 * __defaultValue__ | `number`: wartość wskazująca domyślną wartość wejścia podczas uruchamiania. Default: `0`.
@@ -29,7 +29,7 @@ Element wejściowy numeru. Może być używany jako część deski rozdzielczej 
 * __tooltipPlacement__ | `string`: kierunek końcówki narzędzia. Default: `'left'`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <NumberInput

@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 一个数字输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过`onChange`属性处理变化，或者通过`bind`属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __bind__ | `string`: 全局变量的名称，用于分配到的数字。. Default: `''`.
 * __defaultValue__ | `number`: 表示启动时输入的默认值。. Default: `0`.
@@ -29,7 +29,7 @@ sidebar_label: Number Input
 * __tooltipPlacement__ | `string`: 工具提示的方向. Default: `'left'`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <NumberInput

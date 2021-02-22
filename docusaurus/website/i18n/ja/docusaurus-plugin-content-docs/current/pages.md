@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 ユーザーが一連のページをステップスルーできるようにするISLEページネーションコンポーネント。
 
-## Options
+## オプション
 
 * __activePage__ | `number`: アクティブページ. Default: `1`.
 * __disabled__ | `boolean`: はナビゲーションバーがアクティブかどうかを制御します。. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: Pages
 * __onSelect__ | `function`: アクティブな変更が変更されたときに呼び出される関数です。新しいアクティブなページインデックスを単独パラメータとして受け取ります。. Default: `onSelect() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

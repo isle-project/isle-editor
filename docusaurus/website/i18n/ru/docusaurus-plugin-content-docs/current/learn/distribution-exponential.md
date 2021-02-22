@@ -6,7 +6,7 @@ sidebar_label: Exponential Distribution
 
 Компонент обучения для расчета вероятностей экспоненциального распределения.
 
-## Options
+## Варианты
 
 * __hideCDF__ | `boolean`: управляет тем, скрывать ли CDF сюжеты. Default: `false`.
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.01`.
@@ -15,7 +15,7 @@ sidebar_label: Exponential Distribution
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnExponentialDistribution />

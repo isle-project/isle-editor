@@ -6,7 +6,7 @@ sidebar_label: QR Code
 
 Codice QR.
 
-## Options
+## Opzioni
 
 * __text__ | `string`: testo da codificare in codice QR (default per l'URL della lezione se non impostato). Default: `none`.
 * __scale__ | `number`: numero di pixel per modulo (punti neri). Default: `8`.
@@ -16,7 +16,7 @@ Codice QR.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

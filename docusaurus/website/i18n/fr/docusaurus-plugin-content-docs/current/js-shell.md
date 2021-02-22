@@ -24,7 +24,7 @@ Un shell Javascript interactif qui peut être utilisé pour exécuter des comman
 * __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <JSShell id = "jseditor" 

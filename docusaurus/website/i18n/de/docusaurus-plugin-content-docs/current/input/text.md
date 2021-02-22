@@ -6,7 +6,7 @@ sidebar_label: Text Input
 
 Eine Komponente zur Texteingabe. Kann als Teil eines ISLE Dashboards oder eigenständig verwendet werden. Im letzteren Fall wollen Sie Änderungen über das Attribut `onChange` behandeln oder den Wert über das Attribut `bind` an eine globale Variable binden.
 
-## Options
+## Optionen
 
 * __bind__ | `string`: Name der globalen Variablen, der die Nummer zugewiesen werden soll. Default: `none`.
 * __defaultValue__ | `string`: Ein Wert, der den Standardwert des Eingangs beim Start angibt. Default: `''`.
@@ -23,7 +23,7 @@ Eine Komponente zur Texteingabe. Kann als Teil eines ISLE Dashboards oder eigens
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <TextInput

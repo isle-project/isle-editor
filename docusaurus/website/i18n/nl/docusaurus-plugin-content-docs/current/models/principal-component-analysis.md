@@ -6,7 +6,7 @@ sidebar_label: Principal Component Analysis
 
 Hoofdcomponentenanalyse.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variables__ | `array<string> (required)`: namen van variabelen die worden gebruikt voor het clusteren. Default: `none`.
@@ -16,7 +16,7 @@ Hoofdcomponentenanalyse.
 * __onResult__ | `function`: callback ingeroepen met modelobject en componenten. Default: `onResult() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <PrincipalComponentAnalysis 

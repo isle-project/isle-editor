@@ -6,7 +6,7 @@ sidebar_label: Hierarchical Clustering
 
 Hiërarchische clustering.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variables__ | `array<string> (required)`: namen van variabelen die worden gebruikt voor het clusteren. Default: `none`.
@@ -15,7 +15,7 @@ Hiërarchische clustering.
 * __onResult__ | `function`: callback ingeroepen met modelobject. Default: `onResult() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <HierarchicalClustering 

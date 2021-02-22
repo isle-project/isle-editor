@@ -6,7 +6,7 @@ sidebar_label: F Distribution
 
 Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu F.
 
-## Options
+## Opcje
 
 * __domain__ | `object`: obiekt tablicy `x` i `y` z punktem początkowym i końcowym dla danej osi. Default: `none`.
 * __step__ | `(number|string)`: wielkość kroku wejścia przewijania. Default: `0.01`.
@@ -18,7 +18,7 @@ Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu F.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnFDistribution />

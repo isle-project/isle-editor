@@ -18,7 +18,7 @@ Un élément en accordéon qui contrôle les glissières verticales.
 * __style__ | `object`: Styles CSS en ligne pour les divisions externes. Default: `none`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

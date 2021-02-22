@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 一个复选框输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，您希望通过`onChange`属性处理更改，或通过`bind`属性将值绑定到一个全局变量。
 
-## Options
+## 选项
 
 * __bind__ | `string`: 全局变量的名称，用于分配给复选框的值。. Default: `''`.
 * __defaultValue__ | `boolean`: 布尔值，表示复选框的默认值。. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Checkbox Input
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <CheckboxInput

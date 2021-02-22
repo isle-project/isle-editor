@@ -6,7 +6,7 @@ sidebar_label: Video Player
 
 Компонент для воспроизведения мультимедийных файлов и контента с YouTube, SoundCloud и Vimeo.
 
-## Options
+## Варианты
 
 * __url__ | `string`: URL-адрес видеозаписи. Default: `''`.
 * __controls__ | `boolean`: указывает, следует ли отображать элементы управления видеоплеера. Default: `false`.
@@ -26,7 +26,7 @@ sidebar_label: Video Player
 * __onSeek__ | `function`: обратный вызов, когда медиа-поиск вызывается с помощью параметра `секунды''.. Default: `onSeek() {}`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

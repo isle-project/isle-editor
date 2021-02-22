@@ -13,7 +13,7 @@ Un élément d'apprentissage illustrant l'impact d'une variable confondante lors
 * __z__ | `(string|node)`: nom de la variable confondante. Default: `'Parental Myopia'`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnCausalityDiagram x="X" y="Y" z="Z" />

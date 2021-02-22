@@ -6,7 +6,7 @@ sidebar_label: Video Lecture
 
 Eine Videovortragskomponente, die Videos anzeigt, die mit interaktiven Elementen durchsetzt sind.
 
-## Options
+## Optionen
 
 * __controls__ | `boolean`: gibt an, ob Bedienelemente der Video-Player angezeigt werden sollen. Default: `true`.
 * __instructorView__ | `boolean`: steuert, ob die Dozentenansicht einbezogen werden soll. Default: `true`.
@@ -17,7 +17,7 @@ Eine Videovortragskomponente, die Videos anzeigt, die mit interaktiven Elementen
 * __style__ | `object`: CSS-Inline-Stil. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <VideoLecture steps={[

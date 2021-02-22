@@ -6,7 +6,7 @@ sidebar_label: Switch Components
 
 Switch组件允许显示多个元素列表中的一个元素。用户可以通过点击当前显示的Switch标签的不同子元素来循环浏览。
 
-## Options
+## 选项
 
 * __active__ | `boolean`: 控制开关是否处于活动状态. Default: `true`.
 * __tooltip__ | `string`: 当鼠标悬停在开关元素上时显示的工具提示。. Default: `none`.
@@ -16,7 +16,7 @@ Switch组件允许显示多个元素列表中的一个元素。用户可以通�
 * __onChange__ | `function`: 当元素被切换时调用的回调。接收当前显示的子元素的索引作为第一个参数。. Default: `onChange() {}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

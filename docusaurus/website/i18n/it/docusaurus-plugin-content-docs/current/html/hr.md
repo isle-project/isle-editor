@@ -6,13 +6,13 @@ sidebar_label: hr
 
 Regola orizzontale che definisce una rottura tematica nel documento.
 
-## Options
+## Opzioni
 
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

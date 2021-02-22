@@ -6,7 +6,7 @@ sidebar_label: Word Cloud
 
 Словесный компонент "облако", построенный поверх [d3-cloud](https://github.com/jasondavies/d3-cloud).
 
-## Options
+## Варианты
 
 * __data__ | `array`: либо массив текстов, из которого генерируется слово "облако", либо, если `precalculated` установлен в `true`, и массив объектов подсчета слов (с ключами `текст` и `значение`). Default: `[]`.
 * __font__ | `(string|function)`: функция аксессуара с указанием лица шрифта для каждого слова. Также принимает константу вместо функции. Default: `'serif'`.
@@ -26,7 +26,7 @@ sidebar_label: Word Cloud
 * __width__ | `number`: ширина слова "облако" (в px). Default: `700`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <WordCloud data={[

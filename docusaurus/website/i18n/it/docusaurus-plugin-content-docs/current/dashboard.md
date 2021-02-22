@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 Un cruscotto per combinare la gestione di più campi di input per bambini.
 
-## Options
+## Opzioni
 
 * __autoStart__ | `boolean`: se impostata su "true", la funzione "onGenerate" viene eseguita all'avvio con i valori di ingresso predefiniti. Default: `true`.
 * __autoUpdate__ | `boolean`: controlla se la funzione `onGenerate` deve essere invocata automaticamente quando uno dei campi di input figlio cambia. Default: `false`.
@@ -20,7 +20,7 @@ Un cruscotto per combinare la gestione di più campi di input per bambini.
 * __title__ | `(string|node)`: titolo della carta. Default: `''`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

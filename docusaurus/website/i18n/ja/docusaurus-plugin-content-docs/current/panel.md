@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 カードコンポーネント。
 
-## Options
+## オプション
 
 * __className__ | `string`: CSSクラス名. Default: `''`.
 * __header__ | `(string|node)`: パネル見出し(H3). Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Panel
 * __onHide__ | `function`: 閉じボタンがクリックされた時に呼び出されるコールバック. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Word Venn Diagram
 
 一个维恩图，直观地显示了所提供的术语-文档矩阵中文档中的词的共同出现率。
 
-## Options
+## 选项
 
 * __height__ | `number`: 维恩图的高度，单位为像素. Default: `350`.
 * __nTexts__ | `number (required)`: 资料来源数量. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Word Venn Diagram
 * __width__ | `number`: 维恩图的宽度，单位为像素. Default: `600`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnWordVennDiagram />

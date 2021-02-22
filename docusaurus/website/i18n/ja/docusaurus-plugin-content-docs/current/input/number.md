@@ -6,7 +6,7 @@ sidebar_label: Number Input
 
 数値入力コンポーネント。ISLEダッシュボードの一部として使うことも、スタンドアロンで使うこともできます。後者の場合、`onChange` 属性で変更を処理するか、`bind` 属性でグローバル変数に値をバインドします。
 
-## Options
+## オプション
 
 * __bind__ | `string`: 割り当てられる番号のグローバル変数名. Default: `''`.
 * __defaultValue__ | `number`: 起動時の入力のデフォルト値を示す値. Default: `0`.
@@ -29,7 +29,7 @@ sidebar_label: Number Input
 * __tooltipPlacement__ | `string`: ツールチップの方向. Default: `'left'`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <NumberInput

@@ -6,7 +6,7 @@ sidebar_label: Contingency Table
 
 偶発的な表。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __rowVar__ | `string (required)`: 行変数名. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Contingency Table
 * __nDecimalPlaces__ | `number`: 表中の相対周波数の小数点以下の桁数. Default: `3`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ContingencyTable

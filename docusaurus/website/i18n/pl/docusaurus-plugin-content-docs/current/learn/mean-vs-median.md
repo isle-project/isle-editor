@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 Interaktywna gra sprawdzająca zdolność ucznia do rozpoznawania mediany i średniej danej dystrybucji.
 
-## Options
+## Opcje
 
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `false`.
 * __header__ | `string`: tytuł panelu, w którym zostanie wygenerowana średnia i mediana. Default: `none`.
@@ -17,7 +17,7 @@ Interaktywna gra sprawdzająca zdolność ucznia do rozpoznawania mediany i śre
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnMeanVSMedian />

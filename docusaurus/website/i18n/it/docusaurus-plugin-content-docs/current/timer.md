@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 Visualizza un timer che attiverà un richiamo predefinito quando il tempo è scaduto. Un esempio di caso d'uso è il tempo dei quiz.
 
-## Options
+## Opzioni
 
 * __id__ | `string`: l'unico `stringa` ID per il timer. Se viene impostato un ID, il componente del timer è persistente sul refresh della pagina. Default: `none`.
 * __active__ | `boolean (required)`: bandiera che può essere attivata per avviare o mettere in pausa il timer. Default: `none`.
@@ -18,7 +18,7 @@ Visualizza un timer che attiverà un richiamo predefinito quando il tempo è sca
 * __onTimeUp__ | `function`: richiamata quando il timer si esaurisce. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Timer 

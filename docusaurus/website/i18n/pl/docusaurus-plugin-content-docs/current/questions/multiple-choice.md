@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 Składnik ISLE, który stawia pytanie wielokrotnego wyboru. Wspiera on przypadek, gdy uczący się musi wybrać jedną odpowiedź i gdy może być wiele poprawnych odpowiedzi i wszystkie poprawne muszą być wybrane.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie wyświetlane w górnej części elementu wielokrotnego wyboru. Default: `''`.
 * __solution__ | `(number|array)`: liczba oznaczająca, która odpowiedź jest poprawna lub `liczba` poprawnych numerów odpowiedzi w przypadku, gdy uczący się powinien być w stanie wybrać wiele odpowiedzi.. Default: `none`.
@@ -27,7 +27,7 @@ Składnik ISLE, który stawia pytanie wielokrotnego wyboru. Wspiera on przypadek
 * __onSubmit__ | `function`: wywołanie zwrotne po udzieleniu odpowiedzi. Default: `onSubmit(){}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

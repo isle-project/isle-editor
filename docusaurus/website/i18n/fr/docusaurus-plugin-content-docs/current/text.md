@@ -15,7 +15,7 @@ Composant texte, qui permet de rendre le texte brut sous forme de Markdown et pe
 * __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 
 
-## Examples
+## Exemples
 
 
 import Tabs from '@theme/Tabs';

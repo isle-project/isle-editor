@@ -6,7 +6,7 @@ sidebar_label: Box Plot
 
 Een box plot.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `(array|string) (required)`: weer te geven variabele. Default: `none`.
@@ -15,7 +15,7 @@ Een box plot.
 * __overlayPoints__ | `boolean`: controles om punten te overlappen. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <BoxPlot 

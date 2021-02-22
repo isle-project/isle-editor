@@ -6,7 +6,7 @@ sidebar_label: Dashboard
 
 一个用于组合处理多个子输入字段的仪表板。
 
-## Options
+## 选项
 
 * __autoStart__ | `boolean`: 如果设置为 "true"，"onGenerate "函数在启动时以默认输入值执行。. Default: `true`.
 * __autoUpdate__ | `boolean`: 控制当一个子输入字段发生变化时，是否应自动调用 "onGenerate "函数。. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Dashboard
 * __title__ | `(string|node)`: 卡名. Default: `''`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>

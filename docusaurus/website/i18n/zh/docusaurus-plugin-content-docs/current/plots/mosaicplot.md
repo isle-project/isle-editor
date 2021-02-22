@@ -6,7 +6,7 @@ sidebar_label: Mosaic Plot
 
 一个马赛克情节。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __variables__ | `array (required)`: 要显示的变量数组. Default: `none`.
@@ -14,7 +14,7 @@ sidebar_label: Mosaic Plot
 * __axisLabels__ | `string`: 分组变量. Default: `'parallel to the axis'`.
 
 
-## Examples
+## 例子
 
 ## Examples
 

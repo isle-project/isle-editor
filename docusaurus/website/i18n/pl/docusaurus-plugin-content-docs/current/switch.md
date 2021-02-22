@@ -6,7 +6,7 @@ sidebar_label: Switch Components
 
 Komponent przełącznika pozwala na wyświetlenie jednego elementu z listy kilku elementów. Użytkownicy mogą przełączać się pomiędzy różnymi dziećmi znacznika Switch, klikając na aktualnie wyświetlany element.
 
-## Options
+## Opcje
 
 * __active__ | `boolean`: kontroluje, czy przełącznik jest aktywny, czy nie. Default: `true`.
 * __tooltip__ | `string`: etykieta narzędzi wyświetlana po najechaniu na element przełączający. Default: `none`.
@@ -16,7 +16,7 @@ Komponent przełącznika pozwala na wyświetlenie jednego elementu z listy kilku
 * __onChange__ | `function`: wywołanie zwrotne po włączeniu elementów. Otrzymuje jako swój pierwszy argument indeks aktualnie wyświetlanego dziecka. Default: `onChange() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

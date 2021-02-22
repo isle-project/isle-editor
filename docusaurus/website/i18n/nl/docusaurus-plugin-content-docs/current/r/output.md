@@ -6,7 +6,7 @@ sidebar_label: R Output
 
 Component voor het weergeven van R-uitvoer binnen een ISLE-les.
 
-## Options
+## Opties
 
 * __code__ | `string`: R-code gebruikt om te evalueren. Default: `''`.
 * __libraries__ | `array`: R-bibliotheken die automatisch moeten worden geladen wanneer de invoer `code` wordt uitgevoerd. Default: `[]`.
@@ -15,7 +15,7 @@ Component voor het weergeven van R-uitvoer binnen een ISLE-les.
 * __onResult__ | `function`: callback ingeroepen met `error` (`null` als de operatie succesvol was) en `resultaat` houden van R-uitgang. Default: `onResult() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <ROutput code="runif(10)" />

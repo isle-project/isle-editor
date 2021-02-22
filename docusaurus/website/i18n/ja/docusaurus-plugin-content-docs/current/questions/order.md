@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 生徒に要素の集合体を正しい順序に持ってくるように求める順序問題のコンポーネントです。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 択一問題. Default: `''`.
 * __options__ | `array (required)`: 序列を正す. Default: `none`.
@@ -25,7 +25,7 @@ sidebar_label: Order Question
 * __onSubmit__ | `function`: 回答が提出されたときに呼び出されるコールバック; 唯一のパラメータとして、要素が正しい順序で配置されているかどうかを示す `boolean` を持ちます。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

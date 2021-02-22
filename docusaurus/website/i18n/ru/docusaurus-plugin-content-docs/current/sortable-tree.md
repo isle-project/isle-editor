@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 Тонкая обёртка вокруг [реакторно-сортировочного дерева](https://www.npmjs.com/package/react-sortable-tree), которая поддерживает все свойства указанного компонента.
 
-## Options
+## Варианты
 
 * __title__ | `string`: заголовок. Default: `none`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <SortableTree 

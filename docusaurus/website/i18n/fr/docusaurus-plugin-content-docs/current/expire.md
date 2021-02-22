@@ -12,7 +12,7 @@ La composante "expiration" fera en sorte que tous ses enfants deviennent invisib
 * __delay__ | `number`: nombre de millisecondes avant la disparition du composant. Default: `1000`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Expire>

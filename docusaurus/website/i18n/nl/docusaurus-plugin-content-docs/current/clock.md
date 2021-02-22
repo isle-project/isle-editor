@@ -6,7 +6,7 @@ sidebar_label: Clock
 
 Klokcomponent die de huidige tijd weergeeft.
 
-## Options
+## Opties
 
 * __duration__ | `boolean`: indien ingesteld, wordt de duur van de sessie weergegeven (niet de werkelijke tijd). Default: `false`.
 * __format__ | `string`: tijdformaat (ofwel `HH:MM`, `HH:MM:SS`, of `HH`). Default: `''`.
@@ -14,7 +14,7 @@ Klokcomponent die de huidige tijd weergeeft.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

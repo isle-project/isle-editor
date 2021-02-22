@@ -6,7 +6,7 @@ sidebar_label: Number Question
 
 Um componente de várias perguntas.
 
-## Options
+## Opções
 
 * __question__ | `(string|node)`: pergunta numérica. Default: `''`.
 * __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
@@ -28,7 +28,7 @@ Um componente de várias perguntas.
 * __onSubmit__ | `function`: chamada de retorno invocada quando a resposta é submetida; tem como primeiro parâmetro um `booleano` indicando se a resposta foi respondida corretamente (se aplicável, `nulo` de outra forma) e a resposta fornecida como segundo parâmetro. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <NumberQuestion

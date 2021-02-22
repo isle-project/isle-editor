@@ -6,12 +6,12 @@ sidebar_label: Hypergeometric Distribution
 
 双幾何分布の確率を計算するための学習コンポーネント。
 
-## Options
+## オプション
 
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnHypergeometricDistribution />

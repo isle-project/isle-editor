@@ -6,13 +6,13 @@ sidebar_label: Standardization
 
 Leercomponent die het proces van het standaardiseren van gegevens uitlegt.
 
-## Options
+## Opties
 
 * __showProbabilities__ | `boolean`: controleert of de waarschijnlijkheden worden weergegeven. Default: `false`.
 * __step__ | `object`: stapgrootte van de scroll-ingang. Default: `'any'`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnStandardize />

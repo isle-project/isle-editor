@@ -6,7 +6,7 @@ sidebar_label: Data Table
 
 データを表形式で表示するコンポーネント。react-table](https://react-table.js.org/) の上に構築されています。
 
-## Options
+## オプション
 
 * __data__ | `(array|object) (required)`: 表示されるデータオブジェクトまたは配列。オブジェクトの場合はキーがカラムの値に対応し、配列の場合は各カラムに対応する名前付きフィールドを持つオブジェクトの配列となります。. Default: `none`.
 * __dataInfo__ | `object`: オブジェクトには、データセットを記述する文字列配列 `info`、データセットの `name`、変数名に対応するキーと変数の説明に対応する値を持つ `変数` の `object`、起動時に情報モーダルを表示するかどうかを制御するブール値 `showOnStartup` が含まれます。. Default: `{
@@ -36,7 +36,7 @@ sidebar_label: Data Table
 * __style__ | `object`: カスタム css スタイリングを可能にするオブジェクト。デフォルトは空のオブジェクト. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <DataTable

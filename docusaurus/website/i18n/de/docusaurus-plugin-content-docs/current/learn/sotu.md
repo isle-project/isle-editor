@@ -6,12 +6,12 @@ sidebar_label: State of the Union Speeches
 
 Lernkomponente zur Erkundung der State of the Union-Reden der US-Präsidenten.
 
-## Options
+## Optionen
 
 * __questions__ | `array<(node|element)>`: Reihe von Fragen. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LearnSOTU />

@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 棒グラフ。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Bar Chart
 * __direction__ | `string`: x軸に沿って棒グラフを並べる方法 (`ascending` or `descending`). Default: `'ascending'`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <BarChart 

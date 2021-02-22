@@ -6,7 +6,7 @@ sidebar_label: Free Text Question
 
 学生による回答がフリーテキストの形で提供されるべき問題のためのISLEコンポーネント。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: フリーテキストの質問コンポーネントの上部に表示される質問. Default: `''`.
 * __hints__ | `array<(string|node)>`: 解答のヒント. Default: `[]`.
@@ -32,7 +32,7 @@ sidebar_label: Free Text Question
 * __onSubmit__ | `function`: ユーザが回答を送信する際に呼び出されるコールバック; 送信されたテキストを唯一の引数として受け取ります。. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

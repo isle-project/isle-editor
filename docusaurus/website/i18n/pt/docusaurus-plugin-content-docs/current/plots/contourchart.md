@@ -6,7 +6,7 @@ sidebar_label: Contour Chart
 
 Um gráfico de contorno.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor para cada variável. Default: `none`.
 * __x__ | `string (required)`: variável do eixo x. Default: `none`.
@@ -17,7 +17,7 @@ Um gráfico de contorno.
 * __onSelected__ | `function`: chamada de retorno invocada quando os pontos são selecionados com valores x, y e os pontos selecionados. Default: `onSelected() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <ContourChart 

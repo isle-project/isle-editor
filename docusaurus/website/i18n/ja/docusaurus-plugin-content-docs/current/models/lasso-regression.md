@@ -6,7 +6,7 @@ sidebar_label: LASSO Regression
 
 LASSO回帰。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __y__ | `string (required)`: アウトカム変数. Default: `none`.
@@ -16,7 +16,7 @@ LASSO回帰。
 * __intercept__ | `boolean`: は，切片項を持つモデルを適合させるかどうかを制御します．. Default: `true`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LassoRegression

@@ -6,7 +6,7 @@ sidebar_label: One-Sample Mean Test
 
 Jednopróbkowy test średni.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: nazwa zmiennej. Default: `none`.
@@ -18,7 +18,7 @@ Jednopróbkowy test średni.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <MeanTest

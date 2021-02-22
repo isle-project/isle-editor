@@ -6,7 +6,7 @@ sidebar_label: Text Editor
 
 Текстовый редактор для написания заметок или отчетов. Поддерживает экспорт заметок в виде HTML или PDF файлов, а также автоматическую отправку на ISLE сервер.
 
-## Options
+## Варианты
 
 * __allowSubmissions__ | `boolean`: контролирует, могут ли студенты передавать свои отчёты на сервер. Default: `true`.
 * __canLoadHTML__ | `boolean`: управляет отображением кнопки для загрузки сохраненного HTML-файла в редактор. Default: `true`.
@@ -18,7 +18,7 @@ sidebar_label: Text Editor
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <TextEditor />

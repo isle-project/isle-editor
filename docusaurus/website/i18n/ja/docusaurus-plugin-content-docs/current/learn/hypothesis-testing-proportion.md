@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Proportions
 
 母集団の割合に対する仮説検定に関する学習コンポーネント。
 
-## Options
+## オプション
 
 * __types__ | `array<string>`: ウィジェットが公開するテストのタイプ (`1サンプル`, `2サンプル`) を指定します。. Default: `[
   'One-Sample',
@@ -17,7 +17,7 @@ sidebar_label: Hypothesis Testing for Proportions
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnProportionTest />

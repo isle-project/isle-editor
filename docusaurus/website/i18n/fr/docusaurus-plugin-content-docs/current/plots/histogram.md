@@ -21,7 +21,7 @@ Un histogramme.
 * __xBins__ | `{start,size,end}`: objet avec les propriétés "start", "size" et "end" qui régissent le comportement du binning. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <Histogram 

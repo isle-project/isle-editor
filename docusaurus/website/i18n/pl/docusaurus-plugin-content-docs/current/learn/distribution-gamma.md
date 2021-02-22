@@ -6,7 +6,7 @@ sidebar_label: Gamma Distribution
 
 Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu gamma.
 
-## Options
+## Opcje
 
 * __domain__ | `object`: obiekt tablicy `x` i `y` z punktem początkowym i końcowym dla danej osi. Default: `none`.
 * __scaleParameterization__ | `boolean`: kontroluje, czy należy stosować parametryzację obejmującą parametr kształtu i skali zamiast kształtu i prędkości. Default: `false`.
@@ -20,7 +20,7 @@ Komponent edukacyjny do obliczania prawdopodobieństwa rozkładu gamma.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <LearnGammaDistribution />

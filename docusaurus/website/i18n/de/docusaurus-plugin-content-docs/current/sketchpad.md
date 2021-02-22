@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Ein Zeichnungsskizzenblock für Notizen auf Vorlesungsfolien oder leeren Seiten.
 
-## Options
+## Optionen
 
 * __autoSave__ | `boolean`: steuert, ob der Editor den aktuellen Text in einem bestimmten Zeitintervall in den lokalen Speicher des Browsers speichern soll. Default: `true`.
 * __feedbackButtons__ | `boolean`: steuert, ob auf jeder Folie Feedback-Schaltflächen angezeigt werden sollen. Default: `false`.
@@ -36,7 +36,7 @@ Ein Zeichnungsskizzenblock für Notizen auf Vorlesungsfolien oder leeren Seiten.
 * __onChange__ | `function`: Callback, der immer dann aufgerufen wird, wenn ein neues Linienelement gezeichnet wird. Default: `onChange() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

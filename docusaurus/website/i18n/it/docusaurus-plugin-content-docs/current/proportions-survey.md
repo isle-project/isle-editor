@@ -6,7 +6,7 @@ sidebar_label: Proportions Survey
 
 Componente che permette a un gruppo di persone di votare sui pesi e sull'importanza di determinate opzioni.
 
-## Options
+## Opzioni
 
 * __allowMultipleAnswers__ | `boolean`: controlla se si desidera consentire agli studenti di rispondere più volte al sondaggio. Default: `false`.
 * __anonymous__ | `boolean`: controlla se le risposte degli studenti sono anonime. Default: `false`.
@@ -23,7 +23,7 @@ Componente che permette a un gruppo di persone di votare sui pesi e sull'importa
 * __step__ | `number`: il passo delle frecce che si vedono quando si posiziona il cursore sopra la casella di immissione. Default: `0.25`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <ProportionsSurvey 

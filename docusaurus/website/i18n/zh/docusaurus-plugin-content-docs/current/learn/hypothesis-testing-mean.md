@@ -6,7 +6,7 @@ sidebar_label: Hypothesis Testing for Means
 
 关于群体平均数的假设检验的学习内容。
 
-## Options
+## 选项
 
 * __types__ | `array<string>`: 测试的类型("一个样本"，"两个样本")，小组件应该暴露出来。. Default: `[
   'One-Sample',
@@ -21,7 +21,7 @@ sidebar_label: Hypothesis Testing for Means
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnMeanTest />

@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 条形图。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 变量显示. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Bar Chart
 * __direction__ | `string`: 如何在X轴旁排列柱形图（"升 "或 "降"）？. Default: `'ascending'`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <BarChart 

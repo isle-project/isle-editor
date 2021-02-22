@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 一个可以用来执行JavaScript命令的交互式Javascript shell。该shell包含一个显示错误信息和警告等的控制台。
 
-## Options
+## 选项
 
 * __code__ | `string`: 要评估的JavaScript代码. Default: `''`.
 * __solution__ | `string`: 对于编程问题，代码 "string "代表问题的正式解决方案。. Default: `''`.
@@ -24,7 +24,7 @@ sidebar_label: JavaScript Shell
 * __voiceID__ | `string`: 声控识别器. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <JSShell id = "jseditor" 

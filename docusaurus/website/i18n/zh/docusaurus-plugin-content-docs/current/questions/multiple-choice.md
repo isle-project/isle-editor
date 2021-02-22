@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 一个ISLE组件，用于呈现一个多选题。它支持在学习者必须选择一个答案的情况下，以及在可能有多个正确答案且必须选择所有正确答案的情况下。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 题目显示在选择题的顶部。. Default: `''`.
 * __solution__ | `(number|array)`: 表示正确答案的数字，或在学习者能够选择多个答案的情况下，表示正确答案的 "数组"。. Default: `none`.
@@ -27,7 +27,7 @@ sidebar_label: Multiple Choice Question
 * __onSubmit__ | `function`: 提交回答后调用回调. Default: `onSubmit(){}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

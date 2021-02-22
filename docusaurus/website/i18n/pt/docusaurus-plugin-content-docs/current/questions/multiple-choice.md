@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Question
 
 Um componente ISLE que torna uma questão de múltipla escolha. Ele apóia o caso em que o aluno tem que selecionar uma única resposta e quando pode haver múltiplas respostas corretas e todas as corretas devem ser escolhidas.
 
-## Options
+## Opções
 
 * __question__ | `(string|node)`: a questão exibida na parte superior do componente de múltipla escolha. Default: `''`.
 * __solution__ | `(number|array)`: número denotando qual resposta está correta ou uma "arraia" dos números de resposta corretos no caso de o aluno ser capaz de selecionar múltiplas respostas. Default: `none`.
@@ -27,7 +27,7 @@ Um componente ISLE que torna uma questão de múltipla escolha. Ele apóia o cas
 * __onSubmit__ | `function`: chamada de retorno invocada após a apresentação de uma resposta. Default: `onSubmit(){}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

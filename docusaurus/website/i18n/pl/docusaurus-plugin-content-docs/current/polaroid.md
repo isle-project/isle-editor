@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 Element wyświetlający obraz w stylu polaroida.
 
-## Options
+## Opcje
 
 * __image__ | `string`: URL obrazu, który ma być wyświetlany w ramce polaroidowej. Default: `none`.
 * __draggable__ | `boolean`: kontroluje, czy można przeciągnąć polaroid wokół ekranu. Default: `false`.
@@ -17,7 +17,7 @@ Element wyświetlający obraz w stylu polaroida.
 * __onClick__ | `function`: Event Handler wywoływany po kliknięciu na obrazek (otrzymuje id Polaroida jako parametr). Default: `none`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

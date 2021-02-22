@@ -6,7 +6,7 @@ sidebar_label: Bar Chart
 
 Гистограмма.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: переменная для отображения. Default: `none`.
@@ -21,7 +21,7 @@ sidebar_label: Bar Chart
 * __direction__ | `string`: как заказать бары вдоль оси x (`возбуждающийся` или `растающий`).. Default: `'ascending'`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <BarChart 

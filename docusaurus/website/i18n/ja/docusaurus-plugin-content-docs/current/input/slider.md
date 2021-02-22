@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 スライダー入力コンポーネントです。ISLE ダッシュボードの一部として使うことも、スタンドアロンで使うこともできます。後者の場合、`onChange` 属性で変更を処理するか、`bind` 属性でグローバル変数に値をバインドします。
 
-## Options
+## オプション
 
 * __defaultValue__ | `number`: スライダーの開始値. Default: `10`.
 * __disabled__ | `boolean`: は、スライダーの入力がアクティブかどうかを制御します。true に設定されている場合、スライダはグレーアウトされているものの、画面上に存在します。. Default: `false`.
@@ -25,7 +25,7 @@ sidebar_label: Slider Input
 * __rangeInputStyle__ | `object`: 範囲入力コンポーネントのCSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <SliderInput

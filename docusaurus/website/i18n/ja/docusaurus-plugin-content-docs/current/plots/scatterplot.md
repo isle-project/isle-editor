@@ -6,7 +6,7 @@ sidebar_label: Scatter Plot
 
 配列の最小値と最大値を計算します。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __xval__ | `string (required)`: X軸に表示するための変数. Default: `none`.
@@ -23,7 +23,7 @@ sidebar_label: Scatter Plot
 * __smoothSpan__ | `number`: スムーズ回帰線の平滑化スパンパラメータ. Default: `0.66`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <ScatterPlot 

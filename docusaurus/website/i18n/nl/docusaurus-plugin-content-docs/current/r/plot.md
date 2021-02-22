@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Component voor het weergeven van een R-plot binnen een ISLE-les.
 
-## Options
+## Opties
 
 * __code__ | `string`: R-code voor het genereren van de plot. Default: `''`.
 * __width__ | `(number|string)`: breedte van het perceel (in px). Default: `600`.
@@ -20,7 +20,7 @@ Component voor het weergeven van een R-plot binnen een ISLE-les.
 * __onDone__ | `function`: callback ingeroepen met `err`, `img` en `body` argumenten zodra een plot is gecreëerd. Default: `onDone() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

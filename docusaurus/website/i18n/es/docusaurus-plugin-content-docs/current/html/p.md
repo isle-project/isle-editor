@@ -6,13 +6,13 @@ sidebar_label: p
 
 Elemento de párrafo.
 
-## Options
+## Opciones
 
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

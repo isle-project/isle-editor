@@ -6,7 +6,7 @@ sidebar_label: Logistic Regression
 
 Multiple lineare Regression.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
@@ -18,7 +18,7 @@ Multiple lineare Regression.
 * __onPredict__ | `function`: Callback, der mit Vorhersagen und Residuen nach der Modellanpassung aufgerufen wird. Default: `none`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LogisticRegression 

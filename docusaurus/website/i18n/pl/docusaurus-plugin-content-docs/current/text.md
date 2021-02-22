@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Komponent tekstowy, który pozwala na renderowanie surowego tekstu jako Markdown i umożliwia sterowanie głosowe.
 
-## Options
+## Opcje
 
 * __raw__ | `string`: tekst, który ma zostać przedstawiony. Default: `''`.
 * __className__ | `string`: nazwy klas. Default: `''`.
@@ -15,7 +15,7 @@ Komponent tekstowy, który pozwala na renderowanie surowego tekstu jako Markdown
 * __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 
 import Tabs from '@theme/Tabs';

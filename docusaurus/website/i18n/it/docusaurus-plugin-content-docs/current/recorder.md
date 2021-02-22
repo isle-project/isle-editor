@@ -6,7 +6,7 @@ sidebar_label: Recorder
 
 Un componente ISLE per la registrazione di audio, schermo e video.
 
-## Options
+## Opzioni
 
 * __audio__ | `boolean`: indica se l'audio deve essere registrato. Default: `false`.
 * __camera__ | `boolean`: indica se la webcam deve essere registrata. Default: `false`.
@@ -19,7 +19,7 @@ Un componente ISLE per la registrazione di audio, schermo e video.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Recorder 

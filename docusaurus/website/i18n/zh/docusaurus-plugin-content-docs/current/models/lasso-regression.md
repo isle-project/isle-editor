@@ -6,7 +6,7 @@ sidebar_label: LASSO Regression
 
 LASSO回归。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __y__ | `string (required)`: 结果变量. Default: `none`.
@@ -16,7 +16,7 @@ LASSO回归。
 * __intercept__ | `boolean`: 控制是否拟合带有截距项的模型。. Default: `true`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LassoRegression

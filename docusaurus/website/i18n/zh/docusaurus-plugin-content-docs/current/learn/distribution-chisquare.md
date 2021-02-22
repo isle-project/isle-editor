@@ -6,7 +6,7 @@ sidebar_label: Chi-squared Distribution
 
 用于计算齐次方分布概率的学习组件。
 
-## Options
+## 选项
 
 * __step__ | `(number|string)`: 滚动输入的步长. Default: `0.01`.
 * __maxDF__ | `number`: 输入领域可选择的最大自由度。. Default: `50`.
@@ -14,7 +14,7 @@ sidebar_label: Chi-squared Distribution
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnChisquareDistribution />

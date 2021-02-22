@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Een accordeoncomponent die de verticale schuifregelaars regelt.
 
-## Options
+## Opties
 
 * __active__ | `number`: index van de schuifregelaar die aan het begin moet worden geopend. Default: `none`.
 * __canCloseAll__ | `boolean`: of men alle koppen kan laten instorten. Default: `false`.
@@ -18,7 +18,7 @@ Een accordeoncomponent die de verticale schuifregelaars regelt.
 * __style__ | `object`: CSS inline stijlen voor buitenste div. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

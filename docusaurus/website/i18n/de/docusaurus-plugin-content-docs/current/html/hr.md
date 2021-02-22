@@ -6,13 +6,13 @@ sidebar_label: hr
 
 Horizontale Regel, die einen thematischen Bruch im Dokument definiert.
 
-## Options
+## Optionen
 
 * __className__ | `string`: Klassenname. Default: `''`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 Element ISLE, który pozwala na wyświetlanie swoich dzieci tylko zarezerwowanym odbiorcom.
 
-## Options
+## Opcje
 
 * __user__ | `boolean`: po ustawieniu treści bramkowanej jest wyświetlana dla użytkowników. Default: `false`.
 * __notUser__ | `boolean`: po ustawieniu treści bramkowanej jest **nie** wyświetlana dla użytkowników. Default: `false`.
@@ -22,7 +22,7 @@ Element ISLE, który pozwala na wyświetlanie swoich dzieci tylko zarezerwowanym
 * __check__ | `function`: funkcja callback zwracająca `boolean` wskazująca, czy bramka powinna wyświetlać elementy dziecięce; funkcja jest wywoływana za każdym razem, gdy przychodzą akcje sesji. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Gate 

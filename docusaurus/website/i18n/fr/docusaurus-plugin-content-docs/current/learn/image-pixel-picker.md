@@ -10,7 +10,7 @@ Un pixel color picker expliquant les couleurs RVB à l'aide d'images d'exemple.
 
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnImagePixelPicker />

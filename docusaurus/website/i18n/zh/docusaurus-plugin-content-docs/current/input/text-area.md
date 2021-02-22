@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 一个文本区域组件。作为一个独立的组件使用，更改应通过 "onChange "属性处理。
 
-## Options
+## 选项
 
 * __defaultValue__ | `string`: 文本区域的默认值. Default: `''`.
 * __value__ | `string`: 文本值. Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Text Area
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <TextArea

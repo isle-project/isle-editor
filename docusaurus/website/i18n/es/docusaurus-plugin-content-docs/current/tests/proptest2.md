@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Proportion Test
 
 Prueba de proporción de dos muestras.
 
-## Options
+## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __var1__ | `string (required)`: nombre de la primera variable. Default: `none`.
@@ -19,7 +19,7 @@ Prueba de proporción de dos muestras.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <PropTest2

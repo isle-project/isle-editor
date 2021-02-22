@@ -20,7 +20,7 @@ Composant de la carte.
 * __onHide__ | `function`: rappel invoqué lorsque le bouton de fermeture est cliqué. Default: `none`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

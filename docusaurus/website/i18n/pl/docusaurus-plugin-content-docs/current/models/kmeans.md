@@ -6,7 +6,7 @@ sidebar_label: k-means Clustering
 
 K-znaczy grupowanie.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variables__ | `array<string> (required)`: nazwy zmiennych wykorzystywanych do tworzenia klastrów. Default: `none`.
@@ -15,7 +15,7 @@ K-znaczy grupowanie.
 * __onResult__ | `function`: wywołanie zwrotne z obiektem wzorcowym. Default: `onResult() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <KMeans 

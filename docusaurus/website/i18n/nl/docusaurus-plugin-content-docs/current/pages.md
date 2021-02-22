@@ -6,7 +6,7 @@ sidebar_label: Pages
 
 Een ISLE-paginatiecomponent die de gebruiker in staat stelt om door een reeks pagina's te stappen.
 
-## Options
+## Opties
 
 * __activePage__ | `number`: actieve pagina. Default: `1`.
 * __disabled__ | `boolean`: bepaalt of de navigatiebalk actief is of niet. Default: `false`.
@@ -19,7 +19,7 @@ Een ISLE-paginatiecomponent die de gebruiker in staat stelt om door een reeks pa
 * __onSelect__ | `function`: Functie die wordt aangeroepen wanneer de actieve wijziging wordt gewijzigd. Ontvangt de nieuwe actieve pagina-index als enige parameter. Default: `onSelect() {}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,7 +6,7 @@ sidebar_label: Text
 
 Tekstcomponent, die het mogelijk maakt om ruwe tekst weer te geven als Markdown en die spraakbesturing mogelijk maakt.
 
-## Options
+## Opties
 
 * __raw__ | `string`: Weer te geven tekst. Default: `''`.
 * __className__ | `string`: klassennamen. Default: `''`.
@@ -15,7 +15,7 @@ Tekstcomponent, die het mogelijk maakt om ruwe tekst weer te geven als Markdown 
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 
 import Tabs from '@theme/Tabs';

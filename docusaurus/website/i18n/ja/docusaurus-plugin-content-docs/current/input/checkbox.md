@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 チェックボックス入力コンポーネントです。ISLE ダッシュボードの一部として使うことも、スタンドアロンで使うこともできます。後者の場合、`onChange` 属性で変更を処理するか、`bind` 属性でグローバル変数に値をバインドします。
 
-## Options
+## オプション
 
 * __bind__ | `string`: チェックボックスの値を割り当てるグローバル変数名. Default: `''`.
 * __defaultValue__ | `boolean`: チェックボックスのデフォルト値を示すブール値. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Checkbox Input
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <CheckboxInput

@@ -6,7 +6,7 @@ sidebar_label: Number Question
 
 Element pytania numerycznego.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie numeryczne. Default: `''`.
 * __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'top'`.
@@ -28,7 +28,7 @@ Element pytania numerycznego.
 * __onSubmit__ | `function`: callback wywoływany przy udzielaniu odpowiedzi; ma jako pierwszy parametr `boolean` wskazujący, czy odpowiedź została udzielona poprawnie (jeśli dotyczy, `nie ma znaczenia` inaczej), a udzielona odpowiedź jako drugi parametr. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <NumberQuestion

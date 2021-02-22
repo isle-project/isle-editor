@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 Um componente de pesquisa no qual o instrutor pode coletar dados de pesquisa de múltipla escolha dos alunos em tempo real.
 
-## Options
+## Opções
 
 * __question__ | `(string|node)`: fio condutor indicando a pergunta a ser feita aos estudantes. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: controla se se deseja permitir que os estudantes respondam à pesquisa várias vezes. Default: `false`.
@@ -17,7 +17,7 @@ Um componente de pesquisa no qual o instrutor pode coletar dados de pesquisa de 
 * __onSubmit__ | `function`: função a ser chamada quando uma resposta é apresentada. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <MultipleChoiceSurvey

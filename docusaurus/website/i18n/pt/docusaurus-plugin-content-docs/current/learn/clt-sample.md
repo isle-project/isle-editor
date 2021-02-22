@@ -6,7 +6,7 @@ sidebar_label: CLT Sample
 
 Um componente de aprendizagem que ilustra o Teorema do Limite Central (CLT) quando da amostragem a partir de um conjunto de dados fornecido.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de dados com chaves correspondem a nomes de variáveis e valores que contêm os valores das respectivas variáveis. Default: `none`.
 * __hidePopulationStdev__ | `boolean`: ocultar exibição do desvio padrão da população. Default: `false`.
@@ -16,7 +16,7 @@ Um componente de aprendizagem que ilustra o Teorema do Limite Central (CLT) quan
 * __variables__ | `array (required)`: nomes de variáveis que podem ser amostradas a partir de. Default: `none`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <LearnSampleCLT />

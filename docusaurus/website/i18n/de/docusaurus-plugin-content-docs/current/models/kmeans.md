@@ -6,7 +6,7 @@ sidebar_label: k-means Clustering
 
 K-Mittel-Clustering.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variables__ | `array<string> (required)`: Namen der Variablen, die für das Clustering verwendet werden. Default: `none`.
@@ -15,7 +15,7 @@ K-Mittel-Clustering.
 * __onResult__ | `function`: Callback, der mit Modellobjekt aufgerufen wird. Default: `onResult() {}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <KMeans 

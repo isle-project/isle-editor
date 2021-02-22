@@ -93,7 +93,7 @@ Cette composante est utilisée par les étudiants pour résumer brièvement les 
 * __onTutorialStart__ | `function`: fonction invoquée lorsque l'utilisateur lance le tutoriel de l'explorateur de données. Default: `onTutorialStart() {}`.
 
 
-## Examples
+## Exemples
 
 In creating a data explorer, one needs a *.json dataset. This step may be accomplished by including the following in the header of a *.isle file:
 

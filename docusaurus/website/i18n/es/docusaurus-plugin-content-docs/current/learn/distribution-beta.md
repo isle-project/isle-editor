@@ -6,7 +6,7 @@ sidebar_label: Beta Distribution
 
 Un componente de aprendizaje para calcular las probabilidades de una distribución beta.
 
-## Options
+## Opciones
 
 * __domain__ | `object`: objeto de las matrices "x" y "y" con los puntos de inicio y final para el eje respectivo. Default: `none`.
 * __step__ | `(number|string)`: tamaño del paso de la entrada de desplazamiento. Default: `0.01`.
@@ -18,7 +18,7 @@ Un componente de aprendizaje para calcular las probabilidades de una distribuci�
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LearnBetaDistribution />

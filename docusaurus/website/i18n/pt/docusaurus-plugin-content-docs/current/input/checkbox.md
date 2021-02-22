@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 Um componente de entrada de caixa de seleção. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo "Mudar" ou ligar o valor a uma variável global através do atributo "ligar".
 
-## Options
+## Opções
 
 * __bind__ | `string`: nome da variável global para o valor da caixa de seleção a ser atribuída. Default: `''`.
 * __defaultValue__ | `boolean`: valor booleano indicando o valor padrão da caixa de seleção. Default: `false`.
@@ -20,7 +20,7 @@ Um componente de entrada de caixa de seleção. Pode ser usado como parte de um 
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <CheckboxInput

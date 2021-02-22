@@ -12,7 +12,7 @@ Un élément de formulaire combinant différents éléments de questions avec un
 * __onSubmit__ | `function`: rappel invoqué lorsque l'on clique sur le bouton d'envoi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <QuestionForm>

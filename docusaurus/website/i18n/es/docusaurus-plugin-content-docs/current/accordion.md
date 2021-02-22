@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Un componente de acordeón que controla los deslizadores verticales.
 
-## Options
+## Opciones
 
 * __active__ | `number`: índice de deslizamiento que se abrirá al principio. Default: `none`.
 * __canCloseAll__ | `boolean`: si uno puede colapsar todas las cabeceras. Default: `false`.
@@ -18,7 +18,7 @@ Un componente de acordeón que controla los deslizadores verticales.
 * __style__ | `object`: Estilos en línea de CSS para la división exterior. Default: `none`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -6,11 +6,11 @@ sidebar_label: Dice Throwing
 
 Een leercomponent die de wet van de grote aantallen illustreert met behulp van dobbelstenen.
 
-## Options
+## Opties
 
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <LearnDiceThrowing />

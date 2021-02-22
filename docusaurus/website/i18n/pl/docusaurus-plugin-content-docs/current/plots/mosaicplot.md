@@ -6,7 +6,7 @@ sidebar_label: Mosaic Plot
 
 Działka mozaikowa.
 
-## Options
+## Opcje
 
 * __data__ | `object (required)`: obiekt tablice wartości dla każdej zmiennej. Default: `none`.
 * __variables__ | `array (required)`: szereg zmiennych do wyświetlania. Default: `none`.
@@ -14,7 +14,7 @@ Działka mozaikowa.
 * __axisLabels__ | `string`: zmienna grupowania. Default: `'parallel to the axis'`.
 
 
-## Examples
+## Przykłady
 
 ## Examples
 

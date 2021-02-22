@@ -6,7 +6,7 @@ sidebar_label: Panel
 
 Kaartcomponent.
 
-## Options
+## Opties
 
 * __className__ | `string`: CSS-klasse-naam. Default: `''`.
 * __header__ | `(string|node)`: paneelpost (h3). Default: `none`.
@@ -20,7 +20,7 @@ Kaartcomponent.
 * __onHide__ | `function`: terugbellen wordt aangeroepen wanneer op de sluitknop wordt geklikt. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

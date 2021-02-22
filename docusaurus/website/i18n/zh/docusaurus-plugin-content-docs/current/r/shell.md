@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 一个交互式的R Shell，可以用来在云端使用[OpenCPU](https://www.opencpu.org/)执行R命令。
 
-## Options
+## 选项
 
 * __code__ | `string`: 要评估的R代码. Default: `''`.
 * __solution__ | `string`: 对于编程问题，R代码`string`代表问题的正式解决方案. Default: `''`.
@@ -25,7 +25,7 @@ sidebar_label: R Shell
 * __onResult__ | `function`: 每当从云中获取代码执行结果时，就会调用回调。结果 "string "作为唯一参数传递给回调函数。. Default: `onResult() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <RShell

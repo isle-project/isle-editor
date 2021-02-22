@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 Um mapa de calor para visualizar uma relação entre duas variáveis.
 
-## Options
+## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor para cada variável. Default: `none`.
 * __x__ | `string (required)`: variável do eixo x. Default: `none`.
@@ -19,7 +19,7 @@ Um mapa de calor para visualizar uma relação entre duas variáveis.
 * __commonYAxis__ | `boolean`: controla se deve ser usado um eixo y comum ao criar múltiplos mapas de calor por valor de uma variável de agrupamento. Default: `false`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <HeatMap 

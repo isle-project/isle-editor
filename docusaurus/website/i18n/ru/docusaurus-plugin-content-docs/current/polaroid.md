@@ -6,7 +6,7 @@ sidebar_label: Polaroid
 
 Компонент, отображающий изображение в стиле поляроида.
 
-## Options
+## Варианты
 
 * __image__ | `string`: URL-адрес изображения для отображения в кадре поляроида. Default: `none`.
 * __draggable__ | `boolean`: контролирует, можно ли перетаскивать поляроид по экрану.. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Polaroid
 * __onClick__ | `function`: обработчик события, вызываемый при щелчке по изображению (в качестве параметра получает идентификатор поляроида). Default: `none`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

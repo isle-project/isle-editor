@@ -21,7 +21,7 @@ Un volet d'apprentissage sur les tests d'hypothèse pour une moyenne de populati
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnMeanTest />

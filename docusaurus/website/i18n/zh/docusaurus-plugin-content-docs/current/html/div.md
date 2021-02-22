@@ -6,13 +6,13 @@ sidebar_label: div
 
 通用的容器元素。
 
-## Options
+## 选项
 
 * __className__ | `string`: 班名. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

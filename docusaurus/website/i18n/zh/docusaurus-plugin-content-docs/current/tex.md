@@ -6,7 +6,7 @@ sidebar_label: LaTeX Equations
 
 `TeX`是一个ISLE元素，可用于显示LaTeX方程。在内部，该组件使用[KaTeX](https://github.com/Khan/KaTeX)进行快速渲染。
 
-## Options
+## 选项
 
 * __raw__ | `(string|number) (required)`: 要渲染的LaTeX字面 "字符串"。也接受`数字`。. Default: `none`.
 * __displayMode__ | `boolean`: `boolean`表示是以内联方式还是显示方式显示方程。. Default: `false`.
@@ -19,7 +19,7 @@ sidebar_label: LaTeX Equations
 * __onClick__ | `function`: 每当用户点击方程时，就会调用回调`function`。. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <TeX

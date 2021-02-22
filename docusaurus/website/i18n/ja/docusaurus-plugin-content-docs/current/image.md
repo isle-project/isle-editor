@@ -6,7 +6,7 @@ sidebar_label: Image
 
 画像を表示するためのコンポーネント。
 
-## Options
+## オプション
 
 * __src__ | `string (required)`: イメージソース位置. Default: `none`.
 * __alt__ | `string`: 画像記述. Default: `''`.
@@ -21,7 +21,7 @@ sidebar_label: Image
 * __onShare__ | `function`: 共有」ボタンがクリックされた場合に、画像とともにコールバックが呼び出されます。. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

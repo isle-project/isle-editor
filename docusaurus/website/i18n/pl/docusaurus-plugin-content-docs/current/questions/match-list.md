@@ -6,7 +6,7 @@ sidebar_label: Match List Question
 
 Komponent ISLE, który sprawia, że pytanie, w którym uczący się musi we właściwy sposób dopasować elementy z dwóch list do siebie.
 
-## Options
+## Opcje
 
 * __question__ | `(string|node)`: pytanie, które ma być wyświetlane na górze elementu listy pytań ofertowych. Default: `''`.
 * __elements__ | `array<{a,b}>`: `rówka` trzymająca właściwe pary wyświetlana na górze komponentu pytania swobodnego tekstu. Każdy `arrada` musi być obiektem` z właściwościami `a` i `b`; dostarcza elementy tylko z właściwościami `a` lub `b` aby dodać odpowiedzi rozpraszające. Default: `[]`.
@@ -27,7 +27,7 @@ Komponent ISLE, który sprawia, że pytanie, w którym uczący się musi we wła
 * __onSubmit__ | `function`: wywołanie zwrotne, gdy uczniowie udzielają odpowiedzi. Default: `onSubmit() {}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

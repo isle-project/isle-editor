@@ -6,7 +6,7 @@ sidebar_label: Slider Input
 
 Un componente di ingresso a cursore. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si vuole gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.
 
-## Options
+## Opzioni
 
 * __defaultValue__ | `number`: Il valore di partenza del cursore. Default: `10`.
 * __disabled__ | `boolean`: controlla se l'ingresso cursore è attivo o meno. Se impostato su true, il cursore sarà presente sullo schermo, anche se in grigio. Default: `false`.
@@ -25,7 +25,7 @@ Un componente di ingresso a cursore. Può essere utilizzato come parte di un cru
 * __rangeInputStyle__ | `object`: Stile CSS in linea per il componente di ingresso della gamma. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <SliderInput

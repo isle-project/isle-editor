@@ -6,7 +6,7 @@ sidebar_label: Violin Plot
 
 Eine Geigenhandlung.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Variable zur Anzeige. Default: `none`.
@@ -14,7 +14,7 @@ Eine Geigenhandlung.
 * __showBox__ | `boolean`: steuert, ob ein Boxplot im Inneren angezeigt werden soll. Default: `false`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <ViolinPlot 

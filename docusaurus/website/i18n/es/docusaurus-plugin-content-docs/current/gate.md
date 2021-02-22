@@ -6,7 +6,7 @@ sidebar_label: Gate
 
 Un componente de la ISLE que permite mostrar a sus hijos sólo a audiencias reservadas.
 
-## Options
+## Opciones
 
 * __user__ | `boolean`: cuando se establece el contenido de la puerta se muestra a los usuarios. Default: `false`.
 * __notUser__ | `boolean`: cuando se establece, el contenido de la puerta se **no** muestra a los usuarios. Default: `false`.
@@ -22,7 +22,7 @@ Un componente de la ISLE que permite mostrar a sus hijos sólo a audiencias rese
 * __check__ | `function`: función de devolución de llamada que devuelve un "booleano" que indica si la puerta debe mostrar los componentes hijo; la función se invoca cada vez que llegan las acciones de la sesión. Default: `none`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Gate 

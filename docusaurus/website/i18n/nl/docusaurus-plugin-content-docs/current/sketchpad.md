@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Een schetsblok voor het maken van aantekeningen op collegeplaten of lege pagina's.
 
-## Options
+## Opties
 
 * __autoSave__ | `boolean`: bepaalt of de redacteur de huidige tekst in een bepaald tijdsinterval moet opslaan in de lokale opslag van de browser. Default: `true`.
 * __feedbackButtons__ | `boolean`: bepaalt of er op elke dia een feedbackknop moet worden weergegeven. Default: `false`.
@@ -36,7 +36,7 @@ Een schetsblok voor het maken van aantekeningen op collegeplaten of lege pagina'
 * __onChange__ | `function`: callback aangeroepen wanneer een nieuw lijnelement wordt getekend. Default: `onChange() {}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

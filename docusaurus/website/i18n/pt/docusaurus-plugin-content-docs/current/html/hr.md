@@ -6,13 +6,13 @@ sidebar_label: hr
 
 Regra horizontal que define uma ruptura temática no documento.
 
-## Options
+## Opções
 
 * __className__ | `string`: nome da classe. Default: `''`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

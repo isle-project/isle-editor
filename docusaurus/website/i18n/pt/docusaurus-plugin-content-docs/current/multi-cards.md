@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Um componente ISLE que lhe permite criar e controlar vários cartões de memória (por exemplo, em um jogo de Memória).
 
-## Options
+## Opções
 
 * __animation__ | `object`: se o componente utiliza uma animação de entrada; o objeto contém um nome (como `anim-scale-up`) e uma duração (como `1,7s` = 1,7 segundos). Default: `{}`.
 * __memory__ | `boolean`: se deve habilitar o modo de jogo de memória no qual se tem que combinar pares dos valores fornecidos. Default: `none`.
@@ -20,7 +20,7 @@ Um componente ISLE que lhe permite criar e controlar vários cartões de memóri
 * __backStyle__ | `object`: Estilo CSS do verso das cartas. Default: `{}`.
 
 
-## Examples
+## Exemplos
 
 ```jsx live
 <MultiCards

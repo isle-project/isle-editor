@@ -6,7 +6,7 @@ sidebar_label: JavaScript Shell
 
 Interaktywna powłoka Javascript, której można używać do wykonywania poleceń JavaScript. Powłoka zawiera konsolę, która wyświetla komunikaty o błędach, ostrzeżenia itp.
 
-## Options
+## Opcje
 
 * __code__ | `string`: Kod JavaScript do oceny. Default: `''`.
 * __solution__ | `string`: dla pytań dotyczących programowania, kod `sznurek` reprezentujący oficjalne rozwiązanie problemu. Default: `''`.
@@ -24,7 +24,7 @@ Interaktywna powłoka Javascript, której można używać do wykonywania polece�
 * __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <JSShell id = "jseditor" 

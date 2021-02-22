@@ -6,7 +6,7 @@ sidebar_label: Gamma Distribution
 
 Учебный компонент для вычисления вероятностей гамма-распределения.
 
-## Options
+## Варианты
 
 * __domain__ | `object`: объект массивов `x` и `y` с начальной и конечной точками для соответствующей оси. Default: `none`.
 * __scaleParameterization__ | `boolean`: контролирует, следует ли использовать параметризацию, включающую параметр формы и шкалы, а не форму и скорость.. Default: `false`.
@@ -20,7 +20,7 @@ sidebar_label: Gamma Distribution
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <LearnGammaDistribution />

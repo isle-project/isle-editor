@@ -6,7 +6,7 @@ sidebar_label: Likert Scale
 
 Eine Komponente mit einer Frage und einer Fünf-Punkte-Skala, die die Schüler beantworten sollen.
 
-## Options
+## Optionen
 
 * __question__ | `(string|node)`: zu druckende Frage. Default: `''`.
 * __options__ | `array`: ein Array mit fünf Elementen, das die Beschriftungen für die verschiedenen Skalenstufen enthält. Default: `none`.
@@ -16,7 +16,7 @@ Eine Komponente mit einer Frage und einer Fünf-Punkte-Skala, die die Schüler b
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <LikertScale 

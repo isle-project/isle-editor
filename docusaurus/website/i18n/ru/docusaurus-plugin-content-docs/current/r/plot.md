@@ -6,7 +6,7 @@ sidebar_label: R Plot
 
 Компонент для отрисовки R-диаграммы внутри урока ISLE.
 
-## Options
+## Варианты
 
 * __code__ | `string`: R код для генерации графика. Default: `''`.
 * __width__ | `(number|string)`: ширина участка (в px). Default: `600`.
@@ -20,7 +20,7 @@ sidebar_label: R Plot
 * __onDone__ | `function`: вызов обратного вызова с аргументами `err`, `img` и `body` после создания сюжета.. Default: `onDone() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />

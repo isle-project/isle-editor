@@ -6,12 +6,12 @@ sidebar_label: Discrete CLT
 
 Un componente de aprendizaje que ilustra el Teorema del Límite Central (CLT) para una distribución discreta canónica, la distribución binomial.
 
-## Options
+## Opciones
 
 * __showPopStdev__ | `boolean`: controla si se muestra la desviación estándar de la población. Default: `true`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <LearnDiscreteCLT />

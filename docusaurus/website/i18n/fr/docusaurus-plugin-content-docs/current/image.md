@@ -21,7 +21,7 @@ Composant permettant d'afficher une image.
 * __onShare__ | `function`: rappel invoqué avec l'image si le bouton "partager" est cliqué. Default: `none`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

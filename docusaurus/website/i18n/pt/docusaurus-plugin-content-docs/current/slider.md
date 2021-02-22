@@ -6,7 +6,7 @@ sidebar_label: Slider
 
 Um componente que exibe seus filhos em um slideshow ou carrossel.
 
-## Options
+## Opções
 
 * __title__ | `string`: título do slideshow / carrossel a ser exibido em sua parte superior. Default: `''`.
 * __dots__ | `boolean`: pontos de exibição no fundo para navegar rapidamente para qualquer slide. Default: `true`.
@@ -21,7 +21,7 @@ Um componente que exibe seus filhos em um slideshow ou carrossel.
 * __onClick__ | `function`: chamada de retorno invocada ao clicar nos botões seguinte/anterior. Default: `onClick() {}`.
 
 
-## Examples
+## Exemplos
 
 
 import Tabs from '@theme/Tabs';

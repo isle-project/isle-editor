@@ -6,7 +6,7 @@ sidebar_label: Sketchpad
 
 Szkicownik do robienia notatek na slajdach wykładowych lub pustych stronach.
 
-## Options
+## Opcje
 
 * __autoSave__ | `boolean`: kontroluje, czy edytor powinien zapisać bieżący tekst w pamięci lokalnej przeglądarki w danym przedziale czasu. Default: `true`.
 * __feedbackButtons__ | `boolean`: kontroluje, czy na każdym slajdzie mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `false`.
@@ -36,7 +36,7 @@ Szkicownik do robienia notatek na slajdach wykładowych lub pustych stronach.
 * __onChange__ | `function`: wywołanie zwrotne za każdym razem, gdy rysowany jest nowy element linii. Default: `onChange() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Sketchpad canvasWidth={750} />

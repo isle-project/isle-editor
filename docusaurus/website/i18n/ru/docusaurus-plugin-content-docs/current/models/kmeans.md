@@ -6,7 +6,7 @@ sidebar_label: k-means Clustering
 
 К-значит, кластеризация.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variables__ | `array<string> (required)`: имена переменных, используемых для кластеризации. Default: `none`.
@@ -15,7 +15,7 @@ sidebar_label: k-means Clustering
 * __onResult__ | `function`: обратный вызов с помощью модельного объекта. Default: `onResult() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <KMeans 

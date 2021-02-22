@@ -27,7 +27,7 @@ Un composant ISLE qui rend une question dans laquelle l'apprenant doit faire cor
 * __onSubmit__ | `function`: rappel invoqué lorsque l'étudiant soumet une réponse. Default: `onSubmit() {}`.
 
 
-## Examples
+## Exemples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

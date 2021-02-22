@@ -6,13 +6,13 @@ sidebar_label: Question Form
 
 Компонент формы, объединяющий различные компоненты вопросов вместе с одной кнопкой отправки.
 
-## Options
+## Варианты
 
 * __buttonLabel__ | `string`: ярлык кнопки отправки. Default: `none`.
 * __onSubmit__ | `function`: вызов обратного вызова при нажатии кнопки отправки. Default: `onSubmit() {}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <QuestionForm>

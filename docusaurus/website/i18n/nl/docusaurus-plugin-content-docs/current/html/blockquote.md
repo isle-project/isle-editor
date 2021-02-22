@@ -6,14 +6,14 @@ sidebar_label: blockquote
 
 Onderdeel met een uitgebreide offerte.
 
-## Options
+## Opties
 
 * __cite__ | `string`: bron voor de offerte. Default: `none`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

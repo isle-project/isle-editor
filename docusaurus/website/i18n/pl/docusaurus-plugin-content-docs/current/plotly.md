@@ -6,7 +6,7 @@ sidebar_label: Plotly
 
 Plotkliwa wizualizacja.
 
-## Options
+## Opcje
 
 * __data__ | `array (required)`: siatka danych. Default: `none`.
 * __draggable__ | `boolean`: kontroluje, czy działka powinna być wleczona. Default: `false`.
@@ -30,7 +30,7 @@ Plotkliwa wizualizacja.
 * __toggleFullscreen__ | `boolean`: kontroluje, czy pozwolić na wyświetlanie wykresu w trybie pełnoekranowym. Default: `true`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <Plotly

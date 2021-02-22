@@ -6,7 +6,7 @@ sidebar_label: Correlation Test
 
 相关性测试。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __var1__ | `string (required)`: 第一个变量名. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Correlation Test
 * __showDecision__ | `boolean`: 控制是否显示在指定的显著性水平上拒绝零假设。. Default: `false`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <CorrTest

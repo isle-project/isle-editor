@@ -6,7 +6,7 @@ sidebar_label: Random Forest
 
 回归和分类树。
 
-## Options
+## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __y__ | `string (required)`: 结果变量. Default: `none`.
@@ -22,7 +22,7 @@ sidebar_label: Random Forest
 * __onPredict__ | `function`: 当点击预测按钮时，通过模型对象调用回调。. Default: `none`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <RandomForest 

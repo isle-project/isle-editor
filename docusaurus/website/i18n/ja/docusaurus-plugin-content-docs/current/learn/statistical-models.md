@@ -6,12 +6,12 @@ sidebar_label: Statistical Models
 
 各種統計モデルの記述を閲覧するためのコンポーネント。
 
-## Options
+## オプション
 
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LearnStatisticalModels />

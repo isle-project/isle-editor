@@ -6,7 +6,7 @@ sidebar_label: Kruskal Test
 
 Kruskal-Wallis Test.
 
-## Options
+## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: variabele naam. Default: `none`.
@@ -14,7 +14,7 @@ Kruskal-Wallis Test.
 * __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen.. Default: `false`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <Kruskal

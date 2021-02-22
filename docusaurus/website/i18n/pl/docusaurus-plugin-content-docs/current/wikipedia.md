@@ -6,13 +6,13 @@ sidebar_label: Wikipedia
 
 Komponent **Wikipedia** skanuje **Wikipedię** i zwraca artykuł - jeśli pod wprowadzonym terminem wyszukiwania znaleziono coś ważnego.
 
-## Options
+## Opcje
 
 * __defaultEntry__ | `string`: domyślna pozycja do wyświetlenia. Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

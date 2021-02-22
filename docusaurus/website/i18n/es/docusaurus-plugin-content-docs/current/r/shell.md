@@ -6,7 +6,7 @@ sidebar_label: R Shell
 
 Un R Shell interactivo que puede ser usado para ejecutar comandos R en la nube usando [OpenCPU](https://www.opencpu.org/).
 
-## Options
+## Opciones
 
 * __code__ | `string`: El código R será evaluado. Default: `''`.
 * __solution__ | `string`: para las cuestiones de programación, el código R "cadena" representa la solución oficial del problema. Default: `''`.
@@ -25,7 +25,7 @@ Un R Shell interactivo que puede ser usado para ejecutar comandos R en la nube u
 * __onResult__ | `function`: llamada de retorno invocada siempre que el resultado de la ejecución de un código se obtiene de la nube. El resultado "cadena" se pasa como único argumento a la función de devolución de llamada. Default: `onResult() {}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <RShell

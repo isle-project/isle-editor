@@ -6,7 +6,7 @@ sidebar_label: Multiple Choice Survey
 
 调查组件，教师可以实时收集学生的多项选择调查数据。
 
-## Options
+## 选项
 
 * __question__ | `(string|node)`: 字符串. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: 控制是否允许学生多次回答调查问卷。. Default: `false`.
@@ -17,7 +17,7 @@ sidebar_label: Multiple Choice Survey
 * __onSubmit__ | `function`: 提交答案时调用的函数. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <MultipleChoiceSurvey

@@ -10,7 +10,7 @@ Une visualisation expliquant la validation croisée.
 
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <LearnCrossValidation />

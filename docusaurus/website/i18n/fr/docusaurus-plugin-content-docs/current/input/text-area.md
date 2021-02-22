@@ -20,7 +20,7 @@ Un composant de zone de texte. Utilisé comme un composant autonome, les modific
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <TextArea

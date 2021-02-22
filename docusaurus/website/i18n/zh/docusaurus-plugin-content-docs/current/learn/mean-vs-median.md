@@ -6,7 +6,7 @@ sidebar_label: Mean vs. Median
 
 一个互动游戏，测试学生检测给定分布的中位数和平均值的能力。
 
-## Options
+## 选项
 
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `false`.
 * __header__ | `string`: 生成平均值和中位数的面板的标题。. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Mean vs. Median
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <LearnMeanVSMedian />

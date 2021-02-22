@@ -6,7 +6,7 @@ sidebar_label: Heat Map
 
 2つの変数間の関係を可視化するためのヒートマップ。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __x__ | `string (required)`: Ｘ軸変数. Default: `none`.
@@ -19,7 +19,7 @@ sidebar_label: Heat Map
 * __commonYAxis__ | `boolean`: グループ化変数の値ごとに複数のヒートマップを作成する際に、共通のy軸を使用するかどうかを制御します。. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <HeatMap 

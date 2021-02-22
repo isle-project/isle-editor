@@ -6,7 +6,7 @@ sidebar_label: Multi Cards
 
 Komponent ISLE, który pozwala na tworzenie i kontrolowanie wielu przerzucalnych kart (np. w grze "Pamięć").
 
-## Options
+## Opcje
 
 * __animation__ | `object`: jeśli jest ustawiony, komponent używa animacji wejściowej; obiekt zawiera nazwę (jak `skalowanie zwierząt`) i czas trwania (jak `1,7s` = 1,7 sekundy). Default: `{}`.
 * __memory__ | `boolean`: czy włączyć tryb gry pamięciowej, w której trzeba dopasować pary podanych wartości. Default: `none`.
@@ -20,7 +20,7 @@ Komponent ISLE, który pozwala na tworzenie i kontrolowanie wielu przerzucalnych
 * __backStyle__ | `object`: Styl CSS tylnej strony kart. Default: `{}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <MultiCards

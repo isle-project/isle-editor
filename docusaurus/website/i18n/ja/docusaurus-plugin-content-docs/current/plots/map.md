@@ -6,7 +6,7 @@ sidebar_label: Map
 
 与えられた地名または経度/緯度値のいずれかを指定できる地理地図。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 各変数の値の配列のオブジェクト. Default: `none`.
 * __scope__ | `string`: 表示範囲. Default: `'world'`.
@@ -17,4 +17,4 @@ sidebar_label: Map
 * __showLand__ | `boolean`: 地図上に地理的特徴を表示するかどうか. Default: `false`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。

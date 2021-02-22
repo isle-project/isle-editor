@@ -16,7 +16,7 @@ Bayes naïf qui suppose que les prédicteurs, compte tenu de l'appartenance à u
 * __onPredict__ | `function`: rappel invoqué avec les prédictions et les résidus après ajustement du modèle. Default: `none`.
 
 
-## Examples
+## Exemples
 
 ```jsx live
 <NaiveBayes 

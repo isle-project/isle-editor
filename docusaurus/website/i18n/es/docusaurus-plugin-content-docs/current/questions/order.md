@@ -6,7 +6,7 @@ sidebar_label: Order Question
 
 Un componente de la pregunta de orden que pide al estudiante traer una colección de elementos en el orden correcto.
 
-## Options
+## Opciones
 
 * __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que poner las "opciones" disponibles en el orden correcto. Default: `''`.
 * __options__ | `array (required)`: una serie de textos que el estudiante tiene que traer en el orden correcto (se asume que es el orden suministrado). Default: `none`.
@@ -25,7 +25,7 @@ Un componente de la pregunta de orden que pide al estudiante traer una colecció
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como único parámetro un "booleano" que indica si los elementos fueron colocados en el orden correcto. Default: `onSubmit() {}`.
 
 
-## Examples
+## Ejemplos
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

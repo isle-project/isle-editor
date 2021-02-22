@@ -6,7 +6,7 @@ sidebar_label: Number Survey
 
 講師がリアルタイムで学生から数値調査データを収集することができる調査コンポーネント。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: 出題. Default: `''`.
 * __allowMultipleAnswers__ | `boolean`: は、同じユーザー（匿名の場合はセッション）が複数の回答を提出できるかどうかを制御します). Default: `false`.
@@ -16,7 +16,7 @@ sidebar_label: Number Survey
 * __onSubmit__ | `function`: コールバック関数. Default: `onSubmit() {}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <NumberSurvey

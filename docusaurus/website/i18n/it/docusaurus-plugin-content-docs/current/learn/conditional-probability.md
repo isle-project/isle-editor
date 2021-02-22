@@ -6,11 +6,11 @@ sidebar_label: Conditional Probability
 
 Una componente di apprendimento che illustra la probabilità condizionale per due variabili binarie dipendenti.
 
-## Options
+## Opzioni
 
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <LearnConditionalProbability />

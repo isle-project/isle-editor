@@ -6,13 +6,13 @@ sidebar_label: span
 
 Elemento generico del contenitore in linea.
 
-## Options
+## Opzioni
 
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

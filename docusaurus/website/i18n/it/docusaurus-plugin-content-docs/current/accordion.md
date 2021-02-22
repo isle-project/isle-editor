@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Un componente a fisarmonica che controlla i cursori verticali.
 
-## Options
+## Opzioni
 
 * __active__ | `number`: indice del cursore da aprire all'inizio. Default: `none`.
 * __canCloseAll__ | `boolean`: se si possono far crollare tutte le testate. Default: `false`.
@@ -18,7 +18,7 @@ Un componente a fisarmonica che controlla i cursori verticali.
 * __style__ | `object`: Stili in linea CSS per il div esterno. Default: `none`.
 
 
-## Examples
+## Esempi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

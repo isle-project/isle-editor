@@ -6,12 +6,12 @@ sidebar_label: Sortable Tree
 
 Een dunne wikkel rond [reageer-sorteerbare-boom](https://www.npmjs.com/package/react-sortable-tree) die alle eigenschappen van de genoemde component ondersteunt.
 
-## Options
+## Opties
 
 * __title__ | `string`: koptekst. Default: `none`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <SortableTree 

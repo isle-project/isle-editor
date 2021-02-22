@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Mean Test
 
 Zwei-Stichproben-Mittelwerttest.
 
-## Options
+## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __x__ | `string (required)`: Name der ersten Variablen. Default: `none`.
@@ -21,7 +21,7 @@ Zwei-Stichproben-Mittelwerttest.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 
 
-## Examples
+## Beispiele
 
 ```jsx live
 <MeanTest2

@@ -6,7 +6,7 @@ sidebar_label: Timer
 
 Muestra un temporizador que activará una llamada predefinida cuando el tiempo se acabe. Un ejemplo de caso de uso es el tiempo de los exámenes.
 
-## Options
+## Opciones
 
 * __id__ | `string`: la identificación única de la "cuerda" para el temporizador. Si se establece un ID, el componente del temporizador es persistente en las actualizaciones de la página. Default: `none`.
 * __active__ | `boolean (required)`: bandera que se puede activar para iniciar o detener el temporizador. Default: `none`.
@@ -18,7 +18,7 @@ Muestra un temporizador que activará una llamada predefinida cuando el tiempo s
 * __onTimeUp__ | `function`: llamada de regreso invocada cuando el temporizador se agota. Default: `onTimeUp() {}`.
 
 
-## Examples
+## Ejemplos
 
 ```jsx live
 <Timer 

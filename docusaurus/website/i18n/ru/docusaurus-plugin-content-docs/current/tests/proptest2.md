@@ -6,7 +6,7 @@ sidebar_label: Two-Sample Proportion Test
 
 Тест на пропорции двух проб.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __var1__ | `string (required)`: имя первой переменной. Default: `none`.
@@ -19,7 +19,7 @@ sidebar_label: Two-Sample Proportion Test
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <PropTest2

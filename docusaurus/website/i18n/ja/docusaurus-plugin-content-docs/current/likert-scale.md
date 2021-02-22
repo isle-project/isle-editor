@@ -6,7 +6,7 @@ sidebar_label: Likert Scale
 
 学生が答えるための質問と5点満点の尺度を示す構成要素。
 
-## Options
+## オプション
 
 * __question__ | `(string|node)`: いんさつもん. Default: `''`.
 * __options__ | `array`: 異なるスケールレベルのラベルを保持する5つの要素の配列. Default: `none`.
@@ -16,7 +16,7 @@ sidebar_label: Likert Scale
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <LikertScale 

@@ -6,13 +6,13 @@ sidebar_label: NetworkPlot
 
 基于d3的网络图。
 
-## Options
+## 选项
 
 * __width__ | `number`: 绘图宽度(单位：px). Default: `900`.
 * __height__ | `number`: 绘图高度(单位：px). Default: `600`.
 
 
-## Examples
+## 例子
 
 ```jsx live
 <NetworkPlot

@@ -6,7 +6,7 @@ sidebar_label: Accordion
 
 Компонент аккордеона, управляющий вертикальными ползунами.
 
-## Options
+## Варианты
 
 * __active__ | `number`: индекс ползунка, который должен быть открыт в начале. Default: `none`.
 * __canCloseAll__ | `boolean`: можно ли сбить все заголовки. Default: `false`.
@@ -18,7 +18,7 @@ sidebar_label: Accordion
 * __style__ | `object`: CSS встраиваемые стили для наружных погружений. Default: `none`.
 
 
-## Examples
+## Примеры
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

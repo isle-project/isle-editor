@@ -6,7 +6,7 @@ sidebar_label: One-Sample Mean Test
 
 Средний тест на один образец.
 
-## Options
+## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: имя переменной. Default: `none`.
@@ -18,7 +18,7 @@ sidebar_label: One-Sample Mean Test
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <MeanTest

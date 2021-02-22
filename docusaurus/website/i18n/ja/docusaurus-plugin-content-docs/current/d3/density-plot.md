@@ -6,7 +6,7 @@ sidebar_label: Density Plot
 
 d3ベースの密度プロットコンポーネント。
 
-## Options
+## オプション
 
 * __bandwidth__ | `number`: カーネル密度推定器の平滑化パラメータ. Default: `4`.
 * __histogram__ | `boolean`: 密度プロットの横にヒストグラムを表示します. Default: `true`.
@@ -18,7 +18,7 @@ d3ベースの密度プロットコンポーネント。
 * __ymax__ | `number`: Ｙ軸の最大値. Default: `0.15`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <DensityPlot

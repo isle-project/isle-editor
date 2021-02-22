@@ -6,7 +6,7 @@ sidebar_label: Simple Linear Regression
 
 単純な線形回帰。
 
-## Options
+## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __x__ | `string (required)`: 説明変数. Default: `none`.
@@ -17,7 +17,7 @@ sidebar_label: Simple Linear Regression
 * __onPredict__ | `function`: 適合値と残差で呼び出されるコールバック. Default: `none`.
 
 
-## Examples
+## 例としては、以下のようなものがあります。
 
 ```jsx live
 <SimpleLinearRegression 

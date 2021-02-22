@@ -6,7 +6,7 @@ sidebar_label: Color Picker
 
 Okładka dla zbieracza kolorów [reaktor-kolor](https://casesandberg.github.io/react-color/).
 
-## Options
+## Opcje
 
 * __variant__ | `string`: Wariant pikietarek kolorowych (albo `Compact`, `Sketch`, `Materiał`, albo `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `sznurek` trzymający kod HeX lub `obiekt` trzymający wartości RGB lub HSL takie jak `{ r: 255, g: 255, b: 255 }` lub `{ h: 0, s: 0, l: .10 }`, który określa aktywny kolor. Oba przyjmują właściwość `a` dla wartości alfa innych niż jedna. Default: `'#fff'`.
@@ -35,7 +35,7 @@ Okładka dla zbieracza kolorów [reaktor-kolor](https://casesandberg.github.io/r
 * __onChangeComplete__ | `function`: wywołanie zwrotne po zakończeniu zmiany koloru. Default: `onChangeComplete() {}`.
 
 
-## Examples
+## Przykłady
 
 ```jsx live
 <ColorPicker onChangeComplete={ color => {

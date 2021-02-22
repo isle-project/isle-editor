@@ -6,7 +6,7 @@ sidebar_label: Text Area
 
 Компонент текстовой области. Используется как отдельный компонент, изменения должны обрабатываться через атрибут `onChange`.
 
-## Options
+## Варианты
 
 * __defaultValue__ | `string`: стандартное значение текстовой области. Default: `''`.
 * __value__ | `string`: текстовое значение (для контролируемого компонента). Default: `none`.
@@ -20,7 +20,7 @@ sidebar_label: Text Area
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
-## Examples
+## Примеры
 
 ```jsx live
 <TextArea

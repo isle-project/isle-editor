@@ -6,7 +6,7 @@ sidebar_label: Checkbox Input
 
 Een checkbox-invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-dashboard of stand-alone. In het laatste geval wilt u veranderingen afhandelen via het `on-Change` attribuut of de waarde binden aan een globale variabele via het `bind` attribuut.
 
-## Options
+## Opties
 
 * __bind__ | `string`: naam van de globale variabele voor de waarde van het selectievakje dat moet worden toegewezen aan. Default: `''`.
 * __defaultValue__ | `boolean`: booleaanse waarde die de standaardwaarde van het selectievakje aangeeft. Default: `false`.
@@ -20,7 +20,7 @@ Een checkbox-invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-das
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
-## Examples
+## Voorbeelden
 
 ```jsx live
 <CheckboxInput

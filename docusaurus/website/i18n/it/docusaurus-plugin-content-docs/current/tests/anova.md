@@ -6,7 +6,7 @@ sidebar_label: ANOVA
 
 Analisi della varianza.
 
-## Options
+## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variable__ | `string (required)`: nome della variabile da visualizzare. Default: `none`.
@@ -14,7 +14,7 @@ Analisi della varianza.
 * __showDecision__ | `boolean`: controlla se visualizzare la decisione del test. Default: `false`.
 
 
-## Examples
+## Esempi
 
 ```jsx live
 <Anova
