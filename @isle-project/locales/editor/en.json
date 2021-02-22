@@ -323,6 +323,8 @@
 	"shorthand": "Shorthand",
 	"show-in-gallery": "Show in Gallery?",
 	"show-line-buttons": "Show line buttons",
+	"show-minimap": "Show minimap in editor",
+	"show-quick-suggestions": "Auto-trigger autocomplete suggestions in editor",
 	"size": "Size",
 	"small-header": "Small header",
 	"solid": "Solid",

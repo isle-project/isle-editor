@@ -80,9 +80,6 @@ const MONACO_OPTIONS = {
 	contextmenu: false,
 	glyphMargin: true,
 	lineNumbersMinChars: 3,
-	minimap: {
-		enabled: false
-	},
 	multiCursorModifier: 'ctrlCmd',
 	lightbulb: {
 		enabled: true
@@ -91,7 +88,6 @@ const MONACO_OPTIONS = {
 	wordWrap: 'on',
 	snippetSuggestions: 'top',
 	suggestOnTriggerCharacters: true,
-	quickSuggestions: true,
 	folding: true,
 	foldingHighlight: true,
 	foldingStrategy: 'auto',
@@ -644,6 +640,8 @@ class Editor extends Component {
 			this.props.splitPos !== prevProps.splitPos ||
 			this.props.height !== prevProps.height ||
 			this.props.insertion !== prevProps.insertion ||
+			this.props.showMiniMap !== prevProps.showMiniMap ||
+			this.props.showQuickSuggestions !== prevProps.showQuickSuggestions ||
 			this.state.sourceFiles !== prevState.sourceFiles ||
 			this.state.hasSelection !== prevState.hasSelection ||
 			this.state.componentStylerProps !== prevState.componentStylerProps
@@ -1509,6 +1507,7 @@ class Editor extends Component {
 		} else {
 			outerStyle = null;
 		}
+		console.log( this.props.showQuickSuggestions );
 		return (
 			<div style={outerStyle} >
 				<ContextMenuTrigger
@@ -1526,7 +1525,11 @@ class Editor extends Component {
 							value={this.state.value}
 							options={{
 								...MONACO_OPTIONS,
-								fontSize: this.props.splitPos !== 1 ? this.props.fontSize : 4
+								fontSize: this.props.splitPos !== 1 ? this.props.fontSize : 4,
+								minimap: {
+									enabled: this.props.showMiniMap
+								},
+								quickSuggestions: this.props.showQuickSuggestions
 							}}
 							onChange={this.handleChange}
 							editorDidMount={this.onEditorMount}

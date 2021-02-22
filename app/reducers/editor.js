@@ -62,7 +62,9 @@ const initialState = {
 	author: authorMatch ? authorMatch[ 1 ] : '',
 	unsaved: false,
 	documentVersion: 0,
-	insertion: null
+	insertion: null,
+	showMiniMap: mainStore.get( 'showMiniMap' ) || false,
+	showQuickSuggestions: mainStore.get( 'showQuickSuggestions' ) || false
 };
 
 
@@ -231,6 +233,18 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			hideToolbar: !state.hideToolbar
+		};
+	case types.TOGGLE_MINI_MAP:
+		mainStore.set( 'showMiniMap', !state.showMiniMap );
+		return {
+			...state,
+			showMiniMap: !state.showMiniMap
+		};
+	case types.TOGGLE_QUICK_SUGGESTIONS:
+		mainStore.set( 'showQuickSuggestions', !state.showQuickSuggestions );
+		return {
+			...state,
+			showQuickSuggestions: !state.showQuickSuggestions
 		};
 	case types.FONT_SIZE_CHANGED:
 		mainStore.set( 'fontSize', action.payload.fontSize );

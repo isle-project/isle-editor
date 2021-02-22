@@ -346,6 +346,8 @@ class App extends Component {
 								toggleConfigurator={this.props.toggleConfigurator}
 								triggerUpdate={this.props.incrementDocumentVersion}
 								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
+								showQuickSuggestions={this.props.showQuickSuggestions}
+								showMiniMap={this.props.showMiniMap}
 							/>
 						</SplitPanel>
 						<SplitPanel

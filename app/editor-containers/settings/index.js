@@ -2,10 +2,12 @@
 
 import React, { Fragment, useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { changeRenderInterval, changeFontSize, changePreambleTemplate, updateDownloading } from 'actions';
+import { changeRenderInterval, changeFontSize, changePreambleTemplate,
+	updateDownloading, toggleQuickSuggestions, toggleMiniMap } from 'actions';
 import { withTranslation } from 'react-i18next';
 import Collapse from '@isle-project/components/collapse';
 import NumberInput from '@isle-project/components/input/number';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -24,7 +26,8 @@ import './settings.css';
 const Settings = ({
 	changeFontSize, changeRenderInterval, changePreambleTemplate, t,
 	updateStatus, updateInfo, updateDownloading, updateDownloadPercent,
-	fontSize, renderInterval, preambleTemplate
+	fontSize, renderInterval, preambleTemplate, showMiniMap, showQuickSuggestions,
+	toggleQuickSuggestions, toggleMiniMap
 }) => {
 	const [ showSettings, setShowSettings ] = useState( false );
 	const handleFontSizeChange = useCallback( ( number ) => {
@@ -79,6 +82,16 @@ const Settings = ({
 									step={1}
 									defaultValue={parseInt( renderInterval / 1000, 10 )}
 								/>
+								<CheckboxInput
+									legend={t('show-minimap')}
+									defaultValue={showMiniMap}
+									onChange={toggleMiniMap}
+								/>
+								<CheckboxInput
+									legend={t('show-quick-suggestions')}
+									defaultValue={showQuickSuggestions}
+									onChange={toggleQuickSuggestions}
+								/>
 							</Col>
 							<Col md={7}>
 								<LanguageSwitcher />
@@ -109,7 +122,9 @@ export default connect( mapStateToProps, {
 	changeFontSize,
 	changePreambleTemplate,
 	changeRenderInterval,
-	updateDownloading
+	updateDownloading,
+	toggleQuickSuggestions,
+	toggleMiniMap
 })( withTranslation( 'Editor' )( Settings ) );
 
 function mapStateToProps({ editor, preview, updater }) {

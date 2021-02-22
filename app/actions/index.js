@@ -182,6 +182,18 @@ export function toggleToolbar() {
 	};
 }
 
+export function toggleMiniMap() {
+	return {
+		type: types.TOGGLE_MINI_MAP
+	};
+}
+
+export function toggleQuickSuggestions() {
+	return {
+		type: types.TOGGLE_QUICK_SUGGESTIONS
+	};
+}
+
 export function updatePreamble({ preamble, preambleText }) {
 	return {
 		type: types.PREAMBLE_CHANGED,
