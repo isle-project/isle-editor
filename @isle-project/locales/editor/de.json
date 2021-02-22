@@ -323,6 +323,8 @@
 	"shorthand": "Kurzschrift",
 	"show-in-gallery": "In der Galerie anzeigen?",
 	"show-line-buttons": "Zeilenschaltflächen anzeigen",
+	"show-minimap": "Minimap im Editor anzeigen",
+	"show-quick-suggestions": "Autovervollständigungsvorschläge im Editor auslösen",
 	"size": "Größe",
 	"small-header": "Kleine Kopfzeile",
 	"solid": "Solide",

@@ -323,6 +323,8 @@
 	"shorthand": "Shorthand",
 	"show-in-gallery": "Laten zien in de Galerij?",
 	"show-line-buttons": "Toon lijnknoppen",
+	"show-minimap": "Toon minimap in editor",
+	"show-quick-suggestions": "Auto-aanvul-suggesties triggeren in editor",
 	"size": "Grootte",
 	"small-header": "Klein kopje",
 	"solid": "Solide",

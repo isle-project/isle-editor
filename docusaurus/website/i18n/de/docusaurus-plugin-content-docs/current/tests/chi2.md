@@ -1,7 +1,7 @@
 ---
 id: chi2
-title: Correlation Test
-sidebar_label: Correlation Test
+title: Chi-square Independence Test
+sidebar_label: Chi-square Independence Test
 ---
 
 Chi-Quadrat-Unabhängigkeitstest.

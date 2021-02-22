@@ -323,6 +323,8 @@
 	"shorthand": "速記",
 	"show-in-gallery": "ギャラリーで見る？",
 	"show-line-buttons": "ラインボタンを表示する",
+	"show-minimap": "エディタでミニマップを表示",
+	"show-quick-suggestions": "エディタでオートコンプリートサジェストを自動でトリガーする",
 	"size": "サイズ",
 	"small-header": "スモールヘッダー",
 	"solid": "ソリッド",

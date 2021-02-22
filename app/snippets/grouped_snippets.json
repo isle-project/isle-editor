@@ -330,7 +330,7 @@
     },
     {
       "name": "MatchListQuestion",
-      "value": "<MatchListQuestion\n  question=\"Enter question\"\n  elements={[\n    { a: '${1:Element A}', b: '${2:Element B}' },\n    { a: '${3:Element C}', b: '${4:Element D}' }\n  ]}\n  onSubmit={ ( answers ) => {\n    ${5:}\n  }}\n/>\n"
+      "value": "<MatchListQuestion\n  question=\"Enter question\"\n  elements={[\n    { a: '${1:Element A}', b: '${2:Element B}' },\n    { a: '${3:Element C}', b: '${4:Element D}' }\n  ]}\n/>\n"
     },
     {
       "name": "MultipleChoiceQuestion",

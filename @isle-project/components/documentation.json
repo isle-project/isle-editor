@@ -285,6 +285,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "className",
+				"type": "string",
+				"description": "Collapse-prop-className",
+				"defaultValue": ""
+			},
+			{
 				"name": "style",
 				"type": "object",
 				"description": "Collapse-prop-style",
@@ -8225,6 +8231,12 @@
 				"type": "string",
 				"description": "Tooltip-prop-placement",
 				"defaultValue": "right"
+			},
+			{
+				"name": "onToggle",
+				"type": "function",
+				"description": "Tooltip-prop-onToggle",
+				"defaultValue": null
 			}
 		],
 		"description": "Tooltip-description"
