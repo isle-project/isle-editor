@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[632],{3070:function(a){a.exports=JSON.parse('{"display-instructor-feedback":"Haga clic para mostrar u ocultar la informaci\xf3n del instructor","your-points":"Sus puntos para la pregunta"}')}}]);

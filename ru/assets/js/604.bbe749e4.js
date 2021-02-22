@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[604],{3460:function(o){o.exports=JSON.parse('{"confirm":"Potwierdzi\u0107"}')}}]);
