@@ -1,7 +1,6 @@
 // MODULES //
 
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
-const TerserPlugin = require( 'terser-webpack-plugin' );
 const { join, resolve } = require( 'path' );
 
 
@@ -202,47 +201,10 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.14/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.16/'
 	},
 	optimization: {
-		minimize: true,
-		minimizer: [
-			new TerserPlugin({
-				terserOptions: {
-					warnings: true,
-					compress: {
-						arrows: false,
-						booleans: false,
-						collapse_vars: false,
-						comparisons: false,
-						computed_props: false,
-						hoist_funs: false,
-						hoist_props: false,
-						hoist_vars: false,
-						if_return: false,
-						inline: false,
-						join_vars: false,
-						keep_infinity: false,
-						loops: false,
-						negate_iife: false,
-						properties: false,
-						reduce_funcs: false,
-						reduce_vars: false,
-						sequences: false,
-						side_effects: false,
-						switches: false,
-						top_retain: false,
-						toplevel: false,
-						typeofs: false,
-						unused: false,
-						conditionals: true,
-						dead_code: true,
-						evaluate: true
-					},
-					mangle: true
-				}
-			})
-		]
+		minimize: true
 	},
 	plugins: [
 		new DllPlugin({

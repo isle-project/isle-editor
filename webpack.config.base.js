@@ -16,6 +16,7 @@ const EXTERNALS = [
 	'child_process',
 	'compute-chunkify',
 	'csv-stringify',
+	'csvtojson',
 	'd3',
 	'd3-cloud',
 	'eslint', // needs to be external for CLI Engine to work for linting
