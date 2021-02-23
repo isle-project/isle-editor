@@ -115,7 +115,7 @@ const ImageQuestion = ( props ) => {
 				value: src
 			});
 		} else {
-			const canvas = document.getElementById( id+'-canvas' );
+			const canvas = document.getElementById( id.current+'-canvas' );
 			canvas.toBlob( ( blob ) => {
 				blobToBase64( blob ).then( newSrc => {
 					session.log({
@@ -215,14 +215,14 @@ const ImageQuestion = ( props ) => {
 				<Image
 					alt={props.t('model-solution')}
 					src={props.solution}
-					width="100%" height="auto"
+					width="50%" height="auto"
 					style={{
 						border: 'solid 1px gold'
 					}}
 				/> : <Image
 					alt={props.t('upload')}
 					src={src}
-					width="100%" height="auto"
+					width="50%" height="auto"
 				/>
 			}
 		</div>:
