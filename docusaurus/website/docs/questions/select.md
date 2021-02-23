@@ -96,7 +96,7 @@ The usual t-test is:
 ```jsx live
 <SelectQuestion
     question="White is "
-    solution={2}
+    solution={1}
     options={[
         'a primary color',
         'not a primary color'
