@@ -255,7 +255,7 @@
     "uniq": "^1.0.1",
     "v8-compile-cache": "^2.1.0",
     "venn.js": "0.2.20",
-    "webpack": "5.23.0",
+    "webpack": "5.24.0",
     "webpack-manifest-plugin": "3.0.0",
     "whatwg-fetch": "^3.6.1",
     "workbox-webpack-plugin": "6.1.1",
