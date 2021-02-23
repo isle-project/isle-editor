@@ -15,8 +15,8 @@ The appear component will cause all of its children to become visible after a sp
 ## Examples
 
 ```jsx live
-<Unveil duration={5000} >
-    <span> I will appear</span>
+<Unveil delay={5000} >
+    <span>When active, I will appear after five seconds...</span>
 </Unveil>
 ```
 

@@ -16,7 +16,7 @@ Element wygasający spowoduje, że wszystkie jego dzieci staną się niewidoczne
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

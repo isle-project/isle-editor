@@ -16,7 +16,7 @@ De vervaldagcomponent zal ervoor zorgen dat alle kinderen na een bepaalde tijd o
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

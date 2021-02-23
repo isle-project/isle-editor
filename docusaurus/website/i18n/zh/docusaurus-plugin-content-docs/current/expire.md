@@ -16,7 +16,7 @@ sidebar_label: Expire
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

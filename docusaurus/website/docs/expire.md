@@ -16,7 +16,7 @@ The expire component will cause all of its children to become invisible after a 
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

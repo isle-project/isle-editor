@@ -15,8 +15,8 @@ sidebar_label: Unveil
 ## Примеры
 
 ```jsx live
-<Unveil duration={5000} >
-    <span> I will appear</span>
+<Unveil delay={5000} >
+    <span>When active, I will appear after five seconds...</span>
 </Unveil>
 ```
 

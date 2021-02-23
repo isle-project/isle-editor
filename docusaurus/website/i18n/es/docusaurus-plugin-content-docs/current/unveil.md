@@ -15,8 +15,8 @@ El componente de apariencia hará que todos sus hijos sean visibles después de 
 ## Ejemplos
 
 ```jsx live
-<Unveil duration={5000} >
-    <span> I will appear</span>
+<Unveil delay={5000} >
+    <span>When active, I will appear after five seconds...</span>
 </Unveil>
 ```
 

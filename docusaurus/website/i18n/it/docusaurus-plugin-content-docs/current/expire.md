@@ -16,7 +16,7 @@ Il componente scaduto farà sì che tutti i suoi figli diventino invisibili dopo
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

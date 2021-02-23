@@ -16,7 +16,7 @@ La composante "expiration" fera en sorte que tous ses enfants deviennent invisib
 
 ```jsx live
 <Expire>
-    <span> I will disappear </span>
+    <span>When active, I will disappear after one second</span>
 </Expire>
 ```
 

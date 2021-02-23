@@ -15,8 +15,8 @@ appearコンポーネントは、指定された時間後にそのすべての�
 ## 例としては、以下のようなものがあります。
 
 ```jsx live
-<Unveil duration={5000} >
-    <span> I will appear</span>
+<Unveil delay={5000} >
+    <span>When active, I will appear after five seconds...</span>
 </Unveil>
 ```
 
