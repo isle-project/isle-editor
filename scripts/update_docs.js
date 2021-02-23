@@ -131,7 +131,8 @@ function superfluousDescriptions( types, description ) {
 const DOCS = {};
 const TRANSLATIONS = {
 	'options': 'Options',
-	'examples': 'Examples'
+	'examples': 'Examples',
+	'no-properties': 'No properties available.'
 };
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
@@ -238,7 +239,9 @@ for ( let i = 0; i < files.length; i++ ) {
 			defaultValue: defaults[ key ]
 		});
 	}
-
+	if ( keys.length === 0 ) {
+		optionsStr += COMPONENT_DOCS[ 'en' ][ 'no-properties' ];
+	}
 	try {
 		let md = fs.readFileSync( mdpath ).toString();
 		debug( 'Replacing component description...' );
@@ -264,6 +267,9 @@ for ( let i = 0; i < files.length; i++ ) {
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				replacement = replace( replacement, ': '+description[ key ]+'.', ': '+COMPONENT_DOCS[ lng ][ description[ key ] ]+'.' );
+			}
+			if ( keys.length === 0 ) {
+				replacement = replace( COMPONENT_DOCS[ 'en' ][ 'no-properties' ], COMPONENT_DOCS[ lng ][ 'no-properties' ] );
 			}
 			replacement += '\n\n';
 			replacement += '## '+COMPONENT_DOCS[ lng ][ 'examples' ];
