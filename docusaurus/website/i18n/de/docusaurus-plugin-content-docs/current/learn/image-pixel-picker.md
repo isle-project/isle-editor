@@ -8,7 +8,7 @@ Ein Pixel-Farbwähler, der RGB-Farben anhand von Beispielbildern erklärt.
 
 ## Optionen
 
-
+Keine Eigenschaften vorhanden.
 
 ## Beispiele
 

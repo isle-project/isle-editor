@@ -8,7 +8,7 @@ Um componente de aprendizagem que ilustra a probabilidade condicional para duas 
 
 ## Opções
 
-
+Não há propriedades disponíveis.
 
 ## Exemplos
 

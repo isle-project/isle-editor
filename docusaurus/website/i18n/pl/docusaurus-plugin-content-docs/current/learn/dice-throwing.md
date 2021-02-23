@@ -8,7 +8,7 @@ Komponent do nauki ilustrujący prawo dużych liczb przy rzucaniu kostką.
 
 ## Opcje
 
-
+Brak dostępnych nieruchomości.
 
 ## Przykłady
 

@@ -8,7 +8,7 @@ Um seletor de cores pixel que explica as cores RGB usando imagens de exemplo.
 
 ## Opções
 
-
+Não há propriedades disponíveis.
 
 ## Exemplos
 

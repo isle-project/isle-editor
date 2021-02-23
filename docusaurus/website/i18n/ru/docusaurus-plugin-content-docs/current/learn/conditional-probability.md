@@ -8,7 +8,7 @@ sidebar_label: Conditional Probability
 
 ## Варианты
 
-
+Свойств нет.
 
 ## Примеры
 

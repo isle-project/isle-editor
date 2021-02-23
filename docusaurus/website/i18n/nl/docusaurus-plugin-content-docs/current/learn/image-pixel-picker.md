@@ -8,7 +8,7 @@ Een pixelkleurenkiezer die de RGB-kleuren uitlegt aan de hand van voorbeeldafbee
 
 ## Opties
 
-
+Geen eigendommen beschikbaar.
 
 ## Voorbeelden
 

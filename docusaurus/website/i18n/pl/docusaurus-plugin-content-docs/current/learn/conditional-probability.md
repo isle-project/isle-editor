@@ -8,7 +8,7 @@ Komponent edukacyjny ilustrujący warunkowe prawdopodobieństwo dla dwóch zale�
 
 ## Opcje
 
-
+Brak dostępnych nieruchomości.
 
 ## Przykłady
 

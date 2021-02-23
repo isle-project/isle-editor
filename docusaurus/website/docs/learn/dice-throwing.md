@@ -8,7 +8,7 @@ A learning component illustrating the law of large numbers using dice throwing.
 
 ## Options
 
-
+No properties available.
 
 ## Examples
 

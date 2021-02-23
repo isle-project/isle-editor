@@ -8,7 +8,7 @@ Un volet d'apprentissage illustrant la loi des grands nombres à l'aide du lance
 
 ## Options
 
-
+Aucune propriété disponible.
 
 ## Exemples
 

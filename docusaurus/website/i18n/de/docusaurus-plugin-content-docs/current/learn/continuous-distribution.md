@@ -8,7 +8,7 @@ Eine Lernkomponente zur Untersuchung von benutzerdefinierten kontinuierlichen Wa
 
 ## Optionen
 
-
+Keine Eigenschaften vorhanden.
 
 ## Beispiele
 

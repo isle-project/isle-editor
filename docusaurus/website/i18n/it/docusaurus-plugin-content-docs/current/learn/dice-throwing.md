@@ -8,7 +8,7 @@ Una componente di apprendimento che illustra la legge dei grandi numeri con il l
 
 ## Opzioni
 
-
+Nessuna proprietà disponibile.
 
 ## Esempi
 

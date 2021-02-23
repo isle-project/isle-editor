@@ -8,7 +8,7 @@ Una componente di apprendimento che illustra la probabilità condizionale per du
 
 ## Opzioni
 
-
+Nessuna proprietà disponibile.
 
 ## Esempi
 

@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "Os \"nós\" e os \"links\"; os \"nós\" devem ser um conjunto de elementos com uma propriedade \"id\", \"links\" um conjunto de elementos com uma id \"fonte\" e \"alvo\".",
 	"NetworkPlot-prop-height": "altura da parcela (em px)",
 	"NetworkPlot-prop-width": "largura da parcela (em px)",
+	"no-properties": "Não há propriedades disponíveis.",
 	"NumberInput-description": "Um número de componentes de entrada. Pode ser usado como parte de um painel de instrumentos ISLE ou autônomo. Neste último caso, você quer lidar com as mudanças através do atributo \"Mudar\" ou ligar o valor a uma variável global através do atributo \"ligar\".",
 	"NumberInput-prop-bind": "nome da variável global para o número a ser atribuído a",
 	"NumberInput-prop-defaultValue": "valor que indica o valor padrão da entrada na partida",

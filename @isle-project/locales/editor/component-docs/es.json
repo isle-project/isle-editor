@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "con \"nodos\" y \"enlaces\"; los \"nodos\" deben ser un conjunto de elementos con una propiedad \"id\", \"enlaces\" un conjunto de objetos con elementos que tienen una \"fuente\" y un \"objetivo\" id.",
 	"NetworkPlot-prop-height": "altura de la trama (en px)",
 	"NetworkPlot-prop-width": "ancho de la trama (en px)",
+	"no-properties": "No hay propiedades disponibles.",
 	"NumberInput-description": "Un componente de entrada de números. Puede ser usado como parte de un tablero de ISLE o independiente. En este último caso, quieres manejar los cambios a través del atributo \"onChange\" o vincular el valor a una variable global a través del atributo \"bind\".",
 	"NumberInput-prop-bind": "nombre de la variable global para el número que se asignará a",
 	"NumberInput-prop-defaultValue": "valor que indica el valor por defecto de la entrada en el arranque",

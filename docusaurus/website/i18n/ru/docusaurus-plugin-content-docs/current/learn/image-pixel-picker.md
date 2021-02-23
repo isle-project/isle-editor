@@ -8,7 +8,7 @@ sidebar_label: Image Pixel Picker
 
 ## Варианты
 
-
+Свойств нет.
 
 ## Примеры
 

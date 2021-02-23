@@ -8,7 +8,7 @@ Un componente de aprendizaje para explorar las distribuciones de probabilidad co
 
 ## Opciones
 
-
+No hay propiedades disponibles.
 
 ## Ejemplos
 

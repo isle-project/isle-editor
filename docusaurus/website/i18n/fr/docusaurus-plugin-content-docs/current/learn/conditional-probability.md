@@ -8,7 +8,7 @@ Une composante d'apprentissage illustrant la probabilité conditionnelle pour de
 
 ## Options
 
-
+Aucune propriété disponible.
 
 ## Exemples
 

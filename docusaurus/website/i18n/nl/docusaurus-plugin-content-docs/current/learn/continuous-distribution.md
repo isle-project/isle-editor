@@ -8,7 +8,7 @@ Een leercomponent voor het verkennen van door de gebruiker gedefinieerde continu
 
 ## Opties
 
-
+Geen eigendommen beschikbaar.
 
 ## Voorbeelden
 

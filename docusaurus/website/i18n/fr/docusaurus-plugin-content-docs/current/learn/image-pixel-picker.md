@@ -8,7 +8,7 @@ Un pixel color picker expliquant les couleurs RVB à l'aide d'images d'exemple.
 
 ## Options
 
-
+Aucune propriété disponible.
 
 ## Exemples
 

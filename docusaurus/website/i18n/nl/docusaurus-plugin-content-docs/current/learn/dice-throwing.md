@@ -8,7 +8,7 @@ Een leercomponent die de wet van de grote aantallen illustreert met behulp van d
 
 ## Opties
 
-
+Geen eigendommen beschikbaar.
 
 ## Voorbeelden
 

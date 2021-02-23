@@ -8,7 +8,7 @@ Un élément d'apprentissage pour explorer les distributions de probabilités co
 
 ## Options
 
-
+Aucune propriété disponible.
 
 ## Exemples
 

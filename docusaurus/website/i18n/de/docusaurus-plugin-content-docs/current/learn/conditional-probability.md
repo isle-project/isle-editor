@@ -8,7 +8,7 @@ Eine Lernkomponente, die die bedingte Wahrscheinlichkeit für zwei abhängige bi
 
 ## Optionen
 
-
+Keine Eigenschaften vorhanden.
 
 ## Beispiele
 

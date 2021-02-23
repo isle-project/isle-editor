@@ -8,7 +8,7 @@ Pikselowy zbieracz kolorów objaśniający kolory RGB za pomocą przykładowych 
 
 ## Opcje
 
-
+Brak dostępnych nieruchomości.
 
 ## Przykłady
 

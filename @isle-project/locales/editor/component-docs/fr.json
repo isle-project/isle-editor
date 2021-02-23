@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "objet avec des \"noeuds\" et des \"liens\" ; \"noeuds\" doit être un tableau d'éléments avec une propriété \"id\", \"liens\" un tableau d'éléments avec un id \"source\" et \"cible",
 	"NetworkPlot-prop-height": "hauteur de la parcelle (en px)",
 	"NetworkPlot-prop-width": "largeur de la parcelle (en px)",
+	"no-properties": "Aucune propriété disponible.",
 	"NumberInput-description": "Un élément de saisie de chiffres. Peut être utilisé dans le cadre d'un tableau de bord ISLE ou de manière autonome. Dans ce dernier cas, vous souhaitez gérer les modifications via l'attribut \"onChange\" ou lier la valeur à une variable globale via l'attribut \"bind\".",
 	"NumberInput-prop-bind": "nom de la variable globale pour le numéro à attribuer",
 	"NumberInput-prop-defaultValue": "valeur indiquant la valeur par défaut de l'entrée au démarrage",

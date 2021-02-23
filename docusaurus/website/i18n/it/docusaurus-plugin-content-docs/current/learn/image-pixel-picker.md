@@ -8,7 +8,7 @@ Un pixel color picker che spiega i colori RGB utilizzando immagini di esempio.
 
 ## Opzioni
 
-
+Nessuna proprietà disponibile.
 
 ## Esempi
 

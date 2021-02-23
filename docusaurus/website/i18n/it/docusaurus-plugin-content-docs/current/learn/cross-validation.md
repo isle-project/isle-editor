@@ -8,7 +8,7 @@ Una visualizzazione che spiega la convalida incrociata.
 
 ## Opzioni
 
-
+Nessuna proprietà disponibile.
 
 ## Esempi
 

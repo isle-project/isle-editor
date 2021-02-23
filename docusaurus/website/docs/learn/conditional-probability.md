@@ -8,7 +8,7 @@ A learning component illustrating conditional probability for two dependent bina
 
 ## Options
 
-
+No properties available.
 
 ## Examples
 

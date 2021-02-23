@@ -8,7 +8,7 @@ Een leercomponent die de voorwaardelijke waarschijnlijkheid voor twee afhankelij
 
 ## Opties
 
-
+Geen eigendommen beschikbaar.
 
 ## Voorbeelden
 

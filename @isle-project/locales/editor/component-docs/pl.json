@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "obiekt z `nodes` i `linkami`; `nodes` powinny być tablicą obiektów z właściwością `id`, `linki` tablicą obiektów z elementami posiadającymi `źródło` i `cel` id",
 	"NetworkPlot-prop-height": "wysokość działki (w px)",
 	"NetworkPlot-prop-width": "szerokość działki (w px)",
+	"no-properties": "Brak dostępnych nieruchomości.",
 	"NumberInput-description": "Element wejściowy numeru. Może być używany jako część deski rozdzielczej ISLE lub autonomiczny. W tym ostatnim przypadku, chcesz obsługiwać zmiany poprzez atrybut `onChange` lub powiązać wartość ze zmienną globalną poprzez atrybut `bind`.",
 	"NumberInput-prop-bind": "nazwa zmiennej globalnej dla numeru, który ma być przypisany do",
 	"NumberInput-prop-defaultValue": "wartość wskazująca domyślną wartość wejścia podczas uruchamiania",

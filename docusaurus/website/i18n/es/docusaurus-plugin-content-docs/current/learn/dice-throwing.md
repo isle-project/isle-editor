@@ -8,7 +8,7 @@ Un componente de aprendizaje que ilustra la ley de los grandes números utilizan
 
 ## Opciones
 
-
+No hay propiedades disponibles.
 
 ## Ejemplos
 

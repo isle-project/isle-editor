@@ -8,7 +8,7 @@ Una visualización que explica la validación cruzada.
 
 ## Opciones
 
-
+No hay propiedades disponibles.
 
 ## Ejemplos
 

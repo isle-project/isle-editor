@@ -8,7 +8,7 @@ Eine Visualisierung zur Erklärung der Kreuzvalidierung.
 
 ## Optionen
 
-
+Keine Eigenschaften vorhanden.
 
 ## Beispiele
 

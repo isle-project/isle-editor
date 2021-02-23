@@ -8,7 +8,7 @@ Komponent edukacyjny do badania zdefiniowanych przez użytkownika ciągłych roz
 
 ## Opcje
 
-
+Brak dostępnych nieruchomości.
 
 ## Przykłady
 

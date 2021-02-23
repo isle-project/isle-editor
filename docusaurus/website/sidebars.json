@@ -160,10 +160,12 @@
           "multi-cards",
           "qrcode",
           "recorder",
+          "seal",
           "sortable-tree"
         ],
         "Programmatic": [
           "expire",
+          "language",
           "revealer",
           "runner",
           "timer",

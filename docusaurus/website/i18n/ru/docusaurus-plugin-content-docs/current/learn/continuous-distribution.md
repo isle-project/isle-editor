@@ -8,7 +8,7 @@ sidebar_label: Continuous Distribution
 
 ## Варианты
 
-
+Свойств нет.
 
 ## Примеры
 

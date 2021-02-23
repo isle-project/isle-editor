@@ -8,7 +8,7 @@ sidebar_label: Dice Throwing
 
 ## Варианты
 
-
+Свойств нет.
 
 ## Примеры
 

@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "具有`节点`和`链接`的对象；`节点`应该是一个具有`id`属性的元素的对象数组，`链接`是一个具有`source`和`target`id的元素的对象数组。",
 	"NetworkPlot-prop-height": "绘图高度(单位：px)",
 	"NetworkPlot-prop-width": "绘图宽度(单位：px)",
+	"no-properties": "无房源。",
 	"NumberInput-description": "一个数字输入组件。可以作为ISLE仪表板的一部分或独立使用。在后一种情况下，你想通过`onChange`属性处理变化，或者通过`bind`属性将值绑定到一个全局变量。",
 	"NumberInput-prop-bind": "全局变量的名称，用于分配到的数字。",
 	"NumberInput-prop-defaultValue": "表示启动时输入的默认值。",

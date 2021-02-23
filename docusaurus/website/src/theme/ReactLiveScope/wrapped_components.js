@@ -48,6 +48,7 @@ import Image from '@isle-project/components/image';
 import Joyride from '@isle-project/components/joyride';
 import JSShell from '@isle-project/components/js-shell';
 import KeyControls from '@isle-project/components/key-controls';
+import Language from '@isle-project/components/language';
 import Lesson from '@isle-project/components/internal/lesson';
 import LearnCausalityDiagram from '@isle-project/components/learn/causality-diagram';
 import LearnCrossValidation from '@isle-project/components/learn/cross-validation';
@@ -235,6 +236,7 @@ const Components = {
 	Joyride,
 	JSShell,
 	KeyControls,
+	Language,
 	Lesson,
 	LearnCausalityDiagram,
 	LearnCrossValidation,

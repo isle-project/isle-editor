@@ -8,7 +8,7 @@ Wizualizacja wyjaśniająca walidację krzyżową.
 
 ## Opcje
 
-
+Brak dostępnych nieruchomości.
 
 ## Przykłady
 

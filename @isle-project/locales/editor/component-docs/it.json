@@ -741,6 +741,7 @@
 	"NetworkPlot-prop-data": "con `nodi` e `links`; `nodes` dovrebbe essere un array di elementi con una proprietà `id`, `links` un array di oggetti con elementi che hanno un `source` e `target` id",
 	"NetworkPlot-prop-height": "altezza del terreno (in px)",
 	"NetworkPlot-prop-width": "larghezza del terreno (in px)",
+	"no-properties": "Nessuna proprietà disponibile.",
 	"NumberInput-description": "Un componente di input numerico. Può essere utilizzato come parte di un cruscotto ISLE o autonomo. In quest'ultimo caso, si vuole gestire le modifiche tramite l'attributo `onChange` o legare il valore ad una variabile globale tramite l'attributo `bind`.",
 	"NumberInput-prop-bind": "nome della variabile globale per il numero da assegnare a",
 	"NumberInput-prop-defaultValue": "valore che indica il valore di default dell'ingresso all'avvio",

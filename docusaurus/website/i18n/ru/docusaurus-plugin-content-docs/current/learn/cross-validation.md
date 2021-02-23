@@ -8,7 +8,7 @@ sidebar_label: Cross Validation
 
 ## Варианты
 
-
+Свойств нет.
 
 ## Примеры
 

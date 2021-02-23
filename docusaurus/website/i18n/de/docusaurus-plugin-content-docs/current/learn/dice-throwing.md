@@ -8,7 +8,7 @@ Eine Lernkomponente zur Veranschaulichung des Gesetzes der großen Zahlen anhand
 
 ## Optionen
 
-
+Keine Eigenschaften vorhanden.
 
 ## Beispiele
 

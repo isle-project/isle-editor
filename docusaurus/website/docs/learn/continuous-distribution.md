@@ -8,7 +8,7 @@ A learning component for exploring user-defined continuous probability distribut
 
 ## Options
 
-
+No properties available.
 
 ## Examples
 

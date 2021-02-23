@@ -8,7 +8,7 @@ Une visualisation expliquant la validation croisée.
 
 ## Options
 
-
+Aucune propriété disponible.
 
 ## Exemples
 

@@ -8,7 +8,7 @@ Um componente de aprendizagem que ilustra a lei de grandes números usando o lan
 
 ## Opções
 
-
+Não há propriedades disponíveis.
 
 ## Exemplos
 
