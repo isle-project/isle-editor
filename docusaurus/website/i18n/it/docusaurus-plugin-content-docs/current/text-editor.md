@@ -70,6 +70,7 @@ mode="individual" />
 
 ```jsx live
 <TextEditor  
+  defaultValue="[Generate CSS-Gradients Online!](https://cssgradient.io/)"
   style={{ 
     background: 'green',
     background: 'radial-gradient(circle, rgba(251,213,112,0.7315301120448179) 0%,rgba(83,199,14,0.4514180672268907) 100%)' 
