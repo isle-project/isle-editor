@@ -23,7 +23,7 @@ Un tablero para combinar el manejo de múltiples campos de entrada de niños.
 ## Ejemplos
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

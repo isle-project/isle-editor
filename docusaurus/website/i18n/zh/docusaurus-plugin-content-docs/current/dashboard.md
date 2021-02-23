@@ -23,7 +23,7 @@ sidebar_label: Dashboard
 ## 例子
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

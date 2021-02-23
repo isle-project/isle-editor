@@ -23,7 +23,7 @@ Ein Dashboard für die kombinierte Handhabung mehrerer untergeordneter Eingabefe
 ## Beispiele
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

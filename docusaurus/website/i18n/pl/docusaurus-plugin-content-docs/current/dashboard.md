@@ -23,7 +23,7 @@ Tablica rozdzielcza do łączenia obsługi wielu pól wejściowych dla dzieci.
 ## Przykłady
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

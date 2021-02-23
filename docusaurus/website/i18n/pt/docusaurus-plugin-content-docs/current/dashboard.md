@@ -23,7 +23,7 @@ Um painel de controle para combinar o manuseio de múltiplos campos de entrada d
 ## Exemplos
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

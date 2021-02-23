@@ -161,9 +161,11 @@
           "qrcode",
           "recorder",
           "seal",
+          "shaped-form",
           "sortable-tree"
         ],
         "Programmatic": [
+          "dashboard",
           "expire",
           "language",
           "revealer",

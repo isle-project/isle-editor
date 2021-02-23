@@ -23,7 +23,7 @@ Un tableau de bord permettant de combiner le traitement de plusieurs champs de s
 ## Exemples
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />

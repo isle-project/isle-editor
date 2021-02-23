@@ -23,7 +23,7 @@ Un cruscotto per combinare la gestione di più campi di input per bambini.
 ## Esempi
 
 ```jsx live
-<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }}>
+<Dashboard title="Alerter" onGenerate={(x)=>{ alert(x) }} autoStart={false} >
     <SliderInput
         legend="Input value"
     />
