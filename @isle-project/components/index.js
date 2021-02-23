@@ -240,7 +240,6 @@ const scope = {
 	DataTable,
 	DataSampler,
 	DateDisplay,
-	DensityPlot,
 	DraggableGrid,
 	DraggableList,
 	Expire,
