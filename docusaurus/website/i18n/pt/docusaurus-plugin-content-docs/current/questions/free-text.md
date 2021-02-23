@@ -65,7 +65,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <FreeTextQuestion 
-    question="Can you please explain Montesquieu's System of separation of powers?" 
+    question={<span>Can you please explain Montesquieu's System of *separation of powers*?</span>} 
     rows={3} 
     points={15}
 />

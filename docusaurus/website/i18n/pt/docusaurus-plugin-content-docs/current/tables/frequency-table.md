@@ -18,8 +18,6 @@ Uma tabela de freqüência.
 
 ## Exemplos
 
-## Examples
-
 ```jsx live
 <FrequencyTable
     data={heartdisease} 

@@ -54,7 +54,7 @@ import TabItem from '@theme/TabItem';
         <FreeTextQuestion 
             question="What is the capital of Poland?" 
             rows={1} 
-            solution="Paris" 
+            solution="Warsaw" 
         />
     ]}
 />
@@ -75,7 +75,7 @@ import TabItem from '@theme/TabItem';
         <FreeTextQuestion 
             question="What is the capital of Poland?" 
             rows={1} 
-            solution="Paris" 
+            solution="Warsaw" 
         />,
         <FreeTextQuestion 
             question="What is the capital of Portugal?" 
@@ -106,7 +106,7 @@ import TabItem from '@theme/TabItem';
         <FreeTextQuestion 
             question="What is the capital of Poland?" 
             rows={1} 
-            solution="Paris" 
+            solution="Warsaw" 
         />,
         <FreeTextQuestion 
             question="What is the capital of Portugal?" 
@@ -139,7 +139,7 @@ import TabItem from '@theme/TabItem';
         <FreeTextQuestion 
             question="What is the capital of Poland?" 
             rows={1} 
-            solution="Paris" 
+            solution="Warsaw" 
         />,
         <FreeTextQuestion 
             question="What is the capital of Portugal?" 

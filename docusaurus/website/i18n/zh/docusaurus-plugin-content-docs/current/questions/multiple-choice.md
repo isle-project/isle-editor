@@ -100,7 +100,7 @@ import TabItem from '@theme/TabItem';
 ```jsx live
 <Slider>
     <MultipleChoiceQuestion
-        solution={[ 1, 2, 3, 4 ]}
+        solution={[ 1, 3 ]}
         answers={[
             { content:"George Washington", explanation: "Yes, he was the first president." },
             { content:"Benjamin Franklin", explanation: "He was a founding father."},
@@ -132,7 +132,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <MultipleChoiceQuestion
-    solution={[ 1, 2, 3, 4 ]}
+    solution={[ 1, 3 ]}
     answers={[
         { content:"George Washington", explanation: "Yes, he was the first president." },
         { content:"Benjamin Franklin", explanation: "He was a founding father."},

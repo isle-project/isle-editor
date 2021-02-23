@@ -18,8 +18,6 @@ sidebar_label: Frequency Table
 
 ## 例子
 
-## Examples
-
 ```jsx live
 <FrequencyTable
     data={heartdisease} 

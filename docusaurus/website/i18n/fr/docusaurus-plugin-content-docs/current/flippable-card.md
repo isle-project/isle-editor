@@ -42,13 +42,9 @@ import TabItem from '@theme/TabItem';
 <TabItem value="minimal">
 
 ```jsx live
-<FlippableCard containerStyle={{float: 'none'}} size={200}>
-    <div>
-        <img src="https://bit.ly/2YU5EbU" />
-    </div>
-    <div>
-       <img src="https://bit.ly/3aGv9mp" />
-    </div>
+<FlippableCard containerStyle={{ float: 'none' }} size={200}>
+  <img src="https://bit.ly/2YU5EbU" />
+  <img src="https://bit.ly/3aGv9mp" />
 </FlippableCard>
 ```
 
@@ -58,9 +54,9 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <FlippableCard 
-  containerStyle={{float: 'none'}} 
-  frontStyle={{fontSize: 50, textAlign: 'center'}} 
-  backStyle={{fontSize: 50, textAlign: 'center', background: 'purple', color: 'white'}} 
+  containerStyle={{ float: 'none' }} 
+  frontStyle={{ fontSize: 50, textAlign: 'center' }} 
+  backStyle={{ fontSize: 50, textAlign: 'center', background: 'purple', color: 'white' }} 
   >
     <div>
       FRONT
@@ -79,9 +75,9 @@ import TabItem from '@theme/TabItem';
 <FlippableCard 
   flipSpeedBackToFront={7} 
   flipSpeedFrontToBack={7}   
-  containerStyle={{float: 'none'}} 
-  frontStyle={{fontSize: 50, textAlign: 'center'}} 
-  backStyle={{fontSize: 50, textAlign: 'center', background: 'purple', color: 'white'}} 
+  containerStyle={{ float: 'none' }} 
+  frontStyle={{ fontSize: 50, textAlign: 'center' }} 
+  backStyle={{ fontSize: 50, textAlign: 'center', background: 'purple', color: 'white' }} 
   >
     <div>
       FRONT

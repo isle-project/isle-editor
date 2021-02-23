@@ -24,3 +24,51 @@ Una pregunta que pide al usuario que suba una imagen.
 
 
 ## Ejemplos
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Sketchpad', value: 'witchSketchpad' },
+        { label: 'Submit Plot', value: 'submitPlot' },
+        { label: 'Solution', value: 'solution' },,
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
+```jsx live
+<ImageQuestion question="You may upload an image." feedback={false}  />
+```
+</TabItem>
+
+<TabItem value="witchSketchpad">
+
+```jsx live
+<ImageQuestion question="Please enter your signature." feedback={false} sketchpad={{ canvasHeight: 300}} />
+```
+
+</TabItem>
+
+<TabItem value="submitPlot">
+
+```jsx live
+<div>
+  <ScatterPlot  data={heartdisease} xval="Age" yval="Cost" />
+  <ImageQuestion question="Please adjust the range of values to show, change the axis labels and title of the plot, and submit your result." />
+</div>
+```
+</TabItem>
+
+<TabItem value="solution">
+
+```jsx live
+<ImageQuestion solution="https://bit.ly/3utaXOb" question="Please enter the Greek letter 'Gamma'." feedback={false} sketchpad={{ canvasHeight: 300}} />
+```
+</TabItem>
+
+</Tabs>

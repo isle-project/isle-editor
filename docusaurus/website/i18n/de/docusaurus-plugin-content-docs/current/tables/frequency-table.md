@@ -18,8 +18,6 @@ Eine Häufigkeitstabelle.
 
 ## Beispiele
 
-## Examples
-
 ```jsx live
 <FrequencyTable
     data={heartdisease} 
