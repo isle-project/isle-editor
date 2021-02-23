@@ -26,7 +26,6 @@ import DataExplorer from '@isle-project/components/data-explorer';
 import DataTable from '@isle-project/components/data-table';
 import DataSampler from '@isle-project/components/data-sampler';
 import DateDisplay from '@isle-project/components/date-display';
-import DensityPlot from '@isle-project/components/d3/density-plot';
 import DraggableGrid from '@isle-project/components/draggable-grid';
 import DraggableList from '@isle-project/components/draggable-list';
 import Expire from '@isle-project/components/expire';

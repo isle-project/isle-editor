@@ -391,58 +391,6 @@
 		],
 		"description": "Container-description"
 	},
-	"DensityPlot": {
-		"props": [
-			{
-				"name": "bandwidth",
-				"type": "number",
-				"description": "DensityPlot-prop-bandwidth",
-				"defaultValue": 4
-			},
-			{
-				"name": "histogram",
-				"type": "boolean",
-				"description": "DensityPlot-prop-histogram",
-				"defaultValue": true
-			},
-			{
-				"name": "nBins",
-				"type": "number",
-				"description": "DensityPlot-prop-nBins",
-				"defaultValue": 8
-			},
-			{
-				"name": "vline",
-				"type": "object",
-				"description": "DensityPlot-prop-vline"
-			},
-			{
-				"name": "xlab",
-				"type": "string",
-				"description": "DensityPlot-prop-xlab",
-				"defaultValue": "value"
-			},
-			{
-				"name": "xmax",
-				"type": "number",
-				"description": "DensityPlot-prop-xmax",
-				"defaultValue": 1
-			},
-			{
-				"name": "xmin",
-				"type": "number",
-				"description": "DensityPlot-prop-xmin",
-				"defaultValue": 0
-			},
-			{
-				"name": "ymax",
-				"type": "number",
-				"description": "DensityPlot-prop-ymax",
-				"defaultValue": 0.15
-			}
-		],
-		"description": "DensityPlot-description"
-	},
 	"NetworkPlot": {
 		"props": [
 			{

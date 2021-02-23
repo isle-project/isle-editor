@@ -58,7 +58,6 @@
 	"DataTable": "@isle-project/components/data-table",
 	"DateDisplay": "@isle-project/components/date-display",
 	"Dashboard": "@isle-project/components/dashboard",
-	"DensityPlot": "@isle-project/components/d3/density-plot",
 	"DraggableGrid": "@isle-project/components/draggable-grid",
 	"DraggableList": "@isle-project/components/draggable-list",
 	"EnlargeableGrid": "@isle-project/components/enlargeable-grid",
