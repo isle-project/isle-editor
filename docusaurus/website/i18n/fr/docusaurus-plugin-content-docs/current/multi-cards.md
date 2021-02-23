@@ -30,8 +30,8 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Front Image', value: 'frontImage' },
-        { label: 'Mode', value: 'memory' },
-        { label: 'Memory Solved Callback', value: 'memorySolvedCallback' },,
+        { label: 'Memory', value: 'memory' },
+        { label: 'Memory with Solved Callback', value: 'memorySolvedCallback' }
     ]}
     lazy
 >
@@ -137,20 +137,13 @@ import TabItem from '@theme/TabItem';
         backgroundImage: 'url(https://isle.heinz.cmu.edu/seamless_1543575455035.png)',
     }}
     backStyle={{
-        color: 'black',
-        fontSize: 20,
-        textAlign: 'center',
-        fontWeight: 800,
         padding: 12,
-        fontFamily: 'Oswald',
-        textAlign: 'left',
-        background: 'ghostwhite',
-        boxShadow: '1px 1px 10px black',
+        boxShadow: '1px 1px 10px black'
     }}
     values={[
-        { front: "", back: <img src= "https://bit.ly/2P1I23j"/> },
-        { front: "",  back: <img src= "https://bit.ly/3sn5Ih6"/> },
-        { front: "",  back: <img src= "https://bit.ly/2ZHZVGm"/> },
+        { front: "", back: <img src="https://bit.ly/3qS4daf"/> },
+        { front: "",  back: <img src="https://bit.ly/3sn5Ih6"/> },
+        { front: "",  back: <img src="https://bit.ly/3qNVpSP" /> }
     ]}
 />
 ```
@@ -178,20 +171,13 @@ import TabItem from '@theme/TabItem';
         backgroundImage: 'url(https://isle.heinz.cmu.edu/seamless_1543575455035.png)',
     }}
     backStyle={{
-        color: 'black',
-        fontSize: 20,
-        textAlign: 'center',
-        fontWeight: 800,
         padding: 12,
-        fontFamily: 'Oswald',
-        textAlign: 'left',
-        background: 'ghostwhite',
-        boxShadow: '1px 1px 10px black',
+        boxShadow: '1px 1px 10px black'
     }}
     values={[
         { front: "", back: <img src="https://bit.ly/3qS4daf"/> },
-        { front: "",  back: <img src="https://bit.ly/3sjiLju"/> },
-        { front: "",  back: <img src="https://bit.ly/3qNVpSP" /> },
+        { front: "",  back: <img src="https://bit.ly/3sn5Ih6"/> },
+        { front: "",  back: <img src="https://bit.ly/3qNVpSP" /> }
     ]}
     onMemoryComplete={() => { alert( 'The memory has been solved...' ); }}
 />

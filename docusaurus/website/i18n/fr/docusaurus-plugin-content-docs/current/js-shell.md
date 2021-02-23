@@ -26,9 +26,47 @@ Un shell Javascript interactif qui peut être utilisé pour exécuter des comman
 
 ## Exemples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Style', value: 'withStyle' },
+        { label: 'Ten Lines', value: 'mLines' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
-<JSShell id = "jseditor" 
-        code = "var a = 22;" >
-</JSShell>
+<JSShell code = {`var a = 2; 
+var b = 2;
+console.log(a + b);`} />
 ```
+
+</TabItem>
+
+<TabItem value="withStyle">
+
+```jsx live
+<JSShell style={{ fontSize: 18, boxShadow: '0 0 4px black' }}  />
+```
+
+</TabItem>
+
+<TabItem value="mLines">
+
+```jsx live
+<JSShell lines={10} />
+```
+
+</TabItem>
+
+</Tabs>
+
+
+
 
