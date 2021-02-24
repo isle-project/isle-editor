@@ -15,7 +15,6 @@ import VoiceInput from '@isle-project/components/input/voice';
 
 import Accordion from '@isle-project/components/accordion';
 import Animated from '@isle-project/components/animated';
-import Background from '@isle-project/components/background';
 import BeaconTooltip from '@isle-project/components/beacon-tooltip';
 import Bibliography from '@isle-project/components/bibliography';
 import Citation from '@isle-project/components/citation';
@@ -100,7 +99,6 @@ import Polaroid from '@isle-project/components/polaroid';
 import Provider from '@isle-project/components/provider';
 import QRCode from '@isle-project/components/qrcode';
 import StickyNote from '@isle-project/components/sticky-note';
-import Preload from '@isle-project/components/preload';
 import ProportionsSurvey from '@isle-project/components/proportions-survey';
 import QuestionForm from '@isle-project/components/questions/question-form';
 import Quiz from '@isle-project/components/questions/quiz';
@@ -229,7 +227,6 @@ const scope = {
 
 	Accordion,
 	Animated,
-	Background,
 	BeaconTooltip,
 	Bibliography,
 	Citation,
@@ -314,7 +311,6 @@ const scope = {
 	Provider,
 	QRCode,
 	StickyNote,
-	Preload,
 	ProportionsSurvey,
 	QuestionForm,
 	Quiz,

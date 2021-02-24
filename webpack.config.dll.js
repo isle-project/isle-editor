@@ -75,7 +75,6 @@ const config = {
 		components: [
 			'@isle-project/components/accordion',
 			'@isle-project/components/animated',
-			'@isle-project/components/background',
 			'@isle-project/components/beacon-tooltip',
 			'@isle-project/components/bibliography',
 			'@isle-project/components/chat-button',
@@ -133,7 +132,6 @@ const config = {
 			'@isle-project/components/panel',
 			'@isle-project/components/plotly',
 			'@isle-project/components/polaroid',
-			'@isle-project/components/preload',
 			'@isle-project/components/proportions-survey',
 			'@isle-project/components/provider',
 			'@isle-project/components/qrcode',

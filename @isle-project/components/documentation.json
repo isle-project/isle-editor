@@ -81,53 +81,6 @@
 		],
 		"description": "Animated-description"
 	},
-	"Background": {
-		"props": [
-			{
-				"name": "images",
-				"type": "array<string>",
-				"description": "Background-prop-images",
-				"defaultValue": []
-			},
-			{
-				"name": "time",
-				"type": "number",
-				"description": "Background-prop-time",
-				"defaultValue": 3
-			},
-			{
-				"name": "in",
-				"type": "string",
-				"description": "Background-prop-in",
-				"defaultValue": "fade-in"
-			},
-			{
-				"name": "out",
-				"type": "string",
-				"description": "Background-prop-out",
-				"defaultValue": "fade-out"
-			},
-			{
-				"name": "parent",
-				"type": "boolean",
-				"description": "Background-prop-parent",
-				"defaultValue": false
-			},
-			{
-				"name": "inTime",
-				"type": "number",
-				"description": "Background-prop-inTime",
-				"defaultValue": 1
-			},
-			{
-				"name": "outTime",
-				"type": "number",
-				"description": "Background-prop-outTime",
-				"defaultValue": 1
-			}
-		],
-		"description": "Background-description"
-	},
 	"BeaconTooltip": {
 		"props": [
 			{
@@ -5002,17 +4955,6 @@
 			}
 		],
 		"description": "Polaroid-description"
-	},
-	"Preload": {
-		"props": [
-			{
-				"name": "image",
-				"type": "(string|array)",
-				"description": "Preload-prop-image",
-				"defaultValue": null
-			}
-		],
-		"description": "Preload-description"
 	},
 	"ProportionsSurvey": {
 		"props": [

@@ -8,10 +8,6 @@
 		"value": "<Animated\n  preset=\"${1:Enter preset}\"\n>\n</Animated>\n"
 	},
 	{
-		"name": "Background",
-		"value": "<Background\n  time={${2:8000}}\n  images={[${3:}]}\n  inTime={${4:3}}\n/>\n"
-	},
-	{
 		"name": "BeaconTooltip",
 		"value": "<BeaconTooltip\n  content=\"${1:Enter content}\"\n  title=\"${2:}\"\n  target=\"${3:}\"\n/>\n"
 	},
@@ -234,10 +230,6 @@
 	{
 		"name": "Polaroid",
 		"value": "<Polaroid image=\"${1:Enter URL}\" />\n${2:}"
-	},
-	{
-		"name": "Preload",
-		"value": "<Preload\n  image={${1:}} />\n"
 	},
 	{
 		"name": "ProportionsInput",

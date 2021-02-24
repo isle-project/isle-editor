@@ -9,10 +9,6 @@
       "value": "<Animated\n  preset=\"${1:Enter preset}\"\n>\n</Animated>\n"
     },
     {
-      "name": "Background",
-      "value": "<Background\n  time={${2:8000}}\n  images={[${3:}]}\n  inTime={${4:3}}\n/>\n"
-    },
-    {
       "name": "DraggableGrid",
       "value": "<DraggableGrid ${1:isDraggable} ${2:isResizable} >\n  ${3:}\n</DraggableGrid>\n"
     },
@@ -101,10 +97,6 @@
     {
       "name": "MultiCards",
       "value": "<MultiCards\n  values={[\n    { front: ${1:<div>First front</div>}, back: ${2:<div>First back</div>}},\n    { front: ${3:<div>Second front</div>}, back: ${4:<div>Second back</div>}}\n    ${5:}\n  ]}\n/>\n"
-    },
-    {
-      "name": "Preload",
-      "value": "<Preload\n  image={${1:}} />\n"
     },
     {
       "name": "QRCode",
