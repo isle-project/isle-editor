@@ -44,7 +44,7 @@ const LikertScale = ( props ) => {
 	const [ value, setValue ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
 	const { t } = useTranslation( 'LikertScale' );
-	const options = props.options || DEFAULT_OPTIONS;
+	const options = props.options || DEFAULT_OPTIONS.map( x => t( x ) );
 
 	const submitHandler = () => {
 		if ( !props.disableSubmitNotification ) {
