@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[444],{2839:function(e){e.exports=JSON.parse('{"children-missing":"Das Akkordeon ben\xf6tigt mindestens zwei Kind-Elemente, damit es gerendert werden kann."}')}}]);
