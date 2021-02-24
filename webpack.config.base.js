@@ -48,6 +48,7 @@ const EXTERNALS = [
 	'react-table',
 	'react-virtualized',
 	'recordrtc',
+	'semver',
 	'stemmer',
 	'svgo',
 	'typo-js',
