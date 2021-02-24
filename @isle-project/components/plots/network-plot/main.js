@@ -157,6 +157,10 @@ NetworkPlot.defaultProps = {
 };
 
 NetworkPlot.propTypes = {
+	data: PropTypes.shape({
+		nodes: PropTypes.array,
+		links: PropTypes.array
+	}).isRequired,
 	width: PropTypes.number,
 	height: PropTypes.number
 };
