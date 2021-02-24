@@ -8,6 +8,7 @@ Una trama de red basada en d3.
 
 ## Opciones
 
+* __data__ | `{nodes,links} (required)`: con "nodos" y "enlaces"; los "nodos" deben ser un conjunto de elementos con una propiedad "id", "enlaces" un conjunto de objetos con elementos que tienen una "fuente" y un "objetivo" id.. Default: `none`.
 * __width__ | `number`: ancho de la trama (en px). Default: `900`.
 * __height__ | `number`: altura de la trama (en px). Default: `600`.
 

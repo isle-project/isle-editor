@@ -8,6 +8,7 @@ Działka sieciowa oparta na d3.
 
 ## Opcje
 
+* __data__ | `{nodes,links} (required)`: obiekt z `nodes` i `linkami`; `nodes` powinny być tablicą obiektów z właściwością `id`, `linki` tablicą obiektów z elementami posiadającymi `źródło` i `cel` id. Default: `none`.
 * __width__ | `number`: szerokość działki (w px). Default: `900`.
 * __height__ | `number`: wysokość działki (w px). Default: `600`.
 

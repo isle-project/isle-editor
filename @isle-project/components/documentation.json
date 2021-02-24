@@ -4692,6 +4692,11 @@
 	"NetworkPlot": {
 		"props": [
 			{
+				"name": "data",
+				"type": "{nodes,links} (required)",
+				"description": "NetworkPlot-prop-data"
+			},
+			{
 				"name": "width",
 				"type": "number",
 				"description": "NetworkPlot-prop-width",

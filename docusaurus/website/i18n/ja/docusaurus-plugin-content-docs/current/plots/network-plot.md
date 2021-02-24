@@ -8,6 +8,7 @@ d3ベースのネットワークプロット。
 
 ## オプション
 
+* __data__ | `{nodes,links} (required)`: オブジェクトは `nodes` と `links` を持ち、`nodes` は `id` プロパティを持つ要素のオブジェクト配列、`links` は `source` と `target` の ID を持つ要素のオブジェクト配列でなければなりません。. Default: `none`.
 * __width__ | `number`: プロットの幅. Default: `900`.
 * __height__ | `number`: 区画の高さ. Default: `600`.
 

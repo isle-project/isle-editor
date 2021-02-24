@@ -8,6 +8,7 @@ Une trame de réseau basée sur d3.
 
 ## Options
 
+* __data__ | `{nodes,links} (required)`: objet avec des "noeuds" et des "liens" ; "noeuds" doit être un tableau d'éléments avec une propriété "id", "liens" un tableau d'éléments avec un id "source" et "cible. Default: `none`.
 * __width__ | `number`: largeur de la parcelle (en px). Default: `900`.
 * __height__ | `number`: hauteur de la parcelle (en px). Default: `600`.
 

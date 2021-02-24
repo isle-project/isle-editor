@@ -8,6 +8,7 @@ Eine d3-basierte Netzwerkdarstellung.
 
 ## Optionen
 
+* __data__ | `{nodes,links} (required)`: Objekt mit `Knoten` und `Verknüpfungen`; `Knoten` sollte ein Objekt-Array von Elementen mit einer `id`-Eigenschaft sein, `Verknüpfungen` ein Objekt-Array mit Elementen mit einer `Quelle` und `Ziel`-Id. Default: `none`.
 * __width__ | `number`: Breite des Plots (in px). Default: `900`.
 * __height__ | `number`: Höhe des Plots (in px). Default: `600`.
 

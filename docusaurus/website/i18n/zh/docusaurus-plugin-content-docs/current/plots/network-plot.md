@@ -8,6 +8,7 @@ sidebar_label: NetworkPlot
 
 ## 选项
 
+* __data__ | `{nodes,links} (required)`: 具有`节点`和`链接`的对象；`节点`应该是一个具有`id`属性的元素的对象数组，`链接`是一个具有`source`和`target`id的元素的对象数组。. Default: `none`.
 * __width__ | `number`: 绘图宽度(单位：px). Default: `900`.
 * __height__ | `number`: 绘图高度(单位：px). Default: `600`.
 

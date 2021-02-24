@@ -8,6 +8,7 @@ A d3-based network plot.
 
 ## Options
 
+* __data__ | `{nodes,links} (required)`: object with `nodes` and `links`; `nodes` should be an object array of elements with an `id` property, `links` an object array with elements having a `source` and `target` id. Default: `none`.
 * __width__ | `number`: width of the plot (in px). Default: `900`.
 * __height__ | `number`: height of the plot (in px). Default: `600`.
 
