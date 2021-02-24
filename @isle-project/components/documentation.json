@@ -344,66 +344,6 @@
 		],
 		"description": "Container-description"
 	},
-	"NetworkPlot": {
-		"props": [
-			{
-				"name": "width",
-				"type": "number",
-				"description": "NetworkPlot-prop-width",
-				"defaultValue": 900
-			},
-			{
-				"name": "height",
-				"type": "number",
-				"description": "NetworkPlot-prop-height",
-				"defaultValue": 600
-			}
-		],
-		"description": "NetworkPlot-description"
-	},
-	"Sunburst": {
-		"props": [
-			{
-				"name": "categories",
-				"type": "array (required)",
-				"description": "Sunburst-prop-categories"
-			},
-			{
-				"name": "data",
-				"type": "object (required)",
-				"description": "Sunburst-prop-data"
-			},
-			{
-				"name": "width",
-				"type": "number",
-				"description": "Sunburst-prop-width",
-				"defaultValue": 750
-			},
-			{
-				"name": "height",
-				"type": "number",
-				"description": "Sunburst-prop-height",
-				"defaultValue": 600
-			},
-			{
-				"name": "style",
-				"type": "object",
-				"defaultValue": {}
-			},
-			{
-				"name": "breadcrumbs",
-				"type": "{w,h,s,t}",
-				"description": "Sunburst-prop-breadcrumbs",
-				"defaultValue": {
-					"w": 250,
-					"h": 50,
-					"s": 5,
-					"t": 15
-				}
-			}
-		],
-		"description": "Sunburst-description"
-	},
 	"Dashboard": {
 		"props": [
 			{
@@ -4749,6 +4689,23 @@
 		],
 		"description": "MosaicPlot-description"
 	},
+	"NetworkPlot": {
+		"props": [
+			{
+				"name": "width",
+				"type": "number",
+				"description": "NetworkPlot-prop-width",
+				"defaultValue": 900
+			},
+			{
+				"name": "height",
+				"type": "number",
+				"description": "NetworkPlot-prop-height",
+				"defaultValue": 600
+			}
+		],
+		"description": "NetworkPlot-description"
+	},
 	"PieChart": {
 		"props": [
 			{
@@ -4881,6 +4838,49 @@
 			}
 		],
 		"description": "ScatterPlot-description"
+	},
+	"Sunburst": {
+		"props": [
+			{
+				"name": "categories",
+				"type": "array (required)",
+				"description": "Sunburst-prop-categories"
+			},
+			{
+				"name": "data",
+				"type": "object (required)",
+				"description": "Sunburst-prop-data"
+			},
+			{
+				"name": "width",
+				"type": "number",
+				"description": "Sunburst-prop-width",
+				"defaultValue": 750
+			},
+			{
+				"name": "height",
+				"type": "number",
+				"description": "Sunburst-prop-height",
+				"defaultValue": 600
+			},
+			{
+				"name": "style",
+				"type": "object",
+				"defaultValue": {}
+			},
+			{
+				"name": "breadcrumbs",
+				"type": "{w,h,s,t}",
+				"description": "Sunburst-prop-breadcrumbs",
+				"defaultValue": {
+					"w": 250,
+					"h": 50,
+					"s": 5,
+					"t": 15
+				}
+			}
+		],
+		"description": "Sunburst-description"
 	},
 	"ViolinPlot": {
 		"props": [

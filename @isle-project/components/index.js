@@ -88,7 +88,7 @@ import MultiCards from '@isle-project/components/multi-cards';
 import MultipleChoiceMatrix from '@isle-project/components/questions/multiple-choice-matrix';
 import MultipleChoiceQuestion from '@isle-project/components/questions/multiple-choice';
 import MultipleChoiceSurvey from '@isle-project/components/multiple-choice-survey';
-import NetworkPlot from '@isle-project/components/d3/network-plot';
+import NetworkPlot from '@isle-project/components/plots/network-plot';
 import NumberQuestion from '@isle-project/components/questions/number';
 import NumberSurvey from '@isle-project/components/number-survey';
 import OrderQuestion from '@isle-project/components/questions/order';
@@ -125,7 +125,7 @@ import Spinner from '@isle-project/components/internal/spinner';
 import StatusBar from '@isle-project/components/internal/statusbar';
 import TextEditor from '@isle-project/components/text-editor';
 import Toolbar from '@isle-project/components/internal/toolbar';
-import Sunburst from '@isle-project/components/d3/sunburst';
+import Sunburst from '@isle-project/components/plots/sunburst';
 import Switch from '@isle-project/components/switch';
 import Table from '@isle-project/components/table';
 

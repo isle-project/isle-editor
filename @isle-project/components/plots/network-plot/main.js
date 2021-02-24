@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import D3Plot from '@isle-project/components/d3';
 import * as d3 from 'd3';
+import D3Plot from './d3_plot.js';
 import './style.css';
 
 

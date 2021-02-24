@@ -14,7 +14,7 @@ import Dashboard from '@isle-project/components/dashboard';
 import FeedbackButtons from '@isle-project/components/feedback';
 import NumberInput from '@isle-project/components/input/number';
 import Panel from '@isle-project/components/panel';
-import NetworkPlot from '@isle-project/components/d3/network-plot';
+import NetworkPlot from '@isle-project/components/plots/network-plot';
 import Plotly from '@isle-project/components/plotly';
 import TeX from '@isle-project/components/tex';
 import { addResources } from '@isle-project/locales';

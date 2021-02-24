@@ -114,10 +114,12 @@
           "plots/lineplot",
           "plots/map",
           "plots/mosaicplot",
+          "plots/network-plot",
           "plots/piechart",
           "plots/qqplot",
           "plots/scatterplot",
           "plots/scatterplot-matrix",
+          "plots/sunburst",
           "plots/violinplot",
           "word-cloud"
         ],
