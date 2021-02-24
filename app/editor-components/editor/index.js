@@ -1507,7 +1507,6 @@ class Editor extends Component {
 		} else {
 			outerStyle = null;
 		}
-		console.log( this.props.showQuickSuggestions );
 		return (
 			<div style={outerStyle} >
 				<ContextMenuTrigger
