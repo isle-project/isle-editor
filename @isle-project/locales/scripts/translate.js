@@ -4,28 +4,27 @@
 
 const axios = require( 'axios' );
 const glob = require( 'glob' );
-const fs = require( 'fs-extra' );
+const fs = require( 'fs' );
+const path = require( 'path' );
 const qs = require( 'qs' );
 const readJSON = require( '@stdlib/fs/read-json' );
 const objectKeys = require( '@stdlib/utils/keys' );
-const replace = require( '@stdlib/string/replace' );
 
 
 // CONSTANTS //
 
 const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
-const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
 const MAX_TRANSLATION_CALLS = 5;
+const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
 
 
 // MAIN //
 
 const options = {};
-glob( '**/en/**/*.json', options, function onFiles( err, files ) {
-	console.log( files );
-
+glob( '**/en.json', options, function onFiles( err, files ) {
 	for ( let i = 0; i < files.length; i++ ) {
 		const reference = readJSON.sync( files[ i ] );
+		const dir = path.dirname( files[ i ] );
 		const refKeys = objectKeys( reference );
 		refKeys.sort( ( a, b ) => {
 			return a.localeCompare(b);
@@ -36,11 +35,12 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 			sortedReference[ key ] = reference[ key ];
 		}
 		fs.writeFileSync( files[ i ], JSON.stringify( sortedReference, null, '\t' ).concat( '\n' ) );
+
 		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
 			const lng = LANGUAGE_TARGETS[ j ];
-			const filePath = replace( files[ i ], '/en/', `/${lng}/` );
+			const filePath = path.join( __dirname, '..', dir, `${lng}.json` );
 			if ( !fs.existsSync( filePath ) ) {
-				fs.outputFileSync( filePath, JSON.stringify({}) );
+				fs.writeFileSync( filePath, JSON.stringify({}) );
 			}
 			const targetJSON = readJSON.sync( filePath );
 			const promises = [];
@@ -48,7 +48,7 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 			for ( let k = 0; k < refKeys.length; k++ ) {
 				const key = refKeys[ k ];
 				if ( !targetJSON[ key ] ) {
-					const textToTranslate = reference[ key ].message;
+					const textToTranslate = reference[ key ];
 					if ( textToTranslate ) {
 						console.log( 'Translate `'+textToTranslate+'` to '+lng );
 						if ( promises.length < MAX_TRANSLATION_CALLS ) {
@@ -68,10 +68,7 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 					const translations = results.map( x => x.data.translations[ 0 ].text );
 					for ( let i = 0; i < promiseKeys.length; i++ ) {
 						const key = promiseKeys[ i ];
-						targetJSON[ key ] = {
-							message: translations[ i ],
-							description: reference[ key ].description
-						};
+						targetJSON[ key ] = translations[ i ];
 					}
 					refKeys.sort( ( a, b ) => {
 						return a.localeCompare(b);
