@@ -33,6 +33,23 @@ import './preview.css';
 
 // VARIABLES //
 
+// Elevate prop type warnings to errors:
+
+/* eslint-disable no-console */
+const consoleErrorFcn = console.error;
+if ( console.error === consoleErrorFcn ) {
+	console.error = function onWarning() {
+		console.log( arguments );
+		if ( arguments[ 1 ] === 'prop' ) {
+			console.log( 'THROW' );
+			throw new Error( arguments[ 2 ] );
+		} else {
+			consoleErrorFcn.apply( console, arguments );
+		}
+	};
+}
+/* eslint-enable no-console */
+
 const OPTS = {
 	plugins: [ pluginTransformJSX ],
 	retainLines: false,
