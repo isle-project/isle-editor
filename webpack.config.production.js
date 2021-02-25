@@ -3,6 +3,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
 
@@ -33,7 +34,17 @@ const config = {
 	},
 
 	optimization: {
-		minimize: true
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				terserOptions: {
+					warnings: true,
+					keep_fnames: true,
+					keep_classnames: true,
+					mangle: true
+				}
+			})
+		]
 	},
 
 	module: {
