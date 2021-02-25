@@ -263,7 +263,7 @@ class Preview extends Component {
 		code = repeat( '\n', noEmptyLines ) + code;
 
 		// eslint-disable-next-line i18next/no-literal-string
-		code = `<Lesson
+		code = `<ErrorBoundary><Lesson
 			className="${preamble.type === 'presentation' ? 'Presentation' : 'Lesson'}"
 			style={{
 				height: 'calc(100vh - ${this.props.unavailableHeight}px)',
@@ -271,7 +271,7 @@ class Preview extends Component {
 			}}
 		>
 			${code}
-		</Lesson>`;
+		</Lesson></ErrorBoundary>`;
 		code = `const out = ${code}`;
 		this.props.onCode( code );
 

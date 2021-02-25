@@ -18,7 +18,6 @@ import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	saveSpellingErrors, changeSplitPos } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
-const ErrorBoundary = Loadable( () => import( 'editor-components/error-boundary' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
 const ErrorMessage = Loadable( () => import( 'editor-components/error-message' ) );
@@ -236,28 +235,21 @@ class App extends Component {
 			updateDownloadPercent
 		} = this.props;
 
-		const preview = <ErrorBoundary
+		const preview = <Preview
 			code={markdown}
+			autoUpdatePreview={autoUpdatePreview}
+			filePath={filePath}
 			preamble={preamble}
-			resetError={this.props.resetError}
-		>
-			<Preview
-				code={markdown}
-				autoUpdatePreview={autoUpdatePreview}
-				filePath={filePath}
-				preamble={preamble}
-				currentRole={currentRole}
-				currentMode={currentMode}
-				onCode={this.debouncedLinting}
-				encounteredError={this.props.encounteredError}
-				preambleText={this.props.preambleText}
-				updatePreamble={this.props.updatePreamble}
-				unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
-				resetError={this.resetError}
-				version={this.props.documentVersion}
-			/>
-		</ErrorBoundary>;
-
+			currentRole={currentRole}
+			currentMode={currentMode}
+			onCode={this.debouncedLinting}
+			encounteredError={this.props.encounteredError}
+			preambleText={this.props.preambleText}
+			updatePreamble={this.props.updatePreamble}
+			unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
+			resetError={this.resetError}
+			version={this.props.documentVersion}
+		/>;
 		return (
 			<div>
 				{ !hideToolbar ?

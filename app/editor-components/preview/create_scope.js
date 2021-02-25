@@ -23,6 +23,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Components from '@isle-project/components';
 import LineWrapper from 'editor-components/line-wrapper';
 import LineButtons from 'editor-components/line-buttons';
+import ErrorBoundary from 'editor-components/error-boundary';
 import factor from '@isle-project/utils/factor-variable';
 
 
@@ -30,6 +31,7 @@ import factor from '@isle-project/utils/factor-variable';
 
 export const SCOPE = {
 	...Components,
+	ErrorBoundary,
 	LineWrapper,
 	LineButtons,
 	Card,
