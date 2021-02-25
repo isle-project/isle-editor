@@ -85,6 +85,38 @@
 		"message": "Welcome to the documentation of the <i>interactive statistics learning environment (ISLE)</i> and the ISLE Editor for authoring interactive lessons for statistics and related disciplines. One of our aims is to encourage instructors at universities and other learning institutions to use it for their purposes. For questions, please contact us via email at pgb AT andrew.cmu.edu.",
 		"description": "Welcome message at beginning of documentation"
 	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Close",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Blog list page navigation",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Newer Entries",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Older Entries",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Blog post page navigation",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Newer Post",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Older Post",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Read More",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Newer Entries",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"
@@ -113,6 +145,22 @@
 		"message": "Copy",
 		"description": "The copy button label on code blocks"
 	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Copy code to clipboard",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Edit this page",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Direct link to heading",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Skip to main content",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
 	"theme.DocPaginator.next": {
 		"message": "Next",
 		"description": "The label used to navigate to the next doc"
@@ -120,6 +168,42 @@
 	"theme.DocPaginator.previous": {
 		"message": "Previous",
 		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Docs pages navigation",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Next",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Previous",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Collapse sidebar",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Collapse sidebar",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Expand sidebar",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Expand sidebar",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Close menu",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Open menu",
+		"description": "The ARIA label for open button of mobile doc sidebar"
 	},
 	"theme.EditThisPage.editThisPage": {
 		"message": "Edit this page",
@@ -145,9 +229,53 @@
 		"message": "Result",
 		"description": "The result label of the live codeblocks"
 	},
+	"theme.SearchBar.label": {
+		"message": "Search",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Search by Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Search the documentation",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Search results for",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Fetching new results...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Search",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Type your search here",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "No results were found",
+		"description": "The paragraph for empty search result"
+	},
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "Skip to main content",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Tags:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "View All Tags",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Tags",
+		"description": "The title of the tag list page"
 	},
 	"video-tutorials": {
 		"message": "Video Tutorials",

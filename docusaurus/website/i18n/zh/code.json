@@ -85,6 +85,26 @@
 		"message": "欢迎阅读<i>交互式统计学习环境(ISLE)</i>文件和ISLE编辑器，用于编写统计和相关学科的交互式课程。我们的目标之一是鼓励大学和其他学习机构的教师将其用于他们的目的。如有疑问，请通过电子邮件联系我们，电子邮件地址是pgb AT andrew.cmu.edu。",
 		"description": "Welcome message at beginning of documentation"
 	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "关闭",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "博客列表页导航",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "较新的条目",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "较早的条目",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "博客文章页面导航",
+		"description": "The ARIA label for the blog posts pagination"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "较新的条目",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"

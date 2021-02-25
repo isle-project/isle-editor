@@ -85,6 +85,26 @@
 		"message": "Willkommen bei der Dokumentation der <i>interaktiven Statistik-Lernumgebung (ISLE)</i> und des ISLE-Editors zur Erstellung interaktiver Lektionen für Statistik und verwandte Disziplinen. Eines unserer Ziele ist es, Lehrende an Universitäten und anderen Lerneinrichtungen zu ermutigen, sie für ihre Zwecke zu nutzen. Bei Fragen kontaktieren Sie uns bitte per E-Mail unter pgb AT andrew.cmu.edu.",
 		"description": "Welcome message at beginning of documentation"
 	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Schließen",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Navigation der Blog-Listenseite",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Neuere Einträge",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Ältere Einträge",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Blogpost-Seitennavigation",
+		"description": "The ARIA label for the blog posts pagination"
+	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Neuere Einträge",
 		"description": "The label used to navigate to the newer blog posts page (previous page)"
