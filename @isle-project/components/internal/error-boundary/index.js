@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
 	componentDidCatch( error ) {
 		this.setState({
 			hasError: true,
-			msg: error.message
+			msg: error.stack
 		});
 	}
 
