@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import { connect } from 'react-redux';
 import ErrorMessage from 'editor-components/error-message';
+import { resetError } from 'actions';
 
 
 // VARIABLES //
@@ -43,7 +45,7 @@ class ErrorBoundary extends Component {
 		debug( 'Caught error...' );
 		this.setState({
 			hasError: true,
-			msg: error.message
+			msg: error.stack
 		});
 	}
 
@@ -72,4 +74,13 @@ ErrorBoundary.propTypes = {
 
 // EXPORTS //
 
-export default ErrorBoundary;
+export default connect( mapStateToProps, {
+	resetError
+})( ErrorBoundary );
+
+function mapStateToProps({ editor }) {
+	return {
+		code: editor.markdown,
+		preamble: editor.preamble
+	};
+}
