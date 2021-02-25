@@ -143,7 +143,6 @@ import * as serviceWorker from 'bundler/service_worker.js';
 import { UpdateNotification } from 'bundler/service_worker.js';
 import TextClustering from '@isle-project/components/internal/text-clustering';
 import Lesson from '@isle-project/components/internal/lesson';
-import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import Provider from '@isle-project/components/provider';
 import factor from '@isle-project/utils/factor-variable';
 import obsToVar from '@isle-project/utils/obs-to-var';
@@ -227,14 +226,12 @@ class LessonWrapper extends Component {
 
 	renderLesson() {
 		return (
-			<ErrorBoundary>
-				<Lesson
-					className="${className}"
-				>
-					${lessonContent}
-					<UpdateNotification />
-				</Lesson>
-			</ErrorBoundary>
+			<Lesson
+				className="${className}"
+			>
+				${lessonContent}
+				<UpdateNotification />
+			</Lesson>
 		);
 	}
 

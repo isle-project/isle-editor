@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
+import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@isle-project/locales';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
@@ -101,38 +102,40 @@ class Lesson extends Component {
 			);
 		}
 		return (
-			<I18nextProvider i18n={i18n} >
-				<ContextMenuTrigger
-					attributes={{
-						className: 'contextmenu-fullscreen'
-					}}
-					holdToDisplay={-1}
-					disableIfShiftIsPressed
-					id="lessonWindow"
-				>
-					<div
-						id="Lesson"
-						className={this.props.className}
-						style={this.props.style}
+			<ErrorBoundary>
+				<I18nextProvider i18n={i18n} >
+					<ContextMenuTrigger
+						attributes={{
+							className: 'contextmenu-fullscreen'
+						}}
+						holdToDisplay={-1}
+						disableIfShiftIsPressed
+						id="lessonWindow"
 					>
-						{this.props.children}
-						<StickyNotes />
-						<LanguageSwitcher />
-						<InterfaceTourButton />
-					</div>
-				</ContextMenuTrigger>
-				<LessonContextMenu
-					addNote={this.addNote}
-					session={this.context}
-				/>
-				<ReactNotificationSystem
-					ref={( div ) => {
-						global.notificationSystemISLE = div;
-					}}
-					allowHTML={true}
-					style={NOTIFICATION_STYLE}
-				/>
-			</I18nextProvider>
+						<div
+							id="Lesson"
+							className={this.props.className}
+							style={this.props.style}
+						>
+							{this.props.children}
+							<StickyNotes />
+							<LanguageSwitcher />
+							<InterfaceTourButton />
+						</div>
+					</ContextMenuTrigger>
+					<LessonContextMenu
+						addNote={this.addNote}
+						session={this.context}
+					/>
+					<ReactNotificationSystem
+						ref={( div ) => {
+							global.notificationSystemISLE = div;
+						}}
+						allowHTML={true}
+						style={NOTIFICATION_STYLE}
+					/>
+				</I18nextProvider>
+			</ErrorBoundary>
 		);
 	}
 }
