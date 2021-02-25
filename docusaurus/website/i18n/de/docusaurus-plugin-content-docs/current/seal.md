@@ -34,8 +34,7 @@ import TabItem from '@theme/TabItem';
         { label: 'Minimal', value: 'minimal' },
         { label: 'With Style', value: 'withStyle' },
         { label: 'Removable', value: 'removable' },
-        { label: 'Scaled', value: 'scaled' },
-
+        { label: 'Scaled', value: 'scaled' }
     ]}
     lazy
 >
@@ -45,7 +44,9 @@ import TabItem from '@theme/TabItem';
 ```jsx live
 <Seal title="LESSON DONE" upper="Carnegie Mellon" upperArc={120} lower="University" lowerArc={105} />
 ```
+
 </TabItem>
+
 
 <TabItem value="withStyle">
 
@@ -75,6 +76,7 @@ import TabItem from '@theme/TabItem';
   lower="University" lowerArc={105}
 />
 ```
+
 </TabItem>
 
 <TabItem value="scaled">
@@ -89,6 +91,7 @@ import TabItem from '@theme/TabItem';
   lower="University" lowerArc={105}
 />
 ```
+
 </TabItem>
 
 </Tabs>

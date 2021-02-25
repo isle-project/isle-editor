@@ -22,10 +22,62 @@ Een checkbox-invoercomponent. Kan worden gebruikt als onderdeel van een ISLE-das
 
 ## Voorbeelden
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Inline', value: 'inline' },
+        { label: 'With Style', value: 'withStyle' },
+        { label: 'With Callback', value: 'withCallback' }
+    ]}
+    lazy
+>
+
+
+<TabItem value="minimal">
+
+```jsx live
+<CheckboxInput legend="Take the logarithm" />
+```
+</TabItem>
+
+<TabItem value="inline">
+
+```jsx live
+<p>Please click
+<CheckboxInput
+    inline defaultValue={false}
+/>
+to confirm that you will follow our netiquette.</p>
+```
+</TabItem>
+
+
+<TabItem value="withStyle">
+
 ```jsx live
 <CheckboxInput
-    legend="Take the logarithm"
+    style={{ fontSize: 30, color: 'blue'}}
+    legend="Click to confirm"
     defaultValue={false}
 />
 ```
+</TabItem>
 
+<TabItem value="withCallback">
+
+```jsx live
+<CheckboxInput
+    legend="Click to confirm..."
+    onChange={( value ) => {
+        alert( 'New value: '+value );
+    }}
+/>
+```
+
+</TabItem>
+
+</Tabs>
