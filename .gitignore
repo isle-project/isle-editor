@@ -48,9 +48,6 @@ jsconfig.json
 # Public folder should be ignored as it is used during lesson upload
 public
 
-# Scripts for locales
-**/locales/scripts
-
 # DLL files
 @isle-project/dll/*.js
 @isle-project/dll/static/*
