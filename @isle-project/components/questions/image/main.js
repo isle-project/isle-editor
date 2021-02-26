@@ -199,13 +199,13 @@ const ImageQuestion = ( props ) => {
 	};
 	const renderSubmitButton = () => {
 		if ( props.until && session.startTime > props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{props.t('question-closed')}</span>;
+			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
 		return (
 			<TimedButton
 				className="submit-button" variant="primary" size="sm" onClick={handleSubmit}
 			>
-				{ submitted ? props.t('resubmit') : props.t('submit') }
+				{ submitted ? t('resubmit') : t('submit') }
 			</TimedButton>
 		);
 	};
@@ -215,14 +215,14 @@ const ImageQuestion = ( props ) => {
 		<div className="center" style={{ maxWidth: 600 }}>
 			{displaySolution ?
 				<Image
-					alt={props.t('model-solution')}
+					alt={t('model-solution')}
 					src={props.solution}
 					width="50%" height="auto"
 					style={{
 						border: 'solid 1px gold'
 					}}
 				/> : <Image
-					alt={props.t('upload')}
+					alt={t('upload')}
 					src={src}
 					width="50%" height="auto"
 				/>
@@ -235,9 +235,9 @@ const ImageQuestion = ( props ) => {
 				onDragOver={stopDefaultAndPropagation}
 				onDragEnd={stopDefaultAndPropagation}
 			>
-				<span>{props.t('drop-image')}</span>
+				<span>{t('drop-image')}</span>
 			</div>
-			<p className="center">{props.t('or')}</p>
+			<p className="center">{t('or')}</p>
 			<input
 				id={id.current+'-upload'}
 				className="image-question-upload center"
@@ -250,7 +250,7 @@ const ImageQuestion = ( props ) => {
 			/>
 			{props.sketchpad ?
 			<Fragment>
-				<p className="center">{props.t('or')}</p>
+				<p className="center">{t('or')}</p>
 				<Sketchpad
 					id={id.current}
 					hideNavigationButtons hideSaveButtons hideTransmitButtons
@@ -298,7 +298,7 @@ const ImageQuestion = ( props ) => {
 					}
 					{ src ? <Button size="sm" variant="warning" onClick={() => {
 						setSrc( null );
-					}}>{props.t('reset')}</Button> : null }
+					}}>{t('reset')}</Button> : null }
 					{renderSubmitButton()}
 					{ props.solution ? solutionButton : null }
 					{ props.chat ? <ChatButton for={id.current} /> : null }
