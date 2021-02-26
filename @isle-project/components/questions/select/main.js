@@ -20,6 +20,7 @@ import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './select-question.css';
 
 
@@ -265,4 +266,4 @@ SelectQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'SelectQuestion' )( SelectQuestion );
+export default withTranslation( 'SelectQuestion' )( withPropCheck( SelectQuestion ) );

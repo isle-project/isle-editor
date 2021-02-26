@@ -10,6 +10,7 @@ import isNull from '@stdlib/assert/is-null';
 import SessionContext from '@isle-project/session/context.js';
 import isLineWrapper from '@isle-project/utils/is-line-wrapper';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './question_form.css';
 
 
@@ -101,4 +102,4 @@ QuestionForm.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'QuestionForm' )( QuestionForm );
+export default withTranslation( 'QuestionForm' )( withPropCheck( QuestionForm ) );

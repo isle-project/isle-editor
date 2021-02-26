@@ -17,6 +17,7 @@ import Text from '@isle-project/components/text';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
 import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
+import { withPropCheck } from 'utils/prop-check';
 import './multiple_choice_matrix.css';
 
 
@@ -279,4 +280,4 @@ MultipleChoiceMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'MultipleChoiceQuestion' )( MultipleChoiceMatrix );
+export default withTranslation( 'MultipleChoiceQuestion' )( withPropCheck( MultipleChoiceMatrix ) );

@@ -3,7 +3,7 @@
 import React, { Fragment, useCallback, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { toJpeg } from 'html-to-image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -24,6 +24,7 @@ import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './image_question.css';
 
 
@@ -57,6 +58,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 const ImageQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
+	const { t } = useTranslation( 'ImageQuestion' );
 	let fileUpload;
 
 	const [ submitted, setSubmitted ] = useState( false );
@@ -68,7 +70,7 @@ const ImageQuestion = ( props ) => {
 	const onFileRead = useCallback( ( event ) => {
 		setSrc( event.target.result );
 	}, [] );
-	const { hints, t } = props;
+	const { hints } = props;
 	const nHints = hints.length;
 	const solutionButton = <SolutionButton
 		disabled={!submitted || !exhaustedHints}
@@ -350,4 +352,4 @@ ImageQuestion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'ImageQuestion' )( ImageQuestion );
+export default withPropCheck( ImageQuestion );

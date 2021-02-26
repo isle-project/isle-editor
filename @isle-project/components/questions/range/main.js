@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
@@ -25,6 +25,7 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './range-question.css';
 
 
@@ -60,7 +61,7 @@ const uid = generateUID( 'range-question' );
  */
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
-	const { min, max, points, question, solution, t, until, feedback, style,
+	const { min, max, points, question, solution, until, feedback, style,
 		provideFeedback, allowMultipleAnswers, hints, chat } = props;
 	const session = useContext( SessionContext );
 
@@ -68,6 +69,7 @@ const RangeQuestion = ( props ) => {
 	const [ upper, setUpper ] = useState( max );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ correct, setCorrect ] = useState( false );
+	const { t } = useTranslation( 'RangeQuestion' );
 
 	const handleChangeUpper = ( newValue ) => {
 		setUpper( newValue );
@@ -301,4 +303,4 @@ RangeQuestion.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'RangeQuestion' )( RangeQuestion );
+export default withPropCheck( RangeQuestion );

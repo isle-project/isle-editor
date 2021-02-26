@@ -26,6 +26,7 @@ import getLastAction from '@isle-project/utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './number-question.css';
 
 
@@ -141,6 +142,7 @@ class NumberQuestion extends Component {
 	}
 
 	componentDidMount() {
+		console.log( 'DID MOUNT');
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
@@ -440,4 +442,4 @@ NumberQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'NumberQuestion' )( NumberQuestion );
+export default withTranslation( 'NumberQuestion' )( withPropCheck( NumberQuestion ) );

@@ -16,6 +16,7 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './order-question.css';
 
 
@@ -233,4 +234,4 @@ OrderQuestion.propTypes = {
 
 // EXPORTS //
 
-export default OrderQuestion;
+export default withPropCheck( OrderQuestion );
