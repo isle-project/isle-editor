@@ -626,21 +626,25 @@
 		"props": [
 			{
 				"name": "data",
-				"type": "object (required)"
+				"type": "object (required)",
+				"description": "DataSampler-prop-data"
 			},
 			{
 				"name": "sampleSize",
 				"type": "number",
+				"description": "DataSampler-prop-sampleSize",
 				"defaultValue": 50
 			},
 			{
 				"name": "minSampleSize",
 				"type": "number",
+				"description": "DataSampler-prop-minSampleSize",
 				"defaultValue": 1
 			},
 			{
 				"name": "maxSampleSize",
 				"type": "number",
+				"description": "DataSampler-prop-maxSampleSize",
 				"defaultValue": null
 			}
 		],

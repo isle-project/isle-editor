@@ -27,6 +27,11 @@ addResources( 'DataSampler' );
 
 /**
 * Component to sample observations from a dataset and pass it to child components.
+*
+* @property {Object} data - data object with keys corresponding to column variables
+* @property {number} sampleSize - default sample size
+* @property {number} minSampleSize - minimum allowed sample size
+* @property {number} maxSampleSize - maximum allowed sample size
 */
 class DataSampler extends Component {
 	constructor( props ) {
