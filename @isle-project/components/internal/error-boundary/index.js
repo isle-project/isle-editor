@@ -22,7 +22,7 @@ class ErrorBoundary extends Component {
 	}
 
 	render() {
-		if ( this.state.hasError ) {
+		if ( this.state.error ) {
 			return ( <ErrorMessage
 				error={this.state.error}
 				componentName={this.props.component}
