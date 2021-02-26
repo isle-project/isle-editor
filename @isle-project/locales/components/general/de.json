@@ -8,5 +8,6 @@
 	"in": "in",
 	"retry": "Wiederholen Sie",
 	"search": "Suche",
-	"supply-component-id": "Bitte geben Sie eine ID für die zu überwachende Komponente an."
+	"supply-component-id": "Bitte geben Sie eine ID für die zu überwachende Komponente an.",
+	"toggle-error-stack-trace": "Stack-Trace des Fehlers umschalten"
 }

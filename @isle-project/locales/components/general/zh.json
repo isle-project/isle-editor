@@ -8,5 +8,6 @@
 	"in": "在",
 	"retry": "重试",
 	"search": "检索",
-	"supply-component-id": "请提供要观看的组件的ID。"
+	"supply-component-id": "请提供要观看的组件的ID。",
+	"toggle-error-stack-trace": "切换错误的堆栈跟踪"
 }

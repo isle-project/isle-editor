@@ -8,5 +8,6 @@
 	"in": "in",
 	"retry": "Retry",
 	"search": "Search",
-	"supply-component-id": "Please supply an ID for component to be watched."
+	"supply-component-id": "Please supply an ID for component to be watched.",
+	"toggle-error-stack-trace": "Toggle stack trace of error"
 }

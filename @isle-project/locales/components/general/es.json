@@ -8,5 +8,6 @@
 	"in": "en",
 	"retry": "Reintenta",
 	"search": "Busca en",
-	"supply-component-id": "Por favor, proporcione una identificación para el componente que se va a vigilar."
+	"supply-component-id": "Por favor, proporcione una identificación para el componente que se va a vigilar.",
+	"toggle-error-stack-trace": "Conmutar el seguimiento de la pila del error"
 }

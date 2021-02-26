@@ -8,5 +8,6 @@
 	"in": "dans",
 	"retry": "Retrouvez",
 	"search": "Recherchez",
-	"supply-component-id": "Veuillez fournir un identifiant pour le composant à surveiller."
+	"supply-component-id": "Veuillez fournir un identifiant pour le composant à surveiller.",
+	"toggle-error-stack-trace": "Basculer la trace d'erreur de la pile"
 }

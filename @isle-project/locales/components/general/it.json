@@ -8,5 +8,6 @@
 	"in": "in",
 	"retry": "Riprova",
 	"search": "Ricerca",
-	"supply-component-id": "Si prega di fornire un ID per il componente da sorvegliare."
+	"supply-component-id": "Si prega di fornire un ID per il componente da sorvegliare.",
+	"toggle-error-stack-trace": "Alterna la traccia dello stack dell'errore"
 }

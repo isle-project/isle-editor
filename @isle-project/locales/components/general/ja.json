@@ -8,5 +8,6 @@
 	"in": "に於いて",
 	"retry": "リトライ",
 	"search": "検索",
-	"supply-component-id": "視聴する部品のIDをご提示ください。"
+	"supply-component-id": "視聴する部品のIDをご提示ください。",
+	"toggle-error-stack-trace": "エラーのスタックトレースをトグル"
 }

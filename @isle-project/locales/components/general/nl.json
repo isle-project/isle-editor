@@ -8,5 +8,6 @@
 	"in": "in",
 	"retry": "Probeer opnieuw",
 	"search": "Zoeken op",
-	"supply-component-id": "Lever een ID in voor het te bewaken onderdeel."
+	"supply-component-id": "Lever een ID in voor het te bewaken onderdeel.",
+	"toggle-error-stack-trace": "Schakelt stack trace van fout"
 }

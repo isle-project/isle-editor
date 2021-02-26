@@ -12,21 +12,21 @@ class ErrorBoundary extends Component {
 		super( props );
 		this.state = {
 			hasError: false,
-			msg: null
+			error: null
 		};
 	}
 
 	componentDidCatch( error ) {
 		this.setState({
 			hasError: true,
-			msg: error.message
+			error: error
 		});
 	}
 
 	render() {
 		if ( this.state.hasError ) {
 			return ( <ErrorMessage
-				msg={this.state.msg}
+				error={this.state.error}
 				componentName={this.props.component}
 				resetError={() => {
 					PropTypes.resetWarningCache();

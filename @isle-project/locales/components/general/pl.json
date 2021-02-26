@@ -8,5 +8,6 @@
 	"in": "w",
 	"retry": "Retry",
 	"search": "Szukaj",
-	"supply-component-id": "Prosimy o dostarczenie identyfikatora elementu, który ma być oglądany."
+	"supply-component-id": "Prosimy o dostarczenie identyfikatora elementu, który ma być oglądany.",
+	"toggle-error-stack-trace": "Przełączanie śladu stosu błędu"
 }
