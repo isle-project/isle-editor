@@ -17,7 +17,7 @@ import isFunction from '@stdlib/assert/is-function';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
-import RangePicker from '@isle-project/components/range-picker';
+import RangePicker from '@isle-project/components/internal/range-picker';
 import saveAs from '@isle-project/utils/file-saver';
 import isUserInCohort from '@isle-project/utils/is-user-in-cohort';
 import SessionContext from '@isle-project/session/context.js';
