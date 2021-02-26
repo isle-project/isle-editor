@@ -9,7 +9,7 @@ import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

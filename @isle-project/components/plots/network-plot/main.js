@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import D3Plot from './d3_plot.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import { i18n } from '@isle-project/locales';
 import './style.css';
 

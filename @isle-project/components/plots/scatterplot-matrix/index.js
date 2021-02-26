@@ -8,7 +8,7 @@ import objectKeys from '@stdlib/utils/keys';
 import Plotly from '@isle-project/components/plotly';
 import { i18n } from '@isle-project/locales';
 import { CAT20 } from '@isle-project/constants/colors';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

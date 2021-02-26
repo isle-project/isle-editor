@@ -13,7 +13,7 @@ import { addResources } from '@isle-project/locales';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './hierarchical_clustering.css';
 
 

@@ -14,7 +14,7 @@ import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

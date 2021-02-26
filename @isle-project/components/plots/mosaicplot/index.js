@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

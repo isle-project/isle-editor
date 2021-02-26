@@ -18,7 +18,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
 import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import by2 from '@isle-project/utils/by2';

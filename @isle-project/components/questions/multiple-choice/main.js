@@ -25,7 +25,7 @@ import getLastAction from '@isle-project/utils/get-last-action';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION } from '@isle-project/constants/actions.js';
 import { FOCUS_ELEMENT, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';

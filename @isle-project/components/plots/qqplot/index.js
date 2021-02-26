@@ -7,7 +7,7 @@ import { i18n } from '@isle-project/locales';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import ascending from './ascending.js';
 
 

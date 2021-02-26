@@ -12,7 +12,7 @@ import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

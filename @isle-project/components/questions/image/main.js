@@ -24,7 +24,7 @@ import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image_question.css';
 
 

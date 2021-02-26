@@ -16,7 +16,7 @@ import Plotly from '@isle-project/components/plotly';
 import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // FUNCTIONS //

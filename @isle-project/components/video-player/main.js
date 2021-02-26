@@ -17,7 +17,7 @@ import isHidden from '@isle-project/utils/is-hidden';
 import isElectron from '@isle-project/utils/is-electron';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
 
 

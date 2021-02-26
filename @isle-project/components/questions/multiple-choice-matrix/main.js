@@ -17,7 +17,7 @@ import Text from '@isle-project/components/text';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
 import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './multiple_choice_matrix.css';
 
 

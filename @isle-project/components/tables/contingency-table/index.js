@@ -12,7 +12,7 @@ import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

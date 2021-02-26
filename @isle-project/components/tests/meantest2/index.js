@@ -18,7 +18,7 @@ import stdev from '@isle-project/utils/statistic/stdev';
 import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

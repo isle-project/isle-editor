@@ -12,7 +12,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import { addResources } from '@isle-project/locales';
 import { gaussian } from './naive_bayes.js';
 import { designMatrix, designMatrixMissing } from './design_matrix.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

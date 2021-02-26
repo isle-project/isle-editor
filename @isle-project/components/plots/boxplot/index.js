@@ -11,7 +11,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // FUNCTIONS //

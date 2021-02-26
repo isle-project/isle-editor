@@ -12,7 +12,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import sum from '@isle-project/utils/statistic/sum';
 import by from '@isle-project/utils/by';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // FUNCTIONS //

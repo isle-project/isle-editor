@@ -9,7 +9,7 @@ import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
 import { addResources } from '@isle-project/locales';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

@@ -8,7 +8,7 @@ import startcase from '@stdlib/string/startcase';
 import Plotly from '@isle-project/components/plotly';
 import mean from '@isle-project/utils/statistic/mean';
 import range from '@isle-project/utils/statistic/range';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

@@ -17,7 +17,7 @@ import Table from '@isle-project/components/table';
 import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import LASSO from './lasso.js';
 
 

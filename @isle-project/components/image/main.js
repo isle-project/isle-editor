@@ -10,7 +10,7 @@ import ColorPicker from '@isle-project/components/color-picker';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image.css';
 
 

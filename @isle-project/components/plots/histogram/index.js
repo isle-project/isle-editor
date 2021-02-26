@@ -11,7 +11,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import by from '@isle-project/utils/by';
 import calculateDensityValues from './calculate_density_values.js';
 

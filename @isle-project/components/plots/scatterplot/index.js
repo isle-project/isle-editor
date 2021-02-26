@@ -20,7 +20,7 @@ import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import { CAT20 } from '@isle-project/constants/colors';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import minmax from './minmax.js';
 
 

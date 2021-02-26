@@ -11,7 +11,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import mean from '@isle-project/utils/statistic/mean';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //

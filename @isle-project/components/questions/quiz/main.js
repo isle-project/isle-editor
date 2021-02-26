@@ -31,7 +31,7 @@ import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
 import generateUID from '@isle-project/utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
-import { withPropCheck } from 'utils/prop-check';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
 import './quiz.css';
