@@ -24,7 +24,6 @@ if ( console.error === consoleErrorFcn ) {
 // MAIN //
 
 export function withPropCheck( Component ) {
-	console.log( PropTypes.checkPropTypes );
 	function WrappedComponent({ forwardedRef, ...rest }) {
 		if ( Component.propTypes ) {
 			PropTypes.checkPropTypes( Component.propTypes, rest, 'prop', Component.name );
