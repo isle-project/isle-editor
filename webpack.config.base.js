@@ -113,7 +113,8 @@ export default {
 	resolve: {
 		alias: {
 			'victory': resolve( './node_modules/victory/dist/victory.min.js' ),
-			'form-data': resolve( './node_modules/form-data/lib/form_data.js' )
+			'form-data': resolve( './node_modules/form-data/lib/form_data.js' ),
+			'prop-types': resolve( './node_modules/prop-types/prop-types' )
 		},
 		modules: [
 			resolve( './' ),
