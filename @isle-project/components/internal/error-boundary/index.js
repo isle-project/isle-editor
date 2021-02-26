@@ -11,14 +11,12 @@ class ErrorBoundary extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			hasError: false,
 			error: null
 		};
 	}
 
 	componentDidCatch( error ) {
 		this.setState({
-			hasError: true,
 			error: error
 		});
 	}
@@ -31,7 +29,7 @@ class ErrorBoundary extends Component {
 				resetError={() => {
 					PropTypes.resetWarningCache();
 					this.setState({
-						hasError: false
+						error: null
 					});
 				}}
 			/> );
