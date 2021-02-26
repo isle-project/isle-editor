@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import sin from '@stdlib/math/base/special/sin';
 import cos from '@stdlib/math/base/special/cos';
 import PI from '@stdlib/constants/math/float64-pi';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './seal.css';
 
 
@@ -250,4 +251,4 @@ Seal.defaultProps = {
 
 // EXPORTS //
 
-export default Seal;
+export default withPropCheck( Seal );

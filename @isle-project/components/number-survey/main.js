@@ -23,6 +23,7 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './number-survey.css';
 
 
@@ -194,4 +195,4 @@ NumberSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Survey' )( NumberSurvey );
+export default withTranslation( 'Survey' )( withPropCheck( NumberSurvey ) );

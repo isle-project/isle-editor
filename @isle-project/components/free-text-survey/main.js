@@ -24,6 +24,7 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './free-text-survey.css';
 
 
@@ -243,4 +244,4 @@ FreeTextSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Survey' )( FreeTextSurvey );
+export default withTranslation( 'Survey' )( withPropCheck( FreeTextSurvey ) );

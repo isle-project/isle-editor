@@ -67,6 +67,7 @@ import {
 } from '@isle-project/constants/actions.js';
 import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from '@isle-project/constants/events.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 const ResetModal = Loadable( () => import( './reset_modal.js' ) );
 const DeletePageModal = Loadable( () => import( './delete_page_modal.js' ) );
 const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
@@ -2939,4 +2940,4 @@ Sketchpad.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Sketchpad' )( Sketchpad );
+export default withTranslation( 'Sketchpad' )( withPropCheck( Sketchpad ) );

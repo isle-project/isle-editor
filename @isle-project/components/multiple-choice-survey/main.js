@@ -20,6 +20,7 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
 import { MULTIPLE_CHOICE_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
 
@@ -270,4 +271,4 @@ MultipleChoiceSurvey.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Survey' )( MultipleChoiceSurvey );
+export default withTranslation( 'Survey' )( withPropCheck( MultipleChoiceSurvey ) );
