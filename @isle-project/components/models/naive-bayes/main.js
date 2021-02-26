@@ -12,6 +12,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import { addResources } from '@isle-project/locales';
 import { gaussian } from './naive_bayes.js';
 import { designMatrix, designMatrixMissing } from './design_matrix.js';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -192,4 +193,4 @@ NaiveBayes.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( NaiveBayes );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( NaiveBayes ) );

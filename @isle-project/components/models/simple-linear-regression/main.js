@@ -22,6 +22,7 @@ import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -404,4 +405,4 @@ SimpleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( SimpleLinearRegression );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( SimpleLinearRegression ) );

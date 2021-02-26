@@ -9,6 +9,7 @@ import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
 import { addResources } from '@isle-project/locales';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -159,4 +160,4 @@ DecisionTree.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( DecisionTree );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( DecisionTree ) );

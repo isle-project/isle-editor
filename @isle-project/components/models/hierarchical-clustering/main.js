@@ -13,6 +13,7 @@ import { addResources } from '@isle-project/locales';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
+import { withPropCheck } from 'utils/prop-check';
 import './hierarchical_clustering.css';
 
 
@@ -173,4 +174,4 @@ HierarchicalClustering.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( HierarchicalClustering );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( HierarchicalClustering ) );

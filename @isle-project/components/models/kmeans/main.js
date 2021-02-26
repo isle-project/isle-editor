@@ -10,6 +10,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import Table from '@isle-project/components/table';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -171,4 +172,4 @@ KMeans.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( KMeans );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( KMeans ) );

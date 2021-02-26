@@ -10,6 +10,7 @@ import Plotly from '@isle-project/components/plotly';
 import Tooltip from '@isle-project/components/tooltip';
 import { RandomForestClassifier } from '@isle-project/components/models/decision-tree/tree.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -181,4 +182,4 @@ RandomForest.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( RandomForest );
+export default withTranslation( 'StatisticalModels' )( withPropCheck( RandomForest ) );
