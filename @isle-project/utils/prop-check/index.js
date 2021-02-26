@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorBoundary from '@isle-project/components/internal/error-boundary';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 
 
 // FUNCTIONS //
@@ -11,7 +12,7 @@ import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 const consoleErrorFcn = console.error;
 if ( console.error === consoleErrorFcn ) {
 	console.error = function onWarning() {
-		if ( arguments[ 0 ].includes( 'prop type' ) ) {
+		if ( isString( arguments[ 0 ] ) && arguments[ 0 ].includes( 'prop type' ) ) {
 			throw new Error( arguments[ 0 ] );
 		} else {
 			consoleErrorFcn.apply( console, arguments );
