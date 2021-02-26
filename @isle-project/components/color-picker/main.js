@@ -11,6 +11,7 @@ const SketchPicker = Loadable( () => import( 'react-color/lib/Sketch.js' ) );
 const CompactPicker = Loadable( () => import( 'react-color/lib/Compact.js' ) );
 const MaterialPicker = Loadable( () => import( 'react-color/lib/Material.js' ) );
 const BlockPicker = Loadable( () => import( 'react-color/lib/Block.js' ) );
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // MAIN //
@@ -103,4 +104,4 @@ ColorPicker.defaultProps = {
 
 // EXPORTS //
 
-export default ColorPicker;
+export default withPropCheck( ColorPicker );

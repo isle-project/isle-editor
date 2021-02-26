@@ -15,6 +15,7 @@ import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -142,4 +143,4 @@ DataSampler.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'DataSampler' )( DataSampler );
+export default withTranslation( 'DataSampler' )( withPropCheck( DataSampler ) );

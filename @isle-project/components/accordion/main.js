@@ -9,6 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import Collapse from '@isle-project/components/collapse';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './accordion.css';
 
 
@@ -134,4 +135,4 @@ Accordion.propTypes = {
 
 // EXPORTS //
 
-export default Accordion;
+export default withPropCheck( Accordion );

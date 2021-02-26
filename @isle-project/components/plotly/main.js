@@ -21,6 +21,7 @@ import SessionContext from '@isle-project/session/context.js';
 import { PLOT_UPDATE } from '@isle-project/constants/actions.js';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
@@ -386,4 +387,4 @@ Wrapper.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Plotly' )( Wrapper );
+export default withTranslation( 'Plotly' )( withPropCheck( Wrapper ) );

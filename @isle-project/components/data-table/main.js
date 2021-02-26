@@ -53,6 +53,7 @@ import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
 import FilterInputRange from './input_range.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -967,5 +968,5 @@ DataTable.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'DataTable' )( DataTable );
+export default withTranslation( 'DataTable' )( withPropCheck( DataTable ) );
 

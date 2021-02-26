@@ -17,6 +17,7 @@ import TextInput from '@isle-project/components/input/text';
 import SessionContext from '@isle-project/session/context.js';
 import { DASHBOARD_CLICK_GENERATE } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './dashboard.css';
 
 
@@ -229,4 +230,4 @@ Dashboard.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Dashboard' )( Dashboard );
+export default withTranslation( 'Dashboard' )( withPropCheck( Dashboard ) );

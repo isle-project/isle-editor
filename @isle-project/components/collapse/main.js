@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import VSHeader from './vs-header.js';
 import './vertical-slider.css';
 
@@ -135,4 +136,4 @@ Collapse.defaultProps = {
 
 // EXPORTS //
 
-export default Collapse;
+export default withPropCheck( Collapse );
