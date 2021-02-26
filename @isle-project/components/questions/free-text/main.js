@@ -13,7 +13,7 @@ import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from '@isle-project/utils/uid';
 import Panel from '@isle-project/components/panel';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import TimedButton from '@isle-project/components/timed-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import SolutionButton from '@isle-project/components/solution-button';

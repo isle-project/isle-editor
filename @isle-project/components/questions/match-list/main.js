@@ -11,7 +11,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import * as d3 from 'd3';
 import generateUID from '@isle-project/utils/uid';
 import SolutionButton from '@isle-project/components/solution-button';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
 import Tooltip from '@isle-project/components/tooltip';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';

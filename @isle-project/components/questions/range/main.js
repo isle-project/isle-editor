@@ -15,7 +15,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import generateUID from '@isle-project/utils/uid';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import TimedButton from '@isle-project/components/timed-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import NumberInput from '@isle-project/components/input/number';

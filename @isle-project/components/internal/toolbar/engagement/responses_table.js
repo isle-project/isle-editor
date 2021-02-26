@@ -6,7 +6,7 @@ import ReactTable from 'react-table';
 import Tooltip from '@isle-project/components/tooltip';
 import Panel from '@isle-project/components/panel';
 import Draggable from '@isle-project/components/draggable';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 
 
 // MAIN //

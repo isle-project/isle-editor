@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import Tooltip from 'react-bootstrap/Tooltip';
 import DOMPurify from 'dompurify';
 import createPrependCode from '@isle-project/components/r/utils/create-prepend-code';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';

@@ -7,7 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Panel from '@isle-project/components/panel';
 import Draggable from '@isle-project/components/draggable';
-import VideoChatButton from '@isle-project/components/video-chat-button';
+import VideoChatButton from '@isle-project/components/internal/video-chat-button';
 import Timer from '@isle-project/components/timer';
 import SessionContext from '@isle-project/session/context.js';
 import { CREATED_GROUPS, DELETED_GROUPS, MEMBER_ACTION } from '@isle-project/constants/events.js';

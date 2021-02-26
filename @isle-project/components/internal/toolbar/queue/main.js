@@ -13,7 +13,7 @@ import contains from '@stdlib/assert/contains';
 import isNull from '@stdlib/assert/is-null';
 import generateUID from '@isle-project/utils/uid/incremental';
 import Tooltip from '@isle-project/components/tooltip';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';

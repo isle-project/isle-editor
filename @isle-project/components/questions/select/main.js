@@ -13,7 +13,7 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import TimedButton from '@isle-project/components/timed-button';
 import HintButton from '@isle-project/components/hint-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import generateUID from '@isle-project/utils/uid';

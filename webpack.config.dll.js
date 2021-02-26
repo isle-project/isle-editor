@@ -77,7 +77,6 @@ const config = {
 			'@isle-project/components/animated',
 			'@isle-project/components/beacon-tooltip',
 			'@isle-project/components/bibliography',
-			'@isle-project/components/chat-button',
 			'@isle-project/components/citation',
 			'@isle-project/components/clock',
 			'@isle-project/components/collapse',
@@ -169,12 +168,13 @@ const config = {
 			'@isle-project/components/tooltip',
 			'@isle-project/components/typewriter',
 			'@isle-project/components/unveil',
-			'@isle-project/components/video-chat-button',
 			'@isle-project/components/video-lecture',
 			'@isle-project/components/video-player',
 			'@isle-project/components/weather',
 			'@isle-project/components/wikipedia',
 			'@isle-project/components/word-cloud',
+			'@isle-project/components/internal/chat-button',
+			'@isle-project/components/internal/error-boundary',
 			'@isle-project/components/internal/lesson',
 			'@isle-project/components/internal/login',
 			'@isle-project/components/internal/range-picker',
@@ -183,8 +183,8 @@ const config = {
 			'@isle-project/components/internal/spinner',
 			'@isle-project/components/internal/statusbar',
 			'@isle-project/components/internal/toolbar',
-			'@isle-project/components/internal/voice-control',
-			'@isle-project/components/internal/error-boundary'
+			'@isle-project/components/internal/video-chat-button',
+			'@isle-project/components/internal/voice-control'
 		],
 		session: [
 			'@isle-project/session',

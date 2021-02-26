@@ -14,7 +14,7 @@ import replace from '@stdlib/string/replace';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Tooltip from 'react-bootstrap/Tooltip';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
 import CodeMirror from 'codemirror';
 import scrollTo from '@isle-project/utils/scroll-to';

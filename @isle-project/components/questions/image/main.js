@@ -15,7 +15,7 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import SolutionButton from '@isle-project/components/solution-button';
 import TimedButton from '@isle-project/components/timed-button';
 import HintButton from '@isle-project/components/hint-button';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import Sketchpad from '@isle-project/components/sketchpad';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';

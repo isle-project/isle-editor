@@ -13,7 +13,7 @@ import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
 import contains from '@stdlib/assert/contains';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import VoiceControl from '@isle-project/components/internal/voice-control';

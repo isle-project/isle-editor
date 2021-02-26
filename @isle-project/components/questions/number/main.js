@@ -15,7 +15,7 @@ import isArray from '@stdlib/assert/is-array';
 import generateUID from '@isle-project/utils/uid';
 import Panel from '@isle-project/components/panel';
 import TimedButton from '@isle-project/components/timed-button';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import NumberInput, { createTooltip } from '@isle-project/components/input/number';
 import HintButton from '@isle-project/components/hint-button';

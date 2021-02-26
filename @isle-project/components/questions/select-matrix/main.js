@@ -20,7 +20,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import generateUID from '@isle-project/utils/uid';
 import HintButton from '@isle-project/components/hint-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
-import ChatButton from '@isle-project/components/chat-button';
+import ChatButton from '@isle-project/components/internal/chat-button';
 import Text from '@isle-project/components/text';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
