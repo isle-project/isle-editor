@@ -75,6 +75,9 @@ class Toolbar extends Component {
 				if ( x.name === 'sketchpad' ) {
 					newState.hideSketchpad = true;
 				}
+				if ( x.name === 'help' ) {
+					newState.hideHelpPage = true;
+				}
 			});
 			newState.elements = nextProps.elements;
 			return newState;
@@ -366,6 +369,9 @@ class Toolbar extends Component {
 							onClick={this.toggleHelp}
 							onKeyPress={this.toggleHelp}
 							aria-label={`${this.state.help ? close : open} ${t( 'documentation' )}`}
+							style={{
+								display: !this.state.hideHelpPage ? 'inline-block' : 'none'
+							}}
 						>
 							<span className="fa fa-lg fa-book toolbar-icon" />
 						</Button>
