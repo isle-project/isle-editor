@@ -8,6 +8,7 @@ import anova1 from '@stdlib/stats/anova1';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // MAIN //
@@ -66,4 +67,4 @@ Anova.propTypes = {
 * @property {string} group - name of grouping variable
 * @property {boolean} showDecision - controls whether to display the test decision
 */
-export default Anova;
+export default withPropCheck( Anova );

@@ -13,6 +13,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import standardDeviation from '@isle-project/utils/statistic/stdev';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -127,4 +128,4 @@ MeanTest.propTypes = {
 * @property {number} mu0 - mean under the null hypothesis
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-export default MeanTest;
+export default withPropCheck( MeanTest );

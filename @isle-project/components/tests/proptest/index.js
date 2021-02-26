@@ -11,6 +11,7 @@ import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import mean from '@isle-project/utils/statistic/mean';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -99,4 +100,4 @@ PropTest.propTypes = {
 * @property {number} p0 - proportion under the null hypothesis
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-export default PropTest;
+export default withPropCheck( PropTest );

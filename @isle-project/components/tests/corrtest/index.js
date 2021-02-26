@@ -9,6 +9,7 @@ import pcorrtest from '@stdlib/stats/pcorrtest';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -94,4 +95,4 @@ CorrTest.propTypes = {
 * @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-export default CorrTest;
+export default withPropCheck( CorrTest );

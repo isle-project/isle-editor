@@ -9,6 +9,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -71,4 +72,4 @@ Kruskal.propTypes = {
 * @property {string} group - grouping variable
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-export default Kruskal;
+export default withPropCheck( Kruskal );

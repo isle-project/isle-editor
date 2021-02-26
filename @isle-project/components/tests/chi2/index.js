@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import ROutput from '@isle-project/components/r/output';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -55,4 +56,4 @@ Chi2Test.propTypes = {
 * @property {string} var1 - name of first variable
 * @property {string} var2 - name of second variable
 */
-export default Chi2Test;
+export default withPropCheck( Chi2Test );

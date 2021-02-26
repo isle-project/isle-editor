@@ -18,6 +18,7 @@ import stdev from '@isle-project/utils/statistic/stdev';
 import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -262,4 +263,4 @@ MeanTest2.propTypes = {
 * @property {number} diff - difference under H0
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
-export default MeanTest2;
+export default withPropCheck( MeanTest2 );
