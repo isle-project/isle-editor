@@ -16,7 +16,7 @@ const TRANSLATIONS = {
 	'de': {
 		'Accordion': () => import( './components/accordion/de.json' ),
 		'Bibliography': () => import( './components/bibliography/de.json' ),
-		'ChatButton': () => import( './components/chat-button/de.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/de.json' ),
 		'Citation': () => import( './components/citation/de.json' ),
 		'Dashboard': () => import( './components/dashboard/de.json' ),
 		'DataExplorer': () => import( './components/data-explorer/de.json' ),
@@ -97,7 +97,7 @@ const TRANSLATIONS = {
 	'en': {
 		'Accordion': () => import( './components/accordion/en.json' ),
 		'Bibliography': () => import( './components/bibliography/en.json' ),
-		'ChatButton': () => import( './components/chat-button/en.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/en.json' ),
 		'Citation': () => import( './components/citation/en.json' ),
 		'Dashboard': () => import( './components/dashboard/en.json' ),
 		'DataExplorer': () => import( './components/data-explorer/en.json' ),
@@ -178,7 +178,7 @@ const TRANSLATIONS = {
 	'es': {
 		'Accordion': () => import( './components/accordion/es.json' ),
 		'Bibliography': () => import( './components/bibliography/es.json' ),
-		'ChatButton': () => import( './components/chat-button/es.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/es.json' ),
 		'Citation': () => import( './components/citation/es.json' ),
 		'Dashboard': () => import( './components/dashboard/es.json' ),
 		'DataExplorer': () => import( './components/data-explorer/es.json' ),
@@ -259,7 +259,7 @@ const TRANSLATIONS = {
 	'fr': {
 		'Accordion': () => import( './components/accordion/fr.json' ),
 		'Bibliography': () => import( './components/bibliography/fr.json' ),
-		'ChatButton': () => import( './components/chat-button/fr.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/fr.json' ),
 		'Citation': () => import( './components/citation/fr.json' ),
 		'Dashboard': () => import( './components/dashboard/fr.json' ),
 		'DataExplorer': () => import( './components/data-explorer/fr.json' ),
@@ -340,7 +340,7 @@ const TRANSLATIONS = {
 	'it': {
 		'Accordion': () => import( './components/accordion/it.json' ),
 		'Bibliography': () => import( './components/bibliography/it.json' ),
-		'ChatButton': () => import( './components/chat-button/it.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/it.json' ),
 		'Citation': () => import( './components/citation/it.json' ),
 		'Dashboard': () => import( './components/dashboard/it.json' ),
 		'DataExplorer': () => import( './components/data-explorer/it.json' ),
@@ -421,7 +421,7 @@ const TRANSLATIONS = {
 	'ja': {
 		'Accordion': () => import( './components/accordion/ja.json' ),
 		'Bibliography': () => import( './components/bibliography/ja.json' ),
-		'ChatButton': () => import( './components/chat-button/ja.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/ja.json' ),
 		'Citation': () => import( './components/citation/ja.json' ),
 		'Dashboard': () => import( './components/dashboard/ja.json' ),
 		'DataExplorer': () => import( './components/data-explorer/ja.json' ),
@@ -502,7 +502,7 @@ const TRANSLATIONS = {
 	'nl': {
 		'Accordion': () => import( './components/accordion/nl.json' ),
 		'Bibliography': () => import( './components/bibliography/nl.json' ),
-		'ChatButton': () => import( './components/chat-button/nl.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/nl.json' ),
 		'Citation': () => import( './components/citation/nl.json' ),
 		'Dashboard': () => import( './components/dashboard/nl.json' ),
 		'DataExplorer': () => import( './components/data-explorer/nl.json' ),
@@ -583,7 +583,7 @@ const TRANSLATIONS = {
 	'pl': {
 		'Accordion': () => import( './components/accordion/pl.json' ),
 		'Bibliography': () => import( './components/bibliography/pl.json' ),
-		'ChatButton': () => import( './components/chat-button/pl.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/pl.json' ),
 		'Citation': () => import( './components/citation/pl.json' ),
 		'Dashboard': () => import( './components/dashboard/pl.json' ),
 		'DataExplorer': () => import( './components/data-explorer/pl.json' ),
@@ -664,7 +664,7 @@ const TRANSLATIONS = {
 	'pt': {
 		'Accordion': () => import( './components/accordion/pt.json' ),
 		'Bibliography': () => import( './components/bibliography/pt.json' ),
-		'ChatButton': () => import( './components/chat-button/pt.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/pt.json' ),
 		'Citation': () => import( './components/citation/pt.json' ),
 		'Dashboard': () => import( './components/dashboard/pt.json' ),
 		'DataExplorer': () => import( './components/data-explorer/pt.json' ),
@@ -745,7 +745,7 @@ const TRANSLATIONS = {
 	'ru': {
 		'Accordion': () => import( './components/accordion/ru.json' ),
 		'Bibliography': () => import( './components/bibliography/ru.json' ),
-		'ChatButton': () => import( './components/chat-button/ru.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/ru.json' ),
 		'Citation': () => import( './components/citation/ru.json' ),
 		'Dashboard': () => import( './components/dashboard/ru.json' ),
 		'DataExplorer': () => import( './components/data-explorer/ru.json' ),
@@ -826,7 +826,7 @@ const TRANSLATIONS = {
 	'zh': {
 		'Accordion': () => import( './components/accordion/zh.json' ),
 		'Bibliography': () => import( './components/bibliography/zh.json' ),
-		'ChatButton': () => import( './components/chat-button/zh.json' ),
+		'ChatButton': () => import( './components/internal/chat-button/zh.json' ),
 		'Citation': () => import( './components/citation/zh.json' ),
 		'Dashboard': () => import( './components/dashboard/zh.json' ),
 		'DataExplorer': () => import( './components/data-explorer/zh.json' ),
