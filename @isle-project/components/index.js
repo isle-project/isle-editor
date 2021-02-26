@@ -96,7 +96,7 @@ import Pages from '@isle-project/components/pages';
 import Panel from '@isle-project/components/panel';
 import Plotly from '@isle-project/components/plotly';
 import Polaroid from '@isle-project/components/polaroid';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import QRCode from '@isle-project/components/qrcode';
 import StickyNote from '@isle-project/components/sticky-note';
 import ProportionsSurvey from '@isle-project/components/proportions-survey';

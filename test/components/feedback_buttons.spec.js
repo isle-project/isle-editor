@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import FeedbackButtons from '@isle-project/components/feedback/main.js';
 import Session from '@isle-project/session';
 

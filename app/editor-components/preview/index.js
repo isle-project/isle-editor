@@ -20,7 +20,7 @@ import repeat from '@stdlib/string/repeat';
 import replace from '@stdlib/string/replace';
 import markdownToHTML from 'utils/markdown-to-html';
 import pluginTransformJSX from '@babel/plugin-transform-react-jsx';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import Session from '@isle-project/session';
 import transformToPresentation from 'utils/transform-to-presentation';
 import isleFileIncludes from './isle_file_includes.js';

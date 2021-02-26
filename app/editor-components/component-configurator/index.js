@@ -23,7 +23,7 @@ import Checkbox from '@isle-project/components/input/checkbox';
 import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import Playground from 'editor-components/playground';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import typeOf from '@stdlib/utils/type-of';

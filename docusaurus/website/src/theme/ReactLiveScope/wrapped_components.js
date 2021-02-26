@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import Session from '@isle-project/session';
 import './i18n.js';
 

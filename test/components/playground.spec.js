@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Provider from '@isle-project/components/provider';
+import Provider from '@isle-project/components/internal/provider';
 import Session from '@isle-project/session';
 import Playground from 'editor-components/playground/main.js';
 import Clock from '@isle-project/components/clock';
