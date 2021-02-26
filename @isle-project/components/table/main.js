@@ -28,6 +28,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactBootstrapTable from 'react-bootstrap/Table';
 import isTouchDevice from 'is-touch-device';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './sortable.css';
 
 
@@ -300,4 +301,4 @@ Table.defaultProps = {
 
 // EXPORTS //
 
-export default Table;
+export default withPropCheck( Table );

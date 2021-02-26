@@ -31,6 +31,7 @@ import STOPWORDS_SWE from '@stdlib/datasets/savoy-stopwords-swe';
 import Tooltip from '@isle-project/components/tooltip';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -400,4 +401,4 @@ Wrapper.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'WordCloud' )( Wrapper );
+export default withTranslation( 'WordCloud' )( withPropCheck( Wrapper ) );

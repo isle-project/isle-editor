@@ -9,6 +9,7 @@ import round from '@stdlib/math/base/special/round';
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import Description from './description.js';
 import Location from './location.js';
 import './weather.css';
@@ -210,4 +211,4 @@ Weather.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Weather' )( Weather );
+export default withTranslation( 'Weather' )( withPropCheck( Weather ) );

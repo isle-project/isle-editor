@@ -10,6 +10,7 @@ import VoiceInput from '@isle-project/components/input/voice';
 import SessionContext from '@isle-project/session/context.js';
 import { i18n, addResources } from '@isle-project/locales';
 import { WIKIPEDIA_SEARCH } from '@isle-project/constants/actions.js';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './wikipedia.css';
 
 
@@ -123,4 +124,4 @@ Wikipedia.propTypes = {
 
 // EXPORTS //
 
-export default Wikipedia;
+export default withPropCheck( Wikipedia );

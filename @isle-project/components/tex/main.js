@@ -15,6 +15,7 @@ import PINF from '@stdlib/constants/math/float64-pinf';
 import keys from '@stdlib/utils/keys';
 import NumberInput from '@isle-project/components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './tex.css';
 
 
@@ -296,4 +297,4 @@ TeX.defaultProps = {
 
 // EXPORTS //
 
-export default TeX;
+export default withPropCheck( TeX );

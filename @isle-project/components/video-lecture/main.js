@@ -15,6 +15,7 @@ import VideoPlayer from '@isle-project/components/video-player';
 import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './video_lecture.css';
 
 
@@ -299,4 +300,4 @@ VideoLecture.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Video' )( VideoLecture );
+export default withTranslation( 'Video' )( withPropCheck( VideoLecture ) );
