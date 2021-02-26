@@ -16,6 +16,7 @@ import SessionContext from '@isle-project/session/context.js';
 import isElectron from '@isle-project/utils/is-electron';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from '@isle-project/constants/actions.js';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
 import './pages.css';
@@ -318,6 +319,4 @@ Pages.contextType = SessionContext;
 
 // EXPORTS //
 
-export const PurePages = Pages;
-
-export default withTranslation( 'Pages' )( Pages );
+export default withTranslation( 'Pages' )( withPropCheck( Pages ) );

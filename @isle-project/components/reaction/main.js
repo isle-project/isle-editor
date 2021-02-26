@@ -9,6 +9,7 @@ import SessionContext from '@isle-project/session/context.js';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -88,4 +89,4 @@ Reaction.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'General' )( Reaction );
+export default withTranslation( 'General' )( withPropCheck( Reaction ) );

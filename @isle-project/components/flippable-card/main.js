@@ -8,6 +8,7 @@ import noop from '@stdlib/utils/noop';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // MAIN //
@@ -178,4 +179,4 @@ FlippableCard.defaultProps = {
 
 // EXPORTS //
 
-export default FlippableCard;
+export default withPropCheck( FlippableCard );

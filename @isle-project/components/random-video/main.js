@@ -9,6 +9,7 @@ import isNull from '@stdlib/assert/is-null';
 import runif from '@stdlib/random/base/discrete-uniform';
 import VideoPlayer from '@isle-project/components/video-player';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -57,4 +58,4 @@ RandomVideo.defaultProps = {
 
 // EXPORTS //
 
-export default RandomVideo;
+export default withPropCheck( RandomVideo );

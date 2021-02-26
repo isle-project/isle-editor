@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // MAIN //
@@ -58,4 +59,4 @@ Runner.propTypes = {
 
 // EXPORTS //
 
-export default Runner;
+export default withPropCheck( Runner );
