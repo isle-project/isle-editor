@@ -8,6 +8,9 @@ Un fino envoltorio alrededor del [árbol reactivo-ordenable] (https://www.npmjs.
 
 ## Opciones
 
+* __treeData__ | `array<object> (required)`: array de objetos con `title` (etiqueta principal del nodo),
+`subtítulo` (etiqueta secundaria), `expanded` (muestra los hijos del nodo si se establece en true), y/o
+`children` (matriz de nodos hijos que pertenecen al nodo respectivo). Default: `none`.
 * __title__ | `string`: título del encabezado. Default: `none`.
 
 

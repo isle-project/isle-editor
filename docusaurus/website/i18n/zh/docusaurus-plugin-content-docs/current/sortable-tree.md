@@ -8,6 +8,9 @@ sidebar_label: Sortable Tree
 
 ## 选项
 
+* __treeData__ | `array<object> (required)`: 带有`title`(节点的主要标签)的对象数组。
+"subtitle"(二级标签)、"expanded"(如果设置为 "true"，则显示节点的子节点)和/或
+`children`(属于各节点的子节点数组). Default: `none`.
 * __title__ | `string`: 标题. Default: `none`.
 
 

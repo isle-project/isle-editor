@@ -8,6 +8,9 @@ Um invólucro fino em torno de [árvore reativa-estável] (https://www.npmjs.com
 
 ## Opções
 
+* __treeData__ | `array<object> (required)`: conjunto de objetos com `título` (etiqueta primária para o nó),
+(etiqueta secundária), "expandido" (exibir os filhos do nó, se definido como verdadeiro), e/ou
+"crianças" (conjunto de nós de crianças pertencentes ao respectivo nó). Default: `none`.
 * __title__ | `string`: título de cabeçalho. Default: `none`.
 
 

@@ -1214,6 +1214,7 @@
 	"SliderInput-prop-style": "CSS inline styles",
 	"SortableTree-description": "A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.",
 	"SortableTree-prop-title": "header title",
+	"SortableTree-prop-treeData": "array of objects with `title` (primary label for the node),\n`subtitle` (secondary label), `expanded` (display the children of the node if set to true), and/or\n`children` (array of child nodes belonging to the respective node)",
 	"span-description": "Generic inline container element.",
 	"span-prop-className": "class name",
 	"span-prop-style": "CSS inline styles",

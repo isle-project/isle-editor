@@ -8,6 +8,9 @@ Een dunne wikkel rond [reageer-sorteerbare-boom](https://www.npmjs.com/package/r
 
 ## Opties
 
+* __treeData__ | `array<object> (required)`: array van objecten met `title` (primaire label voor de node),
+`subtitle` (secundair label), `expanded` (toon de kinderen van de node indien ingesteld op true), en/of
+`kinderen` (array van kind-knooppunten die bij de betreffende knoop horen). Default: `none`.
 * __title__ | `string`: koptekst. Default: `none`.
 
 

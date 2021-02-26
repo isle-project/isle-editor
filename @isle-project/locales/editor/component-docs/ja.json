@@ -1214,6 +1214,7 @@
 	"SliderInput-prop-style": "CSSインラインスタイル",
 	"SortableTree-description": "このコンポーネントのすべてのプロパティをサポートする [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) の薄いラッパーです。",
 	"SortableTree-prop-title": "見出しタイトル",
+	"SortableTree-prop-treeData": "title` (ノードのプライマリラベル) を持つオブジェクトの配列。\nsubtitle` (セカンダリラベル)、`expanded` (trueに設定されている場合はノードの子を表示)、および/または\n`children` (それぞれのノードに属する子ノードの配列)",
 	"span-description": "一般的なインラインコンテナ要素。",
 	"span-prop-className": "クラス名",
 	"span-prop-style": "CSSインラインスタイル",

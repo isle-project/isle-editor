@@ -1214,6 +1214,7 @@
 	"SliderInput-prop-style": "Stili in linea CSS",
 	"SortableTree-description": "Un involucro sottile intorno a [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) che supporta tutte le proprietà di tale componente.",
 	"SortableTree-prop-title": "titolo dell'intestazione",
+	"SortableTree-prop-treeData": "array di oggetti con `titolo` (etichetta primaria per il nodo),\n`subtitle` (etichetta secondaria), `expanded` (mostra i figli del nodo se impostato a true), e/o\n`children` (array di nodi figli appartenenti al rispettivo nodo)",
 	"span-description": "Elemento generico del contenitore in linea.",
 	"span-prop-className": "nome della classe",
 	"span-prop-style": "Stili in linea CSS",

@@ -1214,6 +1214,7 @@
 	"SliderInput-prop-style": "Style CSS inline",
 	"SortableTree-description": "Cienka owijka wokół [reaktywnego drzewa sortowalnego] (https://www.npmjs.com/package/react-sortable-tree), która obsługuje wszystkie właściwości tego komponentu.",
 	"SortableTree-prop-title": "tytuł nagłówka",
+	"SortableTree-prop-treeData": "tablica obiektów z `title` (podstawowa etykieta węzła),\n`subtitle` (etykieta drugorzędna), `expanded` (wyświetlenie dzieci węzła, jeśli ustawione na true), i/lub\n`children` (tablica węzłów podrzędnych należących do danego węzła).",
 	"span-description": "Ogólny element kontenerowy inline.",
 	"span-prop-className": "nazwa klasy",
 	"span-prop-style": "Style CSS inline",

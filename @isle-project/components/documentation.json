@@ -151,9 +151,6 @@
 		],
 		"description": "Bibliography-description"
 	},
-	"undefined": {
-		"props": []
-	},
 	"Citation": {
 		"props": [
 			{
@@ -408,6 +405,9 @@
 			}
 		],
 		"description": "Dashboard-description"
+	},
+	"undefined": {
+		"props": []
 	},
 	"DataExplorer": {
 		"props": [
@@ -6983,6 +6983,11 @@
 	},
 	"SortableTree": {
 		"props": [
+			{
+				"name": "treeData",
+				"type": "array<object> (required)",
+				"description": "SortableTree-prop-treeData"
+			},
 			{
 				"name": "title",
 				"type": "string",

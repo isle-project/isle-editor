@@ -1,12 +1,12 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import SortableTree from 'react-sortable-tree';
 import Card from 'react-bootstrap/Card';
 import FormControl from 'react-bootstrap/FormControl';
-import omit from '@stdlib/utils/omit';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import 'react-sortable-tree/style.css'; // This only needs to be imported once in your app
 
 
@@ -16,55 +16,47 @@ import 'react-sortable-tree/style.css'; // This only needs to be imported once i
 * A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.
 *
 * @property {string} title - header title
+* @property {Array<object>} treeData - array of objects with `title` (primary label for the node),
+`subtitle` (secondary label), `expanded` (display the children of the node if set to true), and/or
+`children` (array of child nodes belonging to the respective node)
 */
-class Tree extends Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			treeData: props.treeData,
-			searchString: ''
-		};
-	}
-
-	handleSearchOnChange = e => {
-		this.setState({
-			searchString: e.target.value
-		});
-	};
-
-	render() {
-		const props = omit( this.props, 'treeData' );
-		return (
-			<Card>
-				<Card.Header style={{ minHeight: 80, position: 'relative' }}>
-					<Card.Title as="h2">{this.props.title}</Card.Title>
-					<div style={{ position: 'absolute', top: 10, right: 30, padding: 10 }}>
-						<FormControl style={{ float: 'right', width: 200, marginLeft: 20 }} type="text" onChange={this.handleSearchOnChange} />
-						<span className="title" style={{ float: 'right' }}>{this.props.t('search')}: </span>
-					</div>
-				</Card.Header>
-				<Card.Body>
-					<div style={{ width: 900, height: 600 }}>
-						<SortableTree
-							treeData={this.state.treeData}
-							searchQuery={this.state.searchString}
-							onChange={( treeData ) => {
-								this.setState({ treeData });
-							}}
-							{...props}
-						/>
-					</div>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+const Tree = ({ title, treeData, ...rest }) => {
+	const [ searchString, setSearchString ] = useState( '' );
+	const [ data, setData ] = useState( treeData );
+	const { t } = useTranslation( 'General' );
+	const handleSearchOnChange = useCallback( ( e ) => {
+		setSearchString( e.target.value );
+	}, [] );
+	return (
+		<Card>
+			<Card.Header style={{ minHeight: 80, position: 'relative' }}>
+				<Card.Title as="h2">{title}</Card.Title>
+				<div style={{ position: 'absolute', top: 10, right: 30, padding: 10 }}>
+					<FormControl style={{ float: 'right', width: 200, marginLeft: 20 }} type="text" onChange={handleSearchOnChange} />
+					<span className="title" style={{ float: 'right' }}>{t('search')}: </span>
+				</div>
+			</Card.Header>
+			<Card.Body>
+				<div style={{ width: 900, height: 600 }}>
+					<SortableTree
+						treeData={data}
+						searchQuery={searchString}
+						onChange={( newTreeData ) => {
+							setData( newTreeData );
+						}}
+						{...rest}
+					/>
+				</div>
+			</Card.Body>
+		</Card>
+	);
+};
 
 
 // PROPERTIES //
 
 Tree.propTypes = {
+	treeData: PropTypes.arrayOf( PropTypes.object ).isRequired,
 	title: PropTypes.string
 };
 
@@ -75,4 +67,4 @@ Tree.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'General' )( Tree );
+export default withPropCheck( Tree );
