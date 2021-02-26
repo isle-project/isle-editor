@@ -7,6 +7,7 @@
 	"given": "podany",
 	"in": "w",
 	"linear-fit": "Dopasowanie liniowe",
+	"number-of-edges": "Liczba krawędzi: {{nEdges}}.",
 	"of": "z",
 	"points": "Punkty",
 	"proportion": "Proporcja",

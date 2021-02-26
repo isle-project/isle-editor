@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import D3Plot from './d3_plot.js';
 import { withPropCheck } from 'utils/prop-check';
+import { i18n } from '@isle-project/locales';
 import './style.css';
 
 
@@ -80,7 +81,7 @@ class NetworkPlot extends D3Plot {
 
 		node.append( 'title' )
 			.text( function txt( d ) {
-				return `Number of edges: ${d.nEdges}`;
+				return i18n.t( 'Plotly:number-of-edges', { nEdges: d.nEdges });
 			});
 
 		node.on( 'mouseover', function onMouseOver( d ) {

@@ -7,6 +7,7 @@
 	"given": "dato",
 	"in": "in",
 	"linear-fit": "In forma lineare",
+	"number-of-edges": "Numero di bordi: {{nEdges}}.",
 	"of": "di",
 	"points": "Punti",
 	"proportion": "Proporzione",
