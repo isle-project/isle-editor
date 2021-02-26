@@ -53,6 +53,7 @@ class FullscreenButton extends Component {
 								fontSize: 12,
 								...this.props.style
 							}}
+							aria-label={this.props.t('fullscreen-tooltip')}
 						>
 							<span className="fa fa-window-maximize" />
 						</Button>

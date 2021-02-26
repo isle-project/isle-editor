@@ -279,6 +279,7 @@ class Toolbar extends Component {
 						className="toolbar-buttongroup toolbar-toggle"
 						onClick={this.toggleToolbar}
 						onKeyPress={this.toggleToolbar}
+						aria-label={t('show-toolbar')}
 						style={{
 							display: this.state.showToolbar ? 'none' : 'inherit'
 						}}
@@ -295,6 +296,7 @@ class Toolbar extends Component {
 							className="toolbar-toggle"
 							onClick={this.toggleToolbar}
 							onKeyPress={this.toggleToolbar}
+							aria-label={t('hide-toolbar')}
 						>
 							<i className="fas fa-chevron-left"></i>
 						</Button>
