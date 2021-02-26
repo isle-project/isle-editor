@@ -10,6 +10,7 @@ import round from '@stdlib/math/base/special/round';
 import SessionContext from '@isle-project/session/context.js';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -174,9 +175,7 @@ SpreadsheetUpload.propTypes = {
 	title: PropTypes.string
 };
 
-SpreadsheetUpload.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default SpreadsheetUpload;
+export default withPropCheck( SpreadsheetUpload );

@@ -20,6 +20,7 @@ import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/const
 import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -367,4 +368,4 @@ LessonSubmit.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'LessonSubmit' )( LessonSubmit );
+export default withTranslation( 'LessonSubmit' )( withPropCheck( LessonSubmit ) );

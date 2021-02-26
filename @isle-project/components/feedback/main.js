@@ -18,6 +18,7 @@ import Confused from '-!svg-react-loader!./img/confused.svg';
 import Understood from '-!svg-react-loader!./img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./img/feedback.svg';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './feedback.css';
 
 
@@ -248,4 +249,4 @@ FeedbackButtons.defaultProps = {
 
 // EXPORTS //
 
-export default FeedbackButtons;
+export default withPropCheck( FeedbackButtons );

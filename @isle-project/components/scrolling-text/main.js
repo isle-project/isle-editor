@@ -4,6 +4,7 @@ import React, { useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isElectron from '@isle-project/utils/is-electron';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './ticker.css';
 
 
@@ -178,4 +179,4 @@ ScrollingText.defaultProps = {
 
 // EXPORTS //
 
-export default ScrollingText;
+export default withPropCheck( ScrollingText );

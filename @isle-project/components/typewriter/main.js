@@ -7,6 +7,7 @@ import isArray from '@stdlib/assert/is-array';
 import randu from '@stdlib/random/base/randu';
 import useRandomInterval from '@isle-project/utils/hooks/use-random-interval';
 import isElectron from '@isle-project/utils/is-electron';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import keystroke from './keystroke.ogg';
 import './typewriter.css';
 
@@ -159,4 +160,4 @@ Typewriter.defaultProps = {
 
 // EXPORTS //
 
-export default Typewriter;
+export default withPropCheck( Typewriter );
