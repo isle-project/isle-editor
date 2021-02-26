@@ -11,7 +11,7 @@ const DELAY = 200;
 // MAIN //
 
 const Loading = () => {
-	const [ showSpinner, setShowSpinner ] = useState(false);
+	const [ showSpinner, setShowSpinner ] = useState( false );
 
 	useEffect( () => {
 		const timer = setTimeout(() => setShowSpinner( true ), DELAY );
