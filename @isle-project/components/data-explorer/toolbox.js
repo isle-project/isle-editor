@@ -2,6 +2,7 @@
 
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ResizeObserver from 'resize-observer-polyfill';
 import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
 import Button from 'react-bootstrap/Button';
@@ -26,27 +27,22 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 	const buttonRef = useRef();
 
 	useEffect( () => {
-		let resizeObserver;
-		if ( ResizeObserver ) {
-			resizeObserver = new ResizeObserver( ( entries ) => {
-				for ( let entry of entries ) {
-					if ( entry.contentBoxSize ) {
-						const elem = buttonRef.current;
-						const rect = elem.getBoundingClientRect();
-						const top = rect.top + document.documentElement.scrollTop;
-						setPosition({
-							x: 30 + window.pageXOffset,
-							y: top
-						});
-					}
+		const resizeObserver = new ResizeObserver( ( entries ) => {
+			for ( let entry of entries ) {
+				if ( entry.contentBoxSize ) {
+					const elem = buttonRef.current;
+					const rect = elem.getBoundingClientRect();
+					const top = rect.top + document.documentElement.scrollTop;
+					setPosition({
+						x: 30 + window.pageXOffset,
+						y: top
+					});
 				}
-			});
-			resizeObserver.observe( document.body );
-		}
-		return () => {
-			if ( resizeObserver ) {
-				resizeObserver.unobserve( document.body );
 			}
+		});
+		resizeObserver.observe( document.body );
+		return () => {
+			resizeObserver.unobserve( document.body );
 		};
 	}, [] );
 	const toggleShow = useCallback( () => {
