@@ -84,6 +84,7 @@ h6 {
 
 .splitpane {
 	height: auto !important;
+	min-height: 100vh;
 }
 
 .Lesson {
