@@ -142,7 +142,6 @@ class NumberQuestion extends Component {
 	}
 
 	componentDidMount() {
-		console.log( 'DID MOUNT');
 		const session = this.context;
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {

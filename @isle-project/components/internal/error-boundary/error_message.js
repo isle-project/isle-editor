@@ -2,9 +2,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Popover from 'react-bootstrap/Popover';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Ansi from 'ansi-to-react';
