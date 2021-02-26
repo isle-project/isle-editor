@@ -10,6 +10,7 @@ import ColorPicker from '@isle-project/components/color-picker';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 import './image.css';
 
 
@@ -208,4 +209,4 @@ Image.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Image' )( Image );
+export default withTranslation( 'Image' )( withPropCheck( Image ) );

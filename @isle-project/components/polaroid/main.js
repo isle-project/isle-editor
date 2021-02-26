@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactDraggable from 'react-draggable';
+import { withPropCheck } from 'utils/prop-check';
 import './polaroid.css';
 
 
@@ -125,4 +126,4 @@ Polaroid.defaultProps = {
 
 // EXPORTS //
 
-export default Polaroid;
+export default withPropCheck( Polaroid );

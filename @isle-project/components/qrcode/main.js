@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import QRCode from 'qrcode';
 import replace from '@stdlib/string/replace';
 import isElectron from '@isle-project/utils/is-electron';
+import { withPropCheck } from 'utils/prop-check';
 import './qrcode.css';
 
 
@@ -100,4 +101,4 @@ Qrcode.propTypes = {
 
 // EXPORTS //
 
-export default Qrcode;
+export default withPropCheck( Qrcode );
