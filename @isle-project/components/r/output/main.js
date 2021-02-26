@@ -7,6 +7,7 @@ import Spinner from '@isle-project/components/internal/spinner';
 import createPrependCode from '@isle-project/components/r/utils/create-prepend-code';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
@@ -155,4 +156,4 @@ ROutput.contextType = SessionContext;
 
 // EXPORTS //
 
-export default ROutput;
+export default withPropCheck( ROutput );

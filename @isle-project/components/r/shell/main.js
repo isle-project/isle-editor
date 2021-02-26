@@ -28,6 +28,7 @@ import SessionContext from '@isle-project/session/context.js';
 import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import 'codemirror/mode/r/r.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -576,4 +577,4 @@ RShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( RShell );
+export default withTranslation( 'R' )( withPropCheck( RShell ) );

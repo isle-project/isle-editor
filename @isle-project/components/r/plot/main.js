@@ -12,6 +12,7 @@ import Image from '@isle-project/components/image';
 import SessionContext from '@isle-project/session/context.js';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './plot.css';
 
 
@@ -178,4 +179,4 @@ RPlot.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( RPlot );
+export default withTranslation( 'R' )( withPropCheck( RPlot ) );

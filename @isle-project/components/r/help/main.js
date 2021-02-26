@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './rhelp.css';
 
 
@@ -113,4 +114,4 @@ RHelp.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( RHelp );
+export default withTranslation( 'R' )( withPropCheck( RHelp ) );
