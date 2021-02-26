@@ -12,6 +12,7 @@ import identity from '@stdlib/utils/identity-function';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -274,4 +275,4 @@ FrequencyTable.propTypes = {
 * @property {boolean} calculateRelative - controls whether to display relative frequencies
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
 */
-export default withTranslation( 'Tables' )( FrequencyTable );
+export default withTranslation( 'Tables' )( withPropCheck( FrequencyTable ) );

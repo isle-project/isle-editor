@@ -12,6 +12,7 @@ import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { addResources } from '@isle-project/locales';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -246,4 +247,4 @@ ContingencyTable.propTypes = {
 * @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
 */
-export default withTranslation( 'Tables' )( ContingencyTable );
+export default withTranslation( 'Tables' )( withPropCheck( ContingencyTable ) );
