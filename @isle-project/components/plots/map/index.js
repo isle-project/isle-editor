@@ -8,6 +8,7 @@ import startcase from '@stdlib/string/startcase';
 import Plotly from '@isle-project/components/plotly';
 import mean from '@isle-project/utils/statistic/mean';
 import range from '@isle-project/utils/statistic/range';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -171,4 +172,4 @@ Map.propTypes = {
 * @property {string} latitude - name of variable in `data` holding latitude values
 * @property {boolean} showLand - whether to show geographic features on map
 */
-export default Map;
+export default withPropCheck( Map );

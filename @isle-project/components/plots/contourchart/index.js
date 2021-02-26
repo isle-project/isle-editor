@@ -16,6 +16,7 @@ import Plotly from '@isle-project/components/plotly';
 import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // FUNCTIONS //
@@ -182,4 +183,4 @@ ContourChart.propTypes = {
 * @property {number} smoothSpan - smoothing span
 * @property {Function} onSelected - callback invoked when points are selected with x, y values and the selected points
 */
-export default ContourChart;
+export default withPropCheck( ContourChart );

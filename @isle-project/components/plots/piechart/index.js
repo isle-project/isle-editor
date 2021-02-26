@@ -12,6 +12,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import sum from '@isle-project/utils/statistic/sum';
 import by from '@isle-project/utils/by';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // FUNCTIONS //
@@ -148,4 +149,4 @@ PieChart.propTypes = {
 * @property {string} group - grouping variable
 * @property {string} summaryVariable - optional variable whose sum to display for each `variable` category
 */
-export default PieChart;
+export default withPropCheck( PieChart );

@@ -27,6 +27,7 @@ import min from '@stdlib/math/base/special/min';
 import PI from '@stdlib/constants/math/float64-pi';
 import { CAT20 as COLORS } from '@isle-project/constants/colors';
 import generateUID from '@isle-project/utils/uid';
+import { withPropCheck } from 'utils/prop-check';
 import './style.css';
 
 
@@ -297,4 +298,4 @@ Sunburst.propTypes = {
 
 // EXPORTS //
 
-export default Sunburst;
+export default withPropCheck( Sunburst );

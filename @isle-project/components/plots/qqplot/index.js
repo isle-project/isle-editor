@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
+import { withPropCheck } from 'utils/prop-check';
 import ascending from './ascending.js';
 
 
@@ -111,4 +112,4 @@ QQPlot.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
 */
-export default QQPlot;
+export default withPropCheck( QQPlot );

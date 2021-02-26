@@ -11,6 +11,7 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import statistic from '@isle-project/utils/statistic';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // FUNCTIONS //
@@ -262,4 +263,4 @@ BarChart.propTypes = {
 
 // EXPORTS //
 
-export default BarChart;
+export default withPropCheck( BarChart );

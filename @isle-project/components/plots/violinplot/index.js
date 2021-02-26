@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // FUNCTIONS //
@@ -101,4 +102,4 @@ ViolinPlot.propTypes = {
 * @property {string} group - grouping variable
 * @property {boolean} showBox - controls whether to display a box plot inside
 */
-export default ViolinPlot;
+export default withPropCheck( ViolinPlot );

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales';
 import objectValues from '@stdlib/utils/values';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // VARIABLES //
@@ -112,4 +113,4 @@ MosaicPlot.propTypes = {
 * @property {boolean} showColors - controls whether to display colors showing significance
 * @property {string} axisLabels - grouping variable
 */
-export default MosaicPlot;
+export default withPropCheck( MosaicPlot );

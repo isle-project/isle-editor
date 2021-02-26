@@ -11,6 +11,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import { withPropCheck } from 'utils/prop-check';
 import by from '@isle-project/utils/by';
 import calculateDensityValues from './calculate_density_values.js';
 
@@ -283,4 +284,4 @@ Histogram.propTypes = {
 * @property {number} nCols - number of columns when displaying a facetted grouped histogram
 * @property {Object} xBins - object with `start`, `size`, and `end` properties governing binning behavior
 */
-export default Histogram;
+export default withPropCheck( Histogram );

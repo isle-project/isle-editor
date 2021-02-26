@@ -18,6 +18,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import kde2d from '@stdlib/stats/kde2d';
 import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
+import { withPropCheck } from 'utils/prop-check';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import by2 from '@isle-project/utils/by2';
@@ -342,4 +343,4 @@ HeatMap.propTypes = {
 * @property {boolean} commonXAxis - controls whether to use a common x-axis when creating multiple heat maps per value of a grouping variable
 * @property {boolean} commonYAxis - controls whether to use a common y-axis when creating multiple heat maps per value of a grouping variable
 */
-export default HeatMap;
+export default withPropCheck( HeatMap );

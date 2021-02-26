@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import D3Plot from './d3_plot.js';
+import { withPropCheck } from 'utils/prop-check';
 import './style.css';
 
 
@@ -168,4 +169,4 @@ NetworkPlot.propTypes = {
 
 // EXPORTS //
 
-export default NetworkPlot;
+export default withPropCheck( NetworkPlot );

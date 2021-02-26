@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
+import { withPropCheck } from 'utils/prop-check';
 
 
 // FUNCTIONS //
@@ -116,4 +117,4 @@ LinePlot.propTypes = {
 * @property {string} group - grouping variable
 * @property {boolean} showPoints - controls whether to overlay points at each observation
 */
-export default LinePlot;
+export default withPropCheck( LinePlot );

@@ -20,6 +20,7 @@ import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import { CAT20 } from '@isle-project/constants/colors';
+import { withPropCheck } from 'utils/prop-check';
 import minmax from './minmax.js';
 
 
@@ -440,4 +441,4 @@ ScatterPlot.propTypes = {
 * @property {number} smoothSpan - smoothing span parameter for `smooth` regression line
 * @property {string} lineBy - display separate regression line for each category of specified categorical variable
 */
-export default ScatterPlot;
+export default withPropCheck( ScatterPlot );
