@@ -1,10 +1,11 @@
 {
 	"click-to-cycle-through-options": "Cliquez pour faire défiler les options disponibles.",
-	"encountered-an-error": "A rencontré une erreur...",
+	"error-encountered": "Erreur rencontrée",
 	"expected-object-array": "{{field}} doit être un tableau d'objets.",
 	"expected-value-from-list": "Le champ doit être l'un des suivants : {{{liste}}.",
 	"flippable-requires-two-children": "La carte à feuilleter nécessite deux éléments enfantins.",
 	"grid-requires-two-children": "La grille glissable nécessite au moins deux éléments enfants pour être rendue.",
+	"in": "dans",
 	"retry": "Retrouvez",
 	"search": "Recherchez",
 	"supply-component-id": "Veuillez fournir un identifiant pour le composant à surveiller."

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ErrorMessage from './error_message.js';
 
 
@@ -18,7 +19,7 @@ class ErrorBoundary extends Component {
 	componentDidCatch( error ) {
 		this.setState({
 			hasError: true,
-			msg: error.stack
+			msg: error.message
 		});
 	}
 
@@ -26,6 +27,13 @@ class ErrorBoundary extends Component {
 		if ( this.state.hasError ) {
 			return ( <ErrorMessage
 				msg={this.state.msg}
+				componentName={this.props.component}
+				resetError={() => {
+					PropTypes.resetWarningCache();
+					this.setState({
+						hasError: false
+					});
+				}}
 			/> );
 		}
 		return this.props.children;

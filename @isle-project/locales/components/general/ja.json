@@ -1,10 +1,11 @@
 {
 	"click-to-cycle-through-options": "クリックして、利用可能なオプションを循環させます。",
-	"encountered-an-error": "エラーに遭遇しました...",
+	"error-encountered": "遭遇したエラー",
 	"expected-object-array": "`{{field}}` はオブジェクトの配列でなければなりません。",
 	"expected-value-from-list": "`{{field}}` は以下のいずれかでなければなりません。{{{list}}}でなければなりません。",
 	"flippable-requires-two-children": "フリッパブルカードには2つの子要素が必要です。",
 	"grid-requires-two-children": "ドラッグ可能なグリッドをレンダリングするには、少なくとも2つの子要素が必要です。",
+	"in": "に於いて",
 	"retry": "リトライ",
 	"search": "検索",
 	"supply-component-id": "視聴する部品のIDをご提示ください。"

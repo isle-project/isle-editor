@@ -1,10 +1,11 @@
 {
 	"click-to-cycle-through-options": "Clique para percorrer as opções disponíveis.",
-	"encountered-an-error": "Encontrou um erro...",
+	"error-encountered": "Erro detectado",
 	"expected-object-array": "`{{field}}` tem que ser um conjunto de objetos.",
 	"expected-value-from-list": "`{{{campo}}` tem que ser um dos seguintes: {{{lista}}`.",
 	"flippable-requires-two-children": "O cartão virável requer dois elementos infantis.",
 	"grid-requires-two-children": "A grade arrastável requer pelo menos dois elementos infantis para que ela seja entregue.",
+	"in": "em",
 	"retry": "Tentativa",
 	"search": "Busca",
 	"supply-component-id": "Favor fornecer uma identificação para o componente a ser vigiado."
