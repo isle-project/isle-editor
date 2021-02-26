@@ -33,23 +33,6 @@ import './preview.css';
 
 // VARIABLES //
 
-// Elevate prop type warnings to errors:
-
-/* eslint-disable no-console */
-const consoleErrorFcn = console.error;
-if ( console.error === consoleErrorFcn ) {
-	console.error = function onWarning() {
-		console.log( arguments );
-		if ( arguments[ 1 ] === 'prop' ) {
-			console.log( 'THROW' );
-			throw new Error( arguments[ 2 ] );
-		} else {
-			consoleErrorFcn.apply( console, arguments );
-		}
-	};
-}
-/* eslint-enable no-console */
-
 const OPTS = {
 	plugins: [ pluginTransformJSX ],
 	retainLines: false,
@@ -304,6 +287,7 @@ class Preview extends Component {
 		if ( es5code && es5code.code ) {
 			const SCOPE_KEYS = Object.keys( this.scope );
 			const SCOPE_VALUES = SCOPE_KEYS.map( key => this.scope[key] );
+			PropTypes.resetWarningCache();
 			const f = new Function( '_poly', ...SCOPE_KEYS, es5code.code ).bind( this );
 			try {
 				const out = f( '_poly', ...SCOPE_VALUES );

@@ -823,6 +823,7 @@ class ComponentConfigurator extends Component {
 											overflowX: 'hidden'
 										}}
 										transformCode={( code ) => {
+											PropTypes.resetWarningCache();
 											try {
 												code = replace( code, RE_BEFORE_TAG, '' );
 												let out = markdownToHTML( code );
