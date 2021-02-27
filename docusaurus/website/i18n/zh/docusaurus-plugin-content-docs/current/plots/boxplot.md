@@ -17,10 +17,78 @@ sidebar_label: Box Plot
 
 ## 例子
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Multiple Variables', value: 'multipleVariables' },
+        { label: 'Horizontal', value: 'horizontal' },
+        { label: 'Overlay Points', value: 'overlayPoints' },
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <BoxPlot 
     data={heartdisease} 
-    variable="Cost"
+    variable="Age"
 />
 ```
 
+</TabItem>
+
+<TabItem value="grouped">
+
+```jsx live
+<BoxPlot 
+    data={heartdisease} 
+    variable="Interventions"
+    group="Complications"
+/>
+```
+
+</TabItem>
+
+<TabItem value="multipleVariables">
+
+```jsx live
+<BoxPlot 
+    data={heartdisease} 
+    variable={[ 'Age', 'Interventions', 'Comorbidities' ]}
+/>
+```
+
+</TabItem>
+
+<TabItem value="horizontal">
+
+```jsx live
+<BoxPlot 
+    data={heartdisease} 
+    variable={[ 'Age', 'Interventions', 'Comorbidities' ]}
+    orientation="horizontal"
+/>
+```
+
+</TabItem>
+
+<TabItem value="overlayPoints">
+
+```jsx live
+<BoxPlot 
+    data={heartdisease} 
+    variable={[ 'Age', 'Interventions', 'Comorbidities' ]}
+    orientation="horizontal"
+    overlayPoints
+/>
+```
+
+</TabItem>
+
+</Tabs>

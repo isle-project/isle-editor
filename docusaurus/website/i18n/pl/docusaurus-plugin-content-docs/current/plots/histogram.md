@@ -23,11 +23,84 @@ Histogram.
 
 ## Przykłady
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Facetted Plot', value: 'groupModeFactes' },
+        { label: 'Display Density', value: 'displayDensity' },
+        { label: 'No of Bins', value: 'noBins' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <Histogram 
     data={heartdisease} 
-    variable="Cost"
-    group="Drugs"
+    variable="Age"
 />
 ```
 
+</TabItem>
+
+<TabItem value="grouped">
+
+```jsx live
+<Histogram 
+    data={heartdisease} 
+    variable="Age"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="groupModeFactes">
+
+```jsx live
+<Histogram 
+    data={heartdisease} 
+    variable="Age"
+    group="Gender"
+    nCols={2}
+    groupMode="Facets"
+/>
+```
+
+</TabItem>
+
+<TabItem value="displayDensity">
+
+```jsx live
+<Histogram 
+    data={heartdisease} 
+    variable="Age"
+    group="Gender"
+    displayDensity 
+    densityType="Uniform"
+/>
+```
+
+</TabItem>
+
+<TabItem value="noBins">
+
+```jsx live
+<Histogram 
+    data={heartdisease} 
+    variable="Age"
+    group="Gender"
+    binStrategy="Select # of bins"
+    nBins={90}
+/>
+```
+
+</TabItem>
+
+</Tabs>
