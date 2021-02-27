@@ -9,7 +9,7 @@ sidebar_label: Bar Chart
 ## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
-* __variable__ | `string (required)`: переменная для отображения. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: переменная для отображения. Default: `none`.
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: название статистики для вычисления для `yvar` и для отображения в виде высоты столбика для каждой категории. Default: `none`.
@@ -23,10 +23,65 @@ sidebar_label: Bar Chart
 
 ## Примеры
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Descending Order', value: 'descending' },
+        { label: 'Relative Stacked Bars', value: 'relativeStackedBars' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <BarChart 
     data={heartdisease} 
     variable="Drugs"
 />
 ```
+</TabItem>
 
+<TabItem value="grouped">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="descending">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    xOrder="total"
+    direction="descending"
+/>
+```
+</TabItem>
+
+<TabItem value="relativeStackedBars">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    stackBars
+    relative
+    group="Gender"
+/>
+```
+</TabItem>
+
+</Tabs>

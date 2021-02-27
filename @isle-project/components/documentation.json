@@ -4327,7 +4327,7 @@
 			},
 			{
 				"name": "variable",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "BarChart-prop-variable"
 			},
 			{
@@ -4730,7 +4730,7 @@
 			},
 			{
 				"name": "variable",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "PieChart-prop-variable"
 			},
 			{

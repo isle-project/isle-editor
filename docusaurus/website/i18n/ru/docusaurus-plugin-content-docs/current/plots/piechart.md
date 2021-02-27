@@ -9,12 +9,27 @@ sidebar_label: Pie Chart
 ## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
-* __variable__ | `string (required)`: переменная для отображения. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: переменная для отображения. Default: `none`.
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
 * __summaryVariable__ | `string`: необязательная переменная, сумма которой должна отображаться для каждой категории "Переменная".. Default: `none`.
 
 
 ## Примеры
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Summary Variable', value: 'summaryVariable' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
 
 ```jsx live
 <PieChart 
@@ -23,3 +38,30 @@ sidebar_label: Pie Chart
 />
 ```
 
+</TabItem>
+
+<TabItem value="grouped">
+
+```jsx live
+<PieChart 
+    data={heartdisease} 
+    variable="Drugs"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="summaryVariable">
+
+```jsx live
+<PieChart 
+    data={heartdisease} 
+    variable="Drugs"
+    summaryVariable="Cost"
+/>
+```
+
+</TabItem>
+
+</Tabs>

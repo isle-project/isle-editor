@@ -9,7 +9,7 @@ Gráfico de barras.
 ## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
-* __variable__ | `string (required)`: variável a exibir. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: variável a exibir. Default: `none`.
 * __group__ | `(string|Factor)`: variável de agrupamento. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: nome da estatística a ser calculada para `yvar` e a ser exibida como altura de barra para cada categoria. Default: `none`.
@@ -23,10 +23,65 @@ Gráfico de barras.
 
 ## Exemplos
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Descending Order', value: 'descending' },
+        { label: 'Relative Stacked Bars', value: 'relativeStackedBars' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <BarChart 
     data={heartdisease} 
     variable="Drugs"
 />
 ```
+</TabItem>
 
+<TabItem value="grouped">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="descending">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    xOrder="total"
+    direction="descending"
+/>
+```
+</TabItem>
+
+<TabItem value="relativeStackedBars">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    stackBars
+    relative
+    group="Gender"
+/>
+```
+</TabItem>
+
+</Tabs>

@@ -9,6 +9,7 @@
 	"linear-fit": "Linear Fit",
 	"number-of-edges": "Number of Edges: {{nEdges}}.",
 	"of": "of",
+	"per": "per",
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Normal QQ Plot of {{x}}",

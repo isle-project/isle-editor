@@ -9,7 +9,7 @@ sidebar_label: Bar Chart
 ## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
-* __variable__ | `string (required)`: 表示用変数. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: 表示用変数. Default: `none`.
 * __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: yvar` で計算し、各カテゴリのバーの高さとして表示される統計量の名前. Default: `none`.
@@ -23,10 +23,65 @@ sidebar_label: Bar Chart
 
 ## 例としては、以下のようなものがあります。
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Descending Order', value: 'descending' },
+        { label: 'Relative Stacked Bars', value: 'relativeStackedBars' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <BarChart 
     data={heartdisease} 
     variable="Drugs"
 />
 ```
+</TabItem>
 
+<TabItem value="grouped">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="descending">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    xOrder="total"
+    direction="descending"
+/>
+```
+</TabItem>
+
+<TabItem value="relativeStackedBars">
+
+```jsx live
+<BarChart 
+    data={heartdisease} 
+    variable="Drugs"
+    stackBars
+    relative
+    group="Gender"
+/>
+```
+</TabItem>
+
+</Tabs>
