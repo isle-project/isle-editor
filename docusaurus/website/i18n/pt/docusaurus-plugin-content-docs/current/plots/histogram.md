@@ -10,7 +10,7 @@ Um histograma.
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `string (required)`: variável a exibir. Default: `none`.
-* __group__ | `string`: variável de agrupamento. Default: `none`.
+* __group__ | `(string|Factor)`: variável de agrupamento. Default: `none`.
 * __groupMode__ | `string`: se devem sobrepor histogramas agrupados uns sobre os outros (`Overlay') ou em parcelas separadas umas ao lado das outras (`Facetas'). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controla se deve exibir valores de densidade em vez de contar com o eixo y. Default: `false`.
 * __densityType__ | `string`: ao exibir as densidades, pode-se sobrepor uma distribuição paramétrica (`Normal', `Uniforme' ou `Exponencial') ou uma estimativa não paramétrica da densidade do grão (`Acionada por dados'). Default: `none`.

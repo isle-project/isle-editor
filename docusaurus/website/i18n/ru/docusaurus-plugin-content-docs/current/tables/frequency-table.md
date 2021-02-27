@@ -12,7 +12,7 @@ sidebar_label: Frequency Table
 * __variable__ | `string (required)`: имя переменной для отображения. Default: `none`.
 * __calculateCounts__ | `boolean`: контролирует, отображать ли абсолютные подсчёты. Default: `true`.
 * __calculateRelative__ | `boolean`: управляет отображением относительных частот. Default: `false`.
-* __group__ | `string`: имя группирующей переменной. Default: `none`.
+* __group__ | `(string|Factor)`: имя группирующей переменной. Default: `none`.
 * __nDecimalPlaces__ | `number`: количество знаков после запятой для относительных частот, отображаемых в таблице. Default: `3`.
 
 

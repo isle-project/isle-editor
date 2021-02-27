@@ -11,7 +11,7 @@ Dwukrotny test średniej próby.
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __x__ | `string (required)`: nazwa pierwszej zmiennej. Default: `none`.
 * __y__ | `string`: nazwa drugiej zmiennej (należy podać `y` lub `grupę`). Default: `none`.
-* __group__ | `string`: nazwa zmiennej grupowania (należy podać `y` lub `grupę`). Default: `none`.
+* __group__ | `(string|Factor)`: nazwa zmiennej grupowania (należy podać `y` lub `grupę`). Default: `none`.
 * __type__ | `string`: typ badania (albo `Badanie Z` albo `Badanie T`). Default: `'T Test'`.
 * __xstdev__ | `number`: pierwsze odchylenie standardowe (dla `Testu Z`). Default: `none`.
 * __ystdev__ | `number`: drugie odchylenie standardowe (dla `Testu Z`). Default: `none`.

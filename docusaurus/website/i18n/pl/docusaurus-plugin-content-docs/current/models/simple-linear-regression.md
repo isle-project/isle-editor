@@ -11,7 +11,7 @@ Prosta regresja liniowa.
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __x__ | `string (required)`: zmienna objaśniająca. Default: `none`.
 * __y__ | `string (required)`: zmienna reakcji. Default: `none`.
-* __group__ | `string`: zmienna grupowania. Default: `none`.
+* __group__ | `(string|Factor)`: zmienna grupowania. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, czy należy pominąć brakujące wartości w montażu modelu. Default: `false`.
 * __onDiagnostics__ | `function`: wywołanie zwrotne z wykresami diagnostycznymi. Default: `none`.
 * __onPredict__ | `function`: wywołanie zwrotne z wartościami dopasowanymi i resztkami. Default: `none`.

@@ -11,6 +11,7 @@ sidebar_label: Heat Map
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __x__ | `string (required)`: x轴变量. Default: `none`.
 * __y__ | `string (required)`: y轴变量. Default: `none`.
+* __group__ | `(string|Factor)`: 分组变量. Default: `none`.
 * __overlayPoints__ | `boolean`: 控制是否对每个观测点进行叠加. Default: `false`.
 * __smoothSpan__ | `number`: 平滑跨度. Default: `0.66`.
 * __regressionMethod__ | `array<string>`: 包含 "linear "和/或 "smooth "的数组，用于覆盖线性和/或平滑回归线。. Default: `none`.
@@ -21,6 +22,25 @@ sidebar_label: Heat Map
 
 ## 例子
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Group', value: 'withGroup' },
+        { label: 'Alternate Color', value: 'alternateColor' },
+        { label: 'Overlay Points', value: 'overlayPoints' },
+        { label: 'Regression Method', value: 'regressionMethod' },
+    ]}
+    lazy
+>
+
+
+
+<TabItem value="minimal">
+
 ```jsx live
 <HeatMap 
     data={heartdisease} 
@@ -29,3 +49,64 @@ sidebar_label: Heat Map
 />
 ```
 
+</TabItem>
+
+
+<TabItem value="withGroup">
+
+```jsx live
+<HeatMap 
+    alternateColor
+    group="Gender"
+    data={heartdisease} 
+    x="Interventions"
+    y="Age"
+    commonXAxis
+/>
+```
+
+</TabItem>
+
+<TabItem value="alternateColor">
+
+```jsx live
+<HeatMap 
+    alternateColor
+    group="Gender"
+    data={heartdisease} 
+    x="Interventions"
+    y="Age"
+    commonXAxis
+/>
+```
+
+</TabItem>
+
+<TabItem value="overlayPoints">
+
+```jsx live
+<HeatMap 
+    data={heartdisease} 
+    x="Interventions"
+    y="Age"
+    overlayPoints 
+/>
+```
+
+</TabItem>
+
+
+<TabItem value="regressionMethod">
+
+```jsx live
+<HeatMap 
+    data={heartdisease} 
+    x="Interventions"
+    y="Age"
+    regressionMethod={[ 'linear', 'smooth' ]} 
+/>
+```
+
+</TabItem>
+
+</Tabs>

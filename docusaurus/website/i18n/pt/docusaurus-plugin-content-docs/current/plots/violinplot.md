@@ -10,7 +10,7 @@ Uma trama de violino.
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `string (required)`: variável a exibir. Default: `none`.
-* __group__ | `string`: variável de agrupamento. Default: `none`.
+* __group__ | `(string|Factor)`: variável de agrupamento. Default: `none`.
 * __showBox__ | `boolean`: controla se deve exibir um gráfico de caixa dentro. Default: `false`.
 
 

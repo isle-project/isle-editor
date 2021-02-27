@@ -12,7 +12,7 @@ Zwei-Stichproben-Verhältnis-Test.
 * __var1__ | `string (required)`: Name der ersten Variablen. Default: `none`.
 * __success__ | `string (required)`: Erfolgskategorie von `var1`. Default: `none`.
 * __var2__ | `string`: Name der zweiten Variablen (`var2` oder `group` muss angegeben werden). Default: `none`.
-* __group__ | `string`: Name der Gruppierungsvariable (`var2` oder `group` müssen angegeben werden). Default: `none`.
+* __group__ | `(string|Factor)`: Name der Gruppierungsvariable (`var2` oder `group` müssen angegeben werden). Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
 * __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
 * __diff__ | `number`: Unterschied unter H0. Default: `0`.

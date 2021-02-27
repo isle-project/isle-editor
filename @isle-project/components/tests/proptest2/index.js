@@ -15,6 +15,7 @@ import stdev from '@isle-project/utils/statistic/stdev';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -190,7 +191,10 @@ PropTest2.propTypes = {
 	var1: PropTypes.string.isRequired,
 	success: PropTypes.string.isRequired,
 	var2: PropTypes.string,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	alpha: PropTypes.number,
 	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
 	diff: PropTypes.number,

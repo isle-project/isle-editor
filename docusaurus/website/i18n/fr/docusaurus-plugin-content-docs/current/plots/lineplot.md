@@ -11,7 +11,7 @@ Un tracé de ligne.
 * __data__ | `object (required)`: des tableaux d'objets de valeur pour chaque variable. Default: `none`.
 * __x__ | `string`: variable de l'axe des x. Default: `none`.
 * __y__ | `string (required)`: variable de l'axe des y. Default: `none`.
-* __group__ | `string`: variable de regroupement. Default: `none`.
+* __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
 * __showPoints__ | `boolean`: contrôle de la superposition éventuelle de points à chaque observation. Default: `false`.
 
 

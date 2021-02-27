@@ -23,6 +23,7 @@ import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -396,7 +397,10 @@ SimpleLinearRegression.propTypes = {
 	data: PropTypes.object.isRequired,
 	x: PropTypes.string.isRequired,
 	y: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	omitMissing: PropTypes.bool,
 	onDiagnostics: PropTypes.func,
 	onPredict: PropTypes.func

@@ -10,7 +10,7 @@ sidebar_label: Bar Chart
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
-* __group__ | `string`: グループ化変数. Default: `none`.
+* __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: yvar` で計算し、各カテゴリのバーの高さとして表示される統計量の名前. Default: `none`.
 * __horizontal__ | `boolean`: バーを水平に表示するかどうか. Default: `false`.

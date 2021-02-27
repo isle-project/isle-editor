@@ -10,7 +10,7 @@ Wykres słupkowy.
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: zmienna do wyświetlania. Default: `none`.
-* __group__ | `string`: zmienna grupowania. Default: `none`.
+* __group__ | `(string|Factor)`: zmienna grupowania. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: nazwa statystyki do obliczenia dla `yvara` i do wyświetlenia jako wysokość słupka dla każdej kategorii. Default: `none`.
 * __horizontal__ | `boolean`: czy wyświetlać paski w poziomie. Default: `false`.

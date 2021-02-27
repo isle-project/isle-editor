@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "controlla se utilizzare un asse x comune quando si creano più mappe di calore per valore di una variabile di raggruppamento",
 	"HeatMap-prop-commonYAxis": "controlla se utilizzare un asse y comune quando si creano più mappe di calore per valore di una variabile di raggruppamento",
 	"HeatMap-prop-data": "oggetto di array di valori per ogni variabile",
+	"HeatMap-prop-group": "variabile di raggruppamento",
 	"HeatMap-prop-overlayPoints": "controlla se sovrapporre punti per ogni osservazione",
 	"HeatMap-prop-regressionMethod": "array contenente \"lineare\" e/o \"liscio\" per sovrapporre una linea di regressione lineare e/o liscia",
 	"HeatMap-prop-smoothSpan": "portata lisciante",

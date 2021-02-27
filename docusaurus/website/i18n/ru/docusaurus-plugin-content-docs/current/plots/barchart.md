@@ -10,7 +10,7 @@ sidebar_label: Bar Chart
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: переменная для отображения. Default: `none`.
-* __group__ | `string`: переменная группировки. Default: `none`.
+* __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: название статистики для вычисления для `yvar` и для отображения в виде высоты столбика для каждой категории. Default: `none`.
 * __horizontal__ | `boolean`: отображать ли полосы по горизонтали. Default: `false`.

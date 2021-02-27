@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "グループ化変数の値ごとに複数のヒートマップを作成する際に、共通のx軸を使用するかどうかを制御します。",
 	"HeatMap-prop-commonYAxis": "グループ化変数の値ごとに複数のヒートマップを作成する際に、共通のy軸を使用するかどうかを制御します。",
 	"HeatMap-prop-data": "各変数の値の配列のオブジェクト",
+	"HeatMap-prop-group": "グループ化変数",
 	"HeatMap-prop-overlayPoints": "各オブザベーションのポイントをオーバーレイするかどうかを制御します。",
 	"HeatMap-prop-regressionMethod": "線形および/または平滑化された回帰直線をオーバーレイするための `linear` および/または `smooth` を含む配列．",
 	"HeatMap-prop-smoothSpan": "スムージングスパン",

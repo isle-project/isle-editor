@@ -1,3 +1,13 @@
+// FUNCTIONS //
+
+export class Factor extends String {
+	constructor( name, categories ) {
+		super( name );
+		this.categories = categories;
+	}
+}
+
+
 // MAIN //
 
 /**
@@ -7,13 +17,11 @@
 * @param {Array} categories - ordered categories
 * @returns {String} factor variable string object
 */
-function factorVariable( name, categories ) {
-	const out = new String( name ); // eslint-disable-line no-new-wrappers
-	out.categories = categories;
-	return out;
+function factor( name, categories ) {
+	return new Factor( name, categories ); // eslint-disable-line no-new-wrappers
 }
 
 
 // EXPORTS //
 
-export default factorVariable;
+export default factor;

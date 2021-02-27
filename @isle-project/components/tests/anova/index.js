@@ -9,6 +9,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // MAIN //
@@ -52,7 +53,10 @@ Anova.defaultProps = {
 Anova.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	showDecision: PropTypes.bool
 };
 

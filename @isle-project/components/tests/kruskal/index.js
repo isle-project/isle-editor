@@ -10,6 +10,7 @@ import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -57,7 +58,10 @@ Kruskal.defaultProps = {
 Kruskal.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	showDecision: PropTypes.bool
 };
 

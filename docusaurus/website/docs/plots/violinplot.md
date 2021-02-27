@@ -10,7 +10,7 @@ A violin plot.
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __variable__ | `string (required)`: variable to display. Default: `none`.
-* __group__ | `string`: grouping variable. Default: `none`.
+* __group__ | `(string|Factor)`: grouping variable. Default: `none`.
 * __showBox__ | `boolean`: controls whether to display a box plot inside. Default: `false`.
 
 

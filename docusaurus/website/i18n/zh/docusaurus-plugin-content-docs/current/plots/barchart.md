@@ -10,7 +10,7 @@ sidebar_label: Bar Chart
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 变量显示. Default: `none`.
-* __group__ | `string`: 分组变量. Default: `none`.
+* __group__ | `(string|Factor)`: 分组变量. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: 为 "yvar "计算的统计数据名称，并作为每个类别的条形高度显示。. Default: `none`.
 * __horizontal__ | `boolean`: 是否水平显示条形图. Default: `false`.

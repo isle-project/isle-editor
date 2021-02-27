@@ -10,7 +10,7 @@ Diagramme en barres.
 
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
 * __variable__ | `string (required)`: variable à afficher. Default: `none`.
-* __group__ | `string`: variable de regroupement. Default: `none`.
+* __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: nom de la statistique à calculer pour l'"yvar" et à afficher sous forme de barre de hauteur pour chaque catégorie. Default: `none`.
 * __horizontal__ | `boolean`: si les barres doivent être affichées horizontalement. Default: `false`.

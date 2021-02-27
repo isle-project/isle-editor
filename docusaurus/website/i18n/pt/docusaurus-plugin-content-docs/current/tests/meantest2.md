@@ -11,7 +11,7 @@ Teste médio de duas amostras.
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __x__ | `string (required)`: nome da primeira variável. Default: `none`.
 * __y__ | `string`: nome da segunda variável (`y` ou `grupo` tem que ser fornecido). Default: `none`.
-* __group__ | `string`: nome da variável de agrupamento (`y` ou `grupo` tem que ser fornecido). Default: `none`.
+* __group__ | `(string|Factor)`: nome da variável de agrupamento (`y` ou `grupo` tem que ser fornecido). Default: `none`.
 * __type__ | `string`: tipo de teste (ou "Teste Z" ou "Teste T"). Default: `'T Test'`.
 * __xstdev__ | `number`: primeiro desvio padrão (para 'Teste Z'). Default: `none`.
 * __ystdev__ | `number`: segundo desvio padrão (para 'Teste Z'). Default: `none`.

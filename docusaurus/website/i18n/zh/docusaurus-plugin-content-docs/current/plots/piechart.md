@@ -10,7 +10,7 @@ sidebar_label: Pie Chart
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 变量显示. Default: `none`.
-* __group__ | `string`: 分组变量. Default: `none`.
+* __group__ | `(string|Factor)`: 分组变量. Default: `none`.
 * __summaryVariable__ | `string`: 可选的变量，每个 "变量 "类别的总和要显示。. Default: `none`.
 
 

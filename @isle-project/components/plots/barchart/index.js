@@ -12,6 +12,7 @@ import statistic from '@isle-project/utils/statistic';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // FUNCTIONS //
@@ -249,7 +250,10 @@ BarChart.defaultProps = {
 BarChart.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	yvar: PropTypes.string,
 	summary: PropTypes.oneOf([ 'Mean', 'Median', 'Min', 'Max', 'Sum' ]),
 	horizontal: PropTypes.bool,

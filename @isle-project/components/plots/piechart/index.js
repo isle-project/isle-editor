@@ -13,6 +13,7 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import sum from '@isle-project/utils/statistic/sum';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // FUNCTIONS //
@@ -134,7 +135,10 @@ PieChart.defaultProps = {
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	summaryVariable: PropTypes.string
 };
 

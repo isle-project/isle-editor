@@ -19,6 +19,7 @@ import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -235,7 +236,10 @@ MeanTest2.propTypes = {
 	data: PropTypes.object.isRequired,
 	x: PropTypes.string.isRequired,
 	y: PropTypes.string,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	type: PropTypes.oneOf([ 'T Test', 'Z Test' ]),
 	xstdev: PropTypes.number,
 	ystdev: PropTypes.number,

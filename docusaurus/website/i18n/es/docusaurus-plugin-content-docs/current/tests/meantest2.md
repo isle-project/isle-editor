@@ -11,7 +11,7 @@ Prueba de media de dos muestras.
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __x__ | `string (required)`: nombre de la primera variable. Default: `none`.
 * __y__ | `string`: nombre de la segunda variable (se debe suministrar "y" o "grupo"). Default: `none`.
-* __group__ | `string`: nombre de la variable de agrupación (se debe suministrar "y" o "grupo"). Default: `none`.
+* __group__ | `(string|Factor)`: nombre de la variable de agrupación (se debe suministrar "y" o "grupo"). Default: `none`.
 * __type__ | `string`: tipo de prueba (ya sea "Prueba Z" o "Prueba T"). Default: `'T Test'`.
 * __xstdev__ | `number`: primera desviación estándar (para la "Prueba Z"). Default: `none`.
 * __ystdev__ | `number`: segunda desviación estándar (para la "Prueba Z"). Default: `none`.

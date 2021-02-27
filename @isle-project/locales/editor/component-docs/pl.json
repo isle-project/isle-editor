@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "kontroluje, czy podczas tworzenia wielu map cieplnych na wartość zmiennej grupowej należy używać wspólnej osi x",
 	"HeatMap-prop-commonYAxis": "kontroluje, czy przy tworzeniu wielu map cieplnych na wartość zmiennej grupowania należy używać wspólnej osi y",
 	"HeatMap-prop-data": "obiekt tablice wartości dla każdej zmiennej",
+	"HeatMap-prop-group": "zmienna grupująca",
 	"HeatMap-prop-overlayPoints": "kontroluje czy nakładać punkty dla każdej obserwacji",
 	"HeatMap-prop-regressionMethod": "układ zawierający `liniową` i/lub `gładką` linię regresji do nałożenia liniowej i/lub wygładzonej linii regresji",
 	"HeatMap-prop-smoothSpan": "rozpiętość wygładzania",

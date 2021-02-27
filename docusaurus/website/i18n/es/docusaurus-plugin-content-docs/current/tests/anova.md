@@ -10,7 +10,7 @@ Análisis de la varianza.
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: nombre de la variable a mostrar. Default: `none`.
-* __group__ | `string`: nombre de la variable de agrupación. Default: `none`.
+* __group__ | `(string|Factor)`: nombre de la variable de agrupación. Default: `none`.
 * __showDecision__ | `boolean`: controla si se muestra la decisión de la prueba. Default: `false`.
 
 

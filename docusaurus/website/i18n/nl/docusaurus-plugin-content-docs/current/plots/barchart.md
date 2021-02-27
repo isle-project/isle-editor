@@ -10,7 +10,7 @@ Staafdiagram.
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: weer te geven variabele. Default: `none`.
-* __group__ | `string`: groepsvariabele. Default: `none`.
+* __group__ | `(string|Factor)`: groepsvariabele. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: naam van de statistiek om te berekenen voor `yvar` en te worden weergegeven als staafhoogte voor elke categorie. Default: `none`.
 * __horizontal__ | `boolean`: het al dan niet horizontaal weergeven van balken. Default: `false`.

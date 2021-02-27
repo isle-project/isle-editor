@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "steuert, ob bei der Erstellung mehrerer Heatmaps pro Wert einer Gruppierungsvariable eine gemeinsame x-Achse verwendet werden soll",
 	"HeatMap-prop-commonYAxis": "steuert, ob bei der Erstellung mehrerer Heatmaps pro Wert einer Gruppierungsvariable eine gemeinsame y-Achse verwendet werden soll",
 	"HeatMap-prop-data": "Objekt mit Werte-Arrays für jede Variable",
+	"HeatMap-prop-group": "Gruppierungsvariable",
 	"HeatMap-prop-overlayPoints": "steuert, ob Punkte für jede Beobachtung überlagert werden sollen",
 	"HeatMap-prop-regressionMethod": "Array, das `linear` und/oder `smooth` enthält, um eine lineare und/oder geglättete Regressionslinie zu überlagern",
 	"HeatMap-prop-smoothSpan": "Glättungsspanne",

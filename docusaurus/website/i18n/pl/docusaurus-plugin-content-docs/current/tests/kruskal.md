@@ -10,7 +10,7 @@ Test Kruskala-Wallisa.
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `string (required)`: zmienna nazwa. Default: `none`.
-* __group__ | `string`: zmienna grupowania. Default: `none`.
+* __group__ | `(string|Factor)`: zmienna grupowania. Default: `none`.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 
 

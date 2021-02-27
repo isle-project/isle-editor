@@ -11,7 +11,7 @@ Twee-steekproef gemiddelde test.
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __x__ | `string (required)`: naam van eerste variabele. Default: `none`.
 * __y__ | `string`: naam van de tweede variabele (`j` of `groep` moet worden verstrekt). Default: `none`.
-* __group__ | `string`: naam van de groepsvariabele (`j` of `groep` moet worden verstrekt). Default: `none`.
+* __group__ | `(string|Factor)`: naam van de groepsvariabele (`j` of `groep` moet worden verstrekt). Default: `none`.
 * __type__ | `string`: type test (ofwel `Z Test` of `T Test`). Default: `'T Test'`.
 * __xstdev__ | `number`: eerste standaardafwijking (voor `Z-test`). Default: `none`.
 * __ystdev__ | `number`: tweede standaardafwijking (voor `Z-test`). Default: `none`.

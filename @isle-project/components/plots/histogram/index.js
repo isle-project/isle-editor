@@ -12,6 +12,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 import by from '@isle-project/utils/by';
 import calculateDensityValues from './calculate_density_values.js';
 
@@ -252,7 +253,10 @@ Histogram.defaultProps = {
 Histogram.propTypes = {
 	data: PropTypes.object.isRequired,
 	variable: PropTypes.string.isRequired,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
 	displayDensity: PropTypes.bool,
 	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),

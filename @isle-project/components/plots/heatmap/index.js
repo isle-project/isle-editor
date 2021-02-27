@@ -23,6 +23,7 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // FUNCTIONS //
@@ -167,13 +168,15 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 		const nRows = ceil( nPlots / 2 );
 		const nCols = 2;
 		traces = [];
-		annotations = new Array(nPlots);
-		let subplots = new Array(nRows);
+		annotations = new Array( nPlots );
+		let subplots = new Array( nRows );
 		for ( let j = 0; j < nRows; j++ ) {
-			subplots[j] = new Array(nCols);
+			subplots[j] = new Array( nCols );
 		}
-
-		if ( regressionMethod && regressionMethod.length > 0 ) {
+		if (
+			regressionMethod && regressionMethod.length > 0 ||
+			overlayPoints
+		) {
 			xgrouped= by( xc, groupvals, arr => {
 				return arr;
 			});
@@ -212,6 +215,21 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					colorscale: alternateColor ? 'YIGnBu' : 'RdBu'
 				}
 			);
+			if ( overlayPoints ) {
+				const points = {
+					x: xgrouped[ key ],
+					y: ygrouped[ key ],
+					xaxis: xAxisID,
+					yaxis: yAxisID,
+					mode: 'markers',
+					marker: {
+						color: 'white',
+						opacity: calculateOpacity( val.x.length )
+					},
+					type: val.x.length > 2000 ? 'scattergl' : 'scatter'
+				};
+				traces.push( points );
+			}
 			subplots[ row ][ col ] = xAxisID + yAxisID;
 			if ( regressionMethod && regressionMethod.length > 0 ) {
 				const xvals = xgrouped[ key ];
@@ -307,6 +325,7 @@ function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonX
 // PROPERTIES //
 
 HeatMap.defaultProps = {
+	group: null,
 	overlayPoints: false,
 	smoothSpan: 0.66,
 	regressionMethod: null,
@@ -319,6 +338,10 @@ HeatMap.propTypes = {
 	data: PropTypes.object.isRequired,
 	x: PropTypes.string.isRequired,
 	y: PropTypes.string.isRequired,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	overlayPoints: PropTypes.bool,
 	smoothSpan: PropTypes.number,
 	regressionMethod: PropTypes.arrayOf( PropTypes.oneOf( [ 'linear', 'smooth' ] ) ),
@@ -336,6 +359,7 @@ HeatMap.propTypes = {
 * @property {Object} data - object of value arrays for each variable
 * @property {string} x - x-axis variable
 * @property {string} y - y-axis variable
+* @property {string} group - grouping variable
 * @property {boolean} overlayPoints - controls whether to overlay points for each observation
 * @property {Array<string>} regressionMethod - array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line
 * @property {number} smoothSpan - smoothing span

@@ -11,7 +11,7 @@ sidebar_label: Two-Sample Mean Test
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __x__ | `string (required)`: имя первой переменной. Default: `none`.
 * __y__ | `string`: имя второй переменной (`y` или `group` должны быть поставлены). Default: `none`.
-* __group__ | `string`: имя переменной группировки (`y` или `group` должны быть поставлены). Default: `none`.
+* __group__ | `(string|Factor)`: имя переменной группировки (`y` или `group` должны быть поставлены). Default: `none`.
 * __type__ | `string`: тип теста (либо `Z Test`, либо `T Test`). Default: `'T Test'`.
 * __xstdev__ | `number`: первое стандартное отклонение (для `Z Test`). Default: `none`.
 * __ystdev__ | `number`: второе стандартное отклонение (для `Z Test`). Default: `none`.

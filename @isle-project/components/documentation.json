@@ -3893,7 +3893,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "SimpleLinearRegression-prop-group",
 				"defaultValue": null
 			},
@@ -4332,7 +4332,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "BarChart-prop-group",
 				"defaultValue": null
 			},
@@ -4481,6 +4481,12 @@
 				"description": "HeatMap-prop-y"
 			},
 			{
+				"name": "group",
+				"type": "(string|Factor)",
+				"description": "HeatMap-prop-group",
+				"defaultValue": null
+			},
+			{
 				"name": "overlayPoints",
 				"type": "boolean",
 				"description": "HeatMap-prop-overlayPoints",
@@ -4533,7 +4539,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "Histogram-prop-group",
 				"defaultValue": null
 			},
@@ -4607,7 +4613,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "LinePlot-prop-group",
 				"defaultValue": null
 			},
@@ -4729,7 +4735,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "PieChart-prop-group",
 				"defaultValue": null
 			},
@@ -4905,7 +4911,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ViolinPlot-prop-group",
 				"defaultValue": null
 			},
@@ -7468,7 +7474,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ContingencyTable-prop-group",
 				"defaultValue": null
 			},
@@ -7513,7 +7519,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "FrequencyTable-prop-group",
 				"defaultValue": null
 			},
@@ -7540,7 +7546,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "Anova-prop-group",
 				"defaultValue": null
 			},
@@ -7631,7 +7637,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "Kruskal-prop-group",
 				"defaultValue": null
 			},
@@ -7715,7 +7721,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "MeanTest2-prop-group",
 				"defaultValue": null
 			},
@@ -7833,7 +7839,7 @@
 			},
 			{
 				"name": "group",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "PropTest2-prop-group",
 				"defaultValue": null
 			},

@@ -11,7 +11,7 @@ Zwei-Stichproben-Mittelwerttest.
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __x__ | `string (required)`: Name der ersten Variablen. Default: `none`.
 * __y__ | `string`: Name der zweiten Variablen (`y` oder `group` muss angegeben werden). Default: `none`.
-* __group__ | `string`: Name der Gruppierungsvariable (`y` oder `group` müssen angegeben werden). Default: `none`.
+* __group__ | `(string|Factor)`: Name der Gruppierungsvariable (`y` oder `group` müssen angegeben werden). Default: `none`.
 * __type__ | `string`: Art des Tests (entweder "Z-Test" oder "T-Test"). Default: `'T Test'`.
 * __xstdev__ | `number`: erste Standardabweichung (für `Z-Test`). Default: `none`.
 * __ystdev__ | `number`: zweite Standardabweichung (für "Z-Test"). Default: `none`.

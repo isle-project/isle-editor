@@ -10,7 +10,7 @@ sidebar_label: ANOVA
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `string (required)`: имя переменной для отображения. Default: `none`.
-* __group__ | `string`: имя группирующей переменной. Default: `none`.
+* __group__ | `(string|Factor)`: имя группирующей переменной. Default: `none`.
 * __showDecision__ | `boolean`: контролирует, отображать ли решение о тестировании. Default: `false`.
 
 

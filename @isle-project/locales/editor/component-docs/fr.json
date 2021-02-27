@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "contrôle l'utilisation éventuelle d'un axe des abscisses commun lors de la création de plusieurs cartes thermiques par valeur d'une variable de regroupement",
 	"HeatMap-prop-commonYAxis": "contrôle l'utilisation éventuelle d'un axe des y commun lors de la création de plusieurs cartes thermiques par valeur d'une variable de regroupement",
 	"HeatMap-prop-data": "des tableaux d'objets de valeur pour chaque variable",
+	"HeatMap-prop-group": "variable de regroupement",
 	"HeatMap-prop-overlayPoints": "contrôle s'il faut superposer des points pour chaque observation",
 	"HeatMap-prop-regressionMethod": "tableau contenant \"linéaire\" et/ou \"lissé\" pour superposer une ligne de régression linéaire et/ou lissée",
 	"HeatMap-prop-smoothSpan": "portée de lissage",

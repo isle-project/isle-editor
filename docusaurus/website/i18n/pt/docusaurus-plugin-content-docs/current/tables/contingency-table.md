@@ -12,7 +12,7 @@ Uma tabela de contingência.
 * __rowVar__ | `string (required)`: nome da variável de linha. Default: `none`.
 * __colVar__ | `string (required)`: nome da variável de coluna. Default: `none`.
 * __relativeFreqs__ | `boolean`: controla se deve exibir freqüências relativas. Default: `false`.
-* __group__ | `string`: nome da variável de agrupamento. Default: `none`.
+* __group__ | `(string|Factor)`: nome da variável de agrupamento. Default: `none`.
 * __display__ | `array<string>`: se deve exibir "Porcentagem de linha" e/ou "Porcentagem de coluna".. Default: `[]`.
 * __nDecimalPlaces__ | `number`: número de casas decimais para as freqüências relativas exibidas na tabela. Default: `3`.
 

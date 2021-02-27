@@ -13,6 +13,7 @@ import isObject from '@stdlib/assert/is-object';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -228,7 +229,10 @@ ContingencyTable.propTypes = {
 	rowVar: PropTypes.string.isRequired,
 	colVar: PropTypes.string.isRequired,
 	relativeFreqs: PropTypes.bool,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	display: PropTypes.arrayOf( PropTypes.oneOf( [ 'Row Percent', 'Column Percent' ] ) ),
 	nDecimalPlaces: PropTypes.number
 };

@@ -10,7 +10,7 @@ Gráfico de barras.
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `string (required)`: variable a mostrar. Default: `none`.
-* __group__ | `string`: variable de agrupación. Default: `none`.
+* __group__ | `(string|Factor)`: variable de agrupación. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: nombre de la estadística para calcular para "yvar" y para ser mostrada como la altura de la barra para cada categoría. Default: `none`.
 * __horizontal__ | `boolean`: si mostrar las barras horizontalmente. Default: `false`.

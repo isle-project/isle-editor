@@ -12,7 +12,7 @@ Test delle proporzioni a due campioni.
 * __var1__ | `string (required)`: nome della prima variabile. Default: `none`.
 * __success__ | `string (required)`: categoria di successo di `var1. Default: `none`.
 * __var2__ | `string`: nome della seconda variabile (deve essere fornito "var2" o "gruppo"). Default: `none`.
-* __group__ | `string`: nome della variabile di raggruppamento (deve essere fornito "var2" o "gruppo"). Default: `none`.
+* __group__ | `(string|Factor)`: nome della variabile di raggruppamento (deve essere fornito "var2" o "gruppo"). Default: `none`.
 * __alpha__ | `number`: livello di significatività. Default: `0.05`.
 * __direction__ | `string`: direzione di prova (sia `less`, `greater`, o `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: differenza sotto H0. Default: `0`.

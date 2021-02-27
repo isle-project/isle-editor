@@ -49,13 +49,15 @@ const SCOPE_KEYS = [
 	'PropTypes',
 	'noop',
 	'repeat',
-	'DEFAULT_VALUE'
+	'DEFAULT_VALUE',
+	'Factor'
 ];
 const SCOPE_VALUES = [
 	PropTypes,
 	noop,
 	repeat,
-	repeat( '\n', 15 )
+	repeat( '\n', 15 ),
+	function Factor() {}
 ];
 const HTML_ELEMENTS = {
 	'@isle-project/components/html/blockquote': 'blockquote',

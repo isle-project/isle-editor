@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "bepaalt of er een gemeenschappelijke x-as moet worden gebruikt bij het maken van meerdere warmtekaarten per waarde van een groepsvariabele",
 	"HeatMap-prop-commonYAxis": "bepaalt of een gemeenschappelijke y-as moet worden gebruikt bij het maken van meerdere warmtekaarten per waarde van een groepsvariabele",
 	"HeatMap-prop-data": "object of value arrays voor elke variabele",
+	"HeatMap-prop-group": "groeperingsvariabele",
 	"HeatMap-prop-overlayPoints": "controleert of de punten voor elke waarneming worden overlapt",
 	"HeatMap-prop-regressionMethod": "array met `lineair` en/of `vloeiend` om een lineaire en/of afgevlakte regressielijn te bedekken",
 	"HeatMap-prop-smoothSpan": "afvlakkingsspanne",

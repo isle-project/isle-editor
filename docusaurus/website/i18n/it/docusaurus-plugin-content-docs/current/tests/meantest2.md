@@ -11,7 +11,7 @@ Test della media a due campioni.
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __x__ | `string (required)`: nome della prima variabile. Default: `none`.
 * __y__ | `string`: nome della seconda variabile (deve essere fornito "y" o "gruppo"). Default: `none`.
-* __group__ | `string`: nome della variabile di raggruppamento (deve essere fornito "y" o "gruppo"). Default: `none`.
+* __group__ | `(string|Factor)`: nome della variabile di raggruppamento (deve essere fornito "y" o "gruppo"). Default: `none`.
 * __type__ | `string`: tipo di test (sia `Z Test` o `T Test`). Default: `'T Test'`.
 * __xstdev__ | `number`: prima deviazione standard (per il `Z Test`). Default: `none`.
 * __ystdev__ | `number`: seconda deviazione standard (per il `Z Test`). Default: `none`.

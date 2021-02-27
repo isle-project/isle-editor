@@ -11,7 +11,7 @@ Test de la moyenne sur deux échantillons.
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
 * __x__ | `string (required)`: nom de la première variable. Default: `none`.
 * __y__ | `string`: nom de la deuxième variable (les variables "y" ou "group" doivent être fournies). Default: `none`.
-* __group__ | `string`: le nom de la variable de regroupement ("y" ou "group" doit être fourni). Default: `none`.
+* __group__ | `(string|Factor)`: le nom de la variable de regroupement ("y" ou "group" doit être fourni). Default: `none`.
 * __type__ | `string`: le type de test (soit "Test Z" ou "Test T"). Default: `'T Test'`.
 * __xstdev__ | `number`: premier écart-type (pour le "Test Z"). Default: `none`.
 * __ystdev__ | `number`: deuxième écart-type (pour le "Test Z"). Default: `none`.

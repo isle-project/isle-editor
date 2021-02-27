@@ -12,7 +12,7 @@ Een noodtabel.
 * __rowVar__ | `string (required)`: rijtjesvariabele naam. Default: `none`.
 * __colVar__ | `string (required)`: kolomvariabele naam. Default: `none`.
 * __relativeFreqs__ | `boolean`: controleert of de relatieve frequenties worden weergegeven. Default: `false`.
-* __group__ | `string`: naam van de groepsvariabele. Default: `none`.
+* __group__ | `(string|Factor)`: naam van de groepsvariabele. Default: `none`.
 * __display__ | `array<string>`: of er `Rij-percentage` en/of `Kolom-percentage` moet worden weergegeven. Default: `[]`.
 * __nDecimalPlaces__ | `number`: aantal decimalen voor relatieve frequenties weergegeven in de tabel. Default: `3`.
 

@@ -10,7 +10,7 @@ sidebar_label: ANOVA
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `string (required)`: 显示的变量名称. Default: `none`.
-* __group__ | `string`: 分组名称. Default: `none`.
+* __group__ | `(string|Factor)`: 分组名称. Default: `none`.
 * __showDecision__ | `boolean`: 控制是否显示测试决定. Default: `false`.
 
 

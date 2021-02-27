@@ -320,6 +320,7 @@
 	"HeatMap-prop-commonXAxis": "控制在按分组变量的值创建多个热图时是否使用共同的X轴。",
 	"HeatMap-prop-commonYAxis": "控制在按分组变量的值创建多个热图时是否使用共同的Y轴。",
 	"HeatMap-prop-data": "每个变量的值数组对象",
+	"HeatMap-prop-group": "分组变量",
 	"HeatMap-prop-overlayPoints": "控制是否对每个观测点进行叠加",
 	"HeatMap-prop-regressionMethod": "包含 \"linear \"和/或 \"smooth \"的数组，用于覆盖线性和/或平滑回归线。",
 	"HeatMap-prop-smoothSpan": "平滑跨度",

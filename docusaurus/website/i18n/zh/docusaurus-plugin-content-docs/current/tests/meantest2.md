@@ -11,7 +11,7 @@ sidebar_label: Two-Sample Mean Test
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __x__ | `string (required)`: 第一个变量名. Default: `none`.
 * __y__ | `string`: 第二个变量的名称(必须提供`y`或`group`). Default: `none`.
-* __group__ | `string`: 分组变量名称(必须提供`y`或`group`). Default: `none`.
+* __group__ | `(string|Factor)`: 分组变量名称(必须提供`y`或`group`). Default: `none`.
 * __type__ | `string`: 试验类型(可以是 "Z试验 "或 "T试验"). Default: `'T Test'`.
 * __xstdev__ | `number`: 第一个标准差(对于 "Z测试"). Default: `none`.
 * __ystdev__ | `number`: 二次标准差(对于 "Z测试"). Default: `none`.

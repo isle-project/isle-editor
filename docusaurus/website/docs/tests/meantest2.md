@@ -11,7 +11,7 @@ Two-sample mean test.
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __x__ | `string (required)`: name of first variable. Default: `none`.
 * __y__ | `string`: name of second variable (`y` or `group` have to be supplied). Default: `none`.
-* __group__ | `string`: name of grouping variable (`y` or `group` have to be supplied). Default: `none`.
+* __group__ | `(string|Factor)`: name of grouping variable (`y` or `group` have to be supplied). Default: `none`.
 * __type__ | `string`: type of test (either `Z Test` or `T Test`). Default: `'T Test'`.
 * __xstdev__ | `number`: first standard deviation (for `Z Test`). Default: `none`.
 * __ystdev__ | `number`: second standard deviation (for `Z Test`). Default: `none`.

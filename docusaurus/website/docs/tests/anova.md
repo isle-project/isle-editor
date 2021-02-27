@@ -10,7 +10,7 @@ Analysis of variance.
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __variable__ | `string (required)`: name of variable to be displayed. Default: `none`.
-* __group__ | `string`: name of grouping variable. Default: `none`.
+* __group__ | `(string|Factor)`: name of grouping variable. Default: `none`.
 * __showDecision__ | `boolean`: controls whether to display the test decision. Default: `false`.
 
 

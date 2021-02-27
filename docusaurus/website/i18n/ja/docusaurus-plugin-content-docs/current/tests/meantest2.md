@@ -11,7 +11,7 @@ sidebar_label: Two-Sample Mean Test
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __x__ | `string (required)`: 先頭変数名. Default: `none`.
 * __y__ | `string`: 2 番目の変数の名前 (`y` または `group` を指定する必要があります). Default: `none`.
-* __group__ | `string`: グループ化変数の名前 (`y` または `group` を指定する必要があります). Default: `none`.
+* __group__ | `(string|Factor)`: グループ化変数の名前 (`y` または `group` を指定する必要があります). Default: `none`.
 * __type__ | `string`: テストの種類. Default: `'T Test'`.
 * __xstdev__ | `number`: 第一標準偏差. Default: `none`.
 * __ystdev__ | `number`: 第二標準偏差. Default: `none`.

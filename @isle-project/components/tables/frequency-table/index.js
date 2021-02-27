@@ -13,6 +13,7 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -258,7 +259,10 @@ FrequencyTable.propTypes = {
 	variable: PropTypes.string.isRequired,
 	calculateCounts: PropTypes.bool,
 	calculateRelative: PropTypes.bool,
-	group: PropTypes.string,
+	group: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	nDecimalPlaces: PropTypes.number
 };
 

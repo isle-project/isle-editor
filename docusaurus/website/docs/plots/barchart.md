@@ -10,7 +10,7 @@ Bar chart.
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __variable__ | `string (required)`: variable to display. Default: `none`.
-* __group__ | `string`: grouping variable. Default: `none`.
+* __group__ | `(string|Factor)`: grouping variable. Default: `none`.
 * __yvar__ | `string`: undefined. Default: `none`.
 * __summary__ | `string`: name of statistic to compute for `yvar` and to be displayed as bar height for each category. Default: `none`.
 * __horizontal__ | `boolean`: whether to display bars horizontally. Default: `false`.

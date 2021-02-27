@@ -12,7 +12,7 @@ Una tabla de frecuencias.
 * __variable__ | `string (required)`: nombre de la variable a mostrar. Default: `none`.
 * __calculateCounts__ | `boolean`: controla si se muestran los recuentos absolutos. Default: `true`.
 * __calculateRelative__ | `boolean`: controla si se muestran las frecuencias relativas. Default: `false`.
-* __group__ | `string`: nombre de la variable de agrupación. Default: `none`.
+* __group__ | `(string|Factor)`: nombre de la variable de agrupación. Default: `none`.
 * __nDecimalPlaces__ | `number`: número de decimales para las frecuencias relativas mostradas en la tabla. Default: `3`.
 
 
