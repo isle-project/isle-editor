@@ -15,6 +15,20 @@ Matryca rozproszona.
 
 ## Przykłady
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Colored', value: 'colored' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <ScatterPlotMatrix
     data={heartdisease} 
@@ -22,3 +36,18 @@ Matryca rozproszona.
 />
 ```
 
+</TabItem>
+
+<TabItem value="colored">
+
+```jsx live
+<ScatterPlotMatrix
+    data={heartdisease} 
+    variables={[ 'Cost', 'Interventions' ]}
+    color="Gender"
+/>
+```
+
+</TabItem>
+
+</Tabs>

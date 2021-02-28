@@ -25,6 +25,23 @@ sidebar_label: Scatter Plot
 
 ## 例としては、以下のようなものがあります。
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Grouped', value: 'grouped' },
+        { label: 'Colored', value: 'colored' },
+        { label: 'Type', value: 'type' },
+        { label: 'Regression Line', value: 'regressionLine' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <ScatterPlot 
     data={heartdisease} 
@@ -33,3 +50,58 @@ sidebar_label: Scatter Plot
 />
 ```
 
+</TabItem>
+
+
+<TabItem value="grouped">
+
+```jsx live
+<ViolinPlot 
+    data={heartdisease} 
+    variable="Interventions"
+    group="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="colored">
+
+```jsx live
+<ScatterPlot 
+    data={heartdisease} 
+    xval="Age"
+    yval="Cost"
+    color="Gender"
+/>
+```
+</TabItem>
+
+<TabItem value="type">
+
+```jsx live
+<ScatterPlot 
+    data={heartdisease} 
+    xval="Age"
+    yval="Interventions"
+    color="Gender"
+    type="Gender"
+/>
+```
+
+</TabItem>
+
+<TabItem value="regressionLine">
+
+```jsx live
+<ScatterPlot 
+    data={heartdisease} 
+    xval="Age"
+    yval="Interventions"
+    regressionLine
+    regressionMethod={['smooth']}
+/>
+```
+</TabItem>
+
+</Tabs>

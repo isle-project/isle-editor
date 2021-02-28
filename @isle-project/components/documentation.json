@@ -7458,12 +7458,12 @@
 			},
 			{
 				"name": "rowVar",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "ContingencyTable-prop-rowVar"
 			},
 			{
 				"name": "colVar",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "ContingencyTable-prop-colVar"
 			},
 			{
@@ -7480,7 +7480,7 @@
 			},
 			{
 				"name": "display",
-				"type": "array<string>",
+				"type": "(array<string>|string)",
 				"description": "ContingencyTable-prop-display",
 				"defaultValue": []
 			},
@@ -7502,7 +7502,7 @@
 			},
 			{
 				"name": "variable",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "FrequencyTable-prop-variable"
 			},
 			{

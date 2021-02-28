@@ -11,7 +11,7 @@ Una trama a mosaico.
 * __data__ | `object (required)`: oggetto di array di valori per ogni variabile. Default: `none`.
 * __variables__ | `array (required)`: array di variabili da visualizzare. Default: `none`.
 * __showColors__ | `boolean`: controlla se visualizzare i colori che mostrano il significato. Default: `false`.
-* __axisLabels__ | `string`: variabile di raggruppamento. Default: `'parallel to the axis'`.
+* __axisLabels__ | `string`: posizionamento delle etichette degli assi (sia "parallelo all'asse", "orizzontale", "perpendicolare all'asse" o "verticale"). Default: `'parallel to the axis'`.
 
 
 ## Esempi

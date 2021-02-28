@@ -11,7 +11,7 @@ sidebar_label: Mosaic Plot
 * __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
 * __variables__ | `array (required)`: массив переменных для отображения. Default: `none`.
 * __showColors__ | `boolean`: управляет отображением цветов, показывающих значение. Default: `false`.
-* __axisLabels__ | `string`: переменная группировки. Default: `'parallel to the axis'`.
+* __axisLabels__ | `string`: позиционирование меток осей (либо `параллельно оси`, `горизонтально`, `перпендикулярно оси`, либо `вертикально`). Default: `'parallel to the axis'`.
 
 
 ## Примеры

@@ -11,7 +11,7 @@ sidebar_label: Mosaic Plot
 * __data__ | `object (required)`: 每个变量的值数组对象. Default: `none`.
 * __variables__ | `array (required)`: 要显示的变量数组. Default: `none`.
 * __showColors__ | `boolean`: 控制是否显示显示意义的颜色. Default: `false`.
-* __axisLabels__ | `string`: 分组变量. Default: `'parallel to the axis'`.
+* __axisLabels__ | `string`: 轴标签的定位（"平行于轴"、"水平"、"垂直于轴 "或 "垂直"）；. Default: `'parallel to the axis'`.
 
 
 ## 例子
