@@ -12,6 +12,7 @@ import ceil from '@stdlib/math/base/special/ceil';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import sum from '@isle-project/utils/statistic/sum';
 import by from '@isle-project/utils/by';
+import by2 from '@isle-project/utils/by2';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
@@ -45,12 +46,31 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 			type: 'pie'
 		} ];
 	} else {
-		if ( !data[ variable] || !data[ group ] ) {
-			return {};
+		let freqs;
+		if ( summaryVariable ) {
+			if ( !data[ summaryVariable] || !data[ variable ] || !data[ group ] ) {
+				return {};
+			}
+			freqs = by2( data[ variable ], data[ summaryVariable ], data[ group ], ( categories, values ) => {
+				const counts = {};
+				for ( let i = 0; i < categories.length; i++ ) {
+					const key = categories[ i ];
+					if ( !counts[ key ] ) {
+						counts[ key ] = values[ i ];
+					} else {
+						counts[ key ] += values[ i ];
+					}
+				}
+				return counts;
+			});
+		} else {
+			if ( !data[ variable] || !data[ group ] ) {
+				return {};
+			}
+			freqs = by( data[ variable ], data[ group ], arr => {
+				return countBy( arr, identity );
+			});
 		}
-		const freqs = by( data[ variable ], data[ group ], arr => {
-			return countBy( arr, identity );
-		});
 		const keys = extractUsedCategories( freqs, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / 2 );
@@ -89,9 +109,16 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 			});
 		}
 	}
+	let title;
+	const tmp = group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable;
+	if ( summaryVariable ) {
+		title = `${summaryVariable} ${i18n.t('Plotly:per')} ${tmp}`;
+	} else {
+		title = tmp;
+	}
 	const layout = {
 		annotations,
-		title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable
+		title
 	};
 	return {
 		layout,
@@ -134,7 +161,10 @@ PieChart.defaultProps = {
 
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired,
+	variable: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	group: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
