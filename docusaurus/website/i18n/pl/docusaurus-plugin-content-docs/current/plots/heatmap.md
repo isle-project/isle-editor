@@ -56,11 +56,10 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <HeatMap 
-    alternateColor
-    group="Gender"
     data={heartdisease} 
     x="Interventions"
     y="Age"
+    group="Gender"
     commonXAxis
 />
 ```

@@ -9,6 +9,7 @@
 	"linear-fit": "线性拟合",
 	"number-of-edges": "边缘的数量：{{nEdges}}.",
 	"of": "的",
+	"per": "每",
 	"points": "点数",
 	"proportion": "比例",
 	"qqplot-title": "正常QQ图的{{x}}。",

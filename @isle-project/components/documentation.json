@@ -4400,7 +4400,7 @@
 			},
 			{
 				"name": "group",
-				"type": "array",
+				"type": "(array|string|Factor)",
 				"description": "BoxPlot-prop-group",
 				"defaultValue": []
 			},

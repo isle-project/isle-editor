@@ -9,6 +9,7 @@
 	"linear-fit": "Линейный монтаж",
 	"number-of-edges": "Количество краев: {{nEdges}}.",
 	"of": "от",
+	"per": "по адресу",
 	"points": "Баллы",
 	"proportion": "Доля",
 	"qqplot-title": "Нормальный участок QQ из {{x}}",

@@ -9,6 +9,7 @@
 	"linear-fit": "In forma lineare",
 	"number-of-edges": "Numero di bordi: {{nEdges}}.",
 	"of": "di",
+	"per": "per",
 	"points": "Punti",
 	"proportion": "Proporzione",
 	"qqplot-title": "Normale QQ Plot di {{x}} normale",

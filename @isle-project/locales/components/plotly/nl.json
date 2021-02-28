@@ -9,6 +9,7 @@
 	"linear-fit": "Lineaire pasvorm",
 	"number-of-edges": "Aantal Randen: {{nEdges}}.",
 	"of": "van",
+	"per": "per",
 	"points": "Punten",
 	"proportion": "Aandeel",
 	"qqplot-title": "Normaal QQ-plaatje van {{x}}",

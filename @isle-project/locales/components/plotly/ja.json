@@ -9,6 +9,7 @@
 	"linear-fit": "線形フィット",
 	"number-of-edges": "エッジの数。{{nEdges}}.",
 	"of": "の",
+	"per": "につき",
 	"points": "ポイント",
 	"proportion": "比例",
 	"qqplot-title": "{{x}}の法線QQプロット",

@@ -9,6 +9,7 @@
 	"linear-fit": "Ajustement linéaire",
 	"number-of-edges": "Nombre de bords : {{nEdges}}.",
 	"of": "de",
+	"per": "par",
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Graphique QQ normal de {{x}}",

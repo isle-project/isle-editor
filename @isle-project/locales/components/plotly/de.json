@@ -9,6 +9,7 @@
 	"linear-fit": "Lineare Anpassung",
 	"number-of-edges": "Anzahl der Kanten: {{nEdges}}.",
 	"of": "von",
+	"per": "per",
 	"points": "Punkte",
 	"proportion": "Anteil",
 	"qqplot-title": "Normales QQ-Diagramm von {{x}}",

@@ -10,7 +10,7 @@ Ein Boxplot.
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `(array|string) (required)`: Variable zur Anzeige. Default: `none`.
-* __group__ | `array`: eine oder zwei Gruppierungsvariablen. Default: `[]`.
+* __group__ | `(array|string|Factor)`: eine oder zwei Gruppierungsvariablen. Default: `[]`.
 * __orientation__ | `string`: vertikale" oder "horizontale" Ausrichtung. Default: `'vertical'`.
 * __overlayPoints__ | `boolean`: steuert, ob Punkte überlagert werden sollen. Default: `false`.
 

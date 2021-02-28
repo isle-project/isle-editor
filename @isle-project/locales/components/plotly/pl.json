@@ -9,6 +9,7 @@
 	"linear-fit": "Dopasowanie liniowe",
 	"number-of-edges": "Liczba krawędzi: {{nEdges}}.",
 	"of": "z",
+	"per": "na",
 	"points": "Punkty",
 	"proportion": "Proporcja",
 	"qqplot-title": "Normalne QQ Wykres {{x}}",
