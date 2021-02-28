@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1125],{3227:function(o){o.exports=JSON.parse('{"all":"Tutti","day":"Giorno","last-hour":"Ultima ora","month":"Mese","week":"Settimana","year":"Anno"}')}}]);

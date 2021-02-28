@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[621],{3024:function(a){a.exports=JSON.parse('{"close":"Cerrar","fullscreen-header":"Pantalla Completa","fullscreen-tooltip":"Activar/desactivar la vista de pantalla completa"}')}}]);

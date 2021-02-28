@@ -10,6 +10,7 @@
 	--ifm-color-primary-lightest: #18b0fd;
 	--ifm-code-font-size: 100%;
 	--ifm-heading-color: #559AED;
+	--ifm-container-width: 1400px;
 }
 
 .hero__title {
