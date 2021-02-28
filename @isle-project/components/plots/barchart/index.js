@@ -249,7 +249,10 @@ BarChart.defaultProps = {
 
 BarChart.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired,
+	variable: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	group: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
