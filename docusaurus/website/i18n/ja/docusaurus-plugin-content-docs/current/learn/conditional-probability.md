@@ -8,7 +8,9 @@ sidebar_label: Conditional Probability
 
 ## オプション
 
-物件はありません。
+* __A__ | `string`: 第一変数. Default: `'A'`.
+* __B__ | `string`: だいにへんすう. Default: `'B'`.
+
 
 ## 例としては、以下のようなものがあります。
 

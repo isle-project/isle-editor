@@ -8,7 +8,9 @@ Komponent edukacyjny ilustrujący warunkowe prawdopodobieństwo dla dwóch zale�
 
 ## Opcje
 
-Brak dostępnych nieruchomości.
+* __A__ | `string`: pierwsza zmienna. Default: `'A'`.
+* __B__ | `string`: druga zmienna. Default: `'B'`.
+
 
 ## Przykłady
 

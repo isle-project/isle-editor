@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { withTranslation, Trans } from 'react-i18next';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -36,8 +37,8 @@ class ConditionalProbability extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			A: 'A',
-			B: 'B',
+			A: props.A,
+			B: props.B,
 			pA: 0.5,
 			pB: 0.5,
 			pAB: 0.25,
@@ -333,6 +334,19 @@ class ConditionalProbability extends Component {
 		);
 	}
 }
+
+
+// PROPERTIES //
+
+ConditionalProbability.defaultProps = {
+	A: 'A',
+	B: 'B'
+};
+
+ConditionalProbability.propTypes = {
+	A: PropTypes.string,
+	B: PropTypes.string
+};
 
 
 // EXPORTS //

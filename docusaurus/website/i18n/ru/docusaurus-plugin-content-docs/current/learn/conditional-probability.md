@@ -8,7 +8,9 @@ sidebar_label: Conditional Probability
 
 ## Варианты
 
-Свойств нет.
+* __A__ | `string`: первая переменная. Default: `'A'`.
+* __B__ | `string`: вторая переменная. Default: `'B'`.
+
 
 ## Примеры
 

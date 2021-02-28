@@ -203,7 +203,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 * @property {boolean} stackBars - when grouping, controls whether to stack bars on top of each other
 * @property {boolean} relative - whether to calculate relative frequencies inside each group
 * @property {boolean} totalPercent - whether to display overall bars as relative frequencies
-* @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category
+* @property {string} yvar - optional variable used for the column heights (in conjunction with `summary`)
+* @property {string} summary - name of statistic to compute for `yvar` and to be displayed as bar height for each category (either `Min`, `Max`, `Mean`, `Median`, `Sum`, ...)
 * @property {boolean} horizontal - whether to display bars horizontally
 * @property {string} xOrder - either `total`, `category`, `min`, `max`, `mean`, or `median`
 * @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)

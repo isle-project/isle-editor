@@ -2560,7 +2560,20 @@
 		"description": "LearnSampleCLT-description"
 	},
 	"LearnConditionalProbability": {
-		"props": [],
+		"props": [
+			{
+				"name": "A",
+				"type": "string",
+				"description": "LearnConditionalProbability-prop-A",
+				"defaultValue": "A"
+			},
+			{
+				"name": "B",
+				"type": "string",
+				"description": "LearnConditionalProbability-prop-B",
+				"defaultValue": "B"
+			}
+		],
 		"description": "LearnConditionalProbability-description"
 	},
 	"LearnConfidenceCoverageBinomial": {
@@ -4339,6 +4352,7 @@
 			{
 				"name": "yvar",
 				"type": "string",
+				"description": "BarChart-prop-yvar",
 				"defaultValue": null
 			},
 			{
@@ -4564,6 +4578,7 @@
 			{
 				"name": "bandwidthAdjust",
 				"type": "number",
+				"description": "Histogram-prop-bandwidthAdjust",
 				"defaultValue": 1
 			},
 			{
@@ -4881,6 +4896,7 @@
 			{
 				"name": "style",
 				"type": "object",
+				"description": "Sunburst-prop-style",
 				"defaultValue": {}
 			},
 			{

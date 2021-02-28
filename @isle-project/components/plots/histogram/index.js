@@ -283,6 +283,7 @@ Histogram.propTypes = {
 * @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
 * @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
 * @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
+* @property {number} bandwidthAdjust - manual adjustment of bandwidth of kernel density (applicable only when `densityType` is set to `Data-driven`)
 * @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
 * @property {number} nBins - custom number of bins
 * @property {number} nCols - number of columns when displaying a facetted grouped histogram

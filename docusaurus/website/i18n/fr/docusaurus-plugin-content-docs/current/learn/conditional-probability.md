@@ -8,7 +8,9 @@ Une composante d'apprentissage illustrant la probabilité conditionnelle pour de
 
 ## Options
 
-Aucune propriété disponible.
+* __A__ | `string`: première variable. Default: `'A'`.
+* __B__ | `string`: deuxième variable. Default: `'B'`.
+
 
 ## Exemples
 

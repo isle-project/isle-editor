@@ -8,7 +8,9 @@ sidebar_label: Conditional Probability
 
 ## 选项
 
-无房源。
+* __A__ | `string`: 第一变量. Default: `'A'`.
+* __B__ | `string`: 第二个变量. Default: `'B'`.
+
 
 ## 例子
 

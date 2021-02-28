@@ -11,8 +11,8 @@ sidebar_label: Bar Chart
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: переменная для отображения. Default: `none`.
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: название статистики для вычисления для `yvar` и для отображения в виде высоты столбика для каждой категории. Default: `none`.
+* __yvar__ | `string`: необязательная переменная, используемая для высоты столбцов (в сочетании с `суммой`). Default: `none`.
+* __summary__ | `string`: название статистики для вычисления `yvar` и отображения в виде высоты полосы для каждой категории (либо `Min`, `Max`, `Mean`, `Median`, `Sum`, ...).. Default: `none`.
 * __horizontal__ | `boolean`: отображать ли полосы по горизонтали. Default: `false`.
 * __stackBars__ | `boolean`: при группировке, контролирует, следует ли укладывать стержни друг на друга.. Default: `false`.
 * __relative__ | `boolean`: следует ли вычислять относительные частоты внутри каждой группы.. Default: `false`.

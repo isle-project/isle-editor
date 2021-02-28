@@ -17,7 +17,6 @@ import min from '@stdlib/math/base/special/min';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
 import Dashboard from '@isle-project/components/dashboard';
-import FeedbackButtons from '@isle-project/components/feedback';
 import TeX from '@isle-project/components/tex';
 import { addResources } from '@isle-project/locales';
 import './venn_diagram_builder.css';
@@ -35,7 +34,6 @@ addResources( 'LearnVennDiagram' );
 *
 * @property {number} nobs - total number of observations
 * @property {boolean} three - controls whether to display three circles
-* @property {boolean} feedback - controls whether to display feedback buttons
 */
 class VennDiagramBuilder extends Component {
 	constructor( props ) {
@@ -302,9 +300,6 @@ class VennDiagramBuilder extends Component {
 							{count}
 								<div id={this.state.id}></div>
 							</Card>
-							{ this.props.feedback ? <FeedbackButtons
-								id={`venn-diagram-builder-${this.props.three ? 'three' : 'two' }-${this.props.nobs}`}
-							/> : null }
 						</Col>
 					</Row>
 				</Container>

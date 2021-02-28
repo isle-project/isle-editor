@@ -11,8 +11,8 @@ sidebar_label: Bar Chart
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: 变量显示. Default: `none`.
 * __group__ | `(string|Factor)`: 分组变量. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: 为 "yvar "计算的统计数据名称，并作为每个类别的条形高度显示。. Default: `none`.
+* __yvar__ | `string`: 可选变量，用于列高(与`summary`一起使用). Default: `none`.
+* __summary__ | `string`: 为 "yvar "计算并显示为每个类别的条形高度的统计名称(可以是 `Min`、`Max`、`Mean`、`Median`、`Sum`...). Default: `none`.
 * __horizontal__ | `boolean`: 是否水平显示条形图. Default: `false`.
 * __stackBars__ | `boolean`: 分组时，控制是否将条形图叠加在一起。. Default: `false`.
 * __relative__ | `boolean`: 是否计算各组内的相对频率？. Default: `false`.

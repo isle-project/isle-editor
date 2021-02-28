@@ -12,7 +12,7 @@ Ein d3-basierter Sunburst-Plot zur Darstellung von Pfaden.
 * __data__ | `object (required)`: Datenobjekt. Default: `none`.
 * __width__ | `number`: Breite des Plots (in px). Default: `750`.
 * __height__ | `number`: Höhe des Plots (in px). Default: `600`.
-* __style__ | `object`: undefined. Default: `{}`.
+* __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __breadcrumbs__ | `{w,h,s,t}`: Objekt mit Abmessungen: `w` für Breite, `h` für Höhe, `s` für Abstand, `t` für Breite von Spitze/Schwanz. Default: `{
   'w': 250,
   'h': 50,

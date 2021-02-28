@@ -11,8 +11,8 @@ Wykres słupkowy.
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: zmienna do wyświetlania. Default: `none`.
 * __group__ | `(string|Factor)`: zmienna grupowania. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: nazwa statystyki do obliczenia dla `yvara` i do wyświetlenia jako wysokość słupka dla każdej kategorii. Default: `none`.
+* __yvar__ | `string`: opcjonalna zmienna używana do określania wysokości kolumn (w połączeniu z `summary`). Default: `none`.
+* __summary__ | `string`: nazwa statystyki do obliczenia dla `yvar` i do wyświetlenia jako wysokość słupka dla każdej kategorii (albo `Min`, `Max`, `Mean`, `Median`, `Sum`, ...). Default: `none`.
 * __horizontal__ | `boolean`: czy wyświetlać paski w poziomie. Default: `false`.
 * __stackBars__ | `boolean`: podczas grupowania kontroluje, czy pręty należy układać jeden na drugim. Default: `false`.
 * __relative__ | `boolean`: czy obliczyć częstotliwości względne wewnątrz każdej grupy. Default: `false`.

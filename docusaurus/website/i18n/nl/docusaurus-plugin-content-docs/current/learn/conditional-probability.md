@@ -8,7 +8,9 @@ Een leercomponent die de voorwaardelijke waarschijnlijkheid voor twee afhankelij
 
 ## Opties
 
-Geen eigendommen beschikbaar.
+* __A__ | `string`: eerste variabele. Default: `'A'`.
+* __B__ | `string`: tweede variabele. Default: `'B'`.
+
 
 ## Voorbeelden
 

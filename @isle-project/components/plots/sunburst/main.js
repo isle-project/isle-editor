@@ -61,6 +61,7 @@ function createColorMapping( categories ) {
 * @property {number} width - width of the plot (in px)
 * @property {number} height - height of the plot (in px)
 * @property {Object} breadcrumbs - object with dimensions: `w` for width, `h` for height, `s` for spacing, `t` for width of tip/tail
+* @property {Object} style - CSS inline styles
 */
 class Sunburst extends Component {
 	constructor( props ) {

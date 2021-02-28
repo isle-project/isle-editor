@@ -11,8 +11,8 @@ Bar chart.
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: variable to display. Default: `none`.
 * __group__ | `(string|Factor)`: grouping variable. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: name of statistic to compute for `yvar` and to be displayed as bar height for each category. Default: `none`.
+* __yvar__ | `string`: optional variable used for the column heights (in conjunction with `summary`). Default: `none`.
+* __summary__ | `string`: name of statistic to compute for `yvar` and to be displayed as bar height for each category (either `Min`, `Max`, `Mean`, `Median`, `Sum`, ...). Default: `none`.
 * __horizontal__ | `boolean`: whether to display bars horizontally. Default: `false`.
 * __stackBars__ | `boolean`: when grouping, controls whether to stack bars on top of each other. Default: `false`.
 * __relative__ | `boolean`: whether to calculate relative frequencies inside each group. Default: `false`.

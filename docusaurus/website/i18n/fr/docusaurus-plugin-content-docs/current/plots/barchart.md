@@ -11,8 +11,8 @@ Diagramme en barres.
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: variable à afficher. Default: `none`.
 * __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: nom de la statistique à calculer pour l'"yvar" et à afficher sous forme de barre de hauteur pour chaque catégorie. Default: `none`.
+* __yvar__ | `string`: variable optionnelle utilisée pour les hauteurs de colonne (en conjonction avec "summary"). Default: `none`.
+* __summary__ | `string`: nom de la statistique à calculer pour l'"yvar" et à afficher sous forme de barre de hauteur pour chaque catégorie (soit `Min`, `Max`, `Mean`, `Median`, `Sum`, ...). Default: `none`.
 * __horizontal__ | `boolean`: si les barres doivent être affichées horizontalement. Default: `false`.
 * __stackBars__ | `boolean`: lors du regroupement, contrôle s'il faut empiler les barres les unes sur les autres. Default: `false`.
 * __relative__ | `boolean`: s'il faut calculer les fréquences relatives à l'intérieur de chaque groupe. Default: `false`.

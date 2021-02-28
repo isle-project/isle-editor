@@ -13,6 +13,7 @@ A mosaic plot.
 * __showColors__ | `boolean`: controls whether to display colors showing significance. Default: `false`.
 * __axisLabels__ | `string`: positioning of axis labels (either, `parallel to the axis`, `horizontal`, `perpendicular to the axis`, or `vertical`). Default: `'parallel to the axis'`.
 
+
 ## Examples
 
 import Tabs from '@theme/Tabs';

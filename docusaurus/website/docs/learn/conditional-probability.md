@@ -8,7 +8,9 @@ A learning component illustrating conditional probability for two dependent bina
 
 ## Options
 
-No properties available.
+* __A__ | `string`: first variable. Default: `'A'`.
+* __B__ | `string`: second variable. Default: `'B'`.
+
 
 ## Examples
 

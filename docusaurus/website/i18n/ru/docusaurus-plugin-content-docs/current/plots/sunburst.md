@@ -12,7 +12,7 @@ sidebar_label: Sunburst Plot
 * __data__ | `object (required)`: объект данных. Default: `none`.
 * __width__ | `number`: ширина участка (в px). Default: `750`.
 * __height__ | `number`: высота участка (в px). Default: `600`.
-* __style__ | `object`: undefined. Default: `{}`.
+* __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __breadcrumbs__ | `{w,h,s,t}`: объект с размерами: `w` для ширины, `h` для высоты, `s` для расстояния, `t` для ширины наконечника/хвоста.. Default: `{
   'w': 250,
   'h': 50,

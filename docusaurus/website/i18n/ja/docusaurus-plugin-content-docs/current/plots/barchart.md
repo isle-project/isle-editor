@@ -11,8 +11,8 @@ sidebar_label: Bar Chart
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: 表示用変数. Default: `none`.
 * __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: yvar` で計算し、各カテゴリのバーの高さとして表示される統計量の名前. Default: `none`.
+* __yvar__ | `string`: カラムの高さに使われるオプション変数 ( `summary` と一緒に使われる). Default: `none`.
+* __summary__ | `string`: yvar` のために計算し、各カテゴリのバーの高さとして表示する統計量の名前 (`Min`, `Max`, `Mean`, `Median`, `Sum`, .... のいずれか)。. Default: `none`.
 * __horizontal__ | `boolean`: バーを水平に表示するかどうか. Default: `false`.
 * __stackBars__ | `boolean`: グループ化する際に、バーを重ねるかどうかを制御します。. Default: `false`.
 * __relative__ | `boolean`: 各グループ内の相対度数を計算するかどうか. Default: `false`.

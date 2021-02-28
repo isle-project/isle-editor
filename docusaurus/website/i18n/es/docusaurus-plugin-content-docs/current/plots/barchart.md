@@ -11,8 +11,8 @@ Gráfico de barras.
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: variable a mostrar. Default: `none`.
 * __group__ | `(string|Factor)`: variable de agrupación. Default: `none`.
-* __yvar__ | `string`: undefined. Default: `none`.
-* __summary__ | `string`: nombre de la estadística para calcular para "yvar" y para ser mostrada como la altura de la barra para cada categoría. Default: `none`.
+* __yvar__ | `string`: variable opcional utilizada para las alturas de las columnas (junto con `summary`). Default: `none`.
+* __summary__ | `string`: nombre de la estadística a calcular para `yvar` y a mostrar como altura de barra para cada categoría (ya sea `Min`, `Max`, `Mean`, `Median`, `Sum`, ...). Default: `none`.
 * __horizontal__ | `boolean`: si mostrar las barras horizontalmente. Default: `false`.
 * __stackBars__ | `boolean`: cuando se agrupan, controla si se apilan las barras una encima de la otra. Default: `false`.
 * __relative__ | `boolean`: si calcular las frecuencias relativas dentro de cada grupo. Default: `false`.

@@ -8,7 +8,9 @@ Eine Lernkomponente, die die bedingte Wahrscheinlichkeit für zwei abhängige bi
 
 ## Optionen
 
-Keine Eigenschaften vorhanden.
+* __A__ | `string`: erste Variable. Default: `'A'`.
+* __B__ | `string`: zweite Variable. Default: `'B'`.
+
 
 ## Beispiele
 

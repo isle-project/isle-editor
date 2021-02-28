@@ -42,7 +42,6 @@ const uid = generateUID( 'multiple-choice-survey' );
 * @property {boolean} anonymous - controls whether student answers are anonymized
 * @property {Array} answers - array indicating answer choices for the students
 * @property {boolean} multipleAnswers - indicates whether students may select more than one answer. Note that this differs from allowMultipleAnswers in that allow makes students able to submit the question multiple times
-* @property {string} title - panel title
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - function to be called when an answer is submitted
 */
