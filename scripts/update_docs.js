@@ -139,6 +139,7 @@ const TRANSLATIONS = {
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
 	const tagName = REQUIRES_MAP[ '@isle-project/components/'+component ];
+	delete REQUIRES_MAP[ '@isle-project/components/'+component ];
 	DOCS[ tagName ] = {
 		props: []
 	};
@@ -202,7 +203,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		}
 	}
 	if ( tagName === void 0 ) {
-		console.log( 'Missing tag name for: '+fpath );
+		debug( 'Missing tag name for: '+fpath );
 		continue;
 	}
 	DOCS[ tagName ].description = `${tagName}-description`;
@@ -306,3 +307,6 @@ for ( let i = 0; i < LANGUAGE_TARGETS.length; i++ ) {
 	fs.writeFileSync( './@isle-project/locales/editor/component-docs/'+lng+'.json', JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
 }
 console.log( 'Finished updating docs.' );
+
+console.log( 'Components without docs: ' );
+console.log( REQUIRES_MAP );
