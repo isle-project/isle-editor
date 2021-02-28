@@ -17,20 +17,20 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 * @returns {Object} table with keys corresponding to the unique group labels and values corresponding to the function values
 */
 function by2( arr1, arr2, factor, fun ) {
-	let out = {};
-	let ret1 = {};
-	let ret2 = {};
+	const out = {};
+	const ret1 = {};
+	const ret2 = {};
 	for ( let i = 0; i < factor.length; i++ ) {
 		if ( !isArray( ret1[ factor[ i ] ]) ) {
 			ret1[ factor[ i ] ] = [];
 			ret2[ factor[ i ] ] = [];
 		}
-		ret1[ factor[ i ] ].push( arr1[ i ]);
-		ret2[ factor[ i ] ].push( arr2[ i ]);
+		ret1[ factor[ i ] ].push( arr1[ i ] );
+		ret2[ factor[ i ] ].push( arr2[ i ] );
 	}
 	for ( let key in ret1 ) {
 		if ( hasOwnProp( ret1, key ) ) {
-			out[ key ] = fun( ret1[ key ], ret2[ key ]);
+			out[ key ] = fun( ret1[ key ], ret2[ key ] );
 		}
 	}
 	return out;
