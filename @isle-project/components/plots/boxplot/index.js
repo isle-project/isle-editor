@@ -7,11 +7,12 @@ import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isString from '@stdlib/assert/is-string';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // FUNCTIONS //
@@ -23,8 +24,11 @@ function isNonMissingNumber( x ) {
 export function generateBoxplotConfig({ data, variable, group = [], orientation, overlayPoints }) {
 	let categoryarray;
 	let traces;
-	if ( isString( variable ) ) {
+	if ( isString.isPrimitive( variable ) ) {
 		variable = [ variable ];
+	}
+	if ( isString( group ) ) {
+		group = [ group ];
 	}
 	if ( group.length === 0 ) {
 		traces = new Array( variable.length );
@@ -166,7 +170,7 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 *
 * @property {Object} data - object of value arrays
 * @property {(string|Array<string>)} variable - variable(s) to display
-* @property {Array<string>} group - one or two grouping variables
+* @property {(string|Array<string>)} group - one or two grouping variables
 * @property {string} orientation - `vertical` or `horizontal` orientation
 * @property {boolean} overlayPoints - controls whether to overlay points
 */
@@ -211,7 +215,11 @@ BoxPlot.propTypes = {
 		PropTypes.array,
 		PropTypes.string
 	]).isRequired,
-	group: PropTypes.array,
+	group: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	orientation: PropTypes.oneOf([ 'vertical', 'horizontal' ]),
 	overlayPoints: PropTypes.bool
 };
