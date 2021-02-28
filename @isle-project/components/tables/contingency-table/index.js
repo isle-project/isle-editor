@@ -10,6 +10,7 @@ import objectKeys from '@stdlib/utils/keys';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -35,6 +36,9 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 	const rowFreqs = countBy( rowValues, identity );
 	const colFreqs = countBy( colValues, identity );
 
+	if ( isString( display ) ) {
+		display = [ display ];
+	}
 	const displayRowPercent = contains( display, 'Row Percent' );
 	const displayColPercent = contains( display, 'Column Percent' );
 
@@ -226,14 +230,23 @@ ContingencyTable.defaultProps = {
 
 ContingencyTable.propTypes = {
 	data: PropTypes.object.isRequired,
-	rowVar: PropTypes.string.isRequired,
-	colVar: PropTypes.string.isRequired,
+	rowVar: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
+	colVar: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	relativeFreqs: PropTypes.bool,
 	group: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]),
-	display: PropTypes.arrayOf( PropTypes.oneOf( [ 'Row Percent', 'Column Percent' ] ) ),
+	display: PropTypes.oneOfType([
+		PropTypes.arrayOf( PropTypes.oneOf( [ 'Row Percent', 'Column Percent' ] ) ),
+		PropTypes.oneOf( [ 'Row Percent', 'Column Percent' ] )
+	]),
 	nDecimalPlaces: PropTypes.number
 };
 
@@ -244,8 +257,8 @@ ContingencyTable.propTypes = {
 * A contingency table.
 *
 * @property {Object} data - object of value arrays
-* @property {string} rowVar - row variable name
-* @property {string} colVar - column variable name
+* @property {string} rowVar - name of categorical variable to be displayed along the rows
+* @property {string} colVar -  name of categorical variable to be displayed along the columns
 * @property {string} group - name of grouping variable
 * @property {boolean} relativeFreqs - controls whether to display relative frequencies
 * @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`

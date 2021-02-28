@@ -256,7 +256,10 @@ FrequencyTable.defaultProps = {
 
 FrequencyTable.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired,
+	variable: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	calculateCounts: PropTypes.bool,
 	calculateRelative: PropTypes.bool,
 	group: PropTypes.oneOfType([
@@ -273,7 +276,7 @@ FrequencyTable.propTypes = {
 * A frequency table.
 *
 * @property {Object} data - object of value arrays
-* @property {string} variable - name of variable to be displayed
+* @property {string} variable - name of categorical variable to be displayed
 * @property {string} group - name of grouping variable
 * @property {boolean} calculateCounts - controls whether to display absolute counts
 * @property {boolean} calculateRelative - controls whether to display relative frequencies
