@@ -1176,6 +1176,7 @@
 	"Slide-prop-margin": "margin around slide (in px)",
 	"Slide-prop-notes": "presenter mode notes (alternatively they can be wrapped in a <SlideNotes> tag)",
 	"Slide-prop-onActive": "optional callback called with the slide index when the slide comes into view",
+	"Slide-prop-presenterStyle": "CSS styles applied in presenter mode",
 	"Slide-prop-progressColor": "overrides the color of the progress elements for the current slide",
 	"Slide-prop-style": "CSS inline styles",
 	"Slide-prop-transition": "slide transition(s). Can be either `slide`, `zoom`, `fade`, or `spin` (or a combination)",

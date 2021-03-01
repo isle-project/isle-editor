@@ -7240,6 +7240,7 @@
 			{
 				"name": "presenterStyle",
 				"type": "object",
+				"description": "Slide-prop-presenterStyle",
 				"defaultValue": {}
 			},
 			{
@@ -7259,11 +7260,6 @@
 				"type": "function",
 				"description": "Slide-prop-onActive",
 				"defaultValue": "function onActive() {}"
-			},
-			{
-				"name": "viewerScaleMode",
-				"type": "boolean",
-				"defaultValue": false
 			}
 		],
 		"description": "Slide-description"

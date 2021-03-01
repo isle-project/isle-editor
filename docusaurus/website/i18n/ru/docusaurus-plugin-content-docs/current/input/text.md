@@ -9,16 +9,16 @@ sidebar_label: Text Input
 ## Варианты
 
 * __bind__ | `string`: имя глобальной переменной для присваиваемого числа. Default: `none`.
-* __defaultValue__ | `string`: undefined. Default: `''`.
+* __defaultValue__ | `string`: значение, указывающее значение по умолчанию на входе при запуске. Default: `''`.
 * __value__ | `string`: текстовое значение (для контролируемого компонента). Default: `none`.
-* __legend__ | `(string|node)`: undefined. Default: `''`.
+* __legend__ | `(string|node)`: строка, указывающая на текст, отображаемый рядом с вводимой цифрой. Default: `''`.
 * __inline__ | `boolean`: Показывает, отображается ли вход в строке. Default: `false`.
 * __onBlur__ | `function`: функция обратного вызова вызывается при потере фокуса текстовой области. Default: `onBlur() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: функция, вызываемая при изменении текстового значения. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: функция обратного вызова для вызова при нажатии любой клавиши. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: функция обратного вызова, вызываемая при вводе любой клавиши. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: функция обратного вызова, вызываемая при отпускании ключа. Default: `onKeyUp() {}`.
-* __placeholder__ | `string`: undefined. Default: `none`.
+* __placeholder__ | `string`: строка, указывающая значение, которое будет отображаться перед тем, как будет сделан первоначальный выбор. Default: `none`.
 * __width__ | `number`: undefined. Default: `80`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
