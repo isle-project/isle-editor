@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[500],{2857:function(e){e.exports=JSON.parse('{"draw-sample":"Stichprobe ziehen","sample-size":"Stichprobengr\xf6\xdfe"}')}}]);

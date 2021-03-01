@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[509],{3417:function(p){p.exports=JSON.parse('{"draw-sample":"Rysuj Pr\xf3bk\u0119","sample-size":"Wielko\u015b\u0107 pr\xf3bki"}')}}]);
