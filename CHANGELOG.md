@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.74.9](https://github.com/isle-project/isle-editor/releases/tag/v0.74.9) (2021-03-01)
+
+This release improves error handling in the editor: Incorrect or missing property values for components are type-checked and error messages are displayed on a component-level instead of either the entire lesson not rendering or in the worst case the editor freezing.
+
 ## [v0.74.8](https://github.com/isle-project/isle-editor/releases/tag/v0.74.8) (2021-02-22)
 
 This small release comes with the following improvements:
