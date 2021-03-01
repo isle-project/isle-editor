@@ -9,7 +9,6 @@ Ein Prüfsiegel.
 ## Optionen
 
 * __active__ | `boolean`: steuert, ob die Dichtung aktiv oder ausgegraut ist. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: Callback-Funktion, die aufgerufen wird, wenn die Note angeklickt wird. Default: `onClick() {}`.
 * __scale__ | `number`: Objektgröße (wenn nicht explizit gesetzt, wird die Dichtung nicht neu skaliert). Default: `none`.
 * __innerStyle__ | `object`: der Stil für den inneren Kreis. Default: `{}`.

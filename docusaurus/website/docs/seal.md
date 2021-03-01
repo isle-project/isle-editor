@@ -9,7 +9,6 @@ An approval seal.
 ## Options
 
 * __active__ | `boolean`: controls whether seal is active or grayed out. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: callback function invoked when the note is clicked. Default: `onClick() {}`.
 * __scale__ | `number`: object size (if not explicitly set, the seal is not rescaled). Default: `none`.
 * __innerStyle__ | `object`: the style for the inner circle. Default: `{}`.

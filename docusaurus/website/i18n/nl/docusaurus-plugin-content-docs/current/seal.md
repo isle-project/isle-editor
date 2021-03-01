@@ -9,7 +9,6 @@ Een keurmerk.
 ## Opties
 
 * __active__ | `boolean`: controleert of het zegel actief of grijs is. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: terugbelfunctie die wordt aangeroepen wanneer op het biljet wordt geklikt. Default: `onClick() {}`.
 * __scale__ | `number`: objectgrootte (als deze niet expliciet is ingesteld, wordt de verzegeling niet opnieuw verzegeld). Default: `none`.
 * __innerStyle__ | `object`: de stijl voor de binnenste cirkel. Default: `{}`.

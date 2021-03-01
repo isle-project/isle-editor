@@ -19,15 +19,14 @@ const uid = generateUID( 'text-input' );
 /**
 * A text input component. Can be used as part of an ISLE dashboard or standalone. In the latter case, you want to handle changes via the `onChange` attribute or bind the value to a global variable via the `bind` attribute.
 *
-* @property {Function} onChange - A function to be called when a text value is changed
-* @property {string} defaultValue - A value indicating the default value of the input at start
+* @property {Function} onChange - function to be called when a text value is changed
+* @property {string} defaultValue - value indicating the default value of the input at start
 * @property {string} value - text value (for controlled component)
-* @property {boolean} disabled - A boolean indicating whether the input is active or not
-* @property {number} width - A number indicating the width of the input in pixels
+* @property {number} width - number indicating the width of the input in pixels
 * @property {boolean} inline - Indicates whether the input is displayed inline
-* @property {string} legend - A string indicating the text displayed next to the number input
+* @property {string} legend - string indicating the text displayed next to the number input
 * @property {string} bind - name of global variable for the number to be assigned to
-* @property {string} placeholder - A string indicating the value to be displayed before an initial choice is made
+* @property {string} placeholder - string indicating the value to be displayed before an initial choice is made
 * @property {Object} style - CSS inline styles
 * @property {Function} onBlur - callback function invoked when the text area loses focus
 * @property {Function} onKeyPress - callback function to be invoked when any key is entered

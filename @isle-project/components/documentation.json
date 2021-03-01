@@ -1166,6 +1166,7 @@
 			{
 				"name": "autoStart",
 				"type": "boolean",
+				"description": "Generator-prop-autoStart",
 				"defaultValue": true
 			},
 			{
@@ -6684,11 +6685,6 @@
 				"type": "boolean",
 				"description": "Seal-prop-active",
 				"defaultValue": true
-			},
-			{
-				"name": "onActivate",
-				"type": "function",
-				"defaultValue": "function onActivate() {}"
 			},
 			{
 				"name": "onClick",

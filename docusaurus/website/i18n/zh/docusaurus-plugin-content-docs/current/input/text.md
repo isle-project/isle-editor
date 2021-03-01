@@ -9,17 +9,17 @@ sidebar_label: Text Input
 ## 选项
 
 * __bind__ | `string`: 全局变量的名称，用于分配到的数字。. Default: `none`.
-* __defaultValue__ | `string`: 表示启动时输入的默认值的数值。. Default: `''`.
+* __defaultValue__ | `string`: undefined. Default: `''`.
 * __value__ | `string`: 文本值. Default: `none`.
-* __legend__ | `(string|node)`: 一个字符串，表示在输入的数字旁边显示的文字。. Default: `''`.
+* __legend__ | `(string|node)`: undefined. Default: `''`.
 * __inline__ | `boolean`: 表示输入是否内嵌显示。. Default: `false`.
 * __onBlur__ | `function`: 当文本区域失去焦点时调用的回调函数。. Default: `onBlur() {}`.
-* __onChange__ | `function`: 当文本值发生变化时调用的函数。. Default: `onChange() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: 当任何一个键被按下时，回调函数将被调用。. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: 当输入任何一个键时，回调函数将被调用. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: 释放键时调用的回调函数。. Default: `onKeyUp() {}`.
-* __placeholder__ | `string`: 一个字符串，表示在做出初始选择之前要显示的值。. Default: `none`.
-* __width__ | `number`: 以像素为单位表示输入的宽度。. Default: `80`.
+* __placeholder__ | `string`: undefined. Default: `none`.
+* __width__ | `number`: undefined. Default: `80`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 

@@ -9,7 +9,6 @@ sidebar_label: Seal
 ## Варианты
 
 * __active__ | `boolean`: контролирует, является ли уплотнение активным или серым. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: функция обратного вызова при щелчке по записке. Default: `onClick() {}`.
 * __scale__ | `number`: размер объекта (если не задан явно, печать не перемасштабируется).. Default: `none`.
 * __innerStyle__ | `object`: стиль для внутреннего круга. Default: `{}`.

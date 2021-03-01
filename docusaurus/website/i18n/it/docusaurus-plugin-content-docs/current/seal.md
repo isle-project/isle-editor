@@ -9,7 +9,6 @@ Un sigillo di approvazione.
 ## Opzioni
 
 * __active__ | `boolean`: controlla se la guarnizione è attiva o grigia. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: funzione di richiamata invocata quando si fa clic sulla nota. Default: `onClick() {}`.
 * __scale__ | `number`: dimensione dell'oggetto (se non esplicitamente impostato, la guarnizione non viene ridimensionata). Default: `none`.
 * __innerStyle__ | `object`: lo stile per il cerchio interno. Default: `{}`.

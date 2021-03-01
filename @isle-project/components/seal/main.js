@@ -51,12 +51,6 @@ class Seal extends Component {
 		};
 	}
 
-	componentDidUpdate( prevProps ) {
-		if ( this.props.active === true && prevProps.active === false ) {
-			this.props.onActivate();
-		}
-	}
-
 	curvedText = ( txt, size, arc, offset ) => {
 		txt = txt.split( '' );
 		const deg = arc / (txt.length-1);
@@ -218,7 +212,6 @@ class Seal extends Component {
 
 Seal.propTypes = {
 	active: PropTypes.bool,
-	onActivate: PropTypes.func,
 	onClick: PropTypes.func,
 	scale: PropTypes.number,
 	innerStyle: PropTypes.object,
@@ -234,7 +227,6 @@ Seal.propTypes = {
 
 Seal.defaultProps = {
 	active: true,
-	onActivate() {},
 	onClick() {},
 	scale: null,
 	lower: 'The lower text',

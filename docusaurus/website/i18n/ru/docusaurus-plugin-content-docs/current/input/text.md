@@ -9,17 +9,17 @@ sidebar_label: Text Input
 ## Варианты
 
 * __bind__ | `string`: имя глобальной переменной для присваиваемого числа. Default: `none`.
-* __defaultValue__ | `string`: Значение, указывающее на значение по умолчанию для входа при запуске. Default: `''`.
+* __defaultValue__ | `string`: undefined. Default: `''`.
 * __value__ | `string`: текстовое значение (для контролируемого компонента). Default: `none`.
-* __legend__ | `(string|node)`: Строка, указывающая на текст, отображаемый рядом с вводимым номером.. Default: `''`.
+* __legend__ | `(string|node)`: undefined. Default: `''`.
 * __inline__ | `boolean`: Показывает, отображается ли вход в строке. Default: `false`.
 * __onBlur__ | `function`: функция обратного вызова вызывается при потере фокуса текстовой области. Default: `onBlur() {}`.
-* __onChange__ | `function`: Функция, вызываемая при изменении текстового значения.. Default: `onChange() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: функция обратного вызова для вызова при нажатии любой клавиши. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: функция обратного вызова, вызываемая при вводе любой клавиши. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: функция обратного вызова, вызываемая при отпускании ключа. Default: `onKeyUp() {}`.
-* __placeholder__ | `string`: Строка, указывающая на значение, которое будет отображаться перед первым выбором.. Default: `none`.
-* __width__ | `number`: Число, указывающее ширину входного сигнала в пикселях.. Default: `80`.
+* __placeholder__ | `string`: undefined. Default: `none`.
+* __width__ | `number`: undefined. Default: `80`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 

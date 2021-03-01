@@ -9,7 +9,6 @@ sidebar_label: Seal
 ## オプション
 
 * __active__ | `boolean`: シールがアクティブかグレーアウトかを制御します。. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: クリックコールバック関数. Default: `onClick() {}`.
 * __scale__ | `number`: オブジェクトサイズ (明示的に設定されていない場合、シールは再スケーリングされません). Default: `none`.
 * __innerStyle__ | `object`: うちがた. Default: `{}`.

@@ -9,7 +9,6 @@ Um selo de aprovação.
 ## Opções
 
 * __active__ | `boolean`: controla se o selo está ativo ou cinzento. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: função de chamada de retorno invocada quando a nota é clicada. Default: `onClick() {}`.
 * __scale__ | `number`: tamanho do objeto (se não estiver explicitamente definido, o selo não é redimensionado). Default: `none`.
 * __innerStyle__ | `object`: o estilo para o círculo interno. Default: `{}`.

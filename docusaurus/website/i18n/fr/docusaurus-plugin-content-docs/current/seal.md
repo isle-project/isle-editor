@@ -9,7 +9,6 @@ Un sceau d'approbation.
 ## Options
 
 * __active__ | `boolean`: contrôle si le phoque est actif ou grisé. Default: `true`.
-* __onActivate__ | `function`: undefined. Default: `onActivate() {}`.
 * __onClick__ | `function`: fonction de rappel invoquée lorsque la note est cliquée. Default: `onClick() {}`.
 * __scale__ | `number`: la taille de l'objet (si elle n'est pas explicitement définie, le sceau n'est pas redimensionné). Default: `none`.
 * __innerStyle__ | `object`: le style pour le cercle intérieur. Default: `{}`.

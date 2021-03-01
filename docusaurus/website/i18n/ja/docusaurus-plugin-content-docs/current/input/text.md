@@ -9,17 +9,17 @@ sidebar_label: Text Input
 ## オプション
 
 * __bind__ | `string`: 割り当てられる番号のグローバル変数名. Default: `none`.
-* __defaultValue__ | `string`: 開始時の入力のデフォルト値を示す値. Default: `''`.
+* __defaultValue__ | `string`: undefined. Default: `''`.
 * __value__ | `string`: テキスト値. Default: `none`.
-* __legend__ | `(string|node)`: 入力された数字の隣に表示されるテキストを示す文字列. Default: `''`.
+* __legend__ | `(string|node)`: undefined. Default: `''`.
 * __inline__ | `boolean`: 入力をインライン表示するかどうかを示す. Default: `false`.
 * __onBlur__ | `function`: テキストエリアのフォーカスがなくなったときに呼び出されるコールバック関数. Default: `onBlur() {}`.
-* __onChange__ | `function`: テキストの値が変更されたときに呼び出される関数. Default: `onChange() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: コールバック関数. Default: `onKeyDown() {}`.
 * __onKeyPress__ | `function`: キー入力時に呼び出されるコールバック関数. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: キーリリース時に呼び出されるコールバック関数. Default: `onKeyUp() {}`.
-* __placeholder__ | `string`: 最初に選択する前に表示する値を示す文字列. Default: `none`.
-* __width__ | `number`: 入力の幅をピクセル単位で表す数値．. Default: `80`.
+* __placeholder__ | `string`: undefined. Default: `none`.
+* __width__ | `number`: undefined. Default: `80`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 
