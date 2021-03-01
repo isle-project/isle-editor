@@ -64,6 +64,7 @@ export const SlideContext = React.createContext( 'slide-context' );
 * @property {number} margin - margin around slide (in px)
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
+* @property {Object} presenterStyle - CSS styles applied in presenter mode
 * @property {Object} contentStyles - CSS inline styles passed to the slide contents
 * @property {Function} onActive - optional callback called with the slide index when the slide comes into view
 */
@@ -194,8 +195,7 @@ Slide.defaultProps = {
 	presenterStyle: {},
 	contentStyles: {},
 	style: {},
-	onActive() {},
-	viewerScaleMode: false
+	onActive() {}
 };
 
 Slide.propTypes = {
@@ -220,8 +220,7 @@ Slide.propTypes = {
 	presenterStyle: PropTypes.object,
 	contentStyles: PropTypes.object,
 	style: PropTypes.object,
-	onActive: PropTypes.func,
-	viewerScaleMode: PropTypes.bool
+	onActive: PropTypes.func
 };
 
 Slide.contextType = SpectacleContext;

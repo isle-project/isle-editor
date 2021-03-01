@@ -131,9 +131,7 @@ class SlideWrapper extends React.PureComponent {
 
 	render() {
 		const { children, transitionDuration } = this.props;
-		if ( !this.props.viewerScaleMode ) {
-			document.documentElement.style.fontSize = `${16 * this.state.zoom}px`; // eslint-disable-line i18next/no-literal-string
-		}
+		document.documentElement.style.fontSize = `${16 * this.state.zoom}px`; // eslint-disable-line i18next/no-literal-string
 		return (
 			<Transition
 				{...this.props}
@@ -177,8 +175,7 @@ class SlideWrapper extends React.PureComponent {
 SlideWrapper.defaultProps = {
 	align: 'center center',
 	presenterStyle: {},
-	style: {},
-	viewerScaleMode: false
+	style: {}
 };
 
 SlideWrapper.propTypes = {
@@ -201,8 +198,7 @@ SlideWrapper.propTypes = {
 	transition: PropTypes.array,
 	transitionDuration: PropTypes.number,
 	transitionIn: PropTypes.array,
-	transitionOut: PropTypes.array,
-	viewerScaleMode: PropTypes.bool
+	transitionOut: PropTypes.array
 };
 
 SlideWrapper.contextType = SpectacleContext;
