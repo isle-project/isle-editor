@@ -2,7 +2,6 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Deck from './main.js';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import Tooltip from '@isle-project/components/tooltip';
@@ -13,6 +12,7 @@ import isLineButtons from '@isle-project/utils/is-line-buttons';
 import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
+import Deck from './deck.js';
 import './deck.css';
 
 

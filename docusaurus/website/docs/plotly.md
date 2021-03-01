@@ -4,7 +4,7 @@ title: Plotly
 sidebar_label: Plotly
 ---
 
-Plotly visualization.
+[Plotly](https://plotly.com/javascript/) visualization.
 
 ## Options
 
@@ -13,7 +13,7 @@ Plotly visualization.
 * __editable__ | `boolean`: controls whether labels of the created plot are editable. Default: `false`.
 * __id__ | `string`: component identifier. Default: `none`.
 * __layout__ | `object`: Plotly layout object. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Plotly configuration options (see: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: controls whether to display buttons for changing the legend. Default: `true`.
 * __meta__ | `object`: plot meta-information. Default: `none`.
 * __revision__ | `number`: when provided, causes the plot to update when the revision value is incremented. Default: `none`.

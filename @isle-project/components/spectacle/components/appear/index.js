@@ -125,7 +125,6 @@ Appear.propTypes = {
 		'sinInOut'
 	]),
 	endValue: PropTypes.object,
-	fragment: PropTypes.object,
 	order: PropTypes.number,
 	startValue: PropTypes.object,
 	style: PropTypes.object,

@@ -31,8 +31,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import Controller from './../../utils/controller';
-import Manager from './../manager';
+import Controller from '../../utils/controller';
+import Manager from '../manager';
 
 
 // VARIABLES //

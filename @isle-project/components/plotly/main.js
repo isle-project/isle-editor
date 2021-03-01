@@ -62,7 +62,7 @@ Plotly.setPlotConfig({
 // MAIN //
 
 /**
-* Plotly visualization.
+* [Plotly](https://plotly.com/javascript/) visualization.
 *
 * @property {Array} data - data array
 * @property {boolean} editable - controls whether labels of the created plot are editable
@@ -73,6 +73,7 @@ Plotly.setPlotConfig({
 * @property {boolean} toggleFullscreen - controls whether to allow displaying the plot in fullscreen mode
 * @property {boolean} removeButtons - controls whether to remove all buttons (aside from fullscreen button if enabled)
 * @property {Object} meta - plot meta-information
+* @property {Object} config - Plotly configuration options (see: https://plotly.com/javascript/configuration-options/)
 * @property {number} revision - when provided, causes the plot to update when the revision value is incremented
 * @property {Object} style - CSS inline styles
 * @property {Function} onAfterPlot - callback function invoked each time a chart is plotted

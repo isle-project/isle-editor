@@ -13,6 +13,17 @@ import RealTimeMetrics from '@isle-project/components/metrics/realtime';
 
 // MAIN //
 
+/**
+* Contingency table for retrieved metrics.
+*
+* @property {string} row - row identifier
+* @property {string} rowValues - values to display along the rows
+* @property {Function} rowAccessor - accessor function for row values
+* @property {string} col - column identifier
+* @property {Function} colAccessor - accessor function for column values
+* @property {string} colValues - values to display along the columns
+* @property {Object} style - CSS inline styles
+*/
 class MetricsContingencyTable extends Component {
 	constructor( props ) {
 		super( props );

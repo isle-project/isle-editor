@@ -350,6 +350,7 @@ function createColumns( props, state ) {
 * @property {Object} style - An object allowing for custom css styling. Defaults to an empty object
 * @property {Function} getTrProps - callback function executed for each row to customize its styling (passed table state, row info,
 column, and the table instance)
+* @property {Array} filters - array of filters
 * @property {Function} onColumnNameChange - function invoked when a column has been renamed (called with the old name as first and new name as second argument)
 * @property {Function} onColumnDrag - function invoked when a column has been dragged to a different position
 * @property {Function} onClickRemove - function specifying an action to take for rows removed from the data (defaults to an empty function)

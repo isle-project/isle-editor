@@ -736,6 +736,7 @@
 			{
 				"name": "filters",
 				"type": "array",
+				"description": "DataTable-prop-filters",
 				"defaultValue": []
 			},
 			{
@@ -3398,33 +3399,40 @@
 		"props": [
 			{
 				"name": "row",
-				"type": "string (required)"
+				"type": "string (required)",
+				"description": "MetricsContingencyTable-prop-row"
 			},
 			{
 				"name": "rowValues",
-				"type": "array (required)"
+				"type": "array (required)",
+				"description": "MetricsContingencyTable-prop-rowValues"
 			},
 			{
 				"name": "rowAccessor",
 				"type": "function",
+				"description": "MetricsContingencyTable-prop-rowAccessor",
 				"defaultValue": "function d => d.value"
 			},
 			{
 				"name": "col",
-				"type": "string (required)"
+				"type": "string (required)",
+				"description": "MetricsContingencyTable-prop-col"
 			},
 			{
 				"name": "colAccessor",
 				"type": "function",
+				"description": "MetricsContingencyTable-prop-colAccessor",
 				"defaultValue": "function d => d.value"
 			},
 			{
 				"name": "colValues",
-				"type": "array (required)"
+				"type": "array (required)",
+				"description": "MetricsContingencyTable-prop-colValues"
 			},
 			{
 				"name": "style",
 				"type": "object",
+				"description": "MetricsContingencyTable-prop-style",
 				"defaultValue": {}
 			}
 		],
@@ -4250,6 +4258,7 @@
 			{
 				"name": "config",
 				"type": "object",
+				"description": "Plotly-prop-config",
 				"defaultValue": {}
 			},
 			{
@@ -7050,10 +7059,6 @@
 				}
 			},
 			{
-				"name": "fragment",
-				"type": "object"
-			},
-			{
 				"name": "order",
 				"type": "number",
 				"description": "SlideAppear-prop-order",
@@ -7086,57 +7091,81 @@
 		"props": [
 			{
 				"name": "autoplay",
-				"type": "boolean"
+				"type": "boolean",
+				"description": "Deck-prop-autoplay",
+				"defaultValue": false
 			},
 			{
 				"name": "autoplayDuration",
-				"type": "number"
+				"type": "number",
+				"description": "Deck-prop-autoplayDuration",
+				"defaultValue": 7000
 			},
 			{
 				"name": "autoplayLoop",
-				"type": "boolean"
+				"type": "boolean",
+				"description": "Deck-prop-autoplayLoop",
+				"defaultValue": true
 			},
 			{
 				"name": "autoplayOnStart",
-				"type": "boolean"
+				"type": "boolean",
+				"description": "Deck-prop-autoplayOnStart",
+				"defaultValue": true
 			},
 			{
 				"name": "controls",
-				"type": "boolean"
+				"type": "boolean",
+				"description": "Deck-prop-controls",
+				"defaultValue": true
+			},
+			{
+				"name": "contentHeight",
+				"type": "number",
+				"description": "Deck-prop-contentHeight",
+				"defaultValue": 700
+			},
+			{
+				"name": "contentWidth",
+				"type": "number",
+				"description": "Deck-prop-contentWidth",
+				"defaultValue": 1200
 			},
 			{
 				"name": "disableKeyboardControls",
-				"type": "boolean"
+				"type": "boolean",
+				"description": "Deck-prop-disableKeyboardControls",
+				"defaultValue": false
 			},
 			{
-				"name": "disableTouchControls",
-				"type": "boolean"
-			},
-			{
-				"name": "history",
-				"type": "object"
-			},
-			{
-				"name": "onStateChange",
-				"type": "function",
-				"defaultValue": null
+				"name": "pageControls",
+				"type": "boolean",
+				"description": "Deck-prop-pageControls",
+				"defaultValue": true
 			},
 			{
 				"name": "progress",
-				"type": "string"
+				"type": "string",
+				"description": "Deck-prop-progress",
+				"defaultValue": "number"
 			},
 			{
 				"name": "showFullscreenControl",
 				"type": "boolean",
+				"description": "Deck-prop-showFullscreenControl",
 				"defaultValue": true
 			},
 			{
 				"name": "transition",
-				"type": "array"
+				"type": "array",
+				"description": "Deck-prop-transition",
+				"defaultValue": []
 			},
 			{
 				"name": "transitionDuration",
-				"type": "number"
+				"type": "number",
+				"description": "Deck-prop-transitionDuration",
+				"defaultValue": 500
 			}
 		],
 		"description": "Deck-description"
