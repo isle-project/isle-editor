@@ -51,6 +51,7 @@ import TabItem from '@theme/TabItem';
     calculateRelative
 />
 ```
+
 </TabItem>
 
 <TabItem value="grouped">
@@ -62,6 +63,7 @@ import TabItem from '@theme/TabItem';
     group="Gender"
 />
 ```
+
 </TabItem>
 
 <TabItem value="nDecimals">
@@ -76,3 +78,5 @@ import TabItem from '@theme/TabItem';
 ```
 
 </TabItem>
+
+</Tabs>
