@@ -51,7 +51,7 @@
 	"BrazilianPortuguese": "Portugués de Brasil",
 	"break": "Romper",
 	"cancel": "Cancelar",
-	"cannot-resolve-library": "No se ha podido resolver la siguiente biblioteca: {{lib}}.\n\n Asegúrese de que el nombre es correcto y de que las dependencias están instaladas.",
+	"cannot-resolve-library": "No se ha podido resolver la siguiente biblioteca: \"{{lib}}\".\n\nAsegúrese de que el nombre es correcto y de que las dependencias están instaladas.",
 	"center-editor-line": "Editor central en línea {{lineNumber}}",
 	"change-all-borders": "Cambiar todas las fronteras",
 	"change-bottom-border": "Cambiar el borde inferior",

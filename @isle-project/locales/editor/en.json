@@ -51,7 +51,7 @@
 	"BrazilianPortuguese": "Brazilian Portuguese",
 	"break": "Break",
 	"cancel": "Cancel",
-	"cannot-resolve-library": "Unable to resolve the following library: {{lib}}.\n\n Please ensure that the name is correct and that dependencies are installed.",
+	"cannot-resolve-library": "Unable to resolve the following dependency: \"{{lib}}\".\n\nPlease ensure that the name is correct and that dependencies are installed.",
 	"center-editor-line": "Center editor on line {{lineNumber}}",
 	"change-all-borders": "Change all borders",
 	"change-bottom-border": "Change bottom border",
