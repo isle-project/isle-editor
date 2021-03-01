@@ -18,6 +18,7 @@ import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 import LASSO from './lasso.js';
 
 
@@ -245,8 +246,9 @@ LassoRegression.propTypes = {
 	data: PropTypes.object.isRequired,
 	y: PropTypes.string.isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	lambda: PropTypes.number,

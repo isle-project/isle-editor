@@ -9,8 +9,8 @@ Regressions- und Klassifikationsbäume.
 ## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
-* __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
+* __y__ | `(string|Factor) (required)`: Ergebnisvariable. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
 * __type__ | `string (required)`: Klassifizierung" für kategorische oder "Regression" für quantitative Ergebnisse. Default: `none`.
 * __quantitative__ | `array<string> (required)`: Array von Variablen in `Daten`, die `quantitativ` sind. Default: `none`.
 * __impurityMeasure__ | `string`: Verunreinigungsmaß (`Gini` oder `Entropie`). Default: `'gini'`.

@@ -10,6 +10,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import { addResources } from '@isle-project/locales';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -143,10 +144,14 @@ DecisionTree.defaultProps = {
 
 DecisionTree.propTypes = {
 	data: PropTypes.object.isRequired,
-	y: PropTypes.string.isRequired,
+	y: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	type: PropTypes.oneOf([ 'Classification', 'Regression' ]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,

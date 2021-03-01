@@ -9,8 +9,8 @@ sidebar_label: Decision Tree
 ## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
-* __y__ | `string (required)`: 结果变量. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: 一个或多个预测变量. Default: `none`.
+* __y__ | `(string|Factor) (required)`: 结果变量. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: 一个或多个预测变量. Default: `none`.
 * __type__ | `string (required)`: 分类的 "分类 "或定量结果的 "回归"。. Default: `none`.
 * __quantitative__ | `array<string> (required)`: "数据 "中的 "定量 "变量数组。. Default: `none`.
 * __impurityMeasure__ | `string`: 不纯物测定法("gini "或 "熵"). Default: `'gini'`.

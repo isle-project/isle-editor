@@ -9,8 +9,8 @@ Regressie- en classificatiebomen.
 ## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
-* __y__ | `string (required)`: resultaatvariabele. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: een of meer voorspellende variabelen. Default: `none`.
+* __y__ | `(string|Factor) (required)`: resultaatvariabele. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: een of meer voorspellende variabelen. Default: `none`.
 * __type__ | `string (required)`: Classificatie` voor categorische of `Regressie` voor kwantitatieve resultaten. Default: `none`.
 * __quantitative__ | `array<string> (required)`: array van variabelen in `data` die `kwantitatief` zijn. Default: `none`.
 * __impurityMeasure__ | `string`: onzuiverheidsmaatregel (`gini` of `entropie`). Default: `'gini'`.

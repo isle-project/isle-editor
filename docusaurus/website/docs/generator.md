@@ -4,17 +4,15 @@ title: Generator
 sidebar_label: Generator
 ---
 
-sss
+A component for generating other components (e.g., automatically generated questions).
 
 ## Options
 
-* __data__ | `object (required)`: массивы значений для каждой переменной. Default: `none`.
-* __scope__ | `string`: область отображения карты. Default: `'world'`.
-* __locations__ | `string`: имя переменной в `данных`, содержащих имена местоположений. Default: `none`.
-* __locationmode__ | `string`: либо `ISO-3`, `USA-states`, либо `country names`, обозначающие, как кодируются значения в `locations`.. Default: `'country names'`.
-* __longitude__ | `string`: имя переменной в `данных`, содержащей значения долготы. Default: `none`.
-* __latitude__ | `string`: имя переменной в `данных`, удерживающей значения широты. Default: `none`.
-* __showLand__ | `boolean`: показывать ли географические особенности на карте. Default: `false`.
+* __autoStart__ | `boolean`: controls whether to automatically invoke the generator after mounting. Default: `true`.
+* __buttonLabel__ | `(string|node)`: label for button. Default: `'Generate'`.
+* __onGenerate__ | `function (required)`: function invoked that should return a new component to be rendered in the lesson. Default: `none`.
 
 
 ## Examples
+
+[Adaptive Review Questions](https://isle.stat.cmu.edu/adaptive-review/questions/)

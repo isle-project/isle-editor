@@ -3497,12 +3497,12 @@
 			},
 			{
 				"name": "y",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "DecisionTree-prop-y"
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "DecisionTree-prop-x"
 			},
 			{
@@ -3628,7 +3628,7 @@
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "LassoRegression-prop-x"
 			},
 			{

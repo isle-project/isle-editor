@@ -9,8 +9,8 @@ Arbres de régression et de classification.
 ## Options
 
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
-* __y__ | `string (required)`: variable de résultat. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: une ou plusieurs variables prédictives. Default: `none`.
+* __y__ | `(string|Factor) (required)`: variable de résultat. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: une ou plusieurs variables prédictives. Default: `none`.
 * __type__ | `string (required)`: Classification pour les résultats catégoriques ou Régression pour les résultats quantitatifs. Default: `none`.
 * __quantitative__ | `array<string> (required)`: tableau de variables dans les "données" qui sont "quantitatives. Default: `none`.
 * __impurityMeasure__ | `string`: mesure d'impureté ("gini" ou "entropie"). Default: `'gini'`.

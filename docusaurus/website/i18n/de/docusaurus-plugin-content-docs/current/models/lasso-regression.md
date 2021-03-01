@@ -10,7 +10,7 @@ LASSO-Regression.
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
 * __quantitative__ | `array<string> (required)`: Array von Variablen in `Daten`, die `quantitativ` sind. Default: `none`.
 * __lambda__ | `number`: Regelungsparameter. Default: `0.001`.
 * __intercept__ | `boolean`: steuert, ob ein Modell mit einem Intercept-Term angepasst werden soll. Default: `true`.
