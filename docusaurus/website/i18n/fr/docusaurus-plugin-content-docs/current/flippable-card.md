@@ -14,7 +14,7 @@ Un composant ISLE qui permet de rendre deux faces.
 * __flipSpeedFrontToBack__ | `number`: {nombre} la vitesse à laquelle la carte passe du premier plan à l'arrière-plan, en secondes. Default: `1`.
 * __oneTime__ | `boolean`: indique si le processus de retournement peut être exécuté une seule fois. Default: `false`.
 * __perspective__ | `number`: Valeur de la propriété CSS pour donner une perspective à l'élément 3d-positionné. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: la taille de la carte (définit sa "height" et sa "width"). Default: `250`.
 * __disabled__ | `boolean`: contrôle si la carte à puce est désactivée. Default: `false`.
 * __value__ | `boolean`: état de retournement de la carte (pour les composants contrôlés). Default: `none`.
 * __defaultValue__ | `boolean`: l'état initial de retournement de la carte. Default: `false`.

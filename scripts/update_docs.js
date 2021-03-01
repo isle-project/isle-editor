@@ -109,7 +109,7 @@ function generateDefaultString( defaultValue ) {
 function missingDescriptions( typeKeys, description ) {
 	const out = [];
 	for ( let i = 0; i < typeKeys.length; i++ ) {
-		if ( !description[ typeKeys[ i ] ] ) {
+		if ( !description[ typeKeys[ i ] ] && typeKeys[ i ] !== 'children' ) {
 			out.push( typeKeys[ i ] );
 		}
 	}

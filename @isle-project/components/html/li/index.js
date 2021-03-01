@@ -15,11 +15,13 @@ const li = ( props ) => {
 // PROPERTIES //
 
 li.defaultProps = {
+	value: null,
 	className: '',
 	style: {}
 };
 
 li.propTypes = {
+	value: PropTypes.number,
 	className: PropTypes.string,
 	style: PropTypes.object
 };

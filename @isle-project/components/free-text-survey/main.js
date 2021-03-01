@@ -59,7 +59,6 @@ function containsProfanity( text ) {
 * @property {(string|node)} question - the question to ask the students
 * @property {boolean} allowMultipleAnswers - controls whether one wishes to allow students to answer the survey multiple times
 * @property {boolean} anonymous - controls whether student answers are anonymously collected
-* @property {boolean} multipleAnswers - controls whether students may select more than one answer. Note that this differs from `allowMultipleAnswers`, which allows students able to submit an answer multiple times
 * @property {number} rows - number of text rows in the input field
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles

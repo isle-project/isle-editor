@@ -14,7 +14,7 @@ Um componente ISLE que permite dois renderizados de dois lados.
 * __flipSpeedFrontToBack__ | `number`: {número} a velocidade com que o cartão passa do primeiro plano para o segundo plano, em segundos. Default: `1`.
 * __oneTime__ | `boolean`: indica se o processo de inversão pode ser executado apenas uma vez. Default: `false`.
 * __perspective__ | `number`: Valor de propriedade do CSS para dar uma perspectiva ao elemento posicionado em 3d. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: tamanho do cartão (define sua "width" e "height"). Default: `250`.
 * __disabled__ | `boolean`: controla se o cartão virável está desativado. Default: `false`.
 * __value__ | `boolean`: estado de virada do cartão (para componente controlado). Default: `none`.
 * __defaultValue__ | `boolean`: estado inicial de viragem do cartão. Default: `false`.

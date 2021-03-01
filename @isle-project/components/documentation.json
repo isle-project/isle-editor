@@ -990,6 +990,7 @@
 			{
 				"name": "size",
 				"type": "number",
+				"description": "FlippableCard-prop-size",
 				"defaultValue": 250
 			},
 			{
@@ -1342,6 +1343,12 @@
 	},
 	"li": {
 		"props": [
+			{
+				"name": "value",
+				"type": "number",
+				"description": "li-prop-value",
+				"defaultValue": null
+			},
 			{
 				"name": "className",
 				"type": "string",
@@ -5940,6 +5947,12 @@
 				"defaultValue": []
 			},
 			{
+				"name": "labels",
+				"type": "array",
+				"description": "RangeQuestion-prop-labels",
+				"defaultValue": null
+			},
+			{
 				"name": "feedback",
 				"type": "boolean",
 				"description": "RangeQuestion-prop-feedback",
@@ -7354,6 +7367,7 @@
 			{
 				"name": "onMove",
 				"type": "function",
+				"description": "StickyNote-prop-onMove",
 				"defaultValue": "function onMove() {}"
 			},
 			{

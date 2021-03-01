@@ -25,6 +25,7 @@ import { withPropCheck } from '@isle-project/utils/prop-check';
 * @property {number} perspective - CSS property value to give 3d-positioned element a perspective
 * @property {boolean} oneTime - indicates whether the flip process may be executed just once
 * @property {boolean} disabled - controls whether the flippable card is disabled
+* @property {number} size - size of the card (sets its `width` and `height`)
 * @property {Object} containerStyle - CSS style of the container
 * @property {Object} frontStyle - CSS style of the front card
 * @property {Object} backStyle - CSS style of the back card

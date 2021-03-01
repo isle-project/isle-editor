@@ -14,7 +14,7 @@ Komponent ISLE, który umożliwia renderowanie dwóch stron.
 * __flipSpeedFrontToBack__ | `number`: {number} prędkość, z jaką karta obraca się z pierwszego planu na tło, w sekundach. Default: `1`.
 * __oneTime__ | `boolean`: wskazuje, czy proces przerzucania może zostać wykonany tylko raz. Default: `false`.
 * __perspective__ | `number`: Wartość właściwości CSS, aby nadać perspektywę elementowi 3d pozycji. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: rozmiar karty (ustawia jej `width` i `height`). Default: `250`.
 * __disabled__ | `boolean`: kontroluje, czy odwracana karta jest wyłączona. Default: `false`.
 * __value__ | `boolean`: stan przerzucania karty (dla elementu kontrolowanego). Default: `none`.
 * __defaultValue__ | `boolean`: początkowy stan przerzucania karty. Default: `false`.

@@ -39,6 +39,7 @@ const debug = logger( 'isle:sticky-note' );
 * @property {Function} onResize - callback function invoked with object of new `width` and `height` when user re-sizes the note
 * @property {Function} onTitleChange - callback function invoked with new title when user changes the title
 * @property {Function} onClick - callback function invoked when the note is clicked
+* @property {Function} onMove - callback function invoked with new position (an object with `top` and `left` properties) when the card is dragged
 * @property {boolean} removable - controls whether the note is removed when clicked
 */
 class StickyNote extends Component {

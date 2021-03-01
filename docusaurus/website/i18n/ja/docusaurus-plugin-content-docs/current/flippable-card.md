@@ -14,7 +14,7 @@ sidebar_label: Flippable Card
 * __flipSpeedFrontToBack__ | `number`: 数値} カードが前景から背景に切り替わる速度を秒単位で指定します。. Default: `1`.
 * __oneTime__ | `boolean`: は、フリップ処理を一度だけ実行するかどうかを示します。. Default: `false`.
 * __perspective__ | `number`: 3D配置された要素にパースペクティブを与えるためのCSSプロパティ値. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: カードのサイズ (幅と高さを設定します). Default: `250`.
 * __disabled__ | `boolean`: フリッパブルカードを無効にするかどうかを制御します。. Default: `false`.
 * __value__ | `boolean`: カードのフリップ状態. Default: `none`.
 * __defaultValue__ | `boolean`: 初期フリップ状態. Default: `false`.

@@ -14,7 +14,7 @@ Eine ISLE-Komponente, die zwei Rendering-Seiten ermöglicht.
 * __flipSpeedFrontToBack__ | `number`: {Zahl} die Geschwindigkeit, mit der die Karte vom Vordergrund zum Hintergrund wechselt, in Sekunden. Default: `1`.
 * __oneTime__ | `boolean`: gibt an, ob der Flip-Prozess nur einmal ausgeführt werden darf. Default: `false`.
 * __perspective__ | `number`: CSS-Eigenschaftswert, um 3d-positioniertem Element eine Perspektive zu geben. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: Größe der Karte (setzt ihre `width` und `height`). Default: `250`.
 * __disabled__ | `boolean`: steuert, ob die kippbare Karte deaktiviert ist. Default: `false`.
 * __value__ | `boolean`: Flip-Status der Karte (für gesteuerte Komponente). Default: `none`.
 * __defaultValue__ | `boolean`: anfänglicher Flip-Zustand der Karte. Default: `false`.

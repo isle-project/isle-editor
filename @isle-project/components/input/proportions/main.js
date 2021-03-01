@@ -31,7 +31,6 @@ function sum( arr ) {
 * @property {number} step - the step of the arrows seen when hovering the cursor above the input box
 * @property {Array} colors - array of colors for the pie chart components. If not defined, a custom color scale will be used
 * @property {number} height - proportions input height (in px)
-* @property {number} margin - proportion input margin (in px)
 * @property {Function} onChange - callback function to be invoked when a choice is made
 */
 const ProportionInput = ( props ) => {

@@ -14,7 +14,7 @@ Un componente ISLE che permette il rendering su due lati.
 * __flipSpeedFrontToBack__ | `number`: {numero} la velocità con cui la carta passa dal primo piano allo sfondo, in pochi secondi. Default: `1`.
 * __oneTime__ | `boolean`: indica se il processo di flip può essere eseguito una sola volta. Default: `false`.
 * __perspective__ | `number`: Valore della proprietà CSS per dare una prospettiva all'elemento posizionato a 3d. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: dimensione della scheda (imposta la sua `width` e `height`). Default: `250`.
 * __disabled__ | `boolean`: controlla se la scheda flippabile è disabilitata. Default: `false`.
 * __value__ | `boolean`: stato di capovolgimento della scheda (per componente controllato). Default: `none`.
 * __defaultValue__ | `boolean`: stato iniziale di capovolgimento della scheda. Default: `false`.

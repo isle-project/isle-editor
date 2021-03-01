@@ -14,7 +14,7 @@ Een ISLE-component die het mogelijk maakt om twee kanten te renderen.
 * __flipSpeedFrontToBack__ | `number`: {nummer} de snelheid waarmee de kaart van de voorgrond naar de achtergrond draait, in seconden. Default: `1`.
 * __oneTime__ | `boolean`: geeft aan of het flippingproces slechts één keer mag worden uitgevoerd. Default: `false`.
 * __perspective__ | `number`: CSS-eigenschapswaarde om 3d-positie-element een perspectief te geven. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: grootte van de kaart (stelt de `width` en `height` in). Default: `250`.
 * __disabled__ | `boolean`: bepaalt of de uitklapbare kaart is uitgeschakeld. Default: `false`.
 * __value__ | `boolean`: flip state van de kaart (voor gecontroleerde component). Default: `none`.
 * __defaultValue__ | `boolean`: initiële flip state van de kaart. Default: `false`.

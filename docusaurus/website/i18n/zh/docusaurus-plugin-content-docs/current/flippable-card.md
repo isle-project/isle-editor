@@ -14,7 +14,7 @@ sidebar_label: Flippable Card
 * __flipSpeedFrontToBack__ | `number`: 数字}卡片从前景转到背景的速度，以秒为单位。. Default: `1`.
 * __oneTime__ | `boolean`: 表示翻转过程是否可以只执行一次。. Default: `false`.
 * __perspective__ | `number`: CSS属性值，用于赋予三维定位元素一个透视效果。. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: 卡片的大小（设置其 "width"和 "height"）。. Default: `250`.
 * __disabled__ | `boolean`: 控制是否禁用可翻转卡。. Default: `false`.
 * __value__ | `boolean`: 翻牌状态. Default: `none`.
 * __defaultValue__ | `boolean`: 翻牌状态. Default: `false`.

@@ -28,9 +28,86 @@ A range question component that asks students to supply a lower and upper end po
 
 ## Examples
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Hints', value: 'withHints' },
+        { label: 'With Style', value: 'withStyle' },
+        { label: 'With Points and Feedback', value: 'withPoints' }
+        
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <RangeQuestion
-    question="Approximately in which range lie 99% of observations drawn from a standard normal distribution?"
-    solution={[-3,3]}
+    style={{ fontSize: 17, }}
+    question="Tell me the year the Thirty Years War broke out and when it ended"
+    solution={[1618,1648]}
+    labels={['Start', 'End']}
+    min={1500}
+    max={2000}
 />
 ```
+
+</TabItem>
+
+<TabItem value="withHints">
+
+```jsx live
+<RangeQuestion
+    question="Tell me the year the Thirty Years War broke out and when it ended"
+    solution={[1618,1648]}
+    labels={['Start', 'End']}
+    min={1500}
+    max={2000}
+    hints={['all this happened in the 17th century', 'it ended with the Peace of Westphalia in 1648']}
+/>
+```
+
+</TabItem>
+
+<TabItem value="withStyle">
+
+```jsx live
+<RangeQuestion
+    style={{ fontFamily: 'Georgia', boxShadow: '0 0  10px darkblue'}}
+    question="Tell me the year the Thirty Years War broke out and when it ended"
+    solution={[1618,1648]}
+    labels={['Start', 'End']}
+    min={1500}
+    max={2000}
+/>
+```
+
+</TabItem>
+
+<TabItem value="withPoints">
+
+```jsx live
+<RangeQuestion
+    question="Tell me the year the Thirty Years War broke out and when it ended"
+    solution={[1618,1648]}
+    labels={['Start', 'End']}
+    min={1500}
+    max={2000}
+    hints={['all this happened in the 17th century', 'it ended with the Peace of Westphalia in 1648']}
+    points={20}
+    onSubmit={(res) => {
+     if (res === true) {
+      alert('Great, you have received 20 points');
+     }
+     else alert('sorry, this answer was wrong');
+    }}
+/>
+```
+
+</TabItem>
+
+</Tabs>

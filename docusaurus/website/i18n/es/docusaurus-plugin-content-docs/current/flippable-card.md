@@ -14,7 +14,7 @@ Un componente de la ISLE que permite que dos rendericen dos caras.
 * __flipSpeedFrontToBack__ | `number`: La velocidad con la que la tarjeta pasa del primer plano al fondo, en segundos.. Default: `1`.
 * __oneTime__ | `boolean`: indica si el proceso de volteo puede ser ejecutado sólo una vez. Default: `false`.
 * __perspective__ | `number`: Valor de la propiedad CSS para dar una perspectiva al elemento posicionado en 3D. Default: `1000`.
-* __size__ | `number`: undefined. Default: `250`.
+* __size__ | `number`: tamaño de la tarjeta (establece su "width" y "height"). Default: `250`.
 * __disabled__ | `boolean`: Controla si la tarjeta desplegable está desactivada. Default: `false`.
 * __value__ | `boolean`: estado de giro de la tarjeta (para el componente controlado). Default: `none`.
 * __defaultValue__ | `boolean`: estado inicial de giro de la tarjeta. Default: `false`.

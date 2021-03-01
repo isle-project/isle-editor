@@ -30,11 +30,109 @@ sidebar_label: Select Question Matrix
 
 ## 例子
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Hints', value: 'withHints' },
+        { label: 'With Style', value: 'withStyle' },
+        { label: 'Feedback Messages', value: 'feedbackMessages' }
+        
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <SelectQuestionMatrix
-    rows={[ 'First Row' ]} 
-    cols={[ 'First Column', 'Second Column' ]} 
-    options={{ '0:0': [ 'Incorrect', 'Correct' ], '0:1':  [ 'Incorrect', 'Incorrect', 'Correct' ] }} 
-    solution={{ '0:0': 1, '0:1': 2 }}
+    question="Test your art history knowledge"
+    rows={[ 'Composer', 'Author' ]} 
+    cols={[ '18th Century', '19th Century' ]} 
+    options={{ 
+        '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
+        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
+        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+    }} 
+    solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
 ```
+</TabItem>
+
+<TabItem value="withHints">
+
+```jsx live
+<SelectQuestionMatrix
+  question="Test your art history knowledge"
+    rows={[ 'Composer', 'Author' ]} 
+    cols={[ '18th Century', '19th Century' ]} 
+    options={{ 
+        '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
+        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
+        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+    }} 
+    solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
+    hints={[
+        'His father Johann Sebastian was a famous composer too',
+        'He was famous for his FAUST - so definitely an author',
+        'Poussin was an 18th century painter',
+        'Courbet was a realistic painter'
+    ]}
+/>
+```
+</TabItem>
+
+<TabItem value="withStyle">
+
+```jsx live
+<SelectQuestionMatrix
+    style={{ 
+        fontFamily: 'Georgia',
+        fontSize: 22, 
+        textShadow: '0 0  10px white',
+        background: 'rgb(251,213,112)',
+        background: 'radial-gradient(circle, yellow 0%, orange 30%, green 100%)'
+    }}
+    question="Test your art history knowledge"
+    rows={[ 'Composer', 'Author' ]} 
+    cols={[ '18th Century', '19th Century' ]} 
+    options={{ 
+        '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
+        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
+        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
+    solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
+/>
+```
+</TabItem>
+
+
+<TabItem value="feedbackMessages">
+
+```jsx live
+<SelectQuestionMatrix
+    question="Test your art history knowledge"
+    failureMsg="Sorry, that was wrong." 
+    successMsg ="Wow! Congratulations, you are a specialist!"
+    rows={[ 'Composer', 'Author' ]} 
+    cols={[ '18th Century', '19th Century' ]} 
+    options={{ 
+        '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
+        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
+        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+    }} 
+    solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
+/>
+```
+
+</TabItem>
+
+</Tabs>
+

@@ -45,6 +45,7 @@ const uid = generateUID( 'range-question' );
 * @property {Array<number>} solution - two-element array containing the endpoints of the correct range
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
+* @property {Array} labels - two-element array of custom labels other than "Lower" and "Upper"
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {number} digits - number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality
@@ -62,7 +63,7 @@ const uid = generateUID( 'range-question' );
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
 	const { min, max, points, question, solution, until, feedback, style,
-		provideFeedback, allowMultipleAnswers, hints, chat } = props;
+		provideFeedback, allowMultipleAnswers, hints, chat, labels } = props;
 	const session = useContext( SessionContext );
 
 	const [ lower, setLower ] = useState( min );
@@ -109,7 +110,7 @@ const RangeQuestion = ( props ) => {
 				correct = ( roundn( lowerVal, -digits ) === roundn( solution[0], -digits ) &&
 					(roundn(upperVal, -digits) === roundn(solution[1], -digits)) );
 			}
-			props.onSubmit( [ lowerVal, upperVal ], correct );
+			props.onSubmit( correct, [ lowerVal, upperVal ] );
 			if ( provideFeedback ) {
 				session.addNotification({
 					title: t('answer-submitted'),
@@ -126,7 +127,7 @@ const RangeQuestion = ( props ) => {
 				});
 			}
 		} else {
-			props.onSubmit( [ lowerVal, upperVal ] );
+			props.onSubmit( null, [ lowerVal, upperVal ] );
 			session.addNotification({
 				title: submitted ? t('answer-resubmitted') : t('answer-submitted'),
 				message: submitted ?
@@ -186,7 +187,7 @@ const RangeQuestion = ( props ) => {
 				<div className="range-question-input-wrapper" >
 					<NumberInput
 						step="any"
-						legend={t('lower')}
+						legend={labels ? labels[ 0 ] : t('lower')}
 						onChange={handleChangeLower}
 						defaultValue={lower}
 						disabled={submitted && !allowMultipleAnswers}
@@ -200,7 +201,7 @@ const RangeQuestion = ( props ) => {
 					/>
 					<NumberInput
 						step="any"
-						legend={t('upper')}
+						legend={labels ? labels[ 1 ] : t('upper')}
 						onChange={handleChangeUpper}
 						defaultValue={upper}
 						disabled={submitted && !allowMultipleAnswers}
@@ -260,6 +261,7 @@ RangeQuestion.defaultProps = {
 	solution: null,
 	hints: [],
 	hintPlacement: 'top',
+	labels: null,
 	feedback: true,
 	chat: false,
 	digits: 3,
@@ -285,6 +287,7 @@ RangeQuestion.propTypes = {
 	hints: PropTypes.arrayOf(
 		PropTypes.oneOfType([ PropTypes.string, PropTypes.node ])
 	),
+	labels: PropTypes.array,
 	feedback: PropTypes.bool,
 	chat: PropTypes.bool,
 	digits: PropTypes.number,
