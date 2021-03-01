@@ -145,6 +145,10 @@ for ( let i = 0; i < files.length; i++ ) {
 	};
 	let fpath = path.join( './@isle-project/components', component, 'main.js' );
 	const mdpath = path.join( './docusaurus/website/docs', component+'.md' );
+	if ( tagName === void 0 ) {
+		debug( 'Missing tag name for: '+fpath );
+		continue;
+	}
 
 	let file;
 	try {
@@ -201,10 +205,6 @@ for ( let i = 0; i < files.length; i++ ) {
 				console.log( 'Encountered an illegal key: '+propKey );
 			}
 		}
-	}
-	if ( tagName === void 0 ) {
-		debug( 'Missing tag name for: '+fpath );
-		continue;
 	}
 	DOCS[ tagName ].description = `${tagName}-description`;
 	TRANSLATIONS[ `${tagName}-description` ] = componentDescription;
