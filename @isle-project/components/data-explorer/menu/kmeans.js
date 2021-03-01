@@ -18,7 +18,7 @@ import QuestionButton from '../question_button.js';
 // MAIN //
 
 const KMeansMenu = ( props ) => {
-	const { quantitative, originalQuantitative, t } = props;
+	const { quantitative, t } = props;
 	const compute = ( variables, K, attach, initialization ) => {
 		const output = <KMeans
 			data={props.data}
@@ -55,7 +55,6 @@ const KMeansMenu = ( props ) => {
 		>
 			<SelectInput
 				legend={t('variables')} multi
-				defaultValue={originalQuantitative}
 				options={quantitative}
 				closeMenuOnSelect={false}
 			/>
@@ -87,7 +86,6 @@ KMeansMenu.defaultProps = {
 KMeansMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
-	originalQuantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onGenerate: PropTypes.func.isRequired,

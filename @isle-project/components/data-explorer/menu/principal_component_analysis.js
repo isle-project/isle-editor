@@ -16,7 +16,7 @@ import QuestionButton from './../question_button.js';
 // MAIN //
 
 const PrincipalComponentAnalysisMenu = ( props ) => {
-	const { quantitative, originalQuantitative, t } = props;
+	const { quantitative, t } = props;
 	const compute = ( variables, center, scale, noComponents ) => {
 		const output = <PrincipalComponentAnalysis
 			variables={variables}
@@ -58,7 +58,6 @@ const PrincipalComponentAnalysisMenu = ( props ) => {
 		>
 			<SelectInput
 				legend={t('variables')} multi
-				defaultValue={originalQuantitative}
 				options={quantitative}
 				closeMenuOnSelect={false}
 			/>
@@ -88,7 +87,6 @@ PrincipalComponentAnalysisMenu.defaultProps = {
 
 PrincipalComponentAnalysisMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
-	originalQuantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onGenerate: PropTypes.func.isRequired,

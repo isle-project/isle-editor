@@ -26,7 +26,7 @@ const LINKAGE = [ 'complete', 'single' ];
 // MAIN //
 
 const HierarchicalClusteringMenu = ( props ) => {
-	const { quantitative, originalQuantitative, t } = props;
+	const { quantitative, t } = props;
 	const compute = ( variables, attach, K, linkage, distance ) => {
 		const output = <HierarchicalClustering
 			variables={variables} K={K} linkage={linkage} distance={distance}
@@ -62,7 +62,6 @@ const HierarchicalClusteringMenu = ( props ) => {
 		>
 			<SelectInput
 				legend={t('variables')} multi
-				defaultValue={originalQuantitative}
 				options={quantitative}
 			/>
 			<Row>
@@ -111,7 +110,6 @@ HierarchicalClusteringMenu.defaultProps = {
 HierarchicalClusteringMenu.propTypes = {
 	categorical: PropTypes.array.isRequired,
 	quantitative: PropTypes.array.isRequired,
-	originalQuantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
 	onGenerate: PropTypes.func.isRequired,
