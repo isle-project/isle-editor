@@ -8,6 +8,7 @@ import objectKeys from '@stdlib/utils/keys';
 import Plotly from '@isle-project/components/plotly';
 import { i18n } from '@isle-project/locales';
 import { CAT20 } from '@isle-project/constants/colors';
+import { Factor } from '@isle-project/utils/factor-variable';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
@@ -126,7 +127,10 @@ ScatterPlotMatrix.defaultProps = {
 ScatterPlotMatrix.propTypes = {
 	data: PropTypes.object.isRequired,
 	variables: PropTypes.array.isRequired,
-	color: PropTypes.string
+	color: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	])
 };
 
 
@@ -137,6 +141,6 @@ ScatterPlotMatrix.propTypes = {
 *
 * @property {Object} data - object of value arrays for each variable
 * @property {Array<string>} variables - array of variables to display in matrix
-* @property {string} color - categorical variable to map to color of points
+* @property {(string|Factor)} color - categorical variable to map to color of points
 */
 export default withPropCheck( ScatterPlotMatrix );

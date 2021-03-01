@@ -27,7 +27,7 @@ coluna, e a instância da tabela). Default: `none`.
 * __onClickRemove__ | `function`: função que especifica uma ação a ser tomada para linhas removidas dos dados (padrão para uma função vazia). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: função invocada com o conjunto de dados atualizados depois que o valor de uma célula foi alterado pelo usuário (só se aplica quando a tabela é "editável"). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: função invocada quando o usuário tiver completado o tutorial da tabela de dados. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: conjunto de filtros. Default: `[]`.
 * __onFilteredChange__ | `function`: função invocada com os filtros atuais depois que os dados foram filtrados pelo usuário. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indica se devem ser exibidas caixas de seleção para as linhas a serem removidas. Default: `false`.
 * __showIdColumn__ | `boolean`: controla se deve mostrar uma coluna de identificação. Default: `true`.

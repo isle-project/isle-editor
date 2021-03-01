@@ -9,8 +9,8 @@ sidebar_label: Naive Bayes
 ## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
-* __y__ | `string (required)`: アウトカム変数. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: 一つ以上の予測変数. Default: `none`.
+* __y__ | `(string|Factor) (required)`: アウトカム変数. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: 一つ以上の予測変数. Default: `none`.
 * __quantitative__ | `array<string> (required)`: 定量的`data`の変数の配列. Default: `none`.
 * __omitMissing__ | `boolean`: 欠損値を省略するかどうかを制御します。. Default: `false`.
 * __onPredict__ | `function`: モデルフィッティング後の予測値と残差で呼び出されるコールバック. Default: `none`.

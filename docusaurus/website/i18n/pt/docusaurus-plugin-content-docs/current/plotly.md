@@ -13,7 +13,7 @@ Visualização parcelada.
 * __editable__ | `boolean`: controla se as etiquetas da trama criada são editáveis. Default: `false`.
 * __id__ | `string`: identificador do componente. Default: `none`.
 * __layout__ | `object`: Objeto de layout Plotly. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Opções de configuração em lote (ver: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: controla se devem ser exibidos botões para mudar a legenda. Default: `true`.
 * __meta__ | `object`: meta-informação da trama. Default: `none`.
 * __revision__ | `number`: quando fornecido, faz com que a trama seja atualizada quando o valor de revisão é incrementado. Default: `none`.

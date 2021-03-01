@@ -27,7 +27,7 @@ kolom, en de tabel instantie). Default: `none`.
 * __onClickRemove__ | `function`: functie die een actie specificeert voor rijen die uit de gegevens worden verwijderd (standaard naar een lege functie). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: functie aangeroepen met de bijgewerkte dataset nadat de waarde van een cel door de gebruiker is gewijzigd (geldt alleen als de tabel 'bewerkbaar' is). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: functie die wordt aangeroepen wanneer de gebruiker de gegevenstabelinstructie heeft voltooid. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: reeks filters. Default: `[]`.
 * __onFilteredChange__ | `function`: functie die wordt aangeroepen met de huidige filters nadat de gegevens door de gebruiker zijn gefilterd. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: geeft aan of de selectievakjes voor de te verwijderen rijen moeten worden weergegeven. Default: `false`.
 * __showIdColumn__ | `boolean`: controleert of er een ID-kolom wordt getoond. Default: `true`.

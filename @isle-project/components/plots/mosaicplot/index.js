@@ -109,7 +109,7 @@ MosaicPlot.propTypes = {
 * A mosaic plot.
 *
 * @property {Object} data - object of value arrays for each variable
-* @property {Array<string>} variables - array of variables to display
+* @property {Array<(string|Factor)>} variables - array of variables to display
 * @property {boolean} showColors - controls whether to display colors showing significance
 * @property {string} axisLabels - positioning of axis labels (either, `parallel to the axis`, `horizontal`, `perpendicular to the axis`, or `vertical`)
 */

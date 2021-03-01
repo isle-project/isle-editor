@@ -13,7 +13,7 @@ Visualizzazione della trama.
 * __editable__ | `boolean`: controlla se le etichette della trama creata sono modificabili. Default: `false`.
 * __id__ | `string`: identificatore di componente. Default: `none`.
 * __layout__ | `object`: Oggetto del layout del lotto. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Opzioni di configurazione di Plotly (vedi: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: controlla se visualizzare i pulsanti per la modifica della legenda. Default: `true`.
 * __meta__ | `object`: trama meta-informazioni. Default: `none`.
 * __revision__ | `number`: quando fornito, fa sì che il grafico si aggiorni quando il valore di revisione viene incrementato. Default: `none`.

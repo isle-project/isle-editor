@@ -13,7 +13,7 @@ Visualisation graphique.
 * __editable__ | `boolean`: contrôle si les étiquettes de la parcelle créée sont modifiables. Default: `false`.
 * __id__ | `string`: identifiant du composant. Default: `none`.
 * __layout__ | `object`: Objet de tracé. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Options de configuration graphique (voir : https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: contrôle de l'affichage des boutons de modification de la légende. Default: `true`.
 * __meta__ | `object`: méta-information sur les parcelles. Default: `none`.
 * __revision__ | `number`: lorsqu'il est fourni, entraîne la mise à jour de la parcelle lorsque la valeur de révision est incrémentée. Default: `none`.

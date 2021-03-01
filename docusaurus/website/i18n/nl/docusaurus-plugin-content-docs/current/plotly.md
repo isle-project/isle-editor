@@ -13,7 +13,7 @@ Korte visualisatie.
 * __editable__ | `boolean`: controleert of de labels van het aangemaakte perceel bewerkbaar zijn. Default: `false`.
 * __id__ | `string`: componentenidentificatiecode. Default: `none`.
 * __layout__ | `object`: Plattelandshuisvestingsobject. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Plotly configuratieopties (zie: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: bepaalt of de knoppen voor het wijzigen van de legenda moeten worden weergegeven. Default: `true`.
 * __meta__ | `object`: plotmeta-informatie. Default: `none`.
 * __revision__ | `number`: wanneer deze wordt verstrekt, zorgt ervoor dat het perceel wordt bijgewerkt wanneer de revisiewaarde wordt verhoogd.. Default: `none`.

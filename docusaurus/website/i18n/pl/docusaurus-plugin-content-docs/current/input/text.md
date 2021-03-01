@@ -19,7 +19,7 @@ Komponent do wprowadzania tekstu. Może być używany jako część deski rozdzi
 * __onKeyPress__ | `function`: funkcja wywołania zwrotnego, którą należy wywołać po wprowadzeniu dowolnego klawisza. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: funkcja wywołania zwrotnego, która jest wywoływana po zwolnieniu klawisza. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: łańcuch wskazujący wartość, która ma być wyświetlana przed dokonaniem wstępnego wyboru. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: liczba określająca szerokość wejścia w pikselach. Default: `80`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 

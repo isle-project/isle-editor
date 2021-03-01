@@ -19,7 +19,7 @@ Un élément de saisie de texte. Peut être utilisé dans le cadre d'un tableau 
 * __onKeyPress__ | `function`: fonction de rappel à invoquer lors de la saisie de toute clé. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: fonction de rappel à invoquer lorsque la clé est libérée. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: chaîne indiquant la valeur à afficher avant un premier choix. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: numéro indiquant la largeur de l'entrée en pixels. Default: `80`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 

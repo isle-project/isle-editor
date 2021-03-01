@@ -19,7 +19,7 @@ Een tekstinvoercomponent. Kan gebruikt worden als onderdeel van een ISLE-dashboa
 * __onKeyPress__ | `function`: terugbelfunctie die moet worden aangeroepen bij het invoeren van een willekeurige toets. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: terugbelfunctie die moet worden aangeroepen wanneer de toets wordt losgelaten. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: tekenreeks die de waarde aangeeft die moet worden weergegeven voordat een eerste keuze wordt gemaakt. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: getal dat de breedte van de invoer aangeeft in pixels. Default: `80`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 

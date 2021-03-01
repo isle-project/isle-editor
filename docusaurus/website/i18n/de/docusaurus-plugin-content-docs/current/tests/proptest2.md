@@ -9,9 +9,9 @@ Zwei-Stichproben-Verhältnis-Test.
 ## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
-* __var1__ | `string (required)`: Name der ersten Variablen. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: Name der ersten Variablen. Default: `none`.
 * __success__ | `string (required)`: Erfolgskategorie von `var1`. Default: `none`.
-* __var2__ | `string`: Name der zweiten Variablen (`var2` oder `group` muss angegeben werden). Default: `none`.
+* __var2__ | `(string|Factor)`: Name der zweiten Variablen (`var2` oder `group` muss angegeben werden). Default: `none`.
 * __group__ | `(string|Factor)`: Name der Gruppierungsvariable (`var2` oder `group` müssen angegeben werden). Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
 * __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.

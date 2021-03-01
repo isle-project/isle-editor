@@ -10,7 +10,7 @@ Une matrice de nuage de points.
 
 * __data__ | `object (required)`: des tableaux d'objets de valeur pour chaque variable. Default: `none`.
 * __variables__ | `array (required)`: tableau de variables à afficher dans une matrice. Default: `none`.
-* __color__ | `string`: variable catégorielle à cartographier à la couleur des points. Default: `none`.
+* __color__ | `(string|Factor)`: variable catégorielle à cartographier à la couleur des points. Default: `none`.
 
 
 ## Exemples

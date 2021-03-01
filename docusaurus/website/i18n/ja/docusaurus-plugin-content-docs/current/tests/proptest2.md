@@ -9,9 +9,9 @@ sidebar_label: Two-Sample Proportion Test
 ## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
-* __var1__ | `string (required)`: 先頭変数名. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: 先頭変数名. Default: `none`.
 * __success__ | `string (required)`: var1`の成功カテゴリ. Default: `none`.
-* __var2__ | `string`: 2番目の変数の名前 (`var2` または `group` を指定する必要があります). Default: `none`.
+* __var2__ | `(string|Factor)`: 2番目の変数の名前 (`var2` または `group` を指定する必要があります). Default: `none`.
 * __group__ | `(string|Factor)`: グループ化変数の名前 (`var2` または `group` を指定する必要がある). Default: `none`.
 * __alpha__ | `number`: 有意水準. Default: `0.05`.
 * __direction__ | `string`: テスト方向. Default: `'two-sided'`.

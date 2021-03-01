@@ -10,7 +10,7 @@ Una matrice a dispersione.
 
 * __data__ | `object (required)`: oggetto di array di valori per ogni variabile. Default: `none`.
 * __variables__ | `array (required)`: array di variabili da visualizzare nella matrice. Default: `none`.
-* __color__ | `string`: variabile categoriale da mappare a colore dei punti. Default: `none`.
+* __color__ | `(string|Factor)`: variabile categoriale da mappare a colore dei punti. Default: `none`.
 
 
 ## Esempi

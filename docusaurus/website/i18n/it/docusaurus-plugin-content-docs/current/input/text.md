@@ -19,7 +19,7 @@ Un componente per l'inserimento di testo. Può essere utilizzato come parte di u
 * __onKeyPress__ | `function`: funzione di richiamo da richiamare quando viene inserito un tasto qualsiasi. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: funzione di richiamo da richiamare al rilascio del tasto. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: stringa che indica il valore da visualizzare prima di una scelta iniziale. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: numero che indica la larghezza dell'input in pixel. Default: `80`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 
 

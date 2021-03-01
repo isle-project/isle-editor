@@ -9,8 +9,8 @@ Naive Bayes assuming that the predictors given the class membership follow a nor
 ## Options
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
-* __y__ | `string (required)`: outcome variable. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: one or more predictor variables. Default: `none`.
+* __y__ | `(string|Factor) (required)`: outcome variable. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: one or more predictor variables. Default: `none`.
 * __quantitative__ | `array<string> (required)`: array of variables in `data` that are `quantitative`. Default: `none`.
 * __omitMissing__ | `boolean`: controls whether to omit missing values. Default: `false`.
 * __onPredict__ | `function`: callback invoked with predictions and residuals after model fitting. Default: `none`.

@@ -9,9 +9,9 @@ Test na dwie próbki.
 ## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
-* __var1__ | `string (required)`: nazwa pierwszej zmiennej. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: nazwa pierwszej zmiennej. Default: `none`.
 * __success__ | `string (required)`: kategoria sukcesu `var1`. Default: `none`.
-* __var2__ | `string`: nazwa drugiej zmiennej (należy podać `var2` lub `grupę`). Default: `none`.
+* __var2__ | `(string|Factor)`: nazwa drugiej zmiennej (należy podać `var2` lub `grupę`). Default: `none`.
 * __group__ | `(string|Factor)`: nazwa zmiennej grupowania (należy podać `var2` lub `grupę`). Default: `none`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
 * __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.

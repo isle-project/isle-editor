@@ -9,9 +9,9 @@ Prueba de proporción de dos muestras.
 ## Opciones
 
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
-* __var1__ | `string (required)`: nombre de la primera variable. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: nombre de la primera variable. Default: `none`.
 * __success__ | `string (required)`: categoría de éxito de "VAR1. Default: `none`.
-* __var2__ | `string`: nombre de la segunda variable (se debe suministrar "var2" o "grupo"). Default: `none`.
+* __var2__ | `(string|Factor)`: nombre de la segunda variable (se debe suministrar "var2" o "grupo"). Default: `none`.
 * __group__ | `(string|Factor)`: nombre de la variable de agrupación (se debe suministrar "var2" o "grupo"). Default: `none`.
 * __alpha__ | `number`: nivel de importancia. Default: `0.05`.
 * __direction__ | `string`: dirección de prueba (ya sea "menos", "más grande" o "de dos lados"). Default: `'two-sided'`.

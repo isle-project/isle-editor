@@ -12,6 +12,7 @@ import replace from '@stdlib/string/replace';
 import mean from '@isle-project/utils/statistic/mean';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -78,7 +79,10 @@ PropTest.defaultProps = {
 
 PropTest.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired,
+	variable: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	success: PropTypes.string.isRequired,
 	alpha: PropTypes.number,
 	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
@@ -93,7 +97,7 @@ PropTest.propTypes = {
 * One-sample proportion test.
 *
 * @property {Object} data - object of value arrays
-* @property {string} variable - name of variable
+* @property {(string|Factor)} variable - name of variable
 * @property {*} success - success category of `variable`
 * @property {number} alpha - significance level
 * @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)

@@ -24,6 +24,7 @@ import extractCategoriesFromValues from '@isle-project/utils/extract-categories-
 import subtract from '@isle-project/utils/subtract';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 import irls from './logistic_regression.js';
 
 
@@ -207,9 +208,9 @@ const fitModel = ({ y, success, x, intercept, omitMissing, data, quantitative })
 * Logistic regression.
 *
 * @property {Object} data - object of value arrays
-* @property {string} y - outcome variable
+* @property {(string|Factor)} y - outcome variable
 * @property {*} success - success category of `y`
-* @property {Array<string>} x - one or more predictor variables
+* @property {(string|Factor|Array<(string|Factor)>)} x - one or more predictor variables
 * @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
 * @property {boolean} omitMissing - controls whether to omit missing values
 * @property {boolean} intercept - controls whether to fit a model with an intercept term
@@ -312,11 +313,15 @@ LogisticRegression.defaultProps = {
 
 LogisticRegression.propTypes = {
 	data: PropTypes.object.isRequired,
-	y: PropTypes.string.isRequired,
+	y: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	success: PropTypes.any.isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	omitMissing: PropTypes.bool,

@@ -169,6 +169,7 @@
         "Programmatic": [
           "dashboard",
           "expire",
+          "generator",
           "language",
           "revealer",
           "runner",

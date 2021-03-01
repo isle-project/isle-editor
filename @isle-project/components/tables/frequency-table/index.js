@@ -277,7 +277,7 @@ FrequencyTable.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of categorical variable to be displayed
-* @property {string} group - name of grouping variable
+* @property {(string|Factor)} group - name of grouping variable
 * @property {boolean} calculateCounts - controls whether to display absolute counts
 * @property {boolean} calculateRelative - controls whether to display relative frequencies
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table

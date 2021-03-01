@@ -13,7 +13,7 @@ Visualización gráfica.
 * __editable__ | `boolean`: controla si las etiquetas de la trama creada son editables. Default: `false`.
 * __id__ | `string`: identificador de componentes. Default: `none`.
 * __layout__ | `object`: Objeto de trazado. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Opciones de configuración de Plotly (véase: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: controla si se muestran los botones para cambiar la leyenda. Default: `true`.
 * __meta__ | `object`: meta-información de la trama. Default: `none`.
 * __revision__ | `number`: cuando se proporciona, hace que el gráfico se actualice cuando el valor de revisión se incrementa. Default: `none`.

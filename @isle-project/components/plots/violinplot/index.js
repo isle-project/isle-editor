@@ -103,7 +103,7 @@ ViolinPlot.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
-* @property {string} group - grouping variable
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} showBox - controls whether to display a box plot inside
 */
 export default withPropCheck( ViolinPlot );

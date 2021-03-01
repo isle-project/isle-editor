@@ -170,7 +170,7 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 *
 * @property {Object} data - object of value arrays
 * @property {(string|Array<string>)} variable - variable(s) to display
-* @property {(string|Array<string>)} group - one or two grouping variables
+* @property {(string|Factor|Array<(string|Factor)>)} group - one or two grouping variables
 * @property {string} orientation - `vertical` or `horizontal` orientation
 * @property {boolean} overlayPoints - controls whether to overlay points
 */

@@ -27,7 +27,7 @@ Spalte, und die Tabelleninstanz). Default: `none`.
 * __onClickRemove__ | `function`: Funktion, die eine Aktion für Zeilen angibt, die aus den Daten entfernt werden (Standardwert ist eine leere Funktion). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: Funktion, die mit dem aktualisierten Datensatz aufgerufen wird, nachdem der Wert einer Zelle durch den Benutzer geändert wurde (gilt nur, wenn die Tabelle `editierbar` ist). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: Funktion, die aufgerufen wird, wenn der Benutzer das Datentabellen-Tutorial abgeschlossen hat. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: Reihe von Filtern. Default: `[]`.
 * __onFilteredChange__ | `function`: Funktion, die mit den aktuellen Filtern aufgerufen wird, nachdem die Daten vom Benutzer gefiltert wurden. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: gibt an, ob Kontrollkästchen für zu entfernende Zeilen angezeigt werden sollen. Default: `false`.
 * __showIdColumn__ | `boolean`: steuert, ob eine ID-Spalte angezeigt werden soll. Default: `true`.

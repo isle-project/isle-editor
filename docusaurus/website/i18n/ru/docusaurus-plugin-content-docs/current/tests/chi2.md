@@ -9,8 +9,8 @@ sidebar_label: Chi-square Independence Test
 ## Варианты
 
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
-* __var1__ | `string (required)`: имя первой переменной. Default: `none`.
-* __var2__ | `string (required)`: имя второй переменной. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: имя первой переменной. Default: `none`.
+* __var2__ | `(string|Factor) (required)`: имя второй переменной. Default: `none`.
 
 
 ## Примеры

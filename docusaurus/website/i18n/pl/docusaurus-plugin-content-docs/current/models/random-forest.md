@@ -9,8 +9,8 @@ Drzewa regresji i klasyfikacji.
 ## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
-* __y__ | `string (required)`: zmienna wynikowa. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: jedna lub więcej zmiennych predykcyjnych. Default: `none`.
+* __y__ | `(string|Factor) (required)`: zmienna wynikowa. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: jedna lub więcej zmiennych predykcyjnych. Default: `none`.
 * __type__ | `string`: obecnie obsługiwana jest tylko "Klasyfikacja" dla odpowiedzi kategorycznych. Default: `'Classification'`.
 * __quantitative__ | `array<string> (required)`: szereg zmiennych w `danych`, które są `ilościowe`. Default: `none`.
 * __nTrees__ | `number`: liczba drzew. Default: `50`.

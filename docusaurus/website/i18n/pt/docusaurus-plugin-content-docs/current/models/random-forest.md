@@ -9,8 +9,8 @@ sidebar_label: Random Forest
 ## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
-* __y__ | `string (required)`: variável de resultado. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: uma ou mais variáveis preditoras. Default: `none`.
+* __y__ | `(string|Factor) (required)`: variável de resultado. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: uma ou mais variáveis preditoras. Default: `none`.
 * __type__ | `string`: atualmente somente a "Classificação" para respostas categóricas é suportada. Default: `'Classification'`.
 * __quantitative__ | `array<string> (required)`: conjunto de variáveis em "dados" que são "quantitativas".. Default: `none`.
 * __nTrees__ | `number`: número de árvores. Default: `50`.

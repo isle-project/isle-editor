@@ -68,7 +68,7 @@ Anova.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - name of variable to be displayed
-* @property {string} group - name of grouping variable
+* @property {(string|Factor)} group - name of grouping variable
 * @property {boolean} showDecision - controls whether to display the test decision
 */
 export default withPropCheck( Anova );

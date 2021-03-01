@@ -9,7 +9,7 @@ Eén-steekproef voor de verhoudingen.
 ## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
-* __variable__ | `string (required)`: naam van variabele. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: naam van variabele. Default: `none`.
 * __success__ | `string (required)`: succescategorie van `variabele`. Default: `none`.
 * __alpha__ | `number`: significantieniveau. Default: `0.05`.
 * __direction__ | `string`: testrichting (ofwel `minder`, `groter`, of `tweezijdig`). Default: `'two-sided'`.

@@ -9,9 +9,9 @@ Multiple lineare Regression.
 ## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
-* __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
+* __y__ | `(string|Factor) (required)`: Ergebnisvariable. Default: `none`.
 * __success__ | `any (required)`: Erfolgskategorie von `y`. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
 * __quantitative__ | `array<string> (required)`: Array von Variablen in `Daten`, die `quantitativ` sind. Default: `none`.
 * __omitMissing__ | `boolean`: steuert, ob fehlende Werte ausgelassen werden sollen. Default: `false`.
 * __intercept__ | `boolean`: steuert, ob ein Modell mit einem Intercept-Term angepasst werden soll. Default: `true`.

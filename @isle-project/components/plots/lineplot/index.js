@@ -118,7 +118,7 @@ LinePlot.propTypes = {
 * @property {Object} data - object of value arrays for each variable
 * @property {string} x - x-axis variable
 * @property {string} y - y-axis variable
-* @property {string} group - grouping variable
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} showPoints - controls whether to overlay points at each observation
 */
 export default withPropCheck( LinePlot );

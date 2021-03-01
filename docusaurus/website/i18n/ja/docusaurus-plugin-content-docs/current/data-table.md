@@ -27,7 +27,7 @@ sidebar_label: Data Table
 * __onClickRemove__ | `function`: データから削除された行に対するアクションを指定する関数 (デフォルトは空の関数). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: 関数は、ユーザによってセルの値が変更された後、更新されたデータセットで呼び出されます (テーブルが `編集可能` の場合にのみ適用されます)。. Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: データテーブルのチュートリアルが完了したときに呼び出される関数. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: フィルタの配列. Default: `[]`.
 * __onFilteredChange__ | `function`: 関数. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: は、削除する行のチェックボックスを表示するかどうかを示します。. Default: `false`.
 * __showIdColumn__ | `boolean`: IDカラムを表示するかどうかを制御します。. Default: `true`.

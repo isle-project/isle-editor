@@ -279,8 +279,8 @@ Histogram.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
-* @property {string} group - grouping variable
-* @property {string} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
+* @property {(string|Factor)} group - grouping variable
+* @property {(string|Factor)} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
 * @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
 * @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
 * @property {number} bandwidthAdjust - manual adjustment of bandwidth of kernel density (applicable only when `densityType` is set to `Data-driven`)

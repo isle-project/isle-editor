@@ -11,6 +11,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import { RandomForestClassifier } from '@isle-project/components/models/decision-tree/tree.js';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -68,8 +69,8 @@ const fitModel = ({ y, x, type, nTrees, nTry, impurityMeasure, data, quantitativ
 * @property {Object} data - object of value arrays
 * @property {string} type - currently only `Classification` for categorical responses is supported
 * @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
-* @property {string} y - outcome variable
-* @property {Array<string>} x - one or more predictor variables
+* @property {(string|Factor)} y - outcome variable
+* @property {(string|Factor|Array<(string|Factor)>)} x - one or more predictor variables
 * @property {string} impurityMeasure - impurity measure (`gini` or `entropy`)
 * @property {number} nTrees - number of trees
 * @property {number} nTry - number of predictors to check at each split
@@ -163,10 +164,14 @@ RandomForest.defaultProps = {
 
 RandomForest.propTypes = {
 	data: PropTypes.object.isRequired,
-	y: PropTypes.string.isRequired,
+	y: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	type: PropTypes.oneOf([ 'Classification', 'Regression' ]),
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,

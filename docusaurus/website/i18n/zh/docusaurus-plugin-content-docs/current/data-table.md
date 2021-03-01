@@ -27,7 +27,7 @@ sidebar_label: Data Table
 * __onClickRemove__ | `function`: 指定对从数据中删除的行进行操作的函数（默认为空函数）。. Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: 在用户改变单元格的值后，调用更新数据集的函数(仅适用于表为 "可编辑 "时). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: 当用户完成数据表教程时调用的函数。. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: 滤波器阵列. Default: `[]`.
 * __onFilteredChange__ | `function`: 在数据被用户过滤后，调用当前过滤器的函数。. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: 表示是否显示要删除的行的复选框。. Default: `false`.
 * __showIdColumn__ | `boolean`: 控制是否显示ID列. Default: `true`.

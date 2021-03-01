@@ -9,8 +9,8 @@ sidebar_label: Chi-square Independence Test
 ## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
-* __var1__ | `string (required)`: 先頭変数名. Default: `none`.
-* __var2__ | `string (required)`: 二番目の変数名. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: 先頭変数名. Default: `none`.
+* __var2__ | `(string|Factor) (required)`: 二番目の変数名. Default: `none`.
 
 
 ## 例としては、以下のようなものがあります。

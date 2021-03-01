@@ -27,7 +27,7 @@ y la instancia de la tabla). Default: `none`.
 * __onClickRemove__ | `function`: función que especifica una acción a tomar para las filas eliminadas de los datos (por defecto una función vacía). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: función invocada con el conjunto de datos actualizados después de que el valor de una celda haya sido cambiado por el usuario (sólo se aplica cuando la tabla es `editable`). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: función invocada cuando el usuario ha completado el tutorial de la tabla de datos. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: matriz de filtros. Default: `[]`.
 * __onFilteredChange__ | `function`: función invocada con los filtros actuales después de que los datos hayan sido filtrados por el usuario. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indica si se deben mostrar casillas de verificación para las filas que se van a eliminar. Default: `false`.
 * __showIdColumn__ | `boolean`: controla si se muestra una columna de identificación. Default: `true`.

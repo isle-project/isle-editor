@@ -259,7 +259,7 @@ ContingencyTable.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} rowVar - name of categorical variable to be displayed along the rows
 * @property {string} colVar -  name of categorical variable to be displayed along the columns
-* @property {string} group - name of grouping variable
+* @property {(string|Factor)} group - name of grouping variable
 * @property {boolean} relativeFreqs - controls whether to display relative frequencies
 * @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table

@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 import ROutput from '@isle-project/components/r/output';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -42,8 +43,14 @@ Chi2Test.defaultProps = {};
 
 Chi2Test.propTypes = {
 	data: PropTypes.object.isRequired,
-	var1: PropTypes.string.isRequired,
-	var2: PropTypes.string.isRequired
+	var1: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
+	var2: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired
 };
 
 
@@ -53,7 +60,7 @@ Chi2Test.propTypes = {
 * Chi-square independence test.
 *
 * @property {Object} data - object of value arrays
-* @property {string} var1 - name of first variable
-* @property {string} var2 - name of second variable
+* @property {(string|Factor)} var1 - name of first variable
+* @property {(string|Factor)} var2 - name of second variable
 */
 export default withPropCheck( Chi2Test );

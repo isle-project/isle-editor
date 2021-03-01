@@ -9,7 +9,7 @@ sidebar_label: One-Sample Proportion Test
 ## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
-* __variable__ | `string (required)`: 变量名. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: 变量名. Default: `none`.
 * __success__ | `string (required)`: "变量 "的成功类别. Default: `none`.
 * __alpha__ | `number`: 显著性水平. Default: `0.05`.
 * __direction__ | `string`: 测试方向(可选择 "少"、"大 "或 "双面"). Default: `'two-sided'`.

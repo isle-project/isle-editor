@@ -19,7 +19,7 @@ sidebar_label: Text Input
 * __onKeyPress__ | `function`: キー入力時に呼び出されるコールバック関数. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: キーリリース時に呼び出されるコールバック関数. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: 初期選択前の表示値を示す文字列. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: 入力の幅をピクセル単位で示す数値. Default: `80`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 

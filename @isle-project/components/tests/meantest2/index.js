@@ -258,7 +258,7 @@ MeanTest2.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} x - name of first variable
 * @property {string} y - name of second variable (`y` or `group` have to be supplied)
-* @property {string} group - name of grouping variable (`y` or `group` have to be supplied)
+* @property {(string|Factor)} group - name of grouping variable (`y` or `group` have to be supplied)
 * @property {string} type - type of test (either `Z Test` or `T Test`)
 * @property {number} xstdev - first standard deviation (for `Z Test`)
 * @property {number} ystdev - second standard deviation (for `Z Test`)

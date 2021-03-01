@@ -27,7 +27,7 @@ sidebar_label: Data Table
 * __onClickRemove__ | `function`: функция, указывающая действие для удаленных из данных строк (по умолчанию - пустая функция).. Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: функция, вызываемая с обновленным набором данных после того, как значение ячейки было изменено пользователем (применяется только в том случае, если таблица `редактируемая`). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: функция, вызываемая после завершения работы с таблицей данных.. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: массив фильтров. Default: `[]`.
 * __onFilteredChange__ | `function`: функция, вызываемая текущими фильтрами после того, как данные отфильтрованы пользователем. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: указывает, следует ли отображать флажки для удаления строк. Default: `false`.
 * __showIdColumn__ | `boolean`: управляет отображением идентификационной колонки. Default: `true`.

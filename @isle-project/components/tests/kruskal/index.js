@@ -73,7 +73,7 @@ Kruskal.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable name
-* @property {string} group - grouping variable
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} showDecision - controls whether to display if the null hypothesis is rejected at the specified significance level
 */
 export default withPropCheck( Kruskal );

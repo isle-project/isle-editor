@@ -13,7 +13,7 @@ sidebar_label: Plotly
 * __editable__ | `boolean`: управляет тем, редактируются ли метки созданного графика. Default: `false`.
 * __id__ | `string`: идентификатор компонента. Default: `none`.
 * __layout__ | `object`: Объект планировки Plotly layout. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Опции конфигурации на месте (см.: https://plotly.com/javascript/configuration-options/).. Default: `{}`.
 * __legendButtons__ | `boolean`: управляет отображением кнопок для смены легенды. Default: `true`.
 * __meta__ | `object`: сюжетная мета-информация. Default: `none`.
 * __revision__ | `number`: когда это предусмотрено, вызывает обновление графика при увеличении значения ревизии.. Default: `none`.

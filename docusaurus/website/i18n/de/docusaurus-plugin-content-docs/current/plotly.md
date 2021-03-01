@@ -13,7 +13,7 @@ Plotly-Visualisierung.
 * __editable__ | `boolean`: steuert, ob Beschriftungen des erstellten Plots editierbar sind. Default: `false`.
 * __id__ | `string`: Bauteilkennzeichen. Default: `none`.
 * __layout__ | `object`: Plotly-Layoutobjekt. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Konfigurationsmöglichkeiten von Plotly (siehe: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: steuert, ob Schaltflächen zum Ändern der Legende angezeigt werden sollen. Default: `true`.
 * __meta__ | `object`: Plot-Meta-Informationen. Default: `none`.
 * __revision__ | `number`: wenn angegeben, bewirkt, dass die Darstellung aktualisiert wird, wenn der Revisionswert inkrementiert wird. Default: `none`.

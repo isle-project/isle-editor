@@ -13,6 +13,7 @@ import { addResources } from '@isle-project/locales';
 import { gaussian } from './naive_bayes.js';
 import { designMatrix, designMatrixMissing } from './design_matrix.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -113,8 +114,8 @@ const fitModel = ({ x, y, data, quantitative, omitMissing }) => {
 * Naive Bayes assuming that the predictors given the class membership follow a normal distribution.
 *
 * @property {Object} data - object of value arrays
-* @property {string} y - outcome variable
-* @property {Array<string>} x - one or more predictor variables
+* @property {(string|Factor)} y - outcome variable
+* @property {(string|Factor|Array<(string|Factor)>)} x - one or more predictor variables
 * @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
 * @property {boolean} omitMissing - controls whether to omit missing values
 * @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
@@ -180,10 +181,14 @@ NaiveBayes.defaultProps = {
 
 NaiveBayes.propTypes = {
 	data: PropTypes.object.isRequired,
-	y: PropTypes.string.isRequired,
+	y: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	omitMissing: PropTypes.bool,

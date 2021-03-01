@@ -3666,7 +3666,7 @@
 			},
 			{
 				"name": "y",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "LogisticRegression-prop-y"
 			},
 			{
@@ -3676,7 +3676,7 @@
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "LogisticRegression-prop-x"
 			},
 			{
@@ -3719,7 +3719,7 @@
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "MultipleLinearRegression-prop-x"
 			},
 			{
@@ -3763,12 +3763,12 @@
 			},
 			{
 				"name": "y",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "NaiveBayes-prop-y"
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "NaiveBayes-prop-x"
 			},
 			{
@@ -3839,12 +3839,12 @@
 			},
 			{
 				"name": "y",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "RandomForest-prop-y"
 			},
 			{
 				"name": "x",
-				"type": "(array<string>|string) (required)",
+				"type": "(array<(string|Factor)>|string|Factor) (required)",
 				"description": "RandomForest-prop-x"
 			},
 			{
@@ -4809,7 +4809,7 @@
 			},
 			{
 				"name": "color",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ScatterPlotMatrix-prop-color",
 				"defaultValue": null
 			}
@@ -4835,19 +4835,19 @@
 			},
 			{
 				"name": "text",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ScatterPlot-prop-text",
 				"defaultValue": null
 			},
 			{
 				"name": "color",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ScatterPlot-prop-color",
 				"defaultValue": null
 			},
 			{
 				"name": "type",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ScatterPlot-prop-type",
 				"defaultValue": null
 			},
@@ -4873,7 +4873,7 @@
 			},
 			{
 				"name": "lineBy",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "ScatterPlot-prop-lineBy",
 				"defaultValue": null
 			},
@@ -7619,12 +7619,12 @@
 			},
 			{
 				"name": "var1",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "Chi2Test-prop-var1"
 			},
 			{
 				"name": "var2",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "Chi2Test-prop-var2"
 			}
 		],
@@ -7830,7 +7830,7 @@
 			},
 			{
 				"name": "variable",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "PropTest-prop-variable"
 			},
 			{
@@ -7874,7 +7874,7 @@
 			},
 			{
 				"name": "var1",
-				"type": "string (required)",
+				"type": "(string|Factor) (required)",
 				"description": "PropTest2-prop-var1"
 			},
 			{
@@ -7884,7 +7884,7 @@
 			},
 			{
 				"name": "var2",
-				"type": "string",
+				"type": "(string|Factor)",
 				"description": "PropTest2-prop-var2",
 				"defaultValue": null
 			},

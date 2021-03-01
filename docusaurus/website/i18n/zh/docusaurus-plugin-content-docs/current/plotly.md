@@ -13,7 +13,7 @@ sidebar_label: Plotly
 * __editable__ | `boolean`: 控制所创建的图形的标签是否可编辑。. Default: `false`.
 * __id__ | `string`: 部件标识符. Default: `none`.
 * __layout__ | `object`: Plotly布局对象. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Plotly配置选项(见：https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: 控制是否显示改变图例的按钮. Default: `true`.
 * __meta__ | `object`: 绘制元信息. Default: `none`.
 * __revision__ | `number`: 当提供时，当修订值递增时，使绘图更新。. Default: `none`.

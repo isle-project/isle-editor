@@ -19,7 +19,7 @@ Un componente de entrada de texto. Puede ser usado como parte de un tablero de I
 * __onKeyPress__ | `function`: función de llamada de retorno que se invocará cuando se introduzca cualquier tecla. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: función de llamada de retorno que se invocará cuando se libere la tecla. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: cadena que indica el valor que debe mostrarse antes de realizar una elección inicial. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: número que indica la anchura de la entrada en píxeles. Default: `80`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 
 

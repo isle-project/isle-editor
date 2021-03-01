@@ -19,7 +19,7 @@ sidebar_label: Text Input
 * __onKeyPress__ | `function`: функция обратного вызова, вызываемая при вводе любой клавиши. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: функция обратного вызова, вызываемая при отпускании ключа. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: строка, указывающая значение, которое будет отображаться перед тем, как будет сделан первоначальный выбор. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: число, указывающее ширину входа в пикселях. Default: `80`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 

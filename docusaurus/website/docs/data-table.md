@@ -27,7 +27,7 @@ column, and the table instance). Default: `none`.
 * __onClickRemove__ | `function`: function specifying an action to take for rows removed from the data (defaults to an empty function). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: function invoked with the updated data set after the value of a cell was changed by the user (only applies when table is `editable`). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: function invoked when user has completed the data table tutorial. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: array of filters. Default: `[]`.
 * __onFilteredChange__ | `function`: function invoked with the current filters after data has been filtered by user. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: indicates whether to display checkboxes for rows to be removed. Default: `false`.
 * __showIdColumn__ | `boolean`: controls whether to show an ID column. Default: `true`.

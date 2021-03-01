@@ -10,7 +10,7 @@ sidebar_label: Multiple Linear Regression
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __y__ | `string (required)`: 结果变量. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: 一个或多个预测变量. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: 一个或多个预测变量. Default: `none`.
 * __quantitative__ | `array<string> (required)`: "数据 "中的 "定量 "变量数组。. Default: `none`.
 * __omitMissing__ | `boolean`: 控制是否省略缺失值. Default: `false`.
 * __intercept__ | `boolean`: 控制是否拟合带有截距项的模型。. Default: `true`.

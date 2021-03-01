@@ -9,8 +9,8 @@ sidebar_label: Random Forest
 ## 选项
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
-* __y__ | `string (required)`: 结果变量. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: 一个或多个预测变量. Default: `none`.
+* __y__ | `(string|Factor) (required)`: 结果变量. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: 一个或多个预测变量. Default: `none`.
 * __type__ | `string`: 目前只支持分类答复的 "分类"。. Default: `'Classification'`.
 * __quantitative__ | `array<string> (required)`: "数据 "中的 "定量 "变量数组。. Default: `none`.
 * __nTrees__ | `number`: 棵数. Default: `50`.

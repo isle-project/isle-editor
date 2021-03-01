@@ -9,8 +9,8 @@ Random Forests.
 ## Options
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
-* __y__ | `string (required)`: outcome variable. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: one or more predictor variables. Default: `none`.
+* __y__ | `(string|Factor) (required)`: outcome variable. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: one or more predictor variables. Default: `none`.
 * __type__ | `string`: currently only `Classification` for categorical responses is supported. Default: `'Classification'`.
 * __quantitative__ | `array<string> (required)`: array of variables in `data` that are `quantitative`. Default: `none`.
 * __nTrees__ | `number`: number of trees. Default: `50`.

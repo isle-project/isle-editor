@@ -359,7 +359,7 @@ HeatMap.propTypes = {
 * @property {Object} data - object of value arrays for each variable
 * @property {string} x - x-axis variable
 * @property {string} y - y-axis variable
-* @property {string} group - grouping variable
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} overlayPoints - controls whether to overlay points for each observation
 * @property {Array<string>} regressionMethod - array containing `linear` and/or `smooth` to overlay a linear and/or smoothed regression line
 * @property {number} smoothSpan - smoothing span

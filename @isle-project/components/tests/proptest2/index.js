@@ -188,9 +188,15 @@ PropTest2.defaultProps = {
 
 PropTest2.propTypes = {
 	data: PropTypes.object.isRequired,
-	var1: PropTypes.string.isRequired,
+	var1: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]).isRequired,
 	success: PropTypes.string.isRequired,
-	var2: PropTypes.string,
+	var2: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	group: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
@@ -208,10 +214,10 @@ PropTest2.propTypes = {
 * Two-sample proportion test.
 *
 * @property {Object} data - object of value arrays
-* @property {string} var1 - name of first variable
+* @property {(string|Factor)} var1 - name of first variable
 * @property {*} success - success category of `var1`
-* @property {string} var2 - name of second variable (`var2` or `group` have to be supplied)
-* @property {string} group - name of grouping variable (`var2` or `group` have to be supplied)
+* @property {(string|Factor)} var2 - name of second variable (`var2` or `group` have to be supplied)
+* @property {(string|Factor)} group - name of grouping variable (`var2` or `group` have to be supplied)
 * @property {number} alpha - significance level
 * @property {string} direction - test direction (either `less`, `greater`, or `two-sided`)
 * @property {number} diff - difference under H0

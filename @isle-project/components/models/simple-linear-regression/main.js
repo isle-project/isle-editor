@@ -113,7 +113,7 @@ function extractValues({ x, y, data, group, omitMissing }) {
 * @property {Object} data - object of value arrays
 * @property {string} x - explanatory variable
 * @property {string} y - response variable
-* @property {string} group - grouping variable
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} omitMissing - controls whether to omit missing values in model fitting
 * @property {Function} onDiagnostics - callback invoked with diagnostic plots
 * @property {Function} onPredict - callback invoked with fitted values and residuals

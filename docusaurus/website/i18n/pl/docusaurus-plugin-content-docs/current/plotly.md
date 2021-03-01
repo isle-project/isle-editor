@@ -13,7 +13,7 @@ Plotkliwa wizualizacja.
 * __editable__ | `boolean`: kontroluje, czy etykiety utworzonej działki nadają się do edycji. Default: `false`.
 * __id__ | `string`: identyfikator elementu. Default: `none`.
 * __layout__ | `object`: Obiekt w układzie planowym. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Opcje konfiguracyjne Plotly (patrz: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski do zmiany legendy. Default: `true`.
 * __meta__ | `object`: fabuła meta-informacja. Default: `none`.
 * __revision__ | `number`: po dostarczeniu, powoduje, że wykres jest aktualizowany, gdy wartość korekty jest zwiększana. Default: `none`.

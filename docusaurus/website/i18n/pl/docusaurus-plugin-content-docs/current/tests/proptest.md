@@ -9,7 +9,7 @@ Test proporcji jednej próbki.
 ## Opcje
 
 * __data__ | `object (required)`: przedmiot tablice wartości. Default: `none`.
-* __variable__ | `string (required)`: nazwa zmiennej. Default: `none`.
+* __variable__ | `(string|Factor) (required)`: nazwa zmiennej. Default: `none`.
 * __success__ | `string (required)`: kategoria sukcesu `zmiennej`. Default: `none`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
 * __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.

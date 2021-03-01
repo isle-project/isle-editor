@@ -9,8 +9,8 @@ Chi-kwadraat onafhankelijkheidstest.
 ## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
-* __var1__ | `string (required)`: naam van eerste variabele. Default: `none`.
-* __var2__ | `string (required)`: naam van tweede variabele. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: naam van eerste variabele. Default: `none`.
+* __var2__ | `(string|Factor) (required)`: naam van tweede variabele. Default: `none`.
 
 
 ## Voorbeelden

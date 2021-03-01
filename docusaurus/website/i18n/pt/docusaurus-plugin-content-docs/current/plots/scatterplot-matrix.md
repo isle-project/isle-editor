@@ -10,7 +10,7 @@ Uma matriz de dispersão de lotes.
 
 * __data__ | `object (required)`: objeto de arrays de valor para cada variável. Default: `none`.
 * __variables__ | `array (required)`: matriz de variáveis para exibir em matriz. Default: `none`.
-* __color__ | `string`: variável categórica para mapear a cor dos pontos. Default: `none`.
+* __color__ | `(string|Factor)`: variável categórica para mapear a cor dos pontos. Default: `none`.
 
 
 ## Exemplos

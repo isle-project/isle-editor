@@ -20,6 +20,7 @@ import max from '@isle-project/utils/statistic/max';
 import min from '@isle-project/utils/statistic/min';
 import calculateCoefficients from '@isle-project/utils/linear-regression/calculate_coefficients.js';
 import { CAT20 } from '@isle-project/constants/colors';
+import { Factor } from '@isle-project/utils/factor-variable';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import minmax from './minmax.js';
 
@@ -413,13 +414,25 @@ ScatterPlot.propTypes = {
 	data: PropTypes.object.isRequired,
 	xval: PropTypes.string.isRequired,
 	yval: PropTypes.string.isRequired,
-	text: PropTypes.string,
-	color: PropTypes.string,
-	type: PropTypes.string,
+	text: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
+	color: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
+	type: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	size: PropTypes.string,
 	regressionLine: PropTypes.bool,
 	regressionMethod: PropTypes.arrayOf( PropTypes.oneOf([ 'linear', 'smooth' ]) ),
-	lineBy: PropTypes.string,
+	lineBy: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
+	]),
 	smoothSpan: PropTypes.number
 };
 
@@ -432,13 +445,13 @@ ScatterPlot.propTypes = {
 * @property {Object} data - object of value arrays for each variable
 * @property {string} xval - variable to display on the x-axis
 * @property {string} yval - variable to display on the y-axis
-* @property {string} text - texts to be displayed next to each point
-* @property {string} type - categorical variable to map to the displayed symbols
+* @property {(string|Factor)} text - texts to be displayed next to each point
+* @property {(string|Factor)} type - categorical variable to map to the displayed symbols
 * @property {string} size - quantitative variable to map to the size of the points
-* @property {string} color - categorical variable to map to color of points
+* @property {(string|Factor)} color - categorical variable to map to color of points
 * @property {boolean} regressionLine - controls whether to overlay regression line(s)
 * @property {Array<string>} regressionMethod - `linear` and/or `smooth` to display linear regression and smoothed LOWESS regression line
 * @property {number} smoothSpan - smoothing span parameter for `smooth` regression line
-* @property {string} lineBy - display separate regression line for each category of specified categorical variable
+* @property {(string|Factor)} lineBy - display separate regression line for each category of specified categorical variable
 */
 export default withPropCheck( ScatterPlot );

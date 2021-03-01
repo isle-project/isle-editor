@@ -9,8 +9,8 @@ Test d'indépendance du chi carré.
 ## Options
 
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
-* __var1__ | `string (required)`: nom de la première variable. Default: `none`.
-* __var2__ | `string (required)`: nom de la deuxième variable. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: nom de la première variable. Default: `none`.
+* __var2__ | `(string|Factor) (required)`: nom de la deuxième variable. Default: `none`.
 
 
 ## Exemples

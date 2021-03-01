@@ -13,7 +13,7 @@ sidebar_label: Plotly
 * __editable__ | `boolean`: 作成されたプロットのラベルを編集可能にするかどうかを制御します。. Default: `false`.
 * __id__ | `string`: 構成要素識別子. Default: `none`.
 * __layout__ | `object`: プロットリーレイアウトオブジェクト. Default: `{}`.
-* __config__ | `object`: undefined. Default: `{}`.
+* __config__ | `object`: Plotly 設定オプション (参照: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: 凡例を変更するためのボタンを表示するかどうかを制御します。. Default: `true`.
 * __meta__ | `object`: プロットメタ情報. Default: `none`.
 * __revision__ | `number`: を指定すると、リビジョン値がインクリメントされたときにプロットが更新されます。. Default: `none`.

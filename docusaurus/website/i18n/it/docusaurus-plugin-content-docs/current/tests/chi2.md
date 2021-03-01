@@ -9,8 +9,8 @@ Test di indipendenza del chi-quadrato.
 ## Opzioni
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
-* __var1__ | `string (required)`: nome della prima variabile. Default: `none`.
-* __var2__ | `string (required)`: nome della seconda variabile. Default: `none`.
+* __var1__ | `(string|Factor) (required)`: nome della prima variabile. Default: `none`.
+* __var2__ | `(string|Factor) (required)`: nome della seconda variabile. Default: `none`.
 
 
 ## Esempi

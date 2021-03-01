@@ -179,8 +179,8 @@ PieChart.propTypes = {
 * A pie chart component that by default displays the counts of all categories from a chosen variable.
 *
 * @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {string} group - grouping variable
+* @property {(string|Factor)} variable - variable to display
+* @property {(string|Factor)} group - grouping variable
 * @property {string} summaryVariable - optional variable whose sum to display for each `variable` category
 */
 export default withPropCheck( PieChart );

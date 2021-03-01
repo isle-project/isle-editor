@@ -9,8 +9,8 @@ Naive Bayes gaat ervan uit dat de voorspellers gezien het klassenlidmaatschap ee
 ## Opties
 
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
-* __y__ | `string (required)`: resultaatvariabele. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: een of meer voorspellende variabelen. Default: `none`.
+* __y__ | `(string|Factor) (required)`: resultaatvariabele. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: een of meer voorspellende variabelen. Default: `none`.
 * __quantitative__ | `array<string> (required)`: array van variabelen in `data` die `kwantitatief` zijn. Default: `none`.
 * __omitMissing__ | `boolean`: controleert of ontbrekende waarden moeten worden weggelaten. Default: `false`.
 * __onPredict__ | `function`: callback ingeroepen met voorspellingen en restmateriaal na modelaanpassing. Default: `none`.

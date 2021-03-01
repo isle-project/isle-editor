@@ -19,7 +19,7 @@ Eine Komponente zur Texteingabe. Kann als Teil eines ISLE Dashboards oder eigens
 * __onKeyPress__ | `function`: Callback-Funktion, die aufgerufen wird, wenn eine beliebige Taste eingegeben wird. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: Callback-Funktion, die aufgerufen wird, wenn die Taste losgelassen wird. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: String, der den Wert angibt, der vor einer ersten Auswahl angezeigt werden soll. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: Zahl, die die Breite des Eingangs in Pixeln angibt. Default: `80`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 

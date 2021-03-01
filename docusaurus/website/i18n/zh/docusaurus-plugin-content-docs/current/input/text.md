@@ -19,7 +19,7 @@ sidebar_label: Text Input
 * __onKeyPress__ | `function`: 当输入任何一个键时，回调函数将被调用. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: 释放键时调用的回调函数。. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: 字符串，表示在做出初始选择之前要显示的值。. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: 输入的宽度（像素）。. Default: `80`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 

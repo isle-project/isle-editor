@@ -198,8 +198,8 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 * Bar chart.
 *
 * @property {Object} data - object of value arrays
-* @property {string} variable - variable to display
-* @property {string} group - grouping variable
+* @property {(string|Factor)} variable - variable to display
+* @property {(string|Factor)} group - grouping variable
 * @property {boolean} stackBars - when grouping, controls whether to stack bars on top of each other
 * @property {boolean} relative - whether to calculate relative frequencies inside each group
 * @property {boolean} totalPercent - whether to display overall bars as relative frequencies

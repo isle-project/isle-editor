@@ -10,7 +10,7 @@ Regressão linear múltipla.
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __y__ | `string (required)`: variável de resultado. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: uma ou mais variáveis preditoras. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: uma ou mais variáveis preditoras. Default: `none`.
 * __quantitative__ | `array<string> (required)`: conjunto de variáveis em "dados" que são "quantitativas".. Default: `none`.
 * __omitMissing__ | `boolean`: controla se devem ser omitidos os valores em falta. Default: `false`.
 * __intercept__ | `boolean`: controla se um modelo deve ser adaptado com um termo de interceptação. Default: `true`.

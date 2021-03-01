@@ -9,8 +9,8 @@ Regressions- und Klassifikationsbäume.
 ## Optionen
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
-* __y__ | `string (required)`: Ergebnisvariable. Default: `none`.
-* __x__ | `(array<string>|string) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
+* __y__ | `(string|Factor) (required)`: Ergebnisvariable. Default: `none`.
+* __x__ | `(array<(string|Factor)>|string|Factor) (required)`: eine oder mehrere Prädiktorvariablen. Default: `none`.
 * __type__ | `string`: derzeit wird nur `Classification` für kategorische Antworten unterstützt. Default: `'Classification'`.
 * __quantitative__ | `array<string> (required)`: Array von Variablen in `Daten`, die `quantitativ` sind. Default: `none`.
 * __nTrees__ | `number`: Anzahl der Bäume. Default: `50`.

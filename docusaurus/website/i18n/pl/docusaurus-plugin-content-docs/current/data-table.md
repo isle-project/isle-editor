@@ -27,7 +27,7 @@ kolumna, oraz instancja tabelaryczna). Default: `none`.
 * __onClickRemove__ | `function`: funkcja określająca akcję, którą należy wykonać dla wierszy usuniętych z danych (domyślnie funkcja pusta). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: funkcja wywoływana z aktualnym zestawem danych po zmianie wartości komórki przez użytkownika (dotyczy tylko sytuacji, gdy tabela jest `edytowalna`). Default: `onEdit() {}`.
 * __onTutorialCompletion__ | `function`: funkcja wywoływana po wypełnieniu przez użytkownika tutorialu tabeli danych. Default: `onTutorialCompletion() {}`.
-* __filters__ | `array`: undefined. Default: `[]`.
+* __filters__ | `array`: tablica filtrów. Default: `[]`.
 * __onFilteredChange__ | `function`: funkcja wywoływana przy pomocy aktualnych filtrów po przefiltrowaniu danych przez użytkownika. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: wskazuje, czy mają być wyświetlane pola wyboru dla wierszy, które mają być usunięte. Default: `false`.
 * __showIdColumn__ | `boolean`: kontroluje, czy pokazywana jest kolumna ID. Default: `true`.

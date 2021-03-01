@@ -19,7 +19,7 @@ Um componente de entrada de texto. Pode ser usado como parte de um painel de ins
 * __onKeyPress__ | `function`: função de chamada de retorno a ser invocada quando qualquer chave é inserida. Default: `onKeyPress() {}`.
 * __onKeyUp__ | `function`: função de retorno de chamada a ser invocada quando a chave é liberada. Default: `onKeyUp() {}`.
 * __placeholder__ | `string`: string indicando o valor a ser exibido antes que uma escolha inicial seja feita. Default: `none`.
-* __width__ | `number`: undefined. Default: `80`.
+* __width__ | `number`: número indicando a largura da entrada em pixels. Default: `80`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 

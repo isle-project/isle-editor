@@ -25,6 +25,7 @@ import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
@@ -220,7 +221,7 @@ const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
 * @property {Object} data - object of value arrays
 * @property {string} y - outcome variable
 * @property {Array<string>} x - one or more predictor variables
-* @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
+* @property {(string|Factor|Array<(string|Factor)>)} quantitative - array of variables in `data` that are `quantitative`
 * @property {boolean} omitMissing - controls whether to omit missing values
 * @property {boolean} intercept - controls whether to fit a model with an intercept term
 * @property {Function} onDiagnostics - callback invoked with diagnostic plots
@@ -336,8 +337,9 @@ MultipleLinearRegression.propTypes = {
 	data: PropTypes.object.isRequired,
 	y: PropTypes.string.isRequired,
 	x: PropTypes.oneOfType([
-		PropTypes.arrayOf( PropTypes.string ),
-		PropTypes.string
+		PropTypes.arrayOf( PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf( Factor ) ]) ),
+		PropTypes.string,
+		PropTypes.instanceOf( Factor )
 	]).isRequired,
 	quantitative: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	omitMissing: PropTypes.bool,
