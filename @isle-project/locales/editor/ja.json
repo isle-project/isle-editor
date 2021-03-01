@@ -51,6 +51,7 @@
 	"BrazilianPortuguese": "ブラジルポルトガル語",
 	"break": "休憩",
 	"cancel": "キャンセル",
+	"cannot-resolve-library": "以下のライブラリを解決できません。{{{lib}}}。\n\n 名前が正しいこと、依存関係がインストールされていることを確認してください。",
 	"center-editor-line": "行{{lineNumber}}でエディタを中央に配置",
 	"change-all-borders": "すべてのボーダーを変更する",
 	"change-bottom-border": "下のボーダーを変更する",

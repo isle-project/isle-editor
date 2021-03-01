@@ -51,6 +51,7 @@
 	"BrazilianPortuguese": "Brazylijczyk-Portugalczyk",
 	"break": "Przerwa",
 	"cancel": "Anuluj",
+	"cannot-resolve-library": "Nie można rozwiązać następującej biblioteki: {{lib}}.\n\n Proszę upewnić się, że nazwa jest poprawna i że zależności są zainstalowane.",
 	"center-editor-line": "Edytor centralny na linii {{lineNumber}}",
 	"change-all-borders": "Zmiana wszystkich granic",
 	"change-bottom-border": "Zmiana dolnej granicy",

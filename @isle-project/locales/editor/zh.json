@@ -51,6 +51,7 @@
 	"BrazilianPortuguese": "巴西葡萄牙语",
 	"break": "休息",
 	"cancel": "取消",
+	"cannot-resolve-library": "无法解析以下库。{{lib}}。\n\n 请确保名称正确，并确保安装了依赖关系。",
 	"center-editor-line": "编辑器居中线{{lineNumber}}。",
 	"change-all-borders": "更改所有边界",
 	"change-bottom-border": "更改底部边框",

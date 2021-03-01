@@ -51,6 +51,7 @@
 	"BrazilianPortuguese": "Braziliaans Portugees",
 	"break": "Pauze",
 	"cancel": "Annuleer",
+	"cannot-resolve-library": "Kan de volgende bibliotheek niet oplossen: {{lib}}.\n\n Controleer of de naam correct is en of de afhankelijkheden geïnstalleerd zijn.",
 	"center-editor-line": "Center editor on line {{lineNumber}}",
 	"change-all-borders": "Verander alle grenzen",
 	"change-bottom-border": "Verander de ondergrens",

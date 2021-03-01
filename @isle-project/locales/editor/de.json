@@ -51,6 +51,7 @@
 	"BrazilianPortuguese": "Brasilianisches Portugiesisch",
 	"break": "Pause",
 	"cancel": "Abbrechen",
+	"cannot-resolve-library": "Die folgende Bibliothek kann nicht aufgelöst werden: {{lib}}.\n\n Bitte stellen Sie sicher, dass der Name korrekt ist und dass die Abhängigkeiten installiert sind.",
 	"center-editor-line": "Editor auf Zeile {{lineNumber}} zentrieren",
 	"change-all-borders": "Alle Grenzen ändern",
 	"change-bottom-border": "Unteren Rand ändern",

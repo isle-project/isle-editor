@@ -95,6 +95,9 @@ async function loadRequires( libs, filePath ) {
 							str = replace( str, '\\', '\\\\' );
 						}
 						debug( `Resolved library path: ${str}` );
+						if ( !str ) {
+							throw new Error( i18n.t( 'cannot-resolve-library', { lib }) );
+						}
 
 						// Use `eval` to bypass Webpack and use Electron runtime module resolution:
 						eval( `global[ '${key}' ] = require( '${str}' );` ); // eslint-disable-line i18next/no-literal-string
