@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.74.8",
+  "version": "0.74.9",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -49,8 +49,8 @@
   ],
   "main": "main.js",
   "bin": {
-    "isle-bundler": "./app/bundler/bin/cli.js",
-    "isle-editor": "./bin/cli.js"
+    "isle-bundler": "app/bundler/bin/cli.js",
+    "isle-editor": "bin/cli.js"
   },
   "scripts": {
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
@@ -908,6 +908,7 @@
       "!node_modules/webpack-dev-server/node_modules/string-width/**/*",
       "!node_modules/webpack-dev-server/node_modules/y18n/**/*",
       "!node_modules/webpack-dev-server/node_modules/yargs-parser/**/*",
+      "!node_modules/@eslint/eslintrc/node_modules/debug/**/*",
       "!node_modules/original/**/*",
       "!node_modules/querystringify/**/*",
       "!node_modules/requires-port/**/*",
@@ -1064,7 +1065,6 @@
       "!node_modules/restructure/**/*",
       "!node_modules/unicode-properties/**/*",
       "!node_modules/fontkit/node_modules/unicode-trie/**/*",
-      "!node_modules/robust-segment-intersect/**/*",
       "!node_modules/engine.io-client/node_modules/ms/**/*",
       "!node_modules/socket.io-parser/node_modules/ms/**/*",
       "!node_modules/source-map-explorer/node_modules/color-convert/**/*",
