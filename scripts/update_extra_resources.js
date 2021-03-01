@@ -37,7 +37,7 @@ const extraResources = [
 	'!@isle-project/session/dist/*'
 ];
 const DEV_DEPS = new Set();
-const listDevDeps = spawn( 'npm', [ 'ls', '--only=dev', '--parseable' ] );
+const listDevDeps = spawn( 'npm', [ 'ls', '--only=dev', '--parseable', '--all' ] );
 
 listDevDeps.stdout.on( 'data', ( data ) => {
 	const lines = data.toString().split( '\n' );
@@ -50,7 +50,7 @@ listDevDeps.stdout.on( 'close', ( code ) => {
 	console.log( `npm ls --dev exited with code ${code}` );
 	console.log( `The isle-editor has ${DEV_DEPS.size} development dependencies.` );
 
-	const listProdDeps = spawn( 'npm', [ 'ls', '--only=prod', '--parseable' ]);
+	const listProdDeps = spawn( 'npm', [ 'ls', '--only=prod', '--parseable', '-all' ]);
 	listProdDeps.stdout.on( 'data', ( data ) => {
 		const lines = data.toString().split( '\n' );
 		for ( let i = 1; i < lines.length - 1; i++ ) {
