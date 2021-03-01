@@ -24,16 +24,20 @@ const uid = generateUID( 'generator' );
 const Generator = ({ id, autoStart, buttonLabel, onGenerate }) => {
 	const idRef = useRef( id || uid({ autoStart, buttonLabel, onGenerate }) );
 	const [ element, setElement ] = useState( null );
+	const generateRef = useRef();
 
+	useEffect(() => {
+		generateRef.current = onGenerate;
+	});
 	const handleClick = useCallback( () => {
-		let elem = onGenerate();
+		let elem = generateRef.current();
 		if ( elem ) {
 			elem = React.cloneElement( elem, {
 				id: idRef.current
 			});
 			setElement( elem );
 		}
-	}, [ onGenerate ] );
+	}, [] );
 
 	useEffect( () => {
 		if ( autoStart ) {
