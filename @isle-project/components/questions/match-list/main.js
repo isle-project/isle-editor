@@ -319,8 +319,8 @@ MatchListQuestion.propTypes = {
 		PropTypes.node
 	]),
 	elements: PropTypes.arrayOf( PropTypes.shape({
-		a: PropTypes.string.isRequired,
-		b: PropTypes.string.isRequired
+		a: PropTypes.string,
+		b: PropTypes.string
 	}) ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf(
