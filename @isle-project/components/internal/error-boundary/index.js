@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ErrorMessage from './error_message.js';
+import ErrorMessage from '@isle-project/components/internal/error-message';
 
 
 // MAIN //
