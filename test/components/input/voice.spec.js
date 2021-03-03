@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import VoiceInput from '@isle-project/components/input/voice';
+import VoiceInput from '@isle-project/components/input/voice/main.js';
 
 
 // TESTS //
