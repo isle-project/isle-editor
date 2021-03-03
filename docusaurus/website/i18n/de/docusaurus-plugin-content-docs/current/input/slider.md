@@ -27,7 +27,6 @@ Eine Schieberegler-Eingabekomponente. Kann als Teil eines ISLE Dashboards oder e
 
 ## Beispiele
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

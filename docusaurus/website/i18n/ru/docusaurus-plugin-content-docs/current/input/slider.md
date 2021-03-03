@@ -27,7 +27,6 @@ sidebar_label: Slider Input
 
 ## Примеры
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

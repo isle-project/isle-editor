@@ -27,7 +27,6 @@ Un componente de entrada deslizante. Puede ser usado como parte de un tablero de
 
 ## Ejemplos
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

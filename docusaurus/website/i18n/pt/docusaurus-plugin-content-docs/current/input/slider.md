@@ -27,7 +27,6 @@ Um componente de entrada deslizante. Pode ser usado como parte de um painel de i
 
 ## Exemplos
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

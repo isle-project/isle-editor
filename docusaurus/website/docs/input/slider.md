@@ -27,7 +27,6 @@ A slider input component. Can be used as part of an ISLE dashboard or standalone
 
 ## Examples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

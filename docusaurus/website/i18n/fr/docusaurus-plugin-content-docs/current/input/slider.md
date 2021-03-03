@@ -27,7 +27,6 @@ Un composant de saisie de curseur. Peut être utilisé dans le cadre d'un tablea
 
 ## Exemples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

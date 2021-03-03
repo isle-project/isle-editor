@@ -27,7 +27,6 @@ Een schuifregelaar-ingangscomponent. Kan worden gebruikt als onderdeel van een I
 
 ## Voorbeelden
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

@@ -27,7 +27,6 @@ Element wejściowy suwaka. Może być używany jako część deski rozdzielczej 
 
 ## Przykłady
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

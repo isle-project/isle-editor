@@ -27,7 +27,6 @@ Un componente di ingresso a cursore. Può essere utilizzato come parte di un cru
 
 ## Esempi
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
