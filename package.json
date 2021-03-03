@@ -276,6 +276,7 @@
     "ajv": "^7.1.0",
     "codecov": "^3.8.1",
     "concurrently": "^6.0.0",
+    "css-minimizer-webpack-plugin": "^1.2.0",
     "doctrine": "^3.0.0",
     "electron": "11.3.0",
     "electron-builder": "^22.10.5",
