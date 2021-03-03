@@ -14,6 +14,7 @@ import { translate } from '@docusaurus/Translate';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import clsx from 'clsx';
+import replace from '@stdlib/string/replace';
 import markdownToHTML from 'app/utils/markdown-to-html';
 import styles from './styles.module.css';
 import './load_datasets.js';
@@ -36,7 +37,9 @@ const transformCode = ( code ) => {
 	} catch ( err ) {
 		console.error( err ); // eslint-disable-line no-console
 	}
-	code = code.replace( RE_STR_RAW, 'String.raw({ raw: \'$1\' })' );
+	code = code.replace( RE_STR_RAW, ( x, p1 ) => {
+		return `String.raw({ raw: '${replace( p1, '\\', '\\\\' )}' })`;  // eslint-disable-line i18next/no-literal-string
+	});
 	return '<Provider session={session}><Lesson className="Lesson" >'+code+'</Lesson></Provider>;';
 };
 
