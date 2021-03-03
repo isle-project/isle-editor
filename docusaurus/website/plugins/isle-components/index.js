@@ -43,7 +43,8 @@ module.exports = function main( context, options ) {
 							test: /\.js$/,
 							exclude: [
 								/node_modules(?:\/|\\)(?!debug|@iktakahiro(?:\/|\\)markdown-it-katex)/,
-								/fonts\.js$/
+								/fonts\.js$/,
+								/markdown-to-html/
 							],
 							loader: 'babel-loader',
 							query: {
