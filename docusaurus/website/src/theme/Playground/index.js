@@ -13,7 +13,9 @@ import React, { useState } from 'react';
 import { translate } from '@docusaurus/Translate';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import debounce from 'lodash.debounce';
 import clsx from 'clsx';
+import markdownToHTML from 'app/utils/markdown-to-html';
 import styles from './styles.module.css';
 import './load_datasets.js';
 
@@ -26,17 +28,26 @@ function preventPropagation( event ) {
 }
 
 
+// VARIABLES //
+
+const RE_STR_RAW = /String.raw`([^`]+)`/;
+const transformCode = ( code ) => {
+	code = markdownToHTML( code );
+	code = code.replace( RE_STR_RAW, 'String.raw({ raw: \'$1\' })' );
+	return '<Provider session={session}><Lesson className="Lesson" >'+code+'</Lesson></Provider>;';
+};
+const debouncedTransform = debounce( transformCode, 1000 );
+
+
 // MAIN //
 
-function Playground({ children, theme, transformCode, ...props }) {
+function Playground({ children, theme, ...props }) {
 	const [ copied, setCopied ] = useState( false );
 	return (
 		<LiveProvider
 			code={children.replace(/\n$/, '')}
 			theme={theme}
-			transformCode={( code ) => {
-				return '<Provider session={session}><Lesson className="Lesson" >'+code+'</Lesson></Provider>;';
-			}}
+			transformCode={debouncedTransform}
 			{...props}>
 			<div
 				className={clsx(
