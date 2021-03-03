@@ -12,7 +12,7 @@ const fs = require( 'fs' );
 // VARIABLES //
 
 const RE_VERSION = /([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/g;
-const RE_DLL_FILE = /(\.js|\.js\.LICENSE\.txt)$/;
+const RE_DLL_FILE = /(\.js|\.js\.LICENSE\.txt|\.css)$/;
 const SEMVER = [ 'major', 'minor', 'patch' ];
 let newVersion;
 let oldVersion;
