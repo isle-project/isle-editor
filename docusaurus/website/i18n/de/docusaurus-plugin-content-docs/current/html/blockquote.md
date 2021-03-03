@@ -22,6 +22,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'withMarkdown' },
         { label: 'Cite', value: 'cite' },
         { label: 'Styled', value: 'styled' }
     ]}
@@ -33,6 +34,21 @@ import TabItem from '@theme/TabItem';
 ```jsx live
 <blockquote>
 After all is said and done, more is said than done.
+</blockquote>
+```
+
+</TabItem>
+
+<TabItem value="withMarkdown">
+
+```jsx live
+<blockquote>
+
+# A Markdown Quote
+
+After all is **said** and **done**, more is said than done. 
+
+[Francis Crick](https://en.wikipedia.org/wiki/Francis_Crick)
 </blockquote>
 ```
 

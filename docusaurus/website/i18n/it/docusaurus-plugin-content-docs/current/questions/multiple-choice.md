@@ -36,6 +36,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="singleAnswer"
     values={[
         { label: 'Single Answer', value: 'singleAnswer' },
+        { label: 'Formatted Answers', value: 'formattedAnswers' },
         { label: 'Instant Feedback', value: 'instantFeedback' },
         { label: 'Multiple Answers', value: 'multipleAnswers' },
         { label: 'Series of Questions', value: 'aSeries' },
@@ -55,6 +56,21 @@ import TabItem from '@theme/TabItem';
         {content:"Multiple regression"}
     ]}
     question="Which of the following methods are used for clustering?"
+/>
+```
+
+</TabItem>
+
+<TabItem value="formattedAnswers" >
+
+```jsx live
+<MultipleChoiceQuestion
+    answers={[
+        {content: <span>**bold**</span>},
+        {content: <span>*italic*</span>},
+        {content: <span style={{ fontFamily: 'Georgia', color: 'red' }}>styled</span>}
+    ]}
+    question={<span style={{ fontSize: 33}}>What kind of font do you like the most?</span>}
 />
 ```
 

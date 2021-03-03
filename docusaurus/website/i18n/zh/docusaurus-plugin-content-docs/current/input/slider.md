@@ -27,6 +27,22 @@ sidebar_label: Slider Input
 
 ## 例子
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Mathematical Symbols via LaTeX', value: 'mathematicalSymbols' },
+        { label: 'Custom Style', value: 'customStyle' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <SliderInput
     legend="Success Probability"
@@ -37,5 +53,37 @@ sidebar_label: Slider Input
 />
 ```
 
+</TabItem>
 
+<TabItem value="mathematicalSymbols">
 
+```jsx live
+<SliderInput
+    legend={<span>$\sigma$ (standard deviation)</span>}
+    defaultValue={0.5}
+    min={0}
+    max={1}
+    step={0.01}
+/>
+```
+
+</TabItem>
+
+<TabItem value="customStyle">
+
+```jsx live
+<SliderInput
+    legend="Success Probability"
+    style={{ padding: 30, fontSize: 25, background: 'tan', fontFamily: 'Georgia'}}
+    rangeInputStyle ={{ minWidth: 500}}
+    numberInputStyle = {{ background: 'white', boxShadow: '2px 2px 0px black'}}
+    defaultValue={0.5}
+    min={0}
+    max={200}
+    step={0.01}
+/>
+```
+
+</TabItem>
+
+</Tabs>
