@@ -3,7 +3,7 @@
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 
 
 // MAIN //
@@ -36,8 +36,17 @@ const config = {
 			},
 			{
 				test: /\.css$/,
+				exclude: /config\/ui/,
 				use: [
 					MiniCssExtractPlugin.loader,
+					'css-loader'
+				]
+			},
+			{
+				test: /\.css$/,
+				include: /config\/ui/,
+				use: [
+					'style-loader',
 					'css-loader'
 				]
 			},
