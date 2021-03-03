@@ -13,7 +13,6 @@ import React, { useState } from 'react';
 import { translate } from '@docusaurus/Translate';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import debounce from 'lodash.debounce';
 import clsx from 'clsx';
 import markdownToHTML from 'app/utils/markdown-to-html';
 import styles from './styles.module.css';
@@ -32,11 +31,14 @@ function preventPropagation( event ) {
 
 const RE_STR_RAW = /String.raw`([^`]+)`/;
 const transformCode = ( code ) => {
-	code = markdownToHTML( code );
+	try {
+		code = markdownToHTML( code );
+	} catch ( err ) {
+		console.error( err ); // eslint-disable-line no-console
+	}
 	code = code.replace( RE_STR_RAW, 'String.raw({ raw: \'$1\' })' );
 	return '<Provider session={session}><Lesson className="Lesson" >'+code+'</Lesson></Provider>;';
 };
-const debouncedTransform = debounce( transformCode, 1000 );
 
 
 // MAIN //
@@ -47,8 +49,9 @@ function Playground({ children, theme, ...props }) {
 		<LiveProvider
 			code={children.replace(/\n$/, '')}
 			theme={theme}
-			transformCode={debouncedTransform}
-			{...props}>
+			{...props}
+			transformCode={transformCode}
+		>
 			<div
 				className={clsx(
 					styles.playgroundHeader,
