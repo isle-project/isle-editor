@@ -12,6 +12,7 @@ A range question component that asks students to supply a lower and upper end po
 * __solution__ | `array<number>`: two-element array containing the endpoints of the correct range. Default: `none`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: hints providing guidance on how to answer the question. Default: `[]`.
+* __labels__ | `array`: two-element array of custom labels other than "Lower" and "Upper". Default: `none`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __digits__ | `number`: number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality. Default: `3`.
@@ -25,6 +26,7 @@ A range question component that asks students to supply a lower and upper end po
 * __onChangeLower__ | `function`: callback triggered after the lower bound is changed by the user. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback triggered after the upper bound is changed by the user. Default: `onChangeUpper() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.
+
 
 ## Examples
 
@@ -48,7 +50,7 @@ import TabItem from '@theme/TabItem';
 ```jsx live
 <RangeQuestion
     style={{ fontSize: 17, }}
-    question="Tell me the year the Thirty Years War broke out and when it ended"
+    question="What year did the Thirty Years War broke out and when did it?"
     solution={[1618,1648]}
     labels={['Start', 'End']}
     min={1500}
@@ -62,7 +64,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <RangeQuestion
-    question="Tell me the year the Thirty Years War broke out and when it ended"
+    question="What year did the Thirty Years War broke out and when did it?"
     solution={[1618,1648]}
     labels={['Start', 'End']}
     min={1500}
@@ -78,7 +80,7 @@ import TabItem from '@theme/TabItem';
 ```jsx live
 <RangeQuestion
     style={{ fontFamily: 'Georgia', boxShadow: '0 0  10px darkblue'}}
-    question="Tell me the year the Thirty Years War broke out and when it ended"
+    question="What year did the Thirty Years War broke out and when did it?"
     solution={[1618,1648]}
     labels={['Start', 'End']}
     min={1500}
@@ -92,7 +94,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <RangeQuestion
-    question="Tell me the year the Thirty Years War broke out and when it ended"
+    question="What year did the Thirty Years War broke out and when did it?"
     solution={[1618,1648]}
     labels={['Start', 'End']}
     min={1500}
