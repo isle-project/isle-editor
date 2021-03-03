@@ -21,6 +21,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'withMarkdown' },
         { label: 'With CSS', value: 'withCSS' },
         { label: 'Highlight', value: 'highlight' }
     ]}
@@ -31,6 +32,14 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <span>inline text wrapped by span tag</span>
+```
+
+</TabItem>
+
+<TabItem value="withMarkdown" >
+
+```jsx live
+<span>You can mix *italic* and **bold** text via Markdown - as well as [links](https://www.google.com).</span>
 ```
 
 </TabItem>
@@ -55,4 +64,3 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 
 </Tabs>
-

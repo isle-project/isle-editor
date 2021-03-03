@@ -14,6 +14,21 @@ Un componente di modulo che combina diversi componenti di domanda con un unico p
 
 ## Esempi
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'withMarkdown' }
+        
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <QuestionForm>
     <NumberQuestion
@@ -24,3 +39,20 @@ Un componente di modulo che combina diversi componenti di domanda con un unico p
     />    
 </QuestionForm>
 ```
+</TabItem>
+
+<TabItem value="withMarkdown">
+
+```jsx live
+<QuestionForm>
+    <NumberQuestion
+        question={<p>What is $$2+2$$?</p>}
+    />  
+    <FreeTextQuestion
+        question={<span>What is the *meaning of life*?</span>}
+    />    
+</QuestionForm>
+```
+</TabItem>
+
+</Tabs>

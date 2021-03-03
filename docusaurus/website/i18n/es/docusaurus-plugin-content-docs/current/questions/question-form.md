@@ -14,6 +14,21 @@ Un componente de formulario que combina diferentes componentes de la pregunta ju
 
 ## Ejemplos
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'withMarkdown' }
+        
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <QuestionForm>
     <NumberQuestion
@@ -24,3 +39,20 @@ Un componente de formulario que combina diferentes componentes de la pregunta ju
     />    
 </QuestionForm>
 ```
+</TabItem>
+
+<TabItem value="withMarkdown">
+
+```jsx live
+<QuestionForm>
+    <NumberQuestion
+        question={<p>What is $$2+2$$?</p>}
+    />  
+    <FreeTextQuestion
+        question={<span>What is the *meaning of life*?</span>}
+    />    
+</QuestionForm>
+```
+</TabItem>
+
+</Tabs>

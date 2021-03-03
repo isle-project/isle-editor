@@ -36,6 +36,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'withMarkdown' },
         { label: 'With Solution & Style', value: 'withFeedback' },
         { label: 'Shuffle Right', value: 'shuffleRight' },
         { label: 'Points for Grading', value: 'grading' },
@@ -61,6 +62,23 @@ import TabItem from '@theme/TabItem';
 ```
 </TabItem>
 
+<TabItem value="withMarkdown">
+
+```jsx live
+<MatchListQuestion
+    question={<span>Please match the **symbols** and the respective *chemical* element.</span>}
+    style={{ color: 'darkblue'}}
+    elements={[
+        { a: 'Ac' , b: 'Actinium'},
+        { a: 'Ar', b: 'Argon' },
+        { a: 'Be', b: 'Berlyllium' },
+        { a: 'Br', b: 'Bromine' },
+        { b: 'Arsenic' },
+        { b: 'Boron' }
+    ]}
+/>
+```
+</TabItem>
 
 <TabItem value="withFeedback">
 
