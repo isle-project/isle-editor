@@ -2,7 +2,6 @@
 
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 
 
@@ -36,15 +35,6 @@ const config = {
 			},
 			{
 				test: /\.css$/,
-				exclude: /config\/ui/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader'
-				]
-			},
-			{
-				test: /\.css$/,
-				include: /config\/ui/,
 				use: [
 					'style-loader',
 					'css-loader'
@@ -244,7 +234,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.46/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.49/'
 	},
 	optimization: {
 		minimize: true,
@@ -257,10 +247,6 @@ const config = {
 		new DllPlugin({
 			path: join( __dirname, '@isle-project', 'dll', '[name]-manifest.json' ),
 			name: '[name]_dll'
-		}),
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
-			chunkFilename: 'css/[name][id].css'
 		}),
 		new DefinePlugin({
 			'process.env': {
