@@ -22,6 +22,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Regular HTML', value: 'regularHTML' },
+        { label: 'With Markdown', value: 'withMarkdown' },
         { label: 'With CSS', value: 'withCSS' },
         { label: 'Embedded Component', value: 'embeddedISLE' }
     ]}
@@ -47,6 +48,23 @@ import TabItem from '@theme/TabItem';
     <hr />
 </div>
 ```
+</TabItem>
+
+<TabItem value="withMarkdown">
+
+```jsx live
+<div>
+  1. Ordered List - First item
+  2. Second item
+  3. Third item
+  `var a = 77;`
+  `this is a line of code;`  
+  
+  [Link to Google](https://www.google.com)
+  ![The alternate text if you hover over the image](https://bit.ly/2MGl7K0)
+</div>
+```
+
 </TabItem>
 
 <TabItem value="withCSS">
