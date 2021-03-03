@@ -31,7 +31,7 @@ import GroupManager from './group-manager';
 import GroupClient from './group-client';
 import Score from './score';
 import './statusbar.css';
-const InstructorView = lazy( () => import( '@isle-project/components/internal/statusbar/instructor-view' ) );
+const InstructorView = lazy( () => import( /* webpackChunkName: "InstructorView" */ '@isle-project/components/internal/statusbar/instructor-view' ) );
 
 
 // VARIABLES //

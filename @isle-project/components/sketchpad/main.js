@@ -68,11 +68,11 @@ import {
 import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from '@isle-project/constants/events.js';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-const ResetModal = Loadable( () => import( './reset_modal.js' ) );
-const DeletePageModal = Loadable( () => import( './delete_page_modal.js' ) );
-const NavigationModal = Loadable( () => import( './navigation_modal.js' ) );
-const FeedbackModal = Loadable( () => import( './feedback_modal.js' ) );
-const SaveModal = Loadable( () => import( './save_modal.js' ) );
+const ResetModal = Loadable( () => import( /* webpackChunkName: "SketchpadResetModal" */ './reset_modal.js' ) );
+const DeletePageModal = Loadable( () => import( /* webpackChunkName: "SketchpadDeleteModal" */ './delete_page_modal.js' ) );
+const NavigationModal = Loadable( () => import( /* webpackChunkName: "SketchpadNavigationModal" */ './navigation_modal.js' ) );
+const FeedbackModal = Loadable( () => import( /* webpackChunkName: "SketchpadFeedbackModal" */ './feedback_modal.js' ) );
+const SaveModal = Loadable( () => import( /* webpackChunkName: "SketchpadSaveModal" */ './save_modal.js' ) );
 import SketchpadContextMenu from './contextmenu.js';
 import guide from './guide.json';
 import './sketchpad.css';

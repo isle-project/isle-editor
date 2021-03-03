@@ -9,50 +9,50 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Tab from 'react-bootstrap/Tab';
 
-const ContingencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/contingency_table' ) );
-const FrequencyTable = Loadable( () => import( '@isle-project/components/data-explorer/menu/frequency_table' ) );
-const SummaryStatistics = Loadable( () => import( '@isle-project/components/data-explorer/summary_statistics' ) );
-const VariableTransformer = Loadable( () => import( '@isle-project/components/data-explorer/variable-transformer' ) );
+const ContingencyTable = Loadable( () => import( /* webpackChunkName: "ContingencyTableMenu" */ '@isle-project/components/data-explorer/menu/contingency_table' ) );
+const FrequencyTable = Loadable( () => import( /* webpackChunkName: "FrequencyTableMenu" */ '@isle-project/components/data-explorer/menu/frequency_table' ) );
+const SummaryStatistics = Loadable( () => import( /* webpackChunkName: "SummaryStatisticsMenu" */ '@isle-project/components/data-explorer/summary_statistics' ) );
+const VariableTransformer = Loadable( () => import( /* webpackChunkName: "VariableTransformerMenu" */ '@isle-project/components/data-explorer/variable-transformer' ) );
 
 // MODEL COMPONENTS //
 
-const DecisionTree = Loadable( () => import( '@isle-project/components/data-explorer/menu/decision_tree.js' ) );
-const LassoRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/lasso_regression.js' ) );
-const LogisticRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/logistic_regression' ) );
-const MultipleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/multiple_linear_regression' ) );
-const RandomForest = Loadable( () => import( '@isle-project/components/data-explorer/menu/random_forest.js' ) );
-const SimpleLinearRegression = Loadable( () => import( '@isle-project/components/data-explorer/menu/simple_linear_regression' ) );
-const PrincipalComponentAnalysis = Loadable( () => import( '@isle-project/components/data-explorer/menu/principal_component_analysis' ) );
-const HierarchicalClustering = Loadable( () => import( '@isle-project/components/data-explorer/menu/hierarchical_clustering.js' ) );
-const KMeans = Loadable( () => import( '@isle-project/components/data-explorer/menu/kmeans' ) );
-const NaiveBayes = Loadable( () => import( '@isle-project/components/data-explorer/menu/naive_bayes.js' ) );
+const DecisionTree = Loadable( () => import( /* webpackChunkName: "DecisionTreeMenu" */ '@isle-project/components/data-explorer/menu/decision_tree.js' ) );
+const LassoRegression = Loadable( () => import( /* webpackChunkName: "LassoRegressionMenu" */ '@isle-project/components/data-explorer/menu/lasso_regression.js' ) );
+const LogisticRegression = Loadable( () => import( /* webpackChunkName: "LogisticRegressionMenu" */ '@isle-project/components/data-explorer/menu/logistic_regression' ) );
+const MultipleLinearRegression = Loadable( () => import( /* webpackChunkName: "MultipleLinearRegressionMenu" */ '@isle-project/components/data-explorer/menu/multiple_linear_regression' ) );
+const RandomForest = Loadable( () => import( /* webpackChunkName: "RandomForestMenu" */ '@isle-project/components/data-explorer/menu/random_forest.js' ) );
+const SimpleLinearRegression = Loadable( () => import( /* webpackChunkName: "SimpleLinearRegressionMenu" */ '@isle-project/components/data-explorer/menu/simple_linear_regression' ) );
+const PrincipalComponentAnalysis = Loadable( () => import( /* webpackChunkName: "PrincipalComponentAnalysisMenu" */ '@isle-project/components/data-explorer/menu/principal_component_analysis' ) );
+const HierarchicalClustering = Loadable( () => import( /* webpackChunkName: "HierarchicalClusteringMenu" */ '@isle-project/components/data-explorer/menu/hierarchical_clustering.js' ) );
+const KMeans = Loadable( () => import( /* webpackChunkName: "KMeansMenu" */ '@isle-project/components/data-explorer/menu/kmeans' ) );
+const NaiveBayes = Loadable( () => import( /* webpackChunkName: "NaiveBayesMenu" */ '@isle-project/components/data-explorer/menu/naive_bayes.js' ) );
 
 // TEST COMPONENTS //
 
-const Anova = Loadable( () => import( '@isle-project/components/data-explorer/menu/anova' ) );
-const Chi2Test = Loadable( () => import( '@isle-project/components/data-explorer/menu/chi2' ) );
-const CorrTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/corrtest' ) );
-const Kruskal = Loadable( () => import( '@isle-project/components/data-explorer/menu/kruskal' ) );
-const MeanTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest' ) );
-const MeanTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/meantest2' ) );
-const PropTest = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest' ) );
-const PropTest2 = Loadable( () => import( '@isle-project/components/data-explorer/menu/proptest2' ) );
+const Anova = Loadable( () => import( /* webpackChunkName: "AnovaMenu" */ '@isle-project/components/data-explorer/menu/anova' ) );
+const Chi2Test = Loadable( () => import( /* webpackChunkName: "Chi2TestMenu" */ '@isle-project/components/data-explorer/menu/chi2' ) );
+const CorrTest = Loadable( () => import( /* webpackChunkName: "CorrTestMenu" */ '@isle-project/components/data-explorer/menu/corrtest' ) );
+const Kruskal = Loadable( () => import( /* webpackChunkName: "KruskalMenu" */ '@isle-project/components/data-explorer/menu/kruskal' ) );
+const MeanTest = Loadable( () => import( /* webpackChunkName: "MeanTestMenu" */ '@isle-project/components/data-explorer/menu/meantest' ) );
+const MeanTest2 = Loadable( () => import( /* webpackChunkName: "MeanTest2Menu" */ '@isle-project/components/data-explorer/menu/meantest2' ) );
+const PropTest = Loadable( () => import( /* webpackChunkName: "PropTestMenu" */ '@isle-project/components/data-explorer/menu/proptest' ) );
+const PropTest2 = Loadable( () => import( /* webpackChunkName: "PropTest2Menu" */ '@isle-project/components/data-explorer/menu/proptest2' ) );
 
 // PLOT COMPONENTS //
 
-const Barchart = Loadable( () => import( '@isle-project/components/data-explorer/menu/barchart' ) );
-const Boxplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/boxplot' ) );
-const Heatmap = Loadable( () => import( '@isle-project/components/data-explorer/menu/heatmap' ) );
-const Histogram = Loadable( () => import( '@isle-project/components/data-explorer/menu/histogram' ) );
-const Lineplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/lineplot' ) );
-const Map = Loadable( () => import( '@isle-project/components/data-explorer/menu/map' ) );
-const MosaicPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/mosaicplot' ) );
-const Piechart = Loadable( () => import( '@isle-project/components/data-explorer/menu/piechart' ) );
-const QQPlot = Loadable( () => import( '@isle-project/components/data-explorer/menu/qqplot' ) );
-const Scatterplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot' ) );
-const ScatterplotMatrix = Loadable( () => import( '@isle-project/components/data-explorer/menu/scatterplot_matrix' ) );
-const Violinplot = Loadable( () => import( '@isle-project/components/data-explorer/menu/violinplot' ) );
-const ContourChart = Loadable( () => import( '@isle-project/components/data-explorer/menu/contourchart.js' ) );
+const Barchart = Loadable( () => import( /* webpackChunkName: "BarchartMenu" */ '@isle-project/components/data-explorer/menu/barchart' ) );
+const Boxplot = Loadable( () => import( /* webpackChunkName: "BoxplotMenu" */ '@isle-project/components/data-explorer/menu/boxplot' ) );
+const Heatmap = Loadable( () => import( /* webpackChunkName: "HeatmapMenu" */ '@isle-project/components/data-explorer/menu/heatmap' ) );
+const Histogram = Loadable( () => import( /* webpackChunkName: "HistogramMenu" */ '@isle-project/components/data-explorer/menu/histogram' ) );
+const Lineplot = Loadable( () => import( /* webpackChunkName: "LineplotMenu" */'@isle-project/components/data-explorer/menu/lineplot' ) );
+const Map = Loadable( () => import( /* webpackChunkName: "MapMenu" */ '@isle-project/components/data-explorer/menu/map' ) );
+const MosaicPlot = Loadable( () => import( /* webpackChunkName: "MosaicPlotMenu" */ '@isle-project/components/data-explorer/menu/mosaicplot' ) );
+const Piechart = Loadable( () => import( /* webpackChunkName: "PiechartMenu" */ '@isle-project/components/data-explorer/menu/piechart' ) );
+const QQPlot = Loadable( () => import( /* webpackChunkName: "QQPlotMenu" */ '@isle-project/components/data-explorer/menu/qqplot' ) );
+const Scatterplot = Loadable( () => import( /* webpackChunkName: "ScatterplotMenu" */ '@isle-project/components/data-explorer/menu/scatterplot' ) );
+const ScatterplotMatrix = Loadable( () => import( /* webpackChunkName: "ScatterplotMatrixMenu" */ '@isle-project/components/data-explorer/menu/scatterplot_matrix' ) );
+const Violinplot = Loadable( () => import( /* webpackChunkName: "ViolinplotMenu" */ '@isle-project/components/data-explorer/menu/violinplot' ) );
+const ContourChart = Loadable( () => import( /* webpackChunkName: "ContourChartMenu" */ '@isle-project/components/data-explorer/menu/contourchart.js' ) );
 
 
 // MAIN //

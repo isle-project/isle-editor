@@ -7,8 +7,8 @@ import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-const ToolboxTutorialButton = Loadable( () => import( '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
-const ToolboxTabs = Loadable( () => import( './toolbox_tabs.js' ) );
+const ToolboxTutorialButton = Loadable( () => import( /* webpackChunkName: "ToolboxTutorialButton" */ '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
+const ToolboxTabs = Loadable( () => import( /* webpackChunkName: "ToolboxTabs" */ './toolbox_tabs.js' ) );
 
 
 // MAIN //

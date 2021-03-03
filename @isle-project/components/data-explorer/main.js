@@ -42,7 +42,7 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SpreadsheetUpload from '@isle-project/components/spreadsheet-upload';
 import RPlot from '@isle-project/components/r/plot';
 import DataTable from '@isle-project/components/data-table';
-const ToolboxButton = lazy( () => import( './toolbox.js' ) );
+const ToolboxButton = lazy( () => import( /* webpackChunkName: "Toolbox" */ './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
