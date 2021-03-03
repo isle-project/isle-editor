@@ -31,8 +31,8 @@ import { i18n } from '@isle-project/locales';
 import CustomButton from './custom_button.js';
 import preventEventDefault from './prevent_event_default.js';
 import resolveImage from './resolve_image.js';
-import './form.css';
 import './image_url_editor.css';
+import './form.css';
 
 
 // MAIN //
