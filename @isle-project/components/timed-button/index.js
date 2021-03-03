@@ -1,7 +1,11 @@
+// MODULES //
+
+import Loadable from '@isle-project/components/internal/loadable';
+
 
 // MAIN //
 
-import TimedButton from './main.js'; // Cannot load asynchronously as this breaks tooltip overlays...
+const TimedButton = Loadable( () => import( /* webpackChunkName: "TimedButton" */ './main.js' ) );
 
 
 // EXPORTS //

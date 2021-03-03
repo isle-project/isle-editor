@@ -1,6 +1,11 @@
 // MODULES //
 
-import Switch from './main.js';
+import Loadable from '@isle-project/components/internal/loadable';
+
+
+// MAIN //
+
+const Switch = Loadable( () => import( /* webpackChunkName: "Switch" */ './main.js' ) );
 
 
 // EXPORTS //
