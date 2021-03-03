@@ -30,9 +30,48 @@ Eine Komponente für Zahlenfragen.
 
 ## Beispiele
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'With Markdown', value: 'markdownStyling' },
+        { label: 'With CSS', value: 'withCSS' }
+        
+    ]}
+    lazy
+>
+
+<TabItem value="minimal">
+
 ```jsx live
 <NumberQuestion
-    question="What is the number PI - three digits after the period"
+    question="What is the number Pi? (include at least three digits after the decimal point)"
     solution={3.142}
 />
 ```
+</TabItem>
+
+<TabItem value="markdownStyling">
+
+```jsx live
+<NumberQuestion
+    question={<span>What is the number $\pi$? (include at least _three_ digits after the decimal point)</span>}
+    solution={3.142}
+/>
+```
+</TabItem>
+
+<TabItem value="withCSS">
+
+```jsx live
+<NumberQuestion
+    question={<span style={{ fontSize: 25, color: 'darkorange'}}>What is the number PI - three digits after the period</span>}
+    solution={3.142}
+/>
+```
+</TabItem>
+
+</Tabs>
