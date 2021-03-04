@@ -49,7 +49,7 @@ function calculateCoefficients( x, y ) {
 	}
 	const slope = C2 / C1;
 	const yint = ymu - slope*xmu;
-	return [ yint, slope ];
+	return { yint, slope, xg: x, yg: y };
 }
 
 function isMissing( x ) {
@@ -155,21 +155,21 @@ class SimpleLinearRegression extends Component {
 						<i>{t('grouped-by')} {group}:</i>
 					</p>
 					{objectValues( mapValues( res, ( elem, key ) => {
-						const [ yint, slope ] = elem;
+						const { yint, slope, xg, yg } = elem;
 						const resAcc = incrsumabs2();
 						const x2Acc = incrsumabs2();
 						const x2mmAcc = incrsumabs2();
-						const cdf = tCDF.factory( yd.length - 2 );
-						for ( let i = 0; i < yd.length; i++ ) {
-							const pred = yint + slope * xd[ i ];
-							resAcc( pred - yd[ i ] );
-							x2Acc( xd[ i ] );
-							x2mmAcc( xd[ i ] - xmeans[ key ] );
+						const cdf = tCDF.factory( yg.length - 2 );
+						for ( let i = 0; i < yg.length; i++ ) {
+							const pred = yint + slope * xg[ i ];
+							resAcc( pred - yg[ i ] );
+							x2Acc( xg[ i ] );
+							x2mmAcc( xg[ i ] - xmeans[ key ] );
 						}
-						const sigma2 = resAcc() / ( yd.length - 2 );
+						const sigma2 = resAcc() / ( yg.length - 2 );
 						const slopeVar = sigma2 / x2mmAcc();
 						const slopeSE = sqrt( slopeVar );
-						const interceptVar = ( (1/yd.length) * sigma2 * x2Acc() ) / x2mmAcc();
+						const interceptVar = ( (1/yg.length) * sigma2 * x2Acc() ) / x2mmAcc();
 						const interceptSE = sqrt( interceptVar );
 						const tSlope = slope / slopeSE;
 						const tIntercept = yint / interceptSE;
@@ -273,7 +273,7 @@ class SimpleLinearRegression extends Component {
 				</div>;
 			}
 			else {
-				const [ yint, slope ] = calculateCoefficients( xd, yd );
+				const { yint, slope } = calculateCoefficients( xd, yd );
 				const resAcc = incrsumabs2();
 				const x2Acc = incrsumabs2();
 				const x2mmAcc = incrsumabs2();
