@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import Tooltip from '@isle-project/components/tooltip';
@@ -212,4 +213,4 @@ CustomDeck.contextType = SessionContext;
 
 // EXPORTS //
 
-export default CustomDeck;
+export default withTranslation( 'Spectacle' )( CustomDeck );
