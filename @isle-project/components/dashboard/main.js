@@ -15,6 +15,7 @@ import SelectInput from '@isle-project/components/input/select';
 import SliderInput from '@isle-project/components/input/slider';
 import TextInput from '@isle-project/components/input/text';
 import TextArea from '@isle-project/components/input/text-area';
+import ProportionsInput from '@isle-project/components/input/proportions';
 import SessionContext from '@isle-project/session/context.js';
 import { DASHBOARD_CLICK_GENERATE } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
@@ -134,13 +135,15 @@ class Dashboard extends Component {
 						child.type === SliderInput ||
 						child.type === TextInput ||
 						child.type === TextArea ||
+						child.type === ProportionsInput ||
 						child.type.name === 'CheckboxInput' ||
 						child.type.name === 'NumberInput' ||
 						child.type.name === 'SelectInput' ||
 						child.type.name === 'SliderInput' ||
 						child.type.name === 'TextInput' ||
 						child.type.name === 'TextArea' ||
-						child.type.name === 'Input'
+						child.type.name === 'Input' ||
+						child.type.name === 'ProportionsInput'
 					) {
 						debug( 'Encountering an input element...' );
 						const idx = this.getCounter();
