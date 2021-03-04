@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[614],{3106:function(e){e.exports=JSON.parse('{"not-available":"no disponible","party":"Fiesta","president":"Presidente:","questions":"Preguntas","speech":"Discurso:","state-of-the-union-addresses":"Direcciones del Estado de la Uni\xf3n","year":"A\xf1o"}')}}]);

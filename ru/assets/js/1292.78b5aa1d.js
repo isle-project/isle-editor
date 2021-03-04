@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1292],{3251:function(o){o.exports=JSON.parse('{"save-word-cloud":"Salva nuvola di parole"}')}}]);
