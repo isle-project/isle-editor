@@ -5,7 +5,13 @@
 	box-shadow: 0 0 10px darkslategray;
 }
 
-.component-styler-css-button {
+.component-styler-tag-button {
+	float: right;
+	margin-right: 10px;
+	margin-top: 8px;
+}
+
+.component-styler-class-button {
 	float: right;
 	margin-right: 40px;
 	margin-top: 8px;

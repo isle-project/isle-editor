@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import vex from 'vex-js';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Accordion from '@isle-project/components/accordion';
 import jsxToCSS from '@isle-project/utils/jsx-to-css';
 import { appendCSSToPreamble } from 'actions';
+import HTML_TAGS from './html_tags.json';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
 import Typography from './typography.js';
@@ -34,41 +35,53 @@ const ACCORDION_ITEM_STYLE = {
 
 // MAIN //
 
-const ComponentStyler = ( props ) => {
+const ComponentStyler = ({ tagName, show, componentStyle, style, appendCSSToPreamble, onChange, onHide, onClassTransform }) => {
 	const [ active, setActive ] = useState( null );
 	const { t } = useTranslation( 'Editor' );
-	if ( !props.show ) {
-		return null;
-	}
-	const handleChange = debounce( props.onChange, 25 );
-	const handleCSSTransform = () => {
+	const handleChange = debounce( onChange, 25 );
+	const handleTagTransform = useCallback( () => {
+		const css = jsxToCSS( tagName, componentStyle, '  ' );
+		appendCSSToPreamble({ css });
+		onChange({});
+	}, [ appendCSSToPreamble, componentStyle, tagName, onChange ] );
+	const handleClassTransform = useCallback( () => {
 		vex.dialog.prompt({
 			unsafeMessage: t('enter-class-name-prompt'),
 			placeholder: t('enter-class-name'),
 			callback( className ) {
 				if ( className ) {
-					const css = jsxToCSS( '.'+className, props.componentStyle, '  ' );
-					props.onClassTransform( className );
-					props.appendCSSToPreamble({ css });
+					const css = jsxToCSS( '.'+className, componentStyle, '  ' );
+					onClassTransform( className );
+					appendCSSToPreamble({ css });
 				}
 			}
 		});
-	};
+	}, [ appendCSSToPreamble, componentStyle, onClassTransform, t ] );
+	if ( !show ) {
+		return null;
+	}
+	const isStandardTag = HTML_TAGS.includes( tagName );
 	return (
-		<div className="component-styler" style={props.style} >
+		<div className="component-styler" style={style} >
 			<span className="component-styler-heading" >
 				{t('customize-style')}
 				<Button
 					variant="secondary" size="sm"
-					className="component-styler-css-button"
-					onClick={handleCSSTransform}
+					className="component-styler-class-button"
+					onClick={handleClassTransform}
 				>
-					<i className="fab fa-css3" style={{ marginRight: 5 }} />
-					{t('move-to-preamble')}
+					{t('move-class-to-preamble')}
 				</Button>
+				{ isStandardTag ? <Button
+					variant="secondary" size="sm"
+					className="component-styler-tag-button"
+					onClick={handleTagTransform}
+				>
+					{t('apply-to-all-elements', { tagName })}
+				</Button> : null }
 				<Button
 					size="sm" variant="warning"
-					className="component-styler-close-button" onClick={props.onHide}
+					className="component-styler-close-button" onClick={onHide}
 				>
 					<div className="fa fa-times" />
 				</Button>
@@ -81,34 +94,34 @@ const ComponentStyler = ( props ) => {
 				onChange={setActive}
 			>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Layout active={active === 0} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Layout active={active === 0} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={{ ...ACCORDION_ITEM_STYLE, height: 260 }} >
-					<SpacingSetter active={active === 1} style={props.componentStyle} onChange={handleChange} t={t} />
+					<SpacingSetter active={active === 1} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Size active={active === 2} style={props.componentStyle} onChange={handleChange}t={t} />
+					<Size active={active === 2} style={componentStyle} onChange={handleChange}t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Position active={active === 3} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Position active={active === 3} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Typography active={active === 4} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Typography active={active === 4} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<FontVariants active={active === 5} style={props.componentStyle} onChange={handleChange} t={t} />
+					<FontVariants active={active === 5} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Borders active={active === 6} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Borders active={active === 6} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Cursor active={active === 7} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Cursor active={active === 7} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<Effects active={active === 8} style={props.componentStyle} onChange={handleChange} t={t} />
+					<Effects active={active === 8} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 				<div style={ACCORDION_ITEM_STYLE} >
-					<BoxShadows active={active === 9} style={props.componentStyle} onChange={handleChange} t={t} />
+					<BoxShadows active={active === 9} style={componentStyle} onChange={handleChange} t={t} />
 				</div>
 			</Accordion>
 		</div>
@@ -119,12 +132,14 @@ const ComponentStyler = ( props ) => {
 // PROPERTIES //
 
 ComponentStyler.defaultProps = {
+	tagName: null,
 	show: false,
 	componentStyle: {},
 	style: {}
 };
 
 ComponentStyler.propTypes = {
+	tagName: PropTypes.string,
 	show: PropTypes.bool,
 	componentStyle: PropTypes.object,
 	style: PropTypes.object,
