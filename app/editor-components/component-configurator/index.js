@@ -449,7 +449,11 @@ class ComponentConfigurator extends Component {
 			[ 'prop:style' ]: newValue
 		}, () => {
 			let { value } = this.state;
-			value = replace( value, RE_STYLE_KEY, '$1style={' + JSON.stringify( newValue, null, 2 ) + '}' );
+			if ( isEmptyObject( newValue ) ) {
+				value = replace( value, RE_STYLE_KEY, '' );
+			} else {
+				value = replace( value, RE_STYLE_KEY, '$1style={' + JSON.stringify( newValue, null, 2 ) + '}' );
+			}
 			this.setState({ value });
 		});
 	}
@@ -856,6 +860,7 @@ class ComponentConfigurator extends Component {
 					>{t('close')}</Button>
 				</Modal.Footer>
 				<ComponentStyler
+					tagName={this.props.component.name}
 					show={this.state.showStyler}
 					onHide={this.toggleStyler}
 					componentStyle={this.state[ 'prop:style' ]}

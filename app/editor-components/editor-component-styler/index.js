@@ -6,6 +6,7 @@ import logger from 'debug';
 import markdownit from 'markdown-it';
 import noop from '@stdlib/utils/noop';
 import replace from '@stdlib/string/replace';
+import isEmptyObject from '@stdlib/assert/is-empty-object';
 import ComponentStyler from 'editor-components/component-styler';
 import Draggable from '@isle-project/components/draggable';
 import './editor_component_styler.css';
@@ -30,9 +31,27 @@ const md = markdownit({
 const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, onHide }) => {
 	const [ isShown, setIsShown ] = useState( false );
 	const [ style, setStyle ] = useState({});
+	const [ component, setComponent ] = useState({});
 	const handleChange = useRef( () => {} );
 	const handleClassTransform = useRef( () => {} );
-	useEffect(() => {
+	useEffect( () => {
+		let value = componentValue;
+		if ( !value ) {
+			return;
+		}
+		let match = value.match( RE_TAG_START );
+		if ( !match ) {
+			value = md.render( value );
+			match = value.match( RE_TAG_START );
+		}
+		if ( match ) {
+			setComponent({
+				tagName: match[ 2 ],
+				value: value
+			});
+		}
+	}, [ componentValue ] );
+	useEffect( () => {
 		if ( show ) {
 			setIsShown( show );
 		}
@@ -43,24 +62,19 @@ const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, o
 				return debug( 'No selection...');
 			}
 			let text;
-			let value = componentValue;
-			let match = value.match( RE_TAG_START );
-			if ( !match ) {
-				value = md.render( value );
-			}
-			if ( RE_STYLE.test( value ) ) {
-				text = replace( value, RE_STYLE, `style={${JSON.stringify( style, null, 2 )}}` );
+			if ( RE_STYLE.test( component.value ) ) {
+				if ( isEmptyObject( style ) ) {
+					text = replace( component.value, RE_STYLE, '' );
+				} else {
+					text = replace( component.value, RE_STYLE, `style={${JSON.stringify( style, null, 2 )}}` );
+				}
 			} else {
-				text = replace( value, RE_TAG_START, `$1<$2 style={${JSON.stringify( style, null, 2 )}}` );
+				text = replace( component.value, RE_TAG_START, `$1<$2 style={${JSON.stringify( style, null, 2 )}}` );
 			}
 			onChange( text, elementRange );
 		};
 		handleClassTransform.current = ( className ) => {
-			let value = componentValue;
-			let match = value.match( RE_TAG_START );
-			if ( !match ) {
-				value = md.render( value );
-			}
+			let value = component.value;
 			value = replace( value, RE_STYLE, '' );
 			if ( RE_CLASS_NAME.test( value ) ) {
 				value = replace( value, RE_CLASS_NAME, 'className=$1$2 '+className+'$1' );
@@ -70,19 +84,20 @@ const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, o
 			onChange( value, elementRange );
 		};
 		let newStyle;
-		const matches = RE_STYLE.exec( componentValue );
+		const matches = RE_STYLE.exec( component.value );
 		if ( !matches ) {
 			newStyle = {};
 		} else {
 			newStyle = eval( `(${matches[ 1 ]})` ); // eslint-disable-line no-eval
 		}
 		setStyle( newStyle );
-	}, [ componentValue, elementRange, onChange ] );
+	}, [ component, elementRange, onChange ] );
 	if ( !isShown ) {
 		return null;
 	}
 	return ( <Draggable className="editor-component-styler" cancel=".popover" >
 		<ComponentStyler
+			tagName={component.tagName}
 			componentStyle={style}
 			show={isShown}
 			onChange={handleChange.current}
