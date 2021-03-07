@@ -24,7 +24,8 @@ function _createWindow( options ) {
 				webviewTag: true,
 				enableRemoteModule: true,
 				worldSafeExecuteJavaScript: true,
-				allowRunningInsecureContent: true
+				allowRunningInsecureContent: true,
+				contextIsolation: false
 			}
 		},
 		...options
