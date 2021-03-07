@@ -298,7 +298,7 @@ const LineWrapper = ( props ) => {
 				drag( div );
 			}}
 		>
-			<div className="line-wrapper-bar" >
+			<div className={`line-wrapper-bar ${tagName}-bar`} >
 				{wrapperBar}
 			</div>
 			{props.children}
