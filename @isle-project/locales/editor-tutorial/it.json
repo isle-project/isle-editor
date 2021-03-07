@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "Quindi eccoci alla rispettiva linea sul lato sinistro. Abbiamo magicamente creato questa piccola Polaroid. Avreste potuto facilmente digitare questo testo qui. Ma per rendere tutto più facile, ve l'abbiamo tolto dalle mani.",
+	"click-button-to-jump": "Basta cliccare su questo piccolo elemento - che salterà alla rispettiva linea nell'editor.",
+	"live-preview": "Qui puoi trovare l'anteprima dal vivo - cioè quello che i tuoi utenti vedono. Il principio è familiare. WYSIWYG! Tradotto in inglese: Quello che vedi è quello che ottieni!",
+	"monaco-editor": "Qui sul lato sinistro si trova il codice base. In realtà abbastanza familiare, se hai già avuto a che fare con HTML o Markdown. Ma non preoccupatevi: il tutto si apre rapidamente - e per quanto spaventoso possa sembrare, lo imparerete facilmente.",
+	"opened-wizard": "Questa finestra mostra e spiega tutti gli attributi che ha la nostra Polaroid. Se un attributo viene cliccato, sarà utilizzato nel nostro codice. Nel nostro caso, finora, non è altro che l'attributo image, che contiene un url.",
+	"polaroid-double-click": "Fate doppio clic sulla parola Polaroid. Ora l'elemento corrispondente sulla destra sarà evidenziato.",
+	"polaroid-hover": "Provate a passare sopra la parola \"Polaroid\" con il mouse. Vedrete: Appare una piccola spiegazione. Puoi anche passare il mouse sugli attributi dell'elemento. Per l'immagine, vedi che è una stringa che ovviamente punta a un indirizzo URL. Se vuoi, puoi sostituire l'immagine. - Ogni elemento nell'editor può essere esplorato in questo modo.",
+	"polaroid-wizard": "Se passate il mouse sopra l'elemento, appare una piccola cornice rossa con alcuni pulsanti nell'angolo in alto a destra, con i quali potete fare varie cose. Per personalizzare la Polaroid, clicchiamo sul primo pulsante con l'icona della ruota dentata per aprire il \"Component Wizard\".",
+	"two-panes": "Come potete vedere: L'editor è diviso in due parti (puoi anche spostare la barra nel mezzo)"
+}

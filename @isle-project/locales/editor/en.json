@@ -357,6 +357,7 @@
 	"translate-selection": "Translate selection to",
 	"translation-failed": "Translation failed. Make sure you have access to the translation service through your ISLE server. Error encountered: {{msg}}",
 	"trigger-update": "Trigger update of preview",
+	"tutorial": "Tutorial",
 	"type": "Type",
 	"undo-last-cursor": "Undo last cursor operation",
 	"unlink": " Unlink",

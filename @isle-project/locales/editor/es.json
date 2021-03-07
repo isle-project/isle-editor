@@ -357,6 +357,7 @@
 	"translate-selection": "Traducir la selección a",
 	"translation-failed": "La traducción falló. Asegúrate de que tienes acceso al servicio de traducción a través de tu servidor de ISLE. Error encontrado: {{msg}}",
 	"trigger-update": "Actualización de la vista previa",
+	"tutorial": "Tutorial",
 	"type": "Escriba",
 	"undo-last-cursor": "Deshacer la última operación del cursor",
 	"unlink": " Desencadenar",

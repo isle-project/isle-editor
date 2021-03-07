@@ -357,6 +357,7 @@
 	"translate-selection": "Vertaal de selectie naar",
 	"translation-failed": "De vertaling is mislukt. Zorg ervoor dat u toegang heeft tot de vertaaldienst via uw ISLE-server. Fout opgetreden: {{\\a6}",
 	"trigger-update": "Trigger-update van de preview",
+	"tutorial": "Les",
 	"type": "Type",
 	"undo-last-cursor": "Maak de laatste cursorbediening ongedaan",
 	"unlink": " Ontkoppel",

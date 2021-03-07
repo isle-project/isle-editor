@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "Nous voici donc à la ligne respective sur le côté gauche. Nous avons créé ce petit Polaroïd par magie. Vous auriez tout aussi bien pu taper ce texte ici. Mais pour vous faciliter la tâche, nous vous l'avons enlevé des mains.",
+	"click-button-to-jump": "Il suffit de cliquer sur ce petit élément - qui passera à la ligne correspondante dans l'éditeur.",
+	"live-preview": "Vous trouverez ici l'aperçu en direct, c'est-à-dire ce que vos utilisateurs pourront voir. Le principe est familier. WYSIWYG ! Traduit à nouveau en anglais : Ce que vous voyez, c'est ce que vous obtenez !",
+	"monaco-editor": "Ici, sur le côté gauche, vous trouverez la base du code. En fait, c'est assez familier, si vous avez déjà traité avec HTML ou Markdown. Mais ne vous inquiétez pas : le tout s'ouvre rapidement - et aussi effrayant que cela puisse paraître, vous l'apprendrez facilement.",
+	"opened-wizard": "Cette fenêtre montre et explique tous les attributs que possède notre Polaroïd. Si un attribut est cliqué, il sera utilisé dans notre code. Dans notre cas, jusqu'à présent, il ne s'agit que de l'attribut image, qui contient une url.",
+	"polaroid-double-click": "Veuillez double-cliquer sur le mot Polaroid. L'élément correspondant sur la droite sera alors mis en évidence.",
+	"polaroid-hover": "Essayez de survoler le mot \"Polaroïd\" avec votre souris. Vous voyez : Une petite explication apparaît. Vous pouvez également survoler les attributs de l'élément. Pour l'image, vous voyez qu'il s'agit d'une chaîne de caractères qui pointe évidemment vers une adresse URL. Si vous voulez, vous pouvez remplacer l'image. - Chaque élément de l'éditeur peut être exploré de cette façon.",
+	"polaroid-wizard": "Si vous survolez l'élément, un petit cadre rouge apparaît avec quelques boutons dans le coin supérieur droit, avec lesquels vous pouvez faire diverses choses. Pour personnaliser le Polaroïd, on clique sur le premier bouton avec l'icône de la roue dentée pour ouvrir le \"Component Wizard\".",
+	"two-panes": "Comme vous pouvez le voir : L'éditeur est divisé en deux parties (vous pouvez même déplacer la barre au milieu)"
+}

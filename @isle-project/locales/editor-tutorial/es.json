@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "Así que aquí estamos en la línea respectiva del lado izquierdo. Hemos creado mágicamente esta pequeña Polaroid. Podrías haber escrito fácilmente este texto aquí. Pero para hacerlo más fácil, te lo hemos quitado de las manos.",
+	"click-button-to-jump": "Basta con hacer clic en este pequeño elemento para saltar a la línea correspondiente en el editor.",
+	"live-preview": "Aquí puede encontrar la vista previa en vivo, es decir, lo que sus usuarios pueden ver. El principio es conocido. ¡WYSIWYG! Traducido al inglés: Lo que ves es lo que obtienes.",
+	"monaco-editor": "Aquí, en el lado izquierdo, se encuentra la base de código. En realidad es bastante familiar, si ya has tratado con HTML o Markdown. Pero no se preocupe: todo se abre rápidamente - y aunque parezca aterrador, lo aprenderá fácilmente.",
+	"opened-wizard": "Esta ventana muestra y explica todos los atributos que tiene nuestra Polaroid. Si se hace clic en un atributo, se utilizará en nuestro código. En nuestro caso, hasta ahora, no es más que el atributo image, que contiene una url.",
+	"polaroid-double-click": "Haga doble clic en la palabra Polaroid. Ahora se resaltará el elemento correspondiente de la derecha.",
+	"polaroid-hover": "Prueba a pasar el ratón por encima de la palabra \"Polaroid\". Lo verás: Aparece una pequeña explicación. También puedes pasar el ratón por encima de los atributos del elemento. En el caso de la imagen, ves que es una cadena que obviamente apunta a una dirección URL. Si quieres, puedes reemplazar la imagen. - Todos los elementos del editor pueden ser explorados de esta manera.",
+	"polaroid-wizard": "Si pasas el ratón por encima del elemento, aparece un pequeño marco rojo con unos cuantos botones en la esquina superior derecha, con los que puedes hacer varias cosas. Para personalizar la Polaroid, hacemos clic en el primer botón con icono de rueda dentada para abrir el \"Asistente para componentes\".",
+	"two-panes": "Como puedes ver: El editor está dividido en dos partes (incluso se puede mover la barra en el centro)"
+}

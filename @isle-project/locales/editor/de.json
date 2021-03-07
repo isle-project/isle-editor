@@ -357,6 +357,7 @@
 	"translate-selection": "Auswahl übersetzen in",
 	"translation-failed": "Übersetzung fehlgeschlagen. Stellen Sie sicher, dass Sie über Ihren ISLE-Server Zugriff auf den Übersetzungsdienst haben. Fehler aufgetreten: {{msg}}",
 	"trigger-update": "Update der Vorschau auslösen",
+	"tutorial": "Tutorial",
 	"type": "Typ",
 	"undo-last-cursor": "Letzte Cursoroperation rückgängig machen",
 	"unlink": " Unlink",

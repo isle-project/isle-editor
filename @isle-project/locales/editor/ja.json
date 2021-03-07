@@ -357,6 +357,7 @@
 	"translate-selection": "選択範囲を翻訳して",
 	"translation-failed": "翻訳に失敗しました。ISLEサーバーから翻訳サービスにアクセスできることを確認してください。エラーが発生しました。{{msg}}。",
 	"trigger-update": "プレビューのトリガー更新",
+	"tutorial": "チュートリアル",
 	"type": "タイプ",
 	"undo-last-cursor": "最後のカーソル操作を元に戻す",
 	"unlink": "リンク解除",

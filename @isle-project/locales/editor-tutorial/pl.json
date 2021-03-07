@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "A więc jesteśmy na odpowiedniej linii po lewej stronie. W magiczny sposób stworzyliśmy ten mały Polaroid. Równie dobrze mógłbyś wpisać ten tekst tutaj. Ale aby to ułatwić, zdejmujemy go z Twoich rąk.",
+	"click-button-to-jump": "Wystarczy kliknąć na ten mały element - spowoduje to przejście do odpowiedniej linii w edytorze.",
+	"live-preview": "Tutaj znajduje się podgląd na żywo - czyli to, co widzą Twoi użytkownicy. Zasada jest znana. WYSIWYG! Przetłumaczone z powrotem na angielski: What you see is what you get!",
+	"monaco-editor": "Tutaj, po lewej stronie, znajduje się baza kodu. Właściwie dość znajomy, jeśli miałeś już do czynienia z HTML-em lub Markdownem. Ale nie martw się: całość otwiera się szybko - i choć wygląda to przerażająco, nauczysz się tego z łatwością.",
+	"opened-wizard": "To okno pokazuje i wyjaśnia wszystkie atrybuty, które posiada nasz Polaroid. Jeśli jakiś atrybut zostanie kliknięty, zostanie on użyty w naszym kodzie. W naszym przypadku, jak na razie, jest to nic innego jak atrybut image, który zawiera adres url.",
+	"polaroid-double-click": "Proszę kliknąć dwukrotnie na słowo Polaroid. Teraz odpowiedni element po prawej stronie zostanie podświetlony.",
+	"polaroid-hover": "Spróbuj najechać myszką na słowo \"Polaroid\". Zobaczysz: Pojawia się małe wyjaśnienie. Możesz również najechać myszką na atrybuty elementu. W przypadku obrazka widzisz, że jest to ciąg znaków, który w oczywisty sposób wskazuje na adres URL. Jeśli chcesz, możesz zastąpić ten obrazek. - Każdy element w edytorze może być w ten sposób zbadany.",
+	"polaroid-wizard": "Jeśli najedziesz na element, pojawi się mała czerwona ramka z kilkoma przyciskami w prawym górnym rogu, z którymi możesz zrobić różne rzeczy. Aby dostosować Polaroida, klikamy na pierwszy przycisk z ikoną koła zębatego, aby otworzyć \"Kreator komponentów\".",
+	"two-panes": "Jak widać: Edytor jest podzielony na dwie części (możesz nawet przesunąć pasek na środku)"
+}

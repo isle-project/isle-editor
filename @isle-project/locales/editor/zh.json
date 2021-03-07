@@ -357,6 +357,7 @@
 	"translate-selection": "将选择翻译成",
 	"translation-failed": "翻译失败。确保您可以通过ISLE服务器访问翻译服务。遇到错误。{{msg}}",
 	"trigger-update": "触发更新预览",
+	"tutorial": "教程",
 	"type": "种类",
 	"undo-last-cursor": "撤销上一次光标操作",
 	"unlink": "解除链接",

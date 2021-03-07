@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "So here we are at the respective line on the left-side. We magically created this  little Polaroid. You could just as easily have typed this text here. But to make it easy, we've taken it off your hands.",
+	"click-button-to-jump": "Just click on this small element - that will jump to the respective line in the editor.",
+	"live-preview": "Here you can find the live preview - that is, what your users get to see. The principle is familiar. WYSIWYG! Translated back into English: What you see is what you get!",
+	"monaco-editor": "Here on the left side you find the code base. Actually quite familiar, if you have already dealt with HTML or Markdown. But don't worry: The whole thing opens up quickly - and as scary as it looks, you will learn it easily.",
+	"opened-wizard": "This window shows and explains all the attributes that our Polaroid has. If an attribute is clicked, it will be used in our code. In our case, so far, it is nothing more than the image attribute, which contains a url.",
+	"polaroid-double-click": "Please double-click on the word Polaroid. Now the corresponding element on the right will be highlighted.",
+	"polaroid-hover": "Try hovering over the word “Polaroid” with your mouse. You see: A small explanation appears. You can also hover over the attributes of the element. For the image, you see that it is a string that obviously points to a URL address. If you want, you can replace the image. - Every element in the editor can be explored in this way.",
+	"polaroid-wizard": "If you hover over the element, a small red frame appears with a few buttons in the top-right corner, with which you can do various things. To customize the Polaroid, we click on the first button with cogwheel icon to open the \"Component Wizard\".",
+	"two-panes": "As you can see: The editor is divided into two parts (you can even move the bar in the middle). This way you can define how much space the respective pane should take."
+}

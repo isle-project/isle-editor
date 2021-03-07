@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "Dus hier zijn we bij de respectievelijke lijn aan de linkerkant. We hebben op magische wijze deze kleine Polaroid gemaakt. Je had deze tekst net zo goed hier kunnen typen. Maar om het makkelijk te maken, hebben we het je uit handen genomen.",
+	"click-button-to-jump": "Klik gewoon op dit kleine element - dat springt naar de betreffende regel in de editor.",
+	"live-preview": "Hier vindt u de live preview - dat wil zeggen, wat uw gebruikers te zien krijgen. Het principe is bekend. WYSIWYG! Terugvertaald naar het Engels: Wat je ziet is wat je krijgt!",
+	"monaco-editor": "Hier aan de linkerkant vind je de code base. Eigenlijk heel vertrouwd, als je al met HTML of Markdown hebt gewerkt. Maar maak je geen zorgen: Het geheel gaat snel open - en hoe eng het er ook uitziet, je zult het snel leren.",
+	"opened-wizard": "Dit venster toont en verklaart alle attributen die onze Polaroid heeft. Als op een attribuut wordt geklikt, wordt het gebruikt in onze code. In ons geval, tot nu toe, is het niets meer dan het image attribuut, dat een url bevat.",
+	"polaroid-double-click": "Dubbelklik op het woord Polaroid. Nu wordt het overeenkomstige element aan de rechterkant gemarkeerd.",
+	"polaroid-hover": "Probeer eens met je muis over het woord \"Polaroid\" te gaan. U ziet het: Er verschijnt een kleine uitleg. Je kunt ook met je muis over de attributen van het element gaan. Voor de afbeelding zie je dat het een string is die duidelijk naar een URL-adres verwijst. Als je wilt, kun je de afbeelding vervangen. - Elk element in de editor kan op deze manier verkend worden.",
+	"polaroid-wizard": "Als je met de muis over het element gaat, verschijnt er een klein rood kader met een paar knoppen in de rechterbovenhoek, waarmee je verschillende dingen kunt doen. Om de Polaroid aan te passen, klikken we op de eerste knop met het tandwiel-icoontje om de \"Component Wizard\" te openen.",
+	"two-panes": "Zoals u kunt zien: De editor is verdeeld in twee delen (je kunt zelfs de balk in het midden verplaatsen)"
+}

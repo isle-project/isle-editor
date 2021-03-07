@@ -1,0 +1,11 @@
+{
+	"back-in-editor": "Hier sind wir also an der jeweiligen Linie auf der linken Seite. Wir haben auf magische Weise dieses kleine Polaroid erzeugt. Sie hätten diesen Text genauso gut hier eintippen können. Aber um es einfach zu machen, haben wir es Ihnen abgenommen.",
+	"click-button-to-jump": "Klicken Sie einfach auf dieses kleine Element - das springt dann im Editor in die entsprechende Zeile.",
+	"live-preview": "Hier finden Sie die Live-Vorschau - also das, was Ihre Benutzer zu sehen bekommen. Das Prinzip ist bekannt. WYSIWYG! Zurückübersetzt ins Englische: What you see is what you get!",
+	"monaco-editor": "Hier auf der linken Seite finden Sie die Codebasis. Eigentlich ganz vertraut, wenn Sie sich schon mit HTML oder Markdown beschäftigt haben. Aber keine Sorge: Das Ganze erschließt sich schnell - und so beängstigend es auch aussieht, Sie werden es leicht lernen.",
+	"opened-wizard": "Dieses Fenster zeigt und erklärt alle Attribute, die unser Polaroid hat. Wenn ein Attribut angeklickt wird, wird es in unserem Code verwendet. In unserem Fall ist es bisher nichts weiter als das Attribut image, das eine url enthält.",
+	"polaroid-double-click": "Bitte doppelklicken Sie auf das Wort Polaroid. Nun wird das entsprechende Element auf der rechten Seite hervorgehoben.",
+	"polaroid-hover": "Versuchen Sie, mit der Maus über das Wort \"Polaroid\" zu fahren. Sie sehen: Es erscheint eine kleine Erklärung. Sie können auch mit der Maus über die Attribute des Elements fahren. Bei dem Bild sehen Sie, dass es sich um eine Zeichenkette handelt, die offensichtlich auf eine URL-Adresse verweist. Wenn Sie wollen, können Sie das Bild ersetzen. - Jedes Element im Editor kann auf diese Weise erkundet werden.",
+	"polaroid-wizard": "Wenn Sie mit dem Mauszeiger über das Element fahren, erscheint ein kleiner roter Rahmen mit ein paar Schaltflächen in der rechten oberen Ecke, mit denen Sie verschiedene Dinge tun können. Um das Polaroid anzupassen, klicken wir auf die erste Schaltfläche mit Zahnradsymbol, um den \"Komponenten-Assistenten\" zu öffnen.",
+	"two-panes": "Wie Sie sehen können: Der Editor ist zweigeteilt (Sie können den Balken in der Mitte sogar verschieben)"
+}

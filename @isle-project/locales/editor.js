@@ -19,47 +19,58 @@ const NAMESPACES = new Set();
 const TRANSLATIONS = {
 	'de': {
 		'Editor': () => import( './editor/de.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/de.json' )
+		'ComponentDocs': () => import( './editor/component-docs/de.json' ),
+		'Tutorial': () => import( './editor-tutorial/de.json' )
 	},
 	'en': {
 		'Editor': () => import( './editor/en.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/en.json' )
+		'ComponentDocs': () => import( './editor/component-docs/en.json' ),
+		'Tutorial': () => import( './editor-tutorial/en.json' )
 	},
 	'es': {
 		'Editor': () => import( './editor/es.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/es.json' )
+		'ComponentDocs': () => import( './editor/component-docs/es.json' ),
+		'Tutorial': () => import( './editor-tutorial/es.json' )
 	},
 	'fr': {
 		'Editor': () => import( './editor/fr.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/fr.json' )
+		'ComponentDocs': () => import( './editor/component-docs/fr.json' ),
+		'Tutorial': () => import( './editor-tutorial/fr.json' )
 	},
 	'it': {
 		'Editor': () => import( './editor/it.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/it.json' )
+		'ComponentDocs': () => import( './editor/component-docs/it.json' ),
+		'Tutorial': () => import( './editor-tutorial/it.json' )
 	},
 	'ja': {
 		'Editor': () => import( './editor/ja.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/ja.json' )
+		'ComponentDocs': () => import( './editor/component-docs/ja.json' ),
+		'Tutorial': () => import( './editor-tutorial/ja.json' )
 	},
 	'nl': {
 		'Editor': () => import( './editor/nl.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/nl.json' )
+		'ComponentDocs': () => import( './editor/component-docs/nl.json' ),
+		'Tutorial': () => import( './editor-tutorial/nl.json' )
 	},
 	'pl': {
 		'Editor': () => import( './editor/pl.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/pl.json' )
+		'ComponentDocs': () => import( './editor/component-docs/pl.json' ),
+		'Tutorial': () => import( './editor-tutorial/pl.json' )
 	},
 	'pt': {
 		'Editor': () => import( './editor/pt.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/pt.json' )
+		'ComponentDocs': () => import( './editor/component-docs/pt.json' ),
+		'Tutorial': () => import( './editor-tutorial/pt.json' )
 	},
 	'ru': {
 		'Editor': () => import( './editor/ru.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/ru.json' )
+		'ComponentDocs': () => import( './editor/component-docs/ru.json' ),
+		'Tutorial': () => import( './editor-tutorial/ru.json' )
 	},
 	'zh': {
 		'Editor': () => import( './editor/zh.json' ),
-		'ComponentDocs': () => import( './editor/component-docs/zh.json' )
+		'ComponentDocs': () => import( './editor/component-docs/zh.json' ),
+		'Tutorial': () => import( './editor-tutorial/zh.json' )
 	}
 };
 
