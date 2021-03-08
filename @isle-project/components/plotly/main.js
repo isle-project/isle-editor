@@ -270,6 +270,13 @@ class Wrapper extends Component {
 				}}
 				onClick={() => {
 					html2clipboard( this.plotData );
+					const session = this.context;
+					session.addNotification({
+						title: this.props.t('copied-to-clipboard'),
+						message: this.props.t('plot-copied-to-clipboard'),
+						level: 'success',
+						position: 'tr'
+					});
 				}}
 				style={{
 					opacity: this.state.finishedDrawing ?

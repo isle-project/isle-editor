@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Verander Legenda Oriëntatie",
 	"close": "Sluit",
+	"copied-to-clipboard": "Gekopieerd naar klembord",
 	"count": "Tel",
 	"data-missing": "Er ontbreken gegevens.",
 	"drag-plot": "Sleep Plot",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Aantal Randen: {{nEdges}}.",
 	"of": "van",
 	"per": "per",
+	"plot-copied-to-clipboard": "De plot is met succes naar uw klembord gekopieerd.",
 	"points": "Punten",
 	"proportion": "Aandeel",
 	"qqplot-title": "Normaal QQ-plaatje van {{x}}",

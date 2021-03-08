@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Zmiana orientacji legendy",
 	"close": "Close",
+	"copied-to-clipboard": "Skopiowane do schowka",
 	"count": "Hrabia",
 	"data-missing": "Brak danych.",
 	"drag-plot": "Wleczoną działkę",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Liczba krawędzi: {{nEdges}}.",
 	"of": "z",
 	"per": "na",
+	"plot-copied-to-clipboard": "Działka została pomyślnie skopiowana do schowka.",
 	"points": "Punkty",
 	"proportion": "Proporcja",
 	"qqplot-title": "Normalne QQ Wykres {{x}}",

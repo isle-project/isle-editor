@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Change Legend Orientation",
 	"close": "Close",
+	"copied-to-clipboard": "Copied to clipboard",
 	"count": "Count",
 	"data-missing": "Data are missing.",
 	"drag-plot": "Drag Plot",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Number of Edges: {{nEdges}}.",
 	"of": "of",
 	"per": "per",
+	"plot-copied-to-clipboard": "The plot has been successfully copied to your clipboard.",
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Normal QQ Plot of {{x}}",

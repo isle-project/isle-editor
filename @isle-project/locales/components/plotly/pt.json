@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Mudar a orientação da legenda",
 	"close": "Fechar",
+	"copied-to-clipboard": "Copiado para prancheta",
 	"count": "Conde",
 	"data-missing": "Faltam dados.",
 	"drag-plot": "Lote de Arrastar",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Número de bordas: {{nEdges}}.",
 	"of": "de",
 	"per": "por",
+	"plot-copied-to-clipboard": "A trama foi copiada com sucesso para sua prancheta.",
 	"points": "Pontos",
 	"proportion": "Proporção",
 	"qqplot-title": "QQ normal Plot de {{x}}",

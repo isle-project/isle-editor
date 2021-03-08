@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Changer l'orientation de la légende",
 	"close": "Fermer",
+	"copied-to-clipboard": "Copié dans le presse-papiers",
 	"count": "Compter",
 	"data-missing": "Les données sont manquantes.",
 	"drag-plot": "Tracé",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Nombre de bords : {{nEdges}}.",
 	"of": "de",
 	"per": "par",
+	"plot-copied-to-clipboard": "L'intrigue a été copiée avec succès dans votre presse-papiers.",
 	"points": "Points",
 	"proportion": "Proportion",
 	"qqplot-title": "Graphique QQ normal de {{x}}",

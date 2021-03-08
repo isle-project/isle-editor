@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Cambiare l'orientamento della leggenda",
 	"close": "Chiudere",
+	"copied-to-clipboard": "Copiato negli appunti",
 	"count": "Contate",
 	"data-missing": "I dati sono mancanti.",
 	"drag-plot": "Trascinare la trama",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Numero di bordi: {{nEdges}}.",
 	"of": "di",
 	"per": "per",
+	"plot-copied-to-clipboard": "La trama è stata copiata con successo negli appunti.",
 	"points": "Punti",
 	"proportion": "Proporzione",
 	"qqplot-title": "Normale QQ Plot di {{x}} normale",

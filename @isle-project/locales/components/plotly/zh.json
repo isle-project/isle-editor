@@ -1,6 +1,7 @@
 {
 	"change-orientation": "改变图例方向",
 	"close": "关闭",
+	"copied-to-clipboard": "复制到剪贴板",
 	"count": "计数",
 	"data-missing": "数据缺失。",
 	"drag-plot": "拖拽情节",
@@ -10,6 +11,7 @@
 	"number-of-edges": "边缘的数量：{{nEdges}}.",
 	"of": "的",
 	"per": "每",
+	"plot-copied-to-clipboard": "剧情已成功复制到剪贴板。",
 	"points": "点数",
 	"proportion": "比例",
 	"qqplot-title": "正常QQ图的{{x}}。",

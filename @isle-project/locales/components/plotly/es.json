@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Orientación de la leyenda del cambio",
 	"close": "Cerca",
+	"copied-to-clipboard": "Copiado en el portapapeles",
 	"count": "Cuenta",
 	"data-missing": "Faltan datos.",
 	"drag-plot": "Drag Plot",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Número de aristas: {{nEdges}}.",
 	"of": "de",
 	"per": "por",
+	"plot-copied-to-clipboard": "El gráfico se ha copiado con éxito en el portapapeles.",
 	"points": "Puntos",
 	"proportion": "Proporción",
 	"qqplot-title": "Gráfico QQ normal de {{x}}",

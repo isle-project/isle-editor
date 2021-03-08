@@ -1,6 +1,7 @@
 {
 	"change-orientation": "Изменить Легенду Ориентация",
 	"close": "Закрыть",
+	"copied-to-clipboard": "Скопировано в буфер обмена",
 	"count": "Посчитать",
 	"data-missing": "Данные отсутствуют.",
 	"drag-plot": "Drag Plot",
@@ -10,6 +11,7 @@
 	"number-of-edges": "Количество краев: {{nEdges}}.",
 	"of": "от",
 	"per": "по адресу",
+	"plot-copied-to-clipboard": "Сюжет был успешно скопирован в буфер обмена.",
 	"points": "Баллы",
 	"proportion": "Доля",
 	"qqplot-title": "Нормальный участок QQ из {{x}}",
