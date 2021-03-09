@@ -6,7 +6,7 @@ const createHTML = ( title, body ) => `<!doctype html>
 		<meta charset=utf-8>
 		<title>${title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha256-tn6hZ2YGDv0w1/DaFL4MiUoXuAVclrtFZs13ch3TB9M=" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" crossorigin="anonymous">
 		<style media="screen" type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;
