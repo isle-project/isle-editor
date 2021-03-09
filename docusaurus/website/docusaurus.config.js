@@ -191,7 +191,7 @@ const siteConfig = {
 
 	stylesheets: [
 		'https://fonts.googleapis.com/css?family=Libre+Franklin|Noto+Sans&display=swap',
-		'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+		'https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css',
 		'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',
 		'https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Open+Sans:400,400i,700,800',
 		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.43.0/codemirror.min.css'
