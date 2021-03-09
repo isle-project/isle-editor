@@ -21,6 +21,7 @@ const debug = logger( 'isle:line-wrapper' );
 const RE_LOADABLE = /(\s|^)isle-loadable(\s|$)/;
 const RE_LINE_WRAPPER_BAR = /(\s|^)line-wrapper-bar(\s|$)/;
 const RE_CONTEXT_MENU = /(\s|^)react-contextmenu(?:-wrapper)?(\s|$)/;
+const LINE_WRAPPER = 'LINE_WRAPPER';
 
 
 // FUNCTIONS //
@@ -42,6 +43,7 @@ const LineWrapper = ( props ) => {
 	const tagNameRef = useRef( null );
 	const { tagName, startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor, switchWithNext, switchWithPrevious } = props;
 	const [ { opacity }, drag, preview ] = useDrag({
+		type: LINE_WRAPPER,
 		item: {
 			type: 'component-wrapper',
 			tagName,
