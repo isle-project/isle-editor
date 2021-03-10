@@ -2,12 +2,14 @@
 
 import React, { Component } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import isTouchDevice from 'is-touch-device';
+import isMobile from 'is-mobile';
 
 
 // VARIABLES //
 
-const IS_TOUCH = isTouchDevice();
+const IS_MOBILE = isMobile({
+	tablet: true
+});
 
 
 // MAIN //
@@ -17,7 +19,7 @@ const IS_TOUCH = isTouchDevice();
 */
 class Placeholder extends Component {
 	render() {
-		if ( IS_TOUCH ) {
+		if ( IS_MOBILE ) {
 			// Do not render tooltips on touch devices to prevent users from having to double tap buttons:
 			return this.props.children;
 		}
