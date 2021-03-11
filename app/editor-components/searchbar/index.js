@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 
 const SearchBar = ( props ) => {
 	return (
-		<FormGroup style={props.style} >
+		<FormGroup className={props.className} style={props.style} >
 			<InputGroup>
 				<InputGroup.Prepend>
 					<Button size={props.buttonSize} aria-label="search-field-icon" disabled variant="outline-secondary" style={{ cursor: 'auto' }}>
@@ -40,6 +40,7 @@ const SearchBar = ( props ) => {
 		</FormGroup>
 	);
 };
+
 
 // PROPERTIES //
 
