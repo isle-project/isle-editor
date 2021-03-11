@@ -388,7 +388,7 @@ class FullscreenActionDisplay extends Component {
 		} else {
 			levels = uniq( actions.map( x => x.value ) );
 		}
-		let leftMargin = max( 250, maxLength * 7.5 );
+		let leftMargin = max( 200, maxLength * 7.5 );
 		let counts = tabulateValues( actions, levels );
 		if ( levels.length > 7 ) {
 			// Drop empty labels in case of many levels for readability of plot:
@@ -817,6 +817,9 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
+		const { type } = this.props.data
+		const leftColWidth = ( type === 'number' || type === 'factor' ) ? 3 : 6;
+		const rightColWidth = 12 - leftColWidth;
 		return ( <Fragment>
 			<Modal
 				show={true}
@@ -835,7 +838,7 @@ class FullscreenActionDisplay extends Component {
 				/>
 				<Modal.Body style={{ minHeight: 0.75 * window.innerHeight, padding: 0 }} >
 					<Row>
-						<Col md={6}>
+						<Col md={leftColWidth}>
 							{ this.state.filtered.length > 0 ?
 								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.75 * window.innerHeight }}>
 									<ReactList
@@ -853,7 +856,7 @@ class FullscreenActionDisplay extends Component {
 								</Card>
 							}
 						</Col>
-						<Col md={6} style={{ overflowY: 'auto', maxWidth: '49.2%' }}>
+						<Col md={rightColWidth} style={{ overflowY: 'auto' }}>
 							{this.renderPlot()}
 						</Col>
 					</Row>
