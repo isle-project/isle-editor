@@ -760,6 +760,7 @@ class ComponentConfigurator extends Component {
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
 					<SearchBar
+						className="configurator-searchbar"
 						value={this.state.searchValue}
 						placeholder={t('search-for-options')}
 						onChange={( event ) => {
@@ -772,9 +773,8 @@ class ComponentConfigurator extends Component {
 								searchValue: ''
 							});
 						}}
-						style={{ width: '14vw', minWidth: '120px', float: 'right', marginBottom: 2 }}
 					/>
-					<div style={{ float: 'right', width: '200px', marginRight: 6 }} >
+					<div className="configurator-option-filter-select" >
 						<Select
 							options={[
 								{

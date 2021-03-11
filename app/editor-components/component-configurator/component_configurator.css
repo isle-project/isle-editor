@@ -32,3 +32,16 @@
 	right: 6px;
 	top: 5px;
 }
+
+.configurator-option-filter-select {
+	float: right;
+	width: 200px;
+	margin-right: 6px;
+}
+
+.configurator-searchbar {
+	width: 14vw;
+	min-width: 120px;
+	float: right;
+	margin-bottom: 2;
+}
