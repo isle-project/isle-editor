@@ -817,7 +817,7 @@ class FullscreenActionDisplay extends Component {
 	}
 
 	render() {
-		const { type } = this.props.data
+		const { type } = this.props.data;
 		const leftColWidth = ( type === 'number' || type === 'factor' ) ? 3 : 6;
 		const rightColWidth = 12 - leftColWidth;
 		return ( <Fragment>
