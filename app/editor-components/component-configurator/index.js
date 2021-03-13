@@ -42,6 +42,7 @@ import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from '@isle-project/components/documentation.json';
 import ComponentStyler from 'editor-components/component-styler';
 import Session from '@isle-project/session';
+const ConfiguratorTutorial = Loadable( () => import( './tutorial.js' ) );
 import SearchBar from '../searchbar/index.js';
 import './component_configurator.css';
 
@@ -205,6 +206,7 @@ class ComponentConfigurator extends Component {
 			value,
 			searchValue: '',
 			propActive,
+			showTutorial: false,
 			showStyler: false,
 			...propValues
 		};
@@ -525,6 +527,12 @@ class ComponentConfigurator extends Component {
 		});
 	}
 
+	toggleTutorial = () => {
+		this.setState({
+			showTutorial: !this.state.showTutorial
+		});
+	}
+
 	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
 		if ( this.selfClosing ) {
@@ -756,7 +764,12 @@ class ComponentConfigurator extends Component {
 				enforceFocus={false}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title as="h5">{this.props.component.name} {t('component-wizard')}</Modal.Title>
+					<Modal.Title as="h5">
+						{this.props.component.name} {t('component-wizard')}
+						<Button variant="outline-secondary" size="sm" onClick={this.toggleTutorial} style={{ marginLeft: 6 }} >
+							<i className="fas fa-info-circle"></i>
+						</Button>
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
 					<SearchBar
@@ -874,6 +887,9 @@ class ComponentConfigurator extends Component {
 						width: '40%'
 					}}
 				/>
+				{ this.state.showTutorial ? <ConfiguratorTutorial
+					onFinish={this.toggleTutorial}
+				/> : null }
 			</Modal>
 		);
 	}
