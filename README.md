@@ -57,6 +57,14 @@ To acquire the source code, clone the git repository.
 $ git clone https://github.com/isle-project/isle-editor
 ```
 
+To reduce the significant download time when cloning the repository, which is due to the large commit history of the project, you may limit the clone depth as follows:
+
+``` bash
+$ git clone --depth=<depth> https://github.com/isle-project/isle-editor
+```
+
+where `<depth>` refers to the number of commits that should be retrieved (smallest acceptable value is `1`). 
+
 #### Installation
 
 To install development dependencies,
