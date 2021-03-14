@@ -1,11 +1,17 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import noop from '@stdlib/utils/noop';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
+import generateUID from '@isle-project/utils/uid';
 import './checkbox.css';
+
+
+// VARIABLES //
+
+const uid = generateUID( 'checkbox-input' );
 
 
 // MAIN //
@@ -26,6 +32,7 @@ import './checkbox.css';
 */
 const CheckboxInput = ( props ) => {
 	const { bind, defaultValue, disabled, onChange } = props;
+	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState(
 		bind && session.state ? session.state[ bind ]: defaultValue
@@ -76,7 +83,7 @@ const CheckboxInput = ( props ) => {
 	if ( props.inline === true ) {
 		return (
 			<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
-				<span style={{ marginLeft: '8px', ...props.style }}>
+				<span id={id.current} style={{ marginLeft: '8px', ...props.style }}>
 					{input}
 					<span
 						role="button" tabIndex={0}
@@ -93,7 +100,7 @@ const CheckboxInput = ( props ) => {
 	const onSpanChange = disabled ? noop : handleSpanChange;
 	return (
 		<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
-			<div className="input checkbox-input-div" style={props.style}>
+			<div id={id.current} className="input checkbox-input-div" style={props.style}>
 				{input}
 				<span
 					role="button" tabIndex={0}
