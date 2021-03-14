@@ -264,6 +264,11 @@ const LineWrapper = ( props ) => {
 			</div>
 		);
 	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar ] );
+
+	useEffect( () => {
+		setWrapperBar( null );
+	}, [ tagName ] );
+
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
 		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
