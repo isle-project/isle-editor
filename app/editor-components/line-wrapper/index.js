@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales/editor';
 import { useDrag } from 'react-dnd';
@@ -10,6 +10,7 @@ import { findDOMNode } from 'react-dom';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
+import { ContextMenu, ContextMenuTrigger, MenuItem } from '@isle-project/components/internal/contextmenu';
 import useIsMounted from 'hooks/is-mounted';
 import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
@@ -222,48 +223,57 @@ const LineWrapper = ( props ) => {
 			return;
 		}
 		setWrapperBar(
-			<div className={`line-wrapper-bar ${tagName}-bar`} >
-				<span className="line-wrapper-tagname" ref={tagNameRef} >
-					{tagName}
-				</span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-open-configurator fa fa-cogs"
-					title={i18n.t('open-tag-wizard', { tagName })}
-					onClick={handleConfiguratorTrigger}
-					onKeyPress={handleConfiguratorTrigger}
-				></span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-delete fa fa-palette"
-					title={i18n.t('change-styling')}
-					onClick={toggleComponentStyler}
-					onKeyPress={toggleComponentStyler}
-				></span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-delete fa fa-caret-up"
-					title={i18n.t('switch-tag-previous', { tagName })}
-					onClick={handleSwitchWithPrevious}
-					onKeyPress={handleSwitchWithPrevious}
-				></span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-delete fa fa-caret-down"
-					title={i18n.t('switch-tag-next', { tagName })}
-					onClick={handleSwitchWithNext}
-					onKeyPress={handleSwitchWithNext}
-				></span>
-				<span
-					role="button" tabIndex={0}
-					className="line-wrapper-delete fa fa-trash"
-					title={i18n.t('delete-tag', { tagName })}
-					onClick={deleteElement}
-					onKeyPress={deleteElement}
-				></span>
-			</div>
+			<Fragment>
+				<div className={`line-wrapper-bar ${tagName}-bar`} >
+					<span className="line-wrapper-tagname" ref={tagNameRef} >
+						{tagName}
+					</span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-open-configurator fa fa-cogs"
+						title={i18n.t('open-tag-wizard', { tagName })}
+						onClick={handleConfiguratorTrigger}
+						onKeyPress={handleConfiguratorTrigger}
+					></span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-delete fa fa-palette"
+						title={i18n.t('change-styling')}
+						onClick={toggleComponentStyler}
+						onKeyPress={toggleComponentStyler}
+					></span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-delete fa fa-caret-up"
+						title={i18n.t('switch-tag-previous', { tagName })}
+						onClick={handleSwitchWithPrevious}
+						onKeyPress={handleSwitchWithPrevious}
+					></span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-delete fa fa-caret-down"
+						title={i18n.t('switch-tag-next', { tagName })}
+						onClick={handleSwitchWithNext}
+						onKeyPress={handleSwitchWithNext}
+					></span>
+					<span
+						role="button" tabIndex={0}
+						className="line-wrapper-delete fa fa-trash"
+						title={i18n.t('delete-tag', { tagName })}
+						onClick={deleteElement}
+						onKeyPress={deleteElement}
+					></span>
+				</div>
+				<ContextMenu id={`${startLineNumber}-line-wrapper-menu`} className="line-wrapper-contextmenu" >
+					<MenuItem onClick={handleConfiguratorTrigger} >{i18n.t('open-tag-wizard', { tagName })}</MenuItem>
+					<MenuItem onClick={toggleComponentStyler} >{i18n.t('change-styling')}</MenuItem>
+					<MenuItem onClick={handleSwitchWithPrevious} >{i18n.t('switch-tag-previous', { tagName })}</MenuItem>
+					<MenuItem onClick={handleSwitchWithNext} >{i18n.t('switch-tag-next', { tagName })}</MenuItem>
+					<MenuItem onClick={deleteElement} >{i18n.t('delete-tag', { tagName })}</MenuItem>
+				</ContextMenu>
+			</Fragment>
 		);
-	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar ] );
+	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar, startLineNumber ] );
 
 	useEffect( () => {
 		setWrapperBar( null );
@@ -296,25 +306,31 @@ const LineWrapper = ( props ) => {
 		);
 	}
 	return (
-		<div
-			id={`line-${startLineNumber}-${startColumn}`}
-			data-start-line-number={startLineNumber}
-			data-start-column={startColumn}
-			data-end-column={props.endColumn}
-			data-end-line-number={props.endLineNumber}
-			className="line-wrapper outer-element"
-			onDoubleClick={handleDoubleClick}
-			title={outerTitle}
-			style={{ opacity, ...props.style, ...style }}
-			ref={( div ) => {
-				lineWrapper.current = div;
-				drag( div );
-			}}
-			onMouseEnter={createWrapperBar}
+		<ContextMenuTrigger
+			id={`${startLineNumber}-line-wrapper-menu`}
+			posX={window.innerWidth * (1-props.splitPos)}
+			posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 		>
-			{wrapperBar}
-			{props.children}
-		</div>
+			<div
+				id={`line-${startLineNumber}-${startColumn}`}
+				data-start-line-number={startLineNumber}
+				data-start-column={startColumn}
+				data-end-column={props.endColumn}
+				data-end-line-number={props.endLineNumber}
+				className="line-wrapper outer-element"
+				onDoubleClick={handleDoubleClick}
+				title={outerTitle}
+				style={{ opacity, ...props.style, ...style }}
+				ref={( div ) => {
+					lineWrapper.current = div;
+					drag( div );
+				}}
+				onMouseEnter={createWrapperBar}
+			>
+				{wrapperBar}
+				{props.children}
+			</div>
+		</ContextMenuTrigger>
 	);
 };
 
@@ -349,6 +365,10 @@ export default connect( mapStateToProps, {
 	jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator
 })( LineWrapper );
 
-function mapStateToProps() {
-	return {};
+function mapStateToProps({ editor }) {
+	return {
+		splitPos: editor.splitPos,
+		horizontalSplit: editor.horizontalSplit,
+		hideToolbar: editor.hideToolbar
+	};
 }
