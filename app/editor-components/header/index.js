@@ -82,7 +82,7 @@ class Header extends Component {
 					id="header-lower-bar"
 					className="unselectable"
 				>
-					<span style={{ paddingLeft: 5 }} >
+					<span style={{ paddingLeft: 5 }} id="editor-filepath" >
 						<OverlayTrigger
 							placement="right"
 							overlay={({ outOfBoundaries, scheduleUpdate, show, arrowProps, ...props }) => ( <div
@@ -104,6 +104,7 @@ class Header extends Component {
 					</span>
 					<ButtonGroup className="unselectable" style={{ zIndex: 100 }} size="sm" >
 						<CheckboxInput
+							id="show-line-buttons"
 							value={this.props.showLineButtons}
 							onChange={this.props.toggleLineButtons}
 							legend={t('show-line-buttons')}
@@ -111,6 +112,7 @@ class Header extends Component {
 							style={{ marginTop: 3, marginRight: 5 }}
 						/>
 						<CheckboxInput
+							id="automatically-update-preview"
 							value={this.props.autoUpdatePreview}
 							onChange={this.props.changeAutoUpdate}
 							legend={t('automatically-update-preview')}
@@ -127,7 +129,7 @@ class Header extends Component {
 							><i className="fas fa-sync"></i></Button>
 						</Tooltip>
 						<Tooltip placement="top" tooltip={t('switch-online-offline')} show={this.props.preamble && isString( this.props.preamble.server)} >
-							<div onClick={stopPropagation} >
+							<div id="change-online-mode" onClick={stopPropagation} >
 								<DropdownButton
 									title={t(this.props.mode)}
 									id="bg-mode-dropdown"
@@ -143,7 +145,7 @@ class Header extends Component {
 							</div>
 						</Tooltip>
 						<Tooltip placement="top" tooltip={t('preview-lesson-role')} >
-							<div onClick={stopPropagation} >
+							<div id="header-role-in-preview" onClick={stopPropagation} >
 								<DropdownButton
 									title={t(this.props.role)}
 									id="bg-user-dropdown"
@@ -159,7 +161,7 @@ class Header extends Component {
 							</div>
 						</Tooltip>
 						<Tooltip placement="bottom" tooltip={t('preview-tooltip')} >
-							<Button variant="secondary" onClick={this.props.onPreview} style={{
+							<Button id="header-preview-button" variant="secondary" onClick={this.props.onPreview} style={{
 								paddingTop: 4,
 								marginLeft: 25
 							}}>{t('preview')}</Button>
