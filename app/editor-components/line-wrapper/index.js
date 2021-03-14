@@ -41,6 +41,7 @@ const LineWrapper = ( props ) => {
 	const isMounted = useIsMounted();
 	const lineWrapper = useRef( null );
 	const tagNameRef = useRef( null );
+	const [ wrapperBar, setWrapperBar ] = useState( null );
 	const { tagName, startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor, switchWithNext, switchWithPrevious } = props;
 	const [ { opacity }, drag, preview ] = useDrag({
 		type: LINE_WRAPPER,
@@ -217,6 +218,53 @@ const LineWrapper = ( props ) => {
 			elementRangeAction: 'trigger_configurator'
 		});
 	}, [ startLineNumber, endLineNumber, startColumn, endColumn, jumpToElementInEditor ] );
+	const createWrapperBar = useCallback( () => {
+		if ( wrapperBar ) {
+			return;
+		}
+		setWrapperBar(
+			<div className={`line-wrapper-bar ${tagName}-bar`} >
+				<span className="line-wrapper-tagname" ref={tagNameRef} >
+					{tagName}
+				</span>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-open-configurator fa fa-cogs"
+					title={i18n.t('open-tag-wizard', { tagName })}
+					onClick={handleConfiguratorTrigger}
+					onKeyPress={handleConfiguratorTrigger}
+				></span>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-delete fa fa-palette"
+					title={i18n.t('change-styling')}
+					onClick={toggleComponentStyler}
+					onKeyPress={toggleComponentStyler}
+				></span>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-delete fa fa-caret-up"
+					title={i18n.t('switch-tag-previous', { tagName })}
+					onClick={handleSwitchWithPrevious}
+					onKeyPress={handleSwitchWithPrevious}
+				></span>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-delete fa fa-caret-down"
+					title={i18n.t('switch-tag-next', { tagName })}
+					onClick={handleSwitchWithNext}
+					onKeyPress={handleSwitchWithNext}
+				></span>
+				<span
+					role="button" tabIndex={0}
+					className="line-wrapper-delete fa fa-trash"
+					title={i18n.t('delete-tag', { tagName })}
+					onClick={deleteElement}
+					onKeyPress={deleteElement}
+				></span>
+			</div>
+		);
+	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar ] );
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
 		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
@@ -224,46 +272,6 @@ const LineWrapper = ( props ) => {
 	else {
 		outerTitle += i18n.t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
 	}
-	const wrapperBar = <Fragment>
-		<span className="line-wrapper-tagname" ref={tagNameRef} >
-			{tagName}
-			</span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-open-configurator fa fa-cogs"
-			title={i18n.t('open-tag-wizard', { tagName })}
-			onClick={handleConfiguratorTrigger}
-			onKeyPress={handleConfiguratorTrigger}
-		></span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-delete fa fa-palette"
-			title={i18n.t('change-styling')}
-			onClick={toggleComponentStyler}
-			onKeyPress={toggleComponentStyler}
-		></span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-delete fa fa-caret-up"
-			title={i18n.t('switch-tag-previous', { tagName })}
-			onClick={handleSwitchWithPrevious}
-			onKeyPress={handleSwitchWithPrevious}
-		></span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-delete fa fa-caret-down"
-			title={i18n.t('switch-tag-next', { tagName })}
-			onClick={handleSwitchWithNext}
-			onKeyPress={handleSwitchWithNext}
-		></span>
-		<span
-			role="button" tabIndex={0}
-			className="line-wrapper-delete fa fa-trash"
-			title={i18n.t('delete-tag', { tagName })}
-			onClick={deleteElement}
-			onKeyPress={deleteElement}
-		></span>
-	</Fragment>;
 	if ( props.isInline ) {
 		return (
 			<span
@@ -276,10 +284,9 @@ const LineWrapper = ( props ) => {
 					lineWrapper.current = div;
 					drag( div );
 				}}
+				onMouseEnter={createWrapperBar}
 			>
-				<span className="line-wrapper-bar" >
-					{wrapperBar}
-				</span>
+				{wrapperBar}
 				{props.children}
 			</span>
 		);
@@ -299,10 +306,9 @@ const LineWrapper = ( props ) => {
 				lineWrapper.current = div;
 				drag( div );
 			}}
+			onMouseEnter={createWrapperBar}
 		>
-			<div className={`line-wrapper-bar ${tagName}-bar`} >
-				{wrapperBar}
-			</div>
+			{wrapperBar}
 			{props.children}
 		</div>
 	);
