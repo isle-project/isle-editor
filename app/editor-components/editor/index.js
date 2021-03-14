@@ -1053,6 +1053,7 @@ class Editor extends Component {
 			const match = RE_TAG_START.exec( line );
 			if ( match ) {
 				const startColumn = match[ 1 ].length + 1;
+				const disabled = !electronStore.has( 'server' );
 				actions = actions.concat([
 					{
 						command: {
@@ -1076,6 +1077,7 @@ class Editor extends Component {
 							title: this.props.t('report-issue-on-git-hub-include-screenshot'),
 							arguments: [ this.props.elementRange, match, 'bug', true ]
 						},
+						disabled,
 						title: this.props.t('report-issue-on-git-hub-include-screenshot')
 					},
 					{
