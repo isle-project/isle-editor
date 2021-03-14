@@ -294,7 +294,9 @@ const LineWrapper = ( props ) => {
 		return (
 			<ContextMenuTrigger
 				id={`${startLineNumber}-${startColumn}-wrapper-menu`}
-				className="outer-element"
+				attributes={{
+					className: 'outer-element'
+				}}
 				posX={window.innerWidth * (1-props.splitPos)}
 				posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 				renderTag="span"
@@ -320,7 +322,9 @@ const LineWrapper = ( props ) => {
 	return (
 		<ContextMenuTrigger
 			id={`${startLineNumber}-${startColumn}-wrapper-menu`}
-			className="outer-element"
+			attributes={{
+				className: 'outer-element'
+			}}
 			posX={window.innerWidth * (1-props.splitPos)}
 			posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 		>
