@@ -264,7 +264,7 @@ const LineWrapper = ( props ) => {
 						onKeyPress={deleteElement}
 					></span>
 				</div>
-				<ContextMenu id={`${startLineNumber}-line-wrapper-menu`} className="line-wrapper-contextmenu" >
+				<ContextMenu id={`${startLineNumber}-${startColumn}-wrapper-menu`} className="line-wrapper-contextmenu" >
 					<MenuItem onClick={handleConfiguratorTrigger} >{i18n.t('open-tag-wizard', { tagName })}</MenuItem>
 					<MenuItem onClick={toggleComponentStyler} >{i18n.t('change-styling')}</MenuItem>
 					<MenuItem onClick={handleSwitchWithPrevious} >{i18n.t('switch-tag-previous', { tagName })}</MenuItem>
@@ -273,7 +273,7 @@ const LineWrapper = ( props ) => {
 				</ContextMenu>
 			</Fragment>
 		);
-	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar, startLineNumber ] );
+	}, [ deleteElement, handleConfiguratorTrigger, handleSwitchWithNext, handleSwitchWithPrevious, tagName, toggleComponentStyler, wrapperBar, startLineNumber, startColumn ] );
 
 	useEffect( () => {
 		setWrapperBar( null );
@@ -292,26 +292,35 @@ const LineWrapper = ( props ) => {
 	}
 	if ( props.isInline ) {
 		return (
-			<span
-				id={`line-${startLineNumber}-${startColumn}`}
-				className="line-wrapper outer-element"
-				onDoubleClick={handleDoubleClick}
-				title={outerTitle}
-				style={{ opacity, ...props.style, ...style }}
-				ref={( div ) => {
-					lineWrapper.current = div;
-					drag( div );
-				}}
-				onMouseEnter={createWrapperBar}
+			<ContextMenuTrigger
+				id={`${startLineNumber}-${startColumn}-wrapper-menu`}
+				className="outer-element"
+				posX={window.innerWidth * (1-props.splitPos)}
+				posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
+				renderTag="span"
 			>
-				{wrapperBar}
-				{props.children}
-			</span>
+				<span
+					id={`line-${startLineNumber}-${startColumn}`}
+					className="line-wrapper outer-element"
+					onDoubleClick={handleDoubleClick}
+					title={outerTitle}
+					style={{ opacity, ...props.style, ...style }}
+					ref={( div ) => {
+						lineWrapper.current = div;
+						drag( div );
+					}}
+					onMouseEnter={createWrapperBar}
+				>
+					{wrapperBar}
+					{props.children}
+				</span>
+			</ContextMenuTrigger>
 		);
 	}
 	return (
 		<ContextMenuTrigger
-			id={`${startLineNumber}-line-wrapper-menu`}
+			id={`${startLineNumber}-${startColumn}-wrapper-menu`}
+			className="outer-element"
 			posX={window.innerWidth * (1-props.splitPos)}
 			posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 		>
