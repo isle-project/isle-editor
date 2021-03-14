@@ -279,6 +279,10 @@ const LineWrapper = ( props ) => {
 		setWrapperBar( null );
 	}, [ tagName, startLineNumber, startColumn ] );
 
+	const deleteWrapperBar = useCallback( () => {
+		setWrapperBar( null );
+	}, [] );
+
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
 		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
@@ -326,6 +330,7 @@ const LineWrapper = ( props ) => {
 					drag( div );
 				}}
 				onMouseEnter={createWrapperBar}
+				onMouseLeave={deleteWrapperBar}
 			>
 				{wrapperBar}
 				{props.children}
