@@ -16,6 +16,7 @@ import './line_buttons.css';
 // VARIABLES //
 
 const debug = logger( 'isle:line-buttons' );
+const LINE_WRAPPER = 'LINE_WRAPPER';
 
 
 // MAIN //
@@ -25,7 +26,7 @@ const debug = logger( 'isle:line-buttons' );
 */
 const LineButtons = ( props ) => {
 	const [ { canDrop, isOver }, drop ] = useDrop({
-		accept: 'component-wrapper',
+		accept: LINE_WRAPPER,
 		drop: ( item, monitor ) => {
 			const thisLine = {
 				startLineNumber: props.lineNumber,

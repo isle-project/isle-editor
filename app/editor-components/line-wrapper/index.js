@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales/editor';
 import { useDrag } from 'react-dnd';
@@ -46,7 +46,6 @@ const LineWrapper = ( props ) => {
 	const [ { opacity }, drag, preview ] = useDrag({
 		type: LINE_WRAPPER,
 		item: {
-			type: 'component-wrapper',
 			tagName,
 			startLineNumber,
 			endLineNumber,
