@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDrop } from 'react-dnd';
 import { i18n } from '@isle-project/locales/editor';
@@ -24,24 +24,24 @@ const LINE_WRAPPER = 'LINE_WRAPPER';
 /**
 * A line wrapper for use in the editor.
 */
-const LineButtons = ( props ) => {
+const LineButtons = ({ lineNumber, switchWithPrevious, switchWithNext, jumpToElementInEditor, show, showLineButtons, splitPos }) => {
 	const [ { canDrop, isOver }, drop ] = useDrop({
 		accept: LINE_WRAPPER,
 		drop: ( item, monitor ) => {
 			const thisLine = {
-				startLineNumber: props.lineNumber,
-				endLineNumber: props.lineNumber,
+				startLineNumber: lineNumber,
+				endLineNumber: lineNumber,
 				startColumn: 0,
 				endColumn: PINF
 			};
-			if ( item.startLineNumber > props.lineNumber ) {
-				props.switchWithPrevious({
+			if ( item.startLineNumber > lineNumber ) {
+				switchWithPrevious({
 					current: item,
 					previous: thisLine,
 					elementRangeAction: 'switch_previous'
 				});
 			} else {
-				props.switchWithNext({
+				switchWithNext({
 					current: item,
 					next: thisLine,
 					elementRangeAction: 'switch_next'
@@ -54,19 +54,18 @@ const LineButtons = ( props ) => {
 			canDrop: monitor.canDrop()
 		})
 	});
-	if ( !props.showLineButtons || !props.show ) {
-		return null;
-	}
-	const jumpToLine = ( event ) => {
+	const jumpToLine = useCallback( ( event ) => {
 		event.stopPropagation();
-		const { lineNumber } = props;
 		debug( 'Select line '+lineNumber );
-		props.jumpToElementInEditor({
+		jumpToElementInEditor({
 			startLineNumber: lineNumber,
 			endLineNumber: lineNumber,
 			elementRangeAction: 'reveal'
 		});
-	};
+	}, [ jumpToElementInEditor, lineNumber ] );
+	if ( !showLineButtons || !show ) {
+		return null;
+	}
 	const isActive = canDrop && isOver;
 	let background;
 	let color;
@@ -88,18 +87,18 @@ const LineButtons = ( props ) => {
 	/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 	return (
 		<span className="line-buttons" onClick={stopPropagation} ref={drop} style={{ background }}>
-			{ props.splitPos !== 1 ? <span
+			{ splitPos !== 1 ? <span
 				className="line-buttons-jump"
 				role="button" tabIndex={0}
 				onClick={jumpToLine}
 				onKeyPress={jumpToLine}
-				title={i18n.t('Editor:center-editor-line', { lineNumber: props.lineNumber })}
+				title={i18n.t('Editor:center-editor-line', { lineNumber: lineNumber })}
 			>
 				<span
 					className="fa fa-arrow-circle-left"
 				></span>
 				<strong className="line-buttons-line-display" >
-					{props.lineNumber}
+					{lineNumber}
 				</strong>
 			</span> : null }
 			<ContextMenuTrigger
@@ -109,13 +108,13 @@ const LineButtons = ( props ) => {
 				collect={() => {
 					return {
 						context: 'preview',
-						lineNumber: props.lineNumber
+						lineNumber: lineNumber
 					};
 				}}
 			>
 				<i
 					className={`line-buttons-contextmenu fas ${icon}`}
-					title={i18n.t('Editor:insert-at-line', { lineNumber: props.lineNumber })}
+					title={i18n.t('Editor:insert-at-line', { lineNumber: lineNumber })}
 					style={{ color }}
 				></i>
 			</ContextMenuTrigger>
