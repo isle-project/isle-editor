@@ -122,6 +122,7 @@ class EditorContextMenu extends Component {
 			searchValue: '',
 			visible: false
 		});
+		this.props.onHide();
 	}
 
 	handleContextMenuClick = ( _, data ) => {
@@ -259,7 +260,8 @@ class EditorContextMenu extends Component {
 
 EditorContextMenu.propTypes = {
 	onContextMenuClick: PropTypes.func.isRequired,
-	onTranslateSelection: PropTypes.func.isRequired
+	onTranslateSelection: PropTypes.func.isRequired,
+	onHide: PropTypes.func.isRequired
 };
 
 

@@ -52,6 +52,14 @@
 	background: none;
 }
 
+.editor-cursor-insert-placeholder {
+	color: rgba(235, 97, 62, 0.9);
+}
+
+.editor-cursor-insert-placeholder::after {
+	content: "▶";
+}
+
 #revealed-hidden-elem {
 	position: fixed;
 	top: 20px;

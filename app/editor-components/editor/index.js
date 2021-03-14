@@ -1168,6 +1168,10 @@ class Editor extends Component {
 		this.props.toggleConfigurator( true );
 	}
 
+	removeDecorations = () => {
+		this.decorations = this.editor.deltaDecorations( this.decorations, [] );
+	}
+
 	handleContextMenuClick = ( customClick, data ) => {
 		debug( 'Handle click to open context menu... ' );
 		if ( data.lineNumber ) {
@@ -1494,6 +1498,22 @@ class Editor extends Component {
 		this.forceUpdate();
 	}
 
+	collectContext = () => {
+		const { lineNumber, column } = this.editor.getPosition();
+		this.decorations = this.editor.deltaDecorations( this.decorations, [
+			{
+				range: {
+					startLineNumber: lineNumber,
+					startColumn: column,
+					endColumn: column + 1,
+					endLineNumber: lineNumber
+				},
+				options: { beforeContentClassName: 'editor-cursor-insert-placeholder' }
+			}
+		]);
+		return { context: 'editor' };
+	}
+
 	render() {
 		debug( 'Re-rendering monaco editor...' );
 		let outerStyle;
@@ -1512,9 +1532,7 @@ class Editor extends Component {
 				<ContextMenuTrigger
 					id="editor-context-menu" holdToDisplay={-1}
 					style={{ height: '100%', width: '100%' }}
-					collect={() => {
-						return { context: 'editor' };
-					}}
+					collect={this.collectContext}
 				>
 					<div {...this.dragProvider.props} >
 						<MonacoEditor
@@ -1546,6 +1564,7 @@ class Editor extends Component {
 					onContextMenuClick={this.handleContextMenuClick}
 					onTranslateSelection={this.translateSelection}
 					hasSelection={this.state.hasSelection}
+					onHide={this.removeDecorations}
 				/>
 				<EditorComponentStyler
 					{...this.state.componentStylerProps}
