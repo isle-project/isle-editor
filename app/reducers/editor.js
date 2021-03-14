@@ -56,6 +56,7 @@ const initialState = {
 	currentMode: 'offline',
 	namespaceName: null,
 	splitPos: parseFloat( electronStore.get( 'splitPos' ) ) || 0.5,
+	horizontalSplit: 0,
 	error: null,
 	fontSize: mainStore.get( 'fontSize' ) || 14,
 	preambleTemplate,
@@ -191,6 +192,11 @@ export default function markdown( state = initialState, action ) {
 		return {
 			...state,
 			splitPos: action.payload.splitPos
+		};
+	case types.HORIZONTAL_SPLIT_CHANGED:
+		return {
+			...state,
+			horizontalSplit: action.payload.horizontalSplit
 		};
 	case types.JUMP_TO_ELEMENT_IN_EDITOR:
 		return {

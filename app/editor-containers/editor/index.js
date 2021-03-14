@@ -15,7 +15,7 @@ import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	clearInsertion, incrementDocumentVersion, pasteInsertion, setConfiguratorComponent,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
 	updateDownloading, updatePreamble, encounteredError, resetError, saveLintErrors,
-	saveSpellingErrors, changeSplitPos } from 'actions';
+	saveSpellingErrors, changeSplitPos, changeHorizontalSplit } from 'actions';
 const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
@@ -60,7 +60,6 @@ class App extends Component {
 		super( props );
 
 		this.state = {
-			horizontalSplit: 0,
 			innerWidth: window.innerWidth
 		};
 		this.debouncedLinting = debounce( this.lintCode, LINTING_INTERVAL );
@@ -121,9 +120,7 @@ class App extends Component {
 	}
 
 	handleHorizontalSplitChange = ( size ) => {
-		this.setState({
-			horizontalSplit: size
-		});
+		this.props.changeHorizontalSplit( size );
 	};
 
 	handleHorizontalSplit = ( size ) => {
@@ -246,7 +243,7 @@ class App extends Component {
 			encounteredError={this.props.encounteredError}
 			preambleText={this.props.preambleText}
 			updatePreamble={this.props.updatePreamble}
-			unavailableHeight={this.state.horizontalSplit + ( hideToolbar ? 2 : 90 )}
+			unavailableHeight={this.props.horizontalSplit + ( hideToolbar ? 2 : 90 )}
 			resetError={this.resetError}
 			version={this.props.documentVersion}
 		/>;
@@ -300,7 +297,7 @@ class App extends Component {
 					maxSize={window.innerHeight}
 				>
 					<TerminalGrid
-						height={this.state.horizontalSplit}
+						height={this.props.horizontalSplit}
 						width={this.state.innerWidth}
 						filePath={filePath}
 						fontSize={this.props.fontSize}
@@ -337,7 +334,7 @@ class App extends Component {
 								elementRangeVersion={this.props.elementRangeVersion}
 								toggleConfigurator={this.props.toggleConfigurator}
 								triggerUpdate={this.props.incrementDocumentVersion}
-								height={window.innerHeight - this.state.horizontalSplit - ( hideToolbar ? 2 : 90 )}
+								height={window.innerHeight - this.props.horizontalSplit - ( hideToolbar ? 2 : 90 )}
 								showQuickSuggestions={this.props.showQuickSuggestions}
 								showMiniMap={this.props.showMiniMap}
 							/>
@@ -444,6 +441,7 @@ export default connect( mapStateToProps, {
 	convertMarkdown,
 	changeAutoUpdate,
 	changeSplitPos,
+	changeHorizontalSplit,
 	clearInsertion,
 	saveLintErrors,
 	saveSpellingErrors,

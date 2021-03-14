@@ -231,6 +231,15 @@ export function changeSplitPos( splitPos ) {
 	};
 }
 
+export function changeHorizontalSplit( horizontalSplit ) {
+	return {
+		type: types.HORIZONTAL_SPLIT_CHANGED,
+		payload: {
+			horizontalSplit
+		}
+	};
+}
+
 export function changeNamespace( namespaceName ) {
 	return {
 		type: types.SERVER_NAMESPACE_CHANGED,
