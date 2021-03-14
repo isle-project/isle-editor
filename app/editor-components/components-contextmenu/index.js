@@ -39,7 +39,9 @@ class EditorContextMenu extends Component {
 		super( props );
 
 		this.state = {
-			searchValue: ''
+			searchValue: '',
+			menuContent: null,
+			visible: false
 		};
 	}
 
@@ -47,7 +49,8 @@ class EditorContextMenu extends Component {
 		if (
 			this.props.onContextMenuClick !== nextProps.onContextMenuClick ||
 			this.props.onTranslateSelection !== nextProps.onTranslateSelection ||
-			this.state.searchValue !== nextState.searchValue
+			this.state.searchValue !== nextState.searchValue ||
+			this.state.visible !== nextState.visible
 		) {
 			return true;
 		}
@@ -110,15 +113,14 @@ class EditorContextMenu extends Component {
 				className="fa fa-cogs"
 				title="Open component wizard"
 				style={BUTTON_STYLE}
-				onClick={this.handleCustomInsertClick}
 			/>
-		</MenuItem>
-		);
+		</MenuItem> );
 	}
 
 	handleHide = () => {
 		this.setState({
-			searchValue: ''
+			searchValue: '',
+			visible: false
 		});
 	}
 
@@ -127,18 +129,33 @@ class EditorContextMenu extends Component {
 		this.customClick = false;
 	}
 
-	handleCustomInsertClick = () => {
-		debug( 'Clicked top open configuration menu...' );
-		this.customClick = true;
-		// Propagate to `handleContextMenuClick`...
+	handleClickInWrapper = ( event ) => {
+		if ( event.target.nodeName === 'BUTTON' ) {
+			debug( 'Clicked top open configuration menu...' );
+			this.customClick = true;
+			// Propagate to `handleContextMenuClick`...
+		}
 	}
 
 	handleTranslateSelectionClick = ( _, data ) => {
 		this.props.onTranslateSelection( data.language );
 	}
 
-	render() {
+	buildMenuUponShow = () => {
+		if ( this.state.menuContent ) {
+			return this.setState({
+				visible: true
+			});
+		}
 		const { t } = this.props;
+		let searchStyle = null;
+		if ( this.state.searchValue ) {
+			searchStyle = {
+				maxHeight: '75vh',
+				overflowY: 'auto',
+				overflowX: 'hidden'
+			};
+		}
 		const main = this.createMenuEntries( GROUPED_SNIPPETS.main, 'Main' );
 		const layout = this.createMenuEntries( GROUPED_SNIPPETS.layout, 'Layout' );
 		const displayComponents = this.createMenuEntries( GROUPED_SNIPPETS.displayComponents, 'Display', this.createMenuEntries( GROUPED_SNIPPETS.language, 'Language' ) );
@@ -159,70 +176,78 @@ class EditorContextMenu extends Component {
 		);
 		const presentation = this.createMenuEntries( GROUPED_SNIPPETS.presentation, 'Presentation' );
 		const data = this.createMenuEntries( [], 'Data', models, tables, tests );
-		let searchStyle = null;
-		if ( this.state.searchValue ) {
-			searchStyle = {
-				maxHeight: '75vh',
-				overflowY: 'auto',
-				overflowX: 'hidden'
-			};
-		}
+
+		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+		const menuContent = (
+			<Fragment>
+				<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
+				<div style={searchStyle} onClick={this.handleClickInWrapper} >
+					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+					{main}
+					{basic}
+					{displayComponents}
+					{layout}
+					{inputs}
+					{questions}
+					{surveys}
+					{rComponents}
+					{programmatic}
+					{learning}
+					{general}
+					{presentation}
+					{data}
+					{plots}
+				</div>
+				<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+				<SearchBar
+					value={this.state.searchValue}
+					placeholder={t('search-for-components')}
+					onChange={( event ) => {
+						this.setState({
+							searchValue: event.target.value
+						});
+					}}
+					buttonSize="sm"
+					style={{ margin: 0, fontSize: 10 }}
+					onClear={() => {
+						this.setState({
+							searchValue: ''
+						});
+					}}
+				/>
+				<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
+				<SubMenu title={t('translate-selection')} disabled={!ISLE_SERVER_TOKEN} >
+					{LANGUAGE_NAMES.map( ( name, idx ) => {
+						return (
+							<MenuItem
+								key={idx} data={{
+									language: LANGUAGES[ name ]
+								}}
+								onClick={this.handleTranslateSelectionClick}
+							>
+								{name}
+							</MenuItem>
+						);
+					})}
+				</SubMenu>
+			</Fragment>
+		);
+		/* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+		this.setState({
+			menuContent,
+			visible: true
+		});
+	}
+
+	render() {
 		return (
 			<Fragment>
 				<ContextMenu
 					className="components-contextmenu" id={this.props.id}
 					onHide={this.handleHide} disableIfShiftIsPressed
+					onShow={this.buildMenuUponShow}
 				>
-					<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
-					<div style={searchStyle} >
-						<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-						{main}
-						{basic}
-						{displayComponents}
-						{layout}
-						{inputs}
-						{questions}
-						{surveys}
-						{rComponents}
-						{programmatic}
-						{learning}
-						{general}
-						{presentation}
-						{data}
-						{plots}
-					</div>
-					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-					<SearchBar
-						value={this.state.searchValue}
-						placeholder={t('search-for-components')}
-						onChange={( event ) => {
-							this.setState({
-								searchValue: event.target.value
-							});
-						}}
-						buttonSize="sm"
-						style={{ margin: 0, fontSize: 10 }}
-						onClear={() => {
-							this.setState({
-								searchValue: ''
-							});
-						}}
-					/>
-					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
-					<SubMenu title={t('translate-selection')} disabled={!ISLE_SERVER_TOKEN} >
-						{LANGUAGE_NAMES.map( ( name, idx ) => {
-							return (
-								<MenuItem
-									key={idx} data={{
-										language: LANGUAGES[ name ]
-									}}
-									onClick={this.handleTranslateSelectionClick}
-								>
-									{name}
-								</MenuItem>
-							);
-						})}
-					</SubMenu>
+					{this.state.visible ? this.state.menuContent : []}
 				</ContextMenu>
 			</Fragment>
 		);
