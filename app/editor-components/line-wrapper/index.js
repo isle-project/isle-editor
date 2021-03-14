@@ -267,7 +267,7 @@ const LineWrapper = ( props ) => {
 
 	useEffect( () => {
 		setWrapperBar( null );
-	}, [ tagName ] );
+	}, [ tagName, startLineNumber, startColumn ] );
 
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
