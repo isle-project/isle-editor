@@ -1053,7 +1053,6 @@ class Editor extends Component {
 			const match = RE_TAG_START.exec( line );
 			if ( match ) {
 				const startColumn = match[ 1 ].length + 1;
-				const disabled = !ISLE_SERVER;
 				actions = actions.concat([
 					{
 						command: {
@@ -1069,7 +1068,6 @@ class Editor extends Component {
 							title: this.props.t('report-issue-on-git-hub'),
 							arguments: [ this.props.elementRange, match, 'bug', false ]
 						},
-						disabled,
 						title: this.props.t('report-issue-on-git-hub')
 					},
 					{
@@ -1078,7 +1076,6 @@ class Editor extends Component {
 							title: this.props.t('report-issue-on-git-hub-include-screenshot'),
 							arguments: [ this.props.elementRange, match, 'bug', true ]
 						},
-						disabled,
 						title: this.props.t('report-issue-on-git-hub-include-screenshot')
 					},
 					{
@@ -1087,7 +1084,6 @@ class Editor extends Component {
 							title: this.props.t('file-feature-request-on-github'),
 							arguments: [ this.props.elementRange, match, 'feature-request', false ]
 						},
-						disabled,
 						title: this.props.t('file-feature-request-on-github')
 					}
 				]);
