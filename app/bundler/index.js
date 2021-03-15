@@ -391,7 +391,13 @@ function bundleLesson( options ) {
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
-			chunkFilename: 'css/[id].css'
+			chunkFilename: 'css/[id].css',
+			insert: ( linkTag ) => {
+				const titleNode = document.getElementsByTagName( 'title' )[ 0 ];
+				if ( titleNode ) {
+					document.head.insertBefore( linkTag, titleNode.nextSibling );
+				}
+			}
 		}),
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
