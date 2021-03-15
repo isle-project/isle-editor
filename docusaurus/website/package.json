@@ -8,9 +8,9 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.3d00613e5",
-    "@docusaurus/preset-classic": "2.0.0-alpha.3d00613e5",
-    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.3d00613e5",
+    "@docusaurus/core": "2.0.0-alpha.71",
+    "@docusaurus/preset-classic": "2.0.0-alpha.71",
+    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.71",
     "buffer": "^5.6.0",
     "bufferutil": "^4.0.1",
     "classnames": "^2.2.6",
