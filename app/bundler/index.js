@@ -9,6 +9,7 @@ const webpack = require( 'webpack' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const HtmlWebpackTagsPlugin = require( 'html-webpack-tags-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
 const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
@@ -248,6 +249,11 @@ class LessonWrapper extends Component {
 
 document.body.style[ 'overflow-y' ] = 'hidden';
 
+const link = document.createElement( 'link' );
+link.href = './css/custom.css';
+link.rel = 'stylesheet';
+document.head.appendChild( link );
+
 render(
 	<Provider session={session} >
 		<LessonWrapper />
@@ -383,7 +389,7 @@ function bundleLesson( options ) {
 				loadFromCDN
 			},
 			inject: 'body',
-			minify: false
+			minify: true
 		}),
 		new WebpackCdnPlugin({
 			prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
@@ -391,13 +397,7 @@ function bundleLesson( options ) {
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
-			chunkFilename: 'css/[id].css',
-			insert: ( linkTag ) => {
-				const titleNode = document.getElementsByTagName( 'title' )[ 0 ];
-				if ( titleNode ) {
-					document.head.insertBefore( linkTag, titleNode.nextSibling );
-				}
-			}
+			chunkFilename: 'css/[id].css'
 		}),
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
