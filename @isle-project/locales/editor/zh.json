@@ -58,7 +58,7 @@
 	"change-bottom-border": "更改底部边框",
 	"change-left-border": "改变左边框",
 	"change-right-border": "改变右边界",
-	"change-styling": "改变风格",
+	"change-styling": "更改<{{tagName}} />的样式。",
 	"change-to": "改为",
 	"change-to-current-date": "改为当前日期",
 	"change-to-remote": "改为远程",

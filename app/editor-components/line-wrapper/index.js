@@ -238,7 +238,7 @@ const LineWrapper = ( props ) => {
 					<span
 						role="button" tabIndex={0}
 						className="line-wrapper-delete fa fa-palette"
-						title={i18n.t('change-styling')}
+						title={i18n.t('change-styling', { tagName })}
 						onClick={toggleComponentStyler}
 						onKeyPress={toggleComponentStyler}
 					></span>
@@ -266,7 +266,7 @@ const LineWrapper = ( props ) => {
 				</div>
 				<ContextMenu id={`${startLineNumber}-${startColumn}-wrapper-menu`} className="line-wrapper-contextmenu" >
 					<MenuItem onClick={handleConfiguratorTrigger} >{i18n.t('open-tag-wizard', { tagName })}</MenuItem>
-					<MenuItem onClick={toggleComponentStyler} >{i18n.t('change-styling')}</MenuItem>
+					<MenuItem onClick={toggleComponentStyler} >{i18n.t('change-styling', { tagName })}</MenuItem>
 					<MenuItem onClick={handleSwitchWithPrevious} >{i18n.t('switch-tag-previous', { tagName })}</MenuItem>
 					<MenuItem onClick={handleSwitchWithNext} >{i18n.t('switch-tag-next', { tagName })}</MenuItem>
 					<MenuItem onClick={deleteElement} >{i18n.t('delete-tag', { tagName })}</MenuItem>

@@ -58,7 +58,7 @@
 	"change-bottom-border": "Zmiana dolnej granicy",
 	"change-left-border": "Zmiana lewej granicy",
 	"change-right-border": "Zmiana prawej granicy",
-	"change-styling": "Zmiana stylizacji",
+	"change-styling": "Zmiana stylizacji <{{tagName}} />",
 	"change-to": "Zmiana na",
 	"change-to-current-date": "Zmiana na datę obecną",
 	"change-to-remote": "Zmiana na zdalne",

@@ -58,7 +58,7 @@
 	"change-bottom-border": "Cambia il bordo inferiore",
 	"change-left-border": "Cambia il bordo sinistro",
 	"change-right-border": "Cambia il bordo destro",
-	"change-styling": "Cambia stile",
+	"change-styling": "Cambia lo stile di <{{tagName}} />",
 	"change-to": "Cambia in",
 	"change-to-current-date": "Cambia alla data attuale",
 	"change-to-remote": "Passa a remoto",

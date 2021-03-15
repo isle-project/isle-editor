@@ -58,7 +58,7 @@
 	"change-bottom-border": "Изменить нижнюю границу",
 	"change-left-border": "Изменить левую границу",
 	"change-right-border": "Изменить правую границу",
-	"change-styling": "Изменить стиль",
+	"change-styling": "Изменение стиля <{{tagName}} />",
 	"change-to": "Переход на",
 	"change-to-current-date": "Изменение на текущую дату",
 	"change-to-remote": "Переход на удаленный",

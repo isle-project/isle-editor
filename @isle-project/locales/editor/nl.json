@@ -58,7 +58,7 @@
 	"change-bottom-border": "Verander de ondergrens",
 	"change-left-border": "Verander de linkse grens",
 	"change-right-border": "Wijzig de rechtergrens",
-	"change-styling": "Verander de styling",
+	"change-styling": "Verander de styling van <{{tagName}} />",
 	"change-to": "Overgang naar",
 	"change-to-current-date": "Wijziging van de huidige datum",
 	"change-to-remote": "Overstappen op afstand",

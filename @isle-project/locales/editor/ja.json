@@ -58,7 +58,7 @@
 	"change-bottom-border": "下のボーダーを変更する",
 	"change-left-border": "左の枠を変更",
 	"change-right-border": "右の枠を変更する",
-	"change-styling": "スタイリングの変更",
+	"change-styling": "<{{tagName}} />のスタイリングの変更",
 	"change-to": "変更",
 	"change-to-current-date": "現在の日付に変更",
 	"change-to-remote": "リモートへの変更",

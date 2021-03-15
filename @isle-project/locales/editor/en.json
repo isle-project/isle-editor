@@ -58,7 +58,7 @@
 	"change-bottom-border": "Change bottom border",
 	"change-left-border": "Change left border",
 	"change-right-border": "Change right border",
-	"change-styling": "Change styling",
+	"change-styling": "Change styling of <{{tagName}} />",
 	"change-to": "Change to",
 	"change-to-current-date": "Change to current date",
 	"change-to-remote": "Change to remote",
