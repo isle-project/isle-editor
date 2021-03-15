@@ -41,6 +41,7 @@ import extractOptionsFromDescription from 'utils/extract-options-from-descriptio
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from '@isle-project/components/documentation.json';
 import ComponentStyler from 'editor-components/component-styler';
+import { addResources } from '@isle-project/locales/editor';
 import Session from '@isle-project/session';
 const ConfiguratorTutorial = Loadable( () => import( './tutorial.js' ) );
 import SearchBar from '../searchbar/index.js';
@@ -528,6 +529,7 @@ class ComponentConfigurator extends Component {
 	}
 
 	toggleTutorial = () => {
+		addResources( 'Tutorial' );
 		this.setState({
 			showTutorial: !this.state.showTutorial
 		});
