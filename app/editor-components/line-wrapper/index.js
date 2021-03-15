@@ -97,10 +97,10 @@ const LineWrapper = ( props ) => {
 	const handleSwitchWithPrevious = useCallback( () => {
 		const el = lineWrapper.current;
 		let previous;
-		let sibling = el.previousElementSibling;
+		let sibling = el.parentNode.previousElementSibling;
 		while ( sibling ) {
-			if ( sibling.classList && sibling.classList.contains( 'line-wrapper' ) ) {
-				previous = sibling;
+			if ( sibling.firstChild && sibling.firstChild.classList && sibling.firstChild.classList.contains( 'line-wrapper' ) ) {
+				previous = sibling.firstChild;
 				break;
 			}
 			sibling = sibling.previousElementSibling;
@@ -140,10 +140,10 @@ const LineWrapper = ( props ) => {
 		const el = lineWrapper.current;
 		const elements = document.getElementsByClassName( 'line-wrapper' );
 		let next;
-		let sibling = el.nextElementSibling;
+		let sibling = el.parentNode.nextElementSibling;
 		while ( sibling ) {
-			if ( sibling.classList && sibling.classList.contains( 'line-wrapper' ) ) {
-				next = sibling;
+			if ( sibling.firstChild && sibling.firstChild.classList && sibling.firstChild.classList.contains( 'line-wrapper' ) ) {
+				next = sibling.firstChild;
 				break;
 			}
 			sibling = sibling.nextElementSibling;
