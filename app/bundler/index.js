@@ -9,7 +9,6 @@ const webpack = require( 'webpack' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const HtmlWebpackTagsPlugin = require( 'html-webpack-tags-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
 const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
