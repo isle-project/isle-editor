@@ -1760,7 +1760,10 @@
     },
     "nsis": {
       "perMachine": true,
-      "oneClick": true
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "runAfterFinish": true
     },
     "mac": {
       "icon": "app/app.icns",
