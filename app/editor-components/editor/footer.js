@@ -29,7 +29,7 @@ const EditorFooter = ( props ) => {
 	const [ showAnimationHelp, setShowAnimationHelp ] = useState( false );
 	const [ showKeyboardHelp, setShowKeyboardHelp ] = useState( false );
 	const [ showMarkdownHelp, setShowMarkdownHelp ] = useState( false );
-	const [ showTutorial, setShowTutorial ] = useState( false );
+	const [ showTutorial, setShowTutorial ] = useState( electronStore.get( 'show-editor-tutorial' ) || false );
 
 	const toggleAnimationHelp = useCallback( () => {
 		setShowAnimationHelp( !showAnimationHelp );
@@ -43,6 +43,7 @@ const EditorFooter = ( props ) => {
 	const toggleTutorial = useCallback( () => {
 		addResources( 'Tutorial' );
 		setShowTutorial( !showTutorial );
+		electronStore.set( 'show-editor-tutorial', !showTutorial );
 	}, [ showTutorial ] );
 	const { t, onTranslate } = props;
 	const handleTranslateClick = useCallback( ( _, data ) => {
@@ -136,6 +137,7 @@ const EditorFooter = ( props ) => {
 			{ showTutorial ? <EditorTutorial
 				onFinish={() => {
 					setShowTutorial( false );
+					electronStore.set( 'show-editor-tutorial', false );
 				}}
 			/> : null }
 		</div>

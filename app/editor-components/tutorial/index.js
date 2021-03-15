@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import Joyride, { ACTIONS, EVENTS, STATUS } from '@isle-project/components/joyride';
 import { useTranslation } from 'react-i18next';
 import { pasteInsertion } from 'actions';
@@ -14,6 +14,7 @@ const HIDE_NEXT_BUTTON = {
 		display: 'none'
 	}
 };
+let currentStep = 0;
 
 
 // MAIN //
@@ -21,7 +22,7 @@ const HIDE_NEXT_BUTTON = {
 const EditorTutorial = ({ onFinish, pasteInsertion }) => {
 	const [ run, setRun ] = useState( true );
 	const { t } = useTranslation( 'Tutorial' );
-	const [ stepIndex, setStepIndex ] = useState( 0 );
+	const [ stepIndex, setStepIndex ] = useState( currentStep );
 	const addNextHandler = useCallback( ( node, index, triggerEvent = 'click' ) => {
 		function onEvent() {
 			node.removeEventListener( triggerEvent, onEvent );
@@ -31,6 +32,11 @@ const EditorTutorial = ({ onFinish, pasteInsertion }) => {
 		}
 		node.addEventListener( triggerEvent, onEvent );
 	}, [] );
+	useEffect( () => {
+		return () => {
+			currentStep = stepIndex;
+		};
+	});
 	const steps = useRef([
 		{
 			target: '.SplitPane',
@@ -158,6 +164,7 @@ const EditorTutorial = ({ onFinish, pasteInsertion }) => {
 		else if ([ STATUS.FINISHED, STATUS.SKIPPED ].includes( status ) ) {
 			// Need to set our running state to false, so we can restart if we click start again.
 			setRun( false );
+			currentStep = 0;
 		}
 		if ( type === EVENTS.TOUR_END ) {
 			setRun( false );
@@ -166,7 +173,6 @@ const EditorTutorial = ({ onFinish, pasteInsertion }) => {
 	}, [ onFinish, pasteInsertion, steps, addNextHandler ] );
 	return (
 		<Joyride
-			onFinish={onFinish}
 			run={run}
 			stepIndex={stepIndex}
 			showProgress
