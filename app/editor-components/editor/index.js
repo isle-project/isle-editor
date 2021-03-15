@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import { EOL } from 'os';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
+import { BrowserWindow } from '@electron/remote';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
@@ -428,7 +429,7 @@ class Editor extends Component {
 				labels = 'enhancement';
 				body = featureRequestTemplate;
 			}
-			const issueWindow = new remote.BrowserWindow({
+			const issueWindow = new BrowserWindow({
 				width: window.innerWidth * 0.7,
 				height: window.innerHeight * 0.9,
 				show: true

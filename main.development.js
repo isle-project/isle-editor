@@ -13,10 +13,12 @@ import pkg from './package.json';
 import installExtensions from './app/utils/install-extensions';
 import addRecentFilesMenu from './app/main/add_recent_files_menu.js';
 import addCustomTemplates from './app/main/add_custom_templates.js';
+import { initialize } from '@electron/remote/main';
 
 
 // VARIABLES //
 
+initialize();
 const mainConfig = new Store( 'isle-main' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );

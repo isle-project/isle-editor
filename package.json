@@ -116,6 +116,7 @@
     "@babel/preset-react": "^7.12.13",
     "@babel/register": "7.13.8",
     "@babel/runtime": "^7.13.10",
+    "@electron/remote": "^1.0.4",
     "@iktakahiro/markdown-it-katex": "^4.0.0",
     "@loadable/component": "^5.14.1",
     "@stdlib/stdlib": "0.0.93",

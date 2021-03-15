@@ -2,7 +2,8 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { remote, shell } from 'electron';
+import { shell } from 'electron';
+import { dialog } from '@electron/remote';
 import { writeFileSync } from 'fs';
 import cp from 'child_process';
 import path from 'path';
@@ -25,7 +26,6 @@ import './export_page.css';
 
 // VARIABLES //
 
-const { dialog } = remote;
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const RE_PREAMBLE = /^---([\S\s]*?)---/;

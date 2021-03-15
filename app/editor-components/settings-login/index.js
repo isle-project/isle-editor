@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import axios from 'axios';
 import logger from 'debug';
-import { remote } from 'electron';
+import { BrowserWindow } from '@electron/remote';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -111,7 +111,7 @@ class SettingsLogin extends Component {
 	};
 
 	connectToGitHub = async () => {
-		const authWindow = new remote.BrowserWindow({
+		const authWindow = new BrowserWindow({
 			width: 800,
 			height: 600,
 			show: true
