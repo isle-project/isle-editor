@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.75.0](https://github.com/isle-project/isle-editor/releases/tag/v0.75.0) (2021-03-15)
+
+This release comes with performance improvements for the editor, a new integrated tutorial for the editor and component wizards, and a context menu option accessible via right click for components inside the preview pane:
+
+![image](https://user-images.githubusercontent.com/1913638/111175346-b856c580-857e-11eb-9edd-6ba021417e6b.png)
+
+It is now possible to apply custom styles for standard HTML tags such as `p` to or `h1` to all elements of that types directly from the custom styling widget:
+
+![image](https://user-images.githubusercontent.com/1913638/111193106-31124d80-8590-11eb-807e-644f243d81ee.png)
+
+The update also comes with the following changes:
+-   Increases the space reserved for bar charts and histograms in the fullscreen view of the response visualizer to ensure that the plot remains visible on smaller screen resolutions and/or long answers
+-   Ensures that links in sketchpad PDFs look correctly while still being clickable
+
 ## [v0.74.9](https://github.com/isle-project/isle-editor/releases/tag/v0.74.9) (2021-03-01)
 
 This release improves error handling in the editor: Incorrect or missing property values for components are type-checked and error messages are displayed on a component-level instead of either the entire lesson not rendering or in the worst case the editor freezing.
