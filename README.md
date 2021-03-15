@@ -31,7 +31,7 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.74.9.
+Current version: v0.75.0.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
@@ -159,10 +159,10 @@ The following icons are used under a Creative Commons CCBY license.
 [node-js]: https://nodejs.org/en/
 [node-gyp]: https://github.com/nodejs/node-gyp#installation
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.74.9/isle-editor-0.74.9.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.74.9/isle-editor-0.74.9-x86_64.AppImage
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.74.9/isle-editor-0.74.9-amd64.deb
-[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.74.9/isle-editor-Setup-0.74.9.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.75.0/isle-editor-0.75.0.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.75.0/isle-editor-0.75.0-x86_64.AppImage
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.75.0/isle-editor-0.75.0-amd64.deb
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.75.0/isle-editor-Setup-0.75.0.exe
 
 [license-image]: https://img.shields.io/badge/license-Apache2-blue.svg
 [license-url]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
