@@ -80,7 +80,7 @@ class SettingsLogin extends Component {
 
 	connectToServer = async () => {
 		try {
-			const res = await axios.post(this.state.server + '/login', {
+			const res = await axios.post( this.state.server + '/login', {
 				password: this.state.password,
 				email: trim( this.state.email )
 			});
