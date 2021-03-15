@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[417],{3472:function(o){o.exports=JSON.parse('{"close":"Close","copy-link":"Link do kopiowania","copy-svg":"Kopiuj SVG","save-image":"Zapisz obraz","share":"Podziel si\u0119"}')}}]);

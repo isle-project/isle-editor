@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[471],{2914:function(a){a.exports=JSON.parse('{"change-language":"Change language","choose-language":"Choose language","loading-translations":"Loading translations... It might take a couple of seconds until all translations are loaded."}')}}]);

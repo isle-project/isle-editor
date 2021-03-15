@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[288],{3294:function(e){e.exports=JSON.parse('{"draw-sample":"Tekenen van een monster","sample-size":"Monstergrootte"}')}}]);
