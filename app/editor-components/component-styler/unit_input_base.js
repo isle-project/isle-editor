@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -53,6 +53,19 @@ const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange, au
 		setUnit( initial.unit );
 		setValue( initial.value );
 	}, [ auto, defaultValue ]);
+	const handleValueChange = useCallback( ( event ) => {
+		setValue( event.target.value );
+		onChange( `${event.target.value}${unit}`);
+	}, [ onChange, unit ] );
+	const handleUnitChange = useCallback( ( event ) => {
+		const newUnit = event.target.value;
+		setUnit( newUnit );
+		if ( value && newUnit !== 'auto' && newUnit !== 'none' ) {
+			onChange( `${value}${newUnit}`);
+		} else {
+			onChange( newUnit );
+		}
+	}, [ onChange, value ] );
 	return (
 		<Fragment>
 			<Form.Label column sm={labelWidth || 1} >
@@ -65,10 +78,7 @@ const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange, au
 						<Form.Control
 							type="number" min={0} max={200}
 							value={value}
-							onChange={( event ) => {
-								setValue( event.target.value );
-								onChange( `${event.target.value}${unit}`);
-							}}
+							onChange={handleValueChange}
 						/>
 					}
 					<InputGroup.Append>
@@ -76,15 +86,7 @@ const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange, au
 							as="select"
 							style={{ padding: 3, background: 'silver' }}
 							value={unit}
-							onChange={( event ) => {
-								const newUnit = event.target.value;
-								setUnit( newUnit );
-								if ( value && newUnit !== 'auto' && newUnit !== 'none' ) {
-									onChange( `${value}${newUnit}`);
-								} else {
-									onChange( newUnit );
-								}
-							}}
+							onChange={handleUnitChange}
 						>
 							{OPTIONS.map( ( x, idx ) => <option key={idx}>{x}</option>)}
 						</Form.Control>
