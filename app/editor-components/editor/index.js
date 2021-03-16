@@ -110,6 +110,20 @@ const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 let overlayInstallWidget = null;
 
 
+// FUNCTIONS //
+
+const createMonacoOptions = ({ splitPos, fontSize, showMiniMap, showQuickSuggestions }) => {
+	return {
+		...MONACO_OPTIONS,
+		fontSize: splitPos !== 1 ? fontSize : 4,
+		minimap: {
+			enabled: showMiniMap
+		},
+		quickSuggestions: showQuickSuggestions
+	};
+};
+
+
 // MAIN //
 
 class Editor extends Component {
@@ -120,7 +134,8 @@ class Editor extends Component {
 			sourceFiles: {},
 			value: props.value,
 			hasSelection: false,
-			componentStylerProps: {}
+			componentStylerProps: {},
+			monacoOptions: createMonacoOptions( props )
 		};
 		this.decorations = [];
 		this.dragProvider = {
@@ -129,12 +144,23 @@ class Editor extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
+		let out;
 		if ( nextProps.value && !prevState.value ) {
-			return {
+			out = {
 				value: nextProps.value
 			};
 		}
-		return null;
+		if (
+			nextProps.showQuickSuggestions !== prevState.monacoOptions.quickSuggestions ||
+			nextProps.showMiniMap !== prevState.monacoOptions.minimap.enabled ||
+			( nextProps.splitPos !== 1 ? nextProps.fontSize : 4 ) !== prevState.monacoOptions.fontSize
+		) {
+			if ( !out ) {
+				out = {};
+			}
+			out.monacoOptions = createMonacoOptions( nextProps );
+		}
+		return out;
 	}
 
 	async componentDidMount() {
@@ -1568,14 +1594,7 @@ class Editor extends Component {
 							width={max( window.innerWidth * ( 1.0 - this.props.splitPos ), 300 )}
 							language="javascript"
 							value={this.state.value}
-							options={{
-								...MONACO_OPTIONS,
-								fontSize: this.props.splitPos !== 1 ? this.props.fontSize : 4,
-								minimap: {
-									enabled: this.props.showMiniMap
-								},
-								quickSuggestions: this.props.showQuickSuggestions
-							}}
+							options={this.state.monacoOptions}
 							onChange={this.handleChange}
 							editorDidMount={this.onEditorMount}
 						/>

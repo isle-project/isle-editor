@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -22,16 +22,46 @@ import './header.css';
 
 const debug = logger( 'isle:header' );
 const F5 = '(F5)';
+const MARGIN_TOP_RIGHT = { marginTop: 3, marginRight: 5 };
 
 
 // MAIN //
 
-class Header extends Component {
-	constructor( props ) {
-		super( props );
-	}
+const Header = ( props ) => {
+	const { autoUpdatePreview, filePath, t, showLineButtons, triggerUpdate, onSelectMode, onSelectRole } = props;
+	debug( 'Rendering editor header...' );
 
-	handleModeSelection = ( eventKey ) => {
+	const createOverlay = useCallback( ({ outOfBoundaries, scheduleUpdate, show, arrowProps, ...props }) => {
+		return ( <div
+			{...props}
+			style={{
+				backgroundColor: 'rgba(50, 50, 50, 0.85)',
+				padding: '2px 10px',
+				color: 'white',
+				borderRadius: 3,
+				...props.style
+			}}
+		>
+			{filePath || t('please-save-file')}
+		</div> );
+	}, [ filePath, t ] );
+
+	const handleTriggerUpdate = useCallback( () => {
+		triggerUpdate();
+	}, [ triggerUpdate ] );
+
+	const keyboardActions = useMemo( () => {
+		return {
+			'F5': handleTriggerUpdate
+		};
+	}, [ handleTriggerUpdate ] );
+	const updateButtonStyle = useMemo( () => {
+		return {
+			display: autoUpdatePreview ? 'none' : 'inline'
+		};
+	}, [ autoUpdatePreview ] );
+
+	const handleModeSelection = useCallback( ( eventKey ) => {
 		let newMode;
 		switch ( eventKey ) {
 		case '1':
@@ -42,10 +72,10 @@ class Header extends Component {
 			newMode = 'online';
 			break;
 		}
-		this.props.onSelectMode( newMode );
-	}
+		onSelectMode( newMode );
+	}, [ onSelectMode ] );
 
-	handleRoleSelection = ( eventKey ) => {
+	const handleRoleSelection = useCallback( ( eventKey ) => {
 		let newRole;
 		switch ( eventKey ) {
 		case '1':
@@ -62,124 +92,100 @@ class Header extends Component {
 			newRole = 'owner';
 			break;
 		}
-		this.props.onSelectRole( newRole );
-	}
+		onSelectRole( newRole );
+	}, [ onSelectRole ] );
 
-	render() {
-		const { t } = this.props;
-		debug( 'Rendering editor header...' );
-
-		/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
-		return (
-			<div>
-				<HeaderUpperBar
-					updateStatus={this.props.updateStatus}
-					updateInfo={this.props.updateInfo}
-					updateDownloading={this.props.updateDownloading}
-					updateDownloadPercent={this.props.updateDownloadPercent}
-				/>
-				<div
-					id="header-lower-bar"
-					className="unselectable"
-				>
-					<span style={{ paddingLeft: 5 }} id="editor-filepath" >
-						<OverlayTrigger
-							placement="right"
-							overlay={({ outOfBoundaries, scheduleUpdate, show, arrowProps, ...props }) => ( <div
-								{...props}
-								style={{
-									backgroundColor: 'rgba(50, 50, 50, 0.85)',
-									padding: '2px 10px',
-									color: 'white',
-									borderRadius: 3,
-									...props.style
-								}}
+	/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+	return (
+		<div>
+			<HeaderUpperBar
+				updateStatus={props.updateStatus}
+				updateInfo={props.updateInfo}
+				updateDownloading={props.updateDownloading}
+				updateDownloadPercent={props.updateDownloadPercent}
+			/>
+			<div
+				id="header-lower-bar"
+				className="unselectable"
+			>
+				<span style={{ paddingLeft: 5 }} id="editor-filepath" >
+					<OverlayTrigger
+						placement="right"
+						overlay={createOverlay}
+					>
+						<span style={{ paddingRight: 5 }}>{props.fileName || t('untitled-document')}</span>
+					</OverlayTrigger>
+					{props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
+				</span>
+				<ButtonGroup className="unselectable" style={{ zIndex: 100 }} size="sm" >
+					<CheckboxInput
+						id="show-line-buttons"
+						value={showLineButtons}
+						onChange={props.toggleLineButtons}
+						legend={t('show-line-buttons')}
+						inline
+						style={MARGIN_TOP_RIGHT}
+					/>
+					<CheckboxInput
+						id="automatically-update-preview"
+						value={props.autoUpdatePreview}
+						onChange={props.changeAutoUpdate}
+						legend={t('automatically-update-preview')}
+						inline
+						style={MARGIN_TOP_RIGHT}
+					/>
+					<Tooltip placement="top" tooltip={`${t('trigger-update')} ${F5}`} >
+						<Button
+							onClick={props.triggerUpdate}
+							style={updateButtonStyle}
+							variant="outline-secondary"
+						><i className="fas fa-sync"></i></Button>
+					</Tooltip>
+					<Tooltip placement="top" tooltip={t('switch-online-offline')} show={props.preamble && isString( props.preamble.server)} >
+						<div id="change-online-mode" onClick={stopPropagation} >
+							<DropdownButton
+								title={t(props.mode)}
+								id="bg-mode-dropdown"
+								size="sm"
+								variant="warning"
+								onSelect={handleModeSelection}
+								disabled={!props.preamble || !isString( props.preamble.server)}
 							>
-								{this.props.filePath || t('please-save-file')}
-							</div> )}
-						>
-							<span style={{ paddingRight: 5 }}>{this.props.fileName || t('untitled-document')}</span>
-						</OverlayTrigger>
-						{this.props.unsaved ? <i style={{ paddingLeft: 5, color: '#6c757d' }} className="fas fa-circle"></i> : null}
-					</span>
-					<ButtonGroup className="unselectable" style={{ zIndex: 100 }} size="sm" >
-						<CheckboxInput
-							id="show-line-buttons"
-							value={this.props.showLineButtons}
-							onChange={this.props.toggleLineButtons}
-							legend={t('show-line-buttons')}
-							inline
-							style={{ marginTop: 3, marginRight: 5 }}
-						/>
-						<CheckboxInput
-							id="automatically-update-preview"
-							value={this.props.autoUpdatePreview}
-							onChange={this.props.changeAutoUpdate}
-							legend={t('automatically-update-preview')}
-							inline
-							style={{ marginTop: 3, marginRight: 5 }}
-						/>
-						<Tooltip placement="top" tooltip={`${t('trigger-update')} ${F5}`} >
-							<Button
-								onClick={this.props.triggerUpdate}
-								style={{
-									display: this.props.autoUpdatePreview ? 'none' : 'inline'
-								}}
-								variant="outline-secondary"
-							><i className="fas fa-sync"></i></Button>
-						</Tooltip>
-						<Tooltip placement="top" tooltip={t('switch-online-offline')} show={this.props.preamble && isString( this.props.preamble.server)} >
-							<div id="change-online-mode" onClick={stopPropagation} >
-								<DropdownButton
-									title={t(this.props.mode)}
-									id="bg-mode-dropdown"
-									size="sm"
-									variant="warning"
-									onSelect={this.handleModeSelection}
-									style={{ marginLeft: 25 }}
-									disabled={!this.props.preamble || !isString( this.props.preamble.server)}
-								>
-									<DropdownItem eventKey="1">{t('offline')}</DropdownItem>
-									<DropdownItem eventKey="2">{t('online')}</DropdownItem>
-								</DropdownButton>
-							</div>
-						</Tooltip>
-						<Tooltip placement="top" tooltip={t('preview-lesson-role')} >
-							<div id="header-role-in-preview" onClick={stopPropagation} >
-								<DropdownButton
-									title={t(this.props.role)}
-									id="bg-user-dropdown"
-									size="sm"
-									variant="success"
-									onSelect={this.handleRoleSelection}
-								>
-									<DropdownItem eventKey="1">{t('anonymous')}</DropdownItem>
-									<DropdownItem eventKey="2">{t('user')}</DropdownItem>
-									<DropdownItem eventKey="3">{t('enrolled')}</DropdownItem>
-									<DropdownItem eventKey="4">{t('owner')}</DropdownItem>
-								</DropdownButton>
-							</div>
-						</Tooltip>
-						<Tooltip placement="bottom" tooltip={t('preview-tooltip')} >
-							<Button id="header-preview-button" variant="secondary" onClick={this.props.onPreview} style={{
-								paddingTop: 4,
-								marginLeft: 25
-							}}>{t('preview')}</Button>
-						</Tooltip>
-					</ButtonGroup>
-				</div>
-				<KeyControls
-					actions={{
-						'F5': () => {
-							this.props.triggerUpdate();
-						}
-					}}
-				/>
+								<DropdownItem eventKey="1">{t('offline')}</DropdownItem>
+								<DropdownItem eventKey="2">{t('online')}</DropdownItem>
+							</DropdownButton>
+						</div>
+					</Tooltip>
+					<Tooltip placement="top" tooltip={t('preview-lesson-role')} >
+						<div id="header-role-in-preview" onClick={stopPropagation} >
+							<DropdownButton
+								title={t(props.role)}
+								id="bg-user-dropdown"
+								size="sm"
+								variant="success"
+								onSelect={handleRoleSelection}
+							>
+								<DropdownItem eventKey="1">{t('anonymous')}</DropdownItem>
+								<DropdownItem eventKey="2">{t('user')}</DropdownItem>
+								<DropdownItem eventKey="3">{t('enrolled')}</DropdownItem>
+								<DropdownItem eventKey="4">{t('owner')}</DropdownItem>
+							</DropdownButton>
+						</div>
+					</Tooltip>
+					<Tooltip placement="bottom" tooltip={t('preview-tooltip')} >
+						<Button id="header-preview-button" variant="secondary" onClick={props.onPreview} >
+							{t('preview')}
+						</Button>
+					</Tooltip>
+				</ButtonGroup>
 			</div>
-		);
-		/* eslint-enable jsx-a11y/no-static-element-interactions */
-	}
-}
+			<KeyControls
+				actions={keyboardActions}
+			/>
+		</div>
+	);
+	/* eslint-enable jsx-a11y/no-static-element-interactions */
+};
 
 
 // PROPERTIES //

@@ -8,3 +8,12 @@
 	padding: 5px;
 	justify-content: space-between;
 }
+
+#header-preview-button {
+	padding-top: 4px;
+	margin-left: 25px;
+}
+
+#change-only-mode {
+	margin-left: 25px;
+}

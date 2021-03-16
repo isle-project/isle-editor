@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ipcRenderer } from 'electron';
@@ -14,23 +14,32 @@ import './header_upper_bar.css';
 
 // MAIN //
 
-const HeaderUpperBar = ( props ) => {
+const HeaderUpperBar = ({ backToEditor, title, updateDownloading, updateDownloadPercent, updateStatus, updateInfo }) => {
 	const { t } = useTranslation( 'Editor' );
+	const handleUpdateClick = useCallback( () => {
+		updateDownloading();
+		ipcRenderer.send( 'download-update' );
+	}, [ updateDownloading ] );
+	const downloadButtonStyle = useMemo( () => {
+		return {
+			display: updateStatus === 'available' ? 'inherit' : 'none'
+		};
+	}, [ updateStatus ] );
 	let updateTooltip;
 	let updateMsg;
-	switch ( props.updateStatus ) {
+	switch ( updateStatus ) {
 		case 'available':
-			updateMsg = t('update-available', { version: props.updateInfo.version });
+			updateMsg = t('update-available', { version: updateInfo.version });
 			updateTooltip = t('update-available-tooltip');
 			break;
 		case 'downloading':
-			if ( props.updateDownloadPercent ) {
+			if ( updateDownloadPercent ) {
 				updateMsg = t('update-downloading-percent', {
-					percent: round( props.updateDownloadPercent ),
-					version: props.updateInfo.version
+					percent: round( updateDownloadPercent ),
+					version: updateInfo.version
 				});
 			} else {
-				updateMsg = t('update-downloading-version', { version: props.updateInfo.version });
+				updateMsg = t('update-downloading-version', { version: updateInfo.version });
 			}
 			updateTooltip = t('update-downloading-tooltip');
 			break;
@@ -46,25 +55,24 @@ const HeaderUpperBar = ( props ) => {
 		className="unselectable"
 	>
 		<h3>
-			ISLE {props.title ? props.title : t('editor')}
+			ISLE {title ? title : t('editor')}
 		</h3>
 		<div>
-			{ props.updateStatus ? <Fragment>
+			{ updateStatus ? <Fragment>
 				<Tooltip tooltip={updateTooltip} >
 					<Badge variant="success" id="update-indicator-badge" >
 						{updateMsg}
-						<Button id="update-download-button" variant="secondary" size="sm" onClick={() => {
-							props.updateDownloading();
-							ipcRenderer.send( 'download-update' );
-						}} style={{
-							display: props.updateStatus === 'available' ? 'inherit' : 'none'
-						}}>
+						<Button
+							id="update-download-button" variant="secondary"
+							size="sm" onClick={handleUpdateClick}
+							style={downloadButtonStyle}
+						>
 							{t('download')}
 						</Button>
 					</Badge>
 				</Tooltip>
 			</Fragment>: null }
-			{ props.backToEditor ?
+			{ backToEditor ?
 				<Link
 					to="/"
 					id="link-back-to-editor"
