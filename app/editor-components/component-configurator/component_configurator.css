@@ -45,3 +45,14 @@
 	float: right;
 	margin-bottom: 2;
 }
+
+.configurator-instructions {
+	font-size: 12px;
+	margin: 0;
+}
+
+.configurator-body {
+	height: 80vh;
+	overflow-y: auto;
+	margin: 0.5rem;
+}

@@ -67,6 +67,19 @@ const md = markdownit({
 });
 md.disable( 'code' );
 const debug = logger('isle:editor:component-configurator');
+const COMPONENT_STYLER_STYLE = {
+	position: 'absolute',
+	height: '50%',
+	left: '1%',
+	top: '60px',
+	width: '40%'
+};
+const PLAYGROUND_STYLE = {
+	marginTop: '12px',
+	maxWidth: '100vw',
+	height: '100%',
+	overflowX: 'hidden'
+};
 
 
 // FUNCTIONS //
@@ -564,6 +577,21 @@ class ComponentConfigurator extends Component {
 		};
 	}
 
+	handleCodeTransform = ( code ) => {
+		PropTypes.resetWarningCache();
+		try {
+			code = replace( code, RE_BEFORE_TAG, '' );
+			let out = markdownToHTML( code );
+			out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+				const raw = replace( p1, '\\', '\\\\' );
+				return `String.raw({ raw: \`${raw}\` })`;
+			});
+			return out;
+		} catch ( err ) {
+			return err;
+		}
+	}
+
 	renderPropertyControls() {
 		debug( 'Rendering property controls...' );
 		const props = this.docProps;
@@ -773,7 +801,7 @@ class ComponentConfigurator extends Component {
 						</Button>
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={{ height: '80vh', overflowY: 'auto', margin: '0.5rem' }}>
+				<Modal.Body className="configurator-body" >
 					<SearchBar
 						className="configurator-searchbar"
 						value={this.state.searchValue}
@@ -810,7 +838,7 @@ class ComponentConfigurator extends Component {
 						/>
 					</div>
 					{componentDescription}
-					<Card.Subtitle style={{ fontSize: '12px', margin: 0 }} className="text-muted">
+					<Card.Subtitle className="configurator-instructions text-muted">
 						{t('wizard-table-instructions')}
 					</Card.Subtitle>
 					<div style={{ position: 'relative', height: 'calc(100% - 40px)' }}>
@@ -835,26 +863,8 @@ class ComponentConfigurator extends Component {
 										editorProps={{
 											onMouseOut: this.handleMouseOut
 										}}
-										style={{
-											marginTop: '12px',
-											maxWidth: '100vw',
-											height: '100%',
-											overflowX: 'hidden'
-										}}
-										transformCode={( code ) => {
-											PropTypes.resetWarningCache();
-											try {
-												code = replace( code, RE_BEFORE_TAG, '' );
-												let out = markdownToHTML( code );
-												out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
-													const raw = replace( p1, '\\', '\\\\' );
-													return `String.raw({ raw: \`${raw}\` })`;
-												});
-												return out;
-											} catch ( err ) {
-												return err;
-											}
-										}}
+										style={PLAYGROUND_STYLE}
+										transformCode={this.handleCodeTransform}
 									/>
 								</Provider>
 							}
@@ -881,13 +891,7 @@ class ComponentConfigurator extends Component {
 					componentStyle={this.state[ 'prop:style' ]}
 					onChange={this.replaceStyle}
 					onClassTransform={this.handleClassTransform}
-					style={{
-						position: 'absolute',
-						height: '50%',
-						left: '1%',
-						top: '60px',
-						width: '40%'
-					}}
+					style={COMPONENT_STYLER_STYLE}
 				/>
 				{ this.state.showTutorial ? <ConfiguratorTutorial
 					onFinish={this.toggleTutorial}

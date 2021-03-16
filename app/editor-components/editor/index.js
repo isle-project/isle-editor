@@ -104,6 +104,7 @@ const MONACO_OPTIONS = {
 		arrowSize: 15
 	}
 };
+const MENU_TRIGGER_STYLE = { height: '100%', width: '100%' };
 const ISLE_SERVER = electronStore.get( 'server' );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 let overlayInstallWidget = null;
@@ -1513,6 +1514,34 @@ class Editor extends Component {
 		return { context: 'editor' };
 	}
 
+	handleStylerChange = ( text, elementRange ) => {
+		const op = {
+			range: elementRange,
+			text: text,
+			forceMoveMarkers: true
+		};
+		this.immediateUpdate = true;
+		let newRange;
+		this.editor.executeEdits( 'my-source', [ op ], ( arr ) => {
+			newRange = arr[ 0 ].range;
+			return null;
+		});
+		this.setState({
+			componentStylerProps: {
+				elementRange: newRange,
+				componentValue: text
+			}
+		});
+	}
+
+	handleStylerHide = () => {
+		this.setState({
+			componentStylerProps: {
+				show: false
+			}
+		});
+	}
+
 	render() {
 		debug( 'Re-rendering monaco editor...' );
 		let outerStyle;
@@ -1530,7 +1559,7 @@ class Editor extends Component {
 			<div style={outerStyle} >
 				<ContextMenuTrigger
 					id="editor-context-menu" holdToDisplay={-1}
-					style={{ height: '100%', width: '100%' }}
+					style={MENU_TRIGGER_STYLE}
 					collect={this.collectContext}
 				>
 					<div {...this.dragProvider.props} >
@@ -1567,32 +1596,8 @@ class Editor extends Component {
 				/>
 				<EditorComponentStyler
 					{...this.state.componentStylerProps}
-					onChange={( text, elementRange ) => {
-						const op = {
-							range: elementRange,
-							text: text,
-							forceMoveMarkers: true
-						};
-						this.immediateUpdate = true;
-						let newRange;
-						this.editor.executeEdits( 'my-source', [ op ], ( arr ) => {
-							newRange = arr[ 0 ].range;
-							return null;
-						});
-						this.setState({
-							componentStylerProps: {
-								elementRange: newRange,
-								componentValue: text
-							}
-						});
-					}}
-					onHide={() => {
-						this.setState({
-							componentStylerProps: {
-								show: false
-							}
-						});
-					}}
+					onChange={this.handleStylerChange}
+					onHide={this.handleStylerHide}
 				/>
 			</div>
 		);

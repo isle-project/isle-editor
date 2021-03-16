@@ -21,6 +21,11 @@ const EditorTutorial = Loadable( () => import( 'editor-components/tutorial' ) );
 
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
+const LANGUAGE_OBJECTS = LANGUAGE_NAMES.map( x => {
+	return {
+		language: LANGUAGES[ x ]
+	};
+});
 
 
 // MAIN //
@@ -45,7 +50,35 @@ const EditorFooter = ( props ) => {
 		setShowTutorial( !showTutorial );
 		electronStore.set( 'show-editor-tutorial', !showTutorial );
 	}, [ showTutorial ] );
-	const { t, onTranslate } = props;
+	const { editor, t, onTranslate } = props;
+	const handleLinting = useCallback( () => {
+		editor.focus();
+		const evt = document.createEvent( 'KeyboardEvent' );
+
+		// Chromium Hack
+		Object.defineProperty( evt, 'keyCode', {
+			get() {
+				return this.keyCodeVal;
+			}
+		});
+		Object.defineProperty( evt, 'which', {
+			get() {
+				return this.keyCodeVal;
+			}
+		});
+		if ( evt.initKeyboardEvent ) {
+			evt.initKeyboardEvent( 'keydown', true, true, document.defaultView, 119, 119, '', '', false, '' );
+		} else {
+			evt.initKeyEvent( 'keydown', true, true, document.defaultView, false, false, false, false, 119, 0 );
+		}
+		evt.keyCodeVal = 119;
+		const div = document.getElementsByClassName( 'monaco-mouse-cursor-text' )[ 0 ];
+		div.dispatchEvent( evt );
+	}, [ editor ] );
+	const handleTutorialFinish = useCallback( () => {
+		setShowTutorial( false );
+		electronStore.set( 'show-editor-tutorial', false );
+	}, [] );
 	const handleTranslateClick = useCallback( ( _, data ) => {
 		onTranslate( data.language );
 	}, [ onTranslate] );
@@ -54,31 +87,8 @@ const EditorFooter = ( props ) => {
 			<Tooltip tooltip={t('linting-tooltip')} placement="top" >
 				<Button
 					id="linting-and-spelling"
-					variant="light" size="sm" className="editor-footer-button" style={{ marginRight: 18 }}
-					onClick={() => {
-						props.editor.focus();
-						const evt = document.createEvent( 'KeyboardEvent' );
-
-						// Chromium Hack
-						Object.defineProperty( evt, 'keyCode', {
-							get() {
-								return this.keyCodeVal;
-							}
-						});
-						Object.defineProperty( evt, 'which', {
-							get() {
-								return this.keyCodeVal;
-							}
-						});
-						if ( evt.initKeyboardEvent ) {
-							evt.initKeyboardEvent( 'keydown', true, true, document.defaultView, 119, 119, '', '', false, '' );
-						} else {
-							evt.initKeyEvent( 'keydown', true, true, document.defaultView, false, false, false, false, 119, 0 );
-						}
-						evt.keyCodeVal = 119;
-						const div = document.getElementsByClassName( 'monaco-mouse-cursor-text' )[ 0 ];
-						div.dispatchEvent( evt );
-					}}
+					variant="light" size="sm" className="editor-footer-button"
+					onClick={handleLinting}
 					disabled={props.nErrors === 0}
 				>
 					{t('linting-and-spelling')}: <Badge variant="secondary">{props.nErrors}</Badge>
@@ -121,9 +131,7 @@ const EditorFooter = ( props ) => {
 				{LANGUAGE_NAMES.map( ( name, idx ) => {
 					return (
 						<MenuItem
-							key={idx} data={{
-								language: LANGUAGES[ name ]
-							}}
+							key={idx} data={LANGUAGE_OBJECTS[ name ]}
 							onClick={handleTranslateClick}
 						>
 							{t(name)}
@@ -135,10 +143,7 @@ const EditorFooter = ( props ) => {
 			{ showKeyboardHelp ? <KeyboardHelp onHide={toggleKeyboardHelp} /> : null }
 			{ showMarkdownHelp ? <MarkdownHelp onHide={toggleMarkdownHelp} /> : null }
 			{ showTutorial ? <EditorTutorial
-				onFinish={() => {
-					setShowTutorial( false );
-					electronStore.set( 'show-editor-tutorial', false );
-				}}
+				onFinish={handleTutorialFinish}
 			/> : null }
 		</div>
 	);
