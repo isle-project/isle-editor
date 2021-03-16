@@ -8,6 +8,7 @@
 	font-size: 14px;
 	padding: 0px 4px 0px 4px;
 	margin-left: 4px;
+	margin-right: 18px;
 }
 
 .react-contextmenu {
@@ -109,8 +110,4 @@
 	top: 40%;
 	left: calc(50% - 80px);
 	z-index: -1;
-}
-
-.editor-footer-button {
-	margin-right: 18px;
 }
