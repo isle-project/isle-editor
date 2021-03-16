@@ -287,6 +287,7 @@
     "eslint-plugin-jest": "^24.3.1",
     "eslint-plugin-jest-dom": "^3.6.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-perf": "^3.3.0",
     "eslint-plugin-spellcheck": "0.0.17",
     "eslint-plugin-testing-library": "^3.10.1",
     "glob": "^7.1.6",

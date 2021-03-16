@@ -501,10 +501,14 @@
       "ignoreComponent": [ "Trans", "code", "Badge" ],
       "ignoreCallee": [ "debug", "error", "log" ],
       "validateTemplate": true
+    }],
+    "react-perf/jsx-no-new-object-as-prop": [ 1, {
+      "nativeAllowList": "all"
     }]
   },
   "extends": [
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-perf/recommended"
   ],
   "plugins": [
     "@babel",
@@ -514,7 +518,8 @@
     "jsx-a11y",
     "react-hooks",
     "spellcheck",
-    "i18next"
+    "i18next",
+    "react-perf"
   ],
   "settings": {
     "react": {
