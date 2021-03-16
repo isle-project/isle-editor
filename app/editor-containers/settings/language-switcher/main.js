@@ -17,8 +17,8 @@
 
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
-import { withTranslation } from 'react-i18next';
+import React, { Fragment, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ipcRenderer } from 'electron';
 import electronStore from 'store/electron.js';
 import Button from 'react-bootstrap/Button';
@@ -71,10 +71,10 @@ const SelectModal = ( props ) => {
 
 const LanguageSwitcher = ( props ) => {
 	const [ showSelectModal, setShowSelectModal ] = useState( false );
-	const toggleSelectModal = () => {
+	const toggleSelectModal = useCallback( () => {
 		setShowSelectModal( !showSelectModal );
-	};
-	const { t } = props;
+	}, [ showSelectModal ] );
+	const { t } = useTranslation( 'Editor' );
 	return (
 		<Fragment>
 			<button
@@ -94,4 +94,4 @@ const LanguageSwitcher = ( props ) => {
 
 // EXPORTS //
 
-export default withTranslation( 'Editor' )( LanguageSwitcher );
+export default LanguageSwitcher;

@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
@@ -24,6 +24,10 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+const COMPONENT_STYLER_STYLE = {
+	maxHeight: '90vh',
+	overflowY: 'auto'
+};
 
 
 // MAIN //
@@ -34,6 +38,10 @@ const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, o
 	const [ component, setComponent ] = useState({});
 	const handleChange = useRef( () => {} );
 	const handleClassTransform = useRef( () => {} );
+	const handleHide = useCallback( () => {
+		setIsShown( false );
+		onHide();
+	}, [ onHide ] );
 	useEffect( () => {
 		let value = componentValue;
 		if ( !value ) {
@@ -95,21 +103,15 @@ const EditorComponentStyler = ({ componentValue, elementRange, show, onChange, o
 	if ( !isShown ) {
 		return null;
 	}
-	return ( <Draggable className="editor-component-styler" cancel=".popover" >
+	return ( <Draggable className="editor-component-styler" cancel=".popover, .input" >
 		<ComponentStyler
 			tagName={component.tagName}
 			componentStyle={style}
 			show={isShown}
 			onChange={handleChange.current}
 			onClassTransform={handleClassTransform.current}
-			onHide={() => {
-				setIsShown( false );
-				onHide();
-			}}
-			style={{
-				maxHeight: '90vh',
-				overflowY: 'auto'
-			}}
+			onHide={handleHide}
+			style={COMPONENT_STYLER_STYLE}
 		/>
 	</Draggable> );
 };

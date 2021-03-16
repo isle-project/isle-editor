@@ -33,6 +33,12 @@ const debug = logger( 'isle-editor' );
 const RE_PREAMBLE = /^(?:\s*)---([\S\s]*?)---/;
 const LINTING_INTERVAL = 3 * 1000;
 const NUM_WRAPPER_LINES = 8;
+const STYLE_TRANSFORM = {
+	transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
+};
+const RESIZER_STYLE = {
+	zIndex: 10
+};
 
 
 // FUNCTIONS //
@@ -209,6 +215,21 @@ class App extends Component {
 		this.props.toggleConfigurator( false );
 	}
 
+	handlePreviewButtonClick = () => {
+		let splitPos;
+		if ( this.props.splitPos === 1 ) {
+			splitPos = electronStore.get( 'splitPos' ) || 0.5;
+		} else {
+			splitPos = 1;
+		}
+		this.props.changeSplitPos( splitPos );
+	}
+
+	handleConfiguratorInsert = ( text ) => {
+		this.props.pasteInsertion({ text });
+		this.props.toggleConfigurator( false );
+	}
+
 	render() {
 		let {
 			autoUpdatePreview,
@@ -264,15 +285,7 @@ class App extends Component {
 						changeAutoUpdate={changeAutoUpdate}
 						toggleLineButtons={toggleLineButtons}
 						showLineButtons={showLineButtons}
-						onPreview={() => {
-							let splitPos;
-							if ( this.props.splitPos === 1 ) {
-								splitPos = electronStore.get( 'splitPos' ) || 0.5;
-							} else {
-								splitPos = 1;
-							}
-							this.props.changeSplitPos( splitPos );
-						}}
+						onPreview={this.handlePreviewButtonClick}
 						updateStatus={updateStatus}
 						updateInfo={updateInfo}
 						updateDownloading={updateDownloading}
@@ -289,9 +302,7 @@ class App extends Component {
 						background: 'white',
 						zIndex: 2
 					}}
-					resizerStyle={{
-						zIndex: 10
-					}}
+					resizerStyle={RESIZER_STYLE}
 					onChange={this.handleHorizontalSplit}
 					minSize={0}
 					maxSize={window.innerHeight}
@@ -341,9 +352,7 @@ class App extends Component {
 						</SplitPanel>
 						<SplitPanel
 							ref={( elem ) => { this.preview = elem; }}
-							style={{
-								transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
-							}}
+							style={STYLE_TRANSFORM}
 						>
 							{ error ?
 								<ErrorMessage
@@ -361,10 +370,7 @@ class App extends Component {
 					component={this.props.selectedComponent}
 					currentMode={this.props.currentMode}
 					currentRole={this.props.currentRole}
-					onInsert={( text ) => {
-						this.props.pasteInsertion({ text });
-						this.props.toggleConfigurator( false );
-					}}
+					onInsert={this.handleConfiguratorInsert}
 				/> : null }
 
 				{

@@ -115,6 +115,7 @@ const SELECT_STYLES = {
 	option: base => ({ ...base, paddingLeft: 24, paddingTop: 4, paddingBottom: 4, fontSize: '0.85em' }),
 	menuPortal: base => ({ ...base, zIndex: 1060 })
 };
+const CSS_DEFAULT_VALUE = { label: 'All Properties', value: 'all' };
 
 
 // FUNCTIONS //
@@ -171,7 +172,7 @@ const TransitionPicker = ({ onChange, t }) => {
 						isClearable
 						options={CSS_ATTRIBUTES}
 						onChange={handleNewType}
-						defaultValue={{ label: 'All Properties', value: 'all' }}
+						defaultValue={CSS_DEFAULT_VALUE}
 						menuPortalTarget={document.body}
 						styles={SELECT_STYLES}
 					/>

@@ -16,6 +16,7 @@ import TransitionPicker from './transition_picker.js';
 // VARIABLES //
 
 const RE_SEPARATOR = /(?<=[^\d]),/;
+const DELETE_BUTTON_STYLE = { float: 'right' };
 
 
 // MAIN //
@@ -80,7 +81,7 @@ const Effects = ({ active, style, onChange, t }) => {
 									newStyle.transition = newTransitions.join( ', ' );
 									onChange( newStyle );
 								}}
-								style={{ float: 'right' }}
+								style={DELETE_BUTTON_STYLE}
 							>
 								<div className="fa fa-times" />
 							</Button>

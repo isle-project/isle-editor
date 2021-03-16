@@ -200,6 +200,32 @@ class ExportLesson extends Component {
 		</Card> );
 	}
 
+	handleMinifyChange = ( value ) => {
+		this.setState({
+			minify: value
+		});
+	}
+
+	handleWriteStatsChange = ( value ) => {
+		this.setState({
+			writeStats: value
+		});
+	}
+
+	handleCDNChange = ( value ) => {
+		this.setState({
+			loadFromCDN: value
+		});
+	}
+
+	handleOutputDirChange = ( event ) => {
+		this.setState({
+			outputDir: event.target.value,
+			finished: false,
+			alreadyExists: false
+		});
+	}
+
 	render() {
 		const { t } = this.props;
 		return (
@@ -215,33 +241,21 @@ class ExportLesson extends Component {
 							legend={t('minify-code')}
 							tooltip={t('minify-code-tooltip')}
 							tooltipPlacement="left"
-							onChange={( value ) => {
-								this.setState({
-									minify: value
-								});
-							}}
+							onChange={this.handleMinifyChange}
 							disabled={this.state.spinning}
 						/>
 						<CheckboxInput
 							legend={t('save-stats')}
 							tooltip={t('save-stats-tooltip')}
 							tooltipPlacement="left"
-							onChange={( value ) => {
-								this.setState({
-									writeStats: value
-								});
-							}}
+							onChange={this.handleWriteStatsChange}
 							disabled={this.state.spinning}
 						/>
 						<CheckboxInput
 							legend={t('load-from-cdn')}
 							tooltip={t('load-from-cdn-tooltip')}
 							tooltipPlacement="left"
-							onChange={( value ) => {
-								this.setState({
-									loadFromCDN: value
-								});
-							}}
+							onChange={this.handleCDNChange}
 							defaultValue={this.state.loadFromCDN}
 							disabled={this.state.spinning}
 						/>
@@ -252,13 +266,7 @@ class ExportLesson extends Component {
 							type="text"
 							placeholder={t('directory-placeholder')}
 							defaultValue={this.state.outputDir}
-							onChange={( event ) => {
-								this.setState({
-									outputDir: event.target.value,
-									finished: false,
-									alreadyExists: false
-								});
-							}}
+							onChange={this.handleOutputDirChange}
 							onKeyPress={this.handleKeyPress}
 							disabled={this.state.spinning}
 						/>
