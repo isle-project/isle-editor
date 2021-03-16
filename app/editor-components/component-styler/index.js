@@ -31,6 +31,8 @@ const ACCORDION_ITEM_STYLE = {
 	position: 'relative',
 	padding: 15
 };
+const HEADERS = [ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Cursor', 'Effects', 'Box Shadows' ];
+const HEADER_STYLE = { fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' };
 
 
 // MAIN //
@@ -89,8 +91,8 @@ const ComponentStyler = ({ tagName, show, componentStyle, style, appendCSSToPrea
 			<Accordion
 				className="component-styler-accordion"
 				canCloseAll
-				headers={[ 'Layout & Background', 'Spacing', 'Size', 'Position', 'Typography', 'Font Variants', 'Borders', 'Cursor', 'Effects', 'Box Shadows' ]}
-				headerStyle={{ fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' }}
+				headers={HEADERS}
+				headerStyle={HEADER_STYLE}
 				onChange={setActive}
 			>
 				<div style={ACCORDION_ITEM_STYLE} >
