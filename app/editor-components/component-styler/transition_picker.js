@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -133,30 +133,44 @@ function createTransition({ type, duration, easing, delay }) {
 
 // MAIN //
 
-const TransitionPicker = ( props ) => {
+const TransitionPicker = ({ onChange, t }) => {
 	const [ type, setType ] = useState( 'all' );
 	const [ duration, setDuration ] = useState( 1 );
 	const [ easing, setEasing ] = useState( null );
 	const [ delay, setDelay ] = useState( null );
+	const handleNewType = useCallback( ( elem ) => {
+		let newType;
+		if ( elem ) {
+			newType = elem.value;
+		} else {
+			newType = null;
+		}
+		setType( newType );
+	}, [] );
+	const handleNewEasing = useCallback( ( elem ) => {
+		let newEasing;
+		if ( elem ) {
+			newEasing = elem.value;
+		} else {
+			newEasing = null;
+		}
+		setEasing( newEasing );
+	}, [] );
+	const handleNewTransition = useCallback( () => {
+		const transition = createTransition({ type, duration, easing, delay });
+		onChange( transition );
+	}, [ onChange, delay, duration, easing, type ] );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('type')}
+					{t('type')}
 				</Form.Label>
 				<Col sm={6} >
 					<Select
 						isClearable
 						options={CSS_ATTRIBUTES}
-						onChange={( elem ) => {
-							let newType;
-							if ( elem ) {
-								newType = elem.value;
-							} else {
-								newType = null;
-							}
-							setType( newType );
-						}}
+						onChange={handleNewType}
 						defaultValue={{ label: 'All Properties', value: 'all' }}
 						menuPortalTarget={document.body}
 						styles={SELECT_STYLES}
@@ -165,7 +179,7 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('duration-in-seconds')}
+					{t('duration-in-seconds')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
@@ -178,21 +192,13 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('easing')}
+					{t('easing')}
 				</Form.Label>
 				<Col sm={6} >
 					<Select
 						isClearable
 						options={EASING_TYPES}
-						onChange={( elem ) => {
-							let newEasing;
-							if ( elem ) {
-								newEasing = elem.value;
-							} else {
-								newEasing = null;
-							}
-							setEasing( newEasing );
-						}}
+						onChange={handleNewEasing}
 						menuPortalTarget={document.body}
 						styles={SELECT_STYLES}
 					/>
@@ -200,7 +206,7 @@ const TransitionPicker = ( props ) => {
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('delay-in-seconds')}
+					{t('delay-in-seconds')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
@@ -211,11 +217,8 @@ const TransitionPicker = ( props ) => {
 					/>
 				</Col>
 			</Form.Group>
-			<Button variant="secondary" onClick={() => {
-				const transition = createTransition({ type, duration, easing, delay });
-				props.onChange( transition );
-			}} >
-				{props.t('add-transition')}
+			<Button variant="secondary" onClick={handleNewTransition} >
+				{t('add-transition')}
 			</Button>
 		</Fragment>
 	);

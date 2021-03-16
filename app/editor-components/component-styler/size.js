@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -26,171 +26,197 @@ const FIT_OPTIONS = [
 
 // MAIN //
 
-const Size = ( props ) => {
-	if ( !props.active ) {
+const Size = ({ active, style, onChange, t }) => {
+	const handleWidthChange = useCallback( ( width ) => {
+		const newStyle = { ...style };
+		newStyle.width = width;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleHeightChange = useCallback( ( height ) => {
+		const newStyle = { ...style };
+		newStyle.height = height;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMinWidthChange = useCallback( ( minWidth ) => {
+		const newStyle = { ...style };
+		newStyle.minWidth = minWidth;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMinHeightChange = useCallback( ( minHeight ) => {
+		const newStyle = { ...style };
+		newStyle.minHeight = minHeight;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMaxWidthChange = useCallback( ( maxWidth ) => {
+		const newStyle = { ...style };
+		newStyle.maxWidth = maxWidth;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMaxHeightChange = useCallback( ( maxHeight ) => {
+		const newStyle = { ...style };
+		newStyle.maxHeight = maxHeight;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleOverflowChange = useCallback( ( overflow ) => {
+		const newStyle = omit( style, [ 'overflow', 'overflowX', 'overflowY' ] );
+		newStyle.overflow = overflow;
+		if ( style.overflowX ) {
+			newStyle.overflowX = style.overflowX;
+		}
+		if ( style.overflowY ) {
+			newStyle.overflowY = style.overflowY;
+		}
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleXOverflowChange = useCallback( ( overflowX ) => {
+		const newStyle = omit( style, [ 'overflow', 'overflowX', 'overflowY' ] );
+		if ( style.overflow ) {
+			newStyle.overflow = style.overflow;
+		}
+		if ( style.overflowY ) {
+			newStyle.overflowY = style.overflowY;
+		}
+		if ( overflowX !== 'visible' ) {
+			newStyle.overflowX = overflowX;
+		}
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleYOverflowChange = useCallback( ( overflowY ) => {
+		const newStyle = omit( style, [ 'overflow', 'overflowX', 'overflowY' ] );
+		if ( style.overflow ) {
+			newStyle.overflow = style.overflow;
+		}
+		if ( style.overflowX ) {
+			newStyle.overflowX = style.overflowX;
+		}
+		if ( overflowY !== 'visible' ) {
+			newStyle.overflowY = overflowY;
+		}
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleFitChange = useCallback( ( fit ) => {
+		const newStyle = { ...style };
+		newStyle.fit = fit;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	if ( !active ) {
 		return null;
 	}
-	const { width, height, maxHeight, maxWidth, minWidth, minHeight } = props.style;
+	const { width, height, maxHeight, maxWidth, minWidth, minHeight } = style;
 	/* eslint-disable i18next/no-literal-string */
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label={props.t('width')}
+					label={t('width')}
 					labelWidth={3}
 					colWidth={3}
 					auto
 					defaultValue={isUndefinedOrNull( width ) ? 'auto' : width}
-					onChange={( width ) => {
-						const newStyle = { ...props.style };
-						newStyle.width = width;
-						props.onChange( newStyle );
-					}}
+					onChange={handleWidthChange}
 				/>
 				<UnitInputBase
-					label={props.t('height')}
+					label={t('height')}
 					labelWidth={3}
 					colWidth={3}
 					auto
 					defaultValue={isUndefinedOrNull( height ) ? 'auto' : height}
-					onChange={( height ) => {
-						const newStyle = { ...props.style };
-						newStyle.height = height;
-						props.onChange( newStyle );
-					}}
+					onChange={handleHeightChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label={props.t('min-width')}
+					label={t('min-width')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minWidth ) ? '0px' : minWidth}
 					auto
-					onChange={( minWidth ) => {
-						const newStyle = { ...props.style };
-						newStyle.minWidth = minWidth;
-						props.onChange( newStyle );
-					}}
+					onChange={handleMinWidthChange}
 				/>
 				<UnitInputBase
-					label={props.t('min-height')}
+					label={t('min-height')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( minHeight ) ? '0px' : minHeight}
 					auto
-					onChange={( minHeight ) => {
-						const newStyle = { ...props.style };
-						newStyle.minHeight = minHeight;
-						props.onChange( newStyle );
-					}}
+					onChange={handleMinHeightChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<UnitInputBase
-					label={props.t('max-width')}
+					label={t('max-width')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxWidth ) ? 'none' : maxWidth}
 					none
-					onChange={( maxWidth ) => {
-						const newStyle = { ...props.style };
-						newStyle.maxWidth = maxWidth;
-						props.onChange( newStyle );
-					}}
+					onChange={handleMaxWidthChange}
 				/>
 				<UnitInputBase
-					label={props.t('max-height')}
+					label={t('max-height')}
 					labelWidth={3}
 					colWidth={3}
 					defaultValue={isUndefinedOrNull( maxHeight ) ? 'none' : maxHeight}
 					none
-					onChange={( maxHeight ) => {
-						const newStyle = { ...props.style };
-						newStyle.maxHeight = maxHeight;
-						props.onChange( newStyle );
-					}}
+					onChange={handleMaxHeightChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t('overflow')}
+					{t('overflow')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
 						name="options"
 						defaultValue="visible"
-						onChange={( overflow ) => {
-							const newStyle = omit( props.style, [ 'overflow', 'overflowX', 'overflowY' ] );
-							newStyle.overflow = overflow;
-							if ( props.style.overflowX ) {
-								newStyle.overflowX = props.style.overflowX;
-							}
-							if ( props.style.overflowY ) {
-								newStyle.overflowY = props.style.overflowY;
-							}
-							props.onChange( newStyle );
-						}}
+						onChange={handleOverflowChange}
 						type="radio"
 						size="small"
-						value={props.style.overflow}
+						value={style.overflow}
 					>
 						<ToggleButton
 							variant="outline-secondary"
 							value="visible"
-							title={props.t('visible')}
+							title={t('visible')}
 						>
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="hidden"
-							title={props.t('hidden')}
+							title={t('hidden')}
 						>
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="scroll"
-							title={props.t('scroll')}
+							title={t('scroll')}
 						>
 							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="auto"
-							title={props.t('auto')}
+							title={t('auto')}
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							{props.t('auto')}
+							{t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t('overflow-x')}
+					{t('overflow-x')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
 						name="options"
 						defaultValue="visible"
-						onChange={( overflowX ) => {
-							const newStyle = omit( props.style, [ 'overflow', 'overflowX', 'overflowY' ] );
-							if ( props.style.overflow ) {
-								newStyle.overflow = props.style.overflow;
-							}
-							if ( props.style.overflowY ) {
-								newStyle.overflowY = props.style.overflowY;
-							}
-							if ( overflowX !== 'visible' ) {
-								newStyle.overflowX = overflowX;
-							}
-							props.onChange( newStyle );
-						}}
+						onChange={handleXOverflowChange}
 						type="radio"
 						size="small"
-						value={props.style.overflowX}
+						value={style.overflowX}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -215,35 +241,23 @@ const Size = ( props ) => {
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							{props.t('auto')}
+							{t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t('overflow-y')}
+					{t('overflow-y')}
 				</Form.Label>
 				<Col sm={9} >
 					<ToggleButtonGroup
 						name="options"
 						defaultValue="visible"
-						onChange={( overflowY ) => {
-							const newStyle = omit( props.style, [ 'overflow', 'overflowX', 'overflowY' ] );
-							if ( props.style.overflow ) {
-								newStyle.overflow = props.style.overflow;
-							}
-							if ( props.style.overflowX ) {
-								newStyle.overflowX = props.style.overflowX;
-							}
-							if ( overflowY !== 'visible' ) {
-								newStyle.overflowY = overflowY;
-							}
-							props.onChange( newStyle );
-						}}
+						onChange={handleYOverflowChange}
 						type="radio"
 						size="small"
-						value={props.style.overflowY}
+						value={style.overflowY}
 					>
 						<ToggleButton
 							variant="outline-secondary"
@@ -268,24 +282,20 @@ const Size = ( props ) => {
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
 						>
-							{props.t('auto')}
+							{t('auto')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t( 'fit' )}
+					{t( 'fit' )}
 				</Form.Label>
 				<Col sm={4} >
 					<SelectInput
-						defaultValue={props.style.fit || FIT_OPTIONS[ 0 ]}
+						defaultValue={style.fit || FIT_OPTIONS[ 0 ]}
 						options={FIT_OPTIONS}
-						onChange={( fit ) => {
-							const newStyle = { ...props.style };
-							newStyle.fit = fit;
-							props.onChange( newStyle );
-						}}
+						onChange={handleFitChange}
 					/>
 				</Col>
 			</Form.Group>
