@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
@@ -23,168 +23,176 @@ const POSITION_TYPES = [
 
 // MAIN //
 
-const Position = ( props ) => {
-	if ( !props.active ) {
+const Position = ({ active, style, onChange, t }) => {
+	const handlePositionChange = useCallback( ( position ) => {
+		const newStyle = { ...style };
+		newStyle.position = position;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleTopChange = useCallback( ( top ) => {
+		const newStyle = { ...style };
+		newStyle.top = top;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleLeftChange = useCallback( ( left ) => {
+		const newStyle = { ...style };
+		newStyle.left = left;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleRightChange = useCallback( ( right ) => {
+		const newStyle = { ...style };
+		newStyle.right = right;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleBottomChange = useCallback( ( bottom ) => {
+		const newStyle = { ...style };
+		newStyle.bottom = bottom;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleZIndexChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.zIndex = event.target.value;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleFloatChange = useCallback( ( float ) => {
+		const newStyle = { ...style };
+		newStyle.float = float;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleClearChange = useCallback( ( float ) => {
+		const newStyle = { ...style };
+		newStyle.clear = float;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	if ( !active ) {
 		return null;
 	}
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={2} >
-					{props.t('position')}
+					{t('position')}
 				</Form.Label>
 				<Col sm={4} >
 					<SelectInput
 						clearable
 						options={POSITION_TYPES}
-						defaultValue={props.style.position || POSITION_TYPES[ 0 ]}
-						onChange={( position ) => {
-							const newStyle = { ...props.style };
-							newStyle.position = position;
-							props.onChange( newStyle );
-						}}
+						defaultValue={style.position || POSITION_TYPES[ 0 ]}
+						onChange={handlePositionChange}
 					/>
 				</Col>
 				<UnitInputBase
-					label={props.t('top')}
+					label={t('top')}
 					auto
-					defaultValue={props.style.top}
-					onChange={( top ) => {
-						const newStyle = { ...props.style };
-						newStyle.top = top;
-						props.onChange( newStyle );
-					}}
+					defaultValue={style.top}
+					onChange={handleTopChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Col sm={4} ></Col>
 				<UnitInputBase
-					label={props.t('left')}
+					label={t('left')}
 					auto
-					defaultValue={props.style.left}
-					onChange={( left ) => {
-						const newStyle = { ...props.style };
-						newStyle.left = left;
-						props.onChange( newStyle );
-					}}
+					defaultValue={style.left}
+					onChange={handleLeftChange}
 				/>
 				<UnitInputBase
-					label={props.t('right')}
+					label={t('right')}
 					auto
-					defaultValue={props.style.right}
-					onChange={( right ) => {
-						const newStyle = { ...props.style };
-						newStyle.right = right;
-						props.onChange( newStyle );
-					}}
+					defaultValue={style.right}
+					onChange={handleRightChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Col sm={5} ></Col>
 				<UnitInputBase
-					label={props.t('bottom')} labelWidth={2}
+					label={t('bottom')} labelWidth={2}
 					auto
-					defaultValue={props.style.bottom}
-					onChange={( bottom ) => {
-						const newStyle = { ...props.style };
-						newStyle.bottom = bottom;
-						props.onChange( newStyle );
-					}}
+					defaultValue={style.bottom}
+					onChange={handleBottomChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('z-index')}
+					{t('z-index')}
 				</Form.Label>
 				<Col sm={2} >
 					<Form.Control
 						type="number"
-						defaultValue={props.style.zIndex}
+						defaultValue={style.zIndex}
 						min={0} max={9999}
-						onChange={( event ) => {
-							const newStyle = { ...props.style };
-							newStyle.zIndex = event.target.value;
-							props.onChange( newStyle );
-						}}
+						onChange={handleZIndexChange}
 					/>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('float')}
+					{t('float')}
 				</Form.Label>
 				<Col sm={8} >
 					<ToggleButtonGroup
 						name="options"
-						onChange={( float ) => {
-							const newStyle = { ...props.style };
-							newStyle.float = float;
-							props.onChange( newStyle );
-						}}
+						onChange={handleFloatChange}
 						type="radio"
 						size="small"
-						value={props.style.float || 'none'}
+						value={style.float || 'none'}
 					>
 						<ToggleButton
 							variant="outline-secondary"
 							value="none"
 						>
-							{props.t('none')}
+							{t('none')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="left"
 						>
-							{props.t('left')}
+							{t('left')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="right"
 						>
-							{props.t('right')}
+							{t('right')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('clear')}
+					{t('clear')}
 				</Form.Label>
 				<Col sm={8} >
 					<ToggleButtonGroup
 						name="options"
-						onChange={( float ) => {
-							const newStyle = { ...props.style };
-							newStyle.clear = float;
-							props.onChange( newStyle );
-						}}
+						onChange={handleClearChange}
 						type="radio"
 						size="small"
-						value={props.style.clear || 'none'}
+						value={style.clear || 'none'}
 					>
 						<ToggleButton
 							variant="outline-secondary"
 							value="none"
 						>
-							{props.t('none')}
+							{t('none')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="left"
 						>
-							{props.t('left')}
+							{t('left')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="right"
 						>
-							{props.t('right')}
+							{t('right')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value="both"
 						>
-							{props.t('both')}
+							{t('both')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>

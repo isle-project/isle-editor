@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useRef, useEffect } from 'react';
+import React, { Fragment, useCallback, useRef, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -106,6 +106,13 @@ const Cursor = ({ active, style, onChange, t }) => {
 			}
 		];
 	}, [ t ]);
+	const handleCursorChange = useCallback( ( elem ) => {
+		const newStyle = omit( style, 'cursor' );
+		if ( elem ) {
+			newStyle.cursor = elem.value;
+		}
+		onChange( newStyle );
+	}, [ onChange, style ] );
 	if ( !active ) {
 		return null;
 	}
@@ -128,13 +135,7 @@ const Cursor = ({ active, style, onChange, t }) => {
 						defaultValue={defaultValue}
 						placeholder={t('select-cursor')}
 						options={cursorTypesRef.current}
-						onChange={( elem ) => {
-							const newStyle = omit( style, 'cursor' );
-							if ( elem ) {
-								newStyle.cursor = elem.value;
-							}
-							onChange( newStyle );
-						}}
+						onChange={handleCursorChange}
 						menuPortalTarget={document.body}
 						styles={SELECT_STYLES}
 						components={{ Option }}

@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -41,68 +41,79 @@ const RE_SEPARATOR = /(?<=[^\d]),/;
 
 // MAIN //
 
-const FontVariants = ( props ) => {
-	let initialTextShadow = props.style.textShadow;
+const FontVariants = ({ style, onChange, t }) => {
+	let initialTextShadow = style.textShadow;
 	if ( initialTextShadow ) {
 		initialTextShadow = initialTextShadow.split( RE_SEPARATOR );
 	}
 	const [ textShadows, setTextShadows ] = useState( initialTextShadow || [] );
+	const handleTextTransformChange = useCallback( ( textTransform ) => {
+		const newStyle = { ...style };
+		newStyle.textTransform = textTransform;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleWhitespaceChange = useCallback( ( whiteSpace ) => {
+		const newStyle = { ...style };
+		newStyle.whiteSpace = whiteSpace;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleFontVariantChange = useCallback( ( fontVariant ) => {
+		const newStyle = { ...style };
+		newStyle.fontVariant = fontVariant;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleNewShadow = useCallback( ( shadow ) => {
+		const newTextShadows = textShadows.slice();
+		newTextShadows.push( shadow );
+		setTextShadows( newTextShadows );
+		const newStyle = omit( style, 'textShadow' );
+		newStyle.textShadow = newTextShadows.join( ', ' );
+		onChange( newStyle );
+	}, [ onChange, style, textShadows ] );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t('transform')}
+					{t('transform')}
 				</Form.Label>
 				<Col sm={3}>
 					<SelectInput
 						clearable
 						options={FONT_TRANSFORM}
 						placeholder="Inherit"
-						onChange={( textTransform ) => {
-							const newStyle = { ...props.style };
-							newStyle.textTransform = textTransform;
-							props.onChange( newStyle );
-						}}
+						onChange={handleTextTransformChange}
 					/>
 				</Col>
 				<Form.Label column sm="3">
-					{props.t('break')}
+					{t('break')}
 				</Form.Label>
 				<Col sm={3}>
 					<SelectInput
 						clearable
 						options={FONT_BREAKS}
-						defaultValue={props.style.whiteSpace}
+						defaultValue={style.whiteSpace}
 						placeholder="Inherit"
-						onChange={( whiteSpace ) => {
-							const newStyle = { ...props.style };
-							newStyle.whiteSpace = whiteSpace;
-							props.onChange( newStyle );
-						}}
+						onChange={handleWhitespaceChange}
 					/>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="3">
-					{props.t('font-variant')}
+					{t('font-variant')}
 				</Form.Label>
 				<Col sm={9}>
 					<SelectInput
 						clearable
 						options={FONT_VARIANTS}
-						defaultValue={props.style.fontVariant}
+						defaultValue={style.fontVariant}
 						placeholder="Inherit"
-						onChange={( fontVariant ) => {
-							const newStyle = { ...props.style };
-							newStyle.fontVariant = fontVariant;
-							props.onChange( newStyle );
-						}}
+						onChange={handleFontVariantChange}
 					/>
 				</Col>
 			</Form.Group>
 			<hr />
 			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
-				{props.t('text-shadows')}
+				{t('text-shadows')}
 			</p>
 			<ListGroup>
 				{textShadows.map( ( transition, idx ) => {
@@ -116,9 +127,9 @@ const FontVariants = ( props ) => {
 									const newTextShadows = textShadows.slice();
 									newTextShadows.splice( idx, 1 );
 									setTextShadows( newTextShadows );
-									const newStyle = { ...props.style };
+									const newStyle = { ...style };
 									newStyle.textShadow = newTextShadows.join( ', ' );
-									props.onChange( newStyle );
+									onChange( newStyle );
 								}}
 								style={{ float: 'right' }}
 							>
@@ -128,19 +139,12 @@ const FontVariants = ( props ) => {
 					);
 				})}
 			</ListGroup>
-			{textShadows.length === 0 ? <p>{props.t('no-text-shadows')}</p> : null}
+			{textShadows.length === 0 ? <p>{t('no-text-shadows')}</p> : null}
 			<hr />
 			<TextShadowInput
-				style={props.style}
-				onChange={( shadow ) => {
-					const newTextShadows = textShadows.slice();
-					newTextShadows.push( shadow );
-					setTextShadows( newTextShadows );
-					const newStyle = omit( props.style, 'textShadow' );
-					newStyle.textShadow = newTextShadows.join( ', ' );
-					props.onChange( newStyle );
-				}}
-				t={props.t}
+				style={style}
+				onChange={handleNewShadow}
+				t={t}
 			/>
 		</Fragment>
 	);
