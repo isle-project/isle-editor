@@ -12,7 +12,7 @@ import { BrowserWindow } from '@electron/remote';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
-import { spawn } from 'child_process';
+import spawn from 'cross-pawn';
 import https from 'https';
 import http from 'http';
 import url from 'url';
