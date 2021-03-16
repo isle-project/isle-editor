@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import BoxShadowInput from './box_shadow_input.js';
@@ -13,13 +13,21 @@ const RE_SEPARATOR = /(?<=[^\d]),/;
 
 // MAIN //
 
-const BoxShadows = ( props ) => {
-	let initialShadows = props.style.boxShadow;
+const BoxShadows = ({ active, style, onChange, t }) => {
+	let initialShadows = style.boxShadow;
 	if ( initialShadows ) {
 		initialShadows = initialShadows.split( RE_SEPARATOR );
 	}
 	const [ shadows, setShadows ] = useState( initialShadows || [] );
-	if ( !props.active ) {
+	const handleBoxShadowInput = useCallback( ( shadow ) => {
+		const newStyle = { ...style };
+		const newShadows = shadows.slice();
+		newShadows.push( shadow );
+		setShadows( newShadows );
+		newStyle.boxShadow = newShadows.join( ', ' );
+		onChange( newStyle );
+	}, [ onChange, shadows, style ] );
+	if ( !active ) {
 		return null;
 	}
 	return (
@@ -36,9 +44,9 @@ const BoxShadows = ( props ) => {
 									const newShadows = shadows.slice();
 									newShadows.splice( idx, 1 );
 									setShadows( newShadows );
-									const newStyle = { ...props.style };
+									const newStyle = { ...style };
 									newStyle.boxShadow = newShadows.join( ', ' );
-									props.onChange( newStyle );
+									onChange( newStyle );
 								}}
 								style={{ float: 'right' }}
 							>
@@ -48,19 +56,12 @@ const BoxShadows = ( props ) => {
 					);
 				})}
 			</ListGroup>
-			{shadows.length === 0 ? <p>{props.t('no-box-shadows')}</p> : null}
+			{shadows.length === 0 ? <p>{t('no-box-shadows')}</p> : null}
 			<hr />
 			<BoxShadowInput
-				style={props.style}
-				onChange={( shadow ) => {
-					const newStyle = { ...props.style };
-					const newShadows = shadows.slice();
-					newShadows.push( shadow );
-					setShadows( newShadows );
-					newStyle.boxShadow = newShadows.join( ', ' );
-					props.onChange( newStyle );
-				}}
-				t={props.t}
+				style={style}
+				onChange={handleBoxShadowInput}
+				t={t}
 			/>
 		</Fragment>
 	);

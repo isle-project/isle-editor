@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -20,40 +20,49 @@ const RE_SEPARATOR = /(?<=[^\d]),/;
 
 // MAIN //
 
-const Effects = ( props ) => {
-	let initialTransitions = props.style.boxShadow;
+const Effects = ({ active, style, onChange, t }) => {
+	let initialTransitions = style.boxShadow;
 	if ( initialTransitions ) {
 		initialTransitions = initialTransitions.split( RE_SEPARATOR );
 	}
 	const [ transitions, setTransitions ] = useState( initialTransitions || [] );
-	if ( !props.active ) {
+	const handleOpacityChange = useCallback( ( value ) => {
+		let opacity = Number( value ) / 100;
+		opacity = roundn( opacity, -2 );
+		const newStyle = { ...style };
+		newStyle.opacity = opacity;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleTransitionChange = useCallback( ( transition ) => {
+		const newTransitions = transitions.slice();
+		newTransitions.push( transition );
+		const newStyle = omit( style, 'transition' );
+		newStyle.transition = newTransitions.join( ', ' );
+		onChange( newStyle );
+		setTransitions( newTransitions );
+	}, [ onChange, style, transitions ] );
+	if ( !active ) {
 		return null;
 	}
-	const defaultOpacity = isUndefinedOrNull( props.style.opacity ) ? 100 : roundn( props.style.opacity * 100, -2 );
+	const defaultOpacity = isUndefinedOrNull( style.opacity ) ? 100 : roundn( style.opacity * 100, -2 );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={4} >
-					{props.t('opacity')}
+					{t('opacity')}
 				</Form.Label>
 				<Col sm={8} >
 					<SliderInput
 						inline
 						defaultValue={defaultOpacity}
 						min={0} max={100}
-						onChange={( value ) => {
-							let opacity = Number( value ) / 100;
-							opacity = roundn( opacity, -2 );
-							const newStyle = { ...props.style };
-							newStyle.opacity = opacity;
-							props.onChange( newStyle );
-						}}
+						onChange={handleOpacityChange}
 					/>
 				</Col>
 			</Form.Group>
 			<hr />
 			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
-				{props.t('transitions')}
+				{t('transitions')}
 			</p>
 			<ListGroup>
 				{transitions.map( ( transition, idx ) => {
@@ -67,9 +76,9 @@ const Effects = ( props ) => {
 									const newTransitions = transitions.slice();
 									newTransitions.splice( idx, 1 );
 									setTransitions( newTransitions );
-									const newStyle = { ...props.style };
+									const newStyle = { ...style };
 									newStyle.transition = newTransitions.join( ', ' );
-									props.onChange( newStyle );
+									onChange( newStyle );
 								}}
 								style={{ float: 'right' }}
 							>
@@ -79,19 +88,12 @@ const Effects = ( props ) => {
 					);
 				})}
 			</ListGroup>
-			{transitions.length === 0 ? <p>{props.t('no-transitions')}</p> : null}
+			{transitions.length === 0 ? <p>{t('no-transitions')}</p> : null}
 			<hr />
 			<TransitionPicker
-				style={props.style}
-				onChange={( transition ) => {
-					const newTransitions = transitions.slice();
-					newTransitions.push( transition );
-					const newStyle = omit( props.style, 'transition' );
-					newStyle.transition = newTransitions.join( ', ' );
-					props.onChange( newStyle );
-					setTransitions( newTransitions );
-				}}
-				t={props.t}
+				style={style}
+				onChange={handleTransitionChange}
+				t={t}
 			/>
 		</Fragment>
 	);
