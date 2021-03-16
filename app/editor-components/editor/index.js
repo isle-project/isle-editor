@@ -12,7 +12,7 @@ import { BrowserWindow } from '@electron/remote';
 import axios from 'axios';
 import { basename, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
-import spawn from 'cross-pawn';
+import spawn from 'execa';
 import https from 'https';
 import http from 'http';
 import url from 'url';
@@ -343,7 +343,7 @@ class Editor extends Component {
 			let npmPath;
 			let PATH = process.env.PATH || ''; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
-				npmPath = join( process.resourcesPath, 'node_modules', '.bin', IS_WINDOWS ? 'npm.cmd' : 'npm' );
+				npmPath = join( process.resourcesPath, 'node_modules', '.bin', 'npm' );
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
 				PATH = PATH.concat( ':', bin );
 				if ( !IS_WINDOWS ) {
