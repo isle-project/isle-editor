@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
@@ -22,6 +22,8 @@ const DEFAULT_BORDER_STATE = {
 	style: 'none'
 };
 const RE_BORDER = /(solid|dashed|dotted|none|hidden|double|groove|ridge|inset|outset) (\d+[a-z%]+) ([\s\S]+)/;
+const TOGGLE_BUTTON_WIDTH = { width: 42 };
+const PICKER_STYLE = { zIndex: 2000 };
 
 
 // FUNCTIONS //
@@ -74,6 +76,32 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 		}
 	}, [ activeBorder, prevBorder, style ] );
 
+	const handleColorChange = useCallback( ({ rgb }) => {
+		const { r, g, b, a } = rgb;
+		const color = `rgba(${r}, ${g}, ${b}, ${a} )`; // eslint-disable-line i18next/no-literal-string
+		setState({
+			...state,
+			color
+		});
+		onChange( `${state.style} ${state.width} ${color}` );
+	}, [ onChange, state ] );
+
+	const handleBorderWidthChange = useCallback( ( borderWidth ) => {
+		setState({
+			...state,
+			width: borderWidth
+		});
+		onChange( `${state.style} ${borderWidth} ${state.color}` );
+	}, [ onChange, state ] );
+
+	const handleBorderStyleChange = useCallback( ( borderStyle ) => {
+		setState({
+			...state,
+			style: borderStyle
+		});
+		onChange( `${borderStyle} ${state.width} ${state.color}` );
+	}, [ onChange, state ] );
+
 	/* eslint-disable i18next/no-literal-string */
 	return (
 		<Fragment>
@@ -83,17 +111,9 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 				</Form.Label>
 				<Col sm={4} >
 					<ColorPicker
-						style={{ zIndex: 2000 }}
+						style={PICKER_STYLE}
 						color={state.color}
-						onChange={({ rgb }) => {
-							const { r, g, b, a } = rgb;
-							const color = `rgba(${r}, ${g}, ${b}, ${a} )`;
-							setState({
-								...state,
-								color
-							});
-							onChange( `${state.style} ${state.width} ${color}` );
-						}}
+						onChange={handleColorChange}
 						variant="Button"
 					/>
 				</Col>
@@ -103,13 +123,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 					label="Border Width"
 					labelWidth={5} style={style}
 					defaultValue={state.width}
-					onChange={( borderWidth ) => {
-						setState({
-							...state,
-							width: borderWidth
-						});
-						onChange( `${state.style} ${borderWidth} ${state.color}` );
-					}}
+					onChange={handleBorderWidthChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
@@ -119,13 +133,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 				<Col sm={7} >
 					<ToggleButtonGroup
 						name="options"
-						onChange={( borderStyle ) => {
-							setState({
-								...state,
-								style: borderStyle
-							});
-							onChange( `${borderStyle} ${state.width} ${state.color}` );
-						}}
+						onChange={handleBorderStyleChange}
 						type="radio"
 						size="small"
 						value={state.style}
@@ -141,7 +149,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 							variant="outline-secondary"
 							value="solid"
 							title={t('solid')}
-							style={{ width: 42 }}
+							style={TOGGLE_BUTTON_WIDTH}
 						>
 							<span className="component-styler-unicode-solid">&#9135;</span>
 						</ToggleButton>
@@ -156,7 +164,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 							variant="outline-secondary"
 							value="dashed"
 							title={t('dashed')}
-							style={{ width: 42 }}
+							style={TOGGLE_BUTTON_WIDTH}
 						>
 							<span className="component-styler-unicode-dashed">&#65101;</span>
 						</ToggleButton>
@@ -171,33 +179,67 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 
 // MAIN //
 
-const Borders = ( props ) => {
+const Borders = ({ active, style, onChange, t }) => {
 	const [ activeBorder, setActiveBorder ] = useState( 'all' );
-	if ( !props.active ) {
+	const handleRightClick = useCallback( () => {
+		setActiveBorder( 'right' );
+	}, [] );
+	const handleLeftClick = useCallback( () => {
+		setActiveBorder( 'left' );
+	}, [] );
+	const handleTopClick = useCallback( () => {
+		setActiveBorder( 'top' );
+	}, [] );
+	const handleBottomClick = useCallback( () => {
+		setActiveBorder( 'bottom' );
+	}, [] );
+	const handleAllClick = useCallback( () => {
+		setActiveBorder( 'all' );
+	}, [] );
+	const handleBorderInputsChange = useCallback( ( border ) => {
+		const newStyle = omit( style, [ 'border', 'borderLeft', 'borderTop', 'borderRight', 'borderBottom' ] );
+		if ( activeBorder === 'all' ) {
+			newStyle.border = border;
+		} else if ( style.border ) {
+			newStyle.border = style.border;
+		}
+		if ( activeBorder === 'left' ) {
+			newStyle.borderLeft = border;
+		} else if ( style.borderLeft ) {
+			newStyle.borderLeft = style.borderLeft;
+		}
+		if ( activeBorder === 'top' ) {
+			newStyle.borderTop = border;
+		} else if ( style.borderTop ) {
+			newStyle.borderTop = style.borderTop;
+		}
+		if ( activeBorder === 'right' ) {
+			newStyle.borderRight = border;
+		} else if ( style.borderRight ) {
+			newStyle.borderRight = style.borderRight;
+		}
+		if ( activeBorder === 'bottom' ) {
+			newStyle.borderBottom = border;
+		} else if ( style.borderBottom ) {
+			newStyle.borderBottom = style.borderBottom;
+		}
+		onChange( newStyle );
+	}, [ activeBorder, style, onChange ] );
+	const handleBorderRadiusChange = useCallback( ( borderRadius ) => {
+		const newStyle = { ...style };
+		newStyle.borderRadius = borderRadius;
+		onChange( newStyle );
+	}, [ style, onChange ] );
+	if ( !active ) {
 		return null;
 	}
-	const handleRightClick = () => {
-		setActiveBorder( 'right' );
-	};
-	const handleLeftClick = () => {
-		setActiveBorder( 'left' );
-	};
-	const handleTopClick = () => {
-		setActiveBorder( 'top' );
-	};
-	const handleBottomClick = () => {
-		setActiveBorder( 'bottom' );
-	};
-	const handleAllClick = () => {
-		setActiveBorder( 'all' );
-	};
 	return (
 		<Fragment>
 			<Row>
 				<Col sm={3} >
 					<div className="component-styler-border-selector" >
 						<div className="component-styler-border-graphical-box" >
-							<Tooltip tooltip={props.t('change-all-borders')} >
+							<Tooltip tooltip={t('change-all-borders')} >
 								<div
 									role="button" tabIndex={0}
 									className={`component-styler-border-graphical-box-inside ${activeBorder === 'all' ? 'active' : ''}`}
@@ -205,28 +247,28 @@ const Borders = ( props ) => {
 								/>
 							</Tooltip>
 						</div>
-						<Tooltip tooltip={props.t('change-left-border')} >
+						<Tooltip tooltip={t('change-left-border')} >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-left ${activeBorder === 'left' ? 'active' : ''}`}
 								onClick={handleLeftClick} onKeyPress={handleLeftClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip={props.t('change-top-border')} placement="top" >
+						<Tooltip tooltip={t('change-top-border')} placement="top" >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-top ${activeBorder === 'top' ? 'active' : ''}`}
 								onClick={handleTopClick} onKeyPress={handleTopClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip={props.t('change-bottom-border')} >
+						<Tooltip tooltip={t('change-bottom-border')} >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-bottom ${activeBorder === 'bottom' ? 'active' : ''}`}
 								onClick={handleBottomClick} onKeyPress={handleBottomClick}
 							/>
 						</Tooltip>
-						<Tooltip tooltip={props.t('change-right-border')} placement="bottom" >
+						<Tooltip tooltip={t('change-right-border')} placement="bottom" >
 							<div
 								role="button" tabIndex={0}
 								className={`component-styler-border-graphical-box-right ${activeBorder === 'right' ? 'active' : ''}`}
@@ -238,48 +280,16 @@ const Borders = ( props ) => {
 				<Col sm={9} >
 					<BorderInputs
 						activeBorder={activeBorder}
-						t={props.t}
-						style={props.style} onChange={( border ) => {
-							const newStyle = omit( props.style, [ 'border', 'borderLeft', 'borderTop', 'borderRight', 'borderBottom' ] );
-							if ( activeBorder === 'all' ) {
-								newStyle.border = border;
-							} else if ( props.style.border ) {
-								newStyle.border = props.style.border;
-							}
-							if ( activeBorder === 'left' ) {
-								newStyle.borderLeft = border;
-							} else if ( props.style.borderLeft ) {
-								newStyle.borderLeft = props.style.borderLeft;
-							}
-							if ( activeBorder === 'top' ) {
-								newStyle.borderTop = border;
-							} else if ( props.style.borderTop ) {
-								newStyle.borderTop = props.style.borderTop;
-							}
-							if ( activeBorder === 'right' ) {
-								newStyle.borderRight = border;
-							} else if ( props.style.borderRight ) {
-								newStyle.borderRight = props.style.borderRight;
-							}
-							if ( activeBorder === 'bottom' ) {
-								newStyle.borderBottom = border;
-							} else if ( props.style.borderBottom ) {
-								newStyle.borderBottom = props.style.borderBottom;
-							}
-							props.onChange( newStyle );
-						}}
+						t={t}
+						style={style} onChange={handleBorderInputsChange}
 					/>
 				</Col>
 			</Row>
 			<hr />
 			<BorderRadiusPicker
-				style={props.style}
-				onChange={( borderRadius ) => {
-					const newStyle = { ...props.style };
-					newStyle.borderRadius = borderRadius;
-					props.onChange( newStyle );
-				}}
-				t={props.t}
+				style={style}
+				onChange={handleBorderRadiusChange}
+				t={t}
 			/>
 		</Fragment>
 	);

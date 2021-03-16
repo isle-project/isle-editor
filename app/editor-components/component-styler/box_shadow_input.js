@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Button from 'react-bootstrap/Button';
@@ -29,24 +29,67 @@ const DEFAULT_STATE = {
 
 // MAIN //
 
-const BoxShadowInput = ( props ) => {
+const BoxShadowInput = ({ style, onChange, t }) => {
 	const [ state, setState ] = useState( DEFAULT_STATE );
+	const handleInsetChange = useCallback( ( inset ) => {
+		const newState = {
+			...state,
+			inset
+		};
+		setState( newState );
+	}, [ state ] );
+	const handleAngleChange = useCallback( ( event ) => {
+		const newState = {
+			...state,
+			angle: event.target.value
+		};
+		setState( newState );
+	}, [ state ] );
+	const handleDistanceChange = useCallback( ( value ) => {
+		const newState = {
+			...state,
+			distance: value
+		};
+		setState( newState );
+	}, [ state ] );
+	const handleBlurChange = useCallback( ( value ) => {
+		const newState = {
+			...state,
+			blur: value
+		};
+		setState( newState );
+	}, [ state ] );
+	const handleColorChange = useCallback( ({ rgb }) => {
+		const { r, g, b, a } = rgb;
+		const newState = {
+			...state,
+			color: `rgba(${r}, ${g}, ${b}, ${a} )` // eslint-disable-line i18next/no-literal-string
+		};
+		setState( newState );
+	}, [ state ] );
+	const handleNewShadow = useCallback( () => {
+		const radians = deg2Rad( state.angle );
+		const match = RE_UNIT.exec( state.distance );
+		if ( match ) {
+			const numDistance = match[ 1 ];
+			const distUnit = match[ 2 ];
+			const xDistance = roundn( cos( radians ) * numDistance, -3 );
+			const yDistance = roundn( sin( radians ) * numDistance, -3 );
+			const shadow = `${state.inset ? 'inset ' : ''}${xDistance}${distUnit} ${yDistance}${distUnit} ${state.blur} ${state.color}`;
+			onChange( shadow );
+		}
+		setState( DEFAULT_STATE );
+	}, [ onChange, state ] );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					{props.t('type')}
+					{t('type')}
 				</Form.Label>
 				<Col sm={10} >
 					<ToggleButtonGroup
 						name="options"
-						onChange={( inset ) => {
-							const newState = {
-								...state,
-								inset
-							};
-							setState( newState );
-						}}
+						onChange={handleInsetChange}
 						type="radio"
 						size="small"
 						value={state.inset}
@@ -55,97 +98,60 @@ const BoxShadowInput = ( props ) => {
 							variant="outline-secondary"
 							value={false}
 						>
-							{props.t('outside')}
+							{t('outside')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value={true}
 						>
-							{props.t('inside')}
+							{t('inside')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					{props.t('angle')}
+					{t('angle')}
 				</Form.Label>
 				<Col sm={2} >
 					<Form.Control
 						type="number" min={0} max={365}
 						value={state.angle}
-						onChange={( event ) => {
-							const newState = {
-								...state,
-								angle: event.target.value
-							};
-							setState( newState );
-						}}
+						onChange={handleAngleChange}
 					/>
 				</Col>
 				<UnitInputBase
 					label="Distance"
 					labelWidth={2}
 					defaultValue={state.distance}
-					style={props.style}
+					style={style}
 					colWidth={3}
-					onChange={( value ) => {
-						const newState = {
-							...state,
-							distance: value
-						};
-						setState( newState );
-					}}
+					onChange={handleDistanceChange}
 				/>
 				<UnitInputBase
 					label="Blur"
 					labelWidth={1}
 					defaultValue={state.blur}
 					colWidth={3}
-					style={props.style}
-					onChange={( value ) => {
-						const newState = {
-							...state,
-							blur: value
-						};
-						setState( newState );
-					}}
+					style={style}
+					onChange={handleBlurChange}
 				/>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm={1} >
-					{props.t('color')}
+					{t('color')}
 				</Form.Label>
 				<Col sm={1} >
 					<ColorPicker
 						style={{ zIndex: 2000 }}
 						color={state.color}
-						onChange={({ rgb }) => {
-							const { r, g, b, a } = rgb;
-							const newState = {
-								...state,
-								color: `rgba(${r}, ${g}, ${b}, ${a} )`
-							};
-							setState( newState );
-						}}
+						onChange={handleColorChange}
 						variant="Button"
 					/>
 				</Col>
 			</Form.Group>
-			<Button variant="secondary" onClick={() => {
-				const radians = deg2Rad( state.angle );
-				const match = RE_UNIT.exec( state.distance );
-				if ( match ) {
-					const numDistance = match[ 1 ];
-					const distUnit = match[ 2 ];
-					const xDistance = roundn( cos( radians ) * numDistance, -3 );
-					const yDistance = roundn( sin( radians ) * numDistance, -3 );
-					const shadow = `${state.inset ? 'inset ' : ''}${xDistance}${distUnit} ${yDistance}${distUnit} ${state.blur} ${state.color}`;
-					props.onChange( shadow );
-				}
-				setState( DEFAULT_STATE );
-			}} >
-				{props.t('add-shadow')}
+			<Button variant="secondary" onClick={handleNewShadow} >
+				{t('add-shadow')}
 			</Button>
 		</Fragment>
 	);

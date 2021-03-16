@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -72,14 +72,51 @@ function extractRadii( borderRadius ) {
 
 // MAIN //
 
-const BorderRadiusPicker = ( props ) => {
-	const initial = extractRadii( props.style.borderRadius );
+const BorderRadiusPicker = ({ style, onChange, t }) => {
+	const initial = extractRadii( style.borderRadius );
 	const [ overallRadius, setOverallRadius ] = useState( initial.overall );
 	const [ radii, setRadii ] = useState( initial.radii );
+	const handleBottomLeftChange = useCallback( ( value ) => {
+		const newRadii = {
+			...radii,
+			bl: value
+		};
+		setRadii( newRadii );
+		onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
+	}, [ onChange, radii ] );
+	const handleBottomRightChange = useCallback( ( value ) => {
+		const newRadii = {
+			...radii,
+			br: value
+		};
+		setRadii( newRadii );
+		onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
+	}, [ onChange, radii ] );
+	const handleTopLeftChange = useCallback( ( value ) => {
+		const newRadii = {
+			...radii,
+			tl: value
+		};
+		setRadii( newRadii );
+		onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
+	}, [ onChange, radii ] );
+	const handleTopRightChange = useCallback( ( value ) => {
+		const newRadii = {
+			...radii,
+			tr: value
+		};
+		setRadii( newRadii );
+		onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
+	}, [ onChange, radii ] );
+	const handleOverallChange = useCallback( ( radius ) => {
+		setOverallRadius( radius );
+		onChange( radius );
+		setRadii({ tl: radius, tr: radius, bl: radius, br: radius });
+	}, [ onChange ] );
 	return (
 		<Fragment>
 			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
-				{props.t('border-radius')}
+				{t('border-radius')}
 			</p>
 			<Row>
 				<UnitInputBase
@@ -87,11 +124,7 @@ const BorderRadiusPicker = ( props ) => {
 					labelWidth={1}
 					colWidth={2}
 					defaultValue={overallRadius}
-					onChange={( radius ) => {
-						setOverallRadius( radius );
-						props.onChange( radius );
-						setRadii({ tl: radius, tr: radius, bl: radius, br: radius });
-					}}
+					onChange={handleOverallChange}
 				/>
 				<Col sm={9} >
 					<Form.Group as={Row} >
@@ -99,31 +132,17 @@ const BorderRadiusPicker = ( props ) => {
 							label="Top-Left"
 							labelWidth={3}
 							colWidth={3}
-							style={props.style}
+							style={style}
 							defaultValue={radii.tl}
-							onChange={( value ) => {
-								const newRadii = {
-									...radii,
-									tl: value
-								};
-								setRadii( newRadii );
-								props.onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
-							}}
+							onChange={handleTopLeftChange}
 						/>
 						<UnitInputBase
 							label="Top-Right"
 							labelWidth={3}
 							colWidth={3}
-							style={props.style}
+							style={style}
 							defaultValue={radii.tr}
-							onChange={( value ) => {
-								const newRadii = {
-									...radii,
-									tr: value
-								};
-								setRadii( newRadii );
-								props.onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
-							}}
+							onChange={handleTopRightChange}
 						/>
 					</Form.Group>
 					<Form.Group as={Row} >
@@ -131,31 +150,17 @@ const BorderRadiusPicker = ( props ) => {
 							label="Bottom-Left"
 							labelWidth={3}
 							colWidth={3}
-							style={props.style}
+							style={style}
 							defaultValue={radii.bl}
-							onChange={( value ) => {
-								const newRadii = {
-									...radii,
-									bl: value
-								};
-								setRadii( newRadii );
-								props.onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
-							}}
+							onChange={handleBottomLeftChange}
 						/>
 						<UnitInputBase
 							label="Bottom-Right"
 							labelWidth={3}
 							colWidth={3}
-							style={props.style}
+							style={style}
 							defaultValue={radii.br}
-							onChange={( value ) => {
-								const newRadii = {
-									...radii,
-									br: value
-								};
-								setRadii( newRadii );
-								props.onChange( `${newRadii.tl} ${newRadii.tr} ${newRadii.br} ${newRadii.bl}` );
-							}}
+							onChange={handleBottomRightChange}
 						/>
 					</Form.Group>
 				</Col>
