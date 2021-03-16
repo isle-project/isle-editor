@@ -1,20 +1,60 @@
 // MODULES //
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import './spacing_setter.css';
 
 
 // MAIN //
 
-const SpacingSetter = ( props ) => {
-	if ( !props.active ) {
+const SpacingSetter = ({ active, style, onChange, t }) => {
+	const handleMarginTopChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.marginTop = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMarginBottomChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.marginBottom = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMarginLeftChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.marginLeft = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleMarginRightChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.marginRight = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handlePaddingLeftChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.paddingLeft = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handlePaddingRightChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.paddingRight = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handlePaddingTopChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.paddingTop = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handlePaddingBottomChange = useCallback( ( event ) => {
+		const newStyle = { ...style };
+		newStyle.paddingBottom = Number( event.target.value );
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	if ( !active ) {
 		return null;
 	}
 	return (
 		<div className="component-styler-spacing-outer" >
 			<div className="component-styler-spacing-container" >
 				<div className="component-styler-margin-legend" >
-					{props.t('margin')}
+					{t('margin')}
 				</div>
 				<input
 					type="number"
@@ -22,11 +62,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.marginTop = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handleMarginTopChange}
 				/>
 				<input
 					type="number"
@@ -34,11 +70,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.marginBottom = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handleMarginBottomChange}
 				/>
 				<input
 					type="number"
@@ -46,11 +78,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.marginLeft = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handleMarginLeftChange}
 				/>
 				<input
 					type="number"
@@ -58,11 +86,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.marginRight = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handleMarginRightChange}
 				/>
 				<input
 					type="number"
@@ -70,11 +94,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.paddingLeft = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handlePaddingLeftChange}
 				/>
 				<input
 					type="number"
@@ -82,11 +102,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.paddingRight = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handlePaddingRightChange}
 				/>
 				<input
 					type="number"
@@ -94,11 +110,7 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.paddingTop = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handlePaddingTopChange}
 				/>
 				<input
 					type="number"
@@ -106,14 +118,10 @@ const SpacingSetter = ( props ) => {
 					defaultValue={0}
 					min={-999}
 					max={999}
-					onChange={( event ) => {
-						const newStyle = { ...props.style };
-						newStyle.paddingBottom = Number( event.target.value );
-						props.onChange( newStyle );
-					}}
+					onChange={handlePaddingBottomChange}
 				/>
 				<div className="component-styler-padding-legend">
-					{props.t('padding')}
+					{t('padding')}
 				</div>
 				<div className="component-styler-spacing-inner-border"></div>
 				<div className="component-styler-spacing-center"></div>

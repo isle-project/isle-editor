@@ -63,6 +63,12 @@ const LineButtons = ({ lineNumber, switchWithPrevious, switchWithNext, jumpToEle
 			elementRangeAction: 'reveal'
 		});
 	}, [ jumpToElementInEditor, lineNumber ] );
+	const handleCollect = useCallback( () => {
+		return {
+			context: 'preview',
+			lineNumber: lineNumber
+		};
+	}, [ lineNumber ] );
 	if ( !showLineButtons || !show ) {
 		return null;
 	}
@@ -105,12 +111,7 @@ const LineButtons = ({ lineNumber, switchWithPrevious, switchWithNext, jumpToEle
 				id="editor-context-menu"
 				renderTag="span"
 				holdToDisplay={0}
-				collect={() => {
-					return {
-						context: 'preview',
-						lineNumber: lineNumber
-					};
-				}}
+				collect={handleCollect}
 			>
 				<i
 					className={`line-buttons-contextmenu fas ${icon}`}

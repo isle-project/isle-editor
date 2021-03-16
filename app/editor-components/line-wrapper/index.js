@@ -23,6 +23,9 @@ const RE_LOADABLE = /(\s|^)isle-loadable(\s|$)/;
 const RE_LINE_WRAPPER_BAR = /(\s|^)line-wrapper-bar(\s|$)/;
 const RE_CONTEXT_MENU = /(\s|^)react-contextmenu(?:-wrapper)?(\s|$)/;
 const LINE_WRAPPER = 'LINE_WRAPPER';
+const OUTER_ELEMENT = {
+	className: 'outer-element'
+};
 
 
 // FUNCTIONS //
@@ -283,6 +286,11 @@ const LineWrapper = ( props ) => {
 		setWrapperBar( null );
 	}, [] );
 
+	const setLineWrapperRef = useCallback( ( div ) => {
+		lineWrapper.current = div;
+		drag( div );
+	}, [ drag ] );
+
 	let outerTitle;
 	if ( startLineNumber === endLineNumber ) {
 		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
@@ -294,9 +302,7 @@ const LineWrapper = ( props ) => {
 		return (
 			<ContextMenuTrigger
 				id={`${startLineNumber}-${startColumn}-wrapper-menu`}
-				attributes={{
-					className: 'outer-element'
-				}}
+				attributes={OUTER_ELEMENT}
 				posX={window.innerWidth * (1-props.splitPos)}
 				posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 				renderTag="span"
@@ -307,10 +313,7 @@ const LineWrapper = ( props ) => {
 					onDoubleClick={handleDoubleClick}
 					title={outerTitle}
 					style={{ opacity, ...props.style, ...style }}
-					ref={( div ) => {
-						lineWrapper.current = div;
-						drag( div );
-					}}
+					ref={setLineWrapperRef}
 					onMouseEnter={createWrapperBar}
 				>
 					{wrapperBar}
@@ -322,9 +325,7 @@ const LineWrapper = ( props ) => {
 	return (
 		<ContextMenuTrigger
 			id={`${startLineNumber}-${startColumn}-wrapper-menu`}
-			attributes={{
-				className: 'outer-element'
-			}}
+			attributes={OUTER_ELEMENT}
 			posX={window.innerWidth * (1-props.splitPos)}
 			posY={props.horizontalSplit + ( props.hideToolbar ? 2 : 90 )}
 		>
@@ -338,10 +339,7 @@ const LineWrapper = ( props ) => {
 				onDoubleClick={handleDoubleClick}
 				title={outerTitle}
 				style={{ opacity, ...props.style, ...style }}
-				ref={( div ) => {
-					lineWrapper.current = div;
-					drag( div );
-				}}
+				ref={setLineWrapperRef}
 				onMouseEnter={createWrapperBar}
 				onMouseLeave={deleteWrapperBar}
 			>
