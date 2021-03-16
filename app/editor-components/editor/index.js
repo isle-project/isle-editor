@@ -343,10 +343,12 @@ class Editor extends Component {
 			let npmPath;
 			let PATH = process.env.PATH || ''; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
-				npmPath = join( process.resourcesPath, 'node_modules', '.bin', 'npm' );
+				npmPath = join( process.resourcesPath, 'node_modules', '.bin', IS_WINDOWS ? 'npm.cmd' : 'npm' );
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
 				PATH = PATH.concat( ':', bin );
-				PATH = PATH.concat( ':', '/usr/local/bin' );
+				if ( !IS_WINDOWS ) {
+					PATH = PATH.concat( ':', '/usr/local/bin' );
+				}
 			} else {
 				if ( PATH === '' ) {
 					PATH = resolve( '.', 'node_modules', '.bin' );
