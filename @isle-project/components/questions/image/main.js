@@ -59,7 +59,7 @@ const ImageQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'ImageQuestion' );
-	let fileUpload;
+	const fileUpload = useRef( null );
 
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ src, setSrc ] = useState( null );
@@ -70,13 +70,14 @@ const ImageQuestion = ( props ) => {
 	const onFileRead = useCallback( ( event ) => {
 		setSrc( event.target.result );
 	}, [] );
+	const handleSolutionClick = useCallback( () => {
+		setDisplaySolution( !displaySolution );
+	}, [ displaySolution ] );
 	const { hints } = props;
 	const nHints = hints.length;
 	const solutionButton = <SolutionButton
 		disabled={!submitted || !exhaustedHints}
-		onClick={() => {
-			setDisplaySolution( !displaySolution );
-		}}
+		onClick={handleSolutionClick}
 		hasHints={hints.length > 0}
 	/>;
 	const logHint = useCallback( ( idx ) => {
@@ -95,12 +96,19 @@ const ImageQuestion = ( props ) => {
 		});
 	}, [ session, t ] );
 
+	const handleReset = useCallback( () => {
+		setSrc( null );
+	}, [] );
+	const onHintsFinished = useCallback( () => {
+		setExhaustedHints( true );
+	}, [] );
+
 	/**
 	* Creates FileReader and attaches event listener for when the file is ready.
 	*/
 	const handleFileUpload = () => {
 		const reader = new FileReader();
-		const selectedFile = fileUpload.files[ 0 ];
+		const selectedFile = fileUpload.current.files[ 0 ];
 		reader.addEventListener( 'load', onFileRead, false );
 		reader.readAsDataURL( selectedFile );
 	};
@@ -244,9 +252,7 @@ const ImageQuestion = ( props ) => {
 				type="file"
 				accept="image/*"
 				onChange={handleFileUpload}
-				ref={input => {
-					fileUpload = input;
-				}}
+				ref={fileUpload}
 			/>
 			{props.sketchpad ?
 			<Fragment>
@@ -290,15 +296,11 @@ const ImageQuestion = ( props ) => {
 							onClick={logHint}
 							hints={props.hints}
 							placement={props.hintPlacement}
-							onFinished={() => {
-								setExhaustedHints( true );
-							}}
+							onFinished={onHintsFinished}
 						/> :
 						null
 					}
-					{ src ? <Button size="sm" variant="warning" onClick={() => {
-						setSrc( null );
-					}}>{t('reset')}</Button> : null }
+					{ src ? <Button size="sm" variant="warning" onClick={handleReset}>{t('reset')}</Button> : null }
 					{renderSubmitButton()}
 					{ props.solution ? solutionButton : null }
 					{ props.chat ? <ChatButton for={id.current} /> : null }
