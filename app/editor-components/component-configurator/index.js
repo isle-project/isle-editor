@@ -286,7 +286,7 @@ class ComponentConfigurator extends Component {
 				propName = match[ 1 ];
 				debug( 'Handling property '+propName );
 				let val = match[ 2 ] || match[ 3 ] || match[ 4 ] || match[ 5 ] || match[ 6 ] || '';
-				const RE_ATTR = new RegExp( '(\\s)'+match[ 1 ]+'(?:=["{\'][`[]?'+rescape( val )+'[`\\]]?["}\']|\\s)', 'gm' );
+				const RE_ATTR = new RegExp( '(\\s)'+match[ 1 ]+'(?:=["{\'][`[]?'+rescape( val )+'[`\\]]?["}\']|\\s|)', 'gm' );
 				const oldValue = value;
 				value = replace( value, RE_ATTR, '$1' );
 				if ( value === oldValue ) {
