@@ -403,6 +403,7 @@ function bundleLesson( options ) {
 		}),
 		new WorkboxWebpackPlugin.GenerateSW({
 			clientsClaim: true,
+			skipWaiting: false,
 			exclude: [/\.map$/, /asset-manifest\.json$/]
 		}),
 		new webpack.DefinePlugin({
