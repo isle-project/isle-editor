@@ -125,7 +125,7 @@ const MatchListQuestion = ( props ) => {
 			});
 		}
 	}, [ session, submissionMsg, resubmissionMsg, submitted, t ] );
-	const toggleSolution = () => {
+	const toggleSolution = useCallback( () => {
 		const { elements, colorScale } = props;
 		let solutionColorScale;
 		if ( !colorScale ) {
@@ -154,7 +154,7 @@ const MatchListQuestion = ( props ) => {
 			setUserAnswers( null );
 			setAnswers( userAnswers );
 		}
-	};
+	}, [ props, userAnswers, answers, session ] );
 	const handleSubmit = useCallback( () => {
 		if ( !disableSubmitNotification ) {
 			sendSubmitNotification();
@@ -192,6 +192,34 @@ const MatchListQuestion = ( props ) => {
 		);
 	}, [ session, handleSubmit, submitted, t, until ] );
 
+	const handleLeftSelection = useCallback( ( option ) => {
+		const newColorScale = colorScale.slice();
+		setAnswers( answers.filter(
+			answer => {
+				if ( answer.a === option || answer.b === option ) {
+					newColorScale.push( answer.color );
+				}
+				return answer.a !== option && answer.b !== option;
+			}
+		) );
+		setColorScale( newColorScale );
+		setLeftSelected( option );
+	}, [ answers, colorScale ] );
+
+	const handleRightSelection = useCallback( ( option ) => {
+		const newColorScale = colorScale.slice();
+		setAnswers( answers.filter(
+			answer => {
+				if ( answer.a === option || answer.b === option ) {
+					newColorScale.push( answer.color );
+				}
+				return answer.a !== option && answer.b !== option;
+			}
+		) );
+		setColorScale( newColorScale );
+		setRightSelected( option );
+	}, [ answers, colorScale ] );
+
 	if ( elements.some( x => !x.a && !x.b ) ) {
 		return <Alert variant="danger" >{t('expect-a-or-b-for-each-element')}</Alert>;
 	}
@@ -216,38 +244,14 @@ const MatchListQuestion = ( props ) => {
 			<div className="match-list-question-lists">
 				<OptionsList
 					options={optionsLeft}
-					onSelect={( option ) => {
-						const newColorScale = colorScale.slice();
-						setAnswers( answers.filter(
-							answer => {
-								if ( answer.a === option || answer.b === option ) {
-									newColorScale.push( answer.color );
-								}
-								return answer.a !== option && answer.b !== option;
-							}
-						) );
-						setColorScale( newColorScale );
-						setLeftSelected( option );
-					}}
+					onSelect={handleLeftSelection}
 					answers={answers}
 					active={leftSelected}
 					shuffle={props.shuffle === 'left' || props.shuffle === 'both'}
 				/>
 				<OptionsList
 					options={optionsRight}
-					onSelect={( option ) => {
-						const newColorScale = colorScale.slice();
-						setAnswers( answers.filter(
-							answer => {
-								if ( answer.a === option || answer.b === option ) {
-									newColorScale.push( answer.color );
-								}
-								return answer.a !== option && answer.b !== option;
-							}
-						) );
-						setColorScale( newColorScale );
-						setRightSelected( option );
-					}}
+					onSelect={handleRightSelection}
 					answers={answers}
 					active={rightSelected}
 					baseColor="rgb(250,250,255)"

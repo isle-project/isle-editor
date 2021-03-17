@@ -2296,6 +2296,18 @@ class Sketchpad extends Component {
 		/> );
 	}
 
+	toggleDeletePageModal = () => {
+		this.setState({
+			showDeletePageModal: !this.state.showDeletePageModal
+		});
+	}
+
+	toggleResetModal = () => {
+		this.setState({
+			showResetModal: !this.state.showResetModal
+		});
+	}
+
 	renderRemoveButtons() {
 		if (
 			this.state.hideInputButtons ||
@@ -2313,16 +2325,8 @@ class Sketchpad extends Component {
 					size="sm"
 				/>
 				<TooltipButton tooltip={t('redo')} glyph="step-forward" onClick={this.redo} size="sm" />
-				<TooltipButton tooltip={t('clear-current')} onClick={() => {
-					this.setState({
-						showDeletePageModal: !this.state.showDeletePageModal
-					});
-				}} glyph="eraser" size="sm" />
-				<TooltipButton tooltip={t('reset-pages')} onClick={() => {
-					this.setState({
-						showResetModal: !this.state.showResetModal
-					});
-				}} glyph="power-off" size="sm" />
+				<TooltipButton tooltip={t('clear-current')} onClick={this.toggleDeletePageModal} glyph="eraser" size="sm" />
+				<TooltipButton tooltip={t('reset-pages')} onClick={this.toggleResetModal} glyph="power-off" size="sm" />
 			</ButtonGroup>
 		);
 	}

@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -62,8 +62,9 @@ const uid = generateUID( 'range-question' );
  */
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
-	const { min, max, points, question, solution, until, feedback, style,
-		provideFeedback, allowMultipleAnswers, hints, chat, labels } = props;
+	const { digits, min, max, points, question, solution, until, feedback, style,
+		provideFeedback, allowMultipleAnswers, hints, chat, labels,
+		onChangeUpper, onChangeLower, onSubmit } = props;
 	const session = useContext( SessionContext );
 
 	const [ lower, setLower ] = useState( min );
@@ -72,34 +73,33 @@ const RangeQuestion = ( props ) => {
 	const [ correct, setCorrect ] = useState( false );
 	const { t } = useTranslation( 'RangeQuestion' );
 
-	const handleChangeUpper = ( newValue ) => {
+	const handleChangeUpper = useCallback( ( newValue ) => {
 		setUpper( newValue );
-		props.onChangeUpper( maximum( newValue, lower ) );
-	};
-	const handleChangeLower = ( newValue ) => {
+		onChangeUpper( maximum( newValue, lower ) );
+	}, [ lower, onChangeUpper ] );
+	const handleChangeLower = useCallback( ( newValue ) => {
 		setLower( newValue );
-		props.onChangeLower( minimum( newValue, upper ) );
-	};
-	const handleBlurUpper = ( value ) => {
+		onChangeLower( minimum( newValue, upper ) );
+	}, [ upper, onChangeLower ] );
+	const handleBlurUpper = useCallback( ( value ) => {
 		if ( value <= lower ) {
 			setUpper( lower );
 		}
-	};
-	const handleBlurLower = ( value ) => {
+	}, [ lower ] );
+	const handleBlurLower = useCallback( ( value ) => {
 		if ( value >= upper ) {
 			setLower( upper );
 		}
-	};
-	const logHint = ( idx ) => {
+	}, [ upper ] );
+	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
 		session.log({
 			id: id,
 			type: RANGE_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	};
-	const submitHandler = () => {
-		const { digits, solution = []} = props;
+	}, [ id, session ] );
+	const submitHandler = useCallback( () => {
 		let correct;
 		const lowerVal = parseFloat( lower );
 		const upperVal = parseFloat( upper );
@@ -110,7 +110,7 @@ const RangeQuestion = ( props ) => {
 				correct = ( roundn( lowerVal, -digits ) === roundn( solution[0], -digits ) &&
 					(roundn(upperVal, -digits) === roundn(solution[1], -digits)) );
 			}
-			props.onSubmit( correct, [ lowerVal, upperVal ] );
+			onSubmit( correct, [ lowerVal, upperVal ] );
 			if ( provideFeedback ) {
 				session.addNotification({
 					title: t('answer-submitted'),
@@ -127,7 +127,7 @@ const RangeQuestion = ( props ) => {
 				});
 			}
 		} else {
-			props.onSubmit( null, [ lowerVal, upperVal ] );
+			onSubmit( null, [ lowerVal, upperVal ] );
 			session.addNotification({
 				title: submitted ? t('answer-resubmitted') : t('answer-submitted'),
 				message: submitted ?
@@ -143,8 +143,8 @@ const RangeQuestion = ( props ) => {
 			type: RANGE_QUESTION_SUBMIT_ANSWER,
 			value: JSON.stringify( [ lower, upper ] )
 		});
-	};
-	const handleKeyPress = ( event ) => {
+	}, [ digits, id, lower, upper, onSubmit, provideFeedback, session, solution, submitted, t ] );
+	const handleKeyPress = useCallback( ( event ) => {
 		if ( event.charCode === 13 ) {
 			// Manually trigger blur event since not happening when pressing ENTER:
 			if ( document && document.activeElement ) {
@@ -153,7 +153,7 @@ const RangeQuestion = ( props ) => {
 			}
 			setTimeout( submitHandler, 50 );
 		}
-	};
+	}, [ submitHandler ] );
 	useEffect(() => {
 		if ( solution && !isnan( solution[ 1 ] ) && !isnan( solution[ 0 ] ) ) {
 			setLower( min );

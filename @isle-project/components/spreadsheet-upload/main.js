@@ -118,6 +118,11 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 			reader.readAsText( file, 'utf-8' );
 		}
 	}, [ session, onFileRead, t ] );
+
+	const handleHeaderChange = useCallback( ( value ) => {
+		setHeader( value );
+	}, [] );
+
 	const completed = round( percentCompleted * 100.0 );
 	return ( <Card>
 		<Card.Header as="h2">
@@ -150,9 +155,7 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 			<CheckboxInput
 				legend={t('first-row-names')}
 				defaultValue={true}
-				onChange={( value ) => {
-					setHeader( value );
-				}}
+				onChange={handleHeaderChange}
 			/>
 			{ uploading ?
 				<ProgressBar now={completed} label={`${completed}%`} /> :

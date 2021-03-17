@@ -631,6 +631,50 @@ class DataTable extends Component {
 		});
 	}
 
+	handleSaveCSV = () => {
+		this.saveCSV();
+		this.toggleSaveModal();
+	}
+
+	handleSaveJSON = () => {
+		this.saveJSON();
+		this.toggleSaveModal();
+	}
+
+	hideVarModal = () =>{
+		this.setState({ showVarModal: false });
+	}
+
+	hideInfoModal = () => {
+		this.setState({
+			showInfo: false
+		});
+	}
+
+	handleTableProps = () => {
+		return {
+			onScroll: e => {
+				let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
+				for ( let i = 0; i < this.frozenElems.length; i++ ) {
+					this.frozenElems[ i ].style.left = `${left}px`;
+				}
+			}
+		};
+	}
+
+	handleTrProps = ( state, rowInfo, column, table ) => {
+		let out;
+		if ( this.props.getTrProps ) {
+			out = this.props.getTrProps( state, rowInfo, column, table );
+		} else {
+			out = {};
+		}
+		if ( !out.style ) {
+			out.style = {};
+		}
+		out.style.width = 'max-content !important';
+		return out;
+	}
 
 	render() {
 		debug( 'Rendering component' );
@@ -643,9 +687,7 @@ class DataTable extends Component {
 			modal = <Modal
 				dialogClassName="modal-50w"
 				show={this.state.showVarModal}
-				onHide={()=>{
-					this.setState({ showVarModal: false });
-				}}>
+				onHide={this.hideVarModal}>
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{this.props.t('variables')}
@@ -660,11 +702,8 @@ class DataTable extends Component {
 			modal = <Modal
 				show={this.state.showInfo}
 				dialogClassName="modal-50w"
-				onHide={()=>{
-					this.setState({
-						showInfo: false
-					});
-				}}>
+				onHide={this.hideInfoModal}
+			>
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{dataInfo.name} {this.props.t('description')}
@@ -807,29 +846,8 @@ class DataTable extends Component {
 						onFilteredChange={this.handleFilterChange}
 						onSortedChange={this.handleSortedChange}
 						style={this.props.style}
-						getTableProps={() => {
-							return {
-								onScroll: e => {
-									let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
-									for ( let i = 0; i < this.frozenElems.length; i++ ) {
-										this.frozenElems[ i ].style.left = `${left}px`;
-									}
-								}
-							};
-						}}
-						getTrProps={( state, rowInfo, column, table ) => {
-							let out;
-							if ( this.props.getTrProps ) {
-								out = this.props.getTrProps( state, rowInfo, column, table );
-							} else {
-								out = {};
-							}
-							if ( !out.style ) {
-								out.style = {};
-							}
-							out.style.width = 'max-content !important';
-							return out;
-						}}
+						getTableProps={this.handleTableProps}
+						getTrProps={this.handleTrProps}
 						previousText={this.props.t('previous')}
 						nextText={this.props.t('next')}
 						loadingText={this.props.t('loading')}
@@ -892,14 +910,12 @@ class DataTable extends Component {
 							{this.props.t('download-data-body')}
 						</Modal.Body>
 						<Modal.Footer>
-							<Button onClick={() => {
-								this.saveCSV();
-								this.toggleSaveModal();
-							}} >{this.props.t('save-csv')}</Button>
-							<Button onClick={() => {
-								this.saveJSON();
-								this.toggleSaveModal();
-							}} >{this.props.t('save-json')}</Button>
+							<Button onClick={this.handleSaveCSV} >
+								{this.props.t('save-csv')}
+							</Button>
+							<Button onClick={this.handleSaveJSON} >
+								{this.props.t('save-json')}
+							</Button>
 						</Modal.Footer>
 					</Modal> : null }
 			</Fragment>

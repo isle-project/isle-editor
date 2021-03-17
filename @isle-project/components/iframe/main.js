@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
@@ -50,6 +50,9 @@ const IFrame = ({ title, src, id, fullscreen, width, height, className, style })
 			});
 		}
 	}, [ dimensions, fullscreen, height, width ] );
+	const handleLoad = useCallback( ( event ) => {
+		setLoaded( true );
+	}, [] );
 	let divStyle;
 	if ( fullscreen ) {
 		divStyle = {
@@ -92,9 +95,7 @@ const IFrame = ({ title, src, id, fullscreen, width, height, className, style })
 					display: !loaded ? 'none' : 'inherit'
 				}}
 				title={title}
-				onLoad={( event ) => {
-					setLoaded( true );
-				}}
+				onLoad={handleLoad}
 			/>
 			{!loaded ? <Alert variant="warning" style={{ margin: 0 }} >
 				{t('alert-message')}

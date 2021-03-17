@@ -138,6 +138,9 @@ const RadialGradientPicker = ({ onCreate, t }) => {
 		background += ')';
 		onCreate( background );
 	}, [ onCreate, gradient, size, top, left, repeating ] );
+	const handleColorChange = useCallback( ( angle, palette ) => {
+		setGradient({ angle, palette });
+	}, [] );
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
@@ -148,9 +151,7 @@ const RadialGradientPicker = ({ onCreate, t }) => {
 					<Form.Group as={Row} >
 						<Col sm={2} >
 							<BaseGradientPicker
-								onChange={( angle, palette ) => {
-									setGradient({ angle, palette });
-								}}
+								onChange={handleColorChange}
 							/>
 						</Col>
 						<Form.Label column sm={1} >
@@ -281,50 +282,60 @@ const BackgroundPicker = ( props ) => {
 
 // MAIN //
 
-const Layout = ( props ) => {
+const Layout = ({ active, style, onChange, t }) => {
 	const [ backgrounds, setBackgrounds ] = useState( [] );
-	if ( !props.active ) {
+	const handleDisplayChange = useCallback( ( display ) => {
+		const newStyle = { ...style };
+		newStyle.display = display;
+		onChange( newStyle );
+	}, [ style, onChange ] );
+	const handleBGColorChange = useCallback( ({ rgb }) => {
+		const { r, g, b, a } = rgb;
+		const newStyle = { ...style };
+		newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`;
+		onChange( newStyle );
+	}, [ onChange, style ] );
+	const handleBackgroundImageAddition = useCallback( ( background ) => {
+		const newBackgrounds = backgrounds.slice();
+		newBackgrounds.push( background );
+		const newStyle = { ...style };
+		newStyle.backgroundImage = newBackgrounds.join( ', ' );
+		onChange( newStyle );
+		setBackgrounds( newBackgrounds );
+	}, [ backgrounds, onChange, style ] );
+	if ( !active ) {
 		return null;
 	}
 	return (
 		<Fragment>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
-					{props.t('display')}:
+					{t('display')}:
 				</Form.Label>
 				<Col sm="8">
 					<SelectInput
-						defaultValue={props.style.display || DISPLAY_TYPES[ 0 ]}
+						defaultValue={style.display || DISPLAY_TYPES[ 0 ]}
 						options={DISPLAY_TYPES}
-						onChange={( display ) => {
-							const newStyle = { ...props.style };
-							newStyle.display = display;
-							props.onChange( newStyle );
-						}}
+						onChange={handleDisplayChange}
 					/>
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} >
 				<Form.Label column sm="4">
-					{props.t('background-color')}
+					{t('background-color')}
 				</Form.Label>
 				<Col sm={1} >
 					<ColorPicker
 						style={{ zIndex: 2000 }}
-						color={props.style.backgroundColor}
-						onChange={({ rgb }) => {
-							const { r, g, b, a } = rgb;
-							const newStyle = { ...props.style };
-							newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`;
-							props.onChange( newStyle );
-						}}
+						color={style.backgroundColor}
+						onChange={handleBGColorChange}
 						variant="Button"
 					/>
 				</Col>
 			</Form.Group>
 			<hr />
 			<p className="title" style={{ fontVariant: 'small-caps', fontSize: '1.2em' }}>
-				{props.t('backgrounds')}
+				{t('backgrounds')}
 			</p>
 			<ListGroup>
 				{backgrounds.map( ( background, idx ) => {
@@ -338,9 +349,9 @@ const Layout = ( props ) => {
 									const newBackgrounds = backgrounds.slice();
 									newBackgrounds.splice( idx, 1 );
 									setBackgrounds( newBackgrounds );
-									const newStyle = { ...props.style };
+									const newStyle = { ...style };
 									newStyle.background = newBackgrounds.join( ', ' );
-									props.onChange( newStyle );
+									onChange( newStyle );
 								}}
 								style={{ float: 'right' }}
 							>
@@ -352,16 +363,9 @@ const Layout = ( props ) => {
 			</ListGroup>
 			<hr />
 			<BackgroundPicker
-				style={props.style}
-				onCreate={( background ) => {
-					const newBackgrounds = backgrounds.slice();
-					newBackgrounds.push( background );
-					const newStyle = { ...props.style };
-					newStyle.backgroundImage = newBackgrounds.join( ', ' );
-					props.onChange( newStyle );
-					setBackgrounds( newBackgrounds );
-				}}
-				t={props.t}
+				style={style}
+				onCreate={handleBackgroundImageAddition}
+				t={t}
 			/>
 		</Fragment>
 	);

@@ -142,6 +142,18 @@ class EditorContextMenu extends Component {
 		this.props.onTranslateSelection( data.language );
 	}
 
+	handleSearchValueChange = ( event ) => {
+		this.setState({
+			searchValue: event.target.value
+		});
+	}
+
+	clearSearchValue = () => {
+		this.setState({
+			searchValue: ''
+		});
+	}
+
 	buildMenuUponShow = () => {
 		if ( this.state.menuContent ) {
 			return this.setState({
@@ -203,18 +215,10 @@ class EditorContextMenu extends Component {
 				<SearchBar
 					value={this.state.searchValue}
 					placeholder={t('search-for-components')}
-					onChange={( event ) => {
-						this.setState({
-							searchValue: event.target.value
-						});
-					}}
+					onChange={this.handleSearchValueChange}
 					buttonSize="sm"
 					style={{ margin: 0, fontSize: 10 }}
-					onClear={() => {
-						this.setState({
-							searchValue: ''
-						});
-					}}
+					onClear={this.clearSearchValue}
 				/>
 				<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 				<SubMenu title={t('translate-selection')} disabled={!ISLE_SERVER_TOKEN} >

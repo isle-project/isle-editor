@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -31,17 +31,17 @@ const debug = logger( 'isle:question-form' );
 const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
 	const session = useContext( SessionContext );
 	const [ answered, setAnswered ] = useState({});
-	if ( !children ) {
-		return <Alert variant="danger" >{t('missing-children')}</Alert>;
-	}
-	let questionForm;
-	const handleClick = () => {
-		const elements = questionForm.getElementsByClassName( 'submit-button' );
+	const questionForm = useRef( null );
+	const handleClick = useCallback( () => {
+		const elements = questionForm.current.getElementsByClassName( 'submit-button' );
 		for ( let i = 0; i < elements.length; i++ ) {
 			elements[ i ].click();
 		}
 		onSubmit();
-	};
+	}, [ onSubmit ] );
+	if ( !children ) {
+		return <Alert variant="danger" >{t('missing-children')}</Alert>;
+	}
 	const cloneChild = ( child, idx ) => {
 		return React.cloneElement( child, {
 			disableSubmitNotification: true,
@@ -74,9 +74,7 @@ const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
 	}
 	const disabled = ( finished !== clonedChildren.length ) && !session.isOwner();
 	return ( <div
-		ref={( div ) => {
-			questionForm = div;
-		}}
+		ref={questionForm}
 		className="question-form"
 	>
 		{clonedChildren}

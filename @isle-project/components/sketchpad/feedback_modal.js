@@ -73,6 +73,15 @@ class FeedbackModal extends Component {
 		}
 	}
 
+	handlePlotClick = ( data ) => {
+		const points = data.points;
+		const selected = points[ 0 ];
+		if ( selected ) {
+			this.props.gotoPage( selected.pointIndex );
+			this.props.onHide();
+		}
+	}
+
 	render() {
 		return ( <Modal
 			onHide={this.props.onHide}
@@ -89,14 +98,7 @@ class FeedbackModal extends Component {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Plotly	data={this.state.data} removeButtons onClick={( data ) => {
-					const points = data.points;
-					const selected = points[ 0 ];
-					if ( selected ) {
-						this.props.gotoPage( selected.pointIndex );
-						this.props.onHide();
-					}
-				}} layout={{
+				<Plotly	data={this.state.data} removeButtons onClick={this.handlePlotClick} layout={{
 					xaxis: {
 						fixedrange: true
 					},
