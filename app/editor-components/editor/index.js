@@ -10,7 +10,7 @@ import { EOL } from 'os';
 import { ipcRenderer } from 'electron';
 import { BrowserWindow } from '@electron/remote';
 import axios from 'axios';
-import { basename, dirname, relative, resolve, join, extname } from 'path';
+import { basename, delimiter, dirname, relative, resolve, join, extname } from 'path';
 import { copyFileSync, createWriteStream, writeFileSync } from 'fs';
 import spawn from 'cross-spawn';
 import https from 'https';
@@ -343,7 +343,7 @@ class Editor extends Component {
 			let PATH = process.env.PATH || ''; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
-				PATH = PATH.concat( ':', bin );
+				PATH = PATH.concat( delimiter, bin );
 				if ( !IS_WINDOWS ) {
 					PATH = PATH.concat( ':', '/usr/local/bin' );
 				}
