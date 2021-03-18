@@ -489,7 +489,7 @@ function bundleLesson( options ) {
 									ie: '11'
 								},
 								useBuiltIns: 'usage',
-								corejs: 2
+								corejs: 3
 							}],
 							resolve( basePath, './node_modules/@babel/preset-react' )
 						],
@@ -638,20 +638,20 @@ function bundleLesson( options ) {
 		content = `<Toolbar elements={${elements}} />\n` + content;
 	}
 	const usedComponents = getComponentList( content );
+
 	logMsg( 'Create JS file...' );
-	const str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
-	writeFileSync( indexPath, str );
+	let str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
 
 	// Copy CSS file:
 	mkdirSync( join( appDir, 'css' ) );
 	copyFileSync( join( basePath, 'app', 'css', 'custom.css' ), join( appDir, 'css', 'custom.css' ) );
 	if ( meta.css ) {
 		if ( isURI( encodeURI( meta.css ) ) ) {
-			content = `const link = document.createElement( 'link' );
-			link.href = '${meta.css}';
-			link.rel = 'stylesheet';
-			document.head.appendChild( link );
-			` + content;
+			str += `const cssLink = document.createElement( 'link' );
+			cssLink.href = '${meta.css}';
+			cssLink.rel = 'stylesheet';
+			document.head.appendChild( cssLink );
+			`;
 		} else {
 			// Append custom CSS file to `custom.css` file:
 			let fpath = meta.css;
@@ -665,6 +665,8 @@ function bundleLesson( options ) {
 	if ( meta.style ) {
 		appendFileSync( join( appDir, 'css', 'custom.css' ), meta.style );
 	}
+
+	writeFileSync( indexPath, str );
 
 	// Copy asset directories:
 	const resourceDirName = `${fileName}-resources`;
