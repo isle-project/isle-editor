@@ -17,7 +17,7 @@
 
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -31,24 +31,26 @@ import './interface_tour_button.css';
 const InterfaceTourButton = () => {
 	const { t } = useTranslation( 'Lesson' );
 	const [ showTour, setShowTour ] = useState( false );
+	const handleFinish = useCallback( () => {
+		setShowTour( false );
+	}, [] );
+	const handleTourToggle = useCallback( () => {
+		if ( !showTour ) {
+			addResources( 'InterfaceTour' );
+			setShowTour( true );
+		} else {
+			setShowTour( false );
+		}
+	}, [ showTour ] );
 	return (
 		<Fragment>
 			{showTour ? <InterfaceTour
 				run={showTour}
-				onFinish={() => {
-					setShowTour( false );
-				}}
+				onFinish={handleFinish}
 			/> : null}
 			<OverlayTrigger placement="left" overlay={<Tooltip id="interface-tour-button">{t('start-interface-tour')}</Tooltip>} >
 				<button
-					onClick={() => {
-						if ( !showTour ) {
-							addResources( 'InterfaceTour' );
-							setShowTour( true );
-						} else {
-							setShowTour( false );
-						}
-					}}
+					onClick={handleTourToggle}
 					onMouseOver={InterfaceTour.preload}
 					onFocus={InterfaceTour.preload}
 					className="interface-tour-button"

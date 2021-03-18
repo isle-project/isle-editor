@@ -1,14 +1,30 @@
 // MODULES //
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import Joyride, { EVENTS } from '@isle-project/components/joyride';
 import { useTranslation } from 'react-i18next';
+
+
+// VARIABLES //
+
+const STYLES = {
+	options: {
+		zIndex: 1100
+	}
+};
 
 
 // MAIN //
 
 const InterfaceTour = ( props ) => {
 	const { t } = useTranslation( 'InterfaceTour' );
+	const { onFinish } = props;
+	const handleChange = useCallback( ( tour ) => {
+		const type = tour.type;
+		if ( type === EVENTS.TOUR_END ) {
+			onFinish();
+		}
+	}, [ onFinish ] );
 	return (
 		<Joyride
 			{...props}
@@ -119,17 +135,8 @@ const InterfaceTour = ( props ) => {
 					placement: 'center'
 				}
 			]}
-			callback={( tour ) => {
-				const type = tour.type;
-				if ( type === EVENTS.TOUR_END ) {
-					props.onFinish();
-				}
-			}}
-			styles={{
-				options: {
-					zIndex: 1100
-				}
-			}}
+			callback={handleChange}
+			styles={STYLES}
 		/>
 	);
 };

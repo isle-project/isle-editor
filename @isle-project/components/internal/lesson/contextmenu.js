@@ -100,6 +100,34 @@ class LessonContextMenu extends Component {
 		window.speechSynthesis.speak( ssu );
 	}
 
+	handleShow = () => {
+		debug( 'Context menu has been opened...' );
+		this.setState({ contextMenuIsOpen: true });
+	}
+
+	handleHide = () => {
+		debug( 'Context menu has been closed...' );
+		this.setState({ contextMenuIsOpen: false });
+	}
+
+	handleStudentNoteAddition = ( event ) => {
+		const xPercent = event.pageX / window.innerWidth;
+		const yPercent = event.pageY / window.innerHeight;
+		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'public' });
+	}
+
+	handlePersonalNoteAddition = ( event ) => {
+		const xPercent = event.pageX / window.innerWidth;
+		const yPercent = event.pageY / window.innerHeight;
+		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'private' });
+	}
+
+	handleInstructorNoteAddition = ( event ) => {
+		const xPercent = event.pageX / window.innerWidth;
+		const yPercent = event.pageY / window.innerHeight;
+		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'instructor' });
+	}
+
 	render() {
 		const menuItems = [];
 		const sel = window.getSelection();
@@ -123,44 +151,26 @@ class LessonContextMenu extends Component {
 			}
 		}
 		menuItems.push(
-			<MenuItem key={6} onClick={( event ) => {
-				const xPercent = event.pageX / window.innerWidth;
-				const yPercent = event.pageY / window.innerHeight;
-				this.props.addNote({ left: xPercent, top: yPercent, visibility: 'private' });
-			}}>
+			<MenuItem key={6} onClick={this.handlePersonalNoteAddition} >
 				{this.props.t( 'add-personal-note' )}
 			</MenuItem>
 		);
 		if ( this.props.session.isOwner() ) {
 			menuItems.push(
-				<MenuItem key={7} onClick={( event ) => {
-					const xPercent = event.pageX / window.innerWidth;
-					const yPercent = event.pageY / window.innerHeight;
-					this.props.addNote({ left: xPercent, top: yPercent, visibility: 'instructor' });
-				}}>
+				<MenuItem key={7} onClick={this.handleInstructorNoteAddition} >
 					{this.props.t( 'add-instructor-note' )}
 				</MenuItem>
 			);
 			menuItems.push(
-				<MenuItem key={8} onClick={( event ) => {
-					const xPercent = event.pageX / window.innerWidth;
-					const yPercent = event.pageY / window.innerHeight;
-					this.props.addNote({ left: xPercent, top: yPercent, visibility: 'public' });
-				}}>
+				<MenuItem key={8} onClick={this.handleStudentNoteAddition} >
 					{this.props.t( 'add-student-note' )}
 				</MenuItem>
 			);
 		}
 		return ( <ContextMenu
 			id="lessonWindow"
-			onShow={() => {
-				debug( 'Context menu has been opened...' );
-				this.setState({ contextMenuIsOpen: true });
-			}}
-			onHide={() => {
-				debug( 'Context menu has been closed...' );
-				this.setState({ contextMenuIsOpen: false });
-			}}
+			onShow={this.handleShow}
+			onHide={this.handleHide}
 			disableIfShiftIsPressed
 		>
 			{menuItems}

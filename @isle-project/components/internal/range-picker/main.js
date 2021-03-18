@@ -15,6 +15,18 @@ import './_datepicker.css';
 // VARIABLES //
 
 addResources( 'RangePicker' );
+const ACTIVE_STYLE = {
+	background: 'slategray',
+	color: 'white',
+	textShadow: 'none'
+};
+
+
+// FUNCTIONS //
+
+function alwaysFalse() {
+	return false;
+}
 
 
 // MAIN //
@@ -104,12 +116,27 @@ class RangePicker extends Component {
 		});
 	}
 
-	render() {
-		const activeStyle = {
-			background: 'slategray',
-			color: 'white',
-			textShadow: 'none'
+	handleDatesChange = ({ startDate, endDate }) => {
+		if ( startDate === endDate ) {
+			startDate = startDate.startOf( 'day' );
+			endDate = endDate.endOf( 'day' );
+		}
+		const newPeriod = {
+			from: startDate,
+			to: endDate
 		};
+		this.setState({
+			period: newPeriod
+		}, () => {
+			this.props.onChange( this.state.period );
+		});
+	}
+
+	handleFocusChange = ( focusedInput ) => {
+		this.setState({ focusedInput });
+	}
+
+	render() {
 		return (
 			<ButtonToolbar style={{ marginBottom: '10px', ...this.props.style }} >
 				<ButtonGroup size={this.props.size}>
@@ -118,65 +145,51 @@ class RangePicker extends Component {
 						className="date-selection"
 						id="last_hour"
 						onClick={this.timeClickFactory( 'last_hour' )}
-						style={this.state.active === 0 ? activeStyle : {}}
+						style={this.state.active === 0 ? ACTIVE_STYLE : {}}
 					>{this.props.t('last-hour')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_day"
 						onClick={this.timeClickFactory( 'last_day' )}
-						style={this.state.active === 1 ? activeStyle : {}}
+						style={this.state.active === 1 ? ACTIVE_STYLE : {}}
 					>{this.props.t('day')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_week"
 						onClick={this.timeClickFactory( 'last_week' )}
-						style={this.state.active === 2 ? activeStyle : {}}
+						style={this.state.active === 2 ? ACTIVE_STYLE : {}}
 					>{this.props.t('week')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_month"
 						onClick={this.timeClickFactory( 'last_month' )}
-						style={this.state.active === 3 ? activeStyle : {}}
+						style={this.state.active === 3 ? ACTIVE_STYLE : {}}
 					>{this.props.t('month')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="last_year"
 						onClick={this.timeClickFactory( 'last_year' )}
-						style={this.state.active === 4 ? activeStyle : {}}
+						style={this.state.active === 4 ? ACTIVE_STYLE : {}}
 					>{this.props.t('year')}</Button>
 					<Button
 						variant="light"
 						className="date-selection"
 						id="all_time"
 						onClick={this.timeClickFactory( 'all_time' )}
-						style={this.state.active === 5 ? activeStyle : {}}
+						style={this.state.active === 5 ? ACTIVE_STYLE : {}}
 					>{this.props.t('all')}</Button>
 				</ButtonGroup>
 				<DateRangePicker
 					startDate={this.state.period.from}
 					endDate={this.state.period.to}
-					onDatesChange={({ startDate, endDate }) => {
-						if ( startDate === endDate ) {
-							startDate = startDate.startOf( 'day' );
-							endDate = endDate.endOf( 'day' );
-						}
-						const newPeriod = {
-							from: startDate,
-							to: endDate
-						};
-						this.setState({
-							period: newPeriod
-						}, () => {
-							this.props.onChange( this.state.period );
-						});
-					}}
+					onDatesChange={this.handleDatesChange}
 					focusedInput={this.state.focusedInput}
-					onFocusChange={focusedInput => this.setState({ focusedInput })}
-					isOutsideRange={() => false}
+					onFocusChange={this.handleFocusChange}
+					isOutsideRange={alwaysFalse}
 					minimumNights={0}
 				/>
 			</ButtonToolbar>

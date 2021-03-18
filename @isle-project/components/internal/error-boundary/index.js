@@ -21,17 +21,19 @@ class ErrorBoundary extends Component {
 		});
 	}
 
+	handleErrorReset = () => {
+		PropTypes.resetWarningCache();
+		this.setState({
+			error: null
+		});
+	}
+
 	render() {
 		if ( this.state.error ) {
 			return ( <ErrorMessage
 				error={this.state.error}
 				componentName={this.props.component}
-				resetError={() => {
-					PropTypes.resetWarningCache();
-					this.setState({
-						error: null
-					});
-				}}
+				resetError={this.handleErrorReset}
 			/> );
 		}
 		return this.props.children;

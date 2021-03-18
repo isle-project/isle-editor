@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import isArray from '@stdlib/assert/is-array';
 
 
@@ -9,13 +9,12 @@ import isArray from '@stdlib/assert/is-array';
 const CohortSelect = ( props ) => {
 	const session = props.session;
 	const cohorts = session.cohorts;
+	const handleCohortChange = useCallback( ( event ) => {
+		session.selectCohort( event.target.value );
+	}, [ session ] );
 	if ( !isArray( cohorts ) ) {
 		return null;
 	}
-
-	const handleCohortChange = ( event ) => {
-		session.selectCohort( event.target.value );
-	};
 	const select = ( <select
 		id={props.id}
 		className="cohort-select"

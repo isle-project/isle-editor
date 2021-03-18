@@ -17,7 +17,7 @@
 
 // MODULES //
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -37,9 +37,9 @@ addResources( 'LanguageSwitcher' );
 const LanguageSwitcher = ( props ) => {
 	const [ showSelectModal, setShowSelectModal ] = useState( false );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const toggleSelectModal = () => {
+	const toggleSelectModal = useCallback( () => {
 		setShowSelectModal( !showSelectModal );
-	};
+	}, [ showSelectModal ] );
 	const { t } = props;
 	return (
 		<Fragment>

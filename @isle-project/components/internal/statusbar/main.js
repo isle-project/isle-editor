@@ -360,15 +360,16 @@ class StatusBar extends Component {
 		}
 	}
 
+	preventPropagationForUsers = ( evt ) => {
+		if ( !this.context.anonymous ) {
+			evt.stopPropagation();
+		}
+	}
+
 	render() {
 		const session = this.context;
 		const { t } = this.props;
 		const finishedLesson = this.state.progress === 100;
-		const preventPropForUsers = ( evt ) => {
-			if ( !this.context.anonymous ) {
-				evt.stopPropagation();
-			}
-		};
 		const isOwner = session.isOwner() || isElectron;
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions, i18next/no-literal-string  */
 		const picture = session.user.picture;
@@ -443,7 +444,8 @@ class StatusBar extends Component {
 								role="button" tabIndex={0}
 								style={{ cursor: this.context.anonymous ? 'pointer' : 'help' }}
 								className="statusbar-username"
-								onClick={preventPropForUsers} onKeyPress={preventPropForUsers}
+								onClick={this.preventPropagationForUsers}
+								onKeyPress={this.preventPropagationForUsers}
 								onMouseEnter={this.toggleProgress} onFocus={this.toggleProgress}
 								onMouseOut={this.toggleProgress} onBlur={this.toggleProgress}
 								aria-label={t( 'user-progress' )}
