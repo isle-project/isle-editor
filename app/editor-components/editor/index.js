@@ -347,8 +347,9 @@ class Editor extends Component {
 				if ( !IS_WINDOWS ) {
 					PATH = PATH.concat( delimiter, '/usr/local/bin' );
 				}
-			} else if ( PATH === '' ) {
-					PATH = resolve( '.', 'node_modules', '.bin' );
+			} else {
+				const bin = resolve( '.', 'node_modules', '.bin' );
+				PATH = PATH.concat( delimiter, bin );
 			}
 			const npmPath = IS_WINDOWS ? 'npm.cmd' : 'npm';
 			debug( 'Running install command for '+npmPath+' from working directory '+isleDir );
