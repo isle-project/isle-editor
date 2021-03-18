@@ -370,6 +370,9 @@ class Editor extends Component {
 			npm.stderr.on( 'data', ( data ) => {
 				overlayInstallWidget.pre.innerHTML += data;
 			});
+			npm.on( 'error', function onError( err ) {
+				overlayInstallWidget.pre.innerHTML += '\n' + err.message;
+			});
 			npm.on( 'close', ( code ) => {
 				setTimeout( () => {
 					this.editor.removeOverlayWidget( overlayInstallWidget );
