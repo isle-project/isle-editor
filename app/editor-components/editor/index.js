@@ -345,7 +345,7 @@ class Editor extends Component {
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
 				PATH = PATH.concat( delimiter, bin );
 				if ( !IS_WINDOWS ) {
-					PATH = PATH.concat( ':', '/usr/local/bin' );
+					PATH = PATH.concat( delimiter, '/usr/local/bin' );
 				}
 			} else if ( PATH === '' ) {
 					PATH = resolve( '.', 'node_modules', '.bin' );
