@@ -42,6 +42,7 @@ const EXTERNALS = [
 	'react-input-range',
 	'react-joyride',
 	'react-json-tree',
+	'react-live',
 	'react-plotly.js',
 	'react-select',
 	'react-slick',
