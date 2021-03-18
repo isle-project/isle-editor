@@ -129,7 +129,7 @@ const getMainImports = () => `
 // POLYFILLS //
 
 import 'raf/polyfill';
-import 'whatwg-fetch';
+import 'react-app-polyfill/ie11';
 
 
 // MODULES //
@@ -646,13 +646,21 @@ function bundleLesson( options ) {
 	mkdirSync( join( appDir, 'css' ) );
 	copyFileSync( join( basePath, 'app', 'css', 'custom.css' ), join( appDir, 'css', 'custom.css' ) );
 	if ( meta.css ) {
-		// Append custom CSS file to `custom.css` file:
-		let fpath = meta.css;
-		if ( filePath && !isAbsolutePath( meta.css ) ) {
-			fpath = join( fileDir, meta.css );
+		if ( isURI( encodeURI( meta.css ) ) ) {
+			content = `const link = document.createElement( 'link' );
+			link.href = '${meta.css}';
+			link.rel = 'stylesheet';
+			document.head.appendChild( link );
+			` + content;
+		} else {
+			// Append custom CSS file to `custom.css` file:
+			let fpath = meta.css;
+			if ( filePath && !isAbsolutePath( meta.css ) ) {
+				fpath = join( fileDir, meta.css );
+			}
+			const css = readFileSync( fpath ).toString();
+			appendFileSync( join( appDir, 'css', 'custom.css' ), css );
 		}
-		const css = readFileSync( fpath ).toString();
-		appendFileSync( join( appDir, 'css', 'custom.css' ), css );
 	}
 	if ( meta.style ) {
 		appendFileSync( join( appDir, 'css', 'custom.css' ), meta.style );

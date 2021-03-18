@@ -5,6 +5,7 @@ import { join, dirname } from 'path';
 import { readFileSync } from 'fs';
 import isAbsolutePath from '@stdlib/assert/is-absolute-path';
 import replace from '@stdlib/string/replace';
+import isURI from '@stdlib/assert/is-uri';
 
 
 // VARIABLES //
@@ -38,11 +39,16 @@ const injectStyle = ( style ) => {
 
 // MAIN //
 
-const applyStyles = ( preamble, filePath ) => {
+const applyStyles = async ( preamble, filePath ) => {
 	let css = '';
 	if ( preamble.css ) {
-		if ( cssHash[ preamble.css ]) {
+		if ( cssHash[ preamble.css ] ) {
 			css += cssHash[ preamble.css ];
+		} else if ( isURI( encodeURI( preamble.css ) ) ) {
+			const d3 = await import( 'd3' );
+			const content = await d3.text( preamble.css );
+			css += content;
+			cssHash[ preamble.css ] = content;
 		} else {
 			let fpath = preamble.css;
 			if ( !isAbsolutePath( fpath ) ) {
@@ -52,7 +58,9 @@ const applyStyles = ( preamble, filePath ) => {
 					fpath = replace( fpath, '\\', '\\\\' );
 				}
 			}
-			css += readFileSync( fpath ).toString();
+			const content = readFileSync( fpath ).toString();
+			css += content;
+			cssHash[ preamble.css ] = content;
 		}
 	}
 	if ( preamble.style ) {
