@@ -15,6 +15,7 @@ const EXTERNALS = [
 	'camelcase',
 	'child_process',
 	'compute-chunkify',
+	'cross-spawn',
 	'csv-stringify',
 	'csvtojson',
 	'd3',
