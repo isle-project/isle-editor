@@ -7,7 +7,11 @@ import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-insta
 
 async function installExtensions() {
 	try {
-		const res = await installExtension( REACT_DEVELOPER_TOOLS );
+		const res = await installExtension( REACT_DEVELOPER_TOOLS, {
+			loadExtensionOptions: {
+				allowFileAccess: true
+			}
+		});
 		console.log( `Added Extension:  ${res}` ); // eslint-disable-line no-console
 		return res;
 	} catch ( err ) {
