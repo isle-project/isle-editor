@@ -24,6 +24,7 @@ import Components from '@isle-project/components';
 import LineWrapper from 'editor-containers/line-wrapper';
 import LineButtons from 'editor-containers/line-buttons';
 import ErrorBoundary from 'editor-components/error-boundary';
+import Profiler from 'editor-components/profiler';
 import factor from '@isle-project/utils/factor-variable';
 
 
@@ -52,6 +53,7 @@ export const SCOPE = {
 	Tab,
 	Tabs,
 	Draggable,
+	Profiler,
 	factor
 };
 
