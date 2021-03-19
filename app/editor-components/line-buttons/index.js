@@ -6,9 +6,7 @@ import { useDrop } from 'react-dnd';
 import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
-import { connect } from 'react-redux';
 import PINF from '@stdlib/constants/math/float64-pinf';
-import { jumpToElementInEditor, switchWithPrevious, switchWithNext } from 'actions';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import './line_buttons.css';
 
@@ -141,13 +139,4 @@ LineButtons.defaultProps = {
 
 // EXPORTS //
 
-export default connect( mapStateToProps, {
-	jumpToElementInEditor, switchWithPrevious, switchWithNext
-})( LineButtons );
-
-function mapStateToProps({ preview, editor }) {
-	return {
-		...preview,
-		splitPos: editor.splitPos
-	};
-}
+export default LineButtons;

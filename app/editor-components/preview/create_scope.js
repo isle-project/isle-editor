@@ -21,8 +21,8 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Components from '@isle-project/components';
-import LineWrapper from 'editor-components/line-wrapper';
-import LineButtons from 'editor-components/line-buttons';
+import LineWrapper from 'editor-containers/line-wrapper';
+import LineButtons from 'editor-containers/line-buttons';
 import ErrorBoundary from 'editor-components/error-boundary';
 import factor from '@isle-project/utils/factor-variable';
 

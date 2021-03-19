@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 import { i18n } from '@isle-project/locales/editor';
 import { useDrag } from 'react-dnd';
 import logger from 'debug';
-import { connect } from 'react-redux';
 import { findDOMNode } from 'react-dom';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import vex from 'vex-js';
 import PINF from '@stdlib/constants/math/float64-pinf';
 import { ContextMenu, ContextMenuTrigger, MenuItem } from '@isle-project/components/internal/contextmenu';
 import useIsMounted from 'hooks/is-mounted';
-import { jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator } from 'actions';
 import './line_wrapper.css';
 
 
@@ -377,14 +375,4 @@ LineWrapper.propTypes = {
 
 // EXPORTS //
 
-export default connect( mapStateToProps, {
-	jumpToElementInEditor, switchWithNext, switchWithPrevious, toggleConfigurator
-})( LineWrapper );
-
-function mapStateToProps({ editor }) {
-	return {
-		splitPos: editor.splitPos,
-		horizontalSplit: editor.horizontalSplit,
-		hideToolbar: editor.hideToolbar
-	};
-}
+export default LineWrapper;
