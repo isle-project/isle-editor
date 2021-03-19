@@ -1,10 +1,10 @@
 
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import TimedButton from '@isle-project/components/timed-button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
@@ -89,10 +89,25 @@ const getHintLabel = ( index, noHints, hintOpen, t ) => {
 * @param {string} size - button size
 * @param {Object} style - CSS inline styles
 */
-const HintButton = ({ disabled, hints, onClick, onFinished, placement, size, style, id, t }) => {
+const HintButton = ({ disabled, hints, onClick, onFinished, placement, size, style, id }) => {
 	const [ hintOpen, setHintOpen ] = useState( false );
 	const [ currentHint, setCurrentHint ] = useState( 0 );
+	const { t } = useTranslation( 'HintButton' );
 	const label = getHintLabel( currentHint, hints.length, hintOpen, t );
+	const handleClick = useCallback( ( callback ) => {
+		debug( 'Clicked on a hint button...' );
+		if ( currentHint < hints.length && hintOpen === false ) {
+			onClick( currentHint );
+			setCurrentHint( currentHint + 1 );
+			setHintOpen( true );
+			if ( currentHint + 1 === hints.length ) {
+				onFinished();
+			}
+			return callback( false );
+		}
+		setHintOpen( false );
+		return callback( hintOpen );
+	}, [ currentHint, hints, hintOpen, onClick, onFinished ] );
 	return (
 		<OverlayTrigger
 			trigger="click"
@@ -103,20 +118,7 @@ const HintButton = ({ disabled, hints, onClick, onFinished, placement, size, sty
 				className="hint-button"
 				variant="success"
 				size={size}
-				onClick={( callback ) => {
-					debug( 'Clicked on a hint button...' );
-					if ( currentHint < hints.length && hintOpen === false ) {
-						onClick( currentHint );
-						setCurrentHint( currentHint + 1 );
-						setHintOpen( true );
-						if ( currentHint + 1 === hints.length ) {
-							onFinished();
-						}
-						return callback( false );
-					}
-					setHintOpen( false );
-					return callback( hintOpen );
-				}}
+				onClick={handleClick}
 				disabled={disabled}
 				autoActivate={false}
 				style={style}
@@ -152,4 +154,4 @@ HintButton.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'HintButton' )( HintButton );
+export default HintButton;

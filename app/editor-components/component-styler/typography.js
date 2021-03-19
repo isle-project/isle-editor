@@ -28,6 +28,7 @@ const SingleValue = ( props ) => {
 		</components.SingleValue>
 	);
 };
+const SELECT_COMPONENTS = { Option, SingleValue };
 
 
 // MAIN //
@@ -104,7 +105,7 @@ const Typography = ({ active, style, onChange, t }) => {
 						clearable
 						options={FONTS}
 						defaultValue={style.fontFamily}
-						components={{ Option, SingleValue }}
+						components={SELECT_COMPONENTS}
 						placeholder={t('inherit')}
 						onChange={handleFontFamilyChange}
 					/>

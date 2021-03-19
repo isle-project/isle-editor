@@ -26,7 +26,7 @@ const ISLE_EXAMPLE_SERVER = 'https://isle.stat.cmu.edu';
 // FUNCTIONS //
 
 const ErrorCard = ({ error, server, t }) => {
-	if (!error) {
+	if ( !error ) {
 		return null;
 	}
 	return (

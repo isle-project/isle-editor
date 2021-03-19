@@ -553,16 +553,16 @@ class StatusBar extends Component {
 						null
 					}
 				</div>
-				<Login show={this.state.visibleLogin} onClose={this.closeLogin} />
-				<Signup show={this.state.visibleSignup} onClose={this.closeSignup} />
-				<ConfirmModal
+				{this.state.visibleLogin ? <Login show={this.state.visibleLogin} onClose={this.closeLogin} /> : null}
+				{this.state.visibleSignup ? <Signup show={this.state.visibleSignup} onClose={this.closeSignup} /> : null}
+				{this.state.visibleLogout ? <ConfirmModal
 					show={this.state.visibleLogout}
 					close={this.closeLogout}
 					title={t( 'logout')}
 					message={t( 'confirm-logout' )}
 					onConfirm={this.handleLogout}
 					t={t}
-				/>
+				/> : null}
 				<KeyControls
 					actions={{
 						'F7': this.toggleBarVisibility
