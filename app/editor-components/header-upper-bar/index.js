@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useMemo } from 'react';
+import React, { Fragment, useCallback, useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ipcRenderer } from 'electron';
@@ -119,4 +119,4 @@ HeaderUpperBar.propTypes = {
 
 // EXPORTS //
 
-export default HeaderUpperBar;
+export default memo( HeaderUpperBar );

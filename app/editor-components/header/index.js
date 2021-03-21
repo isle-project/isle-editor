@@ -1,9 +1,8 @@
 // MODULES //
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
-import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -20,7 +19,6 @@ import './header.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle:header' );
 const F5 = '(F5)';
 const MARGIN_TOP_RIGHT = { marginTop: 3, marginRight: 5 };
 
@@ -28,9 +26,8 @@ const MARGIN_TOP_RIGHT = { marginTop: 3, marginRight: 5 };
 // MAIN //
 
 const Header = ( props ) => {
-	const { autoUpdatePreview, filePath, t, showLineButtons, triggerUpdate, onSelectMode, onSelectRole } = props;
-	debug( 'Rendering editor header...' );
-
+	const { autoUpdatePreview, filePath, showLineButtons, triggerUpdate, onSelectMode, onSelectRole } = props;
+	const { t } = useTranslation( 'Editor' );
 	const createOverlay = useCallback( ({ outOfBoundaries, scheduleUpdate, show, arrowProps, ...props }) => {
 		return ( <div
 			{...props}
@@ -223,4 +220,4 @@ Header.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Editor' )( Header );
+export default memo( Header );

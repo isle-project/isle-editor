@@ -34,6 +34,95 @@ const DEFAULT_CUSTOM_FEEDBACK = {
 const uid = generateUID( 'feedback' );
 
 
+// FUNCTIONS //
+
+const FeedbackModal = ({ closeModal, id, session, t }) => {
+	const [ customFeedback, setCustomFeedback ] = useState( DEFAULT_CUSTOM_FEEDBACK );
+
+	const submitFeedback = useCallback( () => {
+		session.log({
+			id: id,
+			type: USER_FEEDBACK_FORM,
+			value: customFeedback
+		}, 'members' );
+
+		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
+		closeModal();
+		session.addNotification({
+			title: t( 'thank-you' ),
+			message: t( 'submit-custom-message' ),
+			level: 'info',
+			position: 'tr'
+		});
+	}, [ closeModal, customFeedback, id, session, t ] );
+
+	return (
+		<Modal
+			show={true}
+			onHide={closeModal}
+			dialogClassName="modal-50w"
+			title={t('feedback')}
+			backdrop={true}
+		>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-lg">{t('feedback')}</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<FormGroup>
+					<CheckboxInput
+						onChange={() => {
+							setCustomFeedback({
+								...customFeedback,
+								noUnderstanding: !customFeedback.noUnderstanding
+							});
+						}}
+						legend={t('no-understanding')}
+					/>
+					<CheckboxInput
+						onChange={() => {
+							setCustomFeedback({
+								...customFeedback,
+								needsExplanation: !customFeedback.needsExplanation
+							});
+						}}
+						legend={t('needs-detailed-explanation')}
+					/>
+					<CheckboxInput
+						onChange={() => {
+							setCustomFeedback({
+								...customFeedback,
+								noLogic: !customFeedback.noLogic
+							});
+						}}
+						legend={t('cannot-follow')}
+					/>
+				</FormGroup>
+				<TextArea
+					onChange={( comments ) => {
+						setCustomFeedback({
+							...customFeedback,
+							comments
+						});
+					}}
+					legend={t('textarea-legend')}
+					text={t('enter-text')}
+					resizable="none"
+					rows={6}
+				/>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button onClick={closeModal} >
+					{t('cancel')}
+				</Button>
+				<Button variant="primary" onClick={submitFeedback}>
+					{t('submit')}
+				</Button>
+			</Modal.Footer>
+		</Modal>
+	);
+};
+
+
 // MAIN //
 
 /**
@@ -53,7 +142,6 @@ const FeedbackButtons = ( props ) => {
 	const { t } = useTranslation( 'Feedback' );
 	const [ submittedBinary, setSubmittedBinary ] = useState( false );
 	const [ showModal, setShowModal ] = useState( false );
-	const [ customFeedback, setCustomFeedback ] = useState( DEFAULT_CUSTOM_FEEDBACK );
 
 	const submitConfused = useCallback( () => {
 		session.log({
@@ -83,26 +171,9 @@ const FeedbackButtons = ( props ) => {
 		});
 		setSubmittedBinary( true );
 	}, [ session, t ] );
-	const submitFeedback = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: USER_FEEDBACK_FORM,
-			value: customFeedback
-		}, 'members' );
-
-		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
-		setShowModal( false );
-		session.addNotification({
-			title: t( 'thank-you' ),
-			message: t( 'submit-custom-message' ),
-			level: 'info',
-			position: 'tr'
-		});
-	}, [ customFeedback, session, t ] );
 
 	const closeModal = () => {
 		setShowModal( false );
-		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
 	};
 	const openModal = () => {
 		setShowModal( true );
@@ -156,69 +227,9 @@ const FeedbackButtons = ( props ) => {
 					noSessionRegistration
 				/>
 			</ButtonGroup>
-			<Modal
-				show={showModal}
-				onHide={closeModal}
-				dialogClassName="modal-50w"
-				title={t('feedback')}
-				backdrop={true}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title id="contained-modal-title-lg">{t('feedback')}</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<FormGroup>
-						<CheckboxInput
-							onChange={() => {
-								setCustomFeedback({
-									...customFeedback,
-									noUnderstanding: !customFeedback.noUnderstanding
-								});
-							}}
-							legend={t('no-understanding')}
-						/>
-						<CheckboxInput
-							onChange={() => {
-								setCustomFeedback({
-									...customFeedback,
-									needsExplanation: !customFeedback.needsExplanation
-								});
-							}}
-							legend={t('needs-detailed-explanation')}
-						/>
-						<CheckboxInput
-							onChange={() => {
-								setCustomFeedback({
-									...customFeedback,
-									noLogic: !customFeedback.noLogic
-								});
-							}}
-							legend={t('cannot-follow')}
-						/>
-					</FormGroup>
-					<TextArea
-						onChange={( comments ) => {
-							setCustomFeedback({
-								...customFeedback,
-								comments
-							});
-						}}
-						legend={t('textarea-legend')}
-						text={t('enter-text')}
-						resizable="none"
-						rows={6}
-					/>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button onClick={closeModal} >
-						{t('cancel')}
-					</Button>
-					<Button variant="primary" onClick={submitFeedback}>
-						{t('submit')}
-					</Button>
-				</Modal.Footer>
-			</Modal>
-			<div id="response"></div>
+			{ showModal ? <FeedbackModal
+				closeModal={closeModal} id={id.current} session={session} t={t}
+			/> : null }
 		</div>
 	);
 };
