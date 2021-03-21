@@ -2,7 +2,6 @@
 
 import { Menu, MenuItem } from 'electron';
 import { i18n } from './../../@isle-project/locales/editor.main';
-import objectKeys from '@stdlib/utils/keys';
 import * as actions from './actions.js';
 import config from './../store/main.js';
 import electronStore from './../store/electron.js';
@@ -78,7 +77,7 @@ function addCustomTemplates() {
 			type: 'separator'
 		}) );
 		const templates = config.get( 'templates' ) || {};
-		const keys = objectKeys( templates );
+		const keys = Object.keys( templates );
 		for ( let i = 0; i < keys.length; i++ ) {
 			const name = keys[ i ];
 			const item = new MenuItem({

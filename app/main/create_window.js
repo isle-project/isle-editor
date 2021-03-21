@@ -3,7 +3,7 @@
 import path from 'path';
 import fs from 'fs';
 import logger from 'debug';
-import { shell } from 'electron';
+import { shell, screen } from 'electron';
 import windowStateKeeper from 'electron-window-state';
 import window from './window_manager.js';
 
@@ -26,9 +26,10 @@ function openExternal( e, url ) {
 function createWindow({ filePath, callback, fromTemplate } = {}) {
 	/* eslint-disable no-process-env */
 
+	const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 	const mainWindowState = windowStateKeeper({
-		defaultWidth: 1000,
-		defaultHeight: 800
+		defaultWidth: width,
+		defaultHeight: height
 	});
 
 	const mainWindow = window.createWindow({
@@ -47,10 +48,11 @@ function createWindow({ filePath, callback, fromTemplate } = {}) {
 	});
 
 	let indexPath;
-	if ( process.env.NODE_ENV === 'development' ) {
-		indexPath = path.resolve( __dirname, '..', 'app.html' );
-	} else if ( process.env.NODE_ENV === 'production' ) {
+	if ( process.env.NODE_ENV === 'production' ) {
 		indexPath = path.resolve( __dirname, 'app', 'app.html' );
+	}
+	else if ( process.env.NODE_ENV === 'development' ) {
+		indexPath = path.resolve( __dirname, '..', 'app.html' );
 	}
 	mainWindow.showUrl( indexPath, () => {
 		if ( filePath ) {
