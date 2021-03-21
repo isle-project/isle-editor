@@ -23,5 +23,10 @@ fs.writeFileSync( readmePath, out );
 const installGuidePath = path.join( __dirname, '..', 'docusaurus', 'website', 'docs', 'overview', 'install.md' );
 const installGuide = fs.readFileSync( installGuidePath, 'utf8' );
 out = installGuide.replace( RE_VERSION, pkg.version );
-
 fs.writeFileSync( installGuidePath, out );
+
+const splashscreenPath = path.join( __dirname, '..', 'app', 'splashscreen.html' );
+const splashscreen = fs.readFileSync( splashscreenPath, 'utf8' );
+out = splashscreen.replace( RE_VERSION, pkg.version );
+fs.writeFileSync( splashscreenPath, out );
+
