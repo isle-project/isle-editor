@@ -17,16 +17,14 @@ const _windows = {};
 
 function _createWindow( options ) {
 	const opts = {
-		... {
-			show: false,
-			webPreferences: {
-				nodeIntegration: true,
-				webviewTag: true,
-				enableRemoteModule: true,
-				worldSafeExecuteJavaScript: true,
-				allowRunningInsecureContent: true,
-				contextIsolation: false
-			}
+		show: false,
+		webPreferences: {
+			nodeIntegration: true,
+			webviewTag: true,
+			enableRemoteModule: true,
+			worldSafeExecuteJavaScript: true,
+			allowRunningInsecureContent: true,
+			contextIsolation: false
 		},
 		...options
 	};
