@@ -785,7 +785,8 @@ class Sketchpad extends Component {
 			debug( `Found background for page ${pageNumber}...` );
 			let ratio;
 			const vp1 = page.getViewport({ scale: 1.0 });
-			if ( this.state.fill === 'vertical' ) {
+			const fill = this.state.fill || ( vp1.width > vp1.height ? 'vertical' : 'horizontal' );
+			if ( fill === 'vertical' ) {
 				ratio = this.state.canvasHeight / vp1.height;
 			} else {
 				ratio = this.state.canvasWidth / vp1.width;
@@ -795,7 +796,7 @@ class Sketchpad extends Component {
 			while ( textLayer.firstChild ) {
 				textLayer.removeChild( textLayer.firstChild );
 			}
-			if ( this.state.fill === 'vertical' ) {
+			if ( fill === 'vertical' ) {
 				this.canvas.height = viewport.height * DPR;
 				this.canvas.width = viewport.width * DPR;
 				this.canvas.style.left = `${( this.state.canvasWidth - viewport.width ) / 2.0}px`;
@@ -2709,8 +2710,6 @@ class Sketchpad extends Component {
 			width={this.state.canvasWidth * DPR}
 			height={this.state.canvasHeight * DPR}
 			style={{
-				position: 'absolute',
-				margin: 'auto',
 				cursor: cursor,
 				width: this.state.canvasWidth,
 				height: this.state.canvasHeight,
@@ -2772,31 +2771,31 @@ class Sketchpad extends Component {
 						toOriginalPage={this.toOriginalPage}
 						key="overlays"
 					/>
-					<ContextMenuTrigger id="sketchpadWindow" >
-						<div className="canvas-wrapper"
-							style={{
-								width: this.state.canvasWidth,
-								height: this.state.canvasHeight
-							}}
-							key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
-							ref={( div ) => { this.canvasWrapper = div; }}
-						>
+					<div className="canvas-wrapper"
+						style={{
+							width: this.state.canvasWidth,
+							height: this.state.canvasHeight,
+						}}
+						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
+						ref={( div ) => { this.canvasWrapper = div; }}
+					>
+						<ContextMenuTrigger id="sketchpadWindow" >
 							{canvas}
-							{mangnifyingGlass}
-							<div
-								className="textLayer"
-								ref={( div ) => { this.textLayer = div; }}
-								style={{
-									pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'auto'
-								}}
-								{...eventListeners}
-							/>
-							<div
-								ref={(div) => { this.pointer = div; }}
-								className="sketch-pointer"
-							/>
-						</div>
-					</ContextMenuTrigger>
+						</ContextMenuTrigger>
+						{mangnifyingGlass}
+						<div
+							className="textLayer"
+							ref={( div ) => { this.textLayer = div; }}
+							style={{
+								pointerEvents: ( this.state.mode !== 'none' ) ? 'none' : 'auto'
+							}}
+							{...eventListeners}
+						/>
+						<div
+							ref={(div) => { this.pointer = div; }}
+							className="sketch-pointer"
+						/>
+					</div>
 					<input type="text" className="sketch-text-input" style={{
 						display: this.state.mode === 'text' ? 'inline-block' : 'none',
 						fontSize: this.state.fontSize,
@@ -2894,7 +2893,7 @@ Sketchpad.defaultProps = {
 	canvasWidth: 1200,
 	canvasHeight: 700,
 	fullscreen: false,
-	fill: 'vertical',
+	fill: null,
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,

@@ -18,8 +18,9 @@
 }
 
 .sketch-canvas {
-	position: fixed;
 	overflow: hidden;
+	position: absolute;
+	margin: auto;
 }
 
 .sketch-button-group {
