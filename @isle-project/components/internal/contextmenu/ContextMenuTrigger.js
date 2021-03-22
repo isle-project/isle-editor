@@ -90,8 +90,10 @@ class ContextMenuTrigger extends Component {
 	}
 
 	handleMouseClick = (event) => {
-		if (event.button === this.props.mouseButton) {
+		if ( event.button === this.props.mouseButton ) {
 			this.handleContextClick(event);
+		} else {
+			hideMenu();
 		}
 		callIfExists(this.props.attributes.onClick, event);
 	}
