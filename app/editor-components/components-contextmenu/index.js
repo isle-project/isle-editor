@@ -50,6 +50,7 @@ class EditorContextMenu extends Component {
 			this.props.onContextMenuClick !== nextProps.onContextMenuClick ||
 			this.props.onTranslateSelection !== nextProps.onTranslateSelection ||
 			this.state.searchValue !== nextState.searchValue ||
+			this.state.menuContent !== nextState.menuContent ||
 			this.state.visible !== nextState.visible
 		) {
 			return true;
@@ -125,17 +126,8 @@ class EditorContextMenu extends Component {
 		this.props.onHide();
 	}
 
-	handleContextMenuClick = ( _, data ) => {
-		this.props.onContextMenuClick( this.customClick, data );
-		this.customClick = false;
-	}
-
-	handleClickInWrapper = ( event ) => {
-		if ( event.target.nodeName === 'BUTTON' ) {
-			debug( 'Clicked top open configuration menu...' );
-			this.customClick = true;
-			// Propagate to `handleContextMenuClick`...
-		}
+	handleContextMenuClick = ( event, data ) => {
+		this.props.onContextMenuClick( event.target.nodeName === 'BUTTON', data );
 	}
 
 	handleTranslateSelectionClick = ( _, data ) => {
@@ -143,19 +135,24 @@ class EditorContextMenu extends Component {
 	}
 
 	handleSearchValueChange = ( event ) => {
+		event.stopPropagation();
 		this.setState({
 			searchValue: event.target.value
+		}, () => {
+			this.buildMenu( true );
 		});
 	}
 
 	clearSearchValue = () => {
 		this.setState({
 			searchValue: ''
+		}, () => {
+			this.buildMenu( true );
 		});
 	}
 
-	buildMenuUponShow = () => {
-		if ( this.state.menuContent ) {
+	buildMenu = ( forceUpdate ) => {
+		if ( this.state.menuContent && !forceUpdate ) {
 			return this.setState({
 				visible: true
 			});
@@ -194,7 +191,7 @@ class EditorContextMenu extends Component {
 		const menuContent = (
 			<Fragment>
 				<span style={{ marginLeft: 6 }} >{t('select-component-to-insert')}</span>
-				<div style={searchStyle} onClick={this.handleClickInWrapper} >
+				<div style={searchStyle} >
 					<div className="react-contextmenu-item react-contextmenu-item--divider"></div>
 					{main}
 					{basic}
@@ -250,7 +247,7 @@ class EditorContextMenu extends Component {
 				<ContextMenu
 					className="components-contextmenu" id={this.props.id}
 					onHide={this.handleHide} disableIfShiftIsPressed
-					onShow={this.buildMenuUponShow}
+					onShow={this.buildMenu}
 				>
 					{this.state.visible ? this.state.menuContent : []}
 				</ContextMenu>

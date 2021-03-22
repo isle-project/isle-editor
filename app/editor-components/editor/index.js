@@ -1201,7 +1201,7 @@ class Editor extends Component {
 	}
 
 	handleContextMenuClick = ( customClick, data ) => {
-		debug( 'Handle click to open context menu... ' );
+		debug( `Handle click to open context menu... (custom click: ${customClick})` );
 		if ( data.lineNumber ) {
 			debug( 'Set position to line '+data.lineNumber+'...' );
 			this.editor.setPosition({ lineNumber: data.lineNumber, column: Infinity });
