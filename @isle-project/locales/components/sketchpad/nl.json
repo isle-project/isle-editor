@@ -55,6 +55,8 @@
 	"show": "Toon",
 	"show-all-annotations": "Toon alle aantekeningen",
 	"show-only-own-annotations": "Toon alleen eigen aantekeningen",
+	"start-tutorial": "Start schetsblok tutorial",
+	"stop-tutorial": "Stop schetsblok tutorial",
 	"text-mode": "Tekstmodus",
 	"undo": "Maak  ongedaan",
 	"upload-email": "Beste {{name}}, je notities zijn succesvol geüpload en zijn nu beschikbaar op",

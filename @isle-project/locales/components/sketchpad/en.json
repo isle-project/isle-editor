@@ -55,6 +55,8 @@
 	"show": "Show",
 	"show-all-annotations": "Show all annotations",
 	"show-only-own-annotations": "Show only show own annotations",
+	"start-tutorial": "Start sketchpad tutorial",
+	"stop-tutorial": "Stop sketchpad tutorial",
 	"text-mode": "Text Mode",
 	"undo": "Undo",
 	"upload-email": "Dear {{name}}, your notes have been successfully uploaded and are now available at ",

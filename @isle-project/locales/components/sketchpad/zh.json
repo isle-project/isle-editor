@@ -55,6 +55,8 @@
 	"show": "显示",
 	"show-all-annotations": "显示所有注释",
 	"show-only-own-annotations": "只显示自己的注释",
+	"start-tutorial": "开始sketchpad教程",
+	"stop-tutorial": "停止sketchpad教程",
 	"text-mode": "文本模式",
 	"undo": "撤销",
 	"upload-email": "亲爱的{{name}}，您的笔记已成功上传，现可在以下网址查看",

@@ -55,6 +55,8 @@
 	"show": "Mostra",
 	"show-all-annotations": "Mostra tutte le annotazioni",
 	"show-only-own-annotations": "Mostra solo le proprie annotazioni",
+	"start-tutorial": "Iniziare il tutorial di Sketchpad",
+	"stop-tutorial": "Stop tutorial sketchpad",
 	"text-mode": "Modalità testo",
 	"undo": "Annulla",
 	"upload-email": "Caro {{name}}, le tue note sono state caricate con successo e sono ora disponibili all'indirizzo",

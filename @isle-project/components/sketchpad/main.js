@@ -193,7 +193,7 @@ const Overlays = ( props ) => {
 * @property {Object} nodes - components to be rendered on top of specified slides; `keys` should correspond to page numbers, `values` to the components
 * @property {number} noPages - initial number of pages
 * @property {string} pdf - link to PDF file for baked-in page backgrounds
-* @property {boolean} showTutorial - show a tutorial for the sketchpad
+* @property {boolean} showTutorial - show tutorial for the sketchpad on startup
 * @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
 * @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
 * @property {strings} voiceID - voice control identifier
@@ -247,6 +247,7 @@ class Sketchpad extends Component {
 			receiveFrom: {},
 			showDeletePageModal: false,
 			showResetModal: false,
+			showTutorial: props.showTutorial,
 			showFeedbackModal: false,
 			showSaveModal: false,
 			swiping: true,
@@ -2309,6 +2310,12 @@ class Sketchpad extends Component {
 		});
 	}
 
+	toggleTutorial = () => {
+		this.setState({
+			showTutorial: !this.state.showTutorial
+		});
+	}
+
 	renderRemoveButtons() {
 		if (
 			this.state.hideInputButtons ||
@@ -2762,6 +2769,7 @@ class Sketchpad extends Component {
 						{this.renderRemoveButtons()}
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
+						<TooltipButton tooltip={this.state.showTutorial ? this.props.t('stop-tutorial') : this.props.t('start-tutorial')} onClick={this.toggleTutorial} glyph="question" size="sm" />
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{this.renderFeedbackButtons()}
@@ -2774,7 +2782,7 @@ class Sketchpad extends Component {
 					<div className="canvas-wrapper"
 						style={{
 							width: this.state.canvasWidth,
-							height: this.state.canvasHeight,
+							height: this.state.canvasHeight
 						}}
 						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
 						ref={( div ) => { this.canvasWrapper = div; }}
@@ -2806,31 +2814,31 @@ class Sketchpad extends Component {
 						this.textInput = div;
 					}} />
 					{this.renderUploadModal()}
-					<NavigationModal
+					{this.state.showNavigationModal ? <NavigationModal
 						show={this.state.showNavigationModal}
 						onSelect={this.gotoPage}
 						noPages={this.state.noPages}
 						onHide={this.toggleNavigationModal}
 						t={this.props.t}
-					/>
+					/> : null}
 					{this.renderProgressModal()}
-					<ResetModal
+					{this.state.showResetModal ? <ResetModal
 						show={this.state.showResetModal}
 						onSubmit={this.clearAll}
 						onHide={() => {
 							this.setState({ showResetModal: false });
 						}}
 						t={this.props.t}
-					/>
-					<DeletePageModal
+					/> : null}
+					{this.state.showDeletePageModal ? <DeletePageModal
 						show={this.state.showDeletePageModal}
 						onSubmit={this.clear}
 						onHide={() => {
 							this.setState({ showDeletePageModal: false });
 						}}
 						t={this.props.t}
-					/>
-					<SaveModal
+					/> : null }
+					{this.state.showSaveModal ? <SaveModal
 						show={this.state.showSaveModal}
 						saveAsPDF={this.saveAsPDF}
 						saveAsPNG={this.saveAsPNG}
@@ -2839,8 +2847,8 @@ class Sketchpad extends Component {
 						session={this.context}
 						id={this.id}
 						t={this.props.t}
-					/>
-					{ this.state.showFeedbackModal ? <FeedbackModal
+					/> : null}
+					{this.state.showFeedbackModal ? <FeedbackModal
 						session={this.context}
 						show={this.state.showFeedbackModal}
 						onHide={() => {
@@ -2853,8 +2861,8 @@ class Sketchpad extends Component {
 						toOriginalPage={this.toOriginalPage}
 						gotoPage={this.gotoPage}
 						t={this.props.t}
-					/> : null }
-					{ this.props.showTutorial ?
+					/> : null}
+					{ this.state.showTutorial ?
 						<Joyride
 							steps={guide}
 							showProgress

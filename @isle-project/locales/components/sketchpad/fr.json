@@ -55,6 +55,8 @@
 	"show": "Voir",
 	"show-all-annotations": "Afficher toutes les annotations",
 	"show-only-own-annotations": "Afficher uniquement les propres annotations",
+	"start-tutorial": "Démarrer le tutoriel sur le sketchpad",
+	"stop-tutorial": "Tutoriel sur le carnet de croquis d'arrêt",
 	"text-mode": "Mode texte",
 	"undo": "Annuler",
 	"upload-email": "Cher {{name}}, vos notes ont été téléchargées avec succès et sont maintenant disponibles à",

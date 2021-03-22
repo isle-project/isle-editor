@@ -55,6 +55,8 @@
 	"show": "Anzeigen",
 	"show-all-annotations": "Alle Anmerkungen anzeigen",
 	"show-only-own-annotations": "Nur eigene Anmerkungen anzeigen",
+	"start-tutorial": "Skizzenblock-Tutorial starten",
+	"stop-tutorial": "Skizzenblock-Tutorial anhalten",
 	"text-mode": "Text-Modus",
 	"undo": "Rückgängig machen",
 	"upload-email": "Lieber {{name}}, Deine Notizen wurden erfolgreich hochgeladen und sind nun hier verfügbar: ",
