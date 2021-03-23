@@ -21,6 +21,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
 import isTouchDevice from 'is-touch-device';
+import isMobile from 'is-mobile';
 import Checkbox from '@isle-project/components/input/checkbox';
 import Tooltip from '@isle-project/components/tooltip';
 import FeedbackButtons from '@isle-project/components/feedback';
@@ -98,6 +99,9 @@ const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
 }
+const IS_MOBILE = isMobile({
+	tablet: true
+});
 
 
 // FUNCTIONS //
@@ -2787,7 +2791,7 @@ class Sketchpad extends Component {
 						key={`${this.state.canvasWidth}-${this.state.canvasHeight}`}
 						ref={( div ) => { this.canvasWrapper = div; }}
 					>
-						<ContextMenuTrigger id="sketchpadWindow" >
+						<ContextMenuTrigger id="sketchpadWindow" disabled={IS_MOBILE} >
 							{canvas}
 						</ContextMenuTrigger>
 						{mangnifyingGlass}
