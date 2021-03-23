@@ -26,6 +26,7 @@ import Playground from 'editor-components/playground';
 import Provider from '@isle-project/components/internal/provider';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isPlainObject from '@stdlib/assert/is-plain-object';
 import typeOf from '@stdlib/utils/type-of';
 import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
@@ -134,8 +135,8 @@ function generateReplacement( value, type ) {
 }
 
 function generateDefaultString( defaultValue, isFunc ) {
-	if ( isFunc ) {
-		return defaultValue;
+	if ( isFunc && !isPlainObject( defaultValue ) ) {
+		return String( defaultValue );
 	}
 	if ( defaultValue === null || defaultValue === void 0 ) {
 		return 'none';
@@ -699,7 +700,7 @@ class ComponentConfigurator extends Component {
 					case 'function':
 					default:
 						input = <TextArea
-							value={propValue}
+							value={String( propValue )}
 							rows={3}
 							onChange={this.replaceObjectFactory(name)}
 							placeholder={`Enter ${name}...`}
