@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
 import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
@@ -20,7 +19,6 @@ import './contextmenu.css';
 
 // VARIABLES //
 
-const debug = logger( 'isle:editor:context-menu' );
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 const RE_WHITESPACE = require( '@stdlib/regexp/whitespace' );
