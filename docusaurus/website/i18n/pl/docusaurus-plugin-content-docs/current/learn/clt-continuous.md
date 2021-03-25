@@ -13,7 +13,7 @@ Komponent edukacyjny ilustrujący Twierdzenie Centralnej Granicy (CLT) dla wybra
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: tablica liczb lub pojedyncza liczba oznaczająca liczebność próby, którą można wylosować. Default: `25`.
 * __hideFormulas__ | `boolean`: kontroluje, czy należy ukrywać formuły w tekście składnika. Default: `false`.
 
 

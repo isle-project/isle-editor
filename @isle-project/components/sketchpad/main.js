@@ -2905,7 +2905,7 @@ Sketchpad.defaultProps = {
 	canvasWidth: 1200,
 	canvasHeight: 700,
 	fullscreen: false,
-	fill: null,
+	fill: 'vertical',
 	disabled: false,
 	fontFamily: 'Arial',
 	fontSize: 24,

@@ -20,14 +20,14 @@ sidebar_label: Sketchpad
 * __canvasWidth__ | `number`: 画布元素的宽度(单位：px). Default: `1200`.
 * __canvasHeight__ | `number`: 画布元素的高度(单位：px). Default: `700`.
 * __fullscreen__ | `boolean`: 控制是否根据浏览器窗口的宽度和高度自动调整画布的大小。. Default: `false`.
-* __fill__ | `string`: 如果 "水平"，则在绘制PDF时填充所有可用的水平空间；如果 "垂直"，则所有垂直空间用于防止Y轴溢出。. Default: `none`.
+* __fill__ | `string`: 如果 "水平"，则在绘制PDF时填充所有可用的水平空间；如果 "垂直"，则所有垂直空间用于防止Y轴溢出。. Default: `'vertical'`.
 * __disabled__ | `boolean`: 是否将该组件设为只读，并禁止在草图板上绘图。. Default: `false`.
 * __fontFamily__ | `string`: 字库. Default: `'Arial'`.
 * __fontSize__ | `number`: 字号. Default: `24`.
 * __nodes__ | `object`: 要在指定幻灯片上呈现的组件；`键`应对应页码，`值`对应组件。. Default: `{}`.
 * __noPages__ | `number`: 初始页数. Default: `1`.
 * __pdf__ | `string`: 链接到PDF文件，用于制作页面背景。. Default: `none`.
-* __showTutorial__ | `boolean`: undefined. Default: `false`.
+* __showTutorial__ | `boolean`: 启动时显示sketchpad教程. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: 控制是否在工具栏宽度不够时开始隐藏按钮（否则将开始新的一行）。. Default: `false`.
 * __transmitOwner__ | `boolean`: 业主的行为是否应该实时传送给其他用户？. Default: `true`.
 * __groupMode__ | `boolean`: 控制是否将用户的所有行为传送给其他所有人. Default: `false`.

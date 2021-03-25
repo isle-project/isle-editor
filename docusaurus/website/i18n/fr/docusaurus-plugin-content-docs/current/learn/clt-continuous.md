@@ -13,7 +13,7 @@ Une composante d'apprentissage illustrant le Théorème des limites centrales (C
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: tableau de nombres ou un seul nombre indiquant les tailles d'échantillon qui peuvent être tirées.. Default: `25`.
 * __hideFormulas__ | `boolean`: contrôle si les formules doivent être cachées dans le texte du composant. Default: `false`.
 
 

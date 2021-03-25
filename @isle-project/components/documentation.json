@@ -6877,7 +6877,7 @@
 				"name": "fill",
 				"type": "string",
 				"description": "Sketchpad-prop-fill",
-				"defaultValue": null
+				"defaultValue": "vertical"
 			},
 			{
 				"name": "disabled",

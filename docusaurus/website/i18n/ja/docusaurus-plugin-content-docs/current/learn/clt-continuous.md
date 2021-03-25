@@ -13,7 +13,7 @@ sidebar_label: Continuous CLT
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: 抽出可能なサンプルサイズを示す数値の配列または単一の数値. Default: `25`.
 * __hideFormulas__ | `boolean`: コンポーネントのテキストで数式を隠すかどうかを制御します。. Default: `false`.
 
 

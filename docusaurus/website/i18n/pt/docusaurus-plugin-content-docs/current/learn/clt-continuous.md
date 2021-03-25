@@ -13,7 +13,7 @@ Um componente de aprendizagem que ilustra o Teorema do Limite Central (CLT) para
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: matriz de números ou um único número indicando os tamanhos de amostra que podem ser sorteados. Default: `25`.
 * __hideFormulas__ | `boolean`: controla se as fórmulas devem ser ocultadas no texto componente. Default: `false`.
 
 

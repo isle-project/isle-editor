@@ -13,7 +13,7 @@ Een leercomponent die de Centrale Limietstheorie (CLT) illustreert voor een geko
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: array van getallen of een enkel getal dat de steekproefgroottes aangeeft die kunnen worden getrokken. Default: `25`.
 * __hideFormulas__ | `boolean`: controleert of de formules in de componententekst moeten worden verborgen. Default: `false`.
 
 

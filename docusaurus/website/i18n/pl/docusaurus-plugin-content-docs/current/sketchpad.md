@@ -20,14 +20,14 @@ Szkicownik do robienia notatek na slajdach wykładowych lub pustych stronach.
 * __canvasWidth__ | `number`: szerokość elementu płótna (w px). Default: `1200`.
 * __canvasHeight__ | `number`: wysokość elementu płótna (w px). Default: `700`.
 * __fullscreen__ | `boolean`: kontroluje, czy płótno ma być automatycznie zmieniane na szerokość i wysokość okna przeglądarki. Default: `false`.
-* __fill__ | `string`: jeśli `poziome`, wypełnij całą dostępną przestrzeń poziomą podczas rysowania pliku PDF; jeśli `pionowe`, cała przestrzeń pionowa jest używana, aby zapobiec przelewaniu się osi y. Default: `none`.
+* __fill__ | `string`: jeśli `poziome`, wypełnij całą dostępną przestrzeń poziomą podczas rysowania pliku PDF; jeśli `pionowe`, cała przestrzeń pionowa jest używana, aby zapobiec przelewaniu się osi y. Default: `'vertical'`.
 * __disabled__ | `boolean`: czy zrobić element tylko do odczytu i zabronić rysowania na szkicowniku. Default: `false`.
 * __fontFamily__ | `string`: rodzina czcionek. Default: `'Arial'`.
 * __fontSize__ | `number`: rozmiar czcionki. Default: `24`.
 * __nodes__ | `object`: komponenty, które mają być renderowane na określonych slajdach; `klucze` powinny odpowiadać numerom stron, `wartościom` komponentów. Default: `{}`.
 * __noPages__ | `number`: początkowa liczba stron. Default: `1`.
 * __pdf__ | `string`: łącze do pliku PDF dla spieczonych teł strony. Default: `none`.
-* __showTutorial__ | `boolean`: undefined. Default: `false`.
+* __showTutorial__ | `boolean`: pokaż samouczek dla szkicownika przy uruchamianiu. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: kontroluje, czy należy zacząć ukrywać przyciski, gdy szerokość paska narzędzi nie jest wystarczająca (w przeciwnym razie zostanie uruchomiona nowa linia). Default: `false`.
 * __transmitOwner__ | `boolean`: czy działania właściciela powinny być przekazywane innym użytkownikom w czasie rzeczywistym. Default: `true`.
 * __groupMode__ | `boolean`: kontroluje, czy wszystkie działania użytkownika są przekazywane innym osobom. Default: `false`.

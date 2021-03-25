@@ -13,7 +13,7 @@ sidebar_label: Continuous CLT
   'exponential',
   'normal'
 ]`.
-* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
+* __samples__ | `(array<number>|number)`: 数组数字或单个数字，表示可以抽取的样本量。. Default: `25`.
 * __hideFormulas__ | `boolean`: 控制是否隐藏组件文本中的公式。. Default: `false`.
 
 
