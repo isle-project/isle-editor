@@ -20,14 +20,14 @@ Un carnet de croquis pour la prise de notes sur les diapositives des conférence
 * __canvasWidth__ | `number`: largeur de l'élément de la toile (en px). Default: `1200`.
 * __canvasHeight__ | `number`: hauteur de l'élément de la toile (en px). Default: `700`.
 * __fullscreen__ | `boolean`: contrôle si la toile doit être automatiquement redimensionnée à la largeur et à la hauteur de la fenêtre du navigateur. Default: `false`.
-* __fill__ | `string`: si "horizontal", remplir tout l'espace horizontal disponible lors du dessin d'un PDF ; si "vertical", tout l'espace vertical est utilisé pour éviter le débordement de l'axe des y. Default: `'vertical'`.
+* __fill__ | `string`: si "horizontal", remplir tout l'espace horizontal disponible lors du dessin d'un PDF ; si "vertical", tout l'espace vertical est utilisé pour éviter le débordement de l'axe des y. Default: `none`.
 * __disabled__ | `boolean`: l'opportunité de rendre l'élément en lecture seule et d'interdire le dessin sur le carnet de croquis. Default: `false`.
 * __fontFamily__ | `string`: famille de polices. Default: `'Arial'`.
 * __fontSize__ | `number`: taille de la police. Default: `24`.
 * __nodes__ | `object`: les composants à rendre sur les diapositives spécifiées ; les "clés" doivent correspondre aux numéros de page, les "valeurs" aux composants. Default: `{}`.
 * __noPages__ | `number`: nombre initial de pages. Default: `1`.
 * __pdf__ | `string`: lien vers le fichier PDF pour les fonds de page cuits. Default: `none`.
-* __showTutorial__ | `boolean`: montrer un tutoriel pour le carnet de croquis. Default: `false`.
+* __showTutorial__ | `boolean`: undefined. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: contrôle si les boutons doivent être masqués lorsque la largeur de la barre d'outils n'est pas suffisante (sinon, une nouvelle ligne sera lancée). Default: `false`.
 * __transmitOwner__ | `boolean`: si les actions du propriétaire doivent être transmises aux autres utilisateurs en temps réel. Default: `true`.
 * __groupMode__ | `boolean`: contrôle si toutes les actions de l'utilisateur sont transmises à tous les autres. Default: `false`.

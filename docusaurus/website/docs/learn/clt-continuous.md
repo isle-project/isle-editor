@@ -13,6 +13,7 @@ A learning component illustrating the Central Limit Theorem (CLT) for a chosen c
   'exponential',
   'normal'
 ]`.
+* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
 * __hideFormulas__ | `boolean`: controls whether to hide formulas in the component text. Default: `false`.
 
 

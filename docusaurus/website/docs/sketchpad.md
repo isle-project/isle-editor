@@ -20,7 +20,7 @@ A drawing sketchpad for note taking on lecture slides or empty pages.
 * __canvasWidth__ | `number`: width of the canvas element (in px). Default: `1200`.
 * __canvasHeight__ | `number`: height of the canvas element (in px). Default: `700`.
 * __fullscreen__ | `boolean`: controls whether to automatically resize the canvas to the width and height of the browser window. Default: `false`.
-* __fill__ | `string`: if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow. Default: `'vertical'`.
+* __fill__ | `string`: if `horizontal`, fill all available horizontal space when drawing a PDF; if `vertical`, all vertical space is used to prevent y-axis overflow. Default: `none`.
 * __disabled__ | `boolean`: whether to make the component read-only and forbid drawing on the sketchpad. Default: `false`.
 * __fontFamily__ | `string`: font family. Default: `'Arial'`.
 * __fontSize__ | `number`: font size. Default: `24`.

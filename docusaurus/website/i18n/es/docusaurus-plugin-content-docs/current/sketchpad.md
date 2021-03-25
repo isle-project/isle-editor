@@ -20,14 +20,14 @@ Un bloc de dibujo para tomar notas de las diapositivas de la conferencia o de la
 * __canvasWidth__ | `number`: ancho del elemento de la tela (en px). Default: `1200`.
 * __canvasHeight__ | `number`: altura del elemento de la tela (en px). Default: `700`.
 * __fullscreen__ | `boolean`: controla si se debe cambiar automáticamente el tamaño del lienzo al ancho y alto de la ventana del navegador. Default: `false`.
-* __fill__ | `string`: si es "horizontal", rellena todo el espacio horizontal disponible al dibujar un PDF; si es "vertical", todo el espacio vertical se utiliza para evitar el desbordamiento del eje Y.. Default: `'vertical'`.
+* __fill__ | `string`: si es "horizontal", rellena todo el espacio horizontal disponible al dibujar un PDF; si es "vertical", todo el espacio vertical se utiliza para evitar el desbordamiento del eje Y.. Default: `none`.
 * __disabled__ | `boolean`: si hacer el componente de sólo lectura y prohibir el dibujo en el bloc de dibujo. Default: `false`.
 * __fontFamily__ | `string`: familia de fuentes. Default: `'Arial'`.
 * __fontSize__ | `number`: El tamaño de la letra. Default: `24`.
 * __nodes__ | `object`: los componentes que deben ser mostrados en la parte superior de las diapositivas especificadas; las "teclas" deben corresponder a los números de página, los "valores" a los componentes. Default: `{}`.
 * __noPages__ | `number`: número inicial de páginas. Default: `1`.
 * __pdf__ | `string`: enlace al archivo PDF para fondos de páginas horneadas. Default: `none`.
-* __showTutorial__ | `boolean`: mostrar un tutorial para el bloc de dibujo. Default: `false`.
+* __showTutorial__ | `boolean`: undefined. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: controla si se debe empezar a ocultar los botones cuando el ancho de la barra de herramientas no es suficiente (de lo contrario, se iniciará una nueva línea). Default: `false`.
 * __transmitOwner__ | `boolean`: si las acciones de los propietarios deben ser transmitidas a otros usuarios en tiempo real. Default: `true`.
 * __groupMode__ | `boolean`: controla si todas las acciones del usuario se transmiten a todos los demás. Default: `false`.

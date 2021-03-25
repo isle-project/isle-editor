@@ -2510,6 +2510,12 @@
 				]
 			},
 			{
+				"name": "samples",
+				"type": "(array<number>|number)",
+				"description": "LearnContinuousCLT-prop-samples",
+				"defaultValue": 25
+			},
+			{
 				"name": "hideFormulas",
 				"type": "boolean",
 				"description": "LearnContinuousCLT-prop-hideFormulas",
@@ -6871,7 +6877,7 @@
 				"name": "fill",
 				"type": "string",
 				"description": "Sketchpad-prop-fill",
-				"defaultValue": "vertical"
+				"defaultValue": null
 			},
 			{
 				"name": "disabled",

@@ -20,14 +20,14 @@ Ein Zeichnungsskizzenblock für Notizen auf Vorlesungsfolien oder leeren Seiten.
 * __canvasWidth__ | `number`: Breite des Canvas-Elements (in px). Default: `1200`.
 * __canvasHeight__ | `number`: Höhe des Canvas-Elements (in px). Default: `700`.
 * __fullscreen__ | `boolean`: steuert, ob die Größe der Leinwand automatisch an die Breite und Höhe des Browserfensters angepasst werden soll. Default: `false`.
-* __fill__ | `string`: wenn `horizontal`, wird beim Zeichnen einer PDF-Datei der gesamte verfügbare horizontale Raum gefüllt; wenn `vertical`, wird der gesamte vertikale Raum verwendet, um einen Überlauf der y-Achse zu verhindern. Default: `'vertical'`.
+* __fill__ | `string`: wenn `horizontal`, wird beim Zeichnen einer PDF-Datei der gesamte verfügbare horizontale Raum gefüllt; wenn `vertical`, wird der gesamte vertikale Raum verwendet, um einen Überlauf der y-Achse zu verhindern. Default: `none`.
 * __disabled__ | `boolean`: ob die Komponente schreibgeschützt werden soll und das Zeichnen auf dem Skizzenblock verboten werden soll. Default: `false`.
 * __fontFamily__ | `string`: Schriftfamilie. Default: `'Arial'`.
 * __fontSize__ | `number`: Schriftgröße. Default: `24`.
 * __nodes__ | `object`: Komponenten, die über den angegebenen Folien gerendert werden sollen; `Schlüssel` sollte den Seitenzahlen entsprechen, `Werte` den Komponenten. Default: `{}`.
 * __noPages__ | `number`: ursprüngliche Seitenzahl. Default: `1`.
 * __pdf__ | `string`: Link zur PDF-Datei für eingebrannte Seitenhintergründe. Default: `none`.
-* __showTutorial__ | `boolean`: ein Tutorial für den Skizzenblock anzeigen. Default: `false`.
+* __showTutorial__ | `boolean`: undefined. Default: `false`.
 * __dynamicallyHideButtons__ | `boolean`: steuert, ob Schaltflächen ausgeblendet werden sollen, wenn die Breite der Symbolleiste nicht ausreicht (andernfalls wird eine neue Zeile begonnen). Default: `false`.
 * __transmitOwner__ | `boolean`: ob Besitzeraktionen in Echtzeit an andere Benutzer übertragen werden sollen. Default: `true`.
 * __groupMode__ | `boolean`: steuert, ob alle Aktionen des Benutzers an alle anderen übertragen werden. Default: `false`.

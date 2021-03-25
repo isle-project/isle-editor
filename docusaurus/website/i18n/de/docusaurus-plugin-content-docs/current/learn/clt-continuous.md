@@ -13,6 +13,7 @@ Eine Lernkomponente zur Veranschaulichung des zentralen Grenzwertsatzes (CLT) f√
   'exponential',
   'normal'
 ]`.
+* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
 * __hideFormulas__ | `boolean`: steuert, ob Formeln im Komponententext ausgeblendet werden sollen. Default: `false`.
 
 

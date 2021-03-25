@@ -13,6 +13,7 @@ sidebar_label: Continuous CLT
   'exponential',
   'normal'
 ]`.
+* __samples__ | `(array<number>|number)`: undefined. Default: `25`.
 * __hideFormulas__ | `boolean`: контролирует, скрывать ли формулы в тексте компонента. Default: `false`.
 
 
