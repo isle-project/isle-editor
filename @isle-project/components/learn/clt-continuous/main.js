@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import isNumberArray from '@stdlib/assert/is-number-array';
 import rExponential from '@stdlib/random/base/exponential';
 import rUniform from '@stdlib/random/base/uniform';
 import rNormal from '@stdlib/random/base/normal';
@@ -160,6 +161,7 @@ function makeVisibleData(arr, display = 100) {
 * A learning component illustrating the Central Limit Theorem (CLT) for a chosen continuous distribution.
 *
 * @property {Array<string>} distributions - statistical distributions to choose from ('uniform', 'exponential', and/or 'normal')
+* @property {(Array<number>|number)} samples - array of numbers or a single numbers denoting the sample sizes that can be drawn
 * @property {boolean} hideFormulas - controls whether to hide formulas in the component text
 */
 class ContinuousCLT extends Component {
@@ -525,11 +527,19 @@ class ContinuousCLT extends Component {
 						}}>
 							{t('draw-sample')}
 						</Button>
-						<Button onClick={() => {
-							this.generateSamples( 25 );
-						}}>
-							{t('draw-25-samples')}
-						</Button>
+						{isNumberArray( this.props.samples ) ?
+							this.props.samples.map( ( n, idx ) => {
+								return ( <Button key={idx} onClick={() => {
+									this.generateSamples( n );
+								}}>
+									{t('draw-n-samples', { n })}
+								</Button> );
+							}) : <Button onClick={() => {
+									this.generateSamples( this.props.samples );
+								}}>
+									{t('draw-n-samples', { n: this.props.samples })}
+								</Button>
+						}
 						<Button onClick={this.clear.bind( this )}>
 							{t('clear')}
 						</Button>
@@ -667,11 +677,13 @@ class ContinuousCLT extends Component {
 
 ContinuousCLT.defaultProps = {
 	distributions: ['uniform', 'exponential', 'normal'],
+	samples: 25,
 	hideFormulas: false
 };
 
 ContinuousCLT.propTypes = {
 	distributions: PropTypes.arrayOf( PropTypes.string ),
+	samples: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.number ]),
 	hideFormulas: PropTypes.bool
 };
 
