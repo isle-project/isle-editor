@@ -28,6 +28,7 @@ import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import linspace from '@stdlib/math/utils/linspace';
+import TimedButton from '@isle-project/components/timed-button';
 import stdev from '@isle-project/utils/statistic/stdev';
 import mean from '@isle-project/utils/statistic/mean';
 import iqr from '@isle-project/utils/statistic/iqr';
@@ -529,16 +530,16 @@ class ContinuousCLT extends Component {
 						</Button>
 						{isNumberArray( this.props.samples ) ?
 							this.props.samples.map( ( n, idx ) => {
-								return ( <Button key={idx} onClick={() => {
+								return ( <TimedButton variant="primary" duration={1} key={idx} onClick={() => {
 									this.generateSamples( n );
 								}}>
 									{t('draw-n-samples', { n })}
-								</Button> );
-							}) : <Button onClick={() => {
+								</TimedButton> );
+							}) : <TimedButton variant="primary" duration={1} onClick={() => {
 									this.generateSamples( this.props.samples );
 								}}>
 									{t('draw-n-samples', { n: this.props.samples })}
-								</Button>
+								</TimedButton>
 						}
 						<Button onClick={this.clear.bind( this )}>
 							{t('clear')}
