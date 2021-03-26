@@ -273,7 +273,7 @@
     "@babel/eslint-plugin": "7.13.10",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.3",
     "ajv": "^7.1.0",
     "codecov": "^3.8.1",
