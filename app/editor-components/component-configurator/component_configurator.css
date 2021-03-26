@@ -58,7 +58,7 @@
 }
 
 .configurator-date-time-picker-modal {
-	min-width: 650px;
+	min-width: 370px;
 	padding: 12px;
 	position: fixed;
 	z-index: 10000;
