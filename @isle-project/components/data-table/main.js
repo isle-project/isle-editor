@@ -656,7 +656,7 @@ class DataTable extends Component {
 			onScroll: e => {
 				let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
 				for ( let i = 0; i < this.frozenElems.length; i++ ) {
-					this.frozenElems[ i ].style.left = `${left}px`;
+					this.frozenElems[ i ].style.left = `${left}px`; // eslint-disable-line i18next/no-literal-string
 				}
 			}
 		};

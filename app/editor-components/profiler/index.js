@@ -50,6 +50,7 @@ const ProfilerWrapper = ( props ) => {
 	}, [] );
 	const baseAvg = baseRef.current() || 0;
 	const actualAvg = actualRef.current() || 0;
+	/* eslint-disable i18next/no-literal-string */
 	const alert = <Alert variant="info">
 		{id.current} - base avg: {baseAvg.toFixed( 2 )}ms - actual avg: {actualAvg.toFixed( 2 )}ms
 	</Alert>;
@@ -57,6 +58,7 @@ const ProfilerWrapper = ( props ) => {
 		{props.children}
 		{alert}
 	</Profiler> );
+	/* eslint-enable i18next/no-literal-string */
 };
 
 

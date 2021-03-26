@@ -54,7 +54,7 @@ const TextShadowInput = ({ style, onChange, t }) => {
 		const { r, g, b, a } = rgb;
 		const newState = {
 			...state,
-			color: `rgba(${r}, ${g}, ${b}, ${a} )`
+			color: `rgba(${r}, ${g}, ${b}, ${a} )` // eslint-disable-line i18next/no-literal-string
 		};
 		setState( newState );
 	}, [ state ] );

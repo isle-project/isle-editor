@@ -292,7 +292,7 @@ const Layout = ({ active, style, onChange, t }) => {
 	const handleBGColorChange = useCallback( ({ rgb }) => {
 		const { r, g, b, a } = rgb;
 		const newStyle = { ...style };
-		newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`;
+		newStyle.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a} )`; // eslint-disable-line i18next/no-literal-string
 		onChange( newStyle );
 	}, [ onChange, style ] );
 	const handleBackgroundImageAddition = useCallback( ( background ) => {
