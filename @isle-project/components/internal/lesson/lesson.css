@@ -629,7 +629,7 @@ a {
 }
 
 .Lesson > blockquote::before,
-.outer-element > blockquote::before
+.outer-element > blockquote::before,
 .Presentation blockquote::before {
 	font-family: Arial;
 	content: "\201C";
