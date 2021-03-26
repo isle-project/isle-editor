@@ -56,3 +56,49 @@
 	overflow-y: auto;
 	margin: 0.5rem;
 }
+
+.configurator-date-time-picker-modal {
+	min-width: 650px;
+	padding: 12px;
+	position: fixed;
+	z-index: 10000;
+	background-color: gainsboro;
+	font-family: Open Sans;
+	box-shadow: 0 0 3px black;
+}
+
+.configurator-date-time-picker-header {
+	padding-left: 4px;
+	font-weight: 600;
+	font-family: Open Sans Condensed;
+	font-variant: all-small-caps;
+}
+
+.configurator-clock {
+	background-color: #2e4468;
+}
+
+.configurator-clock .react-datetime-picker__wrapper {
+	color: white;
+	font-size: 1.1em;
+	padding: 3px;
+}
+
+.configurator-clock .react-datetime-picker__wrapper input,
+.configurator-clock .react-datetime-picker__inputGroup__input {
+	color: white;
+}
+
+.configurator-clock .react-datetime-picker__wrapper option {
+	background-color: #2e4468;
+}
+
+.configurator-clock .react-datetime-picker__button svg {
+	stroke: white;
+}
+
+.configurator-date-time-picker-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+}

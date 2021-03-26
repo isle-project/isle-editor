@@ -45,6 +45,7 @@ import ComponentStyler from 'editor-components/component-styler';
 import { addResources } from '@isle-project/locales/editor';
 import Session from '@isle-project/session';
 const ConfiguratorTutorial = Loadable( () => import( './tutorial.js' ) );
+const DateTimePicker = Loadable( () => import( './date_time_picker.js' ) );
 import SearchBar from '../searchbar/index.js';
 import './component_configurator.css';
 
@@ -223,6 +224,7 @@ class ComponentConfigurator extends Component {
 			propActive,
 			showTutorial: false,
 			showStyler: false,
+			dateTimePicker: null,
 			...propValues
 		};
 		if ( !this.selfClosing ) {
@@ -475,6 +477,18 @@ class ComponentConfigurator extends Component {
 		});
 	}
 
+	replaceDate = ( prop, newValue ) => {
+		this.textPropertyValues[ prop ] = null;
+		this.setState({
+			[ 'prop:'+prop ]: newValue
+		}, () => {
+			let { value } = this.state;
+			const RE = new RegExp('([ \\t]*)'+prop+'=({[\\s\\S]*?})( +|\t|\r?\n)(?=[a-zA-Z]+=|\\/>)' );
+			value = replace( value, RE, '$1'+prop+'={' + newValue + '}$3' );
+			this.setState({ value });
+		});
+	}
+
 	handleClassTransform = ( className ) => {
 		let { value } = this.state;
 		value = replace( value, RE_STYLE_KEY, '' );
@@ -539,6 +553,20 @@ class ComponentConfigurator extends Component {
 	toggleStyler = () => {
 		this.setState({
 			showStyler: !this.state.showStyler
+		});
+	}
+
+	showDateTimePickerFactory = ( prop ) => {
+		return () => {
+			this.setState({
+				dateTimePicker: prop
+			});
+		};
+	}
+
+	hideDateTimePicker = () => {
+		this.setState({
+			dateTimePicker: null
 		});
 	}
 
@@ -744,6 +772,12 @@ class ComponentConfigurator extends Component {
 								</Button> :
 								null
 							}
+							{ type === 'Date' ?
+								<Button className="style-button" variant="outline-secondary" onClick={this.showDateTimePickerFactory( name )} >
+									<i className="far fa-clock"></i>
+								</Button> :
+								null
+							}
 						</Fragment> : null}
 				</td>
 				<td>
@@ -893,6 +927,11 @@ class ComponentConfigurator extends Component {
 					onChange={this.replaceStyle}
 					onClassTransform={this.handleClassTransform}
 					style={COMPONENT_STYLER_STYLE}
+				/>
+				<DateTimePicker
+					prop={this.state.dateTimePicker}
+					onHide={this.hideDateTimePicker}
+					onChange={this.replaceDate}
 				/>
 				{ this.state.showTutorial ? <ConfiguratorTutorial
 					onFinish={this.toggleTutorial}
