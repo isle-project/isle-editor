@@ -146,6 +146,7 @@ import Lesson from '@isle-project/components/internal/lesson';
 import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import Provider from '@isle-project/components/internal/provider';
 import factor from '@isle-project/utils/factor-variable';
+import date from '@isle-project/utils/date';
 import obsToVar from '@isle-project/utils/obs-to-var';
 import 'bundler/loading.css';
 `;

@@ -26,6 +26,7 @@ import LineButtons from 'editor-containers/line-buttons';
 import ErrorBoundary from 'editor-components/error-boundary';
 import Profiler from 'editor-components/profiler';
 import factor from '@isle-project/utils/factor-variable';
+import date from '@isle-project/utils/date';
 
 
 // VARIABLES //
@@ -54,6 +55,7 @@ export const SCOPE = {
 	Tabs,
 	Draggable,
 	Profiler,
+	date,
 	factor
 };
 
