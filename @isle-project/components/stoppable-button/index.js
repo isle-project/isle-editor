@@ -89,7 +89,7 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 
 StoppableButton.defaultProps = {
 	size: 'small',
-	variant: 'primary'
+	variant: 'success'
 };
 
 StoppableButton.propTypes = {
