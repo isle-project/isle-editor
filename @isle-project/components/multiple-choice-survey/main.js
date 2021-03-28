@@ -14,7 +14,6 @@ import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
 import generateUID from '@isle-project/utils/uid';
 import Plotly from '@isle-project/components/plotly';
-import Gate from '@isle-project/components/gate';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
@@ -191,50 +190,48 @@ class MultipleChoiceSurvey extends Component {
 			disabled = this.state.submitted || !this.state.answerSelected;
 		}
 		return (
-			<Gate user banner={<h2>{t('sign-in')}</h2>} >
-				<Card id={this.id} style={this.props.style} >
-					<Card.Body style={{ overflowY: 'auto' }}>
-						<Container>
-							<Row>
-								<Col md={6}>
-									<Card body className="multiple-choice-survey">
-										<p><label>{question}</label></p>
-										{ multipleAnswers ? <span>{t('multiple-answers')}</span> : null }
-										<ListGroup fill >
-											{ multipleAnswers ?
-												answers.map( this.renderAnswerOptionsMultiple ) :
-												answers.map( this.renderAnswerOptionsSingle )
-											}
-										</ListGroup>
-										<Button
-											size="small"
-											variant="success"
-											block fill
-											onClick={this.submitQuestion}
-											disabled={disabled}
-										>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
-									</Card>
-								</Col>
-								<Col md={6}>
-									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-									{this.renderChart()}
-									<p>
-										{this.state.freqTable}
-									</p>
-								</Col>
-							</Row>
-						</Container>
-						<ResponseVisualizer
-							buttonLabel={t('responses')} id={this.id}
-							data={{
-								type: 'factor',
-								levels: this.props.answers
-							}}
-							info={MULTIPLE_CHOICE_SURVEY_SUBMISSION}
-						/>
-					</Card.Body>
-				</Card>
-			</Gate>
+			<Card id={this.id} style={this.props.style} >
+				<Card.Body style={{ overflowY: 'auto' }}>
+					<Container>
+						<Row>
+							<Col md={6}>
+								<Card body className="multiple-choice-survey">
+									<p><label>{question}</label></p>
+									{ multipleAnswers ? <span>{t('multiple-answers')}</span> : null }
+									<ListGroup fill >
+										{ multipleAnswers ?
+											answers.map( this.renderAnswerOptionsMultiple ) :
+											answers.map( this.renderAnswerOptionsSingle )
+										}
+									</ListGroup>
+									<Button
+										size="small"
+										variant="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ this.state.submitted ? 'Submitted' : 'Submit'}</Button>
+								</Card>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
+								{this.renderChart()}
+								<p>
+									{this.state.freqTable}
+								</p>
+							</Col>
+						</Row>
+					</Container>
+					<ResponseVisualizer
+						buttonLabel={t('responses')} id={this.id}
+						data={{
+							type: 'factor',
+							levels: this.props.answers
+						}}
+						info={MULTIPLE_CHOICE_SURVEY_SUBMISSION}
+					/>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

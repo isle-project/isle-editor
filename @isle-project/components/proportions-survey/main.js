@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -13,7 +13,6 @@ import Container from 'react-bootstrap/Container';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import generateUID from '@isle-project/utils/uid';
 import ProportionsInput from '@isle-project/components/input/proportions';
-import Gate from '@isle-project/components/gate';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
@@ -134,7 +133,7 @@ class ProportionsSurvey extends Component {
 			absdiff( sum( this.state.value ), 100 ) > 0.1
 		);
 		return (
-			<Gate user banner={<h2>{this.props.t('sign-in')}</h2>} >
+			<Fragment>
 				<Container>
 					<Row>
 						<Col md={6}>
@@ -184,7 +183,7 @@ class ProportionsSurvey extends Component {
 					</Row>
 				</Container>
 				<ResponseVisualizer buttonLabel={this.props.t('responses')} id={this.id} />
-			</Gate>
+			</Fragment>
 		);
 	}
 }

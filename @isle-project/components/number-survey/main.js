@@ -16,7 +16,6 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import NumberInput from '@isle-project/components/input/number';
-import Gate from '@isle-project/components/gate';
 import Plotly from '@isle-project/components/plotly';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
@@ -113,52 +112,50 @@ class NumberSurvey extends Component {
 		const { t } = props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate user banner={<h2>{t('sign-in')}</h2>} >
-				<Card id={this.id} style={this.props.style} >
-					<Card.Body style={{ overflowY: 'auto' }}>
-						<Container>
-							<Row>
-								<Col md={6}>
-									<Card className="number-survey" body>
-										<Card.Title as="h5">{props.question}</Card.Title>
-										<label htmlFor={`number-survey-input-${this.id}`}>{t('your-answer')}:</label>
-										<NumberInput
-											{...props}
-											inline
-											id={`number-survey-input-${this.id}`}
-											disabled={disabled}
-											onChange={( value ) => {
-												this.setState({
-													value
-												});
-											}}
-										/>
-										<Button
-											size="small"
-											variant="success"
-											block fill
-											onClick={this.submitQuestion}
-											disabled={disabled}
-										>{ disabled ? t('submitted') : t('submit') }</Button>
-									</Card>
-								</Col>
-								<Col md={6}>
-									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-									{this.renderChart()}
-									{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-										<p>{t('average-is')} {this.state.avg.toFixed( 3 )} ({SD}: {this.state.sd.toFixed( 3 )}).
-										</p> : null
-									}
-								</Col>
-							</Row>
-						</Container>
-						<ResponseVisualizer
-							buttonLabel={t('responses')} id={this.id}
-							info={NUMBER_SURVEY_SUBMISSION}
-						/>
-					</Card.Body>
-				</Card>
-			</Gate>
+			<Card id={this.id} style={this.props.style} >
+				<Card.Body style={{ overflowY: 'auto' }}>
+					<Container>
+						<Row>
+							<Col md={6}>
+								<Card className="number-survey" body>
+									<Card.Title as="h5">{props.question}</Card.Title>
+									<label htmlFor={`number-survey-input-${this.id}`}>{t('your-answer')}:</label>
+									<NumberInput
+										{...props}
+										inline
+										id={`number-survey-input-${this.id}`}
+										disabled={disabled}
+										onChange={( value ) => {
+											this.setState({
+												value
+											});
+										}}
+									/>
+									<Button
+										size="small"
+										variant="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ disabled ? t('submitted') : t('submit') }</Button>
+								</Card>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
+								{this.renderChart()}
+								{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
+									<p>{t('average-is')} {this.state.avg.toFixed( 3 )} ({SD}: {this.state.sd.toFixed( 3 )}).
+									</p> : null
+								}
+							</Col>
+						</Row>
+					</Container>
+					<ResponseVisualizer
+						buttonLabel={t('responses')} id={this.id}
+						info={NUMBER_SURVEY_SUBMISSION}
+					/>
+				</Card.Body>
+			</Card>
 		);
 	}
 }

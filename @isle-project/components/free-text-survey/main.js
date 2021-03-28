@@ -18,7 +18,6 @@ import lowercase from '@stdlib/string/lowercase';
 import tokenize from '@stdlib/nlp/tokenize';
 import generateUID from '@isle-project/utils/uid';
 import TextArea from '@isle-project/components/input/text-area';
-import Gate from '@isle-project/components/gate';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import SessionContext from '@isle-project/session/context.js';
@@ -166,48 +165,46 @@ class FreeTextSurvey extends Component {
 		const { t } = props;
 		const disabled = this.state.submitted && !props.allowMultipleAnswers;
 		return (
-			<Gate user banner={<h2>{t('sign-in')}</h2>} >
-				<Card id={this.id} className={this.props.className} style={this.props.style} >
-					<Card.Body style={{ overflowY: 'auto' }}>
-						<Container>
-							<Row>
-								<Col md={6}>
-									<Card className="free-text-survey" body>
-										<label>{props.question}</label>
-										<TextArea
-											value={this.state.value}
-											inline
-											disabled={disabled}
-											onChange={( value ) => {
-												this.setState({
-													value
-												});
-											}}
-											rows={this.props.rows}
-										/>
-										<Button
-											size="small"
-											variant="success"
-											block fill
-											onClick={this.submitQuestion}
-											disabled={disabled}
-										>{ disabled ? t('submitted') : t('submit')}</Button>
-									</Card>
-								</Col>
-								<Col md={6}>
-									<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-									{this.renderChart()}
-									{this.state.freqTable}
-								</Col>
-							</Row>
-						</Container>
-						<ResponseVisualizer
-							buttonLabel={t('Responses')} id={this.id}
-							info={TEXT_SURVEY_SUBMISSION}
-						/>
-					</Card.Body>
-				</Card>
-			</Gate>
+			<Card id={this.id} className={this.props.className} style={this.props.style} >
+				<Card.Body style={{ overflowY: 'auto' }}>
+					<Container>
+						<Row>
+							<Col md={6}>
+								<Card className="free-text-survey" body>
+									<label>{props.question}</label>
+									<TextArea
+										value={this.state.value}
+										inline
+										disabled={disabled}
+										onChange={( value ) => {
+											this.setState({
+												value
+											});
+										}}
+										rows={this.props.rows}
+									/>
+									<Button
+										size="small"
+										variant="success"
+										block fill
+										onClick={this.submitQuestion}
+										disabled={disabled}
+									>{ disabled ? t('submitted') : t('submit')}</Button>
+								</Card>
+							</Col>
+							<Col md={6}>
+								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
+								{this.renderChart()}
+								{this.state.freqTable}
+							</Col>
+						</Row>
+					</Container>
+					<ResponseVisualizer
+						buttonLabel={t('Responses')} id={this.id}
+						info={TEXT_SURVEY_SUBMISSION}
+					/>
+				</Card.Body>
+			</Card>
 		);
 	}
 }
