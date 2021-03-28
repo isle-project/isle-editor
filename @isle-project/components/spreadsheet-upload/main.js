@@ -54,7 +54,8 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 		setUploading( false );
 		csv({
 			noheader: !header,
-			checkType: true
+			checkType: true,
+			ignoreEmpty: true
 		})
 			.fromString( text )
 			.then( ( output ) => {
