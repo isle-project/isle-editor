@@ -314,15 +314,17 @@ const Toolbar = ({ elements }) => {
 							<span className="fa fa-lg fa-poll-h toolbar-icon" />
 						</Button>
 					</Tooltip>
-					<Overlay
-						placement="top"
-						show={engagementMenu}
-						target={engagementButtonRef.current}
-						trigger="click"
-					>
-						<EngagementButtons />
-					</Overlay>
 				</Gate>
+				<Overlay
+					placement="top"
+					show={engagementMenu}
+					target={engagementButtonRef.current}
+					trigger="click"
+				>
+					<div>
+						<EngagementButtons />
+					</div>
+				</Overlay>
 			</ButtonGroup>
 			<Engagement session={session} onHide={toggleEngagement} />
 			{sketchpad ?
