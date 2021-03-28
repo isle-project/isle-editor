@@ -1,10 +1,9 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
+import React, { useCallback, useContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -17,8 +16,10 @@ import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import NumberInput from '@isle-project/components/input/number';
 import Plotly from '@isle-project/components/plotly';
+import Panel from '@isle-project/components/panel';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
@@ -46,119 +47,99 @@ const SD = 'SD';
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function invoked once students submits an answer
 */
-class NumberSurvey extends Component {
-	constructor( props ) {
-		super( props );
-		this.id = props.id || uid( props );
-		this.state = {
-			data: [],
-			submitted: false,
-			value: null
-		};
-	}
+const NumberSurvey = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const { t } = useTranslation( 'Survey' );
+	const session = useContext( SessionContext );
+	const [ submitted, setSubmitted ] = useState( false );
+	const [ paused, setPaused ] = useState( false );
+	const [ value, setValue ] = useState( null );
+	const [ data, setData ] = useState({ values: [], sd: null, avg: null });
+	const { anonymous, onSubmit } = props;
 
-	submitQuestion = () => {
-		const { t } = this.props;
-		const session = this.context;
+	const submitQuestion = useCallback( () => {
 		session.log({
-			id: this.id,
+			id: id.current,
 			type: NUMBER_SURVEY_SUBMISSION,
-			value: this.state.value,
-			anonymous: this.props.anonymous
+			value: value,
+			anonymous: anonymous
 		}, 'members' );
-		this.setState({
-			submitted: true
-		});
+		setSubmitted( true );
 		session.addNotification({
 			title: t('submitted'),
 			message: t('answer-submitted'),
 			level: 'success'
 		});
-		this.props.onSubmit( this.state.value );
-	}
-
-	onData = ( data ) => {
+		onSubmit( value );
+	}, [ anonymous, onSubmit, session, t, value ] );
+	const onData = useCallback( ( data ) => {
 		debug( 'NumberSurvey is receiving data: ' + JSON.stringify( data ) );
-		const avg = mean( data );
-		const sd = stdev( data );
-		this.setState({
-			data: data,
-			avg,
-			sd
+		setData({
+			values: data,
+			avg: mean( data ),
+			sd: stdev( data )
 		});
-	}
+	}, [] );
 
-	renderChart() {
-		const { t } = this.props;
-		const { data } = this.state;
-		if ( isEmptyArray( data ) ) {
-			return <h3>{t('no-responses-yet')}</h3>;
-		}
-		return ( <Plotly
-			data={[{
-				x: this.state.data,
-				type: 'histogram'
-			}]}
-			layout={{
-				width: 400,
-				height: 300
-			}}
-			removeButtons
-		/> );
-	}
-
-	render() {
-		const props = this.props;
-		const { t } = props;
-		const disabled = this.state.submitted && !props.allowMultipleAnswers;
-		return (
-			<Card id={this.id} style={this.props.style} >
-				<Card.Body style={{ overflowY: 'auto' }}>
-					<Container>
-						<Row>
-							<Col md={6}>
-								<Card className="number-survey" body>
-									<Card.Title as="h5">{props.question}</Card.Title>
-									<label htmlFor={`number-survey-input-${this.id}`}>{t('your-answer')}:</label>
-									<NumberInput
-										{...props}
-										inline
-										id={`number-survey-input-${this.id}`}
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-									/>
-									<Button
-										size="small"
-										variant="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? t('submitted') : t('submit') }</Button>
-								</Card>
-							</Col>
-							<Col md={6}>
-								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-								{this.renderChart()}
-								{ isNumber( this.state.avg ) && isNumber( this.state.sd ) ?
-									<p>{t('average-is')} {this.state.avg.toFixed( 3 )} ({SD}: {this.state.sd.toFixed( 3 )}).
-									</p> : null
-								}
-							</Col>
-						</Row>
-					</Container>
-					<ResponseVisualizer
-						buttonLabel={t('responses')} id={this.id}
-						info={NUMBER_SURVEY_SUBMISSION}
-					/>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+	const disabled = submitted && !props.allowMultipleAnswers;
+	return (
+		<Panel>
+			<Container>
+				<Row>
+					<Col md={6}>
+						<Card className="number-survey" body>
+							<Card.Title as="h5">{props.question}</Card.Title>
+							<label htmlFor={`number-survey-input-${id.current}`}>{t('your-answer')}:</label>
+							<NumberInput
+								{...props}
+								inline
+								id={`number-survey-input-${id.current}`}
+								disabled={disabled}
+								onChange={setValue}
+							/>
+							{paused ?
+								<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
+								null
+							}
+							<StoppableButton
+								id={id.current}
+								label={disabled ? t('submitted') : t('submit')}
+								disabled={disabled}
+								onSubmit={submitQuestion}
+								onPaused={setPaused}
+							/>
+						</Card>
+					</Col>
+					<Col md={6}>
+						<RealtimeMetrics for={[ id.current ]} onData={onData} />
+						{isEmptyArray( data ) ?
+							<h3>{t('no-responses-yet')}</h3> :
+							<Plotly
+								data={[{
+									x: data.values,
+									type: 'histogram'
+								}]}
+								layout={{
+									width: 400,
+									height: 300
+								}}
+								removeButtons
+							/>
+						}
+						{ isNumber( data.avg ) && isNumber( data.sd ) ?
+							<p>{t('average-is')} {data.avg.toFixed( 3 )} ({SD}: {data.sd.toFixed( 3 )}).
+							</p> : null
+						}
+					</Col>
+				</Row>
+			</Container>
+			<ResponseVisualizer
+				buttonLabel={t('responses')} id={id.current}
+				info={NUMBER_SURVEY_SUBMISSION}
+			/>
+		</Panel>
+	);
+};
 
 
 // PROPERTIES //
@@ -187,9 +168,7 @@ NumberSurvey.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-NumberSurvey.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default withTranslation( 'Survey' )( withPropCheck( NumberSurvey ) );
+export default withPropCheck( NumberSurvey );

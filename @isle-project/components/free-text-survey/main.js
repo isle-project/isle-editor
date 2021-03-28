@@ -1,16 +1,16 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
-import Button from 'react-bootstrap/Button';
+import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import profanities from 'profanities';
 import Plotly from '@isle-project/components/plotly';
+import Panel from '@isle-project/components/panel';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
@@ -20,6 +20,7 @@ import generateUID from '@isle-project/utils/uid';
 import TextArea from '@isle-project/components/input/text-area';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
+import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
@@ -63,48 +64,17 @@ function containsProfanity( text ) {
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function called when an answer is submitted
 */
-class FreeTextSurvey extends Component {
-	constructor( props ) {
-		super( props );
+const FreeTextSurvey = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const { t } = useTranslation( 'Survey' );
+	const session = useContext( SessionContext );
+	const [ submitted, setSubmitted ] = useState( false );
+	const [ paused, setPaused ] = useState( false );
+	const [ value, setValue ] = useState( null );
+	const [ data, setData ] = useState({ counts: [], freqTable: null });
+	const { anonymous, onSubmit } = props;
 
-		this.id = props.id || uid( props );
-		this.state = {
-			data: [],
-			submitted: false,
-			value: null
-		};
-	}
-
-	submitQuestion = () => {
-		const { t } = this.props;
-		const session = this.context;
-		const val = containsProfanity( this.state.value );
-		if ( val ) {
-			session.addNotification({
-				title: t('action-required'),
-				message: t('offensive-word', { w: val }),
-				level: 'warning'
-			});
-		} else {
-			session.log({
-				id: this.id,
-				type: TEXT_SURVEY_SUBMISSION,
-				value: this.state.value,
-				anonymous: this.props.anonymous
-			}, 'members' );
-			this.setState({
-				submitted: true
-			});
-			session.addNotification({
-				title: t('submitted'),
-				message: t('answer-submitted'),
-				level: 'success'
-			});
-			this.props.onSubmit( this.state.value );
-		}
-	}
-
-	onData = ( data ) => {
+	const onData = useCallback( ( data ) => {
 		debug( 'FreeTextQuestion is receiving data: ' + JSON.stringify( data ) );
 		let tabulated = tabulate( data );
 		let freqTable;
@@ -114,7 +84,6 @@ class FreeTextSurvey extends Component {
 				y: d[ 1 ]
 			};
 		});
-		const { t } = this.props;
 		freqTable = <table className="table table-bordered" >
 			<tr>
 				<th>{t('category')}</th>
@@ -132,82 +101,92 @@ class FreeTextSurvey extends Component {
 				</tr> );
 			})}
 		</table>;
-		this.setState({
-			data: counts,
+		setData({
+			counts,
 			freqTable
 		});
-	}
-
-	renderChart() {
-		if ( isEmptyArray( this.state.data ) ) {
-			return (
-				<h3>{this.props.t('no-responses-yet')}</h3>
-			);
+	}, [ t ] );
+	const submitQuestion = useCallback( () => {
+		const val = containsProfanity( value );
+		if ( val ) {
+			session.addNotification({
+				title: t('action-required'),
+				message: t('offensive-word', { w: val }),
+				level: 'warning'
+			});
+		} else {
+			session.log({
+				id: id.current,
+				type: TEXT_SURVEY_SUBMISSION,
+				value: value,
+				anonymous: anonymous
+			}, 'members' );
+			setSubmitted( true );
+			session.addNotification({
+				title: t('submitted'),
+				message: t('answer-submitted'),
+				level: 'success'
+			});
+			onSubmit( value );
 		}
-		return (
-			<Plotly
-				data={[{
-					x: this.state.data.map( val => val.x ),
-					y: this.state.data.map( val => val.y ),
-					type: 'bar'
-				}]}
-				layout={{
-					width: 400,
-					height: 300
-				}}
-				removeButtons
-			/>
-		);
-	}
+	}, [ anonymous, onSubmit, session, t, value ] );
 
-	render() {
-		const props = this.props;
-		const { t } = props;
-		const disabled = this.state.submitted && !props.allowMultipleAnswers;
-		return (
-			<Card id={this.id} className={this.props.className} style={this.props.style} >
-				<Card.Body style={{ overflowY: 'auto' }}>
-					<Container>
-						<Row>
-							<Col md={6}>
-								<Card className="free-text-survey" body>
-									<label>{props.question}</label>
-									<TextArea
-										value={this.state.value}
-										inline
-										disabled={disabled}
-										onChange={( value ) => {
-											this.setState({
-												value
-											});
-										}}
-										rows={this.props.rows}
-									/>
-									<Button
-										size="small"
-										variant="success"
-										block fill
-										onClick={this.submitQuestion}
-										disabled={disabled}
-									>{ disabled ? t('submitted') : t('submit')}</Button>
-								</Card>
-							</Col>
-							<Col md={6}>
-								<RealtimeMetrics for={[ this.id ]} onData={this.onData} />
-								{this.renderChart()}
-								{this.state.freqTable}
-							</Col>
-						</Row>
-					</Container>
-					<ResponseVisualizer
-						buttonLabel={t('Responses')} id={this.id}
-						info={TEXT_SURVEY_SUBMISSION}
-					/>
-				</Card.Body>
-			</Card>
-		);
-	}
-}
+	const disabled = submitted && !props.allowMultipleAnswers;
+	return (
+		<Panel id={id.current} className={props.className} style={props.style} >
+			<Container>
+				<Row>
+					<Col md={6}>
+						<Card className="free-text-survey" body>
+							<label>{props.question}</label>
+							{paused ?
+								<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
+								null
+							}
+							<TextArea
+								value={value}
+								inline
+								disabled={disabled}
+								onChange={setValue}
+								rows={props.rows}
+							/>
+							<StoppableButton
+								id={id.current}
+								label={disabled ? t('submitted') : t('submit')}
+								disabled={disabled}
+								onSubmit={submitQuestion}
+								onPaused={setPaused}
+							/>
+						</Card>
+					</Col>
+					<Col md={6}>
+						<RealtimeMetrics for={[ id.current ]} onData={onData} />
+						{isEmptyArray( data.counts ) ?
+							<h3>{t('no-responses-yet')}</h3> :
+							<Plotly
+								data={[{
+									x: data.counts.map( val => val.x ),
+									y: data.counts.map( val => val.y ),
+									type: 'bar'
+								}]}
+								layout={{
+									width: 400,
+									height: 300
+								}}
+								removeButtons
+							/>
+						}
+						{data.freqTable}
+					</Col>
+				</Row>
+			</Container>
+			<ResponseVisualizer
+				buttonLabel={t('Responses')} id={id.current}
+				info={TEXT_SURVEY_SUBMISSION}
+			/>
+		</Panel>
+	);
+};
 
 
 // PROPERTIES //
@@ -235,9 +214,7 @@ FreeTextSurvey.propTypes = {
 	onSubmit: PropTypes.func
 };
 
-FreeTextSurvey.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default withTranslation( 'Survey' )( withPropCheck( FreeTextSurvey ) );
+export default withPropCheck( FreeTextSurvey );
