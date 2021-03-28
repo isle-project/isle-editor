@@ -76,15 +76,14 @@ const FreeTextSurvey = ( props ) => {
 
 	const onData = useCallback( ( data ) => {
 		debug( 'FreeTextQuestion is receiving data: ' + JSON.stringify( data ) );
-		let tabulated = tabulate( data );
-		let freqTable;
-		let counts = tabulated.map( d => {
+		const tabulated = tabulate( data );
+		const counts = tabulated.map( d => {
 			return {
 				x: d[ 0 ],
 				y: d[ 1 ]
 			};
 		});
-		freqTable = <table className="table table-bordered" >
+		const freqTable = <table className="table table-bordered" >
 			<tr>
 				<th>{t('category')}</th>
 				<th>{t('count')}</th>
@@ -152,11 +151,12 @@ const FreeTextSurvey = ( props ) => {
 							/>
 							<StoppableButton
 								id={id.current}
-								label={disabled ? t('submitted') : t('submit')}
 								disabled={disabled}
-								onSubmit={submitQuestion}
+								onClick={submitQuestion}
 								onPaused={setPaused}
-							/>
+							>
+								{disabled ? t('submitted') : t('submit')}
+							</StoppableButton>
 						</Card>
 					</Col>
 					<Col md={6}>

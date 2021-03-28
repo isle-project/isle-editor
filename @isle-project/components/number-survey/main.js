@@ -103,11 +103,10 @@ const NumberSurvey = ( props ) => {
 							}
 							<StoppableButton
 								id={id.current}
-								label={disabled ? t('submitted') : t('submit')}
 								disabled={disabled}
-								onSubmit={submitQuestion}
+								onClick={submitQuestion}
 								onPaused={setPaused}
-							/>
+							>{disabled ? t('submitted') : t('submit')}</StoppableButton>
 						</Card>
 					</Col>
 					<Col md={6}>

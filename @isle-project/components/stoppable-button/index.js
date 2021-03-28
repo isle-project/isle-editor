@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { useCallback, useContext, useEffect, useState, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -12,7 +13,7 @@ import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 // MAIN //
 
-const StoppableButton = ({ disabled, label, id, onSubmit, onPaused }) => {
+const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPaused }) => {
 	const [ paused, setPaused ] = useState( false );
 	const { t } = useTranslation( 'General' );
 	const session = useContext( SessionContext );
@@ -57,15 +58,15 @@ const StoppableButton = ({ disabled, label, id, onSubmit, onPaused }) => {
 	return (
 		<Fragment>
 			<Button
-				size="small"
-				variant="success"
+				size={size}
+				variant={variant}
 				block fill
-				onClick={onSubmit}
+				onClick={onClick}
 				disabled={disabled || paused}
-			>{label}</Button>
+			>{children}</Button>
 			<Gate owner >
 				<Button
-					size="small"
+					size={size}
 					variant={paused ? 'warning' : 'secondary'} block fill
 					onClick={togglePaused}
 				>
@@ -81,6 +82,24 @@ const StoppableButton = ({ disabled, label, id, onSubmit, onPaused }) => {
 			</Gate>
 		</Fragment>
 	);
+};
+
+
+// PROPERTIES //
+
+StoppableButton.defaultProps = {
+	size: 'small',
+	variant: 'primary'
+};
+
+StoppableButton.propTypes = {
+	size: PropTypes.oneOf([
+		'small',
+		'sm',
+		'large',
+		'lg'
+	]),
+	variant: PropTypes.string
 };
 
 
