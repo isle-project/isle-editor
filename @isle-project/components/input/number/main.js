@@ -180,7 +180,7 @@ const NumberInput = ( props ) => {
 			</span>;
 		return props.disabled ?
 			input:
-			<Tooltip id="number-input-tooltip-inline" placement="top" tooltip={tooltip} >
+			<Tooltip id="number-input-tooltip-inline" placement="top" show={!props.disabled} tooltip={tooltip} >
 				{input}
 			</Tooltip>;
 	}
@@ -227,7 +227,7 @@ const NumberInput = ( props ) => {
 		}
 		<Tooltip
 			id="number-input-tooltip" placement={props.tooltipPlacement}
-			tooltip={tooltip}
+			tooltip={tooltip} show={!props.disabled}
 		><span className="number-input-span" >{input}</span></Tooltip>
 	</div> );
 };
