@@ -151,7 +151,7 @@ const FreeTextSurvey = ( props ) => {
 							/>
 							<StoppableButton
 								id={id.current}
-								disabled={disabled}
+								disabled={!value || disabled}
 								onClick={submitQuestion}
 								onPaused={setPaused}
 							>

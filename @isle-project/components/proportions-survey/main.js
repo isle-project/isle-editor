@@ -118,7 +118,7 @@ const ProportionsSurvey = ( props ) => {
 	const disabled = (
 		( submitted && !props.allowMultipleAnswers ) ||
 		props.disabled ||
-		absdiff( sum( value ), 100 ) > 0.5
+		( value && absdiff( sum( value ), 100 ) > 0.1 )
 	);
 	return (
 		<Panel>
