@@ -9,7 +9,13 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { BUTTON_PAUSE, BUTTON_RESUME } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { addResources } from '@isle-project/locales';
 import './stoppable_button.css';
+
+
+// VARIABLES //
+
+addResources( 'General' );
 
 
 // MAIN //
