@@ -51,7 +51,7 @@ const SurveyGenerator = ({ session, onHide }) => {
 					setQuestion( action.value.question );
 					setType( action.value.type );
 					setAnswers( action.value.answers );
-					setShowSurvey(  true );
+					setShowSurvey( true );
 				}
 				else if ( action.type === STOP_SURVEY ) {
 					debug( 'Should stop the survey...' );

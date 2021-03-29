@@ -112,7 +112,7 @@ RTable.defaultProps = {
 	code: '',
 	libraries: [],
 	prependCode: '',
-	style : {}
+	style: {}
 };
 
 RTable.contextType = SessionContext;
