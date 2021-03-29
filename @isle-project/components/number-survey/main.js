@@ -53,7 +53,7 @@ const NumberSurvey = ( props ) => {
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );
-	const [ value, setValue ] = useState( null );
+	const [ value, setValue ] = useState( 0.0 );
 	const [ data, setData ] = useState({ values: [], sd: null, avg: null });
 	const { anonymous, onSubmit } = props;
 
