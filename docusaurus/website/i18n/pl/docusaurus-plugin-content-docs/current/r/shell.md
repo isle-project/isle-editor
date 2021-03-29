@@ -34,6 +34,7 @@ import TabItem from '@theme/TabItem';
     defaultValue="minimal"
     values={[
         { label: 'Minimal', value: 'minimal' },
+        { label: 'Multiline', value: 'multiline' },
         { label: 'Precompute & Disabled', value: 'precompute' },
         { label: 'Using Libraries', value: 'usingLibraries' },
         { label: 'Add Preceding Code', value: 'addPreceding' },
@@ -48,6 +49,18 @@ import TabItem from '@theme/TabItem';
 <RShell
     code="abs(c(-2,3,-1))"
 />
+```
+
+</TabItem>
+
+<TabItem value="multiline" >
+
+```jsx live
+<RShell code={`x <- runif( 100 );
+y <- 3.0 * x + rnorm( 100 );
+fit <- lm( y ~ x );
+summary( fit );
+`} resettable />
 ```
 
 </TabItem>
