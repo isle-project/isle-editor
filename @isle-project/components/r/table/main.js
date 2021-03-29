@@ -13,6 +13,7 @@ import { withPropCheck } from '@isle-project/utils/prop-check';
 // VARIABLES //
 
 addResources( 'R' );
+const RE_LAST_EXPRESSION = /(?:\n\s*|^)([ A-Z0-9._():=]+)\n*$/i;
 
 
 // MAIN //
@@ -62,7 +63,7 @@ class RTable extends Component {
 
 			jsonCode = jsonCode +
 				prependCode +
-				code.replace( /\n\s*([ A-Z0-9._():=]+)\n*$/i, '\n toJSON($1)' );
+				code.replace( RE_LAST_EXPRESSION, '\n toJSON($1)' );
 
 			session.executeRCode({
 				code: jsonCode,
