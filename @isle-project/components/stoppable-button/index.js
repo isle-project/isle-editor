@@ -9,6 +9,7 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { BUTTON_PAUSE, BUTTON_RESUME } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import './stoppable_button.css';
 
 
 // MAIN //
@@ -58,6 +59,7 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 	return (
 		<Fragment>
 			<Button
+				className="stoppable-button"
 				size={size}
 				variant={variant}
 				block fill
