@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import DataTable from '@isle-project/components/data-table';
 import Spinner from '@isle-project/components/internal/spinner';
@@ -26,74 +26,40 @@ const RE_LAST_EXPRESSION = /(?:\n\s*|^)([ A-Z0-9._():=]+)\n*$/i;
 * @property {(string|Array<string>)} prependCode - R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating
 * @property {Object} style - CSS inline styles
 */
-class RTable extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			data: null,
-			last: '',
-			waiting: false
-		};
-	}
+const RTable = ({ code, libraries, prependCode, style } ) => {
+	const [ data, setData ] = useState( null );
+	const [ waiting, setWaiting ] = useState( false );
+	const session = useContext( SessionContext );
 
-	componentDidMount() {
-		this.getTable();
-	}
-
-	componentDidUpdate() {
-		this.getTable( this.props );
-	}
-
-	getTable = ( nextProps ) => {
-		let code;
-		if ( nextProps ) {
-			code = nextProps.code;
-		} else {
-			code = this.props.code;
-		}
-		if ( code !== this.state.last ) {
-			this.setState({
-				waiting: true,
-				last: this.props.code
-			});
-			const session = this.context;
-			let { libraries, prependCode } = this.props;
-			let jsonCode = 'library( jsonlite );\n';
-			prependCode = createPrependCode( libraries, prependCode, session );
-
-			jsonCode = jsonCode +
-				prependCode +
-				code.replace( RE_LAST_EXPRESSION, '\n toJSON($1)' );
-
-			session.executeRCode({
-				code: jsonCode,
-				onResult: ( err, res, body ) => {
-					this.setState({
-						data: body,
-						waiting: false
-					});
-				}
-			});
-		}
-	}
-
-	render() {
-		const props = this.props;
-		return (
-			<div className="rtable" >
-				<Spinner running={this.state.waiting} width={256} height={128} />
-				{ this.state.data && !this.state.waiting ?
-					<DataTable data={this.state.data} style={{
-						marginTop: '10px',
-						marginBottom: '10px',
-						...props.style
-					}} /> :
-					<span />
-				}
-			</div>
-		);
-	}
-}
+	useEffect( () => {
+		setWaiting( true );
+		let jsonCode = 'library( jsonlite );\n';
+		const prepended = createPrependCode( libraries, prependCode, session );
+		jsonCode = jsonCode +
+			prepended +
+			code.replace( RE_LAST_EXPRESSION, '\n toJSON($1)' );
+		session.executeRCode({
+			code: jsonCode,
+			onResult: ( err, res, body ) => {
+				setData( body );
+				setWaiting( false );
+			}
+		});
+	}, [ code, libraries, prependCode, session ] );
+	return (
+		<div className="rtable" >
+			<Spinner running={waiting} width={256} height={128} />
+			{ data && !waiting ?
+				<DataTable data={data} style={{
+					marginTop: '10px',
+					marginBottom: '10px',
+					...style
+				}} /> :
+				<span />
+			}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
@@ -114,8 +80,6 @@ RTable.defaultProps = {
 	prependCode: '',
 	style: {}
 };
-
-RTable.contextType = SessionContext;
 
 
 // EXPORTS //
