@@ -31,7 +31,7 @@ function onReady() {
 
 	const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 	const splash = new BrowserWindow({
-		width, height, transparent: false, frame: false, alwaysOnTop: true
+		width, height, transparent: false, frame: false, alwaysOnTop: false, resizable: false
 	});
 	const splashscreenPath = path.resolve( __dirname, 'app', 'splashscreen.html' );
 	splash.loadURL( 'file://'+splashscreenPath );
