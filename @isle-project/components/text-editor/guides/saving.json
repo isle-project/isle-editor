@@ -1,13 +1,11 @@
 [
 	{
 		"target": ".prosemirror-icon.fa.fa-save",
-		"placement": "right",
-		"placementBeacon": "center"
+		"placement": "right"
 	},
 	{
 		"target": ".prosemirror-icon.fa.fa-save",
-		"placement": "right",
-		"placementBeacon": "center"
+		"placement": "right"
 	},
 	{
 		"target": ".prosemirror-icon.fas.fa-file-pdf",
