@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
@@ -14,7 +14,6 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Joyride, { EVENTS } from '@isle-project/components/joyride';
 import overview from './overview.json';
-import poster from './poster.json';
 import saving from './saving.json';
 
 
@@ -25,87 +24,55 @@ const debug = logger( 'isle:text-editor:guides' );
 
 // MAIN //
 
-class Guides extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			selected: 'overview',
-			running: false
+const Guides = ({ target, show, onHide, t }) => {
+	debug( `Rendering guides modal for "${target}" text editor` );
+	const [ selected, setSelected ] = useState( 'overview' );
+	const [ running, setRunning ] = useState( false );
+	const editorNode = useRef( document.getElementById( target ) );
+	const createSteps = useCallback( () => {
+		return {
+			saving: saving.map( ( x, idx ) => {
+				const out = { ...x };
+				out.content = t( `saving-${idx}` );
+				out.target = `#${target} ` + out.target;
+				return out;
+			}),
+			overview: overview.map( ( x, idx ) => {
+				const out = { ...x };
+				out.content = t( `overview-${idx}` );
+				out.target = `#${target} ` + out.target;
+				return out;
+			})
 		};
-		debug( `Creating guides modal for "${this.props.for}" text editor` );
-		this.createSteps( props );
-	}
-
-	componentDidMount() {
-		debug( `Rendering guides modal for "${this.props.for}" text editor` );
-		this.editorNode = document.getElementById( this.props.for );
-	}
-
-	componentDidUpdate( prevProps ) {
-		if ( this.props.for !== prevProps.for ) {
-			this.createSteps( this.props );
-			this.editorNode = document.getElementById( this.props.for );
-		}
-	}
-
-	createSteps( props ) {
-		this.saving = saving.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = props.t( `saving-${idx}` );
-			out.target = `#${props.for} ` + out.target;
-			return out;
-		});
-		this.overview = overview.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = props.t( `overview-${idx}` );
-			out.target = `#${props.for} ` + out.target;
-			return out;
-		});
-		this.poster = poster.map( ( x, idx ) => {
-			const out = { ...x };
-			out.content = props.t( `poster-${idx}` );
-			out.target = `#${props.for} ` + out.target;
-			return out;
-		});
-	}
-
-	clickHide = () => {
-		this.props.onHide();
-	}
-
-	handleStartClick = () => {
-		debug( `${this.state.running ? 'Stopping' : 'Starting'} the selected tour...` );
-		this.props.onHide();
-		this.setState({
-			running: !this.state.running
-		});
-	}
-
-	handleOptionChange = ( event ) => {
-		this.setState({
-			selected: event.target.value
-		});
-	}
-
-	renderCancelPanel() {
-		const { t } = this.props;
-		return (
-			<Card body>
+	}, [ target, t ] );
+	const [ steps, setSteps ] = useState( createSteps() );
+	useEffect( () => {
+		editorNode.current = document.getElementById( target );
+		setSteps( createSteps() );
+	}, [ createSteps, target, t ] );
+	const handleStartClick = useCallback( () => {
+		debug( `${running ? 'Stopping' : 'Starting'} the selected tour...` );
+		onHide();
+		setRunning( !running );
+	}, [ onHide, running ] );
+	const handleOptionChange = useCallback( ( event ) => {
+		setSelected( event.target.value );
+	}, [] );
+	const renderModal = useCallback( () => {
+		/* eslint-disable i18next/no-literal-string */
+		let guidePanel;
+		if ( running ) {
+			guidePanel = <Card body>
 				<span className="title">{t('cancel-tour')}</span>
 				<p>
 					{t('cancel-tour-msg')}
 				</p>
 				<ButtonToolbar>
-					<Button variant="warning" onClick={this.handleStartClick} >{t('cancel')}</Button>
+					<Button variant="warning" onClick={handleStartClick} >{t('cancel')}</Button>
 				</ButtonToolbar>
-			</Card>
-		);
-	}
-
-	renderSelectionPanel() {
-		const { t } = this.props;
-		return (
-			<Card body>
+			</Card>;
+		} else {
+			guidePanel = <Card body>
 				<span className="title">{t('select-tour')}</span>
 				<Form>
 					<FormGroup>
@@ -114,45 +81,26 @@ class Guides extends Component {
 							label={t('editor-overview')}
 							name="overview"
 							value="overview"
-							onChange={this.handleOptionChange}
-							checked={this.state.selected === 'overview'}
+							onChange={handleOptionChange}
+							checked={selected === 'overview'}
 						/>
 						<Form.Check
 							type="radio"
 							label={t('saving-progress')}
 							name="saving"
 							value="saving"
-							onChange={this.handleOptionChange}
-							checked={this.state.selected === 'saving'}
-						/>
-						<Form.Check
-							type="radio"
-							label={t('creating-poster')}
-							name="poster"
-							value="poster"
-							onChange={this.handleOptionChange}
-							checked={this.state.selected === 'poster'}
+							onChange={handleOptionChange}
+							checked={selected === 'saving'}
 						/>
 					</FormGroup>
 				</Form>
 				<ButtonToolbar>
-					<Button variant="success" onClick={this.handleStartClick} >
+					<Button variant="success" onClick={handleStartClick} >
 						{t('start-tour')}
 					</Button>
 				</ButtonToolbar>
-			</Card>
-		);
-	}
-
-	renderModal() {
-		/* eslint-disable i18next/no-literal-string */
-		let guidePanel;
-		if ( this.state.running ) {
-			guidePanel = this.renderCancelPanel();
-		} else {
-			guidePanel = this.renderSelectionPanel();
+			</Card>;
 		}
-		const { t } = this.props;
 		const leftColumn = <Col sm={5}>
 			<h5>{t('headers')}</h5>
 			<Card body style={{ marginBottom: 10 }} >
@@ -204,11 +152,10 @@ class Guides extends Component {
 				</pre>
 			</Card>
 		</Col>;
-
 		return (
 			<Modal
-				onHide={this.clickHide}
-				show={this.props.show}
+				onHide={onHide}
+				show={show}
 				dialogClassName="modal-90w"
 			>
 				<Modal.Header closeButton>
@@ -233,69 +180,51 @@ class Guides extends Component {
 					</Container>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.clickHide} >{t('close')}</Button>
+					<Button onClick={onHide} >{t('close')}</Button>
 				</Modal.Footer>
 			</Modal>
 		);
 		/* eslint-enable i18next/no-literal-string */
-	}
+	}, [ handleOptionChange, onHide, running, selected, handleStartClick, show, t ] );
 
-	render() {
-		const modal = this.renderModal();
-		debug( `Selected tutorial ${this.state.selected} is${this.state.running ? ' ' : ' not ' }running` );
-		return (
-			<Fragment>
-				{modal}
-				{ this.state.selected === 'saving' ?
-					<Joyride
-						steps={this.saving}
-						showProgress
-						disableScrolling
-						run={this.state.running}
-						parentNode={this.editorNode}
-						callback={( tour ) => {
-							const type = tour.type;
-							if ( type === EVENTS.TOUR_END ) {
-								this.setState({ running: false });
-							}
-						}}
-					/> : null
-				}
-				{ this.state.selected === 'overview' ?
-					<Joyride
-						steps={this.overview}
-						showProgress
-						disableScrolling
-						continuous
-						run={this.state.running}
-						parentNode={this.editorNode}
-						callback={( tour ) => {
-							const type = tour.type;
-							if ( type === EVENTS.TOUR_END ) {
-								this.setState({ running: false });
-							}
-						}}
-					/> : null
-				}
-				{ this.state.selected === 'poster' ?
-					<Joyride
-						steps={this.poster}
-						showProgress
-						disableScrolling
-						run={this.state.running}
-						parentNode={this.editorNode}
-						callback={( tour ) => {
-							const type = tour.type;
-							if ( type === EVENTS.TOUR_END ) {
-								this.setState({ running: false });
-							}
-						}}
-					/> : null
-				}
-			</Fragment>
-		);
-	}
-}
+	debug( `Selected tutorial ${selected} is${running ? ' ' : ' not ' }running` );
+	return (
+		<Fragment>
+			{renderModal()}
+			{ selected === 'saving' ?
+				<Joyride
+					steps={steps.saving}
+					showProgress
+					disableScrolling
+					run={running}
+					parentNode={editorNode.current}
+					callback={( tour ) => {
+						const type = tour.type;
+						if ( type === EVENTS.TOUR_END ) {
+							setRunning( false );
+						}
+					}}
+				/> : null
+			}
+			{ selected === 'overview' ?
+				<Joyride
+					steps={steps.overview}
+					showProgress
+					disableScrolling
+					continuous
+					run={running}
+					parentNode={editorNode.current}
+					callback={( tour ) => {
+						const type = tour.type;
+						if ( type === EVENTS.TOUR_END ) {
+							setRunning( false );
+						}
+					}}
+				/> : null
+			}
+		</Fragment>
+	);
+};
 
 
 // PROPERTIES //

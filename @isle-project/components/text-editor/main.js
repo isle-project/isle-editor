@@ -679,7 +679,7 @@ class TextEditor extends Component {
 				<Guides
 					show={this.state.showGuides}
 					onHide={this.toggleGuides}
-					for={this.id}
+					target={this.id}
 					t={this.props.t}
 				/>
 				{this.state.showPDFModal ? <PDFModal
