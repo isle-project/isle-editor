@@ -1,8 +1,8 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import logger from 'debug';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -16,6 +16,7 @@ import TextArea from '@isle-project/components/input/text-area';
 import MultipleChoiceSurvey from '@isle-project/components/multiple-choice-survey';
 import NumberSurvey from '@isle-project/components/number-survey';
 import FreeTextSurvey from '@isle-project/components/free-text-survey';
+import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
 import { STOP_SURVEY, START_SURVEY } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
@@ -31,79 +32,71 @@ const COMPONENT_ID = 'survey-generator';
 /**
 * Component allowing instructors to create multiple-choice surveys, free text surveys and number surveys on the fly in real-time through an easy-to-use interface.
 */
-class SurveyGenerator extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			answers: [],
-			question: '',
-			type: 'free-text',
-			showSurvey: false,
-			anonymous: true,
-			disabled: true
-		};
-	}
+const SurveyGenerator = ({ session, onHide }) => {
+	const [ answers, setAnswers ] = useState( [] );
+	const [ question, setQuestion ] = useState( '' );
+	const [ type, setType ] = useState( 'free-text' );
+	const [ showSurvey, setShowSurvey ] = useState( false );
+	const [ anonymous, setAnonymous ] = useState( true );
+	const [ disabled, setDisabled ] = useState( true );
+	const { t } = useTranslation( 'Toolbar' );
+	const forceUpdate = useForceUpdate();
 
-	componentDidMount() {
-		const session = this.props.session;
-		this.unsubscribe = session.subscribe( ( type, action ) => {
+	useEffect( () => {
+		const unsubscribe = session.subscribe( ( type, action ) => {
 			debug( 'Received member action...' );
-			if ( type === MEMBER_ACTION ) {
+			if ( type === MEMBER_ACTION && COMPONENT_ID === action.id ) {
 				if ( action.type === START_SURVEY ) {
 					debug( 'Should start the survey...' );
-					if ( COMPONENT_ID === action.id ) {
-						this.setState({
-							question: action.value.question,
-							type: action.value.type,
-							answers: action.value.answers,
-							showSurvey: true
-						});
-					}
+					setQuestion( action.value.question );
+					setType( action.value.type );
+					setAnswers( action.value.answers );
+					setShowSurvey(  true );
 				}
 				else if ( action.type === STOP_SURVEY ) {
 					debug( 'Should stop the survey...' );
-					if ( COMPONENT_ID === action.id ) {
-						this.setState({
-							showSurvey: false
-						});
-					}
+					setShowSurvey( false );
 				}
-				this.forceUpdate();
+				else {
+					forceUpdate();
+				}
 			}
 		});
-	}
+		return () => {
+			unsubscribe();
+		};
+	}, [ forceUpdate, session ] );
 
-	componentWillUnmount() {
-		this.unsubscribe();
-	}
-
-	setQuestion = ( text ) => {
-		debug( 'Set the question text...' );
-		let disabled = true;
+	useEffect( ( text ) => {
+		let newDisabled;
 		if (
 			text.length > 3 &&
 			(
-				this.state.answers.length > 1 ||
-				this.state.type !== 'multiple-choice'
+				answers.length > 1 ||
+				type !== 'multiple-choice'
 			)
 		) {
-			disabled = false;
+			newDisabled = false;
+		} else {
+			newDisabled = true;
 		}
-		this.setState({
-			question: text,
-			disabled
-		});
-	}
+		setDisabled( newDisabled );
+	}, [ answers, question, type ] );
 
-	setType = ( type ) => {
-		this.setState({
-			type
-		});
-	}
+	const getAnswers = useCallback( ( text ) => {
+		const newAnswers = text.split( '\n' );
+		let newDisabled = true;
+		if (
+			question.length > 3 && newAnswers.length > 1
+		) {
+			newDisabled = false;
+		}
+		setAnswers( newAnswers );
+		setDisabled( newDisabled );
+	}, [ question ] );
 
-	toggleSurvey = () => {
-		const session = this.props.session;
-		if ( this.state.showSurvey ) {
+	const toggleSurvey = useCallback( () => {
+		if ( showSurvey ) {
 			session.log({
 				id: COMPONENT_ID,
 				type: STOP_SURVEY,
@@ -114,134 +107,110 @@ class SurveyGenerator extends Component {
 				id: COMPONENT_ID,
 				type: START_SURVEY,
 				value: {
-					answers: this.state.answers,
-					type: this.state.type,
-					question: this.state.question
+					answers: answers,
+					type: type,
+					question: question
 				}
 			}, 'members' );
 		}
-	}
-
-	getAnswers = ( text ) => {
-		const answers = text.split( '\n' );
-		let disabled = true;
-		if (
-			this.state.question.length > 3 && answers.length > 1
-		) {
-			disabled = false;
-		}
-		this.setState({
-			answers,
-			disabled
-		});
-	}
-
-	toggleAnonymous = ( value ) => {
-		this.setState({
-			anonymous: value
-		});
-	}
-
-	render() {
-		let body;
-		if ( this.state.showSurvey ) {
-			body = <div>
-				{ this.state.type === 'multiple-choice' ?
-					<MultipleChoiceSurvey
-						user
-						question={this.state.question}
-						answers={this.state.answers}
-						id={COMPONENT_ID+':multiple-choice-survey'}
-						anonymous={this.state.anonymous}
-					/> : null
-				}
-				{ this.state.type === 'number' ?
-					<NumberSurvey
-						user
-						question={this.state.question}
-						id={COMPONENT_ID+':number-survey'}
-						anonymous={this.state.anonymous}
-					/> : null
-				}
-				{ this.state.type === 'free-text' ?
-					<FreeTextSurvey
-						user
-						question={this.state.question}
-						answers={this.state.answers}
-						id={COMPONENT_ID+':free-text-survey'}
-						anonymous={this.state.anonymous}
-					/> : null
-				}
-				<label>
-					{ !this.state.anonymous ? this.props.t( 'survey-not-anonymous' ) : '' }
-				</label>
-				<Gate owner>
-					<Button
-						disabled={this.state.disabled}
-						onClick={this.toggleSurvey}
-						style={{ float: 'right' }}
-					>
-						{this.props.t( 'stop-survey' )}
-					</Button>
-				</Gate>
-			</div>;
-		} else {
-			body = <Gate owner banner={<h3>{this.props.t( 'survey-not-started' )}</h3>}>
-				<FormGroup>
-					<Row>
-						<Col md={3}><FormLabel htmlFor="survey-select-input" >{this.props.t( 'type' )}:</FormLabel></Col>
-						<Col md={9}>
-							<SelectInput
-								id="survey-select-input"
-								defaultValue={this.state.type}
-								options={[ 'multiple-choice', 'number', 'free-text' ]}
-								onChange={this.setType}
-							/>
-						</Col>
-					</Row>
-				</FormGroup>
-				<FormGroup>
-					<TextArea
-						legend={this.props.t('question')}
-						onChange={this.setQuestion}
-						rows={2}
-					/>
-				</FormGroup>
-				{ this.state.type === 'multiple-choice' ?
-					<FormGroup>
-						<TextArea legend={this.props.t('answer-options-new-line-delimited')} onChange={this.getAnswers} />
-					</FormGroup> : null
-				}
-				<CheckboxInput
-					tooltip={this.props.t( 'anonymous-survey-tooltip' )}
-					tooltipPlacement="top"
-					legend={this.props.t( 'anonymous-survey' )}
-					defaultValue={true}
-					onChange={this.toggleAnonymous}
-				/>
+	}, [ answers, session, question, showSurvey, type ] );
+	let body;
+	if ( showSurvey ) {
+		body = <div>
+			{ type === 'multiple-choice' ?
+				<MultipleChoiceSurvey
+					user
+					question={question}
+					answers={answers}
+					id={COMPONENT_ID+':multiple-choice-survey'}
+					anonymous={anonymous}
+				/> : null
+			}
+			{ type === 'number' ?
+				<NumberSurvey
+					user
+					question={question}
+					id={COMPONENT_ID+':number-survey'}
+					anonymous={anonymous}
+				/> : null
+			}
+			{ type === 'free-text' ?
+				<FreeTextSurvey
+					user
+					question={question}
+					answers={answers}
+					id={COMPONENT_ID+':free-text-survey'}
+					anonymous={anonymous}
+				/> : null
+			}
+			<label>
+				{ !anonymous ? t( 'survey-not-anonymous' ) : '' }
+			</label>
+			<Gate owner>
 				<Button
-					disabled={this.state.disabled}
-					onClick={this.toggleSurvey}
+					disabled={disabled}
+					onClick={toggleSurvey}
+					style={{ float: 'right' }}
 				>
-					{this.props.t( 'start-survey' )}
+					{t( 'stop-survey' )}
 				</Button>
-			</Gate>;
-		}
-		const session = this.props.session;
-		return ( <Draggable dragHandleClassName="card-header" >
-			<Panel
-				header={this.props.t( 'survey' )} minimizable
-				className="survey-generator"
-				onHide={session.isOwner() ? this.props.onHide : null}
-				hideTooltip={this.props.t( 'finish-survey' )}
+			</Gate>
+		</div>;
+	} else {
+		body = <Gate owner banner={<h3>{t( 'survey-not-started' )}</h3>}>
+			<FormGroup>
+				<Row>
+					<Col md={3}><FormLabel htmlFor="survey-select-input" >{t( 'type' )}:</FormLabel></Col>
+					<Col md={9}>
+						<SelectInput
+							id="survey-select-input"
+							defaultValue={type}
+							options={[ 'multiple-choice', 'number', 'free-text' ]}
+							onChange={setType}
+						/>
+					</Col>
+				</Row>
+			</FormGroup>
+			<FormGroup>
+				<TextArea
+					legend={t('question')}
+					onChange={setQuestion}
+					rows={2}
+				/>
+			</FormGroup>
+			{ type === 'multiple-choice' ?
+				<FormGroup>
+					<TextArea legend={t('answer-options-new-line-delimited')} onChange={getAnswers} />
+				</FormGroup> : null
+			}
+			<CheckboxInput
+				tooltip={t( 'anonymous-survey-tooltip' )}
+				tooltipPlacement="top"
+				legend={t( 'anonymous-survey' )}
+				defaultValue={true}
+				onChange={setAnonymous}
+			/>
+			<Button
+				disabled={disabled}
+				onClick={toggleSurvey}
 			>
-				{body}
-			</Panel>
-		</Draggable> );
+				{t( 'start-survey' )}
+			</Button>
+		</Gate>;
 	}
-}
+	return ( <Draggable dragHandleClassName="card-header" >
+		<Panel
+			header={t( 'survey' )} minimizable
+			className="survey-generator"
+			onHide={session.isOwner() ? onHide : null}
+			hideTooltip={t( 'finish-survey' )}
+		>
+			{body}
+		</Panel>
+	</Draggable> );
+};
 
 
 // EXPORTS //
 
-export default withTranslation( 'Toolbar' )( SurveyGenerator );
+export default SurveyGenerator;
