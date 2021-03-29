@@ -144,7 +144,7 @@ class Editor extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		let out;
+		let out = null;
 		if ( nextProps.value && !prevState.value ) {
 			out = {
 				value: nextProps.value
