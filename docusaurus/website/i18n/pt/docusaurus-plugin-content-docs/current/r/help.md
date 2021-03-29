@@ -15,7 +15,6 @@ Faça palavras puxar a documentação R em uma janela modal quando clicada.
 
 ## Exemplos
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

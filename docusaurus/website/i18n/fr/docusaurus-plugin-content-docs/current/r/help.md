@@ -15,7 +15,6 @@ Faites en sorte que les mots fassent apparaître la documentation R dans une fen
 
 ## Exemples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

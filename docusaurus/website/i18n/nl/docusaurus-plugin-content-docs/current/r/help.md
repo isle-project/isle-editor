@@ -15,7 +15,6 @@ Laat woorden de R-documentatie in een modaal venster ophalen wanneer er op wordt
 
 ## Voorbeelden
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

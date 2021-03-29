@@ -15,7 +15,6 @@ sidebar_label: R Help
 
 ## Примеры
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

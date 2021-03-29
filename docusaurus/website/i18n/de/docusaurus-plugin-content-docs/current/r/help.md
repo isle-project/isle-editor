@@ -15,7 +15,6 @@ Bringen Sie Wörter dazu, die R-Dokumentation in einem modalen Fenster aufzurufe
 
 ## Beispiele
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

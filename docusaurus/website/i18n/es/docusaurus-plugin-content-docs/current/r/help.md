@@ -15,7 +15,6 @@ Hacer que las palabras saquen la documentación R en una ventana modal cuando se
 
 ## Ejemplos
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

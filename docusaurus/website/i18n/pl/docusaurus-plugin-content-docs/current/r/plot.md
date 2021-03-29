@@ -22,7 +22,53 @@ Komponent do renderowania wykresu R wewnątrz lekcji ISLE.
 
 ## Przykłady
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Draggable', value: 'draggable' },
+        { label: 'Custom Dimensions', value: 'customDimensions' },
+        { label: 'Using Libraries', value: 'usingLibraries' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal" >
+
 ```jsx live
 <RPlot code="hist( c(20,50,40,70,40,30) )" />
 ```
 
+</TabItem>
+
+<TabItem value="draggable" >
+
+```jsx live
+<RPlot draggable code="hist( c(20,50,40,70,40,30) )" />
+```
+
+</TabItem>
+
+<TabItem value="customDimensions" >
+
+```jsx live
+<RPlot code="hist( c(20,50,40,70,40,30) )" width="900px" />
+```
+
+</TabItem>
+
+<TabItem value="usingLibraries" >
+
+```jsx live
+<RPlot 
+    libraries={[ 'ggplot2' ]}
+    code="qplot(mpg, wt, data = mtcars)" 
+/>
+```
+
+</TabItem>
+
+</Tabs>

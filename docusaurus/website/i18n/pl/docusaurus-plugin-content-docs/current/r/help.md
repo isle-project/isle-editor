@@ -15,7 +15,6 @@ Po kliknięciu słów wyciągnij dokumentację R w oknie modalnym.
 
 ## Przykłady
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

@@ -15,7 +15,6 @@ Make words pull up R documentation in a modal window when clicked.
 
 ## Examples
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

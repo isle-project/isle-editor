@@ -16,6 +16,22 @@ Componente para renderizar um quadro de dados R ou matriz em um display tabular.
 
 ## Exemplos
 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Using Libraries', value: 'usingLibraries' },
+        { label: 'Custom Width', value: 'customWidth' }
+    ]}
+    lazy
+>
+
+<TabItem value="minimal" >
+
 ```jsx live
 <RTable
     code={`data <- matrix( runif(64), nrow=8, ncol=8); 
@@ -23,3 +39,29 @@ Componente para renderizar um quadro de dados R ou matriz em um display tabular.
 />
 ```
 
+</TabItem>
+
+<TabItem value="usingLibraries" >
+
+```jsx live
+<RTable 
+    libraries={[ 'dplyr' ]}
+    code="starwars"
+/>
+```
+
+</TabItem>
+
+<TabItem value="customWidth" >
+
+```jsx live
+<RTable 
+    libraries={[ 'dplyr' ]}
+    code="starwars"
+    width={0.85}
+/>
+```
+
+</TabItem>
+
+</Tabs>
