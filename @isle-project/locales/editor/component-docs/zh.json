@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "返回一个data.frame的R代码，该frame包含要在表中显示的数据。",
 	"RTable-prop-libraries": "当输入的 \"code \"被执行时，应自动加载的R库。",
 	"RTable-prop-prependCode": "在评估 \"code \"时，将R代码 \"string\"(或R代码块 \"array\")前置到存储在 \"code \"中的代码。",
-	"RTable-prop-width": "幅宽",
+	"RTable-prop-style": "CSS内联样式",
 	"Runner-description": "runner组件将在给定的时间间隔内执行一次或一次提供的函数。",
 	"Runner-prop-active": "控制Runner是否应该被激活。激活后，在给定的时间间隔内调用 \"onEvaluate \"函数（或一次）。",
 	"Runner-prop-interval": "`onEvaluate'调用之间的毫秒数。如果没有设置间隔时间，则函数只被调用一次。",

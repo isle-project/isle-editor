@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "Kod R zwracający ramkę data.frame zawierającą dane, które mają być wyświetlane w tabeli",
 	"RTable-prop-libraries": "Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.",
 	"RTable-prop-prependCode": "Kod R `sznurek` (lub `szereg` bloków kodu R), który ma być dołączony do kodu przechowywanego w `kodu` podczas oceny",
-	"RTable-prop-width": "szerokość (między 0 a 1)",
+	"RTable-prop-style": "Style inline CSS",
 	"Runner-description": "Komponent prowadnicy wykona dostarczoną funkcję raz lub w określonym odstępie czasu.",
 	"Runner-prop-active": "kontroluje, czy biegacz powinien być aktywny. Po aktywacji, funkcja `onEvaluate` jest wołana w danym przedziale czasu (lub raz)",
 	"Runner-prop-interval": "liczba milisekund pomiędzy inwokacjami `onEvaluate`. Jeśli nie ustawiono żadnego odstępu czasu, funkcja jest wywoływana tylko raz",

@@ -24,7 +24,7 @@ const RE_LAST_EXPRESSION = /(?:\n\s*|^)([ A-Z0-9._():=]+)\n*$/i;
 * @property {string} code - R code returning a data.frame containing the data to be displayed in the table
 * @property {Array<string>} libraries - R libraries that should be loaded automatically when the input `code` is executed
 * @property {(string|Array<string>)} prependCode - R code `string` (or `array` of R code blocks) to be prepended to the code stored in `code` when evaluating
-* @property {number} width - width (between 0 and 1)
+* @property {Object} style - CSS inline styles
 */
 class RTable extends Component {
 	constructor( props ) {
@@ -83,14 +83,11 @@ class RTable extends Component {
 			<div className="rtable" >
 				<Spinner running={this.state.waiting} width={256} height={128} />
 				{ this.state.data && !this.state.waiting ?
-					<div
-						style={{
-							marginTop: '10px',
-							marginBottom: '10px'
-						}}
-					>
-						<DataTable data={this.state.data} width={`${props.width * 100}%`} />
-					</div> :
+					<DataTable data={this.state.data} style={{
+						marginTop: '10px',
+						marginBottom: '10px',
+						...props.style
+					}} /> :
 					<span />
 				}
 			</div>
@@ -108,14 +105,14 @@ RTable.propTypes = {
 		PropTypes.string,
 		PropTypes.array
 	]),
-	width: PropTypes.number
+	style: PropTypes.object
 };
 
 RTable.defaultProps = {
 	code: '',
-	width: 0.5,
 	libraries: [],
-	prependCode: ''
+	prependCode: '',
+	style : {}
 };
 
 RTable.contextType = SessionContext;

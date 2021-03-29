@@ -6500,10 +6500,10 @@
 				"defaultValue": ""
 			},
 			{
-				"name": "width",
-				"type": "number",
-				"description": "RTable-prop-width",
-				"defaultValue": 0.5
+				"name": "style",
+				"type": "object",
+				"description": "RTable-prop-style",
+				"defaultValue": {}
 			}
 		],
 		"description": "RTable-description"

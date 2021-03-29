@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "R-code die een data.frame retourneert met de gegevens die in de tabel moeten worden weergegeven",
 	"RTable-prop-libraries": "R-bibliotheken die automatisch moeten worden geladen wanneer de invoer `code` wordt uitgevoerd",
 	"RTable-prop-prependCode": "R-code `string` (of `array` van R-codeblokken) die bij de evaluatie moet worden voorgeprogrammeerd op de code die is opgeslagen in `code`.",
-	"RTable-prop-width": "breedte (tussen 0 en 1)",
+	"RTable-prop-style": "CSS inline stijlen",
 	"Runner-description": "Het lopercomponent voert een geleverde functie eenmalig of met een bepaalde tussenpoos uit.",
 	"Runner-prop-active": "controleert of de loper actief moet zijn. Bij activering wordt de `onEvaluate` functie aangeroepen in het gegeven interval (of eenmalig)",
 	"Runner-prop-interval": "aantal milliseconden tussen aanroepingen van `onEvaluate`. Als er geen interval is ingesteld, wordt de functie slechts één keer aangeroepen",

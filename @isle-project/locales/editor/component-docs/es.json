@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "Código R que devuelve un marco de datos que contiene los datos que se mostrarán en la tabla",
 	"RTable-prop-libraries": "Bibliotecas R que deben ser cargadas automáticamente cuando se ejecuta el \"código\" de entrada",
 	"RTable-prop-prependCode": "El código R \"cadena\" (o \"matriz\" de bloques de código R) se preparará para el código almacenado en \"código\" cuando se evalúe",
-	"RTable-prop-width": "ancho (entre 0 y 1)",
+	"RTable-prop-style": "Estilos CSS en línea",
 	"Runner-description": "El componente corredor ejecutará una función suministrada una vez o en un intervalo determinado.",
 	"Runner-prop-active": "controla si el corredor debe estar activo. Al activarse, se llama a la función \"onEvaluar\" en el intervalo dado (o una vez)",
 	"Runner-prop-interval": "número de milisegundos entre las invocaciones de \"sobrevalorar\". Si no se establece un intervalo, la función sólo se invoca una vez",

@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "Codice R che restituisce un data.frame contenente i dati da visualizzare nella tabella",
 	"RTable-prop-libraries": "R librerie che dovrebbero essere caricate automaticamente quando viene eseguito il `codice` di input",
 	"RTable-prop-prependCode": "Il codice R `stringa` (o `array` di blocchi di codice R) da preparare al codice memorizzato nel `codice` quando si valuta",
-	"RTable-prop-width": "larghezza (tra 0 e 1)",
+	"RTable-prop-style": "Stili CSS in linea",
 	"Runner-description": "Il componente runner eseguirà una funzione fornita una volta o ad un determinato intervallo.",
 	"Runner-prop-active": "controlla se il corridore deve essere attivo. All'attivazione, la funzione `onEvaluate` viene chiamata nell'intervallo dato (o una volta)",
 	"Runner-prop-interval": "numero di millisecondi tra le invocazioni di `onEvaluate`. Se non viene impostato alcun intervallo, la funzione viene invocata una sola volta",

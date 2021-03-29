@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "Code R renvoyant un data.frame contenant les données à afficher dans le tableau",
 	"RTable-prop-libraries": "R les bibliothèques qui doivent être chargées automatiquement lorsque le \"code\" d'entrée est exécuté",
 	"RTable-prop-prependCode": "Une \"chaîne\" de code R (ou un \"tableau\" de blocs de code R) à ajouter au code stocké dans le \"code\" lors de l'évaluation",
-	"RTable-prop-width": "largeur (entre 0 et 1)",
+	"RTable-prop-style": "Styles CSS en ligne",
 	"Runner-description": "La composante \"runner\" exécutera une fonction fournie soit une fois, soit à un intervalle donné.",
 	"Runner-prop-active": "contrôle si le coureur doit être actif. Lors de l'activation, la fonction \"onEvaluate\" est appelée dans l'intervalle donné (ou une fois)",
 	"Runner-prop-interval": "nombre de millisecondes entre les invocations de \"onEvaluate\". Si aucun intervalle n'est défini, la fonction n'est invoquée qu'une seule fois",

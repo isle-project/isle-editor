@@ -1052,7 +1052,7 @@
 	"RTable-prop-code": "R-Code, der einen data.frame zurückgibt, der die Daten enthält, die in der Tabelle angezeigt werden sollen",
 	"RTable-prop-libraries": "R-Bibliotheken, die automatisch geladen werden sollen, wenn der Eingabe-\"Code\" ausgeführt wird",
 	"RTable-prop-prependCode": "R-Code `string` (oder `array` von R-Codeblöcken), der bei der Auswertung dem in `code` gespeicherten Code vorangestellt wird",
-	"RTable-prop-width": "Breite (zwischen 0 und 1)",
+	"RTable-prop-style": "CSS-Inline-Stile",
 	"Runner-description": "Die Läuferkomponente führt eine bereitgestellte Funktion entweder einmalig oder in einem bestimmten Intervall aus.",
 	"Runner-prop-active": "steuert, ob der Läufer aktiv sein soll. Bei Aktivierung wird die Funktion `onEvaluate` im angegebenen Intervall (oder einmal) aufgerufen",
 	"Runner-prop-interval": "Anzahl der Millisekunden zwischen den Aufrufen von `onEvaluate`. Wenn kein Intervall eingestellt ist, wird die Funktion nur einmal aufgerufen",
