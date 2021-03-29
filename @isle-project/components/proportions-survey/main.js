@@ -68,9 +68,11 @@ const ProportionsSurvey = ( props ) => {
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );
-	const [ value, setValue ] = useState( null );
+	const len = props.legends.length;
+	const [ value, setValue ] = useState( new Array( len ).fill( 100.0 / len ) );
 	const [ data, setData ] = useState({
-		values: null, nResults: 0
+		values: null,
+		nResults: 0
 	});
 	const { anonymous, legends, onSubmit } = props;
 	const submitQuestion = useCallback( () => {
@@ -91,7 +93,6 @@ const ProportionsSurvey = ( props ) => {
 	}, [ anonymous, onSubmit, session, t, value ] );
 	const onData = useCallback( ( data ) => {
 		debug( 'ProportionsSurvey is receiving data: ' + JSON.stringify( data ) );
-		data = data[ id.current ];
 		const list = new Array( data.length );
 		for ( let i = 0; i < data.length; i++ ) {
 			list[ i ] = JSON.parse( data[ i ] );
@@ -118,7 +119,7 @@ const ProportionsSurvey = ( props ) => {
 	const disabled = (
 		( submitted && !props.allowMultipleAnswers ) ||
 		props.disabled ||
-		( value && absdiff( sum( value ), 100 ) > 0.1 )
+		absdiff( sum( value ), 100 ) > 0.2
 	);
 	return (
 		<Panel>
@@ -213,8 +214,6 @@ ProportionsSurvey.propTypes = {
 	]),
 	step: PropTypes.number
 };
-
-ProportionsSurvey.contextType = SessionContext;
 
 
 // EXPORTS //
