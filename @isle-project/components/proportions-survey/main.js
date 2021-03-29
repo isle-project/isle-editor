@@ -118,7 +118,7 @@ const ProportionsSurvey = ( props ) => {
 	const disabled = (
 		( submitted && !props.allowMultipleAnswers ) ||
 		props.disabled ||
-		absdiff( sum( value ), 100 ) > 0.1
+		absdiff( sum( value ), 100 ) > 0.5
 	);
 	return (
 		<Panel>
@@ -126,11 +126,13 @@ const ProportionsSurvey = ( props ) => {
 				<Row>
 					<Col md={6}>
 						<Card body className="proportions-survey" >
-							<h3>{props.question}</h3>
-							{paused ?
-								<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
-								null
-							}
+							<h3>
+								{props.question}
+								{paused ?
+									<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
+									null
+								}
+							</h3>
 							<ProportionsInput
 								legends={legends}
 								precision={props.precision}

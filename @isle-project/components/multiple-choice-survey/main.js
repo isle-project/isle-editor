@@ -158,12 +158,14 @@ const MultipleChoiceSurvey = ( props ) => {
 				<Row>
 					<Col md={6}>
 						<Card body className="multiple-choice-survey">
-							<p><label>{question}</label></p>
+							<p>
+								<label>{question}</label>
+								{paused ?
+									<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
+									null
+								}
+							</p>
 							{ multipleAnswers ? <span>{t('multiple-answers')}</span> : null }
-							{paused ?
-								<i className="fas fa-lock" style={{ float: 'right' }} ></i> :
-								null
-							}
 							<ListGroup fill >
 								{ multipleAnswers ?
 									answers.map( renderAnswerOptionsMultiple ) :
