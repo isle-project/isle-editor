@@ -1,8 +1,8 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
 import isNull from '@stdlib/assert/is-null';
@@ -53,88 +53,59 @@ function createImgHTML({ id, meta, plot }) {
 * @property {string} className - class name
 * @property {Function} onDone - callback invoked with `err`, `img` and `body` arguments once a plot is created
 */
-class RPlot extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			plotURL: null,
-			plot: null,
-			last: '',
-			waiting: false
-		};
-	}
+const RPlot = ({ code, className, draggable, id, libraries, prependCode, fileType, meta, onDone, ...rest }) => {
+	const { t } = useTranslation( 'R' );
+	const [ waiting, setWaiting ] = useState( false );
+	const [ plot, setPlot ] = useState({ img: null, body: null });
+	const session = useContext( SessionContext );
+	useEffect( () => {
+		setWaiting( true );
+		const prepended = createPrependCode( libraries, prependCode, session );
+		const fullCode = prepended + code;
+		session.getRPlot( fullCode, fileType, ( error, img, body ) => {
+			if ( error ) {
+				onDone( error );
+			} else {
+				setPlot({ img, body });
+				setWaiting( false );
+				onDone( null, img, body );
+			}
+		});
+	}, [ code, fileType, libraries, prependCode, session, onDone ] );
 
-	componentDidMount() {
-		this.getPlot();
+	let draggableBar = null;
+	if ( draggable ) {
+		draggableBar = <button
+			className="rplot-draggable-bar"
+			draggable={true}
+			onDragStart={( ev ) => {
+				const img = createImgHTML({ id, meta, plot: plot.body });
+				ev.dataTransfer.setData( 'text/html', img );
+			}}
+			onClick={() => {
+				const img = createImgHTML({ id, meta, plot: plot.body });
+				html2clipboard( img );
+			}}
+		>{t('drag-plot')}</button>;
 	}
-
-	componentDidUpdate() {
-		this.getPlot();
-	}
-
-	savePlot = ( error, img, body ) => {
-		if ( error ) {
-			this.props.onDone( error );
-		} else {
-			this.setState({
-				plotURL: img,
-				plot: body,
-				waiting: false
-			}, () => {
-				this.props.onDone( null, img, body );
-			});
-		}
-	}
-
-	getPlot() {
-		if ( this.props.code !== this.state.last ) {
-			this.setState({
-				waiting: true,
-				last: this.props.code
-			});
-			const session = this.context;
-			const prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
-			const fullCode = prependCode + this.props.code;
-			session.getRPlot( fullCode, this.props.fileType, this.savePlot );
-		}
-	}
-
-	render() {
-		let draggableBar = null;
-		if ( this.props.draggable ) {
-			draggableBar = <button
-				className="rplot-draggable-bar"
-				draggable={true}
-				onDragStart={( ev ) => {
-					const img = createImgHTML({ id: this.id, meta: this.props.meta, plot: this.state.plot });
-					ev.dataTransfer.setData( 'text/html', img );
-				}}
-				onClick={() => {
-					const img = createImgHTML({ id: this.id, meta: this.props.meta, plot: this.state.plot });
-					html2clipboard( img );
-				}}
-			>{this.props.t('drag-plot')}</button>;
-		}
-		const { className, ...rest } = this.props;
-		return (
-			<div className={`rplot ${className}`} style={{ minHeight: 128, cursor: 'pointer' }}>
-				<Spinner running={this.state.waiting} width={256} height={128} />
-				{ this.state.waiting ?
-					<span /> :
-					<Fragment>
-						{draggableBar}
-						<Image
-							src={this.state.plotURL}
-							body={this.state.plot}
-							title={this.props.t('r-plot')}
-							{...rest}
-						/>
-					</Fragment>
-				}
-			</div>
-		);
-	}
-}
+	return (
+		<div className={`rplot ${className}`} style={{ minHeight: 128, cursor: 'pointer' }}>
+			<Spinner running={waiting} width={256} height={128} />
+			{ waiting ?
+				<span /> :
+				<Fragment>
+					{draggableBar}
+					<Image
+						src={plot.img}
+						body={plot.body}
+						title={t('r-plot')}
+						{...rest}
+					/>
+				</Fragment>
+			}
+		</div>
+	);
+};
 
 
 // PROPERTIES //
@@ -174,9 +145,7 @@ RPlot.defaultProps = {
 	onDone() {}
 };
 
-RPlot.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( withPropCheck( RPlot ) );
+export default withPropCheck( RPlot );
