@@ -484,7 +484,7 @@ class Tokenizer {
 				}
 				current += char;
 			}
-			else if (
+			if (
 				( isQuotationMark( char ) || char === '`' ) &&
 				prevChar !== '\\'
 			) {
