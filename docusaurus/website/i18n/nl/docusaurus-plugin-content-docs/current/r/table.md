@@ -11,7 +11,7 @@ Onderdeel voor het weergeven van een R-dataframe of -matrix in een tabelweergave
 * __code__ | `string`: R-code die een data.frame retourneert met de gegevens die in de tabel moeten worden weergegeven. Default: `''`.
 * __libraries__ | `array`: R-bibliotheken die automatisch moeten worden geladen wanneer de invoer `code` wordt uitgevoerd. Default: `[]`.
 * __prependCode__ | `(string|array)`: R-code `string` (of `array` van R-codeblokken) die bij de evaluatie moet worden voorgeprogrammeerd op de code die is opgeslagen in `code`.. Default: `''`.
-* __width__ | `number`: breedte (tussen 0 en 1). Default: `0.5`.
+* __style__ | `object`: CSS inline stijlen. Default: `{}`.
 
 
 ## Voorbeelden
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

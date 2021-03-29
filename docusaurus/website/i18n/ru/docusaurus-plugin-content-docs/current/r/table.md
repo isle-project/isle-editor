@@ -11,7 +11,7 @@ sidebar_label: R Table
 * __code__ | `string`: R код, возвращающий data.frame, содержащий данные для отображения в таблице.. Default: `''`.
 * __libraries__ | `array`: R библиотек, которые должны быть загружены автоматически при выполнении входного `кода`.. Default: `[]`.
 * __prependCode__ | `(string|array)`: R код `строки` (или `массива` из блоков кода R), который при оценке будет препарировать к коду, хранящемуся в `коде`.. Default: `''`.
-* __width__ | `number`: ширина (от 0 до 1). Default: `0.5`.
+* __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 
 ## Примеры
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

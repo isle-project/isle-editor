@@ -11,7 +11,7 @@ sidebar_label: R Table
 * __code__ | `string`: 返回一个data.frame的R代码，该frame包含要在表中显示的数据。. Default: `''`.
 * __libraries__ | `array`: 当输入的 "code "被执行时，应自动加载的R库。. Default: `[]`.
 * __prependCode__ | `(string|array)`: 在评估 "code "时，将R代码 "string"(或R代码块 "array")前置到存储在 "code "中的代码。. Default: `''`.
-* __width__ | `number`: 幅宽. Default: `0.5`.
+* __style__ | `object`: CSS内联样式. Default: `{}`.
 
 
 ## 例子
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

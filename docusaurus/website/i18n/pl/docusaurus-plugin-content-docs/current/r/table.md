@@ -11,7 +11,7 @@ Komponent do renderowania ramki danych R lub macierzy w postaci tabelarycznej.
 * __code__ | `string`: Kod R zwracający ramkę data.frame zawierającą dane, które mają być wyświetlane w tabeli. Default: `''`.
 * __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.. Default: `[]`.
 * __prependCode__ | `(string|array)`: Kod R `sznurek` (lub `szereg` bloków kodu R), który ma być dołączony do kodu przechowywanego w `kodu` podczas oceny. Default: `''`.
-* __width__ | `number`: szerokość (między 0 a 1). Default: `0.5`.
+* __style__ | `object`: Style inline CSS. Default: `{}`.
 
 
 ## Przykłady
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

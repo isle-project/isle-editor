@@ -11,7 +11,7 @@ Komponente zum Rendern eines R-Datenrahmens oder einer Matrix in einer tabellari
 * __code__ | `string`: R-Code, der einen data.frame zurückgibt, der die Daten enthält, die in der Tabelle angezeigt werden sollen. Default: `''`.
 * __libraries__ | `array`: R-Bibliotheken, die automatisch geladen werden sollen, wenn der Eingabe-"Code" ausgeführt wird. Default: `[]`.
 * __prependCode__ | `(string|array)`: R-Code `string` (oder `array` von R-Codeblöcken), der bei der Auswertung dem in `code` gespeicherten Code vorangestellt wird. Default: `''`.
-* __width__ | `number`: Breite (zwischen 0 und 1). Default: `0.5`.
+* __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 
 ## Beispiele
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

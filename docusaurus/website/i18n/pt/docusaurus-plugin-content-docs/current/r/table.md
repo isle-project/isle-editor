@@ -11,7 +11,7 @@ Componente para renderizar um quadro de dados R ou matriz em um display tabular.
 * __code__ | `string`: Código R devolvendo um quadro de dados.frame contendo os dados a serem exibidos na tabela. Default: `''`.
 * __libraries__ | `array`: R bibliotecas que devem ser carregadas automaticamente quando o `código` de entrada é executado. Default: `[]`.
 * __prependCode__ | `(string|array)`: R código `tring` (ou `array` de blocos de código R) a ser prepenso ao código armazenado no `código` ao avaliar. Default: `''`.
-* __width__ | `number`: largura (entre 0 e 1). Default: `0.5`.
+* __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 
 ## Exemplos
@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Custom Width', value: 'customWidth' }
+        { label: 'Custom Style', value: 'customStyle' }
     ]}
     lazy
 >
@@ -52,13 +52,13 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="customWidth" >
+<TabItem value="customStyle" >
 
 ```jsx live
 <RTable 
     libraries={[ 'dplyr' ]}
     code="starwars"
-    width={0.85}
+    style={{ width: '400px' }}
 />
 ```
 

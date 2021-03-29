@@ -35,9 +35,9 @@ import TabItem from '@theme/TabItem';
     values={[
         { label: 'Minimal', value: 'minimal' },
         { label: 'Precompute & Disabled', value: 'precompute' },
-        { label: 'Hints & Solution', value: 'hintsAndSolution' },
         { label: 'Using Libraries', value: 'usingLibraries' },
-        { label: 'Add Preceding Code', value: 'addPreceding' }
+        { label: 'Add Preceding Code', value: 'addPreceding' },
+        { label: 'Hints & Solution', value: 'hintsAndSolution' }
     ]}
     lazy
 >
@@ -65,6 +65,24 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
+<TabItem value="usingLibraries" >
+
+```jsx live
+<RShell libraries={['dplyr']} code={'starwars %>% filter(species == "Droid")'} lines={2} />
+```
+
+</TabItem>
+
+<TabItem value="addPreceding" >
+
+```jsx live
+<RShell code="library(dplyr)" lines={2} disabled />
+
+<RShell code={'starwars %>% filter(species == "Droid")'} addPreceding lines={2} />
+```
+
+</TabItem>
+
 <TabItem value="hintsAndSolution" >
 
 ```jsx live
@@ -80,20 +98,6 @@ summary(cars.lm)`}
     hints={["Use the model formula syntax to specify your regression equation. Type ?formula if you don't remember how formulas work.","You can use the summary() function to retrieve a detailed regression output for a lm object"]}
 />
 ```
-
-</TabItem>
-
-<TabItem value="usingLibraries" >
-
-<RShell libraries={['dplyr']} code={'starwars %>% filter(species == "Droid")'} lines={2} />
-
-</TabItem>
-
-<TabItem value="addPreceding" >
-
-<RShell code="library(dplyr)" lines={2} disabled />
-
-<RShell code={'starwars %>% filter(species == "Droid")'} addPreceding lines={2} />
 
 </TabItem>
 
