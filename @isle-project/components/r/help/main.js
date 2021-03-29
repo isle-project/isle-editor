@@ -1,10 +1,11 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import trim from '@stdlib/string/trim';
 import SessionContext from '@isle-project/session/context.js';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -25,74 +26,59 @@ addResources( 'R' );
 * @property {string} library - name of the R package in which the function resides
 * @property {boolean} visible - controls whether the help modal window should be opened at startup
 */
-class RHelp extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			visible: this.props.visible,
-			body: ''
-		};
-	}
-
-	hideModal = () => {
-		this.setState({
-			visible: false
-		});
-	}
-
-	showModal = () => {
-		const functionName = this.props.func || this.props.children;
-		if ( this.state.body === '' ) {
-			const session = this.context;
-			session.getRHelp( this.props.library, functionName, ( error, response, body ) => {
+const RHelp = ({ children, func, library, visible }) => {
+	const { t } = useTranslation( 'R' );
+	const session = useContext( SessionContext );
+	const [ show, setShow ] = useState( visible );
+	const [ body, setBody ] = useState( '' );
+	const showModal = useCallback( () => {
+		const functionName = trim( func || children );
+		if ( body === '' ) {
+			session.getRHelp( library, functionName, ( error, response, body ) => {
 				if ( !error ) {
-					this.setState({
-						body,
-						visible: true
-					});
+					setBody( body );
 				}
 			});
 		}
-		else {
-			this.setState({
-				visible: !this.state.visible
-			});
+	}, [ body, children, func, library, session ] );
+	const toggleModal = useCallback( () => {
+		setShow( !show );
+	}, [ show ] );
+	useEffect( () => {
+		if ( show ) {
+			showModal();
 		}
-	}
-
-	render() {
-		const { t } = this.props;
-		return (
-			<span
-				role="button" tabIndex={0}
-				className="RHelp"
-				onClick={this.showModal} onKeyPress={this.showModal}
+	}, [ show, showModal ] );
+	return (
+		<span
+			role="button" tabIndex={0}
+			className="RHelp"
+			onClick={toggleModal} onKeyPress={toggleModal}
+		>
+			<Modal
+				backdrop={false}
+				show={show}
+				title={t('r-help')}
+				onHide={toggleModal}
+				className="r-help-modal"
+				enforceFocus={false}
 			>
-				<Modal
-					backdrop={false}
-					show={this.state.visible}
-					title={t('r-help')}
-					onHide={this.hideModal}
-					className="r-help-modal"
-					enforceFocus={false}
-				>
-					<Modal.Header closeButton>
-						<Modal.Title id="contained-modal-title-lg">{t('r-help')}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body className="r-help-modal-body" >
-						<span dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-							__html: this.state.body
-						}}></span>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button onClick={this.hideModal}>{t('close')}</Button>
-					</Modal.Footer>
-				</Modal>
-				<code style={{ cursor: 'pointer' }}>{this.props.children || this.props.func}</code>
-			</span>
-		);
-	}
-}
+				<Modal.Header closeButton>
+					<Modal.Title id="contained-modal-title-lg">{t('r-help')}</Modal.Title>
+				</Modal.Header>
+				<Modal.Body className="r-help-modal-body" >
+					<span dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+						__html: body
+					}}></span>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button onClick={toggleModal}>{t('close')}</Button>
+				</Modal.Footer>
+			</Modal>
+			<code style={{ cursor: 'pointer' }}>{children || func}</code>
+		</span>
+	);
+};
 
 
 // PROPERTIES //
@@ -109,9 +95,7 @@ RHelp.defaultProps = {
 	visible: false
 };
 
-RHelp.contextType = SessionContext;
-
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( withPropCheck( RHelp ) );
+export default withPropCheck( RHelp );
