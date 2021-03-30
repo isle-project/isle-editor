@@ -33,6 +33,8 @@ const extraResources = [
 	'!node_modules/@stdlib/stdlib/lib/node_modules/@stdlib/datasets/spam-assassin/*',
 	'!node_modules/.cache/**/*',
 	'!node_modules/@icons/**/*',
+	'!node_modules/plotly.js/dist/**/*',
+	'!node_modules/mapbox-gl/dist/**/*',
 	'!@isle-project/components/dist/**/*',
 	'!@isle-project/session/dist/*'
 ];
