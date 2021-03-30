@@ -2265,7 +2265,7 @@ class Sketchpad extends Component {
 				}
 			}}
 			onColorChange={( color ) => { this.setState({ color }); }}
-			onBrushSelect={( event ) => {
+			onBrushSelect={( value ) => {
 				if ( this.state.mode === 'drag' ) {
 					this.deselectElements();
 					this.onlyRedrawElements();
@@ -2274,7 +2274,7 @@ class Sketchpad extends Component {
 					this.insertTextFromInput();
 				}
 				this.setState({
-					brushSize: event.target.value,
+					brushSize: Number( value ),
 					mode: 'drawing'
 				});
 			}}
@@ -2288,13 +2288,13 @@ class Sketchpad extends Component {
 					mode: 'text'
 				});
 			}}
-			onFontSizeSelect={( event ) => {
+			onFontSizeSelect={( value ) => {
 				if ( this.state.mode === 'drag' ) {
 					this.deselectElements();
 					this.onlyRedrawElements();
 				}
 				this.setState({
-					fontSize: Number( event.target.value ),
+					fontSize: Number( value ),
 					mode: 'text'
 				});
 			}}

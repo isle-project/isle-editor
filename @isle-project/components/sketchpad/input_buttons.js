@@ -7,8 +7,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
 import Tooltip from '@isle-project/components/tooltip';
 import TooltipButton from './tooltip_button.js';
 
@@ -20,6 +18,8 @@ const COLORPICKER_COLORS = [
 	'#00D084', '#8ED1FC', '#0693E3',
 	'#ABB8C3', '#EB144C', '#9900EF'
 ];
+const BRUSH_SIZES = [ 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 18, 20, 22, 24, 30, 36, 42 ];
+const FONT_SIZES = [ 8, 9, 10, 11, 12, 14, 18, 24, 30, 36, 48, 60, 72 ];
 
 
 // MAIN //
@@ -83,16 +83,14 @@ class InputButtons extends Component {
 				</ButtonGroup>
 				<ButtonGroup size="sm" className="sketch-drawing-buttons" >
 					<TooltipButton tooltip={t('drawing-mode')} glyph="paint-brush" size="sm" variant={this.props.mode === 'drawing' ? 'success' : 'secondary'} onClick={this.toggleDrawingMode} />
-					<InputGroup size="sm" className="sketch-input-group" >
-						<FormControl
-							type="number"
-							min={1}
-							max={42}
-							onChange={this.props.onBrushSelect}
-							value={this.props.brushSize}
-							aria-label={t('brush-size')}
-						/>
-					</InputGroup>
+					<DropdownButton
+						id="sketch-brush-size-dropdown"
+						size="sm" variant="light"
+						title={this.props.brushSize}
+						onSelect={this.props.onBrushSelect}
+					>
+						{BRUSH_SIZES.map( ( x, i ) => <DropdownItem key={i} eventKey={x}>{x}</DropdownItem> )}
+					</DropdownButton>
 				</ButtonGroup>
 				<ButtonGroup size="sm" >
 					<Tooltip placement="right" tooltip={t('change-brush-color')} >
@@ -119,16 +117,14 @@ class InputButtons extends Component {
 						<DropdownItem eventKey="Verdana">Verdana</DropdownItem>
 						<DropdownItem eventKey="Palatino">Palatino</DropdownItem>
 					</DropdownButton>
-					<InputGroup size="sm" className="sketch-input-group" >
-						<FormControl
-							type="number"
-							min={12}
-							max={60}
-							onChange={this.props.onFontSizeSelect}
-							value={this.props.fontSize}
-							aria-label={t('font-size')}
-						/>
-					</InputGroup>
+					<DropdownButton
+						id="sketch-font-size-dropdown"
+						size="sm" variant="light"
+						title={this.props.fontSize}
+						onSelect={this.props.onFontSizeSelect}
+					>
+						{FONT_SIZES.map( ( x, i ) => <DropdownItem key={i} eventKey={x}>{x}</DropdownItem> )}
+					</DropdownButton>
 				</ButtonGroup>
 				<div className="sketch-colorpicker" style={{ display: this.state.showColorPicker ? 'initial' : 'none' }} >
 					<TwitterPicker
