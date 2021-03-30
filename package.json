@@ -1811,6 +1811,7 @@
       "app/app.icns",
       "app/app.ico",
       "app/app.png",
+      "app/img/isle_logo.svg",
       "app/splashscreen.html",
       "package.json",
       "*.main.js",
