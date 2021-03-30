@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.75.1](https://github.com/isle-project/isle-editor/releases/tag/v0.75.1) (2021-03-30)
+
+This update comes with small performance improvements, a new loading screen for the editor, and refactored survey components. The survey components (`FreeTextSurvey`, `NumberSurvey`, `MultipleChoiceSurvey`, and `ProportionsSurvey`) now come with a pause button that allows instructors to control whether students are able to submit answers.
+
+In addition, the release comes with the following changes:
+
+- Fixes installation of packages from `npm` in editor on Windows
+- Remove gates from survey components, i.e. make them visible by default also for not logged-in users
+- Ensures maximum observation is correctly displayed in a quantile-quantile plot
+- For the `Sketchpad`, the right-click copy button is not displayed on tablets anymore; on other devices, it correctly closes when left-clicking outside the context menu
+- In the `Sketchpad`, input buttons for the brush and font sizes have been replaced by dropdown menus to improve the experience on tablets and other touch devices.
+
 ## [v0.75.0](https://github.com/isle-project/isle-editor/releases/tag/v0.75.0) (2021-03-15)
 
 This release comes with performance improvements for the editor, a new integrated tutorial for the editor and component wizards, and a context menu option accessible via right click for components inside the preview pane:
