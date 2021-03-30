@@ -85,6 +85,14 @@
 		"message": "Welkom bij de documentatie van de <i>interactieve statistische leeromgeving (ISLE)</i> en de ISLE Editor voor het maken van interactieve lessen voor statistiek en aanverwante disciplines. Een van onze doelen is om docenten aan universiteiten en andere leerinstellingen aan te moedigen het voor hun doeleinden te gebruiken. Voor vragen kunt u contact met ons opnemen via e-mail op pgb AT andrew.cmu.edu.",
 		"description": "Welcome message at beginning of documentation"
 	},
+	"playground.live-editor": {
+		"message": "Live redacteur",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Resultaat",
+		"description": "Heading of output pane"
+	},
 	"theme.AnnouncementBar.closeButtonAriaLabel": {
 		"message": "Sluiten",
 		"description": "The ARIA label for close button of announcement bar"
@@ -104,6 +112,30 @@
 	"theme.blog.post.paginator.navAriaLabel": {
 		"message": "Blog post pagina navigatie",
 		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Nieuwer bericht",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Ouder bericht",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Een bericht|{count} berichten",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Een min gelezen|{readingTime} min gelezen",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Meer lezen",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} getagd met \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
 	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Nieuwere berichten",
@@ -133,6 +165,22 @@
 		"message": "Kopiëren",
 		"description": "The copy button label on code blocks"
 	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Kopieer code naar klembord",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Deze pagina bewerken",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Directe link naar rubriek",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Overslaan naar hoofdinhoud",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
 	"theme.DocPaginator.next": {
 		"message": "Volgende",
 		"description": "The label used to navigate to the next doc"
@@ -141,9 +189,73 @@
 		"message": "Vorige",
 		"description": "The label used to navigate to the previous doc"
 	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Docs pagina's navigatie",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Volgende",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Vorige",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Zijbalk samenvouwen",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Zijbalk samenvouwen",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Zijbalk uitbreiden",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Zijbalk uitbreiden",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Menu sluiten",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Menu openen",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "laatste versie",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Voor actuele documentatie, zie de {latestVersionLink} ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Dit is documentatie voor {siteTitle} {versionLabel}, die niet langer actief wordt onderhouden.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Dit is nog niet uitgebrachte documentatie voor {siteTitle} {versieLabel} versie.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
 	"theme.EditThisPage.editThisPage": {
 		"message": "Deze pagina bewerken",
 		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " op {datum}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " door {user}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Laatst bijgewerkt{datum}{doorGebruiker}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
 	},
 	"theme.NotFound.p1": {
 		"message": "We konden niet vinden wat u zocht.",
@@ -165,9 +277,57 @@
 		"message": "Resultaat",
 		"description": "The result label of the live codeblocks"
 	},
+	"theme.SearchBar.label": {
+		"message": "Zoeken op",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Zoeken op Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Eén document gevonden|{count} documenten gevonden",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Zoeken in de documentatie",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Zoekresultaten voor",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Het ophalen van nieuwe resultaten...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Zoeken op",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Typ hier uw zoekopdracht",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Er zijn geen resultaten gevonden",
+		"description": "The paragraph for empty search result"
+	},
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "Overslaan naar hoofdinhoud",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Tags:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Alle tags bekijken",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Tags",
+		"description": "The title of the tag list page"
 	},
 	"video-tutorials": {
 		"message": "Video Handleidingen",

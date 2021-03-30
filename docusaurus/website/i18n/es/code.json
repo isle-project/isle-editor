@@ -85,6 +85,14 @@
 		"message": "Bienvenido a la documentación del <i>entorno interactivo de aprendizaje de estadística (ISLE)</i> y del Editor ISLE para la autoría de lecciones interactivas de estadística y disciplinas relacionadas. Uno de nuestros objetivos es animar a los instructores de las universidades y otras instituciones de aprendizaje a utilizarlo para sus fines. Si tiene preguntas, póngase en contacto con nosotros por correo electrónico en pgb AT andrew.cmu.edu.",
 		"description": "Welcome message at beginning of documentation"
 	},
+	"playground.live-editor": {
+		"message": "Editor en vivo",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Resultado",
+		"description": "Heading of output pane"
+	},
 	"theme.AnnouncementBar.closeButtonAriaLabel": {
 		"message": "Cerrar",
 		"description": "The ARIA label for close button of announcement bar"
@@ -104,6 +112,30 @@
 	"theme.blog.post.paginator.navAriaLabel": {
 		"message": "Navegación en la página del blog",
 		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Entrada más reciente",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Entrada más antigua",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Un puesto|{cuenta} puestos",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Un minuto de lectura|{readingTime} min read",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Leer más",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} etiquetados con \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
 	},
 	"theme.BlogListPaginator.newerEntries": {
 		"message": "Entradas más recientes",
@@ -133,6 +165,22 @@
 		"message": "Copiar",
 		"description": "The copy button label on code blocks"
 	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Copiar el código en el portapapeles",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Editar esta página",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Enlace directo a la cabecera",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Ir al contenido principal",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
 	"theme.DocPaginator.next": {
 		"message": "Siguiente",
 		"description": "The label used to navigate to the next doc"
@@ -141,9 +189,73 @@
 		"message": "Anteriormente",
 		"description": "The label used to navigate to the previous doc"
 	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Navegación por las páginas de los documentos",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Siguiente",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Anteriormente",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Colapsar la barra lateral",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Colapsar la barra lateral",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Ampliar la barra lateral",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Ampliar la barra lateral",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Cerrar el menú",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Abrir el menú",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "última versión",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Para ver la documentación actualizada, consulte el {latestVersionLink} ({versiónEtiqueta}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Esta es la documentación de {siteTitle} {versionLabel}, que ya no se mantiene activamente.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Esta es la documentación no publicada para {siteTitle} {versionLabel} versión.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
 	"theme.EditThisPage.editThisPage": {
 		"message": "Editar esta página",
 		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " el {fecha}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " por {usuario}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Última actualización{enFecha}{porUsuario}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
 	},
 	"theme.NotFound.p1": {
 		"message": "No hemos podido encontrar lo que buscaba.",
@@ -165,9 +277,57 @@
 		"message": "Resultado",
 		"description": "The result label of the live codeblocks"
 	},
+	"theme.SearchBar.label": {
+		"message": "Buscar en",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Búsqueda por Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Un documento encontrado|{count} documentos encontrados",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Buscar en la documentación",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Resultados de la búsqueda",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Buscando nuevos resultados...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Buscar en",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Escriba su búsqueda aquí",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "No se han encontrado resultados",
+		"description": "The paragraph for empty search result"
+	},
 	"theme.SkipToContent.skipToMainContent": {
 		"message": "Ir al contenido principal",
 		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Etiquetas:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Ver todas las etiquetas",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Etiquetas:",
+		"description": "The title of the tag list page"
 	},
 	"video-tutorials": {
 		"message": "Video Tutoriales",
