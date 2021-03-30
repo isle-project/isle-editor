@@ -11,7 +11,7 @@
 
 import React from 'react';
 import Layout from '@theme/Layout';
-import Translate, { translate } from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
@@ -49,10 +49,7 @@ function Support() {
 							})}
 						</h2>
 						<p>
-							<Translate>
-								Learn more using the <a href={useBaseUrl('docs/overview/intro')}> documentation on this site</a> or by following the <a href={useBaseUrl('video_tutorials')} >
-								tutorials</a>.
-							</Translate>
+							Learn more using the <a href={useBaseUrl('docs/overview/intro')}> documentation on this site</a> or by following the <a href={useBaseUrl('video_tutorials')} > tutorials</a>.
 						</p>
 						<h2>
 							{translate({
