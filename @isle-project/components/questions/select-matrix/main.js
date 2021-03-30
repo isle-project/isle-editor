@@ -186,7 +186,7 @@ class SelectQuestionMatrix extends Component {
 		});
 		let valueColor;
 		const displayFeedback = ( this.props.provideFeedback === 'overall' && this.state.submitted ) ||
-			( this.props.provideFeedback === 'individual' && this.state.submitted && this.state.submittedAnswers[ label ] );
+			( this.props.provideFeedback === 'individual' && this.state.submitted && isNumber( this.state.submittedAnswers[ label ] ) );
 		if (
 			displayFeedback &&
 			this.props.solution[ label ]
