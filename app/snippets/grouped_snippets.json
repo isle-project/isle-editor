@@ -364,19 +364,19 @@
   "surveys": [
     {
       "name": "FreeTextSurvey",
-      "value": "<FreeTextSurvey anonymous question=\"${1:Enter question}\" />\n"
+      "value": "<FreeTextSurvey question=\"${1:Enter question}\" />\n"
     },
     {
       "name": "MultipleChoiceSurvey",
-      "value": "<MultipleChoiceSurvey\n  anonymous\n  question=\"${1:Enter question}\"\n  answers={[ '${2:First}', '${3:Second}' ]}\n/>\n"
+      "value": "<MultipleChoiceSurvey\n  question=\"${1:Enter question}\"\n  answers={[ '${2:First}', '${3:Second}' ]}\n/>\n"
     },
     {
       "name": "NumberSurvey",
-      "value": "<NumberSurvey anonymous question=\"${1:Enter question}\" />\n"
+      "value": "<NumberSurvey question=\"${1:Enter question}\" />\n"
     },
     {
       "name": "ProportionsSurvey",
-      "value": "<ProportionsSurvey\n  user\n  question=\"${1:Invest now!}\"\n  group=\"${2:Group Decision}\"\n  personalHeight={${3:300}}\n  colors={${4:['red', 'blue', 'gold']}}\n  legends={${5:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
+      "value": "<ProportionsSurvey\n  question=\"${1:Invest now!}\"\n  group=\"${2:Group Decision}\"\n  personalHeight={${3:300}}\n  colors={${4:['red', 'blue', 'gold']}}\n  legends={${5:['Robotics', 'Bitcoin', 'Gold']}}\n/>\n"
     }
   ],
   "basicHeadings": [
