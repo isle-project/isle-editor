@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { translate } from '@docusaurus/Translate';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import vsLight from 'prism-react-renderer/themes/vsLight';
 import clsx from 'clsx';
 import replace from '@stdlib/string/replace';
 import markdownToHTML from 'app/utils/markdown-to-html';
@@ -48,6 +49,7 @@ const transformCode = ( code ) => {
 
 function Playground({ children, theme, ...props }) {
 	const [ copied, setCopied ] = useState( false );
+	theme = theme || vsLight;
 	return (
 		<LiveProvider
 			code={children.replace(/\n$/, '')}
