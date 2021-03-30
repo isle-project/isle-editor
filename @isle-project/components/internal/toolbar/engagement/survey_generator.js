@@ -67,10 +67,10 @@ const SurveyGenerator = ({ session, onHide }) => {
 		};
 	}, [ forceUpdate, session ] );
 
-	useEffect( ( text ) => {
+	useEffect( () => {
 		let newDisabled;
 		if (
-			text.length > 3 &&
+			question.length > 3 &&
 			(
 				answers.length > 1 ||
 				type !== 'multiple-choice'
