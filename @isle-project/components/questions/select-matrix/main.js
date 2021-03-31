@@ -163,8 +163,6 @@ class SelectQuestionMatrix extends Component {
 		if ( this.props.provideFeedback && hasSolution ) {
 			answerState = correct ? 'success' : 'danger';
 		}
-		const nAnswers = keys( this.state.answers ).length;
-		const nInputs = keys( this.props.options ).length;
 		const numbSubmissions = this.state.numbSubmissions + 1;
 		this.setState({
 			submitted: true,
@@ -172,8 +170,7 @@ class SelectQuestionMatrix extends Component {
 			submittedAnswers: copy( this.state.answers ),
 			numbSubmissions,
 			completed: (
-				numbSubmissions >= this.props.nTries ||
-				( answerState === 'success' && nAnswers === nInputs )
+				numbSubmissions >= this.props.nTries || correct
 			) && this.props.provideFeedback !== 'none' && hasSolution
 		});
 	}
@@ -189,7 +186,7 @@ class SelectQuestionMatrix extends Component {
 			( this.props.provideFeedback === 'individual' && this.state.submitted && isNumber( this.state.submittedAnswers[ label ] ) );
 		if (
 			displayFeedback &&
-			this.props.solution[ label ]
+			isNumber( this.props.solution[ label ] )
 		) {
 			valueColor = this.state.submittedAnswers[ label ] === this.props.solution[ label ] ? 'green' : 'red';
 		}
@@ -219,7 +216,7 @@ class SelectQuestionMatrix extends Component {
 			{cellLabel ? <span className="select-question-matrix-cell-label" >{cellLabel}</span> : null }{select}
 			{displayFeedback && this.state.completed ?
 				<Badge variant={valueColor === 'green' ? 'success' : 'danger'}>
-					{this.props.t('correct-answer')}:
+					{valueColor === 'green' ? this.props.t('correct-answer') : this.props.t('should-have-been')}
 					{this.props.options[ label ][ this.props.solution[ label ] ]}
 				</Badge> : null}
 		</Fragment> );
@@ -325,7 +322,7 @@ SelectQuestionMatrix.defaultProps = {
 	feedback: true,
 	provideFeedback: 'individual',
 	allowIncomplete: false,
-	nTries: 1,
+	nTries: 3,
 	failureMsg: null,
 	successMsg: null,
 	cellLabels: {},
