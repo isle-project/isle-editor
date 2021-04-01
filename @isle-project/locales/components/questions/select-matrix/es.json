@@ -10,5 +10,6 @@
 	"should-have-been": "Debería haber sido:",
 	"submit": "Presentar",
 	"submit-message": "Su respuesta ha sido presentada.",
-	"success-message": "¡Esa es la respuesta correcta!"
+	"success-message": "¡Esa es la respuesta correcta!",
+	"try-again": "Inténtalo de nuevo"
 }

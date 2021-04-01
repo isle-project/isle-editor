@@ -212,12 +212,18 @@ class SelectQuestionMatrix extends Component {
 			}}
 		/>;
 		const cellLabel = this.props.cellLabels[ label ];
+		let badgeLabel;
+		if ( this.state.completed ) {
+			badgeLabel = ( valueColor === 'green' ) ? this.props.t('correct-answer') : this.props.t('should-have-been');
+		} else {
+			badgeLabel = ( valueColor === 'green' ) ? this.props.t('correct') : this.props.t('try-again');
+		}
 		return ( <Fragment>
 			{cellLabel ? <span className="select-question-matrix-cell-label" >{cellLabel}</span> : null }{select}
-			{displayFeedback && this.state.completed ?
+			{displayFeedback ?
 				<Badge variant={valueColor === 'green' ? 'success' : 'danger'}>
-					{valueColor === 'green' ? this.props.t('correct-answer') : this.props.t('should-have-been')}
-					{this.props.options[ label ][ this.props.solution[ label ] ]}
+					{badgeLabel}
+					{this.state.completed ? this.props.options[ label ][ this.props.solution[ label ] ] : null}
 				</Badge> : null}
 		</Fragment> );
 	}

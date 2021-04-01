@@ -10,5 +10,6 @@
 	"should-have-been": "Должны были:",
 	"submit": "Отправить .",
 	"submit-message": "Ваш ответ был представлен.",
-	"success-message": "Это правильный ответ!"
+	"success-message": "Это правильный ответ!",
+	"try-again": "Попробуйте ещё раз"
 }

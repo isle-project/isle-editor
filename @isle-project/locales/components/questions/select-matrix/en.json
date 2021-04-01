@@ -10,5 +10,6 @@
 	"should-have-been": "Should have been: ",
 	"submit": "Submit",
 	"submit-message": "Your answer has been submitted.",
-	"success-message": "That's the correct answer!"
+	"success-message": "That's the correct answer!",
+	"try-again": "Try again"
 }
