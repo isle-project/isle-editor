@@ -41,7 +41,7 @@ import { SCOPE } from 'editor-components/preview/create_scope.js';
 import extractOptionsFromDescription from 'utils/extract-options-from-description';
 import markdownToHTML from 'utils/markdown-to-html';
 import COMPONENT_DOCS from '@isle-project/components/documentation.json';
-import ComponentStyler from 'editor-components/component-styler';
+import ComponentStyler from 'editor-containers/component-styler';
 import { addResources } from '@isle-project/locales/editor';
 import Session from '@isle-project/session';
 const ConfiguratorTutorial = Loadable( () => import( './tutorial.js' ) );

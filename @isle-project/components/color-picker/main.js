@@ -104,4 +104,4 @@ ColorPicker.defaultProps = {
 
 // EXPORTS //
 
-export default withPropCheck( ColorPicker );
+export default withPropCheck( React.memo( ColorPicker ) );

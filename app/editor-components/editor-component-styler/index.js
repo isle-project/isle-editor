@@ -1,13 +1,13 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import markdownit from 'markdown-it';
 import noop from '@stdlib/utils/noop';
 import replace from '@stdlib/string/replace';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import ComponentStyler from 'editor-components/component-styler';
+import ComponentStyler from 'editor-containers/component-styler';
 import Draggable from '@isle-project/components/draggable';
 import './editor_component_styler.css';
 
@@ -135,4 +135,4 @@ EditorComponentStyler.propTypes = {
 
 // EXPORTS //
 
-export default EditorComponentStyler;
+export default memo( EditorComponentStyler );

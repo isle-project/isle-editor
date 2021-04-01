@@ -1,15 +1,13 @@
 // MODULES //
 
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import vex from 'vex-js';
 import { useTranslation } from 'react-i18next';
 import debounce from 'lodash.debounce';
-import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Accordion from '@isle-project/components/accordion';
 import jsxToCSS from '@isle-project/utils/jsx-to-css';
-import { appendCSSToPreamble } from 'actions';
 import HTML_TAGS from './html_tags.json';
 import SpacingSetter from './spacing_setter.js';
 import FontVariants from './font_variants.js';
@@ -153,10 +151,4 @@ ComponentStyler.propTypes = {
 
 // EXPORTS //
 
-export default connect( mapStateToProps, {
-	appendCSSToPreamble
-})( ComponentStyler );
-
-function mapStateToProps() {
-	return {};
-}
+export default memo( ComponentStyler );
