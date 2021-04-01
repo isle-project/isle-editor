@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ReactDateTimePicker from 'react-datetime-picker';
@@ -46,4 +46,4 @@ const DateTimePicker = ({ prop, onChange, onHide }) => {
 
 // EXPORTS //
 
-export default DateTimePicker;
+export default memo( DateTimePicker );
