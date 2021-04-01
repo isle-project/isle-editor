@@ -613,7 +613,7 @@ class ComponentConfigurator extends Component {
 			let out = markdownToHTML( code );
 			out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
 				const raw = replace( p1, '\\', '\\\\' );
-				return `String.raw({ raw: \`${raw}\` })`;
+				return `String.raw({ raw: \`${raw}\` })`; // eslint-disable-line i18next/no-literal-string
 			});
 			return out;
 		} catch ( err ) {
