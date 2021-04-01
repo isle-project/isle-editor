@@ -1,17 +1,43 @@
 // MODULES //
 
-import React from 'react';
+import React, { Fragment, memo, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import Loadable from '@isle-project/components/internal/loadable';
-import OverlayTrigger from '@isle-project/components/overlay-trigger';
 const SketchPicker = Loadable( () => import( 'react-color/lib/Sketch.js' ) );
 const CompactPicker = Loadable( () => import( 'react-color/lib/Compact.js' ) );
 const MaterialPicker = Loadable( () => import( 'react-color/lib/Material.js' ) );
 const BlockPicker = Loadable( () => import( 'react-color/lib/Block.js' ) );
 import { withPropCheck } from '@isle-project/utils/prop-check';
+
+
+// FUNCTIONS //
+
+const ButtonColorPicker = ( props ) => {
+	const [ show, setShow ] = useState( false );
+	const target = useRef( null );
+	const handleClick = useCallback( () => {
+		setShow( !show );
+	}, [ show ] );
+	return (
+		<Fragment>
+			<Button ref={target} size="sm" style={{
+				backgroundColor: props.color, width: 38, height: 38
+			}} onClick={handleClick} >
+			</Button>
+			<Overlay target={target.current} show={show} placement="bottom-end" >
+				<Popover id={`${props.variant}-popover`}>
+					<PopoverContent>
+						<SketchPicker {...props} />
+					</PopoverContent>
+				</Popover>
+			</Overlay>
+		</Fragment>
+	);
+};
 
 
 // MAIN //
@@ -42,19 +68,7 @@ const ColorPicker = ( props ) => {
 			colorPicker = <MaterialPicker {...props} />;
 			break;
 		case 'Button': {
-			const popover = <Popover id={`${props.variant}-popover`}>
-				<PopoverContent>
-				<SketchPicker {...props} />
-				</PopoverContent>
-			</Popover>;
-			colorPicker = <OverlayTrigger
-				overlay={popover}
-				placement="bottom-end"
-				trigger={[ 'click' ]}
-			>
-				<Button size="sm" style={{ backgroundColor: props.color, width: 38, height: 38 }} >
-				</Button>
-			</OverlayTrigger>;
+			colorPicker = <ButtonColorPicker {...props} />;
 			break;
 		}
 		case 'Sketch':
@@ -104,4 +118,4 @@ ColorPicker.defaultProps = {
 
 // EXPORTS //
 
-export default withPropCheck( React.memo( ColorPicker ) );
+export default withPropCheck( memo( ColorPicker ) );
