@@ -375,4 +375,4 @@ LineWrapper.propTypes = {
 
 // EXPORTS //
 
-export default LineWrapper;
+export default React.memo( LineWrapper );

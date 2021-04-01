@@ -139,4 +139,4 @@ LineButtons.defaultProps = {
 
 // EXPORTS //
 
-export default LineButtons;
+export default React.memo( LineButtons );
