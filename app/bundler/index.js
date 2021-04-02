@@ -159,7 +159,7 @@ const getComponents = ( arr ) => {
 	return requireStatements.join( '\n' );
 };
 
-const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500 ) => `
+const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500, offlineAccess = false ) => `
 global.session = new Session( preamble );
 global.TextClustering = TextClustering;
 
@@ -219,7 +219,7 @@ class LessonWrapper extends Component {
 				}, ${loaderTimeout} );
 			}
 		}
-		serviceWorker.register();
+		${offlineAccess ? 'serviceWorker.register();' : ''}
 	}
 
 	componentWillUnmount() {
@@ -294,9 +294,10 @@ const getComponentList = ( code ) => {
 * @param {Object} meta - lesson meta object
 * @param {string} basePath - file path of ISLE editor
 * @param {string} filePath - file path of source file
+* @param {boolean} offlineAccess - whether to include a service worker for offline access
 * @returns {string} index.js content
 */
-function generateIndexJS( lessonContent, components, meta, basePath, filePath ) {
+function generateIndexJS( lessonContent, components, meta, basePath, filePath, offlineAccess ) {
 	let res = getMainImports();
 	let asyncOps;
 	if ( meta.require ) {
@@ -323,7 +324,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 	if ( asyncOps ) {
 		lessonContent = replaceImplicitGlobals( lessonContent, asyncOps.keys );
 	}
-	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout );
+	res += getLessonComponent( lessonContent, className, meta.splashScreenTimeout, offlineAccess );
 	return res;
 }
 
@@ -341,6 +342,7 @@ function generateIndexJS( lessonContent, components, meta, basePath, filePath ) 
 * @param {boolean} options.minify - boolean indicating whether code should be minified
 * @param {boolean} options.loadFromCDN - boolean indicating whether resources should be loaded from CDN
 * @param {boolean} options.writeStats - boolean indicating whether bundle stats should be written to `stats.json` file
+* @param {boolean} options.offlineAccess - whether to allow offline access by exporting the lesson as a progressive web application with service workers
 */
 function bundleLesson( options ) {
 	if ( !options ) {
@@ -355,7 +357,8 @@ function bundleLesson( options ) {
 		outputDir,
 		minify,
 		loadFromCDN,
-		writeStats
+		writeStats,
+		offlineAccess
 	} = options;
 	logMsg( `Writing index.js file for ${filePath} to ${outputPath}...` );
 
@@ -402,17 +405,21 @@ function bundleLesson( options ) {
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
 		}),
-		new WorkboxWebpackPlugin.GenerateSW({
-			clientsClaim: true,
-			skipWaiting: false,
-			exclude: [/\.map$/, /asset-manifest\.json$/]
-		}),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
 		})
 	];
+	if ( offlineAccess ) {
+		plugins.push(
+			new WorkboxWebpackPlugin.GenerateSW({
+				clientsClaim: true,
+				skipWaiting: false,
+				exclude: [/\.map$/, /asset-manifest\.json$/]
+			})
+		);
+	}
 	if ( loadFromCDN ) {
 		plugins = [
 			new webpack.DllReferencePlugin({
@@ -641,7 +648,7 @@ function bundleLesson( options ) {
 	const usedComponents = getComponentList( content );
 
 	logMsg( 'Create JS file...' );
-	let str = generateIndexJS( content, usedComponents, meta, basePath, filePath );
+	let str = generateIndexJS( content, usedComponents, meta, basePath, filePath, offlineAccess );
 
 	// Copy CSS file:
 	mkdirSync( join( appDir, 'css' ) );

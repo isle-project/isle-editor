@@ -63,6 +63,7 @@ class UploadLesson extends Component {
 			namespaces: [],
 			minify: true,
 			loadFromCDN: true,
+			offlineAccess: false,
 			lessonName,
 			active: true,
 			showInGallery: false,
@@ -527,6 +528,17 @@ class UploadLesson extends Component {
 							});
 						}}
 						defaultValue={this.state.loadFromCDN}
+						disabled={this.state.spinning}
+					/>
+					<CheckboxInput
+						legend={t('offline-access')}
+						tooltip={t('offline-access-tooltip')}
+						onChange={( value ) => {
+							this.setState({
+								offlineAccess: value
+							});
+						}}
+						defaultValue={this.state.offlineAccess}
 						disabled={this.state.spinning}
 					/>
 				</FormGroup>
