@@ -117,6 +117,8 @@ function registerValidSW( swUrl, config ) {
 					}
 				};
 			};
+			registration.update(); // Try to update after registering...
+			setInterval( registration.update, 1000 * 3600 ); // Try to update each hour...
 		})
 		.catch( error => {
 			console.error( 'Error during service worker registration:', error );
@@ -133,15 +135,15 @@ function registerValidSW( swUrl, config ) {
 
 function checkValidServiceWorker( swUrl, config ) {
 	// Check if the service worker can be found. If it can't reload the page.
-	fetch(swUrl, {
+	fetch( swUrl, {
 		headers: { 'Service-Worker': 'script' }
 	})
-		.then(response => {
+		.then( response => {
 			// Ensure service worker exists, and that we really are getting a JS file.
-			const contentType = response.headers.get('content-type');
+			const contentType = response.headers.get( 'content-type' );
 			if (
 				response.status === 404 ||
-				(contentType !== null && contentType.indexOf('javascript') === -1)
+				( contentType !== null && contentType.indexOf('javascript') === -1 )
 			) {
 				// No service worker found. Probably a different app. Reload the page.
 				navigator.serviceWorker.ready.then( registration => {
@@ -151,7 +153,7 @@ function checkValidServiceWorker( swUrl, config ) {
 				});
 			} else {
 				// Service worker found. Proceed as normal.
-				registerValidSW(swUrl, config);
+				registerValidSW( swUrl, config );
 			}
 		})
 		.catch(() => {
@@ -163,7 +165,7 @@ function checkValidServiceWorker( swUrl, config ) {
 
 export function unregister() {
 	if ( 'serviceWorker' in navigator ) {
-		navigator.serviceWorker.ready.then(registration => {
+		navigator.serviceWorker.ready.then( registration => {
 			registration.unregister();
 		});
 	}
