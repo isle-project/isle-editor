@@ -253,7 +253,7 @@
 	"none": "None",
 	"offline": "offline",
 	"offline-access": "Support offline access",
-	"offline-access-tooltip": "Exporting the lesson as a progressive web application allows download for offline access. Best to only tick this option if you do not plan to change the lesson after users have accessed it.",
+	"offline-access-tooltip": "Exporting the lesson so it allows download for offline access (no data will be logged when using lesson offline). Best to only use this option if you won't change lesson after users have accessed it.",
 	"online": "online",
 	"only-active": "Show only active",
 	"only-inactive": "Show only inactive",

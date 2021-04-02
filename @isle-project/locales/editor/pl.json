@@ -253,7 +253,7 @@
 	"none": "Brak",
 	"offline": "offline",
 	"offline-access": "Obsługa dostępu w trybie offline",
-	"offline-access-tooltip": "Eksportowanie lekcji jako progresywnej aplikacji internetowej pozwala na pobranie jej w celu uzyskania dostępu offline. Najlepiej zaznaczyć tę opcję tylko wtedy, gdy nie planujesz zmieniać lekcji po tym, jak użytkownicy będą mieli do niej dostęp.",
+	"offline-access-tooltip": "Eksportowanie lekcji tak, aby można było ją pobrać w trybie offline (żadne dane nie zostaną zapisane podczas korzystania z lekcji w trybie offline). Najlepiej używać tej opcji tylko wtedy, gdy nie chcesz zmieniać lekcji po tym, jak użytkownicy będą mieli do niej dostęp.",
 	"online": "Online",
 	"only-active": "Pokaż tylko aktywny",
 	"only-inactive": "Pokaż tylko nieaktywny",

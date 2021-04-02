@@ -253,7 +253,7 @@
 	"none": "Keine",
 	"offline": "offline",
 	"offline-access": "Unterstützt Offline-Zugriff",
-	"offline-access-tooltip": "Das Exportieren der Lektion als progressive Webanwendung ermöglicht den Download für den Offline-Zugriff. Aktivieren Sie diese Option am besten nur, wenn Sie nicht vorhaben, die Lektion zu ändern, nachdem die Benutzer sie aufgerufen haben.",
+	"offline-access-tooltip": "Exportieren der Lektion, damit sie für den Offline-Zugriff heruntergeladen werden kann (bei der Offline-Nutzung der Lektion werden keine Daten protokolliert). Verwenden Sie diese Option am besten nur, wenn Sie die Lektion nicht mehr ändern wollen, nachdem die Benutzer auf sie zugegriffen haben.",
 	"online": "online",
 	"only-active": "Nur aktive anzeigen",
 	"only-inactive": "Nur inaktive anzeigen",

@@ -253,7 +253,7 @@
 	"none": "无",
 	"offline": "离线",
 	"offline-access": "支持离线访问",
-	"offline-access-tooltip": "将课程导出为渐进式网络应用程序，允许下载以便离线访问。如果您不打算在用户访问课程后更改课程，最好只勾选该选项。",
+	"offline-access-tooltip": "导出课程，使其允许离线访问下载（离线使用课程时不会记录数据）。最好只在用户访问课程后不更改课程的情况下使用这个选项。",
 	"online": "在线",
 	"only-active": "只显示活动",
 	"only-inactive": "只显示不活动",

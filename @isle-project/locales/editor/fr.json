@@ -253,7 +253,7 @@
 	"none": "Aucune",
 	"offline": "hors ligne",
 	"offline-access": "Prise en charge de l'accès hors ligne",
-	"offline-access-tooltip": "L'exportation de la leçon en tant qu'application Web progressive permet le téléchargement pour un accès hors ligne. Il est préférable de ne cocher cette option que si vous ne prévoyez pas de modifier la leçon après que les utilisateurs y ont accédé.",
+	"offline-access-tooltip": "Exporter la leçon afin de pouvoir la télécharger pour un accès hors ligne (aucune donnée ne sera enregistrée lors de l'utilisation hors ligne de la leçon). Il est préférable de n'utiliser cette option que si vous ne souhaitez pas modifier la leçon après que les utilisateurs y ont accédé.",
 	"online": "en ligne",
 	"only-active": "Afficher uniquement les actifs",
 	"only-inactive": "Afficher seulement inactif",

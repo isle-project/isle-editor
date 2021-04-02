@@ -253,7 +253,7 @@
 	"none": "Nenhum",
 	"offline": "offline",
 	"offline-access": "Apoio ao acesso off-line",
-	"offline-access-tooltip": "A exportação da lição como uma aplicação web progressiva permite o download para acesso offline. É melhor apenas marcar esta opção se você não planeja mudar a lição depois que os usuários a tiverem acessado.",
+	"offline-access-tooltip": "Exportar a lição para que ela permita o download para acesso offline (nenhum dado será registrado ao usar a lição offline). É melhor usar esta opção somente se você não vai mudar a lição depois que os usuários a acessarem.",
 	"online": "online",
 	"only-active": "Mostrar somente ativo",
 	"only-inactive": "Mostrar apenas inativo",

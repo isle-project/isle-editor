@@ -253,7 +253,7 @@
 	"none": "Geen",
 	"offline": "offline",
 	"offline-access": "Offline toegang ondersteunen",
-	"offline-access-tooltip": "Door de les te exporteren als een progressieve webapplicatie kan ze gedownload worden voor offline toegang. U kunt deze optie het beste alleen aanvinken als u niet van plan bent de les te wijzigen nadat gebruikers hem hebben geopend.",
+	"offline-access-tooltip": "De les exporteren zodat ze gedownload kan worden voor offline toegang (er worden geen gegevens bijgehouden als de les offline gebruikt wordt). Gebruik deze optie alleen als u de les niet meer wijzigt nadat gebruikers hem hebben geopend.",
 	"online": "online",
 	"only-active": "Toon alleen actief",
 	"only-inactive": "Toon alleen inactief",
