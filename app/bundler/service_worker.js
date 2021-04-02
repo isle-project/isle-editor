@@ -117,7 +117,6 @@ function registerValidSW( swUrl, config ) {
 					}
 				};
 			};
-			registration.update(); // Try to update after registering...
 			setInterval( registration.update, 1000 * 3600 ); // Try to update each hour...
 		})
 		.catch( error => {
