@@ -70,10 +70,12 @@ export function register( config ) {
 }
 
 function registerValidSW( swUrl, config ) {
+	console.log( 'Registering valid service worker...' );
 	navigator.serviceWorker
-		.register(swUrl)
-		.then(registration => {
+		.register( swUrl )
+		.then( registration => {
 			registration.onupdatefound = () => {
+				console.log( 'Found service worker update...' );
 				installingWorker = registration.installing;
 				if ( installingWorker === null ) {
 					return;
@@ -116,7 +118,7 @@ function registerValidSW( swUrl, config ) {
 				};
 			};
 		})
-		.catch(error => {
+		.catch( error => {
 			console.error( 'Error during service worker registration:', error );
 		});
 	navigator.serviceWorker.addEventListener( 'controllerchange', () => {
