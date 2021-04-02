@@ -252,6 +252,8 @@
 	"no-transitions": "Er worden momenteel geen overgangen toegepast",
 	"none": "Geen",
 	"offline": "offline",
+	"offline-access": "Offline toegang ondersteunen",
+	"offline-access-tooltip": "Door de les te exporteren als een progressieve webapplicatie kan ze gedownload worden voor offline toegang. U kunt deze optie het beste alleen aanvinken als u niet van plan bent de les te wijzigen nadat gebruikers hem hebben geopend.",
 	"online": "online",
 	"only-active": "Toon alleen actief",
 	"only-inactive": "Toon alleen inactief",

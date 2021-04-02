@@ -252,6 +252,8 @@
 	"no-transitions": "No se aplican actualmente transiciones",
 	"none": "Ninguno",
 	"offline": "fuera de línea",
+	"offline-access": "Soporte de acceso sin conexión",
+	"offline-access-tooltip": "La exportación de la lección como aplicación web progresiva permite la descarga para el acceso sin conexión. Es mejor marcar esta opción sólo si no tiene previsto cambiar la lección después de que los usuarios hayan accedido a ella.",
 	"online": "en línea",
 	"only-active": "Mostrar sólo activo",
 	"only-inactive": "Mostrar sólo inactivo",

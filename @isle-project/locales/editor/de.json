@@ -252,6 +252,8 @@
 	"no-transitions": "Derzeit keine Übergänge angewendet",
 	"none": "Keine",
 	"offline": "offline",
+	"offline-access": "Unterstützt Offline-Zugriff",
+	"offline-access-tooltip": "Das Exportieren der Lektion als progressive Webanwendung ermöglicht den Download für den Offline-Zugriff. Aktivieren Sie diese Option am besten nur, wenn Sie nicht vorhaben, die Lektion zu ändern, nachdem die Benutzer sie aufgerufen haben.",
 	"online": "online",
 	"only-active": "Nur aktive anzeigen",
 	"only-inactive": "Nur inaktive anzeigen",

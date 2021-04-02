@@ -252,6 +252,8 @@
 	"no-transitions": "Nessuna transizione attualmente applicata",
 	"none": "Nessuno",
 	"offline": "offline",
+	"offline-access": "Supporta l'accesso offline",
+	"offline-access-tooltip": "Esportare la lezione come applicazione web progressiva permette il download per l'accesso offline. Meglio spuntare questa opzione solo se non hai intenzione di cambiare la lezione dopo che gli utenti vi hanno avuto accesso.",
 	"online": "online",
 	"only-active": "Mostra solo attivo",
 	"only-inactive": "Mostra solo inattivo",

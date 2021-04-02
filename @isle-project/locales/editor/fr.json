@@ -252,6 +252,8 @@
 	"no-transitions": "Aucune transition n'est actuellement appliquée",
 	"none": "Aucune",
 	"offline": "hors ligne",
+	"offline-access": "Prise en charge de l'accès hors ligne",
+	"offline-access-tooltip": "L'exportation de la leçon en tant qu'application Web progressive permet le téléchargement pour un accès hors ligne. Il est préférable de ne cocher cette option que si vous ne prévoyez pas de modifier la leçon après que les utilisateurs y ont accédé.",
 	"online": "en ligne",
 	"only-active": "Afficher uniquement les actifs",
 	"only-inactive": "Afficher seulement inactif",
