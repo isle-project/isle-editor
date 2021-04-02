@@ -277,7 +277,8 @@ class UploadLesson extends Component {
 			meta: meta,
 			outputDir: this.state.dirname,
 			minify: this.state.minify,
-			loadFromCDN: this.state.loadFromCDN
+			loadFromCDN: this.state.loadFromCDN,
+			offlineAccess: this.state.offlineAccess
 		};
 		const script = resolve( settings.basePath, './app/bundler/index.js' );
 
