@@ -131,7 +131,7 @@
     "babel-plugin-transform-modern-regexp": "0.0.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "buffer": "^6.0.3",
-    "classnames": "^2.3.0",
+    "classnames": "^2.3.1",
     "codemirror": "^5.60.0",
     "compute-argmax": "^1.0.0",
     "compute-chebyshev-distance": "^1.0.2",
