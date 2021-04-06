@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -70,10 +70,15 @@ export function generateQQPlotConfig( y, variable ) {
 // MAIN //
 
 function QQPlot({ id, data, variable, action, onShare, onSelected }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateQQPlotConfig( data[ variable ], variable );
+	}, [ data, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateQQPlotConfig( data[ variable ], variable );
 	return (
 		<Plotly
 			editable
