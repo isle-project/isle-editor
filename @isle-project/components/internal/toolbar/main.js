@@ -83,8 +83,11 @@ const Toolbar = () => {
 		setHelp( !help );
 	}, [ help ] );
 	const toggleToolbar = useCallback( () => {
+		if ( engagementMenu ) {
+			setEngagementMenu( !engagementMenu );
+		}
 		setShowToolbar( !showToolbar );
-	}, [ showToolbar ] );
+	}, [ engagementMenu, showToolbar ] );
 	const renderButton = ( elem, key ) => {
 		const toggleElement = () => {
 			setShowCustom({
