@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -130,15 +130,20 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 // MAIN //
 
 function PieChart({ variable, group, data, summaryVariable, id, action, onShare }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generatePiechartConfig({
+			data,
+			variable,
+			group,
+			summaryVariable
+		});
+	}, [ data, group, summaryVariable, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generatePiechartConfig({
-		data,
-		variable,
-		group,
-		summaryVariable
-	});
 	return ( <Plotly
 		editable
 		draggable
