@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -71,16 +71,21 @@ export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 // MAIN //
 
 const LinePlot = ({ data, x, y, group, showPoints, id, action, onShare }) => {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateLineplotConfig({
+			data,
+			x,
+			y,
+			group,
+			showPoints
+		});
+	}, [ data, group, showPoints, x, y ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateLineplotConfig({
-		data,
-		x,
-		y,
-		group,
-		showPoints
-	});
 	return ( <Plotly
 		editable draggable id={id} fit
 		data={config.data} layout={config.layout}

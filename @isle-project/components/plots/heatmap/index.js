@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -300,10 +300,15 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 // MAIN //
 
 function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan, action, onShare, onSelected }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan });
+	}, [ alternateColor, commonXAxis, commonYAxis, data, group, overlayPoints, regressionMethod, smoothSpan, x, y ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan });
 	return ( <Plotly
 		editable
 		draggable
