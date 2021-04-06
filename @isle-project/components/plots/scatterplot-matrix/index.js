@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import floor from '@stdlib/math/base/special/floor';
@@ -76,10 +76,15 @@ export function generateScatterplotMatrixConfig({ data, variables, color }) {
 }
 
 function ScatterPlotMatrix({ id, data, variables, color, action, onShare, onSelected }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateScatterplotMatrixConfig({ data, variables, color });
+	}, [ color, data, variables ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateScatterplotMatrixConfig({ data, variables, color });
 	return (
 		<Plotly
 			editable

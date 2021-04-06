@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -126,10 +126,15 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 // MAIN //
 
 function ContourChart({ id, data, x, y, overlayPoints, smoothSpan, regressionMethod, action, onShare, onSelected }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan });
+	}, [ data, overlayPoints, regressionMethod, smoothSpan, x, y ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan });
 	return (
 		<Plotly
 			editable
