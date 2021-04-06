@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -210,10 +210,15 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 * @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
 */
 const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
+	}, [ data, direction, group, horizontal, relative, stackBars, summary, totalPercent, variable, xOrder, yvar ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
 	return (
 		<Plotly
 			editable
