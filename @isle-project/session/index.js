@@ -2486,10 +2486,10 @@ class Session {
 	* @param {string} to - email address of receiver
 	* @returns {void}
 	*/
-	sendMail( mail, to ) {
+	sendMail = ( mail, to ) => {
 		const mailOptions = { ...mail };
 		if ( !hasOwnProp( mailOptions, 'from' ) ) {
-			mailOptions.from = this.config.email || 'robinson@isle.cmu.edu';
+			mailOptions.from = this.config.email || `notifications@${window.location.host}`; // eslint-disable-line i18next/no-literal-string
 		}
 		if ( !hasOwnProp( mailOptions, 'to' ) ) {
 			mailOptions.to = to;
