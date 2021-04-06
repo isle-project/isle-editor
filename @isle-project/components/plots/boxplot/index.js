@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -175,19 +175,24 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 * @property {boolean} overlayPoints - controls whether to overlay points
 */
 const BoxPlot = ({ data, variable, group, orientation, overlayPoints, id, action, onShare }) =>{
+	const config = useMemo( () => {
+		if ( !data || !variable ) {
+			return {};
+		}
+		return generateBoxplotConfig({
+			data,
+			variable,
+			group,
+			orientation,
+			overlayPoints
+		});
+	}, [ data, group, orientation, overlayPoints, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
 	if ( !variable ) {
 		return <Alert variant="danger">{i18n.t('Plotly:variable-missing')}</Alert>;
 	}
-	const config = generateBoxplotConfig({
-		data,
-		variable,
-		group,
-		orientation,
-		overlayPoints
-	});
 	return ( <Plotly
 		editable
 		draggable
