@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -59,10 +59,15 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 // MAIN //
 
 function ViolinPlot({ data, variable, id, group, showBox, action, onShare }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateViolinplotConfig({ data, variable, group, showBox });
+	}, [ data, group, showBox, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateViolinplotConfig({ data, variable, group, showBox });
 	return (
 		<Plotly
 			editable
