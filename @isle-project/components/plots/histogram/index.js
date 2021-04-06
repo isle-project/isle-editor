@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
@@ -212,10 +212,15 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 // MAIN //
 
 function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, action, onShare, onSelected }) {
+	const config = useMemo( () => {
+		if ( !data ) {
+			return {};
+		}
+		return generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
+	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, groupMode, nBins, nCols, variable, xBins ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
 	}
-	const config = generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
 	return (
 		<Plotly
 			editable
