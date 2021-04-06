@@ -14,7 +14,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { transformSync } from '@babel/core';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
-import isObjectArray from '@stdlib/assert/is-object-array';
 import isObject from '@stdlib/assert/is-object';
 import repeat from '@stdlib/string/repeat';
 import replace from '@stdlib/string/replace';
@@ -243,17 +242,7 @@ class Preview extends Component {
 			additions = '<StatusBar className="fixedPos" />';
 		}
 		if ( !preamble.removeToolbar ) {
-			let elements = '[';
-			if ( isObjectArray( preamble.toolbar ) ) {
-				preamble.toolbar.forEach( ( x, i ) => {
-					elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`; // eslint-disable-line i18next/no-literal-string
-					if ( i < preamble.toolbar.length - 1 ) {
-						elements += ', ';
-					}
-				});
-			}
-			elements += ']';
-			additions += `<Toolbar elements={${elements}} />`;
+			additions += '<Toolbar />';
 		}
 		additions += '\n';
 		noEmptyLines += 1;

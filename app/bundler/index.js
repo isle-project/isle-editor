@@ -633,17 +633,7 @@ function bundleLesson( options ) {
 		content = '<StatusBar className="fixedPos" />\n' + content;
 	}
 	if ( !meta.removeToolbar ) {
-		let elements = '[';
-		if ( meta.toolbar ) {
-			meta.toolbar.forEach( ( x, i ) => {
-				elements += `{name: '${x.name}', component: ${x.component}, icon: '${x.icon}' }`;
-				if ( i < meta.toolbar.length - 1 ) {
-					elements += ', ';
-				}
-			});
-		}
-		elements += ']';
-		content = `<Toolbar elements={${elements}} />\n` + content;
+		content = '<Toolbar />\n' + content;
 	}
 	const usedComponents = getComponentList( content );
 

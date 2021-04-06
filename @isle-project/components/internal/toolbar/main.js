@@ -1,7 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -31,7 +30,6 @@ import './toolbar.css';
 // VARIABLES //
 
 const F2 = '(F2)';
-const DEFAULT_HIDE_STATE = {};
 const DEFAULT_CUSTOM_STATE = {};
 
 
@@ -39,10 +37,8 @@ const DEFAULT_CUSTOM_STATE = {};
 
 /**
 * Toolbar of widgets for students to use during the course of a lesson.
-*
-* @property {Array} elements - array of elements with `name`, `icon` (a font-awesome icon name), and `component` (React node to be rendered) keys
 */
-const Toolbar = ({ elements }) => {
+const Toolbar = () => {
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'Toolbar' );
 	const forceUpdate = useForceUpdate();
@@ -58,7 +54,6 @@ const Toolbar = ({ elements }) => {
 		width: window.innerWidth * 0.75,
 		height: window.innerHeight * 0.6
 	});
-	const [ hide, setHide ] = useState( DEFAULT_HIDE_STATE );
 	const [ showCustom, setShowCustom ] = useState( DEFAULT_CUSTOM_STATE );
 	const engagementButtonRef = useRef( null );
 
@@ -131,21 +126,18 @@ const Toolbar = ({ elements }) => {
 		});
 	}, [] );
 
-	useEffect( () => {
-		elements.forEach( x => {
-			if (
-				x.name === 'queue' ||
-				x.name === 'calculator' ||
-				x.name === 'sketchpad' ||
-				x.name === 'help'
-			) {
-				setHide({
-					...hide,
-					[x.name]: true
-				});
-			}
-		});
-	}, [ elements, hide ] );
+	const elements = session.config.toolbar || [];
+	const hide = {};
+	elements.forEach( x => {
+		if (
+			x.name === 'queue' ||
+			x.name === 'calculator' ||
+			x.name === 'sketchpad' ||
+			x.name === 'help'
+		) {
+			hide[ x.name ] = true;
+		}
+	});
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === TOGGLE_PRESENTATION_MODE ) {
@@ -403,17 +395,6 @@ const Toolbar = ({ elements }) => {
 };
 
 
-// PROPERTIES //
-
-Toolbar.propTypes = {
-	elements: PropTypes.array // eslint-disable-line react/no-unused-prop-types
-};
-
-Toolbar.defaultProps = {
-	elements: []
-};
-
-
 // EXPORTS //
 
-export default Toolbar;
+export default memo( Toolbar );
