@@ -205,7 +205,7 @@ const Overlays = ( props ) => {
 * @property {Function} onChange - callback invoked whenever a new line element is drawn
 */
 class Sketchpad extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
 		this.force = 1.0;
@@ -235,10 +235,10 @@ class Sketchpad extends Component {
 			fontFamily: props.fontFamily,
 			fontSize: props.fontSize,
 			groupMode: props.groupMode,
-			hideInputButtons: props.hideInputButtons,
-			hideNavigationButtons: props.hideNavigationButtons,
-			hideSaveButtons: props.hideSaveButtons,
-			hideTransmitButtons: props.hideTransmitButtons,
+			hideInputButtons: props.hideInputButtons || context.presentationMode,
+			hideNavigationButtons: props.hideNavigationButtons || context.presentationMode,
+			hideSaveButtons: props.hideSaveButtons || context.presentationMode,
+			hideTransmitButtons: props.hideTransmitButtons || context.presentationMode,
 			isExporting: false,
 			modalMessage: null,
 			noPages: props.noPages,
@@ -2773,7 +2773,7 @@ class Sketchpad extends Component {
 						{this.renderRemoveButtons()}
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
-						<TooltipButton tooltip={this.state.showTutorial ? this.props.t('stop-tutorial') : this.props.t('start-tutorial')} onClick={this.toggleTutorial} glyph="question" size="sm" />
+						{!this.context.presentationMode ? <TooltipButton tooltip={this.state.showTutorial ? this.props.t('stop-tutorial') : this.props.t('start-tutorial')} onClick={this.toggleTutorial} glyph="question" size="sm" /> : null}
 						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{this.renderFeedbackButtons()}
