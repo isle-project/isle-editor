@@ -66,6 +66,7 @@ const EQN_TOOLTIPS = {
 * @property {Array} tests - the test(s) exposed by the widget
 * @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
 * @property {boolean} feedback - controls whether to display feedback buttons
+* @property {string} pValue - custom label for the p-value (can be a LaTeX equation string)
 * @property {object} style - CSS inline styles
 */
 class MeanTest extends Component {
@@ -170,6 +171,7 @@ class MeanTest extends Component {
 		let areaData2;
 		let probFormula;
 		let { zStat, selectedTest, samples, n, n2 } = this.state;
+		const { pValue } = this.props;
 		let pdf;
 		let cdf;
 		if ( selectedTest === 'Z-Test' ) {
@@ -197,7 +199,7 @@ class MeanTest extends Component {
 					y: pdf( d )
 				};
 			});
-			probFormula = `P( |Z| > ${abs(zStat)}) = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( |Z| > ${abs(zStat)})`} = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
@@ -434,6 +436,7 @@ MeanTest.defaultProps = {
 	tests: [ 'Z-Test', 'T-Test' ],
 	nullHypothesisAsValue: false,
 	feedback: false,
+	pValue: null,
 	style: {}
 };
 
@@ -442,6 +445,7 @@ MeanTest.propTypes = {
 	tests: PropTypes.arrayOf( PropTypes.oneOf([ 'Z-Test', 'T-Test' ] ) ),
 	nullHypothesisAsValue: PropTypes.bool,
 	feedback: PropTypes.bool,
+	pValue: PropTypes.string,
 	style: PropTypes.object
 };
 

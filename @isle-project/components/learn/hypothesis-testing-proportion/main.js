@@ -52,6 +52,7 @@ function normalPDF( d ) {
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
+* @property {string} pValue - custom label for the p-value (can be a LaTeX equation string)
 * @property {Object} style - CSS inline styles
 */
 class ProportionTest extends Component {
@@ -81,6 +82,7 @@ class ProportionTest extends Component {
 	onGenerate = () => {
 		debug( 'Should generate new values...' );
 		const { p0, phat, phat2, n, n2, samples, type } = this.state;
+		const { pValue } = this.props;
 		let pdfData;
 		let areaData;
 		let areaData2;
@@ -125,7 +127,7 @@ class ProportionTest extends Component {
 				areaData = linspace( 0, 3, 200 ).map( normalPDF );
 				areaData2 = linspace( -3, 0, 200 ).map( normalPDF );
 			}
-			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( |Z| > ${abs( pStat )})`} = ${roundn( ( 1-pnorm( abs( pStat ), 0, 1 ) )+pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;
 		}
 		const newState = {
@@ -139,6 +141,7 @@ class ProportionTest extends Component {
 		let areaData2;
 		let probFormula;
 		let { pStat } = this.state;
+		const { pValue } = this.props;
 		switch ( pos ) {
 		case 0:
 			areaData = linspace( abs( pStat ), 3, 200 ).map( d => {
@@ -147,7 +150,7 @@ class ProportionTest extends Component {
 			areaData2 = linspace( -3, -abs( pStat ), 200 ).map( d => {
 				return { x: d, y: dnorm( d, 0, 1 ) };
 			});
-			probFormula = `P( |Z| > ${abs( pStat )}) = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( |Z| > ${abs( pStat )})`} = ${roundn( 1-pnorm( abs( pStat ), 0, 1 ) + pnorm( -abs( pStat ), 0, 1 ), -3 )}`;
 			break;
 		case 1:
 			areaData = linspace( pStat || 0.0, 3, 200 ).map( d => {
@@ -324,7 +327,7 @@ class ProportionTest extends Component {
 					<TeX
 						tag=""
 						displayMode
-						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{\\frac{${roundn( p0, -3 )} \\cdot ${roundn( 1-p0, -3 )}}{${n}} }} = ${pStat}`}
+						raw={`z  = \\frac{${phat} - ${p0}}{\\sqrt{\\frac{(${roundn( p0, -3 )}) (${roundn( 1-p0, -3 )})}{${n}} }} = ${pStat}`}
 					/>
 				}
 				<p>{t('calculate-p-value')}</p>
@@ -374,6 +377,7 @@ ProportionTest.defaultProps = {
 	types: [ 'One-Sample', 'Two-Sample' ],
 	feedback: false,
 	nullHypothesisAsValue: false,
+	pValue: null,
 	style: {}
 };
 
@@ -381,6 +385,7 @@ ProportionTest.propTypes = {
 	types: PropTypes.arrayOf( PropTypes.string ),
 	feedback: PropTypes.bool,
 	nullHypothesisAsValue: PropTypes.bool,
+	pValue: PropTypes.string,
 	style: PropTypes.object
 };
 
