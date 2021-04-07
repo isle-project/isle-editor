@@ -5,7 +5,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import runif from '@stdlib/random/base/discrete-uniform';
 
 
-// MODULES //
+// MAIN //
 
 const useRandomInterval = ( callback, minDelay, maxDelay, initialDelay = 0 ) => {
 	const timeout = useRef( null );
