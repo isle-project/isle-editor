@@ -99,6 +99,7 @@ class MeanTest extends Component {
 	onGenerate = () => {
 		debug( 'Should generate new values...' );
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
+		const { pValue } = this.props;
 		let pdf;
 		let cdf;
 		if ( selectedTest === 'Z-Test' ) {
@@ -133,13 +134,13 @@ class MeanTest extends Component {
 			areaData = linspace( -3, zStat, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( ${statChar} < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
+			probFormula = `${pValue ? pValue : `P( ${statChar} < ${zStat})`} = ${roundn( cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( ${statChar} > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
+			probFormula = `${pValue ? pValue : `P( ${statChar} > ${zStat})`} = ${roundn( 1-cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
@@ -148,7 +149,7 @@ class MeanTest extends Component {
 			areaData2 = linspace( -3, -abs( zStat ), 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( |${statChar}| > ${abs( zStat )}) = ${roundn( ( 1-cdf( abs( zStat ) ) )+cdf( -abs( zStat ) ), -3 )}`; // eslint-disable-line i18next/no-literal-string
+			probFormula = `${pValue ? pValue : `P( |${statChar}| > ${abs( zStat )})`} = ${roundn( ( 1-cdf( abs( zStat ) ) )+cdf( -abs( zStat ) ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		}
 		this.setState({
@@ -185,6 +186,7 @@ class MeanTest extends Component {
 			cdf = pt.factory( n - 1 );
 			pdf = dt.factory( n - 1 );
 		}
+		const statChar = selectedTest === 'Z-Test' ? 'Z' : 'T';
 		switch ( pos ) {
 		case 0:
 			areaData = linspace( abs( zStat ), 3, 200 ).map( d => {
@@ -199,19 +201,19 @@ class MeanTest extends Component {
 					y: pdf( d )
 				};
 			});
-			probFormula = `${pValue ? pValue : `P( |Z| > ${abs(zStat)})`} = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( |${statChar}| > ${abs(zStat)})`} = ${roundn( 1-cdf( abs( zStat ) ) + cdf( -abs( zStat ) ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 1:
 			areaData = linspace( zStat, 3, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z > ${zStat}) = ${roundn( 1-cdf( zStat ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( ${statChar} > ${zStat})`} = ${roundn( 1-cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 2:
 			areaData = linspace( -3, zStat, 200 ).map( d => {
 				return { x: d, y: pdf( d ) };
 			});
-			probFormula = `P( Z < ${zStat}) = ${roundn( cdf( zStat ), -3 )}`;
+			probFormula = `${pValue ? pValue : `P( ${statChar} < ${zStat})`} = ${roundn( cdf( zStat ), -3 )}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		}
 		this.setState({
