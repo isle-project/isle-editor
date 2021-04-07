@@ -296,7 +296,7 @@
     "jest-canvas-mock": "^2.3.1",
     "jest-cli": "^26.6.3",
     "js-yaml": "4.0.0",
-    "katex": "0.13.1",
+    "katex": "0.13.2",
     "localforage": "^1.9.0",
     "moment": "2.29.1",
     "monaco-editor": "0.23.0",
