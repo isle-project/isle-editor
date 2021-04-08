@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "Valori centrali (= sottrarre la media)?",
 	"central-tendency-measures": "Misure di Tendenza Centrale",
 	"change-tree-features": "Cambia le caratteristiche dell'albero...",
-	"Chi-square Independence Test-description": "Un test che determina se esiste un'associazione significativa tra due variabili categoriali.",
+	"Chi-square Independence Test-description": "Un test che determina se c'è un'associazione tra due variabili categoriche.",
 	"Chi-squared Independence Test": "Test di indipendenza Chi-squared",
 	"choose-category-labels": "Scegliere le etichette categoriche per i cestini dell'intervallo",
 	"clear-all": "Cancella tutto",

@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "Werte zentrieren (= Mittelwert subtrahieren)?",
 	"central-tendency-measures": "Zentrale Tendenzmessungen",
 	"change-tree-features": "Baummerkmale ändern...",
-	"Chi-square Independence Test-description": "Ein Test, der bestimmt, ob zwischen zwei kategorialen Variablen ein signifikanter Zusammenhang besteht.",
+	"Chi-square Independence Test-description": "Ein Test, der feststellt, ob ein Zusammenhang zwischen zwei kategorialen Variablen besteht.",
 	"Chi-squared Independence Test": "Chi-Quadrat-Unabhängigkeitstest",
 	"choose-category-labels": "Kategorie-Etiketten für Intervall-Bins wählen",
 	"clear-all": "Alles löschen",

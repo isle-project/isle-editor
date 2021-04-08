@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "中心値（＝平均値を引く）？",
 	"central-tendency-measures": "中心傾向対策",
 	"change-tree-features": "木の特徴を変更する...",
-	"Chi-square Independence Test-description": "2つのカテゴリ変数の間に有意な関連があるかどうかを判定する検定。",
+	"Chi-square Independence Test-description": "2つのカテゴライズされた変数の間に関連性があるかどうかを判定するテスト。",
 	"Chi-squared Independence Test": "カイ二乗独立性検定",
 	"choose-category-labels": "区間ビンのカテゴリカルラベルを選択する",
 	"clear-all": "すべてクリア",

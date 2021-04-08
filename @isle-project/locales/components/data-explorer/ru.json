@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "Центральные значения (= вычесть среднее)?",
 	"central-tendency-measures": "Центральные тендезные меры",
 	"change-tree-features": "Изменить свойства дерева...",
-	"Chi-square Independence Test-description": "Тест, определяющий наличие существенной связи между двумя категориальными переменными.",
+	"Chi-square Independence Test-description": "Тест, определяющий наличие связи между двумя категориальными переменными.",
 	"Chi-squared Independence Test": "Тест на независимость в хи-квадрат",
 	"choose-category-labels": "Выберите категорические метки для интервальных контейнеров",
 	"clear-all": "Все чисто",

@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "Center values (= subtract the mean)?",
 	"central-tendency-measures": "Central Tendency Measures",
 	"change-tree-features": "Change tree features...",
-	"Chi-square Independence Test-description": "A test determining if there is a significant association between two categorical variables.",
+	"Chi-square Independence Test-description": "A test determining if there is an association between two categorical variables.",
 	"Chi-squared Independence Test": "Chi-squared Independence Test",
 	"choose-category-labels": "Choose categorical labels for interval bins",
 	"clear-all": "Clear All",

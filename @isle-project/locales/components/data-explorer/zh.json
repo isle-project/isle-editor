@@ -24,7 +24,7 @@
 	"center-values-subtract-the-mean": "中心值（=减去平均值）？",
 	"central-tendency-measures": "中心倾向测量",
 	"change-tree-features": "改变树的特征...",
-	"Chi-square Independence Test-description": "确定两个分类变量之间是否有显著关联的检验。",
+	"Chi-square Independence Test-description": "确定两个分类变量之间是否存在关联的检验。",
 	"Chi-squared Independence Test": "秩方独立检验",
 	"choose-category-labels": "为区间箱选择分类标签。",
 	"clear-all": "全部清除",
