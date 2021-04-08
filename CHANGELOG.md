@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.75.2](https://github.com/isle-project/isle-editor/releases/tag/v0.75.2) (2021-04-08)
+
+Under `Help -> Release Notes`, one can now retrieve release notes documenting the changes that are introduced with a new editor release. In addition, the release comes with a new checkbox on the export page to indicate whether uploaded lessons should support offline access (previously enabled by default). One might want to uncheck this option when one expects to (repeatedly) change the lesson after users have already accessed it.
+
+This update also comes with the following improvements:
+- better feedback display for the `<SelectQuestionMatrix />`
+- ability to customize the display of p-value labels for the `<LearnMeanTest />` and `<LearnProportionTest />` components
+
+**Most importantly, it comes with a fix for a severe performance regression causing freezes due to infinite re-renders of the toolbar component, which occurred when customizing the toolbar via the preamble. Please update the editor as soon as possible in case you have been running into this issue.**
+
 ## [v0.75.1](https://github.com/isle-project/isle-editor/releases/tag/v0.75.1) (2021-03-30)
 
 This update comes with small performance improvements, a new loading screen for the editor, and refactored survey components. The survey components (`FreeTextSurvey`, `NumberSurvey`, `MultipleChoiceSurvey`, and `ProportionsSurvey`) now come with a pause button that allows instructors to control whether students are able to submit answers.
