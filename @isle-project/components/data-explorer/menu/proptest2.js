@@ -31,7 +31,6 @@ const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
 
 const PropTest2Menu = ( props ) => {
 	const { categorical, data, showDecision, t } = props;
-
 	const [ categories, setCategories ] = useState( [] );
 	const [ var1, setVar1 ] = useState( categorical[ 0 ] );
 	const [ success, setSuccess ] = useState( categories[ 0 ] );
@@ -45,7 +44,9 @@ const PropTest2Menu = ( props ) => {
 		if ( isArray( categorical ) && categorical.length > 0 ) {
 			const values = data[ categorical[ 0 ] ];
 			if ( values ) {
-				setCategories( extractCategories( values, categorical[ 0 ] ) );
+				const newCategories = extractCategories( values, categorical[ 0 ] );
+				setCategories( newCategories );
+				setSuccess( newCategories[ 0 ] );
 			} else {
 				setCategories();
 			}
