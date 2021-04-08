@@ -47,6 +47,7 @@ function PropTest({ data, variable, alpha, direction, success, p0, showDecision 
 	});
 	printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 	printout = replace( printout, RE_ONESIDED_GREATER, '' );
+	printout = replace( printout, 'true mean', 'true proportion' );
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{t('hypothesis-test-for', { variable } )}</label>

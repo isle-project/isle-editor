@@ -87,6 +87,7 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		});
 		printout = replace( printout, RE_ONESIDED_SMALLER, '' );
 		printout = replace( printout, RE_ONESIDED_GREATER, '' );
+		printout = replace( printout, 'difference in means', 'difference in proportions' );
 		const title = t('proptest2-title-grouped', { var1, group });
 		const c1Label = escapeLatex( firstCategory );
 		const c2Label = escapeLatex( secondCategory );
