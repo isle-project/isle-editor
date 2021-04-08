@@ -1,7 +1,9 @@
 // MODULES //
 
-import { net } from 'electron';
+import { BrowserWindow, net, screen } from 'electron';
+import path from 'path';
 import os from 'os';
+import fs from 'fs';
 import * as actions from './../actions';
 import pkg from './../../../package.json';
 
@@ -41,7 +43,7 @@ const createHelpMenu = ( i18n ) => {
 				click: ( _, browserWindow ) => {
 					const request = net.request({
 						method: 'GET',
-						url: 'https://raw.githubusercontent.com/planeshifter/isle-editor/master/package.json'
+						url: 'https://raw.githubusercontent.com/isle-project/isle-editor/master/package.json'
 					});
 					request.on( 'response', response => {
 						let body = '';
@@ -63,6 +65,65 @@ const createHelpMenu = ( i18n ) => {
 								'</body>'
 							].join( '' );
 							actions.showDialog({ browserWindow, message: html });
+						});
+					});
+					request.end();
+				}
+			},
+			{
+				label: i18n.t('EditorMenu:release-notes' ),
+				click: () => {
+					const markdownit = require( 'markdown-it' );
+					const md = markdownit({
+						html: false,
+						xhtmlOut: true,
+						breaks: false,
+						typographer: false
+					});
+					const request = net.request({
+						method: 'GET',
+						url: 'https://raw.githubusercontent.com/isle-project/isle-editor/master/CHANGELOG.md'
+					});
+					request.on( 'response', response => {
+						let body = '';
+						response.on( 'data', ( chunk ) => {
+							body += chunk;
+						});
+						request.on( 'error', error => console.error( error ) ); // eslint-disable-line
+						response.on( 'end', () => {
+							let html = md.render( body );
+							const pkgVersion = pkg.version;
+							const RE_CURRENT_VERSION_HEADING = new RegExp( '<h2>\\s*<a\\s+href="https:\\/\\/github\\.com\\/isle-project\\/isle-editor\\/releases\\/tag\\/v'+pkgVersion+'"\\s*' );
+							const match = RE_CURRENT_VERSION_HEADING.exec( html );
+							let newer = html.substring( 0, match.index );
+							let older = html.substring( match.index );
+							newer = '<div class="newer-version">' + newer + '</div>';
+
+							newer = newer.replace( /<a href/g, '<a target="_blank" href' );
+							older = older.replace( /<a href/g, '<a target="_blank" href' );
+
+							const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+							const templatePath = path.resolve( __dirname, '..', '..', 'changelog.html' );
+							let changelog = fs.readFileSync( templatePath, 'utf-8' );
+							changelog = changelog.replace( '{{version}}', pkg.version );
+							changelog = changelog.replace( '{{body}}', [
+								newer,
+								older
+							].join( '' ) );
+
+							const filePath = path.join( os.tmpdir(), 'isle_editor_changelog.html' );
+							fs.writeFileSync( filePath, changelog );
+
+							const changelogWindow = new BrowserWindow({
+								width: 0.75 * width,
+								height: 0.75 * height,
+								center: true,
+								frame: true,
+								maximizable: false
+							});
+							changelogWindow.removeMenu();
+							changelogWindow.loadFile( filePath );
 						});
 					});
 					request.end();
