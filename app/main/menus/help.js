@@ -8,6 +8,70 @@ import * as actions from './../actions';
 import pkg from './../../../package.json';
 
 
+// VARIABLES //
+
+const CHANGELOG_TEMPLATE = `<!doctype html>
+<html lang=en>
+<head>
+	<meta charset=utf-8>
+	<title>ISLE Editor Release Notes</title>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Open+Sans:400,400i,700,800" rel="stylesheet">
+	<style>
+		body {
+			font-family: Inconsolata;
+			line-height: 1.3;
+			font-size: 1.1em;
+		}
+
+		.HeaderBar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			color: darkgray;
+			text-align: center;
+			font-family: Open Sans Condensed;
+			font-size: 30px;
+			font-weight: 800;
+			width: 100%;
+			height: 46px;
+			box-shadow: 0 3px darkgray;
+			background: white;
+			z-index: 2;
+		}
+
+		.margin {
+			width: 100%;
+			height: 40px;
+		}CHANGELOG_TEMPLATE
+			font-weight: 700;
+			font-family: Open Sans Condensed;
+		}
+
+		h2,
+		h3 {
+			font-family: Open Sans Condensed;
+		}
+
+		a:-webkit-any-link {
+			color: darkorange;
+		}
+
+		.newer-version {
+			background: rgba(200, 100, 0, 0.2);
+		}
+		li {
+			font-size: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div class="HeaderBar">Your current version: {{version}}</div>
+	<div class="margin"></div>
+	{{body}}
+</body>
+</html>`;
+
+
 // MAIN //
 
 const createHelpMenu = ( i18n ) => {
@@ -102,11 +166,7 @@ const createHelpMenu = ( i18n ) => {
 							newer = newer.replace( /<a href/g, '<a target="_blank" href' );
 							older = older.replace( /<a href/g, '<a target="_blank" href' );
 
-							const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-
-							const templatePath = path.resolve( __dirname, '..', '..', 'changelog.html' );
-							let changelog = fs.readFileSync( templatePath, 'utf-8' );
-							changelog = changelog.replace( '{{version}}', pkg.version );
+							let changelog = CHANGELOG_TEMPLATE.replace( '{{version}}', pkg.version );
 							changelog = changelog.replace( '{{body}}', [
 								newer,
 								older
@@ -115,6 +175,7 @@ const createHelpMenu = ( i18n ) => {
 							const filePath = path.join( os.tmpdir(), 'isle_editor_changelog.html' );
 							fs.writeFileSync( filePath, changelog );
 
+							const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 							const changelogWindow = new BrowserWindow({
 								width: 0.75 * width,
 								height: 0.75 * height,

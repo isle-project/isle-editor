@@ -1798,7 +1798,6 @@
     ],
     "files": [
       "dist/**/*",
-      "app/changelog.html",
       "app/app.global.css",
       "app/app.html",
       "app/app.icns",
