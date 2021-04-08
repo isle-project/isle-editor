@@ -18,7 +18,7 @@ Une question dont la réponse consiste en plusieurs cases de sélection.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __provideFeedback__ | `string`: s'il convient de fournir un retour d'information "aucun", un retour d'information "individuel" sur la ou les réponses soumises, ou un retour d'information "global" pour toutes les questions. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: s'il faut autoriser les soumissions sans sélection dans chaque case de sélection. Default: `false`.
-* __nTries__ | `number`: après combien d'essais aucune autre réponse n'est acceptée (si "provideFeedback" n'est pas "none"). Default: `1`.
+* __nTries__ | `number`: après combien d'essais aucune autre réponse n'est acceptée (si "provideFeedback" n'est pas "none"). Default: `3`.
 * __failureMsg__ | `string`: texte de notification affiché lors de la soumission de réponses incorrectes. Default: `none`.
 * __successMsg__ | `string`: texte de notification affiché lors de la soumission des réponses correctes. Default: `none`.
 * __cellLabels__ | `object`: des étiquettes pour les cellules définies par objet avec des clés ayant le format "row:col. Default: `{}`.

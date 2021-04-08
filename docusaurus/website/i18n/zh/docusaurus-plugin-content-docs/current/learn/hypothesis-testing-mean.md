@@ -18,6 +18,7 @@ sidebar_label: Hypothesis Testing for Means
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: 始终将零假设显示为一个单一的值。. Default: `false`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `false`.
+* __pValue__ | `string`: 自定义p值的标签(应该是LaTeX方程字符串). Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 

@@ -18,6 +18,7 @@ Eine Lernkomponente zu Hypothesentests für einen Populationsmittelwert.
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: die Nullhypothese immer als Einzelwert anzeigen. Default: `false`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `false`.
+* __pValue__ | `string`: benutzerdefinierte Beschriftung für den p-Wert (sollte eine LaTeX-Gleichungszeichenfolge sein). Default: `none`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 

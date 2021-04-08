@@ -52,7 +52,7 @@ function normalPDF( d ) {
 * @property {Array} types - the type(s) of test (`One-Sample`, `Two-Sample`) the widget should expose
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
-* @property {string} pValue - custom label for the p-value (can be a LaTeX equation string)
+* @property {string} pValue - custom label for the p-value (should be a LaTeX equation string)
 * @property {Object} style - CSS inline styles
 */
 class ProportionTest extends Component {

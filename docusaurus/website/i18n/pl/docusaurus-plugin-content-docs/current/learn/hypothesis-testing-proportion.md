@@ -14,6 +14,7 @@ Komponent do nauki na testach hipotetycznych dla danej populacji.
 ]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `false`.
 * __nullHypothesisAsValue__ | `boolean`: zawsze wyświetlać hipotezę zerową jako pojedynczą wartość. Default: `false`.
+* __pValue__ | `string`: własna etykieta dla wartości p (powinna być ciągiem równań LaTeX). Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 

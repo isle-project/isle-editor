@@ -18,7 +18,7 @@ Uma pergunta com uma resposta que consiste em múltiplas caixas de seleção.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __provideFeedback__ | `string`: se fornecer "nenhum" feedback, "feedback individual" sobre a(s) resposta(s) apresentada(s), ou "feedback global" para todas as perguntas. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: permitir ou não envios sem uma seleção feita em cada caixa de seleção. Default: `false`.
-* __nTries__ | `number`: depois de quantas tentativas não são aceitas mais respostas (se `provideFeedback` não for `ninguém`). Default: `1`.
+* __nTries__ | `number`: depois de quantas tentativas não são aceitas mais respostas (se `provideFeedback` não for `ninguém`). Default: `3`.
 * __failureMsg__ | `string`: texto de notificação exibido ao enviar respostas incorretas. Default: `none`.
 * __successMsg__ | `string`: texto de notificação exibido ao apresentar as respostas corretas. Default: `none`.
 * __cellLabels__ | `object`: etiquetas para células definidas por objeto com chaves com o formato `row:col`.. Default: `{}`.

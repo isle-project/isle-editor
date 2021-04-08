@@ -18,6 +18,7 @@ sidebar_label: Hypothesis Testing for Means
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: всегда отображать нулевую гипотезу в виде одного значения. Default: `false`.
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `false`.
+* __pValue__ | `string`: пользовательская метка для p-значения (должна быть строкой уравнения LaTeX). Default: `none`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 
 

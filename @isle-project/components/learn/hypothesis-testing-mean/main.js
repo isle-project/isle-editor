@@ -66,7 +66,7 @@ const EQN_TOOLTIPS = {
 * @property {Array} tests - the test(s) exposed by the widget
 * @property {boolean} nullHypothesisAsValue - always display the null hypothesis as a single value
 * @property {boolean} feedback - controls whether to display feedback buttons
-* @property {string} pValue - custom label for the p-value (can be a LaTeX equation string)
+* @property {string} pValue - custom label for the p-value (should be a LaTeX equation string)
 * @property {object} style - CSS inline styles
 */
 class MeanTest extends Component {

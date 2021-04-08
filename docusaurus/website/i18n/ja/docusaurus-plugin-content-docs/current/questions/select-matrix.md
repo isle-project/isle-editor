@@ -18,7 +18,7 @@ sidebar_label: Select Question Matrix
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `true`.
 * __provideFeedback__ | `string`: 全く`なし`のフィードバックを提供するか、提出された回答に対する`個別`のフィードバックを提供するか、またはすべての質問に対する`全体`のフィードバックを提供するか。. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: 各セレクトボックスで選択せずに投稿を許可するかどうか. Default: `false`.
-* __nTries__ | `number`: 何回試行してもそれ以上の回答は受け付けません ( `provideFeedback` が `none` でない場合). Default: `1`.
+* __nTries__ | `number`: 何回試行してもそれ以上の回答は受け付けません ( `provideFeedback` が `none` でない場合). Default: `3`.
 * __failureMsg__ | `string`: 誤答通知. Default: `none`.
 * __successMsg__ | `string`: 出題通知文. Default: `none`.
 * __cellLabels__ | `object`: キーが `row:col` の形式を持つオブジェクトで定義されたセルのラベル。. Default: `{}`.

@@ -18,7 +18,7 @@ Pytanie z odpowiedzią składającą się z wielu pól wyboru.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __provideFeedback__ | `string`: czy w ogóle przekazywać "żadne" informacje zwrotne, "indywidualne" informacje zwrotne dotyczące przedłożonych odpowiedzi, czy też "ogólne" informacje zwrotne dotyczące wszystkich pytań. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: czy zezwolić na składanie wniosków bez zaznaczenia w każdym polu wyboru. Default: `false`.
-* __nTries__ | `number`: po ilu próbach nie są akceptowane żadne dalsze odpowiedzi (jeśli `provideFeedback` nie jest `żadna`).. Default: `1`.
+* __nTries__ | `number`: po ilu próbach nie są akceptowane żadne dalsze odpowiedzi (jeśli `provideFeedback` nie jest `żadna`).. Default: `3`.
 * __failureMsg__ | `string`: tekst powiadomienia wyświetlany po udzieleniu błędnych odpowiedzi. Default: `none`.
 * __successMsg__ | `string`: tekst powiadomienia wyświetlany po udzieleniu prawidłowych odpowiedzi. Default: `none`.
 * __cellLabels__ | `object`: etykiety dla komórek zdefiniowanych przez obiekt o kluczach w formacie `row:col`.. Default: `{}`.

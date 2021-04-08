@@ -18,6 +18,7 @@ sidebar_label: Hypothesis Testing for Means
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: 常に帰無仮説を1つの値として表示する. Default: `false`.
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御します。. Default: `false`.
+* __pValue__ | `string`: p値のカスタムラベル（LaTeXの数式文字列である必要があります。. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 

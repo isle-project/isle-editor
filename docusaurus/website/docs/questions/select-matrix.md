@@ -18,7 +18,7 @@ A question with an answer consisting of multiple select boxes.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __provideFeedback__ | `string`: whether to provide `none` feedback at all, `individual` feedback on the submitted answer(s), or `overall` feedback for all questions. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: whether to allow submissions without a selection made in each select box. Default: `false`.
-* __nTries__ | `number`: after how many tries no further answers are accepted (if `provideFeedback` is not `none`). Default: `1`.
+* __nTries__ | `number`: after how many tries no further answers are accepted (if `provideFeedback` is not `none`). Default: `3`.
 * __failureMsg__ | `string`: notification text displayed upon submitting incorrect answers. Default: `none`.
 * __successMsg__ | `string`: notification text displayed upon submitting correct answers. Default: `none`.
 * __cellLabels__ | `object`: labels for cells defined by object with keys having the format `row:col`. Default: `{}`.

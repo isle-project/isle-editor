@@ -18,6 +18,7 @@ Um componente de aprendizado sobre testes de hipóteses para uma média populaci
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: sempre exibir a hipótese nula como um único valor. Default: `false`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `false`.
+* __pValue__ | `string`: etiqueta personalizada para o valor p (deve ser uma cadeia de equações LaTeX). Default: `none`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 

@@ -18,7 +18,7 @@ Een vraag met een antwoord bestaande uit meerdere selectievakjes.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `true`.
 * __provideFeedback__ | `string`: of er `geen` feedback wordt gegeven, `individuele` feedback op het (de) ingediende antwoord(en), of `overal` feedback voor alle vragen. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: of de inzendingen moeten worden toegestaan zonder dat in elk selectievakje een keuze is gemaakt. Default: `false`.
-* __nTries__ | `number`: na hoeveel pogingen geen verdere antwoorden worden geaccepteerd (als `provideFeedback` niet `niet` is). Default: `1`.
+* __nTries__ | `number`: na hoeveel pogingen geen verdere antwoorden worden geaccepteerd (als `provideFeedback` niet `niet` is). Default: `3`.
 * __failureMsg__ | `string`: meldingstekst die wordt weergegeven bij het indienen van onjuiste antwoorden. Default: `none`.
 * __successMsg__ | `string`: meldingstekst die wordt weergegeven bij het indienen van de juiste antwoorden. Default: `none`.
 * __cellLabels__ | `object`: labels voor cellen gedefinieerd door object met sleutels in het formaat `row:col`. Default: `{}`.

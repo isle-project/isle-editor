@@ -18,7 +18,7 @@ Una domanda con una risposta composta da più caselle di selezione.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __provideFeedback__ | `string`: se fornire un feedback "nessuno", un feedback "individuale" sulla/e risposta/e fornita/e o un feedback "generale" per tutte le domande. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: se consentire l'invio senza selezione in ogni casella di selezione. Default: `false`.
-* __nTries__ | `number`: dopo quanti tentativi non vengono accettate altre risposte (se "fornire feedback" non è "nessuno"). Default: `1`.
+* __nTries__ | `number`: dopo quanti tentativi non vengono accettate altre risposte (se "fornire feedback" non è "nessuno"). Default: `3`.
 * __failureMsg__ | `string`: testo di notifica visualizzato in seguito all'invio di risposte errate. Default: `none`.
 * __successMsg__ | `string`: testo di notifica visualizzato al momento dell'invio delle risposte corrette. Default: `none`.
 * __cellLabels__ | `object`: etichette per le celle definite dall'oggetto con chiavi aventi il formato `row:col. Default: `{}`.

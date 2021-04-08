@@ -18,6 +18,7 @@ A learning component on hypothesis tests for a population mean.
 ]`.
 * __nullHypothesisAsValue__ | `boolean`: always display the null hypothesis as a single value. Default: `false`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `false`.
+* __pValue__ | `string`: custom label for the p-value (should be a LaTeX equation string). Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 
 

@@ -18,7 +18,7 @@ sidebar_label: Select Question Matrix
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __provideFeedback__ | `string`: 是提供 "无 "反馈，还是对提交的答案提供 "个别 "反馈，还是对所有问题提供 "总体 "反馈；. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: 是否允许在每个选择框中不做选择的情况下进行提交。. Default: `false`.
-* __nTries__ | `number`: 经过多少次尝试后，不再接受进一步的答案（如果`provideFeedback`不是`none`）。. Default: `1`.
+* __nTries__ | `number`: 经过多少次尝试后，不再接受进一步的答案（如果`provideFeedback`不是`none`）。. Default: `3`.
 * __failureMsg__ | `string`: 提交错误答案时显示的通知文字. Default: `none`.
 * __successMsg__ | `string`: 提交正确答案时显示的通知文字. Default: `none`.
 * __cellLabels__ | `object`: 对象定义的单元格的标签，键值格式为 "row:col"。. Default: `{}`.

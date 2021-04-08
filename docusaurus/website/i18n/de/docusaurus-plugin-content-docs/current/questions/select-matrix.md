@@ -18,7 +18,7 @@ Eine Frage mit einer Antwort, die aus mehreren Auswahlfeldern besteht.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __provideFeedback__ | `string`: ob Sie "kein" Feedback, "individuelles" Feedback zu den eingereichten Antworten oder "allgemeines" Feedback für alle Fragen geben möchten. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: ob Eingaben ohne Auswahl in jedem Auswahlfeld erlaubt werden sollen. Default: `false`.
-* __nTries__ | `number`: nach wie vielen Versuchen keine weiteren Antworten akzeptiert werden (wenn `provideFeedback` nicht `none` ist). Default: `1`.
+* __nTries__ | `number`: nach wie vielen Versuchen keine weiteren Antworten akzeptiert werden (wenn `provideFeedback` nicht `none` ist). Default: `3`.
 * __failureMsg__ | `string`: Benachrichtigungstext, der beim Absenden falscher Antworten angezeigt wird. Default: `none`.
 * __successMsg__ | `string`: Benachrichtigungstext, der beim Absenden richtiger Antworten angezeigt wird. Default: `none`.
 * __cellLabels__ | `object`: Beschriftungen für Zellen, die durch ein Objekt definiert sind, dessen Schlüssel das Format "Zeile:Spalte" haben. Default: `{}`.

@@ -18,7 +18,7 @@ Una pregunta con una respuesta que consiste en múltiples cuadros de selección.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __provideFeedback__ | `string`: si proporcionar "ninguna" retroalimentación en absoluto, retroalimentación "individual" en las respuestas presentadas, o retroalimentación "general" para todas las preguntas.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: si se permite la presentación de propuestas sin que se haga una selección en cada casilla de selección. Default: `false`.
-* __nTries__ | `number`: después de cuántos intentos no se aceptan más respuestas (si "ProvideFeedback" no es "ninguno"). Default: `1`.
+* __nTries__ | `number`: después de cuántos intentos no se aceptan más respuestas (si "ProvideFeedback" no es "ninguno"). Default: `3`.
 * __failureMsg__ | `string`: El texto de la notificación que se muestra al presentar las respuestas incorrectas. Default: `none`.
 * __successMsg__ | `string`: El texto de la notificación que se muestra al presentar las respuestas correctas. Default: `none`.
 * __cellLabels__ | `object`: etiquetas para las celdas definidas por el objeto con claves que tienen el formato `row:col`.. Default: `{}`.

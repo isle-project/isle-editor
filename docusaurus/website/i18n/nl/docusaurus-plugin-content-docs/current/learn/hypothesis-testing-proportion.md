@@ -14,6 +14,7 @@ Een leercomponent op hypothesetests voor een deel van de bevolking.
 ]`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `false`.
 * __nullHypothesisAsValue__ | `boolean`: de nulhypothese altijd als een enkele waarde weergeven. Default: `false`.
+* __pValue__ | `string`: aangepast label voor de p-waarde (moet een LaTeX-vergelijkingsteken zijn). Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 
