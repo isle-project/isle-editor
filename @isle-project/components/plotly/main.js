@@ -284,7 +284,6 @@ const Wrapper = ( props ) => {
 			revision={props.revision}
 		/>
 	</div>;
-	console.log( 'RENDER PLOT' );
 	if ( fullscreen ) {
 		return (
 			<Modal
