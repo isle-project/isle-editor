@@ -409,17 +409,13 @@ function bundleLesson( options ) {
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
+		}),
+		new WorkboxWebpackPlugin.GenerateSW({
+			clientsClaim: true,
+			skipWaiting: false,
+			exclude: [/\.map$/, /asset-manifest\.json$/]
 		})
 	];
-	if ( offlineAccess ) {
-		plugins.push(
-			new WorkboxWebpackPlugin.GenerateSW({
-				clientsClaim: true,
-				skipWaiting: false,
-				exclude: [/\.map$/, /asset-manifest\.json$/]
-			})
-		);
-	}
 	if ( loadFromCDN ) {
 		plugins = [
 			new webpack.DllReferencePlugin({
