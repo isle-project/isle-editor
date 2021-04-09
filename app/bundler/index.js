@@ -219,7 +219,7 @@ class LessonWrapper extends Component {
 				}, ${loaderTimeout} );
 			}
 		}
-		${offlineAccess ? 'serviceWorker.register();' : ''}
+		${offlineAccess ? 'serviceWorker.register();' : 'serviceWorker.unregister();'};
 	}
 
 	componentWillUnmount() {
