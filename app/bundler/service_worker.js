@@ -108,7 +108,7 @@ function registerValidSW( swUrl, config ) {
 								It's the perfect time to display a
 								"Content is cached for offline use." message.
 							*/
-							console.log('Content is cached for offline use.');
+							console.log( 'Content is cached for offline use.' );
 							// Execute callback
 							if ( config && config.onSuccess ) {
 								config.onSuccess( registration );
@@ -165,7 +165,13 @@ function checkValidServiceWorker( swUrl, config ) {
 export function unregister() {
 	if ( 'serviceWorker' in navigator ) {
 		navigator.serviceWorker.ready.then( registration => {
-			registration.unregister();
+			registration.unregister().then( bool => {
+				if ( bool ) {
+					console.log( 'Successfully unregistered service worker registration with scope: ' + registration.scope );
+				} else {
+					console.log( 'Failed to unregister service worker registration with scope ' + registration.scope );
+				}
+			});
 		});
 	}
 }
