@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.75.2](https://github.com/isle-project/isle-editor/releases/tag/v0.75.2) (2021-04-08)
+## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-08)
 
 Under `Help -> Release Notes`, one can now retrieve release notes documenting the changes that are introduced with a new editor release. In addition, the release comes with a new checkbox on the export page to indicate whether uploaded lessons should support offline access (previously enabled by default). One might want to uncheck this option when one expects to (repeatedly) change the lesson after users have already accessed it.
 
