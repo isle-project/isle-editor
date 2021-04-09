@@ -63,7 +63,7 @@ class UploadLesson extends Component {
 			namespaces: [],
 			minify: true,
 			loadFromCDN: true,
-			offlineAccess: true,
+			offlineAccess: false,
 			lessonName,
 			active: true,
 			showInGallery: false,
