@@ -82,7 +82,7 @@ class Text extends Component {
 			};
 			/* eslint-disable react/no-danger */
 			return (
-				<div className={this.props.className} style={this.props.style}>
+				<div className={this.props.className} style={this.props.style} >
 					<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					<div dangerouslySetInnerHTML={node}></div>
 				</div>
@@ -97,7 +97,7 @@ class Text extends Component {
 			return child;
 		});
 		return (
-			<div className={this.props.className} style={this.props.style}>
+			<div className={this.props.className} style={this.props.style} >
 				{nodes}
 			</div>
 		);
