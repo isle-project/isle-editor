@@ -66,7 +66,7 @@ import {
 	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from '@isle-project/constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 const ResetModal = Loadable( () => import( /* webpackChunkName: "SketchpadResetModal" */ './reset_modal.js' ) );
@@ -297,7 +297,9 @@ class Sketchpad extends Component {
 		}
 		window.addEventListener( 'unload', this.save );
 		let init;
-		if ( this.props.pdf ) {
+		if (
+			this.props.pdf || session.metadata.store[ this.id ]
+		) {
 			init = this.initializePDF();
 		} else {
 			init = Promise.resolve();
@@ -328,6 +330,9 @@ class Sketchpad extends Component {
 						.catch( ( err ) => {
 							debug( err );
 						});
+				}
+				if ( type === RECEIVED_LESSON_INFO ) {
+					this.initializePDF();
 				}
 				if ( type === TOGGLE_PRESENTATION_MODE ) {
 					debug( 'Hide control buttons in presentation mode...' );
@@ -2054,29 +2059,28 @@ class Sketchpad extends Component {
 	}
 
 	handlePDFUpload = ( evt ) => {
+		const session = this.context;
 		const files = evt.target.files;
-		const reader = new FileReader();
-		reader.onload = () => {
-			let pdfData = reader.result;
-			pdfData = new Uint8Array( pdfData );
-			const loadingTask = pdfjsLib.getDocument({
-				data: pdfData,
-				disableFontFace: false
-			});
-			loadingTask.promise
-				.then( this.processPDF )
-				.catch( function onError( err ) {
-					debug( err );
-				});
-		};
-		reader.readAsArrayBuffer( files[ 0 ] );
+		const formData = new FormData();
+		formData.append( 'file', files[ 0 ] );
+		session.uploadFile({
+			formData,
+			callback: ( error, res ) => {
+				const filename = res.filename;
+				const link = session.server + '/' + filename;
+				session.updateMetadata( 'store', this.id, link );
+				this.initializePDF();
+			}
+		});
 	}
 
 	initializePDF = () => {
 		debug( `Initialize PDF document at ${this.props.pdf}...` );
+		const session = this.context;
 		return new Promise( ( resolve, reject ) => {
+			const metadataPDF = session.metadata.store[ this.id ];
 			const loadingTask = pdfjsLib.getDocument({
-				url: this.props.pdf,
+				url: this.props.pdf || metadataPDF,
 				disableFontFace: false
 			});
 			loadingTask.promise

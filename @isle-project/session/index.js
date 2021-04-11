@@ -244,7 +244,8 @@ class Session {
 		// Lesson metadata:
 		this.metadata = {
 			revealer: {},
-			grades: {}
+			grades: {},
+			store: {}
 		};
 
 		// Lesson grades for students:
@@ -1305,6 +1306,10 @@ class Session {
 		if ( !this.isOwner() ) {
 			return null;
 		}
+		if ( !this.metadata[ type ] ) {
+			this.metadata[ type ] = {};
+		}
+		this.metadata[ type ][ key ] = value;
 		const query = {
 			namespaceID: this.namespaceID,
 			lessonID: this.lessonID,
@@ -1315,7 +1320,10 @@ class Session {
 		axios.post( this.server+'/update_metadata', query )
 			.then( res => {
 				if ( res.data.metadata ) {
-					this.metadata = res.data.metadata;
+					this.metadata = {
+						...this.metadata,
+						...res.data.metadata
+					};
 				}
 			})
 			.catch( error => {
@@ -1879,7 +1887,10 @@ class Session {
 					PRIVATE_VARS[ 'startTime' ] = data.time;
 				}
 				if ( data.metadata ) {
-					this.metadata = data.metadata;
+					this.metadata = {
+						...this.metadata,
+						...data.metadata
+					};
 				}
 				debug( '[2] Retrieve user rights and data for said lesson and its namespace' );
 				debug( JSON.stringify( data ) );
