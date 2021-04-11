@@ -207,16 +207,16 @@ class Preview extends Component {
 			code = code.replace( keys[ i ], this.state.includes[ keys[ i ] ] );
 		}
 
-		const replacer = ( match, p1 ) => {
+		// Remove preamble and keep track of lines to add:
+		code = code.replace( /---([\S\s]*?)---/, ( _, p1 ) => {
 			noEmptyLines += ( p1.match( RE_LINES ) || '' ).length;
 			return '';
-		};
-
-		// Replace preamble with empty lines:
-		code = code.replace( /---([\S\s]*?)---/, replacer );
+		});
 
 		// Replace comments with empty lines:
-		code = code.replace( /<!--([\S\s]*?)-->/g, replacer );
+		code = code.replace( /<!--([\S\s]*?)-->/g, ( _, p1 ) => {
+			return repeat( '\n', ( p1.match( RE_LINES ) || '' ).length );
+		});
 
 		const isPresentation = preamble.type === 'presentation' || code.includes( '<Slide ' );
 
