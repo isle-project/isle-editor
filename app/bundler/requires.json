@@ -60,6 +60,7 @@
 	"DraggableGrid": "@isle-project/components/draggable-grid",
 	"DraggableList": "@isle-project/components/draggable-list",
 	"EnlargeableGrid": "@isle-project/components/enlargeable-grid",
+	"EditableText": "@isle-project/components/editable-text",
 	"Expire": "@isle-project/components/expire",
 	"FeedbackButtons": "@isle-project/components/feedback",
 	"ImageQuestion": "@isle-project/components/questions/image",

@@ -27,6 +27,7 @@ import DataSampler from '@isle-project/components/data-sampler';
 import DateDisplay from '@isle-project/components/date-display';
 import DraggableGrid from '@isle-project/components/draggable-grid';
 import DraggableList from '@isle-project/components/draggable-list';
+import EditableText from '@isle-project/components/editable-text';
 import Expire from '@isle-project/components/expire';
 import FeedbackButtons from '@isle-project/components/feedback';
 import ImageQuestion from '@isle-project/components/questions/image';
@@ -239,6 +240,7 @@ const scope = {
 	DateDisplay,
 	DraggableGrid,
 	DraggableList,
+	EditableText,
 	Expire,
 	FeedbackButtons,
 	ImageQuestion,
