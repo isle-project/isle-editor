@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "2つのグループにまたがる質的変数の選択されたカテゴリの比例の均等性の検定。",
 	"type": "タイプ",
 	"type-of-test": "テストの種類。",
+	"unshare": "シェア解除",
 	"upper": "上",
 	"variable": "変数",
 	"variable-created": "作成された変数",

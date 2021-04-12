@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "Test na równość proporcji dla wybranej kategorii zmiennej jakościowej w dwóch grupach.",
 	"type": "Typ",
 	"type-of-test": "Rodzaj testu:",
+	"unshare": "Nie udostępniaj",
 	"upper": "Górna strona",
 	"variable": "Zmienna:",
 	"variable-created": "Zmienna utworzona",

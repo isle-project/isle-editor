@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "Een test voor gelijkheid van proporties voor een geselecteerde categorie van een kwalitatieve variabele over twee groepen.",
 	"type": "Type",
 	"type-of-test": "Soort test:",
+	"unshare": "Unshare",
 	"upper": "Bovenste",
 	"variable": "Variabele:",
 	"variable-created": "Variabele gecreëerd",

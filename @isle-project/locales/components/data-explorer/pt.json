@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "Um teste de igualdade de proporções para uma categoria selecionada de uma variável qualitativa em dois grupos.",
 	"type": "Tipo",
 	"type-of-test": "Tipo de teste:",
+	"unshare": "Unshare",
 	"upper": "Alto",
 	"variable": "Variável:",
 	"variable-created": "Variável criada",

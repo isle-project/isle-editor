@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "检验两组定性变量中某一类别的比例是否相等。",
 	"type": "种类",
 	"type-of-test": "测试类型：",
+	"unshare": "取消分享",
 	"upper": "上层",
 	"variable": "可变。",
 	"variable-created": "创建的变量",

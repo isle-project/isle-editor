@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "Un test d'égalité des proportions pour une catégorie sélectionnée d'une variable qualitative entre deux groupes.",
 	"type": "Tapez",
 	"type-of-test": "Type de test :",
+	"unshare": "Ne pas partager",
 	"upper": "Haut de page",
 	"variable": "Variable :",
 	"variable-created": "Variable créée",

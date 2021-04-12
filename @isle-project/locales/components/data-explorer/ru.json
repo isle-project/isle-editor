@@ -277,6 +277,7 @@
 	"Two-Sample Proportion Test-description": "Тест на равенство пропорций для выбранной категории качественной переменной в двух группах.",
 	"type": "Введите .",
 	"type-of-test": "Тип теста:",
+	"unshare": "Unshare",
 	"upper": "Верхний",
 	"variable": "Переменная:",
 	"variable-created": "Созданная переменная",
