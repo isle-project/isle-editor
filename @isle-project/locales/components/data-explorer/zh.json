@@ -234,6 +234,7 @@
 	"select-variables": "选择变量",
 	"set-slice-sizes": "将切片大小设置为摘要变量的总和。",
 	"shape-measures": "形状测量",
+	"share": "分享",
 	"show-boxplot": "显示平面图",
 	"show-colors": "显示颜色",
 	"show-dataset-info": "显示数据集信息",

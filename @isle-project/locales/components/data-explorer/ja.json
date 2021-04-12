@@ -234,6 +234,7 @@
 	"select-variables": "変数の選択",
 	"set-slice-sizes": "スライスサイズをサマリー変数の合計に設定します。",
 	"shape-measures": "形状対策",
+	"share": "シェア",
 	"show-boxplot": "ボックスプロットを表示",
 	"show-colors": "色を表示する",
 	"show-dataset-info": "データセット情報を表示",
