@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[241],{3390:function(e){e.exports=JSON.parse('{"generate":"Generowa\u0107"}')}}]);

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[801],{3514:function(i){i.exports=JSON.parse('{"close":"Fechar","maximize":"Maximizar","minimize":"Minimizar"}')}}]);

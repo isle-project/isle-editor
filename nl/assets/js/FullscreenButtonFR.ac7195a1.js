@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[330],{3086:function(e){e.exports=JSON.parse('{"close":"Fermer","fullscreen-header":"Affichage plein \xe9cran","fullscreen-tooltip":"Basculer en plein \xe9cran"}')}}]);

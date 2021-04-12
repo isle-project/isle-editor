@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1188],{2993:function(i){i.exports=JSON.parse('{"direction":"direction","humidity":"humidity","in":"in","loading-weather-data-for":"Loading weather data for {{loc}}...","wind":"wind"}')}}]);

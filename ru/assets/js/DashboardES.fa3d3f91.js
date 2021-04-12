@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[242],{2996:function(e){e.exports=JSON.parse('{"generate":"Generar"}')}}]);
