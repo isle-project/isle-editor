@@ -6,6 +6,7 @@ import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation, Trans } from 'react-i18next';
+import { json } from 'd3';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
@@ -223,12 +224,20 @@ class DataExplorer extends Component {
 	componentDidMount() {
 		const session = this.context;
 		if ( !this.props.data ) {
-			const promiseData = session.store.getItem( this.id+'_data' );
-			const promisequantitative = session.store.getItem( this.id+'_quantitative' );
-			const promiseCategorical = session.store.getItem( this.id+'_categorical' );
-			Promise.all([ promiseData, promisequantitative, promiseCategorical ])
-				.then( ( values ) => {
-					let data = values[ 0 ] || null;
+			if ( session.metadata.store[ this.id ] ) {
+				const meta = session.metadata.store[ this.id ];
+				json( meta ).then( res => {
+					const groupVars = ( res.categorical || [] ).slice();
+					this.setState({
+						data: res.data,
+						quantitative: res.quantitative,
+						categorical: res.categorical,
+						groupVars,
+						ready: true
+					});
+				});
+			} else {
+				session.store.getItem( this.id ).then( ({ quantitative = [], categorical = [], data = null }) => {
 					let ready = false;
 					if ( isEmptyObject( data ) ) {
 						data = null;
@@ -236,8 +245,6 @@ class DataExplorer extends Component {
 					if ( !isNull( data ) ) {
 						ready = true;
 					}
-					const quantitative = values[ 1 ] || [];
-					const categorical = values[ 2 ] || [];
 					const groupVars = ( categorical || [] ).slice();
 					this.setState({
 						data, quantitative, categorical, groupVars, ready
@@ -246,6 +253,7 @@ class DataExplorer extends Component {
 				.catch( ( err ) => {
 					debug( err );
 				});
+			}
 		}
 		if ( session.currentUserActions ) {
 			const actions = session.currentUserActions[ this.id ];
@@ -320,15 +328,43 @@ class DataExplorer extends Component {
 
 	resetStorage = () => {
 		const session = this.context;
-		session.store.removeItem( this.id+'_data' );
-		session.store.removeItem( this.id+'_quantitative' );
-		session.store.removeItem( this.id+'_categorical' );
+		session.store.removeItem( this.id );
 		this.setState({
 			data: null,
 			categorical: [],
 			quantitative: [],
 			ready: false
 		});
+	}
+
+	shareData = () => {
+		const session = this.context;
+		if ( session.metadata.store[ this.id ] ) {
+			session.updateMetadata( 'store', this.id, null );
+			this.forceUpdate();
+		} else {
+			const internalData = {
+				data: this.state.data,
+				quantitative: this.state.quantitative,
+				categorical: this.state.categorical
+			};
+			const blob = new Blob([ JSON.stringify( internalData ) ], {
+				type: 'application/json'
+			});
+			const fileToSave = new File( [ blob ], 'data.json' );
+			const formData = new FormData();
+			formData.append( 'file', fileToSave );
+			session.uploadFile({
+				formData,
+				callback: ( error, res ) => {
+					const filename = res.filename;
+					const link = session.server + '/' + filename;
+					session.updateMetadata( 'store', this.id, link );
+					this.forceUpdate();
+				},
+				showNotification: false
+			});
+		}
 	}
 
 	/**
@@ -641,7 +677,11 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			}, () => {
-				session.store.setItem( this.id+'_data', this.state.data, debug );
+				session.store.setItem( this.id, {
+					data: this.state.data,
+					quantitative: quantitativeGuesses,
+					categorical: categoricalGuesses
+				});
 			});
 		}
 	}
@@ -880,15 +920,17 @@ class DataExplorer extends Component {
 						}}
 					/>
 					<Button disabled={isEmptyArray( this.state.categorical ) && isEmptyArray( this.state.quantitative )} onClick={() => {
-						const groupVars = this.state.categorical.slice();
-						const ready = true;
 						this.setState({
-							groupVars,
-							ready
+							groupVars: this.state.categorical.slice(),
+							ready: true
 						}, () => {
 							const session = this.context;
-							session.store.setItem( this.id+'_quantitative', this.state.quantitative, debug );
-							session.store.setItem( this.id+'_categorical', this.state.categorical, debug );
+							const internalData = {
+								data: this.state.data,
+								quantitative: this.state.quantitative,
+								categorical: this.state.categorical
+							};
+							session.store.setItem( this.id, internalData );
 						});
 					}}>{this.props.t('submit')}</Button>
 					<DataTable data={this.state.data} id={this.id + '_table'} />
@@ -906,6 +948,7 @@ class DataExplorer extends Component {
 			</Alert> );
 		}
 
+		const session = this.context;
 		const hasQuestions = isArray( this.props.questions ) && this.props.questions.length > 0;
 		const pagesHeight = this.props.style.height || ( window.innerHeight*0.9 ) - 165;
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
@@ -1023,10 +1066,16 @@ class DataExplorer extends Component {
 								display: this.state.openedNav !== 'data' ? 'none' : null
 							}}
 						>
-								{ !this.props.data ? <Button
+								{ !this.props.data && !session.metadata.store[ this.id ] ? <Button
 									size="small" onClick={this.resetStorage}
 									style={{ position: 'absolute', top: '80px', zIndex: 2 }}
 								>{this.props.t('clear-data')}</Button> : null }
+								{ !this.props.data ? <Gate owner >
+									<Button
+										size="small" onClick={this.shareData}
+										style={{ position: 'absolute', top: '80px', left: '140px', zIndex: 2 }}
+									>{!session.metadata.store[ this.id ] ? this.props.t('share') : this.props.t('unshare')}</Button>
+								</Gate>: null }
 								<DataTable
 									{...this.props.dataTableProps}
 									data={this.state.data}
