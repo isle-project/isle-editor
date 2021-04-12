@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Haga clic para recorrer las opciones disponibles.",
+	"discard-changes": "Descartar los cambios",
+	"edit-text": "Editar texto",
 	"error-encountered": "Error encontrado",
 	"expected-object-array": "`{{field}}` tiene que ser un array de objetos.",
 	"expected-value-from-list": "`{{campo}}` tiene que ser uno de los siguientes: {{lista}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pausa",
 	"resume": "Currículum Vitae",
 	"retry": "Reintenta",
+	"save-changes": "Guardar los cambios",
 	"search": "Busca en",
 	"supply-component-id": "Por favor, proporcione una identificación para el componente que se va a vigilar.",
 	"toggle-error-stack-trace": "Conmutar el seguimiento de la pila del error"

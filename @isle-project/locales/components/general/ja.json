@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "クリックして、利用可能なオプションを循環させます。",
+	"discard-changes": "変更点の破棄",
+	"edit-text": "テキストの編集",
 	"error-encountered": "遭遇したエラー",
 	"expected-object-array": "`{{field}}` はオブジェクトの配列でなければなりません。",
 	"expected-value-from-list": "`{{field}}` は以下のいずれかでなければなりません。{{{list}}}でなければなりません。",
@@ -9,6 +11,7 @@
 	"pause": "ポーズ",
 	"resume": "履歴書",
 	"retry": "リトライ",
+	"save-changes": "変更の保存",
 	"search": "検索",
 	"supply-component-id": "視聴する部品のIDをご提示ください。",
 	"toggle-error-stack-trace": "エラーのスタックトレースをトグル"

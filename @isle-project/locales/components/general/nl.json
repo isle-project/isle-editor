@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Klik om door de beschikbare opties te bladeren.",
+	"discard-changes": "Veranderingen weggooien",
+	"edit-text": "Tekst bewerken",
 	"error-encountered": "Fout opgetreden",
 	"expected-object-array": "`{{field}}` moet een array van objecten zijn.",
 	"expected-value-from-list": "`{field}}` moet een van de volgende zijn: {{list}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pauzeer",
 	"resume": "CV",
 	"retry": "Probeer opnieuw",
+	"save-changes": "Wijzigingen opslaan",
 	"search": "Zoeken op",
 	"supply-component-id": "Lever een ID in voor het te bewaken onderdeel.",
 	"toggle-error-stack-trace": "Schakelt stack trace van fout"

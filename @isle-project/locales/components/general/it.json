@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Fare clic per scorrere le opzioni disponibili.",
+	"discard-changes": "Scartare le modifiche",
+	"edit-text": "Modifica del testo",
 	"error-encountered": "Errore incontrato",
 	"expected-object-array": "`{{field}}` deve essere un array di oggetti.",
 	"expected-value-from-list": "`{{campo}}` deve essere uno dei seguenti: {{list}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pausa",
 	"resume": "Riprendi",
 	"retry": "Riprova",
+	"save-changes": "Salvare le modifiche",
 	"search": "Ricerca",
 	"supply-component-id": "Si prega di fornire un ID per il componente da sorvegliare.",
 	"toggle-error-stack-trace": "Alterna la traccia dello stack dell'errore"

@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Klicken Sie auf , um die verfügbaren Optionen zu durchlaufen.",
+	"discard-changes": "Änderungen verwerfen",
+	"edit-text": "Text bearbeiten",
 	"error-encountered": "Aufgetretener Fehler",
 	"expected-object-array": "`{{field}}` muss ein Array von Objekten sein.",
 	"expected-value-from-list": "`{{feld}}` muss einer der folgenden sein: {{Liste}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pause",
 	"resume": "Lebenslauf",
 	"retry": "Wiederholen Sie",
+	"save-changes": "Änderungen speichern",
 	"search": "Suche",
 	"supply-component-id": "Bitte geben Sie eine ID für die zu überwachende Komponente an.",
 	"toggle-error-stack-trace": "Stack-Trace des Fehlers umschalten"

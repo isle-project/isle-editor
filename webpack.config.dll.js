@@ -91,6 +91,7 @@ const config = {
 			'@isle-project/components/draggable',
 			'@isle-project/components/draggable-grid',
 			'@isle-project/components/draggable-list',
+			'@isle-project/components/editable-text',
 			'@isle-project/components/enlargeable-grid',
 			'@isle-project/components/expire',
 			'@isle-project/components/feedback',

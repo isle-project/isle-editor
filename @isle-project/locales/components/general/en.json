@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Click to cycle through available options.",
+	"discard-changes": "Discard changes",
+	"edit-text": "Edit text",
 	"error-encountered": "Error Encountered",
 	"expected-object-array": "`{{field}}` has to be an array of objects.",
 	"expected-value-from-list": "`{{field}}` has to be one of the following: {{list}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pause",
 	"resume": "Resume",
 	"retry": "Retry",
+	"save-changes": "Save changes",
 	"search": "Search",
 	"supply-component-id": "Please supply an ID for component to be watched.",
 	"toggle-error-stack-trace": "Toggle stack trace of error"

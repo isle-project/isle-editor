@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Kliknij, aby przejrzeć dostępne opcje.",
+	"discard-changes": "Odrzuć zmiany",
+	"edit-text": "Edytuj tekst",
 	"error-encountered": "Napotkany błąd",
 	"expected-object-array": "`{{field}}` musi być tablicą obiektów.",
 	"expected-value-from-list": "`{field}} musi być jednym z następujących: {{list}}.",
@@ -9,6 +11,7 @@
 	"pause": "Pauza",
 	"resume": "CV",
 	"retry": "Retry",
+	"save-changes": "Zapisz zmiany",
 	"search": "Szukaj",
 	"supply-component-id": "Prosimy o dostarczenie identyfikatora elementu, który ma być oglądany.",
 	"toggle-error-stack-trace": "Przełączanie śladu stosu błędu"

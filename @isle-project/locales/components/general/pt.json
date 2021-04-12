@@ -1,5 +1,7 @@
 {
 	"click-to-cycle-through-options": "Clique para percorrer as opções disponíveis.",
+	"discard-changes": "Mudanças de descarte",
+	"edit-text": "Editar texto",
 	"error-encountered": "Erro detectado",
 	"expected-object-array": "`{{field}}` tem que ser um conjunto de objetos.",
 	"expected-value-from-list": "`{{{campo}}` tem que ser um dos seguintes: {{{lista}}`.",
@@ -9,6 +11,7 @@
 	"pause": "Pausa",
 	"resume": "Currículo",
 	"retry": "Tentativa",
+	"save-changes": "Salvar mudanças",
 	"search": "Busca",
 	"supply-component-id": "Favor fornecer uma identificação para o componente a ser vigiado.",
 	"toggle-error-stack-trace": "Alternar o traço de erro da pilha"
