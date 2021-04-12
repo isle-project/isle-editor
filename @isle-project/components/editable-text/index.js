@@ -2,7 +2,9 @@
 
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import markdownit from 'markdown-it';
+import Tooltip from '@isle-project/components/tooltip';
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import Gate from '@isle-project/components/gate';
@@ -42,6 +44,7 @@ const EditableText = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const divRef = useRef();
+	const { t } = useTranslation( 'General' );
 	const [ text, setText ] = useState( props.defaultText );
 	const [ editing, setEditing ] = useState( false );
 	useEffect( () => {
@@ -70,9 +73,9 @@ const EditableText = ( props ) => {
 			}
 		};
 	}, [ session, id ] );
-	const toggleEditing = useCallback( () => {
-		setEditing( !editing );
-	}, [ editing ] );
+	const startEditing = useCallback( () => {
+		setEditing( true );
+	}, [] );
 	const cancelChange = useCallback( () => {
 		setEditing( false );
 		setText( text );
@@ -93,15 +96,21 @@ const EditableText = ( props ) => {
 			</div>
 			<Gate owner >
 				<ButtonGroup style={{ position: 'absolute', top: 0, right: 0 }} >
-					<Button size="sm" variant="secondary" onClick={toggleEditing} >
-						<i className="far fa-edit" />
-					</Button>
-					{ editing ? <Button size="sm" variant="secondary" onClick={cancelChange} >
-						<i className="fas fa-trash-restore-alt" />
-					</Button> : null }
-					{ editing ? <Button size="sm" variant="secondary" onClick={saveText} >
-						<i className="fas fa-share" />
-					</Button> : null }
+					{ !editing ? <Tooltip tooltip={t('edit-text')} >
+						<Button size="sm" variant="secondary" onClick={startEditing} >
+							<i className="far fa-edit" />
+						</Button>
+					</Tooltip> : null }
+					{ editing ? <Tooltip tooltip={t('discard-changes')} >
+						<Button size="sm" variant="secondary" onClick={cancelChange} >
+							<i className="fas fa-trash-restore-alt" />
+						</Button>
+					</Tooltip>: null }
+					{ editing ? <Tooltip tooltip={t('save-changes')} >
+						<Button size="sm" variant="secondary" onClick={saveText} >
+							<i className="fas fa-share" />
+						</Button>
+					</Tooltip>: null }
 				</ButtonGroup>
 			</Gate>
 		</div>
