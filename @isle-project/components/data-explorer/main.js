@@ -192,24 +192,25 @@ class DataExplorer extends Component {
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
+		if ( !nextProps.data ) {
+			return null;
+		}
 		const newState = {};
 		if (
 			nextProps.data !== prevState.unaltered.data
 		) {
 			newState.data = nextProps.data;
 		}
-		if ( nextProps.data ) {
-			if ( nextProps.quantitative !== prevState.unaltered.quantitative ) {
-				newState.quantitative = nextProps.quantitative;
-			}
-			if ( nextProps.categorical !== prevState.unaltered.categorical ) {
-				newState.categorical = nextProps.categorical;
-			}
-			newState.validVariables = checkVariables(
-				nextProps.data,
-				nextProps.quantitative.concat( nextProps.categorical )
-			);
+		if ( nextProps.quantitative !== prevState.unaltered.quantitative ) {
+			newState.quantitative = nextProps.quantitative;
 		}
+		if ( nextProps.categorical !== prevState.unaltered.categorical ) {
+			newState.categorical = nextProps.categorical;
+		}
+		newState.validVariables = checkVariables(
+			nextProps.data,
+			nextProps.quantitative.concat( nextProps.categorical )
+		);
 		if ( !isEmptyObject( newState ) ) {
 			newState.unaltered = {
 				data: nextProps.data,
@@ -247,7 +248,16 @@ class DataExplorer extends Component {
 					}
 					const groupVars = ( categorical || [] ).slice();
 					this.setState({
-						data, quantitative, categorical, groupVars, ready
+						data,
+						quantitative,
+						categorical,
+						groupVars,
+						ready,
+						unaltered: {
+							data,
+							quantitative,
+							categorical
+						}
 					});
 				})
 				.catch( ( err ) => {
@@ -756,7 +766,15 @@ class DataExplorer extends Component {
 	restoreData = () => {
 		const newVars = objectKeys( this.state.data );
 		const oldVars = objectKeys( this.state.oldData );
-		const data = copy( this.props.data, 1 );
+		let originalData;
+		let data;
+		if ( this.props.data ) {
+			originalData = this.props.data;
+			data = copy( this.props.data, 1 );
+		} else {
+			originalData = this.state.unaltered.data;
+			data = copy( originalData, 1 );
+		}
 		const originalVariables = [];
 		for ( let i = 0; i < this.props.quantitative.length; i++ ) {
 			originalVariables.push( String( this.props.quantitative[ i ] ) );
@@ -765,7 +783,7 @@ class DataExplorer extends Component {
 			originalVariables.push( String( this.props.categorical[ i ] ) );
 		}
 		const ids = this.state.data.id;
-		const nOriginal = this.props.data[ oldVars[ 0 ] ].length;
+		const nOriginal = originalData[ oldVars[ 0 ] ].length;
 		const oldIds = this.state.oldData.id || incrspace( 1, nOriginal+1, 1 );
 		for ( let i = 0; i < oldVars.length; i++ ) {
 			const name = oldVars[ i ];
@@ -931,6 +949,9 @@ class DataExplorer extends Component {
 								categorical: this.state.categorical
 							};
 							session.store.setItem( this.id, internalData );
+							this.setState({
+								unaltered: internalData
+							});
 						});
 					}}>{this.props.t('submit')}</Button>
 					<DataTable data={this.state.data} id={this.id + '_table'} />
