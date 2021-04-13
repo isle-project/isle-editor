@@ -851,6 +851,35 @@
 		],
 		"description": "DraggableList-description"
 	},
+	"EditableText": {
+		"props": [
+			{
+				"name": "defaultText",
+				"type": "string",
+				"description": "EditableText-prop-defaultText",
+				"defaultValue": "Please change this default text..."
+			},
+			{
+				"name": "className",
+				"type": "string",
+				"description": "EditableText-prop-className",
+				"defaultValue": ""
+			},
+			{
+				"name": "inline",
+				"type": "boolean",
+				"description": "EditableText-prop-inline",
+				"defaultValue": false
+			},
+			{
+				"name": "style",
+				"type": "object",
+				"description": "EditableText-prop-style",
+				"defaultValue": {}
+			}
+		],
+		"description": "EditableText-description"
+	},
 	"EnlargeableGrid": {
 		"props": [
 			{
