@@ -56,6 +56,10 @@
 		"value": "<TextEditor />\n"
 	},
 	{
+		"name": "EditableText",
+		"value": "<EditableText ${1:} />\n${2:}"
+	},
+	{
 		"name": "Expire",
 		"value": "<Expire delay={${1:1000}}>\n  ${2:}\n</Expire>\n"
 	},

@@ -83,6 +83,10 @@
       "value": "<DraggableList\n  data={[\n    { id: 0, text: \"${1:First Choice}\" },\n    { id: 1, text: \"${2:Second Choice}\" },\n    { id: 2, text: \"${3:Third Choice}\" }\n  ]}\n  onChange={ ( newData ) => {\n    ${4:}\n  }}\n/>\n"
     },
     {
+      "name": "EditableText",
+      "value": "<EditableText ${1:} />\n${2:}"
+    },
+    {
       "name": "FlippableCard",
       "value": "<FlippableCard>\n  ${1:<div>Question</div>}\n  ${2:<div>Answer</div>}\n</FlippableCard>\n"
     },
