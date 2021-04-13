@@ -42,11 +42,15 @@ md.use( katex, {
 */
 const EditableText = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
+	const { defaultText, inline, className, style } = props;
 	const session = useContext( SessionContext );
 	const divRef = useRef();
 	const { t } = useTranslation( 'General' );
-	const [ text, setText ] = useState( props.defaultText );
+	const [ text, setText ] = useState( defaultText );
 	const [ editing, setEditing ] = useState( false );
+	useEffect( () => {
+		setText( defaultText );
+	}, [ defaultText ] );
 	useEffect( () => {
 		const readMetadata = () => {
 			if (
@@ -87,11 +91,11 @@ const EditableText = ( props ) => {
 		setText( newText );
 	}, [ session ] );
 	const node = {
-		'__html': props.inline ? md.renderInline( text ) : md.render( text )
+		'__html': inline ? md.renderInline( text ) : md.render( text )
 	};
 	/* eslint-disable react/no-danger */
 	return (
-		<div className={`editable-text ${props.className} ${editing ? 'editing': ''}`} style={props.style} >
+		<div className={`editable-text ${className} ${editing ? 'editing': ''}`} style={style} >
 			<div key={editing} ref={divRef} dangerouslySetInnerHTML={node} contentEditable={editing} >
 			</div>
 			<Gate owner >
