@@ -177,7 +177,7 @@
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
     "ml-matrix": "^6.7.0",
-    "ml-pca": "4.0.1",
+    "ml-pca": "4.0.2",
     "ml-regression-multivariate-linear": "^2.0.2",
     "murmurhash3js": "^3.0.1",
     "node": "15.12.0",
