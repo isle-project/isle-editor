@@ -172,7 +172,7 @@
     "is-mobile": "^3.0.0",
     "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
-    "markdown-it": "^12.0.4",
+    "markdown-it": "^12.0.5",
     "mini-css-extract-plugin": "^1.4.1",
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
