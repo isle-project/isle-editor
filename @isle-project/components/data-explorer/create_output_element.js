@@ -17,6 +17,7 @@ import ContourChart from '@isle-project/components/plots/contourchart';
 import HeatMap from '@isle-project/components/plots/heatmap';
 import Histogram from '@isle-project/components/plots/histogram';
 import LinePlot from '@isle-project/components/plots/lineplot';
+import Map from '@isle-project/components/plots/map';
 import MosaicPlot from '@isle-project/components/plots/mosaicplot';
 import PieChart from '@isle-project/components/plots/piechart';
 import QQPlot from '@isle-project/components/plots/qqplot';
@@ -219,6 +220,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === HeatMap ||
 		e.type === Histogram ||
 		e.type === LinePlot ||
+		e.type === Map ||
 		e.type === MosaicPlot ||
 		e.type === PieChart ||
 		e.type === QQPlot ||
