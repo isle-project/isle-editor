@@ -1,11 +1,12 @@
 // MODULES //
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SelectInput from '@isle-project/components/input/select';
-import Dashboard from '@isle-project/components/dashboard';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Map from '@isle-project/components/plots/map';
@@ -35,7 +36,14 @@ const LOCATION_MODES = [
 
 const MapMenu = ( props ) => {
 	const { variables, groupingVariables, t } = props;
-	const generateMap = ( locations, locationmode, scope, showLand, longitude, latitude, variable ) => {
+	const [ longitude, setLongitude ] = useState( null );
+	const [ latitude, setLatitude ] = useState( null );
+	const [ variable, setVariable ] = useState( null );
+	const [ locationmode, setLocationmode ] = useState( 'country names' );
+	const [ locations, setLocations ] = useState( null );
+	const [ scope, setScope ] = useState( 'world' );
+	const [ showLand, setShowLand ] = useState( false );
+	const generateMap = () => {
 		const plotId = randomstring( 6 );
 		const action = {
 			variable,
@@ -65,70 +73,101 @@ const MapMenu = ( props ) => {
 		props.onCreated( output );
 	};
 	return (
-		<Dashboard
-			autoStart={false}
-			title={<span>
+		<Card
+			style={{ fontSize: '14px' }}
+		>
+			<Card.Header as="h4">
 				{t('Map')}
 				<QuestionButton title={t('Map')} content={t('Map-description')} />
-			</span>}
-			onGenerate={generateMap}
-		>
-			<Row>
-				<Col>
-					<SelectInput
-						legend={t('locations')}
-						options={groupingVariables}
-						clearable
-					/>
-				</Col>
-				<Col>
-					<SelectInput
-						legend={t('location-encoding')}
-						options={LOCATION_MODES}
-						defaultValue="country names"
-					/>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<SelectInput
-						legend={t('scope')}
-						defaultValue="world"
-						options={SCOPES}
-					/>
-				</Col>
-				<Col>
-					<CheckboxInput
-						legend={t('show-land')}
-						defaultValue={false}
-						style={{ marginTop: 35 }}
-					/>
-				</Col>
-			</Row>
-			<h4 className="center">{t('or')}</h4>
-			<Row>
-				<Col>
-					<SelectInput
-						legend={t('longitude')}
-						options={variables}
-						clearable
-					/>
-				</Col>
-				<Col>
-					<SelectInput
-						legend={t('latitude')}
-						options={variables}
-						clearable
-					/>
-				</Col>
-			</Row>
-			<hr />
-			<SelectInput
-				legend={t('variable')}
-				options={variables}
-				clearable
-			/>
-		</Dashboard>
+			</Card.Header>
+			<Card.Body>
+				<Row>
+					<Col>
+						<SelectInput
+							legend={t('locations')}
+							options={groupingVariables}
+							clearable
+							value={locations}
+							onChange={( value ) => {
+								setLocations( value );
+								setLongitude( null );
+								setLatitude( null );
+							}}
+						/>
+					</Col>
+					<Col>
+						<SelectInput
+							legend={t('location-encoding')}
+							options={LOCATION_MODES}
+							defaultValue={locationmode}
+							onChange={setLocationmode}
+							disabled={!locations}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<SelectInput
+							legend={t('scope')}
+							defaultValue={scope}
+							options={SCOPES}
+							onChange={setScope}
+							disabled={!locations}
+
+						/>
+					</Col>
+					<Col>
+						<CheckboxInput
+							legend={t('show-land')}
+							defaultValue={showLand}
+							style={{ marginTop: 35 }}
+							onChange={setShowLand}
+							disabled={!locations}
+						/>
+					</Col>
+				</Row>
+				<h4 className="center">{t('or')}</h4>
+				<Row>
+					<Col>
+						<SelectInput
+							legend={t('longitude')}
+							options={variables}
+							clearable
+							value={longitude}
+							onChange={( value ) => {
+								setLongitude( value );
+								setLocations( null );
+							}}
+						/>
+					</Col>
+					<Col>
+						<SelectInput
+							legend={t('latitude')}
+							options={variables}
+							clearable
+							value={latitude}
+							onChange={( value ) => {
+								setLatitude( value );
+								setLocations( null );
+							}}
+						/>
+					</Col>
+				</Row>
+				<hr />
+				<SelectInput
+					legend={t('variable')}
+					options={variables}
+					clearable
+					onChange={setVariable}
+				/>
+				<Button
+					variant="primary" block onClick={generateMap}
+					disabled={( !longitude || !latitude ) && ( !locations || !variable )}
+				>
+					{t('calculate')}
+				</Button>
+			</Card.Body>
+		</Card>
 	);
 };
 
