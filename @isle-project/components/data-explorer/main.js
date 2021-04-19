@@ -1076,7 +1076,6 @@ class DataExplorer extends Component {
 						{ hasQuestions ? <Pages
 							id={this.id + '_questions'}
 							height={pagesHeight}
-							size="small"
 							className="data-explorer-questions"
 							style={{
 								display: this.state.openedNav !== 'questions' ? 'none' : null
