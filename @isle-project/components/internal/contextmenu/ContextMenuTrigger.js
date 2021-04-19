@@ -104,7 +104,7 @@ class ContextMenuTrigger extends Component {
 
 		const el = document.activeElement;
 		const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 || el.isContentEditable );
-		if ( inTextField ) return;
+		if ( inTextField || el.tagName === 'CANVAS' ) return;
 
 		event.preventDefault();
 		event.stopPropagation();
