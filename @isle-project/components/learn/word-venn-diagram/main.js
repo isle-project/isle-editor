@@ -119,7 +119,7 @@ class WordVennDiagram extends Component {
 					.duration( 400 )
 					.style( 'opacity', 0.9 );
 				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
-				const selection = d3.select( this )
+				const selection = d3.select( this ) // eslint-disable-line @babel/no-invalid-this
 					.transition( 'tooltip' )
 					.duration( 400 );
 				selection.select( 'path' )
@@ -137,7 +137,7 @@ class WordVennDiagram extends Component {
 					.transition()
 					.duration( 400 )
 					.style( 'opacity', 0 );
-				const selection = d3.select( this )
+				const selection = d3.select( this ) // eslint-disable-line @babel/no-invalid-this
 					.transition( 'tooltip' )
 					.duration( 400 );
 				selection.select( 'path' )
