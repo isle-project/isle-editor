@@ -289,7 +289,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-perf": "^3.3.0",
     "eslint-plugin-spellcheck": "0.0.17",
-    "eslint-plugin-testing-library": "^4.1.0",
+    "eslint-plugin-testing-library": "^4.1.1",
     "glob": "^7.1.6",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^26.6.3",
