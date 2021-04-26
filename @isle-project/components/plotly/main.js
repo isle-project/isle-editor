@@ -115,6 +115,7 @@ const Wrapper = ( props ) => {
 	useEffect( () => {
 		debug( 'Layout property has changed...' );
 		setLayout({
+			showlegend: false,
 			...props.layout,
 			autosize: true
 		});
@@ -204,6 +205,7 @@ const Wrapper = ( props ) => {
 			});
 	}, [ props.id, props.meta ] );
 	const onInitialized = ( figure, gd ) => {
+		debug( 'Initialize plot...' );
 		figure.current = figure;
 		drawPlot();
 		props.onInitialized( figure, gd );
@@ -278,7 +280,13 @@ const Wrapper = ( props ) => {
 			onClick={props.onClick}
 			onSelected={props.onSelected}
 			onAfterPlot={props.onAfterPlot}
-			onRelayout={props.onRelayout}
+			onRelayout={( event ) => {
+				setLayout({
+					...layout,
+					datarevision: layout.datarevision ? layout.datarevision + 1 : 1
+				});
+				props.onRelayout( event );
+			}}
 			onLegendClick={props.onLegendClick}
 			onLegendDoubleClick={props.onLegendDoubleClick}
 			style={style}
