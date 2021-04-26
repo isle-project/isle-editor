@@ -77,13 +77,18 @@ class Draggable extends Component {
 	}
 
 	render() {
-		const dndProps = omit( this.props, [ 'onStop', 'onEscape' ]);
+		const dndProps = omit( this.props, [ 'onStop', 'onEscape' ] );
+		let cancel = 'button, .btn, .nav';
+		if ( dndProps.cancel ) {
+			cancel += ', '+dndProps.cancel;
+		}
 		return (
 			<Portal
 				node={document.body}
 			>
 				<Rnd
 					{...dndProps}
+					cancel={cancel}
 					onDragStop={this.handleStop}
 					ref={( div ) => {
 						this.container = div;

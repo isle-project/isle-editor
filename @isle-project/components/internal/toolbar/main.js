@@ -332,7 +332,7 @@ const Toolbar = () => {
 					}}
 					minWidth={510}
 					minHeight={300}
-					cancel=".textLayer,.btn"
+					cancel=".canvas-wrapper"
 				>
 					<Panel
 						title={t( 'sketchpad' )}
