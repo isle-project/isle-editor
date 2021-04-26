@@ -1,7 +1,7 @@
 // MODULES //
 
 import murmurhash3js from 'murmurhash3js';
-import stemmer from 'stemmer';
+import porterStemmer from '@stdlib/nlp/porter-stemmer';
 import isPositiveInteger from '@stdlib/assert/is-positive-integer';
 import tokenize from '@stdlib/nlp/tokenize';
 import ctor from '@stdlib/ndarray/ctor';
@@ -72,7 +72,7 @@ class Vocabulary {
 		doc = processDocument( doc );
 		const words = tokenize( doc );
 		for ( let i = 0; i < words.length; i++ ) {
-			words[ i ] = stemmer( words[ i ] );
+			words[ i ] = porterStemmer( words[ i ] );
 		}
 		const len = words.length;
 		// Add bigrams:
