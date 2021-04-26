@@ -35,13 +35,19 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 		traces.push({
 			type: 'scattermapbox',
 			mode: 'markers',
-			text: data[ variable ],
 			marker: {
 				opacity: 0.6,
 				autocolorscale: false,
 				colorscale: PURPLE_SCALE,
 				color: data[ variable ]
 			},
+			transforms: [{
+				type: 'aggregate',
+				groups: lon.map( ( x, i ) => `${x}-${lat[ i ]}` ),
+				aggregations: [
+					{ target: 'z', func: 'sum', enabled: true }
+				]
+			}],
 			lon,
 			lat
 		});
@@ -71,7 +77,14 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 			locationmode,
 			locations: data[ locations ],
 			z: data[ variable ],
-			autocolorscale: true
+			autocolorscale: true,
+			transforms: [{
+				type: 'aggregate',
+				groups: data[ locations ],
+				aggregations: [
+					{	target: 'z', func: 'sum', enabled: true }
+				]
+			}]
 		});
 		let title = 'Map';
 		if ( variable ) {
