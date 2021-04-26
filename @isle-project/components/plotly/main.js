@@ -240,6 +240,7 @@ const Wrapper = ( props ) => {
 			onDragStart={( ev ) => {
 				ev.dataTransfer.setData( 'text/html', plotDataRef.current );
 			}}
+			disabled={!finishedDrawing}
 			onClick={() => {
 				html2clipboard( plotDataRef.current );
 				session.addNotification({
