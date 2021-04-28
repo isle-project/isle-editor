@@ -395,31 +395,34 @@ class FullscreenActionDisplay extends Component {
 			levels = levels.filter( ( _, idx ) => counts[ idx ] > 0 );
 			counts = counts.filter( val => val > 0 );
 		}
+		const traces = [
+			{
+				y: levels,
+				x: counts,
+				type: 'bar',
+				orientation: 'h'
+			}
+		];
+		const layout = {
+			xaxis: {
+				title: this.props.t('count')
+			},
+			yaxis: {
+				title: this.props.t('value'),
+				type: 'category',
+				categoryorder: 'array',
+				categoryarray: levels
+			},
+			margin: {
+				l: leftMargin
+			}
+		};
 		return (
 			<div style={{ height: 0.75 * window.innerHeight }}>
 				<Plotly
-					data={[
-						{
-							y: levels,
-							x: counts,
-							type: 'bar',
-							orientation: 'h'
-						}
-					]}
+					data={traces}
 					fit editable
-					layout={{
-						xaxis: {
-							title: this.props.t('count')
-						},
-						yaxis: {
-							title: this.props.t('value'),
-							categoryorder: 'array',
-							categoryarray: levels
-						},
-						margin: {
-							l: leftMargin
-						}
-					}}
+					layout={layout}
 				/>
 			</div>
 		);
