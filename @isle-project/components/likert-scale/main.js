@@ -13,11 +13,13 @@ import SessionContext from '@isle-project/session/context.js';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
 const uid = generateUID( 'likert-scale' );
+addResources( 'LikertScale' );
 const DEFAULT_OPTIONS = [
 	'strongly-disagree',
 	'disagree',
