@@ -248,7 +248,7 @@
     "redux": "4.1.0",
     "redux-thunk": "^2.3.0",
     "resolve-from": "^5.0.0",
-    "semver": "5.6.0",
+    "semver": "7.3.3",
     "smooth-scroll-into-view-if-needed": "^1.1.32",
     "source-map-support": "^0.5.19",
     "stream-browserify": "^3.0.0",
