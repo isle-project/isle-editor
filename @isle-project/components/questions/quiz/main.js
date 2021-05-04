@@ -29,7 +29,7 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
 import generateUID from '@isle-project/utils/uid';
-import { QUESTION_CONFIDENCE, QUESTION_SKIPPED } from '@isle-project/constants/actions.js';
+import { QUESTION_CONFIDENCE, QUESTION_SKIPPED, QUIZ_FINISHED } from '@isle-project/constants/actions.js';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import FinishModal from './finish_modal.js';
@@ -237,6 +237,11 @@ class Quiz extends Component {
 		if ( counter >= this.state.count ) {
 			debug( 'No further questions should be shown...' );
 			newState.finished = true;
+			session.log({
+				id: this.id,
+				type: QUIZ_FINISHED,
+				value: true
+			});
 			this.props.onFinished();
 		} else {
 			if ( counter === this.state.count-1 ) {
@@ -623,6 +628,12 @@ class Quiz extends Component {
 						duration={this.props.duration}
 						onTimeUp={() => {
 							debug( 'Time is up...' );
+							const session = this.context;
+							session.log({
+								id: this.id,
+								type: QUIZ_FINISHED,
+								value: true
+							});
 							this.setState({
 								finished: true
 							}, () => {
