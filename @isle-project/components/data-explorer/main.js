@@ -54,7 +54,7 @@ import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.
 import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
-import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
+import { RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './data_explorer.css';
 
@@ -277,6 +277,21 @@ class DataExplorer extends Component {
 				const actions = currentUserActions[ this.id ];
 				if ( this.props.data && isObjectArray( actions ) ) {
 					this.restoreTransformations( actions );
+				}
+			}
+			else if ( type === RECEIVED_LESSON_INFO ) {
+				if ( session.metadata.store[ this.id ] ) {
+					const meta = session.metadata.store[ this.id ];
+					json( meta ).then( res => {
+						const groupVars = ( res.categorical || [] ).slice();
+						this.setState({
+							data: res.data,
+							quantitative: res.quantitative,
+							categorical: res.categorical,
+							groupVars,
+							ready: true
+						});
+					});
 				}
 			}
 		});
