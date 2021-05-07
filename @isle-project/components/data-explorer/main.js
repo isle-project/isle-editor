@@ -234,7 +234,12 @@ class DataExplorer extends Component {
 						quantitative: res.quantitative,
 						categorical: res.categorical,
 						groupVars,
-						ready: true
+						ready: true,
+						unaltered: {
+							data: res.data,
+							quantitative: res.quantitative,
+							categorical: res.categorical
+						}
 					});
 				});
 			} else {
