@@ -55,25 +55,25 @@ module.exports = function main( context, options ) {
 							loader: 'babel-loader',
 							options: {
 								plugins: [
-									resolve( basePath, './node_modules/@babel/plugin-transform-react-constant-elements' ),
-									resolve( basePath, './node_modules/@babel/plugin-transform-react-inline-elements' ),
-									resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' ),
-									resolve( basePath, './node_modules/@babel/plugin-transform-react-jsx' ),
-									resolve( basePath, './node_modules/@babel/plugin-proposal-class-properties' ),
-									resolve( basePath, './node_modules/@babel/plugin-syntax-dynamic-import' ),
-									[ resolve( basePath, './node_modules/@babel/plugin-transform-runtime' ), {
+									'@babel/plugin-transform-react-constant-elements',
+									'@babel/plugin-transform-react-inline-elements',
+									'babel-plugin-transform-react-remove-prop-types',
+									'@babel/plugin-transform-react-jsx',
+									'@babel/plugin-proposal-class-properties',
+									'@babel/plugin-syntax-dynamic-import',
+									[ '@babel/plugin-transform-runtime', {
 										'regenerator': true
 									}]
 								],
 								presets: [
-									[ resolve( basePath, './node_modules/@babel/preset-env' ), {
+									[ '@babel/preset-env', {
 										targets: {
 											ie: '11'
 										},
 										useBuiltIns: 'usage',
 										corejs: 2
 									}],
-									resolve( basePath, './node_modules/@babel/preset-react' )
+									'@babel/preset-react'
 								],
 								babelrc: false,
 								cacheDirectory: true,
