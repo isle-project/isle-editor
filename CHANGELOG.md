@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.75.4](https://github.com/isle-project/isle-editor/releases/tag/v0.75.4) (2021-05-07)
+## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
 
 This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
 
