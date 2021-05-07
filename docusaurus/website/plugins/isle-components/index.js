@@ -1,6 +1,7 @@
 // MAIN //
 
 const path = require( 'path' );
+const { DefinePlugin } = require( 'webpack' );
 
 
 // VARIABLES //
@@ -26,17 +27,22 @@ module.exports = function main( context, options ) {
 					alias: {
 						'@isle-project/components/internal/response-visualizer': '@isle-project/components/html/div', // Ensure response visualizer is not included (breaks due to usage of Web worker)
 						'pdfjs-dist/build/pdf.min.js': isServer ? '@stdlib/utils/noop' : 'pdfjs-dist/build/pdf.min.js' // Ensure server-side rendering does not break due to non-availability of `canvas`
+					},
+					fallback: {
+						'path': resolve( basePath, './node_modules/path-browserify' ),
+						'stream': resolve( basePath, './node_modules/stream-browserify' ),
+						'os': resolve( basePath, './node_modules/os-browserify/browser' ),
+						'fs': false,
+						'domain': false
 					}
 				},
-				node: {
-					Buffer: 'mock',
-					child_process: 'empty',
-					module: 'empty',
-					dns: 'mock',
-					fs: 'empty',
-					net: 'mock',
-					tls: 'mock'
-				},
+				plugins: [
+					new DefinePlugin({
+						'process.env': {
+							NODE_ENV: '"production"'
+						}
+					})
+				],
 				module: {
 					rules: [
 						{
@@ -47,7 +53,7 @@ module.exports = function main( context, options ) {
 								/markdown-to-html/
 							],
 							loader: 'babel-loader',
-							query: {
+							options: {
 								plugins: [
 									resolve( basePath, './node_modules/@babel/plugin-transform-react-constant-elements' ),
 									resolve( basePath, './node_modules/@babel/plugin-transform-react-inline-elements' ),
