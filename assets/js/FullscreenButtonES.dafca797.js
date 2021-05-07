@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[19205],{910279:function(e){"use strict";e.exports=JSON.parse('{"close":"Cerrar","fullscreen-header":"Pantalla Completa","fullscreen-tooltip":"Activar/desactivar la vista de pantalla completa"}')}}]);

@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[71469],{159316:function(e){"use strict";e.exports=JSON.parse('{"not-available":"no disponible","party":"Fiesta","president":"Presidente:","questions":"Preguntas","speech":"Discurso:","state-of-the-union-addresses":"Direcciones del Estado de la Uni\xf3n","year":"A\xf1o"}')}}]);

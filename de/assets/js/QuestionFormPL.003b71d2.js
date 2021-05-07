@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[36216],{163277:function(e){"use strict";e.exports=JSON.parse('{"missing-children":"Formularz pytania wymaga podania co najmniej dw\xf3ch element\xf3w dzieci\u0119cych.","submit":"Zg\u0142o\u015b si\u0119"}')}}]);

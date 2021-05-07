@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[16853],{332058:function(e){"use strict";e.exports=JSON.parse('{"edition":"\xe9dition","references":"R\xe9f\xe9rences"}')}}]);

@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[81298],{753001:function(s){"use strict";s.exports=JSON.parse('{"hide-solution":"Soluci\xf3n de ocultamiento","show-solution":"Mostrar la soluci\xf3n","solution-available-tooltip":"La soluci\xf3n est\xe1 disponible despu\xe9s de presentar la respuesta","solution-available-tooltip-hints":"y se han pedido todas las pistas"}')}}]);

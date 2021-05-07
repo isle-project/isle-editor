@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[8515],{856166:function(e){"use strict";e.exports=JSON.parse('{"generate":"Generieren"}')}}]);

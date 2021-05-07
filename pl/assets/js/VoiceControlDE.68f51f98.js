@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[26501],{34328:function(e){"use strict";e.exports=JSON.parse('{"available-commands":"Verf\xfcgbare Sprachbefehle:","click-to-set-active":"Klicken, um eine Komponente als aktiv zu setzen","commands":"Befehl(e)","description":"Beschreibung"}')}}]);

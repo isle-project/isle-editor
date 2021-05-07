@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[82059],{160567:function(e){"use strict";e.exports=JSON.parse('{"close":"Close","missing-children":"The slider requires at least two child elements for it to be rendered.","next":"Next","previous":"Previous"}')}}]);

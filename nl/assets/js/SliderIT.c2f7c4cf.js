@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[20114],{509192:function(e){"use strict";e.exports=JSON.parse('{"close":"Chiudere","missing-children":"Il cursore richiede almeno due elementi figli per essere reso.","next":"Avanti","previous":"Precedente"}')}}]);

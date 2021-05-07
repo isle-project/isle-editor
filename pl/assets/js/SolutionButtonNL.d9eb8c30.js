@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[8780],{728741:function(o){"use strict";o.exports=JSON.parse('{"hide-solution":"Verberg de oplossing","show-solution":"Toon Oplossing","solution-available-tooltip":"Oplossing komt beschikbaar nadat het antwoord is ingediend","solution-available-tooltip-hints":"en alle hints zijn gevraagd"}')}}]);

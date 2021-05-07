@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[82573],{896306:function(e){"use strict";e.exports=JSON.parse('{"and":" e","key-not-found":"La chiave di citazione non si trova nelle referenze.","no-author":"Il campo autore non deve essere vuoto.","no-references":"Non si trovano \\"riferimenti\\" nel preambolo della lezione."}')}}]);

@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[9335],{811279:function(e){"use strict";e.exports=JSON.parse('{"close":"Chiudere","fullscreen-header":"Display a schermo intero","fullscreen-tooltip":"Attivare o disattivare lo schermo intero"}')}}]);

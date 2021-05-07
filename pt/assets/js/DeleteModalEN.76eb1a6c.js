@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[76194],{498217:function(e){"use strict";e.exports=JSON.parse('{"cancel":"Cancel","delete":"Delete","delete-body":"Are you sure that you want to delete the selected user action?","delete-title":"Delete user action?"}')}}]);

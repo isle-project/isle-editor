@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[84518],{911473:function(i){"use strict";i.exports=JSON.parse('{"close":"Chiudere","maximize":"Massimizzare","minimize":"Riduci al minimo"}')}}]);

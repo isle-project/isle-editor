@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[76826],{5559:function(e){"use strict";e.exports=JSON.parse('{"available-commands":"Commandes vocales disponibles :","click-to-set-active":"Cliquez pour activer le composant","commands":"Commande(s)","description":"Description"}')}}]);

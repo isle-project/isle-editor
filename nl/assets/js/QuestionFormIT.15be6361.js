@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[98870],{9330:function(e){"use strict";e.exports=JSON.parse('{"missing-children":"Il modulo di domanda richiede che siano resi almeno due elementi figli.","submit":"Invia a"}')}}]);

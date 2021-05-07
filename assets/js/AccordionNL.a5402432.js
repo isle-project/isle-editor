@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[9976],{351729:function(e){"use strict";e.exports=JSON.parse('{"children-missing":"De accordeon vereist ten minste twee kinderelementen voor de weergave ervan."}')}}]);

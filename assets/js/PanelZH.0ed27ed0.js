@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[53113],{363923:function(e){"use strict";e.exports=JSON.parse('{"close":"\u5173\u95ed","maximize":"\u6700\u5927\u5316","minimize":"\u5c3d\u91cf\u51cf\u5c11"}')}}]);

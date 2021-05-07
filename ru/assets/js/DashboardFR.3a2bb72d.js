@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[242],{3079:function(e){e.exports=JSON.parse('{"generate":"G\xe9n\xe9rer"}')}}]);

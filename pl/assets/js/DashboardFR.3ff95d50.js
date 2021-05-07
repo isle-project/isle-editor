@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[96763],{48100:function(e){"use strict";e.exports=JSON.parse('{"generate":"G\xe9n\xe9rer"}')}}]);

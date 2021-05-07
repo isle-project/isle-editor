@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[38654],{156117:function(s){"use strict";s.exports=JSON.parse('{"close-hint":"Una pista cercana","close-hints":"Pistas cercanas","get-hint":"Obtener una pista","hint":"Pista","hints":"Pistas","next-hint":"Siguiente pista","show-hints":"Mostrar pistas"}')}}]);

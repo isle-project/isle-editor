@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[87683],{941510:function(e){"use strict";e.exports=JSON.parse('{"browse-wikipedia":"Navegar na Wikip\xe9dia","enter-text-and-click-globe":"Digite o texto e clique no globo para pesquisar","reset":"Redefinir para entrada padr\xe3o","wikipedia-page":"P\xe1gina da Wikip\xe9dia"}')}}]);

@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[35213],{644605:function(e){"use strict";e.exports=JSON.parse('{"direction":"direzione","humidity":"umidit\xe0","in":"in","loading-weather-data-for":"Caricamento dei dati meteo per {{loc}}...","wind":"vento"}')}}]);

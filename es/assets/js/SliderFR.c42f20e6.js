@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[14517],{614260:function(e){"use strict";e.exports=JSON.parse('{"close":"Fermer","missing-children":"Le curseur n\xe9cessite au moins deux \xe9l\xe9ments enfants pour \xeatre rendu.","next":"Suivant","previous":"Pr\xe9c\xe9dent"}')}}]);

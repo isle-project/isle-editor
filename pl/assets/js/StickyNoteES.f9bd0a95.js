@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[99495],{388894:function(a){"use strict";a.exports=JSON.parse('{"click-to-minimize":"Haga clic para minimizar","click-to-remove":"Haga clic para eliminar","custom-title":"T\xedtulo personalizado","instructor":"Instructor","private":"Personal","public":"P\xfablico","save":"Guardar","type-in-your-note":"Escriba su nota"}')}}]);

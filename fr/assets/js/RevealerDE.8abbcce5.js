@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[935],{2904:function(e){e.exports=JSON.parse('{"all-students":"Alle Studenten","contents-of":"Inhalt von ","from":"von","hide":"Ausblenden","message":"Vom Instruktor verborgener Inhalt","reveal":"Aufdecken","to":"zu"}')}}]);

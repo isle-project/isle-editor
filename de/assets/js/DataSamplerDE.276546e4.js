@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[26568],{904135:function(e){"use strict";e.exports=JSON.parse('{"draw-sample":"Stichprobe ziehen","sample-size":"Stichprobengr\xf6\xdfe"}')}}]);

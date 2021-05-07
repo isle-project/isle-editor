@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1003],{2906:function(e){e.exports=JSON.parse('{"close":"Schlie\xdfen","missing-children":"Der Schieberegler ben\xf6tigt mindestens zwei untergeordnete Elemente, damit er gerendert werden kann.","next":"Weiter","previous":"Vorherige"}')}}]);
