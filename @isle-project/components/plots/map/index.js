@@ -1,11 +1,16 @@
 // MODULES //
 
 import React from 'react';
-import Alert from 'react-bootstrap/Alert';
-import { i18n } from '@isle-project/locales';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
+import { i18n } from '@isle-project/locales';
 import startcase from '@stdlib/string/startcase';
+import objectKeys from '@stdlib/utils/keys';
 import Plotly from '@isle-project/components/plotly';
+import by from '@isle-project/utils/by';
+import statistic from '@isle-project/utils/statistic';
 import mean from '@isle-project/utils/statistic/mean';
 import range from '@isle-project/utils/statistic/range';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -27,30 +32,48 @@ const PURPLE_SCALE = [
 
 export function generateMapConfig({ data, longitude, latitude, locations, locationmode, variable, scope, showLand }) {
 	let traces = [];
+	let lon;
+	let lat;
+	let z;
 	if ( longitude && latitude ) {
-		const lon = data[ longitude ];
-		const lat = data[ latitude ];
+		if ( variable ) {
+			const groups = data[ longitude ].map( ( x, i ) => `${x}/${data[ latitude ][ i ]}` );
+			const aggregated = by( data[ variable ], groups, statistic( 'Sum' ) );
+			const keys = objectKeys( aggregated );
+			lon = new Array( keys.length );
+			lat = new Array( keys.length );
+			z = new Array( keys.length );
+			for ( let i = 0; i < keys.length; i++ ) {
+				const [ x, y ] = keys[ i ].split( '/' );
+				lon[ i ] = Number( x );
+				lat[ i ] = Number( y );
+				z[ i ] = aggregated[ keys[ i ] ];
+			}
+		} else {
+			lon = data[ longitude ];
+			lat = data[ latitude ];
+		}
 		let zoom = range( lon )[ 0 ];
 		zoom = 1.0 / zoom;
-		traces.push({
+		const trace = {
 			type: 'scattermapbox',
 			mode: 'markers',
-			marker: {
+			lon,
+			lat
+		};
+		if ( z ) {
+			trace.text = z;
+			trace.marker = {
 				opacity: 0.6,
 				autocolorscale: false,
 				colorscale: PURPLE_SCALE,
-				color: data[ variable ]
-			},
-			transforms: [{
-				type: 'aggregate',
-				groups: lon.map( ( x, i ) => `${x}-${lat[ i ]}` ),
-				aggregations: [
-					{ target: 'z', func: 'sum', enabled: true }
-				]
-			}],
-			lon,
-			lat
-		});
+				color: z,
+				colorbar: {
+					autotick: true
+				}
+			};
+		}
+		traces.push( trace );
 		return {
 			data: traces,
 			layout: {
@@ -72,17 +95,30 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 		};
 	}
 	if ( variable ) {
+		const z = [];
+		const loc = [];
+		for ( let i = 0; i < data[ locations ].length; i++ ) {
+			if (
+				isNumber( data[ variable ][ i ] ) &&
+				!isUndefinedOrNull( data[ locations ][ i ] )
+			) {
+				loc.push( data[ locations ][ i ] );
+				z.push( data[ variable ][ i ] );
+			}
+		}
 		traces.push({
 			type: 'choropleth',
 			locationmode,
-			locations: data[ locations ],
-			z: data[ variable ],
+			locations: loc,
+			z: z,
 			autocolorscale: true,
 			transforms: [{
 				type: 'aggregate',
-				groups: data[ locations ],
+				groups: loc,
 				aggregations: [
-					{	target: 'z', func: 'sum', enabled: true }
+					{
+						target: 'z', func: 'sum', enabled: true
+					}
 				]
 			}]
 		});
