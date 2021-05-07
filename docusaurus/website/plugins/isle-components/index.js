@@ -83,7 +83,7 @@ module.exports = function main( context, options ) {
 										resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' )
 									],
 									presets: [
-										[ resolve( basePath, './node_modules/@babel/preset-env' ), {
+										[ '@babel/preset-env', {
 											modules: 'commonjs',
 											targets: {
 												ie: '11'
