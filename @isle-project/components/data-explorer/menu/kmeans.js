@@ -31,7 +31,7 @@ const KMeansMenu = ( props ) => {
 					const newCategorical = props.categorical.slice();
 					const suffix = variables.map( x => x[ 0 ] ).join( '' );
 					const name = factor( 'kmeans_cluster_' + suffix, incrspace( 0, K, 1 ).map( x => `Cluster ${x+1}` ) );
-					newData[ name ] = result.clusters.map( x => `Cluster ${x+1}` );
+					newData[ name ] = result.clusters;
 					if ( !contains( newCategorical, name ) ) {
 						newCategorical.push( name );
 					}

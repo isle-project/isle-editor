@@ -62,6 +62,7 @@ const fitModel = ({ K, variables, data, initialization }) => {
 		return null;
 	}
 	const n = data[ variables[ 0 ] ].length;
+	const missingIds = [];
 	for ( let i = 0; i < n; i++ ) {
 		const row = [];
 		let missing = false;
@@ -79,11 +80,22 @@ const fitModel = ({ K, variables, data, initialization }) => {
 		}
 		if ( !missing ) {
 			matrix.push( row );
+		} else {
+			missingIds.push( i );
 		}
 	}
 	try {
 		const result = kmeans( matrix, K, {
 			initialization
+		});
+		for ( let i = 0; i < missingIds.length; i++ ) {
+			result.clusters.splice( missingIds[ i ], 0, null );
+		}
+		result.clusters = result.clusters.map( x => {
+			if ( x === null ) {
+				return null;
+			}
+			return `Cluster ${x+1}`; // eslint-disable-line i18next/no-literal-string
 		});
 		return result;
 	} catch ( _ ) {
