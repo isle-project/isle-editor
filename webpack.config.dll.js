@@ -191,10 +191,10 @@ const config = {
 			'@isle-project/components/slider',
 			'@isle-project/components/solution-button',
 			'@isle-project/components/sortable-tree',
-			'@isle-project/components/spectacle/appear',
-			'@isle-project/components/spectacle/deck',
-			'@isle-project/components/spectacle/notes',
-			'@isle-project/components/spectacle/slide',
+			'@isle-project/components/spectacle/components/appear',
+			'@isle-project/components/spectacle/components/deck',
+			'@isle-project/components/spectacle/components/notes',
+			'@isle-project/components/spectacle/components/slide',
 			'@isle-project/components/spreadsheet-upload',
 			'@isle-project/components/sticky-note',
 			'@isle-project/components/switch',
@@ -239,7 +239,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.70/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.2.72/'
 	},
 	optimization: {
 		minimize: true,
