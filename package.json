@@ -211,7 +211,7 @@
     "raw-loader": "^4.0.2",
     "react": "17.0.2",
     "react-app-polyfill": "^2.0.0",
-    "react-bootstrap": "1.5.2",
+    "react-bootstrap": "1.6.0",
     "react-color": "2.17.3",
     "react-copy-to-clipboard": "^5.0.3",
     "react-dates": "21.8.0",
@@ -262,7 +262,7 @@
     "webpack-manifest-plugin": "3.1.1",
     "workbox-webpack-plugin": "6.1.5",
     "worker-loader": "^3.0.7",
-    "xterm": "^4.11.0",
+    "xterm": "^4.12.0",
     "xterm-addon-fit": "^0.5.0"
   },
   "devDependencies": {
@@ -287,7 +287,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-perf": "^3.3.0",
     "eslint-plugin-spellcheck": "0.0.17",
-    "eslint-plugin-testing-library": "^4.2.1",
+    "eslint-plugin-testing-library": "^4.3.0",
     "glob": "^7.1.7",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^26.6.3",
