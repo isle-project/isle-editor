@@ -22,7 +22,6 @@ import softThresholding from './soft_thresholding.js';
 // VARIABLES //
 
 const debug = logger( 'isle:lasso' );
-const matrix = ctor( 'generic', 2 );
 const PRECISION = 1e-9;
 
 
@@ -62,7 +61,7 @@ function LassoFit( y, x, lambda ) {
 	this.nonactive = [];
 
 	// Matrix holding partial residuals:
-	this.presid = matrix( new Float64Array( x._buffer.length ), x.shape, x.strides, x.offset, x.order );
+	this.presid = ctor( 'float64', new Float64Array( x._buffer.length ), x.shape, x.strides, x.offset, x.order );
 
 	this.init = () => {
 		this.iteration = 0;

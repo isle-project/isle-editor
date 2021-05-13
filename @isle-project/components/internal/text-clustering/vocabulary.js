@@ -4,13 +4,8 @@ import murmurhash3js from 'murmurhash3js';
 import porterStemmer from '@stdlib/nlp/porter-stemmer';
 import isPositiveInteger from '@stdlib/assert/is-positive-integer';
 import tokenize from '@stdlib/nlp/tokenize';
-import ctor from '@stdlib/ndarray/ctor';
+import ndarray from '@stdlib/ndarray/ctor';
 import processDocument from './process_document.js';
-
-
-// VARIABLES //
-
-const vector = ctor( 'int8', 1 );
 
 
 // FUNCTIONS //
@@ -22,7 +17,7 @@ const vector = ctor( 'int8', 1 );
 * @returns {ndarray} one-dimensional vector
 */
 function createVector( buffer ) {
-	return vector( buffer, [ buffer.length ], [ 1 ], 0, 'row-major' );
+	return ndarray( 'int8', buffer, [ buffer.length ], [ 1 ], 0, 'row-major' );
 }
 
 

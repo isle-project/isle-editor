@@ -17,12 +17,7 @@
 
 // MODULES //
 
-import ctor from '@stdlib/ndarray/ctor';
-
-
-// VARIABLES //
-
-const matrix = ctor( 'float64', 2 );
+import ndarray from '@stdlib/ndarray/ctor';
 
 
 // MAIN //
@@ -38,7 +33,7 @@ const transpose = ( X ) => {
 	const strides = [ X.strides[ 1 ], X.strides[ 0 ] ];
 	const offset = X.offset;
 	const order = X.order;
-	return matrix( X._buffer, shape, strides, offset, order );
+	return ndarray( 'float64', X._buffer, shape, strides, offset, order );
 };
 
 
