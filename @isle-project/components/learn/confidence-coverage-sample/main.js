@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -17,6 +18,7 @@ import qt from '@stdlib/stats/base/dists/t/quantile';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import roundn from '@stdlib/math/base/special/roundn';
 import hasOwnProp from '@stdlib/assert/has-own-property';
+import indexOf from '@stdlib/utils/index-of';
 import isNumberArray from '@stdlib/assert/is-number-array';
 import { NumberInput, SelectInput } from '@isle-project/components/input';
 import Panel from '@isle-project/components/panel';
@@ -31,6 +33,7 @@ import 'react-resizable/css/styles.css';
 // VARIABLES //
 
 addResources( 'LearnConfidenceCoverage' );
+const debug = logger( 'isle:learn:confidence-coverage-sample' );
 
 
 // FUNCTIONS //
@@ -191,6 +194,7 @@ class ConfidenceCoverageSample extends Component {
 		const errorBars = this.state.errorBars.slice();
 		const p = this.state.trueMean;
 		for ( let i = 0; i < numSamples; i++ ) {
+			debug( 'Draw sample of size '+this.state.sampleSize );
 			const data = sample( this.state.values, {
 				size: this.state.sampleSize
 			});
@@ -231,6 +235,7 @@ class ConfidenceCoverageSample extends Component {
 		if ( isNumberArray( values ) ) {
 			type = 'numeric';
 			trueMean = mean( values );
+			debug( 'Encountered numeric array with a mean of '+trueMean+'...' );
 		}
 		if ( isBinaryArray( values ) ) {
 			type = 'binary';
@@ -241,7 +246,9 @@ class ConfidenceCoverageSample extends Component {
 					nSuccesses += 1;
 				}
 			}
+			values = values.map( x => indexOf( categories, x ) );
 			trueMean = nSuccesses / values.length;
+			debug( 'Encountered binary array with a mean of '+trueMean+'...' );
 		}
 		let sampleSize = this.state.sampleSize;
 		if ( sampleSize > values.length ) {

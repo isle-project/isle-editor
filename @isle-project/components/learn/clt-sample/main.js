@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import logger from 'debug';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -42,6 +43,7 @@ import 'react-resizable/css/styles.css';
 
 addResources( 'LearnCLT' );
 const GridLayout = WidthProvider( ReactGridLayout );
+const debug = logger( 'isle:learn:clt-sample' );
 
 
 // FUNCTIONS //
@@ -222,6 +224,7 @@ class SampleCLT extends Component {
 	}
 
 	drawSamples( times ) {
+		debug( 'Drawing '+times+' samples...' );
 		const plots = this.state.plots.slice();
 		const enlarged = this.state.enlarged.slice();
 		const xbars = this.state.xbars.slice();
