@@ -45,6 +45,10 @@ class FilterInputRange extends Component {
 		});
 	}
 
+	handleBlur = () => {
+		this.props.onChange( this.state.currentValue );
+	}
+
 	render() {
 		const { currentValue } = this.state;
 		return ( <div className="input-range-wrapper" ref={( div ) => {
@@ -100,6 +104,7 @@ class FilterInputRange extends Component {
 										currentValue: newValue
 									});
 								}}
+								onBlur={this.handleBlur}
 								step={0.1}
 							/>
 							<NumberInput
@@ -115,6 +120,7 @@ class FilterInputRange extends Component {
 										currentValue: newValue
 									});
 								}}
+								onBlur={this.handleBlur}
 								step={0.1}
 							/>
 							<Button
