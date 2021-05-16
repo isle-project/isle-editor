@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
@@ -8,11 +8,15 @@ import Alert from 'react-bootstrap/Alert';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
 import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import generateUID from '@isle-project/utils/uid';
+import SessionContext from '@isle-project/session/context.js';
+import { IFRAME_INTERACTION } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //
 
 addResources( 'Iframe' );
+const uid = generateUID( 'iframe' );
 
 
 // MAIN //
@@ -28,14 +32,33 @@ addResources( 'Iframe' );
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
-const IFrame = ({ title, src, id, fullscreen, width, height, className, style }) => {
+const IFrame = ( props ) => {
+	const id = useRef( props.id || uid( props ) );
+	const iframeRef = useRef( null );
+	const { title, src, fullscreen, width, height, className, style } = props;
 	const [ dimensions, setDimensions ] = useState({
 		width: width || window.innerWidth,
 		height: height || window.innerHeight
 	});
+	const session = useContext( SessionContext );
 	const [ loaded, setLoaded ] = useState( false );
 	const { t } = useTranslation( 'Iframe' );
 
+	useEffect( () => {
+		const listener = () => {
+			if ( document.activeElement === iframeRef.current ) {
+				session.log({
+					id: id.current,
+					type: IFRAME_INTERACTION,
+					value: true
+				});
+			}
+		};
+		window.addEventListener( 'blur', listener );
+		return () => {
+			window.removeEventListener( 'blur', listener );
+		};
+	}, [ session ] );
 	useEffect( () => {
 		if ( fullscreen ) {
 			setDimensions({
@@ -71,7 +94,7 @@ const IFrame = ({ title, src, id, fullscreen, width, height, className, style })
 		};
 	}
 	return (
-		<Card id={id} className={`center ${className}`} style={divStyle} >
+		<Card id={`${id.current}-card`} className={`center ${className}`} style={divStyle} >
 			{loaded && !fullscreen ? <FullscreenButton
 				header={`${title}: ${src}`}
 				body={<iframe
@@ -88,6 +111,8 @@ const IFrame = ({ title, src, id, fullscreen, width, height, className, style })
 				wrapInCard={false}
 			/> : null}
 			<iframe
+				id={id.current}
+				ref={iframeRef}
 				src={src}
 				width={dimensions.width}
 				height={dimensions.height}
