@@ -193,7 +193,7 @@ PropTest2.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]).isRequired,
-	success: PropTypes.string.isRequired,
+	success: PropTypes.any.isRequired,
 	var2: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )

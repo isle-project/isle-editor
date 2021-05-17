@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Kruskal /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    kruskal-wallis-test
+  </label>
+  <pre
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    Kruskal-Wallis Test
+
+Null hypothesis: the medians of all groups are the same
+
+    pValue: 0.7501
+    statistic: 0.1015    df: 1
+
+
+  </pre>
+</div>
+`;

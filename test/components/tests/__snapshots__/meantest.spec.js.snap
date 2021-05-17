@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MeanTest /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    hypothesis-test-for
+    :
+  </label>
+  <div />
+  <pre>
+    One-sample t-test
+
+Alternative hypothesis: True mean is not equal to 0
+
+    pValue: 0
+    statistic: 14.1712
+    df: 787
+    95% confidence interval: [0.2919,0.3858]
+
+
+  </pre>
+</div>
+`;

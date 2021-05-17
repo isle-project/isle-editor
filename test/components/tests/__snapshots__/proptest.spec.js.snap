@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PropTest /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    hypothesis-test-for
+  </label>
+  <p>
+    Let p be the population probability of 
+    <code>
+      Complications
+    </code>
+     being 
+    <code />
+    .
+  </p>
+  <span>
+    we-test
+  </span>
+  <div />
+  <label>
+    sample-proportion
+    : 
+    0.055
+  </label>
+  <pre>
+    One-sample z-test
+
+Alternative hypothesis: True mean is not equal to 0.5
+
+    pValue: 0
+    statistic: -25.0077
+    95% confidence interval: [0.0197,0.0895]
+
+
+  </pre>
+</div>
+`;

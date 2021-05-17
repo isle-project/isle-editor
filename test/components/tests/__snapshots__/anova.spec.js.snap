@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Anova /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    anova
+  </label>
+  <pre
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    One-Way ANOVA
+
+Null Hypothesis: All Means Equal
+Alternate Hypothesis: At Least one Mean not Equal
+
+              df    SS                 MS               F Score  P Value
+Treatment     2     933297240.3279     466648620.1639   10.6822  0
+Errors        785   34292496222.114    43684708.5632
+  </pre>
+</div>
+`;

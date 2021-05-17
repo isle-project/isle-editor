@@ -84,7 +84,7 @@ PropTest.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]).isRequired,
-	success: PropTypes.string.isRequired,
+	success: PropTypes.any.isRequired,
 	alpha: PropTypes.number,
 	direction: PropTypes.oneOf([ 'less', 'greater', 'two-sided' ]),
 	p0: PropTypes.number,

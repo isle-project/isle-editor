@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MeanTest2 /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <span
+    className="title"
+  >
+    hypothesis-test-between
+    :
+  </span>
+  <div />
+  <span>
+     
+    vs
+     
+  </span>
+  <div />
+  <pre>
+    Welch two-sample t-test
+
+Alternative hypothesis: True difference in means is not equal to 0
+
+    pValue: 0.5789
+    statistic: 0.5555
+    df: 326.677
+    95% confidence interval: [-749.7543,1339.8251]
+
+
+    <br />
+    sample-mean-in-group
+     "
+    Female
+    ": 
+    2867.35
+    <br />
+    sample-mean-in-group
+     "
+    Male
+    ": 
+    2572.314
+  </pre>
+</div>
+`;

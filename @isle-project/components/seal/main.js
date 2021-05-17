@@ -59,16 +59,14 @@ class Seal extends Component {
 		const lines = [];
 
 		const radius = size/2;
-		txt.forEach((ea) => {
-			const sin = sinDegrees(origin);
-			const cos = cosDegrees(origin);
-
-			const left = (radius*sin) + radius + DIFF;
-			const top = (radius*cos) + radius;
+		txt.forEach( ( ea, idx ) => {
+			const sin = sinDegrees( origin );
+			const cos = cosDegrees( origin );
+			const left = ( radius * sin ) + radius + DIFF;
+			const top = ( radius * cos ) + radius;
 
 			let rotation = origin*-1 - 180;
 			rotation = 'rotate(' + rotation + 'deg)';
-
 			const style = {
 				position: 'absolute',
 				left: left,
@@ -76,9 +74,7 @@ class Seal extends Component {
 				transformOrigin: '0% 0%',
 				transform: rotation
 			};
-
-			const l = <p style={style}>{ea}</p>;
-			lines.push(l);
+			lines.push( <p key={idx} style={style}>{ea}</p> );
 			origin -= deg;
 		});
 		return lines;
@@ -91,16 +87,14 @@ class Seal extends Component {
 		const lines = [];
 		const radius = size/2;
 
-		txt.forEach((ea) => {
-			const sin = sinDegrees(origin);
-			const cos = cosDegrees(origin);
-
-			const left = (radius*sin) + radius + DIFF;
-			const top = (radius*cos) + radius;
+		txt.forEach( ( ea, idx ) => {
+			const sin = sinDegrees( origin );
+			const cos = cosDegrees( origin );
+			const left = ( radius * sin ) + radius + DIFF;
+			const top = ( radius * cos ) + radius;
 
 			let rotation = origin*-1;
 			rotation = 'rotate(' + rotation + 'deg)';
-
 			const style = {
 				position: 'absolute',
 				left: left,
@@ -108,23 +102,21 @@ class Seal extends Component {
 				transformOrigin: '50% 50%',
 				transform: rotation
 			};
-
-			const l = <p style={style}>{ea}</p>;
-			lines.push(l);
+			lines.push( <p key={idx} style={style}>{ea}</p> );
 			origin += deg;
 		});
 		return lines;
 	}
 
 	getUpperLine = () => {
-		let curvedText = this.curvedText(this.props.upper, 195, this.props.upperArc, 0);
+		const curvedText = this.curvedText( this.props.upper, 195, this.props.upperArc, 0 );
 		return (
 			<div>{curvedText}</div>
 		);
 	}
 
 	getLowerLine = () => {
-		let curvedText = this.curvedInvertedText( this.props.lower, 180, this.props.lowerArc, 0);
+		const curvedText = this.curvedInvertedText( this.props.lower, 180, this.props.lowerArc, 0 );
 		return (
 			<div>{curvedText}</div>
 		);

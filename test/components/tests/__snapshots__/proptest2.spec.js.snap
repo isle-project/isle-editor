@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PropTest2 /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    proptest2-title-grouped
+  </label>
+  <br />
+  <span>
+    Let 
+    <div />
+     be the population probability of 
+    <code>
+      Drugs
+    </code>
+     being 
+    <code />
+     in the first group,
+    <br />
+    and
+     
+    <div />
+     
+    probability-second-group
+  </span>
+  <div />
+  <span>
+     
+    vs
+     
+  </span>
+  <div />
+  <pre>
+    Two-sample z-test
+
+Alternative hypothesis: True difference in proportions is not equal to 0
+
+    pValue: 0.2059
+    statistic: -1.2651
+    95% confidence interval: [-0.1971,0.0425]
+
+
+    <br />
+    sample-proportion-in-group
+     "
+    0
+    ": 
+    0.109
+    <br />
+    sample-proportion-in-group
+     "
+    1
+    ": 
+    0.186
+  </pre>
+</div>
+`;
