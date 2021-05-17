@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FreeTextQuestion /> renders a free text question 1`] = `null`;

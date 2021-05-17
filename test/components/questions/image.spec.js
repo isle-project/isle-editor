@@ -5,8 +5,7 @@ import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
 import Session from '@isle-project/session';
 import Provider from '@isle-project/components/internal/provider';
-import './../mocks/exec_command_mock.js';
-import TextEditor from '@isle-project/components/text-editor/main.js';
+import ImageQuestion from '@isle-project/components/questions/image/main.js';
 
 
 // VARIABLES //
@@ -16,10 +15,10 @@ const session = new Session( {}, true );
 
 // TESTS //
 
-describe( '<TextEditor />', function test() {
-	it( 'renders a text editor', () => {
+describe( '<ImageQuestion />', function test() {
+	it( 'renders an image question', () => {
 		const editor = renderer.create( <Provider session={session}>
-			<TextEditor />
+			<ImageQuestion />
 		</Provider> );
 		expect( editor ).toMatchSnapshot();
 	});

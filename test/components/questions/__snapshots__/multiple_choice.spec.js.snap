@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MultipleChoiceQuestion /> renders a multiple choice question 1`] = `null`;
