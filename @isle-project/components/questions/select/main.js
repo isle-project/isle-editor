@@ -222,6 +222,7 @@ class SelectQuestion extends Component {
 
 SelectQuestion.defaultProps = {
 	question: '',
+	solution: null,
 	preselected: 0,
 	inline: false,
 	hints: [],
@@ -243,7 +244,7 @@ SelectQuestion.propTypes = {
 		PropTypes.node
 	]),
 	options: PropTypes.array.isRequired,
-	solution: PropTypes.number.isRequired,
+	solution: PropTypes.number,
 	preselected: PropTypes.number,
 	inline: PropTypes.bool,
 	hintPlacement: PropTypes.string,
