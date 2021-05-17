@@ -30,6 +30,9 @@ export default function bindScrollHandler(
 	target,
 	callback
 ) {
+	if ( !target ) {
+		return;
+	}
 	const defaultView = target.ownerDocument.defaultView;
 	const els = [];
 

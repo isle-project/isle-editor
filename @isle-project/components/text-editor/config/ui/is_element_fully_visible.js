@@ -35,7 +35,7 @@ export default function isElementFullyVisible( el ) {
 	const { x, y, w, h } = fromHTMlElement( el );
 
 	// Only checks the top-left point.
-	const nwEl = ( w && h ) ?
+	const nwEl = ( w && h && el ) ?
 		el.ownerDocument.elementFromPoint( x + 1, y + 1 ) :
 		null;
 

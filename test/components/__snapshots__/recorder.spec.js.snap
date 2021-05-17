@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Recorder /> renders a recorder 1`] = `
+<div
+  className="recorder-container unselectable"
+  style={Object {}}
+>
+  <div
+    className="recorder-rec"
+    style={
+      Object {
+        "color": "rgb(100,100,100)",
+      }
+    }
+  >
+    REC
+  </div>
+  <div
+    className="recorder-buttongroup btn-group btn-group-sm btn-group-toggle"
+    role="group"
+  >
+    <label
+      className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
+    >
+      <input
+        autoComplete="off"
+        checked={false}
+        disabled={true}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+        value="screen"
+      />
+      screen
+    </label>
+    <label
+      className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
+    >
+      <input
+        autoComplete="off"
+        checked={false}
+        disabled={true}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+        value="camera"
+      />
+      cam
+    </label>
+    <label
+      className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
+    >
+      <input
+        autoComplete="off"
+        checked={false}
+        disabled={true}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="checkbox"
+        value="audio"
+      />
+      audio
+    </label>
+  </div>
+  <div
+    style={
+      Object {
+        "background": "rgba(0, 80,255,0.5)",
+      }
+    }
+  />
+</div>
+`;

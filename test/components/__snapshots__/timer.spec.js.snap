@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Timer /> renders a timer 1`] = `
+<div
+  className="timer-div timer-info"
+  style={Object {}}
+>
+  
+  00:50
+</div>
+`;
