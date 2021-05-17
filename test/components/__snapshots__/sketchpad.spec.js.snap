@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sketchpad /> renders a sketchpad 1`] = `null`;
