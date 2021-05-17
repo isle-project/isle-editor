@@ -5,7 +5,7 @@
 // MODULES //
 
 const path = require( 'path' );
-const fs = require( 'fs-extra' );
+const fs = require( 'fs' );
 const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
@@ -278,7 +278,7 @@ for ( let i = 0; i < files.length; i++ ) {
 			replacement += '## '+COMPONENT_DOCS[ lng ][ 'examples' ];
 			const lngMd = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
 			debug( 'Writing file: '+lngMdPath );
-			fs.outputFile( lngMdPath, lngMd );
+			fs.writeFileSync( lngMdPath, lngMd );
 		}
 	} catch ( err ) {
 		debug( `Documentation for ${component} does not exist` );

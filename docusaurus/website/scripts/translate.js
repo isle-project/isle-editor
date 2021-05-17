@@ -4,7 +4,7 @@
 
 const axios = require( 'axios' );
 const glob = require( 'glob' );
-const fs = require( 'fs-extra' );
+const fs = require( 'fs' );
 const qs = require( 'qs' );
 const readJSON = require( '@stdlib/fs/read-json' );
 const objectKeys = require( '@stdlib/utils/keys' );
@@ -40,7 +40,7 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 			const lng = LANGUAGE_TARGETS[ j ];
 			const filePath = replace( files[ i ], '/en/', `/${lng}/` );
 			if ( !fs.existsSync( filePath ) ) {
-				fs.outputFileSync( filePath, JSON.stringify({}) );
+				fs.writeFileSync( filePath, JSON.stringify( {} ) );
 			}
 			const targetJSON = readJSON.sync( filePath );
 			const promises = [];
