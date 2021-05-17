@@ -17,9 +17,9 @@ const session = new Session( {}, true );
 
 describe( '<RangeQuestion />', function test() {
 	it( 'renders a range question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<RangeQuestion />
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

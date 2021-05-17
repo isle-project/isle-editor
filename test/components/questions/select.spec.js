@@ -17,9 +17,9 @@ const session = new Session( {}, true );
 
 describe( '<SelectQuestion />', function test() {
 	it( 'renders a select question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<SelectQuestion options={[ 'A', 'B', 'C' ]} />
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

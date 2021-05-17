@@ -17,9 +17,9 @@ const session = new Session( {}, true );
 
 describe( '<MatchListQuestion />', function test() {
 	it( 'renders a match list question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<MatchListQuestion />
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

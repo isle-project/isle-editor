@@ -17,9 +17,9 @@ const session = new Session( {}, true );
 
 describe( '<ImageQuestion />', function test() {
 	it( 'renders an image question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<ImageQuestion />
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

@@ -17,7 +17,7 @@ const session = new Session( {}, true );
 
 describe( '<MultipleChoiceQuestion />', function test() {
 	it( 'renders a multiple choice question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<MultipleChoiceQuestion
 				solution={0}
 				answers={[
@@ -28,6 +28,6 @@ describe( '<MultipleChoiceQuestion />', function test() {
 				question="Which of the following methods are used for clustering?"
 			/>
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

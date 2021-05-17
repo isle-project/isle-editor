@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CorrTest /> renders test result 1`] = `
+<div
+  style={
+    Object {
+      "overflowX": "auto",
+      "width": "100%",
+    }
+  }
+>
+  <label>
+    correlation-test
+    :
+  </label>
+  <div />
+  <pre>
+    t-test for Pearson correlation coefficient
+
+Alternative hypothesis: True correlation coefficient is not equal to 0
+
+    pValue: 0.0994
+    statistic: -1.6499
+    95% confidence interval: [-0.1281,0.0111]
+
+
+  </pre>
+</div>
+`;

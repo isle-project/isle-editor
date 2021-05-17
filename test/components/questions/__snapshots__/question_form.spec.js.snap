@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<QuestionForm /> renders a question form 1`] = `null`;

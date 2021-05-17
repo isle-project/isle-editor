@@ -17,9 +17,9 @@ const session = new Session( {}, true );
 
 describe( '<OrderQuestion />', function test() {
 	it( 'renders an order question', () => {
-		const editor = renderer.create( <Provider session={session}>
+		const question = renderer.create( <Provider session={session}>
 			<OrderQuestion options={[ 'A', 'B', 'C' ]} />
 		</Provider> );
-		expect( editor ).toMatchSnapshot();
+		expect( question ).toMatchSnapshot();
 	});
 });

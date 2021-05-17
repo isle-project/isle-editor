@@ -75,6 +75,9 @@ function getCSSStyles( parentElement ) {
 // MAIN //
 
 function getSVGString( svgNode ) {
+	if ( !svgNode ) {
+		return '';
+	}
 	svgNode.setAttribute( 'xlink', 'http://www.w3.org/1999/xlink' );
 	svgNode.setAttribute( 'style', 'background: white;' );
 	const cssStyleText = getCSSStyles( svgNode );
@@ -84,7 +87,6 @@ function getSVGString( svgNode ) {
 	let svgString = serializer.serializeToString( svgNode );
 	svgString = svgString.replace(/(\w+)?:?xlink=/g, 'xmlns:xlink='); // Fix root xlink without namespace
 	svgString = svgString.replace(/NS\d+:href/g, 'xlink:href'); // Safari NS namespace fix
-
 	return svgString;
 }
 

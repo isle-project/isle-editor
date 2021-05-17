@@ -6,6 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 import Session from '@isle-project/session';
 import Provider from '@isle-project/components/internal/provider';
 import FreeTextQuestion from '@isle-project/components/questions/free-text/main.js';
+import Quiz from '@isle-project/components/questions/quiz/main.js';
 
 
 // VARIABLES //
@@ -15,10 +16,25 @@ const session = new Session( {}, true );
 
 // TESTS //
 
-describe( '<FreeTextQuestion />', function test() {
-	it( 'renders a free text question', () => {
+describe( '<Quiz />', function test() {
+	it( 'renders a quiz sampling from a list of questions', () => {
 		const question = renderer.create( <Provider session={session}>
-			<FreeTextQuestion />
+			<Quiz
+				questions={[
+					<FreeTextQuestion
+						key={0}
+						question="What is the capital of France?"
+						rows={1}
+						solution="Paris"
+					/>,
+					<FreeTextQuestion
+						key={1}
+						question="What is the capital of Poland?"
+						rows={1}
+						solution="Warsaw"
+					/>
+				]}
+			/>
 		</Provider> );
 		expect( question ).toMatchSnapshot();
 	});
