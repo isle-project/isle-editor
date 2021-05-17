@@ -71,7 +71,7 @@ const DEFAULT_ORIGINAL_SIZE = {
 function getMaxResizeWidth( el ) {
 	// Ideally, the image should not be wider than its containing element.
 	let node = el.parentElement;
-	while (node && !node.offsetParent) {
+	while ( node && !node.offsetParent ) {
 		node = node.parentElement;
 	}
 	if (
@@ -81,11 +81,11 @@ function getMaxResizeWidth( el ) {
 		node.offsetParent.offsetWidth > 0
 	) {
 		const { offsetParent } = node;
-		const style = el.ownerDocument.defaultView.getComputedStyle(offsetParent);
+		const style = el.ownerDocument.defaultView.getComputedStyle( offsetParent );
 		let width = offsetParent.clientWidth - IMAGE_MARGIN * 2;
-		if (style.boxSizing === 'border-box') {
-			const pl = parseInt(style.paddingLeft, 10);
-			const pr = parseInt(style.paddingRight, 10);
+		if ( style.boxSizing === 'border-box' ) {
+			const pl = parseInt( style.paddingLeft, 10 );
+			const pr = parseInt( style.paddingRight, 10 );
 			width -= pl + pr;
 		}
 		return Math.max(width, MIN_SIZE);

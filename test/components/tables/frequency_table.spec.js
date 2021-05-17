@@ -11,10 +11,10 @@ import heartdisease from './../fixtures/heartdisease.json';
 
 describe( '<FrequencyTable />', function test() {
 	it( 'renders a frequency table', () => {
-		const chart = renderer.create( <FrequencyTable
+		const table = renderer.create( <FrequencyTable
 			data={heartdisease}
 			variable="Drugs"
 		/> );
-		expect( chart ).toMatchSnapshot();
+		expect( table ).toMatchSnapshot();
 	});
 });

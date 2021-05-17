@@ -174,7 +174,7 @@ class SimpleLinearRegression extends Component {
 						const tSlope = slope / slopeSE;
 						const tIntercept = yint / interceptSE;
 						return (
-							<div>
+							<div key={`group-${key}`} >
 								<label>{key}:</label>
 								<Table bordered size="sm" >
 									<thead>

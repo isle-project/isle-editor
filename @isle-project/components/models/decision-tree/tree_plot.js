@@ -64,14 +64,17 @@ class TreePlot extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.setState({
+		this.state = {
 			plotValue: null,
 			plotKey: null,
 			fullscreen: false
-		});
+		};
 	}
 
 	componentDidMount() {
+		if ( !this.tree ) {
+			return;
+		}
 		this.treeWrapper.scrollLeft = 0.4 * this.tree.clientWidth;
 		toJpeg( this.tree, {
 			backgroundColor: 'white',

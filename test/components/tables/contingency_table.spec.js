@@ -11,11 +11,11 @@ import heartdisease from './../fixtures/heartdisease.json';
 
 describe( '<ContingencyTable />', function test() {
 	it( 'renders a contingency table', () => {
-		const chart = renderer.create( <ContingencyTable
+		const table = renderer.create( <ContingencyTable
 			data={heartdisease}
 			rowVar="Gender"
 			colVar="Drugs"
 		/> );
-		expect( chart ).toMatchSnapshot();
+		expect( table ).toMatchSnapshot();
 	});
 });
