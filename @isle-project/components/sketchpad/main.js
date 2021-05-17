@@ -287,11 +287,13 @@ class Sketchpad extends Component {
 		const session = this.context;
 
 		// Scale the magnifying glass:
-		this.zoomCtx.setTransform( DPR, 0, 0, DPR, 0, 0 );
-
+		if ( this.zoomCtx ) {
+			this.zoomCtx.setTransform( DPR, 0, 0, DPR, 0, 0 );
+		}
 		// Scale all drawing operations by the DPR:
-		this.ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
-
+		if ( this.ctx ) {
+			this.ctx.setTransform( DPR, 0, 0, DPR, 0, 0 );
+		}
 		if ( this.props.fullscreen ) {
 			window.addEventListener( 'resize', this.handleResize );
 		}

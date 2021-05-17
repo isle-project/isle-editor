@@ -3,7 +3,7 @@
 import React, { Fragment } from 'react';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
-import CirclePicker from 'react-color/lib/components/circle/Circle.js';
+import CirclePicker from 'react-color/lib/components/circle/Circle';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';

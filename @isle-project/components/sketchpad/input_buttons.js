@@ -2,7 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import TwitterPicker from 'react-color/lib/components/twitter/Twitter.js';
+import TwitterPicker from 'react-color/lib/components/twitter/Twitter';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
