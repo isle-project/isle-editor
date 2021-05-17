@@ -8,12 +8,14 @@ import Clock from '@isle-project/components/clock/main.js';
 
 // TESTS //
 
-it( 'renders the current time', () => {
-	const { container } = render( <Clock /> );
-	expect( container ).not.toBeEmptyDOMElement();
-});
+describe( '<Clock />', function test() {
+	it( 'renders the current time', () => {
+		const { container } = render( <Clock /> );
+		expect( container ).not.toBeEmptyDOMElement();
+	});
 
-it( 'renders the duration of the lesson', () => {
-	const { container } = render( <Clock duration /> );
-	expect( container ).not.toBeEmptyDOMElement();
+	it( 'renders the duration of the lesson', () => {
+		const { container } = render( <Clock duration /> );
+		expect( container ).not.toBeEmptyDOMElement();
+	});
 });

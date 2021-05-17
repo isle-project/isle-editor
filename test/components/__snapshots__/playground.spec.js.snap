@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a controlled playground 1`] = `null`;
+exports[`<Playground /> renders a controlled playground 1`] = `null`;
 
-exports[`renders a playground with a supplied scope 1`] = `null`;
+exports[`<Playground /> renders a playground with a supplied scope 1`] = `null`;
 
-exports[`renders an uncontrolled playground 1`] = `null`;
+exports[`<Playground /> renders an uncontrolled playground 1`] = `null`;

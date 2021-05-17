@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders feedback buttons (horizontal format) 1`] = `null`;
+exports[`<FeedbackButtons /> renders feedback buttons (horizontal format) 1`] = `null`;
 
-exports[`renders feedback buttons (vertical format) 1`] = `null`;
+exports[`<FeedbackButtons /> renders feedback buttons (vertical format) 1`] = `null`;
 
-exports[`renders feedback buttons with custom messages 1`] = `null`;
+exports[`<FeedbackButtons /> renders feedback buttons with custom messages 1`] = `null`;
 
-exports[`renders feedback buttons without option to supply custom feedback 1`] = `null`;
+exports[`<FeedbackButtons /> renders feedback buttons without option to supply custom feedback 1`] = `null`;

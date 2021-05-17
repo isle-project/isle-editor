@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a colored sticky note 1`] = `null`;
+exports[`<StickyNote /> renders a colored sticky note 1`] = `null`;
 
-exports[`renders a minimizable sticky note 1`] = `null`;
+exports[`<StickyNote /> renders a minimizable sticky note 1`] = `null`;
 
-exports[`renders a sticky note 1`] = `null`;
+exports[`<StickyNote /> renders a sticky note 1`] = `null`;
 
-exports[`renders a sticky note with a date 1`] = `null`;
+exports[`<StickyNote /> renders a sticky note with a date 1`] = `null`;
 
-exports[`renders a sticky note with a stain 1`] = `null`;
+exports[`<StickyNote /> renders a sticky note with a stain 1`] = `null`;
 
-exports[`renders an editable sticky note 1`] = `null`;
+exports[`<StickyNote /> renders an editable sticky note 1`] = `null`;

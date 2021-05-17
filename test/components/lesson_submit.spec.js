@@ -14,11 +14,13 @@ const session = new Session( {}, true );
 
 // TESTS //
 
-it( 'renders a lesson submit button', () => {
-	const button = renderer.create(
-		<Provider session={session}>
-			<LessonSubmit />
-		</Provider>
-	).toJSON();
-	expect( button ).toMatchSnapshot();
+describe( '<LessonSubmit />', function test() {
+	it( 'renders a lesson submit button', () => {
+		const button = renderer.create(
+			<Provider session={session}>
+				<LessonSubmit />
+			</Provider>
+		).toJSON();
+		expect( button ).toMatchSnapshot();
+	});
 });

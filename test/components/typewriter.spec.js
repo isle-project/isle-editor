@@ -7,7 +7,9 @@ import Typewriter from '@isle-project/components/typewriter/main.js';
 
 // TESTS //
 
-it( 'renders correctly when just supplied text', () => {
-	const json = renderer.create( <Typewriter text="Lorem ipsum" /> ).toJSON();
-	expect( json ).toMatchSnapshot();
+describe( '<Typewriter />', function test() {
+	it( 'renders correctly when just supplied text', () => {
+		const json = renderer.create( <Typewriter text="Lorem ipsum" /> ).toJSON();
+		expect( json ).toMatchSnapshot();
+	});
 });

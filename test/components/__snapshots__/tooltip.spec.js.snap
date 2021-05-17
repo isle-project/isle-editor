@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a tooltip 1`] = `
+exports[`<Tooltip /> renders a tooltip 1`] = `
 <div
   onBlur={[Function]}
   onFocus={[Function]}
@@ -9,7 +9,7 @@ exports[`renders a tooltip 1`] = `
 />
 `;
 
-exports[`renders a tooltip with custom placement 1`] = `
+exports[`<Tooltip /> renders a tooltip with custom placement 1`] = `
 <div
   onBlur={[Function]}
   onFocus={[Function]}
@@ -18,4 +18,4 @@ exports[`renders a tooltip with custom placement 1`] = `
 />
 `;
 
-exports[`renders an inactive tooltip 1`] = `<div />`;
+exports[`<Tooltip /> renders an inactive tooltip 1`] = `<div />`;

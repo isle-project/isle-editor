@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders an active spinner 1`] = `
+exports[`<Spinner /> renders an active spinner 1`] = `
 <canvas
   style={
     Object {
@@ -13,7 +13,7 @@ exports[`renders an active spinner 1`] = `
 />
 `;
 
-exports[`renders an inactive spinner 1`] = `
+exports[`<Spinner /> renders an inactive spinner 1`] = `
 <canvas
   style={
     Object {

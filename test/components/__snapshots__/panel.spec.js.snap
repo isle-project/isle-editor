@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a panel 1`] = `
+exports[`<Panel /> renders a panel 1`] = `
 <div
   className="panel  card"
   style={
@@ -24,7 +24,7 @@ exports[`renders a panel 1`] = `
 </div>
 `;
 
-exports[`renders a panel with a heading 1`] = `
+exports[`<Panel /> renders a panel with a heading 1`] = `
 <div
   className="panel  card"
   style={

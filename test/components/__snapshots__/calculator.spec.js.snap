@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a basic calculator 1`] = `null`;
+exports[`<Calculator /> renders a basic calculator 1`] = `null`;
 
-exports[`renders an expandable calculator 1`] = `null`;
+exports[`<Calculator /> renders an expandable calculator 1`] = `null`;
 
-exports[`renders an inactive calculator 1`] = `null`;
+exports[`<Calculator /> renders an inactive calculator 1`] = `null`;

@@ -10,7 +10,7 @@ import 'jest-canvas-mock';
 // TESTS //
 
 describe( '<ColorPicker />', function test() {
-it( 'renders a container div wrapping a color picker from react-color', () => {
+	it( 'renders a container div wrapping a color picker from react-color', () => {
 		const { container } = render( <ColorPicker /> );
 		expect( container ).not.toBeEmptyDOMElement();
 	});

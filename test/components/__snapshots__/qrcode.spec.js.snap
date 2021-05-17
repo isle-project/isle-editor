@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a QRCode 1`] = `
+exports[`<QRCode /> renders a QRCode 1`] = `
 <div
   className="qrcode-wrapper "
   style={Object {}}
@@ -11,7 +11,7 @@ exports[`renders a QRCode 1`] = `
 </div>
 `;
 
-exports[`renders a QRCode with a custom scale 1`] = `
+exports[`<QRCode /> renders a QRCode with a custom scale 1`] = `
 <div
   className="qrcode-wrapper "
   style={Object {}}
@@ -22,7 +22,7 @@ exports[`renders a QRCode with a custom scale 1`] = `
 </div>
 `;
 
-exports[`renders a QRCode with custom text 1`] = `
+exports[`<QRCode /> renders a QRCode with custom text 1`] = `
 <div
   className="qrcode-wrapper "
   style={Object {}}
@@ -33,7 +33,7 @@ exports[`renders a QRCode with custom text 1`] = `
 </div>
 `;
 
-exports[`renders a centered QRCode 1`] = `
+exports[`<QRCode /> renders a centered QRCode 1`] = `
 <div
   className="qrcode-wrapper center"
   style={Object {}}

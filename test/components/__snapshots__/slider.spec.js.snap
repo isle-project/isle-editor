@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a slider for child elements (dragging disabled) 1`] = `
+exports[`<Slider /> renders a slider for child elements (dragging disabled) 1`] = `
 <div
   className="slider-card card"
   size="large"
@@ -60,7 +60,7 @@ exports[`renders a slider for child elements (dragging disabled) 1`] = `
 </div>
 `;
 
-exports[`renders a slider for child elements (with title) 1`] = `
+exports[`<Slider /> renders a slider for child elements (with title) 1`] = `
 <div
   className="slider-card card"
   size="large"
@@ -136,7 +136,7 @@ exports[`renders a slider for child elements (with title) 1`] = `
 </div>
 `;
 
-exports[`renders a slider for child elements (without dots for navigation) 1`] = `
+exports[`<Slider /> renders a slider for child elements (without dots for navigation) 1`] = `
 <div
   className="slider-card card"
   size="large"
@@ -196,7 +196,7 @@ exports[`renders a slider for child elements (without dots for navigation) 1`] =
 </div>
 `;
 
-exports[`renders a slider for child elements 1`] = `
+exports[`<Slider /> renders a slider for child elements 1`] = `
 <div
   className="slider-card card"
   size="large"

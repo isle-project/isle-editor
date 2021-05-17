@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a draggable polaroid image 1`] = `
+exports[`<Polaroid /> renders a draggable polaroid image 1`] = `
 <div
   className="polaroid react-draggable"
   onBlur={[Function]}
@@ -40,7 +40,7 @@ exports[`renders a draggable polaroid image 1`] = `
 </div>
 `;
 
-exports[`renders a polaroid image 1`] = `
+exports[`<Polaroid /> renders a polaroid image 1`] = `
 <div
   className="polaroid"
   onBlur={[Function]}
@@ -75,7 +75,7 @@ exports[`renders a polaroid image 1`] = `
 </div>
 `;
 
-exports[`renders a polaroid image with a pin 1`] = `
+exports[`<Polaroid /> renders a polaroid image with a pin 1`] = `
 <div
   className="polaroid"
   onBlur={[Function]}
@@ -113,7 +113,7 @@ exports[`renders a polaroid image with a pin 1`] = `
 </div>
 `;
 
-exports[`renders a removable polaroid image 1`] = `
+exports[`<Polaroid /> renders a removable polaroid image 1`] = `
 <div
   className="polaroid"
   onBlur={[Function]}
