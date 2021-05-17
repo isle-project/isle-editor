@@ -8,9 +8,9 @@
     "deploy": "node -max_old_space_size=16384 node_modules/@docusaurus/core/bin/docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.75",
-    "@docusaurus/preset-classic": "2.0.0-alpha.75",
-    "@docusaurus/theme-live-codeblock": "2.0.0-alpha.75",
+    "@docusaurus/core": "2.0.0-beta.0",
+    "@docusaurus/preset-classic": "2.0.0-beta.0",
+    "@docusaurus/theme-live-codeblock": "2.0.0-beta.0",
     "buffer": "^5.6.0",
     "bufferutil": "^4.0.1",
     "classnames": "^2.2.6",
