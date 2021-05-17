@@ -7,10 +7,10 @@ import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import PopoverContent from 'react-bootstrap/PopoverContent';
 import Loadable from '@isle-project/components/internal/loadable';
-const SketchPicker = Loadable( () => import( 'react-color/lib/components/sketch/Sketch.js' ) );
-const CompactPicker = Loadable( () => import( 'react-color/lib/components/compact/Compact.js' ) );
-const MaterialPicker = Loadable( () => import( 'react-color/lib/components/material/Material.js' ) );
-const BlockPicker = Loadable( () => import( 'react-color/lib/components/block/Block.js' ) );
+const SketchPicker = Loadable( () => import( 'react-color/lib/components/sketch/Sketch' ) );
+const CompactPicker = Loadable( () => import( 'react-color/lib/components/compact/Compact' ) );
+const MaterialPicker = Loadable( () => import( 'react-color/lib/components/material/Material' ) );
+const BlockPicker = Loadable( () => import( 'react-color/lib/components/block/Block' ) );
 import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
