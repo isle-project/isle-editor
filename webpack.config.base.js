@@ -45,7 +45,6 @@ const EXTERNALS = [
 	'react-json-tree',
 	'react-live',
 	'react-plotly.js',
-	'react-select',
 	'react-slick',
 	'react-table',
 	'react-virtualized',
