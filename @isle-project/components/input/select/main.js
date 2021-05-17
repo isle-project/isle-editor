@@ -160,15 +160,15 @@ const SelectInput = ( props ) => {
 	}
 	return (
 		<Form className="input" style={{ ...style }} >
-			<FormGroup controlId={`${id}-form`} >
+			<FormGroup controlId={`${id.current}-form`} >
 				{ props.legend ?
 					<Tooltip tooltip={props.tooltip}>
-						<label htmlFor={id} >{props.legend}</label>
+						<label htmlFor={id.current} >{props.legend}</label>
 					</Tooltip> :
 					null
 				}
 				<Select
-					id={id}
+					id={id.current}
 					name="form-field-name"
 					menuShouldScrollIntoView={false}
 					{...props}
