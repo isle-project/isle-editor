@@ -1,7 +1,7 @@
 // MODULES //
 
 import React, { Fragment, useCallback, useState } from 'react';
-import ChromePicker from 'react-color/lib/Chrome.js';
+import ChromePicker from 'react-color/lib/components/chrome/Chrome.js';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
