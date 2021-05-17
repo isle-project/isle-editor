@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BoxPlot /> renders a box plot 1`] = `null`;
