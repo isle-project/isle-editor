@@ -88,7 +88,7 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 			colfreq /= nobs;
 			colfreq = colfreq.toFixed( nDecimalPlaces );
 		}
-		columnTotals.push( <td>
+		columnTotals.push( <td key={`col-total-${i}`} >
 			{colfreq}
 			{rowPercent}
 			{ displayColPercent ? <Fragment>

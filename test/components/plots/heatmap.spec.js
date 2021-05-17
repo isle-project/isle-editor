@@ -3,17 +3,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
-import Histogram from '@isle-project/components/plots/boxplot';
+import HeatMap from '@isle-project/components/plots/heatmap';
 import heartdisease from './../fixtures/heartdisease.json';
 
 
 // TESTS //
 
-describe( '<Histogram />', function test() {
-	it( 'renders a histogram', () => {
-		const chart = renderer.create( <Histogram
+describe( '<HeatMap />', function test() {
+	it( 'renders a heat map', () => {
+		const chart = renderer.create( <HeatMap
 			data={heartdisease}
-			variable="Age"
+			x="Age"
+			y="Cost"
 		/> );
 		expect( chart ).toMatchSnapshot();
 	});

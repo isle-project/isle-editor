@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
 import BoxPlot from '@isle-project/components/plots/boxplot';
-import heartdisease from './heartdisease.json';
+import heartdisease from './../fixtures/heartdisease.json';
 
 
 // TESTS //

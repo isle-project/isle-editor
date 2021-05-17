@@ -3,17 +3,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
-import Histogram from '@isle-project/components/plots/boxplot';
+import ScatterPlotMatrix from '@isle-project/components/plots/scatterplot-matrix';
 import heartdisease from './../fixtures/heartdisease.json';
 
 
 // TESTS //
 
-describe( '<Histogram />', function test() {
-	it( 'renders a histogram', () => {
-		const chart = renderer.create( <Histogram
+describe( '<ScatterPlotMatrix />', function test() {
+	it( 'renders a scatter plot matrix', () => {
+		const chart = renderer.create( <ScatterPlotMatrix
 			data={heartdisease}
-			variable="Age"
+			variables={[ 'Age', 'Cost', 'Interventions' ]}
 		/> );
 		expect( chart ).toMatchSnapshot();
 	});

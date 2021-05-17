@@ -3,17 +3,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
-import Histogram from '@isle-project/components/plots/boxplot';
+import ContingencyTable from '@isle-project/components/tables/contingency-table';
 import heartdisease from './../fixtures/heartdisease.json';
 
 
 // TESTS //
 
-describe( '<Histogram />', function test() {
-	it( 'renders a histogram', () => {
-		const chart = renderer.create( <Histogram
+describe( '<ContingencyTable />', function test() {
+	it( 'renders a contingency table', () => {
+		const chart = renderer.create( <ContingencyTable
 			data={heartdisease}
-			variable="Age"
+			rowVar="Gender"
+			colVar="Drugs"
 		/> );
 		expect( chart ).toMatchSnapshot();
 	});

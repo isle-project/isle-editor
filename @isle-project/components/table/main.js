@@ -244,6 +244,9 @@ class Table extends Component {
 
 	initTable() {
 		const table = this.table;
+		if ( !table ) {
+			return;
+		}
 		const _ref = table.tHead;
 		if ( ( _ref ? _ref.rows.length : void 0 ) !== 1 ) {
 			return;
