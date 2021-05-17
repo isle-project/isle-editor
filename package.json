@@ -102,6 +102,10 @@
       "<rootDir>",
       "<rootDir>/test"
     ],
+    "setupFiles": [
+      "<rootDir>/test/__setups__/canvas.js"
+    ],
+    "testEnvironment": "jsdom",
     "testURL": "http://localhost/"
   },
   "dependencies": {
