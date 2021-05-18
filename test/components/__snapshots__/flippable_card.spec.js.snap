@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FlippableCard /> renders a flippable card 1`] = `
+<div
+  className="react-card-flip"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  role="button"
+  style={
+    Object {
+      "cursor": "pointer",
+      "float": "none",
+      "height": 250,
+      "perspective": 1000,
+      "transformStyle": "preserve-3d",
+      "width": 250,
+    }
+  }
+  tabIndex={0}
+>
+  <div
+    className="react-card-flipper"
+    style={
+      Object {
+        "height": "100%",
+        "position": "relative",
+        "transformStyle": "preserve-3d",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="react-card-front"
+      style={
+        Object {
+          "WebkitBackfaceVisibility": "hidden",
+          "backfaceVisibility": "hidden",
+          "background": "gainsboro",
+          "fontSize": 50,
+          "height": "100%",
+          "left": "0",
+          "position": "absolute",
+          "textAlign": "center",
+          "top": "0",
+          "transform": "rotateY(0deg)",
+          "transformStyle": "preserve-3d",
+          "transition": "1s",
+          "width": "100%",
+          "zIndex": "2",
+        }
+      }
+    >
+      <div>
+        FRONT
+      </div>
+    </div>
+    <div
+      className="react-card-back"
+      style={
+        Object {
+          "WebkitBackfaceVisibility": "hidden",
+          "backfaceVisibility": "hidden",
+          "background": "purple",
+          "color": "white",
+          "fontSize": 50,
+          "height": "100%",
+          "left": "0",
+          "position": "absolute",
+          "textAlign": "center",
+          "top": "0",
+          "transform": "rotateY(-180deg)",
+          "transformStyle": "preserve-3d",
+          "transition": "1s",
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    >
+      <div>
+        BACK
+      </div>
+    </div>
+  </div>
+</div>
+`;

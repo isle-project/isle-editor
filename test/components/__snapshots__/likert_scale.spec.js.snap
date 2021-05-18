@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LikertScale /> renders a likert scale 1`] = `
+exports[`<LikertScale /> renders a Likert scale 1`] = `
 <div
   className=" center card"
   style={

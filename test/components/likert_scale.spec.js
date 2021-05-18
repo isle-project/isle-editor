@@ -8,7 +8,7 @@ import LikertScale from '@isle-project/components/likert-scale/main.js';
 // TESTS //
 
 describe( '<LikertScale />', function test() {
-	it( 'renders a likert scale', () => {
+	it( 'renders a Likert scale', () => {
 		const likert = renderer.create(
 			<LikertScale
 				id="discrimination"
