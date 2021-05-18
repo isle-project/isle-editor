@@ -13,7 +13,7 @@ Element pytania numerycznego.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __solution__ | `(number|array<number>)`: numeryczną odpowiedź na problem (lub kilka poprawnych odpowiedzi, jeśli dostarczona jest tablica). Default: `none`.
-* __digits__ | `number`: liczba cyfr, dla których odpowiedź udzielona przez studenta musi odpowiadać rozwiązaniu, które ma być uznane za prawidłowe. Ustawić wartość 0, aby dopasować ją jako liczbę całkowitą. Jeśli zostanie ustawiona na zero, będzie szukał dokładnego dopasowania. Default: `3`.
+* __digits__ | `number`: liczba cyfr, dla których odpowiedź podana przez ucznia musi być zgodna z rozwiązaniem, aby została uznana za poprawną. Ustaw na 0, aby dopasować jako liczbę całkowitą. Jeśli ustawione na null, będzie szukało dokładnego dopasowania. Default: `3`.
 * __max__ | `number`: maksymalna dopuszczalna wartość wejściowa. Default: `null`.
 * __min__ | `number`: minimalna dopuszczalna wartość wejściowa. Default: `null`.
 * __defaultValue__ | `number`: wstępnie wybrana wartość wejścia liczbowego. Default: `0`.

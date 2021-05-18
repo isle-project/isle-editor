@@ -20,7 +20,7 @@ Un componente de nube de palabras construido sobre [d3-cloud](https://github.com
 * __precalculated__ | `boolean`: controla si la nube de palabras espera un conjunto de recuentos de palabras precalculados o los generará para determinados textos. Default: `false`.
 * __rotate__ | `(function|number)`: función accesoria que indica el ángulo de rotación (en grados) para cada palabra. También acepta una constante en lugar de una función. Default: `word => word.value % 360`.
 * __updateThreshold__ | `number`: el tamaño del lote de nuevos documentos en "datos" antes de que la nube de palabras sea reproducida. Default: `5`.
-* __stopwords__ | `array`: ...palabras clave adicionales para remover antes de hacer la nube de palabras.... Default: `[]`.
+* __stopwords__ | `array`: ...palabras clave adicionales para remover antes de hacer la nube de palabras. Default: `[]`.
 * __triggerRender__ | `boolean`: retransmisión cuando se intercambie el conjunto de datos. Default: `true`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __width__ | `number`: ancho de la palabra nube (en px). Default: `700`.

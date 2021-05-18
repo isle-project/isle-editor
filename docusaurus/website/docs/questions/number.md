@@ -13,7 +13,7 @@ A number question component.
 * __hints__ | `array<(string|node)>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
 * __solution__ | `(number|array<number>)`: a numeric answer to the problem (or multiple correct answers if an array is supplied). Default: `none`.
-* __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact matc. Default: `3`.
+* __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match. Default: `3`.
 * __max__ | `number`: maximum allowed input value. Default: `null`.
 * __min__ | `number`: minimum allowed input value. Default: `null`.
 * __defaultValue__ | `number`: pre-selected value of number input. Default: `0`.

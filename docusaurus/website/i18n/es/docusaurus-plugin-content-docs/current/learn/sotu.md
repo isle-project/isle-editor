@@ -8,7 +8,7 @@ Componente de aprendizaje para explorar los discursos sobre el Estado de la Uni√
 
 ## Opciones
 
-* __questions__ | `array<(node|element)>`: una serie de preguntas.... Default: `none`.
+* __questions__ | `array<(node|element)>`: una serie de preguntas. Default: `none`.
 
 
 ## Ejemplos

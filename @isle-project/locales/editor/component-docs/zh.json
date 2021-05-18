@@ -1214,7 +1214,7 @@
 	"Slide-prop-transitionIn": "幻灯片进入视野时的过渡（可与 \"transition \"取值相同）。",
 	"Slide-prop-transitionOut": "-幻灯片退出视图时的幻灯片过渡(可与 \"transition \"取相同的值)",
 	"SlideAppear-description": "在出现标签中包裹的元素使它们按照导航的顺序出现/消失。",
-	"SlideAppear-prop-easing": "用于动画的缓和类型。支持的类型有\"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\",\"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expInOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\".",
+	"SlideAppear-prop-easing": "用于动画的缓和类型。支持的类型有\"back\", \"backIn\", \"backOut\", \"backInOut\", \"bounce\", \"bounceIn\", \"bounceOut\", \"bounceInOut\", \"circle\", \"circleIn\", \"circleOut\", \"circleInOut\", \"linear\", \"linearIn\", \"linearOut\", \"linearInOut\", \"cubic\", \"cubicIn\", \"cubicOut\",\"cubicInOut\", \"elastic\", \"elasticIn\", \"elasticOut\", \"elasticInOut\", \"exp\", \"expInOut\", \"expInOut\", \"poly\", \"polyIn\", \"polyOut\", \"polyInOut\", \"polyInOut\", \"quad\", \"quadIn\", \"quadOut\", \"quadInOut\", \"sin\", \"sinIn\", \"sinOut\", \"sinInOut\"",
 	"SlideAppear-prop-endValue": "样式对象，用于显示标签的结束、活动状态。",
 	"SlideAppear-prop-order": "从1开始的整数，用于显示标记的显示顺序。如果幻灯片中包含有序和无序的标签，则无序的标签先出现",
 	"SlideAppear-prop-startValue": "样式对象，用于显示标签的起始、非活动状态。",
