@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnNegativeBinomialDistribution /> renders a learning component 1`] = `
+<div
+  className="card"
+  style={
+    Object {
+      "margin": "10px auto",
+      "maxWidth": 1200,
+    }
+  }
+>
+  <h3
+    className="card-header"
+  >
+    negative-binomial-distribution
+  </h3>
+  <div
+    className="card-body"
+  >
+    <nav
+      className="nav card-header-tabs nav-tabs"
+      onKeyDown={[Function]}
+      role="tablist"
+    >
+      <a
+        aria-controls="negative-binomial-tabs-tabpane-0"
+        aria-selected={true}
+        className="nav-item nav-link active"
+        data-rb-event-key="0"
+        href="#"
+        id="negative-binomial-tabs-tab-0"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        <div />
+      </a>
+      <a
+        aria-controls="negative-binomial-tabs-tabpane-1"
+        aria-selected={false}
+        className="nav-item nav-link"
+        data-rb-event-key="1"
+        href="#"
+        id="negative-binomial-tabs-tab-1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        <div />
+      </a>
+      <a
+        aria-controls="negative-binomial-tabs-tabpane-2"
+        aria-selected={false}
+        className="nav-item nav-link"
+        data-rb-event-key="2"
+        href="#"
+        id="negative-binomial-tabs-tab-2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        <div />
+      </a>
+      <a
+        aria-controls="negative-binomial-tabs-tabpane-3"
+        aria-selected={false}
+        className="nav-item nav-link"
+        data-rb-event-key="3"
+        href="#"
+        id="negative-binomial-tabs-tab-3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+      >
+        <div />
+      </a>
+    </nav>
+    <div
+      className="tab-content"
+    >
+      <div
+        aria-hidden={false}
+        aria-labelledby="negative-binomial-tabs-tab-0"
+        className="fade tab-pane active show"
+        id="negative-binomial-tabs-tabpane-0"
+        role="tabpanel"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-md-5"
+            />
+            <div
+              className="col-md-7"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden={true}
+        aria-labelledby="negative-binomial-tabs-tab-1"
+        className="fade tab-pane"
+        id="negative-binomial-tabs-tabpane-1"
+        role="tabpanel"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-md-4"
+            />
+            <div
+              className="col-md-8"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden={true}
+        aria-labelledby="negative-binomial-tabs-tab-2"
+        className="fade tab-pane"
+        id="negative-binomial-tabs-tabpane-2"
+        role="tabpanel"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-md-4"
+            />
+            <div
+              className="col-md-8"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden={true}
+        aria-labelledby="negative-binomial-tabs-tab-3"
+        className="fade tab-pane"
+        id="negative-binomial-tabs-tabpane-3"
+        role="tabpanel"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-md-4"
+            />
+            <div
+              className="col-md-8"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
