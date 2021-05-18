@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnWordVennDiagram /> renders a learning component 1`] = `
+Array [
+  <div
+    className="card"
+  >
+    <h4
+      className="card-header"
+    >
+      settings
+    </h4>
+    <div
+      className="card-body"
+    >
+      <p>
+        <span
+          className="title"
+        >
+          number-of-words
+        </span>
+      </p>
+      <div
+        className="btn-group"
+        role="group"
+      >
+        <button
+          className="btn btn-success"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          one
+        </button>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          two
+        </button>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          three
+        </button>
+      </div>
+      <div>
+        <div
+          className="input text-container-div"
+          style={Object {}}
+        >
+          <span>
+            <label
+              htmlFor={
+                Object {
+                  "current": "text-input-1",
+                }
+              }
+            >
+              word 1
+              :
+            </label>
+            <span />
+          </span>
+          <input
+            className="text-input"
+            id={
+              Object {
+                "current": "text-input-1",
+              }
+            }
+            name="input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            placeholder="enter-text"
+            style={
+              Object {
+                "width": 120,
+              }
+            }
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="input"
+          style={
+            Object {
+              "marginBottom": "4px",
+              "marginTop": "4px",
+            }
+          }
+        >
+          <span>
+            <label
+              htmlFor="number-input-1"
+            >
+              min-of-times:
+            </label>
+          </span>
+          <span
+            className="number-input-span"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <input
+              autoComplete="off"
+              className="number-number-input"
+              disabled={false}
+              id="number-input-1"
+              max={50}
+              min={1}
+              name="input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
+              step={1}
+              style={
+                Object {
+                  "marginLeft": "24px",
+                  "width": "80px",
+                }
+              }
+              type="number"
+              value={1}
+            />
+          </span>
+        </div>
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={true}
+        onClick={[Function]}
+        type="button"
+      >
+        draw-venn-diagram
+      </button>
+    </div>
+  </div>,
+  <br />,
+  <div
+    className="card"
+  >
+    <h4
+      className="card-header"
+    >
+      venn-diagram
+    </h4>
+    <div
+      className="card-body"
+      style={
+        Object {
+          "minHeight": 200,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "position": "absolute",
+            "right": 40,
+            "top": 50,
+          }
+        }
+      >
+        total-texts
+        : 
+        118
+      </span>
+      <div
+        id="venn57"
+      />
+    </div>
+  </div>,
+]
+`;

@@ -1,0 +1,476 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnCrossValidation /> renders a learning component 1`] = `
+<div>
+  <div
+    className="VictoryContainer"
+    style={
+      Object {
+        "height": "100%",
+        "pointerEvents": "none",
+        "position": "relative",
+        "touchAction": "none",
+        "userSelect": "none",
+        "width": "100%",
+      }
+    }
+  >
+    <svg
+      height={300}
+      role="img"
+      style={
+        Object {
+          "height": "100%",
+          "pointerEvents": "all",
+          "width": "100%",
+        }
+      }
+      viewBox="0 0 450 300"
+      width={450}
+    >
+      <g />
+      <g
+        clipPath="url(#victory-clip-2)"
+        style={
+          Object {
+            "height": "100%",
+            "userSelect": "none",
+            "width": "100%",
+          }
+        }
+      >
+        <defs>
+          <clipPath
+            id="victory-clip-2"
+          >
+            <rect
+              height={200}
+              vectorEffect="non-scaling-stroke"
+              width={0}
+              x={50}
+              y={50}
+            />
+          </clipPath>
+        </defs>
+        <path
+          d={null}
+          role="presentation"
+          shapeRendering="auto"
+          style={
+            Object {
+              "fill": "tomato",
+              "opacity": 0.4,
+              "stroke": "tomato",
+            }
+          }
+        />
+      </g>
+      <g
+        clipPath="url(#victory-clip-3)"
+        style={
+          Object {
+            "height": "100%",
+            "userSelect": "none",
+            "width": "100%",
+          }
+        }
+      >
+        <defs>
+          <clipPath
+            id="victory-clip-3"
+          >
+            <rect
+              height={200}
+              vectorEffect="non-scaling-stroke"
+              width={0}
+              x={50}
+              y={50}
+            />
+          </clipPath>
+        </defs>
+        <path
+          d={null}
+          role="presentation"
+          shapeRendering="auto"
+          style={
+            Object {
+              "fill": "lightblue",
+              "opacity": 0.4,
+              "stroke": "lightblue",
+            }
+          }
+        />
+      </g>
+      <g
+        role="presentation"
+      >
+        <line
+          role="presentation"
+          shapeRendering="auto"
+          style={
+            Object {
+              "fill": "transparent",
+              "stroke": "#252525",
+              "strokeLinecap": "round",
+              "strokeLinejoin": "round",
+              "strokeWidth": 1,
+            }
+          }
+          vectorEffect="non-scaling-stroke"
+          x1={50}
+          x2={400}
+          y1={250}
+          y2={250}
+        />
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-3-tickLabels-0"
+            x={120}
+            y={272.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="middle"
+              x={120}
+            >
+              0.2
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-3-tickLabels-1"
+            x={190}
+            y={272.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="middle"
+              x={190}
+            >
+              0.4
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-3-tickLabels-2"
+            x={260}
+            y={272.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="middle"
+              x={260}
+            >
+              0.6
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-3-tickLabels-3"
+            x={330}
+            y={272.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="middle"
+              x={330}
+            >
+              0.8
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-3-tickLabels-4"
+            x={400}
+            y={272.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="middle"
+              x={400}
+            >
+              1.0
+            </tspan>
+          </text>
+        </g>
+      </g>
+      <g
+        role="presentation"
+      >
+        <line
+          role="presentation"
+          shapeRendering="auto"
+          style={
+            Object {
+              "fill": "transparent",
+              "stroke": "#252525",
+              "strokeLinecap": "round",
+              "strokeLinejoin": "round",
+              "strokeWidth": 1,
+            }
+          }
+          vectorEffect="non-scaling-stroke"
+          x1={50}
+          x2={50}
+          y1={50}
+          y2={250}
+        />
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-4-tickLabels-0"
+            x={39}
+            y={214.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="end"
+              x={39}
+            >
+              0.2
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-4-tickLabels-1"
+            x={39}
+            y={174.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="end"
+              x={39}
+            >
+              0.4
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-4-tickLabels-2"
+            x={39}
+            y={134.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="end"
+              x={39}
+            >
+              0.6
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-4-tickLabels-3"
+            x={39}
+            y={94.96999999999998}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="end"
+              x={39}
+            >
+              0.8
+            </tspan>
+          </text>
+        </g>
+        <g
+          role="presentation"
+        >
+          <text
+            direction="inherit"
+            dx={0}
+            id="chart-axis-4-tickLabels-4"
+            x={39}
+            y={54.97}
+          >
+            <tspan
+              dx={0}
+              dy={0}
+              style={
+                Object {
+                  "fill": "#252525",
+                  "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                  "fontSize": 14,
+                  "letterSpacing": "normal",
+                  "padding": 10,
+                  "stroke": "transparent",
+                }
+              }
+              textAnchor="end"
+              x={39}
+            >
+              1.0
+            </tspan>
+          </text>
+        </g>
+      </g>
+    </svg>
+    <div
+      style={
+        Object {
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 99,
+        }
+      }
+    >
+      <svg
+        height={300}
+        style={
+          Object {
+            "height": "100%",
+            "overflow": "visible",
+            "width": "100%",
+          }
+        }
+        viewBox="0 0 450 300"
+        width={450}
+      />
+    </div>
+  </div>
+</div>
+`;

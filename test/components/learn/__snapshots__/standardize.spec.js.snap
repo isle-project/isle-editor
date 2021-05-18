@@ -1,0 +1,1041 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnStandardize /> renders a learning component 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "marginBottom": 10,
+          }
+        }
+      >
+        <h4
+          className="card-header"
+        >
+          normal-to-standard-normal
+        </h4>
+        <div
+          className="card-body"
+        >
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-1"
+              >
+                mean:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-1"
+                max={25}
+                min={-25}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="number"
+                value={4}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-2"
+              >
+                standard-deviation:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-2"
+                max={10}
+                min={1}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="number"
+                value={3}
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-4"
+    >
+      <div
+        className="card"
+      >
+        <h4
+          className="card-header"
+        >
+          unstandardized
+        </h4>
+        <div
+          className="card-body"
+        >
+          <div
+            className="VictoryContainer"
+            style={
+              Object {
+                "height": "100%",
+                "pointerEvents": "none",
+                "position": "relative",
+                "touchAction": "none",
+                "userSelect": "none",
+                "width": "100%",
+              }
+            }
+          >
+            <svg
+              height={300}
+              role="img"
+              style={
+                Object {
+                  "height": "100%",
+                  "pointerEvents": "all",
+                  "width": "100%",
+                }
+              }
+              viewBox="0 0 450 300"
+              width={450}
+            >
+              <g
+                clipPath="url(#victory-clip-2)"
+                style={
+                  Object {
+                    "height": "100%",
+                    "userSelect": "none",
+                    "width": "100%",
+                  }
+                }
+              >
+                <defs>
+                  <clipPath
+                    id="victory-clip-2"
+                  >
+                    <rect
+                      height={200}
+                      vectorEffect="non-scaling-stroke"
+                      width={350}
+                      x={50}
+                      y={50}
+                    />
+                  </clipPath>
+                </defs>
+                <path
+                  d="M50,250L51.75879396984926,250L53.51758793969851,250L55.27638190954777,250L57.03517587939703,250L58.79396984924628,250L60.55276381909554,250L62.311557788944796,250L64.07035175879405,250L65.82914572864331,250L67.58793969849256,250L69.34673366834183,250L71.10552763819108,250L72.86432160804033,250L74.62311557788959,250L76.38190954773884,250L78.14070351758811,250L79.89949748743736,250L81.65829145728662,250L83.41708542713587,250L85.17587939698514,250L86.93467336683439,250L88.69346733668364,250L90.4522613065329,250L92.21105527638215,250L93.9698492462314,250L95.72864321608066,250L97.48743718592992,250L99.24623115577918,249.99999999999997L101.00502512562844,249.99999999999997L102.76381909547769,249.99999999999994L104.52261306532694,249.99999999999986L106.28140703517622,249.99999999999966L108.04020100502547,249.99999999999926L109.79899497487472,249.99999999999835L111.55778894472397,249.9999999999964L113.31658291457323,249.9999999999921L115.07537688442248,249.99999999998295L116.83417085427175,249.99999999996353L118.592964824121,249.99999999992278L120.35175879397026,249.9999999998382L122.11055276381953,249.99999999966425L123.86934673366878,249.99999999931035L125.62814070351803,249.99999999859762L127.38693467336728,249.99999999717693L129.14572864321656,249.99999999437415L130.9045226130658,249.9999999889015L132.66331658291503,249.99999997832512L134.4221105527643,249.99999995809532L136.18090452261353,249.99999991979868L137.93969849246278,249.99999984804555L139.69849246231203,249.99999971499088L141.45728643216128,249.99999947080295L143.2160804020105,249.99999902727671L144.97487437185976,249.99999822999484L146.73366834170903,249.99999681159818L148.49246231155826,249.999994314288L150.2512562814075,249.99998996286035L152.01005025125676,249.9999824592413L153.768844221106,249.99996965409608L155.52763819095526,249.9999480285204L157.28643216080448,249.99991188631157L159.04522613065376,249.9998521113041L160.804020100503,249.99975428035728L162.5628140703522,249.99959583558888L164.32160804020145,249.99934190353125L166.08040201005073,249.9989391979512L167.83919597989996,249.9983072515022L169.5979899497492,249.99732598510485L171.35678391959846,249.99581834205654L173.1155778894477,249.99352639069014L174.87437185929696,249.99007894712642L176.63316582914618,249.98494841136034L178.39195979899543,249.9773941826277L180.1507537688447,249.96638977756245L181.90954773869393,249.95053068958026L183.66834170854318,249.92792019149334L185.4271356783924,249.8960308030159L187.18592964824165,249.85154013784333L188.9447236180909,249.79014142762756L190.70351758794018,249.70633129164125L192.4623115577894,249.59318034247556L194.22110552763866,249.4420959880505L195.9798994974879,249.24259121703375L197.73869346733713,248.98207803171516L199.49748743718638,248.64570917794214L201.25628140703566,248.2162964313336L203.01507537688488,247.6743373137234L204.77386934673413,246.99818401085926L206.53266331658335,246.16438767092055L208.29145728643263,245.1482474457412L210.0502512562819,243.92458599158442L211.8090452261311,242.4687613263717L213.56783919598035,240.75790896928075L215.3266331658296,238.77238866340753L217.08542713567886,236.49738773832436L218.8442211055281,233.9246098923718L220.60301507537733,231.0539559405598L222.36180904522658,227.89508431170546L224.12060301507583,224.46872635346932L225.87939698492508,220.80762723944446L227.63819095477433,216.95698943239952L229.39698492462358,212.97431343006895L231.15577889447283,208.9285600434045L232.91457286432205,204.89859863844853L234.6733668341713,200.97095423181713L236.43216080402055,197.23691950076528L238.1909547738698,193.78915116551065L239.94974874371903,190.7179188279852L241.70854271356828,188.1072132217239L243.46733668341753,186.03094553551225L245.2261306532668,184.54947673733935L246.98492462311603,183.706703937962L248.74371859296525,183.52789994702474L250.5025125628145,184.0184543743672L252.2613065326638,185.1636037758023L254.020100502513,186.92916969613103L255.77889447236228,189.2632531278726L257.5376884422115,192.0987681715738L259.2964824120608,195.35664234102563L261.05527638191,198.9494706707453L262.81407035175926,202.78538862011328L264.5728643216085,206.77192591703925L266.33165829145776,210.8196192055241L268.09045226130695,214.84519316737803L269.8492462311562,218.7741638086569L271.6080402010055,222.5427690880663L273.36683417085476,226.09918595778987L275.125628140704,229.40404436949242L276.8844221105532,232.43029377009748L278.64321608040245,235.16251303798373L280.4020100502517,237.59577890804223L282.1608040201009,239.73422020060974L283.91959798995015,241.58938626235334L285.67839195979946,243.1785495345229L287.43718592964876,244.52304630429657L289.19597989949796,245.64673899574055L290.95477386934715,246.57466035123207L292.71356783919646,247.3318768285191L294.4723618090457,247.94258735239745L296.2311557788949,248.42945554495918L297.9899497487442,248.81315949352322L299.7487437185934,249.1121332659747L301.50753768844265,249.3424685857971L303.26633165829196,249.51794285270927L305.02512562814115,249.6501403606798L306.7839195979904,249.74863635835396L308.54271356783966,249.82121776056633L310.3015075376889,249.8741191739529L312.0603015075381,249.9122578861285L313.81909547738735,249.93945616873714L315.57788944723666,249.95864338312248L317.3366834170859,249.97203380335026L319.0954773869351,249.98127873859067L320.85427135678435,249.98759347641118L322.61306532663366,249.99186086219618L324.3718592964829,249.99471408718847L326.13065326633216,249.996601596933L327.8894472361814,249.9978370669516L329.64824120603066,249.99863722372643L331.4070351758799,249.99914999917183L333.16582914572916,249.99947515938976L334.9246231155784,249.9996791893239L336.68341708542766,249.99980587409598L338.4422110552769,249.99988371291943L340.2010050251262,249.9999310407163L341.9597989949755,249.999959517501L343.71859296482467,249.99997647361587L345.4773869346739,249.9999864650595L347.2361809045232,249.99999229148332L348.99497487437253,249.99999565391136L350.7537688442217,249.99999757428574L352.512562814071,249.99999865972472L354.2713567839203,249.99999926690265L356.03015075376953,249.9999996030438L357.7889447236187,249.99999978721704L359.547738693468,249.99999988708686L361.3065326633173,249.9999999406849L363.06532663316653,249.99999996915398L364.8241206030158,249.99999998412014L366.58291457286504,249.999999991907L368.3417085427143,249.999999995917L370.10050251256354,249.99999999796074L371.8592964824128,249.99999999899174L373.61809045226204,249.9999999995065L375.37688442211135,249.99999999976086L377.1356783919606,249.99999999988532L378.89447236180985,249.99999999994552L380.6532663316591,249.9999999999744L382.41206030150835,249.9999999999881L384.1708542713576,249.99999999999451L385.9296482412069,249.9999999999975L387.68844221105616,249.99999999999886L389.44723618090535,249.9999999999995L391.2060301507546,249.99999999999977L392.9648241206039,249.99999999999991L394.72361809045316,249.99999999999994L396.48241206030235,249.99999999999997L398.2412060301516,250L400,250"
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeWidth": 2,
+                    }
+                  }
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <line
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeLinecap": "round",
+                      "strokeLinejoin": "round",
+                      "strokeWidth": 1,
+                    }
+                  }
+                  vectorEffect="non-scaling-stroke"
+                  x1={225}
+                  x2={225}
+                  y1={50}
+                  y2={250}
+                />
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-0"
+                    x={214}
+                    y={204.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.10
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-1"
+                    x={214}
+                    y={154.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.20
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-2"
+                    x={214}
+                    y={104.97000000000003}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.30
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-3"
+                    x={214}
+                    y={54.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.40
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <g
+                role="presentation"
+              >
+                <line
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeLinecap": "round",
+                      "strokeLinejoin": "round",
+                      "strokeWidth": 1,
+                    }
+                  }
+                  vectorEffect="non-scaling-stroke"
+                  x1={50}
+                  x2={400}
+                  y1={250}
+                  y2={250}
+                />
+                <text
+                  direction="inherit"
+                  dx={0}
+                  id="chart-axis-2-axisLabel-0"
+                  x={225}
+                  y={286.97}
+                >
+                  <tspan
+                    dx={0}
+                    dy={0}
+                    style={
+                      Object {
+                        "fill": "#252525",
+                        "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 25,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={225}
+                  >
+                    x
+                  </tspan>
+                </text>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-0"
+                    x={50}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={50}
+                    >
+                      -30
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-1"
+                    x={108.33333333333333}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={108.33333333333333}
+                    >
+                      -20
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-2"
+                    x={166.66666666666666}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={166.66666666666666}
+                    >
+                      -10
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-3"
+                    x={283.3333333333333}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={283.3333333333333}
+                    >
+                      10
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-4"
+                    x={341.6666666666667}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={341.6666666666667}
+                    >
+                      20
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-2-tickLabels-5"
+                    x={400}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={400}
+                    >
+                      30
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+            </svg>
+            <div
+              style={
+                Object {
+                  "height": "100%",
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": "100%",
+                  "zIndex": 99,
+                }
+              }
+            >
+              <svg
+                height={300}
+                style={
+                  Object {
+                    "height": "100%",
+                    "overflow": "visible",
+                    "width": "100%",
+                  }
+                }
+                viewBox="0 0 450 300"
+                width={450}
+              />
+            </div>
+          </div>
+          <button
+            className="btn btn-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            reset
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-md-4"
+    >
+      <div />
+    </div>
+    <div
+      className="col-md-4"
+    >
+      <div
+        className="card"
+      >
+        <h4
+          className="card-header"
+        >
+          standardized
+        </h4>
+        <div
+          className="card-body"
+        >
+          <div
+            className="VictoryContainer"
+            style={
+              Object {
+                "height": "100%",
+                "pointerEvents": "none",
+                "position": "relative",
+                "touchAction": "none",
+                "userSelect": "none",
+                "width": "100%",
+              }
+            }
+          >
+            <svg
+              height={300}
+              role="img"
+              style={
+                Object {
+                  "height": "100%",
+                  "pointerEvents": "all",
+                  "width": "100%",
+                }
+              }
+              viewBox="0 0 450 300"
+              width={450}
+            >
+              <g
+                role="presentation"
+              >
+                <line
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeLinecap": "round",
+                      "strokeLinejoin": "round",
+                      "strokeWidth": 1,
+                    }
+                  }
+                  vectorEffect="non-scaling-stroke"
+                  x1={225}
+                  x2={225}
+                  y1={50}
+                  y2={250}
+                />
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-0-tickLabels-0"
+                    x={214}
+                    y={204.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.10
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-0-tickLabels-1"
+                    x={214}
+                    y={154.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.20
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-0-tickLabels-2"
+                    x={214}
+                    y={104.97000000000003}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.30
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-0-tickLabels-3"
+                    x={214}
+                    y={54.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="end"
+                      x={214}
+                    >
+                      0.40
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <g
+                role="presentation"
+              >
+                <line
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeLinecap": "round",
+                      "strokeLinejoin": "round",
+                      "strokeWidth": 1,
+                    }
+                  }
+                  vectorEffect="non-scaling-stroke"
+                  x1={50}
+                  x2={400}
+                  y1={250}
+                  y2={250}
+                />
+                <text
+                  direction="inherit"
+                  dx={0}
+                  id="chart-axis-1-axisLabel-0"
+                  x={225}
+                  y={286.97}
+                >
+                  <tspan
+                    dx={0}
+                    dy={0}
+                    style={
+                      Object {
+                        "fill": "#252525",
+                        "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 25,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={225}
+                  >
+                    z
+                  </tspan>
+                </text>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-0"
+                    x={85}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={85}
+                    >
+                      -4
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-1"
+                    x={155}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={155}
+                    >
+                      -2
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-2"
+                    x={295}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={295}
+                    >
+                      2
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  role="presentation"
+                >
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    id="chart-axis-1-tickLabels-3"
+                    x={365}
+                    y={272.97}
+                  >
+                    <tspan
+                      dx={0}
+                      dy={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
+                          "fontSize": 14,
+                          "letterSpacing": "normal",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="middle"
+                      x={365}
+                    >
+                      4
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <g
+                clipPath="url(#victory-clip-4)"
+                style={
+                  Object {
+                    "height": "100%",
+                    "userSelect": "none",
+                    "width": "100%",
+                  }
+                }
+              >
+                <defs>
+                  <clipPath
+                    id="victory-clip-4"
+                  >
+                    <rect
+                      height={200}
+                      vectorEffect="non-scaling-stroke"
+                      width={350}
+                      x={50}
+                      y={50}
+                    />
+                  </clipPath>
+                </defs>
+                <path
+                  d="M50,249.99925664024263L51.74999999999999,249.99904669954844L53.499999999999986,249.99878051962705L55.249999999999986,249.99844391221043L56.99999999999998,249.9980193504545L58.74999999999997,249.9974852463557L60.499999999999964,249.99681508741057L62.24999999999996,249.99597640877175L63.99999999999995,249.99492957396726L65.74999999999994,249.9936263338091L67.49999999999994,249.99200812944656L69.24999999999993,249.99000410164655L70.99999999999991,249.98752876435498L72.74999999999991,249.98447929647108L74.49999999999991,249.98073240162893L76.24999999999991,249.97614068172942L77.9999999999999,249.97052846612172L79.74999999999989,249.96368703484887L81.49999999999989,249.95536917141143L83.24999999999989,249.9452829782801L84.99999999999987,249.9330848871176L86.74999999999986,249.9183717956169L88.49999999999986,249.9006722643036L90.24999999999986,249.87943670988702L91.99999999999986,249.8540265371043L93.74999999999984,249.82370215881627L95.49999999999983,249.78760986472466L97.24999999999983,249.7447675128279L98.99999999999983,249.69404903494313L100.74999999999983,249.63416776858486L102.49999999999982,249.56365865247716L104.2499999999998,249.4808593521693L105.9999999999998,249.3838904157635L107.7499999999998,249.27063459766666L109.49999999999979,249.13871553047318L111.24999999999977,248.98547597135013L112.99999999999977,248.8079558992676L114.74999999999976,248.6028707925603L116.49999999999977,248.36659047190008L118.24999999999977,248.09511895088912L119.99999999999974,247.78407579403103L121.74999999999974,247.42867953847312L123.49999999999974,247.02373379011212L125.24999999999974,246.56361665469308L126.99999999999973,246.0422742085101L128.74999999999972,245.45321874920458L130.49999999999972,244.78953259278882L132.24999999999972,244.04387819619757L133.99999999999972,243.20851538315736L135.74999999999972,242.2753264328026L137.4999999999997,241.23584975321592L139.2499999999997,240.08132280410257L140.99999999999966,238.80273485257877L142.7499999999997,237.3908900424031L144.49999999999966,235.83648112919974L146.24999999999966,234.13017408216666L147.99999999999966,232.2627035768847L149.74999999999963,230.22497920531532L151.49999999999966,228.00820200978688L153.24999999999963,225.60399071040916L154.99999999999963,223.00451674340655L156.74999999999963,220.20264696559255L158.49999999999963,217.19209261266238L160.24999999999963,213.9675628318917L161.99999999999963,210.52492084955367L163.74999999999963,206.86134058674503L165.49999999999963,202.97546131155732L167.24999999999963,198.86753771801187L168.99999999999966,194.53958266027314L170.74999999999966,189.9954996515082L172.49999999999966,185.24120216705512L174.24999999999966,180.28471677732088L175.99999999999966,175.13626718212865L177.74999999999966,169.80833632904128L179.49999999999966,164.31570397609744L181.24999999999966,158.6754573054902L182.99999999999966,152.9069725083947L184.74999999999966,147.0318656400138L186.49999999999966,141.0739114837259L188.24999999999966,135.05892965788468L189.99999999999966,129.0146377404295L191.74999999999966,122.9704717654067L193.4999999999997,116.95737505062374L195.24999999999966,111.0075569345029L196.99999999999966,105.15422361925972L198.7499999999997,99.43128392259888L200.49999999999966,93.87303331662042L202.2499999999997,88.51382016604386L203.9999999999997,83.3876985541011L205.7499999999997,78.52807249030892L207.49999999999972,73.96733661785109L209.2499999999997,69.7365187691768L210.9999999999997,65.86492984833903L212.7499999999997,62.37982654153167L214.49999999999966,59.306092269738485L216.24999999999966,56.665941598575856L217.9999999999997,54.47865301227244L219.7499999999997,52.760334546055844L221.4999999999997,51.5237262614943L223.2499999999997,50.778042952618094L224.99999999999966,50.52885979928365L226.74999999999972,50.778042952617895L228.49999999999972,51.523726261493934L230.24999999999966,52.76033454605529L231.99999999999966,54.478653012271685L233.74999999999966,56.665941598574946L235.49999999999972,59.30609226973742L237.24999999999966,62.37982654153045L238.99999999999966,65.86492984833767L240.74999999999966,69.73651876917526L242.4999999999997,73.96733661784944L244.2499999999997,78.52807249030718L245.9999999999997,83.38769855409927L247.7499999999997,88.51382016604188L249.4999999999997,93.87303331661833L251.2499999999997,99.43128392259678L252.9999999999997,105.15422361925758L254.7499999999997,111.0075569345007L256.49999999999966,116.9573750506215L258.24999999999966,122.97047176540441L259.99999999999966,129.01463774042725L261.74999999999966,135.0589296578824L263.49999999999966,141.07391148372366L265.24999999999966,147.03186564001157L266.99999999999966,152.90697250839247L268.7499999999997,158.675457305488L270.4999999999997,164.31570397609534L272.2499999999997,169.80833632903926L273.9999999999997,175.13626718212666L275.7499999999997,180.28471677731898L277.4999999999997,185.2412021670533L279.2499999999997,189.99549965150638L280.9999999999997,194.5395826602715L282.7499999999997,198.8675377180103L284.4999999999997,202.97546131155588L286.2499999999997,206.8613405867436L287.9999999999997,210.5249208495523L289.7499999999997,213.96756283189046L291.4999999999997,217.19209261266118L293.2499999999997,220.20264696559147L294.9999999999997,223.00451674340556L296.7499999999997,225.60399071040823L298.4999999999997,228.008202009786L300.2499999999997,230.22497920531453L301.9999999999997,232.26270357688395L303.7499999999997,234.13017408216598L305.4999999999997,235.83648112919914L307.2499999999997,237.39089004240253L308.9999999999997,238.8027348525783L310.74999999999966,240.08132280410211L312.49999999999966,241.23584975321555L314.24999999999966,242.27532643280222L315.99999999999966,243.20851538315702L317.74999999999966,244.04387819619723L319.4999999999996,244.78953259278856L321.2499999999996,245.45321874920435L322.9999999999996,246.04227420850992L324.7499999999996,246.5636166546929L326.4999999999996,247.023733790112L328.2499999999996,247.42867953847295L329.9999999999996,247.7840757940309L331.7499999999996,248.09511895088903L333.49999999999955,248.36659047189997L335.2499999999996,248.60287079256022L336.9999999999996,248.80795589926754L338.74999999999955,248.98547597135007L340.4999999999995,249.13871553047312L342.24999999999955,249.2706345976666L343.99999999999955,249.38389041576343L345.7499999999995,249.48085935216926L347.4999999999995,249.5636586524771L349.2499999999995,249.63416776858483L350.99999999999955,249.6940490349431L352.74999999999955,249.7447675128279L354.4999999999995,249.78760986472463L356.2499999999995,249.82370215881627L357.99999999999955,249.8540265371043L359.7499999999995,249.879436709887L361.49999999999943,249.9006722643036L363.24999999999943,249.91837179561688L364.9999999999995,249.9330848871176L366.74999999999943,249.9452829782801L368.4999999999994,249.95536917141143L370.24999999999943,249.9636870348489L371.99999999999943,249.97052846612172L373.74999999999943,249.97614068172942L375.49999999999943,249.98073240162893L377.24999999999943,249.98447929647108L378.99999999999943,249.98752876435498L380.74999999999943,249.99000410164655L382.4999999999994,249.99200812944656L384.24999999999943,249.9936263338091L385.99999999999943,249.99492957396726L387.7499999999994,249.99597640877175L389.4999999999994,249.99681508741057L391.2499999999994,249.9974852463557L392.9999999999994,249.9980193504545L394.7499999999994,249.99844391221043L396.4999999999994,249.99878051962705L398.2499999999994,249.99904669954844L400,249.99925664024263"
+                  role="presentation"
+                  shapeRendering="auto"
+                  style={
+                    Object {
+                      "fill": "transparent",
+                      "stroke": "#252525",
+                      "strokeWidth": 2,
+                    }
+                  }
+                />
+              </g>
+            </svg>
+            <div
+              style={
+                Object {
+                  "height": "100%",
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 0,
+                  "width": "100%",
+                  "zIndex": 99,
+                }
+              }
+            >
+              <svg
+                height={300}
+                style={
+                  Object {
+                    "height": "100%",
+                    "overflow": "visible",
+                    "width": "100%",
+                  }
+                }
+                viewBox="0 0 450 300"
+                width={450}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
