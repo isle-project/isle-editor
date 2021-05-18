@@ -16,18 +16,18 @@ Korte visualisatie.
 * __config__ | `object`: Plotly configuratieopties (zie: https://plotly.com/javascript/configuration-options/). Default: `{}`.
 * __legendButtons__ | `boolean`: bepaalt of de knoppen voor het wijzigen van de legenda moeten worden weergegeven. Default: `true`.
 * __meta__ | `object`: plotmeta-informatie. Default: `none`.
-* __revision__ | `number`: wanneer deze wordt verstrekt, zorgt ervoor dat het perceel wordt bijgewerkt wanneer de revisiewaarde wordt verhoogd.. Default: `none`.
+* __revision__ | `number`: wanneer deze wordt verstrekt, zorgt ervoor dat het perceel wordt bijgewerkt wanneer de revisiewaarde wordt verhoogd. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onAfterPlot__ | `function`: terugbelfunctie die wordt aangeroepen telkens wanneer een grafiek wordt uitgezet. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: terugbelfunctie die wordt aangeroepen wanneer op een element wordt geklikt. Default: `onClick() {}`.
-* __onInitialized__ | `function`: callback aangeroepen zodra de plot is geïnitialiseerd; aangeroepen met figuur (object met drie toetsen die overeenkomen met de input props: `data`, `layout`, en `frames`) en het DOM-knooppunt `graphDiv`.. Default: `onInitialized() {}`.
+* __onInitialized__ | `function`: callback aangeroepen zodra de plot is geïnitialiseerd; aangeroepen met figuur (object met drie toetsen die overeenkomen met de input props: `data`, `layout`, en `frames`) en het DOM-knooppunt `graphDiv`. Default: `onInitialized() {}`.
 * __onLegendClick__ | `function`: terugbelfunctie die wordt aangeroepen wanneer op het legenda-item wordt geklikt. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: terugbelfunctie ingeroepen bij dubbelklikken op het legenda-item. Default: `onLegendDoubleClick() {}`.
 * __onRelayout__ | `function`: terugbelfunctie die wordt aangeroepen wanneer het relais wordt geactiveerd. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: terugbelfunctie die wordt aangeroepen wanneer elementen worden geselecteerd. Default: `onSelected() {}`.
 * __onShare__ | `function`: terugbelfunctie ingeroepen bij het klikken op de "Share" knop. Default: `none`.
 * __removeButtons__ | `boolean`: regelt of alle knoppen moeten worden verwijderd (behalve de knop met volledig scherm als die is ingeschakeld). Default: `false`.
-* __toggleFullscreen__ | `boolean`: bepaalt of het mogelijk is de plot op volledig scherm weer te geven.. Default: `true`.
+* __toggleFullscreen__ | `boolean`: bepaalt of het mogelijk is de plot op volledig scherm weer te geven. Default: `true`.
 
 
 ## Voorbeelden

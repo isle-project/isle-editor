@@ -15,7 +15,7 @@ Un componente che rende i dati di rendering dei componenti in una visualizzazion
   'variables': null,
   'showOnStartup': false
 }`.
-* __deletable__ | `boolean`: controlla se le colonne per le quali non esiste un `info` hanno un pulsante che, se cliccato, richiama la funzione di richiamo `onColumnDelete`.. Default: `false`.
+* __deletable__ | `boolean`: controlla se le colonne per le quali non esiste un `info` hanno un pulsante che, se cliccato, richiama la funzione di richiamo `onColumnDelete`. Default: `false`.
 * __undeletableVars__ | `array<string>`: array di nomi di variabili di colonne che non possono essere cancellati. Default: `[]`.
 * __filterable__ | `boolean`: controlla se le colonne sono filtrabili. Default: `true`.
 * __editable__ | `array`: array di nomi per le colonne che saranno modificabili. Default: `[]`.

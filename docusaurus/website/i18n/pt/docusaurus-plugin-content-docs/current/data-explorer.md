@@ -10,7 +10,7 @@ Este componente é utilizado pelos estudantes para resumir brevemente os dados �
 
 * __categorical__ | `array`: matriz de cordas indicando o nome de cada variável categórica. Default: `[]`.
 * __quantitative__ | `array`: matriz de cordas indicando o nome de cada variável quantitativa. Default: `[]`.
-* __data__ | `object`: objeto de dados ou array a ser visualizado. Se for um objeto, as chaves correspondem aos valores das colunas, enquanto uma matriz espera uma matriz de objetos com um campo nomeado correspondente a cada coluna. Se você deseja permitir aos estudantes a capacidade de importar um arquivo `.csv', configure a opção `dados' para ser `falso'.. Default: `{}`.
+* __data__ | `object`: objeto de dados ou array a ser visualizado. Se for um objeto, as chaves correspondem aos valores das colunas, enquanto uma matriz espera uma matriz de objetos com um campo nomeado correspondente a cada coluna. Se você deseja permitir aos estudantes a capacidade de importar um arquivo `.csv', configure a opção `dados' para ser `falso'. Default: `{}`.
 * __dataInfo__ | `object`: objeto contendo as chaves, cujo valor é uma string, cujo valor é uma array de strings em que cada elemento da array é uma nova linha e variáveis, um objeto com chaves como nomes de variáveis e valores como descrições de variáveis. Default: `{
   'info': '',
   'name': '',

@@ -10,7 +10,7 @@ Een leercomponent die de dekking van de betrouwbaarheidsintervallen voor het gem
 
 * __intro__ | `(node|string)`: overschrijft standaard (interactieve) introtekst. Default: `none`.
 * __quartileNotation__ | `boolean`: bepaalt of de kwartiumnotatie in de introtekst moet worden gebruikt. Default: `true`.
-* __sampleStats__ | `boolean`: controleert of men bij de berekening van de standaardfout moet kunnen schakelen tussen het gebruik van het steekproefaandeel of de bekende kans op succes in de populatie.. Default: `true`.
+* __sampleStats__ | `boolean`: controleert of men bij de berekening van de standaardfout moet kunnen schakelen tussen het gebruik van het steekproefaandeel of de bekende kans op succes in de populatie. Default: `true`.
 
 
 ## Voorbeelden

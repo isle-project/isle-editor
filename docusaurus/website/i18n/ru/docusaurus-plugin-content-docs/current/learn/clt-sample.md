@@ -19,6 +19,9 @@ sidebar_label: CLT Sample
 ## Примеры
 
 ```jsx live
-<LearnSampleCLT />
+<LearnSampleCLT 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

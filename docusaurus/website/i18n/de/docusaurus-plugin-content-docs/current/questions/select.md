@@ -10,7 +10,7 @@ Eine ausgewählte Fragekomponente.
 
 * __question__ | `(string|node)`: Frage, für die der Kursteilnehmer eine der verfügbaren Antwortmöglichkeiten auswählen muss. Default: `''`.
 * __options__ | `array (required)`: verfügbare Antwortoptionen, aus denen der Kursteilnehmer wählen kann. Default: `none`.
-* __solution__ | `number (required)`: Index des Lösungselements in `options`. Default: `none`.
+* __solution__ | `number`: Index des Lösungselements in `options`. Default: `none`.
 * __preselected__ | `number`: Index der vorgewählten Antwortmöglichkeit. Default: `0`.
 * __inline__ | `boolean`: steuert, ob die Komponente inline gerendert wird oder nicht. Default: `false`.
 * __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `top`, `left`, `right`, oder `bottom`). Default: `'top'`.

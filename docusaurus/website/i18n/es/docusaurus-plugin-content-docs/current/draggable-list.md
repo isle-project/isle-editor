@@ -8,7 +8,7 @@ Una lista de elementos arrastrables que pueden ser reordenados por los estudiant
 
 ## Opciones
 
-* __data__ | `array (required)`: una serie de objetos con claves de identificación y de texto.. Default: `none`.
+* __data__ | `array (required)`: una serie de objetos con claves de identificación y de texto. Default: `none`.
 * __onChange__ | `function`: llamada de retorno invocada con un conjunto de datos recién ordenados en cada cambio. Default: `onChange(){}`.
 * __onInit__ | `function`: función de llamada de retorno invocada después del montaje del componente. Default: `onInit(){}`.
 * __shuffle__ | `boolean`: controla si los elementos de datos deben mezclarse en la presentación inicial. Default: `false`.

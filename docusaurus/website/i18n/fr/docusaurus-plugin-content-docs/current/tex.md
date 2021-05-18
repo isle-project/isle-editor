@@ -8,7 +8,7 @@ sidebar_label: LaTeX Equations
 
 ## Options
 
-* __raw__ | `(string|number) (required)`: La "chaîne" LaTeX littérale à rendre. Accepte également les `numéros`.. Default: `none`.
+* __raw__ | `(string|number) (required)`: La "chaîne" LaTeX littérale à rendre. Accepte également les `numéros`. Default: `none`.
 * __displayMode__ | `boolean`: booléen" indiquant s'il faut afficher l'équation en ligne ou en mode d'affichage. Default: `false`.
 * __numbered__ | `boolean`: contrôle l'affichage ou non d'un numéro d'équation pour les équations du mode d'affichage. Default: `false`.
 * __style__ | `object`: objet" avec des paires clé-valeur CSS à appliquer au conteneur de l'équation. Default: `{}`.

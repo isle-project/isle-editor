@@ -8,7 +8,7 @@ Wyświetla timer, który po upłynięciu czasu wyzwoli predefiniowane wywołanie
 
 ## Opcje
 
-* __id__ | `string`: unikalny `numer identyfikacyjny strun` dla timera. Jeśli ID jest ustawione, komponent timera jest stale odświeżany nad stroną.. Default: `none`.
+* __id__ | `string`: unikalny `numer identyfikacyjny strun` dla timera. Jeśli ID jest ustawione, komponent timera jest stale odświeżany nad stroną. Default: `none`.
 * __active__ | `boolean (required)`: flaga, która może być przełączana w celu uruchomienia lub wstrzymania timera. Default: `none`.
 * __belowZero__ | `boolean`: kontroluje, czy po wyczerpaniu czasu trwania liczenia licznik kontynuuje liczenie. Default: `false`.
 * __duration__ | `number (required)`: czas trwania w sekundach dla timera. Default: `none`.

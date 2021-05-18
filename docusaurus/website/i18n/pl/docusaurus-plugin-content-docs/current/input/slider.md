@@ -9,7 +9,7 @@ Element wejściowy suwaka. Może być używany jako część deski rozdzielczej 
 ## Opcje
 
 * __defaultValue__ | `number`: Wartość początkowa suwaka. Default: `10`.
-* __disabled__ | `boolean`: kontroluje, czy wejście suwaka jest aktywne, czy nie. Jeśli jest ustawiona na wartość true, suwak będzie obecny na ekranie, choć wyszarzony.. Default: `false`.
+* __disabled__ | `boolean`: kontroluje, czy wejście suwaka jest aktywne, czy nie. Jeśli jest ustawiona na wartość true, suwak będzie obecny na ekranie, choć wyszarzony. Default: `false`.
 * __inline__ | `boolean`: kontroluje ustawienie suwaka w linii z tekstem lub na zewnątrz. Default: `false`.
 * __legend__ | `(string|node)`: napis na wejściu. Default: `none`.
 * __max__ | `number`: Maksymalna wartość suwaka. Default: `100`.

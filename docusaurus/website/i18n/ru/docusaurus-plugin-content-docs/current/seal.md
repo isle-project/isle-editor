@@ -10,7 +10,7 @@ sidebar_label: Seal
 
 * __active__ | `boolean`: контролирует, является ли уплотнение активным или серым. Default: `true`.
 * __onClick__ | `function`: функция обратного вызова при щелчке по записке. Default: `onClick() {}`.
-* __scale__ | `number`: размер объекта (если не задан явно, печать не перемасштабируется).. Default: `none`.
+* __scale__ | `number`: размер объекта (если не задан явно, печать не перемасштабируется). Default: `none`.
 * __innerStyle__ | `object`: стиль для внутреннего круга. Default: `{}`.
 * __lower__ | `string`: нижний текст. Default: `'The lower text'`.
 * __lowerArc__ | `number`: дуга для нижнего текста. Default: `150`.

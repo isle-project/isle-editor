@@ -10,7 +10,7 @@ Cette composante est utilisée par les étudiants pour résumer brièvement les 
 
 * __categorical__ | `array`: un tableau de chaînes de caractères indiquant le nom de chaque variable catégorielle. Default: `[]`.
 * __quantitative__ | `array`: un tableau de chaînes de caractères indiquant le nom de chaque variable quantitative. Default: `[]`.
-* __data__ | `object`: objet ou tableau de données à visualiser. S'il s'agit d'un objet, les clés correspondent aux valeurs des colonnes tandis qu'un tableau s'attend à un tableau d'objets avec un champ nommé correspondant à chaque colonne. Si vous souhaitez permettre aux étudiants d'importer un fichier "csv", définissez l'option "data" comme étant "fausse".. Default: `{}`.
+* __data__ | `object`: objet ou tableau de données à visualiser. S'il s'agit d'un objet, les clés correspondent aux valeurs des colonnes tandis qu'un tableau s'attend à un tableau d'objets avec un champ nommé correspondant à chaque colonne. Si vous souhaitez permettre aux étudiants d'importer un fichier "csv", définissez l'option "data" comme étant "fausse". Default: `{}`.
 * __dataInfo__ | `object`: objet contenant les clés \"name", dont la valeur est une chaîne de caractères, \"info", dont la valeur est un tableau de chaînes de caractères dans lequel chaque élément du tableau est une nouvelle ligne et \"variables", un objet avec des clés comme noms de variables et des valeurs comme descriptions de variables. Default: `{
   'info': '',
   'name': '',

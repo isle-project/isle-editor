@@ -20,7 +20,7 @@ Un componente di ingresso vocale.
 * __onRecordingStart__ | `function`: funzione di richiamo richiamata all'avvio della registrazione. Default: `onRecordingStart() {}`.
 * __onRecordingStop__ | `function`: funzione di richiamata invocata una volta interrotta la registrazione. Default: `onRecordingStop() {}`.
 * __onSegment__ | `function`: funzione di richiamo richiamata con segmenti di testo. Default: `onSegment() {}`.
-* __onSubmit__ | `function`: funzione di callback durante l'invio del valore di immissione del testo premendo "Invio".. Default: `onSubmit() {}`.
+* __onSubmit__ | `function`: funzione di callback durante l'invio del valore di immissione del testo premendo "Invio". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: segnaposto per l'inserimento di testo. Default: `none`.
 * __remote__ | `object`: oggetto con `start`, `stop`, e `toggle` e i tasti di scelta rapida associati. Default: `none`.
 * __className__ | `string`: nome della classe. Default: `''`.

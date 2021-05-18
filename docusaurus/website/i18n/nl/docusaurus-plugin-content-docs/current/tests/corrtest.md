@@ -14,7 +14,7 @@ Correlatietest.
 * __rho0__ | `number`: correlatiewaarde onder de nulhypothese. Default: `0`.
 * __alpha__ | `number`: significantieniveau. Default: `0.05`.
 * __direction__ | `string`: testrichting (ofwel `minder`, `groter`, of `tweezijdig`). Default: `'two-sided'`.
-* __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen.. Default: `false`.
+* __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen. Default: `false`.
 
 
 ## Voorbeelden

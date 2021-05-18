@@ -8,8 +8,8 @@ sidebar_label: Clock
 
 ## Варианты
 
-* __duration__ | `boolean`: если установлено, то отображается продолжительность сеанса (а не фактическое время).. Default: `false`.
-* __format__ | `string`: формат времени (либо `HH:MM`, либо `HH:MM:SS`, либо `HH`).. Default: `''`.
+* __duration__ | `boolean`: если установлено, то отображается продолжительность сеанса (а не фактическое время). Default: `false`.
+* __format__ | `string`: формат времени (либо `HH:MM`, либо `HH:MM:SS`, либо `HH`). Default: `''`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 

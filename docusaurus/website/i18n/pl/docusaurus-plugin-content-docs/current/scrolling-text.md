@@ -8,7 +8,7 @@ Dynamiczny element tła, który przechodzi cyklicznie przez listę tekstów w ok
 
 ## Opcje
 
-* __text__ | `array<string>`: tekst lub lista tekstów do wyświetlenia. Default: `[]`.
+* __text__ | `(string|array<string>)`: tekst lub lista tekstów do wyświetlenia. Default: `[]`.
 * __loop__ | `boolean`: wskazuje, czy proces powinien być wyświetlany w nieskończoność. Default: `false`.
 * __direction__ | `string`: kierunek przepływu tekstu (`lewy`, `prawy`, `w górę`, `w dół`, `śledzenie`, `ogniskowanie`, lub `wirowanie`). Default: `'right'`.
 * __hold__ | `number`: czas, przez jaki tekst pozostaje nieruchomy (w sekundach). Default: `5`.
@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}

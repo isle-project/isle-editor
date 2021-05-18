@@ -13,7 +13,7 @@ Een aantal vraagcomponenten.
 * __hints__ | `array<(string|node)>`: tips die een leidraad bieden voor het beantwoorden van de vraag. Default: `[]`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `true`.
 * __solution__ | `(number|array<number>)`: een numeriek antwoord op het probleem (of meerdere juiste antwoorden als er een array wordt geleverd). Default: `none`.
-* __digits__ | `number`: aantal cijfers waarvoor het antwoord van de student moet overeenkomen met de oplossing om als correct te worden beschouwd. Stel in op 0 om als geheel getal overeen te komen. Als het op nul staat, zal het zoeken naar een exacte overeenkomst.. Default: `3`.
+* __digits__ | `number`: aantal cijfers waarvoor het antwoord van de student moet overeenkomen met de oplossing om als correct te worden beschouwd. Stel in op 0 om als geheel getal overeen te komen. Als het op nul staat, zal het zoeken naar een exacte overeenkomst. Default: `3`.
 * __max__ | `number`: maximaal toegestane invoerwaarde. Default: `null`.
 * __min__ | `number`: minimaal toegestane invoerwaarde. Default: `null`.
 * __defaultValue__ | `number`: voorgeselecteerde waarde van het ingevoerde aantal. Default: `0`.

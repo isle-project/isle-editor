@@ -10,7 +10,7 @@ Two-sample proportion test.
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __var1__ | `(string|Factor) (required)`: name of first variable. Default: `none`.
-* __success__ | `string (required)`: success category of `var1`. Default: `none`.
+* __success__ | `any (required)`: success category of `var1`. Default: `none`.
 * __var2__ | `(string|Factor)`: name of second variable (`var2` or `group` have to be supplied). Default: `none`.
 * __group__ | `(string|Factor)`: name of grouping variable (`var2` or `group` have to be supplied). Default: `none`.
 * __alpha__ | `number`: significance level. Default: `0.05`.

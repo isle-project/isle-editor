@@ -22,7 +22,7 @@ Un componente de entrada de voz.
 * __onSegment__ | `function`: función de llamada de retorno invocada con segmentos de texto. Default: `onSegment() {}`.
 * __onSubmit__ | `function`: función de devolución de llamada al presentar el valor de entrada de texto pulsando "Enter". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: marcador de posición de entrada de texto. Default: `none`.
-* __remote__ | `object`: objeto con "start", "stop", y "toggle" y las teclas de acceso directo asociadas.. Default: `none`.
+* __remote__ | `object`: objeto con "start", "stop", y "toggle" y las teclas de acceso directo asociadas. Default: `none`.
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __timeout__ | `number`: número de milisegundos después de los cuales se puede cronometrar la grabación. Default: `none`.

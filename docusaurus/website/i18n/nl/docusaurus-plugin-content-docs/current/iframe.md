@@ -9,7 +9,7 @@ Een iFrame component.
 ## Opties
 
 * __src__ | `string (required)`: bron-URL. Default: `none`.
-* __fullscreen__ | `boolean`: bepaalt of het iFrame op het volledige scherm moet worden weergegeven.. Default: `false`.
+* __fullscreen__ | `boolean`: bepaalt of het iFrame op het volledige scherm moet worden weergegeven. Default: `false`.
 * __title__ | `string`: iFrametitel. Default: `'An iFrame'`.
 * __width__ | `number`: iFrame breedte (in px). Default: `900`.
 * __height__ | `number`: iFramehoogte (in px). Default: `600`.

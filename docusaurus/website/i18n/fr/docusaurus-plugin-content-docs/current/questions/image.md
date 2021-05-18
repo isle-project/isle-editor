@@ -15,7 +15,7 @@ Une question qui demande à l'utilisateur de télécharger une image.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: contrôle si une notification doit être affichée après l'envoi d'une image. Default: `false`.
 * __className__ | `string`: nom de la classe. Default: `''`.
-* __sketchpad__ | `object`: propriétés à passer à <Sketchpad /> component ; pour rendre le sketchpad, passez au moins un objet vide `{}`.. Default: `none`.
+* __sketchpad__ | `object`: propriétés à passer à <Sketchpad /> component ; pour rendre le sketchpad, passez au moins un objet vide `{}`. Default: `none`.
 * __solution__ | `string`: image URL de la solution modèle. Default: `none`.
 * __until__ | `Date`: le temps nécessaire pour permettre aux étudiants de soumettre des réponses. Default: `none`.
 * __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.

@@ -10,7 +10,7 @@ Un componente de pregunta selectiva.
 
 * __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que seleccionar una de las opciones de respuesta disponibles. Default: `''`.
 * __options__ | `array (required)`: opciones de respuesta disponibles de las cuales el estudiante puede seleccionar. Default: `none`.
-* __solution__ | `number (required)`: índice de elemento de solución en "opciones. Default: `none`.
+* __solution__ | `number`: índice de elemento de solución en "opciones. Default: `none`.
 * __preselected__ | `number`: índice de la opción de respuesta preseleccionada. Default: `0`.
 * __inline__ | `boolean`: controla si el componente se renderiza en línea o no. Default: `false`.
 * __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'top'`.

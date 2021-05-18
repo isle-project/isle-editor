@@ -10,7 +10,7 @@ sidebar_label: Two-Sample Proportion Test
 
 * __data__ | `object (required)`: 值数组对象. Default: `none`.
 * __var1__ | `(string|Factor) (required)`: 第一个变量名. Default: `none`.
-* __success__ | `string (required)`: `var1`的成功类别. Default: `none`.
+* __success__ | `any (required)`: `var1`的成功类别. Default: `none`.
 * __var2__ | `(string|Factor)`: 第二个变量的名称(必须提供`var2`或`group`). Default: `none`.
 * __group__ | `(string|Factor)`: 分组变量的名称(必须提供`var2`或`group`). Default: `none`.
 * __alpha__ | `number`: 显著性水平. Default: `0.05`.

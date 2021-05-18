@@ -9,7 +9,7 @@ Un composant ISLE qui rend une question dans laquelle l'apprenant doit faire cor
 ## Options
 
 * __question__ | `(string|node)`: question à afficher en haut de la liste de correspondance. Default: `''`.
-* __elements__ | `array<{a,b}>`: un "tableau" contenant les paires correctes affichées en haut du composant de la question en texte libre. Chaque élément du tableau doit être un "objet" avec des propriétés "a" et "b" ; fournir des éléments avec seulement des propriétés "a" ou "b" pour ajouter des réponses distractives.. Default: `[]`.
+* __elements__ | `array<{a,b}>`: un "tableau" contenant les paires correctes affichées en haut du composant de la question en texte libre. Chaque élément du tableau doit être un "objet" avec des propriétés "a" et "b" ; fournir des éléments avec seulement des propriétés "a" ou "b" pour ajouter des réponses distractives. Default: `[]`.
 * __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
 * __provideFeedback__ | `boolean`: indique si la solution doit être accessible après que les apprenants aient soumis leurs réponses. Default: `true`.

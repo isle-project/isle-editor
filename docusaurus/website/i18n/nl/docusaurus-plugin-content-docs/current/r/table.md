@@ -10,7 +10,7 @@ Onderdeel voor het weergeven van een R-dataframe of -matrix in een tabelweergave
 
 * __code__ | `string`: R-code die een data.frame retourneert met de gegevens die in de tabel moeten worden weergegeven. Default: `''`.
 * __libraries__ | `array`: R-bibliotheken die automatisch moeten worden geladen wanneer de invoer `code` wordt uitgevoerd. Default: `[]`.
-* __prependCode__ | `(string|array)`: R-code `string` (of `array` van R-codeblokken) die bij de evaluatie moet worden voorgeprogrammeerd op de code die is opgeslagen in `code`.. Default: `''`.
+* __prependCode__ | `(string|array)`: R-code `string` (of `array` van R-codeblokken) die bij de evaluatie moet worden voorgeprogrammeerd op de code die is opgeslagen in `code`. Default: `''`.
 * __style__ | `object`: CSS inline stijlen. Default: `{}`.
 
 

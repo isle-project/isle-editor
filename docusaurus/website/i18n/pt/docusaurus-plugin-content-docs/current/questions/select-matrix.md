@@ -12,7 +12,7 @@ Uma pergunta com uma resposta que consiste em múltiplas caixas de seleção.
 * __rows__ | `array`: etiquetas em linha. Default: `[]`.
 * __cols__ | `array`: etiquetas de coluna. Default: `[]`.
 * __options__ | `object`: objeto com pares de chaves de valor com chaves com a forma `row:col`, por exemplo `0:0`, `0:1`, `1:0` etc., e seus valores correspondentes sendo matrizes das possíveis escolhas de resposta para as perguntas individuais selecionadas. Default: `{}`.
-* __solution__ | `object`: objeto de solução com pares de chaves de valor com chaves com a forma `row:col`, por exemplo `0:0`, `0:1`, `1:0` etc., e seus valores correspondentes sendo o índice do elemento de resposta correto da respectiva matriz de `opções`.. Default: `{}`.
+* __solution__ | `object`: objeto de solução com pares de chaves de valor com chaves com a forma `row:col`, por exemplo `0:0`, `0:1`, `1:0` etc., e seus valores correspondentes sendo o índice do elemento de resposta correto da respectiva matriz de `opções`. Default: `{}`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'bottom'`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
@@ -21,7 +21,7 @@ Uma pergunta com uma resposta que consiste em múltiplas caixas de seleção.
 * __nTries__ | `number`: depois de quantas tentativas não são aceitas mais respostas (se `provideFeedback` não for `ninguém`). Default: `3`.
 * __failureMsg__ | `string`: texto de notificação exibido ao enviar respostas incorretas. Default: `none`.
 * __successMsg__ | `string`: texto de notificação exibido ao apresentar as respostas corretas. Default: `none`.
-* __cellLabels__ | `object`: etiquetas para células definidas por objeto com chaves com o formato `row:col`.. Default: `{}`.
+* __cellLabels__ | `object`: etiquetas para células definidas por objeto com chaves com o formato `row:col`. Default: `{}`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.
 * __className__ | `string`: nome da classe. Default: `''`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
@@ -55,9 +55,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
@@ -73,9 +73,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
     hints={[
@@ -104,9 +104,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
 ```
@@ -124,9 +124,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />

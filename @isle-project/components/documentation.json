@@ -3246,7 +3246,7 @@
 			},
 			{
 				"name": "step",
-				"type": "object",
+				"type": "(number|string)",
 				"description": "LearnStandardize-prop-step",
 				"defaultValue": "any"
 			}
@@ -6211,8 +6211,9 @@
 			},
 			{
 				"name": "solution",
-				"type": "number (required)",
-				"description": "SelectQuestion-prop-solution"
+				"type": "number",
+				"description": "SelectQuestion-prop-solution",
+				"defaultValue": null
 			},
 			{
 				"name": "preselected",
@@ -6672,7 +6673,7 @@
 		"props": [
 			{
 				"name": "text",
-				"type": "array<string>",
+				"type": "(string|array<string>)",
 				"description": "ScrollingText-prop-text",
 				"defaultValue": []
 			},
@@ -7875,7 +7876,7 @@
 			},
 			{
 				"name": "success",
-				"type": "string (required)",
+				"type": "any (required)",
 				"description": "PropTest-prop-success"
 			},
 			{
@@ -7919,7 +7920,7 @@
 			},
 			{
 				"name": "success",
-				"type": "string (required)",
+				"type": "any (required)",
 				"description": "PropTest2-prop-success"
 			},
 			{

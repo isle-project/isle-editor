@@ -12,7 +12,7 @@ Een onderdeel dat zijn kinderen laat zien in een diashow of carrousel.
 * __dots__ | `boolean`: weergavepunten aan de onderkant om snel naar een willekeurige dia te kunnen navigeren. Default: `true`.
 * __fade__ | `boolean`: controleert of het verbleken wordt gebruikt voor de overgang tussen de dia's. Default: `false`.
 * __draggable__ | `boolean`: bepaalt of gebruikers de dia's kunnen verslepen om tussen de dia's te navigeren. Default: `false`.
-* __pagination__ | `string`: om de paginering te laten zien op de `top`, `bodem` of `beide'.. Default: `'bottom'`.
+* __pagination__ | `string`: om de paginering te laten zien op de `top`, `bodem` of `beide'. Default: `'bottom'`.
 * __goto__ | `number`: Als de eigenschap wordt gewijzigd, springt de component naar de slede met de geselecteerde index. Default: `0`.
 * __infinite__ | `boolean`: controleert of de diashow zich om de inhoud heen wikkelt. Default: `false`.
 * __interval__ | `number`: stelt een tijdsinterval in voor een automatische diawisseling. Default: `none`.

@@ -12,7 +12,7 @@ sidebar_label: Random Forest
 * __y__ | `(string|Factor) (required)`: variable de resultado. Default: `none`.
 * __x__ | `(array<(string|Factor)>|string|Factor) (required)`: una o más variables de predicción. Default: `none`.
 * __type__ | `string`: actualmente sólo se apoya la "clasificación" para las respuestas categóricas. Default: `'Classification'`.
-* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos".. Default: `none`.
+* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos". Default: `none`.
 * __nTrees__ | `number`: número de árboles. Default: `50`.
 * __nTry__ | `number`: número de predictores a comprobar en cada división. Default: `1`.
 * __impurityMeasure__ | `string`: medida de impureza (`gini` o `entropía`). Default: `'gini'`.

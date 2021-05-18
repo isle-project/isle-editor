@@ -10,7 +10,7 @@ Eine d3-basierte Dichteplot-Komponente.
 
 * __bandwidth__ | `number`: Glättungsparameter für den Kernel-Dichte-Schätzer. Default: `4`.
 * __histogram__ | `boolean`: ein Histogramm neben dem Dichteplot anzeigen. Default: `true`.
-* __nBins__ | `number`: Anzahl der Bins für das überlagerte Histogramm.. Default: `8`.
+* __nBins__ | `number`: Anzahl der Bins für das überlagerte Histogramm. Default: `8`.
 * __vline__ | `object`: falls angegeben, zeigt eine vertikale Linie an dem angegebenen `Wert` mit einem angegebenen `Label` an. Default: `none`.
 * __xlab__ | `string`: x-Achsen-Beschriftung. Default: `'value'`.
 * __xmax__ | `number`: maximaler Wert, der auf der x-Achse angezeigt wird. Default: `1`.

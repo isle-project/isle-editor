@@ -16,6 +16,9 @@ Eine Lernkomponente zur Veranschaulichung des zentralen Grenzwertsatzes (CLT) be
 ## Beispiele
 
 ```jsx live
-<LearnConfidenceCoverageSample />
+<LearnConfidenceCoverageSample 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

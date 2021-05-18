@@ -12,7 +12,7 @@ sidebar_label: Decision Tree
 * __y__ | `(string|Factor) (required)`: variável de resultado. Default: `none`.
 * __x__ | `(array<(string|Factor)>|string|Factor) (required)`: uma ou mais variáveis preditoras. Default: `none`.
 * __type__ | `string (required)`: "Classificação" para resultados categóricos ou "Regressão" para resultados quantitativos. Default: `none`.
-* __quantitative__ | `array<string> (required)`: conjunto de variáveis em "dados" que são "quantitativas".. Default: `none`.
+* __quantitative__ | `array<string> (required)`: conjunto de variáveis em "dados" que são "quantitativas". Default: `none`.
 * __impurityMeasure__ | `string`: medida de impureza (`gini` ou `entropy`). Default: `'gini'`.
 * __scoreThreshold__ | `number`: limiar de pontuação para a divisão. Default: `0.0075`.
 * __maxTreeDepth__ | `number`: profundidade máxima das árvores. Default: `5`.

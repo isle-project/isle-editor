@@ -9,7 +9,7 @@ Een ISLE-component die een vraag stelt waarbij de leerling elementen uit twee li
 ## Opties
 
 * __question__ | `(string|node)`: vraag die boven aan de vraag van de wedstrijdlijst moet worden weergegeven. Default: `''`.
-* __elements__ | `array<{a,b}>`: een `array` met de juiste paren bovenin de vrije tekstvraagcomponent. Elk `array` element moet een `object` zijn met `a` en `b` eigenschappen; lever elementen met alleen `a` of `b` eigenschappen om afleidende antwoorden toe te voegen.. Default: `[]`.
+* __elements__ | `array<{a,b}>`: een `array` met de juiste paren bovenin de vrije tekstvraagcomponent. Elk `array` element moet een `object` zijn met `a` en `b` eigenschappen; lever elementen met alleen `a` of `b` eigenschappen om afleidende antwoorden toe te voegen. Default: `[]`.
 * __hintPlacement__ | `string`: plaatsing van de hints (ofwel `top`, `left`, `right`, of `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips die een leidraad bieden voor het beantwoorden van de vraag. Default: `[]`.
 * __provideFeedback__ | `boolean`: geeft aan of de oplossing toegankelijk moet zijn nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.

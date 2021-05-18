@@ -11,7 +11,7 @@ sidebar_label: Pie Chart
 * __data__ | `object (required)`: массивы объектов оценки. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: переменная для отображения. Default: `none`.
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
-* __summaryVariable__ | `string`: необязательная переменная, сумма которой должна отображаться для каждой категории "Переменная".. Default: `none`.
+* __summaryVariable__ | `string`: необязательная переменная, сумма которой должна отображаться для каждой категории "Переменная". Default: `none`.
 
 
 ## Примеры

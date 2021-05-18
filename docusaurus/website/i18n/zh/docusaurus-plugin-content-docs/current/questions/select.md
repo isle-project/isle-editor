@@ -10,7 +10,7 @@ sidebar_label: Select Question
 
 * __question__ | `(string|node)`: 问题，学生必须选择一个可用的答案选项。. Default: `''`.
 * __options__ | `array (required)`: 可用的答案选项，学生可以从中选择. Default: `none`.
-* __solution__ | `number (required)`: "选项 "中解决方案要素的索引。. Default: `none`.
+* __solution__ | `number`: "选项 "中解决方案要素的索引。. Default: `none`.
 * __preselected__ | `number`: 预选答案选项索引. Default: `0`.
 * __inline__ | `boolean`: 控制该组件是否被内嵌渲染。. Default: `false`.
 * __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.

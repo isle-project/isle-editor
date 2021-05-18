@@ -12,7 +12,7 @@ Un componente que muestra a sus hijos en una presentación de diapositivas o en 
 * __dots__ | `boolean`: mostrar puntos en la parte inferior para navegar rápidamente a cualquier diapositiva. Default: `true`.
 * __fade__ | `boolean`: controla si el desvanecimiento se utiliza para la transición entre las diapositivas. Default: `false`.
 * __draggable__ | `boolean`: controla si los usuarios pueden arrastrar las diapositivas para navegar entre ellas. Default: `false`.
-* __pagination__ | `string`: si mostrar la paginación en la "parte superior", "parte inferior", o "ambas".. Default: `'bottom'`.
+* __pagination__ | `string`: si mostrar la paginación en la "parte superior", "parte inferior", o "ambas". Default: `'bottom'`.
 * __goto__ | `number`: Si se cambia la propiedad, el componente salta a la diapositiva con el índice seleccionado. Default: `0`.
 * __infinite__ | `boolean`: controla si la presentación de diapositivas envuelve su contenido. Default: `false`.
 * __interval__ | `number`: establece un intervalo de tiempo para un cambio de diapositivas automático. Default: `none`.

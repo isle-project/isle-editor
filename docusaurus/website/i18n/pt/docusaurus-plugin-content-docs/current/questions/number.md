@@ -13,7 +13,7 @@ Um componente de várias perguntas.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __solution__ | `(number|array<number>)`: uma resposta numérica ao problema (ou múltiplas respostas corretas se uma matriz for fornecida). Default: `none`.
-* __digits__ | `number`: número de dígitos para os quais a resposta fornecida pelo estudante deve corresponder à solução a ser considerada correta. Definir como 0 para corresponder como um número inteiro. Se definido como nulo, procurará por uma correspondência exata.. Default: `3`.
+* __digits__ | `number`: número de dígitos para os quais a resposta fornecida pelo estudante deve corresponder à solução a ser considerada correta. Definir como 0 para corresponder como um número inteiro. Se definido como nulo, procurará por uma correspondência exata. Default: `3`.
 * __max__ | `number`: valor máximo de entrada permitido. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
 * __defaultValue__ | `number`: valor pré-selecionado de entrada de número. Default: `0`.

@@ -15,7 +15,7 @@ Uma pergunta que pede ao usuário para carregar uma imagem.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: controla se uma notificação deve ser exibida após o envio de uma imagem. Default: `false`.
 * __className__ | `string`: nome da classe. Default: `''`.
-* __sketchpad__ | `object`: propriedades a serem passadas para <Pade-esboço /> componente; para renderizar o pade-esboço, passe pelo menos um objeto vazio `{}``.. Default: `none`.
+* __sketchpad__ | `object`: propriedades a serem passadas para <Pade-esboço /> componente; para renderizar o pade-esboço, passe pelo menos um objeto vazio `{}``. Default: `none`.
 * __solution__ | `string`: URL da imagem da solução do modelo. Default: `none`.
 * __until__ | `Date`: tempo até que os estudantes tenham permissão para enviar respostas. Default: `none`.
 * __points__ | `number`: número máximo de pontos concedidos na classificação. Default: `10`.

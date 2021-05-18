@@ -9,7 +9,7 @@ sidebar_label: Select Input
 ## Варианты
 
 * __bind__ | `string`: имя глобальной переменной для присваиваемого числа. Default: `''`.
-* __clearable__ | `boolean`: булевое значение, указывающее, можно ли сделать четкий выбор(ы).. Default: `none`.
+* __clearable__ | `boolean`: булевое значение, указывающее, можно ли сделать четкий выбор(ы). Default: `none`.
 * __defaultValue__ | `(number|string|array|object)`: значение по умолчанию при вводе в эксплуатацию. Default: `none`.
 * __disabled__ | `boolean`: управляет тем, активен вход или нет. Default: `false`.
 * __inline__ | `boolean`: указывает, отображается ли вход в строке. Default: `false`.

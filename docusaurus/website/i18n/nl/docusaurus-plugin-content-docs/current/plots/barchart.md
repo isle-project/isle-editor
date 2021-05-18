@@ -17,7 +17,7 @@ Staafdiagram.
 * __stackBars__ | `boolean`: bij het groeperen controleert of de staven op elkaar gestapeld moeten worden. Default: `false`.
 * __relative__ | `boolean`: of de relatieve frequenties binnen elke groep moeten worden berekend. Default: `false`.
 * __totalPercent__ | `boolean`: het al dan niet weergeven van de algemene balken als relatieve frequenties. Default: `false`.
-* __xOrder__ | `string`: ofwel `totaal`, `categorie`, `min`, `max`, `mean`, of `median`.. Default: `none`.
+* __xOrder__ | `string`: ofwel `totaal`, `categorie`, `min`, `max`, `mean`, of `median`. Default: `none`.
 * __direction__ | `string`: hoe bestelt u de staven naast de x-as ('neerwaarts' of 'neerwaarts')?. Default: `'ascending'`.
 
 

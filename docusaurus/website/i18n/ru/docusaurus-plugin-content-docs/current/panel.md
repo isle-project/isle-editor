@@ -12,7 +12,7 @@ sidebar_label: Panel
 * __header__ | `(string|node)`: заголовок панели (h3). Default: `none`.
 * __footer__ | `(string|node)`: нижний колонтитул. Default: `none`.
 * __minimizable__ | `boolean`: можно ли минимизировать панель. Default: `false`.
-* __fullscreen__ | `boolean`: можно ли сделать панель в полноэкранном режиме (только для инструкторов).. Default: `false`.
+* __fullscreen__ | `boolean`: можно ли сделать панель в полноэкранном режиме (только для инструкторов). Default: `false`.
 * __hideTooltip__ | `string`: всплывающая подсказка, отображаемая над кнопкой скрытия. Default: `none`.
 * __bodyStyle__ | `object`: CSS встраиваемые стили для кузова. Default: `{}`.
 * __footerStyle__ | `object`: CSS-стили для нижнего колонтитула. Default: `{}`.

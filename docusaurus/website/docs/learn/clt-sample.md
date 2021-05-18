@@ -19,6 +19,9 @@ A learning component illustrating the Central Limit Theorem (CLT) when sampling 
 ## Examples
 
 ```jsx live
-<LearnSampleCLT />
+<LearnSampleCLT 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

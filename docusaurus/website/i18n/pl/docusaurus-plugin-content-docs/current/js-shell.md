@@ -19,7 +19,7 @@ Interaktywna powłoka Javascript, której można używać do wykonywania polece�
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onChange__ | `function`: wywołanie zwrotne przy każdej zmianie danych wejściowych pola tekstowego. Default: `onChange() {}`.
-* __onEvaluate__ | `function`: wywołanie zwrotne po kliknięciu przycisku "Wycena".. Default: `onEvaluate() {}`.
+* __onEvaluate__ | `function`: wywołanie zwrotne po kliknięciu przycisku "Wycena". Default: `onEvaluate() {}`.
 * __vars__ | `object`: obiekt zakresu ze zmiennymi, które powinny być udostępnione do oceny `kodu`. Default: `none`.
 * __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 

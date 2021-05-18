@@ -14,7 +14,7 @@ Componente que coloca um farol na lição, seja independentemente ou ligado a um
 * __placement__ | `string`: colocação da ponta da ferramenta em relação ao "alvo" (ou "topo", "topo - início", "topo - fim", "fundo", "fundo - fim", "esquerda", "esquerda - início", "esquerda - fim", "direita", "direita - início", "direita - fim", "centro", "auto", ou "centro"). Default: `'left'`.
 * __target__ | `string`: classe ou seletor de identificação de elemento para anexar a ponta de ferramenta. Default: `''`.
 * __offset__ | `number`: distância entre a ponta da ferramenta e o `alvo` em pixels. Default: `15`.
-* __onChange__ | `function`: chamada de retorno invocada quando da mudança de estado da ponta da ferramenta. Recebe dois argumentos: a "ação" (abrir ou fechar) e a passada "brocas".. Default: `onChange() {}`.
+* __onChange__ | `function`: chamada de retorno invocada quando da mudança de estado da ponta da ferramenta. Recebe dois argumentos: a "ação" (abrir ou fechar) e a passada "brocas". Default: `onChange() {}`.
 
 
 ## Exemplos

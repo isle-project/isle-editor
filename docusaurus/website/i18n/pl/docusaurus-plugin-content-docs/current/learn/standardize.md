@@ -9,7 +9,7 @@ Komponent edukacyjny wyjaśniający proces standaryzacji danych.
 ## Opcje
 
 * __showProbabilities__ | `boolean`: kontroluje, czy wyświetlane są prawdopodobieństwa. Default: `false`.
-* __step__ | `object`: wielkość kroku wejścia przewijania. Default: `'any'`.
+* __step__ | `(number|string)`: wielkość kroku wejścia przewijania. Default: `'any'`.
 
 
 ## Przykłady

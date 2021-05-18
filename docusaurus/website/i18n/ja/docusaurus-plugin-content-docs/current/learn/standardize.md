@@ -9,7 +9,7 @@ sidebar_label: Standardization
 ## オプション
 
 * __showProbabilities__ | `boolean`: 確率を表示するかどうかを制御します。. Default: `false`.
-* __step__ | `object`: スクロール入力のステップサイズ. Default: `'any'`.
+* __step__ | `(number|string)`: スクロール入力のステップサイズ. Default: `'any'`.
 
 
 ## 例としては、以下のようなものがあります。

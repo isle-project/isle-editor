@@ -9,8 +9,8 @@ Een schuifregelaar-ingangscomponent. Kan worden gebruikt als onderdeel van een I
 ## Opties
 
 * __defaultValue__ | `number`: De startwaarde van de schuifregelaar. Default: `10`.
-* __disabled__ | `boolean`: regelt of de schuifingang actief is of niet. Indien ingesteld op true, zal de schuifregelaar op het scherm aanwezig zijn, zij het in het grijs.. Default: `false`.
-* __inline__ | `boolean`: bepaalt of de schuifregelaar in lijn met de tekst moet worden geplaatst of buiten de tekst.. Default: `false`.
+* __disabled__ | `boolean`: regelt of de schuifingang actief is of niet. Indien ingesteld op true, zal de schuifregelaar op het scherm aanwezig zijn, zij het in het grijs. Default: `false`.
+* __inline__ | `boolean`: bepaalt of de schuifregelaar in lijn met de tekst moet worden geplaatst of buiten de tekst. Default: `false`.
 * __legend__ | `(string|node)`: ondertiteling van de ingang. Default: `none`.
 * __max__ | `number`: De maximale waarde van de schuifregelaar. Default: `100`.
 * __maxLabel__ | `string`: etiket dat rechts van de schuifregelaar moet worden weergegeven in plaats van de maximale waarde. Default: `none`.

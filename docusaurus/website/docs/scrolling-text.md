@@ -8,7 +8,7 @@ A dynamic background component that cycles through a list of texts at a specifie
 
 ## Options
 
-* __text__ | `array<string>`: text or list of texts to be displayed. Default: `[]`.
+* __text__ | `(string|array<string>)`: text or list of texts to be displayed. Default: `[]`.
 * __loop__ | `boolean`: indicates whether the process shall be displayed infinitely. Default: `false`.
 * __direction__ | `string`: the direction of the text flow (either `left`, `right`, `up`, `down`, `tracking`, `focus`, or `swirl`). Default: `'right'`.
 * __hold__ | `number`: the time the text remains still (in seconds). Default: `5`.

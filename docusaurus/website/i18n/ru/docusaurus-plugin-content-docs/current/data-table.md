@@ -15,7 +15,7 @@ sidebar_label: Data Table
   'variables': null,
   'showOnStartup': false
 }`.
-* __deletable__ | `boolean`: управляет тем, есть ли у столбцов, для которых нет `инфо`, кнопка, которая при нажатии вызывает функцию обратного вызова `в столбце Удалить`.. Default: `false`.
+* __deletable__ | `boolean`: управляет тем, есть ли у столбцов, для которых нет `инфо`, кнопка, которая при нажатии вызывает функцию обратного вызова `в столбце Удалить`. Default: `false`.
 * __undeletableVars__ | `array<string>`: массив имен переменных колонок, которые не могут быть удалены. Default: `[]`.
 * __filterable__ | `boolean`: контролирует фильтруемость колонн. Default: `true`.
 * __editable__ | `array`: массив имён для колонок, которые должны быть редактируемыми. Default: `[]`.
@@ -24,14 +24,14 @@ sidebar_label: Data Table
 * __onColumnDrag__ | `function`: функция, вызываемая при перетаскивании колонки в другое место. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: функция, вызываемая с именем колонки при нажатии соответствующей кнопки удаления колонки. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: функция, вызываемая при переименовании колонки (вызывается со старым именем в качестве первого и новым именем в качестве второго аргумента). Default: `onColumnNameChange() {}`.
-* __onClickRemove__ | `function`: функция, указывающая действие для удаленных из данных строк (по умолчанию - пустая функция).. Default: `onClickRemove() {}`.
+* __onClickRemove__ | `function`: функция, указывающая действие для удаленных из данных строк (по умолчанию - пустая функция). Default: `onClickRemove() {}`.
 * __onEdit__ | `function`: функция, вызываемая с обновленным набором данных после того, как значение ячейки было изменено пользователем (применяется только в том случае, если таблица `редактируемая`). Default: `onEdit() {}`.
-* __onTutorialCompletion__ | `function`: функция, вызываемая после завершения работы с таблицей данных.. Default: `onTutorialCompletion() {}`.
+* __onTutorialCompletion__ | `function`: функция, вызываемая после завершения работы с таблицей данных. Default: `onTutorialCompletion() {}`.
 * __filters__ | `array`: массив фильтров. Default: `[]`.
 * __onFilteredChange__ | `function`: функция, вызываемая текущими фильтрами после того, как данные отфильтрованы пользователем. Default: `onFilteredChange() {}`.
 * __showRemove__ | `boolean`: указывает, следует ли отображать флажки для удаления строк. Default: `false`.
 * __showIdColumn__ | `boolean`: управляет отображением идентификационной колонки. Default: `true`.
-* __disableDownload__ | `boolean`: скрыть ли кнопку загрузки данных в виде CSV или JSON файла.. Default: `false`.
+* __disableDownload__ | `boolean`: скрыть ли кнопку загрузки данных в виде CSV или JSON файла. Default: `false`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: Объект, позволяющий создавать пользовательский стиль css. По умолчанию пустой объект. Default: `{}`.
 

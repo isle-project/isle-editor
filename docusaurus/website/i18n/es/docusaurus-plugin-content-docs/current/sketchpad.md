@@ -20,7 +20,7 @@ Un bloc de dibujo para tomar notas de las diapositivas de la conferencia o de la
 * __canvasWidth__ | `number`: ancho del elemento de la tela (en px). Default: `1200`.
 * __canvasHeight__ | `number`: altura del elemento de la tela (en px). Default: `700`.
 * __fullscreen__ | `boolean`: controla si se debe cambiar automáticamente el tamaño del lienzo al ancho y alto de la ventana del navegador. Default: `false`.
-* __fill__ | `string`: si es "horizontal", rellena todo el espacio horizontal disponible al dibujar un PDF; si es "vertical", todo el espacio vertical se utiliza para evitar el desbordamiento del eje Y.. Default: `'vertical'`.
+* __fill__ | `string`: si es "horizontal", rellena todo el espacio horizontal disponible al dibujar un PDF; si es "vertical", todo el espacio vertical se utiliza para evitar el desbordamiento del eje Y. Default: `'vertical'`.
 * __disabled__ | `boolean`: si hacer el componente de sólo lectura y prohibir el dibujo en el bloc de dibujo. Default: `false`.
 * __fontFamily__ | `string`: familia de fuentes. Default: `'Arial'`.
 * __fontSize__ | `number`: El tamaño de la letra. Default: `24`.

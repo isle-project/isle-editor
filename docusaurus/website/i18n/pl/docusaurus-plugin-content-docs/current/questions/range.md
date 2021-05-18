@@ -10,12 +10,12 @@ Komponent pytania zakresowego, który prosi uczniów o podanie dolnego i górneg
 
 * __question__ | `(string|node)`: wyświetlone pytanie. Default: `''`.
 * __solution__ | `array<number>`: dwuelementowa macierz zawierająca punkty końcowe o odpowiednim zakresie. Default: `none`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'top'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __labels__ | `array`: dwuelementowa tablica niestandardowych etykiet innych niż "Niżej" i "Górna strona". Default: `none`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.
-* __digits__ | `number`: liczba cyfr, które muszą się zgadzać między rozwiązaniem a odpowiedzią użytkownika. Jeśli nie została podana lub została ustawiona na zero, komponent sprawdza, czy istnieje ścisła równość. Jeśli jest ustawiona na 0, sprawdza równość liczb całkowitych.. Default: `3`.
+* __digits__ | `number`: liczba cyfr, które muszą się zgadzać między rozwiązaniem a odpowiedzią użytkownika. Jeśli nie została podana lub została ustawiona na zero, komponent sprawdza, czy istnieje ścisła równość. Jeśli jest ustawiona na 0, sprawdza równość liczb całkowitych. Default: `3`.
 * __max__ | `number`: maksymalna wartość wejściowa. Default: `null`.
 * __min__ | `number`: minimalna wartość wejściowa. Default: `null`.
 * __provideFeedback__ | `boolean`: wskazuje, czy informacja zwrotna zawierająca poprawną odpowiedź powinna być wyświetlana po udzieleniu odpowiedzi przez uczących się. Default: `true`.

@@ -16,6 +16,9 @@ Un élément d'apprentissage illustrant le Théorème des limites centrales (CLT
 ## Exemples
 
 ```jsx live
-<LearnConfidenceCoverageSample />
+<LearnConfidenceCoverageSample 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

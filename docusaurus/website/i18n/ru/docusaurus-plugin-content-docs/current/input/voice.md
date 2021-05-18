@@ -20,9 +20,9 @@ sidebar_label: Voice Input
 * __onRecordingStart__ | `function`: функция обратного вызова, вызываемая при запуске записи. Default: `onRecordingStart() {}`.
 * __onRecordingStop__ | `function`: функция обратного вызова, вызываемая после остановки записи. Default: `onRecordingStop() {}`.
 * __onSegment__ | `function`: функция обратного вызова, вызываемая текстовыми сегментами. Default: `onSegment() {}`.
-* __onSubmit__ | `function`: функция обратного вызова при отправке значения для ввода текста путем нажатия кнопки "Enter".. Default: `onSubmit() {}`.
+* __onSubmit__ | `function`: функция обратного вызова при отправке значения для ввода текста путем нажатия кнопки "Enter". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: вкладка ввода текста. Default: `none`.
-* __remote__ | `object`: объект с `стартом`, `стопом`, и `кнопкой` и соответствующими горячими клавишами.. Default: `none`.
+* __remote__ | `object`: объект с `стартом`, `стопом`, и `кнопкой` и соответствующими горячими клавишами. Default: `none`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __timeout__ | `number`: количество миллисекунд, по истечении которых для таймаута записи. Default: `none`.

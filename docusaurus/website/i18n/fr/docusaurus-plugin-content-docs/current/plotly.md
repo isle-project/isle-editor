@@ -20,7 +20,7 @@ Visualisation graphique.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onAfterPlot__ | `function`: fonction de rappel invoquée à chaque fois qu'un graphique est tracé. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: la fonction de rappel est invoquée lorsque l'on clique sur un élément. Default: `onClick() {}`.
-* __onInitialized__ | `function`: callback invoqué une fois que le tracé est initialisé ; appelé avec figure (objet avec trois clés correspondant aux accessoires d'entrée : "data", "layout", et "frames") et le noeud DOM "graphDiv".. Default: `onInitialized() {}`.
+* __onInitialized__ | `function`: callback invoqué une fois que le tracé est initialisé ; appelé avec figure (objet avec trois clés correspondant aux accessoires d'entrée : "data", "layout", et "frames") et le noeud DOM "graphDiv". Default: `onInitialized() {}`.
 * __onLegendClick__ | `function`: fonction de rappel invoquée lorsque l'élément de légende est cliqué. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: fonction de rappel invoquée lorsque l'élément de légende est double-cliqué. Default: `onLegendDoubleClick() {}`.
 * __onRelayout__ | `function`: la fonction de rappel est invoquée lorsque le relais est déclenché. Default: `onRelayout() {}`.

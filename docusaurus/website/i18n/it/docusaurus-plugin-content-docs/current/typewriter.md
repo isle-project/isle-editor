@@ -11,7 +11,7 @@ Un componente ISLE che permette di creare un effetto macchina da scrivere.
 * __delay__ | `number`: ritardo iniziale prima dell'avvio della macchina da scrivere (in millisecondi). Default: `none`.
 * __hold__ | `number`: se il testo è un array di stringhe, tenere specificato la durata che l'intero sarà visualizzato prima che passi all'elemento successivo dell'array. Default: `2000`.
 * __interval__ | `number`: l'intervallo della macchina da scrivere (in millisecondi). Default: `100`.
-* __random__ | `boolean`: se è impostata la casualità, le battute dei tasti saranno eseguite con una certa casualità "umana".. Default: `false`.
+* __random__ | `boolean`: se è impostata la casualità, le battute dei tasti saranno eseguite con una certa casualità "umana". Default: `false`.
 * __sound__ | `boolean`: si sentirà anche la battitura a macchina. Default: `false`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __text__ | `(string|array<string>)`: il testo completo da visualizzare. Default: `''`.

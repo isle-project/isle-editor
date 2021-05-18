@@ -10,7 +10,7 @@ Un volet de questions choisies.
 
 * __question__ | `(string|node)`: question pour laquelle l'étudiant doit choisir l'une des options de réponse disponibles. Default: `''`.
 * __options__ | `array (required)`: les options de réponse disponibles parmi lesquelles l'étudiant peut choisir. Default: `none`.
-* __solution__ | `number (required)`: élément d'index de la solution dans les "options. Default: `none`.
+* __solution__ | `number`: élément d'index de la solution dans les "options. Default: `none`.
 * __preselected__ | `number`: index de l'option de réponse présélectionnée. Default: `0`.
 * __inline__ | `boolean`: contrôle si le composant est rendu en ligne ou non. Default: `false`.
 * __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'top'`.

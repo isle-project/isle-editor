@@ -8,7 +8,7 @@ Un élément d'arrière-plan dynamique qui parcourt une liste de textes à un in
 
 ## Options
 
-* __text__ | `array<string>`: texte ou liste de textes à afficher. Default: `[]`.
+* __text__ | `(string|array<string>)`: texte ou liste de textes à afficher. Default: `[]`.
 * __loop__ | `boolean`: indique si le processus doit être affiché à l'infini. Default: `false`.
 * __direction__ | `string`: la direction du flux de texte (soit "à gauche", "à droite", "en haut", "en bas", "à la trace", "au foyer", ou "en rotation"). Default: `'right'`.
 * __hold__ | `number`: le temps d'immobilisation du texte (en secondes). Default: `5`.
@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}

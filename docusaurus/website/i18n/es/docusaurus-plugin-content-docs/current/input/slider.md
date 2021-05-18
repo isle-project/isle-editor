@@ -9,7 +9,7 @@ Un componente de entrada deslizante. Puede ser usado como parte de un tablero de
 ## Opciones
 
 * __defaultValue__ | `number`: El valor inicial del deslizador. Default: `10`.
-* __disabled__ | `boolean`: controla si la entrada del deslizador está activa o no. Si se establece en true, el deslizador estará presente en la pantalla, aunque en gris.. Default: `false`.
+* __disabled__ | `boolean`: controla si la entrada del deslizador está activa o no. Si se establece en true, el deslizador estará presente en la pantalla, aunque en gris. Default: `false`.
 * __inline__ | `boolean`: controla si se coloca el deslizador en línea con el texto o fuera de él. Default: `false`.
 * __legend__ | `(string|node)`: leyenda de la entrada. Default: `none`.
 * __max__ | `number`: El valor máximo del deslizador. Default: `100`.

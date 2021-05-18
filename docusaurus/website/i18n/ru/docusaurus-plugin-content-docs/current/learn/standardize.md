@@ -9,7 +9,7 @@ sidebar_label: Standardization
 ## Варианты
 
 * __showProbabilities__ | `boolean`: управляет отображением вероятностей. Default: `false`.
-* __step__ | `object`: размер шага прокрутки. Default: `'any'`.
+* __step__ | `(number|string)`: размер шага прокрутки. Default: `'any'`.
 
 
 ## Примеры

@@ -20,7 +20,7 @@ Visualizzazione della trama.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onAfterPlot__ | `function`: funzione di richiamo invocata ogni volta che viene tracciato un grafico. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: funzione di richiamo richiamata quando un elemento viene cliccato. Default: `onClick() {}`.
-* __onInitialized__ | `function`: callback invocato una volta inizializzato il grafico; chiamato con figura (oggetto con tre tasti corrispondenti ai puntelli di input: `data`, `layout` e `frames`) e il nodo DOM `graphDiv`.. Default: `onInitialized() {}`.
+* __onInitialized__ | `function`: callback invocato una volta inizializzato il grafico; chiamato con figura (oggetto con tre tasti corrispondenti ai puntelli di input: `data`, `layout` e `frames`) e il nodo DOM `graphDiv`. Default: `onInitialized() {}`.
 * __onLegendClick__ | `function`: funzione di richiamo richiamata quando si fa clic sulla voce della legenda. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: funzione di richiamo richiamata quando si fa doppio clic sull'elemento della legenda. Default: `onLegendDoubleClick() {}`.
 * __onRelayout__ | `function`: funzione di richiamo richiamata quando il relayout è attivato. Default: `onRelayout() {}`.

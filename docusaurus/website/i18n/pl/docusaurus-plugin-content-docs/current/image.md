@@ -18,7 +18,7 @@ Komponent do wyświetlania obrazu.
 * __showModal__ | `boolean`: kontroluje, czy ma być wyświetlany pełnoekranowy widok modalny. Default: `true`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
-* __onShare__ | `function`: wywołanie zwrotne z obrazem po kliknięciu przycisku "share".. Default: `none`.
+* __onShare__ | `function`: wywołanie zwrotne z obrazem po kliknięciu przycisku "share". Default: `none`.
 
 
 ## Przykłady

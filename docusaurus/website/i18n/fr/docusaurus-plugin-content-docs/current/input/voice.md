@@ -20,7 +20,7 @@ Un élément de saisie vocale.
 * __onRecordingStart__ | `function`: fonction de rappel invoquée lors du démarrage de l'enregistrement. Default: `onRecordingStart() {}`.
 * __onRecordingStop__ | `function`: la fonction de rappel est invoquée lorsque l'enregistrement est arrêté. Default: `onRecordingStop() {}`.
 * __onSegment__ | `function`: fonction de rappel invoquée avec des segments de texte. Default: `onSegment() {}`.
-* __onSubmit__ | `function`: fonction de rappel lors de la soumission de la valeur de saisie du texte en appuyant sur "Entrée".. Default: `onSubmit() {}`.
+* __onSubmit__ | `function`: fonction de rappel lors de la soumission de la valeur de saisie du texte en appuyant sur "Entrée". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: placeholder de saisie de texte. Default: `none`.
 * __remote__ | `object`: objet avec "start", "stop", et "toggle" et les raccourcis clavier associés. Default: `none`.
 * __className__ | `string`: nom de la classe. Default: `''`.

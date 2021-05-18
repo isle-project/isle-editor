@@ -10,7 +10,7 @@ sidebar_label: Switch Components
 
 * __active__ | `boolean`: управляет тем, активен переключатель или нет. Default: `true`.
 * __tooltip__ | `string`: всплывающая подсказка, отображаемая при наведении курсора на переключающий элемент. Default: `none`.
-* __tooltipPos__ | `string`: размещение подсказки (либо `top`, либо `left`, либо `right`, либо `bottom`).. Default: `'top'`.
+* __tooltipPos__ | `string`: размещение подсказки (либо `top`, либо `left`, либо `right`, либо `bottom`). Default: `'top'`.
 * __className__ | `string`: наименование класса для элемента пролёта корпуса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onChange__ | `function`: обратный вызов при переключении элементов. Получает в качестве первого аргумента индекс отображаемого в данный момент дочернего элемента. Default: `onChange() {}`.

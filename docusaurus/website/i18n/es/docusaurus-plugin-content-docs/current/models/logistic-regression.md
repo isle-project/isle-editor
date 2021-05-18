@@ -12,7 +12,7 @@ Regresión lineal múltiple.
 * __y__ | `(string|Factor) (required)`: variable de resultado. Default: `none`.
 * __success__ | `any (required)`: categoría de éxito de "y. Default: `none`.
 * __x__ | `(array<(string|Factor)>|string|Factor) (required)`: una o más variables de predicción. Default: `none`.
-* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos".. Default: `none`.
+* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos". Default: `none`.
 * __omitMissing__ | `boolean`: controla si se omiten los valores que faltan. Default: `false`.
 * __intercept__ | `boolean`: controla si se ajusta a un modelo con un término de intercepción. Default: `true`.
 * __onPredict__ | `function`: llamada de retorno invocada con predicciones y residuos después del ajuste del modelo. Default: `none`.

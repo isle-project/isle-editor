@@ -9,7 +9,7 @@ Um componente ISLE que faz uma pergunta na qual o aprendiz tem que fazer corresp
 ## Opções
 
 * __question__ | `(string|node)`: pergunta a ser exibida no topo do componente de perguntas da lista de partidas. Default: `''`.
-* __elements__ | `array<{a,b}>`: um "raio" segurando os pares corretos exibidos na parte superior do componente de perguntas de texto livre. Cada elemento de "raio" deve ser um "objeto" com propriedades "a" e "b"; fornecer elementos apenas com propriedades "a" ou "b" para adicionar respostas de distração.. Default: `[]`.
+* __elements__ | `array<{a,b}>`: um "raio" segurando os pares corretos exibidos na parte superior do componente de perguntas de texto livre. Cada elemento de "raio" deve ser um "objeto" com propriedades "a" e "b"; fornecer elementos apenas com propriedades "a" ou "b" para adicionar respostas de distração. Default: `[]`.
 * __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __provideFeedback__ | `boolean`: indica se a solução deve ser acessível após os alunos apresentarem suas respostas. Default: `true`.

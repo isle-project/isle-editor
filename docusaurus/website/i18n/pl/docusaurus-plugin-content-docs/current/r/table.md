@@ -9,7 +9,7 @@ Komponent do renderowania ramki danych R lub macierzy w postaci tabelarycznej.
 ## Opcje
 
 * __code__ | `string`: Kod R zwracający ramkę data.frame zawierającą dane, które mają być wyświetlane w tabeli. Default: `''`.
-* __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.. Default: `[]`.
+* __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`. Default: `[]`.
 * __prependCode__ | `(string|array)`: Kod R `sznurek` (lub `szereg` bloków kodu R), który ma być dołączony do kodu przechowywanego w `kodu` podczas oceny. Default: `''`.
 * __style__ | `object`: Style inline CSS. Default: `{}`.
 

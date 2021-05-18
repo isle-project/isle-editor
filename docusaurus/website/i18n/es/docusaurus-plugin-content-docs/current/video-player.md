@@ -23,7 +23,7 @@ Un componente para reproducir archivos y contenidos multimedia de YouTube, Sound
 * __onPause__ | `function`: La llamada de retorno invocada cuando el video se detiene. Default: `onPause() {}`.
 * __onPlay__ | `function`: llamada invocada cuando el video comienza o se reanuda después de la pausa. Default: `onPlay() {}`.
 * __onStart__ | `function`: La llamada de retorno invocada una vez que el video se pausa. Default: `onStart() {}`.
-* __onSeek__ | `function`: llamada de vuelta cuando los medios de comunicación buscan llamado con el parámetro "segundos".. Default: `onSeek() {}`.
+* __onSeek__ | `function`: llamada de vuelta cuando los medios de comunicación buscan llamado con el parámetro "segundos". Default: `onSeek() {}`.
 
 
 ## Ejemplos

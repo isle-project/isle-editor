@@ -8,7 +8,7 @@ Een dynamische achtergrondcomponent die met een bepaald interval door een lijst 
 
 ## Opties
 
-* __text__ | `array<string>`: tekst of lijst van teksten die moeten worden weergegeven. Default: `[]`.
+* __text__ | `(string|array<string>)`: tekst of lijst van teksten die moeten worden weergegeven. Default: `[]`.
 * __loop__ | `boolean`: geeft aan of het proces oneindig moet worden weergegeven. Default: `false`.
 * __direction__ | `string`: de richting van de tekststroom (ofwel `left`, `right`, `up`, `down`, `tracking`, `focus`, of `swirl`). Default: `'right'`.
 * __hold__ | `number`: de tijd dat de tekst stil blijft staan (in seconden). Default: `5`.
@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}

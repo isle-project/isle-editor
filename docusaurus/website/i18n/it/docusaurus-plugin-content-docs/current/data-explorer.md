@@ -10,7 +10,7 @@ Questo componente è utilizzato dagli studenti per riassumere brevemente i dati 
 
 * __categorical__ | `array`: array di stringhe che indicano il nome di ogni variabile categoriale. Default: `[]`.
 * __quantitative__ | `array`: array di stringhe che indicano il nome di ogni variabile quantitativa. Default: `[]`.
-* __data__ | `object`: oggetto dati o array da visualizzare. Se si tratta di un oggetto, le chiavi corrispondono ai valori delle colonne, mentre un array si aspetterà un array di oggetti con un campo denominato corrispondente ad ogni colonna. Se si desidera consentire agli studenti la possibilità di importare un file `.csv`, impostare l'opzione `data` come `falso`.. Default: `{}`.
+* __data__ | `object`: oggetto dati o array da visualizzare. Se si tratta di un oggetto, le chiavi corrispondono ai valori delle colonne, mentre un array si aspetterà un array di oggetti con un campo denominato corrispondente ad ogni colonna. Se si desidera consentire agli studenti la possibilità di importare un file `.csv`, impostare l'opzione `data` come `falso`. Default: `{}`.
 * __dataInfo__ | `object`: oggetto contenente le chiavi \'nome\', il cui valore è una stringa, \'info\', il cui valore è un array di stringhe in cui ogni elemento dell'array è una nuova riga e \'variabili\', un oggetto con chiavi come nomi di variabili e valori come descrizioni di variabili. Default: `{
   'info': '',
   'name': '',

@@ -8,7 +8,7 @@ Un elenco di elementi trascinabili che possono essere riordinati dagli studenti.
 
 ## Opzioni
 
-* __data__ | `array (required)`: array di oggetti con tasti `id` e `text`.. Default: `none`.
+* __data__ | `array (required)`: array di oggetti con tasti `id` e `text`. Default: `none`.
 * __onChange__ | `function`: richiamata con l'array di dati appena ordinato ad ogni modifica. Default: `onChange(){}`.
 * __onInit__ | `function`: funzione di richiamo richiamata dopo il montaggio del componente. Default: `onInit(){}`.
 * __shuffle__ | `boolean`: controlla se gli elementi dei dati devono essere mescolati nella visualizzazione iniziale. Default: `false`.

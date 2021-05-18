@@ -9,13 +9,13 @@ sidebar_label: Image Question
 ## Варианты
 
 * __question__ | `(string|node)`: текст для вопроса. Default: `''`.
-* __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: подсказки с рекомендациями, как ответить на вопрос. Default: `[]`.
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `true`.
 * __chat__ | `boolean`: контролирует, должен ли элемент иметь встроенный чат. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: контролирует, должно ли уведомление отображаться после отправки изображения. Default: `false`.
 * __className__ | `string`: название класса. Default: `''`.
-* __sketchpad__ | `object`: свойства, которые должны быть переданы компоненту <Sketchpad />; чтобы отрисовать эскиз, передайте, по крайней мере, пустой объект `{}`.. Default: `none`.
+* __sketchpad__ | `object`: свойства, которые должны быть переданы компоненту <Sketchpad />; чтобы отрисовать эскиз, передайте, по крайней мере, пустой объект `{}`. Default: `none`.
 * __solution__ | `string`: URL-адрес изображения решения модели. Default: `none`.
 * __until__ | `Date`: время до тех пор, пока студенты не смогут представить ответы. Default: `none`.
 * __points__ | `number`: максимальное количество баллов, полученных при градации. Default: `10`.

@@ -9,14 +9,14 @@ Een ISLE-component die een meerkeuzevraag maakt. Het ondersteunt het geval waari
 ## Opties
 
 * __question__ | `(string|node)`: de vraag die bovenaan de meerkeuzecomponent wordt getoond. Default: `''`.
-* __solution__ | `(number|array)`: nummer dat aangeeft welk antwoord juist is of een 'raster' van de juiste antwoordnummers voor het geval de cursist meerdere antwoorden zou moeten kunnen selecteren.. Default: `none`.
-* __answers__ | `array (required)`: een `oproep` van antwoord-objecten. Elk antwoord moet een object zijn met `content` en `explanatie` velden, die de getoonde antwoordoptie aangeven en een uitleg die zichtbaar is nadat de vraag is ingediend om uit te leggen waarom het antwoord juist of onjuist is.. Default: `none`.
+* __solution__ | `(number|array)`: nummer dat aangeeft welk antwoord juist is of een 'raster' van de juiste antwoordnummers voor het geval de cursist meerdere antwoorden zou moeten kunnen selecteren. Default: `none`.
+* __answers__ | `array (required)`: een `oproep` van antwoord-objecten. Elk antwoord moet een object zijn met `content` en `explanatie` velden, die de getoonde antwoordoptie aangeven en een uitleg die zichtbaar is nadat de vraag is ingediend om uit te leggen waarom het antwoord juist of onjuist is. Default: `none`.
 * __hintPlacement__ | `string`: plaatsing van de hints (ofwel `top`, `left`, `right`, of `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips die een leidraad bieden voor het beantwoorden van de vraag. Default: `[]`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `true`.
 * __disabled__ | `boolean`: controleert of de vraag is uitgeschakeld. Default: `false`.
 * __chat__ | `boolean`: bepaalt of het element een geïntegreerde chat moet hebben. Default: `false`.
-* __provideFeedback__ | `string`: ofwel `volledig`, `incrementeel`, of `één`. Als `volledig`, wordt de feedback inclusief het juiste antwoord weergegeven nadat de leerlingen hun antwoorden hebben ingediend; als `incrementeel`, wordt de feedback alleen voor het geselecteerde antwoord weergegeven; als `geen`, wordt er geen feedback teruggegeven.. Default: `'incremental'`.
+* __provideFeedback__ | `string`: ofwel `volledig`, `incrementeel`, of `één`. Als `volledig`, wordt de feedback inclusief het juiste antwoord weergegeven nadat de leerlingen hun antwoorden hebben ingediend; als `incrementeel`, wordt de feedback alleen voor het geselecteerde antwoord weergegeven; als `geen`, wordt er geen feedback teruggegeven. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controleert of de aanmeldingskennisgevingen moeten worden uitgeschakeld. Default: `false`.
 * __displaySolution__ | `boolean`: controleert of de oplossing van tevoren wordt weergegeven. Default: `false`.
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.

@@ -10,10 +10,10 @@ Komponent wyboru pytania.
 
 * __question__ | `(string|node)`: pytanie, na które student musi wybrać jedną z dostępnych opcji odpowiedzi. Default: `''`.
 * __options__ | `array (required)`: dostępne opcje odpowiedzi, z których student może wybrać. Default: `none`.
-* __solution__ | `number (required)`: indeks elementu rozwiązania w `opcjach`. Default: `none`.
+* __solution__ | `number`: indeks elementu rozwiązania w `opcjach`. Default: `none`.
 * __preselected__ | `number`: indeks wstępnie wybranej opcji odpowiedzi. Default: `0`.
 * __inline__ | `boolean`: kontroluje, czy element jest renderowany w linii, czy nie. Default: `false`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'top'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.

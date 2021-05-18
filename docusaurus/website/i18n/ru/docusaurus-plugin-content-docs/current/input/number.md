@@ -25,7 +25,7 @@ sidebar_label: Number Input
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __inputStyle__ | `object`: CSS-строчные стили для входного элемента. Default: `{}`.
 * __value__ | `number`: числовое значение (для контролируемого компонента). Default: `none`.
-* __tooltip__ | `string`: строка подсказки (если подсказка не установлена, она генерируется автоматически).. Default: `none`.
+* __tooltip__ | `string`: строка подсказки (если подсказка не установлена, она генерируется автоматически). Default: `none`.
 * __tooltipPlacement__ | `string`: направление всплывающей подсказки. Default: `'left'`.
 
 

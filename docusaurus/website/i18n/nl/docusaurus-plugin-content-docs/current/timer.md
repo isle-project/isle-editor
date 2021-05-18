@@ -8,9 +8,9 @@ Geeft een timer weer die een voorgedefinieerde terugbeltijd activeert als de tij
 
 ## Opties
 
-* __id__ | `string`: de unieke `string` ID voor de timer. Als een ID is ingesteld, is de timercomponent blijvend over de pagina ververst.. Default: `none`.
+* __id__ | `string`: de unieke `string` ID voor de timer. Als een ID is ingesteld, is de timercomponent blijvend over de pagina ververst. Default: `none`.
 * __active__ | `boolean (required)`: vlag die kan worden omgeschakeld om de timer te starten of te pauzeren. Default: `none`.
-* __belowZero__ | `boolean`: controleert of de timer doorgaat met tellen nadat de duur is uitgeput.. Default: `false`.
+* __belowZero__ | `boolean`: controleert of de timer doorgaat met tellen nadat de duur is uitgeput. Default: `false`.
 * __duration__ | `number (required)`: duur in seconden voor de timer. Default: `none`.
 * __invisible__ | `boolean`: bepaalt of de timer moet worden verborgen. Default: `false`.
 * __legend__ | `string`: tekst die voor de timer wordt weergegeven. Default: `''`.

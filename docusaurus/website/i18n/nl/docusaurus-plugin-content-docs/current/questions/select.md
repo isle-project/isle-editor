@@ -10,7 +10,7 @@ Een selecte vraagcomponent.
 
 * __question__ | `(string|node)`: vraag waarvoor de student een van de beschikbare antwoordmogelijkheden moet kiezen. Default: `''`.
 * __options__ | `array (required)`: beschikbare antwoordopties waaruit de student kan kiezen. Default: `none`.
-* __solution__ | `number (required)`: index van oplossingselement in `opties`. Default: `none`.
+* __solution__ | `number`: index van oplossingselement in `opties`. Default: `none`.
 * __preselected__ | `number`: index van voorgeselecteerde antwoordopties. Default: `0`.
 * __inline__ | `boolean`: controleert of het onderdeel al dan niet inline wordt weergegeven. Default: `false`.
 * __hintPlacement__ | `string`: plaatsing van de hints (ofwel `top`, `left`, `right`, of `bottom`). Default: `'top'`.

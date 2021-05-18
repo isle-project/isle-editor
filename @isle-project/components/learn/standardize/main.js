@@ -314,14 +314,11 @@ class Standardize extends Component {
 
 Standardize.propTypes = {
 	showProbabilities: PropTypes.bool,
-	step: PropTypes.oneOf([
+	step: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string
 	])
 };
-
-
-// DEFAULT PROPERTIES //
 
 Standardize.defaultProps = {
 	showProbabilities: false,

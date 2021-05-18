@@ -16,6 +16,9 @@ Komponent edukacyjny ilustrujący centralne twierdzenie graniczne (CLT) podczas 
 ## Przykłady
 
 ```jsx live
-<LearnConfidenceCoverageSample />
+<LearnConfidenceCoverageSample 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

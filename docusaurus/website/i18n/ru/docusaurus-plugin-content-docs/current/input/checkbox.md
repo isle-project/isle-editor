@@ -9,7 +9,7 @@ sidebar_label: Checkbox Input
 ## Варианты
 
 * __bind__ | `string`: имя глобальной переменной для присвоения значения флажка. Default: `''`.
-* __defaultValue__ | `boolean`: булевое значение, указывающее значение по умолчанию.. Default: `false`.
+* __defaultValue__ | `boolean`: булевое значение, указывающее значение по умолчанию. Default: `false`.
 * __value__ | `boolean`: значение флажка (для контролируемого компонента). Default: `none`.
 * __disabled__ | `boolean`: указывает, активен вход или нет. Default: `false`.
 * __inline__ | `boolean`: указывает, отображается ли флажок в строке. Default: `false`.

@@ -11,7 +11,7 @@ Un componente de la ISLE que permite que dos rendericen dos caras.
 * __button__ | `string`: etiqueta del botón. Default: `none`.
 * __draggable__ | `boolean`: controla si la tarjeta puede ser arrastrada. Default: `false`.
 * __flipSpeedBackToFront__ | `number`: la velocidad con la que la tarjeta pasa de fondo a primer plano, en segundos. Default: `1`.
-* __flipSpeedFrontToBack__ | `number`: La velocidad con la que la tarjeta pasa del primer plano al fondo, en segundos.. Default: `1`.
+* __flipSpeedFrontToBack__ | `number`: La velocidad con la que la tarjeta pasa del primer plano al fondo, en segundos. efault: `1`.
 * __oneTime__ | `boolean`: indica si el proceso de volteo puede ser ejecutado sólo una vez. Default: `false`.
 * __perspective__ | `number`: Valor de la propiedad CSS para dar una perspectiva al elemento posicionado en 3D. Default: `1000`.
 * __size__ | `number`: tamaño de la tarjeta (establece su "width" y "height"). Default: `250`.

@@ -11,8 +11,8 @@ sidebar_label: Decision Tree
 * __data__ | `object (required)`: objeto de las matrices de valor. Default: `none`.
 * __y__ | `(string|Factor) (required)`: variable de resultado. Default: `none`.
 * __x__ | `(array<(string|Factor)>|string|Factor) (required)`: una o más variables de predicción. Default: `none`.
-* __type__ | `string (required)`: "Clasificación" para los categóricos o "Regresión" para los cuantitativos.. Default: `none`.
-* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos".. Default: `none`.
+* __type__ | `string (required)`: "Clasificación" para los categóricos o "Regresión" para los cuantitativos. Default: `none`.
+* __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos". Default: `none`.
 * __impurityMeasure__ | `string`: medida de impureza (`gini` o `entropía`). Default: `'gini'`.
 * __scoreThreshold__ | `number`: umbral de puntuación para la división. Default: `0.0075`.
 * __maxTreeDepth__ | `number`: máxima profundidad del árbol. Default: `5`.

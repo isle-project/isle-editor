@@ -20,12 +20,12 @@ Visualización gráfica.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __onAfterPlot__ | `function`: función de llamada de retorno invocada cada vez que se traza un gráfico. Default: `onAfterPlot() {}`.
 * __onClick__ | `function`: La función de devolución de llamada que se invoca cuando se hace clic en cualquier elemento. Default: `onClick() {}`.
-* __onInitialized__ | `function`: llamada de retorno una vez que se inicializa la trama; llamada con figura (objeto con tres claves que corresponden a los puntales de entrada: "datos", "disposición" y "tramas") y el nodo DOM "graphDiv".. Default: `onInitialized() {}`.
+* __onInitialized__ | `function`: llamada de retorno una vez que se inicializa la trama; llamada con figura (objeto con tres claves que corresponden a los puntales de entrada: "datos", "disposición" y "tramas") y el nodo DOM "graphDiv". Default: `onInitialized() {}`.
 * __onLegendClick__ | `function`: función de devolución de llamada invocada cuando se hace clic en el elemento de la leyenda. Default: `onLegendClick() {}`.
 * __onLegendDoubleClick__ | `function`: La función de devolución de llamada se invoca cuando se hace doble clic en el elemento de la leyenda. Default: `onLegendDoubleClick() {}`.
 * __onRelayout__ | `function`: función de devolución de llamada invocada cuando se activa la retransmisión. Default: `onRelayout() {}`.
 * __onSelected__ | `function`: función de llamada de retorno invocada cuando se seleccionan los elementos. Default: `onSelected() {}`.
-* __onShare__ | `function`: función de devolución de llamada invocada al hacer clic en el botón "Compartir".. Default: `none`.
+* __onShare__ | `function`: función de devolución de llamada invocada al hacer clic en el botón "Compartir". Default: `none`.
 * __removeButtons__ | `boolean`: controla si se eliminan todos los botones (aparte del botón de pantalla completa si está activado). Default: `false`.
 * __toggleFullscreen__ | `boolean`: controla si se permite mostrar la trama en modo de pantalla completa. Default: `true`.
 

@@ -10,7 +10,7 @@ Ten komponent jest wykorzystywany przez uczniów do krótkiego podsumowania dany
 
 * __categorical__ | `array`: tablica łańcuchów wskazująca nazwę każdej zmiennej kategorycznej. Default: `[]`.
 * __quantitative__ | `array`: szereg ciągów znaków wskazujących nazwę każdej zmiennej ilościowej. Default: `[]`.
-* __data__ | `object`: obiekt lub tablicę danych, które mają być przeglądane. Jeśli jest to obiekt, to klucze odpowiadają wartościom kolumn, podczas gdy tablica będzie oczekiwała tablicy obiektów z nazwanym polem odpowiadającym każdej kolumnie. Jeśli chcesz zezwolić studentom na import pliku `.csv`, ustaw opcję `data` na `fałszywy'.. Default: `{}`.
+* __data__ | `object`: obiekt lub tablicę danych, które mają być przeglądane. Jeśli jest to obiekt, to klucze odpowiadają wartościom kolumn, podczas gdy tablica będzie oczekiwała tablicy obiektów z nazwanym polem odpowiadającym każdej kolumnie. Jeśli chcesz zezwolić studentom na import pliku `.csv`, ustaw opcję `data` na `fałszywy'. Default: `{}`.
 * __dataInfo__ | `object`: obiekt zawierający klucze \"name\", którego wartością jest łańcuch, \"info\", którego wartością jest tablica łańcuchów, w której każdy element tablicy jest nowym wierszem oraz \"variables\", obiekt z kluczami jako nazwami zmiennych i wartościami jako opisami zmiennych. Default: `{
   'info': '',
   'name': '',

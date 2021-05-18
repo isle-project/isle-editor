@@ -8,7 +8,7 @@ sidebar_label: Scrolling Text
 
 ## オプション
 
-* __text__ | `array<string>`: 表示する文字列. Default: `[]`.
+* __text__ | `(string|array<string>)`: 表示する文字列. Default: `[]`.
 * __loop__ | `boolean`: はプロセスを無限に表示するかどうかを示します。. Default: `false`.
 * __direction__ | `string`: テキストの流れの方向 (`left`, `right`, `up`, `down`, `tracking`, `focus`, `swirl` のいずれか)。. Default: `'right'`.
 * __hold__ | `number`: 滞留時間. Default: `5`.
@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}

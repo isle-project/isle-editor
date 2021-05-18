@@ -12,7 +12,7 @@ Boutons pour recueillir les commentaires des utilisateurs.
 * __feedbackMsg__ | `string`: message à afficher dans l'info-bulle pour le bouton de retour détaillé. Default: `none`.
 * __understoodMsg__ | `string`: message à afficher dans l'infobulle pour le bouton "Compris. Default: `none`.
 * __customFeedback__ | `boolean`: contrôle si le composant accepte un retour d'information personnalisé. Default: `true`.
-* __vertical__ | `boolean`: sont affichés verticalement s'ils sont réglés sur "true".. Default: `false`.
+* __vertical__ | `boolean`: sont affichés verticalement s'ils sont réglés sur "true". Default: `false`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 

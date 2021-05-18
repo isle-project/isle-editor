@@ -10,7 +10,7 @@ Diese Komponente wird von den Schülern verwendet, um Daten kurz zusammenzufasse
 
 * __categorical__ | `array`: Array von Strings, die den Namen jeder kategorialen Variablen angeben. Default: `[]`.
 * __quantitative__ | `array`: Array von Strings, die den Namen jeder quantitativen Variablen angeben. Default: `[]`.
-* __data__ | `object`: Datenobjekt oder Array, das angezeigt werden soll. Wenn es sich um ein Objekt handelt, entsprechen die Schlüssel den Spaltenwerten, während ein Array ein Array von Objekten mit einem benannten Feld erwartet, das jeder Spalte entspricht. Wenn Sie den Schülern die Möglichkeit geben möchten, eine "csv"-Datei zu importieren, setzen Sie die Option "data" auf "false".. Default: `{}`.
+* __data__ | `object`: Datenobjekt oder Array, das angezeigt werden soll. Wenn es sich um ein Objekt handelt, entsprechen die Schlüssel den Spaltenwerten, während ein Array ein Array von Objekten mit einem benannten Feld erwartet, das jeder Spalte entspricht. Wenn Sie den Schülern die Möglichkeit geben möchten, eine "csv"-Datei zu importieren, setzen Sie die Option "data" auf "false". Default: `{}`.
 * __dataInfo__ | `object`: Objekt mit den Schlüsseln \'name\', dessen Wert eine Zeichenkette ist, \'info\', dessen Wert ein Array von Zeichenketten ist, in dem jedes Element des Arrays eine neue Zeile ist, und \'variables\', ein Objekt mit Schlüsseln als Variablennamen und Werten als Variablenbeschreibungen. Default: `{
   'info': '',
   'name': '',

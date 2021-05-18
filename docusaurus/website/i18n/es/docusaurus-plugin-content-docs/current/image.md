@@ -18,7 +18,7 @@ Componente para mostrar una imagen.
 * __showModal__ | `boolean`: controla si se muestra la vista modal a pantalla completa. Default: `true`.
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
-* __onShare__ | `function`: llamada de retorno invocada con la imagen si se hace clic en el botón "compartir".. Default: `none`.
+* __onShare__ | `function`: llamada de retorno invocada con la imagen si se hace clic en el botón "compartir". Default: `none`.
 
 
 ## Ejemplos

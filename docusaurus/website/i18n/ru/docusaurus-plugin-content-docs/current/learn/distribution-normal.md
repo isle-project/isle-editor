@@ -12,7 +12,7 @@ sidebar_label: Normal Distribution
 * __hideCDF__ | `boolean`: управляет тем, скрывать ли CDF сюжеты. Default: `false`.
 * __minStDev__ | `number`: минимальное стандартное отклонение. Default: `1`.
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.01`.
-* __tabs__ | `array<string>`: какие вкладки отображать (либо `маленькие`, либо `грелка`, либо `диапазон`).. Default: `[
+* __tabs__ | `array<string>`: какие вкладки отображать (либо `маленькие`, либо `грелка`, либо `диапазон`). Default: `[
   'smaller',
   'greater',
   'range'

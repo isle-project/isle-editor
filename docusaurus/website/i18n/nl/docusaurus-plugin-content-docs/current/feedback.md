@@ -12,7 +12,7 @@ Knoppen voor het verzamelen van gebruikersfeedback.
 * __feedbackMsg__ | `string`: bericht dat moet worden weergegeven in tooltip voor een gedetailleerde feedbackknop. Default: `none`.
 * __understoodMsg__ | `string`: bericht dat moet worden weergegeven in tooltip voor begrepen knop. Default: `none`.
 * __customFeedback__ | `boolean`: controleert of de component aangepaste feedback accepteert. Default: `true`.
-* __vertical__ | `boolean`: knoppen worden verticaal weergegeven indien ingesteld op `true`.. Default: `false`.
+* __vertical__ | `boolean`: knoppen worden verticaal weergegeven indien ingesteld op `true`. Default: `false`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 

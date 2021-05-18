@@ -9,7 +9,7 @@ Komponent edukacyjny ilustrujący zakres przedziałów ufności dla średniego r
 ## Opcje
 
 * __intro__ | `(node|string)`: nadpisuje domyślny (interaktywny) tekst wprowadzający. Default: `none`.
-* __quartileNotation__ | `boolean`: kontroluje, czy użyć `alfa/2` jako indeksu dla wartości krytycznej, czy tylko `krytycznej`.. Default: `true`.
+* __quartileNotation__ | `boolean`: kontroluje, czy użyć `alfa/2` jako indeksu dla wartości krytycznej, czy tylko `krytycznej`. Default: `true`.
 * __sampleStats__ | `boolean`: kontroluje, czy przy obliczaniu błędu standardowego powinno być możliwe przełączenie się między wykorzystaniem odchylenia standardowego próbki a znanym odchyleniem standardowym populacji. Default: `true`.
 
 

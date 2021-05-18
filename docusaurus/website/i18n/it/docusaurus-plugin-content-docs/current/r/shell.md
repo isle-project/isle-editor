@@ -21,7 +21,7 @@ Una shell R interattiva che può essere utilizzata per eseguire comandi R nel cl
 * __resettable__ | `boolean`: controlla se visualizzare un pulsante di reset per il ripristino dell'inserimento del codice di default. Default: `false`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onChange__ | `function`: richiamata ogni volta che l'inserimento del campo di testo cambia. Default: `onChange() {}`.
-* __onEvaluate__ | `function`: richiamata ogni volta che si clicca sul pulsante `Evaluta`.. Default: `onEvaluate(){}`.
+* __onEvaluate__ | `function`: richiamata ogni volta che si clicca sul pulsante `Evaluta`. Default: `onEvaluate(){}`.
 * __onResult__ | `function`: richiamata ogni volta che il risultato dell'esecuzione di un codice viene ottenuto dal cloud. Il risultato `stringa` viene passato come unico argomento alla funzione di callback. Default: `onResult() {}`.
 
 

@@ -23,7 +23,7 @@ Komponent do odtwarzania plików multimedialnych i treści z serwisów YouTube, 
 * __onPause__ | `function`: Oddzwonienie wywołane w przypadku przerwy w nagrywaniu wideo. Default: `onPause() {}`.
 * __onPlay__ | `function`: oddzwonienie wywołane przy rozpoczęciu lub wznowieniu odtwarzania po pauzie. Default: `onPlay() {}`.
 * __onStart__ | `function`: oddzwonienie wywołane po przerwie w oglądaniu filmu. Default: `onStart() {}`.
-* __onSeek__ | `function`: wywołanie zwrotne, gdy media poszukują wywołania z parametrem `sekundy'.. Default: `onSeek() {}`.
+* __onSeek__ | `function`: wywołanie zwrotne, gdy media poszukują wywołania z parametrem `sekundy'. Default: `onSeek() {}`.
 
 
 ## Przykłady

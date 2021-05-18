@@ -9,7 +9,7 @@ Um componente de entrada deslizante. Pode ser usado como parte de um painel de i
 ## Opções
 
 * __defaultValue__ | `number`: O valor inicial do controle deslizante. Default: `10`.
-* __disabled__ | `boolean`: controla se a entrada do controle deslizante está ativa ou não. Se definido como verdadeiro, o controle deslizante estará presente na tela, embora acinzentado.. Default: `false`.
+* __disabled__ | `boolean`: controla se a entrada do controle deslizante está ativa ou não. Se definido como verdadeiro, o controle deslizante estará presente na tela, embora acinzentado. Default: `false`.
 * __inline__ | `boolean`: controla se a barra deslizante deve ser colocada em linha com o texto ou fora. Default: `false`.
 * __legend__ | `(string|node)`: legenda da entrada. Default: `none`.
 * __max__ | `number`: O valor máximo do controle deslizante. Default: `100`.

@@ -23,7 +23,7 @@ Um componente para reproduzir arquivos de mídia e conteúdo do YouTube, SoundCl
 * __onPause__ | `function`: chamada de retorno invocada quando o vídeo faz uma pausa. Default: `onPause() {}`.
 * __onPlay__ | `function`: chamada de retorno invocada quando o vídeo começa ou retoma a reprodução após uma pausa. Default: `onPlay() {}`.
 * __onStart__ | `function`: chamada de retorno invocada quando o vídeo faz uma pausa. Default: `onStart() {}`.
-* __onSeek__ | `function`: chamada de retorno quando a mídia procura chamada com o parâmetro `segundos'.. Default: `onSeek() {}`.
+* __onSeek__ | `function`: chamada de retorno quando a mídia procura chamada com o parâmetro `segundos'. Default: `onSeek() {}`.
 
 
 ## Exemplos

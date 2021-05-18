@@ -9,7 +9,7 @@ Un componente de aprendizaje que ilustra la cobertura de los intervalos de confi
 ## Opciones
 
 * __intro__ | `(node|string)`: anula el texto de introducción predeterminado (interactivo). Default: `none`.
-* __quartileNotation__ | `boolean`: controla si se usa "alfa/2" como subíndice para el valor crítico o sólo "crítico".. Default: `true`.
+* __quartileNotation__ | `boolean`: controla si se usa "alfa/2" como subíndice para el valor crítico o sólo "crítico". Default: `true`.
 * __sampleStats__ | `boolean`: controla si se debe poder cambiar entre el uso de la desviación estándar de la muestra o la desviación estándar de la población conocida al calcular el error estándar. Default: `true`.
 
 

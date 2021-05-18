@@ -12,7 +12,7 @@ Een component voor spraakinvoer.
 * __defaultValue__ | `string`: standaardtekstwaarde. Default: `''`.
 * __grammars__ | `array`: spraakgrammatica lijst (niet ondersteund). Default: `[]`.
 * __legend__ | `(string|node)`: legenda weergegeven voor het invoerveld. Default: `''`.
-* __mode__ | `string`: ingesteld op `volledig` om een tekstinvoerveld naast de microfoon weer te geven, `status` om alleen een statusbalk met de getranscribeerde teksten weer te geven, `microfoon` om alleen een knop te tonen om de opname te schakelen, of `niet` wanneer de spraakinvoer onzichtbaar moet zijn en puur via sneltoetsen / spraakcommando's moet worden geregeld.. Default: `'full'`.
+* __mode__ | `string`: ingesteld op `volledig` om een tekstinvoerveld naast de microfoon weer te geven, `status` om alleen een statusbalk met de getranscribeerde teksten weer te geven, `microfoon` om alleen een knop te tonen om de opname te schakelen, of `niet` wanneer de spraakinvoer onzichtbaar moet zijn en puur via sneltoetsen / spraakcommando's moet worden geregeld. Default: `'full'`.
 * __maxAlternatives__ | `number`: maximaal aantal alternatieven per spraakherkenningsresultaat. Default: `1`.
 * __onChange__ | `function`: terugbelfunctie die wordt aangeroepen wanneer de waarde van de tekstinvoer wordt geüpdatet. Default: `onChange() {}`.
 * __onClick__ | `function`: terugbelfunctie ingeroepen bij het klikken op de microfoonknop. Default: `onClick() {}`.
@@ -25,7 +25,7 @@ Een component voor spraakinvoer.
 * __remote__ | `object`: object met `start`, `stop`, en `schakel` en bijbehorende sneltoetsen. Default: `none`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
-* __timeout__ | `number`: aantal milliseconden waarna de opname wordt uitgesteld.. Default: `none`.
+* __timeout__ | `number`: aantal milliseconden waarna de opname wordt uitgesteld. Default: `none`.
 * __stopTooltip__ | `string`: tooltipbericht weergegeven tijdens de opname. Default: `none`.
 * __startTooltip__ | `string`: tooltip-bericht dat wordt weergegeven terwijl er niet wordt opgenomen. Default: `none`.
 * __tooltipPlacement__ | `string`: richting van de tooltip. Default: `'left'`.

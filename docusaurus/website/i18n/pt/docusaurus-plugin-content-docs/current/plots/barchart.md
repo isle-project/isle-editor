@@ -17,7 +17,7 @@ Gráfico de barras.
 * __stackBars__ | `boolean`: ao agrupar, controla se as barras devem ser empilhadas umas sobre as outras. Default: `false`.
 * __relative__ | `boolean`: se deve calcular as freqüências relativas dentro de cada grupo. Default: `false`.
 * __totalPercent__ | `boolean`: se exibir as barras gerais como freqüências relativas. Default: `false`.
-* __xOrder__ | `string`: seja "total", "categoria", "min", "max", "homem", ou "médico".. Default: `none`.
+* __xOrder__ | `string`: seja "total", "categoria", "min", "max", "homem", ou "médico". Default: `none`.
 * __direction__ | `string`: como pedir barras ao lado do eixo x (`ascendente` ou `descendente`). Default: `'ascending'`.
 
 

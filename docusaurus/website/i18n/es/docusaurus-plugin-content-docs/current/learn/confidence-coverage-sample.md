@@ -16,6 +16,9 @@ Un componente de aprendizaje que ilustra el Teorema del Límite Central (CLT) cu
 ## Ejemplos
 
 ```jsx live
-<LearnConfidenceCoverageSample />
+<LearnConfidenceCoverageSample 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

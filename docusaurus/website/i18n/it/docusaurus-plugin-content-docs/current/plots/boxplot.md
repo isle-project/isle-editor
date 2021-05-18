@@ -11,7 +11,7 @@ Una trama a scatola.
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variable__ | `(array|string) (required)`: variabile da visualizzare. Default: `none`.
 * __group__ | `(array|string|Factor)`: una o due variabili di raggruppamento. Default: `[]`.
-* __orientation__ | `string`: orientamento "verticale" o "orizzontale".. Default: `'vertical'`.
+* __orientation__ | `string`: orientamento "verticale" o "orizzontale". Default: `'vertical'`.
 * __overlayPoints__ | `boolean`: controlla se sovrapporre i punti. Default: `false`.
 
 

@@ -14,13 +14,13 @@ Een interactieve Javascript-shell die gebruikt kan worden om JavaScript-commando
 * __precompute__ | `boolean`: controleert of de standaardcode moet worden uitgevoerd zodra het component is gemonteerd. Default: `false`.
 * __chat__ | `boolean`: bepaalt of de groeps-chatfunctie moet worden ingeschakeld. Default: `false`.
 * __check__ | `string`: bijgevoegde JavaScript-code om de te evalueren `code` te controleren. Default: `none`.
-* __disabled__ | `boolean`: bepaalt of alle gebruikersinvoer moet worden uitgeschakeld en of de code moet worden geblokkeerd.. Default: `false`.
+* __disabled__ | `boolean`: bepaalt of alle gebruikersinvoer moet worden uitgeschakeld en of de code moet worden geblokkeerd. Default: `false`.
 * __lines__ | `number`: aantal weer te geven regels. Default: `5`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onChange__ | `function`: terugbellen wordt aangeroepen wanneer de invoer van het tekstveld verandert. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: terugbellen wordt aangeroepen wanneer op de `Evaluate`-knop wordt geklikt. Default: `onEvaluate() {}`.
-* __vars__ | `object`: Scope-object met variabelen die beschikbaar moeten worden gesteld aan de geëvalueerde `code`.. Default: `none`.
+* __vars__ | `object`: Scope-object met variabelen die beschikbaar moeten worden gesteld aan de geëvalueerde `code`. Default: `none`.
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 
 

@@ -8,20 +8,20 @@ sidebar_label: Select Question Matrix
 
 ## Варианты
 
-* __question__ | `(string|node)`: вопрос, который будет отображаться в верхней части матрицы выбранного вопроса.. Default: `''`.
+* __question__ | `(string|node)`: вопрос, который будет отображаться в верхней части матрицы выбранного вопроса. Default: `''`.
 * __rows__ | `array`: строчные метки. Default: `[]`.
 * __cols__ | `array`: ярлыки столбцов. Default: `[]`.
 * __options__ | `object`: объект с парами ключ-значение с ключами, имеющими форму `row:col`, например `0:0`, `0:1`, `1:0` и т.д., и соответствующими им значениями, являющимися массивами возможных вариантов ответа на отдельные выбранные вопросы. Default: `{}`.
-* __solution__ | `object`: объект решения с парами ключ-значение с ключами, имеющими форму `row:col`, например, `0:0`, `0:1`, `1:0` и т.д., и соответствующими им значениями, являющимися индексом правильного элемента ответа из соответствующего массива `options`.. Default: `{}`.
+* __solution__ | `object`: объект решения с парами ключ-значение с ключами, имеющими форму `row:col`, например, `0:0`, `0:1`, `1:0` и т.д., и соответствующими им значениями, являющимися индексом правильного элемента ответа из соответствующего массива `options`. Default: `{}`.
 * __hints__ | `array<(string|node)>`: подсказки с рекомендациями, как ответить на вопрос. Default: `[]`.
-* __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: размещение подсказок (или `top`, `left`, `right`, или `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: управляет отображением кнопок обратной связи. Default: `true`.
-* __provideFeedback__ | `string`: предоставлять ли вообще "нет" обратной связи, "индивидуальную" обратную связь по представленным ответам, или "обратную связь в устной форме" по всем вопросам.. Default: `'individual'`.
-* __allowIncomplete__ | `boolean`: разрешать ли подачу заявок без выбора, сделанного в каждом поле выбора.. Default: `false`.
-* __nTries__ | `number`: после скольких попыток никакие дальнейшие ответы не принимаются (если `Ответы на запрос` не `нет`).. Default: `3`.
+* __provideFeedback__ | `string`: предоставлять ли вообще "нет" обратной связи, "индивидуальную" обратную связь по представленным ответам, или "обратную связь в устной форме" по всем вопросам. Default: `'individual'`.
+* __allowIncomplete__ | `boolean`: разрешать ли подачу заявок без выбора, сделанного в каждом поле выбора. Default: `false`.
+* __nTries__ | `number`: после скольких попыток никакие дальнейшие ответы не принимаются (если `Ответы на запрос` не `нет`). Default: `3`.
 * __failureMsg__ | `string`: текст уведомления, отображаемый при подаче неправильных ответов. Default: `none`.
 * __successMsg__ | `string`: текст уведомления, отображаемый при предоставлении правильных ответов. Default: `none`.
-* __cellLabels__ | `object`: метки для ячеек, определенных объектом, с ключами, имеющими формат `row:col`.. Default: `{}`.
+* __cellLabels__ | `object`: метки для ячеек, определенных объектом, с ключами, имеющими формат `row:col`. Default: `{}`.
 * __chat__ | `boolean`: контролирует, должен ли элемент иметь встроенный чат. Default: `false`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
@@ -55,9 +55,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
@@ -73,9 +73,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
     hints={[
@@ -104,9 +104,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
 ```
@@ -124,9 +124,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />

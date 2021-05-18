@@ -10,7 +10,7 @@ Test de proportionnalité à deux échantillons.
 
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
 * __var1__ | `(string|Factor) (required)`: nom de la première variable. Default: `none`.
-* __success__ | `string (required)`: catégorie de succès de "var1. Default: `none`.
+* __success__ | `any (required)`: catégorie de succès de "var1. Default: `none`.
 * __var2__ | `(string|Factor)`: nom de la deuxième variable (les variables "var2" ou "group" doivent être fournies). Default: `none`.
 * __group__ | `(string|Factor)`: nom de la variable de regroupement (`var2` ou `group` doivent être fournis). Default: `none`.
 * __alpha__ | `number`: niveau de signification. Default: `0.05`.

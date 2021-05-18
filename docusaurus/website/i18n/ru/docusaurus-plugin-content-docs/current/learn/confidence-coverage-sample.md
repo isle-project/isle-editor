@@ -16,6 +16,9 @@ sidebar_label: Confidence Interval Coverage Sample
 ## Примеры
 
 ```jsx live
-<LearnConfidenceCoverageSample />
+<LearnConfidenceCoverageSample 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

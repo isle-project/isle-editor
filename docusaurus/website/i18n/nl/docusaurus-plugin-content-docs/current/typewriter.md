@@ -9,9 +9,9 @@ Een ISLE-component waarmee u een schrijfmachine-effect kunt creëren.
 ## Opties
 
 * __delay__ | `number`: aanvankelijke vertraging voor de start van de schrijfmachine (in milliseconden). Default: `none`.
-* __hold__ | `number`: Als tekst een array van strings is, houdt u de opgegeven duur aan voordat de volledige tekst naar het volgende item in de array gaat.. Default: `2000`.
+* __hold__ | `number`: Als tekst een array van strings is, houdt u de opgegeven duur aan voordat de volledige tekst naar het volgende item in de array gaat. Default: `2000`.
 * __interval__ | `number`: het interval van de typemachine (in milliseconden). Default: `100`.
-* __random__ | `boolean`: als random is ingesteld, zullen de toetsaanslagen worden uitgevoerd met een bepaalde, "humane" willekeurigheid.. Default: `false`.
+* __random__ | `boolean`: als random is ingesteld, zullen de toetsaanslagen worden uitgevoerd met een bepaalde, "humane" willekeurigheid. Default: `false`.
 * __sound__ | `boolean`: de getypte toetsaanslag zal ook worden gehoord. Default: `false`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __text__ | `(string|array<string>)`: de volledige tekst die moet worden weergegeven. Default: `''`.

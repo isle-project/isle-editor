@@ -12,7 +12,7 @@ Un componente che mostra i suoi figli in una presentazione o in un carosello.
 * __dots__ | `boolean`: visualizzare i punti in basso per navigare rapidamente verso qualsiasi diapositiva. Default: `true`.
 * __fade__ | `boolean`: controlla se la dissolvenza viene utilizzata per la transizione tra i vetrini. Default: `false`.
 * __draggable__ | `boolean`: controlla se gli utenti possono trascinare le diapositive per navigare tra di loro. Default: `false`.
-* __pagination__ | `string`: se mostrare la paginazione sia sul "sopra", "sotto" o "entrambi".. Default: `'bottom'`.
+* __pagination__ | `string`: se mostrare la paginazione sia sul "sopra", "sotto" o "entrambi". Default: `'bottom'`.
 * __goto__ | `number`: Se la proprietà viene modificata, il componente salta alla diapositiva con l'indice selezionato. Default: `0`.
 * __infinite__ | `boolean`: controlla se la presentazione si avvolge intorno al suo contenuto. Default: `false`.
 * __interval__ | `number`: imposta un intervallo di tempo per il cambio automatico della slitta. Default: `none`.

@@ -12,7 +12,7 @@ Pulsanti per raccogliere i feedback degli utenti.
 * __feedbackMsg__ | `string`: messaggio da visualizzare nel tooltip per un feedback dettagliato pulsante di feedback. Default: `none`.
 * __understoodMsg__ | `string`: messaggio da visualizzare nel tooltip per la comprensione del pulsante. Default: `none`.
 * __customFeedback__ | `boolean`: controlla se il componente accetta il feedback personalizzato. Default: `true`.
-* __vertical__ | `boolean`: vengono visualizzati verticalmente se impostati su "true".. Default: `false`.
+* __vertical__ | `boolean`: vengono visualizzati verticalmente se impostati su "true". Default: `false`.
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 

@@ -21,7 +21,7 @@ Un componente de la pregunta de orden que pide al estudiante traer una colecció
 * __until__ | `Date`: tiempo hasta que los estudiantes puedan presentar sus respuestas. Default: `none`.
 * __points__ | `number`: número máximo de puntos otorgados en la calificación. Default: `10`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
-* __onChange__ | `function`: que se activa después de arrastrar un elemento; tiene dos parámetros: un "booleano" que indica si los elementos se colocaron en el orden correcto y un "arreglo" con el orden actual.. Default: `onChange() {}`.
+* __onChange__ | `function`: que se activa después de arrastrar un elemento; tiene dos parámetros: un "booleano" que indica si los elementos se colocaron en el orden correcto y un "arreglo" con el orden actual. Default: `onChange() {}`.
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como único parámetro un "booleano" que indica si los elementos fueron colocados en el orden correcto. Default: `onSubmit() {}`.
 
 

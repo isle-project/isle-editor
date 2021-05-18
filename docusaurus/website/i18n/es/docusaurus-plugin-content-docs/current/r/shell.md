@@ -21,7 +21,7 @@ Un R Shell interactivo que puede ser usado para ejecutar comandos R en la nube u
 * __resettable__ | `boolean`: controla si se muestra un botón de restablecimiento para restaurar la entrada de código por defecto. Default: `false`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __onChange__ | `function`: llamada de retorno invocada siempre que la entrada del campo de texto cambia. Default: `onChange() {}`.
-* __onEvaluate__ | `function`: se invoca cuando se hace clic en el botón "Evaluar".. Default: `onEvaluate(){}`.
+* __onEvaluate__ | `function`: se invoca cuando se hace clic en el botón "Evaluar". Default: `onEvaluate(){}`.
 * __onResult__ | `function`: llamada de retorno invocada siempre que el resultado de la ejecución de un código se obtiene de la nube. El resultado "cadena" se pasa como único argumento a la función de devolución de llamada. Default: `onResult() {}`.
 
 

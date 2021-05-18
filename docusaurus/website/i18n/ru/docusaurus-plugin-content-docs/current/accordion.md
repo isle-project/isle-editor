@@ -12,7 +12,7 @@ sidebar_label: Accordion
 * __canCloseAll__ | `boolean`: можно ли сбить все заголовки. Default: `false`.
 * __headers__ | `array<(string|node)>`: массив названий заголовков. Default: `none`.
 * __headerStyle__ | `object`: можно также присвоить стиль заголовочным полоскам. Default: `none`.
-* __headerClassName__ | `string`: это отменяет название данного класса заголовков.. Default: `none`.
+* __headerClassName__ | `string`: это отменяет название данного класса заголовков. Default: `none`.
 * __onChange__ | `function`: вызов обратного вызова с индексом нового активного вертикального ползунка. Default: `onChange() {}`.
 * __className__ | `string`: название класса для outer div. Default: `''`.
 * __style__ | `object`: CSS встраиваемые стили для наружных погружений. Default: `none`.

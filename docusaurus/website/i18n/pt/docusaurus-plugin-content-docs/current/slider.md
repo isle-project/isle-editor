@@ -12,7 +12,7 @@ Um componente que exibe seus filhos em um slideshow ou carrossel.
 * __dots__ | `boolean`: pontos de exibição no fundo para navegar rapidamente para qualquer slide. Default: `true`.
 * __fade__ | `boolean`: controla se o desbotamento é usado para a transição entre as lâminas. Default: `false`.
 * __draggable__ | `boolean`: controla se os usuários podem arrastar os slides para navegar entre eles. Default: `false`.
-* __pagination__ | `string`: se mostrar a paginação ou na "parte superior", "parte inferior", ou "ambos".. Default: `'bottom'`.
+* __pagination__ | `string`: se mostrar a paginação ou na "parte superior", "parte inferior", ou "ambos". Default: `'bottom'`.
 * __goto__ | `number`: Se a propriedade for alterada, o componente salta para a corrediça com o índice selecionado. Default: `0`.
 * __infinite__ | `boolean`: controla se o slideshow envolve o seu conteúdo. Default: `false`.
 * __interval__ | `number`: estabelece um intervalo de tempo para uma troca automática de lâminas. Default: `none`.

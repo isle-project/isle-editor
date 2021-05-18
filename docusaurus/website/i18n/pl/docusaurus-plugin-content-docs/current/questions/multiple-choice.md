@@ -9,14 +9,14 @@ Składnik ISLE, który stawia pytanie wielokrotnego wyboru. Wspiera on przypadek
 ## Opcje
 
 * __question__ | `(string|node)`: pytanie wyświetlane w górnej części elementu wielokrotnego wyboru. Default: `''`.
-* __solution__ | `(number|array)`: liczba oznaczająca, która odpowiedź jest poprawna lub `liczba` poprawnych numerów odpowiedzi w przypadku, gdy uczący się powinien być w stanie wybrać wiele odpowiedzi.. Default: `none`.
-* __answers__ | `array (required)`: "szereg" obiektów odpowiedzi. Każda odpowiedź powinna być obiektem z polami "treść" i "wyjaśnienie", które oznaczają wyświetlaną opcję odpowiedzi oraz wyjaśnienie widoczne po zadaniu pytania, wyjaśniające dlaczego odpowiedź jest poprawna lub nieprawidłowa.. Default: `none`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole).. Default: `'bottom'`.
+* __solution__ | `(number|array)`: liczba oznaczająca, która odpowiedź jest poprawna lub `liczba` poprawnych numerów odpowiedzi w przypadku, gdy uczący się powinien być w stanie wybrać wiele odpowiedzi. Default: `none`.
+* __answers__ | `array (required)`: "szereg" obiektów odpowiedzi. Każda odpowiedź powinna być obiektem z polami "treść" i "wyjaśnienie", które oznaczają wyświetlaną opcję odpowiedzi oraz wyjaśnienie widoczne po zadaniu pytania, wyjaśniające dlaczego odpowiedź jest poprawna lub nieprawidłowa. Default: `none`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (na górze, na dole, w lewo, w prawo lub na dole). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __disabled__ | `boolean`: kontroluje, czy dana kwestia jest wyłączona. Default: `false`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.
-* __provideFeedback__ | `string`: albo `pełne`, `skoroczne`, albo `żadne`. Jeśli `pełne`, informacja zwrotna zawierająca poprawną odpowiedź jest wyświetlana po udzieleniu odpowiedzi przez uczącego się; jeśli `inkrementalna`, informacja zwrotna jest wyświetlana tylko dla wybranej odpowiedzi; jeśli `nie`, informacja zwrotna nie jest zwracana.. Default: `'incremental'`.
+* __provideFeedback__ | `string`: albo `pełne`, `skoroczne`, albo `żadne`. Jeśli `pełne`, informacja zwrotna zawierająca poprawną odpowiedź jest wyświetlana po udzieleniu odpowiedzi przez uczącego się; jeśli `inkrementalna`, informacja zwrotna jest wyświetlana tylko dla wybranej odpowiedzi; jeśli `nie`, informacja zwrotna nie jest zwracana. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrola, czy należy wyłączyć powiadomienia o złożeniu wniosku. Default: `false`.
 * __displaySolution__ | `boolean`: kontroluje, czy rozwiązanie jest wyświetlane z góry. Default: `false`.
 * __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.

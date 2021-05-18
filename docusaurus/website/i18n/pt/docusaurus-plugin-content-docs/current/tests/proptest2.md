@@ -10,7 +10,7 @@ Teste de proporção de duas amostras.
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __var1__ | `(string|Factor) (required)`: nome da primeira variável. Default: `none`.
-* __success__ | `string (required)`: categoria de sucesso do `var1`. Default: `none`.
+* __success__ | `any (required)`: categoria de sucesso do `var1`. Default: `none`.
 * __var2__ | `(string|Factor)`: nome da segunda variável (`var2` ou `grupo` tem que ser fornecido). Default: `none`.
 * __group__ | `(string|Factor)`: nome da variável de agrupamento (`var2` ou `grupo` tem que ser fornecido). Default: `none`.
 * __alpha__ | `number`: nível de significância. Default: `0.05`.

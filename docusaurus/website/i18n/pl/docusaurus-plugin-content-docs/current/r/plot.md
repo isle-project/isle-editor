@@ -13,7 +13,7 @@ Komponent do renderowania wykresu R wewnątrz lekcji ISLE.
 * __height__ | `(number|string)`: wysokość działki (w px). Default: `'auto'`.
 * __draggable__ | `boolean`: kontroluje, czy działka powinna być wleczona. Default: `false`.
 * __fileType__ | `string`: typ pliku działki (`png` lub `svg`). Default: `'svg'`.
-* __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`.. Default: `[]`.
+* __libraries__ | `array`: Biblioteki R, które powinny być ładowane automatycznie po wykonaniu wejścia `kodu`. Default: `[]`.
 * __prependCode__ | `(string|array)`: `sznurek` lub `szereg` fragmentów kodu R, które mają być zawieszone na kodzie przechowywanym w `kodu` podczas oceny. Default: `''`.
 * __meta__ | `object`: fabuła meta-informacja. Default: `none`.
 * __className__ | `string`: nazwa klasy. Default: `''`.

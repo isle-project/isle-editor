@@ -10,7 +10,7 @@ A select question component.
 
 * __question__ | `(string|node)`: question for which the student has to select one of the available answer options. Default: `''`.
 * __options__ | `array (required)`: available answer options from which the student can select. Default: `none`.
-* __solution__ | `number (required)`: index of solution element in `options`. Default: `none`.
+* __solution__ | `number`: index of solution element in `options`. Default: `none`.
 * __preselected__ | `number`: index of preselected answer option. Default: `0`.
 * __inline__ | `boolean`: controls whether the component is rendered inline or not. Default: `false`.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'top'`.

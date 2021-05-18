@@ -10,7 +10,7 @@ sidebar_label: F Distribution
 
 * __domain__ | `object`: объект массивов `x` и `y` с начальной и конечной точками для соответствующей оси. Default: `none`.
 * __step__ | `(number|string)`: размер шага прокрутки. Default: `0.01`.
-* __tabs__ | `array<string>`: какие вкладки отображать (либо `маленькие`, либо `грелка`, либо `диапазон`).. Default: `[
+* __tabs__ | `array<string>`: какие вкладки отображать (либо `маленькие`, либо `грелка`, либо `диапазон`). Default: `[
   'smaller',
   'greater',
   'range'

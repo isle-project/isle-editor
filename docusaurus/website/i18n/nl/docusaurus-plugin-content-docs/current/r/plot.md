@@ -14,7 +14,7 @@ Component voor het weergeven van een R-plot binnen een ISLE-les.
 * __draggable__ | `boolean`: controleert of het perceel versleepbaar moet zijn. Default: `false`.
 * __fileType__ | `string`: bestandstype van het perceel (`png` of `svg`). Default: `'svg'`.
 * __libraries__ | `array`: R-bibliotheken die automatisch moeten worden geladen wanneer de invoer `code` wordt uitgevoerd. Default: `[]`.
-* __prependCode__ | `(string|array)`: Koord' of een 'raster' van R-code-fragmenten die bij de evaluatie van de code in 'code' moeten worden voorgeprogrammeerd.. Default: `''`.
+* __prependCode__ | `(string|array)`: Koord' of een 'raster' van R-code-fragmenten die bij de evaluatie van de code in 'code' moeten worden voorgeprogrammeerd. Default: `''`.
 * __meta__ | `object`: plotmeta-informatie. Default: `none`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __onDone__ | `function`: callback ingeroepen met `err`, `img` en `body` argumenten zodra een plot is gecreëerd. Default: `onDone() {}`.

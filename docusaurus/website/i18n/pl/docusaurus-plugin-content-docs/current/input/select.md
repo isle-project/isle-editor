@@ -9,7 +9,7 @@ Wybrany element wejściowy. Może być używany jako część deski rozdzielczej
 ## Opcje
 
 * __bind__ | `string`: nazwa zmiennej globalnej dla numeru, który ma być przypisany do. Default: `''`.
-* __clearable__ | `boolean`: wartość boolean wskazująca, czy można dokonać jednoznacznego wyboru.. Default: `none`.
+* __clearable__ | `boolean`: wartość boolean wskazująca, czy można dokonać jednoznacznego wyboru. Default: `none`.
 * __defaultValue__ | `(number|string|array|object)`: domyślna wartość wejścia przy uruchamianiu. Default: `none`.
 * __disabled__ | `boolean`: kontroluje, czy wejście jest aktywne, czy nie. Default: `false`.
 * __inline__ | `boolean`: wskazuje, czy wejście jest wyświetlane w linii. Default: `false`.

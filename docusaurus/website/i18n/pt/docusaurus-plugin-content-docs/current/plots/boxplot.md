@@ -11,7 +11,7 @@ Um enredo de caixa.
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
 * __variable__ | `(array|string) (required)`: variável a exibir. Default: `none`.
 * __group__ | `(array|string|Factor)`: uma ou duas variáveis de agrupamento. Default: `[]`.
-* __orientation__ | `string`: Orientação `vertical` ou `horizontal`.. Default: `'vertical'`.
+* __orientation__ | `string`: Orientação `vertical` ou `horizontal`. Default: `'vertical'`.
 * __overlayPoints__ | `boolean`: controla se devem ser sobrepostos pontos. Default: `false`.
 
 

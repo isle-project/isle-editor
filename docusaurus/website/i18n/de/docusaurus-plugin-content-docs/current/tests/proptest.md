@@ -10,7 +10,7 @@ Ein-Stichproben-Verhältnis-Test.
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: Name der Variablen. Default: `none`.
-* __success__ | `string (required)`: Erfolgskategorie von `Variable`. Default: `none`.
+* __success__ | `any (required)`: Erfolgskategorie von `Variable`. Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
 * __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
 * __p0__ | `number`: Anteil unter der Nullhypothese. Default: `0.5`.

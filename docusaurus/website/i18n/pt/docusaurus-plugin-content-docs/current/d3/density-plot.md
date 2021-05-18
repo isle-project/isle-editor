@@ -10,8 +10,8 @@ Um componente de gráfico de densidade baseado em d3.
 
 * __bandwidth__ | `number`: parâmetro de suavização para o estimador de densidade do grão. Default: `4`.
 * __histogram__ | `boolean`: mostrar um histograma ao lado do gráfico de densidade. Default: `true`.
-* __nBins__ | `number`: número de silos para o histograma sobreposto.. Default: `8`.
-* __vline__ | `object`: se fornecido, exibirá uma linha vertical no "valor" fornecido com um determinado "rótulo".. Default: `none`.
+* __nBins__ | `number`: número de silos para o histograma sobreposto. Default: `8`.
+* __vline__ | `object`: se fornecido, exibirá uma linha vertical no "valor" fornecido com um determinado "rótulo". Default: `none`.
 * __xlab__ | `string`: etiqueta do eixo x. Default: `'value'`.
 * __xmax__ | `number`: valor máximo exibido no eixo x. Default: `1`.
 * __xmin__ | `number`: valor mínimo exibido no eixo x. Default: `0`.

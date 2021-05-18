@@ -12,7 +12,7 @@ sidebar_label: Decision Tree
 * __y__ | `(string|Factor) (required)`: переменная результата. Default: `none`.
 * __x__ | `(array<(string|Factor)>|string|Factor) (required)`: одна или несколько переменных предиктора. Default: `none`.
 * __type__ | `string (required)`: `Классификация` для категориальных результатов или `Регрессия` для количественных результатов. Default: `none`.
-* __quantitative__ | `array<string> (required)`: массив переменных в `данных`, которые являются `количественными''.. Default: `none`.
+* __quantitative__ | `array<string> (required)`: массив переменных в `данных`, которые являются `количественными''. Default: `none`.
 * __impurityMeasure__ | `string`: мера загрязнения (`джини` или `энтропия`). Default: `'gini'`.
 * __scoreThreshold__ | `number`: порог разделения баллов. Default: `0.0075`.
 * __maxTreeDepth__ | `number`: максимальная глубина дерева. Default: `5`.

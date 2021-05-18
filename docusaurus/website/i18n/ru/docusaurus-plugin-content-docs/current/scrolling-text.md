@@ -8,11 +8,11 @@ sidebar_label: Scrolling Text
 
 ## Варианты
 
-* __text__ | `array<string>`: текст или список текстов для отображения. Default: `[]`.
+* __text__ | `(string|array<string>)`: текст или список текстов для отображения. Default: `[]`.
 * __loop__ | `boolean`: указывает, будет ли процесс отображаться бесконечно. Default: `false`.
-* __direction__ | `string`: направление потока текста (либо `лево`, `право`, `вверх`, `вниз`, `трекинг`, `фокус`, либо `вихрь`).. Default: `'right'`.
-* __hold__ | `number`: время, в течение которого текст остается неподвижным (в секундах).. Default: `5`.
-* __wait__ | `number`: время до прихода нового текста (в секундах).. Default: `3`.
+* __direction__ | `string`: направление потока текста (либо `лево`, `право`, `вверх`, `вниз`, `трекинг`, `фокус`, либо `вихрь`). Default: `'right'`.
+* __hold__ | `number`: время, в течение которого текст остается неподвижным (в секундах). Default: `5`.
+* __wait__ | `number`: время до прихода нового текста (в секундах). Default: `3`.
 * __inTime__ | `number`: время входного эффекта (в секундах). Default: `1`.
 * __outTime__ | `number`: время эффекта выхода (в секундах). Default: `1`.
 * __className__ | `string`: название класса. Default: `''`.
@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}

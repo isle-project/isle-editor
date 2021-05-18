@@ -15,7 +15,7 @@ Een vraagcomponent die de leerlingen vraagt om een onder- en bovengrens aan te g
 * __labels__ | `array`: twee-element array van aangepaste labels anders dan "Verlaagt" en "Bovenste". Default: `none`.
 * __feedback__ | `boolean`: regelt of er terugmeldingsknoppen moeten worden weergegeven. Default: `true`.
 * __chat__ | `boolean`: bepaalt of het element een geïntegreerde chat moet hebben. Default: `false`.
-* __digits__ | `number`: aantal cijfers dat moet overeenkomen met het antwoord van de oplossing en de gebruiker. Indien niet gegeven of op nul gezet, controleert de component op strikte gelijkheid. Indien ingesteld op 0, controleert de component op gehele gelijkheid.. Default: `3`.
+* __digits__ | `number`: aantal cijfers dat moet overeenkomen met het antwoord van de oplossing en de gebruiker. Indien niet gegeven of op nul gezet, controleert de component op strikte gelijkheid. Indien ingesteld op 0, controleert de component op gehele gelijkheid. Default: `3`.
 * __max__ | `number`: maximale invoerwaarde. Default: `null`.
 * __min__ | `number`: minimale invoerwaarde. Default: `null`.
 * __provideFeedback__ | `boolean`: geeft aan of de feedback, inclusief het juiste antwoord, moet worden weergegeven nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.

@@ -8,7 +8,7 @@ sidebar_label: Video Lecture
 
 ## Варианты
 
-* __controls__ | `boolean`: указывает, следует ли отображать элементы управления видеоплеерами.. Default: `true`.
+* __controls__ | `boolean`: указывает, следует ли отображать элементы управления видеоплеерами. Default: `true`.
 * __instructorView__ | `boolean`: контроль включает ли мнение инструктора. Default: `true`.
 * __linkToDashboard__ | `boolean`: управляет отображением ссылки на приборную панель после завершения видеолекции. Default: `false`.
 * __steps__ | `array (required)`: массив URL-адресов видео и компонентов для отображения между ними. Default: `none`.

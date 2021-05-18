@@ -13,7 +13,7 @@ Una tabella di contingenza.
 * __colVar__ | `(string|Factor) (required)`:  nome della variabile categorica da visualizzare lungo le colonne. Default: `none`.
 * __relativeFreqs__ | `boolean`: controlla se visualizzare le frequenze relative. Default: `false`.
 * __group__ | `(string|Factor)`: nome della variabile di raggruppamento. Default: `none`.
-* __display__ | `(array<string>|string)`: se visualizzare "Percentuale di riga" e/o "Percentuale di colonna".. Default: `[]`.
+* __display__ | `(array<string>|string)`: se visualizzare "Percentuale di riga" e/o "Percentuale di colonna". Default: `[]`.
 * __nDecimalPlaces__ | `number`: numero di cifre decimali per le frequenze relative visualizzate nella tabella. Default: `3`.
 
 

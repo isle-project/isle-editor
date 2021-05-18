@@ -11,7 +11,7 @@ Komponent paginacyjny ISLE, który pozwala użytkownikowi na przejście przez se
 * __activePage__ | `number`: strona aktywna. Default: `1`.
 * __disabled__ | `boolean`: kontroluje, czy pasek nawigacyjny jest aktywny, czy nie. Default: `false`.
 * __title__ | `string`: wyświetlany tytuł strony pojemnika. Default: `''`.
-* __pagination__ | `string`: czy pokazywać paginację albo na "górze", "dole", albo na "obu".. Default: `'top'`.
+* __pagination__ | `string`: czy pokazywać paginację albo na "górze", "dole", albo na "obu". Default: `'top'`.
 * __size__ | `string`: rozmiar przycisków paginacji (albo `default`, `lg`, albo `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: maksymalna wysokość kontenera. Jeśli osadzona strona jest wyższa, dodawany jest pionowy pasek przewijania. Default: `none`.
 * __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.

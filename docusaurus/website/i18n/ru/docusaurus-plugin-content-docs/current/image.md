@@ -18,7 +18,7 @@ sidebar_label: Image
 * __showModal__ | `boolean`: управляет отображением в полноэкранном режиме. Default: `true`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
-* __onShare__ | `function`: вызов обратного вызова с изображением, если нажать кнопку "share".. Default: `none`.
+* __onShare__ | `function`: вызов обратного вызова с изображением, если нажать кнопку "share". Default: `none`.
 
 
 ## Примеры

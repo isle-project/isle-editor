@@ -28,7 +28,7 @@ Een schetsblok voor het maken van aantekeningen op collegeplaten of lege pagina'
 * __noPages__ | `number`: eerste aantal pagina's. Default: `1`.
 * __pdf__ | `string`: link naar PDF-bestand voor ingebakken pagina's. Default: `none`.
 * __showTutorial__ | `boolean`: handleiding voor het schetsblok tonen bij het opstarten. Default: `false`.
-* __dynamicallyHideButtons__ | `boolean`: bepaalt of de knoppen moeten worden verborgen als de breedte van de werkbalk niet voldoende is (anders wordt er een nieuwe regel gestart).. Default: `false`.
+* __dynamicallyHideButtons__ | `boolean`: bepaalt of de knoppen moeten worden verborgen als de breedte van de werkbalk niet voldoende is (anders wordt er een nieuwe regel gestart). Default: `false`.
 * __transmitOwner__ | `boolean`: de vraag of de acties van de eigenaar in real time naar andere gebruikers moeten worden doorgestuurd. Default: `true`.
 * __groupMode__ | `boolean`: controleert of alle handelingen van de gebruiker aan iedereen worden doorgegeven. Default: `false`.
 * __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.

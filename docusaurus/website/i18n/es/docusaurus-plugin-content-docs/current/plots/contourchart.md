@@ -13,7 +13,7 @@ Un gráfico de contorno.
 * __y__ | `string (required)`: variable del eje y. Default: `none`.
 * __overlayPoints__ | `boolean`: controla si se superponen puntos para cada observación. Default: `false`.
 * __smoothSpan__ | `number`: el intervalo de suavizado. Default: `0.66`.
-* __regressionMethod__ | `array<string>`: que contiene "lineal" y/o "suave" para superponer una línea de regresión lineal y/o suave.. Default: `none`.
+* __regressionMethod__ | `array<string>`: que contiene "lineal" y/o "suave" para superponer una línea de regresión lineal y/o suave. Default: `none`.
 * __onSelected__ | `function`: llamada de retorno cuando se seleccionan los puntos con los valores x, y y los puntos seleccionados. Default: `onSelected() {}`.
 
 

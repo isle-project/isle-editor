@@ -14,7 +14,7 @@ Komponente, die eine Bake in der Lektion platziert, entweder unabhängig oder an
 * __placement__ | `string`: Platzierung des Tooltips relativ zu `target` (entweder `top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, oder `center`). Default: `'left'`.
 * __target__ | `string`: Klasse oder ID-Selektor für Element, an das Tooltip angehängt werden soll. Default: `''`.
 * __offset__ | `number`: Abstand zwischen Tooltip und `Target` in Pixel. Default: `15`.
-* __onChange__ | `function`: Callback, der bei einer Zustandsänderung des Tooltips aufgerufen wird. Erhält zwei Argumente: die `Action` (`open` oder `close`) und die übergebenen `Pros`.. Default: `onChange() {}`.
+* __onChange__ | `function`: Callback, der bei einer Zustandsänderung des Tooltips aufgerufen wird. Erhält zwei Argumente: die `Action` (`open` oder `close`) und die übergebenen `Pros`. Default: `onChange() {}`.
 
 
 ## Beispiele

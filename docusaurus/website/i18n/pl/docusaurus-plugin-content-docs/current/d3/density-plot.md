@@ -10,7 +10,7 @@ Składnik powierzchni o gęstości d3.
 
 * __bandwidth__ | `number`: parametr wygładzający dla estymatora gęstości jądra. Default: `4`.
 * __histogram__ | `boolean`: pokazać histogram obok wykresu gęstości. Default: `true`.
-* __nBins__ | `number`: liczba pojemników na histogram.. Default: `8`.
+* __nBins__ | `number`: liczba pojemników na histogram. Default: `8`.
 * __vline__ | `object`: jeśli jest dostarczony, wyświetli pionową linię na dostarczonej `wartości` z danym `etykietą`. Default: `none`.
 * __xlab__ | `string`: Etykieta osi x. Default: `'value'`.
 * __xmax__ | `number`: maksymalna wartość wyświetlana na osi x. Default: `1`.

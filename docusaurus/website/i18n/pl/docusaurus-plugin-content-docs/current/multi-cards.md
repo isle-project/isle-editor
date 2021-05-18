@@ -13,7 +13,7 @@ Komponent ISLE, który pozwala na tworzenie i kontrolowanie wielu przerzucalnych
 * __onChange__ | `function`: funkcja, która otrzymuje matrycę z odwracanych kart. Default: `onChange() {}`.
 * __onMemoryComplete__ | `function`: wywołanie zwrotne wywoływane, gdy gra pamięciowa jest zakończona. Default: `onMemoryComplete() {}`.
 * __oneTime__ | `boolean`: wskazuje, czy proces przerzucania może zostać wykonany tylko raz. Default: `false`.
-* __values__ | `array<object>`: wartości dla poszczególnych kart, wprowadzane w tablicy, która posiada pola wejściowe dla wartości `z przodu` i `z tyłu`. Taką wartością może być łańcuch, ale także pełnoprawny komponent ISLE.. Default: `[]`.
+* __values__ | `array<object>`: wartości dla poszczególnych kart, wprowadzane w tablicy, która posiada pola wejściowe dla wartości `z przodu` i `z tyłu`. Taką wartością może być łańcuch, ale także pełnoprawny komponent ISLE. Default: `[]`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __containerStyle__ | `object`: Styl CSS pojemników na karty. Default: `{}`.
 * __frontStyle__ | `object`: Styl CSS frontu karty. Default: `{}`.

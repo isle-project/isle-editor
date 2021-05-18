@@ -11,7 +11,7 @@ Kruskal-Wallis Test.
 * __data__ | `object (required)`: object van waardevermeerdering. Default: `none`.
 * __variable__ | `string (required)`: variabele naam. Default: `none`.
 * __group__ | `(string|Factor)`: groepsvariabele. Default: `none`.
-* __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen.. Default: `false`.
+* __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen. Default: `false`.
 
 
 ## Voorbeelden

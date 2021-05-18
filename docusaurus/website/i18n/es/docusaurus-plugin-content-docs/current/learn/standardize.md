@@ -9,7 +9,7 @@ Componente de aprendizaje que explica el proceso de normalización de los datos.
 ## Opciones
 
 * __showProbabilities__ | `boolean`: controla si se muestran las probabilidades. Default: `false`.
-* __step__ | `object`: tamaño del paso de la entrada de desplazamiento. Default: `'any'`.
+* __step__ | `(number|string)`: tamaño del paso de la entrada de desplazamiento. Default: `'any'`.
 
 
 ## Ejemplos

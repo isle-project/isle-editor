@@ -19,6 +19,9 @@ Een leercomponent die de Centrale Limietstheorie (CLT) illustreert bij het bemon
 ## Voorbeelden
 
 ```jsx live
-<LearnSampleCLT />
+<LearnSampleCLT 
+    data={heartdisease} 
+    variables={[ 'Gender', 'Drugs', 'Complications', 'Cost', 'Age', 'Interventions', 'ERVisit', 'Comorbidities', 'Duration' ]}
+/>
 ```
 

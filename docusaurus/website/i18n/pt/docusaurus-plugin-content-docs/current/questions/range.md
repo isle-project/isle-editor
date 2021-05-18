@@ -12,10 +12,10 @@ Um componente de perguntas de gama que pede aos estudantes que forneçam um pont
 * __solution__ | `array<number>`: matriz de dois elementos contendo os pontos finais da faixa correta. Default: `none`.
 * __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
-* __labels__ | `array`: dois elementos de rótulos personalizados que não "Baixar" e "Alto".. Default: `none`.
+* __labels__ | `array`: dois elementos de rótulos personalizados que não "Baixar" e "Alto". Default: `none`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.
-* __digits__ | `number`: número de dígitos que têm de corresponder entre a solução e a resposta fornecida pelo usuário. Se não for dado ou definido como nulo, o componente verifica a estrita igualdade. Se definido como 0, verifica se há igualdade total.. Default: `3`.
+* __digits__ | `number`: número de dígitos que têm de corresponder entre a solução e a resposta fornecida pelo usuário. Se não for dado ou definido como nulo, o componente verifica a estrita igualdade. Se definido como 0, verifica se há igualdade total. Default: `3`.
 * __max__ | `number`: valor máximo de entrada. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada. Default: `null`.
 * __provideFeedback__ | `boolean`: indica se o feedback, incluindo a resposta correta, deve ser exibido depois que os alunos enviarem suas respostas. Default: `true`.

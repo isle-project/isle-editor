@@ -18,10 +18,10 @@ Pytanie z odpowiedzią składającą się z wielu pól wyboru.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __provideFeedback__ | `string`: czy w ogóle przekazywać "żadne" informacje zwrotne, "indywidualne" informacje zwrotne dotyczące przedłożonych odpowiedzi, czy też "ogólne" informacje zwrotne dotyczące wszystkich pytań. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: czy zezwolić na składanie wniosków bez zaznaczenia w każdym polu wyboru. Default: `false`.
-* __nTries__ | `number`: po ilu próbach nie są akceptowane żadne dalsze odpowiedzi (jeśli `provideFeedback` nie jest `żadna`).. Default: `3`.
+* __nTries__ | `number`: po ilu próbach nie są akceptowane żadne dalsze odpowiedzi (jeśli `provideFeedback` nie jest `żadna`). Default: `3`.
 * __failureMsg__ | `string`: tekst powiadomienia wyświetlany po udzieleniu błędnych odpowiedzi. Default: `none`.
 * __successMsg__ | `string`: tekst powiadomienia wyświetlany po udzieleniu prawidłowych odpowiedzi. Default: `none`.
-* __cellLabels__ | `object`: etykiety dla komórek zdefiniowanych przez obiekt o kluczach w formacie `row:col`.. Default: `{}`.
+* __cellLabels__ | `object`: etykiety dla komórek zdefiniowanych przez obiekt o kluczach w formacie `row:col`. Default: `{}`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
@@ -55,9 +55,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
@@ -73,9 +73,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
     hints={[
@@ -104,9 +104,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
 ```
@@ -124,9 +124,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />

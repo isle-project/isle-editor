@@ -10,13 +10,13 @@ Um componente ISLE que torna uma questão de múltipla escolha. Ele apóia o cas
 
 * __question__ | `(string|node)`: a questão exibida na parte superior do componente de múltipla escolha. Default: `''`.
 * __solution__ | `(number|array)`: número denotando qual resposta está correta ou uma "arraia" dos números de resposta corretos no caso de o aluno ser capaz de selecionar múltiplas respostas. Default: `none`.
-* __answers__ | `array (required)`: uma "briga" de objetos de resposta. Cada resposta deve ser um objeto com campos "conteúdo" e "explicação", que denotam a opção de resposta exibida e uma explicação visível após a pergunta ter sido submetida para explicar porque a resposta está correta ou incorreta.. Default: `none`.
+* __answers__ | `array (required)`: uma "briga" de objetos de resposta. Cada resposta deve ser um objeto com campos "conteúdo" e "explicação", que denotam a opção de resposta exibida e uma explicação visível após a pergunta ter sido submetida para explicar porque a resposta está correta ou incorreta. Default: `none`.
 * __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __disabled__ | `boolean`: controla se a questão está desativada. Default: `false`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.
-* __provideFeedback__ | `string`: seja "cheio", "incremental", ou "ninguém". Se `full`, o feedback incluindo a resposta correta é exibido após os alunos submeterem suas respostas; se `incremental`, o feedback é exibido apenas para a resposta selecionada; se `none`, nenhum feedback é retornado.. Default: `'incremental'`.
+* __provideFeedback__ | `string`: seja "cheio", "incremental", ou "ninguém". Se `full`, o feedback incluindo a resposta correta é exibido após os alunos submeterem suas respostas; se `incremental`, o feedback é exibido apenas para a resposta selecionada; se `none`, nenhum feedback é retornado. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controla se as notificações de submissão devem ser desativadas. Default: `false`.
 * __displaySolution__ | `boolean`: controla se a solução é apresentada à partida. Default: `false`.
 * __voiceID__ | `string`: identificador de controle de voz. Default: `none`.

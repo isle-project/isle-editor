@@ -10,7 +10,7 @@ Po kliknięciu słów wyciągnij dokumentację R w oknie modalnym.
 
 * __func__ | `string`: nazwa funkcji `R`, dla której należy otworzyć dokumentację. Jeśli nie została dostarczona, przyjmuje się, że zawartość znacznika `RHelp` jest równa nazwie funkcji. Default: `''`.
 * __library__ | `string`: nazwa pakietu R, w którym znajduje się dana funkcja. Default: `'base'`.
-* __visible__ | `boolean`: kontroluje, czy okno pomocy modalnej powinno być otwarte podczas uruchamiania.. Default: `false`.
+* __visible__ | `boolean`: kontroluje, czy okno pomocy modalnej powinno być otwarte podczas uruchamiania. Default: `false`.
 
 
 ## Przykłady

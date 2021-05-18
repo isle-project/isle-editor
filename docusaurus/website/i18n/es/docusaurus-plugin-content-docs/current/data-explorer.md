@@ -11,7 +11,7 @@ Los estudiantes utilizan este componente para resumir brevemente los datos a med
 * __categorical__ | `array`: una serie de cadenas que indican el nombre de cada variable categórica. Default: `[]`.
 * __quantitative__ | `array`: una serie de cadenas que indican el nombre de cada variable cuantitativa. Default: `[]`.
 * __data__ | `object`: objeto de datos o matriz para ser vistos. Si se trata de un objeto, las claves corresponden a los valores de las columnas, mientras que una matriz esperará una matriz de objetos con un campo nombrado correspondiente a cada columna. Si desea permitir a los estudiantes la posibilidad de importar un archivo `.csv`, establezca la opción `datos` como `falso`. Default: `{}`.
-* __dataInfo__ | `object`: objeto que contiene las claves "name", cuyo valor es una cadena, "info", cuyo valor es un conjunto de cadenas en las que cada elemento del conjunto es una nueva línea y "variables", un objeto con claves como nombres de variables y valores como descripciones de variables.. Default: `{
+* __dataInfo__ | `object`: objeto que contiene las claves "name", cuyo valor es una cadena, "info", cuyo valor es un conjunto de cadenas en las que cada elemento del conjunto es una nueva línea y "variables", un objeto con claves como nombres de variables y valores como descripciones de variables. Default: `{
   'info': '',
   'name': '',
   'variables': null,

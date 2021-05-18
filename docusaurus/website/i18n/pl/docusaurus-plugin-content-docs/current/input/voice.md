@@ -20,7 +20,7 @@ Komponent wejścia głosowego.
 * __onRecordingStart__ | `function`: funkcja callback wywoływana przy rozpoczęciu nagrywania. Default: `onRecordingStart() {}`.
 * __onRecordingStop__ | `function`: funkcja callback wywoływana po zatrzymaniu nagrywania. Default: `onRecordingStop() {}`.
 * __onSegment__ | `function`: funkcja wywołania zwrotnego z segmentami tekstowymi. Default: `onSegment() {}`.
-* __onSubmit__ | `function`: funkcja callback podczas wysyłania wartości wprowadzania tekstu poprzez naciśnięcie "Enter".. Default: `onSubmit() {}`.
+* __onSubmit__ | `function`: funkcja callback podczas wysyłania wartości wprowadzania tekstu poprzez naciśnięcie "Enter". Default: `onSubmit() {}`.
 * __placeholder__ | `string`: miejsce na wprowadzenie tekstu. Default: `none`.
 * __remote__ | `object`: obiekt z "startem", "zatrzymaniem", "przełączaniem" i powiązanymi klawiszami funkcyjnymi. Default: `none`.
 * __className__ | `string`: nazwa klasy. Default: `''`.

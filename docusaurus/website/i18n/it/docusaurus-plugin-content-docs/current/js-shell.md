@@ -19,7 +19,7 @@ Una shell Javascript interattiva che può essere utilizzata per eseguire comandi
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onChange__ | `function`: richiamata ogni volta che l'inserimento del campo di testo cambia. Default: `onChange() {}`.
-* __onEvaluate__ | `function`: richiamata ogni volta che si clicca sul pulsante `Evaluta`.. Default: `onEvaluate() {}`.
+* __onEvaluate__ | `function`: richiamata ogni volta che si clicca sul pulsante `Evaluta`. Default: `onEvaluate() {}`.
 * __vars__ | `object`: oggetto scope con variabili che dovrebbero essere rese disponibili al `codice` valutato. Default: `none`.
 * __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 

@@ -12,7 +12,7 @@ Una domanda con una risposta composta da più caselle di selezione.
 * __rows__ | `array`: etichette di fila. Default: `[]`.
 * __cols__ | `array`: etichette a colonna. Default: `[]`.
 * __options__ | `object`: con coppie chiave-valore con chiavi aventi la forma `row:col`, p.e. `0:0`, `0:1`, `1:0` ecc. e i loro valori corrispondenti sono array delle possibili scelte di risposta per le singole domande selezionate. Default: `{}`.
-* __solution__ | `object`: oggetto soluzione con coppie chiave-valore con chiavi che hanno la forma `row:col`, p.e. `0:0`, `0:1`, `1:0` ecc. e i loro valori corrispondenti sono l'indice dell'elemento di risposta corretto dalla rispettiva matrice `options`.. Default: `{}`.
+* __solution__ | `object`: oggetto soluzione con coppie chiave-valore con chiavi che hanno la forma `row:col`, p.e. `0:0`, `0:1`, `1:0` ecc. e i loro valori corrispondenti sono l'indice dell'elemento di risposta corretto dalla rispettiva matrice `options`. Default: `{}`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
 * __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'bottom'`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
@@ -55,9 +55,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
@@ -73,9 +73,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
     hints={[
@@ -104,9 +104,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />
 ```
@@ -124,9 +124,9 @@ import TabItem from '@theme/TabItem';
     cols={[ '18th Century', '19th Century' ]} 
     options={{ 
         '0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'], 
-        '0:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+        '0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
         '1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-        '1:1':  [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
+        '1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] 
     }} 
     solution={{ '0:0': 0, '0:1': 2, '1:0': 1, '1:1': 0 }}
 />

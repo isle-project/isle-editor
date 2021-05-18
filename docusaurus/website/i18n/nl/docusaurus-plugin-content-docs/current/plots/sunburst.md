@@ -13,7 +13,7 @@ Een d3-gebaseerd zonneplot voor het weergeven van paden.
 * __width__ | `number`: breedte van het perceel (in px). Default: `750`.
 * __height__ | `number`: hoogte van het perceel (in px). Default: `600`.
 * __style__ | `object`: CSS inline stijlen. Default: `{}`.
-* __breadcrumbs__ | `{w,h,s,t}`: object met afmetingen: W' voor breedte, 'H' voor hoogte, 'S' voor afstand, 'T' voor breedte van tip/staart.. Default: `{
+* __breadcrumbs__ | `{w,h,s,t}`: object met afmetingen: W' voor breedte, 'H' voor hoogte, 'S' voor afstand, 'T' voor breedte van tip/staart. Default: `{
   'w': 250,
   'h': 50,
   's': 5,

@@ -8,7 +8,7 @@ Un componente de aprendizaje en pruebas de hipótesis para un promedio de poblac
 
 ## Opciones
 
-* __types__ | `array<string>`: el tipo de prueba (una muestra, dos muestras) que el widget debe exponer.. Default: `[
+* __types__ | `array<string>`: el tipo de prueba (una muestra, dos muestras) que el widget debe exponer. Default: `[
   'One-Sample',
   'Two-Sample'
 ]`.

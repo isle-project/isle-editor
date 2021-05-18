@@ -13,7 +13,7 @@ sidebar_label: Contingency Table
 * __colVar__ | `(string|Factor) (required)`:  имя категориальной переменной для отображения вдоль столбцов. Default: `none`.
 * __relativeFreqs__ | `boolean`: управляет отображением относительных частот. Default: `false`.
 * __group__ | `(string|Factor)`: имя группирующей переменной. Default: `none`.
-* __display__ | `(array<string>|string)`: отображать ли на экране `Строка процентов` и/или `Строка процентов`.. Default: `[]`.
+* __display__ | `(array<string>|string)`: отображать ли на экране `Строка процентов` и/или `Строка процентов`. Default: `[]`.
 * __nDecimalPlaces__ | `number`: количество знаков после запятой для относительных частот, отображаемых в таблице. Default: `3`.
 
 

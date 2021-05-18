@@ -14,7 +14,7 @@ Komponent umieszczający latarnię nawigacyjną na lekcji, albo samodzielnie, al
 * __placement__ | `string`: umieszczenie końcówki narzędzia względem "celu" (`top`, `top-start`, `top-end`, `bottom`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`, `auto`, lub `center`). Default: `'left'`.
 * __target__ | `string`: selektor klasy lub ID elementu do dołączenia etykiety narzędzia do. Default: `''`.
 * __offset__ | `number`: odległość pomiędzy końcówką narzędzia a "celem" w pikselach. Default: `15`.
-* __onChange__ | `function`: wywołanie zwrotne po zmianie stanu etykiety narzędzia. Otrzymuje dwa argumenty: `aktion` (`otwarcie` lub `zamknięcie`) oraz przekazane `propy`.. Default: `onChange() {}`.
+* __onChange__ | `function`: wywołanie zwrotne po zmianie stanu etykiety narzędzia. Otrzymuje dwa argumenty: `aktion` (`otwarcie` lub `zamknięcie`) oraz przekazane `propy`. Default: `onChange() {}`.
 
 
 ## Przykłady

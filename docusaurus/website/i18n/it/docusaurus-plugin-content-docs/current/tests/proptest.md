@@ -10,7 +10,7 @@ Test delle proporzioni di un campione.
 
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variable__ | `(string|Factor) (required)`: nome della variabile. Default: `none`.
-* __success__ | `string (required)`: categoria di successo di "variabile. Default: `none`.
+* __success__ | `any (required)`: categoria di successo di "variabile. Default: `none`.
 * __alpha__ | `number`: livello di significatività. Default: `0.05`.
 * __direction__ | `string`: direzione di prova (sia `less`, `greater`, o `two-sided`). Default: `'two-sided'`.
 * __p0__ | `number`: proporzione sotto l'ipotesi nulla. Default: `0.5`.

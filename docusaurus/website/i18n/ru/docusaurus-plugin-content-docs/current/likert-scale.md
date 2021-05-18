@@ -9,7 +9,7 @@ sidebar_label: Likert Scale
 ## Варианты
 
 * __question__ | `(string|node)`: вопрос для печати. Default: `''`.
-* __options__ | `array`: массив из пяти элементов, содержащих метки для различных уровней шкалы.. Default: `none`.
+* __options__ | `array`: массив из пяти элементов, содержащих метки для различных уровней шкалы. Default: `none`.
 * __noMultipleResponses__ | `boolean`: запретить несколько работ от одного ученика. Default: `false`.
 * __disableSubmitNotification__ | `boolean`: контроль выключения подачи уведомлений. Default: `false`.
 * __className__ | `string`: название класса. Default: `''`.

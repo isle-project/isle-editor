@@ -8,7 +8,7 @@ Exibe um timer que acionará uma chamada de retorno pré-definida quando o tempo
 
 ## Opções
 
-* __id__ | `string`: a identificação única "string" para o temporizador. Se um ID for definido, o componente do temporizador é persistente ao longo da página.. Default: `none`.
+* __id__ | `string`: a identificação única "string" para o temporizador. Se um ID for definido, o componente do temporizador é persistente ao longo da página. Default: `none`.
 * __active__ | `boolean (required)`: bandeira que pode ser hasteada para iniciar ou pausar o temporizador. Default: `none`.
 * __belowZero__ | `boolean`: controla se o temporizador continua contando depois de esgotada a duração. Default: `false`.
 * __duration__ | `number (required)`: duração em segundos para o temporizador. Default: `none`.

@@ -10,7 +10,7 @@ sidebar_label: Select Question
 
 * __question__ | `(string|node)`: 択一問題. Default: `''`.
 * __options__ | `array (required)`: 学生が選択できる解答の選択肢があります。. Default: `none`.
-* __solution__ | `number (required)`: options` のソリューション要素のインデックス. Default: `none`.
+* __solution__ | `number`: options` のソリューション要素のインデックス. Default: `none`.
 * __preselected__ | `number`: 選択された解答選択肢の索引. Default: `0`.
 * __inline__ | `boolean`: は、コンポーネントがインラインでレンダリングされるかどうかを制御します。. Default: `false`.
 * __hintPlacement__ | `string`: ヒントの配置 (`top`, `left`, `right`, `bottom` のいずれか). Default: `'top'`.

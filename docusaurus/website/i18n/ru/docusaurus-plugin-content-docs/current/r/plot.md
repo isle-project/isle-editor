@@ -13,11 +13,11 @@ sidebar_label: R Plot
 * __height__ | `(number|string)`: высота участка (в px). Default: `'auto'`.
 * __draggable__ | `boolean`: контролирует, следует ли перетаскивать участок. Default: `false`.
 * __fileType__ | `string`: тип файла сюжета (`png` или `svg`). Default: `'svg'`.
-* __libraries__ | `array`: R библиотек, которые должны быть загружены автоматически при выполнении входного `кода`.. Default: `[]`.
+* __libraries__ | `array`: R библиотек, которые должны быть загружены автоматически при выполнении входного `кода`. Default: `[]`.
 * __prependCode__ | `(string|array)`: `строка` или `массив` из фрагментов кода R, которые должны быть подготовлены к коду, хранящемуся в `коде` при оценке. Default: `''`.
 * __meta__ | `object`: сюжетная мета-информация. Default: `none`.
 * __className__ | `string`: название класса. Default: `''`.
-* __onDone__ | `function`: вызов обратного вызова с аргументами `err`, `img` и `body` после создания сюжета.. Default: `onDone() {}`.
+* __onDone__ | `function`: вызов обратного вызова с аргументами `err`, `img` и `body` после создания сюжета. Default: `onDone() {}`.
 
 
 ## Примеры

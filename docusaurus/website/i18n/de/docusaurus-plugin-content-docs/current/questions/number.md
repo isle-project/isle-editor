@@ -13,7 +13,7 @@ Eine Komponente für Zahlenfragen.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Tasten angezeigt werden sollen. Default: `true`.
 * __solution__ | `(number|array<number>)`: eine numerische Antwort auf das Problem (oder mehrere richtige Antworten, wenn ein Array geliefert wird). Default: `none`.
-* __digits__ | `number`: Anzahl der Ziffern, für die die vom Kursteilnehmer gelieferte Antwort mit der Lösung übereinstimmen muss, um als korrekt zu gelten. Auf 0 gesetzt, um als Ganzzahl übereinzustimmen. Wenn auf Null gesetzt, wird nach einer exakten Übereinstimmung gesucht.. Default: `3`.
+* __digits__ | `number`: Anzahl der Ziffern, für die die vom Kursteilnehmer gelieferte Antwort mit der Lösung übereinstimmen muss, um als korrekt zu gelten. Auf 0 gesetzt, um als Ganzzahl übereinzustimmen. Wenn auf Null gesetzt, wird nach einer exakten Übereinstimmung gesucht. Default: `3`.
 * __max__ | `number`: maximal zulässiger Eingangswert. Default: `null`.
 * __min__ | `number`: minimal zulässiger Eingangswert. Default: `null`.
 * __defaultValue__ | `number`: Vorgewählter Wert der Zahleneingabe. Default: `0`.

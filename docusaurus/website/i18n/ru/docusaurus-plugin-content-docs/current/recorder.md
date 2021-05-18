@@ -13,7 +13,7 @@ ISLE компонент для записи аудио, экрана и виде
 * __screen__ | `boolean`: указывает, нужно ли снимать экран. Default: `false`.
 * __autostart__ | `boolean`: указывает, следует ли начинать запись немедленно. Default: `false`.
 * __downloadable__ | `boolean`: указывает, должны ли пользователи иметь возможность загрузить запись. Default: `false`.
-* __uploadable__ | `boolean`: указывает, должны ли пользователи иметь возможность загружать запись на сервер.. Default: `false`.
+* __uploadable__ | `boolean`: указывает, должны ли пользователи иметь возможность загружать запись на сервер. Default: `false`.
 * __bitsPerSecond__ | `number`: биты в секунду. Default: `1280000`.
 * __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.

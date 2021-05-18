@@ -10,8 +10,8 @@ Deze component wordt door de studenten gebruikt om de gegevens kort samen te vat
 
 * __categorical__ | `array`: array van strings die de naam van elke categorische variabele aangeven. Default: `[]`.
 * __quantitative__ | `array`: reeks reeksen strengen met aanduiding van de naam van elke kwantitatieve variabele. Default: `[]`.
-* __data__ | `object`: data-object of -array te bekijken. Als het een object is, komen de toetsen overeen met kolomwaarden, terwijl een array een array van objecten verwacht met een naamsveld dat overeenkomt met elke kolom. Als je leerlingen de mogelijkheid wilt geven om een `.csv` bestand te importeren, stel dan de `data` optie in op `false`.. Default: `{}`.
-* __dataInfo__ | `object`: object met de toetsen 'naam', waarvan de waarde een string is, 'info', waarvan de waarde een array van strings is waarin elk element in de array een nieuwe regel is en 'variabelen', een object met toetsen als variabele namen en waarden als variabele beschrijvingen.. Default: `{
+* __data__ | `object`: data-object of -array te bekijken. Als het een object is, komen de toetsen overeen met kolomwaarden, terwijl een array een array van objecten verwacht met een naamsveld dat overeenkomt met elke kolom. Als je leerlingen de mogelijkheid wilt geven om een `.csv` bestand te importeren, stel dan de `data` optie in op `false`. Default: `{}`.
+* __dataInfo__ | `object`: object met de toetsen 'naam', waarvan de waarde een string is, 'info', waarvan de waarde een array van strings is waarin elk element in de array een nieuwe regel is en 'variabelen', een object met toetsen als variabele namen en waarden als variabele beschrijvingen. Default: `{
   'info': '',
   'name': '',
   'variables': null,
