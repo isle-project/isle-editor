@@ -1,0 +1,532 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
+<div
+  className="card"
+  id="diceThrowingModule"
+  style={
+    Object {
+      "margin": "0 auto",
+      "maxWidth": 1200,
+    }
+  }
+>
+  <h4
+    className="card-header"
+  >
+    simulate-random-dice-throws
+  </h4>
+  <div
+    className="card-body"
+  >
+    <div
+      className="input"
+      style={
+        Object {
+          "marginBottom": "4px",
+          "marginTop": "4px",
+        }
+      }
+    >
+      <span>
+        <label
+          htmlFor="number-input-1"
+        >
+          number-of-sides:
+        </label>
+      </span>
+      <span
+        className="number-input-span"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <input
+          autoComplete="off"
+          className="number-number-input"
+          disabled={false}
+          id="number-input-1"
+          max={20}
+          min={2}
+          name="input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          onKeyPress={[Function]}
+          onKeyUp={[Function]}
+          step={1}
+          style={
+            Object {
+              "marginLeft": "24px",
+              "width": "80px",
+            }
+          }
+          type="number"
+          value={6}
+        />
+      </span>
+    </div>
+    <p>
+      choose-custom-probs
+    </p>
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-5"
+        >
+          <h3>
+            probabilities
+            :
+          </h3>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-2"
+              >
+                Side 1:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-2"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-3"
+              >
+                Side 2:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-3"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-4"
+              >
+                Side 3:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-4"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-5"
+              >
+                Side 4:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-5"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-6"
+              >
+                Side 5:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-6"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <div
+            className="input"
+            style={
+              Object {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="number-input-7"
+              >
+                Side 6:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="number-input-7"
+                max={1}
+                min={0}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                step="any"
+                style={
+                  Object {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="text"
+                value={0.16666666666666666}
+              />
+            </span>
+          </div>
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            reset
+          </button>
+        </div>
+        <div
+          className="col-md-6"
+        >
+          <div
+            className="card"
+            fluid={true}
+          >
+            <div
+              className="card-header"
+            >
+              dice
+            </div>
+            <div
+              className="card-body"
+            >
+              <div
+                className="card"
+              >
+                <div
+                  className="card-body"
+                >
+                  X
+                </div>
+              </div>
+              <div
+                className="btn-group"
+                role="group"
+              >
+                <button
+                  className="btn btn-primary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  throw
+                   ⚅ 1x
+                </button>
+                <button
+                  className="btn btn-primary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  throw
+                   ⚅ 5x
+                </button>
+                <button
+                  className="btn btn-primary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  throw
+                   ⚅ 10x
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col-md-1"
+        />
+      </div>
+    </div>
+    <table
+      className="table table-bordered table-responsive-sm"
+    >
+      <tbody>
+        <tr>
+          <th>
+            side
+            :
+          </th>
+          <td>
+            1
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+            3
+          </td>
+          <td>
+            4
+          </td>
+          <td>
+            5
+          </td>
+          <td>
+            6
+          </td>
+        </tr>
+        <tr>
+          <th>
+            count
+            :
+          </th>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+        </tr>
+        <tr>
+          <th>
+            relative-frequency
+            :
+          </th>
+          <td>
+            0.000
+          </td>
+          <td>
+            0.000
+          </td>
+          <td>
+            0.000
+          </td>
+          <td>
+            0.000
+          </td>
+          <td>
+            0.000
+          </td>
+          <td>
+            0.000
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      total-number-of-throws
+      : 
+      0
+    </p>
+  </div>
+</div>
+`;

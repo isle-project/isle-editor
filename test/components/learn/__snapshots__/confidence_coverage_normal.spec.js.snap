@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnConfidenceCoverageNormal /> renders a learning component 1`] = `
+<div
+  className="coverage-card card"
+>
+  <h4
+    className="card-header"
+  >
+    confidence-interval-coverage-mean
+  </h4>
+  <div
+    className="card-body"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <p>
+          <div />
+          . 
+          then
+           
+          <div />
+          . 
+          normal-intro
+           
+          .
+          For our choice of sample size (n), 
+          <div />
+          , 
+          <div />
+          , and confidence level, we will simulate 20 different samples from our normal distribution and calculate the corresponding sample means and confidence intervals.
+        </p>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-5"
+        />
+        <div
+          className="col-md-7"
+        >
+          <div
+            className="card"
+          >
+            <h4
+              className="card-header"
+            >
+              confidence-intervals
+            </h4>
+            <div
+              className="card-body"
+            >
+              <p>
+                capture-true-proportion
+                 
+                <b>
+                  (
+                  coverage
+                  :  
+                  0
+                  ).
+                </b>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

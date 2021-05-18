@@ -3,14 +3,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom/extend-expect';
-import LeanrDiscreteCLT from '@isle-project/components/learn/clt-discrete/main.js';
+import LearnMeanTest from '@isle-project/components/learn/hypothesis-testing-mean/main.js';
 
 
 // TESTS //
 
-describe( '<LeanrDiscreteCLT />', function test() {
+describe( '<LearnMeanTest />', function test() {
 	it( 'renders a learning component', () => {
-		const learning = renderer.create( <LeanrDiscreteCLT /> );
+		const learning = renderer.create( <LearnMeanTest /> );
 		expect( learning ).toMatchSnapshot();
 	});
 });

@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
+<div
+  style={
+    Object {
+      "margin": "0 auto",
+      "maxWidth": 1200,
+    }
+  }
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-md-12"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-md-6"
+                >
+                  <span
+                    className="title"
+                  >
+                    binomial-distribution
+                  </span>
+                  <div
+                    className="input"
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="number-input-1"
+                      >
+                        n:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="number-input-1"
+                        max={500}
+                        min={1}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        step={1}
+                        style={
+                          Object {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={10}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="input"
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="number-input-2"
+                      >
+                        p:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="number-input-2"
+                        max={1}
+                        min={0}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        step={0.01}
+                        style={
+                          Object {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={0.5}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="col-md-6"
+                >
+                  <p>
+                    <span
+                      className="title"
+                    >
+                      population-proportion
+                    </span>
+                     
+                    <div />
+                  </p>
+                  <p>
+                    <span
+                      className="title"
+                    >
+                      population-standard-deviation
+                    </span>
+                    <div />
+                  </p>
+                  <div
+                    className="btn-group btn-group-sm"
+                    role="group"
+                  >
+                    <button
+                      className="btn btn-primary"
+                      disabled={false}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      draw-sample
+                    </button>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      disabled={false}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      draw-25-samples
+                    </button>
+                    <button
+                      className="btn btn-primary btn-sm"
+                      disabled={false}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      clear
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-md-6"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-body"
+          >
+            <span
+              className="title"
+            >
+              number-of-samples
+               
+              0
+               
+            </span>
+            <button
+              className="btn btn-secondary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "80px",
+                }
+              }
+              type="button"
+            >
+              hide-data-dists
+            </button>
+          </div>
+        </div>
+        <div
+          className="card"
+        >
+          <div
+            className="card-body"
+          >
+            <span
+              className="title"
+            >
+              histogram-of
+               
+              <div />
+              's
+            </span>
+            <div
+              className="input checkbox-input-div"
+              id="checkbox-input-1"
+              style={Object {}}
+            >
+              <input
+                aria-label=""
+                checked={false}
+                className="checkbox-input"
+                disabled={false}
+                onChange={[Function]}
+                type="checkbox"
+                value="checkbox"
+              />
+              <span
+                className="checkbox-legend"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "color": null,
+                  }
+                }
+                tabIndex={0}
+              >
+                overlay-normal-density
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-md-6"
+      >
+        <div
+          className="card"
+          style={
+            Object {
+              "height": "400px",
+              "overflowY": "scroll",
+            }
+          }
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="react-grid-layout layout"
+              onDragEnter={[Function]}
+              onDragLeave={[Function]}
+              onDragOver={[Function]}
+              onDrop={[Function]}
+              style={
+                Object {
+                  "height": "10px",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
