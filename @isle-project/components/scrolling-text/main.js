@@ -153,7 +153,10 @@ const ScrollingText = ({ text, loop, direction, wait, inTime, outTime, hold, cla
 // PROPERTIES //
 
 ScrollingText.propTypes = {
-	text: PropTypes.arrayOf( PropTypes.string ),
+	text: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.arrayOf( PropTypes.string )
+	]),
 	loop: PropTypes.bool,
 	direction: PropTypes.string,
 	hold: PropTypes.number,

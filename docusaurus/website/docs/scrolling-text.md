@@ -39,7 +39,7 @@ import TabItem from '@theme/TabItem';
 
 ```jsx live
 <ScrollingText
-    text= "This is a text re-appearing every five seconds"
+    text="This is a text re-appearing every five seconds"
     style={{ fontSize: 44, color: 'blue' }}
     wait={5}
     hold={2}
