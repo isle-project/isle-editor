@@ -780,7 +780,7 @@
 	"NumberQuestion-description": "一个数字问题的组成部分。",
 	"NumberQuestion-prop-chat": "控制该元素是否应该有一个集成的聊天",
 	"NumberQuestion-prop-defaultValue": "预先选择的数字输入值",
-	"NumberQuestion-prop-digits": "学生提供的答案必须与解法相匹配才算正确的数字。设为0则为整数匹配。如果设置为空，将搜索完全匹配的答案。",
+	"NumberQuestion-prop-digits": "学生提供的答案必须与解决方案相匹配才能被认为是正确的数字。设置为0可以作为一个整数进行匹配。如果设置为空，它将搜索一个完全匹配的答案。",
 	"NumberQuestion-prop-disableSubmitNotification": "控制是否禁用提交通知",
 	"NumberQuestion-prop-feedback": "控制是否显示反馈按钮",
 	"NumberQuestion-prop-hintPlacement": "提示的位置（可以是 \"上\"、\"左\"、\"右 \"或 \"下\"）。",

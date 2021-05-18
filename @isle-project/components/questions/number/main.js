@@ -87,7 +87,7 @@ function formatArraySolution( solution, t ) {
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
 * @property {(number|Array<number>)} solution - a numeric answer to the problem (or multiple correct answers if an array is supplied)
-* @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.
+* @property {number} digits - number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match
 * @property {number} max - maximum allowed input value
 * @property {number} min - minimum allowed input value
 * @property {number} defaultValue - pre-selected value of number input

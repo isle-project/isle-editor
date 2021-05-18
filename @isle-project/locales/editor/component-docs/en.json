@@ -780,7 +780,7 @@
 	"NumberQuestion-description": "A number question component.",
 	"NumberQuestion-prop-chat": "controls whether the element should have an integrated chat",
 	"NumberQuestion-prop-defaultValue": "pre-selected value of number input",
-	"NumberQuestion-prop-digits": "number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match.",
+	"NumberQuestion-prop-digits": "number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match",
 	"NumberQuestion-prop-disableSubmitNotification": "controls whether to disable submission notifications",
 	"NumberQuestion-prop-feedback": "controls whether to display feedback buttons",
 	"NumberQuestion-prop-hintPlacement": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",
