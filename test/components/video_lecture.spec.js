@@ -15,7 +15,7 @@ describe( '<VideoLecture />', function test() {
 			steps={[
 				'https://www.youtube.com/watch?v=Lkj8b25ppZo',
 				'https://www.youtube.com/watch?v=Lkj8b25ppZo',
-				'https://www.youtube.com/watch?v=Lkj8b25ppZo',
+				'https://www.youtube.com/watch?v=Lkj8b25ppZo'
 			]}
 		/> );
 		expect( container ).not.toBeEmptyDOMElement();

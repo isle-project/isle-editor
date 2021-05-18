@@ -24,7 +24,7 @@ describe( '<SelectQuestionMatrix />', function test() {
 				cols={[ '18th Century', '19th Century' ]}
 				options={{
 					'0:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
-					'0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'] ,
+					'0:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner'],
 					'1:0': [ 'Philipp Emmanuel Bach', 'Johann Wolfgang von Goethe', 'Nicolas Poussin'],
 					'1:1': [ 'Gustave Flaubert', 'Gustave Courbet', 'Richard Wagner']
 				}}
