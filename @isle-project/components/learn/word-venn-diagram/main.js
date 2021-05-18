@@ -11,8 +11,6 @@ import * as d3 from 'd3';
 import isStringArray from '@stdlib/assert/is-string-array';
 import lowercase from '@stdlib/string/lowercase';
 import trim from '@stdlib/string/trim';
-import randu from '@stdlib/random/base/randu';
-import round from '@stdlib/math/base/special/round';
 import copy from '@stdlib/utils/copy';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
@@ -56,8 +54,7 @@ class WordVennDiagram extends Component {
 			freqs: [],
 			minCount: [ 1 ],
 			nWords: 1,
-			tdm,
-			id: 'venn'+round( randu()*1000 )
+			tdm
 		};
 	}
 
@@ -299,7 +296,7 @@ class WordVennDiagram extends Component {
 							right: 40,
 							top: 50
 						}}>{t('total-texts')}: {this.props.nTexts}</span>
-						<div id={this.state.id}></div>
+						<div></div>
 					</Card.Body>
 				</Card>
 			</Fragment>
