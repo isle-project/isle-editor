@@ -12,14 +12,12 @@ This patch release comes with the following improvements:
 -   Log interactions with <IFrame /> component
 -   Fixes various property types and property descriptions
 
-## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5)
+## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
 
 This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
 It also comes with a patch that fixes restoring original data from restricted data sets when using a shared custom data explorer.
 
 ## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-09)
-
-## [v0.75.2](https://github.com/isle-project/isle-editor/releases/tag/v0.75.2) (2021-04-08)
 
 Under `Help -> Release Notes`, one can now retrieve release notes documenting the changes that are introduced with a new editor release. In addition, the release comes with a new checkbox on the export page to indicate whether uploaded lessons should support offline access (previously enabled by default). One might want to uncheck this option when one expects to (repeatedly) change the lesson after users have already accessed it.
 
