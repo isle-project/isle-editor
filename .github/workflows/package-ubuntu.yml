@@ -1,0 +1,20 @@
+name: Package for Ubuntu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package_on_ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with:
+        node-version: 15.x
+    - name: npm install and package
+      run: |
+        npm ci
+        npm run package-ci
+      env:
+        CI: true
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
