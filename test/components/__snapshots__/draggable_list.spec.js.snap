@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DraggableList /> renders a draggable list 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "margin": "0 auto 10px",
+      "maxWidth": "600px",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "border": "1px dashed gray",
+        "cursor": "move",
+        "marginBottom": ".5rem",
+        "opacity": 1,
+        "padding": "0.5rem 1rem",
+      }
+    }
+  >
+    Compact
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "border": "1px dashed gray",
+        "cursor": "move",
+        "marginBottom": ".5rem",
+        "opacity": 1,
+        "padding": "0.5rem 1rem",
+      }
+    }
+  >
+    Large
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "border": "1px dashed gray",
+        "cursor": "move",
+        "marginBottom": ".5rem",
+        "opacity": 1,
+        "padding": "0.5rem 1rem",
+      }
+    }
+  >
+    Midsize
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "border": "1px dashed gray",
+        "cursor": "move",
+        "marginBottom": ".5rem",
+        "opacity": 1,
+        "padding": "0.5rem 1rem",
+      }
+    }
+  >
+    Small
+  </div>
+</div>
+`;

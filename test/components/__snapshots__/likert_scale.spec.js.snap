@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LikertScale /> renders a likert scale 1`] = `
+<div
+  className=" center card"
+  style={
+    Object {
+      "width": "75%",
+    }
+  }
+>
+  <div
+    className="card-body"
+  >
+    <div
+      className="center form-group"
+    >
+      <label>
+        Do you agree with the arguments made by the speaker?
+      </label>
+      <br />
+      <div
+        className="form-check form-check-inline"
+      >
+        <input
+          checked={false}
+          className="form-check-input"
+          disabled={false}
+          onClick={[Function]}
+          type="radio"
+          value="strongly-disagree"
+        />
+        <label
+          className="form-check-label"
+          title=""
+        >
+          strongly-disagree
+        </label>
+      </div>
+      <div
+        className="form-check form-check-inline"
+      >
+        <input
+          checked={false}
+          className="form-check-input"
+          disabled={false}
+          onClick={[Function]}
+          type="radio"
+          value="disagree"
+        />
+        <label
+          className="form-check-label"
+          title=""
+        >
+          disagree
+        </label>
+      </div>
+      <div
+        className="form-check form-check-inline"
+      >
+        <input
+          checked={false}
+          className="form-check-input"
+          disabled={false}
+          onClick={[Function]}
+          type="radio"
+          value="neither-agree-nor-disagree"
+        />
+        <label
+          className="form-check-label"
+          title=""
+        >
+          neither-agree-nor-disagree
+        </label>
+      </div>
+      <div
+        className="form-check form-check-inline"
+      >
+        <input
+          checked={false}
+          className="form-check-input"
+          disabled={false}
+          onClick={[Function]}
+          type="radio"
+          value="agree"
+        />
+        <label
+          className="form-check-label"
+          title=""
+        >
+          agree
+        </label>
+      </div>
+      <div
+        className="form-check form-check-inline"
+      >
+        <input
+          checked={false}
+          className="form-check-input"
+          disabled={false}
+          onClick={[Function]}
+          type="radio"
+          value="strongly-agree"
+        />
+        <label
+          className="form-check-label"
+          title=""
+        >
+          strongly-agree
+        </label>
+      </div>
+    </div>
+    <br />
+    <button
+      className="submit-button btn btn-primary btn-sm"
+      disabled={true}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+    >
+      submit
+    </button>
+    <div />
+  </div>
+</div>
+`;

@@ -83,9 +83,12 @@ function saveFactory( view ) {
 		}
 		setTimeout( revoker, ARBITRARY_REVOKE_TIMEOUT );
 	}
-
-	const saveLink = doc.createElementNS( 'http://www.w3.org/1999/xhtml', 'a' );
-	const canUseSaveLink = 'download' in saveLink;
+	let canUseSaveLink = false;
+	let saveLink;
+	if ( doc && doc.createElementNS ) {
+		saveLink = doc.createElementNS( 'http://www.w3.org/1999/xhtml', 'a' );
+		canUseSaveLink = 'download' in saveLink;
+	}
 	const isSafari = /constructor/i.test( view.HTMLElement ) || view.safari;
 	const isChromeIOS =/CriOS\/[\d]+/.test( navigator.userAgent );
 	const setImmediate = view.setImmediate || view.setTimeout;
