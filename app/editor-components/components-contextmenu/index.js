@@ -21,7 +21,7 @@ import './contextmenu.css';
 
 const LANGUAGE_NAMES = objectKeys( LANGUAGES );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
-const RE_WHITESPACE = require( '@stdlib/regexp/whitespace' );
+const RE_WHITESPACE = require( '@stdlib/regexp/whitespace' ).REGEXP;
 const BUTTON_STYLE = {
 	float: 'right',
 	border: 'none',
