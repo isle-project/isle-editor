@@ -999,8 +999,8 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             }
                           }
                           vectorEffect="non-scaling-stroke"
-                          x1={94.87179487179486}
-                          x2={94.87179487179486}
+                          x1={100}
+                          x2={100}
                           y1={300}
                           y2={50}
                         />
@@ -1018,8 +1018,8 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             }
                           }
                           vectorEffect="non-scaling-stroke"
-                          x1={94.87179487179486}
-                          x2={94.87179487179486}
+                          x1={100}
+                          x2={100}
                           y1={300}
                           y2={305}
                         />
@@ -1027,7 +1027,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           direction="inherit"
                           dx={0}
                           id="chart-axis-1-tickLabels-0"
-                          x={94.87179487179486}
+                          x={100}
                           y={323.26}
                         >
                           <tspan
@@ -1045,7 +1045,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                               }
                             }
                             textAnchor="middle"
-                            x={94.87179487179486}
+                            x={100}
                           >
                             P(A|B)
                           </tspan>
@@ -1068,8 +1068,8 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             }
                           }
                           vectorEffect="non-scaling-stroke"
-                          x1={255.12820512820508}
-                          x2={255.12820512820508}
+                          x1={249.99999999999997}
+                          x2={249.99999999999997}
                           y1={300}
                           y2={50}
                         />
@@ -1087,8 +1087,8 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             }
                           }
                           vectorEffect="non-scaling-stroke"
-                          x1={255.12820512820508}
-                          x2={255.12820512820508}
+                          x1={249.99999999999997}
+                          x2={249.99999999999997}
                           y1={300}
                           y2={305}
                         />
@@ -1096,7 +1096,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           direction="inherit"
                           dx={0}
                           id="chart-axis-1-tickLabels-1"
-                          x={255.12820512820508}
+                          x={249.99999999999997}
                           y={323.26}
                         >
                           <tspan
@@ -1114,7 +1114,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                               }
                             }
                             textAnchor="middle"
-                            x={255.12820512820508}
+                            x={249.99999999999997}
                           >
                             P(A|not B)
                           </tspan>
@@ -1125,14 +1125,14 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       role="presentation"
                     >
                       <path
-                        d="M 79.24679487179486, 300 
-A 0 0 0 0 1, 79.24679487179486, 300 
-L 79.24679487179486, 184.94108983799708 
-A 0 0 0 0 1, 79.24679487179486, 184.94108983799708 
-L 110.49679487179486, 184.94108983799708 
-A 0 0 0 0 1, 110.49679487179486, 184.94108983799708 
-L 110.49679487179486, 300 
-A 0 0 0 0 1, 110.49679487179486, 300 
+                        d="M 84.375, 300 
+A 0 0 0 0 1, 84.375, 300 
+L 84.375, 184.94108983799708 
+A 0 0 0 0 1, 84.375, 184.94108983799708 
+L 115.625, 184.94108983799708 
+A 0 0 0 0 1, 115.625, 184.94108983799708 
+L 115.625, 300 
+A 0 0 0 0 1, 115.625, 300 
  z"
                         index={0}
                         role="presentation"
@@ -1147,14 +1147,14 @@ A 0 0 0 0 1, 110.49679487179486, 300
                         }
                       />
                       <path
-                        d="M 239.50320512820508, 300 
-A 0 0 0 0 1, 239.50320512820508, 300 
-L 239.50320512820508, 184.94108983799708 
-A 0 0 0 0 1, 239.50320512820508, 184.94108983799708 
-L 270.7532051282051, 184.94108983799708 
-A 0 0 0 0 1, 270.7532051282051, 184.94108983799708 
-L 270.7532051282051, 300 
-A 0 0 0 0 1, 270.7532051282051, 300 
+                        d="M 234.37499999999997, 300 
+A 0 0 0 0 1, 234.37499999999997, 300 
+L 234.37499999999997, 184.94108983799708 
+A 0 0 0 0 1, 234.37499999999997, 184.94108983799708 
+L 265.625, 184.94108983799708 
+A 0 0 0 0 1, 265.625, 184.94108983799708 
+L 265.625, 300 
+A 0 0 0 0 1, 265.625, 300 
  z"
                         index={1}
                         role="presentation"
@@ -1172,7 +1172,7 @@ A 0 0 0 0 1, 270.7532051282051, 300
                         direction="inherit"
                         dx={0}
                         id="chart-bar-2-labels-0"
-                        x={94.87179487179486}
+                        x={100}
                         y={175.20108983799707}
                       >
                         <tspan
@@ -1190,7 +1190,7 @@ A 0 0 0 0 1, 270.7532051282051, 300
                             }
                           }
                           textAnchor="middle"
-                          x={94.87179487179486}
+                          x={100}
                         >
                           1.849
                         </tspan>
@@ -1199,7 +1199,7 @@ A 0 0 0 0 1, 270.7532051282051, 300
                         direction="inherit"
                         dx={0}
                         id="chart-bar-2-labels-1"
-                        x={255.12820512820508}
+                        x={249.99999999999997}
                         y={175.20108983799707}
                       >
                         <tspan
@@ -1217,7 +1217,7 @@ A 0 0 0 0 1, 270.7532051282051, 300
                             }
                           }
                           textAnchor="middle"
-                          x={255.12820512820508}
+                          x={249.99999999999997}
                         >
                           1.849
                         </tspan>
@@ -1247,7 +1247,7 @@ A 0 0 0 0 1, 270.7532051282051, 300
                         </clipPath>
                       </defs>
                       <path
-                        d="M94.87179487179486,184.94108983799708L255.12820512820508,184.94108983799708"
+                        d="M100,184.94108983799708L249.99999999999997,184.94108983799708"
                         role="presentation"
                         shapeRendering="auto"
                         style={
