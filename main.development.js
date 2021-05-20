@@ -2,7 +2,7 @@
 
 // MODULES //
 
-import { app, BrowserWindow, Menu, screen } from 'electron';
+import electron, { app, BrowserWindow, Menu } from 'electron';
 import Store from 'electron-store';
 import path from 'path';
 import { performance } from 'perf_hooks';
@@ -29,7 +29,7 @@ const mainConfig = new Store( 'isle-main' );
 function onReady() {
 	console.log( 'Application is ready... (time: '+performance.now()+')' ); // eslint-disable-line no-console
 
-	const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
 	const splash = new BrowserWindow({
 		width, height, transparent: false, frame: false, alwaysOnTop: true, resizable: false
 	});

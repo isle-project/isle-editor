@@ -1,6 +1,6 @@
 // MODULES //
 
-import { BrowserWindow, net, screen } from 'electron';
+import electron, { BrowserWindow, net } from 'electron';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
@@ -175,7 +175,7 @@ const createHelpMenu = ( i18n ) => {
 							const filePath = path.join( os.tmpdir(), 'isle_editor_changelog.html' );
 							fs.writeFileSync( filePath, changelog );
 
-							const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+							const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
 							const changelogWindow = new BrowserWindow({
 								width: 0.75 * width,
 								height: 0.75 * height,

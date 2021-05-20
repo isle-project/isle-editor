@@ -3,7 +3,7 @@
 import path from 'path';
 import fs from 'fs';
 import logger from 'debug';
-import { shell, screen } from 'electron';
+import electron, { shell } from 'electron';
 import windowStateKeeper from 'electron-window-state';
 import window from './window_manager.js';
 
@@ -26,7 +26,7 @@ function openExternal( e, url ) {
 function createWindow({ filePath, callback, fromTemplate } = {}) {
 	/* eslint-disable no-process-env */
 
-	const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
 	const mainWindowState = windowStateKeeper({
 		defaultWidth: width,
 		defaultHeight: height
