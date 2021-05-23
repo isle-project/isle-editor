@@ -181,7 +181,7 @@ const FreeTextSurvey = ( props ) => {
 				</Row>
 			</Container>
 			<ResponseVisualizer
-				buttonLabel={t('Responses')} id={id.current}
+				buttonLabel={t('responses')} id={id.current}
 				info={TEXT_SURVEY_SUBMISSION}
 			/>
 		</Panel>

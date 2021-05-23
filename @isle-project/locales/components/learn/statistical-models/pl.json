@@ -14,6 +14,7 @@
 	"logistic-regression-description": "Regresja logistyczna jest metodą klasyfikacji stosowaną do przypisywania obserwacji do jednej z dwóch klas. Regresja logistyczna wykorzystuje funkcję sigmoidów logistycznych do zwrócenia wartości prawdopodobieństwa dla każdej klasy.",
 	"naive-bayes-description": "Metody naiwne Bayes'a są zbiorem algorytmów klasyfikacyjnych opartych na zastosowaniu twierdzenia Bayes'a z \"naiwnym\" założeniem warunkowej niezależności pomiędzy każdą parą cech przy założeniu wartości zmiennej klasy.",
 	"neural-networks-description": "Sztuczne sieci neuronowe są wykorzystywane do modelowania złożonych relacji pomiędzy wejściami i wyjściami poprzez uczenie się nieliniowej funkcji bez ręcznej inżynierii funkcji.",
+	"pca-description": "Principal Component Analysis (PCA) wykorzystuje transformację ortogonalną do przekształcenia potencjalnie skorelowanych zmiennych w zbiór wartości liniowo nieskorelowanych zmiennych zwanych głównymi składowymi.",
 	"random-forest-description": "Lasy losowe konstruują wiele drzew decyzyjnych w czasie treningu i zwracają klasę, która jest trybem klas (klasyfikacja) lub średniej prognozy (regresja) poszczególnych drzew.",
 	"regression": "Regresja",
 	"ridge-description": "Metoda regresji regularnej, która penalizuje współczynniki regresji przy użyciu normy L2. Prowadzi do niższej wariancji dla odrobiny stronniczości. Nie daje skąpego modelu, tzn. współczynniki nie są kierowane do zera.",

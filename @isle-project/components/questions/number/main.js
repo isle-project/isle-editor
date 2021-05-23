@@ -71,7 +71,7 @@ function formatArraySolution( solution, t ) {
 		out += ', ';
 		out += solution[ i ];
 	}
-	out += t( ' or ' );
+	out += ' '+t('or')+' ';
 	out += solution[ solution.length-1 ];
 	return out;
 }

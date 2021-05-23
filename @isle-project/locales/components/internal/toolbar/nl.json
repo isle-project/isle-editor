@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "U kunt niet meer dan zes bijlagen per ticket uploaden.",
 	"mean": "Betekenis",
 	"meter-prompt": "Geef uw antwoord op onderstaande schaal aan door de oranje balk te verslepen",
+	"name": "Naam",
 	"num-open-questions": "# van open vragen",
 	"open": "Open",
 	"open-poll-menu": "Open poll menu",
@@ -57,5 +58,6 @@
 	"title": "Titel",
 	"title-placeholder": "Selecteer de titel...",
 	"toggle-details": "Schakelen tussen de details",
+	"type": "Type",
 	"yes-no": "Ja / Nee"
 }

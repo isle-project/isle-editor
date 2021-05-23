@@ -112,7 +112,7 @@ class NegativeBinomial extends Component {
 			<Fragment>
 				<NumberInput
 					key={`${type}-r`}
-					legend={`${t('success-until-stop')} (r)`}
+					legend={`${t('successes-until-stop')} (r)`}
 					defaultValue={this.state.r}
 					min={1}
 					step={1}

@@ -14,6 +14,7 @@
 	"logistic-regression-description": "A regressão logística é um método de classificação utilizado para atribuir observações a uma de duas classes. A regressão logística usa a função sigmóide logística para retornar um valor de probabilidade para cada classe.",
 	"naive-bayes-description": "Os métodos Bayes ingênuos são um conjunto de algoritmos de classificação baseados na aplicação do teorema de Bayes com a suposição \"ingênua\" de independência condicional entre cada par de características dado o valor da variável de classe.",
 	"neural-networks-description": "As redes neurais artificiais são usadas para modelar relações complexas entre entradas e saídas, aprendendo uma função não linear sem engenharia manual de características.",
+	"pca-description": "A Análise de Componentes Principais (PCA) usa uma transformação ortogonal para converter variáveis possivelmente correlacionadas em um conjunto de valores de variáveis linearmente não correlacionadas chamadas componentes principais.",
 	"random-forest-description": "As Florestas Aleatórias constroem uma multidão de árvores de decisão em tempo de treinamento e retornam a classe que é o modo das classes (classificação) ou previsão média (regressão) das árvores individuais.",
 	"regression": "Regressão",
 	"ridge-description": "Método de regressão regularizada que penaliza os coeficientes de regressão usando a norma L2. Comercializa uma variação menor para um pouco de viés. Não produz um modelo esparso, ou seja, os coeficientes não são levados a zero.",

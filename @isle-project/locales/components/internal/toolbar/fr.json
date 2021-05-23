@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "Vous ne pouvez pas télécharger plus de six pièces jointes par billet.",
 	"mean": "Moyenne",
 	"meter-prompt": "Veuillez indiquer votre réponse sur l'échelle ci-dessous en faisant glisser la barre orange",
+	"name": "Nom",
 	"num-open-questions": "# Nombre de questions ouvertes",
 	"open": "Ouvrez",
 	"open-poll-menu": "Ouvrir le menu du sondage",
@@ -57,5 +58,6 @@
 	"title": "Titre",
 	"title-placeholder": "Sélectionnez un titre...",
 	"toggle-details": "Basculer les détails",
+	"type": "Type",
 	"yes-no": "Oui / Non"
 }

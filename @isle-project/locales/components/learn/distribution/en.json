@@ -53,6 +53,8 @@
 	"rate": "Rate",
 	"rate-parameter": "For rate parameter ",
 	"reset": "Reset",
+	"scale": "Scale",
+	"shape": "Shape",
 	"standard-deviation": "Standard Deviation",
 	"students-t-distribution": "Student's T Distribution",
 	"success-probability": "Success probability",

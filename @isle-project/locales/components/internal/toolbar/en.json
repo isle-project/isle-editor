@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "You cannot upload more than six attachments per ticket.",
 	"mean": "Mean",
 	"meter-prompt": "Please indicate your answer on below scale by dragging the orange bar",
+	"name": "Name",
 	"num-open-questions": "# of open questions",
 	"open": "Open",
 	"open-poll-menu": "Open poll menu",
@@ -57,5 +58,6 @@
 	"title": "Title",
 	"title-placeholder": "Select title...",
 	"toggle-details": "Toggle Details",
+	"type": "Type",
 	"yes-no": "Yes / No"
 }

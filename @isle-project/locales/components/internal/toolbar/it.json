@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "Non è possibile caricare più di sei allegati per biglietto.",
 	"mean": "Significato",
 	"meter-prompt": "Si prega di indicare la risposta nella scala sottostante trascinando la barra arancione",
+	"name": "Nome",
 	"num-open-questions": "# di domande aperte",
 	"open": "Aprire",
 	"open-poll-menu": "Aprire il menu del sondaggio",
@@ -57,5 +58,6 @@
 	"title": "Titolo",
 	"title-placeholder": "Selezionare il titolo...",
 	"toggle-details": "Alternare i dettagli",
+	"type": "Tipo",
 	"yes-no": "Sì / No"
 }

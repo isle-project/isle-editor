@@ -14,6 +14,7 @@
 	"logistic-regression-description": "Logistic regression is a classification method used to assign observations to either of two classes. Logistic regression uses the logistic sigmoid function to return a probability value for each class",
 	"naive-bayes-description": "Naive Bayes methods are a set of classification algorithms based on applying Bayes’ theorem with the “naive” assumption of conditional independence between every pair of features given the value of the class variable.",
 	"neural-networks-description": "Artificial neural networks are  used to model complex relationships between inputs and outputs by learning a non-linear function without manual feature engineering.",
+	"pca-description": "Principal Component Analysis (PCA) uses an orthogonal transformation to convert possibly correlated variables into a set of values of linearly uncorrelated variables called principal components.",
 	"random-forest-description": "Random Forests construct a multitude of decision trees at training time and return the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees.",
 	"regression": "Regression",
 	"ridge-description": "Regularized regression method that penalizes regression coefficients using the L2 norm. Trades lower variance for a bit of bias. Does not yield a sparse model, i.e. coefficients are not driven to zero.",

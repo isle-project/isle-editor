@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "チケット1枚につき6枚以上の添付ファイルをアップロードすることはできません。",
 	"mean": "平均",
 	"meter-prompt": "オレンジ色のバーをドラッグして、以下の尺度でお答えください。",
+	"name": "名前",
 	"num-open-questions": "# 公開質問数",
 	"open": "開く",
 	"open-poll-menu": "ポールメニューを開く",
@@ -57,5 +58,6 @@
 	"title": "タイトル",
 	"title-placeholder": "タイトルを選択してください...",
 	"toggle-details": "トグルの詳細",
+	"type": "タイプ",
 	"yes-no": "はい/いいえ"
 }

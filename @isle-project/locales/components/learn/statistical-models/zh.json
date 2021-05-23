@@ -14,6 +14,7 @@
 	"logistic-regression-description": "Logistic回归是一种分类方法，用于将观测值分配到两类中的任何一类。Logistic回归使用logistic sigmoid函数来返回每个类别的概率值。",
 	"naive-bayes-description": "天真贝叶斯方法是一组基于应用贝叶斯定理的分类算法，其 \"天真 \"假设是每一对特征之间给定类变量的值具有条件独立性。",
 	"neural-networks-description": "人工神经网络是通过学习非线性函数来模拟输入和输出之间的复杂关系，而不需要人工进行特征工程。",
+	"pca-description": "主成分分析（PCA）使用正交变换，将可能相关的变量转换为一组线性不相关的变量值，称为主成分。",
 	"random-forest-description": "随机森林在训练时构建了众多的决策树，返回的类是各个树的类的模式（分类）或平均预测（回归）。",
 	"regression": "回归",
 	"ridge-description": "正则化回归方法，使用L2规范对回归系数进行惩罚。以较低的方差换取一点偏差。不产生稀疏模型，即系数不为零。",

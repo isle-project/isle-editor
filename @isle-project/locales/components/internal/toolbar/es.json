@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "No puedes subir más de seis adjuntos por ticket.",
 	"mean": "Malo",
 	"meter-prompt": "Por favor, indique su respuesta en la siguiente escala arrastrando la barra naranja",
+	"name": "Nombre",
 	"num-open-questions": "# de preguntas abiertas",
 	"open": "Abrir",
 	"open-poll-menu": "Abrir menú de encuestas",
@@ -57,5 +58,6 @@
 	"title": "Título",
 	"title-placeholder": "Seleccionar título...",
 	"toggle-details": "Alternar detalles",
+	"type": "Tipo",
 	"yes-no": "Sí / No"
 }

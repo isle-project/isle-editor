@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "Nie można przesłać więcej niż sześć załączników na jeden bilet.",
 	"mean": "Mean",
 	"meter-prompt": "Proszę zaznaczyć swoją odpowiedź na poniższej skali, przeciągając pomarańczowy pasek",
+	"name": "Nazwa",
 	"num-open-questions": "# pytań otwartych",
 	"open": "Otwarte",
 	"open-poll-menu": "Otwórz menu ankiety",
@@ -57,5 +58,6 @@
 	"title": "Tytuł",
 	"title-placeholder": "Wybierz tytuł...",
 	"toggle-details": "Przełączanie szczegółów",
+	"type": "Typ",
 	"yes-no": "Tak / Nie"
 }

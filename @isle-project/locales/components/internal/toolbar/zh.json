@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "每张票据不能上传超过6个附件。",
 	"mean": "平均值",
 	"meter-prompt": "请在下面的标尺上拖动橙色条子，标出您的答案。",
+	"name": "命名",
 	"num-open-questions": "# 未决问题数",
 	"open": "开放式",
 	"open-poll-menu": "打开投票菜单",
@@ -57,5 +58,6 @@
 	"title": "标题",
 	"title-placeholder": "选择标题...",
 	"toggle-details": "Toggle Details",
+	"type": "类型",
 	"yes-no": "是/否"
 }

@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "Você não pode carregar mais de seis anexos por bilhete.",
 	"mean": "Média",
 	"meter-prompt": "Favor indicar sua resposta na escala abaixo, arrastando a barra laranja",
+	"name": "Nome",
 	"num-open-questions": "# de perguntas abertas",
 	"open": "Aberto",
 	"open-poll-menu": "Menu de votação aberto",
@@ -57,5 +58,6 @@
 	"title": "Título",
 	"title-placeholder": "Selecione o título...",
 	"toggle-details": "Alternar detalhes",
+	"type": "Tipo",
 	"yes-no": "Sim / Não"
 }

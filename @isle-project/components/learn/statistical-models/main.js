@@ -177,7 +177,7 @@ class LearnStatisticalModels extends Component {
 						<Nav.Link eventKey="Classification">{t('classification')}</Nav.Link>
 					</Nav.Item>
 					<Nav.Item>
-						<Nav.Link eventKey="Ensemble">{t('Ensemble')}</Nav.Link>
+						<Nav.Link eventKey="Ensemble">{t('ensemble')}</Nav.Link>
 					</Nav.Item>
 					<Nav.Item>
 						<Nav.Link eventKey="Dimensionality Reduction">{t('dimensionality-reduction')}</Nav.Link>

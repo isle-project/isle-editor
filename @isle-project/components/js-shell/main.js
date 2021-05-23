@@ -67,7 +67,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 		<Tooltip
 			id="tooltip"
 		>
-			{t('SolutionButton:solution-available-tooltip')}
+			{t('SolutionButton:solution-tooltip')}
 		</Tooltip>
 	);
 	if ( !exhaustedHints || nEvaluations < 1 ) {

@@ -28,6 +28,7 @@
 	"maximum-num-attachments-message": "Du kannst nicht mehr als sechs Anhänge pro Ticket hochladen",
 	"mean": "Mittelwert",
 	"meter-prompt": "Bitte gib Deine Antwort auf der unteren Skala an, indem Du den orangefarbenen Balken ziehst",
+	"name": "Name",
 	"num-open-questions": "Anzahl offener Fragen",
 	"open": "Öffnen",
 	"open-poll-menu": "Abstimmungs-Menü öffnen",
@@ -57,5 +58,6 @@
 	"title": "Titel",
 	"title-placeholder": "Titel auswählen...",
 	"toggle-details": "Details umschalten",
+	"type": "Typ",
 	"yes-no": "Ja / Nein"
 }
