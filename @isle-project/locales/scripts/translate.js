@@ -16,15 +16,20 @@ const objectKeys = require( '@stdlib/utils/keys' );
 const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
 const MAX_TRANSLATION_CALLS = 5;
 const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
+const TOPLEVEL_DIR = path.resolve( __dirname, '..', '..', '..' );
 
 
 // MAIN //
 
-const options = {};
-glob( '**/en.json', options, function onFiles( err, files ) {
+const options = {
+	cwd: TOPLEVEL_DIR
+};
+glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files ) {
+	console.log( files );
 	for ( let i = 0; i < files.length; i++ ) {
-		const reference = readJSON.sync( files[ i ] );
-		const dir = path.dirname( files[ i ] );
+		const file = path.resolve( TOPLEVEL_DIR, files[ i ] );
+		const reference = readJSON.sync( file );
+		const dir = path.dirname( file );
 		const refKeys = objectKeys( reference );
 		refKeys.sort( ( a, b ) => {
 			return a.localeCompare(b);
@@ -34,11 +39,11 @@ glob( '**/en.json', options, function onFiles( err, files ) {
 			const key = refKeys[ i ];
 			sortedReference[ key ] = reference[ key ];
 		}
-		fs.writeFileSync( files[ i ], JSON.stringify( sortedReference, null, '\t' ).concat( '\n' ) );
+		fs.writeFileSync( file, JSON.stringify( sortedReference, null, '\t' ).concat( '\n' ) );
 
 		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
 			const lng = LANGUAGE_TARGETS[ j ];
-			const filePath = path.join( __dirname, '..', dir, `${lng}.json` );
+			const filePath = path.join( dir, `${lng}.json` );
 			if ( !fs.existsSync( filePath ) ) {
 				fs.writeFileSync( filePath, JSON.stringify({}) );
 			}
@@ -86,3 +91,5 @@ glob( '**/en.json', options, function onFiles( err, files ) {
 		}
 	}
 });
+
+console.log( 'Finished.' );
