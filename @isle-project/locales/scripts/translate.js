@@ -7,16 +7,20 @@ const glob = require( 'glob' );
 const fs = require( 'fs' );
 const path = require( 'path' );
 const qs = require( 'qs' );
+const replace = require( '@stdlib/string/replace' );
 const readJSON = require( '@stdlib/fs/read-json' );
 const objectKeys = require( '@stdlib/utils/keys' );
+const ENV = require( '@stdlib/process/env' );
 
 
-// CONSTANTS //
+// VARIABLES //
 
-const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
+const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 const MAX_TRANSLATION_CALLS = 5;
 const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
 const TOPLEVEL_DIR = path.resolve( __dirname, '..', '..', '..' );
+const RE_HANDLEBAR_EXPRESSION = /\{\{([^}]+)\}\}/g;
+const RE_XML_GROUPS = /<x>([^<]+)<\/x>/g;
 
 
 // MAIN //
@@ -53,15 +57,18 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 			for ( let k = 0; k < refKeys.length; k++ ) {
 				const key = refKeys[ k ];
 				if ( !targetJSON[ key ] ) {
-					const textToTranslate = reference[ key ];
+					let textToTranslate = reference[ key ];
 					if ( textToTranslate ) {
+						textToTranslate = replace( textToTranslate, RE_HANDLEBAR_EXPRESSION, '<x>$1</x>' );
 						console.log( 'Translate `'+textToTranslate+'` to '+lng );
 						if ( promises.length < MAX_TRANSLATION_CALLS ) {
 							promiseKeys.push( key );
 							promises.push( axios.post( DEEPL_SERVER, qs.stringify({
-								auth_key: process.env.DEEPL_KEY, // eslint-disable-line no-process-env
+								auth_key: ENV.DEEPL_KEY,
 								source_lang: 'EN',
 								text: textToTranslate,
+								tag_handling: 'xml',
+								ignore_tags: 'x',
 								target_lang: lng === 'pt' ? 'PT-BR' : lng.toUpperCase()
 							}) ) );
 						}
@@ -73,7 +80,8 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 					const translations = results.map( x => x.data.translations[ 0 ].text );
 					for ( let i = 0; i < promiseKeys.length; i++ ) {
 						const key = promiseKeys[ i ];
-						targetJSON[ key ] = translations[ i ];
+						const text = replace( translations[ i ], RE_XML_GROUPS, '{{$1}}' );
+						targetJSON[ key ] = text;
 					}
 					refKeys.sort( ( a, b ) => {
 						return a.localeCompare(b);
