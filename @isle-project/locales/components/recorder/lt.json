@@ -1,0 +1,15 @@
+{
+	"audio": "Garso",
+	"cam": "Cam",
+	"clear-file": "Išvalyti failą",
+	"download-file": "Atsisiųsti failą",
+	"encountered-error": "Susidariusi klaida",
+	"failed-to-capture-camera": "Nepavyko užfiksuoti fotoaparato (klaida: {{msg}})",
+	"failed-to-capture-microphone": "Nepavyko užfiksuoti mikrofono (klaida: {{msg}})",
+	"failed-to-capture-screen": "Nepavyko užfiksuoti ekrano (klaida: {{msg}})",
+	"open-link": "Atvira nuoroda",
+	"recording-uploaded": "Įkeltas įrašas",
+	"recording-uploaded-message": "Jūsų įrašas buvo sėkmingai įkeltas ir jį galite peržiūrėti adresu:",
+	"screen": "Ekranas",
+	"upload-file": "Įkelti failą"
+}

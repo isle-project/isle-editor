@@ -1,0 +1,13 @@
+{
+	"close": "Luk",
+	"drag-plot": "Trækkeplot",
+	"evaluate": "Vurder",
+	"hide-solution": "Skjul løsning",
+	"mosaic-plot-of": "Mosaikplot af",
+	"r-help": "R Hjælp",
+	"r-plot": "R Plot",
+	"reset": "Nulstil",
+	"reset-tooltip": "Nulstiller shell input til standardværdien.",
+	"show-solution": "Vis løsning",
+	"solution-tooltip": "Løsningen bliver tilgængelig, når du har prøvet øvelsen og brugt alle tips."
+}

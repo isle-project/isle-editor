@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Atkārtota atbilde.",
+	"answer-submitted": "Iesniegtā atbilde.",
+	"answers": "Atbildes",
+	"invalid-answer": "Nederīga atbilde",
+	"invalid-range": "Jūsu atbildei jābūt skaitlim no {{min}} līdz {{max}}.",
+	"one-of": "viens no ",
+	"or": "vai",
+	"question-closed": "Jautājums ir slēgts.",
+	"resubmission-message": "Jūs esat veiksmīgi atkārtoti iesniedzis savu atbildi.",
+	"resubmit": "Atkārtoti iesniegt",
+	"solution": "Risinājums",
+	"submission-correct": "Apsveicam, tas ir pareizi!",
+	"submission-incorrect": "Ne gluži. Salīdzini savu atbildi ar risinājumu.",
+	"submission-message": "Jūsu atbilde ir iesniegta.",
+	"submission-try-again": "Jūsu atbilde ir nepareiza. Lūdzu, mēģiniet vēlreiz",
+	"submit": "Iesniegt",
+	"tries": "{{count}} mēģiniet pa kreisi",
+	"tries_plural": "{{count}} mēģina pa kreisi",
+	"your-answer": "Jūsu atbilde"
+}

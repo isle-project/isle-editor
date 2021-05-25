@@ -1,0 +1,13 @@
+{
+	"close": "Zatvoriť",
+	"drag-plot": "Ťahanie pozemku",
+	"evaluate": "Vyhodnoťte",
+	"hide-solution": "Skryť riešenie",
+	"mosaic-plot-of": "Mozaikový pozemok",
+	"r-help": "R Pomoc",
+	"r-plot": "R Plot",
+	"reset": "Obnovenie",
+	"reset-tooltip": "Obnovenie predvolenej hodnoty vstupu shellu.",
+	"show-solution": "Zobraziť riešenie",
+	"solution-tooltip": "Riešenie je k dispozícii, keď ste vyskúšali cvičenie a použili všetky nápovedy."
+}

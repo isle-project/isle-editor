@@ -1,0 +1,12 @@
+{
+	"correct": "Teisingai",
+	"incorrect": "Neteisingas",
+	"question-closed": "Klausimas uždarytas.",
+	"resubmission-message": "Sėkmingai pakartotinai pateikėte atsakymą.",
+	"resubmit": "Pakartotinis pateikimas",
+	"submission-correct": "Tai teisinga tvarka!",
+	"submission-incorrect": "Ne visai, pabandykite dar kartą!",
+	"submission-message": "Sėkmingai pateikėte atsakymą.",
+	"submit": "Pateikti",
+	"submitted": "Pateikta"
+}

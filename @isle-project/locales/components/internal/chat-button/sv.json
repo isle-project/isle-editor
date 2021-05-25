@@ -1,0 +1,7 @@
+{
+	"join-chat": "Gå med i chatten",
+	"join-chat-id": "Gå med i chatten med ID {{id}}",
+	"leave-chat": "Lämna chatten",
+	"leave-chat-id": "Lämna chatten med ID {{id}}",
+	"toggle-chat": "Växla chatt"
+}

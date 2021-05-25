@@ -1,0 +1,20 @@
+{
+	"back": "Atgal",
+	"close-and-to-dashboard": "Uždarykite ir eikite į prietaisų skydelį",
+	"close-instructor-view": "Uždaryti instruktoriaus vaizdą",
+	"disabled": "Vaizdo pokalbiai su neįgaliaisiais",
+	"join": "Prisijunkite prie vaizdo įrašo",
+	"join-id": "Prisijunkite prie vaizdo pokalbio su ID {{id}}",
+	"leave": "Palikite vaizdo įrašą",
+	"leave-id": "Palikite vaizdo pokalbį su ID {{id}}",
+	"next": "Kitas",
+	"open-instructor-view": "Atidaryti instruktoriaus vaizdą",
+	"playback-disabled": "Vaizdo įrašo savininkas išjungė atkūrimą kitose svetainėse.",
+	"reached-end": "Pasiekėte šios vaizdo paskaitos pabaigą.",
+	"retry": "Pakartoti",
+	"supply-two-videos": "Pateikite bent du URL adresus pagal šį požymį",
+	"to-previous": "Pereiti į ankstesnę dalį",
+	"toggle": "Vaizdo pokalbių perjungimas",
+	"url-missing": "Trūksta vaizdo įrašo URL adreso.",
+	"video-not-loaded": "Vaizdo įrašo nepavyko įkelti."
+}

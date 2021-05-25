@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"answers": "Odgovori",
+	"invalid-answer": "Nepravilen odgovor",
+	"invalid-range": "Vaš odgovor mora biti številka med {{min}} in {{max}}.",
+	"one-of": "eden od ",
+	"or": "ali",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmission-message": "Uspešno ste ponovno poslali svoj odgovor.",
+	"resubmit": "Ponovno pošljite",
+	"solution": "Rešitev",
+	"submission-correct": "Čestitamo, to je pravilno!",
+	"submission-incorrect": "Ne povsem. Primerjaj svoj odgovor z rešitvijo.",
+	"submission-message": "Vaš odgovor je bil poslan.",
+	"submission-try-again": "Vaš odgovor je napačen. Prosimo, poskusite znova",
+	"submit": "Pošlji",
+	"tries": "{{count}} poskusite levo",
+	"tries_plural": "{{count}} poskusi levo",
+	"your-answer": "Vaš odgovor"
+}

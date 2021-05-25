@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurraa, vastauksesi on oikea!",
+	"answer-incorrect-explanations": "Voit viedä hiiren kursorin eri vastausvaihtoehtojen yläpuolelle, jolloin saat esiin selityksen, miksi kyseinen vastaus on väärä.",
+	"answer-incorrect-full": "Valitettavasti vastauksesi on väärä. Oikea vastaus näkyy oranssilla.",
+	"answer-incorrect-incremental": "Valitettavasti vastauksesi on väärä. Voit yrittää uudelleen valitsemalla toisen vastausvaihtoehdon.",
+	"answer-incorrect-incremental-equal": "Valitettavasti kaikki vastauksesi eivät olleet oikeita. Kokeile toista yhdistelmää.",
+	"answer-incorrect-incremental-extra": "Tarkistit kaikki oikeat vastausvaihtoehdot, mutta ainakin yksi väärä vastausvaihtoehto hiipi sisään. Poista väärän vastauksen tai väärien vastausten valinta ja lähetä se uudelleen.",
+	"answer-incorrect-incremental-missing": "Et ole antanut kaikkia oikeita vastauksia. Valitse lisää vastausvaihtoehtoja.",
+	"answer-re-submitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"answer-submitted-nofeedback": "Olet onnistuneesti lähettänyt vastauksesi. Voit halutessasi muuttaa vastaustasi ja lähettää sen uudelleen.",
+	"answers": "Vastaukset",
+	"chose-all-apply": "Valitse kaikki soveltuvat",
+	"each-row-click-check-boxes-which-apply": "Napsauta kullakin rivillä kaikkia valintaruutuja, joita sovelletaan.",
+	"each-row-pick-answer-by-clicking": "Valitse jokaiselta riviltä vastaus napsauttamalla vastaavaa valintanappia.",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmit": "Lähetä uudelleen",
+	"select-answer": "Valitse vastaus",
+	"submit": "Lähetä",
+	"submitted": "Lähetetty",
+	"successfully-re-submitted-your-answer": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"successfully-submitted-your-answer": "Olet onnistuneesti lähettänyt vastauksesi. Voit halutessasi muuttaa vastaustasi ja lähettää sen uudelleen."
+}

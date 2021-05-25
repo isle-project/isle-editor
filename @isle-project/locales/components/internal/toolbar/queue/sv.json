@@ -1,0 +1,15 @@
+{
+	"chat": "Chatt",
+	"cohort": "Kohort",
+	"mark-and-remove": "Markera frågan som besvarad och ta bort",
+	"name": "Namn",
+	"no-questions": "Det finns för närvarande inga frågor i kön.",
+	"question": "Fråga",
+	"queue": "Kö",
+	"queue-prompt": "Du kan skicka in en fråga nedan och någon kommer att kontakta dig inom kort!",
+	"queue-size": "(det finns för närvarande {{n}} personer i kön)",
+	"queue-start-chat": "Starta chatt med studenten",
+	"queue-status": "Din fråga: <1>{{question}}</1><br /> Du befinner dig för närvarande på position <4>{{spot}}</4> i kön.<br /> Det finns <8>{{size}}</8> person(er) i kön. ",
+	"remove-myself-from-queue": "Ta bort mig från kön",
+	"submit-question": "Skicka in en fråga"
+}

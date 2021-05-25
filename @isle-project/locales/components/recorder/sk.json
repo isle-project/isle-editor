@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Vyčistiť súbor",
+	"download-file": "Súbor na stiahnutie",
+	"encountered-error": "Vyskytnutá chyba",
+	"failed-to-capture-camera": "Nepodarilo sa zachytiť fotoaparát (chyba: {{msg}})",
+	"failed-to-capture-microphone": "Nepodarilo sa zachytiť mikrofón (chyba: {{msg}})",
+	"failed-to-capture-screen": "Nepodarilo sa zachytiť obrazovku (chyba: {{msg}})",
+	"open-link": "Otvoriť prepojenie",
+	"recording-uploaded": "Nahraný záznam",
+	"recording-uploaded-message": "Vaša nahrávka bola úspešne odoslaná a je k dispozícii na adrese:",
+	"screen": "Obrazovka",
+	"upload-file": "Odoslanie súboru"
+}

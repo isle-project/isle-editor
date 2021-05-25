@@ -1,0 +1,20 @@
+{
+	"deleted": "Törölt",
+	"deleted-message": "Sikeresen törölte a műveletet.",
+	"error-encountered": "Hiba lépett fel",
+	"file-upload": "Fájl feltöltés",
+	"file-upload-signin-required": "A fájlok feltöltéséhez be kell jelentkeznie.",
+	"grades-saved": "Megtartott osztályzatok",
+	"loggedin": "Bejelentkezve",
+	"loggedin-message": "Sikeresen bejelentkezett.",
+	"logout-message": "Sikeresen kijelentkezett.",
+	"logout-title": "Kijelentkezett",
+	"message-saved": "Üzenet mentve",
+	"new-password-message": "Ellenőrizze az e-mail postaládáját az új jelszó kiválasztásához szükséges linkért.",
+	"new-password-title": "Új jelszó",
+	"new-version-of-lesson-available": "A lecke új változata elérhető. Kattintson <1>ide</1> a frissítéshez.",
+	"request-failed": "A kérés sikertelen",
+	"user-created": "Felhasználó Létrehozta",
+	"user-created-message": "Ön sikeresen regisztrált.",
+	"user-not-created": "Nem létrehozott felhasználó"
+}

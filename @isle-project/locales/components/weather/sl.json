@@ -1,0 +1,7 @@
+{
+	"direction": "smer",
+	"humidity": "vlažnost",
+	"in": "na spletnem mestu",
+	"loading-weather-data-for": "Nalaganje vremenskih podatkov za {{loc}}...",
+	"wind": "veter"
+}

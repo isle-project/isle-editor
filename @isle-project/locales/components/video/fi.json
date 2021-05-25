@@ -1,0 +1,20 @@
+{
+	"back": "Takaisin",
+	"close-and-to-dashboard": "Sulje ja siirry kojelautaan",
+	"close-instructor-view": "Sulje ohjaajan näkymä",
+	"disabled": "Vammaisten videokeskustelu",
+	"join": "Liity videoon",
+	"join-id": "Liity videokeskusteluun ID:n kanssa {{id}}",
+	"leave": "Jätä video",
+	"leave-id": "Jätä videokeskustelu ID:n kanssa {{id}}",
+	"next": "Seuraava",
+	"open-instructor-view": "Avaa ohjaajanäkymä",
+	"playback-disabled": "Videon omistaja on poistanut toiston muilta verkkosivustoilta.",
+	"reached-end": "Olet tullut tämän videoluennon loppuun.",
+	"retry": "Uudelleenyritys",
+	"supply-two-videos": "Toimita vähintään kaksi URL-osoitetta seuraavaan määritteeseen.",
+	"to-previous": "Siirry edelliseen osaan",
+	"toggle": "Vaihda videokeskustelua",
+	"url-missing": "Videon URL-osoite puuttuu.",
+	"video-not-loaded": "Videota ei voitu ladata."
+}

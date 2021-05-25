@@ -1,0 +1,6 @@
+{
+	"and": " in . ",
+	"key-not-found": "Ključa za citiranje ni najti v referencah.",
+	"no-author": "Polje Avtor ne sme biti prazno.",
+	"no-references": "V preambuli učne ure ni našel nobenih `povezav`."
+}

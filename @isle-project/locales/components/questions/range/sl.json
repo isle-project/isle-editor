@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"answers": "Odgovori",
+	"lower": "Spodnja stran",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmission-message": "Uspešno ste ponovno poslali svoj odgovor.",
+	"resubmit": "Ponovno pošljite",
+	"solution": "Rešitev",
+	"submission-correct": "Čestitamo, to je pravilno!",
+	"submission-incorrect": "Ne povsem. Primerjaj svoj odgovor z rešitvijo.",
+	"submission-message": "Vaš odgovor je bil poslan.",
+	"submit": "Pošlji",
+	"upper": "Zgornji"
+}

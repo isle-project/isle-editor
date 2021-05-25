@@ -1,0 +1,6 @@
+{
+	"and": " a ",
+	"key-not-found": "Citační klíč nebyl v referencích nalezen.",
+	"no-author": "Pole Autor by nemělo být prázdné.",
+	"no-references": "V preambuli lekce nebyly nalezeny žádné `odkazy`."
+}

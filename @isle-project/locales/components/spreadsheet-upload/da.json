@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Upload venligst et datasæt (CSV-format)",
+	"drop-file": "Smid filen her",
+	"error-message": "Følgende fejl opstod under forsøget på at læse filen",
+	"error-title": "Kunne ikke læse filen.",
+	"first-row-names": "Første række indeholder variabelnavne",
+	"no-csv": "Ingen CSV-fil.",
+	"no-csv-message": "Den leverede fil er ikke en CSV-fil.",
+	"or": "eller",
+	"title": "Upload af filer"
+}

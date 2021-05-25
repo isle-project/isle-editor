@@ -1,0 +1,7 @@
+{
+	"join-chat": "Liitu vestlusega",
+	"join-chat-id": "Liitu vestlusega koos ID-ga {{id}}",
+	"leave-chat": "Jäta vestlus",
+	"leave-chat-id": "Jäta vestlus koos ID-ga {{id}}",
+	"toggle-chat": "Vahetage vestlust"
+}

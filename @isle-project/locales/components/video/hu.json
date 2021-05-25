@@ -1,0 +1,20 @@
+{
+	"back": "Vissza",
+	"close-and-to-dashboard": "Bezár és menjen a műszerfalra",
+	"close-instructor-view": "Bezár oktatói nézet",
+	"disabled": "Letiltott videó csevegés",
+	"join": "Csatlakozás videó",
+	"join-id": "Csatlakozzon a videochathez ID-vel {{id}}",
+	"leave": "Hagyja a videót",
+	"leave-id": "Hagyja el a videócsevegést azonosítóval {{id}}",
+	"next": "Következő",
+	"open-instructor-view": "Oktatói nézet megnyitása",
+	"playback-disabled": "A videó tulajdonosa letiltotta a lejátszást más webhelyeken.",
+	"reached-end": "Ön a videóelőadás végére ért.",
+	"retry": "Retry",
+	"supply-two-videos": "Kérjük, adjon meg legalább két URL-címet a következő attribútumhoz",
+	"to-previous": "Vissza az előző részhez",
+	"toggle": "Videochat kapcsoló",
+	"url-missing": "A videó URL címe hiányzik.",
+	"video-not-loaded": "A videó nem tölthető be."
+}

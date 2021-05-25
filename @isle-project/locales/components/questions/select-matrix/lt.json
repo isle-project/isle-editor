@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Pakartotinai pateiktas atsakymas.",
+	"answer-submitted": "Pateiktas atsakymas.",
+	"correct": "Teisingai",
+	"correct-answer": "Teisingas atsakymas: ",
+	"failure-message": "Ne visai.",
+	"incorrect": "Neteisingas",
+	"resubmit": "Pakartotinis pateikimas",
+	"resubmit-message": "Sėkmingai pakartotinai pateikėte atsakymą.",
+	"should-have-been": "Turėjo būti: ",
+	"submit": "Pateikti",
+	"submit-message": "Jūsų atsakymas pateiktas.",
+	"success-message": "Tai teisingas atsakymas!",
+	"try-again": "Pabandykite dar kartą"
+}

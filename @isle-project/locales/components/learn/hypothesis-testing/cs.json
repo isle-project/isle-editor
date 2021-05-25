@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Při nulové hypotéze vypočítáme p-hodnotu: ",
+	"calculate-test-statistic": "Vypočítáme následující testovací statistiku:",
+	"conduct-the-following-test": "Provedeme následující test (kliknutím na níže uvedené hypotézy přepnete mezi jednostrannými a oboustrannými variantami testu):",
+	"lets-assume": "Předpokládejme, že máme pozorovaná data s následujícími charakteristikami:",
+	"parameters": "Parametry",
+	"plugging-in": "Po vložení našich hodnot získáme:",
+	"proportion": "Proporce",
+	"sample-mean": "Průměrná hodnota vzorku",
+	"sample-proportion": "Podíl vzorků",
+	"sample-size": "Velikost vzorku",
+	"sample-standard-deviation": "Směrodatná odchylka vzorku",
+	"second-sample": "Druhý vzorek",
+	"test-result": "Výsledek testu",
+	"test-statistic": "Testovací statistika"
+}

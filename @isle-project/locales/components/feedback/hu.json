@@ -1,0 +1,19 @@
+{
+	"cancel": "Törölje",
+	"cannot-follow": "Nem tudom követni a logikát.",
+	"enter-text": "Szöveg beírása",
+	"feedback": "Visszajelzés",
+	"give-custom-feedback": "Adjon egyéni visszajelzést",
+	"have-feedback": "Van visszajelzésem.",
+	"makes-sense": "Van értelme.",
+	"needs-detailed-explanation": "Ez részletesebb magyarázatra szorul.",
+	"no-understanding": "Ezt egyáltalán nem értem",
+	"not-clear": "Ez számomra nem világos.",
+	"responses": "Válaszok",
+	"submit": "Küldje be a",
+	"submit-confused-message": "Sajnálattal halljuk ezt. Visszajelzései segítenek nekünk az anyag javításában.",
+	"submit-custom-message": "Köszönjük, hogy időt szánt arra, hogy visszajelzést küldjön nekünk.",
+	"submit-understood-message": "\"Ezt örömmel hallom! Köszönjük visszajelzését.",
+	"textarea-legend": "A következő megjegyzésekkel rendelkezem (nem kötelező):",
+	"thank-you": "Köszönöm!"
+}

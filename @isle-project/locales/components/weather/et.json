@@ -1,0 +1,7 @@
+{
+	"direction": "suund",
+	"humidity": "niiskus",
+	"in": "aadressil",
+	"loading-weather-data-for": "Ilmastikuandmete laadimine {{loc}}...",
+	"wind": "tuul"
+}

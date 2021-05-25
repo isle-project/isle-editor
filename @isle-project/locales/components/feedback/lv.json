@@ -1,0 +1,19 @@
+{
+	"cancel": "Atcelt",
+	"cannot-follow": "Es nevaru saprast loģiku.",
+	"enter-text": "Ievadiet tekstu",
+	"feedback": "Atsauksmes",
+	"give-custom-feedback": "Sniedziet pielāgotas atsauksmes",
+	"have-feedback": "Man ir atsauksmes.",
+	"makes-sense": "Tas ir loģiski.",
+	"needs-detailed-explanation": "Tam nepieciešams detalizētāks skaidrojums.",
+	"no-understanding": "Es to vispār nesaprotu",
+	"not-clear": "Man tas nav skaidrs.",
+	"responses": "Atbildes",
+	"submit": "Iesniegt",
+	"submit-confused-message": "Mums ir žēl to dzirdēt. Jūsu atsauksmes palīdz mums uzlabot materiālus.",
+	"submit-custom-message": "Paldies, ka veltījāt laiku, lai nosūtītu mums atsauksmes.",
+	"submit-understood-message": "\"Prieks to dzirdēt! Paldies par atsauksmēm.",
+	"textarea-legend": "Man ir šādas piezīmes (pēc izvēles):",
+	"thank-you": "Paldies!"
+}

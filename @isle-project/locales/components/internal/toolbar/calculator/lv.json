@@ -1,0 +1,12 @@
+{
+	"answer": "Atbilde",
+	"basic": "Pamati",
+	"calculator": "Kalkulators",
+	"copied": "Kopēts",
+	"copied-message": "Rezultāts kopēts uz starpliktuvi",
+	"copy": "Kopēt",
+	"expand": "Izvērst",
+	"malformed-expression": "Nepareiza izteiksme",
+	"too-many-closing-parens": "Pārāk daudz noslēdzošo iekavās",
+	"too-many-opening-parens": "Pārāk daudz sākuma iekavās"
+}

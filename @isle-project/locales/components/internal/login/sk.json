@@ -1,0 +1,14 @@
+{
+	"close": "Zatvoriť",
+	"email": "E-mail",
+	"enter-email": "Zadajte svoju e-mailovú adresu.",
+	"enter-email-before-password-reset": "Pred požiadaním o nové heslo zadajte svoju e-mailovú adresu.",
+	"enter-password": "Zadajte svoje heslo.",
+	"enter-tfa-token": "Zadajte 6-miestny kód z vášho autentifikačného zariadenia:",
+	"enter-token": "Zadajte potvrdzovací kód...",
+	"forgot-password": "Zabudli ste heslo?",
+	"invalid": "Neplatné",
+	"login": "Prihlásenie",
+	"password": "Heslo",
+	"signin": "Prihlásiť sa"
+}

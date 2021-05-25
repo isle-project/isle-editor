@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Lägg till en anmärkning för instruktörer",
+	"add-personal-note": "Lägg till en personlig anteckning",
+	"add-student-note": "Lägg till en anteckning för studenter",
+	"clipboard-empty": "Urklipp är tomt",
+	"clipboard-empty-message": "Det gick inte att infoga text. Urklippets klippbräda är för närvarande tomt.",
+	"copy": "Kopiera",
+	"cut": "Skär",
+	"encountered-error": "Ett fel har uppstått:",
+	"end-interface-tour": "Klicka för att avsluta den pågående gränssnittsresan.",
+	"highlight": "Markera",
+	"not-available-yet": "Lektionen är inte tillgänglig (ännu)",
+	"paste": "Klistra in",
+	"read-aloud": "Läs högt",
+	"remove-highlight": "Ta bort markeringar",
+	"start-interface-tour": "Börja en rundvandring som förklarar de olika delarna av gränssnittet",
+	"voice-not-supported": "Stöds inte.",
+	"voice-not-supported-message": "Funktionen för text till tal stöds för närvarande inte av din webbläsare. Försök med Google Chrome."
+}

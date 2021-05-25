@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Pasirinkite pasirinktines tikimybes pusėms ir meskite kauliukus!",
+	"count": "Skaičiuokite",
+	"dice": "Kauliukai",
+	"invalid-probs": "Įsitikinkite, kad visos tikimybės yra lygios vienetui",
+	"number-of-sides": "Pusių skaičius",
+	"probabilities": "Tikimybės",
+	"relative-frequency": "Santykinis dažnis",
+	"reset": "Iš naujo nustatyti",
+	"side": "Šoninis",
+	"simulate-random-dice-throws": "Imituoti atsitiktinius kauliukų metimus",
+	"throw": "Mesti",
+	"total-number-of-throws": "Bendras metimų skaičius"
+}

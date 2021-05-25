@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Faceți clic pentru a parcurge opțiunile disponibile.",
+	"discard-changes": "Schimbări de respingere",
+	"edit-text": "Editare text",
+	"error-encountered": "Eroare întâlnită",
+	"expected-object-array": "`{{field}}` trebuie să fie o matrice de obiecte.",
+	"expected-value-from-list": "`{{field}}` trebuie să fie unul dintre următoarele: {{list}} .",
+	"flippable-requires-two-children": "Cardul care se poate întoarce necesită două elemente copil.",
+	"grid-requires-two-children": "Grila glisantă are nevoie de cel puțin două elemente copil pentru a fi redată.",
+	"in": "în",
+	"pause": "Pauză",
+	"resume": "Curriculum vitae",
+	"retry": "Reîncercare",
+	"save-changes": "Salvați modificările",
+	"search": "Căutare",
+	"supply-component-id": "Vă rugăm să furnizați un ID pentru componenta care urmează să fie supravegheată.",
+	"toggle-error-stack-trace": "Comutați urma de stivă a erorii"
+}

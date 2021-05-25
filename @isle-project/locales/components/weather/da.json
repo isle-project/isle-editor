@@ -1,0 +1,7 @@
+{
+	"direction": "retning",
+	"humidity": "fugtighed",
+	"in": "på",
+	"loading-weather-data-for": "Indlæsning af vejrdata for {{loc}}...",
+	"wind": "vind"
+}

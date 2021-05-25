@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"correct": "Pravilno",
+	"correct-answer": "Pravilni odgovor: ",
+	"failure-message": "Ne povsem.",
+	"incorrect": "Nepravilno",
+	"resubmit": "Ponovno pošljite",
+	"resubmit-message": "Uspešno ste ponovno poslali svoj odgovor.",
+	"should-have-been": "Moralo bi biti: ",
+	"submit": "Pošlji",
+	"submit-message": "Vaš odgovor je bil poslan.",
+	"success-message": "To je pravilen odgovor!",
+	"try-again": "Poskusite znova"
+}

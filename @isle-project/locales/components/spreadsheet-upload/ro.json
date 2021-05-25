@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Vă rugăm să încărcați un set de date (format CSV)",
+	"drop-file": "Aruncați fișierul aici",
+	"error-message": "Următoarea eroare a fost întâlnită în timpul încercării de citire a fișierului",
+	"error-title": "Nu s-a putut citi fișierul.",
+	"first-row-names": "Primul rând conține numele variabilelor",
+	"no-csv": "Nu există un fișier CSV.",
+	"no-csv-message": "Fișierul furnizat nu este un fișier CSV.",
+	"or": "sau",
+	"title": "Încărcare fișiere"
+}

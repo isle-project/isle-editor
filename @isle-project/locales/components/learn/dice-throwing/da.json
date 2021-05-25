@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Vælg brugerdefinerede sandsynligheder for siderne, og kast derefter nogle terninger!",
+	"count": "Greve",
+	"dice": "Terning",
+	"invalid-probs": "Sørg for, at alle sandsynligheder summerer til én",
+	"number-of-sides": "Antal sider",
+	"probabilities": "Sandsynligheder",
+	"relative-frequency": "Relativ hyppighed",
+	"reset": "Nulstil",
+	"side": "Side",
+	"simulate-random-dice-throws": "Simulere tilfældige terningekast",
+	"throw": "Kast",
+	"total-number-of-throws": "Samlet antal kast"
+}

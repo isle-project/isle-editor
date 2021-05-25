@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurra, dit svar er korrekt!",
+	"answer-incorrect-explanations": "Du kan holde musen hen over de forskellige svarmuligheder for at få vist et tooltip med en forklaring på, hvorfor det pågældende svar er forkert.",
+	"answer-incorrect-full": "Dit svar er desværre forkert. Det korrekte svar er vist med orange.",
+	"answer-incorrect-incremental": "Dit svar er desværre forkert. Du kan prøve igen ved at vælge et andet svarvalg.",
+	"answer-incorrect-incremental-equal": "Desværre var ikke alle dine svar korrekte. Prøv en anden kombination.",
+	"answer-incorrect-incremental-extra": "Du har afkrydset alle de rigtige svarmuligheder, men mindst én forkert svarmulighed har sneget sig ind. Fjern markeringen af de(t) forkerte svar og indsend det på ny.",
+	"answer-incorrect-incremental-missing": "Du har ikke givet alle de rigtige svar. Vælg flere svarmuligheder.",
+	"answer-re-submitted": "Svaret er blevet genfremsat.",
+	"answer-submitted": "Svar afgivet.",
+	"answer-submitted-nofeedback": "Du har indsendt dit svar med succes. Du kan ændre dit svar og indsende det igen, hvis du ønsker det.",
+	"answers": "Svar",
+	"chose-all-apply": "Vælg alle relevante oplysninger",
+	"each-row-click-check-boxes-which-apply": "Klik på alle de afkrydsningsfelter, der er relevante, for hver række",
+	"each-row-pick-answer-by-clicking": "Vælg et svar for hver række ved at klikke på den pågældende valgknap",
+	"question-closed": "Spørgsmålet er nu lukket.",
+	"resubmit": "Indsend",
+	"select-answer": "Vælg et svar",
+	"submit": "Indsend",
+	"submitted": "Indsendt",
+	"successfully-re-submitted-your-answer": "Det er lykkedes dig at indsende dit svar igen.",
+	"successfully-submitted-your-answer": "Du har indsendt dit svar med succes. Du kan ændre dit svar og indsende det igen, hvis du ønsker det."
+}

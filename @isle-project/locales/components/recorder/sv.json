@@ -1,0 +1,15 @@
+{
+	"audio": "Ljud",
+	"cam": "Cam",
+	"clear-file": "Rensa fil",
+	"download-file": "Ladda ner fil",
+	"encountered-error": "Upplevt fel",
+	"failed-to-capture-camera": "Det gick inte att fånga kameran (fel: {{msg}})",
+	"failed-to-capture-microphone": "Det gick inte att fånga din mikrofon (fel: {{msg}})",
+	"failed-to-capture-screen": "Det gick inte att fånga skärmen (fel: {{msg}})",
+	"open-link": "Öppna länk",
+	"recording-uploaded": "Uppladdning av inspelning",
+	"recording-uploaded-message": "Din inspelning har laddats upp och kan ses på följande adress:",
+	"screen": "Skärm",
+	"upload-file": "Ladda upp en fil"
+}

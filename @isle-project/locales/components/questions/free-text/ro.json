@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Răspuns retransmis.",
+	"answer-submitted": "Răspuns transmis.",
+	"answers": "Răspunsuri",
+	"enter-your-answer-here": "Introduceți răspunsul dumneavoastră aici...",
+	"question-closed": "Întrebarea este închisă.",
+	"resubmit": "Trimiteți din nou",
+	"solution": "Soluție:",
+	"submission-message-no-solution": "Dacă doriți, puteți să vă modificați răspunsul și să îl retrimiteți.",
+	"submission-message-solution": "Comparați răspunsul dvs. cu soluția folosind butonul \"Show Solution\". Puteți apoi să vă modificați răspunsul și să îl retrimiteți, dacă este necesar.",
+	"submit": "Trimiteți",
+	"submit-tooltip": "Faceți clic pe submit după ce ați scris răspunsul.",
+	"your-answer": "Răspunsul dumneavoastră:"
+}

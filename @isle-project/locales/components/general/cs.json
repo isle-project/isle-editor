@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Kliknutím projděte dostupné možnosti.",
+	"discard-changes": "Vyřazení změn",
+	"edit-text": "Upravit text",
+	"error-encountered": "Vyskytnutá chyba",
+	"expected-object-array": "`{{field}}` musí být pole objektů.",
+	"expected-value-from-list": "`{{field}}` musí být jeden z následujících: {{list}} .",
+	"flippable-requires-two-children": "Obratná karta vyžaduje dva podřízené prvky.",
+	"grid-requires-two-children": "Mřížka, kterou lze přetáhnout, vyžaduje pro vykreslení alespoň dva podřízené prvky.",
+	"in": "na adrese",
+	"pause": "Pauza",
+	"resume": "Životopis",
+	"retry": "Opakování",
+	"save-changes": "Uložení změn",
+	"search": "Vyhledávání",
+	"supply-component-id": "Uveďte prosím ID sledované součásti.",
+	"toggle-error-stack-trace": "Přepínání stop zásobníku chyby"
+}

@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Pakartotinai pateiktas atsakymas.",
+	"answer-submitted": "Pateiktas atsakymas.",
+	"answers": "Atsakymai",
+	"enter-your-answer-here": "Įrašykite savo atsakymą čia...",
+	"question-closed": "Klausimas uždarytas.",
+	"resubmit": "Pakartotinis pateikimas",
+	"solution": "Sprendimas:",
+	"submission-message-no-solution": "Jei norite, galite pakeisti atsakymą ir pateikti jį dar kartą.",
+	"submission-message-solution": "Palyginkite atsakymą su sprendimu naudodami mygtuką \"Show Solution\". Tuomet galite pakeisti atsakymą ir, jei reikia, pateikti jį iš naujo.",
+	"submit": "Pateikti",
+	"submit-tooltip": "Įvedę atsakymą spustelėkite Pateikti.",
+	"your-answer": "Jūsų atsakymas:"
+}

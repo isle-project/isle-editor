@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Klicka på ett objekt i menyn för att få mer information om det...",
+	"data-explorer-p1": "Med ISLE:s datautforskare kan du analysera datamängder med hjälp av ett gränssnitt där du kan peka och klicka. Dataexploratorn är uppdelad i två rutor, en vänsterruta där du kan växla mellan en kalkylbladsvy av de data som ska analyseras och andra valfria komponenter som en redigerare för rapportskrivning eller en lista med frågor. Den högra sidan är en utdatafönsterruta som innehåller alla utdata (sammanfattande statistik, diagram, resultat av hypotesprövning) som du har skapat.",
+	"data-explorer-p2": "Nya utgångar kan genereras via verktygslådan, som öppnas genom att klicka på knappen \"Visa verktygslåda\". En nyproducerad graf eller tabell kommer att läggas till i listan över utdataelement som visas på höger sida.",
+	"data-explorer-p3": "De röda knapparna med \"x\"-ikoner kan användas för att ta bort enskilda utdataelement, medan knappen \"Clear All\" längst ner tar bort alla utdataelement.",
+	"data-explorer-p4": "Genom att använda knapparna med frågetecken på kalkylbladet, rapportredigeraren eller verktygslådan kan du starta en guidad tur genom de olika delarnas möjligheter.",
+	"data-explorer-title": "Utforskare av data",
+	"data-table-p1": "Ett enkelt sätt att visa data i ISLE är genom en datatabell. Dessa visas i det typiska formatet för visning av data, som liknar hur data ser ut i ett Excel-kalkylblad. Varje kolumn är en variabel med variabelns namn överst.",
+	"data-table-p2": "Om du vill få en guidad tur i vad du kan göra med datatabeller klickar du på knappen Visa handledning (frågetecknet uppe till höger om datatabellen).",
+	"data-table-title": "Tabell med uppgifter",
+	"documentation": "Dokumentation",
+	"download-pdf": "Ladda ner PDF",
+	"questions-p1": "Många av de ISLE-lektioner som du kommer att arbeta med kommer att innehålla frågor som du ska besvara. Det finns en mängd olika typer av frågor, från korta svar till flervalsfrågor. Här är ett exempel på en fråga med kort svar:",
+	"questions-p2": "Skicka in",
+	"questions-p3": "När du har svarat på en fråga och är redo att skicka in ditt svar klickar du på knappen \"Skicka in\". Detta registrerar ditt arbete så att din lärare kan se ditt svar och ge dig poäng för frågan.",
+	"questions-p4": "Knappar för återkoppling",
+	"questions-p5": "Ibland kan det hända att din lärare har feedbackknappar (se ovan) på enskilda frågor. Med den vänstra knappen kan du notera att du är förvirrad över frågan, med den mellersta knappen kan du notera att frågan är begriplig och med den högra knappen kan du ge specifika kommentarer mer detaljerat.",
+	"questions-p6": "Frågor om navigering",
+	"questions-p7": "Flera frågor kan placeras på samma plats på sidan. Om så är fallet kan du navigera mellan frågorna genom att klicka på knappen \"Nästa\" eller genom att välja frågorna efter nummer:",
+	"questions-title": "Frågor",
+	"statusbar-p1": "Om du klickar på statusfältet visas knappar som gör att du kan registrera dig för ett ISLE-konto eller logga in på ett befintligt konto. I mitten av statusfältet visas ditt användarnamn eller om du är inloggad. Om du håller muspekaren över den visas flera statistiska uppgifter om dina framsteg under lektionen: den tid som du spenderat under lektionen, procentandelen aktiviteter som slutförts under lektionen och dina totala prestationspoäng.",
+	"statusbar-title": "Statusfältet"
+}

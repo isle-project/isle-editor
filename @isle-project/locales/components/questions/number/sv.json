@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Svaret har lagts fram på nytt.",
+	"answer-submitted": "Svar inlämnat.",
+	"answers": "Svar",
+	"invalid-answer": "Ogiltigt svar",
+	"invalid-range": "Ditt svar ska vara ett tal mellan {{min}} och {{max}}.",
+	"one-of": "en av följande ",
+	"or": "eller .",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmission-message": "Du har skickat in ditt svar på nytt.",
+	"resubmit": "Skicka in  på nytt.",
+	"solution": "Lösning",
+	"submission-correct": "Grattis, det stämmer!",
+	"submission-incorrect": "Inte riktigt. Jämför ditt svar med lösningen.",
+	"submission-message": "Ditt svar har skickats in.",
+	"submission-try-again": "Ditt svar är felaktigt. Försök igen",
+	"submit": "Skicka in",
+	"tries": "{{count}} försök till vänster",
+	"tries_plural": "{{count}} försöker vänster",
+	"your-answer": "Ditt svar"
+}

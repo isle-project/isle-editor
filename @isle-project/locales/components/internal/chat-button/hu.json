@@ -1,0 +1,7 @@
+{
+	"join-chat": "Csatlakozz a chathez",
+	"join-chat-id": "Csatlakozzon a chathez ID-vel {{id}}",
+	"leave-chat": "Hagyja a csevegést",
+	"leave-chat-id": "Hagyja el a csevegést azonosítóval {{id}}",
+	"toggle-chat": "Toggle Chat"
+}

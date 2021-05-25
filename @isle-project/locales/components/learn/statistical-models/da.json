@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Bootstrap-aggregering anvendes ofte sammen med beslutningstræmetoder. Ved at trække bootstrap-prøver fra de oprindelige træningsdata og estimere en model for hver enkelt prøve, beregnes der derefter et gennemsnit af modellernes forudsigelser for at opnå forudsigelser med lavere varians, der ikke er så tilbøjelige til at overpasse.",
+	"boosting-description": "Boosting-algoritmer som AdaBoost lærer iterativt svage klassifikatorer og tilføjer dem til en endelig stærk klassifikator ved at vægte dem. Efterhånden som klassifikatorer tilføjes, får fejlklassificerede inputdata en højere vægt, og eksempler, der er klassificeret korrekt, mister vægt. Således fokuserer fremtidige svage lærere mere på de eksempler, som tidligere svage lærere har fejlklassificeret.",
+	"cart-description": "CART-analysen (Classification and Regression Tree) opbygger et træ, der går fra funktionerne i en observation (repræsenteret i grenene) til en forudsagt værdi (repræsenteret i bladene).",
+	"classification": "Klassifikation",
+	"clustering": "Gruppering",
+	"dimensionality-reduction": "Reduktion af dimensionalitet",
+	"elastic-net-description": "Elastic net er en reguleret regressionsmetode, der lineært kombinerer L1- og L2-strafferne fra lasso- og ridge-metoderne.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Grupper observationer i et fast antal (k) klynger, således at klyngemedlemmer ligner hinanden mere end observationer i andre klynger.",
+	"knn-description": "Anvendes til både regression og klassificering. Bruger flertalsafstemning blandt k-nærmeste punkter til kNN-klassifikation. Ved regression er resultatet gennemsnittet af de k-nearest-værdier.",
+	"lasso-description": "Regressionsmetode med regulering, der straffer regressionskoefficienter ved hjælp af L1-normen. Der byttes lavere varians mod en smule skævhed. Fører til en sparsom model.",
+	"linear-regression-description": "Modellerer forholdet mellem et skalarrespons og en eller flere forklarende variabler. Simpel lineær regression henviser til det tilfælde, hvor der kun er én prædiktor til stede, mens multipel lineær regression anvendes med flere forklarende variabler. Den kaldes lineær, fordi den estimerede funktion er lineær i sine koefficienter.",
+	"logistic-regression-description": "Logistisk regression er en klassifikationsmetode, der anvendes til at henføre observationer til en af to klasser. Logistisk regression anvender den logistiske sigmoidfunktion til at returnere en sandsynlighedsværdi for hver klasse",
+	"naive-bayes-description": "Naive Bayes-metoder er et sæt klassifikationsalgoritmer baseret på anvendelse af Bayes' teorem med den \"naive\" antagelse om betinget uafhængighed mellem hvert par af egenskaber, når værdien af klassevariablen er givet.",
+	"neural-networks-description": "Kunstige neurale netværk bruges til at modellere komplekse sammenhænge mellem input og output ved at lære en ikke-lineær funktion uden manuel funktionsteknik.",
+	"pca-description": "Principal Component Analysis (PCA) anvender en ortogonal transformation til at konvertere eventuelt korrelerede variabler til et sæt værdier af lineært ukorrelerede variabler kaldet hovedkomponenter.",
+	"random-forest-description": "Random Forests konstruerer en lang række beslutningstræer på træningstidspunktet og returnerer den klasse, der er den gennemsnitlige klasse (klassifikation) eller den gennemsnitlige forudsigelse (regression) for de enkelte træer.",
+	"regression": "Regression",
+	"ridge-description": "Regressionsmetode med regulering, der straffer regressionskoefficienter ved hjælp af L2-normen. Der byttes lavere varians mod en smule skævhed. Giver ikke en sparsom model, dvs. at koefficienterne ikke er nul.",
+	"svm-description": "Support Vector Machines er diskriminative klassificeringsværktøjer. Når der gives mærkede træningsdata, finder algoritmen en optimal hyperplan til at kategorisere nye eksempler. I to dimensioner er denne hyperplan en linje, der deler den i to dele.",
+	"üca-description": "Principal Component Analysis (PCA) anvender en ortogonal transformation til at konvertere eventuelt korrelerede variabler til et sæt værdier af lineært ukorrelerede variabler kaldet hovedkomponenter."
+}

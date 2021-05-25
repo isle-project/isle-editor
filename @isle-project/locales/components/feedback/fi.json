@@ -1,0 +1,19 @@
+{
+	"cancel": "Peruuta",
+	"cannot-follow": "En ymmärrä logiikkaa.",
+	"enter-text": "Kirjoita teksti",
+	"feedback": "Palaute",
+	"give-custom-feedback": "Anna mukautettua palautetta",
+	"have-feedback": "Minulla on palautetta.",
+	"makes-sense": "Siinä on järkeä.",
+	"needs-detailed-explanation": "Tämä kaipaa yksityiskohtaisempaa selitystä.",
+	"no-understanding": "En ymmärrä tätä ollenkaan",
+	"not-clear": "Tämä ei ole minulle selvää.",
+	"responses": "Vastaukset",
+	"submit": "Lähetä",
+	"submit-confused-message": "Olemme pahoillamme siitä. Palautteesi auttaa meitä parantamaan materiaalia.",
+	"submit-custom-message": "Kiitos, että otit aikaa lähettää meille palautetta.",
+	"submit-understood-message": "\"Mukava kuulla! Kiitos palautteestasi.",
+	"textarea-legend": "Minulla on seuraavat huomautukset (vapaaehtoiset):",
+	"thank-you": "Kiitos!"
+}

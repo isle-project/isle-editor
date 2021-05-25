@@ -1,0 +1,19 @@
+{
+	"authentication": "Godkendelse",
+	"authentication-prompt": "For at afslutte denne lektion skal du logge ind på din ISLE-konto for at afslutte den. Hvis du ikke har oprettet en konto, skal du oprette dig og få adgang til alle ISLE's funktioner.",
+	"by": "af",
+	"choice": "Valg",
+	"completed": "Færdiggjort",
+	"confirmation-email": " Du vil modtage en bekræftelse pr. e-mail inden længe.",
+	"download-pdf": "Download PDF af svarene",
+	"elapsed": "Forløbet",
+	"finish-lesson": "Afslut lektionen",
+	"lesson-completed-msg": "Kære {{name}}, dette er en automatisk bekræftelsesmail for at informere dig om, at du har gennemført lektionen \"{{lessonName}}\" på kurset \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Lektion indsendt!",
+	"lesson-successfully-completed": "Lektionen er afsluttet med succes.",
+	"login": "Login",
+	"responses-header": "Svar til ISLE-lektionen",
+	"signup": "Tilmeld dig",
+	"submit": "Indsend",
+	"successfully-completed": "afsluttet med succes"
+}

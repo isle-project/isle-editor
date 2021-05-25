@@ -1,0 +1,13 @@
+{
+	"close": "Aizvērt",
+	"drag-plot": "Velciet zemes gabalu",
+	"evaluate": "Novērtēt",
+	"hide-solution": "Slēpt risinājumu",
+	"mosaic-plot-of": "Mozaīkas gabals",
+	"r-help": "R Palīdzība",
+	"r-plot": "R gabals",
+	"reset": "Atiestatīt",
+	"reset-tooltip": "Atiestatiet čaulas ievades noklusējuma vērtību.",
+	"show-solution": "Rādīt risinājumu",
+	"solution-tooltip": "Risinājums kļūst pieejams, kad esat izmēģinājis uzdevumu un izmantojis visus padomus."
+}

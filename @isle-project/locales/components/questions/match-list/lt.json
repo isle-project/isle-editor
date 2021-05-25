@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Pakartotinai pateiktas atsakymas.",
+	"answer-submitted": "Pateiktas atsakymas.",
+	"answers": "Atsakymai",
+	"expect-a-or-b-for-each-element": "`elements` masyvą turi sudaryti objektai, turintys abi `a` ir `b` savybes arba bent vieną iš jų.",
+	"instructions": "Kairėje pusėje esančius {{complete}} elementus sutapatinkite su atitinkamais dešinėje pusėje esančiais elementais spustelėdami ant jų.",
+	"question-closed": "Klausimas uždarytas.",
+	"resubmission-message": "Sėkmingai pakartotinai pateikėte atsakymą.",
+	"resubmit": "Pakartotinis pateikimas",
+	"submit": "Pateikti",
+	"submit-tooltip": "Galite pateikti po to, kai visus kairės pusės elementus sutapatinsite su atitinkamais dešinės pusės elementais."
+}

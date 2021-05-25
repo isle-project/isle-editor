@@ -1,0 +1,18 @@
+{
+	"and": "och",
+	"draw-venn-diagram": "Rita ett Venn-diagram",
+	"label-first-set": "Etikett för den första uppsättningen",
+	"label-second-set": "Etikett för den andra uppsättningen",
+	"label-third-set": "Etikett för den tredje uppsättningen",
+	"min-of-times": "Minst antal gånger ",
+	"number-of-words": "Antal ord: ",
+	"one": "En",
+	"settings": "Inställningar",
+	"three": "Tre",
+	"total-number-observations": "Totalt antal observationer",
+	"total-texts": "Totalt antal texter",
+	"two": "Två",
+	"venn-diagram": "Venn-diagram",
+	"venn-diagram-builder": "Byggare av Venn-diagram",
+	"word": "Ord"
+}

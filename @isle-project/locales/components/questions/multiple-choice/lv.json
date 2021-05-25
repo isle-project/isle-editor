@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Urā, jūsu atbilde ir pareiza!",
+	"answer-incorrect-explanations": "Varat novietot kursoru virs dažādām atbilžu iespējām, lai parādītos uzraksts ar paskaidrojumu, kāpēc attiecīgā atbilde ir nepareiza.",
+	"answer-incorrect-full": "Diemžēl jūsu atbilde ir nepareiza. Pareizā atbilde ir parādīta oranži.",
+	"answer-incorrect-incremental": "Diemžēl jūsu atbilde ir nepareiza. Jūs varat mēģināt vēlreiz, izvēloties citu atbilžu variantu.",
+	"answer-incorrect-incremental-equal": "Diemžēl ne visas jūsu atbildes bija pareizas. Izmēģiniet citu kombināciju.",
+	"answer-incorrect-incremental-extra": "Jūs atzīmējāt visus pareizos atbilžu variantus, bet vismaz viens nepareizs variants bija iespraucies. Atceliet nepareizo(-ās) atbildi(-es) un nosūtiet to vēlreiz.",
+	"answer-incorrect-incremental-missing": "Jūs neesat sniedzis visas pareizās atbildes. Izvēlieties papildu atbilžu variantus.",
+	"answer-re-submitted": "Atkārtota atbilde.",
+	"answer-submitted": "Iesniegtā atbilde.",
+	"answer-submitted-nofeedback": "Jūs esat veiksmīgi iesniedzis savu atbildi. Ja vēlaties, varat mainīt savu atbildi un iesniegt to atkārtoti.",
+	"answers": "Atbildes",
+	"chose-all-apply": "Izvēlieties visu, kas attiecas",
+	"each-row-click-check-boxes-which-apply": "Katrā rindā noklikšķiniet uz visiem attiecīgajiem izvēles rūtiņām.",
+	"each-row-pick-answer-by-clicking": "Katrā rindā izvēlieties atbildi, noklikšķinot uz attiecīgās radio pogas.",
+	"question-closed": "Jautājums ir slēgts.",
+	"resubmit": "Atkārtoti iesniegt",
+	"select-answer": "Izvēlieties atbildi",
+	"submit": "Iesniegt",
+	"submitted": "Iesniegts",
+	"successfully-re-submitted-your-answer": "Jūs esat veiksmīgi atkārtoti iesniedzis savu atbildi.",
+	"successfully-submitted-your-answer": "Jūs esat veiksmīgi iesniedzis savu atbildi. Ja vēlaties, atbildi varat mainīt un iesniegt atkārtoti."
+}

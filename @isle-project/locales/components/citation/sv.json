@@ -1,0 +1,6 @@
+{
+	"and": " och ",
+	"key-not-found": "Citatnyckeln finns inte i referenserna.",
+	"no-author": "Författarfältet får inte vara tomt.",
+	"no-references": "Inga \"referenser\" finns i inledningen till lektionen."
+}

@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Esant nulinei hipotezei, apskaičiuojame p reikšmę: ",
+	"calculate-test-statistic": "Apskaičiuojame šią testo statistiką:",
+	"conduct-the-following-test": "Atliekame toliau nurodytą testą (spustelėkite ant toliau pateiktų hipotezių, kad perjungtumėte vienpusį ir dvipusį testą):",
+	"lets-assume": "Tarkime, kad turime stebimų duomenų, kuriems būdingos šios charakteristikos:",
+	"parameters": "Parametrai",
+	"plugging-in": "Įtraukę savo vertybes, gauname:",
+	"proportion": "Proporcija",
+	"sample-mean": "Imties vidurkis",
+	"sample-proportion": "Imties dalis",
+	"sample-size": "Imties dydis",
+	"sample-standard-deviation": "Imties standartinis nuokrypis",
+	"second-sample": "Antrasis pavyzdys",
+	"test-result": "Bandymo rezultatas",
+	"test-statistic": "Testo statistika"
+}

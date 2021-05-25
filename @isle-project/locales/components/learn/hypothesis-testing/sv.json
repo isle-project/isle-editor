@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Under nollhypotesen beräknar vi p-värdet: ",
+	"calculate-test-statistic": "Vi beräknar följande teststatistik:",
+	"conduct-the-following-test": "Vi utför följande test (klicka på hypoteserna nedan för att växla mellan den ensidiga varianten och det tvåsidiga testet):",
+	"lets-assume": "Låt oss anta att vi har observerat data med följande egenskaper:",
+	"parameters": "Parametrar",
+	"plugging-in": "Genom att lägga in våra värden får vi:",
+	"proportion": "Andel",
+	"sample-mean": "Medelvärde för urvalet",
+	"sample-proportion": "Andel av urvalet",
+	"sample-size": "Provstorlek",
+	"sample-standard-deviation": "Standardavvikelse för provet",
+	"second-sample": "Andra provet",
+	"test-result": "Testresultat",
+	"test-statistic": "Teststatistik"
+}

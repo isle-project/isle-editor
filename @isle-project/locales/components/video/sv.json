@@ -1,0 +1,20 @@
+{
+	"back": "Tillbaka",
+	"close-and-to-dashboard": "Stäng och gå till instrumentpanelen",
+	"close-instructor-view": "Stäng instruktörens vy",
+	"disabled": "Videochatt för funktionshindrade",
+	"join": "Gå med i videon",
+	"join-id": "Delta i videochatt med ID {{id}}",
+	"leave": "Lämna video",
+	"leave-id": "Lämna videochatt med ID {{id}}",
+	"next": "Nästa",
+	"open-instructor-view": "Öppna instruktörsvyn",
+	"playback-disabled": "Uppspelning på andra webbplatser har inaktiverats av videoägaren.",
+	"reached-end": "Du har nått slutet av denna videoföreläsning.",
+	"retry": "Försök igen",
+	"supply-two-videos": "Ange minst två webbadresser till följande attribut",
+	"to-previous": "Gå till föregående del",
+	"toggle": "Växla videochatt",
+	"url-missing": "Videons URL saknas.",
+	"video-not-loaded": "Videon kunde inte laddas."
+}

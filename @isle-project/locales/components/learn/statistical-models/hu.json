@@ -1,0 +1,23 @@
+{
+	"bagging-description": "A bootstrap aggregálást gyakran használják a döntési fa módszerekkel. Az eredeti képzési adatokból bootstrap-mintákat vesznek, és minden egyes mintára egy modellt becsülnek, majd az említett modellek előrejelzéseit átlagolják, hogy alacsonyabb varianciájú előrejelzéseket kapjanak, amelyek kevésbé hajlamosak a túlillesztésre.",
+	"boosting-description": "Az olyan erősítő algoritmusok, mint az AdaBoost, iteratív módon tanulnak gyenge osztályozókat, és súlyozással adják őket hozzá a végső erős osztályozóhoz. Az osztályozók hozzáadásával a rosszul besorolt bemeneti adatok nagyobb súlyt kapnak, a helyesen besorolt példák pedig veszítenek súlyukból. Így a jövőbeli gyenge tanulók jobban összpontosítanak azokra a példákra, amelyeket a korábbi gyenge tanulók rosszul osztályoztak.",
+	"cart-description": "Az osztályozási és regressziós fa (CART) elemzés egy olyan fát épít, amely a megfigyelés jellemzőitől (az ágakban ábrázolt) a megjósolt értékig (a levelekben ábrázolt) halad.",
+	"classification": "Osztályozás",
+	"clustering": "Klaszterezés",
+	"dimensionality-reduction": "Dimenziócsökkentés",
+	"elastic-net-description": "Az elasztikus háló egy olyan regularizált regressziós módszer, amely lineárisan kombinálja a lasso- és a ridge-módszerek L1- és L2-büntetéseit.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "A megfigyelések csoportosítása meghatározott számú (k) klaszterbe, úgy, hogy a klaszterek tagjai jobban hasonlítanak egymáshoz, mint a többi klaszterben lévő megfigyelésekhez.",
+	"knn-description": "Regresszióra és osztályozásra egyaránt használható. A kNN osztályozáshoz a k legközelebbi pontok közötti többségi szavazást használja. Regresszió esetén a kimenet a k legközelebbi értékek átlaga.",
+	"lasso-description": "Szabályozott regressziós módszer, amely a regressziós együtthatókat az L1 norma segítségével bünteti. Alacsonyabb varianciát cserél egy kis torzításért. Gyér modellhez vezet.",
+	"linear-regression-description": "Modellezi a kapcsolatot egy skaláris válasz és egy vagy több magyarázó változó között. Az egyszerű lineáris regresszió arra az esetre vonatkozik, amikor egy prediktor van jelen, a többszörös lineáris regressziót több magyarázó változó esetén alkalmazzák. Azért nevezik lineárisnak, mert a becsült függvény lineáris az együtthatókban.",
+	"logistic-regression-description": "A logisztikus regresszió egy osztályozási módszer, amelyet arra használnak, hogy a megfigyeléseket két osztály valamelyikébe sorolják. A logisztikus regresszió a logisztikus szigmoid függvényt használja az egyes osztályok valószínűségi értékének visszaadására.",
+	"naive-bayes-description": "A naiv Bayes-módszerek a Bayes-tétel alkalmazásán alapuló osztályozási algoritmusok egy csoportja, amely az osztályváltozó értékének függvényében feltételes függetlenséget feltételez minden egyes jellemzőpár között.",
+	"neural-networks-description": "A mesterséges neurális hálózatokat a bemenetek és kimenetek közötti összetett kapcsolatok modellezésére használják egy nemlineáris függvény megtanulása révén, manuális funkciótervezés nélkül.",
+	"pca-description": "A főkomponens-elemzés (PCA) egy ortogonális transzformációt használ, hogy az esetlegesen korrelált változókat lineárisan nem korrelált változók értékkészletévé alakítsa, amelyeket főkomponenseknek nevezünk.",
+	"random-forest-description": "A véletlen fák a képzés során döntési fák sokaságát építik fel, és azt az osztályt adják vissza, amely az osztályok módusza (osztályozás) vagy az egyes fák átlagos előrejelzése (regresszió).",
+	"regression": "Regresszió",
+	"ridge-description": "Szabályozott regressziós módszer, amely a regressziós együtthatókat az L2 norma segítségével bünteti. Alacsonyabb varianciát cserél egy kis torzításért. Nem eredményez ritka modellt, azaz az együtthatók nem vezetnek nullára.",
+	"svm-description": "A Support Vector Machines diszkriminatív osztályozók. Megjelölt képzési adatok esetén az algoritmus optimális hipersíkot talál az új példák kategorizálására. Két dimenzióban ez a hipersík egy vonal, amely két részre osztja.",
+	"üca-description": "A főkomponens-elemzés (PCA) egy ortogonális transzformációt használ, hogy az esetlegesen korrelált változókat lineárisan nem korrelált változók értékkészletévé alakítsa, amelyeket főkomponenseknek nevezünk."
+}

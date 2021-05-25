@@ -1,0 +1,19 @@
+{
+	"cancel": "Avbryt",
+	"cannot-follow": "Jag kan inte följa logiken.",
+	"enter-text": "Ange text",
+	"feedback": "Feedback",
+	"give-custom-feedback": "Ge anpassad återkoppling",
+	"have-feedback": "Jag har feedback.",
+	"makes-sense": "Det är logiskt.",
+	"needs-detailed-explanation": "Detta kräver en mer detaljerad förklaring.",
+	"no-understanding": "Jag förstår inte alls detta.",
+	"not-clear": "Detta är inte klart för mig.",
+	"responses": "Svar",
+	"submit": "Skicka in",
+	"submit-confused-message": "Vi är ledsna att höra det. Din feedback hjälper oss att förbättra materialet.",
+	"submit-custom-message": "Tack för att du tog dig tid att skicka oss feedback.",
+	"submit-understood-message": "\"Det gläder mig att höra det! Tack för din feedback.",
+	"textarea-legend": "Jag har följande kommentarer (frivilliga):",
+	"thank-you": "Tack!"
+}

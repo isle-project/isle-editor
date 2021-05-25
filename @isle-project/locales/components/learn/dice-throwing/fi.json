@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Valitse omat todennäköisyydet sivuille ja heitä sitten noppaa!",
+	"count": "Count",
+	"dice": "Noppa",
+	"invalid-probs": "Varmista, että kaikkien todennäköisyyksien summa on yksi.",
+	"number-of-sides": "Sivujen lukumäärä",
+	"probabilities": "Todennäköisyydet",
+	"relative-frequency": "Suhteellinen taajuus",
+	"reset": "Nollaa",
+	"side": "Sivu",
+	"simulate-random-dice-throws": "Simuloi satunnaisia nopanheittoja",
+	"throw": "Heitto",
+	"total-number-of-throws": "Heittojen kokonaismäärä"
+}

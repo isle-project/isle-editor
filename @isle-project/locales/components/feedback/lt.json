@@ -1,0 +1,19 @@
+{
+	"cancel": "Atšaukti",
+	"cannot-follow": "Negaliu suprasti logikos.",
+	"enter-text": "Įveskite tekstą",
+	"feedback": "Atsiliepimai",
+	"give-custom-feedback": "Pateikite pasirinktinius atsiliepimus",
+	"have-feedback": "Turiu atsiliepimų.",
+	"makes-sense": "Prasminga.",
+	"needs-detailed-explanation": "Tai reikia paaiškinti išsamiau.",
+	"no-understanding": "Visiškai to nesuprantu",
+	"not-clear": "Man tai neaišku.",
+	"responses": "Atsakymai",
+	"submit": "Pateikti",
+	"submit-confused-message": "Apgailestaujame tai išgirdę. Jūsų atsiliepimai padeda mums tobulinti medžiagą.",
+	"submit-custom-message": "Dėkojame, kad skyrėte laiko ir atsiuntėte mums atsiliepimus.",
+	"submit-understood-message": "\"Malonu tai girdėti! Dėkojame už atsiliepimus.",
+	"textarea-legend": "Turiu šias pastabas (neprivaloma):",
+	"thank-you": "Ačiū!"
+}

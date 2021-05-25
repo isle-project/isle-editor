@@ -1,0 +1,15 @@
+{
+	"chat": "Vestlus",
+	"cohort": "Kohort",
+	"mark-and-remove": "Märgi küsimus vastatuks ja eemalda",
+	"name": "Nimi",
+	"no-questions": "Praegu ei ole järjekorras ühtegi küsimust.",
+	"question": "Küsimus",
+	"queue": "Järjekord",
+	"queue-prompt": "Võite esitada küsimuse allpool ja keegi võtab teiega peagi ühendust!",
+	"queue-size": "(praegu on järjekorras {{n}} isik(ud))",
+	"queue-start-chat": "Alusta vestlust õpilasega",
+	"queue-status": "Teie küsimus: <1>{{question}}</1><br /> Praegu olete positsioonil <4>{{spot}}</4> järjekorras.<br /> Seal on <8>{{size}}</8> isik(ud) järjekorras. ",
+	"remove-myself-from-queue": "Eemalda mind järjekorrast",
+	"submit-question": "Küsimuse esitamine"
+}

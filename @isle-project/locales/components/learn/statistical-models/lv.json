@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Lēmumu koku metodēm bieži tiek izmantota summēšanas metode. No sākotnējiem apmācības datiem tiek ņemti bootstrap paraugi, novērtējot modeli katram paraugam, un pēc tam minēto modeļu prognozes tiek vidējās, lai iegūtu prognozes ar mazāku variāciju, kas nav tik pakļautas pārmērīgai pielāgošanai.",
+	"boosting-description": "Pastiprināšanas algoritmi, piemēram, AdaBoost, iteratīvi apgūst vājos klasifikatorus un pievieno tos galīgajam stiprajam klasifikatoram, nosverot tos. Pievienojot klasifikatorus, nepareizi klasificēti ievades dati iegūst lielāku svaru, bet pareizi klasificētie piemēri zaudē svaru. Tādējādi nākamie vājie apguvēji vairāk koncentrējas uz piemēriem, kurus iepriekšējie vājie apguvēji klasificēja nepareizi.",
+	"cart-description": "Klasifikācijas un regresijas koku (CART) analīze veido koku, kas iet no novērojuma pazīmēm (attēlotas zaros) līdz prognozētajai vērtībai (attēlota lapās).",
+	"classification": "Klasifikācija",
+	"clustering": "Klasteru veidošana",
+	"dimensionality-reduction": "Dimensiju samazināšana",
+	"elastic-net-description": "Elastīgais tīkls ir regularizēta regresijas metode, kas lineāri apvieno L1 un L2 sodus, ko piemēro lasso un ridge metodēm.",
+	"ensemble": "Ansamblis",
+	"kmeans-description": "Novērojumus sagrupē noteiktā skaitā (k) klasteru tā, lai klastera locekļi būtu līdzīgāki cits citam nekā novērojumi citos klasteros.",
+	"knn-description": "Izmanto gan regresijai, gan klasifikācijai. KNN klasifikācijai izmanto vairākuma balsojumu starp k tuvākajiem punktiem. Regresijas gadījumā rezultāts ir vidējā vērtība no k tuvāko punktu vērtībām.",
+	"lasso-description": "Regularizētas regresijas metode, kas soda regresijas koeficientus, izmantojot L1 normu. Mazāka dispersija tiek aizstāta ar nelielu novirzi. Rezultātā tiek izveidots retināts modelis.",
+	"linear-regression-description": "Modelē sakarību starp skalāro atbildes reakciju un vienu vai vairākiem skaidrojošiem mainīgajiem. Vienkāršā lineārā regresija attiecas uz gadījumu, kad ir viens prognozētājs, bet daudzkārtējā lineārā regresija tiek izmantota ar vairākiem skaidrojošiem mainīgajiem. To sauc par lineāru, jo aprēķinātā funkcija ir lineāra attiecībā pret tās koeficientiem.",
+	"logistic-regression-description": "Loģistiskā regresija ir klasifikācijas metode, ko izmanto, lai novērojumus iedalītu vienā no divām klasēm. Loģistiskā regresija izmanto loģistisko sigmoīda funkciju, lai katrai klasei noteiktu varbūtības vērtību.",
+	"naive-bayes-description": "Naivās Bejasa metodes ir klasifikācijas algoritmu kopums, kas balstās uz Bejasa teorēmas piemērošanu ar \"naivu\" pieņēmumu par nosacītu neatkarību starp katru pazīmju pāri, ņemot vērā klases mainīgā vērtību.",
+	"neural-networks-description": "Mākslīgos neironu tīklus izmanto, lai modelētu sarežģītas sakarības starp ieejām un izejām, apgūstot nelineāru funkciju bez manuālas funkciju inženierijas.",
+	"pca-description": "Principal Component Analysis (PCA) izmanto ortogonālu transformāciju, lai iespējami korelētu mainīgos pārvērstu lineāri nekorelētu mainīgo vērtību kopā, ko sauc par galvenajām komponentēm.",
+	"random-forest-description": "Gadījuma meži mācību laikā konstruē vairākus lēmumu kokus un atgriež klasi, kas ir klašu modeļa (klasifikācija) vai vidējā prognoze (regresija) no atsevišķiem kokiem.",
+	"regression": "Regresija",
+	"ridge-description": "Regularizētas regresijas metode, kas soda regresijas koeficientus, izmantojot L2 normu. Mazāka dispersija tiek aizstāta ar nelielu novirzi. Nesniedz retinātu modeli, t. i., koeficienti netiek novirzīti līdz nullei.",
+	"svm-description": "Atbalsta vektoru mašīnas ir diskriminatīvi klasifikatori. Ņemot vērā marķētus mācību datus, algoritms atrod optimālo hiperplānu, lai kategorizētu jaunus piemērus. Divās dimensijās šī hiperplakne ir līnija, kas to sadala divās daļās.",
+	"üca-description": "Principal Component Analysis (PCA) izmanto ortogonālu transformāciju, lai iespējami korelētu mainīgos pārvērstu lineāri nekorelētu mainīgo vērtību kopā, ko sauc par galvenajām komponentēm."
+}

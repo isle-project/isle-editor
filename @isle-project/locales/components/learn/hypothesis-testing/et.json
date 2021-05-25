@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Nullhüpoteesi korral arvutame p-väärtuse: ",
+	"calculate-test-statistic": "Arvutame järgmise teststatistiku:",
+	"conduct-the-following-test": "Teeme järgmise testi (klõpsake allpool olevatel hüpoteesidel, et lülituda ühepoolse ja kahepoolse testi vahel):",
+	"lets-assume": "Oletame, et meil on vaatlusandmed, millel on järgmised omadused:",
+	"parameters": "Parameetrid",
+	"plugging-in": "Ühendades meie väärtused, on meil:",
+	"proportion": "Proportsioon",
+	"sample-mean": "Valimi keskmine",
+	"sample-proportion": "Protsentuaalne osakaal",
+	"sample-size": "Valimi suurus",
+	"sample-standard-deviation": "Valimi standardhälve",
+	"second-sample": "Teine proov",
+	"test-result": "Testi tulemus",
+	"test-statistic": "Teststatistika"
+}

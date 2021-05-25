@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"answers": "Odgovori",
+	"enter-your-answer-here": "Tukaj vpišite svoj odgovor...",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmit": "Ponovna predložitev",
+	"solution": "Rešitev:",
+	"submission-message-no-solution": "Če želite, lahko svoj odgovor spremenite in ga ponovno pošljete.",
+	"submission-message-solution": "Primerjajte svoj odgovor z rešitvijo z gumbom \"Prikaži rešitev\". Nato lahko spremenite svoj odgovor in ga po potrebi ponovno pošljete.",
+	"submit": "Pošlji",
+	"submit-tooltip": "Ko vpišete odgovor, kliknite Pošlji.",
+	"your-answer": "Vaš odgovor:"
+}

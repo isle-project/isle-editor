@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Η απάντηση υποβλήθηκε εκ νέου.",
+	"answer-submitted": "Υποβλήθηκε απάντηση.",
+	"answers": "Απαντήσεις",
+	"lower": "Κάτω",
+	"question-closed": "Η ερώτηση έχει κλείσει.",
+	"resubmission-message": "Υποβάλατε με επιτυχία την απάντησή σας.",
+	"resubmit": "Επανυποβολή",
+	"solution": "Λύση",
+	"submission-correct": "Συγχαρητήρια, αυτό είναι σωστό!",
+	"submission-incorrect": "Όχι ακριβώς. Συγκρίνετε την απάντησή σας με τη λύση.",
+	"submission-message": "Η απάντησή σας έχει υποβληθεί.",
+	"submit": "Υποβολή",
+	"upper": "Άνω"
+}

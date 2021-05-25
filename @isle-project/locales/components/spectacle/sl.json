@@ -1,0 +1,10 @@
+{
+	"current": "Trenutni: ",
+	"end": "KONEC",
+	"slide-message": "Za premikanje med diapozitivi uporabite levo in desno smerno tipko ali oranžne smerne gumbe.",
+	"slide-navigation": "Navigacija diapozitivov",
+	"slide-no": "Diapozitiv {{slideIndex}} ",
+	"toggle-overview-mode": "Preklapljanje načina pregleda",
+	"toggle-slide-presenter-mode": "Preklapljanje načina predvajalnika diapozitivov",
+	"total": "Skupaj: "
+}

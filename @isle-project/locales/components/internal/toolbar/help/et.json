@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Klõpsake menüüs oleval elemendil, et selle kohta rohkem teada saada...",
+	"data-explorer-p1": "ISLE andmeeksploreri abil saate analüüsida andmekogumeid, kasutades näitamise ja klõpsamise kasutajaliidest. Andmete otsija on jagatud kaheks paneeliks: vasakpoolne paneel, kus saab vahetada analüüsitavate andmete arvutustabeli vaate ja muude valikuliste komponentide, näiteks aruande koostamise redaktori või küsimuste loetelu vahel. Parempoolne osa on väljundpaneel, mis sisaldab kõiki teie loodud väljundeid (koondstatistika, graafikud, hüpoteesitesti tulemused).",
+	"data-explorer-p2": "Uusi väljundeid saab genereerida tööriistakasti kaudu, mille saab avada, klõpsates nupul \"Show Toolbox\". Äsja loodud graafik või tabel lisatakse paremal olevasse väljundelementide loendisse.",
+	"data-explorer-p3": "Punaseid nuppe \"x\" ikoonidega saab kasutada üksikute väljundelementide kustutamiseks, samas kui allosas olev nupp \"Tühjenda kõik\" eemaldab kõik väljundelemendid.",
+	"data-explorer-p4": "Andmelehel, aruande redaktoris või tööriistakastis olevate küsimärgiga nuppude abil saate alustada giidiga ringkäiku erinevate osade võimaluste kaudu.",
+	"data-explorer-title": "Data Explorer",
+	"data-table-p1": "Lihtne viis andmete kuvamiseks ISLE-s on andmetabel. Need kuvatakse andmete vaatamiseks tüüpilises formaadis, mis sarnaneb sellega, kuidas andmed näevad välja Exceli tabelis. Iga veerg on muutuja, mille üleval on muutuja nimi.",
+	"data-table-p2": "Andmetabelitega tehtavaid asju saate tutvustada, kui klõpsate nupul Näita õpetust (küsimärk andmetabeli paremas ülaosas).",
+	"data-table-title": "Andmete tabel",
+	"documentation": "Dokumentatsioon",
+	"download-pdf": "Lae alla PDF",
+	"questions-p1": "Paljud ISLE õppetunnid, millega te töötate, sisaldavad küsimusi, millele peate vastama. Võimalikke küsimuste tüüpe on erinevaid, alates lühivastustest kuni valikvastustega küsimusteni. Siin on näide lühivastustega küsimusest:",
+	"questions-p2": "Esitamine",
+	"questions-p3": "Kui olete küsimusele vastanud ja olete valmis oma vastuse esitama, klõpsake nupule \"Esitada\". See salvestab teie töö, nii et juhendaja saab teie vastust näha ja teile küsimuse eest krediiti anda.",
+	"questions-p4": "Tagasiside nupud",
+	"questions-p5": "Mõnikord võib teie juhendaja lisada üksikutele küsimustele tagasiside nupud (näidatud eespool). Vasakpoolne nupp võimaldab teil märkida, et olete küsimuse puhul segaduses; keskmine nupp võimaldab teil märkida, et küsimus on mõistlik; ja parempoolne nupp võimaldab teil anda üksikasjalikumaid konkreetseid tagasisidekommentaare.",
+	"questions-p6": "Navigatsiooniküsimused",
+	"questions-p7": "Mitu küsimust võib paigutada samasse kohta leheküljel. Sellisel juhul saate küsimuste vahel liikuda, klõpsates nupule \"Järgmine\" või valides küsimused numbrite järgi:",
+	"questions-title": "Küsimused",
+	"statusbar-p1": "Kui klõpsate olekuribal, avanevad nupud, mille abil saate registreerida ISLE konto või logida olemasolevasse kontosse. Staatusriba keskel kuvatakse teie kasutajanimi või sisselogimine. Selle kohal hõljudes kuvatakse mitmeid statistilisi andmeid teie õppetöö edenemise kohta: õppetööle kulunud aeg, õppetöös sooritatud tegevuste protsent ja teie üldised saavutuspunktid.",
+	"statusbar-title": "Statusbar"
+}

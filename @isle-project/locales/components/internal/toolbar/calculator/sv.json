@@ -1,0 +1,12 @@
+{
+	"answer": "Svar",
+	"basic": "Grundläggande",
+	"calculator": "Kalkylator",
+	"copied": "Kopierad",
+	"copied-message": "Resultatet kopieras till urklipp",
+	"copy": "Kopiera",
+	"expand": "Expandera",
+	"malformed-expression": "Felaktigt uttryck",
+	"too-many-closing-parens": "För många avslutande parenteser",
+	"too-many-opening-parens": "För många öppnande parenteser"
+}

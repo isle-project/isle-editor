@@ -1,0 +1,7 @@
+{
+	"direction": "direcție",
+	"humidity": "umiditate",
+	"in": "în",
+	"loading-weather-data-for": "Încărcare date meteo pentru {{loc}}...",
+	"wind": "vânt"
+}

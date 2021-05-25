@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Pridėti pastabą instruktoriams",
+	"add-personal-note": "Pridėti asmeninę pastabą",
+	"add-student-note": "Pridėti pastabą studentams",
+	"clipboard-empty": "Sąsiuvinė yra tuščia",
+	"clipboard-empty-message": "Nepavyko įterpti teksto. Šiuo metu iškarpinė yra tuščia.",
+	"copy": "Kopijuoti",
+	"cut": "Iškirpti",
+	"encountered-error": "Įvyko klaida:",
+	"end-interface-tour": "Spustelėkite , jei norite baigti šiuo metu vykstančią sąsajos ekskursiją",
+	"highlight": "Paryškinti",
+	"not-available-yet": "Pamokos nėra (dar)",
+	"paste": "Pasta",
+	"read-aloud": "Skaitykite garsiai",
+	"remove-highlight": "Pašalinti paryškinimą",
+	"start-interface-tour": "Ekskursijos pradžia, kurioje paaiškinami įvairūs sąsajos elementai",
+	"voice-not-supported": "Nepalaikoma.",
+	"voice-not-supported-message": "Šiuo metu jūsų naršyklė nepalaiko teksto keitimo į kalbą funkcijos. Išbandykite \"Google Chrome\"."
+}

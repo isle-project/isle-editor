@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurraa, teie vastus on õige!",
+	"answer-incorrect-explanations": "Erinevate vastusevariantide kohal hõljudes saate kuvada tööriistavihiku koos selgitusega, miks vastav vastus on vale.",
+	"answer-incorrect-full": "Kahjuks on teie vastus vale. Õige vastus on kuvatud oranži värviga.",
+	"answer-incorrect-incremental": "Kahjuks on teie vastus vale. Võite proovida uuesti, valides teise vastusevariandi.",
+	"answer-incorrect-incremental-equal": "Kahjuks ei olnud kõik teie vastused õiged. Proovige teist kombinatsiooni.",
+	"answer-incorrect-incremental-extra": "Te kontrollisite kõik õiged vastusevariandid, kuid vähemalt üks vale vastusevariant on sisse hiilinud. Tühjendage vale(d) vastus(ed) ja esitage uuesti.",
+	"answer-incorrect-incremental-missing": "Te ei ole esitanud kõiki õigeid vastuseid. Valige täiendavad vastusevariandid.",
+	"answer-re-submitted": "Vastus on uuesti esitatud.",
+	"answer-submitted": "Esitatud vastus.",
+	"answer-submitted-nofeedback": "Olete edukalt esitanud oma vastuse. Võite oma vastust muuta ja soovi korral uuesti esitada.",
+	"answers": "Vastused",
+	"chose-all-apply": "Valige kõik, mis sobivad",
+	"each-row-click-check-boxes-which-apply": "Klõpsake iga rea puhul kõik asjakohased märkeruudud.",
+	"each-row-pick-answer-by-clicking": "Valige iga rea jaoks vastus, klõpsates vastaval rajanupul.",
+	"question-closed": "Küsimus on nüüd suletud.",
+	"resubmit": "Esita uuesti",
+	"select-answer": "Valige vastus",
+	"submit": "Esita",
+	"submitted": "Esitatud",
+	"successfully-re-submitted-your-answer": "Te olete oma vastuse edukalt uuesti esitanud.",
+	"successfully-submitted-your-answer": "Olete edukalt esitanud oma vastuse. Võite oma vastust muuta ja soovi korral uuesti esitada."
+}

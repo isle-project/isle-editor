@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Повторно подаден отговор.",
+	"answer-submitted": "Подаден отговор.",
+	"correct": "Правилно",
+	"correct-answer": "Правилен отговор: ",
+	"failure-message": "Не съвсем.",
+	"incorrect": "Неправилно",
+	"resubmit": "Повторно изпращане на",
+	"resubmit-message": "Успешно сте изпратили отговора си отново.",
+	"should-have-been": "Трябваше да бъде: ",
+	"submit": "Подаване на",
+	"submit-message": "Вашият отговор е изпратен.",
+	"success-message": "Това е правилният отговор!",
+	"try-again": "Опитайте отново"
+}

@@ -1,0 +1,12 @@
+{
+	"correct": "Σωστό",
+	"incorrect": "Λανθασμένο",
+	"question-closed": "Η ερώτηση έχει κλείσει.",
+	"resubmission-message": "Υποβάλατε με επιτυχία την απάντησή σας.",
+	"resubmit": "Επανυποβολή",
+	"submission-correct": "Αυτή είναι η σωστή σειρά!",
+	"submission-incorrect": "Όχι ακριβώς, προσπαθήστε ξανά!",
+	"submission-message": "Υποβάλατε επιτυχώς την απάντησή σας.",
+	"submit": "Υποβολή",
+	"submitted": "Υποβλήθηκε"
+}

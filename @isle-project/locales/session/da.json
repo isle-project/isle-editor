@@ -1,0 +1,20 @@
+{
+	"deleted": "Slettet",
+	"deleted-message": "Du har slettet handlingen med succes.",
+	"error-encountered": "Fejl opstået",
+	"file-upload": "Upload af filer",
+	"file-upload-signin-required": "Du skal være logget ind for at kunne uploade filer.",
+	"grades-saved": "Gemte karakterer",
+	"loggedin": "Logget ind",
+	"loggedin-message": "Du har logget ind med succes.",
+	"logout-message": "Du har logget ud med succes.",
+	"logout-title": "Logget ud",
+	"message-saved": "Besked gemt",
+	"new-password-message": "Tjek din e-mailindbakke for at finde et link til at vælge en ny adgangskode.",
+	"new-password-title": "Nyt kodeord",
+	"new-version-of-lesson-available": "En ny version af denne lektion er tilgængelig. Klik <1>her</1> for at opdatere.",
+	"request-failed": "Anmodning mislykkedes",
+	"user-created": "Bruger Oprettet",
+	"user-created-message": "Du har tilmeldt dig med succes.",
+	"user-not-created": "Bruger ikke oprettet"
+}

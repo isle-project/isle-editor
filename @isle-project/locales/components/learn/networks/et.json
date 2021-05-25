@@ -1,0 +1,9 @@
+{
+	"edge-probability": "kahe sõlme vahelise serva tõenäosus",
+	"global-clustering-coefficient": "Ülemaailmne klastritegur",
+	"intro-1": "Võrgus eeldatakse, et sõlmed on fikseeritud, kuid servad on juhuslikud, st on olemas mingi juhuslik protsess, mis määrab, kas on olemas serv, mis ühendab kahte sõlme.",
+	"intro-2": "Vaatleme ühte lihtsamat olemasolevatest võrgumudelitest. Erdős-Rényi mudelis on kindel tõenäosus <1 />, et kahe mis tahes sõlme vahel on olemas serv. Samuti eeldame, et see, kas kahe sõlme vahel on serv olemas või mitte, ei sõltu sellest, kas teisi servi on olemas või mitte.",
+	"intro-3": "Selles mudelis, kui meil on <1 /> sõlmed, võib iga sõlme ühendada <3 /> teiste sõlmedega.  Iga sõlme külge seotud servade arv (aste) on siis <5 />.",
+	"number-of-edges-per-generated-network": "Servade arv genereeritud võrgu kohta",
+	"number-of-nodes": "sõlmede arv"
+}

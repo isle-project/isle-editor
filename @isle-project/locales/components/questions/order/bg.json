@@ -1,0 +1,12 @@
+{
+	"correct": "Правилно",
+	"incorrect": "Неправилно",
+	"question-closed": "Въпросът е затворен.",
+	"resubmission-message": "Успешно сте изпратили отговора си отново.",
+	"resubmit": "Повторно изпращане на",
+	"submission-correct": "Това е правилното подреждане!",
+	"submission-incorrect": "Не съвсем, опитайте отново!",
+	"submission-message": "Успешно изпратихте отговора си.",
+	"submit": "Подаване на",
+	"submitted": "Представен"
+}

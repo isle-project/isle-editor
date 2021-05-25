@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Opětovně předložená odpověď.",
+	"answer-submitted": "Předložená odpověď.",
+	"answers": "Odpovědi",
+	"expect-a-or-b-for-each-element": "Pole `elements` se musí skládat z objektů s vlastnostmi `a` i `b` nebo alespoň s jednou z nich.",
+	"instructions": " {{complete}} Kliknutím na prvky na levé straně přiřaďte k nim odpovídající prvky na pravé straně.",
+	"question-closed": "Otázka je nyní uzavřena.",
+	"resubmission-message": "Úspěšně jste znovu odeslali odpověď.",
+	"resubmit": "Opětovné odeslání",
+	"submit": "Odeslat",
+	"submit-tooltip": "Odeslat můžete až po přiřazení všech prvků z levé strany k odpovídajícím prvkům z pravé strany."
+}

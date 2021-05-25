@@ -1,0 +1,15 @@
+{
+	"chat": "Chat",
+	"cohort": "Kohortti",
+	"mark-and-remove": "Merkitse kysymys vastatuksi ja poista",
+	"name": "Nimi",
+	"no-questions": "Jonossa ei ole tällä hetkellä kysymyksiä.",
+	"question": "Kysymys",
+	"queue": "Jono",
+	"queue-prompt": "Voit lähettää kysymyksen alla, ja joku ottaa sinuun yhteyttä pian!",
+	"queue-size": "(jonossa on tällä hetkellä {{n}} henkilö(t))",
+	"queue-start-chat": "Aloita keskustelu opiskelijan kanssa",
+	"queue-status": "Kysymyksesi: <1>{{question}}</1><br /> Olet tällä hetkellä asemassa <4>{{spot}}</4> jonossa.<br /> Siellä on <8>{{size}}</8> henkilö(iä) jonossa. ",
+	"remove-myself-from-queue": "Poista minut jonosta",
+	"submit-question": "Lähetä kysymys"
+}

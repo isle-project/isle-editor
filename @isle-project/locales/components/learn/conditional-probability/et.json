@@ -1,0 +1,15 @@
+{
+	"and": "ja",
+	"choose": "Valige",
+	"conditional-probabilities": "Kuidas on lood tingimuslike tõenäosustega?",
+	"conditional-probability-undefined": "Tingimuslik tõenäosus on määratlemata, kui",
+	"consider-events": "Kaaluge sündmusi",
+	"events-independent": "Sündmused on sõltumatud, sest",
+	"events-not-independent": "Sündmused <1>ei ole</1> sõltumatud, sest",
+	"inner-cells-equal": "Millega on sisemised rakud võrdsed? Kui sündmused on juhuslikud, siis on meil ",
+	"let": "Olgu",
+	"must-have-nonzero-probability": "Kui <1 />, peab meil olema <3 /> juhul, kui B on mittenulltõenäosusega.",
+	"not": "mitte",
+	"then-we-have": "Siis on meil",
+	"these-form-marginals": "Need moodustavad järgmise tõenäosustabeli marginaalid."
+}

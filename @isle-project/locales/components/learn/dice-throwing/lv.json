@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Izvēlieties pielāgotas varbūtības pusēm un pēc tam metiet kauliņus!",
+	"count": "Count",
+	"dice": "Kauliņi",
+	"invalid-probs": "Lūdzu, pārliecinieties, ka visas varbūtības ir vienādas.",
+	"number-of-sides": "Sānu skaits",
+	"probabilities": "Iespējamība",
+	"relative-frequency": "Relatīvais biežums",
+	"reset": "Atiestatīt",
+	"side": "Sānu",
+	"simulate-random-dice-throws": "Simulēt nejaušus kauliņu metienus",
+	"throw": "Mest",
+	"total-number-of-throws": "Kopējais metienu skaits"
+}

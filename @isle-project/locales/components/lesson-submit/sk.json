@@ -1,0 +1,19 @@
+{
+	"authentication": "Overovanie",
+	"authentication-prompt": "Ak chcete dokončiť túto lekciu, prihláste sa do svojho konta ISLE. Ak ste si ho nevytvorili, zaregistrujte sa a získajte prístup k plnej funkčnosti systému ISLE.",
+	"by": "podľa",
+	"choice": "Výber",
+	"completed": "Dokončené",
+	"confirmation-email": " Čoskoro dostanete potvrdzujúci e-mail.",
+	"download-pdf": "Stiahnite si PDF s odpoveďami",
+	"elapsed": "uplynula",
+	"finish-lesson": "Dokončiť lekciu",
+	"lesson-completed-msg": "Vážení {{name}}, toto je automatický potvrdzujúci e-mail, ktorý vás informuje, že ste úspešne dokončili lekciu \"{{lessonName}}\" kurzu \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Predložená lekcia!",
+	"lesson-successfully-completed": "Lekcia bola úspešne ukončená.",
+	"login": "Prihlásenie",
+	"responses-header": "Odpovede na lekciu ISLE",
+	"signup": "Zaregistrujte sa",
+	"submit": "Odoslať",
+	"successfully-completed": "úspešne ukončené"
+}

@@ -1,0 +1,12 @@
+{
+	"correct": "Korrekt",
+	"incorrect": "Felaktig",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmission-message": "Du har skickat in ditt svar på nytt.",
+	"resubmit": "Skicka in  på nytt.",
+	"submission-correct": "Det är den korrekta beställningen!",
+	"submission-incorrect": "Inte riktigt, försök igen!",
+	"submission-message": "Du har skickat in ditt svar.",
+	"submit": "Skicka in",
+	"submitted": "Inlämnat"
+}

@@ -1,0 +1,6 @@
+{
+	"and": " ja ",
+	"key-not-found": "Viittausavainta ei löydy viitteistä.",
+	"no-author": "Kirjoittaja-kenttä ei saa olla tyhjä.",
+	"no-references": "Oppitunnin johdanto-osasta ei löydy \"viittauksia\"."
+}

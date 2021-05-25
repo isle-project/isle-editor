@@ -1,0 +1,19 @@
+{
+	"cancel": "Tühista",
+	"cannot-follow": "Ma ei saa loogikast aru.",
+	"enter-text": "Sisestage tekst",
+	"feedback": "Tagasiside",
+	"give-custom-feedback": "Anda kohandatud tagasisidet",
+	"have-feedback": "Mul on tagasiside.",
+	"makes-sense": "See on mõistlik.",
+	"needs-detailed-explanation": "See vajab üksikasjalikumat selgitust.",
+	"no-understanding": "Ma ei saa sellest üldse aru",
+	"not-clear": "See ei ole mulle selge.",
+	"responses": "Vastused",
+	"submit": "Esita",
+	"submit-confused-message": "Meil on kahju seda kuulda. Teie tagasiside aitab meil materjali parandada.",
+	"submit-custom-message": "Täname teid, et võtsite aega meile tagasiside saatmiseks.",
+	"submit-understood-message": "\"Hea meel seda kuulda! Tänan teid tagasiside eest.",
+	"textarea-legend": "Mul on järgmised märkused (vabatahtlik):",
+	"thank-you": "Aitäh!"
+}

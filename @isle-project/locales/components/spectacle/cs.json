@@ -1,0 +1,10 @@
+{
+	"current": "Současný stav: ",
+	"end": "KONEC",
+	"slide-message": "Pro pohyb mezi snímky použijte klávesy se šipkami doleva a doprava nebo oranžová tlačítka se šipkami.",
+	"slide-navigation": "Navigace na snímku",
+	"slide-no": "Slide {{slideIndex}} z ",
+	"toggle-overview-mode": "Přepínání režimu přehledu",
+	"toggle-slide-presenter-mode": "Přepínání režimu prezentace snímků",
+	"total": "Celkem: "
+}

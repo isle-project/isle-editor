@@ -1,0 +1,20 @@
+{
+	"deleted": "Kustutatud",
+	"deleted-message": "Te olete tegevuse edukalt kustutanud.",
+	"error-encountered": "Ilmnenud viga",
+	"file-upload": "Faili üleslaadimine",
+	"file-upload-signin-required": "Failide üleslaadimiseks peate olema sisse logitud.",
+	"grades-saved": "Säästetud klassid",
+	"loggedin": "Sisselogitud",
+	"loggedin-message": "Olete edukalt sisse loginud.",
+	"logout-message": "Olete edukalt välja loginud.",
+	"logout-title": "Välja logitud",
+	"message-saved": "Salvestatud sõnum",
+	"new-password-message": "Kontrollige oma e-postkasti, et leida link uue salasõna valimiseks.",
+	"new-password-title": "Uus salasõna",
+	"new-version-of-lesson-available": "Selle õppetüki uus versioon on saadaval. Uuendamiseks klõpsake <1>siin</1>.",
+	"request-failed": "Taotlus ebaõnnestus",
+	"user-created": "Kasutaja loodud",
+	"user-created-message": "Olete edukalt registreerunud.",
+	"user-not-created": "Kasutajat ei ole loodud"
+}

@@ -1,0 +1,5 @@
+{
+	"missing-children": "Sivut-komponentti vaatii vähintään kaksi lapsielementtiä, jotta se voidaan renderöidä.",
+	"next-page": "Siirry seuraavalle sivulle",
+	"previous-page": "Siirry edelliselle sivulle"
+}

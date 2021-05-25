@@ -1,0 +1,15 @@
+{
+	"chat": "Klepet",
+	"cohort": "Kohorta",
+	"mark-and-remove": "Označite vprašanje kot odgovorjeno in odstranite",
+	"name": "Ime",
+	"no-questions": "V čakalni vrsti trenutno ni vprašanj.",
+	"question": "Vprašanje",
+	"queue": "Vrstni red",
+	"queue-prompt": "Spodaj lahko predložite vprašanje in nekdo se bo kmalu oglasil pri vas!",
+	"queue-size": "(v čakalni vrsti je trenutno {{n}} posameznikov)",
+	"queue-start-chat": "Začetek klepeta z učencem",
+	"queue-status": "Vaše vprašanje: <1>{{question}}</1><br /> Trenutno ste na položaju <4>{{spot}}</4> v čakalni vrsti.<br /> Na voljo so <8>{{size}}</8> posameznik(i) v čakalni vrsti. ",
+	"remove-myself-from-queue": "Odstrani me iz čakalne vrste",
+	"submit-question": "Pošlji vprašanje"
+}

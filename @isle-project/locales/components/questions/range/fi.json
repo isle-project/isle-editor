@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"answers": "Vastaukset",
+	"lower": "Alempi",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmission-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"resubmit": "Lähetä uudelleen",
+	"solution": "Ratkaisu",
+	"submission-correct": "Onnittelut, se on oikein!",
+	"submission-incorrect": "Ei aivan. Vertaa vastaustasi ratkaisuun.",
+	"submission-message": "Vastauksesi on lähetetty.",
+	"submit": "Lähetä",
+	"upper": "Ylempi"
+}

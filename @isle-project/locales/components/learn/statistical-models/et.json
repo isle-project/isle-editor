@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Bootstrap-agregeerimist kasutatakse sageli koos otsustuspuu meetoditega. Tõmmates algsetest koolitusandmetest bootstrap-valimikud, hinnatakse iga tõmmatud valimi jaoks mudelit, seejärel keskmistatakse nimetatud mudelite prognoosid, et saada väiksema varieeruvusega prognoosid, mis ei ole nii altid üle sobitamisele.",
+	"boosting-description": "Võimendavad algoritmid, nagu AdaBoost, õpivad iteratiivselt nõrku klassifikaatoreid ja lisavad neid lõplikule tugevale klassifikaatorile, kaaludes neid. Klassifikaatorite lisamisel saavad valesti klassifitseeritud sisendandmed suurema kaalu ja õigesti klassifitseeritud näited kaotavad kaalu. Seega keskenduvad tulevased nõrgad õppijad rohkem nendele näidetele, mida eelmised nõrgad õppijad klassifitseerisid valesti.",
+	"cart-description": "Klassifitseerimis- ja regressioonipuu (CART) analüüs loob puu, mis läheb vaatluse omadustest (esindatud harudes) kuni ennustatava väärtuseni (esindatud lehtedes).",
+	"classification": "Klassifikatsioon",
+	"clustering": "Klasterdamine",
+	"dimensionality-reduction": "Dimensionaalsuse vähendamine",
+	"elastic-net-description": "Elastne võrk on regulariseeritud regressioonimeetod, mis ühendab lineaarselt lasso- ja ridge-meetodite L1- ja L2-karistused.",
+	"ensemble": "Ansambel",
+	"kmeans-description": "Rühmitada vaatlused kindla arvu (k) klastritesse nii, et klastri liikmed on omavahel sarnasemad kui teiste klastrite vaatlused.",
+	"knn-description": "Kasutatakse nii regressiooniks kui ka klassifitseerimiseks. Kasutab kNN-klassifikatsiooni puhul enamushääletust k-saavutatuimate punktide vahel. Regressiooni puhul on väljundiks k-lähedaseimate väärtuste keskmine.",
+	"lasso-description": "Reguleeritud regressioonimeetod, mis karistab regressioonikoefitsiente, kasutades L1-normi. Kaupleb väiksema variantsi vastu natuke kallutatult. Viib hõreda mudelini.",
+	"linear-regression-description": "Modelleerib skalaarse vastuse ja ühe või mitme selgitava muutuja vahelist seost. Lihtne lineaarne regressioon viitab juhtumile, kus on üks ennustaja, mitmekordset lineaarset regressiooni kasutatakse mitme seletava muutuja puhul. Seda nimetatakse lineaarseks, sest hinnanguline funktsioon on koefitsientide osas lineaarne.",
+	"logistic-regression-description": "Logistiline regressioon on klassifitseerimismeetod, mida kasutatakse vaatluste määramiseks ühte kahest klassist. Logistiline regressioon kasutab logistilist sigmofunktsiooni, et anda iga klassi jaoks tõenäosuse väärtus.",
+	"naive-bayes-description": "Naive Bayesi meetodid on klassifitseerimisalgoritmide kogum, mis põhineb Bayesi teoreemi kohaldamisel \"naiivse\" eeldusega, et iga tunnusepaari vahel valitseb tingimuslik sõltumatus, arvestades klassi muutuja väärtust.",
+	"neural-networks-description": "Tehisnärvivõrke kasutatakse sisendite ja väljundite vaheliste keeruliste seoste modelleerimiseks, õppides mittelineaarset funktsiooni ilma manuaalse funktsioonitehnoloogiata.",
+	"pca-description": "Põhikomponentanalüüs (PCA) kasutab ortogonaalset teisendust, et teisendada võimalikud korrelatsioonilised muutujad lineaarselt mittekorreleeruvate muutujate väärtuste kogumiks, mida nimetatakse põhikomponentideks.",
+	"random-forest-description": "Juhuslikud metsad konstrueerivad treeningu ajal hulgaliselt otsustuspuid ja annavad tagasi klassi, mis on klasside režiim (klassifitseerimine) või keskmine ennustus (regressioon) üksikute puude vahel.",
+	"regression": "Regressioon",
+	"ridge-description": "Reguleeritud regressioonimeetod, mis karistab regressioonikoefitsiente, kasutades L2-normi. Kaupleb väiksema variantsi vastu natuke kallutatult. Ei anna hõredat mudelit, st koefitsiente ei viida nulli.",
+	"svm-description": "Tugivektorimasinad on diskrimineerivad klassifikaatorid. Algoritm leiab märgistatud treeningandmete põhjal optimaalse hüperplaani uute näidete liigitamiseks. Kahes mõõtmes on see hüperplaan joon, mis jagab selle kaheks osaks.",
+	"üca-description": "Põhikomponentanalüüs (PCA) kasutab ortogonaalset teisendust, et teisendada võimalikud korrelatsioonilised muutujad lineaarselt mittekorreleeruvate muutujate väärtuste kogumiks, mida nimetatakse põhikomponentideks."
+}

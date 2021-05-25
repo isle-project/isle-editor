@@ -1,0 +1,20 @@
+{
+	"back": "Zpět",
+	"close-and-to-dashboard": "Zavřete a přejděte na přístrojovou desku",
+	"close-instructor-view": "Pohled instruktora zblízka",
+	"disabled": "Video chat se zdravotním postižením",
+	"join": "Připojte se k videu",
+	"join-id": "Připojte se k videochatu s ID {{id}}",
+	"leave": "Zanechat video",
+	"leave-id": "Opustit videochat s ID {{id}}",
+	"next": "Další",
+	"open-instructor-view": "Otevřít zobrazení instruktora",
+	"playback-disabled": "Přehrávání na jiných webových stránkách bylo vlastníkem videa zakázáno.",
+	"reached-end": "Dosáhli jste konce této videopřednášky.",
+	"retry": "Opakování",
+	"supply-two-videos": "Uveďte prosím alespoň dvě adresy URL k následujícímu atributu",
+	"to-previous": "Přejít na předchozí část",
+	"toggle": "Přepínání videochatu",
+	"url-missing": "Chybí adresa URL videa.",
+	"video-not-loaded": "Video nelze načíst."
+}

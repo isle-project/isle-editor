@@ -1,0 +1,10 @@
+{
+	"current": "Aktuálne: ",
+	"end": "KONIEC",
+	"slide-message": "Na prechádzanie medzi snímkami použite tlačidlá so šípkami vľavo a vpravo alebo oranžové tlačidlá so šípkami.",
+	"slide-navigation": "Navigácia na snímke",
+	"slide-no": "Snímka {{slideIndex}} z ",
+	"toggle-overview-mode": "Prepnutie režimu prehľadu",
+	"toggle-slide-presenter-mode": "Prepínanie režimu prezentátora snímok",
+	"total": "Celkom: "
+}

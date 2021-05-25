@@ -1,0 +1,23 @@
+{
+	"brush-size": "Harjan koko",
+	"by": "",
+	"change-brush-color": "Muuta siveltimen väriä",
+	"clear": "Kirkas",
+	"clear-current": "Tyhjennä nykyinen sivu",
+	"clear-page": "Tyhjennä sivu",
+	"clear-page-modal-body": "Oletko varma, että haluat poistaa nykyisen sivun elementit?",
+	"close": "Sulje",
+	"copy": "Kopioi",
+	"delete-mode": "Poista tila",
+	"disable-swiping": "Poista käytöstä kahden sormen pyyhkäisyliikkeet diojen vaihtamiseksi.",
+	"disable-transmissions": "Poista lähetystoiminnot käytöstä napsauttamalla tätä",
+	"download": "Lataa dioja",
+	"download-instructor-annotations": "Lataa PDF-tiedosto opettajan huomautuksineen",
+	"download-original": "Lataa alkuperäinen PDF",
+	"drag-mode": "Vedä-tila",
+	"drawing-mode": "Piirtotila",
+	"enable-swiping": "Ota käyttöön kahden sormen pyyhkäisyeleet diojen vaihtamiseksi.",
+	"enable-transmissions": "Ota lähetystoiminnot käyttöön napsauttamalla tätä",
+	"encountered-error": "Tapahtui virhe",
+	"export-pdf": "Vie huomautukseni PDF-muodossa"
+}

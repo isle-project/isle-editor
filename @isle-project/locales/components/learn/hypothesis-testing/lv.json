@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Saskaņā ar nulles hipotēzi mēs aprēķinām p-vērtību: ",
+	"calculate-test-statistic": "Mēs aprēķinām šādu testa statistiku:",
+	"conduct-the-following-test": "Veicam šādu testu (noklikšķiniet uz hipotēzes zemāk, lai pārslēgtos starp vienpusējiem variantiem un divpusējo testu):",
+	"lets-assume": "Pieņemsim, ka mums ir novēroti dati ar šādām īpašībām:",
+	"parameters": "Parametri",
+	"plugging-in": "Ievietojot mūsu vērtības, mēs iegūstam:",
+	"proportion": "Proporcija",
+	"sample-mean": "Parauga vidējais rādītājs",
+	"sample-proportion": "Parauga proporcija",
+	"sample-size": "Parauga lielums",
+	"sample-standard-deviation": "Parauga standartnovirze",
+	"second-sample": "Otrais paraugs",
+	"test-result": "Testa rezultāts",
+	"test-statistic": "Testa statistika"
+}

@@ -1,0 +1,23 @@
+{
+	"and": "и",
+	"anova": "ANOVA за {{variable}} между {{group}}",
+	"correlation-test": "Тест за корелация между {{var1}} и {{var2}}",
+	"data-missing": "Липсват данни.",
+	"hypothesis-test-between": "Проверка на хипотезата за {{x}} между {{group}}",
+	"hypothesis-test-for": "Проверка на хипотезата за {{variable}}",
+	"hypothesis-test-for-independence": "Проверка на хипотезата за независимост между {{var1}} и {{var2}}",
+	"hypothesis-test-x-y": "Проверка на хипотезата за {{x}} срещу {{y}}",
+	"kruskal-wallis-test": "Тест на Крускал Уолис за {{variable}} между {{group}}",
+	"must-have-two-different-values": "Променлива за групиране <1>{{group}}</1> трябва да има поне две различни стойности.",
+	"pop-prob-first-group": "Нека <1 /> е вероятността на популацията на <3>{{var1}}</3> да бъде <5>{{success}}</5> в първата група,",
+	"probability-second-group": "вероятността във втората група, съответно. Проверяваме",
+	"probtest-success-prob": "Нека p е вероятността на популацията за <1>{{variable}}</1> да бъде <3>{{success}}</3>",
+	"probtest2-being-success": "Нека <1 /> е вероятността на популацията на <3>{{var1}}</3> да бъде <5>{{success}}</5>, <7 /> и <9 /> вероятността <11>{{var2}}</11> да бъдеш <13>{{success}}</13>, съответно. Тестваме",
+	"proptest2-title": "Проверка на хипотезата за равенство на пропорциите {{var1}} спрямо пропорцията {{var2}}",
+	"proptest2-title-grouped": "Проверка на хипотезата за равенство на пропорциите на {{var1}} по {{group}}",
+	"sample-mean-in-group": "Средна стойност на извадката в групата",
+	"sample-proportion": "Пропорция на извадката: ",
+	"sample-proportion-in-group": "Дял на извадката в групата",
+	"vs": "срещу.",
+	"we-test": "Тестваме"
+}

@@ -1,0 +1,15 @@
+{
+	"audio": "Аудио",
+	"cam": "Cam",
+	"clear-file": "Изчистване на файла",
+	"download-file": "Изтегляне на файл",
+	"encountered-error": "Срещната грешка",
+	"failed-to-capture-camera": "Не се получи заснемане на камерата (грешка: {{msg}})",
+	"failed-to-capture-microphone": "Не успя да заснеме микрофона ви (грешка: {{msg}})",
+	"failed-to-capture-screen": "Не успяхте да заснемете екрана (грешка: {{msg}})",
+	"open-link": "Отворена връзка",
+	"recording-uploaded": "Качен запис",
+	"recording-uploaded-message": "Вашият запис е успешно качен и може да бъде достъпен на адрес:",
+	"screen": "Екран",
+	"upload-file": "Качване на файл"
+}

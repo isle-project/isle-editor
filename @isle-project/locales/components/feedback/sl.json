@@ -1,0 +1,19 @@
+{
+	"cancel": "Prekliči",
+	"cannot-follow": "Ne morem slediti logiki.",
+	"enter-text": "Vnesite besedilo",
+	"feedback": "Povratne informacije",
+	"give-custom-feedback": "Podajte povratne informacije po meri",
+	"have-feedback": "Imam povratne informacije.",
+	"makes-sense": "Smiselno.",
+	"needs-detailed-explanation": "To je treba podrobneje razložiti.",
+	"no-understanding": "Tega sploh ne razumem",
+	"not-clear": "To mi ni jasno.",
+	"responses": "Odgovori",
+	"submit": "Pošlji",
+	"submit-confused-message": "Žal nam je za to. Vaše povratne informacije nam pomagajo izboljšati gradivo.",
+	"submit-custom-message": "Zahvaljujemo se vam, da ste si vzeli čas in nam poslali povratne informacije.",
+	"submit-understood-message": "\"To z veseljem slišim! Zahvaljujemo se vam za povratne informacije.",
+	"textarea-legend": "Imam naslednje pripombe (neobvezno):",
+	"thank-you": "Hvala!"
+}

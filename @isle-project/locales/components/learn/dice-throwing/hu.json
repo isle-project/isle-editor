@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Válassz egyéni valószínűségeket az oldalakhoz, majd dobj néhány kockát!",
+	"count": "Count",
+	"dice": "Dice",
+	"invalid-probs": "Kérjük, győződjön meg róla, hogy minden valószínűség egyhez adódik.",
+	"number-of-sides": "Oldalak száma",
+	"probabilities": "Valószínűségek",
+	"relative-frequency": "Relatív gyakoriság",
+	"reset": "Reset",
+	"side": "Oldal",
+	"simulate-random-dice-throws": "Véletlenszerű kockadobások szimulálása",
+	"throw": "Dobás",
+	"total-number-of-throws": "Dobások száma összesen"
+}

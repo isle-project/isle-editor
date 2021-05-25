@@ -1,0 +1,19 @@
+{
+	"authentication": "Ověřování",
+	"authentication-prompt": "Chcete-li dokončit tuto lekci, přihlaste se ke svému účtu ISLE. Pokud jste si ho ještě nevytvořili, zaregistrujte se a získejte přístup k plným funkcím ISLE.",
+	"by": "podle",
+	"choice": "Volba",
+	"completed": "Dokončeno",
+	"confirmation-email": " Brzy obdržíte potvrzovací e-mail.",
+	"download-pdf": "Stáhnout PDF s odpověďmi",
+	"elapsed": "uplynula",
+	"finish-lesson": "Dokončit lekci",
+	"lesson-completed-msg": "Vážení {{name}}, toto je automatický potvrzovací e-mail, který vás informuje, že jste úspěšně dokončili lekci \"{{lessonName}}\" kurzu \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Předložená lekce!",
+	"lesson-successfully-completed": "Lekce úspěšně dokončena.",
+	"login": "Přihlášení",
+	"responses-header": "Odpovědi pro lekci ISLE",
+	"signup": "Zaregistrujte se",
+	"submit": "Odeslat",
+	"successfully-completed": "úspěšně dokončil"
+}

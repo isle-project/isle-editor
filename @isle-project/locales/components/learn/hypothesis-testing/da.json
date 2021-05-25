@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Under nulhypotesen beregner vi p-værdien: ",
+	"calculate-test-statistic": "Vi beregner følgende teststatistik:",
+	"conduct-the-following-test": "Vi udfører følgende test (klik på hypoteserne nedenfor for at skifte mellem den ensidige variant og den dobbeltsidede test):",
+	"lets-assume": "Lad os antage, at vi har observerede data med følgende karakteristika:",
+	"parameters": "Parametre",
+	"plugging-in": "Ved at indsætte vores værdier får vi:",
+	"proportion": "Andel",
+	"sample-mean": "Prøvens gennemsnit",
+	"sample-proportion": "Andel af stikprøven",
+	"sample-size": "Prøvestørrelse",
+	"sample-standard-deviation": "Prøvens standardafvigelse",
+	"second-sample": "Anden prøve",
+	"test-result": "Testresultat",
+	"test-statistic": "Teststatistik"
+}

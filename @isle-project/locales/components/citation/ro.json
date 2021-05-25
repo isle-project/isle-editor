@@ -1,0 +1,6 @@
+{
+	"and": " și ",
+	"key-not-found": "Cheia de citare nu se găsește în referințe.",
+	"no-author": "Câmpul \"Autor\" nu trebuie să fie gol.",
+	"no-references": "Nu s-au găsit `referințe` în preambulul lecției."
+}

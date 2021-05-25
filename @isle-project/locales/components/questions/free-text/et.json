@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Vastus on uuesti esitatud.",
+	"answer-submitted": "Esitatud vastus.",
+	"answers": "Vastused",
+	"enter-your-answer-here": "Sisestage oma vastus siia...",
+	"question-closed": "Küsimus on nüüd suletud.",
+	"resubmit": "Esita uuesti",
+	"solution": "Lahendus:",
+	"submission-message-no-solution": "Võite oma vastust muuta ja soovi korral uuesti esitada.",
+	"submission-message-solution": "Võrrelge oma vastust lahendusega, kasutades nuppu \"Näita lahendust\". Seejärel saate oma vastust muuta ja vajaduse korral uuesti esitada.",
+	"submit": "Esita",
+	"submit-tooltip": "Pärast vastuse sisestamist klõpsake nuppu \"Saada\".",
+	"your-answer": "Teie vastus:"
+}

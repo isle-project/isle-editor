@@ -1,0 +1,15 @@
+{
+	"and": "și",
+	"choose": "Alegeți",
+	"conditional-probabilities": "Cum rămâne cu probabilitățile condiționate?",
+	"conditional-probability-undefined": "Probabilitatea condiționată este nedefinită atunci când",
+	"consider-events": "Luați în considerare evenimentele",
+	"events-independent": "Evenimentele sunt independente, deoarece",
+	"events-not-independent": "Evenimentele <1>nu</1> sunt independente, deoarece",
+	"inner-cells-equal": "La ce sunt egale celulele interioare? Dacă evenimentele sunt aleatorii, avem ",
+	"let": "Fie",
+	"must-have-nonzero-probability": "Când <1 />, trebuie să avem <3 /> în cazul în care B are o probabilitate diferită de zero.",
+	"not": "nu",
+	"then-we-have": "Atunci avem",
+	"these-form-marginals": "Acestea formează marginalele din următorul tabel de probabilitate"
+}

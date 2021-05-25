@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Svaret har lagts fram på nytt.",
+	"answer-submitted": "Svar inlämnat.",
+	"answers": "Svar",
+	"expect-a-or-b-for-each-element": "Mallen `elements` måste bestå av objekt med antingen både `a` och `b` egenskaper eller minst en av dem.",
+	"instructions": "Matcha {{complete}} -element från vänster sida med motsvarande element på höger sida genom att klicka på dem.",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmission-message": "Du har skickat in ditt svar på nytt.",
+	"resubmit": "Skicka in  på nytt.",
+	"submit": "Skicka in",
+	"submit-tooltip": "Du kan skicka in efter att du har matchat alla element från den vänstra sidan med motsvarande element från den högra sidan."
+}

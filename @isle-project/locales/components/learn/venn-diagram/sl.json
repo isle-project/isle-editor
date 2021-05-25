@@ -1,0 +1,18 @@
+{
+	"and": "in .",
+	"draw-venn-diagram": "Narišite Vennov diagram",
+	"label-first-set": "Oznaka prvega sklopa",
+	"label-second-set": "Oznaka drugega sklopa",
+	"label-third-set": "Oznaka tretjega sklopa",
+	"min-of-times": "Min # krat ",
+	"number-of-words": "Število besed: ",
+	"one": "Ena",
+	"settings": "Nastavitve",
+	"three": "Tri",
+	"total-number-observations": "Skupno število opazovanj",
+	"total-texts": "Skupaj # besedil",
+	"two": "Dva",
+	"venn-diagram": "Vennov diagram",
+	"venn-diagram-builder": "Graditelj Vennovih diagramov",
+	"word": "Beseda"
+}

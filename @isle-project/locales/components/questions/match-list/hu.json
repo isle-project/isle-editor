@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Újra benyújtott válasz.",
+	"answer-submitted": "Elküldött válasz.",
+	"answers": "Válaszok",
+	"expect-a-or-b-for-each-element": "Az `elements` tömbnek olyan objektumokból kell állnia, amelyek vagy mind az `a`, mind a `b` tulajdonságokkal rendelkeznek, vagy legalább az egyikükkel.",
+	"instructions": "A bal oldali {{complete}} elemeket a jobb oldali megfelelő elemekkel kell összepárosítani, ha rákattintasz a megfelelő elemekre.",
+	"question-closed": "A kérdés lezárult.",
+	"resubmission-message": "Ön sikeresen újra elküldte válaszát.",
+	"resubmit": "Újbóli benyújtás",
+	"submit": "Küldje be a",
+	"submit-tooltip": "Azután küldheti el, hogy a bal oldali összes elemet összevetette a jobb oldali megfelelő elemekkel."
+}

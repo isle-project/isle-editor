@@ -1,0 +1,12 @@
+{
+	"correct": "Corect",
+	"incorrect": "Incorect",
+	"question-closed": "Întrebarea este închisă.",
+	"resubmission-message": "Ați trimis din nou răspunsul cu succes.",
+	"resubmit": "Trimiteți din nou",
+	"submission-correct": "Aceasta este ordinea corectă!",
+	"submission-incorrect": "Nu chiar, încercați din nou!",
+	"submission-message": "Ați trimis răspunsul cu succes.",
+	"submit": "Trimiteți",
+	"submitted": "Trimis"
+}

@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Lūdzu, augšupielādējiet datu kopu (CSV formātā)",
+	"drop-file": "Lejupielādējiet failu šeit",
+	"error-message": "Mēģinot nolasīt failu, tika pieļauta šāda kļūda",
+	"error-title": "Nevar nolasīt failu.",
+	"first-row-names": "Pirmajā rindā ir mainīgo nosaukumi",
+	"no-csv": "Nav CSV faila.",
+	"no-csv-message": "Piegādātais fails nav CSV fails.",
+	"or": "vai",
+	"title": "Failu augšupielāde"
+}

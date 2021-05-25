@@ -1,0 +1,9 @@
+{
+	"edge-probability": "sandsynligheden for en kant mellem to knudepunkter",
+	"global-clustering-coefficient": "Global klyngekoefficient",
+	"intro-1": "I et netværk antages knuderne at være faste, men kanterne er tilfældige, dvs. at der er en tilfældig proces, som bestemmer, om der er en kant, der forbinder to knuder.",
+	"intro-2": "Lad os se på en af de enkleste tilgængelige netværksmodeller. I Erdős-Rényi-modellen er der en fast sandsynlighed <1 /> for, at der findes en kant mellem to knudepunkter. Vi antager også, at det er uafhængigt af, om der findes en kant mellem to knudepunkter, om der findes andre kanter eller ej.",
+	"intro-3": "Hvis vi i denne model har <1 /> knudepunkter, kan hver knudepunkt være forbundet med <3 /> andre knudepunkter.  Antallet af kanter, der er knyttet til hver knude (graden), er så <5 />.",
+	"number-of-edges-per-generated-network": "Antal kanter pr. genereret netværk",
+	"number-of-nodes": "antal knudepunkter"
+}

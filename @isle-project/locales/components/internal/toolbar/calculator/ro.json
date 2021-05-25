@@ -1,0 +1,12 @@
+{
+	"answer": "Răspuns",
+	"basic": "De bază",
+	"calculator": "Calculator",
+	"copied": "Copiat",
+	"copied-message": "Rezultat copiat în clipboard",
+	"copy": "Copiați",
+	"expand": "Extindeți",
+	"malformed-expression": "Expresie deformată",
+	"too-many-closing-parens": "Prea multe paranteze de închidere",
+	"too-many-opening-parens": "Prea multe paranteze de deschidere"
+}

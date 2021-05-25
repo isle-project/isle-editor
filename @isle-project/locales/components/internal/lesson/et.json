@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Lisa märkus juhendajatele",
+	"add-personal-note": "Lisa isiklik märkus",
+	"add-student-note": "Lisa märkus õpilastele",
+	"clipboard-empty": "Lõikelaua on tühi",
+	"clipboard-empty-message": "Teksti sisestamine ebaõnnestus. Lõikeplaat on hetkel tühi.",
+	"copy": "Koopia",
+	"cut": "Lõika",
+	"encountered-error": "Tekkis viga:",
+	"end-interface-tour": "Klõpsake, et lõpetada parajasti käimasolev kasutajaliidese ekskursioon.",
+	"highlight": "Rõhutage",
+	"not-available-yet": "Õppetund ei ole (veel) saadaval",
+	"paste": "Paste",
+	"read-aloud": "Lugege ette",
+	"remove-highlight": "Eemalda esiletõstmine",
+	"start-interface-tour": "Alustage ekskursiooni, mis selgitab erinevaid kasutajaliidese elemente",
+	"voice-not-supported": "Ei toetata.",
+	"voice-not-supported-message": "Teie brauser ei toeta praegu teksti kõnesid muutvat funktsiooni. Palun proovige Google Chrome'i."
+}

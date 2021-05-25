@@ -1,0 +1,18 @@
+{
+	"and": "og",
+	"draw-venn-diagram": "Tegn et Venn-diagram",
+	"label-first-set": "Mærke for første sæt",
+	"label-second-set": "Etiket for andet sæt",
+	"label-third-set": "Mærke for tredje sæt",
+	"min-of-times": "Min. antal gange ",
+	"number-of-words": "Antal ord: ",
+	"one": "En",
+	"settings": "Indstillinger",
+	"three": "Tre",
+	"total-number-observations": "Antal observationer i alt",
+	"total-texts": "Antal tekster i alt",
+	"two": "To",
+	"venn-diagram": "Venn-diagram",
+	"venn-diagram-builder": "Venn-diagram Builder",
+	"word": "Ord"
+}

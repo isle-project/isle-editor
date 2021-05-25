@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Vastus on uuesti esitatud.",
+	"answer-submitted": "Esitatud vastus.",
+	"correct": "Õige",
+	"correct-answer": "Õige vastus: ",
+	"failure-message": "Mitte päris.",
+	"incorrect": "Vale",
+	"resubmit": "Esita uuesti",
+	"resubmit-message": "Te olete oma vastuse edukalt uuesti esitanud.",
+	"should-have-been": "Oleks pidanud olema: ",
+	"submit": "Esita",
+	"submit-message": "Teie vastus on esitatud.",
+	"success-message": "See on õige vastus!",
+	"try-again": "Proovi uuesti"
+}

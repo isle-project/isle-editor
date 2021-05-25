@@ -1,0 +1,18 @@
+{
+	"and": "și",
+	"draw-venn-diagram": "Desenează o diagramă Venn",
+	"label-first-set": "Eticheta primului set",
+	"label-second-set": "Eticheta celui de-al doilea set",
+	"label-third-set": "Eticheta celui de-al treilea set",
+	"min-of-times": "Număr minim de ori ",
+	"number-of-words": "Număr de cuvinte: ",
+	"one": "Unu",
+	"settings": "Setări",
+	"three": "Trei",
+	"total-number-observations": "Numărul total de observații",
+	"total-texts": "Număr total de texte",
+	"two": "Două",
+	"venn-diagram": "Diagrama Venn",
+	"venn-diagram-builder": "Constructor de diagrame Venn",
+	"word": "Cuvânt"
+}

@@ -1,0 +1,12 @@
+{
+	"correct": "Korrekt",
+	"incorrect": "Forkert",
+	"question-closed": "Spørgsmålet er nu lukket.",
+	"resubmission-message": "Det er lykkedes dig at indsende dit svar igen.",
+	"resubmit": "Indsend",
+	"submission-correct": "Det er den korrekte rækkefølge!",
+	"submission-incorrect": "Ikke helt, prøv igen!",
+	"submission-message": "Du har indsendt dit svar med succes.",
+	"submit": "Indsend",
+	"submitted": "Indsendt"
+}

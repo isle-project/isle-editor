@@ -1,0 +1,18 @@
+{
+	"and": "a",
+	"draw-venn-diagram": "Nakreslite Vennov diagram",
+	"label-first-set": "Označenie prvej sady",
+	"label-second-set": "Označenie druhej sady",
+	"label-third-set": "Označenie tretej sady",
+	"min-of-times": "Min. počet opakovaní ",
+	"number-of-words": "Počet slov: ",
+	"one": "Jeden",
+	"settings": "Nastavenia",
+	"three": "Tri",
+	"total-number-observations": "Celkový počet pozorovaní",
+	"total-texts": "Celkový počet textov",
+	"two": "Dve stránky",
+	"venn-diagram": "Vennov diagram",
+	"venn-diagram-builder": "Tvorca Vennovho diagramu",
+	"word": "Slovo"
+}

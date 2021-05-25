@@ -1,0 +1,12 @@
+{
+	"answer": "Vastaa",
+	"basic": "Basic",
+	"calculator": "Laskin",
+	"copied": "Kopioitu",
+	"copied-message": "Tulos kopioitu leikepöydälle",
+	"copy": "Kopioi",
+	"expand": "Laajenna",
+	"malformed-expression": "Virheellinen ilmaisu",
+	"too-many-closing-parens": "Liian monta sulkeista",
+	"too-many-opening-parens": "Liian monta alkusulkeista"
+}

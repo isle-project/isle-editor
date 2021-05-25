@@ -1,0 +1,18 @@
+{
+	"and": "ir",
+	"draw-venn-diagram": "Nubraižykite Venno diagramą",
+	"label-first-set": "Pirmojo rinkinio etiketė",
+	"label-second-set": "Antrojo rinkinio etiketė",
+	"label-third-set": "Trečiojo rinkinio etiketė",
+	"min-of-times": "Min # kartų ",
+	"number-of-words": "Žodžių skaičius: ",
+	"one": "Vienas",
+	"settings": "Nustatymai",
+	"three": "Trys",
+	"total-number-observations": "Iš viso # stebėjimų",
+	"total-texts": "Iš viso # tekstų",
+	"two": "Du",
+	"venn-diagram": "Venno diagrama",
+	"venn-diagram-builder": "Venno diagramos kūrėjas",
+	"word": "Žodis"
+}

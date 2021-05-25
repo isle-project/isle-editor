@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Atkārtota atbilde.",
+	"answer-submitted": "Iesniegtā atbilde.",
+	"answers": "Atbildes",
+	"lower": "Apakšējā",
+	"question-closed": "Jautājums ir slēgts.",
+	"resubmission-message": "Jūs esat veiksmīgi atkārtoti iesniedzis savu atbildi.",
+	"resubmit": "Atkārtoti iesniegt",
+	"solution": "Risinājums",
+	"submission-correct": "Apsveicam, tas ir pareizi!",
+	"submission-incorrect": "Ne gluži. Salīdzini savu atbildi ar risinājumu.",
+	"submission-message": "Jūsu atbilde ir iesniegta.",
+	"submit": "Iesniegt",
+	"upper": "Augšējais"
+}

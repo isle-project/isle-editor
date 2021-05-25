@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Tyhjennä tiedosto",
+	"download-file": "Lataa tiedosto",
+	"encountered-error": "Tapahtunut virhe",
+	"failed-to-capture-camera": "Kameran kaappaaminen epäonnistui (virhe: {{msg}})",
+	"failed-to-capture-microphone": "Mikrofonin kaappaaminen epäonnistui (virhe: {{msg}}).",
+	"failed-to-capture-screen": "Näytön kaappaaminen epäonnistui (virhe: {{msg}})",
+	"open-link": "Avaa linkki",
+	"recording-uploaded": "Tallennus ladattu",
+	"recording-uploaded-message": "Tallenteesi on onnistuneesti ladattu ja se on saatavilla osoitteessa:",
+	"screen": "Näyttö",
+	"upload-file": "Lataa tiedosto"
+}

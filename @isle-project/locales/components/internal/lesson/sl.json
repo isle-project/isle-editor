@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Dodajte opombo za inštruktorje",
+	"add-personal-note": "Dodajanje osebne opombe",
+	"add-student-note": "Dodajte opombo za študente",
+	"clipboard-empty": "Pripomoček je prazen",
+	"clipboard-empty-message": "Ni uspelo vstaviti besedila. Pripomoček je trenutno prazen.",
+	"copy": "Kopiraj",
+	"cut": "Izreži",
+	"encountered-error": "Prišlo je do napake:",
+	"end-interface-tour": "Kliknite, če želite končati trenutno potekajočo turo po vmesniku",
+	"highlight": "Poudarite",
+	"not-available-yet": "Učna ura ni na voljo (še)",
+	"paste": "Paste",
+	"read-aloud": "Glasno branje",
+	"remove-highlight": "Odstranjevanje poudarkov",
+	"start-interface-tour": "Začetni ogled z razlago različnih elementov vmesnika",
+	"voice-not-supported": "Ni podprto.",
+	"voice-not-supported-message": "Funkcija pretvorbe besedila v govor trenutno ni podprta v vašem brskalniku. Poskusite z Google Chrome."
+}

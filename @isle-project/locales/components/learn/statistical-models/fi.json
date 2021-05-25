@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Bootstrap-aggregointia käytetään usein päätöspuu-menetelmien yhteydessä. Alkuperäisestä harjoitusaineistosta otetaan bootstrap-näytteet, joiden avulla estimoidaan malli kullekin näytteelle, ja näiden mallien ennusteet keskiarvoistetaan, jotta saadaan pienemmän varianssin ennusteita, jotka eivät ole yhtä alttiita ylisovittumiselle.",
+	"boosting-description": "AdaBoostin kaltaiset tehostusalgoritmit oppivat iteratiivisesti heikkoja luokittelijoita ja lisäävät niitä lopulliseen vahvaan luokittimeen painottamalla niitä. Kun luokittelijoita lisätään, väärin luokitellut syötetiedot saavat suuremman painoarvon ja oikein luokitellut esimerkit menettävät painoarvoa. Näin tulevat heikot oppijat keskittyvät enemmän esimerkkeihin, jotka edelliset heikot oppijat luokittelivat väärin.",
+	"cart-description": "Luokittelu- ja regressiopuuanalyysi (CART) rakentaa puun, joka kulkee havainnon ominaisuuksista (joita edustavat oksat) ennustettuun arvoon (joita edustavat lehdet).",
+	"classification": "Luokitus",
+	"clustering": "Klusterointi",
+	"dimensionality-reduction": "Dimensioiden vähentäminen",
+	"elastic-net-description": "Elastinen verkko on säännelty regressiomenetelmä, jossa yhdistyvät lineaarisesti lasso- ja ridge-menetelmien L1- ja L2-sanktiot.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Ryhmitellään havainnot kiinteään määrään (k) klustereita siten, että klusterin jäsenet ovat keskenään samankaltaisempia kuin muissa klustereissa olevat havainnot.",
+	"knn-description": "Käytetään sekä regressiossa että luokittelussa. Käyttää enemmistöäänestystä k-läheisimpien pisteiden välillä kNN-luokittelussa. Regressiossa tuloste on k-läheisimpien arvojen keskiarvo.",
+	"lasso-description": "Säännöstelty regressiomenetelmä, joka rankaisee regressiokertoimia L1-normin avulla. Pienempi varianssi vaihdetaan pieneen harhaan. Johtaa harvaan malliin.",
+	"linear-regression-description": "Mallintaa skaalavasteen ja yhden tai useamman selittävän muuttujan välistä suhdetta. Yksinkertaisella lineaarisella regressiolla tarkoitetaan tapausta, jossa on yksi ennustaja, moninkertaista lineaarista regressiota käytetään useiden selittävien muuttujien kanssa. Sitä kutsutaan lineaariseksi, koska estimoitu funktio on lineaarinen kertoimiensa suhteen.",
+	"logistic-regression-description": "Logistinen regressio on luokittelumenetelmä, jota käytetään luokittelemaan havainnot jompaankumpaan kahdesta luokasta. Logistinen regressio käyttää logistista sigmoidifunktiota palauttaakseen todennäköisyysarvon kullekin luokalle.",
+	"naive-bayes-description": "Naive Bayesin menetelmät ovat joukko luokittelualgoritmeja, jotka perustuvat Bayesin teoreeman soveltamiseen ja \"naiiviin\" oletukseen, jonka mukaan jokainen ominaisuuksien pari on ehdollisesti riippumaton luokkamuuttujan arvon perusteella.",
+	"neural-networks-description": "Keinotekoisia neuroverkkoja käytetään mallintamaan monimutkaisia suhteita syötteiden ja tuotosten välillä oppimalla epälineaarinen funktio ilman manuaalista ominaisuuksien suunnittelua.",
+	"pca-description": "Pääkomponenttianalyysissä (PCA) käytetään ortogonaalista muunnosta mahdollisesti korreloivien muuttujien muuntamiseksi lineaarisesti korreloimattomien muuttujien arvoiksi, joita kutsutaan pääkomponenteiksi.",
+	"random-forest-description": "Satunnaismetsät rakentavat useita päätöspuita harjoittelun aikana ja palauttavat luokan, joka on luokkien moodi (luokittelu) tai yksittäisten puiden keskimääräinen ennuste (regressio).",
+	"regression": "Regressio",
+	"ridge-description": "Säännöstelty regressiomenetelmä, joka rankaisee regressiokertoimia L2-normin avulla. Pienempi varianssi vaihdetaan pieneen harhaan. Ei tuota harvaa mallia, eli kertoimia ei ajeta nollaan.",
+	"svm-description": "Tukivektorikoneet ovat erottelevia luokittelijoita. Algoritmi etsii optimaalisen hypertason uusien esimerkkien luokittelua varten, kun sille on annettu leimattua harjoitusdataa. Kahdessa ulottuvuudessa tämä hypertaso on viiva, joka jakaa sen kahteen osaan.",
+	"üca-description": "Pääkomponenttianalyysissä (PCA) käytetään ortogonaalista muunnosta mahdollisesti korreloivien muuttujien muuntamiseksi lineaarisesti korreloimattomien muuttujien arvoiksi, joita kutsutaan pääkomponenteiksi."
+}

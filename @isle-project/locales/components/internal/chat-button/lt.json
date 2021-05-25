@@ -1,0 +1,7 @@
+{
+	"join-chat": "Prisijunkite prie pokalbio",
+	"join-chat-id": "Prisijunkite prie pokalbio su ID {{id}}",
+	"leave-chat": "Palikite pokalbį",
+	"leave-chat-id": "Palikite pokalbį su ID {{id}}",
+	"toggle-chat": "Perjungti pokalbį"
+}

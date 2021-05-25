@@ -1,0 +1,14 @@
+{
+	"close": "Zárja be a",
+	"email": "E-mail",
+	"enter-email": "Adja meg az e-mail címét.",
+	"enter-email-before-password-reset": "Kérjük, adja meg e-mail címét, mielőtt új jelszót kérne.",
+	"enter-password": "Adja meg a jelszavát.",
+	"enter-tfa-token": "Kérjük, adja meg a hitelesítőkészülék 6 számjegyű kódját:",
+	"enter-token": "Adja meg a megerősítő kódot...",
+	"forgot-password": "Elfelejtette jelszavát?",
+	"invalid": "Nem érvényes",
+	"login": "Bejelentkezés",
+	"password": "Jelszó",
+	"signin": "Bejelentkezés"
+}

@@ -1,0 +1,15 @@
+{
+	"chat": "Chat",
+	"cohort": "Cohorta",
+	"mark-and-remove": "Marcați întrebarea ca răspuns și eliminați",
+	"name": "Nume",
+	"no-questions": "În prezent, nu există întrebări în așteptare.",
+	"question": "Întrebare",
+	"queue": "Coadă de așteptare",
+	"queue-prompt": "Puteți trimite o întrebare mai jos, iar cineva va răspunde în scurt timp!",
+	"queue-size": "(există în prezent {{n}} persoană(e) în coadă)",
+	"queue-start-chat": "Începeți discuția cu elevul",
+	"queue-status": "Întrebarea dumneavoastră: <1>{{question}}</1><br /> Sunteți în prezent la poziția <4>{{spot}}</4> în coada de așteptare.<br /> Există <8>{{size}}</8> persoane în coadă. ",
+	"remove-myself-from-queue": "Scoateți-mă din coada de așteptare",
+	"submit-question": "Trimiteți întrebarea"
+}

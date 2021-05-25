@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Palun laadige üles andmekogum (CSV-vormingus).",
+	"drop-file": "Pane fail siia",
+	"error-message": "Faili lugemise ajal ilmnes järgmine viga",
+	"error-title": "Ei saanud lugeda faili.",
+	"first-row-names": "Esimene rida sisaldab muutujate nimesid",
+	"no-csv": "CSV-faili ei ole.",
+	"no-csv-message": "Esitatud fail ei ole CSV-fail.",
+	"or": "või",
+	"title": "Faili üleslaadimine"
+}

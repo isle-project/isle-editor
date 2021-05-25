@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Välj anpassade sannolikheter för sidorna och kasta sedan tärningar!",
+	"count": "Räkna",
+	"dice": "Tärning",
+	"invalid-probs": "Se till att alla sannolikheter summerar till ett.",
+	"number-of-sides": "Antal sidor",
+	"probabilities": "Sannolikheter",
+	"relative-frequency": "Relativ frekvens",
+	"reset": "Återställ",
+	"side": "Sidan",
+	"simulate-random-dice-throws": "Simulera slumpmässiga tärningskast",
+	"throw": "Kasta",
+	"total-number-of-throws": "Totalt antal kast"
+}

@@ -1,0 +1,12 @@
+{
+	"correct": "Pareizi",
+	"incorrect": "Nepareizi",
+	"question-closed": "Jautājums ir slēgts.",
+	"resubmission-message": "Jūs esat veiksmīgi atkārtoti iesniedzis savu atbildi.",
+	"resubmit": "Atkārtoti iesniegt",
+	"submission-correct": "Tā ir pareiza secība!",
+	"submission-incorrect": "Ne gluži, mēģiniet vēlreiz!",
+	"submission-message": "Jūs esat veiksmīgi iesniedzis savu atbildi.",
+	"submit": "Iesniegt",
+	"submitted": "Iesniegts"
+}

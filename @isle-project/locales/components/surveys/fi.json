@@ -1,0 +1,17 @@
+{
+	"action-required": "Tarvittavat toimet",
+	"answer-submitted": "Vastauksesi on lähetetty.",
+	"average-is": "Keskiarvo on",
+	"category": "Luokka",
+	"count": "Count",
+	"multiple-answers": "Voit valita useita vastauksia",
+	"no-responses-yet": "ei vastauksia vielä",
+	"number-of-votes": "Äänten määrä",
+	"offensive-word": "Vastauksesi sisältää loukkaavan sanan: {{w}}. Poistakaa se.",
+	"relative-frequency": "Suhteellinen taajuus",
+	"responses": "Vastaukset",
+	"sign-in": "Kirjaudu sisään...",
+	"submit": "Lähetä",
+	"submitted": "Lähetetty",
+	"your-answer": "Vastauksesi"
+}

@@ -1,0 +1,15 @@
+{
+	"chat": "Čats",
+	"cohort": "Kohorta",
+	"mark-and-remove": "Atzīmējiet jautājumu kā atbildētu un noņemiet",
+	"name": "Nosaukums",
+	"no-questions": "Pašlaik rindā nav jautājumu.",
+	"question": "Jautājums",
+	"queue": "Rinda",
+	"queue-prompt": "Varat iesniegt jautājumu zemāk, un drīzumā kāds sazināsies ar jums!",
+	"queue-size": "(pašlaik rindā ir {{n}} persona(-as))",
+	"queue-start-chat": "Sākt tērzēšanu ar studentu",
+	"queue-status": "Jūsu jautājums: <1>{{question}}</1><br /> Jūs pašlaik atrodaties pozīcijā <4>{{spot}}</4> rindā.<br /> Ir <8>{{size}}</8> persona(-as) rindā. ",
+	"remove-myself-from-queue": "Noņemt mani no rindas",
+	"submit-question": "Iesniegt jautājumu"
+}

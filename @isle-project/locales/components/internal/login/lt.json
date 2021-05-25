@@ -1,0 +1,14 @@
+{
+	"close": "Uždaryti",
+	"email": "El. paštas",
+	"enter-email": "Įveskite savo el. pašto adresą.",
+	"enter-email-before-password-reset": "Prieš prašydami naujo slaptažodžio, įveskite savo el. pašto adresą.",
+	"enter-password": "Įveskite slaptažodį.",
+	"enter-tfa-token": "Įveskite 6 skaitmenų kodą iš autentifikavimo įrenginio:",
+	"enter-token": "Įveskite patvirtinimo kodą...",
+	"forgot-password": "Pamiršote slaptažodį?",
+	"invalid": "Negalioja",
+	"login": "Prisijungimas",
+	"password": "Slaptažodis",
+	"signin": "Prisijunkite"
+}

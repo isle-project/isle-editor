@@ -1,0 +1,9 @@
+{
+	"edge-probability": "pravděpodobnost hrany mezi dvěma uzly",
+	"global-clustering-coefficient": "Globální koeficient shlukování",
+	"intro-1": "V síti se předpokládá, že uzly jsou pevné, ale hrany jsou náhodné, tj. existuje nějaký náhodný proces, který určuje, zda existuje hrana spojující dva uzly.",
+	"intro-2": "Uvažujme jeden z nejjednodušších dostupných síťových modelů. V Erdős-Rényiho modelu existuje pevně daná pravděpodobnost <1 />, že mezi libovolnými dvěma uzly existuje hrana. Předpokládáme také, že to, zda mezi dvěma uzly existuje nebo neexistuje hrana, nezávisí na tom, zda existují nebo neexistují jiné hrany.",
+	"intro-3": "V tomto modelu, pokud máme <1 /> uzlů, může být každý uzel připojen k <3 /> dalším uzlům.  Počet hran připojených ke každému uzlu (stupeň) je pak <5 />.",
+	"number-of-edges-per-generated-network": "Počet hran na generovanou síť",
+	"number-of-nodes": "počet uzlů"
+}

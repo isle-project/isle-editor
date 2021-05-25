@@ -1,0 +1,15 @@
+{
+	"chat": "Chat",
+	"cohort": "Kohorta",
+	"mark-and-remove": "Označte otázku ako zodpovedanú a odstráňte ju",
+	"name": "Názov",
+	"no-questions": "V súčasnosti nie sú vo fronte žiadne otázky.",
+	"question": "Otázka",
+	"queue": "Fronta",
+	"queue-prompt": "Nižšie môžete zaslať otázku a niekto sa vám bude čoskoro venovať!",
+	"queue-size": "(v súčasnosti je vo fronte {{n}} )",
+	"queue-start-chat": "Začnite chatovať so študentom",
+	"queue-status": "Vaša otázka: <1>{{question}}</1><br /> Momentálne sa nachádzate na pozícii <4>{{spot}}</4> v poradí.<br /> V poradí sú <8>{{size}}</8> osoba(y) vo fronte. ",
+	"remove-myself-from-queue": "Odstráňte ma z frontu",
+	"submit-question": "Odoslať otázku"
+}

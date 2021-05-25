@@ -1,0 +1,14 @@
+{
+	"close": "Sulje",
+	"email": "Sähköposti",
+	"enter-email": "Kirjoita sähköpostiosoitteesi.",
+	"enter-email-before-password-reset": "Anna sähköpostiosoitteesi ennen uuden salasanan pyytämistä.",
+	"enter-password": "Syötä salasanasi.",
+	"enter-tfa-token": "Syötä 6-numeroinen koodi autentikointilaitteestasi:",
+	"enter-token": "Syötä vahvistuskoodi...",
+	"forgot-password": "Unohditko salasanan?",
+	"invalid": "Ei voimassa",
+	"login": "Kirjaudu sisään",
+	"password": "Salasana",
+	"signin": "Kirjaudu sisään"
+}

@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Svaret er blevet genfremsat.",
+	"answer-submitted": "Svar afgivet.",
+	"correct": "Korrekt",
+	"correct-answer": "Korrekt svar: ",
+	"failure-message": "Ikke helt.",
+	"incorrect": "Forkert",
+	"resubmit": "Indsend",
+	"resubmit-message": "Det er lykkedes dig at indsende dit svar igen.",
+	"should-have-been": "Det skulle have været: ",
+	"submit": "Indsend",
+	"submit-message": "Dit svar er blevet indsendt.",
+	"success-message": "Det er det rigtige svar!",
+	"try-again": "Prøv igen"
+}

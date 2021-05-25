@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Kliknite, če želite pregledati razpoložljive možnosti.",
+	"discard-changes": "Zavrnite spremembe",
+	"edit-text": "Urejanje besedila",
+	"error-encountered": "Nastala napaka",
+	"expected-object-array": "`{{field}}` mora biti polje predmetov.",
+	"expected-value-from-list": "`{{field}}` mora biti eno od naslednjih: {{list}} .",
+	"flippable-requires-two-children": "Kartica z možnostjo obračanja zahteva dva otroška elementa.",
+	"grid-requires-two-children": "Mreža, ki jo je mogoče povleči, potrebuje vsaj dva podrejena elementa, da se lahko prikaže.",
+	"in": "na spletnem mestu",
+	"pause": "Prekinitev",
+	"resume": "Življenjepis",
+	"retry": "Ponovitev",
+	"save-changes": "Shranjevanje sprememb",
+	"search": "Iskanje",
+	"supply-component-id": "Navedite ID za komponento, ki jo želite spremljati.",
+	"toggle-error-stack-trace": "Preklopite sledenje napake v skladišču"
+}

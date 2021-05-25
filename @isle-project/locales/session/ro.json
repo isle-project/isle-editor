@@ -1,0 +1,20 @@
+{
+	"deleted": "Șters",
+	"deleted-message": "Ați reușit să ștergeți acțiunea.",
+	"error-encountered": "Eroare întâlnită",
+	"file-upload": "Încărcare fișiere",
+	"file-upload-signin-required": "Trebuie să vă conectați pentru a putea încărca fișiere.",
+	"grades-saved": "Note salvate",
+	"loggedin": "Conectat",
+	"loggedin-message": "V-ați autentificat cu succes.",
+	"logout-message": "V-ați deconectat cu succes.",
+	"logout-title": "Deconectat",
+	"message-saved": "Mesaj salvat",
+	"new-password-message": "Verificați căsuța de e-mail pentru a găsi un link pentru a alege o nouă parolă.",
+	"new-password-title": "Parolă nouă",
+	"new-version-of-lesson-available": "O nouă versiune a acestei lecții este disponibilă. Faceți clic <1>aici</1> pentru a actualiza.",
+	"request-failed": "Cerere eșuată",
+	"user-created": "Utilizator creat",
+	"user-created-message": "V-ați înregistrat cu succes.",
+	"user-not-created": "Utilizator necreat"
+}

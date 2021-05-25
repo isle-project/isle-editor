@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Noklikšķiniet uz izvēlnes elementa, lai uzzinātu vairāk par to...",
+	"data-explorer-p1": "ISLE datu pārlūks ļauj analizēt datu kopas, izmantojot \"norādiet un noklikšķiniet\" saskarni. Datu pētnieks ir sadalīts divos paneļos - kreisajā panelī, kurā var pārslēgties starp analizējamo datu izklājlapas skatu un citiem izvēles komponentiem, piemēram, atskaites rakstīšanas redaktoru vai jautājumu sarakstu. Labajā pusē ir izvades logs, kurā ir visi jūsu izveidotie rezultāti (kopsavilkuma statistika, grafiki, hipotēžu testa rezultāti).",
+	"data-explorer-p2": "Jaunas izejas var ģenerēt, izmantojot rīku komplektu, ko var atvērt, noklikšķinot uz pogas \"Rādīt rīku komplektu\". Jaunizveidotais grafiks vai tabula tiks pievienota izvades elementu sarakstam, kas redzams labajā pusē.",
+	"data-explorer-p3": "Sarkanās pogas ar \"x\" ikonām var izmantot, lai dzēstu atsevišķus izvades elementus, bet poga \"Clear All\" apakšā dzēš visus izvades elementus.",
+	"data-explorer-p4": "Izmantojot pogas ar jautājuma zīmi datu izklājlapā, pārskatu redaktorā vai rīku kastē, varēsiet sākt ekskursiju pa dažādu elementu iespējām.",
+	"data-explorer-title": "Datu pārlūks",
+	"data-table-p1": "Vienkāršs veids, kā datus var attēlot ISLE, ir datu tabula. Tās tiek attēlotas tipiskā datu skatīšanas formātā, kas ir līdzīgs tam, kā dati izskatās Excel izklājlapā. Katra sleja ir mainīgais lielums ar mainīgā lieluma nosaukumu augšpusē.",
+	"data-table-p2": "Lai gida pavadībā iepazītos ar datu tabulām, noklikšķiniet uz pogas Rādīt pamācību (jautājuma zīme datu tabulas augšējā labajā pusē).",
+	"data-table-title": "Datu tabula",
+	"documentation": "Dokumentācija",
+	"download-pdf": "Lejupielādēt PDF",
+	"questions-p1": "Daudzās ISLE stundās, ar kurām strādāsiet, būs jautājumi, uz kuriem jums būs jāatbild. Ir iespējami dažādi jautājumu veidi, sākot ar īsām atbildēm un beidzot ar atbilžu variantiem. Šeit ir īsas atbildes jautājuma piemērs:",
+	"questions-p2": "Iesniegšana",
+	"questions-p3": "Kad esat atbildējis uz jautājumu un esat gatavs iesniegt atbildi, noklikšķiniet uz pogas \"Iesniegt\". Tas reģistrē jūsu darbu, lai pasniedzējs varētu redzēt jūsu atbildi un novērtēt jautājumu.",
+	"questions-p4": "Atsauksmes pogas",
+	"questions-p5": "Dažkārt pasniedzējs var pievienot pogas atsauksmēm (parādīts iepriekš) pie atsevišķiem jautājumiem. Kreisā poga ļauj atzīmēt, ka jautājums jums ir neskaidrs; centrālā poga ļauj atzīmēt, ka jautājums ir jēgpilns, bet labā poga ļauj sniegt detalizētākas piezīmes.",
+	"questions-p6": "Navigācijas jautājumi",
+	"questions-p7": "Vienā un tajā pašā lapas vietā var novietot vairākus jautājumus. Šādā gadījumā varat pārvietoties starp jautājumiem, noklikšķinot uz pogas \"Nākamais\" vai izvēloties jautājumus pēc to numuriem:",
+	"questions-title": "Jautājumi",
+	"statusbar-p1": "Noklikšķinot uz statusa joslas, tiks parādītas pogas, lai pierakstītos ISLE kontā vai pieteiktos esošajā kontā. Statusa joslas vidū būs redzams jūsu lietotājvārds vai pieteicies. Uzliekot peles kursoru virs tā, tiks parādīti vairāki statistikas dati par jūsu nodarbības gaitu: nodarbībā pavadītais laiks, nodarbībā veikto darbību procentuālā daļa un jūsu kopējie sasniegumu punkti.",
+	"statusbar-title": "Statusa josla"
+}

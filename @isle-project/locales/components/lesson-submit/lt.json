@@ -1,0 +1,19 @@
+{
+	"authentication": "Autentiškumo nustatymas",
+	"authentication-prompt": "Norėdami užbaigti šią pamoką, prisijunkite prie savo ISLE paskyros. Jei nesate jos susikūrę, užsiregistruokite ir gaukite prieigą prie visų ISLE funkcijų.",
+	"by": "pagal",
+	"choice": "Pasirinkimas",
+	"completed": "Užbaigta",
+	"confirmation-email": " Netrukus gausite patvirtinimo el. laišką.",
+	"download-pdf": "Atsisiųsti atsakymų PDF",
+	"elapsed": "praėjo",
+	"finish-lesson": "Baigti pamoką",
+	"lesson-completed-msg": "Gerbiami {{name}}, tai automatinis patvirtinimo laiškas, kuriuo informuojame, kad sėkmingai baigėte kurso \"{{lessonName}}\" pamoką \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Pateikta pamoka!",
+	"lesson-successfully-completed": "Pamoka sėkmingai baigta.",
+	"login": "Prisijungimas",
+	"responses-header": "ISLE pamokos atsakymai",
+	"signup": "Užsiregistruokite",
+	"submit": "Pateikti",
+	"successfully-completed": "sėkmingai užbaigtas"
+}

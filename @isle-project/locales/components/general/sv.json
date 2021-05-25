@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Klicka för att gå igenom de tillgängliga alternativen.",
+	"discard-changes": "Förkasta ändringar",
+	"edit-text": "Redigera text",
+	"error-encountered": "Fel som uppstått",
+	"expected-object-array": "`{{field}}` måste vara en matris av objekt.",
+	"expected-value-from-list": "`{{field}}` måste vara något av följande: {{list}} .",
+	"flippable-requires-two-children": "Det vändbara kortet kräver två barnelement.",
+	"grid-requires-two-children": "För att det dragbara rutnätet ska kunna återges krävs minst två underelement.",
+	"in": "på",
+	"pause": "Pausa",
+	"resume": "Återuppta",
+	"retry": "Försök igen",
+	"save-changes": "Spara ändringar",
+	"search": "Sök på",
+	"supply-component-id": "Ange ett ID för den komponent som ska bevakas.",
+	"toggle-error-stack-trace": "Växla stapelspår av fel"
+}

@@ -1,0 +1,14 @@
+{
+	"close": "Sulge",
+	"email": "E-post",
+	"enter-email": "Sisestage oma e-posti aadress.",
+	"enter-email-before-password-reset": "Palun sisestage oma e-posti aadress enne uue salasõna taotlemist.",
+	"enter-password": "Sisestage oma parool.",
+	"enter-tfa-token": "Palun sisestage oma autentimisseadme 6-kohaline kood:",
+	"enter-token": "Sisestage kinnituskood...",
+	"forgot-password": "Unustasid salasõna?",
+	"invalid": "Ei kehti",
+	"login": "Logi sisse",
+	"password": "Parool",
+	"signin": "Logi sisse"
+}

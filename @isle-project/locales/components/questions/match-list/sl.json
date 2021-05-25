@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"answers": "Odgovori",
+	"expect-a-or-b-for-each-element": "Polje `elementi` mora biti sestavljeno iz predmetov z obema lastnostma `a` in `b` ali vsaj z eno od njiju.",
+	"instructions": "Elemente {{complete}} z leve strani ujemajte z ustreznimi elementi na desni strani tako, da jih kliknete.",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmission-message": "Uspešno ste ponovno poslali svoj odgovor.",
+	"resubmit": "Ponovno pošljite",
+	"submit": "Pošlji",
+	"submit-tooltip": "Pošiljate lahko, ko ste vse elemente z leve strani uskladili z ustreznimi elementi z desne strani."
+}

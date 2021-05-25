@@ -1,0 +1,23 @@
+{
+	"and": "και",
+	"anova": "ANOVA για το {{variable}} μεταξύ {{group}}",
+	"correlation-test": "Δοκιμή συσχέτισης μεταξύ {{var1}} και {{var2}}",
+	"data-missing": "Τα δεδομένα λείπουν.",
+	"hypothesis-test-between": "Έλεγχος υποθέσεων για το {{x}} μεταξύ {{group}}",
+	"hypothesis-test-for": "Δοκιμή υπόθεσης για {{variable}}",
+	"hypothesis-test-for-independence": "Έλεγχος υπόθεσης για την ανεξαρτησία μεταξύ {{var1}} και {{var2}}",
+	"hypothesis-test-x-y": "Δοκιμή υπόθεσης για {{x}} κατά {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} μεταξύ {{group}}",
+	"must-have-two-different-values": "Μεταβλητή ομαδοποίησης <1>{{group}}</1> πρέπει να έχει τουλάχιστον δύο διαφορετικές τιμές.",
+	"pop-prob-first-group": "Έστω <1 /> η πληθυσμιακή πιθανότητα <3>{{var1}}</3> να είναι <5>{{success}}</5> στην πρώτη ομάδα,",
+	"probability-second-group": "η πιθανότητα στη δεύτερη ομάδα, αντίστοιχα. Ελέγχουμε",
+	"probtest-success-prob": "Έστω p η πληθυσμιακή πιθανότητα <1>{{variable}}</1> να είναι <3>{{success}}</3>",
+	"probtest2-being-success": "Έστω <1 /> η πληθυσμιακή πιθανότητα <3>{{var1}}</3> να είναι <5>{{success}}</5>, <7 /> και <9 /> η πιθανότητα <11>{{var2}}</11> να είναι <13>{{success}}</13>, αντίστοιχα. Ελέγχουμε",
+	"proptest2-title": "Έλεγχος υπόθεσης για την ισότητα της αναλογίας {{var1}} έναντι της αναλογίας {{var2}}",
+	"proptest2-title-grouped": "Έλεγχος υπόθεσης για την ισότητα της αναλογίας {{var1}} με {{group}}",
+	"sample-mean-in-group": "Μέσος όρος δείγματος στην ομάδα",
+	"sample-proportion": "Αναλογία δείγματος: ",
+	"sample-proportion-in-group": "Αναλογία δείγματος στην ομάδα",
+	"vs": "εναντίον.",
+	"we-test": "Δοκιμάζουμε"
+}

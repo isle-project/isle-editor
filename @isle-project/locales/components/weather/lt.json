@@ -1,0 +1,7 @@
+{
+	"direction": "kryptis",
+	"humidity": "drėgmė",
+	"in": "",
+	"loading-weather-data-for": "Orų duomenų įkėlimas {{loc}}...",
+	"wind": "vėjas"
+}

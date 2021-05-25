@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurra, ditt svar är rätt!",
+	"answer-incorrect-explanations": "Du kan hålla muspekaren över de olika svarsalternativen för att få upp en tooltip med en förklaring till varför respektive svar är fel.",
+	"answer-incorrect-full": "Tyvärr är ditt svar felaktigt. Det korrekta svaret visas i orange.",
+	"answer-incorrect-incremental": "Tyvärr är ditt svar felaktigt. Du kan försöka igen genom att välja ett annat svarsalternativ.",
+	"answer-incorrect-incremental-equal": "Tyvärr var inte alla dina svar korrekta. Försök med en annan kombination.",
+	"answer-incorrect-incremental-extra": "Du har kryssat i alla korrekta svarsalternativ, men minst ett felaktigt svar har smugit sig in. Avmarkera det felaktiga svaret eller de felaktiga svaren och skicka in det på nytt.",
+	"answer-incorrect-incremental-missing": "Du har inte gett alla korrekta svar. Välj fler svarsalternativ.",
+	"answer-re-submitted": "Svaret har lagts fram på nytt.",
+	"answer-submitted": "Svar inlämnat.",
+	"answer-submitted-nofeedback": "Du har skickat in ditt svar. Du kan ändra ditt svar och skicka in det på nytt om du vill.",
+	"answers": "Svar",
+	"chose-all-apply": "Välj alla som är tillämpliga",
+	"each-row-click-check-boxes-which-apply": "För varje rad, klicka på alla kryssrutor som är tillämpliga.",
+	"each-row-pick-answer-by-clicking": "För varje rad väljer du ett svar genom att klicka på respektive radioknapp.",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmit": "Skicka in  på nytt.",
+	"select-answer": "Välj ett svar",
+	"submit": "Skicka in",
+	"submitted": "Inlämnat",
+	"successfully-re-submitted-your-answer": "Du har skickat in ditt svar på nytt.",
+	"successfully-submitted-your-answer": "Du har skickat in ditt svar. Du kan ändra ditt svar och skicka in det på nytt om du vill."
+}

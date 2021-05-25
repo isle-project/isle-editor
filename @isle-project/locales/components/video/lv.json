@@ -1,0 +1,20 @@
+{
+	"back": "Atpakaļ",
+	"close-and-to-dashboard": "Aizveriet un dodieties uz paneli",
+	"close-instructor-view": "Instruktora tuvs skats",
+	"disabled": "Videočats ar invaliditāti",
+	"join": "Pievienojies Video",
+	"join-id": "Pievienojieties videočatam ar ID {{id}}",
+	"leave": "Atstājiet video",
+	"leave-id": "Atstājiet video tērzēšanu ar ID {{id}}",
+	"next": "Nākamais",
+	"open-instructor-view": "Atvērt instruktora skats",
+	"playback-disabled": "Atskaņošanu citās vietnēs ir atspējojis video īpašnieks.",
+	"reached-end": "Jūs esat sasnieguši šīs video lekcijas beigas.",
+	"retry": "Atkārtot",
+	"supply-two-videos": "Lūdzu, norādiet vismaz divus URL adresus šādam atribūtam.",
+	"to-previous": "Pārejiet uz iepriekšējo daļu",
+	"toggle": "Pārslēgt videočats",
+	"url-missing": "Trūkst video URL.",
+	"video-not-loaded": "Video nav iespējams ielādēt."
+}

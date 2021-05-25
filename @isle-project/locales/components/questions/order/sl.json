@@ -1,0 +1,12 @@
+{
+	"correct": "Pravilno",
+	"incorrect": "Nepravilno",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmission-message": "Uspešno ste ponovno poslali svoj odgovor.",
+	"resubmit": "Ponovno pošljite",
+	"submission-correct": "To je pravilen vrstni red!",
+	"submission-incorrect": "Ne povsem, poskusite znova!",
+	"submission-message": "Uspešno ste oddali svoj odgovor.",
+	"submit": "Pošlji",
+	"submitted": "Predloženo"
+}

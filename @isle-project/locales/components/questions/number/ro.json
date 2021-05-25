@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Răspuns retransmis.",
+	"answer-submitted": "Răspuns transmis.",
+	"answers": "Răspunsuri",
+	"invalid-answer": "Răspuns nevalabil",
+	"invalid-range": "Răspunsul dumneavoastră trebuie să fie un număr cuprins între {{min}} și {{max}}.",
+	"one-of": "unul dintre ",
+	"or": "sau",
+	"question-closed": "Întrebarea este închisă.",
+	"resubmission-message": "Ați trimis din nou răspunsul cu succes.",
+	"resubmit": "Trimiteți din nou",
+	"solution": "Soluție",
+	"submission-correct": "Felicitări, este corect!",
+	"submission-incorrect": "Nu chiar. Comparați răspunsul dvs. cu soluția.",
+	"submission-message": "Răspunsul dvs. a fost trimis.",
+	"submission-try-again": "Răspunsul dumneavoastră este incorect. Vă rugăm să încercați din nou",
+	"submit": "Trimiteți",
+	"tries": "{{count}} încercare la stânga",
+	"tries_plural": "{{count}} încearcă stânga",
+	"your-answer": "Răspunsul dumneavoastră"
+}

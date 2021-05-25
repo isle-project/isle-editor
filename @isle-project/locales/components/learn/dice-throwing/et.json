@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Vali külgedele kohandatud tõenäosused ja viska siis täringut!",
+	"count": "Krahv",
+	"dice": "Dice",
+	"invalid-probs": "Palun veenduge, et kõik tõenäosused annavad kokku ühe.",
+	"number-of-sides": "Külgede arv",
+	"probabilities": "Tõenäosused",
+	"relative-frequency": "Suhteline sagedus",
+	"reset": "Reset",
+	"side": "Side",
+	"simulate-random-dice-throws": "Simuleeri juhuslikke täringuheitmisi",
+	"throw": "Heitke",
+	"total-number-of-throws": "Heitete koguarv"
+}

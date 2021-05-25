@@ -1,0 +1,15 @@
+{
+	"and": "ja",
+	"choose": "Valitse",
+	"conditional-probabilities": "Entä ehdolliset todennäköisyydet?",
+	"conditional-probability-undefined": "Ehdollinen todennäköisyys on määrittelemätön, kun",
+	"consider-events": "Harkitse tapahtumia",
+	"events-independent": "Tapahtumat ovat riippumattomia, koska",
+	"events-not-independent": "Tapahtumat <1>eivät ole</1> riippumattomia, koska",
+	"inner-cells-equal": "Mitä ovat sisimmät solut? Jos tapahtumat ovat satunnaisia, on ",
+	"let": "Olkoon",
+	"must-have-nonzero-probability": "Kun <1 />, meidän on oltava <3 />, jos B:n todennäköisyys on nollasta poikkeava.",
+	"not": "ei",
+	"then-we-have": "Tällöin meillä on",
+	"these-form-marginals": "Nämä muodostavat seuraavan todennäköisyystaulukon marginaalit."
+}

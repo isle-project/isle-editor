@@ -1,0 +1,13 @@
+{
+	"close": "Sulje",
+	"drag-plot": "Drag Plot",
+	"evaluate": "Arvioi",
+	"hide-solution": "Piilota ratkaisu",
+	"mosaic-plot-of": "Mosaic Plot of",
+	"r-help": "R Apua",
+	"r-plot": "R Juoni",
+	"reset": "Nollaa",
+	"reset-tooltip": "Nollaa komentotulkin syöttö oletusarvoonsa.",
+	"show-solution": "Näytä ratkaisu",
+	"solution-tooltip": "Ratkaisu tulee saataville, kun olet kokeillut harjoitusta ja käyttänyt kaikki vihjeet."
+}

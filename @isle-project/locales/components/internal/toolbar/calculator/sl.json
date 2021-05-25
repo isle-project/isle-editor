@@ -1,0 +1,12 @@
+{
+	"answer": "Odgovor",
+	"basic": "Osnovni",
+	"calculator": "Kalkulator",
+	"copied": "Kopirano",
+	"copied-message": "Rezultat se kopira v odložišče",
+	"copy": "Kopiraj",
+	"expand": "Razširiti",
+	"malformed-expression": "Napačno oblikovan izraz",
+	"too-many-closing-parens": "Preveč zaključnih oklepajev",
+	"too-many-opening-parens": "Preveč začetnih oklepajev"
+}

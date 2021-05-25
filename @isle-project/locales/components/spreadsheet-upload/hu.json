@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Kérjük, töltsön fel egy adatkészletet (CSV formátumban).",
+	"drop-file": "Dobja ide a fájlt",
+	"error-message": "A következő hiba lépett fel a fájl beolvasása során",
+	"error-title": "Nem tudta beolvasni a fájlt.",
+	"first-row-names": "Az első sor a változók neveit tartalmazza",
+	"no-csv": "Nincs CSV fájl.",
+	"no-csv-message": "A mellékelt fájl nem CSV fájl.",
+	"or": "vagy",
+	"title": "Fájl feltöltés"
+}

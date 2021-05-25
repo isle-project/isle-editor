@@ -1,0 +1,18 @@
+{
+	"and": "и",
+	"draw-venn-diagram": "Начертайте диаграма на Вен",
+	"label-first-set": "Етикет на първия комплект",
+	"label-second-set": "Етикет на втория комплект",
+	"label-third-set": "Етикет на третия комплект",
+	"min-of-times": "Минимален брой пъти ",
+	"number-of-words": "Брой думи: ",
+	"one": "Един",
+	"settings": "Настройки",
+	"three": "Три",
+	"total-number-observations": "Общ брой наблюдения",
+	"total-texts": "Общ брой текстове",
+	"two": "Две",
+	"venn-diagram": "Диаграма на Вен",
+	"venn-diagram-builder": "Създател на диаграми на Вен",
+	"word": "Word"
+}

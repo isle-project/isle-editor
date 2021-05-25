@@ -1,0 +1,15 @@
+{
+	"and": "och",
+	"choose": "Välj",
+	"conditional-probabilities": "Hur är det med de villkorliga sannolikheterna?",
+	"conditional-probability-undefined": "Den betingade sannolikheten är odefinierad när",
+	"consider-events": "Tänk på händelser",
+	"events-independent": "Händelserna är oberoende av varandra eftersom",
+	"events-not-independent": "Händelserna är <1>inte</1> oberoende av varandra eftersom",
+	"inner-cells-equal": "Vad är de inre cellerna lika med? Om händelserna är slumpmässiga har vi ",
+	"let": "Låt",
+	"must-have-nonzero-probability": "När <1 />, måste vi ha <3 /> i fall B har en sannolikhet som inte är noll.",
+	"not": "inte",
+	"then-we-have": "Då har vi följande",
+	"these-form-marginals": "Dessa utgör marginalerna i följande sannolikhetstabell"
+}

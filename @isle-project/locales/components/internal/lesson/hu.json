@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Megjegyzés hozzáadása oktatóknak",
+	"add-personal-note": "Személyes megjegyzés hozzáadása",
+	"add-student-note": "Megjegyzés hozzáadása diákoknak",
+	"clipboard-empty": "A vágólap üres",
+	"clipboard-empty-message": "Nem sikerült szöveget beszúrni. A vágólap jelenleg üres.",
+	"copy": "Másolás",
+	"cut": "Vágja",
+	"encountered-error": "Hiba lépett fel:",
+	"end-interface-tour": "Kattintson erre a gombra az éppen folyamatban lévő felületbejárás befejezéséhez.",
+	"highlight": "Kiemelés",
+	"not-available-yet": "A lecke (még) nem elérhető",
+	"paste": "Paste",
+	"read-aloud": "Olvassa fel hangosan",
+	"remove-highlight": "Kiemelés eltávolítása",
+	"start-interface-tour": "A különböző kezelőfelületi elemek ismertetése",
+	"voice-not-supported": "Nem támogatott.",
+	"voice-not-supported-message": "A szövegről beszédre funkciót jelenleg nem támogatja a böngészője. Kérjük, próbálja ki a Google Chrome-ot."
+}

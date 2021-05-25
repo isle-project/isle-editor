@@ -1,0 +1,18 @@
+{
+	"and": "és",
+	"draw-venn-diagram": "Venn-diagram rajzolása",
+	"label-first-set": "Az első készlet címkéje",
+	"label-second-set": "A második készlet címkéje",
+	"label-third-set": "A harmadik készlet címkéje",
+	"min-of-times": "Minimális számú alkalom ",
+	"number-of-words": "Szavak száma: ",
+	"one": "Egy",
+	"settings": "Beállítások",
+	"three": "Három",
+	"total-number-observations": "Megfigyelések száma összesen",
+	"total-texts": "Szövegek száma összesen",
+	"two": "Két",
+	"venn-diagram": "Venn-diagram",
+	"venn-diagram-builder": "Venn diagram készítő",
+	"word": "Szó"
+}

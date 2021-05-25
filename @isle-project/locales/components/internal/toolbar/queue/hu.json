@@ -1,0 +1,15 @@
+{
+	"chat": "Chat",
+	"cohort": "Kohorsz",
+	"mark-and-remove": "Jelölje meg a kérdést megválaszoltnak, és távolítsa el",
+	"name": "Név",
+	"no-questions": "Jelenleg nincs kérdés a sorban.",
+	"question": "Kérdés",
+	"queue": "Sorban állás",
+	"queue-prompt": "Az alábbiakban elküldheti kérdését, és valaki hamarosan felveszi Önnel a kapcsolatot!",
+	"queue-size": "(jelenleg a {{n}} oldalon van(nak) a sorban)",
+	"queue-start-chat": "Csevegés indítása a diákkal",
+	"queue-status": "Az Ön kérdése: <1>{{question}}</1><br /> Jelenleg a következő pozícióban van <4>{{spot}}</4> a sorban.<br /> Vannak <8>{{size}}</8> egyén(ek) a sorban. ",
+	"remove-myself-from-queue": "Távolítson el a várólistáról",
+	"submit-question": "Kérdés beküldése"
+}

@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Opětovně předložená odpověď.",
+	"answer-submitted": "Předložená odpověď.",
+	"answers": "Odpovědi",
+	"invalid-answer": "Neplatná odpověď",
+	"invalid-range": "Vaše odpověď by měla být číslo mezi {{min}} a {{max}}.",
+	"one-of": "jeden z ",
+	"or": "nebo",
+	"question-closed": "Otázka je nyní uzavřena.",
+	"resubmission-message": "Úspěšně jste znovu odeslali odpověď.",
+	"resubmit": "Opětovné odeslání",
+	"solution": "Řešení",
+	"submission-correct": "Gratuluji, je to správně!",
+	"submission-incorrect": "Ne tak docela. Porovnejte svou odpověď s řešením.",
+	"submission-message": "Vaše odpověď byla odeslána.",
+	"submission-try-again": "Vaše odpověď je nesprávná. Zkuste to prosím znovu",
+	"submit": "Odeslat",
+	"tries": "{{count}} zkusit vlevo",
+	"tries_plural": "{{count}} se snaží vlevo",
+	"your-answer": "Vaše odpověď"
+}

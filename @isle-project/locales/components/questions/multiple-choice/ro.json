@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Ura, răspunsul tău este corect!",
+	"answer-incorrect-explanations": "Puteți să treceți peste diferitele variante de răspuns pentru a afișa un tooltip cu o explicație de ce răspunsul respectiv este greșit.",
+	"answer-incorrect-full": "Din păcate, răspunsul dumneavoastră este incorect. Răspunsul corect este afișat în portocaliu.",
+	"answer-incorrect-incremental": "Din păcate, răspunsul dumneavoastră este incorect. Puteți încerca din nou, selectând o altă opțiune de răspuns.",
+	"answer-incorrect-incremental-equal": "Din păcate, nu toate răspunsurile au fost corecte. Încercați o altă combinație.",
+	"answer-incorrect-incremental-extra": "Ați bifat toate variantele de răspuns corecte, dar s-a strecurat cel puțin una incorectă. Deselectați răspunsul (răspunsurile) incorect(e) și retrimiteți.",
+	"answer-incorrect-incremental-missing": "Nu ați oferit toate răspunsurile corecte. Selectați alte variante de răspuns.",
+	"answer-re-submitted": "Răspuns retransmis.",
+	"answer-submitted": "Răspuns transmis.",
+	"answer-submitted-nofeedback": "Ați trimis răspunsul cu succes. Dacă doriți, puteți să vă modificați răspunsul și să îl retrimiteți.",
+	"answers": "Răspunsuri",
+	"chose-all-apply": "Alegeți toate variantele care se aplică",
+	"each-row-click-check-boxes-which-apply": "Pentru fiecare rând, faceți clic pe toate căsuțele de selectare care se aplică",
+	"each-row-pick-answer-by-clicking": "Pentru fiecare rând, alegeți un răspuns dând clic pe butonul radio respectiv.",
+	"question-closed": "Întrebarea este închisă.",
+	"resubmit": "Trimiteți din nou",
+	"select-answer": "Selectați un răspuns",
+	"submit": "Trimiteți",
+	"submitted": "Trimis",
+	"successfully-re-submitted-your-answer": "Ați trimis din nou răspunsul cu succes.",
+	"successfully-submitted-your-answer": "Ați trimis răspunsul cu succes. Dacă doriți, puteți să vă modificați răspunsul și să îl retrimiteți."
+}

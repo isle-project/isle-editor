@@ -1,0 +1,12 @@
+{
+	"correct": "Õige",
+	"incorrect": "Vale",
+	"question-closed": "Küsimus on nüüd suletud.",
+	"resubmission-message": "Te olete oma vastuse edukalt uuesti esitanud.",
+	"resubmit": "Esita uuesti",
+	"submission-correct": "See on õige järjekord!",
+	"submission-incorrect": "Mitte päris, proovige uuesti!",
+	"submission-message": "Olete edukalt esitanud oma vastuse.",
+	"submit": "Esita",
+	"submitted": "Esitatud"
+}

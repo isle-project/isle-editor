@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Klikkaa valikon kohdetta saadaksesi lisätietoja siitä...",
+	"data-explorer-p1": "ISLE data explorer -ohjelman avulla voit analysoida tietokokonaisuuksia osoittamalla ja napsauttamalla käyttöliittymää. Data explorer on jaettu kahteen ruutuun, vasemmanpuoleiseen ruutuun, jossa voit vaihtaa analysoitavien tietojen taulukkonäkymän ja muiden valinnaisten osien, kuten raportin kirjoittamiseen tarkoitetun editorin tai kysymysluettelon välillä. Oikeanpuoleinen osa on tulostusruutu, joka sisältää kaikki luomasi tuotokset (yhteenvetotilastot, kuvaajat, hypoteesitestin tulokset).",
+	"data-explorer-p2": "Uusia ulostuloja voidaan luoda työkalupakista, joka avataan napsauttamalla \"Näytä työkalupakki\" -painiketta. Äskettäin luotu kuvaaja tai taulukko liitetään oikealla puolella olevaan tulostuselementtien luetteloon.",
+	"data-explorer-p3": "Punaisilla painikkeilla, joissa on \"x\"-kuvakkeet, voidaan poistaa yksittäisiä lähtöelementtejä, kun taas alareunan \"Tyhjennä kaikki\"-painike poistaa kaikki lähtöelementit.",
+	"data-explorer-p4": "Käyttämällä kysymysmerkillä varustettuja painikkeita tietolaskentataulukossa, raporttieditorissa tai työkalupakissa voit aloittaa opastetun kierroksen eri osien mahdollisuuksiin.",
+	"data-explorer-title": "Data Explorer",
+	"data-table-p1": "Yksinkertainen tapa näyttää tietoja ISLEssä on datataulukko. Nämä taulukot ovat tyypillisessä tietojen katselumuodossa, joka on samanlainen kuin Excel-taulukon tiedot. Kukin sarake on muuttuja, jonka yläreunassa on muuttujan nimi.",
+	"data-table-p2": "Saat opastetun kierroksen siitä, mitä kaikkea voit tehdä datataulukoilla, napsauttamalla Näytä opetusohjelma -painiketta (kysymysmerkki datataulukon oikeassa yläkulmassa).",
+	"data-table-title": "Tietotaulukko",
+	"documentation": "Dokumentaatio",
+	"download-pdf": "Lataa PDF",
+	"questions-p1": "Monissa ISLE-oppitunneissa on kysymyksiä, joihin sinun on vastattava. Kysymystyyppejä on monenlaisia, lyhyistä vastauksista monivalintakysymyksiin. Tässä on esimerkki lyhyestä vastauksesta:",
+	"questions-p2": "Toimittaminen",
+	"questions-p3": "Kun olet vastannut kysymykseen ja olet valmis lähettämään vastauksesi, napsauta \"Lähetä\"-painiketta. Tämä tallentaa työsi, jotta opettajasi voi nähdä vastauksesi ja antaa sinulle arvosanan kysymyksestä.",
+	"questions-p4": "Palautepainikkeet",
+	"questions-p5": "Joskus ohjaajasi saattaa lisätä palautepainikkeita (yllä) yksittäisiin kysymyksiin. Vasemmanpuoleisella painikkeella voit huomauttaa, että olet hämmentynyt kysymyksestä, keskimmäisellä painikkeella voit huomauttaa, että kysymys on järkevä, ja oikeanpuoleisella painikkeella voit antaa yksityiskohtaisempia palautekommentteja.",
+	"questions-p6": "Navigointikysymykset",
+	"questions-p7": "Sivulla voi olla useita kysymyksiä samassa kohdassa. Jos näin on, voit siirtyä kysymysten välillä napsauttamalla Seuraava-painiketta tai valitsemalla kysymykset numeron perusteella:",
+	"questions-title": "Kysymykset",
+	"statusbar-p1": "Tilapalkkia napsauttamalla saat näkyviin painikkeet, joilla voit rekisteröityä ISLE-tilille tai kirjautua olemassa olevaan tiliin. Tilapalkin keskellä näkyy käyttäjätunnuksesi tai kirjautunut sisään. Kun viet sen yläpuolelle hiiren kursorin, näet useita tilastoja oppitunnin edistymisestäsi: oppitunnilla vietetty aika, oppitunnilla suoritettujen toimintojen prosenttiosuus ja kokonaispistemääräsi.",
+	"statusbar-title": "Tilapalkki"
+}

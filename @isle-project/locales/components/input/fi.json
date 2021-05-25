@@ -1,0 +1,14 @@
+{
+	"and": "ja",
+	"between": "välillä",
+	"click-to-start-recording": "Aloita tallennus napsauttamalla",
+	"click-to-stop-recording": "Lopeta tallennus napsauttamalla",
+	"enter": "Kirjoita",
+	"enter-text": "Kirjoita teksti...",
+	"integer": "kokonaisluku",
+	"larger-or-equal-to": "suurempi tai yhtä suuri kuin",
+	"number": "numero",
+	"select-placeholder": "Valitse...",
+	"slider-disabled": "Liukusäätimen syöttö on tällä hetkellä pois käytöstä.",
+	"smaller-or-equal-to": "pienempi tai yhtä suuri kuin"
+}

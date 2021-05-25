@@ -1,0 +1,17 @@
+{
+	"action-required": "Nepieciešamā rīcība",
+	"answer-submitted": "Jūsu atbilde ir iesniegta.",
+	"average-is": "Vidējais rādītājs ir",
+	"category": "Kategorija",
+	"count": "Count",
+	"multiple-answers": "Varat izvēlēties vairākas atbildes",
+	"no-responses-yet": "pagaidām nav atbildes",
+	"number-of-votes": "Balsu skaits",
+	"offensive-word": "Jūsu atbildē ir aizskarošs vārds: {{w}}. Lūdzu, dzēsiet.",
+	"relative-frequency": "Relatīvais biežums",
+	"responses": "Atbildes",
+	"sign-in": "Lūdzu, pierakstieties...",
+	"submit": "Iesniegt",
+	"submitted": "Iesniegts",
+	"your-answer": "Jūsu atbilde"
+}

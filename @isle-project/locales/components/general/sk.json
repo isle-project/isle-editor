@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Kliknutím na položku prejdete cez dostupné možnosti.",
+	"discard-changes": "Vyradenie zmien",
+	"edit-text": "Upraviť text",
+	"error-encountered": "Vyskytnutá chyba",
+	"expected-object-array": "`{{field}}` musí byť pole objektov.",
+	"expected-value-from-list": "`{{field}}` musí byť jeden z nasledujúcich: {{list}} .",
+	"flippable-requires-two-children": "Prevrátiteľná karta vyžaduje dva podriadené prvky.",
+	"grid-requires-two-children": "Preťahovateľná mriežka vyžaduje na vykreslenie aspoň dva podriadené prvky.",
+	"in": "na stránke",
+	"pause": "Pauza",
+	"resume": "Životopis",
+	"retry": "Opakovanie",
+	"save-changes": "Uloženie zmien",
+	"search": "Vyhľadávanie",
+	"supply-component-id": "Uveďte identifikačné číslo súčasti, ktorá sa má sledovať.",
+	"toggle-error-stack-trace": "Prepínanie stack trace chyby"
+}

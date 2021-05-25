@@ -1,0 +1,20 @@
+{
+	"back": "Tagasi",
+	"close-and-to-dashboard": "Sulge ja mine armatuurlauale",
+	"close-instructor-view": "Sulge instruktori vaade",
+	"disabled": "Puudega videovestlus",
+	"join": "Liitu videoga",
+	"join-id": "Liitu videovestlusega koos ID-ga {{id}}",
+	"leave": "Jäta video",
+	"leave-id": "Jäta videovestlus koos ID-ga {{id}}",
+	"next": "Järgmine",
+	"open-instructor-view": "Avatud instruktori vaade",
+	"playback-disabled": "Videoomanik on keelanud teistel veebisaitidel esituse.",
+	"reached-end": "Olete jõudnud selle videoloengu lõppu.",
+	"retry": "Uuesti proovida",
+	"supply-two-videos": "Palun esitage vähemalt kaks URL-aadressi järgmisele atribuudile",
+	"to-previous": "Mine eelmisse ossa",
+	"toggle": "Videovestluse lülitamine",
+	"url-missing": "Video URL puudub.",
+	"video-not-loaded": "Videot ei saa laadida."
+}

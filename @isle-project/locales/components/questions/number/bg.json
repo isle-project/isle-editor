@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Повторно подаден отговор.",
+	"answer-submitted": "Подаден отговор.",
+	"answers": "Отговори",
+	"invalid-answer": "Невалиден отговор",
+	"invalid-range": "Вашият отговор трябва да бъде число между {{min}} и {{max}}.",
+	"one-of": "един от ",
+	"or": "или",
+	"question-closed": "Въпросът е затворен.",
+	"resubmission-message": "Успешно сте изпратили отговора си отново.",
+	"resubmit": "Повторно изпращане на",
+	"solution": "Решение",
+	"submission-correct": "Поздравления, това е вярно!",
+	"submission-incorrect": "Не съвсем. Сравнете отговора си с решението.",
+	"submission-message": "Вашият отговор е изпратен.",
+	"submission-try-again": "Вашият отговор е грешен. Моля, опитайте отново",
+	"submit": "Подаване на",
+	"tries": "{{count}} опитайте вляво",
+	"tries_plural": "{{count}} опитва вляво",
+	"your-answer": "Вашият отговор"
+}

@@ -1,0 +1,15 @@
+{
+	"and": "in .",
+	"choose": "Izberite",
+	"conditional-probabilities": "Kaj pa pogojne verjetnosti?",
+	"conditional-probability-undefined": "Pogojna verjetnost je nedoločena, kadar",
+	"consider-events": "Upoštevajte dogodke",
+	"events-independent": "Dogodka sta neodvisna, ker",
+	"events-not-independent": "Dogodka <1>nista</1> neodvisna, ker",
+	"inner-cells-equal": "Čemu so enake notranje celice? Če so dogodki naključni, dobimo ",
+	"let": "Naj",
+	"must-have-nonzero-probability": "Ko <1 />, moramo imeti <3 /> v primeru, da ima B neničelno verjetnost.",
+	"not": "ne",
+	"then-we-have": "Potem imamo",
+	"these-form-marginals": "To so mejne vrednosti v naslednji tabeli verjetnosti"
+}

@@ -1,0 +1,20 @@
+{
+	"deleted": "Odstraněno",
+	"deleted-message": "Akci jste úspěšně odstranili.",
+	"error-encountered": "Vyskytla se chyba",
+	"file-upload": "Nahrávání souborů",
+	"file-upload-signin-required": "Abyste mohli nahrávat soubory, musíte být přihlášeni.",
+	"grades-saved": "Uložené známky",
+	"loggedin": "Přihlášen",
+	"loggedin-message": "Úspěšně jste se přihlásili.",
+	"logout-message": "Úspěšně jste se odhlásili.",
+	"logout-title": "Odhlášen",
+	"message-saved": "Uložená zpráva",
+	"new-password-message": "Zkontrolujte si e-mailovou schránku, zda v ní nenajdete odkaz pro výběr nového hesla.",
+	"new-password-title": "Nové heslo",
+	"new-version-of-lesson-available": "K dispozici je nová verze této lekce. Pro aktualizaci klikněte <1>zde</1>.",
+	"request-failed": "Požadavek se nezdařil",
+	"user-created": "Vytvořeno uživatelem",
+	"user-created-message": "Úspěšně jste se zaregistrovali.",
+	"user-not-created": "Uživatel nebyl vytvořen"
+}

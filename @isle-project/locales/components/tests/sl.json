@@ -1,0 +1,23 @@
+{
+	"and": "in .",
+	"anova": "ANOVA za {{variable}} med {{group}}",
+	"correlation-test": "Korelacijski test med {{var1}} in {{var2}}",
+	"data-missing": "Podatki manjkajo.",
+	"hypothesis-test-between": "Preizkus hipoteze za {{x}} med {{group}}",
+	"hypothesis-test-for": "Preizkus hipoteze za {{variable}}",
+	"hypothesis-test-for-independence": "Test hipoteze o neodvisnosti med {{var1}} in {{var2}}",
+	"hypothesis-test-x-y": "Preizkus hipoteze za {{x}} proti {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallisov test {{variable}} med {{group}}",
+	"must-have-two-different-values": "Spremenljivka za razvrščanje v skupine <1>{{group}}</1> mora imeti vsaj dve različni vrednosti.",
+	"pop-prob-first-group": "Naj bo <1 /> populacijska verjetnost <3>{{var1}}</3> da je <5>{{success}}</5> v prvi skupini,",
+	"probability-second-group": "verjetnost v drugi skupini. Preizkušamo",
+	"probtest-success-prob": "Naj bo p populacijska verjetnost <1>{{variable}}</1> <3>{{success}}</3>",
+	"probtest2-being-success": "Naj bo <1 /> populacijska verjetnost <3>{{var1}}</3> da je <5>{{success}}</5>, <7 /> in <9 /> pa verjetnost <11>{{var2}}</11> da je <13>{{success}}</13>, oziroma. Preizkušamo",
+	"proptest2-title": "Preizkus hipoteze za enakost deležev {{var1}} proti deležu {{var2}}",
+	"proptest2-title-grouped": "Preizkus hipoteze o enakosti deleža {{var1}} z {{group}}",
+	"sample-mean-in-group": "Povprečje vzorca v skupini",
+	"sample-proportion": "Delež vzorca: ",
+	"sample-proportion-in-group": "Delež vzorca v skupini",
+	"vs": "proti.",
+	"we-test": "Preizkušamo"
+}

@@ -1,0 +1,6 @@
+{
+	"and": " a ",
+	"key-not-found": "V odkazoch sa nenachádza citačný kľúč.",
+	"no-author": "Pole Autor by nemalo byť prázdne.",
+	"no-references": "V preambule lekcie sa nenašli žiadne `odkazy`."
+}

@@ -1,0 +1,9 @@
+{
+	"edge-probability": "verjetnost roba med dvema vozliščema",
+	"global-clustering-coefficient": "Globalni koeficient grozdenja",
+	"intro-1": "V omrežju so vozlišča fiksna, robovi pa naključni, tj. obstaja naključni proces, ki določa, ali obstaja rob, ki povezuje dve vozlišči.",
+	"intro-2": "Oglejmo si enega najpreprostejših razpoložljivih modelov omrežja. V Erdős-Rényijevem modelu obstaja fiksna verjetnost <1 />, da med katerima koli dvema vozliščema obstaja rob. Prav tako predpostavljamo, da je to, ali med dvema vozliščema obstaja rob, neodvisno od tega, ali obstajajo drugi robovi ali ne.",
+	"intro-3": "Če imamo v tem modelu <1 /> vozlišč, je lahko vsako vozlišče povezano z <3 /> drugimi vozlišči.  Število robov, povezanih z vsakim vozliščem (stopnja), je potem <5 />.",
+	"number-of-edges-per-generated-network": "Število robov na ustvarjeno omrežje",
+	"number-of-nodes": "število vozlišč"
+}

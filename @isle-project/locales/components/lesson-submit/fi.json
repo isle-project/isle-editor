@@ -1,0 +1,19 @@
+{
+	"authentication": "Tunnistus",
+	"authentication-prompt": "Viimeistelläksesi tämän oppitunnin kirjaudu sisään ISLE-tilillesi. Jos et ole vielä luonut tiliä, rekisteröidy, niin saat ISLEn kaikki toiminnot käyttöösi.",
+	"by": "",
+	"choice": "Valinta",
+	"completed": "Valmistunut",
+	"confirmation-email": " Saat pian vahvistussähköpostin.",
+	"download-pdf": "Lataa PDF-tiedosto vastauksista",
+	"elapsed": "kulunut",
+	"finish-lesson": "Päätä oppitunti",
+	"lesson-completed-msg": "Hyvä {{name}}, tämä on automaattinen vahvistussähköposti, jolla ilmoitetaan, että olet suorittanut onnistuneesti kurssin \"{{namespaceName}}\" oppitunnin \"{{lessonName}}\". {{msg}}",
+	"lesson-submitted": "Oppitunti toimitettu!",
+	"lesson-successfully-completed": "Oppitunti suoritettu onnistuneesti.",
+	"login": "Kirjaudu sisään",
+	"responses-header": "Vastaukset ISLE-tunnille",
+	"signup": "Rekisteröidy",
+	"submit": "Lähetä",
+	"successfully-completed": "onnistuneesti suoritettu"
+}

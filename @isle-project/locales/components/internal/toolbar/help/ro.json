@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Faceți clic pe un element din meniu pentru a afla mai multe despre acesta...",
+	"data-explorer-p1": "Exploratorul de date ISLE vă permite să analizați seturi de date utilizând o interfață de tip \"point-and-click\". Exploratorul de date este împărțit în două panouri, un panou din stânga în care puteți comuta între o vizualizare în foaie de calcul a datelor care urmează să fie analizate și alte componente opționale, cum ar fi un editor de redactare a rapoartelor sau o listă de întrebări. Partea din dreapta este un panou de ieșire care conține toate rezultatele (statistici de sinteză, diagrame, rezultate ale testului de ipoteză) pe care le-ați creat.",
+	"data-explorer-p2": "Noile ieșiri pot fi generate prin intermediul cutiei de instrumente, care poate fi deschisă făcând clic pe butonul \"Show Toolbox\" (Afișare cutie de instrumente). Un grafic sau un tabel nou generat va fi adăugat la lista de elemente de ieșire afișată în partea dreaptă.",
+	"data-explorer-p3": "Butoanele roșii cu pictogramele \"x\" pot fi utilizate pentru a șterge elemente de ieșire individuale, în timp ce butonul \"Clear All\" din partea de jos va șterge toate elementele de ieșire.",
+	"data-explorer-p4": "Utilizarea butoanelor cu semnul întrebării de pe foaia de calcul a datelor, editorul de rapoarte sau caseta de instrumente vă va permite să începeți un tur ghidat prin capacitățile diferitelor elemente.",
+	"data-explorer-title": "Explorator de date",
+	"data-table-p1": "Un mod simplu de afișare a datelor în ISLE este prin intermediul unui tabel de date. Acestea apar în formatul tipic de vizualizare a datelor, similar cu aspectul datelor dintr-o foaie de calcul Excel. Fiecare coloană reprezintă o variabilă cu numele variabilei în partea de sus.",
+	"data-table-p2": "Pentru un tur ghidat al lucrurilor pe care le puteți face cu tabelele de date, faceți clic pe butonul Show Tutorial (semnul de întrebare din dreapta sus a tabelului de date).",
+	"data-table-title": "Tabel de date",
+	"documentation": "Documentație",
+	"download-pdf": "Descarcă PDF",
+	"questions-p1": "Multe dintre lecțiile ISLE la care veți lucra vor conține întrebări la care veți trebui să răspundeți. Există o varietate de tipuri de întrebări posibile, de la răspunsuri scurte la întrebări cu alegere multiplă. Iată un exemplu de întrebare cu răspuns scurt:",
+	"questions-p2": "Trimiterea",
+	"questions-p3": "După ce ați răspuns la o întrebare și sunteți gata să vă trimiteți răspunsul, faceți clic pe butonul \"Trimite\". Acest lucru înregistrează munca dvs. astfel încât instructorul dvs. să vă poată vedea răspunsul și să vă acorde credit pentru întrebare.",
+	"questions-p4": "Butoane de feedback",
+	"questions-p5": "Uneori, instructorul dumneavoastră poate include butoane de feedback (prezentate mai sus) la întrebări individuale. Butonul din stânga vă permite să notați că sunteți confuz în legătură cu întrebarea respectivă; butonul din centru vă permite să notați că întrebarea are sens; iar butonul din dreapta vă permite să oferiți comentarii specifice de feedback mai detaliate.",
+	"questions-p6": "Întrebări de navigare",
+	"questions-p7": "Mai multe întrebări pot fi plasate în același loc pe pagină. În acest caz, puteți naviga între întrebări făcând clic pe butonul \"Next\" (Următorul) sau selectând întrebările după număr:",
+	"questions-title": "Întrebări",
+	"statusbar-p1": "Dacă dați clic pe bara de stare, veți găsi butoane pentru a vă înregistra un cont ISLE sau pentru a vă conecta la un cont existent. În mijlocul barei de stare, veți găsi afișat numele dvs. de utilizator sau autentificat. Dacă treceți cu mouse-ul peste el, se vor afișa mai multe statistici privind progresul lecției: timpul petrecut în lecție, procentul de activități finalizate în lecție și punctele dvs. generale de realizare.",
+	"statusbar-title": "Bara de stare"
+}

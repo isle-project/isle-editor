@@ -1,0 +1,15 @@
+{
+	"and": "un",
+	"choose": "Izvēlieties",
+	"conditional-probabilities": "Kā ir ar nosacītajām varbūtībām?",
+	"conditional-probability-undefined": "Nosacījuma varbūtība ir nenoteikta, ja",
+	"consider-events": "Apsveriet notikumus",
+	"events-independent": "Notikumi ir neatkarīgi, jo",
+	"events-not-independent": "Notikumi <1>nav</1> neatkarīgi, jo",
+	"inner-cells-equal": "Kam ir vienādas iekšējās šūnas? Ja notikumi ir nejauši, mums ir ",
+	"let": "Ļaujiet",
+	"must-have-nonzero-probability": "Ja <1 />, mums jābūt <3 /> gadījumā, kad B varbūtība nav nulle.",
+	"not": "ne",
+	"then-we-have": "Tad mums ir",
+	"these-form-marginals": "Tie veido robežvērtības nākamajā varbūtību tabulā."
+}

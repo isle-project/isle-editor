@@ -1,0 +1,19 @@
+{
+	"authentication": "Autentimine",
+	"authentication-prompt": "Selle õppetüki lõpetamiseks logige palun sisse oma ISLE kontole. Kui te ei ole veel kontot loonud, siis registreerige end ja saate juurdepääsu ISLE täistoimingutele.",
+	"by": "",
+	"choice": "Valik",
+	"completed": "Lõpetatud",
+	"confirmation-email": " Saate peagi kinnitava e-kirja.",
+	"download-pdf": "Lae alla vastuste PDF-faili",
+	"elapsed": "möödunud",
+	"finish-lesson": "Lõpeta õppetund",
+	"lesson-completed-msg": "Lugupeetud {{name}}, see on automaatne kinnitav e-kiri, mis näitab, et olete edukalt läbinud kursuse \"{{namespaceName}}\" õppetüki \"{{lessonName}}\". {{msg}}",
+	"lesson-submitted": "Õppetund esitatud!",
+	"lesson-successfully-completed": "Õppetund edukalt lõpetatud.",
+	"login": "Logi sisse",
+	"responses-header": "Vastused ISLE õppetundide jaoks",
+	"signup": "Registreeru",
+	"submit": "Esita",
+	"successfully-completed": "edukalt lõpetatud"
+}

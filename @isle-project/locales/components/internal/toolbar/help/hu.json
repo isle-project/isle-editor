@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Kattintson a menüben egy elemre, hogy többet tudjon meg róla...",
+	"data-explorer-p1": "Az ISLE-adatkutató lehetővé teszi az adathalmazok elemzését egy mutass-és-kattints-felület segítségével. Az adatkutató két ablakra van osztva, egy bal oldali ablakra, ahol az elemzendő adatok táblázatos nézete és más opcionális komponensek, például egy jelentéskészítő szerkesztő vagy egy kérdéslista között válthat. A jobb oldali rész egy kimeneti ablaktábla, amely az összes létrehozott kimenetet (összefoglaló statisztikák, ábrák, hipotézisvizsgálat eredményei) tartalmazza.",
+	"data-explorer-p2": "Új kimenetek az eszköztáron keresztül hozhatók létre, amely az \"Eszköztár megjelenítése\" gombra kattintva nyitható meg. Az újonnan létrehozott grafikon vagy táblázat hozzá lesz csatolva a jobb oldalon megjelenő kimeneti elemek listájához.",
+	"data-explorer-p3": "Az \"x\" ikonokkal ellátott piros gombok segítségével törölhetünk egyes kimeneti elemeket, míg az alul található \"Clear All\" gomb az összes kimeneti elemet eltávolítja.",
+	"data-explorer-p4": "Az adattáblán, a jelentésszerkesztőben vagy az eszköztárban található kérdőjellel ellátott gombok segítségével elindulhat a különböző darabok képességeinek bemutatása.",
+	"data-explorer-title": "Data Explorer",
+	"data-table-p1": "Az adatok megjelenítésének egyszerű módja az ISLE-ben az adattáblázat. Ezek az adatok az adatok megtekintésének tipikus formátumában jelennek meg, hasonlóan ahhoz, ahogyan az adatok egy Excel táblázatban kinéznek. Minden oszlop egy változó, a változó nevével a tetején.",
+	"data-table-p2": "Az adattáblákkal végezhető műveletek bemutatásához kattintson a Show Tutorial gombra (a kérdőjel az adattábla jobb felső sarkában).",
+	"data-table-title": "Adattáblázat",
+	"documentation": "Dokumentáció",
+	"download-pdf": "PDF letöltése",
+	"questions-p1": "Az ISLE leckék közül sok olyan kérdést fog tartalmazni, amelyre válaszolnia kell. A kérdéseket a rövid választól a feleletválasztásig sokféleképpen lehet feltenni. Íme egy példa egy rövid választ igénylő kérdésre:",
+	"questions-p2": "A  benyújtása",
+	"questions-p3": "Ha megválaszolt egy kérdést, és készen áll a válasz elküldésére, kattintson a \"Beküldés\" gombra. Ez rögzíti a munkáját, így az oktatója láthatja a válaszát, és kreditet adhat a kérdésre.",
+	"questions-p4": "Visszajelző gombok",
+	"questions-p5": "Néha előfordulhat, hogy az oktató visszajelző gombokat (a fenti képen látható) helyez el az egyes kérdéseknél. A bal oldali gombbal megjegyezheti, hogy zavarban van a kérdéssel kapcsolatban; a középső gombbal megjegyezheti, hogy a kérdésnek van értelme; a jobb oldali gombbal pedig részletesebb, konkrét visszajelző megjegyzéseket tehet.",
+	"questions-p6": "Navigációs kérdések",
+	"questions-p7": "Több kérdés is elhelyezhető ugyanazon a helyen az oldalon. Ebben az esetben a \"Tovább\" gombra kattintva vagy a kérdések szám szerinti kiválasztásával navigálhat a kérdések között:",
+	"questions-title": "Kérdések",
+	"statusbar-p1": "Az állapotsorra kattintva gombok jelennek meg, amelyek segítségével regisztrálhat egy ISLE-fiókra, vagy bejelentkezhet egy meglévő fiókba. Az állapotsor közepén megjelenik a felhasználónév vagy a bejelentkezés. Ha ráhúzza a mutatót, számos statisztikai adat jelenik meg a lecke előrehaladásáról: a leckében eltöltött idő, a leckében elvégzett tevékenységek százalékos aránya, valamint az összesített teljesítménypontjai.",
+	"statusbar-title": "Állapotsor"
+}

@@ -1,0 +1,14 @@
+{
+	"close": "Zapri",
+	"email": "E-pošta",
+	"enter-email": "Vnesite svoj e-poštni naslov.",
+	"enter-email-before-password-reset": "Preden zahtevate novo geslo, vnesite svoj e-poštni naslov.",
+	"enter-password": "Vnesite geslo.",
+	"enter-tfa-token": "Vnesite šestmestno kodo iz naprave za preverjanje pristnosti:",
+	"enter-token": "Vnesite potrditveno kodo...",
+	"forgot-password": "Ste pozabili geslo?",
+	"invalid": "Ni veljavno",
+	"login": "Prijava",
+	"password": "Geslo",
+	"signin": "Prijavite se"
+}

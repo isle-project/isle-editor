@@ -1,0 +1,20 @@
+{
+	"back": "Tilbage",
+	"close-and-to-dashboard": "Luk og gå til instrumentbrættet",
+	"close-instructor-view": "Luk instruktørvisning",
+	"disabled": "Video Chat med handicappede",
+	"join": "Deltag i video",
+	"join-id": "Deltag i videochat med ID {{id}}",
+	"leave": "Forlad video",
+	"leave-id": "Forlad videochat med ID {{id}}",
+	"next": "Næste",
+	"open-instructor-view": "Åbn instruktørvisning",
+	"playback-disabled": "Afspilning på andre websteder er blevet deaktiveret af videoens ejer.",
+	"reached-end": "Du har nået slutningen af denne videoforelæsning.",
+	"retry": "Genoptag",
+	"supply-two-videos": "Angiv venligst mindst to URL'er til følgende attribut",
+	"to-previous": "Gå til forrige del",
+	"toggle": "Skift til videochat",
+	"url-missing": "Der mangler en URL til videoen.",
+	"video-not-loaded": "Videoen kunne ikke indlæses."
+}

@@ -1,0 +1,18 @@
+{
+	"and": "ja",
+	"draw-venn-diagram": "Joonista Venn diagramm",
+	"label-first-set": "Esimese komplekti märgis",
+	"label-second-set": "Teise komplekti märgis",
+	"label-third-set": "Kolmanda komplekti märgis",
+	"min-of-times": "Min # korda ",
+	"number-of-words": "Sõnade arv: ",
+	"one": "Üks",
+	"settings": "Seaded",
+	"three": "Kolm",
+	"total-number-observations": "Vaatluste koguarv",
+	"total-texts": "Tekstide koguarv",
+	"two": "Kaks",
+	"venn-diagram": "Venni diagramm",
+	"venn-diagram-builder": "Venn diagrammi koostaja",
+	"word": "Sõna"
+}

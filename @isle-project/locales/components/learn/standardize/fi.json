@@ -1,0 +1,12 @@
+{
+	"compute": "Laske",
+	"evaluate-probabilities": "Arvioi todennäköisyyksiä:",
+	"mean": "Keskiarvo",
+	"normal-to-standard-normal": "Normaalista tavanomaiseen normaaliin",
+	"reset": "Nollaa",
+	"standard-deviation": "keskihajonta",
+	"standardize-values": "Vakioi arvot",
+	"standardized": "Standardoitu",
+	"unstandardized": "Standardoimaton",
+	"x-value": "X-arvo"
+}

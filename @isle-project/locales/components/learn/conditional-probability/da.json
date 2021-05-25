@@ -1,0 +1,15 @@
+{
+	"and": "og",
+	"choose": "Vælg",
+	"conditional-probabilities": "Hvad med de betingede sandsynligheder?",
+	"conditional-probability-undefined": "Den betingede sandsynlighed er udefineret, når",
+	"consider-events": "Overvej begivenheder",
+	"events-independent": "Begivenhederne er uafhængige, fordi",
+	"events-not-independent": "Begivenhederne er <1>ikke</1> uafhængige, fordi",
+	"inner-cells-equal": "Hvad er de indre celler lig med? Hvis begivenhederne er tilfældige, har vi ",
+	"let": "Lad",
+	"must-have-nonzero-probability": "Når <1 />, skal vi have <3 /> i det tilfælde, hvor B har en sandsynlighed, der ikke er nul.",
+	"not": "ikke",
+	"then-we-have": "Så har vi",
+	"these-form-marginals": "Disse udgør marginalerne i følgende sandsynlighedstabel"
+}

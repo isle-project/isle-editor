@@ -1,0 +1,13 @@
+{
+	"close": "Sulge",
+	"drag-plot": "Drag Plot",
+	"evaluate": "Hinda",
+	"hide-solution": "Peida lahendus",
+	"mosaic-plot-of": "Mosaiikplaat",
+	"r-help": "R Abi",
+	"r-plot": "R Krunt",
+	"reset": "Reset",
+	"reset-tooltip": "Nullida karbi sisend vaikimisi väärtusele.",
+	"show-solution": "Näita lahendust",
+	"solution-tooltip": "Lahendus muutub kättesaadavaks, kui olete proovinud harjutust ja kasutanud kõiki vihjeid."
+}

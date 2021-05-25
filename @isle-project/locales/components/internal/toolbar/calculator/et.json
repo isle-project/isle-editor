@@ -1,0 +1,12 @@
+{
+	"answer": "Vastus",
+	"basic": "Basic",
+	"calculator": "Kalkulaator",
+	"copied": "Kopeeritud",
+	"copied-message": "Tulemus kopeeritakse lõikelauale",
+	"copy": "Koopia",
+	"expand": "Laiendage",
+	"malformed-expression": "Ebakorrektne väljendus",
+	"too-many-closing-parens": "Liiga palju sulgusid",
+	"too-many-opening-parens": "Liiga palju avanevaid sulgusid"
+}

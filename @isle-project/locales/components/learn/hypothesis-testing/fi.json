@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Nollahypoteesin tapauksessa lasketaan p-arvo: ",
+	"calculate-test-statistic": "Laskemme seuraavan testitilaston:",
+	"conduct-the-following-test": "Teemme seuraavan testin (klikkaa alla olevia hypoteeseja vaihtaaksesi yksipuolisen ja kaksipuolisen testin välillä):",
+	"lets-assume": "Oletetaan, että meillä on havaittuja tietoja, joilla on seuraavat ominaisuudet:",
+	"parameters": "Parametrit",
+	"plugging-in": "Kun yhdistämme arvomme, meillä on:",
+	"proportion": "Osuus",
+	"sample-mean": "Otoksen keskiarvo",
+	"sample-proportion": "Näytteen osuus",
+	"sample-size": "Näytteen koko",
+	"sample-standard-deviation": "Näytteen keskihajonta",
+	"second-sample": "Toinen näyte",
+	"test-result": "Testitulos",
+	"test-statistic": "Testitilasto"
+}

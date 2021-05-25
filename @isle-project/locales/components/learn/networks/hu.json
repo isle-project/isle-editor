@@ -1,0 +1,9 @@
+{
+	"edge-probability": "két csomópont közötti él valószínűsége",
+	"global-clustering-coefficient": "Globális klaszterezési együttható",
+	"intro-1": "Egy hálózatban a csomópontok feltételezhetően rögzítettek, de az élek véletlenszerűek, azaz valamilyen véletlenszerű folyamat határozza meg, hogy van-e két csomópontot összekötő él.",
+	"intro-2": "Tekintsük az egyik legegyszerűbb elérhető hálózati modellt. Az Erdős-Rényi modellben van egy fix valószínűsége <1 /> annak, hogy két tetszőleges csomópont között él létezik. Feltételezzük azt is, hogy az, hogy két csomópont között létezik-e él, független attól, hogy léteznek-e más élek.",
+	"intro-3": "Ebben a modellben, ha van <1 /> csomópontunk, minden csomópont csatlakozhat <3 /> más csomópontokhoz.  Az egyes csomópontokhoz kapcsolódó élek száma (a fok) ekkor <5 />.",
+	"number-of-edges-per-generated-network": "Az élek száma generált hálózatonként",
+	"number-of-nodes": "csomópontok száma"
+}

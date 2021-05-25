@@ -1,0 +1,20 @@
+{
+	"deleted": "Poistettu",
+	"deleted-message": "Olet poistanut toiminnon onnistuneesti.",
+	"error-encountered": "Tapahtunut virhe",
+	"file-upload": "Tiedoston lataaminen",
+	"file-upload-signin-required": "Sinun on kirjauduttava sisään, jotta voit ladata tiedostoja.",
+	"grades-saved": "Tallennetut arvosanat",
+	"loggedin": "Kirjautunut sisään",
+	"loggedin-message": "Olet onnistuneesti kirjautunut sisään.",
+	"logout-message": "Olet onnistuneesti kirjautunut ulos.",
+	"logout-title": "Kirjautunut ulos",
+	"message-saved": "Viesti tallennettu",
+	"new-password-message": "Tarkista sähköpostilaatikkoosi tuleva linkki uuden salasanan valitsemista varten.",
+	"new-password-title": "Uusi salasana",
+	"new-version-of-lesson-available": "Tästä oppitunnista on saatavilla uusi versio. Klikkaa <1>tästä</1> päivittääksesi.",
+	"request-failed": "Pyyntö epäonnistui",
+	"user-created": "Käyttäjä Created",
+	"user-created-message": "Olet rekisteröitynyt onnistuneesti.",
+	"user-not-created": "Käyttäjää ei ole luotu"
+}

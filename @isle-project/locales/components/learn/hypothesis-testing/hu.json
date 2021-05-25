@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "A nullhipotézis esetén kiszámítjuk a p-értéket: ",
+	"calculate-test-statistic": "A következő tesztstatisztikát számoljuk ki:",
+	"conduct-the-following-test": "A következő tesztet végezzük el (az alábbi hipotézisekre kattintva válthat az egyoldalú és a kétoldalú teszt között):",
+	"lets-assume": "Tegyük fel, hogy a következő jellemzőkkel rendelkező megfigyelt adatokkal rendelkezünk:",
+	"parameters": "Paraméterek",
+	"plugging-in": "Az értékeinket beillesztve a következőket kapjuk:",
+	"proportion": "Arány",
+	"sample-mean": "Minta átlaga",
+	"sample-proportion": "Minta aránya",
+	"sample-size": "A minta mérete",
+	"sample-standard-deviation": "A minta szórása",
+	"second-sample": "Második minta",
+	"test-result": "Teszt eredménye",
+	"test-statistic": "Teszt statisztika"
+}

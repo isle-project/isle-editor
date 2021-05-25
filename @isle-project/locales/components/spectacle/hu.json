@@ -1,0 +1,10 @@
+{
+	"current": "Jelenlegi: ",
+	"end": "END",
+	"slide-message": "A diák közötti navigáláshoz használja a bal és jobb nyílbillentyűket vagy a narancssárga nyílgombokat.",
+	"slide-navigation": "Dia navigáció",
+	"slide-no": "Dia: {{slideIndex}} of ",
+	"toggle-overview-mode": "Áttekintési mód átkapcsolása",
+	"toggle-slide-presenter-mode": "Dia bemutató mód váltása",
+	"total": "Összesen: "
+}

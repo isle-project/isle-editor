@@ -1,0 +1,23 @@
+{
+	"and": "ja",
+	"anova": "ANOVA {{variable}} välillä {{group}}",
+	"correlation-test": "Korrelaatiotesti {{var1}} ja {{var2}}",
+	"data-missing": "Tiedot puuttuvat.",
+	"hypothesis-test-between": "Hypoteesitesti {{x}} välillä {{group}}",
+	"hypothesis-test-for": "Hypoteesitesti {{variable}}",
+	"hypothesis-test-for-independence": "Hypoteesitesti riippumattomuudesta {{var1}} ja {{var2}}",
+	"hypothesis-test-x-y": "Hypoteesitesti {{x}} vastaan {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} between {{group}}",
+	"must-have-two-different-values": "Ryhmittelymuuttuja <1>{{group}}</1> on oltava vähintään kaksi eri arvoa.",
+	"pop-prob-first-group": "Olkoon <1 /> populaation todennäköisyys <3>{{var1}}</3> olla <5>{{success}}</5> ensimmäiseen ryhmään,",
+	"probability-second-group": "todennäköisyys toisessa ryhmässä. Testaamme",
+	"probtest-success-prob": "Olkoon p populaation todennäköisyys <1>{{variable}}</1> olla <3>{{success}}</3>",
+	"probtest2-being-success": "Olkoon <1 /> populaation todennäköisyys <3>{{var1}}</3> olla <5>{{success}}</5>, <7 /> ja <9 /> todennäköisyys <11>{{var2}}</11> olla <13>{{success}}</13>, vastaavasti. Testataan",
+	"proptest2-title": "Hypoteesitesti osuuksien yhdenvertaisuudesta {{var1}} osuutta vastaan {{var2}}",
+	"proptest2-title-grouped": "Hypoteesitesti {{var1}} osuuden yhdenvertaisuudesta. {{group}}",
+	"sample-mean-in-group": "Otoksen keskiarvo ryhmässä",
+	"sample-proportion": "Näytteen osuus: ",
+	"sample-proportion-in-group": "Näytteen osuus ryhmässä",
+	"vs": "vs.",
+	"we-test": "Me testaamme"
+}

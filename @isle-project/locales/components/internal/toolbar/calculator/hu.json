@@ -1,0 +1,12 @@
+{
+	"answer": "Válasz",
+	"basic": "Alapvető",
+	"calculator": "Számológép",
+	"copied": "Másolva",
+	"copied-message": "Eredmény a vágólapra másolva",
+	"copy": "Másolás",
+	"expand": "Expand",
+	"malformed-expression": "Hibás kifejezés",
+	"too-many-closing-parens": "Túl sok záró zárójel",
+	"too-many-opening-parens": "Túl sok nyitó zárójel"
+}

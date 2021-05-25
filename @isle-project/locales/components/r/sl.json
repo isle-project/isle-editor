@@ -1,0 +1,13 @@
+{
+	"close": "Zapri",
+	"drag-plot": "Povlecite parcelo",
+	"evaluate": "Ocenite",
+	"hide-solution": "Skrij rešitev",
+	"mosaic-plot-of": "Mozaik parcel",
+	"r-help": "R Pomoč",
+	"r-plot": "R Plot",
+	"reset": "Ponastavitev",
+	"reset-tooltip": "Ponastavi privzeto vrednost vnosa lupine.",
+	"show-solution": "Prikaži rešitev",
+	"solution-tooltip": "Rešitev je na voljo, ko preizkusite vajo in uporabite vse namige."
+}

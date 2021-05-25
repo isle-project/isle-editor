@@ -1,0 +1,14 @@
+{
+	"close": "Stäng",
+	"email": "E-post",
+	"enter-email": "Ange din e-postadress.",
+	"enter-email-before-password-reset": "Ange din e-postadress innan du begär ett nytt lösenord.",
+	"enter-password": "Ange ditt lösenord.",
+	"enter-tfa-token": "Ange en 6-siffrig kod från din autentiseringsenhet:",
+	"enter-token": "Ange en bekräftelsekod...",
+	"forgot-password": "Har du glömt ditt lösenord?",
+	"invalid": "Inte giltigt",
+	"login": "Inloggning",
+	"password": "Lösenord",
+	"signin": "Logga in"
+}

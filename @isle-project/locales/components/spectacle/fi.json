@@ -1,0 +1,10 @@
+{
+	"current": "Nykyinen: ",
+	"end": "END",
+	"slide-message": "Käytä vasen- ja oikea-nuolinäppäimiä tai oransseja nuolipainikkeita siirtyäksesi diojen välillä.",
+	"slide-navigation": "Dia navigointi",
+	"slide-no": "Dia {{slideIndex}} of ",
+	"toggle-overview-mode": "Yleiskatsaustilan vaihtaminen",
+	"toggle-slide-presenter-mode": "Diaesitystilan vaihtaminen",
+	"total": "Yhteensä: "
+}

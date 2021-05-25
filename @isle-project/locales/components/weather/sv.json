@@ -1,0 +1,7 @@
+{
+	"direction": "riktning",
+	"humidity": "luftfuktighet",
+	"in": "på",
+	"loading-weather-data-for": "Laddning av väderdata för {{loc}}...",
+	"wind": "vind"
+}

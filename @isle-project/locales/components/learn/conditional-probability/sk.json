@@ -1,0 +1,15 @@
+{
+	"and": "a",
+	"choose": "Vyberte si",
+	"conditional-probabilities": "A čo podmienené pravdepodobnosti?",
+	"conditional-probability-undefined": "Podmienená pravdepodobnosť nie je definovaná, keď",
+	"consider-events": "Zvážte udalosti",
+	"events-independent": "Udalosti sú nezávislé, pretože",
+	"events-not-independent": "Udalosti <1>nie sú</1> nezávislé, pretože",
+	"inner-cells-equal": "Čomu sa rovnajú vnútorné bunky? Ak sú udalosti náhodné, máme ",
+	"let": "Nech",
+	"must-have-nonzero-probability": "Keď <1 />, musíme mať <3 /> v prípade B nenulovú pravdepodobnosť.",
+	"not": "nie",
+	"then-we-have": "Potom máme",
+	"these-form-marginals": "Tieto hodnoty tvoria hraničné hodnoty v nasledujúcej tabuľke pravdepodobnosti"
+}

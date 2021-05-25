@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Kliknutím na položku v nabídce se o ní dozvíte více...",
+	"data-explorer-p1": "Průzkumník dat ISLE umožňuje analyzovat datové sady pomocí rozhraní \"ukaž a klikni\". Průzkumník dat je rozdělen na dva panely, levý panel, ve kterém můžete přepínat mezi tabulkovým zobrazením analyzovaných dat a dalšími volitelnými komponentami, jako je editor pro psaní zpráv nebo seznam otázek. Na pravé straně je podokno výstupů, které obsahuje všechny výstupy (souhrnné statistiky, grafy, výsledky testu hypotéz), které jste vytvořili.",
+	"data-explorer-p2": "Nové výstupy lze generovat prostřednictvím sady nástrojů, kterou otevřete kliknutím na tlačítko \"Zobrazit sadu nástrojů\". Nově vygenerovaný graf nebo tabulka se připojí k seznamu výstupních prvků zobrazenému na pravé straně.",
+	"data-explorer-p3": "Červená tlačítka s ikonami \"x\" slouží k odstranění jednotlivých výstupních prvků, zatímco tlačítko \"Clear All\" v dolní části odstraní všechny výstupní prvky.",
+	"data-explorer-p4": "Pomocí tlačítek s otazníkem v datové tabulce, editoru sestavy nebo ve skupině nástrojů můžete zahájit prohlídku možností jednotlivých částí.",
+	"data-explorer-title": "Průzkumník dat",
+	"data-table-p1": "Jednoduchým způsobem, jak lze v ISLE zobrazit data, je datová tabulka. Ty se zobrazují v typickém formátu pro zobrazení dat, podobně jako data vypadají v tabulce Excelu. Každý sloupec je proměnná s názvem proměnné v horní části.",
+	"data-table-p2": "Chcete-li se seznámit s možnostmi, které lze s datovými tabulkami provádět, klikněte na tlačítko Zobrazit výukový program (otazník v pravém horním rohu datové tabulky).",
+	"data-table-title": "Datová tabulka",
+	"documentation": "Dokumentace",
+	"download-pdf": "Stáhnout PDF",
+	"questions-p1": "Mnoho lekcí ISLE, na kterých budete pracovat, bude obsahovat otázky, na které budete muset odpovědět. Existuje celá řada možných typů otázek, od krátkých odpovědí až po otázky s výběrem odpovědi. Zde je příklad otázky s krátkou odpovědí:",
+	"questions-p2": "Odesílání",
+	"questions-p3": "Po zodpovězení otázky a odeslání odpovědi klikněte na tlačítko \"Odeslat\". Tím se vaše práce zaznamená, aby instruktor mohl vidět vaši odpověď a udělit vám zápočet za danou otázku.",
+	"questions-p4": "Tlačítka zpětné vazby",
+	"questions-p5": "Někdy může instruktor u jednotlivých otázek uvést tlačítka pro zpětnou vazbu (zobrazená výše). Tlačítko vlevo vám umožní poznamenat, že jste v otázce zmateni, tlačítko uprostřed vám umožní poznamenat, že otázka dává smysl, a tlačítko vpravo vám umožní podrobněji uvést konkrétní připomínky ke zpětné vazbě.",
+	"questions-p6": "Otázky pro navigaci",
+	"questions-p7": "Na stejném místě na stránce může být umístěno více otázek. V takovém případě můžete mezi otázkami přecházet kliknutím na tlačítko \"Další\" nebo výběrem otázek podle čísla:",
+	"questions-title": "Otázky",
+	"statusbar-p1": "Kliknutím na stavový řádek se zobrazí tlačítka pro registraci účtu ISLE nebo přihlášení k existujícímu účtu. Uprostřed stavového řádku najdete zobrazené své uživatelské jméno nebo přihlášený. Po najetí na něj se zobrazí několik statistik o vašem postupu v lekci: čas strávený v lekci, procento aktivit dokončených v lekci a vaše celkové dosažené body.",
+	"statusbar-title": "Stavový řádek"
+}

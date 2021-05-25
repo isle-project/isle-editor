@@ -1,0 +1,12 @@
+{
+	"answer": "Atsakymas",
+	"basic": "Pagrindinis",
+	"calculator": "Skaičiuoklė",
+	"copied": "Nukopijuota",
+	"copied-message": "Rezultatas nukopijuotas į iškarpinę",
+	"copy": "Kopijuoti",
+	"expand": "Išplėsti",
+	"malformed-expression": "Neteisingai suformuota išraiška",
+	"too-many-closing-parens": "Per daug uždaromųjų skliaustų",
+	"too-many-opening-parens": "Per daug pradinių skliaustų"
+}

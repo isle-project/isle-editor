@@ -1,0 +1,23 @@
+{
+	"and": "og",
+	"anova": "ANOVA for {{variable}} mellem {{group}}",
+	"correlation-test": "Korrelationstest mellem {{var1}} og {{var2}}",
+	"data-missing": "Der mangler data.",
+	"hypothesis-test-between": "Hypotesetest for {{x}} mellem {{group}}",
+	"hypothesis-test-for": "Hypotesetest for {{variable}}",
+	"hypothesis-test-for-independence": "Hypotesetest for uafhængighed mellem {{var1}} og {{var2}}",
+	"hypothesis-test-x-y": "Hypotesetest for {{x}} mod {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallis Test af {{variable}} mellem {{group}}",
+	"must-have-two-different-values": "Grupperingsvariabel <1>{{group}}</1> skal have mindst to forskellige værdier.",
+	"pop-prob-first-group": "Lad <1 /> være populationens sandsynlighed for <3>{{var1}}</3> at være <5>{{success}}</5> i den første gruppe,",
+	"probability-second-group": "sandsynligheden i henholdsvis den anden gruppe. Vi tester",
+	"probtest-success-prob": "Lad p være populationens sandsynlighed for <1>{{variable}}</1> at være <3>{{success}}</3>",
+	"probtest2-being-success": "Lad <1 /> være populationens sandsynlighed for <3>{{var1}}</3> at være <5>{{success}}</5>, <7 /> og <9 /> sandsynligheden for at være <11>{{var2}}</11> at være <13>{{success}}</13>, henholdsvis. Vi tester",
+	"proptest2-title": "Hypotesetest for lighed af andel {{var1}} mod andel {{var2}}",
+	"proptest2-title-grouped": "Hypotesetest for lighed af {{var1}} andel ved {{group}}",
+	"sample-mean-in-group": "Prøvens gennemsnit i gruppen",
+	"sample-proportion": "Proportion af prøver: ",
+	"sample-proportion-in-group": "Prøvens andel i gruppen",
+	"vs": "mod.",
+	"we-test": "Vi tester"
+}

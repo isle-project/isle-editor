@@ -1,0 +1,23 @@
+{
+	"and": "a",
+	"anova": "ANOVA pre {{variable}} medzi {{group}}",
+	"correlation-test": "Korelačný test medzi {{var1}} a {{var2}}",
+	"data-missing": "Chýbajú údaje.",
+	"hypothesis-test-between": "Test hypotézy pre {{x}} medzi {{group}}",
+	"hypothesis-test-for": "Test hypotézy pre {{variable}}",
+	"hypothesis-test-for-independence": "Test hypotézy o nezávislosti medzi {{var1}} a {{var2}}",
+	"hypothesis-test-x-y": "Test hypotézy pre {{x}} proti {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallisov test {{variable}} medzi {{group}}",
+	"must-have-two-different-values": "Zoskupenie premennej <1>{{group}}</1> musí mať aspoň dve rôzne hodnoty.",
+	"pop-prob-first-group": "Nech <1 /> je populačná pravdepodobnosť <3>{{var1}}</3> byť <5>{{success}}</5> v prvej skupine,",
+	"probability-second-group": "pravdepodobnosť v druhej skupine. Testujeme",
+	"probtest-success-prob": "Nech p je populačná pravdepodobnosť <1>{{variable}}</1> byť <3>{{success}}</3>",
+	"probtest2-being-success": "Nech <1 /> je populačná pravdepodobnosť <3>{{var1}}</3> byť <5>{{success}}</5>, <7 /> a <9 /> pravdepodobnosť <11>{{var2}}</11> byť <13>{{success}}</13>, resp. Testujeme",
+	"proptest2-title": "Test hypotézy o rovnosti podielu {{var1}} voči podielu {{var2}}",
+	"proptest2-title-grouped": "Testovanie hypotézy o rovnosti podielu {{var1}} podľa {{group}}",
+	"sample-mean-in-group": "Priemer vzorky v skupine",
+	"sample-proportion": "Vzorový podiel: ",
+	"sample-proportion-in-group": "Podiel vzorky v skupine",
+	"vs": "vs.",
+	"we-test": "Testujeme"
+}

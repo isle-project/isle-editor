@@ -1,0 +1,18 @@
+{
+	"and": "ja",
+	"draw-venn-diagram": "Piirrä Venn-diagrammi",
+	"label-first-set": "Ensimmäisen sarjan etiketti",
+	"label-second-set": "Toisen sarjan etiketti",
+	"label-third-set": "Kolmannen sarjan etiketti",
+	"min-of-times": "Min # kertaa ",
+	"number-of-words": "Sanojen määrä: ",
+	"one": "Yksi",
+	"settings": "Asetukset",
+	"three": "Kolme",
+	"total-number-observations": "Havaintojen kokonaismäärä",
+	"total-texts": "Tekstien kokonaismäärä",
+	"two": "Kaksi",
+	"venn-diagram": "Venn-kaavio",
+	"venn-diagram-builder": "Venn-kaavion rakentaja",
+	"word": "Sana"
+}

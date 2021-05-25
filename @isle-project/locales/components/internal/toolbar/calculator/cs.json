@@ -1,0 +1,12 @@
+{
+	"answer": "Odpověď",
+	"basic": "Základní",
+	"calculator": "Kalkulačka",
+	"copied": "Zkopírováno",
+	"copied-message": "Výsledek zkopírovaný do schránky",
+	"copy": "Kopírovat",
+	"expand": "Rozbalit",
+	"malformed-expression": "Chybný výraz",
+	"too-many-closing-parens": "Příliš mnoho uzavíracích závorek",
+	"too-many-opening-parens": "Příliš mnoho úvodních závorek"
+}

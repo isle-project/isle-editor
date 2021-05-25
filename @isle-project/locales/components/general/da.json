@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Klik for at se de tilgængelige indstillinger.",
+	"discard-changes": "Forkastede ændringer",
+	"edit-text": "Rediger tekst",
+	"error-encountered": "Fejl opstået",
+	"expected-object-array": "`{{field}}` skal være et array af objekter.",
+	"expected-value-from-list": "`{{field}}` skal være en af følgende: {{list}} .",
+	"flippable-requires-two-children": "Det vendbare kort kræver to underelementer.",
+	"grid-requires-two-children": "Det trækkelige gitter kræver mindst to underelementer for at blive gengivet.",
+	"in": "på",
+	"pause": "Pause",
+	"resume": "Resume",
+	"retry": "Genoptag",
+	"save-changes": "Gem ændringer",
+	"search": "Søg på",
+	"supply-component-id": "Angiv venligst et ID for den komponent, der skal overvåges.",
+	"toggle-error-stack-trace": "Skift mellem staksporing af fejl"
+}

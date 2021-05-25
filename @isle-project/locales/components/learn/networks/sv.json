@@ -1,0 +1,9 @@
+{
+	"edge-probability": "sannolikheten för en kant mellan två noder",
+	"global-clustering-coefficient": "Global klusterkoefficient",
+	"intro-1": "I ett nätverk antas noderna vara fasta men kanterna är slumpmässiga, dvs. det finns en slumpmässig process som avgör om det finns en kant som förbinder två noder.",
+	"intro-2": "Låt oss betrakta en av de enklaste tillgängliga nätverksmodellerna. I Erdős-Rényi-modellen finns det en fast sannolikhet <1 /> att det finns en kant mellan två noder. Vi antar också att huruvida det finns en kant mellan två noder eller inte är oberoende av huruvida det finns andra kanter eller inte.",
+	"intro-3": "Om vi har <1 /> noder i denna modell kan varje nod anslutas till <3 /> andra noder.  Antalet kanter som är knutna till varje nod (graden) är då <5 />.",
+	"number-of-edges-per-generated-network": "Antal kanter per genererat nätverk",
+	"number-of-nodes": "antal noder"
+}

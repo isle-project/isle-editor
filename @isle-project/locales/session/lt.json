@@ -1,0 +1,20 @@
+{
+	"deleted": "Ištrintas",
+	"deleted-message": "Sėkmingai pašalinote veiksmą.",
+	"error-encountered": "Pasitaikė klaida",
+	"file-upload": "Failų įkėlimas",
+	"file-upload-signin-required": "Norėdami įkelti failus, turite būti prisijungę.",
+	"grades-saved": "Išsaugoti įvertinimai",
+	"loggedin": "Prisijungta",
+	"loggedin-message": "Jūs sėkmingai prisijungėte.",
+	"logout-message": "Sėkmingai atsijungėte.",
+	"logout-title": "Išregistruotas",
+	"message-saved": "Išsaugota žinutė",
+	"new-password-message": "Patikrinkite savo el. pašto dėžutę, ar joje rasite nuorodą naujam slaptažodžiui pasirinkti.",
+	"new-password-title": "Naujas slaptažodis",
+	"new-version-of-lesson-available": "Yra nauja šios pamokos versija. Spustelėkite <1>čia,</1> kad atnaujintumėte.",
+	"request-failed": "Užklausa nepavyko",
+	"user-created": "Sukurtas naudotojas",
+	"user-created-message": "Sėkmingai užsiregistravote.",
+	"user-not-created": "Naudotojas nesukurtas"
+}

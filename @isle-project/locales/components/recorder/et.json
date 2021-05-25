@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Tühi fail",
+	"download-file": "Faili allalaadimine",
+	"encountered-error": "Kohtunud viga",
+	"failed-to-capture-camera": "Kaamera ei õnnestunud pildistada (viga: {{msg}})",
+	"failed-to-capture-microphone": "Mikrofoni salvestamine ebaõnnestus (viga: {{msg}})",
+	"failed-to-capture-screen": "Ebaõnnestus ekraani jäädvustamine (viga: {{msg}})",
+	"open-link": "Avatud link",
+	"recording-uploaded": "Salvestus üles laaditud",
+	"recording-uploaded-message": "Teie salvestus on edukalt üles laaditud ja seda saab vaadata aadressil:",
+	"screen": "Ekraan",
+	"upload-file": "Faili üleslaadimine"
+}

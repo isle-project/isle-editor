@@ -1,0 +1,15 @@
+{
+	"audio": "Lyd",
+	"cam": "Cam",
+	"clear-file": "Ryd fil",
+	"download-file": "Hent fil",
+	"encountered-error": "Opdaget fejl",
+	"failed-to-capture-camera": "Det lykkedes ikke at optage dit kamera (fejl: {{msg}})",
+	"failed-to-capture-microphone": "Det lykkedes ikke at optage din mikrofon (fejl: {{msg}})",
+	"failed-to-capture-screen": "Det lykkedes ikke at optage din skærm (fejl: {{msg}})",
+	"open-link": "Åbn link",
+	"recording-uploaded": "Optagelse uploadet",
+	"recording-uploaded-message": "Din optagelse er blevet uploadet med succes og kan ses på:",
+	"screen": "Skærm",
+	"upload-file": "Upload fil"
+}

@@ -1,0 +1,15 @@
+{
+	"and": "ir",
+	"choose": "Pasirinkite",
+	"conditional-probabilities": "O kaip dėl sąlyginių tikimybių?",
+	"conditional-probability-undefined": "Sąlyginė tikimybė neapibrėžta, kai",
+	"consider-events": "Apsvarstykite įvykius",
+	"events-independent": "Įvykiai yra nepriklausomi, nes",
+	"events-not-independent": "Įvykiai <1>nėra</1> nepriklausomi, nes",
+	"inner-cells-equal": "Kam lygios vidinės ląstelės? Jei įvykiai yra atsitiktiniai, turime ",
+	"let": "Tegul",
+	"must-have-nonzero-probability": "Kai <1 />, turime turėti <3 /> atvejį, kai B tikimybė yra nenulinė.",
+	"not": "ne",
+	"then-we-have": "Tada turime",
+	"these-form-marginals": "Šie duomenys sudaro toliau pateiktos tikimybių lentelės ribinius dydžius"
+}

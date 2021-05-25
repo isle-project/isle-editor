@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Izberite verjetnosti po meri za strani in nato vrzite kocko!",
+	"count": "Count",
+	"dice": "Kocke",
+	"invalid-probs": "Prepričajte se, da so vse verjetnosti enake ena.",
+	"number-of-sides": "Število stranic",
+	"probabilities": "Verjetnosti",
+	"relative-frequency": "Relativna pogostost",
+	"reset": "Ponastavitev",
+	"side": "Stran",
+	"simulate-random-dice-throws": "Simulacija naključnih metov kock",
+	"throw": "Vrzi",
+	"total-number-of-throws": "Skupno število metov"
+}

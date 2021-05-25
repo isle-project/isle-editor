@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Su sprendimų medžių metodais dažnai naudojamas kaupimas pagal Bootstrap metodą. Iš pradinių mokymo duomenų sudarant bootstrap imtis, kiekvienai imčiai įvertinant modelį, minėtų modelių prognozės yra vidurkinamos, kad būtų gautos mažesnio kintamumo prognozės, kurios nėra linkusios per daug prisitaikyti.",
+	"boosting-description": "Stiprinimo algoritmai, pavyzdžiui, \"AdaBoost\", iteratyviai išmoko silpnus klasifikatorius ir prideda juos prie galutinio stipraus klasifikatoriaus, suteikdami jiems svorį. Pridedant klasifikatorius, neteisingai suklasifikuoti įvesties duomenys įgyja didesnį svorį, o teisingai suklasifikuoti pavyzdžiai praranda svorį. Taigi būsimi silpnieji besimokantieji daugiau dėmesio skiria pavyzdžiams, kuriuos ankstesni silpnieji besimokantieji suklasifikavo neteisingai.",
+	"cart-description": "Klasifikavimo ir regresijos medžio (CART) analizė sukuria medį, kuris eina nuo stebėjimo požymių (pavaizduotų šakose) iki prognozuojamos vertės (pavaizduotos lapuose).",
+	"classification": "Klasifikacija",
+	"clustering": "Klasterizavimas",
+	"dimensionality-reduction": "Matmenų mažinimas",
+	"elastic-net-description": "Elastinis tinklas - tai sureguliuotas regresijos metodas, kuris tiesiškai sujungia Lasso ir Ridge metodų L1 ir L2 baudas.",
+	"ensemble": "Ansamblis",
+	"kmeans-description": "Sugrupuokite stebėjimus į fiksuotą skaičių (k) klasterių taip, kad klasterio nariai būtų panašesni vienas į kitą nei į kitų klasterių stebėjimus.",
+	"knn-description": "Naudojamas ir regresijai, ir klasifikavimui. Klasifikuojant pagal kNN, naudojama dauguma balsų tarp k artimiausių taškų. Regresijos atveju išvestis yra k artimiausių taškų reikšmių vidurkis.",
+	"lasso-description": "Reguliariosios regresijos metodas, pagal kurį regresijos koeficientai baudžiami naudojant L1 normą. Mažesnė dispersija keičiama į mažesnį nuokrypį. Dėl to gaunamas retas modelis.",
+	"linear-regression-description": "Modeliuoja ryšį tarp skalarinio atsako ir vieno ar daugiau aiškinamųjų kintamųjų. Paprastoji tiesinė regresija taikoma tuo atveju, kai yra vienas prognozuojamasis kintamasis, o daugialypė tiesinė regresija naudojama, kai yra keli aiškinamieji kintamieji. Ji vadinama tiesine, nes įvertinta funkcija yra tiesinė pagal savo koeficientus.",
+	"logistic-regression-description": "Logistinė regresija - tai klasifikavimo metodas, naudojamas priskirti stebinius vienai iš dviejų klasių. Logistinė regresija naudoja logistinę sigmoidinę funkciją, kad kiekvienai klasei būtų grąžinta tikimybės reikšmė",
+	"naive-bayes-description": "Naiviojo Bajeso metodai - tai klasifikavimo algoritmų rinkinys, grindžiamas Bajeso teoremos taikymu, darant \"naivią\" prielaidą, kad kiekviena požymių pora, atsižvelgiant į klasės kintamojo vertę, yra sąlygiškai nepriklausoma.",
+	"neural-networks-description": "Dirbtiniai neuronų tinklai naudojami sudėtingiems įvesties ir išvesties ryšiams modeliuoti mokantis netiesinės funkcijos be rankinio funkcijų kūrimo.",
+	"pca-description": "Pagrindinių komponenčių analizė (PCA) naudoja ortogonalią transformaciją, kad galimai koreliuotus kintamuosius paverstų tiesiškai nekoreliuotų kintamųjų verčių rinkiniu, vadinamu pagrindinėmis komponentėmis.",
+	"random-forest-description": "Atsitiktiniai miškai mokymo metu sukuria daugybę sprendimų medžių ir grąžina klasę, kuri yra klasių moda (klasifikavimas) arba vidutinė atskirų medžių prognozė (regresija).",
+	"regression": "Regresija",
+	"ridge-description": "Reguliariosios regresijos metodas, pagal kurį regresijos koeficientai baudžiami naudojant L2 normą. Mažesnė dispersija keičiama į mažesnį nuokrypį. Nesukuriamas retas modelis, t. y. koeficientai nėra prilyginami nuliui.",
+	"svm-description": "Palaikomųjų vektorių mašinos yra diskriminaciniai klasifikatoriai. Turint paženklintus mokymo duomenis, algoritmas randa optimalią hiperplokštumą naujiems pavyzdžiams klasifikuoti. Dviejų matmenų atveju ši hiperplokštuma yra linija, dalijanti į dvi dalis.",
+	"üca-description": "Pagrindinių komponenčių analizė (PCA) naudoja ortogonalią transformaciją, kad galimai koreliuotus kintamuosius paverstų tiesiškai nekoreliuotų kintamųjų verčių rinkiniu, vadinamu pagrindinėmis komponentėmis."
+}

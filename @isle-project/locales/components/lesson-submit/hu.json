@@ -1,0 +1,19 @@
+{
+	"authentication": "Hitelesítés",
+	"authentication-prompt": "A lecke véglegesítéséhez kérjük, jelentkezzen be az ISLE-fiókjába. Ha még nem hozott létre fiókot, kérjük, regisztráljon, hogy hozzáférhessen az ISLE teljes funkcionalitásához.",
+	"by": "",
+	"choice": "Választás",
+	"completed": "Befejezett",
+	"confirmation-email": " Hamarosan kap egy visszaigazoló e-mailt.",
+	"download-pdf": "A válaszok PDF formátumának letöltése",
+	"elapsed": "eltelt",
+	"finish-lesson": "Lecke befejezése",
+	"lesson-completed-msg": "Kedves {{name}}, ez egy automatikus visszaigazoló e-mail, amely arról tájékoztatja Önt, hogy sikeresen elvégezte a \"{{namespaceName}}\" tanfolyam \"{{lessonName}}\" leckéjét. {{msg}}",
+	"lesson-submitted": "A lecke leadva!",
+	"lesson-successfully-completed": "A lecke sikeresen befejeződött.",
+	"login": "Bejelentkezés",
+	"responses-header": "Válaszok az ISLE leckére",
+	"signup": "Feliratkozás",
+	"submit": "Küldje be a",
+	"successfully-completed": "sikeresen befejezve"
+}

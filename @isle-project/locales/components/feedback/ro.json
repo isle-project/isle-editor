@@ -1,0 +1,19 @@
+{
+	"cancel": "Anulează",
+	"cannot-follow": "Nu pot să înțeleg logica.",
+	"enter-text": "Introduceți textul",
+	"feedback": "Feedback",
+	"give-custom-feedback": "Oferiți feedback personalizat",
+	"have-feedback": "Am un feedback.",
+	"makes-sense": "Are sens.",
+	"needs-detailed-explanation": "Acest lucru necesită o explicație mai detaliată.",
+	"no-understanding": "Nu înțeleg deloc acest lucru",
+	"not-clear": "Acest lucru nu este clar pentru mine.",
+	"responses": "Răspunsuri",
+	"submit": "Trimiteți",
+	"submit-confused-message": "Ne pare rău să auzim asta. Feedback-ul dumneavoastră ne ajută să îmbunătățim materialul.",
+	"submit-custom-message": "Vă mulțumim pentru că v-ați făcut timp să ne trimiteți un feedback.",
+	"submit-understood-message": "'Mă bucur să aud asta! Vă mulțumim pentru comentariile dumneavoastră.",
+	"textarea-legend": "Am următoarele observații (opționale):",
+	"thank-you": "Vă mulțumesc!"
+}

@@ -1,0 +1,19 @@
+{
+	"cancel": "Zrušit",
+	"cannot-follow": "Nechápu tu logiku.",
+	"enter-text": "Zadejte text",
+	"feedback": "Zpětná vazba",
+	"give-custom-feedback": "Poskytnutí vlastní zpětné vazby",
+	"have-feedback": "Mám zpětnou vazbu.",
+	"makes-sense": "To dává smysl.",
+	"needs-detailed-explanation": "To je třeba podrobněji vysvětlit.",
+	"no-understanding": "Vůbec tomu nerozumím",
+	"not-clear": "To mi není jasné.",
+	"responses": "Odpovědi",
+	"submit": "Odeslat",
+	"submit-confused-message": "To nás mrzí. Vaše zpětná vazba nám pomáhá materiál vylepšovat.",
+	"submit-custom-message": "Děkujeme, že jste si našli čas a poslali nám zpětnou vazbu.",
+	"submit-understood-message": "\"To rád slyším! Děkujeme za vaši zpětnou vazbu.",
+	"textarea-legend": "Mám následující připomínky (nepovinné):",
+	"thank-you": "Děkujeme!"
+}

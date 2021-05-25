@@ -1,0 +1,20 @@
+{
+	"deleted": "Borttagen",
+	"deleted-message": "Du har lyckats ta bort åtgärden.",
+	"error-encountered": "Fel har uppstått",
+	"file-upload": "Uppladdning av filer",
+	"file-upload-signin-required": "Du måste vara inloggad för att kunna ladda upp filer.",
+	"grades-saved": "Sparade betyg",
+	"loggedin": "Inloggad",
+	"loggedin-message": "Du har loggat in.",
+	"logout-message": "Du har loggat ut.",
+	"logout-title": "Utloggad",
+	"message-saved": "Meddelande sparat",
+	"new-password-message": "Kontrollera din e-postinkorg för att hitta en länk till ett nytt lösenord.",
+	"new-password-title": "Nytt lösenord",
+	"new-version-of-lesson-available": "En ny version av denna lektion finns tillgänglig. Klicka <1>här</1> för att uppdatera.",
+	"request-failed": "Begäran misslyckades",
+	"user-created": "Användaren skapades",
+	"user-created-message": "Du har registrerat dig framgångsrikt.",
+	"user-not-created": "Användaren har inte skapats"
+}

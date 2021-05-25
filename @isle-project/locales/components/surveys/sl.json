@@ -1,0 +1,17 @@
+{
+	"action-required": "Potrebni ukrepi",
+	"answer-submitted": "Vaš odgovor je bil poslan.",
+	"average-is": "Povprečje je",
+	"category": "Kategorija",
+	"count": "Count",
+	"multiple-answers": "Izberete lahko več odgovorov.",
+	"no-responses-yet": "še ni odgovorov",
+	"number-of-votes": "Število glasov",
+	"offensive-word": "Vaš odgovor vsebuje žaljivo besedo: {{w}}. Prosimo, odstranite jo.",
+	"relative-frequency": "Relativna pogostost",
+	"responses": "Odgovori",
+	"sign-in": "Prijavite se...",
+	"submit": "Pošlji",
+	"submitted": "Predloženo",
+	"your-answer": "Vaš odgovor"
+}

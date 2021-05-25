@@ -1,0 +1,19 @@
+{
+	"authentication": "Autentificare",
+	"authentication-prompt": "Pentru a finaliza această lecție, vă rugăm să vă conectați la contul dumneavoastră ISLE. Dacă nu v-ați creat unul, vă rugăm să vă înregistrați și să obțineți acces la întreaga funcționalitate a ISLE.",
+	"by": "de",
+	"choice": "Alegerea",
+	"completed": "Completat",
+	"confirmation-email": " Veți primi un e-mail de confirmare în scurt timp.",
+	"download-pdf": "Descărcați PDF cu răspunsurile",
+	"elapsed": "scursă",
+	"finish-lesson": "Termină lecția",
+	"lesson-completed-msg": "Dragă {{name}}, acesta este un e-mail de confirmare automată pentru a te informa că ai absolvit cu succes lecția \"{{lessonName}}\" din cursul \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Lecție transmisă!",
+	"lesson-successfully-completed": "Lecție finalizată cu succes.",
+	"login": "Autentificare",
+	"responses-header": "Răspunsuri pentru lecția ISLE",
+	"signup": "Înscrieți-vă",
+	"submit": "Trimiteți",
+	"successfully-completed": "finalizat cu succes"
+}

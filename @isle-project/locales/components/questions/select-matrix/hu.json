@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Újra benyújtott válasz.",
+	"answer-submitted": "Elküldött válasz.",
+	"correct": "Helyes",
+	"correct-answer": "Helyes válasz: ",
+	"failure-message": "Nem egészen.",
+	"incorrect": "Helytelen",
+	"resubmit": "Újbóli benyújtás",
+	"resubmit-message": "Ön sikeresen újra elküldte válaszát.",
+	"should-have-been": "Annak kellett volna lennie: ",
+	"submit": "Küldje be a",
+	"submit-message": "A válaszát elküldtük.",
+	"success-message": "Ez a helyes válasz!",
+	"try-again": "Próbálja újra"
+}

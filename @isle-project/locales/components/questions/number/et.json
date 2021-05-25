@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Vastus on uuesti esitatud.",
+	"answer-submitted": "Esitatud vastus.",
+	"answers": "Vastused",
+	"invalid-answer": "Vale vastus",
+	"invalid-range": "Teie vastus peaks olema number vahemikus {{min}} ja {{max}}.",
+	"one-of": "üks ",
+	"or": "või",
+	"question-closed": "Küsimus on nüüd suletud.",
+	"resubmission-message": "Te olete oma vastuse edukalt uuesti esitanud.",
+	"resubmit": "Esita uuesti",
+	"solution": "Lahendus",
+	"submission-correct": "Palju õnne, see on õige!",
+	"submission-incorrect": "Mitte päris. Võrrelge oma vastust lahendusega.",
+	"submission-message": "Teie vastus on esitatud.",
+	"submission-try-again": "Teie vastus on vale. Palun proovige uuesti",
+	"submit": "Esita",
+	"tries": "{{count}} proovi vasakule",
+	"tries_plural": "{{count}} üritab vasakule",
+	"your-answer": "Teie vastus"
+}

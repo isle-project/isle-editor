@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Agregarea bootstrap este adesea utilizată cu metodele arborelui de decizie. Extragând eșantioane bootstrap din datele de instruire originale și estimând un model pentru fiecare eșantion extras, predicțiile modelelor respective sunt apoi mediate pentru a obține predicții cu o variație mai mică și mai puțin predispuse la supraadaptare.",
+	"boosting-description": "Algoritmii de amplificare, cum ar fi AdaBoost, învață iterativ clasificatori slabi și îi adaugă la un clasificator puternic final prin ponderarea lor. Pe măsură ce se adaugă clasificatori, datele de intrare clasificate greșit capătă o pondere mai mare, iar exemplele clasificate corect pierd din greutate. Astfel, viitorii cursanți slabi se concentrează mai mult pe exemplele pe care cursanții slabi anteriori le-au clasificat greșit.",
+	"cart-description": "Analiza arborelui de clasificare și regresie (CART) construiește un arbore care pornește de la caracteristicile unei observații (reprezentate în ramuri) până la o valoare prezisă (reprezentată în frunze).",
+	"classification": "Clasificare",
+	"clustering": "Clusterizare",
+	"dimensionality-reduction": "Reducerea dimensionalității",
+	"elastic-net-description": "Rețeaua elastică este o metodă de regresie regularizată care combină în mod liniar penalizările L1 și L2 ale metodelor lasso și ridge.",
+	"ensemble": "Ansamblu",
+	"kmeans-description": "Gruparea observațiilor într-un număr fix (k) de clustere, astfel încât membrii clusterelor să fie mai asemănători între ei decât cu observațiile din alte clustere.",
+	"knn-description": "Se utilizează atât pentru regresie, cât și pentru clasificare. Utilizează votul majoritar între punctele k-mai apropiate pentru clasificarea kNN. Pentru regresie, rezultatul este media valorilor k-nearest.",
+	"lasso-description": "Metoda de regresie regularizată care penalizează coeficienții de regresie folosind norma L1. Schimbă o varianță mai mică cu o mică distorsiune. Duce la un model rarefiat.",
+	"linear-regression-description": "Modelează relația dintre un răspuns scalar și una sau mai multe variabile explicative. Regresia liniară simplă se referă la cazul în care este prezent un singur predictor, iar regresia liniară multiplă este utilizată în cazul mai multor variabile explicative. Se numește liniară deoarece funcția estimată este liniară în coeficienții săi.",
+	"logistic-regression-description": "Regresia logistică este o metodă de clasificare utilizată pentru a atribui observațiile la una dintre cele două clase. Regresia logistică utilizează funcția sigmoidă logistică pentru a returna o valoare a probabilității pentru fiecare clasă.",
+	"naive-bayes-description": "Metodele Naive Bayes sunt un set de algoritmi de clasificare care se bazează pe aplicarea teoremei lui Bayes cu ipoteza \"naivă\" a independenței condiționate între fiecare pereche de caracteristici, având în vedere valoarea variabilei de clasă.",
+	"neural-networks-description": "Rețelele neuronale artificiale sunt utilizate pentru a modela relații complexe între intrări și ieșiri prin învățarea unei funcții neliniare fără inginerie manuală a caracteristicilor.",
+	"pca-description": "Analiza componentelor principale (PCA) utilizează o transformare ortogonală pentru a converti variabilele posibil corelate într-un set de valori ale unor variabile necorelate liniar, denumite componente principale.",
+	"random-forest-description": "Pădurile aleatorii construiesc o multitudine de arbori de decizie în momentul instruirii și returnează clasa care reprezintă modul claselor (clasificare) sau predicția medie (regresie) a fiecărui arbore în parte.",
+	"regression": "Regresie",
+	"ridge-description": "Metoda de regresie regularizată care penalizează coeficienții de regresie folosind norma L2. Schimbă o varianță mai mică cu o mică distorsiune. Nu produce un model rarefiat, și anume, coeficienții nu sunt duși la zero.",
+	"svm-description": "Mașinile cu vectori de suport sunt clasificatoare discriminative. Având în vedere datele de instruire etichetate, algoritmul găsește un hiperplan optim pentru a clasifica noile exemple. În două dimensiuni, acest hiperplan este o linie care le împarte în două părți.",
+	"üca-description": "Analiza componentelor principale (PCA) utilizează o transformare ortogonală pentru a converti variabilele posibil corelate într-un set de valori ale unor variabile necorelate liniar, denumite componente principale."
+}

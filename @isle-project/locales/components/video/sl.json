@@ -1,0 +1,20 @@
+{
+	"back": "Nazaj",
+	"close-and-to-dashboard": "Zaprite in pojdite na armaturno ploščo",
+	"close-instructor-view": "Zapri pogled inštruktorja",
+	"disabled": "Video klepet za invalide",
+	"join": "Pridružite se videoposnetku",
+	"join-id": "Pridružite se videoklepetu z ID {{id}}",
+	"leave": "Pustite video",
+	"leave-id": "Zapustite videoklepet z ID {{id}}",
+	"next": "Naslednji",
+	"open-instructor-view": "Odpri pogled inštruktorja",
+	"playback-disabled": "Lastnik videoposnetka je onemogočil predvajanje na drugih spletnih mestih.",
+	"reached-end": "Dosegli ste konec tega video predavanja.",
+	"retry": "Ponovitev",
+	"supply-two-videos": "Navedite vsaj dva URL-ja za naslednji atribut",
+	"to-previous": "Pojdi na prejšnji del",
+	"toggle": "Toggle Video klepet",
+	"url-missing": "Manjka naslov URL videoposnetka.",
+	"video-not-loaded": "Videoposnetka ni bilo mogoče naložiti."
+}

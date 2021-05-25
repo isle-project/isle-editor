@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Klõpsake olemasolevate valikute läbimiseks.",
+	"discard-changes": "Muudatuste äraviskamine",
+	"edit-text": "Teksti muutmine",
+	"error-encountered": "Esinenud viga",
+	"expected-object-array": "\"{{field}}\" peab olema objektide massiivi.",
+	"expected-value-from-list": "\"{{field}}\" peab olema üks järgmistest: {{list}} .",
+	"flippable-requires-two-children": "Klapitav kaart vajab kahte lapselementi.",
+	"grid-requires-two-children": "Lohutatav ruudustik nõuab vähemalt kaks lapselementi, et seda saaks renderdada.",
+	"in": "aadressil",
+	"pause": "Paus",
+	"resume": "CV",
+	"retry": "Uuesti proovida",
+	"save-changes": "Muudatuste salvestamine",
+	"search": "Otsi",
+	"supply-component-id": "Palun esitage jälgitava komponendi ID.",
+	"toggle-error-stack-trace": "Vahetage vea virna jälgimine"
+}

@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Răspuns retransmis.",
+	"answer-submitted": "Răspuns transmis.",
+	"answers": "Răspunsuri",
+	"expect-a-or-b-for-each-element": "Tabloul `elements` trebuie să fie format din obiecte cu ambele proprietăți `a` și `b` sau cel puțin una dintre ele.",
+	"instructions": "Potrivește {{complete}} elementele din partea stângă cu elementele corespunzătoare din partea dreaptă, făcând clic pe ele.",
+	"question-closed": "Întrebarea este închisă.",
+	"resubmission-message": "Ați trimis din nou răspunsul cu succes.",
+	"resubmit": "Trimiteți din nou",
+	"submit": "Trimiteți",
+	"submit-tooltip": "Puteți trimite după ce ați potrivit toate elementele din partea stângă cu elementele corespunzătoare din partea dreaptă."
+}

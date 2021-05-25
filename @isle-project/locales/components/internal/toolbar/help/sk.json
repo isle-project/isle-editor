@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Kliknutím na položku v ponuke sa o nej dozviete viac...",
+	"data-explorer-p1": "Prieskumník údajov ISLE umožňuje analyzovať súbory údajov pomocou rozhrania typu \"ukáž a klikni\". Prieskumník údajov je rozdelený na dva panely, ľavý panel, v ktorom môžete prepínať medzi tabuľkovým zobrazením analyzovaných údajov a ďalšími voliteľnými komponentmi, ako je editor na písanie správ alebo zoznam otázok. Na pravej strane je výstupný panel, ktorý obsahuje všetky výstupy (súhrnné štatistiky, grafy, výsledky testu hypotéz), ktoré ste vytvorili.",
+	"data-explorer-p2": "Nové výstupy možno vytvárať prostredníctvom súboru nástrojov, ktorý otvoríte kliknutím na tlačidlo \"Zobraziť súbor nástrojov\". Novovytvorený graf alebo tabuľka sa pridajú do zoznamu výstupných prvkov zobrazeného na pravej strane",
+	"data-explorer-p3": "Červené tlačidlá s ikonami \"x\" môžete použiť na odstránenie jednotlivých výstupných prvkov, zatiaľ čo tlačidlo \"Vymazať všetko\" v spodnej časti odstráni všetky výstupné prvky.",
+	"data-explorer-p4": "Pomocou tlačidiel s otáznikom v tabuľke údajov, editore zostáv alebo v súbore nástrojov môžete spustiť prehliadku možností jednotlivých častí.",
+	"data-explorer-title": "Prieskumník údajov",
+	"data-table-p1": "Jednoduchý spôsob zobrazenia údajov v systéme ISLE je prostredníctvom dátovej tabuľky. Tie sa zobrazujú v typickom formáte na zobrazovanie údajov, podobne ako vyzerajú údaje v tabuľke programu Excel. Každý stĺpec je premenná s názvom premennej v hornej časti.",
+	"data-table-p2": "Ak chcete získať prehľad o tom, čo môžete robiť s tabuľkami údajov, kliknite na tlačidlo Zobraziť výukový program (otáznik v pravom hornom rohu tabuľky údajov).",
+	"data-table-title": "Tabuľka údajov",
+	"documentation": "Dokumentácia",
+	"download-pdf": "Stiahnuť PDF",
+	"questions-p1": "Mnohé lekcie ISLE, na ktorých budete pracovať, budú obsahovať otázky, na ktoré budete musieť odpovedať. Existujú rôzne typy otázok, od krátkych odpovedí až po otázky s výberom odpovede. Tu je príklad otázky s krátkou odpoveďou:",
+	"questions-p2": "Odosielanie",
+	"questions-p3": "Keď ste odpovedali na otázku a ste pripravení odoslať svoju odpoveď, kliknite na tlačidlo \"Odoslať\". Tým sa zaznamená vaša práca, aby inštruktor videl vašu odpoveď a mohol vám udeliť zápočet za otázku.",
+	"questions-p4": "Tlačidlá spätnej väzby",
+	"questions-p5": "Niekedy môže inštruktor pri jednotlivých otázkach uviesť tlačidlá spätnej väzby (zobrazené vyššie). Ľavé tlačidlo vám umožní poznamenať, že ste v otázke zmätení; stredné tlačidlo vám umožní poznamenať, že otázka dáva zmysel; a pravé tlačidlo vám umožní podrobnejšie uviesť konkrétne pripomienky k spätnej väzbe.",
+	"questions-p6": "Otázky na navigáciu",
+	"questions-p7": "Na tom istom mieste na stránke môže byť umiestnených viacero otázok. V takom prípade môžete medzi otázkami prechádzať kliknutím na tlačidlo \"Ďalej\" alebo výberom otázok podľa čísla:",
+	"questions-title": "Otázky",
+	"statusbar-p1": "Kliknutím na stavový riadok sa zobrazia tlačidlá na registráciu konta ISLE alebo na prihlásenie do existujúceho konta. V strede stavového riadka nájdete zobrazené svoje používateľské meno alebo prihlásený. Po nabehnutí naň sa zobrazí niekoľko štatistických údajov o vašom postupe v lekcii: čas strávený v lekcii, percento aktivít dokončených v lekcii a vaše celkové dosiahnuté body.",
+	"statusbar-title": "Stavový riadok"
+}

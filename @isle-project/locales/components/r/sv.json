@@ -1,0 +1,13 @@
+{
+	"close": "Stäng",
+	"drag-plot": "Dragplot",
+	"evaluate": "Utvärdera",
+	"hide-solution": "Dölj lösningen",
+	"mosaic-plot-of": "Mosaikplott av",
+	"r-help": "R Hjälp",
+	"r-plot": "R Plot",
+	"reset": "Återställ",
+	"reset-tooltip": "Återställer skalinmatningen till standardvärdet.",
+	"show-solution": "Visa lösning",
+	"solution-tooltip": "Lösningen blir tillgänglig när du har provat övningen och använt alla tips."
+}

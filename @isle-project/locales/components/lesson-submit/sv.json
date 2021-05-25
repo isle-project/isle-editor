@@ -1,0 +1,19 @@
+{
+	"authentication": "Autentisering",
+	"authentication-prompt": "För att avsluta den här lektionen måste du logga in på ditt ISLE-konto. Om du inte har skapat ett konto, registrera dig för att få tillgång till alla funktioner i ISLE.",
+	"by": "av",
+	"choice": "Val",
+	"completed": "Slutförd",
+	"confirmation-email": " Du kommer att få en bekräftelse via e-post inom kort.",
+	"download-pdf": "Ladda ner svaren i PDF-format",
+	"elapsed": "förflutit",
+	"finish-lesson": "Avsluta lektionen",
+	"lesson-completed-msg": "Kära {{name}}, detta är ett automatiskt bekräftelsemail för att informera dig om att du har slutfört lektionen \"{{lessonName}}\" i kursen \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Lektion inlämnad!",
+	"lesson-successfully-completed": "Lektionen har slutförts med framgång.",
+	"login": "Inloggning",
+	"responses-header": "Svar för ISLE-lektionen",
+	"signup": "Registrera dig",
+	"submit": "Skicka in",
+	"successfully-completed": "framgångsrikt genomförd."
+}

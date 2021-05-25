@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hura, vaš odgovor je pravilen!",
+	"answer-incorrect-explanations": "Če podrsate nad različnimi odgovori, se prikaže namig z razlago, zakaj je posamezen odgovor napačen.",
+	"answer-incorrect-full": "Žal je vaš odgovor napačen. Pravilni odgovor je prikazan v oranžni barvi.",
+	"answer-incorrect-incremental": "Žal je vaš odgovor napačen. Poskusite znova in izberite drugo možnost odgovora.",
+	"answer-incorrect-incremental-equal": "Žal vsi vaši odgovori niso bili pravilni. Poskusite z drugo kombinacijo.",
+	"answer-incorrect-incremental-extra": "Označili ste vse pravilne možnosti odgovorov, vendar se je mednje prikradla vsaj ena napačna. Izbriši napačne odgovore in jih ponovno pošlji.",
+	"answer-incorrect-incremental-missing": "Niste navedli vseh pravilnih odgovorov. Izberite dodatne možnosti odgovorov.",
+	"answer-re-submitted": "Ponovno predložen odgovor.",
+	"answer-submitted": "Predložen odgovor.",
+	"answer-submitted-nofeedback": "Uspešno ste oddali svoj odgovor. Če želite, lahko svoj odgovor spremenite in ga ponovno oddate.",
+	"answers": "Odgovori",
+	"chose-all-apply": "Izberite vse, kar velja",
+	"each-row-click-check-boxes-which-apply": "Za vsako vrstico kliknite vsa potrditvena polja, ki veljajo.",
+	"each-row-pick-answer-by-clicking": "Za vsako vrstico izberite odgovor s klikom na ustrezen radijski gumb.",
+	"question-closed": "Vprašanje je zaključeno.",
+	"resubmit": "Ponovna predložitev",
+	"select-answer": "Izberite odgovor",
+	"submit": "Pošlji",
+	"submitted": "Predloženo",
+	"successfully-re-submitted-your-answer": "Uspešno ste ponovno poslali svoj odgovor.",
+	"successfully-submitted-your-answer": "Uspešno ste oddali svoj odgovor. Če želite, lahko svoj odgovor spremenite in ga ponovno oddate."
+}

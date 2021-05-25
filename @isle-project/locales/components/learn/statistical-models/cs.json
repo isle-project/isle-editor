@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Agregace Bootstrap se často používá u metod rozhodovacích stromů. Z původních trénovacích dat se vybírají bootstrapové vzorky, přičemž se pro každý vybíraný vzorek odhadne model, a předpovědi uvedených modelů se pak zprůměrují, aby se získaly předpovědi s nižší odchylkou, které nejsou tak náchylné k nadměrnému přizpůsobení.",
+	"boosting-description": "Posilovací algoritmy, jako je AdaBoost, se iterativně učí slabé klasifikátory a přidávají je k výslednému silnému klasifikátoru pomocí vah. Při přidávání klasifikátorů získávají chybně klasifikovaná vstupní data vyšší váhu a příklady, které jsou klasifikovány správně, váhu ztrácejí. Budoucí slabé klasifikátory se tak více zaměřují na příklady, které předchozí slabé klasifikátory klasifikovaly špatně.",
+	"cart-description": "Klasifikační a regresní stromová analýza (CART) vytváří strom, který vede od vlastností pozorování (reprezentovaných ve větvích) k předpovídané hodnotě (reprezentované v listech).",
+	"classification": "Klasifikace",
+	"clustering": "Shlukování",
+	"dimensionality-reduction": "Redukce dimenzionality",
+	"elastic-net-description": "Elastická síť je regulární regresní metoda, která lineárně kombinuje L1 a L2 penalizace metod lasso a ridge.",
+	"ensemble": "Soubor",
+	"kmeans-description": "Seskupte pozorování do pevného počtu (k) shluků tak, aby si členové shluku byli navzájem podobnější než pozorování v jiných shlucích.",
+	"knn-description": "Používá se pro regresi i klasifikaci. Pro klasifikaci kNN používá většinové hlasování mezi k-nejbližšími body. Pro regresi je výstupem průměr hodnot k-nejbližších bodů.",
+	"lasso-description": "Regularizovaná regresní metoda, která penalizuje regresní koeficienty pomocí normy L1. Vyměňuje nižší rozptyl za menší zkreslení. Vede k řídkému modelu.",
+	"linear-regression-description": "Modeluje vztah mezi skalární odpovědí a jednou nebo více vysvětlujícími proměnnými. Jednoduchá lineární regrese se týká případu, kdy je přítomen jeden prediktor, vícenásobná lineární regrese se používá s více vysvětlujícími proměnnými. Nazývá se lineární, protože odhadovaná funkce je lineární ve svých koeficientech.",
+	"logistic-regression-description": "Logistická regrese je klasifikační metoda, která se používá k přiřazení pozorování do jedné ze dvou tříd. Logistická regrese používá logistickou sigmoidní funkci, která vrací hodnotu pravděpodobnosti pro každou třídu.",
+	"naive-bayes-description": "Naivní Bayesovy metody jsou souborem klasifikačních algoritmů založených na použití Bayesovy věty s \"naivním\" předpokladem podmíněné nezávislosti mezi každou dvojicí rysů danou hodnotou třídní proměnné.",
+	"neural-networks-description": "Umělé neuronové sítě se používají k modelování složitých vztahů mezi vstupy a výstupy pomocí učení nelineární funkce bez nutnosti ručního vytváření funkcí.",
+	"pca-description": "Analýza hlavních komponent (PCA) využívá ortogonální transformaci k převodu případně korelovaných proměnných na soubor hodnot lineárně nekorelovaných proměnných, které se nazývají hlavní komponenty.",
+	"random-forest-description": "Náhodné lesy při trénování zkonstruují množství rozhodovacích stromů a vrátí třídu, která je modelem tříd (klasifikace) nebo průměrnou předpovědí (regrese) jednotlivých stromů.",
+	"regression": "Regrese",
+	"ridge-description": "Regularizovaná regresní metoda, která penalizuje regresní koeficienty pomocí normy L2. Vyměňuje nižší rozptyl za menší zkreslení. Nevede k řídkému modelu, tj. koeficienty se nevedou k nule.",
+	"svm-description": "Stroje s podpůrnými vektory jsou diskriminační klasifikátory. Při zadání označených trénovacích dat najde algoritmus optimální hyperrovinu pro kategorizaci nových příkladů. Ve dvou rozměrech je touto hyperplochou přímka rozdělující na dvě části.",
+	"üca-description": "Analýza hlavních komponent (PCA) využívá ortogonální transformaci k převodu případně korelovaných proměnných na soubor hodnot lineárně nekorelovaných proměnných, které se nazývají hlavní komponenty."
+}

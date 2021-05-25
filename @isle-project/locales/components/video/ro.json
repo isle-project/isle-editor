@@ -1,0 +1,20 @@
+{
+	"back": "Înapoi",
+	"close-and-to-dashboard": "Închideți și mergeți la tabloul de bord",
+	"close-instructor-view": "Închideți vizualizarea instructorului",
+	"disabled": "Chat video pentru persoane cu dizabilități",
+	"join": "Alăturați-vă video",
+	"join-id": "Intrați în videochat cu ID {{id}}",
+	"leave": "Lăsați video",
+	"leave-id": "Părăsiți chat-ul video cu ID-ul {{id}}",
+	"next": "Următorul",
+	"open-instructor-view": "Deschideți vizualizarea instructorului",
+	"playback-disabled": "Redarea pe alte site-uri web a fost dezactivată de proprietarul videoclipului.",
+	"reached-end": "Ați ajuns la sfârșitul acestei prelegeri video.",
+	"retry": "Reîncercare",
+	"supply-two-videos": "Vă rugăm să furnizați cel puțin două URL-uri pentru următorul atribut",
+	"to-previous": "Mergeți la partea anterioară",
+	"toggle": "Toggle Video Chat",
+	"url-missing": "URL-ul video lipsește.",
+	"video-not-loaded": "Video nu a putut fi încărcat."
+}

@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Svaret har lagts fram på nytt.",
+	"answer-submitted": "Svar inlämnat.",
+	"answers": "Svar",
+	"enter-your-answer-here": "Skriv in ditt svar här...",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmit": "Skicka in  på nytt.",
+	"solution": "Lösning:",
+	"submission-message-no-solution": "Du kan ändra ditt svar och skicka in det på nytt om du vill.",
+	"submission-message-solution": "Jämför ditt svar med lösningen med hjälp av knappen \"Visa lösning\". Du kan sedan ändra ditt svar och skicka in det på nytt om det behövs.",
+	"submit": "Skicka in",
+	"submit-tooltip": "Klicka på skicka när du har skrivit ditt svar.",
+	"your-answer": "Ditt svar:"
+}

@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Újra benyújtott válasz.",
+	"answer-submitted": "Elküldött válasz.",
+	"answers": "Válaszok",
+	"enter-your-answer-here": "Írja be a válaszát ide...",
+	"question-closed": "A kérdés lezárult.",
+	"resubmit": "Újbóli benyújtás",
+	"solution": "Megoldás:",
+	"submission-message-no-solution": "Ha szeretné, megváltoztathatja válaszát, és újra elküldheti.",
+	"submission-message-solution": "Hasonlítsa össze válaszát a megoldással a \"Megoldás megjelenítése\" gomb segítségével. Ezután módosíthatja válaszát, és szükség esetén újra elküldheti.",
+	"submit": "Küldje be a",
+	"submit-tooltip": "Kattintson a beküldés gombra, miután begépelte a választ.",
+	"your-answer": "A válaszod:"
+}

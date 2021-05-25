@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Vyberte si vlastné pravdepodobnosti pre strany a potom hoďte kockami!",
+	"count": "Počítajte",
+	"dice": "Kocky",
+	"invalid-probs": "Uistite sa, že všetky pravdepodobnosti sú rovné jednej",
+	"number-of-sides": "Počet strán",
+	"probabilities": "Pravdepodobnosti",
+	"relative-frequency": "Relatívna frekvencia",
+	"reset": "Obnovenie",
+	"side": "Strana",
+	"simulate-random-dice-throws": "Simulovať náhodné hody kockami",
+	"throw": "Hodiť",
+	"total-number-of-throws": "Celkový počet hodov"
+}

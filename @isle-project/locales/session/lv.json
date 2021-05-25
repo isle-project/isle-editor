@@ -1,0 +1,20 @@
+{
+	"deleted": "Dzēsts",
+	"deleted-message": "Darbība ir veiksmīgi izdzēsta.",
+	"error-encountered": "Radusies kļūda",
+	"file-upload": "Failu augšupielāde",
+	"file-upload-signin-required": "Lai augšupielādētu failus, ir jābūt pierakstītam.",
+	"grades-saved": "Saglabātās pakāpes",
+	"loggedin": "Ielogojies",
+	"loggedin-message": "Jūs esat veiksmīgi pieteicies.",
+	"logout-message": "Jūs esat veiksmīgi atteicies.",
+	"logout-title": "Izrakstījies",
+	"message-saved": "Saglabātā ziņa",
+	"new-password-message": "Pārbaudiet savu e-pasta iesūtni, lai atrastu saiti jaunas paroles izvēlei.",
+	"new-password-title": "Jauna parole",
+	"new-version-of-lesson-available": "Ir pieejama jauna šīs nodarbības versija. Noklikšķiniet <1>šeit,</1> lai atjauninātu.",
+	"request-failed": "Pieprasījums neizdevās",
+	"user-created": "Izveidots lietotājs",
+	"user-created-message": "Jūs esat veiksmīgi reģistrējies.",
+	"user-not-created": "Lietotājs nav izveidots"
+}

@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Svaret er blevet genfremsat.",
+	"answer-submitted": "Svar afgivet.",
+	"answers": "Svar",
+	"expect-a-or-b-for-each-element": "Arrayet `elements` skal bestå af objekter med enten begge egenskaber `a` og `b` eller mindst en af dem.",
+	"instructions": "Match {{complete}} elementer fra venstre side med de tilsvarende elementer på højre side ved at klikke på dem.",
+	"question-closed": "Spørgsmålet er nu lukket.",
+	"resubmission-message": "Det er lykkedes dig at indsende dit svar igen.",
+	"resubmit": "Indsend",
+	"submit": "Indsend",
+	"submit-tooltip": "Du kan indsende, når du har matchet alle elementer fra venstre side med de tilsvarende elementer fra højre side"
+}

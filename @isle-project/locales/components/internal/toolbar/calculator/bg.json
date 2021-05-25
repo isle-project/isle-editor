@@ -1,0 +1,12 @@
+{
+	"answer": "Отговор",
+	"basic": "Основен",
+	"calculator": "Калкулатор",
+	"copied": "Копирано",
+	"copied-message": "Резултат, копиран в клипборда",
+	"copy": "Копие",
+	"expand": "Разширете",
+	"malformed-expression": "Неправилно формулиран израз",
+	"too-many-closing-parens": "Твърде много затварящи скоби",
+	"too-many-opening-parens": "Твърде много отварящи скоби"
+}

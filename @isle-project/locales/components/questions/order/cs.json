@@ -1,0 +1,12 @@
+{
+	"correct": "Správně",
+	"incorrect": "Nesprávné",
+	"question-closed": "Otázka je nyní uzavřena.",
+	"resubmission-message": "Úspěšně jste znovu odeslali odpověď.",
+	"resubmit": "Opětovné odeslání",
+	"submission-correct": "To je správné pořadí!",
+	"submission-incorrect": "Ne tak docela, zkuste to znovu!",
+	"submission-message": "Úspěšně jste odeslali odpověď.",
+	"submit": "Odeslat",
+	"submitted": "Odesláno"
+}

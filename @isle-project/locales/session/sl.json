@@ -1,0 +1,20 @@
+{
+	"deleted": "Izbrisano",
+	"deleted-message": "Uspešno ste izbrisali akcijo.",
+	"error-encountered": "Prišlo do napake",
+	"file-upload": "Prenos datotek",
+	"file-upload-signin-required": "Za nalaganje datotek morate biti prijavljeni.",
+	"grades-saved": "Shranjene ocene",
+	"loggedin": "Prijavljen",
+	"loggedin-message": "Uspešno ste se prijavili.",
+	"logout-message": "Uspešno ste se odjavili.",
+	"logout-title": "Odjavljen",
+	"message-saved": "Shranjeno sporočilo",
+	"new-password-message": "V e-poštnem predalu preverite povezavo za izbiro novega gesla.",
+	"new-password-title": "Novo geslo",
+	"new-version-of-lesson-available": "Na voljo je nova različica te lekcije. Kliknite <1>tukaj</1> za posodobitev.",
+	"request-failed": "Zahteva ni bila uspešna",
+	"user-created": "Ustvarjen uporabnik",
+	"user-created-message": "Uspešno ste se prijavili.",
+	"user-not-created": "Uporabnik ni ustvarjen"
+}

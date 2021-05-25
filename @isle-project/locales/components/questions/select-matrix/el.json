@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Η απάντηση υποβλήθηκε εκ νέου.",
+	"answer-submitted": "Υποβλήθηκε απάντηση.",
+	"correct": "Σωστό",
+	"correct-answer": "Σωστή απάντηση: ",
+	"failure-message": "Όχι ακριβώς.",
+	"incorrect": "Λανθασμένο",
+	"resubmit": "Επανυποβολή",
+	"resubmit-message": "Υποβάλατε με επιτυχία την απάντησή σας.",
+	"should-have-been": "Θα έπρεπε να ήταν: ",
+	"submit": "Υποβολή",
+	"submit-message": "Η απάντησή σας έχει υποβληθεί.",
+	"success-message": "Αυτή είναι η σωστή απάντηση!",
+	"try-again": "Δοκιμάστε ξανά"
+}

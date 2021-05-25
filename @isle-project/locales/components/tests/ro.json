@@ -1,0 +1,23 @@
+{
+	"and": "și",
+	"anova": "ANOVA pentru {{variable}} între {{group}}",
+	"correlation-test": "Test de corelație între {{var1}} și {{var2}}",
+	"data-missing": "Datele lipsesc.",
+	"hypothesis-test-between": "Test de ipoteză pentru {{x}} între {{group}}",
+	"hypothesis-test-for": "Test de ipoteză pentru {{variable}}",
+	"hypothesis-test-for-independence": "Testul de ipoteză pentru independența dintre {{var1}} și {{var2}}",
+	"hypothesis-test-x-y": "Test de ipoteză pentru {{x}} împotriva {{y}}",
+	"kruskal-wallis-test": "Testul Kruskal Wallis pentru {{variable}} între {{group}}",
+	"must-have-two-different-values": "Variabila de grupare <1>{{group}}</1> trebuie să aibă cel puțin două valori diferite.",
+	"pop-prob-first-group": "Fie <1 /> probabilitatea populației de <3>{{var1}}</3> să fie <5>{{success}}</5> în prima grupă,",
+	"probability-second-group": "probabilitatea în cel de-al doilea grup, respectiv. Testăm",
+	"probtest-success-prob": "Fie p probabilitatea populației de <1>{{variable}}</1> să fie <3>{{success}}</3>",
+	"probtest2-being-success": "Fie <1 /> probabilitatea populației de <3>{{var1}}</3> să fie <5>{{success}}</5>, <7 /> și <9 /> probabilitatea <11>{{var2}}</11> de a fi <13>{{success}}</13>, respectiv. Testăm",
+	"proptest2-title": "Testul de ipoteză pentru egalitatea proporției {{var1}} față de proporție {{var2}}",
+	"proptest2-title-grouped": "Testul de ipoteză pentru egalitatea proporției {{var1}} prin {{group}}",
+	"sample-mean-in-group": "Media eșantionului în grup",
+	"sample-proportion": "Proporția de eșantionare: ",
+	"sample-proportion-in-group": "Proporția de eșantion în grup",
+	"vs": "vs.",
+	"we-test": "Noi testăm"
+}

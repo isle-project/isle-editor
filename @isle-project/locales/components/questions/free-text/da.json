@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Svaret er blevet genfremsat.",
+	"answer-submitted": "Svar afgivet.",
+	"answers": "Svar",
+	"enter-your-answer-here": "Indtast dit svar her...",
+	"question-closed": "Spørgsmålet er nu lukket.",
+	"resubmit": "Indsend",
+	"solution": "Løsning:",
+	"submission-message-no-solution": "Du kan ændre dit svar og indsende det igen, hvis du ønsker det.",
+	"submission-message-solution": "Sammenlign dit svar med løsningen ved at bruge knappen \"Vis løsning\". Du kan derefter ændre dit svar og sende det igen, hvis det er nødvendigt.",
+	"submit": "Indsend",
+	"submit-tooltip": "Klik på Send, når du har indtastet dit svar.",
+	"your-answer": "Dit svar:"
+}

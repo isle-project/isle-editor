@@ -1,0 +1,17 @@
+{
+	"action-required": "Vajalikud meetmed",
+	"answer-submitted": "Teie vastus on esitatud.",
+	"average-is": "Keskmine on",
+	"category": "Kategooria",
+	"count": "Krahv",
+	"multiple-answers": "Võite valida mitu vastust",
+	"no-responses-yet": "ei ole veel vastuseid",
+	"number-of-votes": "Häälte arv",
+	"offensive-word": "Teie vastus sisaldab solvavat sõna: {{w}}. Palun eemaldage.",
+	"relative-frequency": "Suhteline sagedus",
+	"responses": "Vastused",
+	"sign-in": "Palun logige sisse...",
+	"submit": "Esita",
+	"submitted": "Esitatud",
+	"your-answer": "Teie vastus"
+}

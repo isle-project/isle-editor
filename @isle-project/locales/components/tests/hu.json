@@ -1,0 +1,23 @@
+{
+	"and": "és",
+	"anova": "ANOVA a {{variable}} között {{group}}",
+	"correlation-test": "Korrelációs teszt a {{var1}} és a {{var2}}",
+	"data-missing": "Az adatok hiányoznak.",
+	"hypothesis-test-between": "Hipotézisvizsgálat a {{x}} között {{group}}",
+	"hypothesis-test-for": "Hipotézisvizsgálat a {{variable}}",
+	"hypothesis-test-for-independence": "A {{var1}} és a közötti függetlenség hipotézisvizsgálat. {{var2}}",
+	"hypothesis-test-x-y": "Hipotézisteszt a {{x}} ellen {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} between {{group}}",
+	"must-have-two-different-values": "Csoportosító változó <1>{{group}}</1> legalább két különböző értékkel kell rendelkeznie.",
+	"pop-prob-first-group": "Legyen <1 /> a populáció valószínűsége <3>{{var1}}</3> hogy <5>{{success}}</5> az első csoportba tartozni,",
+	"probability-second-group": "a valószínűség a második csoportban. Teszteljük",
+	"probtest-success-prob": "Legyen p a populáció valószínűsége <1>{{variable}}</1> hogy <3>{{success}}</3>",
+	"probtest2-being-success": "Legyen <1 /> a populáció valószínűsége <3>{{var1}}</3> hogy <5>{{success}}</5>, <7 /> és <9 /> a valószínűség <11>{{var2}}</11> hogy <13>{{success}}</13>, illetve. Teszteljük",
+	"proptest2-title": "Hipotézisvizsgálat az arányok egyenlőségére {{var1}} az arányok ellenében {{var2}}",
+	"proptest2-title-grouped": "A {{var1}} arányok egyenlőségének hipotézisvizsgálata a következő módszerrel {{group}}",
+	"sample-mean-in-group": "A minta átlaga a csoportban",
+	"sample-proportion": "Mintaarány: ",
+	"sample-proportion-in-group": "Minta aránya a csoportban",
+	"vs": "vs.",
+	"we-test": "Teszteljük"
+}

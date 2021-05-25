@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Vastus on uuesti esitatud.",
+	"answer-submitted": "Esitatud vastus.",
+	"answers": "Vastused",
+	"expect-a-or-b-for-each-element": "Massiiv \"elemendid\" peab koosnema objektidest, millel on kas mõlemad omadused \"a\" ja \"b\" või vähemalt üks neist.",
+	"instructions": "Sobita {{complete}} elemendid vasakult poolt vastavate elementidega paremal pool, klõpsates nendel elementidel.",
+	"question-closed": "Küsimus on nüüd suletud.",
+	"resubmission-message": "Te olete oma vastuse edukalt uuesti esitanud.",
+	"resubmit": "Esita uuesti",
+	"submit": "Esita",
+	"submit-tooltip": "Saate esitada pärast seda, kui olete kõik vasakpoolsed elemendid vastavusse viinud parempoolsete elementidega."
+}

@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Nahrajte súbor údajov (formát CSV)",
+	"drop-file": "Sem hoďte súbor",
+	"error-message": "Pri pokuse o načítanie súboru sa vyskytla nasledujúca chyba",
+	"error-title": "Súbor sa nepodarilo prečítať.",
+	"first-row-names": "Prvý riadok obsahuje názvy premenných",
+	"no-csv": "Žiadny súbor CSV.",
+	"no-csv-message": "Dodaný súbor nie je súbor CSV.",
+	"or": "alebo",
+	"title": "Nahrávanie súborov"
+}

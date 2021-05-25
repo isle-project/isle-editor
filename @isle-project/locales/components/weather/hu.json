@@ -1,0 +1,7 @@
+{
+	"direction": "irány",
+	"humidity": "páratartalom",
+	"in": "a  oldalon.",
+	"loading-weather-data-for": "Időjárási adatok betöltése a {{loc}}...",
+	"wind": "szél"
+}

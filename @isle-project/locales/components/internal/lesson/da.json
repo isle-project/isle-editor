@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Tilføj note til instruktører",
+	"add-personal-note": "Tilføj personlig note",
+	"add-student-note": "Tilføj note til studerende",
+	"clipboard-empty": "Udklipsholderen er tom",
+	"clipboard-empty-message": "Det lykkedes ikke at indsætte tekst. Udklipsholderen er i øjeblikket tom.",
+	"copy": "Kopier",
+	"cut": "Skær",
+	"encountered-error": "Der er opstået en fejl:",
+	"end-interface-tour": "Klik for at afslutte den igangværende rundvisning i grænsefladen",
+	"highlight": "Fremhæv",
+	"not-available-yet": "Lektion ikke tilgængelig (endnu)",
+	"paste": "Indsæt",
+	"read-aloud": "Læse højt",
+	"remove-highlight": "Fjern fremhævning",
+	"start-interface-tour": "Start rundvisning, der forklarer de forskellige elementer i grænsefladen",
+	"voice-not-supported": "Ikke understøttet.",
+	"voice-not-supported-message": "Tekst-til-tale-funktionen er i øjeblikket ikke understøttet i din browser. Prøv venligst Google Chrome."
+}

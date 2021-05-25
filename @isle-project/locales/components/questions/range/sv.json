@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Svaret har lagts fram på nytt.",
+	"answer-submitted": "Svar inlämnat.",
+	"answers": "Svar",
+	"lower": "Lägre",
+	"question-closed": "Frågan är nu avslutad.",
+	"resubmission-message": "Du har skickat in ditt svar på nytt.",
+	"resubmit": "Skicka in  på nytt.",
+	"solution": "Lösning",
+	"submission-correct": "Grattis, det stämmer!",
+	"submission-incorrect": "Inte riktigt. Jämför ditt svar med lösningen.",
+	"submission-message": "Ditt svar har skickats in.",
+	"submit": "Skicka in",
+	"upper": "Övre"
+}

@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Přidat poznámku pro instruktory",
+	"add-personal-note": "Přidání osobní poznámky",
+	"add-student-note": "Přidat poznámku pro studenty",
+	"clipboard-empty": "Schránka je prázdná",
+	"clipboard-empty-message": "Nepodařilo se vložit text. Schránka je momentálně prázdná.",
+	"copy": "Kopírovat",
+	"cut": "Střih",
+	"encountered-error": "Narazil na chybu:",
+	"end-interface-tour": "Kliknutím ukončíte právě probíhající prohlídku rozhraní.",
+	"highlight": "Zvýraznění",
+	"not-available-yet": "Lekce není k dispozici (zatím)",
+	"paste": "Vložit",
+	"read-aloud": "Hlasité čtení",
+	"remove-highlight": "Odstranění zvýraznění",
+	"start-interface-tour": "Úvodní prohlídka s vysvětlením jednotlivých prvků rozhraní",
+	"voice-not-supported": "Není podporováno.",
+	"voice-not-supported-message": "Funkce převodu textu na řeč není ve vašem prohlížeči aktuálně podporována. Zkuste prosím Google Chrome."
+}

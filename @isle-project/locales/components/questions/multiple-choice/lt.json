@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Ura, jūsų atsakymas teisingas!",
+	"answer-incorrect-explanations": "Jei užvesite pelės žymeklį ant skirtingų atsakymų variantų, pasirodys užuomina su paaiškinimu, kodėl atitinkamas atsakymas yra neteisingas.",
+	"answer-incorrect-full": "Deja, jūsų atsakymas neteisingas. Teisingas atsakymas rodomas oranžine spalva.",
+	"answer-incorrect-incremental": "Deja, jūsų atsakymas neteisingas. Galite bandyti dar kartą, pasirinkdami kitą atsakymo variantą.",
+	"answer-incorrect-incremental-equal": "Deja, ne visi jūsų atsakymai buvo teisingi. Išbandykite kitą kombinaciją.",
+	"answer-incorrect-incremental-extra": "Pažymėjote visus teisingus atsakymų variantus, tačiau į juos pateko bent vienas neteisingas. Panaikinkite neteisingo (-ų) atsakymo (-ų) žymėjimą ir iš naujo pateikite.",
+	"answer-incorrect-incremental-missing": "Pateikėte ne visus teisingus atsakymus. Pasirinkite papildomus atsakymų variantus.",
+	"answer-re-submitted": "Pakartotinai pateiktas atsakymas.",
+	"answer-submitted": "Pateiktas atsakymas.",
+	"answer-submitted-nofeedback": "Sėkmingai pateikėte atsakymą. Jei norite, galite pakeisti atsakymą ir pateikti jį dar kartą.",
+	"answers": "Atsakymai",
+	"chose-all-apply": "Pasirinkite visus taikomus variantus",
+	"each-row-click-check-boxes-which-apply": "Kiekvienoje eilutėje spustelėkite visus taikomus žymimuosius langelius.",
+	"each-row-pick-answer-by-clicking": "Kiekvienoje eilutėje pasirinkite atsakymą spustelėdami atitinkamą radijo mygtuką.",
+	"question-closed": "Klausimas uždarytas.",
+	"resubmit": "Pakartotinis pateikimas",
+	"select-answer": "Pasirinkite atsakymą",
+	"submit": "Pateikti",
+	"submitted": "Pateikta",
+	"successfully-re-submitted-your-answer": "Sėkmingai pakartotinai pateikėte atsakymą.",
+	"successfully-submitted-your-answer": "Sėkmingai pateikėte atsakymą. Jei norite, galite pakeisti atsakymą ir pateikti jį dar kartą."
+}

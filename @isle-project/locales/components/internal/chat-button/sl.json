@@ -1,0 +1,7 @@
+{
+	"join-chat": "Pridružite se klepetu",
+	"join-chat-id": "Pridružite se klepetu z ID {{id}}",
+	"leave-chat": "Pustite klepet",
+	"leave-chat-id": "Pustite klepet z ID {{id}}",
+	"toggle-chat": "Toggle Chat"
+}

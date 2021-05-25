@@ -1,0 +1,15 @@
+{
+	"audio": "Ήχος",
+	"cam": "Cam",
+	"clear-file": "Εκκαθάριση αρχείου",
+	"download-file": "Λήψη αρχείου",
+	"encountered-error": "Αντιμετώπισε σφάλμα",
+	"failed-to-capture-camera": "Απέτυχε η λήψη της κάμεράς σας (σφάλμα: {{msg}})",
+	"failed-to-capture-microphone": "Απέτυχε η λήψη του μικροφώνου σας (σφάλμα: {{msg}})",
+	"failed-to-capture-screen": "Απέτυχε η καταγραφή της οθόνης σας (σφάλμα: {{msg}})",
+	"open-link": "Άνοιγμα συνδέσμου",
+	"recording-uploaded": "Ανέβασμα εγγραφής",
+	"recording-uploaded-message": "Η εγγραφή σας έχει μεταφορτωθεί επιτυχώς και μπορείτε να έχετε πρόσβαση στη διεύθυνση:",
+	"screen": "Οθόνη",
+	"upload-file": "Ανέβασμα αρχείου"
+}

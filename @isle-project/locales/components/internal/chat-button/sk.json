@@ -1,0 +1,7 @@
+{
+	"join-chat": "Pripojte sa k chatu",
+	"join-chat-id": "Pripojte sa k chatu s ID {{id}}",
+	"leave-chat": "Opustiť chat",
+	"leave-chat-id": "Nechajte chat s ID {{id}}",
+	"toggle-chat": "Prepínač Chat"
+}

@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Prenesite nabor podatkov (format CSV)",
+	"drop-file": "Spustite datoteko tukaj",
+	"error-message": "Pri poskusu branja datoteke je prišlo do naslednje napake",
+	"error-title": "Datoteke ni bilo mogoče prebrati.",
+	"first-row-names": "Prva vrstica vsebuje imena spremenljivk",
+	"no-csv": "Ni datoteke CSV.",
+	"no-csv-message": "Predložena datoteka ni datoteka CSV.",
+	"or": "ali",
+	"title": "Prenos datotek"
+}

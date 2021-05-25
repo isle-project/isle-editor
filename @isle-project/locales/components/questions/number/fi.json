@@ -1,0 +1,21 @@
+{
+	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"answers": "Vastaukset",
+	"invalid-answer": "Virheellinen vastaus",
+	"invalid-range": "Vastauksenne on oltava numero, joka on väliltä {{min}} ja {{max}}.",
+	"one-of": "yksi ",
+	"or": "tai",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmission-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"resubmit": "Lähetä uudelleen",
+	"solution": "Ratkaisu",
+	"submission-correct": "Onnittelut, se on oikein!",
+	"submission-incorrect": "Ei aivan. Vertaa vastaustasi ratkaisuun.",
+	"submission-message": "Vastauksesi on lähetetty.",
+	"submission-try-again": "Vastauksesi on väärä. Yritä uudelleen",
+	"submit": "Lähetä",
+	"tries": "{{count}} yritä vasemmalle",
+	"tries_plural": "{{count}} yrittää vasemmalle",
+	"your-answer": "Vastauksesi"
+}

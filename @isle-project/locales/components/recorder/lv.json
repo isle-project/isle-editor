@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Notīrīt failu",
+	"download-file": "Lejupielādēt failu",
+	"encountered-error": "Radusies kļūda",
+	"failed-to-capture-camera": "Neizdevās uzņemt kameru (kļūda: {{msg}})",
+	"failed-to-capture-microphone": "Neizdevās uzņemt mikrofonu (kļūda: {{msg}})",
+	"failed-to-capture-screen": "Ekrāna uzņemšana neizdevās (kļūda: {{msg}})",
+	"open-link": "Atvērt saiti",
+	"recording-uploaded": "Augšupielādēts ieraksts",
+	"recording-uploaded-message": "Jūsu ieraksts ir veiksmīgi augšupielādēts, un tam var piekļūt:",
+	"screen": "Ekrāns",
+	"upload-file": "Augšupielādēt failu"
+}

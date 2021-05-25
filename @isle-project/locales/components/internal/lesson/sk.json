@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Pridať poznámku pre inštruktorov",
+	"add-personal-note": "Pridať osobnú poznámku",
+	"add-student-note": "Pridať poznámku pre študentov",
+	"clipboard-empty": "Schránka je prázdna",
+	"clipboard-empty-message": "Nepodarilo sa vložiť text. Schránka je momentálne prázdna.",
+	"copy": "Kopírovať",
+	"cut": "Rez",
+	"encountered-error": "Vyskytla sa chyba:",
+	"end-interface-tour": "Kliknutím ukončíte práve prebiehajúcu prehliadku rozhrania",
+	"highlight": "Zvýraznenie",
+	"not-available-yet": "Lekcia nie je k dispozícii (zatiaľ)",
+	"paste": "Vložiť",
+	"read-aloud": "Čítanie nahlas",
+	"remove-highlight": "Odstrániť zvýraznenie",
+	"start-interface-tour": "Úvodná prehliadka s vysvetlením rôznych prvkov rozhrania",
+	"voice-not-supported": "Nie je podporované.",
+	"voice-not-supported-message": "Funkcia prevodu textu na reč nie je v súčasnosti vo vašom prehliadači podporovaná. Vyskúšajte, prosím, prehliadač Google Chrome."
+}

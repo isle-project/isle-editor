@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "În cazul ipotezei nule, calculăm valoarea p: ",
+	"calculate-test-statistic": "Calculăm următoarea statistică de testare:",
+	"conduct-the-following-test": "Efectuăm următorul test (faceți clic pe ipotezele de mai jos pentru a comuta între variantele unilaterale și testul bilateral):",
+	"lets-assume": "Să presupunem că avem date observate cu următoarele caracteristici:",
+	"parameters": "Parametrii",
+	"plugging-in": "Introducând valorile noastre, avem:",
+	"proportion": "Proporție",
+	"sample-mean": "Media eșantionului",
+	"sample-proportion": "Proporția de eșantionare",
+	"sample-size": "Dimensiunea eșantionului",
+	"sample-standard-deviation": "Abaterea standard a eșantionului",
+	"second-sample": "Al doilea eșantion",
+	"test-result": "Rezultatul testului",
+	"test-statistic": "Statistică de testare"
+}

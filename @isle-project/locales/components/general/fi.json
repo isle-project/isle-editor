@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Napsauta selataksesi käytettävissä olevia vaihtoehtoja.",
+	"discard-changes": "Hylkää muutokset",
+	"edit-text": "Muokkaa tekstiä",
+	"error-encountered": "Tapahtunut virhe",
+	"expected-object-array": "`{{field}}` on oltava joukko objekteja.",
+	"expected-value-from-list": "`{{field}}` on oltava jokin seuraavista: {{list}} .",
+	"flippable-requires-two-children": "Käännettävä kortti vaatii kaksi lapsielementtiä.",
+	"grid-requires-two-children": "Vedettävä ruudukko vaatii vähintään kaksi lapsielementtiä, jotta se voidaan renderöidä.",
+	"in": "osoitteessa",
+	"pause": "Tauko",
+	"resume": "Yhteenveto",
+	"retry": "Uudelleenyritys",
+	"save-changes": "Tallenna muutokset",
+	"search": "Etsi",
+	"supply-component-id": "Anna tarkkailtavan komponentin tunniste.",
+	"toggle-error-stack-trace": "Vaihda virheen pinojälki"
+}

@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Klik på et emne i menuen for at få mere at vide om det...",
+	"data-explorer-p1": "ISLE-dataeksploratoren giver dig mulighed for at analysere datasæt ved hjælp af en peg-og-klik-grænseflade. Dataudforskeren er opdelt i to ruder, et venstre rude, hvor du kan skifte mellem en regnearkvisning af de data, der skal analyseres, og andre valgfrie komponenter som f.eks. en editor til at skrive rapporter eller en liste over spørgsmål. Højre side er en outputrude, der indeholder alle de output (sammenfattende statistikker, plots, resultater af hypotesetest), som du har oprettet.",
+	"data-explorer-p2": "Nye udgange kan genereres via værktøjskassen, som åbnes ved at klikke på knappen \"Vis værktøjskasse\". Et nyligt genereret plot eller en ny genereret tabel vil blive tilføjet til listen over outputelementer, der vises i højre side",
+	"data-explorer-p3": "De røde knapper med \"x\"-ikonerne kan bruges til at slette individuelle outputelementer, mens knappen \"Clear All\" nederst i billedet vil fjerne alle outputelementer.",
+	"data-explorer-p4": "Ved at bruge knapperne med et spørgsmålstegn på datatabelarket, rapporteditoren eller værktøjskassen kan du starte en guidet tur gennem de forskellige delelementers muligheder.",
+	"data-explorer-title": "Data Explorer",
+	"data-table-p1": "En simpel måde at vise data på i ISLE er ved hjælp af en datatabel. Disse vises i det typiske format til visning af data, svarende til hvordan data ser ud i et Excel-regneark. Hver kolonne er en variabel med variablenavnet øverst.",
+	"data-table-p2": "Du kan få en guidet rundvisning i de ting, du kan gøre med datatabeller, ved at klikke på knappen Vis vejledning (spørgsmålstegnet øverst til højre for datatabellen).",
+	"data-table-title": "Datatabel",
+	"documentation": "Dokumentation",
+	"download-pdf": "Download PDF",
+	"questions-p1": "Mange af de ISLE-lektioner, du skal arbejde med, indeholder spørgsmål, som du skal besvare. Der er en række forskellige spørgsmålstyper, fra korte svar til multiple choice-spørgsmål. Her er et eksempel på et spørgsmål med kort svar:",
+	"questions-p2": "Indsendelse af",
+	"questions-p3": "Når du har besvaret et spørgsmål og er klar til at indsende dit svar, skal du klikke på knappen \"Indsend\". Dette registrerer dit arbejde, så din underviser kan se dit svar og give dig kredit for spørgsmålet.",
+	"questions-p4": "Knapper til feedback",
+	"questions-p5": "Nogle gange kan din instruktør tilføje feedback-knapper (vist ovenfor) til de enkelte spørgsmål. Med knappen til venstre kan du notere, at du er forvirret over spørgsmålet; med knappen i midten kan du notere, at spørgsmålet giver mening; og med knappen til højre kan du give specifikke feedbackkommentarer mere detaljeret.",
+	"questions-p6": "Navigeringsspørgsmål",
+	"questions-p7": "Flere spørgsmål kan placeres på samme sted på siden. Hvis det er tilfældet, kan du navigere mellem spørgsmålene ved at klikke på knappen \"Næste\" eller ved at vælge spørgsmålene efter nummer:",
+	"questions-title": "Spørgsmål",
+	"statusbar-p1": "Hvis du klikker på statuslinjen, vises knapper, så du kan oprette en ISLE-konto eller logge ind på en eksisterende konto. I midten af statuslinjen vises dit brugernavn eller logget ind. Hvis du holder musen over den, vises der flere statistikker om din lektions fremskridt: den tid, du har brugt i lektionen, procentdelen af aktiviteter, der er gennemført i lektionen, og dine samlede præstationspoint.",
+	"statusbar-title": "Statuslinje"
+}

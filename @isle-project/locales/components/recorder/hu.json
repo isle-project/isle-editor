@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Törölje a fájlt",
+	"download-file": "Fájl letöltése",
+	"encountered-error": "Találkozott hiba",
+	"failed-to-capture-camera": "Nem sikerült rögzíteni a kamerát (hiba: {{msg}})",
+	"failed-to-capture-microphone": "Nem sikerült rögzíteni a mikrofonját (hiba: {{msg}})",
+	"failed-to-capture-screen": "Nem sikerült rögzíteni a képernyőt (hiba: {{msg}})",
+	"open-link": "Link megnyitása",
+	"recording-uploaded": "Felvétel feltöltve",
+	"recording-uploaded-message": "A felvételt sikeresen feltöltöttük, és a következő címen érhető el:",
+	"screen": "Képernyő",
+	"upload-file": "Fájl feltöltése"
+}

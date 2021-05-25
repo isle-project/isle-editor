@@ -1,0 +1,7 @@
+{
+	"direction": "směr",
+	"humidity": "vlhkost",
+	"in": "na adrese",
+	"loading-weather-data-for": "Načítání dat o počasí pro {{loc}}...",
+	"wind": "vítr"
+}

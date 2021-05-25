@@ -1,0 +1,12 @@
+{
+	"correct": "Helyes",
+	"incorrect": "Helytelen",
+	"question-closed": "A kérdés lezárult.",
+	"resubmission-message": "Ön sikeresen újra elküldte válaszát.",
+	"resubmit": "Újbóli benyújtás",
+	"submission-correct": "Ez a helyes sorrend!",
+	"submission-incorrect": "Nem egészen, próbáld újra!",
+	"submission-message": "Ön sikeresen elküldte válaszát.",
+	"submit": "Küldje be a",
+	"submitted": "Beküldve"
+}

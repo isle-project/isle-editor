@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Bootstrap-aggregering används ofta i samband med beslutsträdsmetoder. Genom att dra bootstrap-prov från de ursprungliga träningsuppgifterna och skatta en modell för varje prov, beräknas sedan medelvärdet av modellernas förutsägelser för att ge förutsägelser med lägre varians som inte är lika benägna att överanpassas.",
+	"boosting-description": "Förstärkningsalgoritmer som AdaBoost lär sig iterativt svaga klassificerare och lägger till dem till en slutlig stark klassificerare genom att vikta dem. När klassificerare läggs till får felklassificerade indata högre vikt och exempel som klassificeras korrekt förlorar vikt. På så sätt fokuserar framtida svaga inlärare mer på de exempel som tidigare svaga inlärare felklassificerat.",
+	"cart-description": "CART-analysen (Classification and Regression Tree) bygger upp ett träd som går från egenskaperna hos en observation (representerade i grenarna) till ett förutsagt värde (representerat i bladen).",
+	"classification": "Klassificering",
+	"clustering": "Klusterbildning",
+	"dimensionality-reduction": "Dimensionalitetsreduktion",
+	"elastic-net-description": "Elastic net är en reglerad regressionsmetod som linjärt kombinerar L1- och L2-straffen från lasso- och ridge-metoderna.",
+	"ensemble": "Ensemble",
+	"kmeans-description": "Gruppera observationerna i ett fast antal (k) kluster så att klustermedlemmarna är mer lika varandra än observationerna i andra kluster.",
+	"knn-description": "Används för både regression och klassificering. Använder majoritetsröstning bland k-närmsta punkter för kNN-klassificering. För regression är resultatet genomsnittet av de k-nearest-värdena.",
+	"lasso-description": "Regulariserad regressionsmetod som straffar regressionskoefficienter med hjälp av L1-normen. Bättre varians mot en viss bias. Leder till en gles modell.",
+	"linear-regression-description": "Modellerar förhållandet mellan ett skalärt svar och en eller flera förklarande variabler. Enkel linjär regression avser fall där en prediktor finns, multipel linjär regression används med flera förklarande variabler. Den kallas linjär eftersom den uppskattade funktionen är linjär i sina koefficienter.",
+	"logistic-regression-description": "Logistisk regression är en klassificeringsmetod som används för att tilldela observationer till en av två klasser. Logistisk regression använder den logistiska sigmoidfunktionen för att ge ett sannolikhetsvärde för varje klass.",
+	"naive-bayes-description": "Naiva Bayes-metoder är en uppsättning klassificeringsalgoritmer som bygger på Bayes' teorem med det \"naiva\" antagandet om villkorligt oberoende mellan varje par av egenskaper givet värdet av klassvariabeln.",
+	"neural-networks-description": "Artificiella neurala nätverk används för att modellera komplexa förhållanden mellan in- och utdata genom att lära sig en icke-linjär funktion utan manuell funktionsplanering.",
+	"pca-description": "Principal Component Analysis (PCA) använder en ortogonal omvandling för att omvandla eventuellt korrelerade variabler till en uppsättning värden av linjärt okorrelerade variabler som kallas huvudkomponenter.",
+	"random-forest-description": "Random Forests konstruerar en mängd beslutsträd vid träningstillfället och returnerar den klass som är det vanligaste av klasserna (klassificering) eller medelvärdet av de enskilda trädens prediktion (regression).",
+	"regression": "Regression",
+	"ridge-description": "Regulariserad regressionsmetod som straffar regressionskoefficienter med hjälp av L2-normen. Bättre varians än en viss bias. Ger inte en sparsam modell, dvs. koefficienterna drivs inte mot noll.",
+	"svm-description": "Support Vector Machines är diskriminerande klassificerare. Med märkta träningsdata hittar algoritmen ett optimalt hyperplan för att kategorisera nya exempel. I två dimensioner är detta hyperplan en linje som delar den i två delar.",
+	"üca-description": "Principal Component Analysis (PCA) använder en ortogonal omvandling för att omvandla eventuellt korrelerade variabler till en uppsättning värden av linjärt okorrelerade variabler som kallas huvudkomponenter."
+}

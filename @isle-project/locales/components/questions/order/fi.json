@@ -1,0 +1,12 @@
+{
+	"correct": "Oikein",
+	"incorrect": "Virheellinen",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmission-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"resubmit": "Lähetä uudelleen",
+	"submission-correct": "Tämä on oikea järjestys!",
+	"submission-incorrect": "Ei aivan, yritä uudelleen!",
+	"submission-message": "Olet onnistuneesti lähettänyt vastauksesi.",
+	"submit": "Lähetä",
+	"submitted": "Lähetetty"
+}

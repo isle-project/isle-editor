@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Įkelkite duomenų rinkinį (CSV formatu)",
+	"drop-file": "Įmeskite failą čia",
+	"error-message": "Bandant perskaityti failą buvo pastebėta ši klaida",
+	"error-title": "Nepavyko perskaityti failo.",
+	"first-row-names": "Pirmoje eilutėje pateikiami kintamųjų pavadinimai",
+	"no-csv": "Nėra CSV failo.",
+	"no-csv-message": "Pateiktas failas nėra CSV failas.",
+	"or": "arba",
+	"title": "Failų įkėlimas"
+}

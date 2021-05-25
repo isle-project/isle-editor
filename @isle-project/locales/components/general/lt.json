@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Spustelėkite , kad peržiūrėtumėte galimas parinktis.",
+	"discard-changes": "Atmesti pakeitimus",
+	"edit-text": "Redaguoti tekstą",
+	"error-encountered": "Įvyko klaida",
+	"expected-object-array": "`{{field}}` turi būti objektų masyvas.",
+	"expected-value-from-list": "`{{field}}` turi būti viena iš šių reikšmių: {{list}} .",
+	"flippable-requires-two-children": "Atverčiamai kortelei reikalingi du papildomi elementai.",
+	"grid-requires-two-children": "Norint, kad vilkimo tinklelis būtų atvaizduotas, reikia bent dviejų antrinių elementų.",
+	"in": "",
+	"pause": "Pauzė",
+	"resume": "CV",
+	"retry": "Pakartoti",
+	"save-changes": "Išsaugoti pakeitimus",
+	"search": "Paieška",
+	"supply-component-id": "Pateikite stebimo komponento ID.",
+	"toggle-error-stack-trace": "Klaidos kamino sekos perjungimas"
+}

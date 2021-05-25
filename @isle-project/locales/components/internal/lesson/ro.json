@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Adăugați o notă pentru instructori",
+	"add-personal-note": "Adăugați o notă personală",
+	"add-student-note": "Adăugați o notă pentru studenți",
+	"clipboard-empty": "Clipboard-ul este gol",
+	"clipboard-empty-message": "Nu s-a reușit inserarea textului. Clipboard-ul este momentan gol.",
+	"copy": "Copiați",
+	"cut": "Tăiați",
+	"encountered-error": "A apărut o eroare:",
+	"end-interface-tour": "Faceți clic pentru a încheia turul de interfață aflat în curs de desfășurare",
+	"highlight": "Evidențiați",
+	"not-available-yet": "Lecția nu este disponibilă (încă)",
+	"paste": "Paste",
+	"read-aloud": "Citiți cu voce tare",
+	"remove-highlight": "Eliminați evidențierea",
+	"start-interface-tour": "Turul de pornire care explică diferitele elemente ale interfeței",
+	"voice-not-supported": "Nu se acceptă.",
+	"voice-not-supported-message": "Funcția text-to-speech nu este acceptată în prezent de browserul dvs. Vă rugăm să încercați Google Chrome."
+}

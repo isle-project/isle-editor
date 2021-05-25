@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"correct": "Oikein",
+	"correct-answer": "Oikea vastaus: ",
+	"failure-message": "Ei aivan.",
+	"incorrect": "Virheellinen",
+	"resubmit": "Lähetä uudelleen",
+	"resubmit-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"should-have-been": "Olisi pitänyt olla: ",
+	"submit": "Lähetä",
+	"submit-message": "Vastauksesi on lähetetty.",
+	"success-message": "Se on oikea vastaus!",
+	"try-again": "Yritä uudelleen"
+}

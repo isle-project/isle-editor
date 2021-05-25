@@ -1,0 +1,23 @@
+{
+	"brush-size": "Kefeméret",
+	"by": "",
+	"change-brush-color": "Ecset színének módosítása",
+	"clear": "Tiszta",
+	"clear-current": "Jelenlegi oldal törlése",
+	"clear-page": "Tiszta oldal",
+	"clear-page-modal-body": "Biztos, hogy törölni szeretné az aktuális oldal elemeit?",
+	"close": "Zárja be a",
+	"copy": "Másolás",
+	"delete-mode": "Törlés mód",
+	"disable-swiping": "Kétujjas mozdulatok letiltása a diavetítés váltásakor",
+	"disable-transmissions": "Kattintson a gombra az átviteli műveletek letiltásához",
+	"download": "Diák letöltése",
+	"download-instructor-annotations": "PDF letöltése oktatói megjegyzésekkel",
+	"download-original": "Eredeti PDF letöltése",
+	"drag-mode": "Húzás mód",
+	"drawing-mode": "Rajzolási mód",
+	"enable-swiping": "Két ujjal végzett mozdulatok engedélyezése a diák váltásához",
+	"enable-transmissions": "Kattintson a gombra az átviteli műveletek engedélyezéséhez",
+	"encountered-error": "Hiba lépett fel",
+	"export-pdf": "A megjegyzéseim exportálása PDF formátumban"
+}

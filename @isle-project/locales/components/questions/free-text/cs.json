@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Opětovně předložená odpověď.",
+	"answer-submitted": "Předložená odpověď.",
+	"answers": "Odpovědi",
+	"enter-your-answer-here": "Zde zadejte svou odpověď...",
+	"question-closed": "Otázka je nyní uzavřena.",
+	"resubmit": "Opětovné odeslání",
+	"solution": "Řešení:",
+	"submission-message-no-solution": "Pokud chcete, můžete svou odpověď změnit a znovu odeslat.",
+	"submission-message-solution": "Porovnejte svou odpověď s řešením pomocí tlačítka \"Zobrazit řešení\". Poté můžete svou odpověď změnit a v případě potřeby ji znovu odeslat.",
+	"submit": "Odeslat",
+	"submit-tooltip": "Po zadání odpovědi klikněte na tlačítko Odeslat.",
+	"your-answer": "Vaše odpověď:"
+}

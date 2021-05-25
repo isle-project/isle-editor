@@ -1,0 +1,12 @@
+{
+	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"answers": "Vastaukset",
+	"expect-a-or-b-for-each-element": "`elements`-joukon on koostuttava objekteista, joilla on joko molemmat `a`- ja `b`-ominaisuudet tai ainakin toinen niistä.",
+	"instructions": "Yhdistä {{complete}} vasemmanpuoleiset elementit oikeanpuoleisiin vastaaviin elementteihin klikkaamalla niitä.",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmission-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
+	"resubmit": "Lähetä uudelleen",
+	"submit": "Lähetä",
+	"submit-tooltip": "Voit lähettää viestin, kun olet yhdistänyt kaikki vasemmanpuoleiset elementit oikeanpuoleisiin vastaaviin elementteihin."
+}

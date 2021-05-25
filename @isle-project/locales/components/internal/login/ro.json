@@ -1,0 +1,14 @@
+{
+	"close": "Închideți",
+	"email": "Email",
+	"enter-email": "Introduceți adresa dvs. de e-mail.",
+	"enter-email-before-password-reset": "Vă rugăm să introduceți adresa dvs. de e-mail înainte de a solicita o nouă parolă.",
+	"enter-password": "Introduceți parola.",
+	"enter-tfa-token": "Vă rugăm să introduceți un cod din 6 cifre de pe dispozitivul de autentificare:",
+	"enter-token": "Introduceți codul de confirmare...",
+	"forgot-password": "Ați uitat parola?",
+	"invalid": "Nu este valabil",
+	"login": "Autentificare",
+	"password": "Parola",
+	"signin": "Conectați-vă"
+}

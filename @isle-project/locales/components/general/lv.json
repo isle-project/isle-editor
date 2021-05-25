@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Noklikšķiniet, lai atlasītu pieejamās opcijas.",
+	"discard-changes": "Izmest izmaiņas",
+	"edit-text": "Rediģēt tekstu",
+	"error-encountered": "Radusies kļūda",
+	"expected-object-array": "`{{field}}` ir jābūt objektu masīvam.",
+	"expected-value-from-list": "`{{field}}` ir jābūt vienam no šiem: {{list}} .",
+	"flippable-requires-two-children": "Atveramajai kartei ir nepieciešami divi pakārtotie elementi.",
+	"grid-requires-two-children": "Lai vilktais režģis tiktu atveidots, ir nepieciešami vismaz divi atvasinātie elementi.",
+	"in": "vietnē",
+	"pause": "Pauze",
+	"resume": "CV",
+	"retry": "Atkārtot",
+	"save-changes": "Izmaiņu saglabāšana",
+	"search": "Meklēšana",
+	"supply-component-id": "Lūdzu, norādiet ID, lai noskaidrotu novērojamo komponentu.",
+	"toggle-error-stack-trace": "Pārslēgt kļūdas kaudzes izsekojamību"
+}

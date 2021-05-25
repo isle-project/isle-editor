@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Kliknite na element v meniju, če želite izvedeti več o njem...",
+	"data-explorer-p1": "Raziskovalec podatkov ISLE omogoča analizo podatkovnih nizov z vmesnikom \"pokaži in klikni\". Raziskovalec podatkov je razdeljen na dve plošči, in sicer na levo ploščo, v kateri lahko preklapljate med prikazom preglednice s podatki, ki jih želite analizirati, in drugimi izbirnimi komponentami, kot sta urejevalnik za pisanje poročil ali seznam vprašanj. Desna stran je podokno z rezultati, ki vsebuje vse rezultate (zbirne statistike, grafe, rezultate testa hipotez), ki ste jih ustvarili.",
+	"data-explorer-p2": "Nove izhode lahko ustvarite v orodjarni, ki jo odprete s klikom na gumb \"Prikaži orodjarno\". Na novo ustvarjen graf ali tabela bo dodana na seznam izhodnih elementov, ki je prikazan na desni strani.",
+	"data-explorer-p3": "Z rdečimi gumbi z ikonami \"x\" lahko izbrišete posamezne izhodne elemente, z gumbom \"Clear All\" na dnu pa izbrišete vse izhodne elemente.",
+	"data-explorer-p4": "Z gumbi z vprašalnikom na preglednici podatkov, urejevalniku poročil ali orodjarni lahko začnete voden ogled po zmogljivostih različnih delov.",
+	"data-explorer-title": "Raziskovalec podatkov",
+	"data-table-p1": "Preprost način prikaza podatkov v ISLE je podatkovna tabela. Te so prikazane v tipični obliki za prikazovanje podatkov, podobno kot so podatki videti v Excelovi preglednici. Vsak stolpec je spremenljivka z imenom spremenljivke na vrhu.",
+	"data-table-p2": "Če si želite ogledati, kaj lahko počnete s podatkovnimi tabelami, kliknite gumb Prikaži vadnico (vprašalnik v zgornjem desnem kotu podatkovne tabele).",
+	"data-table-title": "Podatkovna tabela",
+	"documentation": "Dokumentacija",
+	"download-pdf": "Prenesi PDF",
+	"questions-p1": "Veliko lekcij ISLE, ki jih boste obravnavali, bo vsebovalo vprašanja, na katera boste morali odgovoriti. Na voljo so različne vrste vprašanj, od vprašanj s kratkimi odgovori do vprašanj z več možnostmi izbire. Tukaj je primer vprašanja s kratkim odgovorom:",
+	"questions-p2": "Pošiljanje",
+	"questions-p3": "Ko ste odgovorili na vprašanje in ste pripravljeni poslati odgovor, kliknite gumb \"Pošlji\". S tem boste zabeležili svoje delo, tako da bo inštruktor lahko videl vaš odgovor in vam ga pripisal k vprašanju.",
+	"questions-p4": "Gumbi za povratne informacije",
+	"questions-p5": "Včasih lahko inštruktor pri posameznih vprašanjih vključi gumbe za povratne informacije (prikazano zgoraj). Z levim gumbom lahko zapišete, da vam je vprašanje nejasno; s sredinskim gumbom lahko zapišete, da je vprašanje smiselno; z desnim gumbom pa lahko podrobneje podate posebne povratne informacije.",
+	"questions-p6": "Navigacijska vprašanja",
+	"questions-p7": "Na istem mestu na strani je lahko več vprašanj. V tem primeru se lahko med vprašanji pomikate s klikom na gumb \"Naprej\" ali z izbiro vprašanj po številkah:",
+	"questions-title": "Vprašanja",
+	"statusbar-p1": "S klikom na vrstico stanja se prikažejo gumbi za prijavo v račun ISLE ali prijavo v obstoječi račun. Na sredini statusne vrstice je prikazano vaše uporabniško ime ali prijavljen. Če se z miško pomaknete nanj, se prikaže več statističnih podatkov o vašem napredku v lekciji: čas, porabljen v lekciji, odstotek opravljenih dejavnosti v lekciji in vaše skupne točke dosežkov.",
+	"statusbar-title": "Statusna vrstica"
+}

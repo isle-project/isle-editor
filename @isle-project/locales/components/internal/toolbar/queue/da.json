@@ -1,0 +1,15 @@
+{
+	"chat": "Chat",
+	"cohort": "Kohorte",
+	"mark-and-remove": "Markér spørgsmålet som besvaret og fjern",
+	"name": "Navn",
+	"no-questions": "Der er i øjeblikket ingen spørgsmål i køen.",
+	"question": "Spørgsmål",
+	"queue": "Kø",
+	"queue-prompt": "Du kan indsende et spørgsmål nedenfor, og en af vores medarbejdere vil kontakte dig snarest muligt!",
+	"queue-size": "(der er i øjeblikket {{n}} person(er) i køen)",
+	"queue-start-chat": "Start chat med studerende",
+	"queue-status": "Dit spørgsmål: <1>{{question}}</1><br /> Du befinder dig i øjeblikket på position <4>{{spot}}</4> i køen.<br /> Der er <8>{{size}}</8> person(er) i køen. ",
+	"remove-myself-from-queue": "Fjern mig fra køen",
+	"submit-question": "Indsend spørgsmål"
+}

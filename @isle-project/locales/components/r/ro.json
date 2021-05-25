@@ -1,0 +1,13 @@
+{
+	"close": "Închideți",
+	"drag-plot": "Trama de tragere",
+	"evaluate": "Evaluați",
+	"hide-solution": "Ascundeți soluția",
+	"mosaic-plot-of": "Mozaic Plot de",
+	"r-help": "R Ajutor",
+	"r-plot": "R Plot",
+	"reset": "Resetare",
+	"reset-tooltip": "Resetează intrarea shell la valoarea implicită.",
+	"show-solution": "Arată soluția",
+	"solution-tooltip": "Soluția devine disponibilă după ce ați încercat exercițiul și ați folosit toate indiciile."
+}

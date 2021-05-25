@@ -1,0 +1,6 @@
+{
+	"and": " og ",
+	"key-not-found": "Citatnøgle ikke fundet i referencerne.",
+	"no-author": "Forfatterfeltet bør ikke være tomt.",
+	"no-references": "Der er ikke fundet nogen `referencer` i præamblen til lektionen."
+}

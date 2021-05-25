@@ -1,0 +1,22 @@
+{
+	"brush-size": "Šepečio dydis",
+	"by": "pagal",
+	"change-brush-color": "Keisti teptuko spalvą",
+	"clear": "Skaidrus",
+	"clear-current": "Išvalyti dabartinį puslapį",
+	"clear-page": "Aiškus puslapis",
+	"clear-page-modal-body": "Ar tikrai norite ištrinti dabartinio puslapio elementus?",
+	"close": "Uždaryti",
+	"copy": "Kopijuoti",
+	"delete-mode": "Ištrinti režimas",
+	"disable-swiping": "Išjungti dviejų pirštų perbraukimo gestus keičiant skaidres",
+	"disable-transmissions": "Spustelėkite , jei norite išjungti perdavimo veiksmus",
+	"download": "Parsisiųsti skaidres",
+	"download-instructor-annotations": "Atsisiųsti PDF su instruktoriaus pastabomis",
+	"download-original": "Atsisiųsti originalų PDF failą",
+	"drag-mode": "Vilkimo režimas",
+	"drawing-mode": "Piešimo režimas",
+	"enable-swiping": "Įgalinti dviejų pirštų perbraukimo gestus skaidrėms keisti",
+	"enable-transmissions": "Spustelėkite , jei norite įjungti perdavimo veiksmus",
+	"encountered-error": "Susidūrė su klaida"
+}

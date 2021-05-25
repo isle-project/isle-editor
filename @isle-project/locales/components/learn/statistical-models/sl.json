@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Pri metodah odločitvenega drevesa se pogosto uporablja združevanje z metodo Bootstrap. Iz prvotnih podatkov za učenje se izdelajo vzorci bootstrap, pri čemer se za vsak vzorec oceni model, napovedi navedenih modelov pa se nato povprečijo, da se dobijo napovedi z manjšo varianco, ki niso tako nagnjene k pretiranemu prilagajanju.",
+	"boosting-description": "Algoritmi za krepitev, kot je AdaBoost, se iterativno učijo šibkih klasifikatorjev in jih s ponderiranjem dodajajo končnemu močnemu klasifikatorju. Z dodajanjem klasifikatorjev pridobijo napačno razvrščeni vhodni podatki večjo težo, pravilno razvrščeni primeri pa izgubijo težo. Tako se prihodnji šibki učenci bolj osredotočijo na primere, ki so jih prejšnji šibki učenci napačno razvrstili.",
+	"cart-description": "Analiza klasifikacijskega in regresijskega drevesa (CART) zgradi drevo, ki poteka od značilnosti opazovanja (predstavljenih v vejah) do napovedane vrednosti (predstavljene v listih).",
+	"classification": "Razvrstitev",
+	"clustering": "Grozdenje",
+	"dimensionality-reduction": "Zmanjšanje dimenzionalnosti",
+	"elastic-net-description": "Elastična mreža je regulirana regresijska metoda, ki linearno združuje kazni L1 in L2 metod lasso in ridge.",
+	"ensemble": "Ansambel",
+	"kmeans-description": "Opazovanja razvrstite v določeno število (k) grozdov, tako da so si člani grozdov med seboj bolj podobni kot opazovanja v drugih grozdih.",
+	"knn-description": "Uporablja se za regresijo in klasifikacijo. Za klasifikacijo kNN uporablja večinski glas med k-najbližjimi točkami. Pri regresiji je rezultat povprečje k-najbližjih vrednosti.",
+	"lasso-description": "Regularizirana regresijska metoda, ki kaznuje regresijske koeficiente z uporabo norme L1. Manjšo varianco zamenja za nekaj pristranskosti. Privede do redkega modela.",
+	"linear-regression-description": "Modelira razmerje med skalarnim odzivom in eno ali več pojasnjevalnimi spremenljivkami. Enostavna linearna regresija se nanaša na primer, ko je prisoten en napovedni dejavnik, večkratna linearna regresija pa se uporablja pri več pojasnjevalnih spremenljivkah. Imenuje se linearna, ker je ocenjena funkcija linearna v svojih koeficientih.",
+	"logistic-regression-description": "Logistična regresija je metoda razvrščanja, ki se uporablja za razvrščanje opazovanj v enega od dveh razredov. Logistična regresija uporablja logistično sigmoidno funkcijo, ki vrne vrednost verjetnosti za vsak razred.",
+	"naive-bayes-description": "Naivne Bayesove metode so niz algoritmov za razvrščanje, ki temeljijo na uporabi Bayesovega izreka z \"naivno\" predpostavko o pogojni neodvisnosti vsakega para lastnosti glede na vrednost spremenljivke razreda.",
+	"neural-networks-description": "Umetne nevronske mreže se uporabljajo za modeliranje zapletenih razmerij med vhodi in izhodi z učenjem nelinearne funkcije brez ročnega oblikovanja funkcij.",
+	"pca-description": "Analiza glavnih komponent (PCA) uporablja ortogonalno transformacijo za pretvorbo morebitnih koreliranih spremenljivk v niz vrednosti linearno nekoreliranih spremenljivk, imenovanih glavne komponente.",
+	"random-forest-description": "Naključni gozdovi v času usposabljanja sestavijo več odločitvenih dreves in vrnejo razred, ki je način razredov (klasifikacija) ali povprečna napoved (regresija) posameznih dreves.",
+	"regression": "Regresija",
+	"ridge-description": "Regularizirana regresijska metoda, ki kaznuje regresijske koeficiente z uporabo norme L2. Manjšo varianco zamenja za nekaj pristranskosti. Ne daje redkega modela, tj. koeficienti se ne približujejo ničli.",
+	"svm-description": "Podporni vektorski stroji so diskriminativni klasifikatorji. Algoritem ob označenih podatkih za usposabljanje poišče optimalno hiperravnino za kategorizacijo novih primerov. V dveh razsežnostih je ta hiperravnina črta, ki jo deli na dva dela.",
+	"üca-description": "Analiza glavnih komponent (PCA) uporablja ortogonalno transformacijo za pretvorbo morebitnih koreliranih spremenljivk v niz vrednosti linearno nekoreliranih spremenljivk, imenovanih glavne komponente."
+}

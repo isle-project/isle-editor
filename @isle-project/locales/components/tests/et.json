@@ -1,0 +1,23 @@
+{
+	"and": "ja",
+	"anova": "ANOVA {{variable}} vahel. {{group}}",
+	"correlation-test": "Korrelatsioonitest {{var1}} ja {{var2}}",
+	"data-missing": "Andmed puuduvad.",
+	"hypothesis-test-between": "Hüpoteesi test {{x}} vahel {{group}}",
+	"hypothesis-test-for": "Hüpoteeside testimine {{variable}}",
+	"hypothesis-test-for-independence": "Hüpoteesi test sõltumatuse kohta {{var1}} ja {{var2}}",
+	"hypothesis-test-x-y": "Hüpoteesi test {{x}} vastu {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallise test {{variable}} vahel {{group}}",
+	"must-have-two-different-values": "Rühmitav muutuja <1>{{group}}</1> peab olema vähemalt kaks erinevat väärtust.",
+	"pop-prob-first-group": "Olgu <1 /> populatsiooni tõenäosus <3>{{var1}}</3> olla <5>{{success}}</5> esimesse rühma,",
+	"probability-second-group": "tõenäosus teises rühmas vastavalt. Me testime",
+	"probtest-success-prob": "Olgu p populatsiooni tõenäosus <1>{{variable}}</1> olla <3>{{success}}</3>",
+	"probtest2-being-success": "Olgu <1 /> populatsiooni tõenäosus <3>{{var1}}</3> olla <5>{{success}}</5>, <7 /> ja <9 /> tõenäosus <11>{{var2}}</11> olla <13>{{success}}</13>, vastavalt. Me testime",
+	"proptest2-title": "Hüpoteesitesti võrdsuse kohta {{var1}} võrdsuse suhtes {{var2}}",
+	"proptest2-title-grouped": "Hüpoteesitesti võrdsuse kohta {{var1}} osakaaluga. {{group}}",
+	"sample-mean-in-group": "Valimi keskmine rühmas",
+	"sample-proportion": "Näidise osakaal: ",
+	"sample-proportion-in-group": "Valimi osakaal rühmas",
+	"vs": "vs.",
+	"we-test": "Me testime"
+}

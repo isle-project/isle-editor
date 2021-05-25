@@ -1,0 +1,11 @@
+{
+	"csv-upload-prompt": "Lataa tietokokonaisuus (CSV-muodossa).",
+	"drop-file": "Pudota tiedosto tänne",
+	"error-message": "Seuraava virhe tapahtui, kun tiedostoa yritettiin lukea.",
+	"error-title": "Tiedostoa ei voitu lukea.",
+	"first-row-names": "Ensimmäinen rivi sisältää muuttujien nimet",
+	"no-csv": "Ei CSV-tiedostoa.",
+	"no-csv-message": "Toimitettu tiedosto ei ole CSV-tiedosto.",
+	"or": "tai",
+	"title": "Tiedoston lataaminen"
+}

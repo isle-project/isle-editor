@@ -1,0 +1,16 @@
+{
+	"calculate-p-value": "Pri ničelni hipotezi izračunamo p-vrednost: ",
+	"calculate-test-statistic": "Izračunamo naslednjo testno statistiko:",
+	"conduct-the-following-test": "Izvedemo naslednji test (s klikom na spodnje hipoteze preklopite med enostranskimi in dvostranskimi testi):",
+	"lets-assume": "Predpostavimo, da imamo opazovane podatke z naslednjimi značilnostmi:",
+	"parameters": "Parametri",
+	"plugging-in": "Če vstavimo naše vrednosti, dobimo:",
+	"proportion": "Delež",
+	"sample-mean": "Povprečje vzorca",
+	"sample-proportion": "Delež vzorca",
+	"sample-size": "Velikost vzorca",
+	"sample-standard-deviation": "Standardni odklon vzorca",
+	"second-sample": "Drugi vzorec",
+	"test-result": "Rezultat preskusa",
+	"test-statistic": "Testna statistika"
+}

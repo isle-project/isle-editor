@@ -1,0 +1,17 @@
+{
+	"action-required": "Åtgärder som krävs",
+	"answer-submitted": "Ditt svar har skickats in.",
+	"average-is": "Genomsnittet är",
+	"category": "Kategori",
+	"count": "Räkna",
+	"multiple-answers": "Du kan välja flera svar.",
+	"no-responses-yet": "inga svar ännu",
+	"number-of-votes": "Antal röster",
+	"offensive-word": "Ditt svar innehåller ett stötande ord: {{w}}. Vänligen ta bort det.",
+	"relative-frequency": "Relativ frekvens",
+	"responses": "Svar",
+	"sign-in": "Vänligen logga in...",
+	"submit": "Skicka in",
+	"submitted": "Inlämnat",
+	"your-answer": "Ditt svar"
+}

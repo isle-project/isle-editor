@@ -1,0 +1,19 @@
+{
+	"cancel": "Annuller",
+	"cannot-follow": "Jeg kan ikke følge logikken.",
+	"enter-text": "Indtast tekst",
+	"feedback": "Feedback",
+	"give-custom-feedback": "Giv brugerdefineret feedback",
+	"have-feedback": "Jeg har feedback.",
+	"makes-sense": "Det giver mening.",
+	"needs-detailed-explanation": "Dette kræver en mere detaljeret forklaring.",
+	"no-understanding": "Jeg forstår slet ikke dette",
+	"not-clear": "Dette er ikke klart for mig.",
+	"responses": "Svar",
+	"submit": "Indsend",
+	"submit-confused-message": "Det er vi kede af at høre. Din feedback hjælper os med at forbedre materialet.",
+	"submit-custom-message": "Tak, fordi du tog dig tid til at sende os feedback.",
+	"submit-understood-message": "\"Det er jeg glad for at høre! Tak for din feedback.",
+	"textarea-legend": "Jeg har følgende kommentarer (valgfri):",
+	"thank-you": "Tak!"
+}

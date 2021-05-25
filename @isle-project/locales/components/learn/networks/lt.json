@@ -1,0 +1,9 @@
+{
+	"edge-probability": "briaunos tarp dviejų mazgų tikimybė",
+	"global-clustering-coefficient": "Visuotinis klasterizacijos koeficientas",
+	"intro-1": "Manoma, kad tinkle mazgai yra pastovūs, tačiau briaunos yra atsitiktinės, t. y. egzistuoja tam tikras atsitiktinis procesas, kuris lemia, ar yra briauna, jungianti du mazgus.",
+	"intro-2": "Panagrinėkime vieną iš paprasčiausių galimų tinklo modelių. Erdős-Rényi modelyje yra fiksuota tikimybė <1 />, kad tarp bet kurių dviejų mazgų yra briauna. Taip pat darome prielaidą, kad tai, ar tarp dviejų mazgų yra briauna, nepriklauso nuo to, ar yra kitų briaunų, ar ne.",
+	"intro-3": "Šiame modelyje, jei turime <1 /> mazgų, kiekvienas mazgas gali būti sujungtas su <3 /> kitais mazgais.  Tuomet prie kiekvieno mazgo prijungtų briaunų skaičius (laipsnis) yra <5 />.",
+	"number-of-edges-per-generated-network": "Sukurto tinklo briaunų skaičius",
+	"number-of-nodes": "mazgų skaičius"
+}

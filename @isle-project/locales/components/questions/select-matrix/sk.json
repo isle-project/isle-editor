@@ -1,0 +1,15 @@
+{
+	"answer-resubmitted": "Opätovne predložená odpoveď.",
+	"answer-submitted": "Predložená odpoveď.",
+	"correct": "Správne",
+	"correct-answer": "Správna odpoveď: ",
+	"failure-message": "Nie celkom.",
+	"incorrect": "Nesprávne",
+	"resubmit": "Opätovné odoslanie",
+	"resubmit-message": "Úspešne ste opätovne odoslali svoju odpoveď.",
+	"should-have-been": "Malo byť: ",
+	"submit": "Odoslať",
+	"submit-message": "Vaša odpoveď bola odoslaná.",
+	"success-message": "To je správna odpoveď!",
+	"try-again": "Skúste to znova"
+}

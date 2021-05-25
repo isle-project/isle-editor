@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Atkārtota atbilde.",
+	"answer-submitted": "Iesniegtā atbilde.",
+	"answers": "Atbildes",
+	"enter-your-answer-here": "Ievadiet savu atbildi šeit...",
+	"question-closed": "Jautājums ir slēgts.",
+	"resubmit": "Atkārtoti iesniegt",
+	"solution": "Risinājums:",
+	"submission-message-no-solution": "Ja vēlaties, varat mainīt savu atbildi un iesniegt to atkārtoti.",
+	"submission-message-solution": "Salīdziniet savu atbildi ar risinājumu, izmantojot pogu \"Rādīt risinājumu\". Pēc tam jūs varat mainīt savu atbildi un, ja nepieciešams, iesniegt to vēlreiz.",
+	"submit": "Iesniegt",
+	"submit-tooltip": "Pēc atbildes ievadīšanas noklikšķiniet uz Iesniegt.",
+	"your-answer": "Jūsu atbilde:"
+}

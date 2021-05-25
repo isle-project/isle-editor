@@ -1,0 +1,19 @@
+{
+	"authentication": "Preverjanje pristnosti",
+	"authentication-prompt": "Za dokončanje te lekcije se prijavite v svoj račun ISLE. Če ga še niste ustvarili, se prijavite in pridobite dostop do vseh funkcij sistema ISLE.",
+	"by": "po",
+	"choice": "Izbira",
+	"completed": "Zaključeno",
+	"confirmation-email": " Kmalu boste prejeli potrditveno e-poštno sporočilo.",
+	"download-pdf": "Prenesite PDF z odgovori",
+	"elapsed": "pretekli",
+	"finish-lesson": "Zaključite lekcijo",
+	"lesson-completed-msg": "Spoštovani {{name}}, to je samodejno potrditveno sporočilo, s katerim vas obveščamo, da ste uspešno zaključili lekcijo \"{{lessonName}}\" tečaja \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Predložena lekcija!",
+	"lesson-successfully-completed": "Učna ura je bila uspešno zaključena.",
+	"login": "Prijava",
+	"responses-header": "Odzivi za lekcijo ISLE",
+	"signup": "Prijavite se",
+	"submit": "Pošlji",
+	"successfully-completed": "uspešno zaključen"
+}

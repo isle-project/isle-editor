@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Pievienot piezīmi instruktoriem",
+	"add-personal-note": "Pievienot personisku piezīmi",
+	"add-student-note": "Pievienot piezīmi studentiem",
+	"clipboard-empty": "Uzskaņotājs ir tukšs",
+	"clipboard-empty-message": "Neizdevās ievietot tekstu. Pašlaik starplipa ir tukša.",
+	"copy": "Kopēt",
+	"cut": "Nogrieziet",
+	"encountered-error": "Konstatēta kļūda:",
+	"end-interface-tour": "Noklikšķiniet, lai pabeigtu pašlaik notiekošo interfeisa ekskursiju.",
+	"highlight": "Izcelt",
+	"not-available-yet": "Nodarbība nav pieejama (pagaidām)",
+	"paste": "Paste",
+	"read-aloud": "Lasiet skaļi",
+	"remove-highlight": "Noņemt izcēlumu",
+	"start-interface-tour": "Ekskursijas sākums, kurā izskaidroti dažādi saskarnes elementi",
+	"voice-not-supported": "Nav atbalstīta.",
+	"voice-not-supported-message": "Pašlaik jūsu pārlūkprogrammā netiek atbalstīta teksta pārveidošanas uz runu funkcija. Lūdzu, izmēģiniet Google Chrome."
+}

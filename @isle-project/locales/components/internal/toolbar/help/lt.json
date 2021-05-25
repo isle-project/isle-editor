@@ -1,0 +1,23 @@
+{
+	"click-instruction": "Spustelėkite meniu elementą ir sužinokite apie jį daugiau...",
+	"data-explorer-p1": "ISLE duomenų tyrėjas leidžia analizuoti duomenų rinkinius naudojant \"nukreipk ir spustelk\" sąsają. Duomenų tyrėjas padalytas į du skydelius: kairiajame skydelyje galima perjungti analizuojamų duomenų skaičiuoklės vaizdą ir kitus papildomus komponentus, pavyzdžiui, ataskaitos rašymo redaktorių arba klausimų sąrašą. Dešinėje pusėje yra išvesties langas, kuriame pateikiama visa jūsų sukurta išvestis (suvestinė statistika, diagramos, hipotezės testo rezultatai).",
+	"data-explorer-p2": "Naujas išvestis galima kurti naudojant įrankių dėžutę, kurią galima atidaryti spustelėjus mygtuką \"Rodyti įrankių dėžutę\". Naujai sukurtas grafikas arba lentelė bus įtraukti į dešinėje pusėje rodomą išvesties elementų sąrašą.",
+	"data-explorer-p3": "Raudonais mygtukais su \"x\" piktogramomis galima ištrinti atskirus išvesties elementus, o apačioje esančiu mygtuku \"Clear All\" (Išvalyti viską) bus pašalinti visi išvesties elementai.",
+	"data-explorer-p4": "Naudodami duomenų skaičiuoklės, ataskaitos redaktoriaus arba įrankių rinkinio mygtukus su klausimo ženklu, galėsite pradėti ekskursiją po įvairių dalių galimybes.",
+	"data-explorer-title": "Duomenų tyrėjas",
+	"data-table-p1": "Paprastas būdas, kaip ISLE galima rodyti duomenis, yra duomenų lentelė. Jos rodomos tipiniu duomenų peržiūros formatu, panašiu į tai, kaip duomenys atrodo \"Excel\" skaičiuoklėje. Kiekvienas stulpelis yra kintamasis, o viršuje yra kintamojo pavadinimas.",
+	"data-table-p2": "Jei norite sužinoti, ką galima daryti su duomenų lentelėmis, spustelėkite mygtuką Rodyti vadovėlį (klausimo ženklas duomenų lentelės viršutiniame dešiniajame kampe).",
+	"data-table-title": "Duomenų lentelė",
+	"documentation": "Dokumentacija",
+	"download-pdf": "Atsisiųsti PDF",
+	"questions-p1": "Daugelyje ISLE pamokų, kuriose dirbsite, bus klausimų, į kuriuos turėsite atsakyti. Galimi įvairūs klausimų tipai - nuo trumpo atsakymo iki klausimų su keliais atsakymų variantais. Štai trumpo atsakymo klausimo pavyzdys:",
+	"questions-p2": "Pateikimas",
+	"questions-p3": "Atsakę į klausimą ir pasirengę pateikti atsakymą, spustelėkite mygtuką \"Pateikti\". Taip užfiksuosite savo darbą, kad dėstytojas galėtų pamatyti jūsų atsakymą ir įskaityti klausimą.",
+	"questions-p4": "Grįžtamojo ryšio mygtukai",
+	"questions-p5": "Kartais instruktorius gali prie atskirų klausimų pridėti atsiliepimų mygtukus (parodyta pirmiau). Kairiuoju mygtuku galite pažymėti, kad klausimas jums neaiškus; centriniu mygtuku galite pažymėti, kad klausimas yra prasmingas; o dešiniuoju mygtuku galite išsamiau pateikti konkrečias pastabas.",
+	"questions-p6": "Klausimai apie navigaciją",
+	"questions-p7": "Keletas klausimų gali būti pateikiami toje pačioje puslapio vietoje. Tokiu atveju tarp klausimų galite pereiti spustelėdami mygtuką \"Kitas\" arba pasirinkdami klausimus pagal numerį:",
+	"questions-title": "Klausimai",
+	"statusbar-p1": "Paspaudę būsenos juostą, pamatysite mygtukus, kuriais galite užsiregistruoti ISLE paskyrą arba prisijungti prie esamos paskyros. Būsenos juostos viduryje rasite rodomą savo vartotojo vardą arba prisijungėte. Užvedus pelės žymeklį ant jo, bus rodomi keli statistiniai duomenys apie jūsų pamokos eigą: pamokoje praleistas laikas, pamokoje atliktų užduočių procentinė dalis ir jūsų bendri pasiekimų taškai.",
+	"statusbar-title": "Būsenos juosta"
+}

@@ -1,0 +1,7 @@
+{
+	"direction": "suunta",
+	"humidity": "kosteus",
+	"in": "osoitteessa",
+	"loading-weather-data-for": "Säätietojen lataaminen osoitteeseen {{loc}}...",
+	"wind": "tuuli"
+}

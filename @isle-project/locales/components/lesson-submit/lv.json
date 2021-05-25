@@ -1,0 +1,19 @@
+{
+	"authentication": "Autentifikācija",
+	"authentication-prompt": "Lai pabeigtu šo nodarbību, lūdzu, autorizējieties savā ISLE kontā. Ja neesat izveidojis kontu, lūdzu, reģistrējieties un iegūstiet piekļuvi visām ISLE funkcijām.",
+	"by": "līdz",
+	"choice": "Izvēle",
+	"completed": "Pabeigts",
+	"confirmation-email": " Drīz saņemsiet apstiprinājuma e-pasta vēstuli.",
+	"download-pdf": "Lejupielādēt atbilžu PDF formātā",
+	"elapsed": "pagājis",
+	"finish-lesson": "Pabeigt nodarbību",
+	"lesson-completed-msg": "Cienījamie {{name}}, šis ir automātisks apstiprinājuma e-pasts, lai informētu Jūs, ka Jūs esat veiksmīgi pabeidzis kursa \"{{lessonName}}\" nodarbību \"{{namespaceName}}\". {{msg}}",
+	"lesson-submitted": "Nodarbība iesniegta!",
+	"lesson-successfully-completed": "Nodarbība ir veiksmīgi pabeigta.",
+	"login": "Pieteikšanās",
+	"responses-header": "Atbildes par ISLE nodarbību",
+	"signup": "Reģistrējieties",
+	"submit": "Iesniegt",
+	"successfully-completed": "veiksmīgi pabeigts"
+}

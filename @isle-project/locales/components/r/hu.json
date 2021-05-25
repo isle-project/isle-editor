@@ -1,0 +1,13 @@
+{
+	"close": "Zárja be a",
+	"drag-plot": "Drag Plot",
+	"evaluate": "Értékelje a  honlapot.",
+	"hide-solution": "Megoldás elrejtése",
+	"mosaic-plot-of": "Mozaikos telek",
+	"r-help": "R Segítség",
+	"r-plot": "R Plot",
+	"reset": "Reset",
+	"reset-tooltip": "A héj bemenetének visszaállítása az alapértelmezett értékre.",
+	"show-solution": "Megoldás megjelenítése",
+	"solution-tooltip": "A megoldás akkor válik elérhetővé, ha már kipróbálta a feladatot és felhasználta az összes tippet."
+}

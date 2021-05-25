@@ -1,0 +1,14 @@
+{
+	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
+	"answer-submitted": "Vastaus toimitettu.",
+	"answers": "Vastaukset",
+	"enter-your-answer-here": "Kirjoita vastauksesi tähän...",
+	"question-closed": "Kysymys on nyt suljettu.",
+	"resubmit": "Lähetä uudelleen",
+	"solution": "Ratkaisu:",
+	"submission-message-no-solution": "Voit halutessasi muuttaa vastaustasi ja lähettää sen uudelleen.",
+	"submission-message-solution": "Vertaa vastaustasi ratkaisuun käyttämällä \"Näytä ratkaisu\" -painiketta. Voit sitten muuttaa vastaustasi ja lähettää sen tarvittaessa uudelleen.",
+	"submit": "Lähetä",
+	"submit-tooltip": "Napsauta Lähetä, kun olet kirjoittanut vastauksesi.",
+	"your-answer": "Vastauksesi:"
+}

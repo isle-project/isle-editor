@@ -1,0 +1,7 @@
+{
+	"join-chat": "Pievienojieties tērzēšanai",
+	"join-chat-id": "Pievienojies tērzēšanai ar ID {{id}}",
+	"leave-chat": "Atstājiet tērzēšanu",
+	"leave-chat-id": "Atstāj tērzēšanu ar ID {{id}}",
+	"toggle-chat": "Pārslēgt tērzēšanu"
+}

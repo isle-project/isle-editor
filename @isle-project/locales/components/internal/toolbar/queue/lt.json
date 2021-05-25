@@ -1,0 +1,15 @@
+{
+	"chat": "Pokalbiai",
+	"cohort": "Kohorta",
+	"mark-and-remove": "Pažymėkite klausimą kaip atsakytą ir pašalinkite",
+	"name": "Pavadinimas",
+	"no-questions": "Šiuo metu eilėje nėra klausimų.",
+	"question": "Klausimas",
+	"queue": "Eilė",
+	"queue-prompt": "Toliau galite pateikti klausimą ir netrukus su jumis susisieksime!",
+	"queue-size": "(šiuo metu eilėje yra {{n}} asmenų)",
+	"queue-start-chat": "Pradėti pokalbį su mokiniu",
+	"queue-status": "Jūsų klausimas: <1>{{question}}</1><br /> Jūs šiuo metu esate pozicijoje <4>{{spot}}</4> eilėje.<br /> Yra <8>{{size}}</8> asmuo (-enys) eilėje. ",
+	"remove-myself-from-queue": "Pašalinti mane iš eilės",
+	"submit-question": "Pateikti klausimą"
+}

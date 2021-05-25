@@ -1,0 +1,9 @@
+{
+	"edge-probability": "probabilitatea unei muchii între două noduri",
+	"global-clustering-coefficient": "Coeficientul global de grupare",
+	"intro-1": "Într-o rețea, se presupune că nodurile sunt fixe, dar marginile sunt aleatorii, adică există un proces aleatoriu care determină dacă există o muchie care leagă două noduri.",
+	"intro-2": "Să luăm în considerare unul dintre cele mai simple modele de rețea disponibile. În modelul Erdős-Rényi, există o probabilitate fixă <1 /> ca între două noduri să existe o muchie. De asemenea, presupunem că existența sau nu a unei muchii între două noduri este independentă de existența sau nu a altor muchii.",
+	"intro-3": "În acest model, dacă avem <1 /> noduri, fiecare nod poate fi conectat la <3 /> alte noduri.  Numărul de muchii atașate fiecărui nod (gradul) este atunci <5 />.",
+	"number-of-edges-per-generated-network": "Numărul de muchii per rețea generată",
+	"number-of-nodes": "numărul de noduri"
+}

@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurá, vaša odpoveď je správna!",
+	"answer-incorrect-explanations": "Po prejdení kurzorom myši na jednotlivé možnosti odpovedí sa zobrazí nápoveda s vysvetlením, prečo je príslušná odpoveď nesprávna.",
+	"answer-incorrect-full": "Bohužiaľ, vaša odpoveď je nesprávna. Správna odpoveď je zobrazená oranžovou farbou.",
+	"answer-incorrect-incremental": "Bohužiaľ, vaša odpoveď je nesprávna. Môžete to skúsiť znova výberom inej možnosti odpovede.",
+	"answer-incorrect-incremental-equal": "Žiaľ, nie všetky vaše odpovede boli správne. Skúste inú kombináciu.",
+	"answer-incorrect-incremental-extra": "Zaškrtli ste všetky správne možnosti odpovedí, ale aspoň jedna nesprávna sa medzi ne vkradla. Zrušte výber nesprávnej odpovede (nesprávnych odpovedí) a znova ju (ich) odošlite.",
+	"answer-incorrect-incremental-missing": "Neposkytli ste všetky správne odpovede. Vyberte ďalšie možnosti odpovedí.",
+	"answer-re-submitted": "Opätovne predložená odpoveď.",
+	"answer-submitted": "Predložená odpoveď.",
+	"answer-submitted-nofeedback": "Úspešne ste odoslali svoju odpoveď. Ak chcete, môžete svoju odpoveď zmeniť a znova ju odoslať.",
+	"answers": "Odpovede",
+	"chose-all-apply": "Vyberte všetky, ktoré sa vzťahujú",
+	"each-row-click-check-boxes-which-apply": "Pre každý riadok kliknite na všetky začiarkavacie políčka, ktoré sa vzťahujú",
+	"each-row-pick-answer-by-clicking": "Pre každý riadok vyberte odpoveď kliknutím na príslušné prepínacie tlačidlo.",
+	"question-closed": "Otázka je teraz uzavretá.",
+	"resubmit": "Opätovné odoslanie",
+	"select-answer": "Vyberte odpoveď",
+	"submit": "Odoslať",
+	"submitted": "Odoslané",
+	"successfully-re-submitted-your-answer": "Úspešne ste opätovne odoslali svoju odpoveď.",
+	"successfully-submitted-your-answer": "Úspešne ste odoslali svoju odpoveď. Ak chcete, môžete svoju odpoveď zmeniť a znova ju odoslať."
+}

@@ -1,0 +1,23 @@
+{
+	"and": "un",
+	"anova": "ANOVA {{variable}} starp {{group}}",
+	"correlation-test": "Korelācijas tests starp {{var1}} un {{var2}}",
+	"data-missing": "Trūkst datu.",
+	"hypothesis-test-between": "Hipotēzes tests {{x}} starp {{group}}",
+	"hypothesis-test-for": "Hipotēzes pārbaude {{variable}}",
+	"hypothesis-test-for-independence": "Hipotēzes tests par neatkarību starp {{var1}} un {{var2}}",
+	"hypothesis-test-x-y": "Hipotēzes pārbaude {{x}} pret {{y}}",
+	"kruskal-wallis-test": "Kruskala Volisa tests {{variable}} starp {{group}}",
+	"must-have-two-different-values": "Grupēšanas mainīgais <1>{{group}}</1> jābūt vismaz divām dažādām vērtībām.",
+	"pop-prob-first-group": "Lai <1 /> ir populācijas varbūtība, ka <3>{{var1}}</3> ir <5>{{success}}</5> pirmajā grupā,",
+	"probability-second-group": "attiecīgi varbūtība otrajā grupā. Mēs pārbaudām",
+	"probtest-success-prob": "Lai p ir populācijas varbūtība <1>{{variable}}</1> ir <3>{{success}}</3>",
+	"probtest2-being-success": "Lai <1 /> ir populācijas varbūtība, ka <3>{{var1}}</3> ir <5>{{success}}</5>, <7 /> un <9 /> - varbūtība <11>{{var2}}</11> būt <13>{{success}}</13>, attiecīgi. Mēs testējam",
+	"proptest2-title": "Hipotēzes tests par proporciju vienlīdzību {{var1}} pret proporciju {{var2}}",
+	"proptest2-title-grouped": "Hipotēzes pārbaude par {{var1}} proporciju vienlīdzību, izmantojot {{group}}",
+	"sample-mean-in-group": "Parauga vidējais rādītājs grupā",
+	"sample-proportion": "Parauga proporcija: ",
+	"sample-proportion-in-group": "Parauga proporcija grupā",
+	"vs": "pret.",
+	"we-test": "Mēs testējam"
+}

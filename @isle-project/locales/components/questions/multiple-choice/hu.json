@@ -1,0 +1,23 @@
+{
+	"answer-correct": "Hurrá, a válaszod helyes!",
+	"answer-incorrect-explanations": "A különböző válaszlehetőségek fölé mozgatva az egérrel egy tooltip jelenik meg, amely megmagyarázza, hogy miért rossz az adott válasz.",
+	"answer-incorrect-full": "Sajnos a válasza helytelen. A helyes válasz narancssárgával van jelölve.",
+	"answer-incorrect-incremental": "Sajnos a válasza helytelen. Újra megpróbálhatja egy másik válaszlehetőség kiválasztásával.",
+	"answer-incorrect-incremental-equal": "Sajnos nem minden válasz volt helyes. Próbáljon ki egy másik kombinációt.",
+	"answer-incorrect-incremental-extra": "Minden helyes válaszlehetőséget kipipáltál, de legalább egy helytelen is becsúszott. Törölje a hibás válasz(ok) jelölését, és küldje el újra.",
+	"answer-incorrect-incremental-missing": "Nem adtad meg az összes helyes választ. Válassza ki a további válaszlehetőségeket.",
+	"answer-re-submitted": "Újra benyújtott válasz.",
+	"answer-submitted": "Elküldött válasz.",
+	"answer-submitted-nofeedback": "Ön sikeresen elküldte válaszát. Ha szeretné, módosíthatja válaszát, és újra elküldheti.",
+	"answers": "Válaszok",
+	"chose-all-apply": "Válassza ki az összeset",
+	"each-row-click-check-boxes-which-apply": "Minden sorban kattintson az összes vonatkozó jelölőnégyzetre.",
+	"each-row-pick-answer-by-clicking": "Minden sorban válasszon ki egy választ a megfelelő rádiógombra kattintva.",
+	"question-closed": "A kérdés lezárult.",
+	"resubmit": "Újbóli benyújtás",
+	"select-answer": "Válasszon ki egy választ",
+	"submit": "Küldje be a",
+	"submitted": "Beküldve",
+	"successfully-re-submitted-your-answer": "Ön sikeresen újra elküldte válaszát.",
+	"successfully-submitted-your-answer": "Ön sikeresen elküldte válaszát. Ha szeretné, módosíthatja válaszát, és újra elküldheti."
+}

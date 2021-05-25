@@ -1,0 +1,18 @@
+{
+	"click-to-cycle-through-options": "Kattintson a gombra a rendelkezésre álló lehetőségek megtekintéséhez.",
+	"discard-changes": "Változások eldobása",
+	"edit-text": "Szöveg szerkesztése",
+	"error-encountered": "Találkozott hiba",
+	"expected-object-array": "`{{field}}` objektumok tömbjének kell lennie.",
+	"expected-value-from-list": "`{{field}}` a következők valamelyikének kell lennie: {{list}} .",
+	"flippable-requires-two-children": "A lapozható kártyához két gyermekelemre van szükség.",
+	"grid-requires-two-children": "A húzható rácsnak legalább két gyermekelemre van szüksége a megjelenítéshez.",
+	"in": "a  oldalon.",
+	"pause": "Szünet",
+	"resume": "Önéletrajz",
+	"retry": "Retry",
+	"save-changes": "Változások mentése",
+	"search": "Keresés",
+	"supply-component-id": "Kérjük, adja meg a megfigyelendő komponens azonosítóját.",
+	"toggle-error-stack-trace": "A hiba veremkövetési nyomvonalának váltása"
+}

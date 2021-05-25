@@ -1,0 +1,12 @@
+{
+	"answer": "Svar",
+	"basic": "Grundlæggende",
+	"calculator": "Lommeregner",
+	"copied": "Kopieret",
+	"copied-message": "Resultatet kopieres til udklipsholderen",
+	"copy": "Kopier",
+	"expand": "Udvid",
+	"malformed-expression": "Misdannet udtryk",
+	"too-many-closing-parens": "For mange afsluttende parenteser",
+	"too-many-opening-parens": "For mange indledende parenteser"
+}

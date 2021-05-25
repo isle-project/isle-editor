@@ -1,0 +1,14 @@
+{
+	"close": "Aizvērt",
+	"email": "E-pasts",
+	"enter-email": "Ievadiet savu e-pasta adresi.",
+	"enter-email-before-password-reset": "Pirms pieprasāt jaunu paroli, lūdzu, ievadiet savu e-pasta adresi.",
+	"enter-password": "Ievadiet savu paroli.",
+	"enter-tfa-token": "Lūdzu, ievadiet 6 ciparu kodu no autentifikatora ierīces:",
+	"enter-token": "Ievadiet apstiprinājuma kodu...",
+	"forgot-password": "Aizmirsāt paroli?",
+	"invalid": "Nav derīgs",
+	"login": "Pieteikšanās",
+	"password": "Parole",
+	"signin": "Pierakstīties"
+}

@@ -1,0 +1,15 @@
+{
+	"and": "és",
+	"choose": "Válassza ki a  címet.",
+	"conditional-probabilities": "Mi a helyzet a feltételes valószínűségekkel?",
+	"conditional-probability-undefined": "A feltételes valószínűség meghatározatlan, ha",
+	"consider-events": "Fontolja meg az eseményeket",
+	"events-independent": "Az események függetlenek, mert",
+	"events-not-independent": "Az események <1>nem</1> függetlenek, mert",
+	"inner-cells-equal": "Mit jelentenek a belső cellák? Ha az események véletlenszerűek, akkor ",
+	"let": "Legyen",
+	"must-have-nonzero-probability": "Ha <1 />, akkor a <3 /> kell, hogy legyen, ha B valószínűsége nem nulla.",
+	"not": "nem",
+	"then-we-have": "Akkor van",
+	"these-form-marginals": "Ezek alkotják az alábbi valószínűségi táblázat marginális értékeit."
+}

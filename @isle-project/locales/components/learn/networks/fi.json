@@ -1,0 +1,9 @@
+{
+	"edge-probability": "kahden solmun välisen reunan todennäköisyys",
+	"global-clustering-coefficient": "Globaali klusterointikerroin",
+	"intro-1": "Verkon solmujen oletetaan olevan kiinteitä, mutta särmät ovat satunnaisia, eli on olemassa jokin satunnainen prosessi, joka määrittää, onko kaksi solmua yhdistävä särmä olemassa.",
+	"intro-2": "Tarkastellaan yhtä yksinkertaisimmista saatavilla olevista verkkomalleista. Erdős-Rényi-mallissa on olemassa kiinteä todennäköisyys <1 />, että minkä tahansa kahden solmun välillä on reuna. Oletamme myös, että se, onko kahden solmun välillä särmä, on riippumaton siitä, onko muita särmiä olemassa.",
+	"intro-3": "Tässä mallissa, jos meillä on <1 /> solmuja, jokainen solmu voi olla yhteydessä <3 /> muihin solmuihin.  Kuhunkin solmuun liittyvien reunojen lukumäärä (aste) on tällöin <5 />.",
+	"number-of-edges-per-generated-network": "Särmien määrä luotua verkkoa kohti",
+	"number-of-nodes": "solmujen lukumäärä"
+}

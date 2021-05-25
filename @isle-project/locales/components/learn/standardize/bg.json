@@ -1,0 +1,12 @@
+{
+	"compute": "Изчисляване",
+	"evaluate-probabilities": "Оценяване на вероятностите:",
+	"mean": "Средна стойност",
+	"normal-to-standard-normal": "От нормално към стандартно нормално",
+	"reset": "Нулиране на",
+	"standard-deviation": "стандартно отклонение",
+	"standardize-values": "Стандартизиране на стойностите",
+	"standardized": "Стандартизиран",
+	"unstandardized": "Нестандартизиран",
+	"x-value": "Стойност X"
+}

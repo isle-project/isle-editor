@@ -1,0 +1,12 @@
+{
+	"compute": "Számítsa ki a  címet.",
+	"evaluate-probabilities": "Valószínűségek értékelése:",
+	"mean": "Átlag",
+	"normal-to-standard-normal": "A normálistól a standard normálisig",
+	"reset": "Reset",
+	"standard-deviation": "szórás",
+	"standardize-values": "Az értékek szabványosítása",
+	"standardized": "Szabványosított",
+	"unstandardized": "Nem szabványosított",
+	"x-value": "X érték"
+}

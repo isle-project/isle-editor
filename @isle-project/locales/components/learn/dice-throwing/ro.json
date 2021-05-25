@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Alegeți probabilități personalizate pentru părți și apoi aruncați niște zaruri!",
+	"count": "Contul",
+	"dice": "Zaruri",
+	"invalid-probs": "Vă rugăm să vă asigurați că toate probabilitățile se adună la unu",
+	"number-of-sides": "Număr de laturi",
+	"probabilities": "Probabilități",
+	"relative-frequency": "Frecvența relativă",
+	"reset": "Resetare",
+	"side": "Lateral",
+	"simulate-random-dice-throws": "Simulați aruncări aleatorii de zaruri",
+	"throw": "Aruncă",
+	"total-number-of-throws": "Numărul total de aruncări"
+}

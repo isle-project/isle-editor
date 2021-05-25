@@ -1,0 +1,17 @@
+{
+	"action-required": "Nødvendige foranstaltninger",
+	"answer-submitted": "Dit svar er blevet indsendt.",
+	"average-is": "Gennemsnittet er",
+	"category": "Kategori",
+	"count": "Greve",
+	"multiple-answers": "Du kan vælge flere svar",
+	"no-responses-yet": "ingen svar endnu",
+	"number-of-votes": "Antal stemmer",
+	"offensive-word": "Dit svar indeholder et stødende ord: {{w}}. Fjern det venligst.",
+	"relative-frequency": "Relativ hyppighed",
+	"responses": "Svar",
+	"sign-in": "Log ind...",
+	"submit": "Indsend",
+	"submitted": "Indsendt",
+	"your-answer": "Dit svar"
+}

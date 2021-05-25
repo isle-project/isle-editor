@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Ștergeți fișierul",
+	"download-file": "Descărcați fișierul",
+	"encountered-error": "Eroare întâlnită",
+	"failed-to-capture-camera": "Nu s-a reușit capturarea camerei (eroare: {{msg}})",
+	"failed-to-capture-microphone": "Nu s-a reușit capturarea microfonului (eroare: {{msg}})",
+	"failed-to-capture-screen": "Nu s-a reușit capturarea ecranului (eroare: {{msg}})",
+	"open-link": "Deschideți link-ul",
+	"recording-uploaded": "Înregistrare încărcată",
+	"recording-uploaded-message": "Înregistrarea dvs. a fost încărcată cu succes și poate fi accesată la:",
+	"screen": "Ecran",
+	"upload-file": "Încărcați fișierul"
+}

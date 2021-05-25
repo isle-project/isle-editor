@@ -1,0 +1,18 @@
+{
+	"and": "και",
+	"draw-venn-diagram": "Σχεδιάστε το διάγραμμα Venn",
+	"label-first-set": "Ετικέτα του πρώτου σετ",
+	"label-second-set": "Ετικέτα του δεύτερου σετ",
+	"label-third-set": "Ετικέτα του τρίτου σετ",
+	"min-of-times": "Ελάχιστος αριθμός φορών ",
+	"number-of-words": "Αριθμός λέξεων: ",
+	"one": "Ένα",
+	"settings": "Ρυθμίσεις",
+	"three": "Τρεις",
+	"total-number-observations": "Συνολικός αριθμός παρατηρήσεων",
+	"total-texts": "Συνολικός αριθμός κειμένων",
+	"two": "Δύο",
+	"venn-diagram": "Διάγραμμα Venn",
+	"venn-diagram-builder": "Κατασκευαστής διαγραμμάτων Venn",
+	"word": "Λέξη"
+}

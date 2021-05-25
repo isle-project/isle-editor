@@ -1,0 +1,23 @@
+{
+	"bagging-description": "Agregácia Bootstrap sa často používa pri metódach rozhodovacích stromov. Z pôvodných trénovacích údajov sa vyberú bootstrap vzorky, pričom sa pre každú vybranú vzorku odhadne model, a potom sa predpovede uvedených modelov spriemerujú, aby sa získali predpovede s nižšou odchýlkou, ktoré nie sú také náchylné na nadmerné prispôsobenie.",
+	"boosting-description": "Algoritmy posilňovania, ako napríklad AdaBoost, sa iteratívne učia slabé klasifikátory a pridávajú ich k finálnemu silnému klasifikátoru pomocou váh. Pri pridávaní klasifikátorov získavajú nesprávne klasifikované vstupné údaje vyššiu váhu a príklady, ktoré sú klasifikované správne, váhu strácajú. Budúce slabé klasifikátory sa teda viac zameriavajú na príklady, ktoré predchádzajúce slabé klasifikátory nesprávne klasifikovali.",
+	"cart-description": "Analýza klasifikačného a regresného stromu (CART) vytvára strom, ktorý prechádza od vlastností pozorovania (reprezentovaných vo vetvách) k predpovedanej hodnote (reprezentovanej v listoch).",
+	"classification": "Klasifikácia",
+	"clustering": "Zhlukovanie",
+	"dimensionality-reduction": "Zníženie dimenzionality",
+	"elastic-net-description": "Elastická sieť je regularizovaná regresná metóda, ktorá lineárne kombinuje penalizácie L1 a L2 metód lasso a ridge.",
+	"ensemble": "Súbor",
+	"kmeans-description": "Zoskupenie pozorovaní do pevného počtu (k) zhlukov tak, aby si členovia zhluku boli navzájom podobnejší ako pozorovania v iných zhlukoch.",
+	"knn-description": "Používa sa na regresiu aj klasifikáciu. Na klasifikáciu kNN sa používa väčšinové hlasovanie medzi k-najbližšími bodmi. Pri regresii je výstupom priemer hodnôt k-najbližších bodov.",
+	"lasso-description": "Regularizovaná regresná metóda, ktorá penalizuje regresné koeficienty pomocou normy L1. Vymieňa nižší rozptyl za trochu skreslenia. Vedie k riedkemu modelu.",
+	"linear-regression-description": "Modeluje vzťah medzi skalárnou odpoveďou a jednou alebo viacerými vysvetľujúcimi premennými. Jednoduchá lineárna regresia sa vzťahuje na prípad, keď je prítomný jeden prediktor, viacnásobná lineárna regresia sa používa pri viacerých vysvetľujúcich premenných. Nazýva sa lineárna, pretože odhadovaná funkcia je lineárna vo svojich koeficientoch.",
+	"logistic-regression-description": "Logistická regresia je klasifikačná metóda, ktorá sa používa na zaradenie pozorovaní do jednej z dvoch tried. Logistická regresia používa logistickú sigmoidnú funkciu na vrátenie hodnoty pravdepodobnosti pre každú triedu",
+	"naive-bayes-description": "Naivné Bayesove metódy sú súborom klasifikačných algoritmov založených na použití Bayesovej vety s \"naivným\" predpokladom podmienenej nezávislosti medzi každou dvojicou znakov vzhľadom na hodnotu premennej triedy.",
+	"neural-networks-description": "Umelé neurónové siete sa používajú na modelovanie zložitých vzťahov medzi vstupmi a výstupmi prostredníctvom učenia nelineárnej funkcie bez manuálneho vytvárania funkcií.",
+	"pca-description": "Analýza hlavných komponentov (PCA) využíva ortogonálnu transformáciu na prevod prípadne korelovaných premenných na súbor hodnôt lineárne nekorelovaných premenných nazývaných hlavné komponenty.",
+	"random-forest-description": "Náhodné lesy skonštruujú v čase trénovania množstvo rozhodovacích stromov a vrátia triedu, ktorá je modelom tried (klasifikácia) alebo priemernou predpoveďou (regresia) jednotlivých stromov.",
+	"regression": "Regresia",
+	"ridge-description": "Regularizovaná regresná metóda, ktorá penalizuje regresné koeficienty pomocou normy L2. Vymieňa nižší rozptyl za trochu skreslenia. Neposkytuje riedky model, t. j. koeficienty sa neriadia nulou.",
+	"svm-description": "Stroje podporných vektorov sú diskriminačné klasifikátory. Pri daných označených trénovaných údajoch algoritmus nájde optimálnu hyperplochu na kategorizáciu nových príkladov. V dvoch dimenziách je touto hyperplochou čiara, ktorá ju rozdeľuje na dve časti.",
+	"üca-description": "Analýza hlavných komponentov (PCA) využíva ortogonálnu transformáciu na prevod prípadne korelovaných premenných na súbor hodnôt lineárne nekorelovaných premenných nazývaných hlavné komponenty."
+}

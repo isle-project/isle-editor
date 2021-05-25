@@ -1,0 +1,9 @@
+{
+	"edge-probability": "varbūtība, ka starp diviem mezgliem ir mala",
+	"global-clustering-coefficient": "Globālais klasterizācijas koeficients",
+	"intro-1": "Tīklā tiek pieņemts, ka mezgli ir nemainīgi, bet malas ir nejaušas, t. i., ir kāds nejaušs process, kas nosaka, vai ir mala, kas savieno divus mezglus.",
+	"intro-2": "Apskatīsim vienu no vienkāršākajiem pieejamajiem tīkla modeļiem. Erdo-Renija modelī ir fiksēta varbūtība <1 />, ka starp jebkuriem diviem mezgliem pastāv mala. Mēs arī pieņemam, ka tas, vai starp diviem mezgliem pastāv vai nepastāv mala, nav atkarīgs no tā, vai pastāv vai nepastāv citas malas.",
+	"intro-3": "Šajā modelī, ja mums ir <1 /> mezgli, katrs mezgls var būt savienots ar <3 /> citiem mezgliem.  Katram mezglam pievienoto malu skaits (pakāpe) tad ir <5 />.",
+	"number-of-edges-per-generated-network": "Sastādītā tīkla malu skaits",
+	"number-of-nodes": "mezglu skaits"
+}

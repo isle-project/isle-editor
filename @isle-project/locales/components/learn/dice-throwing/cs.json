@@ -1,0 +1,14 @@
+{
+	"choose-custom-probs": "Zvolte si vlastní pravděpodobnosti stran a pak hoďte kostkou!",
+	"count": "Hrabě",
+	"dice": "Kostky",
+	"invalid-probs": "Ujistěte se, že všechny pravděpodobnosti jsou rovny jedné.",
+	"number-of-sides": "Počet stran",
+	"probabilities": "Pravděpodobnosti",
+	"relative-frequency": "Relativní četnost",
+	"reset": "Obnovení",
+	"side": "Strana",
+	"simulate-random-dice-throws": "Simulace náhodných hodů kostkou",
+	"throw": "Hodit",
+	"total-number-of-throws": "Celkový počet hodů"
+}

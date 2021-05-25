@@ -1,0 +1,18 @@
+{
+	"and": "un",
+	"draw-venn-diagram": "Zīmēt Venna diagrammu",
+	"label-first-set": "Pirmā komplekta etiķete",
+	"label-second-set": "Otrā komplekta etiķete",
+	"label-third-set": "Trešā komplekta etiķete",
+	"min-of-times": "Min # reizes ",
+	"number-of-words": "Vārdu skaits: ",
+	"one": "Viens",
+	"settings": "Iestatījumi",
+	"three": "Trīs",
+	"total-number-observations": "Kopējais novērojumu skaits",
+	"total-texts": "Tekstu kopējais skaits",
+	"two": "Divi",
+	"venn-diagram": "Venna diagramma",
+	"venn-diagram-builder": "Venna diagrammas konstruktors",
+	"word": "Vārds"
+}

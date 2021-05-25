@@ -1,0 +1,15 @@
+{
+	"audio": "Audio",
+	"cam": "Cam",
+	"clear-file": "Počisti datoteko",
+	"download-file": "Prenesi datoteko",
+	"encountered-error": "Nastala napaka",
+	"failed-to-capture-camera": "Ni uspelo zajeti fotoaparata (napaka: {{msg}})",
+	"failed-to-capture-microphone": "Ni uspelo zajeti vašega mikrofona (napaka: {{msg}})",
+	"failed-to-capture-screen": "Ni uspelo zajeti zaslona (napaka: {{msg}})",
+	"open-link": "Odprta povezava",
+	"recording-uploaded": "Posneto snemanje",
+	"recording-uploaded-message": "Vaš posnetek je bil uspešno naložen in do njega lahko dostopate na:",
+	"screen": "Zaslon",
+	"upload-file": "Prenesite datoteko"
+}

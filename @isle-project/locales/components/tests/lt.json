@@ -1,0 +1,23 @@
+{
+	"and": "ir",
+	"anova": "ANOVA {{variable}} tarp {{group}}",
+	"correlation-test": "Koreliacijos testas tarp {{var1}} ir {{var2}}",
+	"data-missing": "Trūksta duomenų.",
+	"hypothesis-test-between": "Hipotezės testas {{x}} tarp {{group}}",
+	"hypothesis-test-for": "Hipotezės testas {{variable}}",
+	"hypothesis-test-for-independence": "Hipotezės testas dėl nepriklausomybės tarp {{var1}} ir {{var2}}",
+	"hypothesis-test-x-y": "Hipotezės testas {{x}} prieš {{y}}",
+	"kruskal-wallis-test": "Kruskal Wallis testas {{variable}} tarp {{group}}",
+	"must-have-two-different-values": "Grupavimo kintamasis <1>{{group}}</1> turi turėti bent dvi skirtingas reikšmes.",
+	"pop-prob-first-group": "Tegul <1 /> yra populiacijos tikimybė, kad <3>{{var1}}</3> būti <5>{{success}}</5> pirmoje grupėje,",
+	"probability-second-group": "atitinkamai antrosios grupės tikimybė. Tikriname",
+	"probtest-success-prob": "Tegul p yra populiacijos tikimybė <1>{{variable}}</1> būti <3>{{success}}</3>",
+	"probtest2-being-success": "Tegul <1 /> yra populiacijos tikimybė, kad <3>{{var1}}</3> būti <5>{{success}}</5>, <7 /> ir <9 /> - tikimybė <11>{{var2}}</11> būti <13>{{success}}</13>, atitinkamai. Tikriname",
+	"proptest2-title": "Proporcijų lygybės hipotezės testas {{var1}} prieš proporciją {{var2}}",
+	"proptest2-title-grouped": "Hipotezės apie {{var1}} proporcijų lygybę testas pagal {{group}}",
+	"sample-mean-in-group": "Imties vidurkis grupėje",
+	"sample-proportion": "Imties proporcija: ",
+	"sample-proportion-in-group": "Imties dalis grupėje",
+	"vs": "prieš.",
+	"we-test": "Testuojame"
+}

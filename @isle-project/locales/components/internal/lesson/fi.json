@@ -1,0 +1,19 @@
+{
+	"add-instructor-note": "Lisää huomautus ohjaajille",
+	"add-personal-note": "Lisää henkilökohtainen huomautus",
+	"add-student-note": "Lisää huomautus opiskelijoille",
+	"clipboard-empty": "Leikepöytä on tyhjä",
+	"clipboard-empty-message": "Tekstin lisääminen epäonnistui. Leikepöytä on tällä hetkellä tyhjä.",
+	"copy": "Kopioi",
+	"cut": "Leikkaa",
+	"encountered-error": "Tapahtui virhe:",
+	"end-interface-tour": "Lopeta parhaillaan käynnissä oleva käyttöliittymäkierros napsauttamalla tätä.",
+	"highlight": "Korosta",
+	"not-available-yet": "Oppitunti ei ole saatavilla (vielä)",
+	"paste": "Liitä",
+	"read-aloud": "Lue ääneen",
+	"remove-highlight": "Poista korostus",
+	"start-interface-tour": "Aloituskierros, jossa selitetään käyttöliittymän eri elementit",
+	"voice-not-supported": "Ei tuettu.",
+	"voice-not-supported-message": "Selaimesi ei tällä hetkellä tue tekstistä puheeksi -toimintoa. Kokeile Google Chromea."
+}
