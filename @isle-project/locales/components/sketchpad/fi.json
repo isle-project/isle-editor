@@ -51,5 +51,15 @@
 	"saved": "Tallennettu",
 	"saved-local": "Paikalliseen selaimeen tallennetut muistiinpanot",
 	"saved-server": "Palvelimelle tallennetut muistiinpanot",
-	"server-response": "Palvelimen vastaus"
+	"server-response": "Palvelimen vastaus",
+	"show": "Näytä",
+	"show-all-annotations": "Näytä kaikki huomautukset",
+	"show-only-own-annotations": "Näytä vain omat huomautukset",
+	"start-tutorial": "Aloita sketchpad tutorial",
+	"stop-tutorial": "Lopeta sketchpad opetusohjelma",
+	"text-mode": "Tekstitila",
+	"undo": "Kumoa",
+	"upload-email": "Hyvä {{name}}, muistiinpanosi on ladattu onnistuneesti ja ne ovat nyt saatavilla osoitteessa osoitteessa ",
+	"upload-successful": "Tiedosto on ladattu onnistuneesti, ja se on saatavilla seuraavassa osoitteessa osoitteessa.",
+	"upload-to-server": "Lataa palvelimelle"
 }

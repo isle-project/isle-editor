@@ -55,5 +55,11 @@
 	"show": "Näita",
 	"show-all-annotations": "Näita kõiki märkusi",
 	"show-only-own-annotations": "Näita ainult enda märkusi",
-	"start-tutorial": "Alusta sketchpad õpetus"
+	"start-tutorial": "Alusta sketchpad õpetus",
+	"stop-tutorial": "Lõpeta sketchpad õpetus",
+	"text-mode": "Tekstirežiim",
+	"undo": "Undo",
+	"upload-email": "Lugupeetud {{name}}, teie märkmed on edukalt üles laaditud ja on nüüd kättesaadavad aadressil ",
+	"upload-successful": "Fail on edukalt üles laaditud ja sellega saab tutvuda järgmisel aadressil",
+	"upload-to-server": "Üleslaadimine serverisse"
 }

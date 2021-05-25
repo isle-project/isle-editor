@@ -58,5 +58,8 @@
 	"start-tutorial": "Pradėkite eskizų sąsiuvinio pamoką",
 	"stop-tutorial": "Sustabdyti eskizų sąsiuvinio pamoka",
 	"text-mode": "Teksto režimas",
-	"undo": "Panaikinti"
+	"undo": "Panaikinti",
+	"upload-email": "Gerbiami {{name}}, jūsų pastabos sėkmingai įkeltos ir dabar jas galima rasti adresu ",
+	"upload-successful": "Failas buvo sėkmingai įkeltas ir jį galima pasiekti šiuo adresu",
+	"upload-to-server": "Įkėlimas į serverį"
 }

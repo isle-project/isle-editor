@@ -51,5 +51,15 @@
 	"saved": "Megmentett",
 	"saved-local": "Helyi böngészőben mentett jegyzetek",
 	"saved-server": "A szerverre mentett jegyzetek",
-	"server-response": "Kiszolgáló válasza"
+	"server-response": "Kiszolgáló válasza",
+	"show": "Mutasd meg a",
+	"show-all-annotations": "Összes megjegyzés megjelenítése",
+	"show-only-own-annotations": "Csak a saját megjegyzések megjelenítése",
+	"start-tutorial": "Start sketchpad tutorial",
+	"stop-tutorial": "Stop sketchpad bemutató",
+	"text-mode": "Szöveges mód",
+	"undo": "Undo",
+	"upload-email": "Kedves {{name}}, a jegyzeteit sikeresen feltöltöttük, és most már elérhető a következő címen ",
+	"upload-successful": "A fájl feltöltése sikeresen megtörtént, és a következő címen érhető el",
+	"upload-to-server": "Feltöltés a szerverre"
 }
