@@ -53,5 +53,11 @@
 	"survey-not-started": "Uuringut ei ole veel alustatud.",
 	"ticket-created": "Tänan teid",
 	"ticket-created-message": "Suur tänu teie aruande eest.\nMe uurime probleemi ja anname teile võimalikult kiiresti tagasisidet.\nSaate e-kirja, kuid näete vastust ka armatuurlaual. ",
-	"ticketing": "Probleemi teatamine"
+	"ticketing": "Probleemi teatamine",
+	"ticketing-intro": "Siin saate teatada probleemist selle õppetüki toimimisega. Teie sõnum saadetakse nii teie õpetajatele kui ka ISLE tugimeeskonnale.",
+	"title": "Pealkiri",
+	"title-placeholder": "Valige pealkiri...",
+	"toggle-details": "Toggle üksikasjad",
+	"type": "Tüüp",
+	"yes-no": "Jah / Ei"
 }

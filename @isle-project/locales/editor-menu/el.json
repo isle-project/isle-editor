@@ -38,5 +38,15 @@
 	"search-issues": "Ζητήματα αναζήτησης",
 	"select-all": "Επιλέξτε όλα",
 	"services": "Υπηρεσίες",
-	"show-all": "Εμφάνιση όλων"
+	"show-all": "Εμφάνιση όλων",
+	"supported-file-extensions-are": "Οι υποστηριζόμενες επεκτάσεις αρχείων είναι οι εξής",
+	"toggle-developer-tools": "Εναλλαγή Εργαλεία προγραμματιστή",
+	"toggle-full-screen": "Εναλλαγή πλήρους οθόνης",
+	"toggle-toolbar": "Εναλλαγή γραμμής εργαλείων",
+	"trying-to-load-a-large-file": "Προσπαθείτε να φορτώσετε ένα μεγάλο αρχείο, το ISLE Editor δεν θα ανταποκρίνεται.",
+	"undo": "Αναίρεση",
+	"unsupported-file": "Μη υποστηριζόμενο αρχείο",
+	"view": "Προβολή",
+	"window": "Παράθυρο",
+	"you-are-trying-to-load-a-non-supported-file-type": "Προσπαθείτε να φορτώσετε έναν μη υποστηριζόμενο τύπο αρχείου"
 }

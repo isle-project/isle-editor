@@ -53,5 +53,17 @@
 	"residuals": "Reziduuri",
 	"residuals-vs-fitted": "Reziduale față de cele ajustate",
 	"sd": "SD",
-	"simple-regression-title": "Regresia lui {{y}} pe {{x}} (model id: slm{{counter}})"
+	"simple-regression-title": "Regresia lui {{y}} pe {{x}} (model id: slm{{counter}})",
+	"size": "Dimensiune",
+	"standard-deviation": "Abaterea standard",
+	"standard-deviation-coefficient": "Abaterea standard a estimării coeficientului",
+	"std-error": "Eroare standard",
+	"test-statistic-coefficient-zero": "Statistica de test pentru ipoteza că coeficientul este zero ",
+	"threshold": "Prag",
+	"toggle-fullscreen": "Comutarea vizualizării pe ecran complet",
+	"use-model-to-predict": "Utilizați acest model pentru a prezice pentru datele selectate în prezent",
+	"use-model-to-predict-tooltip": "Predicțiile și reziduurile vor fi atașate la tabelul de date.",
+	"use-model-to-predict-tooltip-logistic": "Probabilitățile, reziduurile și categoriile prezise (folosind pragul de probabilitate ales care trebuie depășit pentru a prezice un succes) vor fi atașate la tabelul de date.",
+	"variable": "Variabilă",
+	"yes": "da"
 }

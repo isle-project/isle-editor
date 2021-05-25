@@ -28,5 +28,15 @@
 	"population-proportion": "Podiel obyvateľstva",
 	"population-standard-deviation": "Štandardná odchýlka populácie: ",
 	"probability-calculations-for": "Výpočty pravdepodobnosti pre",
-	"rate-parameter": "Parameter rýchlosti"
+	"rate-parameter": "Parameter rýchlosti",
+	"require-numeric-or-binary": "Prosím, vyberte vzorku buď z číselnej premennej, alebo z kategorickej premennej s dvoma kategóriami.",
+	"sample-size": "Veľkosť vzorky",
+	"select-variable": "Výber premennej",
+	"show-data-dists": "Zobraziť distribúcie údajov",
+	"shown-as-blue-line": "znázornené modrou čiarou",
+	"shown-as-red-line": "znázornené červenou čiarou",
+	"standard-deviation": "Štandardná odchýlka",
+	"standard-deviation-of": "Štandardná odchýlka",
+	"uniform": "Jednotné",
+	"values": "Hodnoty"
 }

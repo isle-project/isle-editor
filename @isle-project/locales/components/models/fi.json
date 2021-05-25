@@ -48,5 +48,22 @@
 	"proportion-of-variance": "Osuus varianssista",
 	"qq-plot-of-residuals": "QQ-jäännösdiagrammi",
 	"random-forest-for": "Random Forest for {{y}} (model id: forest{{counter}})",
-	"regression-y-on-x": "Regressio {{y}} on {{x}}"
+	"regression-y-on-x": "Regressio {{y}} on {{x}}",
+	"residual-standard-error": "Jäljelle jäävä keskivirhe",
+	"residuals": "Jäännökset",
+	"residuals-vs-fitted": "Jäännösarvot vs. sovitetut",
+	"sd": "SD",
+	"simple-regression-title": "Regressio {{y}} ja {{x}} välillä (mallin tunnus: slm{{counter}}).",
+	"size": "Koko",
+	"standard-deviation": "Keskihajonta",
+	"standard-deviation-coefficient": "Kertoimen estimaatin keskihajonta",
+	"std-error": "Std. virhe",
+	"test-statistic-coefficient-zero": "Testitilasto hypoteesille, jonka mukaan kerroin on nolla. ",
+	"threshold": "Kynnysarvo",
+	"toggle-fullscreen": "Vaihda koko näytön näkymä",
+	"use-model-to-predict": "Käytä tätä mallia ennustamaan tällä hetkellä valittua dataa",
+	"use-model-to-predict-tooltip": "Ennusteet ja jäännökset liitetään datataulukkoon.",
+	"use-model-to-predict-tooltip-logistic": "Todennäköisyydet, jäännökset ja ennustetut luokat (käyttäen valittua todennäköisyyskynnystä, joka on ylitettävä onnistumisen ennustamiseksi) liitetään datataulukkoon.",
+	"variable": "Muuttuva",
+	"yes": "kyllä"
 }

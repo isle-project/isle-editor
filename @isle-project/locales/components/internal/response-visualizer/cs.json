@@ -48,5 +48,14 @@
 	"select-size": "Výběr velikosti clusteru",
 	"show-clusters": "Zobrazit klastry",
 	"show-extended": "Zobrazit rozšířené",
-	"some-clusters": "Některé shluky"
+	"some-clusters": "Některé shluky",
+	"start": "Start",
+	"text-chat": "Textový chat",
+	"toggle-sensitivity": "Přepínání citlivosti",
+	"users-in-focus": "Následující uživatelé mají v současné době komponentu ve fokusu:",
+	"value": "Hodnota",
+	"video-chat": "Videochat",
+	"video-chat-with": "Videochat s {{name}}",
+	"whole-word": "Celé slovo",
+	"whole-word-tooltip": "Zda hledat celá slova"
 }

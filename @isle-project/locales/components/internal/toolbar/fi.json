@@ -48,5 +48,16 @@
 	"stop-survey": "Lopeta kysely",
 	"submit": "Lähetä",
 	"survey": "Tutkimus",
-	"survey-anonymous": "Tiedot kerätään nimettöminä"
+	"survey-anonymous": "Tiedot kerätään nimettöminä",
+	"survey-not-anonymous": "Tietoja ei kerätä nimettömästi.",
+	"survey-not-started": "Tutkimusta ei ole vielä aloitettu.",
+	"ticket-created": "Kiitos.",
+	"ticket-created-message": "Kiitoksia paljon kertomuksestanne.\nTutkimme ongelmaa ja annamme sinulle palautetta mahdollisimman pian.\nSaat sähköpostiviestin, mutta näet vastauksen myös kojelaudassa. ",
+	"ticketing": "Ilmoita ongelma",
+	"ticketing-intro": "Täällä voit ilmoittaa ongelmasta tämän oppitunnin toiminnassa. Viestisi lähetetään sekä opettajillesi että ISLEn tukitiimille.",
+	"title": "Otsikko",
+	"title-placeholder": "Valitse otsikko...",
+	"toggle-details": "Toggle Details",
+	"type": "Tyyppi",
+	"yes-no": "Kyllä / Ei"
 }

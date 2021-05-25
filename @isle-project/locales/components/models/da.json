@@ -48,5 +48,22 @@
 	"proportion-of-variance": "Andel af variationen",
 	"qq-plot-of-residuals": "QQ Plot af residualer",
 	"random-forest-for": "Random Forest for {{y}} (model id: forest{{counter}})",
-	"regression-y-on-x": "Regression af {{y}} på {{x}}"
+	"regression-y-on-x": "Regression af {{y}} på {{x}}",
+	"residual-standard-error": "Resterende standardfejl",
+	"residuals": "Restprodukter",
+	"residuals-vs-fitted": "Residualer vs. tilpassede",
+	"sd": "SD",
+	"simple-regression-title": "Regression af {{y}} på {{x}} (model id: slm{{counter}})",
+	"size": "Størrelse",
+	"standard-deviation": "Standardafvigelse",
+	"standard-deviation-coefficient": "Standardafvigelse for koefficientestimat",
+	"std-error": "Std. fejl",
+	"test-statistic-coefficient-zero": "Teststatistik for hypotesen om, at koefficienten er nul ",
+	"threshold": "Tærskelværdi",
+	"toggle-fullscreen": "Skift mellem fuldskærmsvisning",
+	"use-model-to-predict": "Brug denne model til at forudsige for de aktuelt valgte data",
+	"use-model-to-predict-tooltip": "Forudsigelser og residualer vil blive knyttet til datatabellen",
+	"use-model-to-predict-tooltip-logistic": "Sandsynligheder, residualer og forudsagte kategorier (ved hjælp af den valgte sandsynlighedstærskel, der skal overskrides for at forudsige en succes) vil blive knyttet til datatabellen.",
+	"variable": "Variabel",
+	"yes": "ja"
 }

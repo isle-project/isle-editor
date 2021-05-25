@@ -48,5 +48,21 @@
 	"probability-density-function": "Funkcija gostote verjetnosti (PDF)",
 	"probability-plot": "Graf verjetnosti",
 	"quantile-function": "Kvantilna funkcija",
-	"random-variable-denotes-failures": "Naključna spremenljivka X označuje število neuspehov, dokler ni dosežen r-ti uspeh."
+	"random-variable-denotes-failures": "Naključna spremenljivka X označuje število neuspehov, dokler ni dosežen r-ti uspeh.",
+	"random-variable-denotes-trials": "Naključna spremenljivka X označuje število poskusov, dokler ni dosežen r-ti uspeh.",
+	"rate": "Stopnja",
+	"rate-parameter": "Za parameter stopnje ",
+	"reset": "Ponastavitev",
+	"scale": "Lestvica",
+	"shape": "Oblika",
+	"standard-deviation": "Standardni odklon",
+	"students-t-distribution": "Porazdelitev T študenta",
+	"success-probability": "Verjetnost uspeha",
+	"success-probability-of": "in verjetnost uspeha",
+	"successes-until-stop": "Uspehi do ustavitve",
+	"trials-and-success-probability": "poskusov in verjetnost uspeha",
+	"uniform-distribution": "Enakomerna porazdelitev",
+	"upper-bound": "Zgornja meja",
+	"value": "Vrednost",
+	"we-get": "dobimo"
 }

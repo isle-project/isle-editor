@@ -28,5 +28,11 @@
 	"live-preview": "Čia rasite tiesioginę peržiūrą, t. y. tai, ką matys jūsų naudotojai. Principas pažįstamas. WYSIWYG! Išversta atgal į anglų kalbą: Tai, ką matote, tą ir gaunate!",
 	"markdown-help": "Išmokti \"Markdown\" žymėjimo kalbą nėra sudėtinga, o tai yra pranašumas prieš HTML. Ją daug lengviau skaityti ir tai labai pagreitina darbą.",
 	"monaco-editor": "Kairėje pusėje rasite kodo bazę. Tiesą sakant, ji gana gerai pažįstama, jei jau esate dirbę su HTML arba Markdown. Tačiau nesijaudinkite: visa tai atsiveria greitai - ir, kad ir kaip bauginančiai atrodytų, lengvai išmoksite.",
-	"opened-wizard": "Šiame lange rodomi ir paaiškinami visi \"Polaroid\" atributai. Spustelėjus atributą, jis bus naudojamas mūsų kode. Mūsų atveju kol kas tai tik atributas image, kuriame yra url."
+	"opened-wizard": "Šiame lange rodomi ir paaiškinami visi \"Polaroid\" atributai. Spustelėjus atributą, jis bus naudojamas mūsų kode. Mūsų atveju kol kas tai tik atributas image, kuriame yra url.",
+	"polaroid-double-click": "Dukart spustelėkite žodį \"Polaroid\". Dabar bus paryškintas atitinkamas elementas dešinėje.",
+	"polaroid-hover": "Pabandykite pele užvesti pelę ant žodžio \"Polaroid\". Pamatysite: Pasirodo nedidelis paaiškinimas. Taip pat galite užvesti pelės žymeklį ant elemento atributų. Paveikslėlio atveju matote, kad tai yra eilutė, kuri akivaizdžiai nurodo į URL adresą. Jei norite, galite pakeisti paveikslėlį. - Taip galima tyrinėti kiekvieną redaktoriaus elementą.",
+	"polaroid-lightbulb": "Jei spustelėsite \"Polaroid\" pavadinimą, virš \"Polaroid\" komponento kodo pasirodys maža lemputė. Jei spustelėsite ją, galėsite pasirinkti kelias parinktis. Pirma, galite padaryti, kad rodinys padarytų komponentą matomą, arba galite pateikti konkrečias problemas ir pasiūlyti patobulinimų \"GitHub\".",
+	"polaroid-wizard": "Užvedus pelės žymeklį ant elemento, viršutiniame dešiniajame kampe atsiranda mažas raudonas rėmelis su keliais mygtukais, kuriais galite atlikti įvairius veiksmus. Norėdami pritaikyti \"Polaroid\", spustelėdami pirmąjį mygtuką su krumpliaračio piktograma, atidarome \"Komponentų vedlį\".",
+	"translate-lesson": "Galite išversti visą pamoką į pasirinktą kalbą - iš viso siūlome 10 kalbų. Be to, galite versti atskiras ištraukas. Norėdami tai padaryti, turite paryškinti tekstą, spustelėti dešinįjį pelės klavišą ir kontekstiniame meniu pasirinkti komandą versti.",
+	"two-panes": "Kaip matote: Redaktorius padalytas į dvi dalis (galite net perkelti juostą viduryje). Taip galite nustatyti, kiek vietos turi užimti atitinkamas skydelis."
 }

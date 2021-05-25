@@ -38,5 +38,15 @@
 	"search-issues": "Paieškos klausimai",
 	"select-all": "Pasirinkite visus",
 	"services": "Paslaugos",
-	"show-all": "Rodyti visus"
+	"show-all": "Rodyti visus",
+	"supported-file-extensions-are": "Palaikomi šie failų plėtiniai",
+	"toggle-developer-tools": "Perjungti programuotojo įrankius",
+	"toggle-full-screen": "Perjungti visą ekraną",
+	"toggle-toolbar": "Įrankių juostos perjungimas",
+	"trying-to-load-a-large-file": "Bandote įkelti didelį failą, ISLE redaktorius nereaguos.",
+	"undo": "Panaikinti",
+	"unsupported-file": "Nepalaikomas failas",
+	"view": "Peržiūrėti",
+	"window": "Langas",
+	"you-are-trying-to-load-a-non-supported-file-type": "Bandote įkelti nepalaikomą failo tipą"
 }

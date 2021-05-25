@@ -42,5 +42,20 @@
 	"remove-question-words": "Eemaldage küsitav sõna",
 	"remove-question-words-tooltip": "Kas eemaldada sõnapilvest sõnu, mis on esitatud küsimuste esitamise üleskutses",
 	"representative-documents": "Klastri esindavad dokumendid ",
-	"reset": "Reset"
+	"reset": "Reset",
+	"search": "Otsi",
+	"select-cluster-representative": "Valige esindusdokumentide kuvamiseks klastri valik",
+	"select-size": "Valige klastri suurus",
+	"show-clusters": "Näita klastreid",
+	"show-extended": "Näita laiendatud",
+	"some-clusters": "Mõned klastrid",
+	"start": "Start",
+	"text-chat": "Tekstivestlus",
+	"toggle-sensitivity": "Tundlikkuse muutmine",
+	"users-in-focus": "Praegu on komponent fookuses järgmistel kasutajatel:",
+	"value": "Väärtus",
+	"video-chat": "Videovestlus",
+	"video-chat-with": "Videovestlus koos {{name}}",
+	"whole-word": "Terve sõna",
+	"whole-word-tooltip": "Kas otsida terveid sõnu"
 }

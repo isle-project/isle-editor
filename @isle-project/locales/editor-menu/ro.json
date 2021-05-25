@@ -33,5 +33,20 @@
 	"reload": "Reîncărcare",
 	"report-bug": "Raportați bug-ul",
 	"request-new-feature": "Solicită o nouă caracteristică",
-	"save-file": "Salvați fișierul"
+	"save-file": "Salvați fișierul",
+	"save-file-as": "Salvați fișierul ca",
+	"search-issues": "Probleme de căutare",
+	"select-all": "Selectați toate",
+	"services": "Servicii",
+	"show-all": "Arată tot",
+	"supported-file-extensions-are": "Extensiile de fișiere acceptate sunt",
+	"toggle-developer-tools": "Comutați Instrumente pentru dezvoltatori",
+	"toggle-full-screen": "Comutarea ecranului complet",
+	"toggle-toolbar": "Comutarea barei de instrumente",
+	"trying-to-load-a-large-file": "Încercați să încărcați un fișier de mari dimensiuni, ISLE Editor nu va mai răspunde.",
+	"undo": "Desfaceți",
+	"unsupported-file": "Fișier nesuportat",
+	"view": "Vezi",
+	"window": "Fereastra",
+	"you-are-trying-to-load-a-non-supported-file-type": "Încercați să încărcați un tip de fișier neacceptat"
 }

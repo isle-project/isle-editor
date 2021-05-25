@@ -43,5 +43,19 @@
 	"remove-question-words-tooltip": "Odstránenie slov z výzvy na zadanie otázky z mraku slov",
 	"representative-documents": "Reprezentatívne dokumenty pre klaster ",
 	"reset": "Obnovenie",
-	"search": "Vyhľadávanie"
+	"search": "Vyhľadávanie",
+	"select-cluster-representative": "Vyberte zhluk na zobrazenie reprezentatívnych dokumentov",
+	"select-size": "Výber veľkosti zhluku",
+	"show-clusters": "Zobraziť klastre",
+	"show-extended": "Zobraziť rozšírené",
+	"some-clusters": "Niektoré klastre",
+	"start": "Štart",
+	"text-chat": "Textový chat",
+	"toggle-sensitivity": "Prepínanie citlivosti",
+	"users-in-focus": "Komponent je momentálne zameraný na týchto používateľov:",
+	"value": "Hodnota",
+	"video-chat": "Videochat",
+	"video-chat-with": "Videochat s {{name}}",
+	"whole-word": "Celé slovo",
+	"whole-word-tooltip": "Či sa majú vyhľadávať celé slová"
 }

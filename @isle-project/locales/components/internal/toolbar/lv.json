@@ -43,5 +43,21 @@
 	"response": "Atbildes",
 	"show-toolbar": "Rādīt rīkjoslu",
 	"sketchpad": "Skiču bloks",
-	"slow-fast": "Pārāk lēni / Pārāk ātri"
+	"slow-fast": "Pārāk lēni / Pārāk ātri",
+	"start-survey": "Aptaujas sākšana",
+	"stop-survey": "Pārtraukt apsekojumu",
+	"submit": "Iesniegt",
+	"survey": "Aptauja",
+	"survey-anonymous": "Dati tiek vākti anonīmi",
+	"survey-not-anonymous": "Dati netiek vākti anonīmi.",
+	"survey-not-started": "Apsekojums vēl nav sākts.",
+	"ticket-created": "Paldies",
+	"ticket-created-message": "Liels paldies par jūsu ziņojumu.\nMēs izskatīsim problēmu un pēc iespējas ātrāk sniegsim jums atgriezenisko saiti.\nJūs saņemsiet e-pasta vēstuli, bet atbildi varat redzēt arī vadības panelī. ",
+	"ticketing": "Ziņot par problēmu",
+	"ticketing-intro": "Šeit varat ziņot par problēmu, kas saistīta ar šīs nodarbības darbību. Jūsu ziņojums tiks nosūtīts gan jūsu pasniedzējiem, gan ISLE atbalsta komandai.",
+	"title": "Nosaukums",
+	"title-placeholder": "Izvēlieties nosaukumu...",
+	"toggle-details": "Pārslēgt informāciju",
+	"type": "Tips",
+	"yes-no": "Jā / Nē"
 }

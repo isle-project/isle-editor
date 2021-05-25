@@ -48,5 +48,16 @@
 	"stop-survey": "Opriți sondajul",
 	"submit": "Trimiteți",
 	"survey": "Sondaj",
-	"survey-anonymous": "Datele sunt colectate în mod anonim"
+	"survey-anonymous": "Datele sunt colectate în mod anonim",
+	"survey-not-anonymous": "Datele nu sunt colectate în mod anonim.",
+	"survey-not-started": "Sondajul nu a fost încă demarat.",
+	"ticket-created": "Mulțumesc.",
+	"ticket-created-message": "Vă mulțumesc foarte mult pentru raportul dumneavoastră.\nVom analiza problema și vă vom oferi un feedback cât mai curând posibil.\nVeți primi un e-mail, dar puteți vedea răspunsul și în tabloul de bord. ",
+	"ticketing": "Raportați problema",
+	"ticketing-intro": "Aici puteți semnala o problemă legată de funcționarea acestei lecții. Mesajul dvs. va fi trimis atât instructorilor dvs. cât și echipei de asistență ISLE.",
+	"title": "Titlu",
+	"title-placeholder": "Selectați titlul...",
+	"toggle-details": "Toggle Detalii",
+	"type": "Tip",
+	"yes-no": "Da / Nu"
 }

@@ -53,5 +53,11 @@
 	"survey-not-started": "Undersökningen har ännu inte påbörjats.",
 	"ticket-created": "Tack.",
 	"ticket-created-message": "Tack så mycket för er rapport.\nVi kommer att undersöka problemet och ge dig feedback så snart som möjligt.\nDu kommer att få ett e-postmeddelande, men du kan också se svaret i instrumentpanelen. ",
-	"ticketing": "Rapportera problem"
+	"ticketing": "Rapportera problem",
+	"ticketing-intro": "Här kan du anmäla problem med funktionen i den här lektionen. Ditt meddelande kommer att skickas till både dina lärare och ISLE:s supportteam.",
+	"title": "Titel",
+	"title-placeholder": "Välj titel...",
+	"toggle-details": "Växla detaljer",
+	"type": "Typ",
+	"yes-no": "Ja / Nej"
 }

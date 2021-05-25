@@ -38,5 +38,15 @@
 	"search-issues": "Keresési problémák",
 	"select-all": "Válasszon ki mindent",
 	"services": "Szolgáltatások",
-	"show-all": "Mindent megmutatni"
+	"show-all": "Mindent megmutatni",
+	"supported-file-extensions-are": "A támogatott fájlkiterjesztések a következők",
+	"toggle-developer-tools": "Fejlesztői eszközök átkapcsolása",
+	"toggle-full-screen": "Teljes képernyő átkapcsolása",
+	"toggle-toolbar": "Eszköztár kapcsolása",
+	"trying-to-load-a-large-file": "Nagyméretű fájlt próbál betölteni, az ISLE Editor nem fog reagálni.",
+	"undo": "Undo",
+	"unsupported-file": "Nem támogatott fájl",
+	"view": "A  megtekintése",
+	"window": "Ablak",
+	"you-are-trying-to-load-a-non-supported-file-type": "Nem támogatott fájltípust próbál betölteni"
 }

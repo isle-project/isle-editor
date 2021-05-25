@@ -33,5 +33,10 @@
 	"sample-size": "Parauga lielums",
 	"select-variable": "Izvēlieties mainīgo",
 	"show-data-dists": "Rādīt datu sadalījumu",
-	"shown-as-blue-line": "attēlots kā zilā līnija"
+	"shown-as-blue-line": "attēlots kā zilā līnija",
+	"shown-as-red-line": "attēlots kā sarkanā līnija",
+	"standard-deviation": "Standarta novirze",
+	"standard-deviation-of": "Standarta novirze",
+	"uniform": "Uniforma",
+	"values": "Vērtības"
 }

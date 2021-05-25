@@ -53,5 +53,9 @@
 	"text-chat": "Chat text",
 	"toggle-sensitivity": "Comutați sensibilitatea",
 	"users-in-focus": "Următorii utilizatori au în prezent componenta în discuție:",
-	"value": "Valoare"
+	"value": "Valoare",
+	"video-chat": "Video Chat",
+	"video-chat-with": "Video chat cu {{name}}",
+	"whole-word": "Cuvânt întreg",
+	"whole-word-tooltip": "Dacă se caută cuvinte întregi"
 }

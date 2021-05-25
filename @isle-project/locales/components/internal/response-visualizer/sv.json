@@ -43,5 +43,19 @@
 	"remove-question-words-tooltip": "Om du vill ta bort ord i frågetecken från ordmolnet",
 	"representative-documents": "Representativa dokument för kluster ",
 	"reset": "Återställ",
-	"search": "Sök på"
+	"search": "Sök på",
+	"select-cluster-representative": "Välj ett kluster för att visa representativa dokument",
+	"select-size": "Välj klusterstorlek",
+	"show-clusters": "Visa kluster",
+	"show-extended": "Visa utökat",
+	"some-clusters": "Vissa kluster",
+	"start": "Starta",
+	"text-chat": "Textchatt",
+	"toggle-sensitivity": "Växla känslighet",
+	"users-in-focus": "Följande användare har för närvarande komponenten i fokus:",
+	"value": "Värde",
+	"video-chat": "Videochatt",
+	"video-chat-with": "Videochatt med {{name}}",
+	"whole-word": "Hela ordet",
+	"whole-word-tooltip": "Om du ska söka efter hela ord"
 }

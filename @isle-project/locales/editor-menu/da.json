@@ -38,5 +38,15 @@
 	"search-issues": "Søgningsspørgsmål",
 	"select-all": "Vælg alle",
 	"services": "Tjenester",
-	"show-all": "Vis alle"
+	"show-all": "Vis alle",
+	"supported-file-extensions-are": "De understøttede filtypenavne er",
+	"toggle-developer-tools": "Skift mellem udviklerværktøjer",
+	"toggle-full-screen": "Skift til fuld skærm",
+	"toggle-toolbar": "Skift værktøjslinje",
+	"trying-to-load-a-large-file": "Du forsøger at indlæse en stor fil, ISLE Editor vil ikke reagere",
+	"undo": "Fortryd",
+	"unsupported-file": "Ikke understøttet fil",
+	"view": "Se",
+	"window": "Vindue",
+	"you-are-trying-to-load-a-non-supported-file-type": "Du forsøger at indlæse en ikke understøttet filtype"
 }

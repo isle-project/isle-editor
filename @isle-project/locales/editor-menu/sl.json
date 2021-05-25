@@ -33,5 +33,20 @@
 	"reload": "Ponovno polnjenje",
 	"report-bug": "Prijava hrošča",
 	"request-new-feature": "Zahteva za novo funkcijo",
-	"save-file": "Shrani datoteko"
+	"save-file": "Shrani datoteko",
+	"save-file-as": "Shrani datoteko kot",
+	"search-issues": "Težave pri iskanju",
+	"select-all": "Izberite vse",
+	"services": "Storitve",
+	"show-all": "Pokaži vse",
+	"supported-file-extensions-are": "Podprte razširitve datotek so",
+	"toggle-developer-tools": "Preklopite orodja za razvijalce",
+	"toggle-full-screen": "Preklopite celozaslonsko funkcijo",
+	"toggle-toolbar": "Preklop orodne vrstice",
+	"trying-to-load-a-large-file": "Poskušate naložiti veliko datoteko, urejevalnik ISLE se ne bo odzval.",
+	"undo": "Razveljavi",
+	"unsupported-file": "Nepodprta datoteka",
+	"view": "Oglejte si",
+	"window": "Okno",
+	"you-are-trying-to-load-a-non-supported-file-type": "Poskušate naložiti nepodprto vrsto datoteke"
 }

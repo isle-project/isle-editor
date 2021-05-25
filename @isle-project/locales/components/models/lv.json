@@ -48,5 +48,22 @@
 	"proportion-of-variance": "Novirzes proporcija",
 	"qq-plot-of-residuals": "QQ atlieku grafiks",
 	"random-forest-for": "Random Forest {{y}} (modeļa id: forest{{counter}})",
-	"regression-y-on-x": " {{y}} regresija uz {{x}}"
+	"regression-y-on-x": " {{y}} regresija uz {{x}}",
+	"residual-standard-error": "Atlikuma standartkļūda",
+	"residuals": "Atlikumi",
+	"residuals-vs-fitted": "Atlikumi pret piemērotajiem",
+	"sd": "SD",
+	"simple-regression-title": " {{y}} regresija uz {{x}} (modeļa id: slm{{counter}})",
+	"size": "Izmērs",
+	"standard-deviation": "Standarta novirze",
+	"standard-deviation-coefficient": "Koeficienta aplēses standartnovirze",
+	"std-error": "Standartkļūda",
+	"test-statistic-coefficient-zero": "Testa statistika hipotēzei, ka koeficients ir nulle ",
+	"threshold": "Slieksnis",
+	"toggle-fullscreen": "Pārslēgt pilnekrāna skatu",
+	"use-model-to-predict": "Izmantojiet šo modeli, lai prognozētu pašlaik atlasītos datus.",
+	"use-model-to-predict-tooltip": "Prognozes un atlikumi tiks pievienoti datu tabulai.",
+	"use-model-to-predict-tooltip-logistic": "Datu tabulai tiks pievienotas varbūtības, atlikumi un prognozētās kategorijas (izmantojot izvēlēto varbūtības slieksni, kas jāpārsniedz, lai prognozētu veiksmi).",
+	"variable": "Mainīgs",
+	"yes": "jā"
 }

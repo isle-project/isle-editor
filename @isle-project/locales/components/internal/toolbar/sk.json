@@ -43,5 +43,21 @@
 	"response": "Odpoveď",
 	"show-toolbar": "Zobraziť panel nástrojov",
 	"sketchpad": "Skicár",
-	"slow-fast": "Príliš pomalé / príliš rýchle"
+	"slow-fast": "Príliš pomalé / príliš rýchle",
+	"start-survey": "Spustenie prieskumu",
+	"stop-survey": "Zastaviť prieskum",
+	"submit": "Odoslať",
+	"survey": "Prieskum",
+	"survey-anonymous": "Údaje sa zbierajú anonymne",
+	"survey-not-anonymous": "Údaje sa nezbierajú anonymne.",
+	"survey-not-started": "Prieskum sa ešte nezačal.",
+	"ticket-created": "Ďakujem",
+	"ticket-created-message": "Veľmi pekne vám ďakujem za vašu správu.\nNa problém sa pozrieme a čo najskôr vám poskytneme spätnú väzbu.\nDostanete e-mail, ale odpoveď si môžete pozrieť aj na ovládacom paneli. ",
+	"ticketing": "Nahlásiť problém",
+	"ticketing-intro": "Tu môžete nahlásiť problém s funkciou tejto lekcie. Vaša správa bude odoslaná inštruktorom aj tímu podpory ISLE.",
+	"title": "Názov",
+	"title-placeholder": "Vyberte názov...",
+	"toggle-details": "Prepínač Podrobnosti",
+	"type": "Typ",
+	"yes-no": "Áno / Nie"
 }

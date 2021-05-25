@@ -48,5 +48,21 @@
 	"probability-density-function": "Sannolikhetsdensitetsfunktion (PDF)",
 	"probability-plot": "Sannolikhetsdiagram",
 	"quantile-function": "Kvantelfunktion",
-	"random-variable-denotes-failures": "Den slumpmässiga variabeln X anger antalet misslyckanden tills den r:e framgången uppnås."
+	"random-variable-denotes-failures": "Den slumpmässiga variabeln X anger antalet misslyckanden tills den r:e framgången uppnås.",
+	"random-variable-denotes-trials": "Den slumpmässiga variabeln X anger antalet försök tills den r:e framgången uppnås.",
+	"rate": "Räkna med",
+	"rate-parameter": "För parametern hastighet ",
+	"reset": "Återställ",
+	"scale": "Skala",
+	"shape": "Form",
+	"standard-deviation": "Standardavvikelse",
+	"students-t-distribution": "Studentens T-fördelning",
+	"success-probability": "Sannolikhet för framgång",
+	"success-probability-of": "och en sannolikhet för framgång på",
+	"successes-until-stop": "Framgångar tills stopp",
+	"trials-and-success-probability": "försök och en sannolikhet för framgång på",
+	"uniform-distribution": "Enhetlig fördelning",
+	"upper-bound": "Övre gräns",
+	"value": "Värde",
+	"we-get": "får vi"
 }

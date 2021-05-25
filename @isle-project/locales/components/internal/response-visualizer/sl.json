@@ -43,5 +43,19 @@
 	"remove-question-words-tooltip": "Odstranitev besed v vprašanju iz oblaka besed",
 	"representative-documents": "Reprezentativni dokumenti za grozd ",
 	"reset": "Ponastavitev",
-	"search": "Iskanje"
+	"search": "Iskanje",
+	"select-cluster-representative": "Izberite grozd za prikaz reprezentativnih dokumentov",
+	"select-size": "Izberite velikost gruče",
+	"show-clusters": "Prikaži grozde",
+	"show-extended": "Prikaži razširjeno",
+	"some-clusters": "Nekateri grozdi",
+	"start": "Začetek",
+	"text-chat": "Tekstovni klepet",
+	"toggle-sensitivity": "Preklapljanje občutljivosti",
+	"users-in-focus": "Naslednji uporabniki imajo trenutno komponento v fokusu:",
+	"value": "Vrednost",
+	"video-chat": "Video klepet",
+	"video-chat-with": "Video klepet z {{name}}",
+	"whole-word": "Celotna beseda",
+	"whole-word-tooltip": "iskanje celih besed"
 }

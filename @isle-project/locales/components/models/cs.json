@@ -48,5 +48,22 @@
 	"proportion-of-variance": "Podíl odchylky",
 	"qq-plot-of-residuals": "QQ graf reziduí",
 	"random-forest-for": "Náhodný les pro {{y}} (id modelu: forest{{counter}})",
-	"regression-y-on-x": "Regrese {{y}} na {{x}}"
+	"regression-y-on-x": "Regrese {{y}} na {{x}}",
+	"residual-standard-error": "Reziduální standardní chyba",
+	"residuals": "Zbytky",
+	"residuals-vs-fitted": "Reziduální hodnoty vs. fitované hodnoty",
+	"sd": "SD",
+	"simple-regression-title": "Regrese {{y}} na {{x}} (id modelu: slm{{counter}})",
+	"size": "Velikost",
+	"standard-deviation": "Směrodatná odchylka",
+	"standard-deviation-coefficient": "Směrodatná odchylka odhadu koeficientu",
+	"std-error": "Std. chyba",
+	"test-statistic-coefficient-zero": "Testovací statistika pro hypotézu, že koeficient je nulový ",
+	"threshold": "Prahová hodnota",
+	"toggle-fullscreen": "Přepnutí zobrazení na celou obrazovku",
+	"use-model-to-predict": "Použijte tento model k předpovědi pro aktuálně vybraná data.",
+	"use-model-to-predict-tooltip": "Předpovědi a rezidua budou připojeny k datové tabulce.",
+	"use-model-to-predict-tooltip-logistic": "Pravděpodobnosti, rezidua a předpovězené kategorie (s použitím zvolené prahové hodnoty pravděpodobnosti, která má být překročena pro předpověď úspěchu) budou připojeny k datové tabulce.",
+	"variable": "Variabilní",
+	"yes": "ano"
 }

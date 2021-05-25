@@ -43,5 +43,21 @@
 	"response": "Odziv",
 	"show-toolbar": "Prikaži orodno vrstico",
 	"sketchpad": "Skicirka",
-	"slow-fast": "Prepočasi / prehitro"
+	"slow-fast": "Prepočasi / prehitro",
+	"start-survey": "Začetek raziskave",
+	"stop-survey": "Prekinitev ankete",
+	"submit": "Pošlji",
+	"survey": "Anketa",
+	"survey-anonymous": "Podatki se zbirajo anonimno.",
+	"survey-not-anonymous": "Podatki se ne zbirajo anonimno.",
+	"survey-not-started": "Raziskava se še ni začela.",
+	"ticket-created": "Hvala.",
+	"ticket-created-message": "Najlepša hvala za vaše poročilo.\nTežavo bomo preučili in vam v najkrajšem možnem času posredovali povratne informacije.\nPrejeli boste e-poštno sporočilo, odgovor pa si lahko ogledate tudi v nadzorni plošči. ",
+	"ticketing": "Poročilo o težavi",
+	"ticketing-intro": "Tukaj lahko prijavite težavo s funkcijo te lekcije. Vaše sporočilo bo poslano vašim inštruktorjem in podporni ekipi ISLE.",
+	"title": "Naslov",
+	"title-placeholder": "Izberite naslov...",
+	"toggle-details": "Preklopite podrobnosti",
+	"type": "Tip",
+	"yes-no": "Da / Ne"
 }

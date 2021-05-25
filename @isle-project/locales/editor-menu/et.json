@@ -33,5 +33,20 @@
 	"reload": "Laadige uuesti",
 	"report-bug": "Teatage veast",
 	"request-new-feature": "Uue funktsiooni taotlemine",
-	"save-file": "Salvesta fail"
+	"save-file": "Salvesta fail",
+	"save-file-as": "Salvesta fail kui",
+	"search-issues": "Otsingu probleemid",
+	"select-all": "Valige kõik",
+	"services": "Teenused",
+	"show-all": "Näita kõiki",
+	"supported-file-extensions-are": "Toetatud faililaiendid on järgmised",
+	"toggle-developer-tools": "Arendustööriistade lülitamine",
+	"toggle-full-screen": "Täisekraani lülitamine",
+	"toggle-toolbar": "Tööriistariba lülitamine",
+	"trying-to-load-a-large-file": "Sa üritad laadida suurt faili, ISLE Editor ei reageeri.",
+	"undo": "Undo",
+	"unsupported-file": "Toetamata fail",
+	"view": "Vaata",
+	"window": "Aken",
+	"you-are-trying-to-load-a-non-supported-file-type": "Sa üritad laadida mittetoetavat failitüüpi"
 }

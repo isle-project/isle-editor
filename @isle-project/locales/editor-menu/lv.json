@@ -33,5 +33,20 @@
 	"reload": "Pārlādēt",
 	"report-bug": "Ziņot par kļūdu",
 	"request-new-feature": "Pieprasīt jaunu funkciju",
-	"save-file": "Saglabāt failu"
+	"save-file": "Saglabāt failu",
+	"save-file-as": "Saglabāt failu kā",
+	"search-issues": "Meklēšanas jautājumi",
+	"select-all": "Atlasiet visus",
+	"services": "Pakalpojumi",
+	"show-all": "Rādīt visu",
+	"supported-file-extensions-are": "Atbalstītie failu paplašinājumi ir šādi.",
+	"toggle-developer-tools": "Pārslēgt Izstrādātāja rīki",
+	"toggle-full-screen": "Pārslēgt pilnekrāna ekrānu",
+	"toggle-toolbar": "Pārslēgt rīkjoslu",
+	"trying-to-load-a-large-file": "Mēģināt ielādēt lielu failu, ISLE redaktors nereaģēs.",
+	"undo": "Atcelt",
+	"unsupported-file": "Neatbalstīts fails",
+	"view": "Skatīt",
+	"window": "Logs",
+	"you-are-trying-to-load-a-non-supported-file-type": "Jūs mēģināt ielādēt neatbalstītu faila tipu."
 }

@@ -33,5 +33,20 @@
 	"reload": "Ladda om",
 	"report-bug": "Rapportera fel",
 	"request-new-feature": "Begär en ny funktion",
-	"save-file": "Spara fil"
+	"save-file": "Spara fil",
+	"save-file-as": "Spara fil som",
+	"search-issues": "Sökfrågor",
+	"select-all": "Välj alla",
+	"services": "Tjänster",
+	"show-all": "Visa alla",
+	"supported-file-extensions-are": "De filändelser som stöds är",
+	"toggle-developer-tools": "Växla utvecklarverktyg",
+	"toggle-full-screen": "Växla till helskärm",
+	"toggle-toolbar": "Växla verktygsfältet",
+	"trying-to-load-a-large-file": "Du försöker ladda en stor fil, ISLE Editor kommer inte att reagera.",
+	"undo": "Ångra",
+	"unsupported-file": "Fil som inte stöds",
+	"view": "Visa",
+	"window": "Fönster",
+	"you-are-trying-to-load-a-non-supported-file-type": "Du försöker ladda en filtyp som inte stöds."
 }

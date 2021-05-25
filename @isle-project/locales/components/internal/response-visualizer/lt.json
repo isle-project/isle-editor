@@ -42,5 +42,20 @@
 	"remove-question-words": "Pašalinti klausiamuosius žodžius",
 	"remove-question-words-tooltip": "Ar iš žodžių debesies pašalinti žodžius, esančius klausimo užklausoje",
 	"representative-documents": "Reprezentatyvūs klasterio dokumentai ",
-	"reset": "Iš naujo nustatyti"
+	"reset": "Iš naujo nustatyti",
+	"search": "Paieška",
+	"select-cluster-representative": "Pasirinkite klasterį, kad būtų rodomi reprezentatyvūs dokumentai",
+	"select-size": "Pasirinkite klasterio dydį",
+	"show-clusters": "Rodyti klasterius",
+	"show-extended": "Rodyti išplėstinį",
+	"some-clusters": "Kai kurie klasteriai",
+	"start": "Pradžia",
+	"text-chat": "Teksto pokalbiai",
+	"toggle-sensitivity": "Jautrumo perjungimas",
+	"users-in-focus": "Šiuo metu komponentą turi šie naudotojai:",
+	"value": "Vertė",
+	"video-chat": "Vaizdo pokalbiai",
+	"video-chat-with": "Vaizdo pokalbiai su {{name}}",
+	"whole-word": "Visas žodis",
+	"whole-word-tooltip": "Ar ieškoti ištisų žodžių"
 }

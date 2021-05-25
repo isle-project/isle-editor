@@ -48,5 +48,16 @@
 	"stop-survey": "Stop undersøgelsen",
 	"submit": "Indsend",
 	"survey": "Undersøgelse",
-	"survey-anonymous": "Data indsamles anonymt"
+	"survey-anonymous": "Data indsamles anonymt",
+	"survey-not-anonymous": "Oplysningerne indsamles ikke anonymt.",
+	"survey-not-started": "Undersøgelsen er endnu ikke blevet påbegyndt.",
+	"ticket-created": "Tak",
+	"ticket-created-message": "Mange tak for Deres rapport.\nVi vil undersøge problemet og give dig feedback så hurtigt som muligt.\nDu vil modtage en e-mail, men du kan også se svaret i dashboardet. ",
+	"ticketing": "Rapportere problem",
+	"ticketing-intro": "Her kan du rapportere et problem med funktionen af denne lektion. Din besked vil blive sendt til både dine undervisere og ISLE-supportteamet.",
+	"title": "Titel",
+	"title-placeholder": "Vælg titel...",
+	"toggle-details": "Skift detaljer",
+	"type": "Type",
+	"yes-no": "Ja / Nej"
 }

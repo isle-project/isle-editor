@@ -33,5 +33,20 @@
 	"reload": "Znovu načítať",
 	"report-bug": "Nahlásiť chybu",
 	"request-new-feature": "Žiadosť o novú funkciu",
-	"save-file": "Uložiť súbor"
+	"save-file": "Uložiť súbor",
+	"save-file-as": "Uložiť súbor ako",
+	"search-issues": "Problémy s vyhľadávaním",
+	"select-all": "Vyberte všetky",
+	"services": "Služby",
+	"show-all": "Zobraziť všetko",
+	"supported-file-extensions-are": "Podporované prípony súborov sú",
+	"toggle-developer-tools": "Prepínanie nástrojov pre vývojárov",
+	"toggle-full-screen": "Prepnutie na celú obrazovku",
+	"toggle-toolbar": "Prepínanie panela nástrojov",
+	"trying-to-load-a-large-file": "Pokúšate sa načítať veľký súbor, editor ISLE nebude reagovať",
+	"undo": "Zrušiť",
+	"unsupported-file": "Nepodporovaný súbor",
+	"view": "Zobraziť",
+	"window": "Okno",
+	"you-are-trying-to-load-a-non-supported-file-type": "Pokúšate sa načítať nepodporovaný typ súboru"
 }

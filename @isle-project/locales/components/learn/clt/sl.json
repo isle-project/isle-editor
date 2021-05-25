@@ -33,5 +33,10 @@
 	"sample-size": "Velikost vzorca",
 	"select-variable": "Izberite spremenljivko",
 	"show-data-dists": "Prikaži porazdelitve podatkov",
-	"shown-as-blue-line": "prikazano z modro črto"
+	"shown-as-blue-line": "prikazano z modro črto",
+	"shown-as-red-line": "prikazano z rdečo črto",
+	"standard-deviation": "Standardni odklon",
+	"standard-deviation-of": "Standardni odklon",
+	"uniform": "Enota",
+	"values": "Vrednosti"
 }

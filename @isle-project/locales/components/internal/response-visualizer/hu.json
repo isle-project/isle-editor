@@ -48,5 +48,14 @@
 	"select-size": "Klaszterméret kiválasztása",
 	"show-clusters": "Klaszterek megjelenítése",
 	"show-extended": "Kibővített megjelenítése",
-	"some-clusters": "Néhány klaszter"
+	"some-clusters": "Néhány klaszter",
+	"start": "Indítsa el a  oldalt.",
+	"text-chat": "Szöveges csevegés",
+	"toggle-sensitivity": "Érzékenység átkapcsolása",
+	"users-in-focus": "Jelenleg a következő felhasználóknak van fókuszban a komponens:",
+	"value": "Érték",
+	"video-chat": "Videochat",
+	"video-chat-with": "Videochat a {{name}}",
+	"whole-word": "Egész szó",
+	"whole-word-tooltip": "Egész szavak keresése"
 }

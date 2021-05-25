@@ -43,5 +43,10 @@
 	"toggle-developer-tools": "Превключване на инструментите за разработчици",
 	"toggle-full-screen": "Превключване на цял екран",
 	"toggle-toolbar": "Превключване на лентата с инструменти",
-	"trying-to-load-a-large-file": "Опитвате се да заредите голям файл, редакторът на ISLE няма да реагира."
+	"trying-to-load-a-large-file": "Опитвате се да заредите голям файл, редакторът на ISLE няма да реагира.",
+	"undo": "Отмяна на",
+	"unsupported-file": "Неподдържан файл",
+	"view": "Вижте",
+	"window": "Прозорец",
+	"you-are-trying-to-load-a-non-supported-file-type": "Опитвате се да заредите неподдържан тип файл"
 }

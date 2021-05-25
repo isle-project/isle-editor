@@ -50,5 +50,12 @@
 	"show-extended": "Näytä laajennettu",
 	"some-clusters": "Jotkin klusterit",
 	"start": "Aloita",
-	"text-chat": "Tekstikeskustelu"
+	"text-chat": "Tekstikeskustelu",
+	"toggle-sensitivity": "Herkkyyden vaihtaminen",
+	"users-in-focus": "Seuraavilla käyttäjillä on tällä hetkellä komponentti fokuksessa:",
+	"value": "Arvo",
+	"video-chat": "Videokeskustelu",
+	"video-chat-with": "Videokeskustelu {{name}}",
+	"whole-word": "Koko sana",
+	"whole-word-tooltip": "Etsitäänkö kokonaisia sanoja"
 }

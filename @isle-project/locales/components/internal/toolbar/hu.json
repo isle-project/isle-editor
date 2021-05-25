@@ -48,5 +48,16 @@
 	"stop-survey": "Stop felmérés",
 	"submit": "Küldje be a",
 	"survey": "Felmérés",
-	"survey-anonymous": "Az adatok gyűjtése névtelenül történik"
+	"survey-anonymous": "Az adatok gyűjtése névtelenül történik",
+	"survey-not-anonymous": "Az adatok gyűjtése nem névtelenül történik.",
+	"survey-not-started": "A felmérés még nem kezdődött el.",
+	"ticket-created": "Köszönöm.",
+	"ticket-created-message": "Köszönöm szépen a jelentést.\nMegvizsgáljuk a problémát, és a lehető leghamarabb visszajelzést adunk Önnek.\nKapni fog egy e-mailt, de a választ a műszerfalon is láthatja. ",
+	"ticketing": "Probléma jelentése",
+	"ticketing-intro": "Itt jelentheti a lecke működésével kapcsolatos problémát. Üzenetét elküldjük az oktatóinak és az ISLE ügyfélszolgálatának is.",
+	"title": "Cím",
+	"title-placeholder": "Válassza ki a címet...",
+	"toggle-details": "Toggle részletek",
+	"type": "Típus",
+	"yes-no": "Igen / Nem"
 }
