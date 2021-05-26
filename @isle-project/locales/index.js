@@ -24,7 +24,7 @@ i18n
 		ns: [ 'components' ],
 		defaultNS: 'components',
 		backend: {
-			loadPath: 'https://cdn.jsdelivr.net/npm/@isle-project/locales/components/{{ns}}/{{lng}}.json'
+			loadPath: 'https://cdn.jsdelivr.net/npm/@isle-project/locales@0.2.75/components/{{ns}}/{{lng}}.json'
 		},
 		react: {
 			bindI18n: 'languageChanged',
