@@ -21,15 +21,9 @@ import React, { Fragment, useCallback, useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { addResources } from '@isle-project/locales';
 import Loadable from '@isle-project/components/internal/loadable';
 const SelectModal = Loadable( () => import( /* webpackChunkName: "LanguageSwitcherModal" */ './select_modal.js' ) );
 import './language_switcher.css';
-
-
-// VARIABLES //
-
-addResources( 'LanguageSwitcher' );
 
 
 // MAIN //
@@ -65,4 +59,4 @@ const LanguageSwitcher = ( props ) => {
 
 // EXPORTS //
 
-export default withTranslation( 'LanguageSwitcher' )( LanguageSwitcher );
+export default withTranslation( 'internal/language-switcher' )( LanguageSwitcher );

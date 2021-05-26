@@ -6,12 +6,10 @@ import Joyride from 'react-joyride';
 import { useTranslation } from 'react-i18next';
 import merge from '@stdlib/utils/merge';
 import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'Joyride' );
 const STYLES = {
 	options: {
 		arrowColor: '#fff',
@@ -41,7 +39,7 @@ const STYLES = {
 * @property {Object} styles - object to override the [default styles](https://github.com/gilbarbara/react-joyride/blob/3e08384415a831b20ce21c8423b6c271ad419fbf/src/styles.js)
 */
 const Wrapper = ( props ) => {
-	const { t } = useTranslation( 'Joyride' );
+	const { t } = useTranslation( 'joyride' );
 	const { parentNode } = props;
 	const zIndex = useRef();
 

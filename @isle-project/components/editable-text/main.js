@@ -45,7 +45,7 @@ const EditableText = ( props ) => {
 	const { defaultText, inline, className, style } = props;
 	const session = useContext( SessionContext );
 	const divRef = useRef();
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	const [ text, setText ] = useState( defaultText );
 	const [ editing, setEditing ] = useState( false );
 	useEffect( () => {

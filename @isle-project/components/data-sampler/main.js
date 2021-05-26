@@ -14,13 +14,7 @@ import isFunction from '@stdlib/assert/is-function';
 import contains from '@stdlib/assert/contains';
 import objectKeys from '@stdlib/utils/keys';
 import noop from '@stdlib/utils/noop';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-
-
-// VARIABLES //
-
-addResources( 'DataSampler' );
 
 
 // MAIN //
@@ -148,4 +142,4 @@ DataSampler.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'DataSampler' )( withPropCheck( DataSampler ) );
+export default withTranslation( 'data-sampler' )( withPropCheck( DataSampler ) );

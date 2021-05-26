@@ -35,7 +35,7 @@ const TextArea = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const { defaultValue, placeholder, onChange } = props;
 	const [ value, setValue ] = useState( props.value || defaultValue );
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const textarea = useRef();
 
 	useEffect( () => {

@@ -35,7 +35,7 @@ const FlippableCard = ( props ) => {
 	const defaultValue = props.defaultValue;
 	const [ isFlipped, setIsFlipped ] = useState( defaultValue );
 	const [ fired, setFired ] = useState( false );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	useEffect( () => {
 		setIsFlipped( defaultValue );
 	}, [ defaultValue ] );

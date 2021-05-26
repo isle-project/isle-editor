@@ -6,13 +6,11 @@ import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
-import { addResources } from '@isle-project/locales';
 import './switch.css';
 
 
 // VARIABLES //
 
-addResources( 'General' );
 const debug = logger( 'isle:switch' );
 
 
@@ -30,7 +28,7 @@ const debug = logger( 'isle:switch' );
 */
 const Switch = ({ active, tooltip, tooltipPos, className, style, onChange, children }) => {
 	const [ pos, setPos ] = useState( 0 );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 
 	const mappedChildren = React.Children.map( children, ( elem, idx ) => {
 		const props = { style: {}};

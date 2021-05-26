@@ -9,14 +9,12 @@ import isArray from '@stdlib/assert/is-array';
 import Plotly from '@isle-project/components/plotly';
 import Tooltip from '@isle-project/components/tooltip';
 import { RandomForestClassifier } from '@isle-project/components/models/decision-tree/tree.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
@@ -187,4 +185,4 @@ RandomForest.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( RandomForest ) );
+export default withTranslation( 'models' )( withPropCheck( RandomForest ) );

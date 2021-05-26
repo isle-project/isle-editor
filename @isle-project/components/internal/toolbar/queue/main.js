@@ -319,4 +319,4 @@ Queue.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Queue' )( Queue );
+export default withTranslation( 'internal/queue' )( Queue );

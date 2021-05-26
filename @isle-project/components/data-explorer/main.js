@@ -1419,4 +1419,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'DataExplorer' )( withPropCheck( DataExplorer ) );
+export default withTranslation( 'data-explorer' )( withPropCheck( DataExplorer ) );

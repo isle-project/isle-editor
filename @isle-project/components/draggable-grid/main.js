@@ -55,7 +55,7 @@ const createLayout = ( children ) => {
 */
 const DraggableGrid = ({ children, isDraggable, isResizable, rowHeight }) => {
 	const [ layouts, setLayouts ] = useState( createLayout( children ) );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	useEffect( () => {
 		const newLayouts = createLayout( children );
 		setLayouts( newLayouts );

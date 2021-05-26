@@ -14,7 +14,7 @@ import './error_message.css';
 // MAIN //
 
 const ErrorMessage = ( props ) => {
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	const [ showStack, setShowStack ] = useState( false );
 	const toggleStack = useCallback( () => {
 		setShowStack( !showStack );

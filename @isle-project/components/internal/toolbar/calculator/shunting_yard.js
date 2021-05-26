@@ -130,7 +130,7 @@ function toRPN( arr ) {
 		else if ( token === ')' ) {
 			while ( s.first() !== '(' ) {
 				if ( s.first() === void 0 ) {
-					return i18n.t( 'Calculator:too-many-closing-parens' );
+					return i18n.t( 'calculator:too-many-closing-parens' );
 				}
 				output.push( s.pop() );
 			}
@@ -139,7 +139,7 @@ function toRPN( arr ) {
 		else if ( RE_DIGIT.test( token ) ) {
 			output.push( token );
 		} else if ( token !== ' ' ) {
-			return i18n.t( 'Calculator:malformed-expression' );
+			return i18n.t( 'calculator:malformed-expression' );
 		}
 	}
 	while ( s.length ) {

@@ -5,20 +5,14 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import ROutput from '@isle-project/components/r/output';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
-
-
-// VARIABLES //
-
-addResources( 'Tests' );
 
 
 // MAIN //
 
 function Chi2Test({ data, var1, var2 }) {
-	const { t } = useTranslation( 'Tests' );
+	const { t } = useTranslation( 'tests' );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}

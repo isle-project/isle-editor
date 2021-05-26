@@ -13,13 +13,11 @@ import SessionContext from '@isle-project/session/context.js';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
 const uid = generateUID( 'likert-scale' );
-addResources( 'LikertScale' );
 const DEFAULT_OPTIONS = [
 	'strongly-disagree',
 	'disagree',
@@ -46,7 +44,7 @@ const LikertScale = ( props ) => {
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
-	const { t } = useTranslation( 'LikertScale' );
+	const { t } = useTranslation( 'likert-scale' );
 	const options = props.options || DEFAULT_OPTIONS.map( x => t( x ) );
 
 	const submitHandler = () => {

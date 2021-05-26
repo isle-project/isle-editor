@@ -8,20 +8,14 @@ import kruskalTest from '@stdlib/stats/kruskal-test';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
-
-
-// VARIABLES //
-
-addResources( 'Tests' );
 
 
 // MAIN //
 
 function Kruskal({ data, variable, group, showDecision }) {
-	const { t } = useTranslation( 'Tests' );
+	const { t } = useTranslation( 'tests' );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}

@@ -18,14 +18,12 @@ import TextArea from '@isle-project/components/input/text-area';
 import ProportionsInput from '@isle-project/components/input/proportions';
 import SessionContext from '@isle-project/session/context.js';
 import { DASHBOARD_CLICK_GENERATE } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './dashboard.css';
 
 
 // VARIABLES //
 
-addResources( 'Dashboard' );
 const debug = logger( 'isle:dashboard' );
 const uid = generateUID( 'dashboard' );
 
@@ -236,4 +234,4 @@ Dashboard.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Dashboard' )( withPropCheck( Dashboard ) );
+export default withTranslation( 'dashboard' )( withPropCheck( Dashboard ) );

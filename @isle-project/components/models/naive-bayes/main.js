@@ -9,7 +9,6 @@ import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
 import exp from '@stdlib/math/base/special/exp';
 import Tooltip from '@isle-project/components/tooltip';
-import { addResources } from '@isle-project/locales';
 import { gaussian } from './naive_bayes.js';
 import { designMatrix, designMatrixMissing } from './design_matrix.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -18,7 +17,6 @@ import { Factor } from '@isle-project/utils/factor-variable';
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
@@ -198,4 +196,4 @@ NaiveBayes.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( NaiveBayes ) );
+export default withTranslation( 'models' )( withPropCheck( NaiveBayes ) );

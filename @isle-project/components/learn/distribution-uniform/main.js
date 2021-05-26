@@ -17,12 +17,10 @@ import NumberInput from '@isle-project/components/input/number';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnDistribution' );
 const LINE_STYLE = {
 	data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
 };
@@ -399,4 +397,4 @@ UniformProbs.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( UniformProbs );
+export default withTranslation( 'learn/distribution' )( UniformProbs );

@@ -9,13 +9,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import Table from '@isle-project/components/table';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-
-
-// VARIABLES //
-
-addResources( 'StatisticalModels' );
 
 
 // FUNCTIONS //
@@ -184,4 +178,4 @@ KMeans.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( KMeans ) );
+export default withTranslation( 'models' )( withPropCheck( KMeans ) );

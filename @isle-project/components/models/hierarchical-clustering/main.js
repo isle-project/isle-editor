@@ -9,17 +9,11 @@ import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
-import { addResources } from '@isle-project/locales';
 import Dendrogram from './hclust/dendrogram.js';
 import FullscreenButton from './hclust/fullscreen_button.js';
 import hclust from './hclust';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './hierarchical_clustering.css';
-
-
-// VARIABLES //
-
-addResources( 'StatisticalModels' );
 
 
 // FUNCTIONS //
@@ -174,4 +168,4 @@ HierarchicalClustering.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( HierarchicalClustering ) );
+export default withTranslation( 'models' )( withPropCheck( HierarchicalClustering ) );

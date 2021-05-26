@@ -18,12 +18,10 @@ import qexp from '@stdlib/stats/base/dists/exponential/quantile';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnDistribution' );
 const NEAR_ONE = 0.999999;
 
 
@@ -394,4 +392,4 @@ ExponentialProbs.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( ExponentialProbs );
+export default withTranslation( 'learn/distribution' )( ExponentialProbs );

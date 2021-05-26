@@ -16,7 +16,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import Table from '@isle-project/components/table';
 import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 import LASSO from './lasso.js';
@@ -24,7 +23,6 @@ import LASSO from './lasso.js';
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
@@ -259,4 +257,4 @@ LassoRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( LassoRegression ) );
+export default withTranslation( 'models' )( withPropCheck( LassoRegression ) );

@@ -192,4 +192,4 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 
 // EXPORTS //
 
-export default withTranslation( 'TextEditor' )( MenuBar );
+export default withTranslation( 'text-editor' )( MenuBar );

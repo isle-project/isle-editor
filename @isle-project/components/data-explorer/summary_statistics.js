@@ -44,7 +44,7 @@ const Option = props => {
 	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
-		}}>{i18n.t( 'DataExplorer:'+props.data.label )}</span>
+		}}>{i18n.t( 'data-explorer:'+props.data.label )}</span>
 		<OverlayTrigger
 			trigger={['hover', 'click']}
 			placement="right" rootClose overlay={popover}

@@ -77,7 +77,7 @@ const VoiceInput = ( props ) => {
 		onChange, onClick, onFinalText, onRecordingStart, onRecordingStop, onSegment, onSubmit, timeout } = props;
 	const [ isRecording, setIsRecording ] = useState( autorecord );
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const [ value, setValue ] = useState(
 		bind && session.state ? session.state[ bind ]: defaultValue,
 	);

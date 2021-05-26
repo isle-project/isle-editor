@@ -43,7 +43,7 @@ const SliderInput = ( props ) => {
 	const { bind, defaultValue, legend, disabled, hideTooltip, inline, min, max, onChange, precision, step,
 		minLabel, maxLabel, numberInputStyle, rangeInputStyle, style } = props;
 
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState(
 		bind && session.state ? session.state[ bind ] : defaultValue

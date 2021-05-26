@@ -8,7 +8,6 @@ import isArray from '@stdlib/assert/is-array';
 import Alert from 'react-bootstrap/Alert';
 import Collapse from '@isle-project/components/collapse';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './accordion.css';
 
@@ -16,7 +15,6 @@ import './accordion.css';
 // VARIABLES //
 
 const debug = logger( 'isle:accordion' );
-addResources( 'Accordion' );
 
 
 // MAIN //
@@ -37,7 +35,7 @@ const Accordion = ( props ) => {
 	debug( 'Rendering accordion...' );
 	const [ isActive, setIsActive ] = useState( props.active );
 	const [ prevActive, setPrevActive ] = useState( props.active );
-	const { t } = useTranslation( 'Accordion' );
+	const { t } = useTranslation( 'accordion' );
 	if ( props.active !== prevActive ) {
 		setIsActive( props.active );
 		setPrevActive( props.active );

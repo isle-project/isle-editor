@@ -19,7 +19,6 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import { MULTIPLE_CHOICE_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
@@ -27,7 +26,6 @@ import './multiple-choice-survey.css';
 
 // VARIABLES //
 
-addResources( 'Survey' );
 const debug = logger( 'isle:multiple-choice-survey' );
 const uid = generateUID( 'multiple-choice-survey' );
 
@@ -47,7 +45,7 @@ const uid = generateUID( 'multiple-choice-survey' );
 */
 const MultipleChoiceSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'Survey' );
+	const { t } = useTranslation( 'survey' );
 	const { allowMultipleAnswers, anonymous, answers, multipleAnswers, question, onSubmit } = props;
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );

@@ -46,7 +46,7 @@ const polygonStyle = ( type ) => {
 */
 const ShapedForm = ({ children, type, src, style, onClick }) => {
 	const [ loaded, setLoaded ] = useState( false );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 
 	useEffect( () => {
 		if ( !src ) {

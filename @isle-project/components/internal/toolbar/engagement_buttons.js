@@ -13,7 +13,7 @@ import { ENGAGEMENT_SURVEY_START } from '@isle-project/constants/actions.js';
 
 const EngagementButtons = ( props ) => {
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'Toolbar' );
+	const { t } = useTranslation( 'internal/toolbar' );
 	const startYesNoSurvey = useCallback( () => {
 		const action = {
 			id: 'engagement',

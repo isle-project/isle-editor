@@ -25,7 +25,6 @@ import SessionContext from '@isle-project/session/context.js';
 import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -34,8 +33,6 @@ import './js_shell.css';
 
 // VARIABLES //
 
-addResources( 'R' );
-addResources( 'SolutionButton' );
 const RE_CONSOLE = /console\.(error|warn|debug|log|info)/g;
 const uid = generateUID( 'js-shell' );
 const THEME = {
@@ -67,7 +64,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 		<Tooltip
 			id="tooltip"
 		>
-			{t('SolutionButton:solution-tooltip')}
+			{t('solution-button:solution-tooltip')}
 		</Tooltip>
 	);
 	if ( !exhaustedHints || nEvaluations < 1 ) {
@@ -86,7 +83,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 						style={{
 							pointerEvents: 'none'
 						}}
-					>{ !displayed ? t('SolutionButton:show-solution') : t('SolutionButton:hide-solution') }</Button>
+					>{ !displayed ? t('solution-button:show-solution') : t('solution-button:hide-solution') }</Button>
 				</span>
 			</OverlayTrigger>
 		);
@@ -96,7 +93,7 @@ const showSolutionButton = ( exhaustedHints, clickHandler, displayed, nEvaluatio
 			variant="warning"
 			size="sm"
 			onClick={clickHandler}
-		>{ !displayed ? t('SolutionButton:show-solution') : t('SolutionButton:hide-solution') }</Button>
+		>{ !displayed ? t('solution-button:show-solution') : t('solution-button:hide-solution') }</Button>
 	);
 };
 
@@ -478,4 +475,4 @@ JSShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( JSShell );
+export default withTranslation( [ 'r', 'solution-button' ] )( JSShell );

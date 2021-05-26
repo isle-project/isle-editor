@@ -20,7 +20,6 @@ import isUserInCohort from '@isle-project/utils/is-user-in-cohort';
 import { RESPONSE_VISUALIZER_TOGGLE, RESPONSE_VISUALIZER_EXTENDED } from '@isle-project/constants/actions.js';
 import { FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, MEMBER_ACTION,
 	RETRIEVED_USER_ACTIONS, SELECTED_COHORT, UPDATED_VISUALIZER } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import FullscreenActionDisplay from './fullscreen_action_display.js';
 import extractValue from './extract_value.js';
 import './response_visualizer.css';
@@ -29,7 +28,6 @@ import './response_visualizer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:response-visualizer' );
-addResources( 'ResponseVisualizer' );
 
 
 // FUNCTIONS //
@@ -534,4 +532,4 @@ ResponseVisualizer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'ResponseVisualizer' )( ResponseVisualizer );
+export default withTranslation( 'internal/response-visualizer' )( ResponseVisualizer );

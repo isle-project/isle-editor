@@ -15,7 +15,6 @@ import SolutionButton from '@isle-project/components/solution-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import Text from '@isle-project/components/text';
 import SessionContext from '@isle-project/session/context.js';
-import { addResources } from '@isle-project/locales';
 import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './multiple_choice_matrix.css';
@@ -23,7 +22,6 @@ import './multiple_choice_matrix.css';
 
 // VARIABLES //
 
-addResources( 'MultipleChoiceQuestion' );
 const debug = logger( 'isle:multiple-choice-matrix' );
 
 
@@ -280,4 +278,4 @@ MultipleChoiceMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'MultipleChoiceQuestion' )( withPropCheck( MultipleChoiceMatrix ) );
+export default withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceMatrix ) );

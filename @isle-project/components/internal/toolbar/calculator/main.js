@@ -361,4 +361,4 @@ Calculator.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Calculator' )( Calculator );
+export default withTranslation( 'internal/calculator' )( Calculator );

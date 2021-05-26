@@ -30,7 +30,6 @@ import SessionContext from '@isle-project/session/context.js';
 import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
 import generateUID from '@isle-project/utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED, QUIZ_FINISHED } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
@@ -39,7 +38,6 @@ import './quiz.css';
 
 // VARIABLES //
 
-addResources( 'Quiz' );
 const debug = logger( 'isle:quiz' );
 const uid = generateUID( 'quiz' );
 const DOC_STYLES = {
@@ -752,4 +750,4 @@ Quiz.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Quiz' )( withPropCheck( Quiz ) );
+export default withTranslation( 'questions/quiz' )( withPropCheck( Quiz ) );

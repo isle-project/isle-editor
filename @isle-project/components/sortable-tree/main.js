@@ -23,7 +23,7 @@ import 'react-sortable-tree/style.css'; // This only needs to be imported once i
 const Tree = ({ title, treeData, ...rest }) => {
 	const [ searchString, setSearchString ] = useState( '' );
 	const [ data, setData ] = useState( treeData );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	const handleSearchOnChange = useCallback( ( e ) => {
 		setSearchString( e.target.value );
 	}, [] );

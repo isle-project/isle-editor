@@ -5,12 +5,6 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'AlertModal' );
 
 
 // MAIN //
@@ -45,4 +39,4 @@ AlertModal.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'AlertModal' )( AlertModal );
+export default withTranslation( 'internal/alert-modal' )( AlertModal );

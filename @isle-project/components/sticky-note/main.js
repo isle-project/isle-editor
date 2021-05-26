@@ -461,4 +461,4 @@ StickyNote.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'StickyNote' )( StickyNote );
+export default withTranslation( 'sticky-note' )( StickyNote );

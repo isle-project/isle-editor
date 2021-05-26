@@ -23,14 +23,12 @@ import SessionContext from '@isle-project/session/context.js';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image_question.css';
 
 
 // VARIABLES //
 
-addResources( 'ImageQuestion' );
 const uid = generateUID( 'image-question' );
 const debug = logger( 'isle:image-question' );
 const RE_IMAGE_SRC = /src="([^"]*)"/;
@@ -58,7 +56,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 const ImageQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'ImageQuestion' );
+	const { t } = useTranslation( 'questions/image' );
 	const fileUpload = useRef( null );
 
 	const [ submitted, setSubmitted ] = useState( false );

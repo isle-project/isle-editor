@@ -17,14 +17,12 @@ import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } 
 import Confused from '-!svg-react-loader!./img/confused.svg';
 import Understood from '-!svg-react-loader!./img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./img/feedback.svg';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './feedback.css';
 
 
 // VARIABLES //
 
-addResources( 'Feedback' );
 const DEFAULT_CUSTOM_FEEDBACK = {
 	needsExplanation: false,
 	noUnderstanding: false,
@@ -139,7 +137,7 @@ const FeedbackModal = ({ closeModal, id, session, t }) => {
 const FeedbackButtons = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'Feedback' );
+	const { t } = useTranslation( 'feedback' );
 	const [ submittedBinary, setSubmittedBinary ] = useState( false );
 	const [ showModal, setShowModal ] = useState( false );
 

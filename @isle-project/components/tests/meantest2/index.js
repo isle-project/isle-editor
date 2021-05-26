@@ -17,14 +17,12 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import stdev from '@isle-project/utils/statistic/stdev';
 import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'Tests' );
 const debug = logger( 'isle:tests:meantest2' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
@@ -77,7 +75,7 @@ function retrieveGroupedValues( data, x, group ) {
 // MAIN //
 
 function MeanTest2({ data, x, y, group, xstdev, ystdev, type, diff, direction, alpha, showDecision }) {
-	const { t } = useTranslation( 'Tests' );
+	const { t } = useTranslation( 'tests' );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}

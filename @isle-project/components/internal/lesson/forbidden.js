@@ -18,4 +18,4 @@ const Forbidden = ( props ) => {
 
 // EXPORTS //
 
-export default withTranslation( 'Lesson' )( Forbidden );
+export default withTranslation( 'internal/lesson' )( Forbidden );

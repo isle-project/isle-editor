@@ -15,7 +15,7 @@ import { Factor } from '@isle-project/utils/factor-variable';
 // MAIN //
 
 function Anova({ data, variable, group, showDecision }) {
-	const { t } = useTranslation( 'Tests' );
+	const { t } = useTranslation( 'tests' );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}

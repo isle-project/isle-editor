@@ -215,4 +215,4 @@ EngagementBinary.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Toolbar' )( EngagementBinary );
+export default withTranslation( 'internal/toolbar' )( EngagementBinary );

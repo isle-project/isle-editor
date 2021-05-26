@@ -8,12 +8,10 @@ import { useTranslation } from 'react-i18next';
 import TimedButton from '@isle-project/components/timed-button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'HintButton' );
 const debug = logger( 'isle:hint-button' );
 
 
@@ -92,7 +90,7 @@ const getHintLabel = ( index, noHints, hintOpen, t ) => {
 const HintButton = ({ disabled, hints, onClick, onFinished, placement, size, style, id }) => {
 	const [ hintOpen, setHintOpen ] = useState( false );
 	const [ currentHint, setCurrentHint ] = useState( 0 );
-	const { t } = useTranslation( 'HintButton' );
+	const { t } = useTranslation( 'hint-button' );
 	const label = getHintLabel( currentHint, hints.length, hintOpen, t );
 	const handleClick = useCallback( ( callback ) => {
 		debug( 'Clicked on a hint button...' );

@@ -17,7 +17,7 @@ const STYLES = {
 // MAIN //
 
 const InterfaceTour = ( props ) => {
-	const { t } = useTranslation( 'InterfaceTour' );
+	const { t } = useTranslation( 'internal/interface-tour' );
 	const { onFinish } = props;
 	const handleChange = useCallback( ( tour ) => {
 		const type = tour.type;

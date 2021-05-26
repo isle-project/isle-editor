@@ -84,4 +84,4 @@ FullscreenButton.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( FullscreenButton );
+export default withTranslation( 'models' )( FullscreenButton );

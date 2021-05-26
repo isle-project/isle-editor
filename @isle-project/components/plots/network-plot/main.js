@@ -81,7 +81,7 @@ class NetworkPlot extends D3Plot {
 
 		node.append( 'title' )
 			.text( function txt( d ) {
-				return i18n.t( 'Plotly:number-of-edges', { nEdges: d.nEdges });
+				return i18n.t( 'plotly:number-of-edges', { nEdges: d.nEdges });
 			});
 
 		node.on( 'mouseover', function onMouseOver( d ) {

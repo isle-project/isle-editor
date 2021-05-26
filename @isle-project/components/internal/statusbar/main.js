@@ -605,4 +605,4 @@ StatusBar.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'StatusBar' )( StatusBar );
+export default withTranslation( 'internal/statusbar' )( StatusBar );

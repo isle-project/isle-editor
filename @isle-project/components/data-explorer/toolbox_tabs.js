@@ -64,7 +64,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 	on2dSelection, onQQPlotSelection
 }) => {
 	const nStatistics = statistics.length;
-	const { t } = useTranslation( 'DataExplorer' );
+	const { t } = useTranslation( 'data-explorer' );
 	const session = useContext( SessionContext );
 	let defaultActiveKey = '1';
 	if ( nStatistics === 0 ) {

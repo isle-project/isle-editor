@@ -8,7 +8,6 @@ import { withTranslation } from 'react-i18next';
 import round from '@stdlib/math/base/special/round';
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import Description from './description.js';
 import Location from './location.js';
@@ -17,7 +16,6 @@ import './weather.css';
 
 // VARIABLES //
 
-addResources( 'Weather' );
 const debug = logger( 'isle:weather' );
 const VOICE_COMMANDS = [
 	{
@@ -211,4 +209,4 @@ Weather.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Weather' )( withPropCheck( Weather ) );
+export default withTranslation( 'weather' )( withPropCheck( Weather ) );

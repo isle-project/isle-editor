@@ -490,4 +490,4 @@ ProseMirrorCollaborative.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'TextEditor' )( ProseMirrorCollaborative );
+export default withTranslation( 'text-editor' )( ProseMirrorCollaborative );

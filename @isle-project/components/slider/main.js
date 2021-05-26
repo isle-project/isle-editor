@@ -8,18 +8,12 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import closeHintButtons from '@isle-project/utils/close-hint-buttons';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import NextArrow from './next_arrow';
 import PrevArrow from './previous_arrow';
 import './slick-theme.min.css';
 import './slick.css';
 import './slider.css';
-
-
-// VARIABLES //
-
-addResources( 'Slider' );
 
 
 // MAIN //
@@ -181,4 +175,4 @@ DefaultSlider.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'Slider' )( withPropCheck( DefaultSlider ) );
+export default withTranslation( 'slider' )( withPropCheck( DefaultSlider ) );

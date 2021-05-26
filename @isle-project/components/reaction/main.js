@@ -30,7 +30,7 @@ const Reaction = ( props ) => {
 	debug( 'Render component...' );
 	const session = useContext( SessionContext );
 	const forceUpdate = useForceUpdate();
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === MEMBER_ACTION && action.id === props.actionID ) {

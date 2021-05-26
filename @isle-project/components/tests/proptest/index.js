@@ -10,14 +10,12 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
 import replace from '@stdlib/string/replace';
 import mean from '@isle-project/utils/statistic/mean';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'Tests' );
 const RE_ONESIDED_SMALLER = /\d{2}% confidence interval: \[-Infinity,-?[\d.]+\]/;
 const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
@@ -25,7 +23,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 // MAIN //
 
 function PropTest({ data, variable, alpha, direction, success, p0, showDecision }) {
-	const { t } = useTranslation( 'Tests' );
+	const { t } = useTranslation( 'tests' );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}

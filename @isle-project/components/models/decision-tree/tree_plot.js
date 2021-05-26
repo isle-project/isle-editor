@@ -136,4 +136,4 @@ class TreePlot extends Component {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( TreePlot );
+export default withTranslation( 'models' )( TreePlot );

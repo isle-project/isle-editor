@@ -21,14 +21,12 @@ import Plotly from '@isle-project/components/plotly';
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const T = 't';
 
@@ -409,4 +407,4 @@ SimpleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( SimpleLinearRegression ) );
+export default withTranslation( 'models' )( withPropCheck( SimpleLinearRegression ) );

@@ -19,12 +19,6 @@ import TeX from '@isle-project/components/tex';
 import Panel from '@isle-project/components/panel';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'LearnDistribution' );
 
 
 // FUNCTIONS //
@@ -533,4 +527,4 @@ DiscreteDistribution.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( DiscreteDistribution );
+export default withTranslation( 'learn/distribution' )( DiscreteDistribution );

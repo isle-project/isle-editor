@@ -23,14 +23,12 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './free-text-survey.css';
 
 
 // VARIABLES //
 
-addResources( 'Survey' );
 const debug = logger( 'isle:free-text-survey' );
 const uid = generateUID( 'free-text-survey' );
 
@@ -66,7 +64,7 @@ function containsProfanity( text ) {
 */
 const FreeTextSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'Survey' );
+	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );

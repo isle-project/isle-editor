@@ -39,7 +39,7 @@ const SurveyGenerator = ({ session, onHide }) => {
 	const [ showSurvey, setShowSurvey ] = useState( false );
 	const [ anonymous, setAnonymous ] = useState( true );
 	const [ disabled, setDisabled ] = useState( true );
-	const { t } = useTranslation( 'Toolbar' );
+	const { t } = useTranslation( 'internal/toolbar' );
 	const forceUpdate = useForceUpdate();
 
 	useEffect( () => {

@@ -84,7 +84,7 @@ Plotly.setPlotConfig({
 * @property {Function} onShare - callback function invoked when clicking on the "Share" button
 */
 const Wrapper = ( props ) => {
-	const { t } = useTranslation( 'Plotly' );
+	const { t } = useTranslation( 'plotly' );
 	const [ layout, setLayout ] = useState({
 		...props.layout,
 		autosize: true

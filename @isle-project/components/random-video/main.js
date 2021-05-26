@@ -8,13 +8,7 @@ import isArray from '@stdlib/assert/is-array';
 import isNull from '@stdlib/assert/is-null';
 import runif from '@stdlib/random/base/discrete-uniform';
 import VideoPlayer from '@isle-project/components/video-player';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-
-
-// VARIABLES //
-
-addResources( 'Video' );
 
 
 // MAIN //
@@ -26,7 +20,7 @@ addResources( 'Video' );
 */
 const RandomVideo = ( props ) => {
 	const [ choice, setChoice ] = useState( null );
-	const { t } = useTranslation( 'Video' );
+	const { t } = useTranslation( 'video' );
 	useEffect( () => {
 		setChoice( runif( 0, props.videos.length-1 ) );
 	}, [ props.videos ]);

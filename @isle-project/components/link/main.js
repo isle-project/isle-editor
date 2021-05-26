@@ -9,12 +9,6 @@ import { ContextMenuTrigger } from '@isle-project/components/internal/contextmen
 import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
 import { OPEN_LINK } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'Link' );
 
 
 // MAIN //
@@ -119,4 +113,4 @@ Link.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Link' )( Link );
+export default withTranslation( 'link' )( Link );

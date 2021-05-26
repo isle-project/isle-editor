@@ -52,7 +52,7 @@ const uid = generateUID( 'number-input' );
 const NumberInput = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const { bind, defaultValue, min, max, step, value: propValue, onBlur, onChange } = props;
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const session = useContext( SessionContext );
 	const [ value, setValue ] = useState(
 		propValue || ( bind && session.state ?

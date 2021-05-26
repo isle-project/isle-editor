@@ -12,14 +12,12 @@ import identity from '@stdlib/utils/identity-function';
 import isObject from '@stdlib/assert/is-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'Tables' );
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
@@ -264,4 +262,4 @@ ContingencyTable.propTypes = {
 * @property {Array<string>} display - whether to display `Row Percent` and/or `Column Percent`
 * @property {number} nDecimalPlaces - number of decimal places for relative frequencies displayed in table
 */
-export default withTranslation( 'Tables' )( withPropCheck( ContingencyTable ) );
+export default withTranslation( 'tables' )( withPropCheck( ContingencyTable ) );

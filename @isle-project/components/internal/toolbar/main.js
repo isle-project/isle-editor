@@ -15,7 +15,6 @@ import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
 import pixelsToNumber from '@isle-project/utils/pixels-to-number';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
-import { addResources } from '@isle-project/locales';
 import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from '@isle-project/constants/events.js';
 import EngagementButtons from './engagement_buttons.js';
@@ -40,7 +39,7 @@ const DEFAULT_CUSTOM_STATE = {};
 */
 const Toolbar = () => {
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'Toolbar' );
+	const { t } = useTranslation( 'internal/toolbar' );
 	const forceUpdate = useForceUpdate();
 	const [ calculator, setCalculator ] = useState( false );
 	const [ help, setHelp ] = useState( false );
@@ -204,9 +203,7 @@ const Toolbar = () => {
 				{elements.filter( x => !!x.component ).map( ( x, i ) => renderButton( x, i ))}
 				<Tooltip
 					tooltip={`${calculator ? close : open} ${t( 'calculator' )} ${F2}`}
-					placement="top" onToggle={() => {
-						addResources( 'Calculator' );
-					}}
+					placement="top"
 				>
 					<Button
 						variant={calculator ? 'success' : 'light'}
@@ -226,9 +223,6 @@ const Toolbar = () => {
 						variant={queue ? 'success' : 'light'}
 						className="toolbar-button toolbar-queue"
 						onClick={toggleQueue} onKeyPress={toggleQueue}
-						onMouseOver={() => {
-							addResources( 'Queue' );
-						}}
 						style={{
 							display: !hide.queue ? 'inline-block' : 'none'
 						}}
@@ -261,9 +255,6 @@ const Toolbar = () => {
 				</Tooltip>
 				<Tooltip
 					tooltip={`${help ? close : open} ${t( 'documentation' )}`}
-					placement="top" onToggle={() => {
-						addResources( 'HelpPage' );
-					}}
 				>
 					<Button
 						variant={help ? 'success' : 'light'}

@@ -18,12 +18,6 @@ import qt from '@stdlib/stats/base/dists/t/quantile';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'LearnDistribution' );
 
 
 // MAIN //
@@ -468,4 +462,4 @@ TProbs.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( TProbs );
+export default withTranslation( 'learn/distribution' )( TProbs );

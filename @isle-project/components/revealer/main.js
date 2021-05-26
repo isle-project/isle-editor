@@ -13,13 +13,11 @@ import stopPropagation from '@isle-project/utils/stop-propagation';
 import SessionContext from '@isle-project/session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import './revealer.css';
 
 
 // VARIABLES //
 
-addResources( 'Revealer' );
 const debug = logger( 'isle:revealer' );
 const uid = generateUID( 'revealer' );
 
@@ -36,7 +34,7 @@ const Revealer = ( props ) => {
 	const { message, show, children } = props;
 	const id = useRef( props.id || uid({ message, show }) );
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'Revealer' );
+	const { t } = useTranslation( 'revealer' );
 
 	const [ showChildren, setShowChildren ] = useState( show );
 	const [ prevShow, setPrevShow ] = useState( show );

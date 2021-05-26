@@ -15,14 +15,12 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './order-question.css';
 
 
 // VARIABLES //
 
-addResources( 'OrderQuestion' );
 const uid = generateUID( 'order-question' );
 const debug = logger( 'isle:order-question' );
 
@@ -52,7 +50,7 @@ const OrderQuestion = ( props ) => {
 	const { disableSubmitNotification, onChange, onSubmit } = props;
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
-	const { t } = useTranslation( 'OrderQuestion' );
+	const { t } = useTranslation( 'questions/order' );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ options, setOptions ]= useState(
 		props.options.map( ( val, idx ) => {

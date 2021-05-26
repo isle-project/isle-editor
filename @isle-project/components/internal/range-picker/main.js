@@ -8,13 +8,11 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
-import { addResources } from '@isle-project/locales';
 import './_datepicker.css';
 
 
 // VARIABLES //
 
-addResources( 'RangePicker' );
 const ACTIVE_STYLE = {
 	background: 'slategray',
 	color: 'white',
@@ -224,4 +222,4 @@ RangePicker.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'RangePicker' )( RangePicker );
+export default withTranslation( 'range-picker' )( RangePicker );

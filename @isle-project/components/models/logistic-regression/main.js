@@ -22,7 +22,6 @@ import Table from '@isle-project/components/table';
 import TeX from '@isle-project/components/tex';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import subtract from '@isle-project/utils/subtract';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 import irls from './logistic_regression.js';
@@ -30,7 +29,6 @@ import irls from './logistic_regression.js';
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const T = 't';
 
@@ -332,4 +330,4 @@ LogisticRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( LogisticRegression ) );
+export default withTranslation( 'models' )( withPropCheck( LogisticRegression ) );

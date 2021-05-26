@@ -21,12 +21,10 @@ import NumberInput from '@isle-project/components/input/number';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnDistribution' );
 const NEAR_ONE = 0.999;
 
 
@@ -501,4 +499,4 @@ NegativeBinomial.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( NegativeBinomial );
+export default withTranslation( 'learn/distribution' )( NegativeBinomial );

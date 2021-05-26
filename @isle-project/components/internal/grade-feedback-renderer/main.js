@@ -10,13 +10,7 @@ import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
 import Tooltip from '@isle-project/components/tooltip';
 import renderTime from '@isle-project/utils/render-time';
-import { addResources } from '@isle-project/locales';
 import './grade_feedback_renderer.css';
-
-
-// VARIABLES //
-
-addResources( 'GradeFeedbackRenderer' );
 
 
 // MAIN //
@@ -158,4 +152,4 @@ GradeFeedbackRenderer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'GradeFeedbackRenderer' )( GradeFeedbackRenderer );
+export default withTranslation( 'internal/grade-feedback-renderer' )( GradeFeedbackRenderer );

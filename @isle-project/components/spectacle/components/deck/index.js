@@ -213,4 +213,4 @@ CustomDeck.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Spectacle' )( CustomDeck );
+export default withTranslation( 'spectacle' )( CustomDeck );

@@ -16,14 +16,12 @@ import SessionContext from '@isle-project/session/context.js';
 import isHidden from '@isle-project/utils/is-hidden';
 import isElectron from '@isle-project/utils/is-electron';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
 
 
 // VARIABLES //
 
-addResources( 'Video' );
 const uid = generateUID( 'video-player' );
 const debug = logger( 'isle:video-player' );
 const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID', 't', 'tReady' ];
@@ -351,4 +349,4 @@ Video.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Video' )( withPropCheck( Video ) );
+export default withTranslation( 'video' )( withPropCheck( Video ) );

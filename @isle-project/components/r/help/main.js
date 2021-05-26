@@ -7,14 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import trim from '@stdlib/string/trim';
 import SessionContext from '@isle-project/session/context.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './rhelp.css';
-
-
-// VARIABLES //
-
-addResources( 'R' );
 
 
 // MAIN //
@@ -27,7 +21,7 @@ addResources( 'R' );
 * @property {boolean} visible - controls whether the help modal window should be opened at startup
 */
 const RHelp = ({ children, func, library, visible }) => {
-	const { t } = useTranslation( 'R' );
+	const { t } = useTranslation( 'r' );
 	const session = useContext( SessionContext );
 	const [ show, setShow ] = useState( visible );
 	const [ body, setBody ] = useState( '' );

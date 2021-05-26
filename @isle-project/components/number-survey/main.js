@@ -22,14 +22,12 @@ import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './number-survey.css';
 
 
 // VARIABLES //
 
-addResources( 'Survey' );
 const debug = logger( 'isle:number-survey' );
 const uid = generateUID( 'number-survey' );
 const SD = 'SD';
@@ -49,7 +47,7 @@ const SD = 'SD';
 */
 const NumberSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'Survey' );
+	const { t } = useTranslation( 'survey' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );

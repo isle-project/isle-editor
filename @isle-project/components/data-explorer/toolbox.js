@@ -20,7 +20,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate,
 	on2dSelection, onQQPlotSelection, onTutorialStart, onTutorialCompletion
 }) => {
-	const { t } = useTranslation( 'DataExplorer' );
+	const { t } = useTranslation( 'data-explorer' );
 	const [ disableDragging, setDisableDragging ] = useState( false );
 	const [ show, setShow ] = useState( false );
 	const [ position, setPosition ] = useState( null );

@@ -37,7 +37,7 @@ const TextInput = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const { bind, defaultValue, placeholder, onChange } = props;
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const [ value, setValue ] = useState(
 		props.bind && session.state ? session.state[ props.bind ]: props.defaultValue
 	);

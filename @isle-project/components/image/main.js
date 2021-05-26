@@ -9,14 +9,8 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import ColorPicker from '@isle-project/components/color-picker';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Viewer from 'react-viewer';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image.css';
-
-
-// VARIABLES //
-
-addResources( 'Image' );
 
 
 // MAIN //
@@ -209,4 +203,4 @@ Image.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Image' )( withPropCheck( Image ) );
+export default withTranslation( 'image' )( withPropCheck( Image ) );

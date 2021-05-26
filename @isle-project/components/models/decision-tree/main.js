@@ -7,7 +7,6 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
 import Tooltip from '@isle-project/components/tooltip';
-import { addResources } from '@isle-project/locales';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
@@ -15,7 +14,6 @@ import { Factor } from '@isle-project/utils/factor-variable';
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 
 
@@ -165,4 +163,4 @@ DecisionTree.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( DecisionTree ) );
+export default withTranslation( 'models' )( withPropCheck( DecisionTree ) );

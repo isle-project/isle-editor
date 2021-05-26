@@ -24,14 +24,12 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './range-question.css';
 
 
 // VARIABLES //
 
-addResources( 'RangeQuestion' );
 const debug = logger( 'isle:range-question' );
 const uid = generateUID( 'range-question' );
 
@@ -71,7 +69,7 @@ const RangeQuestion = ( props ) => {
 	const [ upper, setUpper ] = useState( max );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ correct, setCorrect ] = useState( false );
-	const { t } = useTranslation( 'RangeQuestion' );
+	const { t } = useTranslation( 'questions/range' );
 
 	const handleChangeUpper = useCallback( ( newValue ) => {
 		setUpper( newValue );

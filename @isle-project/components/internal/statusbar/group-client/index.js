@@ -112,4 +112,4 @@ GroupClient.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatusBar' )( GroupClient );
+export default withTranslation( 'internal/statusbar' )( GroupClient );

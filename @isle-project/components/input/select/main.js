@@ -79,7 +79,7 @@ const SelectInput = ( props ) => {
 		transformValue( defaultValue );
 	}
 	const [ value, setValue ] = useState( initialValue );
-	const { t } = useTranslation( 'Input' );
+	const { t } = useTranslation( 'input' );
 	const id = useRef( props.id || uid( props ) );
 
 	useEffect( () => {

@@ -189,4 +189,4 @@ Presenter.contextType = SpectacleContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Spectacle' )( Presenter );
+export default withTranslation( 'spectacle' )( Presenter );

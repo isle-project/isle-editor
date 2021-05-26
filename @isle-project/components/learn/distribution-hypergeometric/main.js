@@ -20,12 +20,6 @@ import NumberInput from '@isle-project/components/input/number';
 import SliderInput from '@isle-project/components/input/slider';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'LearnDistribution' );
 
 
 // MAIN //
@@ -494,4 +488,4 @@ HypergeometricProbs.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDistribution' )( HypergeometricProbs );
+export default withTranslation( 'learn/distribution' )( HypergeometricProbs );

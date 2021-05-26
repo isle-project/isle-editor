@@ -18,13 +18,11 @@ import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import Panel from '@isle-project/components/panel';
 import { PROPORTIONS_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
-import { addResources } from '@isle-project/locales';
 import './proportions_survey.css';
 
 
 // VARIABLES //
 
-addResources( 'Survey' );
 const debug = logger( 'isle:proportions-survey' );
 const uid = generateUID( 'proportions-survey' );
 
@@ -64,7 +62,7 @@ function sum( arr ) {
 */
 const ProportionsSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'Survey' );
+	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );

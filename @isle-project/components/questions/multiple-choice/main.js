@@ -24,7 +24,6 @@ import generateUID from '@isle-project/utils/uid';
 import getLastAction from '@isle-project/utils/get-last-action';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION } from '@isle-project/constants/actions.js';
 import { FOCUS_ELEMENT, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
@@ -35,7 +34,6 @@ import Question from './question.js';
 
 // VARIABLES //
 
-addResources( 'MultipleChoiceQuestion' );
 const debug = logger( 'isle:multiple-choice-question' );
 const uid = generateUID( 'multiple-choice-question' );
 
@@ -609,4 +607,4 @@ MultipleChoiceQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'MultipleChoiceQuestion' )( withPropCheck( MultipleChoiceQuestion ) );
+export default withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceQuestion ) );

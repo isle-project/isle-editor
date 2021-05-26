@@ -67,7 +67,6 @@ import {
 	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from '@isle-project/constants/actions.js';
 import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 const ResetModal = Loadable( () => import( /* webpackChunkName: "SketchpadResetModal" */ './reset_modal.js' ) );
 const DeletePageModal = Loadable( () => import( /* webpackChunkName: "SketchpadDeleteModal" */ './delete_page_modal.js' ) );
@@ -82,7 +81,6 @@ import './pdf_viewer.css';
 
 // VARIABLES //
 
-addResources( 'Sketchpad' );
 const debug = logger( 'isle:sketchpad' );
 const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
@@ -2961,4 +2959,4 @@ Sketchpad.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Sketchpad' )( withPropCheck( Sketchpad ) );
+export default withTranslation( 'sketchpad' )( withPropCheck( Sketchpad ) );

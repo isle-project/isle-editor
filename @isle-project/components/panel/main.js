@@ -13,7 +13,7 @@ import './panel.css';
 // FUNCTIONS //
 
 const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinimize }) => {
-	const { t } = useTranslation( 'Panel' );
+	const { t } = useTranslation( 'panel' );
 	if ( !children ) {
 		return null;
 	}

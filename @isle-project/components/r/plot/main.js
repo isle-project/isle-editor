@@ -11,14 +11,8 @@ import Spinner from '@isle-project/components/internal/spinner';
 import Image from '@isle-project/components/image';
 import SessionContext from '@isle-project/session/context.js';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './plot.css';
-
-
-// VARIABLES //
-
-addResources( 'R' );
 
 
 // FUNCTIONS //
@@ -54,7 +48,7 @@ function createImgHTML({ id, meta, plot }) {
 * @property {Function} onDone - callback invoked with `err`, `img` and `body` arguments once a plot is created
 */
 const RPlot = ({ code, className, draggable, id, libraries, prependCode, fileType, meta, onDone, ...rest }) => {
-	const { t } = useTranslation( 'R' );
+	const { t } = useTranslation( 'r' );
 	const [ waiting, setWaiting ] = useState( false );
 	const [ plot, setPlot ] = useState({ img: null, body: null });
 	const session = useContext( SessionContext );

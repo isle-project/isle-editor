@@ -56,7 +56,7 @@ const MultiCards = ({ id, animation, values, memory, oneTime, style, containerSt
 	const positions = useRef(
 		memory ? shuffle( incrspace( 0, len, 1 ) ) : incrspace( 0, len, 1 )
 	);
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 
 	useEffect( () => {
 		const len = memory ? values.length*2 : values.length;

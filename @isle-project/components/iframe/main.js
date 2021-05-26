@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
@@ -15,7 +14,6 @@ import { IFRAME_INTERACTION } from '@isle-project/constants/actions.js';
 
 // VARIABLES //
 
-addResources( 'Iframe' );
 const uid = generateUID( 'iframe' );
 
 
@@ -42,7 +40,7 @@ const IFrame = ( props ) => {
 	});
 	const session = useContext( SessionContext );
 	const [ loaded, setLoaded ] = useState( false );
-	const { t } = useTranslation( 'Iframe' );
+	const { t } = useTranslation( 'iframe' );
 
 	useEffect( () => {
 		const listener = () => {

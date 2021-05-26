@@ -8,12 +8,6 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Tooltip from '@isle-project/components/tooltip';
 import Gate from '@isle-project/components/gate';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'FullscreenButton' );
 
 
 // MAIN //
@@ -113,4 +107,4 @@ FullscreenButton.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'FullscreenButton' )( FullscreenButton );
+export default withTranslation( 'internal/fullscreen-button' )( FullscreenButton );

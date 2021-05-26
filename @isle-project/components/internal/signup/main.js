@@ -17,14 +17,12 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import pick from '@stdlib/utils/pick';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:signup' );
 const FORM_DATA = [ 'name', 'email', 'password', 'passwordRepeat' ];
-addResources( 'Signup' );
 
 
 // MAIN //
@@ -265,4 +263,4 @@ Signup.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Signup' )( Signup );
+export default withTranslation( 'internal/signup' )( Signup );

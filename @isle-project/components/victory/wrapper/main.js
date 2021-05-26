@@ -73,4 +73,4 @@ VictoryWrapper.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'Victory' )( VictoryWrapper );
+export default withTranslation( 'victory' )( VictoryWrapper );

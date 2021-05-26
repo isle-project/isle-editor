@@ -27,7 +27,6 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
 import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import 'codemirror/mode/r/r.js';
 import 'codemirror/theme/elegant.css';
@@ -37,7 +36,6 @@ import './rshell.css';
 
 // VARIABLES //
 
-addResources( 'R' );
 const debug = logger( 'isle:r-shell' );
 const uid = generateUID( 'r-shell' );
 const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
@@ -577,4 +575,4 @@ RShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'R' )( withPropCheck( RShell ) );
+export default withTranslation( 'r' )( withPropCheck( RShell ) );

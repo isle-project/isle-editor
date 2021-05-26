@@ -319,4 +319,4 @@ Pages.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'Pages' )( withPropCheck( Pages ) );
+export default withTranslation( 'pages' )( withPropCheck( Pages ) );

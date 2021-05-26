@@ -23,14 +23,12 @@ import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import subtract from '@isle-project/utils/subtract';
 import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
 
 // VARIABLES //
 
-addResources( 'StatisticalModels' );
 let COUNTER = 0;
 const TSTAT = 't';
 const DF = 'df';
@@ -351,4 +349,4 @@ MultipleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'StatisticalModels' )( withPropCheck( MultipleLinearRegression ) );
+export default withTranslation( 'models' )( withPropCheck( MultipleLinearRegression ) );

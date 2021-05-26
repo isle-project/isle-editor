@@ -8,15 +8,10 @@ import Button from 'react-bootstrap/Button';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import VoiceInput from '@isle-project/components/input/voice';
 import SessionContext from '@isle-project/session/context.js';
-import { i18n, addResources } from '@isle-project/locales';
+import { i18n } from '@isle-project/locales';
 import { WIKIPEDIA_SEARCH } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './wikipedia.css';
-
-
-// VARIABLES //
-
-addResources( 'Wikipedia' );
 
 
 // FUNCTIONS //
@@ -43,7 +38,7 @@ function extractTopic( value ) {
 const Wikipedia = ({ defaultEntry, style }) => {
 	const [ text, setText ] = useState( '' );
 	const [ response, setResponse ] = useState( '' );
-	const { t } = useTranslation( 'Wikipedia' );
+	const { t } = useTranslation( 'wikipedia' );
 	const session = useContext( SessionContext );
 
 	const getResult = useCallback( ( text ) => {

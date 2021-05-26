@@ -9,13 +9,7 @@ import csv from 'csvtojson';
 import round from '@stdlib/math/base/special/round';
 import SessionContext from '@isle-project/session/context.js';
 import CheckboxInput from '@isle-project/components/input/checkbox';
-import { addResources } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-
-
-// VARIABLES //
-
-addResources( 'SpreadsheetUpload' );
 
 
 // FUNCTIONS //
@@ -41,7 +35,7 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 	const [ percentCompleted, setPercentCompleted ] = useState( 0 );
 	const [ uploading, setUploading ] = useState( false );
 	const [ header, setHeader ] = useState( true );
-	const { t } = useTranslation( 'SpreadsheetUpload' );
+	const { t } = useTranslation( 'spreadsheet-upload' );
 	const session = useContext( SessionContext );
 	const fileUpload = useRef( null );
 

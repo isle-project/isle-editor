@@ -9,20 +9,14 @@ import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import { BUTTON_PAUSE, BUTTON_RESUME } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
-import { addResources } from '@isle-project/locales';
 import './stoppable_button.css';
-
-
-// VARIABLES //
-
-addResources( 'General' );
 
 
 // MAIN //
 
 const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPaused }) => {
 	const [ paused, setPaused ] = useState( false );
-	const { t } = useTranslation( 'General' );
+	const { t } = useTranslation( 'general' );
 	const session = useContext( SessionContext );
 
 	useEffect( () => {
