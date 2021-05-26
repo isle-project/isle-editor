@@ -17,8 +17,20 @@ const mainStore = new Store( 'isle-main' );
 
 const NAMESPACES = new Set();
 const TRANSLATIONS = {
+	'bg': {
+		'EditorMenu': () => import( './editor-menu/bg.json' )
+	},
+	'cs': {
+		'EditorMenu': () => import( './editor-menu/cs.json' )
+	},
+	'da': {
+		'EditorMenu': () => import( './editor-menu/da.json' )
+	},
 	'de': {
 		'EditorMenu': () => import( './editor-menu/de.json' )
+	},
+	'el': {
+		'EditorMenu': () => import( './editor-menu/el.json' )
 	},
 	'en': {
 		'EditorMenu': () => import( './editor-menu/en.json' )
@@ -26,14 +38,29 @@ const TRANSLATIONS = {
 	'es': {
 		'EditorMenu': () => import( './editor-menu/es.json' )
 	},
+	'et': {
+		'EditorMenu': () => import( './editor-menu/et.json' )
+	},
+	'fi': {
+		'EditorMenu': () => import( './editor-menu/fi.json' )
+	},
 	'fr': {
 		'EditorMenu': () => import( './editor-menu/fr.json' )
+	},
+	'hu': {
+		'EditorMenu': () => import( './editor-menu/hu.json' )
 	},
 	'it': {
 		'EditorMenu': () => import( './editor-menu/it.json' )
 	},
 	'ja': {
 		'EditorMenu': () => import( './editor-menu/ja.json' )
+	},
+	'lt': {
+		'EditorMenu': () => import( './editor-menu/lt.json' )
+	},
+	'lv': {
+		'EditorMenu': () => import( './editor-menu/lv.json' )
 	},
 	'nl': {
 		'EditorMenu': () => import( './editor-menu/nl.json' )
@@ -44,8 +71,20 @@ const TRANSLATIONS = {
 	'pt': {
 		'EditorMenu': () => import( './editor-menu/pt.json' )
 	},
+	'ro': {
+		'EditorMenu': () => import( './editor-menu/ro.json' )
+	},
 	'ru': {
 		'EditorMenu': () => import( './editor-menu/ru.json' )
+	},
+	'sk': {
+		'EditorMenu': () => import( './editor-menu/sk.json' )
+	},
+	'sl': {
+		'EditorMenu': () => import( './editor-menu/sl.json' )
+	},
+	'sv': {
+		'EditorMenu': () => import( './editor-menu/sv.json' )
 	},
 	'zh': {
 		'EditorMenu': () => import( './editor-menu/zh.json' )
@@ -56,16 +95,29 @@ const TRANSLATIONS = {
 // EXPORTS //
 
 export const RESOURCES = {
+	'bg': {},
+	'cs': {},
+	'da': {},
 	'de': {},
+	'el': {},
 	'en': {},
 	'es': {},
+	'et': {},
+	'fi': {},
 	'fr': {},
+	'hu': {},
 	'it': {},
 	'ja': {},
+	'lt': {},
+	'lv': {},
 	'nl': {},
 	'pl': {},
 	'pt': {},
+	'ro': {},
 	'ru': {},
+	'sk': {},
+	'sl': {},
+	'sv': {},
 	'zh': {}
 };
 
