@@ -42,10 +42,11 @@ class CustomFilter extends Component {
 	}
 
 	render() {
-		return ( <Form.Group controlId="custom-filter-form-group" style={{ ...this.props.style, width: 280 }}>
+		const { style, t } = this.props;
+		return ( <Form.Group controlId="custom-filter-form-group" style={{ ...style, width: 280 }}>
 			<div style={{ width: 100, float: 'left' }} ><Select
 				options={this.options}
-				placeholder="Filter"
+				placeholder={t('filter')}
 				value={this.state.type}
 				onChange={( value ) => {
 					this.setState({
@@ -56,7 +57,7 @@ class CustomFilter extends Component {
 			<Form.Control
 				type="text"
 				value={this.state.value}
-				placeholder="Contains..."
+				placeholder={t('contains')}
 				style={{ width: 100, float: 'left' }}
 				onChange={( event ) => {
 					this.setState({
