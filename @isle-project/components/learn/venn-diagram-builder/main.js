@@ -18,13 +18,7 @@ import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
 import Dashboard from '@isle-project/components/dashboard';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
 import './venn_diagram_builder.css';
-
-
-// VARIABLES //
-
-addResources( 'LearnVennDiagram' );
 
 
 // MAIN //
@@ -324,4 +318,4 @@ VennDiagramBuilder.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnVennDiagram' )( VennDiagramBuilder );
+export default withTranslation( 'learn/venn-diagram' )( VennDiagramBuilder );

@@ -16,12 +16,10 @@ import Plotly from '@isle-project/components/plotly';
 import Panel from '@isle-project/components/panel';
 import Pages from '@isle-project/components/pages';
 import Dashboard from '@isle-project/components/dashboard';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnSOTU' );
 const debug = logger( 'isle:learn-sotu' );
 
 
@@ -177,4 +175,4 @@ SOTU.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnSOTU' )( SOTU );
+export default withTranslation( 'learn/sotu' )( SOTU );

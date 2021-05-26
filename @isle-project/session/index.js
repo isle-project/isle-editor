@@ -56,7 +56,7 @@ import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_
 	VIDEO_CHAT_STARTED, VIDEO_CHAT_ENDED, VOICE_RECORDING_STATUS } from '@isle-project/constants/events.js';
 import POINTS from '@isle-project/constants/points.js';
 import ANIMALS from '@isle-project/constants/animals.js';
-import { addResources, i18n } from '@isle-project/locales';
+import { i18n } from '@isle-project/locales';
 
 
 // VARIABLES //
@@ -92,7 +92,6 @@ let ALL_GROUPS = null;
 let ASSIGNED_GROUP = null;
 let QUESTIONS = null;
 
-addResources( 'session' );
 
 // JSON Web Token for user authentication:
 let JWT = null;

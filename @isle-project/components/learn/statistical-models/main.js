@@ -21,12 +21,6 @@ import CARTs from '-!svg-react-loader!./img/cart.svg';
 import RandomForest from '-!svg-react-loader!./img/random_forest.svg';
 import LogisticRegression from '-!svg-react-loader!./img/logistic_regression.svg';
 import NeuralNetwork from '-!svg-react-loader!./img/neural_network.svg';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'LearnStatisticalModels' );
 
 
 // FUNCTIONS //
@@ -207,4 +201,4 @@ LearnStatisticalModels.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnStatisticalModels' )( LearnStatisticalModels );
+export default withTranslation( 'learn/statistical-models' )( LearnStatisticalModels );

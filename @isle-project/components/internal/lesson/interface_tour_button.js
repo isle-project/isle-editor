@@ -22,21 +22,19 @@ import { useTranslation } from 'react-i18next';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import InterfaceTour from '@isle-project/components/internal/interface-tour';
-import { addResources } from '@isle-project/locales';
 import './interface_tour_button.css';
 
 
 // MAIN //
 
 const InterfaceTourButton = () => {
-	const { t } = useTranslation( 'Lesson' );
+	const { t } = useTranslation( 'lesson' );
 	const [ showTour, setShowTour ] = useState( false );
 	const handleFinish = useCallback( () => {
 		setShowTour( false );
 	}, [] );
 	const handleTourToggle = useCallback( () => {
 		if ( !showTour ) {
-			addResources( 'InterfaceTour' );
 			setShowTour( true );
 		} else {
 			setShowTour( false );

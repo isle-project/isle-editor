@@ -15,12 +15,6 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import incrspace from '@stdlib/math/utils/incrspace';
 import NumberInput from '@isle-project/components/input/number';
 import FeedbackButtons from '@isle-project/components/feedback';
-import { addResources } from '@isle-project/locales';
-
-
-// VARIABLES //
-
-addResources( 'LearnDiceThrowing' );
 
 
 // MAIN //
@@ -202,4 +196,4 @@ class DiceThrowing extends Component {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnDiceThrowing' )( DiceThrowing );
+export default withTranslation( 'learn/dice-throwing' )( DiceThrowing );

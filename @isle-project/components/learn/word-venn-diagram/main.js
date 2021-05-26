@@ -14,13 +14,7 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
-import { addResources } from '@isle-project/locales';
 import './venn_diagram.css';
-
-
-// VARIABLES //
-
-addResources( 'LearnVennDiagram' );
 
 
 // MAIN //
@@ -328,4 +322,4 @@ WordVennDiagram.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnVennDiagram' )( WordVennDiagram );
+export default withTranslation( 'learn/venn-diagram' )( WordVennDiagram );

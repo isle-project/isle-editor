@@ -25,14 +25,12 @@ import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
 import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
-import { addResources } from '@isle-project/locales';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 
 // VARIABLES //
 
-addResources( 'LearnConfidenceCoverage' );
 const debug = logger( 'isle:learn:confidence-coverage-sample' );
 
 
@@ -358,4 +356,4 @@ ConfidenceCoverageSample.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnConfidenceCoverage' )( ConfidenceCoverageSample );
+export default withTranslation( 'learn/confidence-coverage' )( ConfidenceCoverageSample );

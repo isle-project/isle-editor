@@ -22,12 +22,10 @@ import SliderInput from '@isle-project/components/input/slider';
 import NumberInput from '@isle-project/components/input/number';
 import mean from '@isle-project/utils/statistic/mean.js';
 import stdev from '@isle-project/utils/statistic/stdev.js';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnConfidenceCoverage' );
 const ELEM_TOOLTIPS = {
 	'μ': { tooltip: 'Mean' },
 	'σ': { tooltip: 'Standard Deviation' },
@@ -277,4 +275,4 @@ ConfidenceCoverageNormal.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnConfidenceCoverage' )( ConfidenceCoverageNormal );
+export default withTranslation( 'learn/confidence-coverage' )( ConfidenceCoverageNormal );

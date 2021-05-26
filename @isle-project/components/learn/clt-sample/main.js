@@ -34,14 +34,12 @@ import quantile from '@isle-project/utils/statistic/quantile';
 import iqr from '@isle-project/utils/statistic/iqr';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
-import { addResources } from '@isle-project/locales';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 
 // VARIABLES //
 
-addResources( 'LearnCLT' );
 const GridLayout = WidthProvider( ReactGridLayout );
 const debug = logger( 'isle:learn:clt-sample' );
 
@@ -609,4 +607,4 @@ SampleCLT.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnCLT' )( SampleCLT );
+export default withTranslation( 'learn/clt' )( SampleCLT );

@@ -20,13 +20,11 @@ import mean from '@isle-project/utils/statistic/mean.js';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SliderInput from '@isle-project/components/input/slider';
 import NumberInput from '@isle-project/components/input/number';
-import { addResources } from '@isle-project/locales';
 import './confidence_coverage_binomial.css';
 
 
 // VARIABLES //
 
-addResources( 'LearnConfidenceCoverage' );
 const ELEM_TOOLTIPS = {
 	'p': { tooltip: 'Success probability' },
 	'n': { tooltip: 'Number of trials' },
@@ -268,4 +266,4 @@ ConfidenceCoverageBinomial.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnConfidenceCoverage' )( ConfidenceCoverageBinomial );
+export default withTranslation( 'learn/confidence-coverage' )( ConfidenceCoverageBinomial );

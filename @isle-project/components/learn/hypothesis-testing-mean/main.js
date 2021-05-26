@@ -23,12 +23,10 @@ import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import Switch from '@isle-project/components/switch';
 import TeX from '@isle-project/components/tex';
-import { addResources } from '@isle-project/locales';
 
 
 // VARIABLES //
 
-addResources( 'LearnHypothesisTesting' );
 const areaStyle = {
 	data: {
 		fill: 'tomato', stroke: 'tomato', opacity: 0.3
@@ -454,4 +452,4 @@ MeanTest.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'LearnHypothesisTesting' )( MeanTest );
+export default withTranslation( 'learn/hypothesis-testing' )( MeanTest );
