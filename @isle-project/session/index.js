@@ -303,6 +303,20 @@ class Session {
 			window.addEventListener( 'online', this.onlineListener );
 			window.addEventListener( 'offline', this.offlineListener );
 		}
+
+		if ( this.server ) {
+			axios.get( this.server+'/get_translations' ).then( ( translations = {} ) => {
+				i18n.store.on( 'added', function onLoaded( lng, ns ) {
+					const custom = translations[ lng ][ ns ];
+					if ( custom ) {
+						const keys = Object.keys( custom );
+						for ( let i = 0; i < keys.length; i++ ) {
+							i18n.store.data[ lng ][ ns ][ keys[ i ] ] = custom[ keys[ i ] ];
+						}
+					}
+				});
+			});
+		}
 	}
 
 	get startTime() {
