@@ -189,4 +189,4 @@ LessonContextMenu.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'lesson' )( LessonContextMenu );
+export default withTranslation( 'internal/lesson' )( LessonContextMenu );

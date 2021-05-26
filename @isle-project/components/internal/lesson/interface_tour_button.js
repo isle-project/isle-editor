@@ -28,7 +28,7 @@ import './interface_tour_button.css';
 // MAIN //
 
 const InterfaceTourButton = () => {
-	const { t } = useTranslation( 'lesson' );
+	const { t } = useTranslation( 'internal/lesson' );
 	const [ showTour, setShowTour ] = useState( false );
 	const handleFinish = useCallback( () => {
 		setShowTour( false );
@@ -46,7 +46,12 @@ const InterfaceTourButton = () => {
 				run={showTour}
 				onFinish={handleFinish}
 			/> : null}
-			<OverlayTrigger placement="left" overlay={<Tooltip id="interface-tour-button">{t('start-interface-tour')}</Tooltip>} >
+			<OverlayTrigger
+				placement="left"
+				overlay={<Tooltip id="interface-tour-button">
+					{t('start-interface-tour')}
+				</Tooltip>}
+			>
 				<button
 					onClick={handleTourToggle}
 					onMouseOver={InterfaceTour.preload}

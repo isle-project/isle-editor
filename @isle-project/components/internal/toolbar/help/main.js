@@ -151,4 +151,4 @@ HelpPage.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'HelpPage' )( HelpPage );
+export default withTranslation( 'internal/toolbar/help' )( HelpPage );

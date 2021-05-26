@@ -45,7 +45,7 @@ const uid = generateUID( 'multiple-choice-survey' );
 */
 const MultipleChoiceSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'survey' );
+	const { t } = useTranslation( 'surveys' );
 	const { allowMultipleAnswers, anonymous, answers, multipleAnswers, question, onSubmit } = props;
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );

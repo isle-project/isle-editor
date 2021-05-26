@@ -47,7 +47,7 @@ const SD = 'SD';
 */
 const NumberSurvey = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
-	const { t } = useTranslation( 'survey' );
+	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
 	const [ paused, setPaused ] = useState( false );

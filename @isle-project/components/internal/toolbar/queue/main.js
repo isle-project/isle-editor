@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
-import { withTranslation, Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -132,10 +132,11 @@ const QueueTable = ( props ) => {
 
 // MAIN //
 
-const Queue = ({ id, draggable, show, onHide, onNewQuestion, t }) => {
+const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 	id = id || uid();
 	const session = useContext( SessionContext );
 	const questions = session.questions;
+	const { t } = useTranslation( 'internal/toolbar/queue' );
 	const [ text, setText ] = useState( '' );
 	const [ spot, setSpot ] = useState( null );
 
@@ -319,4 +320,4 @@ Queue.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'internal/queue' )( Queue );
+export default Queue;
