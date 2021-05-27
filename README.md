@@ -9,7 +9,6 @@
 
 #### Dependencies
 
-[![Dependabot][dependabot-image]][dependabot-url]
 [![Dependencies][dependencies-image]][dependencies-url] 
 [![DevDependencies][dev-dependencies-image]][dev-dependencies-url]
 
@@ -169,9 +168,6 @@ The following icons are used under a Creative Commons CCBY license.
 
 [dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
 [dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
-
-[dependabot-image]: https://badgen.net/dependabot/isle-project/isle-editor?icon=dependabot
-[dependabot-url]: https://dependabot.com/
 
 [dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor.svg
 [dev-dependencies-url]: https://david-dm.org/isle-project/isle-editor/master?type=dev
