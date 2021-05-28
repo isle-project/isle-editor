@@ -86,9 +86,9 @@ class StatusBar extends Component {
 					autoDismiss: session.config.noLoginDismiss ? 0 : 15,
 					position: 'tl',
 					children: <div style={{ marginBottom: '30px' }}>
-						<Button id="statusbar-signup-button" size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>
+						{session.settings.allowUserRegistrations !== false ? <Button id="statusbar-signup-button" size="sm" style={{ float: 'right', marginRight: '10px' }} onClick={this.signup}>
 							{t( 'signup' )}
-						</Button>
+						</Button> : null}
 						<Button id="statusbar-login-button" size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>
 							{t( 'login' )}
 						</Button>
@@ -473,14 +473,14 @@ class StatusBar extends Component {
 							/> : null }
 							{ session.anonymous ?
 								<div>
-									<Button
+									{session.settings.allowUserRegistrations !== false ? <Button
 										size="sm"
 										className="statusbar-button"
 										variant="outline-secondary"
 										style={{ float: 'right', marginRight: '-20px' }}
 										onClick={this.signup}
 										disabled={!session.live}
-									>{t( 'signup' )}</Button>
+									>{t( 'signup' )}</Button> : null}
 									<Button
 										size="sm"
 										className="statusbar-button"
