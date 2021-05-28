@@ -305,6 +305,9 @@ class Session {
 		}
 
 		if ( this.server ) {
+			axios.get( this.server+'/get_public_settings' ).then( result => {
+				PRIVATE_VARS[ 'settings' ] = result.data;
+			});
 			axios.get( this.server+'/get_translations' ).then( ( result ) => {
 				const translations = result.data || {};
 				i18n.store.on( 'added', function onLoaded( lng, ns ) {
@@ -350,6 +353,10 @@ class Session {
 
 	get questions() {
 		return QUESTIONS;
+	}
+
+	get settings() {
+		return PRIVATE_VARS[ 'settings' ] || {};
 	}
 
 	get jitsi() {

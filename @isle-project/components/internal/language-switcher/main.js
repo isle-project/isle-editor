@@ -48,10 +48,10 @@ const LanguageSwitcher = ( props ) => {
 					<i className="fas fa-globe"></i>
 				</button>
 			</OverlayTrigger>
-			<SelectModal
+			{showSelectModal ? <SelectModal
 				show={showSelectModal} onHide={toggleSelectModal} t={t}
 				setIsLoading={setIsLoading}
-			/>
+			/> : null}
 		</Fragment>
 	);
 };
