@@ -305,21 +305,29 @@ class Session {
 		}
 
 		if ( this.server ) {
-			axios.get( this.server+'/get_public_settings' ).then( result => {
-				PRIVATE_VARS[ 'settings' ] = result.data;
-			});
-			axios.get( this.server+'/get_translations' ).then( ( result ) => {
-				const translations = result.data || {};
-				i18n.store.on( 'added', function onLoaded( lng, ns ) {
-					if ( translations[ lng ] && translations[ lng ][ ns ] ) {
-						const custom = translations[ lng ][ ns ];
-						const keys = Object.keys( custom );
-						for ( let i = 0; i < keys.length; i++ ) {
-							i18n.store.data[ lng ][ ns ][ keys[ i ] ] = custom[ keys[ i ] ];
-						}
-					}
+			axios.get( this.server+'/get_lesson_settings' )
+				.then( result => {
+					PRIVATE_VARS[ 'settings' ] = result.data;
+				})
+				.catch( err => {
+					debug( 'Encountered an error: '+err.message );
 				});
-			});
+			axios.get( this.server+'/get_translations' )
+				.then( ( result ) => {
+					const translations = result.data || {};
+					i18n.store.on( 'added', function onLoaded( lng, ns ) {
+						if ( translations[ lng ] && translations[ lng ][ ns ] ) {
+							const custom = translations[ lng ][ ns ];
+							const keys = Object.keys( custom );
+							for ( let i = 0; i < keys.length; i++ ) {
+								i18n.store.data[ lng ][ ns ][ keys[ i ] ] = custom[ keys[ i ] ];
+							}
+						}
+					});
+				})
+				.catch( err => {
+					debug( 'Encountered an error: '+err.message );
+				});
 		}
 	}
 
