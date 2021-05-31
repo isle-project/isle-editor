@@ -280,7 +280,7 @@
     "ajv": "8.4.0",
     "codecov": "^3.8.2",
     "concurrently": "^6.2.0",
-    "css-minimizer-webpack-plugin": "^3.0.0",
+    "css-minimizer-webpack-plugin": "^3.0.1",
     "doctrine": "^3.0.0",
     "electron": "13.0.1",
     "electron-builder": "22.11.5",
