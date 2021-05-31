@@ -95,7 +95,7 @@ const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
-	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
 }
 const IS_MOBILE = isMobile({
 	tablet: true
