@@ -7,6 +7,8 @@ import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import isElectron from '@isle-project/utils/is-electron';
+import noop from '@stdlib/utils/noop';
 const ToolboxTutorialButton = Loadable( () => import( /* webpackChunkName: "ToolboxTutorialButton" */ '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
 const ToolboxTabs = Loadable( () => import( /* webpackChunkName: "ToolboxTabs" */ './toolbox_tabs.js' ) );
 
@@ -40,6 +42,9 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 				}
 			}
 		});
+		if ( isElectron ) {
+			return noop;
+		}
 		resizeObserver.observe( document.body );
 		return () => {
 			resizeObserver.unobserve( document.body );
@@ -70,7 +75,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 			<Draggable
 				cancel=".input"
 				disabled={disableDragging}
-				bounds="body"
+				bounds={isElectron ? 'window' : 'body'}
 				position={position}
 				style={{
 					position: 'absolute'
