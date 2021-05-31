@@ -2,9 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import * as d3 from 'd3';
 import D3Plot from './d3_plot.js';
-import { i18n } from '@isle-project/locales';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './style.css';
 
@@ -79,9 +79,10 @@ class NetworkPlot extends D3Plot {
 				.attr( 'cy', function cy( d ) { return d.y; });
 		}
 
+		const t = this.props.t;
 		node.append( 'title' )
 			.text( function txt( d ) {
-				return i18n.t( 'plotly:number-of-edges', { nEdges: d.nEdges });
+				return t( 'number-of-edges', { nEdges: d.nEdges });
 			});
 
 		node.on( 'mouseover', function onMouseOver( d ) {
@@ -170,4 +171,4 @@ NetworkPlot.propTypes = {
 
 // EXPORTS //
 
-export default withPropCheck( NetworkPlot );
+export default withPropCheck( withTranslation( 'plotly' )( NetworkPlot ) );
