@@ -407,4 +407,4 @@ SimpleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'models' )( withPropCheck( SimpleLinearRegression ) );
+export default withTranslation( [ 'models', 'plotly' ] )( withPropCheck( SimpleLinearRegression ) );

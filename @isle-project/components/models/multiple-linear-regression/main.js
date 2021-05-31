@@ -349,4 +349,4 @@ MultipleLinearRegression.propTypes = {
 
 // EXPORTS //
 
-export default withTranslation( 'models' )( withPropCheck( MultipleLinearRegression ) );
+export default withTranslation( [ 'models', 'plotly' ] )( withPropCheck( MultipleLinearRegression ) );

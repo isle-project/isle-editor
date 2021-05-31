@@ -2,9 +2,12 @@
 
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
-import { i18n } from '@isle-project/locales';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isnan from '@stdlib/assert/is-nan';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
+import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -13,11 +16,16 @@ import ascending from './ascending.js';
 
 // FUNCTIONS //
 
+function isNonMissingNumber( x ) {
+	return isNumber( x ) && !isnan( x );
+}
+
+
 export function generateQQPlotConfig( y, variable ) {
 	let annotations;
 	let traces;
 
-	y = y.slice();
+	y = y.filter( v => isNonMissingNumber( v ) );
 	const len = y.length;
 	const yq = y.sort( ascending );
 	const lowerQuartile = qnorm( 0.25, 0, 1 );
@@ -49,13 +57,13 @@ export function generateQQPlotConfig( y, variable ) {
 	];
 	const layout = {
 		annotations,
-		title: i18n.t('Plotly:qqplot-title', { x: variable }),
+		title: i18n.t('plotly:qqplot-title', { x: variable }),
 		xaxis: {
-			title: i18n.t('Plotly:theoretical-quantiles'),
+			title: i18n.t('plotly:theoretical-quantiles'),
 			range: [ normalQuantiles[ 0 ] - 0.3, normalQuantiles[ normalQuantiles.length-1 ] + 0.3 ]
 		},
 		yaxis: {
-			title: i18n.t('Plotly:sample-quantiles'),
+			title: i18n.t('plotly:sample-quantiles'),
 			range: [ ymin - 1, ymax + 1 ]
 		},
 		showlegend: false
@@ -70,6 +78,7 @@ export function generateQQPlotConfig( y, variable ) {
 // MAIN //
 
 function QQPlot({ id, data, variable, action, onShare, onSelected }) {
+	const { t } = useTranslation( 'plotly' );
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
@@ -77,7 +86,7 @@ function QQPlot({ id, data, variable, action, onShare, onSelected }) {
 		return generateQQPlotConfig( data[ variable ], variable );
 	}, [ data, variable ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}
 	return (
 		<Plotly
