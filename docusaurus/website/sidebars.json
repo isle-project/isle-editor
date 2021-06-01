@@ -149,7 +149,8 @@
             "tests/meantest2",
             "tests/proptest",
             "tests/proptest2"
-          ]}
+          ]},
+          "summary-statistics"
         ],
         "General Components": [
           "beacon-tooltip",
