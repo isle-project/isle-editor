@@ -12,6 +12,7 @@ import Plotly from 'plotly.js';
 const Plot = createPlotlyComponent( Plotly );
 import jsyaml from 'js-yaml';
 import omitBy from '@stdlib/utils/omit-by';
+import objectKeys from '@stdlib/utils/keys';
 import isNull from '@stdlib/assert/is-null';
 import isUndefined from '@stdlib/assert/is-undefined';
 import SessionContext from '@isle-project/session/context.js';
@@ -90,7 +91,9 @@ const Wrapper = ( props ) => {
 		autosize: true
 	});
 	const [ layoutUpdate, setLayoutUpdate ] = useState( 0 );
+	const oldPropsLayout = usePrevious( props.layout );
 	const oldLayout = usePrevious( layout );
+
 	const [ fullscreen, setFullscreen ] = useState( false );
 	const [ finishedDrawing, setFinishedDrawing ] = useState( false );
 	const figure = useRef();
@@ -113,13 +116,25 @@ const Wrapper = ( props ) => {
 	}, [ layout, fullscreen, props.layout ] );
 
 	useEffect( () => {
-		debug( 'Layout property has changed...' );
-		setLayout({
-			showlegend: false,
-			...props.layout,
-			autosize: true
-		});
-	}, [ props.layout ] );
+		let hasChanged = false;
+		if ( oldPropsLayout ) {
+			const keys = objectKeys( props.layout );
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				if ( props.layout[ key ] !== oldPropsLayout[ key ] ) {
+					hasChanged = true;
+					break;
+				}
+			}
+			if ( hasChanged ) {
+				debug( 'Layout property has changed...' );
+				setLayout({
+					...props.layout,
+					autosize: true
+				});
+			}
+		}
+	}, [ oldPropsLayout, props.layout ] );
 
 	const config = useMemo( () => {
 		const toggleLegend = () => {
