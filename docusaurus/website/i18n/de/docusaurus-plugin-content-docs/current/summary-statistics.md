@@ -10,7 +10,7 @@ Zusammenfassende Statistik.
 
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variables__ | `array<string> (required)`: Variable(n), für die Statistiken berechnet werden sollen. Default: `none`.
-* __statistics__ | `array<string>`: zu berechnende Statistik(en) für die ausgewählten Variablen. Default: `none`.
+* __statistics__ | `array<string>`: Statistik(en), die für die ausgewählten Variablen berechnet werden sollen (entweder `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, oder `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: zweite Variable für die Korrelationsstatistik. Default: `none`.
 * __omit__ | `boolean`: steuert, ob fehlende Werte ausgelassen werden sollen. Default: `false`.
 * __group__ | `array<(string|Factor)>`: Name der Gruppierungsvariable(n). Default: `none`.
@@ -71,3 +71,4 @@ import TabItem from '@theme/TabItem';
 
 </Tabs>
 
+XXX

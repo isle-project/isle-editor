@@ -10,7 +10,7 @@ sidebar_label: Summary Statistics
 
 * __data__ | `object (required)`: объект массивов значений. Default: `none`.
 * __variables__ | `array<string> (required)`: переменная(ые), для которой(ых) необходимо рассчитать статистику. Default: `none`.
-* __statistics__ | `array<string>`: статистику(ы) для расчета для выбранных переменных. Default: `none`.
+* __statistics__ | `array<string>`: статистика(и) для расчета выбранных переменных (либо `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, или `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: вторая переменная для статистики корреляции. Default: `none`.
 * __omit__ | `boolean`: контролирует, следует ли опускать отсутствующие значения. Default: `false`.
 * __group__ | `array<(string|Factor)>`: название группирующей переменной (переменных). Default: `none`.
@@ -71,3 +71,4 @@ import TabItem from '@theme/TabItem';
 
 </Tabs>
 
+XXX

@@ -1,0 +1,52 @@
+---
+id: weather 
+title: Weather
+sidebar_label: Weather
+---
+
+O componentă pentru afișarea vremii curente într-o locație desemnată.
+
+## Opțiuni
+
+* __location__ | `string`: numele locației. Default: `none`.
+* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
+* __style__ | `object`: Stiluri inline CSS. Default: `{}`.
+
+
+## Exemple
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+    defaultValue="minimal"
+    values={[
+        { label: 'Minimal', value: 'minimal' },
+        { label: 'Custom Styling', value: 'withCSS' },
+    ]}
+    lazy
+>
+<TabItem value="minimal">
+
+```jsx live
+<Weather
+    location="Pittsburgh"
+/>
+```
+
+</TabItem>
+
+<TabItem value="withCSS">
+
+```jsx live
+<Weather
+    location="Pittsburgh"
+    style={{ fontFamily: 'Courier', background: 'orange' }}
+/>
+```
+
+</TabItem>
+
+</Tabs>
+
+
