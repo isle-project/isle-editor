@@ -124,7 +124,7 @@ export const languageDescription = ( code ) => {
 	case 'fr':
 		return 'Français - FR';
 	case 'hu':
-		return 'English - HU';
+		return 'Hungarian - HU';
 	case 'it':
 		return 'Italiano - IT';
 	case 'ja':
