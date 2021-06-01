@@ -125,6 +125,10 @@
     {
       "name": "Citation",
       "value": "<Citation citeKey=\"${1:Enter key}\" />"
+    },
+    {
+      "name": "SummaryStatistics",
+      "value": "<SummaryStatistics data={${1:null}} variables={[${2:}]} statistics={[${3:}]} />"
     }
   ],
   "inputs": [

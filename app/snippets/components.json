@@ -870,5 +870,9 @@
 	{
 		"name": "NaiveBayes",
 		"value": "<NaiveBayes data={${1:null}} quantitative={[${2:}]} x={[${3:}]} y=\"${4:}\" />"
+	},
+	{
+		"name": "SummaryStatistics",
+		"value": "<SummaryStatistics data={${1:null}} variables={[${2:}]} statistics={[${3:}]} />"
 	}
 ]
