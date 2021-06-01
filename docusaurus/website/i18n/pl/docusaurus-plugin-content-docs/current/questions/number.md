@@ -18,6 +18,7 @@ Element pytania numerycznego.
 * __min__ | `number`: minimalna dopuszczalna wartość wejściowa. Default: `null`.
 * __defaultValue__ | `number`: wstępnie wybrana wartość wejścia liczbowego. Default: `0`.
 * __provideFeedback__ | `boolean`: wskazuje, czy informacja zwrotna zawierająca poprawną odpowiedź powinna być wyświetlana po udzieleniu odpowiedzi przez uczących się. Default: `true`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, czy należy mieć możliwość ponownego złożenia wniosku nawet po ujawnieniu rozwiązania). Default: `false`.
 * __nTries__ | `number`: po tym, ile prób powinno być dostarczonych informacji zwrotnych (jeśli `provideFeedback` jest `prawdziwy`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontrola, czy należy wyłączyć powiadomienia o złożeniu wniosku. Default: `false`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.

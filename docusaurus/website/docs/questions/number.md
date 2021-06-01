@@ -18,6 +18,7 @@ A number question component.
 * __min__ | `number`: minimum allowed input value. Default: `null`.
 * __defaultValue__ | `number`: pre-selected value of number input. Default: `0`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
+* __submitAfterFeedback__ | `boolean`: controls whether one should be able to resubmit even after the solution has been revealed). Default: `false`.
 * __nTries__ | `number`: after how many tries feedback should be supplied (if `provideFeedback` is `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
