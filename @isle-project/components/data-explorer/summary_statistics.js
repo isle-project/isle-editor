@@ -14,28 +14,20 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import SelectInput from '@isle-project/components/input/select';
 import selectStyles from '@isle-project/components/input/select/styles';
 import Tooltip from '@isle-project/components/tooltip';
-import statistic from '@isle-project/utils/statistic';
 import contains from '@stdlib/assert/contains';
-import objectKeys from '@stdlib/utils/keys';
 import isArray from '@stdlib/assert/is-array';
-import papplyRight from '@stdlib/utils/papply-right';
 import round from '@stdlib/math/base/special/round';
+import SummaryStatistics from '@isle-project/components/summary-statistics';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import CreatableSelect from 'react-select/creatable';
 import QuestionButton from './question_button.js';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from '@isle-project/constants/actions.js';
-import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 
 
 // VARIABLES //
 
 const DESCRIPTION = <span>Compute various statistics of interest, i.e. summary measures of the <i>quantitative</i> variables in the data set.</span>;
-const SORT_OPTS = {
-	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
-};
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 const Option = props => {
 	const popover = <Popover id={`${props.data.label}-popover`}>
@@ -77,180 +69,6 @@ function createOption( label ) {
 	};
 }
 
-function byWithCount( arr, factor, funs, group ) {
-	let table = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( table[ factor[ i ] ]) ) {
-			table[ factor[ i ] ] = [];
-		}
-		table[ factor[ i ] ].push( arr[ i ]);
-	}
-	let keys = objectKeys( table );
-	if ( group.length === 2 ) {
-		const cat1 = group[ 0 ].categories;
-		const cat2 = group[ 1 ].categories;
-		if ( cat1 && cat2 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
-				return diff;
-			});
-		}
-		else if ( cat1 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				return as[ 1 ].localeCompare( bs[ 1 ], void 0, SORT_OPTS );
-			});
-		}
-		else if ( cat2 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = as[ 0 ].localeCompare( bs[ 0 ], void 0, SORT_OPTS );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
-				return diff;
-			});
-		}
-		else {
-			keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-		}
-	} else if ( group.length === 1 && group[ 0 ].categories ) {
-		keys = extractUsedCategories( table, group[ 0 ] );
-	} else {
-		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-	}
-	const out = {};
-	for ( let i = 0; i < keys.length; i++ ) {
-		const key = keys[ i ];
-		out[ key ] = {
-			value: funs.map( f => f( table[ key ] ) ),
-			size: table[ key ].length
-		};
-	}
-	return out;
-}
-
-function by2WithCount( arr1, arr2, factor, funs, group ) {
-	let result = {};
-	let ret1 = {};
-	let ret2 = {};
-	for ( let i = 0; i < factor.length; i++ ) {
-		if ( !isArray( ret1[ factor[ i ] ]) ) {
-			ret1[ factor[ i ] ] = [];
-			ret2[ factor[ i ] ] = [];
-		}
-		ret1[ factor[ i ] ].push( arr1[ i ]);
-		ret2[ factor[ i ] ].push( arr2[ i ]);
-	}
-	let keys;
-	if ( group.length === 1 ) {
-		keys = extractUsedCategories( ret1, group[ 0 ] );
-	} else {
-		keys = objectKeys( ret1 );
-		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-	}
-	for ( let i = 0; i < keys.length; i++ ) {
-		const key = keys[ i ];
-		result[ key ] = {
-			value: funs.map( f => f( ret1[ key ], ret2[ key ]) ),
-			size: ret1[ key ].length
-		};
-	}
-	return { keys, result };
-}
-
-function groupedCompleteCases( arrs, groupData ) {
-	const indices = [];
-	const len = arrs[ 0 ].length;
-	for ( let j = 0; j < len; j++ ) {
-		let complete = true;
-		for ( let i = 0; i < arrs.length; i++ ) {
-			const x = arrs[ i ][ j ];
-			if ( !isNumber( x ) || isnan( x ) ) {
-				complete = false;
-				break;
-			}
-		}
-		if ( complete ) {
-			indices.push( j );
-		}
-	}
-	const out = {};
-	for ( let i = 0; i < arrs.length; i++ ) {
-		for ( let j = 0; j < indices.length; j++ ) {
-			const group = groupData[ indices[ j ] ];
-			if ( !out[ group ] ) {
-				out[ group ] = new Array( arrs.length );
-				for ( let k = 0; k < arrs.length; k++ ) {
-					out[ group ][ k ] = [];
-				}
-			}
-			const idx = indices[ j ];
-			out[ group ][ i ].push( arrs[ i ][ idx ] );
-		}
-	}
-	return out;
-}
-
-function groupedCases( arrs, groupData ) {
-	const out = {};
-	const len = arrs[ 0 ].length;
-	for ( let i = 0; i < arrs.length; i++ ) {
-		for ( let j = 0; j < len; j++ ) {
-			const group = groupData[ j ];
-			if ( !out[ group ] ) {
-				out[ group ] = new Array( arrs.length );
-				for ( let k = 0; k < arrs.length; k++ ) {
-					out[ group ][ k ] = [];
-				}
-			}
-			out[ group ][ i ].push( arrs[ i ][ j ] );
-		}
-	}
-	return out;
-}
-
-function completeCases( arrs ) {
-	const indices = [];
-	const len = arrs[ 0 ].length;
-	for ( let j = 0; j < len; j++ ) {
-		let complete = true;
-		for ( let i = 0; i < arrs.length; i++ ) {
-			const x = arrs[ i ][ j ];
-			if ( !isNumber( x ) || isnan( x ) ) {
-				complete = false;
-				break;
-			}
-		}
-		if ( complete ) {
-			indices.push( j );
-		}
-	}
-	const out = new Array( arrs.length );
-	for ( let i = 0; i < arrs.length; i++ ) {
-		const arr = new Array( indices.length );
-		for ( let j = 0; j < indices.length; j++ ) {
-			const idx = indices[ j ];
-			arr[ j ] = arrs[ i ][ idx ];
-		}
-		out[ i ] = arr;
-	}
-	return out;
-}
-
 
 // MAIN //
 
@@ -261,7 +79,7 @@ class SummaryStatisticsMenu extends Component {
 		const selectedStat = props.defaultStatistic;
 		this.state = {
 			selectedStats: selectedStat ? [{
-				value: statistic( selectedStat ),
+				value: selectedStat,
 				label: selectedStat
 			}] : null,
 			variables: props.defaultX ? [ props.defaultX ] : [],
@@ -286,14 +104,14 @@ class SummaryStatisticsMenu extends Component {
 			switch ( e ) {
 				case 'Mean':
 				case 'Median':
-					central.push({ 'label': e, 'value': statistic( e ) });
+					central.push({ 'label': e, 'value': e });
 					break;
 				case 'First Quartile':
 				case 'Third Quartile':
 				case 'Quantile':
 				case 'Min':
 				case 'Max':
-					location.push({ 'label': e, 'value': statistic( e ) });
+					location.push({ 'label': e, 'value': e });
 					break;
 				case 'Five-Number Summary':
 					location.push({ 'label': e, value: null });
@@ -302,15 +120,15 @@ class SummaryStatisticsMenu extends Component {
 				case 'Interquartile Range':
 				case 'Standard Deviation':
 				case 'Variance':
-					variation.push({ 'label': e, 'value': statistic( e ) });
+					variation.push({ 'label': e, 'value': e });
 					break;
 				case 'Correlation':
 				case 'Correlation Matrix':
-					relationship.push({ 'label': e, 'value': statistic( e ) });
+					relationship.push({ 'label': e, 'value': e });
 					break;
 				case 'Skewness':
 				case 'Excess Kurtosis':
-					shape.push({ 'label': e, 'value': statistic( e ) });
+					shape.push({ 'label': e, 'value': e });
 					break;
 			}
 		}
@@ -339,219 +157,47 @@ class SummaryStatisticsMenu extends Component {
 	}
 
 	generateStatistics = () => {
-		const { data, t } = this.props;
-		let { selectedStats, variables, secondVariable, group, omit } = this.state;
-		group = group ? group.map( x => x.value ) : null;
-		const funs = [];
+		const statistics = this.state.selectedStats.map( x => x.value );
+		const quantiles = this.state.quantiles.map( x => x.value );
+		const group = this.state.group ? this.state.group.map( x => x.value ) : null;
 		const statLabels = [];
-		for ( let i = 0; i < selectedStats.length; i++ ) {
-			const stat = selectedStats[ i ];
-			if ( stat.label === 'Quantile' ) {
-				for ( let j = 0; j < this.state.quantiles.length; j++ ) {
-					const quantile = this.state.quantiles[ j ].value;
-					funs.push(
-						papplyRight( stat.value, quantile, 5 )
-					);
+		for ( let i = 0; i < statistics.length; i++ ) {
+			const stat = statistics[ i ];
+			if ( stat === 'Quantile' ) {
+				for ( let j = 0; j < quantiles.length; j++ ) {
+					const quantile = quantiles[ j ];
 					statLabels.push(
-						`${round( quantile*100 )}% ${t('quantile')}`
+						`${round( quantile*100 )}% ${this.props.t('quantile')}`
 					);
 				}
 			} else {
-				funs.push( stat.value );
 				statLabels.push( stat.label );
 			}
 		}
-
 		if ( statLabels[ 0 ] === 'Correlation Matrix' ) {
-			let arrs = variables.map( x => data[ x ] );
-			if ( group ) {
-				let groupData;
-				if ( group.length === 2 ) {
-					groupData = [];
-					for ( let i = 0; i < arrs[ 0 ].length; i++ ) {
-						const groupLabel = group.map( g => {
-							return data[ g ][ i ];
-						}).join( ':' );
-						groupData.push( groupLabel );
-					}
-				} else {
-					groupData = data[ group[ 0 ] ];
-				}
-				if ( omit ) {
-					arrs = groupedCompleteCases( arrs, groupData );
-				} else {
-					arrs = groupedCases( arrs, groupData );
-				}
-			} else if ( omit ) {
-				arrs = completeCases( arrs );
-			}
-			let result;
-			if ( group ) {
-				result = {};
-				const keys = objectKeys( arrs );
-				for ( let i = 0; i < keys.length; i++ ) {
-					result[ keys[ i ] ] = {
-						value: funs.map( f => f.apply( null, arrs[ keys[ i ] ] ) )[ 0 ],
-						size: arrs[ keys[ i ] ][ 0 ].length
-					};
-				}
-			} else {
-				const value = funs.map( f => f.apply( null, arrs ) );
-				result = {
-					value: value[ 0 ],
-					size: arrs[ 0 ].length
-				};
-			}
-			const output = {
-				variables: variables,
-				statistics: statLabels,
-				type: 'Statistics',
-				result,
-				group
-			};
 			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
 				statistic: statLabels,
-				variables,
+				variables: this.state.variables,
 				group
 			});
-			return this.props.onCreated( output );
+		} else {
+			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
+				statistic: statLabels,
+				variables: this.state.variables,
+				secondVariable: statLabels[ 0 ] === 'Correlation' ? this.state.secondVariable : null,
+				group
+			});
 		}
-		const result = {};
-		for ( let i = 0; i < variables.length; i++ ) {
-			let groupData;
-			let res;
-			let x;
-			let y;
-			const variable = variables[ i ];
-			if ( group ) {
-				if ( omit ) {
-					// Case: grouping variable selected, omit missing values
-					x = [];
-					y = [];
-					groupData = [];
-					if ( variable && this.state.showSecondVarSelect ) {
-						let first = data[ variable ];
-						let second = data[ secondVariable ];
-						for ( let i = 0; i < first.length; i++ ) {
-							if (
-								( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
-								( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
-							) {
-								x.push( first[ i ] );
-								y.push( second[ i ] );
-								const groupLabel = group.map( g => {
-									return data[ g ][ i ];
-								}).join( ':' );
-								groupData.push( groupLabel );
-							}
-						}
-					} else {
-						let first = data[ variable ];
-						for ( let i = 0; i < first.length; i++ ) {
-							if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
-								x.push( first[ i ] );
-								const groupLabel = group.map( g => {
-									return data[ g ][ i ];
-								}).join( ':' );
-								groupData.push( groupLabel );
-							}
-						}
-					}
-				} else {
-					// Case: grouping variable(s) selected, do not omit missing values
-					x = data[ variable ];
-					y = data[ secondVariable ];
-					if ( group.length === 2 ) {
-						groupData = [];
-						for ( let i = 0; i < data[ variable ].length; i++ ) {
-							const groupLabel = group.map( g => {
-								return data[ g ][ i ];
-							}).join( ':' );
-							groupData.push( groupLabel );
-						}
-					} else {
-						groupData = data[ group[ 0 ] ];
-					}
-				}
-				if ( statLabels[ 0 ] === 'Correlation' ) {
-					const out = by2WithCount( x, y, groupData, funs, group );
-					res = out.result;
-					const keys = out.keys;
-					for ( let i = 0; i < keys.length; i++ ) {
-						const key = keys[ i ];
-
-						// Extract correlation coefficient from correlation matrix:
-						res[ key ].value = res[ key ].value.map( mat => mat[ 0 ][ 1 ] );
-					}
-					variable = `${variable} ${t('vs')} ${secondVariable}`;
-				} else {
-					res = byWithCount( x, groupData, funs, group );
-				}
-			} else {
-				// Case: no grouping variable selected
-				if ( omit ) {
-					x = [];
-					y = [];
-					if ( variable && this.state.showSecondVarSelect ) {
-						let first = data[ variable ];
-						let second = data[ secondVariable ];
-						for ( let i = 0; i < first.length; i++ ) {
-							if (
-								( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) &&
-								( isNumber( second[ i ] ) && !isnan( second[ i ] ) )
-							) {
-								x.push( first[ i ] );
-								y.push( second[ i ] );
-							}
-						}
-					} else {
-						let first = data[ variable ];
-						for ( let i = 0; i < first.length; i++ ) {
-							if ( isNumber( first[ i ] ) && !isnan( first[ i ] ) ) {
-								x.push( first[ i ] );
-							}
-						}
-					}
-				} else {
-					x = data[ variable ];
-					y = data[ secondVariable ];
-				}
-				if ( statLabels[ 0 ] === 'Correlation' ) {
-					const value = funs.map( f => {
-						const r = f( x, y );
-						return r[ 0 ][ 1 ];
-					});
-
-					// Extract correlation coefficient from correlation matrix:
-					res = {
-						value,
-						size: x.length
-					};
-					variable = `${variable} ${t('vs')} ${secondVariable}`;
-				}
-				else {
-					res = {
-						value: funs.map( f => f( x ) ),
-						size: x.length
-					};
-				}
-			}
-			result[ variable ] = res;
-		}
-		const output = {
-			variables: variables,
-			statistics: statLabels,
-			type: 'Statistics',
-			result,
-			group
-		};
-		this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
-			statistic: statLabels,
-			variables,
-			secondVariable: statLabels[ 0 ] === 'Correlation' ? secondVariable : null,
-			group
-		});
-		this.props.onCreated( output );
+		const elem = <SummaryStatistics
+			data={this.props.data}
+			statistics={statistics}
+			variables={this.state.variables}
+			secondVariable={this.state.showSecondVarSelect ? this.state.secondVariable : null}
+			group={group}
+			omit={this.state.omit}
+			quantiles={quantiles}
+		/>;
+		this.props.onCreated( elem );
 	}
 
 	render() {
@@ -599,7 +245,7 @@ class SummaryStatisticsMenu extends Component {
 										return this.setState({
 											selectedStats: [{
 												label: lastLabel,
-												value: statistic( lastLabel )
+												value: lastLabel
 											}],
 											showSecondVarSelect: lastLabel === 'Correlation'
 										});
@@ -616,31 +262,31 @@ class SummaryStatisticsMenu extends Component {
 										if ( !contains( labels, 'Min' ) ) {
 											additions.push({
 												label: 'Min',
-												value: statistic( 'Min' )
+												value: 'Min'
 											});
 										}
 										if ( !contains( labels, 'First Quartile' ) ) {
 											additions.push({
 												label: 'First Quartile',
-												value: statistic( 'First Quartile' )
+												value: 'First Quartile'
 											});
 										}
 										if ( !contains( labels, 'Median' ) ) {
 											additions.push({
 												label: 'Median',
-												value: statistic( 'Median' )
+												value: 'Median'
 											});
 										}
 										if ( !contains( labels, 'Third Quartile' ) ) {
 											additions.push({
 												label: 'Third Quartile',
-												value: statistic( 'Third Quartile' )
+												value: 'Third Quartile'
 											});
 										}
 										if ( !contains( labels, 'Max' ) ) {
 											additions.push({
 												label: 'Max',
-												value: statistic( 'Max' )
+												value: 'Max'
 											});
 										}
 										value.splice( fiveNumberSummary, 1, ...additions);

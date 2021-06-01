@@ -5715,6 +5715,12 @@
 				"defaultValue": true
 			},
 			{
+				"name": "submitAfterFeedback",
+				"type": "boolean",
+				"description": "NumberQuestion-prop-submitAfterFeedback",
+				"defaultValue": false
+			},
+			{
 				"name": "nTries",
 				"type": "number",
 				"description": "NumberQuestion-prop-nTries",
@@ -7452,6 +7458,50 @@
 			}
 		],
 		"description": "StickyNote-description"
+	},
+	"SummaryStatistics": {
+		"props": [
+			{
+				"name": "data",
+				"type": "object (required)",
+				"description": "SummaryStatistics-prop-data"
+			},
+			{
+				"name": "variables",
+				"type": "array<string> (required)",
+				"description": "SummaryStatistics-prop-variables"
+			},
+			{
+				"name": "statistics",
+				"type": "array<string>",
+				"description": "SummaryStatistics-prop-statistics"
+			},
+			{
+				"name": "secondVariable",
+				"type": "string",
+				"description": "SummaryStatistics-prop-secondVariable",
+				"defaultValue": null
+			},
+			{
+				"name": "omit",
+				"type": "boolean",
+				"description": "SummaryStatistics-prop-omit",
+				"defaultValue": false
+			},
+			{
+				"name": "group",
+				"type": "array<(string|Factor)>",
+				"description": "SummaryStatistics-prop-group",
+				"defaultValue": null
+			},
+			{
+				"name": "quantiles",
+				"type": "array",
+				"description": "SummaryStatistics-prop-quantiles",
+				"defaultValue": null
+			}
+		],
+		"description": "SummaryStatistics-description"
 	},
 	"Switch": {
 		"props": [

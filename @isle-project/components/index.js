@@ -208,6 +208,7 @@ import PrincipalComponentAnalysis from '@isle-project/components/models/principa
 import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
 import KMeans from '@isle-project/components/models/kmeans';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
+import SummaryStatistics from '@isle-project/components/summary-statistics';
 
 
 // EXPORTS //
@@ -423,7 +424,9 @@ const scope = {
 	PrincipalComponentAnalysis,
 	RandomForest,
 	SimpleLinearRegression,
-	KMeans
+	KMeans,
+
+	SummaryStatistics
 };
 
 

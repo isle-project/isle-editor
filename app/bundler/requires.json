@@ -213,5 +213,6 @@
 	"PrincipalComponentAnalysis": "@isle-project/components/models/principal-component-analysis",
 	"HierarchicalClustering": "@isle-project/components/models/hierarchical-clustering",
 	"KMeans": "@isle-project/components/models/kmeans",
-	"NaiveBayes": "@isle-project/components/models/naive-bayes"
+	"NaiveBayes": "@isle-project/components/models/naive-bayes",
+	"SummaryStatistics": "@isle-project/components/summary-statistics"
 }

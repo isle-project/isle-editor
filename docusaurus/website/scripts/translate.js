@@ -13,7 +13,7 @@ const replace = require( '@stdlib/string/replace' );
 
 // CONSTANTS //
 
-const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
+const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
 const MAX_TRANSLATION_CALLS = 5;
 

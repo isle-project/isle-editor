@@ -3,11 +3,7 @@
 import React, { Fragment } from 'react';
 import { i18n } from '@isle-project/locales';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Table from '@isle-project/components/table';
 import logger from 'debug';
-import objectKeys from '@stdlib/utils/keys';
-import isArray from '@stdlib/assert/is-array';
-import entries from '@stdlib/utils/entries';
 import replace from '@stdlib/string/replace';
 import ContingencyTable from '@isle-project/components/tables/contingency-table';
 import FrequencyTable from '@isle-project/components/tables/frequency-table';
@@ -43,6 +39,7 @@ import PrincipalComponentAnalysis from '@isle-project/components/models/principa
 import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
 import KMeans from '@isle-project/components/models/kmeans';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
+import SummaryStatistics from '@isle-project/components/summary-statistics';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import ClearButton from './clear_button.js';
 import FullscreenButton from './fullscreen_button.js';
@@ -53,8 +50,6 @@ import DatasetButton from './dataset_button.js';
 
 const debug = logger( 'isle:data-explorer' );
 const RE_CLEAR_BUTTON = /<button[\s\S]*<\/button>/;
-const N = 'N';
-const IQR = 'IQR';
 
 
 // FUNCTIONS //
@@ -94,119 +89,11 @@ const makeDraggable = ( div ) => {
 					html2clipboard( markup );
 				}}
 			>
-				{i18n.t('DataExplorer:drag-table')}
+				{i18n.t('data-explorer:drag-table')}
 			</button>
 			{div}
 		</Fragment>
 	);
-};
-
-const renderIQRTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
-	const table = <Table bordered size="sm">
-		<thead>
-			<tr>
-				<th>{i18n.t('DataExplorer:variable')}</th>
-				<th>{IQR}</th>
-				<th>{i18n.t('DataExplorer:lower')}</th>
-				<th>{i18n.t('DataExplorer:upper')}</th>
-				<th>{N}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{entries( e.result ).map( ( res, idx ) => {
-				return ( <tr key={idx} >
-					<td>{res[ 0 ]}</td>
-					{res[ 1 ].value[ 0 ].map( ( e, i ) =>
-						<td key={i}>{e.toFixed( 3 )}</td>
-					)}
-					<td>{res[ 1 ].size}</td>
-				</tr> );
-			})}
-		</tbody>
-	</Table>;
-	return ( <pre key={idx}>
-		{createButtons( 'Interquartile Range', table, clearOutput, idx, subsetFilters, onFilters, t )}
-		{makeDraggable( table )}
-	</pre> );
-};
-
-const renderRangeTable = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
-	const table = <Table bordered size="sm">
-		<thead>
-			<tr>
-				<th>{i18n.t('DataExplorer:variable')}</th>
-				<th>{i18n.t('DataExplorer:range')}</th>
-				<th>{i18n.t('DataExplorer:min')}</th>
-				<th>{i18n.t('DataExplorer:max')}</th>
-				<th>{N}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{entries( e.result ).map( ( res, idx ) => {
-				return ( <tr key={idx} >
-					<td>{res[ 0 ]}</td>
-					{res[ 1 ].value[ 0 ].map( ( e, i ) =>
-						<td key={i}>{e.toFixed( 3 )}</td>
-					)}
-					<td>{res[ 1 ].size}</td>
-				</tr> );
-			})}
-		</tbody>
-	</Table>;
-	return ( <pre key={idx}>
-		{createButtons( 'Range', table, clearOutput, idx, subsetFilters, onFilters, t )}
-		{makeDraggable( table )}
-	</pre> );
-};
-
-const CorrelationTable = ( props ) => {
-	const title = props.group ? props.group : 'Correlation Matrix';
-	const thead = <thead>
-		<tr>
-			<th>{title} (N={props.result.size})</th>
-			{props.variables.map( ( x, i ) => <th key={i}>{x}</th> )}
-		</tr>
-	</thead>;
-	const tbody = <tbody>
-		{props.variables.map( ( x, i ) => {
-			return (
-				<tr key={i}>
-					<th>{x}</th>
-					{props.result.value[ i ].map( ( y, j ) => <td key={j}>{y.toFixed( 3 )}</td> )}
-				</tr>
-			);
-		})}
-	</tbody>;
-	return ( <Table bordered size="sm" {...props} >
-		{thead}
-		{tbody}
-	</Table> );
-};
-
-const renderCorrelationMatrix = ( e, idx, clearOutput, subsetFilters, onFilters, t ) => {
-	if ( e.group ) {
-		const tables = [];
-		const keys = objectKeys( e.result );
-		for ( let i = 0; i < keys.length; i++ ) {
-			const key = keys[ i ];
-			const table = <CorrelationTable
-				key={key}
-				group={key}
-				result={e.result[ key ]}
-				variables={e.variables}
-			/>;
-			tables.push( table );
-		}
-		return ( <pre key={idx}>
-			{createButtons( 'Correlation Matrix', tables, clearOutput, idx, subsetFilters, onFilters, t )}
-			{makeDraggable( tables )}
-		</pre> );
-	}
-	const table = <CorrelationTable result={e.result} variables={e.variables} />;
-	return ( <pre key={idx}>
-		{createButtons( 'Correlation Matrix', table, clearOutput, idx, subsetFilters, onFilters, t )}
-		{makeDraggable( table )}
-	</pre> );
 };
 
 
@@ -319,130 +206,10 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		</pre>;
 		return elem;
 	}
-	else if ( e.type === 'Statistics' ) {
-		if ( e.group ) {
-			if ( e.statistics.length === 1 && e.statistics[0] === 'Correlation Matrix' ) {
-				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters );
-			}
-			const variables = entries( e.result );
-			let header;
-			if ( e.statistics.length === 1 && e.statistics[0] === 'Range' ) {
-				header = <tr>
-					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
-					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					<th>{i18n.t('DataExplorer:range')}</th>
-					<th>{i18n.t('DataExplorer:min')}</th>
-					<th>{i18n.t('DataExplorer:max')}</th>
-					<th>{N}</th>
-				</tr>;
-			} else if ( e.statistics.length === 1 && e.statistics[0] === 'Interquartile Range' ) {
-				header = <tr>
-					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
-					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					<th>{IQR}</th>
-					<th>{i18n.t('DataExplorer:lower')}</th>
-					<th>{i18n.t('DataExplorer:upper')}</th>
-					<th>{N}</th>
-				</tr>;
-			} else {
-				header = <tr>
-					<th className="not-sortable" >{variables.length > 1 ? 'Variable' : variables[ 0 ][ 0 ]}</th>
-					{e.group.map( ( x, i ) => <th key={i} >{x}</th> )}
-					{e.statistics.map( ( name, i ) => {
-						return <th key={i}>{name}</th>;
-					})}
-					<th>{N}</th>
-				</tr>;
-			}
-			const table = <Table bordered size="sm" >
-				<thead>
-					{header}
-				</thead>
-				<tbody>
-					{variables.map( ( res ) => {
-						let grouped = entries( res[ 1 ] );
-						grouped = grouped.map( ( arr, groupIndex ) => {
-							let cats;
-							if ( e.group.length > 1 ) {
-								cats = arr[ 0 ].split( ':' ).map( ( x, i ) => {
-									return <td key={i} >{x}</td>;
-								});
-							} else {
-								cats = <td>{arr[ 0 ]}</td>;
-							}
-							return (
-								<tr key={groupIndex} >
-									<td>{variables.length > 1 ? res[ 0 ] : ''}</td>
-									{cats}
-									{arr[ 1 ].value.map( ( v, groupIndex ) => {
-										if ( isArray( v ) ) {
-											if ( e.statistics.length === 1 ) {
-												// eslint-disable-next-line max-nested-callbacks
-												return v.map( ( elem, i ) => {
-													return <td key={i} >{elem.toFixed( 3 )}</td>;
-												});
-											}
-											return <td key={groupIndex} >{v[ 0 ].toFixed( 3 )}</td>;
-										}
-										return <td key={groupIndex} >{v.toFixed( 3 )}</td>;
-									})}
-									<td>{arr[ 1 ].size} </td>
-								</tr>
-							);
-						});
-						return grouped;
-					})}
-				</tbody>
-			</Table>;
-			const elem = <pre key={idx} >
-				{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters, t )}
-				{makeDraggable( table )}
-			</pre>;
-			return elem;
-		}
-		if ( e.statistics.length === 1 ) {
-			if ( e.statistics[0] === 'Range' ) {
-				return renderRangeTable( e, idx, clearOutput, subsetFilters, onFilters, t );
-			}
-			if ( e.statistics[0] === 'Interquartile Range' ) {
-				return renderIQRTable( e, idx, clearOutput, subsetFilters, onFilters, t );
-			}
-			if ( e.statistics[0] === 'Correlation Matrix' ) {
-				return renderCorrelationMatrix( e, idx, clearOutput, subsetFilters, onFilters, t );
-			}
-		}
-		const table = <Table bordered size="sm">
-			<thead>
-				<tr>
-					<th className="not-sortable" >{i18n.t('DataExplorer:variable')}</th>
-					{e.statistics.map( ( name, i ) => {
-						return <th key={i}>{name}</th>;
-					})}
-					<th>{N}</th>
-				</tr>
-			</thead>
-			<tbody>
-				{entries( e.result ).map( ( res ) => {
-					return (
-						<tr key={res[ 0 ]} >
-							<td>{res[ 0 ]}</td>
-							{res[ 1 ].value.map( ( v, i ) => {
-								if ( isArray( v ) ) {
-									// Case: Range or IQR, use first element:
-									return <td key={i} >{v[ 0 ].toFixed( 3 )}</td>;
-								}
-								return <td key={i} >{v.toFixed( 3 )}</td>;
-							})}
-							<td>{res[ 1 ].size}</td>
-						</tr>
-					);
-				})}
-
-			</tbody>
-		</Table>;
+	else if ( e.type === SummaryStatistics ) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type, table, clearOutput, idx, subsetFilters, onFilters, t )}
-			{makeDraggable( table )}
+			{createButtons( e.type, e, clearOutput, idx, subsetFilters, onFilters, t )}
+			{makeDraggable( e )}
 		</pre>;
 		return elem;
 	}
