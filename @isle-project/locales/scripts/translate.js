@@ -20,7 +20,9 @@ const MAX_TRANSLATION_CALLS = 5;
 const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
 const TOPLEVEL_DIR = path.resolve( __dirname, '..', '..', '..' );
 const RE_HANDLEBAR_EXPRESSION = /\{\{([^}]+)\}\}/g;
-const RE_XML_GROUPS = /<x>([^<]+)<\/x>/g;
+const RE_BACKTICK_EXPRESSION = /`([^`]+?)`/g;
+const RE_XML_HANDLEBAR_GROUPS = /<x>([^<]+)<\/x>/g;
+const RE_XML_BACKTICK_GROUPS = /<y>([^<]+)<\/y>/g;
 
 
 // MAIN //
@@ -60,6 +62,7 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 					let textToTranslate = reference[ key ];
 					if ( textToTranslate ) {
 						textToTranslate = replace( textToTranslate, RE_HANDLEBAR_EXPRESSION, '<x>$1</x>' );
+						textToTranslate = replace( textToTranslate, RE_BACKTICK_EXPRESSION, '<y>$1</y>' );
 						console.log( 'Translate `'+textToTranslate+'` to '+lng );
 						if ( promises.length < MAX_TRANSLATION_CALLS ) {
 							promiseKeys.push( key );
@@ -68,7 +71,7 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 								source_lang: 'EN',
 								text: textToTranslate,
 								tag_handling: 'xml',
-								ignore_tags: 'x',
+								ignore_tags: 'x,y',
 								target_lang: lng === 'pt' ? 'PT-BR' : lng.toUpperCase()
 							}) ) );
 						}
@@ -80,7 +83,8 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 					const translations = results.map( x => x.data.translations[ 0 ].text );
 					for ( let i = 0; i < promiseKeys.length; i++ ) {
 						const key = promiseKeys[ i ];
-						const text = replace( translations[ i ], RE_XML_GROUPS, '{{$1}}' );
+						let text = replace( translations[ i ], RE_XML_HANDLEBAR_GROUPS, '{{$1}}' );
+						text = replace( text, RE_XML_BACKTICK_GROUPS, '`$1`' );
 						targetJSON[ key ] = text;
 					}
 					refKeys.sort( ( a, b ) => {
