@@ -5,7 +5,7 @@
 // MODULES //
 
 const path = require( 'path' );
-const fs = require( 'fs' );
+const { existsSync, readFileSync, writeFileSync, mkdirSync } = require( 'fs' );
 const parseJSDoc = require( 'doctrine' ).parse;
 const glob = require( 'glob' ).sync;
 const logger = require( 'debug' );
@@ -19,16 +19,29 @@ const isFunction = require( '@stdlib/assert/is-function' );
 const invert = require( '@stdlib/utils/object-inverse' );
 const merge = require( '@stdlib/utils/merge' );
 const COMPONENT_DOCS = {
+	'bg': require( './../@isle-project/locales/editor/component-docs/bg.json' ),
+	'cs': require( './../@isle-project/locales/editor/component-docs/cs.json' ),
+	'da': require( './../@isle-project/locales/editor/component-docs/da.json' ),
 	'de': require( './../@isle-project/locales/editor/component-docs/de.json' ),
+	'el': require( './../@isle-project/locales/editor/component-docs/el.json' ),
 	'en': require( './../@isle-project/locales/editor/component-docs/en.json' ),
 	'es': require( './../@isle-project/locales/editor/component-docs/es.json' ),
+	'et': require( './../@isle-project/locales/editor/component-docs/et.json' ),
+	'fi': require( './../@isle-project/locales/editor/component-docs/fi.json' ),
 	'fr': require( './../@isle-project/locales/editor/component-docs/fr.json' ),
+	'hu': require( './../@isle-project/locales/editor/component-docs/hu.json' ),
 	'it': require( './../@isle-project/locales/editor/component-docs/it.json' ),
 	'ja': require( './../@isle-project/locales/editor/component-docs/ja.json' ),
+	'lt': require( './../@isle-project/locales/editor/component-docs/lt.json' ),
+	'lv': require( './../@isle-project/locales/editor/component-docs/lv.json' ),
 	'nl': require( './../@isle-project/locales/editor/component-docs/nl.json' ),
 	'pl': require( './../@isle-project/locales/editor/component-docs/pl.json' ),
 	'pt': require( './../@isle-project/locales/editor/component-docs/pt.json' ),
+	'ro': require( './../@isle-project/locales/editor/component-docs/ro.json' ),
 	'ru': require( './../@isle-project/locales/editor/component-docs/ru.json' ),
+	'sk': require( './../@isle-project/locales/editor/component-docs/sk.json' ),
+	'sl': require( './../@isle-project/locales/editor/component-docs/sl.json' ),
+	'sv': require( './../@isle-project/locales/editor/component-docs/sv.json' ),
 	'zh': require( './../@isle-project/locales/editor/component-docs/zh.json' )
 };
 const REQUIRES = invert( require( './../app/bundler/requires.json' ) );
@@ -41,7 +54,7 @@ const debug = logger( 'isle-editor:update-docs' );
 const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', '@isle-project', 'components' )
 });
-const LANGUAGE_TARGETS = [ 'de', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ];
+const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)|(\/\*\*[\s\S]*?@property[\s\S]*?\*\/)\r?\n(?:const)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
@@ -77,17 +90,30 @@ const HTML_ELEMENTS = {
 	'@isle-project/components/html/ul': 'ul'
 };
 const LANGUAGE_ELEMENTS = {
+	'@isle-project/components/language/bulgarian.js': 'Language.Bulgarian',
 	'@isle-project/components/language/chinese.js': 'Language.Chinese',
+	'@isle-project/components/language/czech.js': 'Language.Czech',
+	'@isle-project/components/language/danish.js': 'Language.Danish',
 	'@isle-project/components/language/english.js': 'Language.English',
-	'@isle-project/components/language/french': 'Language.French',
-	'@isle-project/components/language/german': 'Language.German',
-	'@isle-project/components/language/italian': 'Language.Italian',
-	'@isle-project/components/language/japanese': 'Language.Japanese',
-	'@isle-project/components/language/netherlandish': 'Language.Netherlandish',
-	'@isle-project/components/language/polish': 'Language.Polish',
-	'@isle-project/components/language/portuguese': 'Language.Portuguese',
-	'@isle-project/components/language/russian': 'Language.Russian',
-	'@isle-project/components/language/spanish': 'Language.Spanish'
+	'@isle-project/components/language/estonian.js': 'Language.Estonian',
+	'@isle-project/components/language/finnish.js': 'Language.Finnish',
+	'@isle-project/components/language/french.js': 'Language.French',
+	'@isle-project/components/language/german.js': 'Language.German',
+	'@isle-project/components/language/greek.js': 'Language.Greek',
+	'@isle-project/components/language/hungarian.js': 'Language.Hungarian',
+	'@isle-project/components/language/italian.js': 'Language.Italian',
+	'@isle-project/components/language/japanese.js': 'Language.Japanese',
+	'@isle-project/components/language/latvian.js': 'Language.Latvian',
+	'@isle-project/components/language/lithuanian.js': 'Language.Lithuanian',
+	'@isle-project/components/language/netherlandish.js': 'Language.Netherlandish',
+	'@isle-project/components/language/polish.js': 'Language.Polish',
+	'@isle-project/components/language/portuguese.js': 'Language.Portuguese',
+	'@isle-project/components/language/romanian.js': 'Language.Romanian',
+	'@isle-project/components/language/russian.js': 'Language.Russian',
+	'@isle-project/components/language/slovak.js': 'Language.Slovak',
+	'@isle-project/components/language/slovenian.js': 'Language.Slovenian',
+	'@isle-project/components/language/spanish.js': 'Language.Spanish',
+	'@isle-project/components/language/swedish.js': 'Language.Swedish'
 };
 const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS, LANGUAGE_ELEMENTS );
 
@@ -152,10 +178,10 @@ for ( let i = 0; i < files.length; i++ ) {
 
 	let file;
 	try {
-		if ( !fs.existsSync( fpath ) ) {
+		if ( !existsSync( fpath ) ) {
 			fpath = path.join( './@isle-project/components', component, 'index.js' );
 		}
-		file = fs.readFileSync( fpath ).toString();
+		file = readFileSync( fpath ).toString();
 	} catch ( err ) {
 		continue;
 	}
@@ -246,7 +272,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		optionsStr += COMPONENT_DOCS[ 'en' ][ 'no-properties' ];
 	}
 	try {
-		let md = fs.readFileSync( mdpath ).toString();
+		let md = readFileSync( mdpath ).toString();
 		debug( 'Replacing component description...' );
 		let replacement = '\n---\n\n'+COMPONENT_DOCS[ 'en' ][ `${tagName}-description` ]+'\n\n';
 		replacement += optionsStr;
@@ -258,7 +284,7 @@ for ( let i = 0; i < files.length; i++ ) {
 		replacement += '## Examples';
 		md = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
 		debug( 'Replacing parameter descriptions...' );
-		fs.writeFileSync( mdpath, md );
+		writeFileSync( mdpath, md );
 
 		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
 			const lng = LANGUAGE_TARGETS[ j ];
@@ -278,16 +304,20 @@ for ( let i = 0; i < files.length; i++ ) {
 			replacement += '## '+COMPONENT_DOCS[ lng ][ 'examples' ];
 			const lngMd = replace( md, /\n---\n\n([\s\S]+?)## Examples/, replacement );
 			debug( 'Writing file: '+lngMdPath );
-			fs.writeFileSync( lngMdPath, lngMd );
+			const dir = path.dirname( lngMdPath );
+			if ( !existsSync( dir ) ) {
+				mkdirSync( dir, { recursive: true });
+			}
+			writeFileSync( lngMdPath, lngMd );
 		}
 	} catch ( err ) {
-		debug( `Documentation for ${component} does not exist` );
+		debug( `Documentation for ${component} does not exist? Encountered error: ${err.message}` );
 	}
 	debug( '\n' );
 }
 
 console.log( 'Write `documentation.json` file...' );
-fs.writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, '\t' ) );
+writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, '\t' ) );
 
 console.log( 'Write translation `en.json` file...' );
 
@@ -300,11 +330,11 @@ for ( let i = 0; i < translationKeys.length; i++ ) {
 	const key = translationKeys[ i ];
 	out[ key ] = TRANSLATIONS[ key ];
 }
-fs.writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, '\t' ).concat( '\n' ) );
+writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, '\t' ).concat( '\n' ) );
 
 for ( let i = 0; i < LANGUAGE_TARGETS.length; i++ ) {
 	const lng = LANGUAGE_TARGETS[ i ];
-	fs.writeFileSync( './@isle-project/locales/editor/component-docs/'+lng+'.json', JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
+	writeFileSync( './@isle-project/locales/editor/component-docs/'+lng+'.json', JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
 }
 console.log( 'Finished updating docs.' );
 
