@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "bepaalt of ontbrekende waarden moeten worden weggelaten",
 	"SummaryStatistics-prop-quantiles": "array van kwantielen te berekenen voor `Quantile` statistiek",
 	"SummaryStatistics-prop-secondVariable": "tweede variabele voor correlatiestatistiek",
-	"SummaryStatistics-prop-statistics": "te berekenen statistiek(en) voor de geselecteerde variabelen",
+	"SummaryStatistics-prop-statistics": "te berekenen statistiek(en) voor de geselecteerde variabelen (ofwel `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, of `Quantile`)",
 	"SummaryStatistics-prop-variables": "variabele(n) waarvoor de statistieken moeten worden berekend",
 	"Sunburst-description": "Een d3-gebaseerd zonneplot voor het weergeven van paden.",
 	"Sunburst-prop-breadcrumbs": "object met afmetingen: W' voor breedte, 'H' voor hoogte, 'S' voor afstand, 'T' voor breedte van tip/staart",

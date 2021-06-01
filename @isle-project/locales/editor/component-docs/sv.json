@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontrollerar om saknade värden ska utelämnas",
 	"SummaryStatistics-prop-quantiles": "matris av kvantilar som ska beräknas för `Quantile`-statistiken.",
 	"SummaryStatistics-prop-secondVariable": "andra variabeln för korrelationsstatistik",
-	"SummaryStatistics-prop-statistics": "Statistik som ska beräknas för de valda variablerna.",
+	"SummaryStatistics-prop-statistics": "statistik som ska beräknas för de valda variablerna (antingen `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, eller `Quantile`).",
 	"SummaryStatistics-prop-variables": "Variabel(er) för vilken/vilka statistik ska beräknas.",
 	"Sunburst-description": "En d3-baserad sunburst-plot för att visa vägar.",
 	"Sunburst-prop-breadcrumbs": "objekt med dimensioner: Det är en objekt med följande dimensioner: `w` för bredd, `h` för höjd, `s` för avstånd, `t` för bredd av spets/svans.",

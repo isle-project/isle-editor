@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "controls whether to omit missing values",
 	"SummaryStatistics-prop-quantiles": "array of quantiles to calculate for `Quantile` statistic",
 	"SummaryStatistics-prop-secondVariable": "second variable for correlation statistic",
-	"SummaryStatistics-prop-statistics": "statistics(s) to calculate for the selected variables",
+	"SummaryStatistics-prop-statistics": "statistics(s) to calculate for the selected variables (either 'Mean', `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, or `Quantile`)",
 	"SummaryStatistics-prop-variables": "variable(s) for which to calculate statistics",
 	"Sunburst-description": "A d3-based sunburst plot for displaying pathways.",
 	"Sunburst-prop-breadcrumbs": "object with dimensions: `w` for width, `h` for height, `s` for spacing, `t` for width of tip/tail",

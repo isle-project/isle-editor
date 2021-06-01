@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontroliuoja, ar praleisti trūkstamas reikšmes.",
 	"SummaryStatistics-prop-quantiles": "`Kvantilių` statistikos skaičiavimui skirtų kvantilių masyvas",
 	"SummaryStatistics-prop-secondVariable": "antrasis koreliacijos statistikos kintamasis",
-	"SummaryStatistics-prop-statistics": "statistiniai duomenys, kuriuos reikia apskaičiuoti pasirinktiems kintamiesiems.",
+	"SummaryStatistics-prop-statistics": "statistiniai duomenys, kuriuos reikia apskaičiuoti pasirinktiems kintamiesiems (arba `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, arba `Quantile`).",
 	"SummaryStatistics-prop-variables": "kintamasis (-ieji), kurio (-ių) statistinius duomenis reikia apskaičiuoti.",
 	"Sunburst-description": "D3 pagrįstas \"Sunburst\" sklypas, skirtas keliams rodyti.",
 	"Sunburst-prop-breadcrumbs": "objektas su matmenimis: `w` - plotis, `h` - aukštis, `s` - atstumas, `t` - galo/uodegos plotis",

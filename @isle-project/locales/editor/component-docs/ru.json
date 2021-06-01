@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "контролирует, следует ли опускать отсутствующие значения",
 	"SummaryStatistics-prop-quantiles": "массив квантилей для расчета статистики `Квантиль`",
 	"SummaryStatistics-prop-secondVariable": "вторая переменная для статистики корреляции",
-	"SummaryStatistics-prop-statistics": "статистику(ы) для расчета для выбранных переменных",
+	"SummaryStatistics-prop-statistics": "статистика(и) для расчета выбранных переменных (либо `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, или `Quantile`)",
 	"SummaryStatistics-prop-variables": "переменная(ые), для которой(ых) необходимо рассчитать статистику",
 	"Sunburst-description": "Сюжет с солнечными лучами на основе d3 для отображения путей.",
 	"Sunburst-prop-breadcrumbs": "объект с размерами: `w` для ширины, `h` для высоты, `s` для расстояния, `t` для ширины наконечника/хвоста",

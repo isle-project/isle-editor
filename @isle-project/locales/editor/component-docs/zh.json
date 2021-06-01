@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "控制是否省略缺失值",
 	"SummaryStatistics-prop-quantiles": "为 \"Quantile \"统计数字计算的定量数组",
 	"SummaryStatistics-prop-secondVariable": "相关统计学的第二个变量",
-	"SummaryStatistics-prop-statistics": "为所选变量计算的统计数据",
+	"SummaryStatistics-prop-statistics": "计算所选变量的统计数据（`Mean`，`Median`,`Min`,`Max`,`Range`,`Interquartile Range`,`Standard Deviation`,`Variance`,`Correlation`,`Correlation Matrix`,`Skewness`,`Excess Kurtosis`,`First Quartile`,`Third Quartile`,或`Quantile`)",
 	"SummaryStatistics-prop-variables": "计算统计数据的变量",
 	"Sunburst-description": "一个基于d3的太阳纹图，用于显示路径。",
 	"Sunburst-prop-breadcrumbs": "对象的尺寸。\"w \"代表宽度，\"h \"代表高度，\"s \"代表间距，\"t \"代表尖端/尾部的宽度。",

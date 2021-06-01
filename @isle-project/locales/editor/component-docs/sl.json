@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "nadzoruje, ali se manjkajoče vrednosti izpustijo.",
 	"SummaryStatistics-prop-quantiles": "polje kvantilov za izračun statistike `Quantile`",
 	"SummaryStatistics-prop-secondVariable": "druga spremenljivka za korelacijsko statistiko",
-	"SummaryStatistics-prop-statistics": "statistiko(-e) za izračun izbranih spremenljivk.",
+	"SummaryStatistics-prop-statistics": "statistika(-e), ki jo(-e) izračunate za izbrane spremenljivke (bodisi `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ali `Quantile`)",
 	"SummaryStatistics-prop-variables": "spremenljivka(-e), za katero(-e) se izračunajo statistični podatki.",
 	"Sunburst-description": "Graf Sunburst za prikaz poti, ki temelji na d3.",
 	"Sunburst-prop-breadcrumbs": "predmet z dimenzijami: `w` za širino, `h` za višino, `s` za razmik, `t` za širino konice/repa",

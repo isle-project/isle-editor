@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "欠損値を省略するかどうかを制御する",
 	"SummaryStatistics-prop-quantiles": "Quantile`統計のために計算されるクォンタイルの配列",
 	"SummaryStatistics-prop-secondVariable": "相関統計のための第2の変数",
-	"SummaryStatistics-prop-statistics": "選択した変数について計算する統計量",
+	"SummaryStatistics-prop-statistics": "選択した変数について計算する統計値（`Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, のいずれか `Quantile`）。",
 	"SummaryStatistics-prop-variables": "統計値を算出するための変数（複数可",
 	"Sunburst-description": "パスウェイを表示するためのd3ベースのサンバーストプロット。",
 	"Sunburst-prop-breadcrumbs": "オブジェクトに寸法を指定します。幅は `w`、高さは `h`、間隔は `s`、先端/尾部の幅は `t` です。",

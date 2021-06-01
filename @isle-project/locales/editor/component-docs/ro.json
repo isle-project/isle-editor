@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "controlează dacă se omit valorile lipsă",
 	"SummaryStatistics-prop-quantiles": "matrice de cuantile de calculat pentru statistica `Quantile`.",
 	"SummaryStatistics-prop-secondVariable": "a doua variabilă pentru statistica de corelație",
-	"SummaryStatistics-prop-statistics": "statistica (statisticile) de calculat pentru variabilele selectate",
+	"SummaryStatistics-prop-statistics": "statistica (statisticile) de calculat pentru variabilele selectate (fie `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, sau `Quantile`).",
 	"SummaryStatistics-prop-variables": "variabila (variabilele) pentru care se calculează statisticile",
 	"Sunburst-description": "Un grafic Sunburst bazat pe d3 pentru afișarea căilor de acces.",
 	"Sunburst-prop-breadcrumbs": "obiect cu dimensiuni: `w` pentru lățime, `h` pentru înălțime, `s` pentru spațiere, `t` pentru lățimea vârfului/cozii",

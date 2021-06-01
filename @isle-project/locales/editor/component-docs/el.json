@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "ελέγχει αν θα παραλείπονται οι ελλείπουσες τιμές",
 	"SummaryStatistics-prop-quantiles": "πίνακας των κβαντιλίων που πρέπει να υπολογιστούν για το στατιστικό `Quantile`",
 	"SummaryStatistics-prop-secondVariable": "δεύτερη μεταβλητή για τη στατιστική συσχέτισης",
-	"SummaryStatistics-prop-statistics": "στατιστικά στοιχεία για τον υπολογισμό των επιλεγμένων μεταβλητών",
+	"SummaryStatistics-prop-statistics": "στατιστικά στοιχεία που πρέπει να υπολογιστούν για τις επιλεγμένες μεταβλητές (είτε `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ή `Quantile`)",
 	"SummaryStatistics-prop-variables": "μεταβλητή(ες) για την οποία θα υπολογιστούν στατιστικά στοιχεία",
 	"Sunburst-description": "Ένα σχεδιάγραμμα με βάση το d3 για την απεικόνιση διαδρομών.",
 	"Sunburst-prop-breadcrumbs": "αντικείμενο με διαστάσεις: για το πλάτος, `h` για το ύψος, `s` για την απόσταση, `t` για το πλάτος της άκρης/ουράς.",

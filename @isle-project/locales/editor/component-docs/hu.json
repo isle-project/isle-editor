@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "szabályozza, hogy a hiányzó értékek elhagyhatók-e",
 	"SummaryStatistics-prop-quantiles": "a kvantilisek tömbje a `Quantile` statisztika kiszámításához",
 	"SummaryStatistics-prop-secondVariable": "a korrelációs statisztika második változója",
-	"SummaryStatistics-prop-statistics": "a kiválasztott változókra kiszámítandó statisztika(k)",
+	"SummaryStatistics-prop-statistics": "a kiválasztott változókra kiszámítandó statisztika(k) (vagy `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, vagy `Quantile`).",
 	"SummaryStatistics-prop-variables": "változó(k), amelyre vonatkozóan statisztikákat kell kiszámítani",
 	"Sunburst-description": "Egy d3-alapú sunburst plot az útvonalak megjelenítésére.",
 	"Sunburst-prop-breadcrumbs": "objektum méretekkel: `w` a szélesség, `h` a magasság, `s` a távolság, `t` a csúcs/fark szélessége.",

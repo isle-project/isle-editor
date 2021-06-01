@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontrollerer, om manglende værdier skal udelades",
 	"SummaryStatistics-prop-quantiles": "array af kvanler, der skal beregnes for `Quantile`-statistikken",
 	"SummaryStatistics-prop-secondVariable": "anden variabel for korrelationsstatistik",
-	"SummaryStatistics-prop-statistics": "statistik(er), der skal beregnes for de valgte variabler",
+	"SummaryStatistics-prop-statistics": "statistik(er), der skal beregnes for de valgte variabler (enten `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, eller `Quantile`)",
 	"SummaryStatistics-prop-variables": "variabel(er), for hvilken (hvilke) der skal beregnes statistik",
 	"Sunburst-description": "Et d3-baseret sunburst-plot til visning af veje.",
 	"Sunburst-prop-breadcrumbs": "objekt med dimensioner: for bredde, `w` for bredde, `h` for højde, `s` for afstand, `t` for bredde af spids/haler",

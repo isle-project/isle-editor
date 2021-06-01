@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontrolē, vai izlaist trūkstošās vērtības.",
 	"SummaryStatistics-prop-quantiles": "kvantiļu masīvs, kas jāaprēķina `Kvantiļu` statistikai",
 	"SummaryStatistics-prop-secondVariable": "otrais mainīgais lielums korelācijas statistikai",
-	"SummaryStatistics-prop-statistics": "statistika(-as), kas jāaprēķina izvēlētajiem mainīgajiem lielumiem.",
+	"SummaryStatistics-prop-statistics": "statistika(-as), kas jāaprēķina izvēlētajiem mainīgajiem lielumiem (vai nu `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, vai `Quantile`).",
 	"SummaryStatistics-prop-variables": "mainīgais(-ie), attiecībā uz kuru(-iem) aprēķināt statistiku.",
 	"Sunburst-description": "Uz d3 balstīts saules staru gabals ceļu attēlošanai.",
 	"Sunburst-prop-breadcrumbs": "objekts ar izmēriem: `w` - platums, `h` - augstums, `s` - atstarpe, `t` - gala/acs platums.",

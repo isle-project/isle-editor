@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "controla se devem ser omitidos os valores em falta",
 	"SummaryStatistics-prop-quantiles": "matriz de quantis a calcular para a estatística \"quântica\".",
 	"SummaryStatistics-prop-secondVariable": "segunda variável para estatística de correlação",
-	"SummaryStatistics-prop-statistics": "estatística(s) para calcular para as variáveis selecionadas",
+	"SummaryStatistics-prop-statistics": "estatísticas para calcular para as variáveis selecionadas (seja `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ou `Quantile`)",
 	"SummaryStatistics-prop-variables": "variável(eis) para a(s) qual(is) calcular estatísticas",
 	"Sunburst-description": "Uma trama de sunburst com base em d3 para mostrar os caminhos.",
 	"Sunburst-prop-breadcrumbs": "objeto com dimensões: largura, altura, espaçamento, largura da ponta/cauda",

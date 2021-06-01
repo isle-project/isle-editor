@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "controla si se omiten los valores perdidos",
 	"SummaryStatistics-prop-quantiles": "matriz de cuantiles a calcular para la estadística `Quantile`.",
 	"SummaryStatistics-prop-secondVariable": "segunda variable para la estadística de correlación",
-	"SummaryStatistics-prop-statistics": "estadística(s) a calcular para las variables seleccionadas",
+	"SummaryStatistics-prop-statistics": "estadística(s) a calcular para las variables seleccionadas (ya sea `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, o `Quantile`)",
 	"SummaryStatistics-prop-variables": "variable(s) para la(s) cual(es) se calculan las estadísticas",
 	"Sunburst-description": "Un gráfico de estallido solar basado en d3 para mostrar los caminos.",
 	"Sunburst-prop-breadcrumbs": "objeto con dimensiones: \"w\" para el ancho, \"h\" para la altura, \"s\" para el espacio, \"t\" para el ancho de la punta/la cola",

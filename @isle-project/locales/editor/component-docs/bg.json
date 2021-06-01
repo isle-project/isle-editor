@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "контролира дали да се пропускат липсващи стойности.",
 	"SummaryStatistics-prop-quantiles": "масив от квантили за изчисляване на статистиката `Quantile`",
 	"SummaryStatistics-prop-secondVariable": "втора променлива за корелационната статистика",
-	"SummaryStatistics-prop-statistics": "статистика(и) за изчисляване на избраните променливи",
+	"SummaryStatistics-prop-statistics": "статистически данни, които да се изчислят за избраните променливи (или \"Mean\", `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, или `Quantile`)",
 	"SummaryStatistics-prop-variables": "променлива(и), за която(ито) да се изчислят статистическите данни",
 	"Sunburst-description": "Базирана на d3 диаграма Sunburst за показване на пътища.",
 	"Sunburst-prop-breadcrumbs": "обект с размери: `w` за ширина, `h` за височина, `s` за разстояние, `t` за ширина на върха/опашката",

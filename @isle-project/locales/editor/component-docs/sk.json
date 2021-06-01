@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontroluje, či sa majú vynechať chýbajúce hodnoty.",
 	"SummaryStatistics-prop-quantiles": "pole kvantilov na výpočet pre štatistiku `Quantile`",
 	"SummaryStatistics-prop-secondVariable": "druhá premenná pre korelačnú štatistiku",
-	"SummaryStatistics-prop-statistics": "štatistiky, ktoré sa majú vypočítať pre vybrané premenné",
+	"SummaryStatistics-prop-statistics": "štatistiky, ktoré sa majú vypočítať pre vybrané premenné (buď `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, alebo `Quantile`).",
 	"SummaryStatistics-prop-variables": "premenná(-y), pre ktorú(-é) sa má(-ú) vypočítať štatistika",
 	"Sunburst-description": "Graf Sunburst založený na d3 na zobrazenie ciest.",
 	"Sunburst-prop-breadcrumbs": "objekt s rozmermi: `w` pre šírku, `h` pre výšku, `s` pre rozstup, `t` pre šírku špičky/chvosta",

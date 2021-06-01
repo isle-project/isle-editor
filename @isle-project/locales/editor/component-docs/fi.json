@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "valvoo, jätetäänkö puuttuvat arvot pois",
 	"SummaryStatistics-prop-quantiles": "joukko kvanttiileja, jotka lasketaan `Quantile`-tilastolle",
 	"SummaryStatistics-prop-secondVariable": "toinen muuttuja korrelaatiotilastoa varten",
-	"SummaryStatistics-prop-statistics": "valituille muuttujille laskettava tilasto(t)",
+	"SummaryStatistics-prop-statistics": "valituille muuttujille laskettavat tilastot (joko `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, tai `Quantile`).",
 	"SummaryStatistics-prop-variables": "muuttuja(t), jonka (joiden) osalta tilastot lasketaan",
 	"Sunburst-description": "d3-pohjainen sunburst-plotti polkujen näyttämiseen.",
 	"Sunburst-prop-breadcrumbs": "objekti, jolla on mitat: `w` leveys, `h` korkeus, `s` väli, `t` kärjen/hännän leveys.",

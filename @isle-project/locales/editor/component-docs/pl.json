@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontroluje, czy pominąć brakujące wartości",
 	"SummaryStatistics-prop-quantiles": "tablica kwantyli do obliczenia dla statystyki `Quantyl`.",
 	"SummaryStatistics-prop-secondVariable": "druga zmienna dla statystyki korelacji",
-	"SummaryStatistics-prop-statistics": "statystyka(-i) do obliczenia dla wybranych zmiennych",
+	"SummaryStatistics-prop-statistics": "statystyka(-i) do obliczenia dla wybranych zmiennych (albo `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, lub `Quantile`)",
 	"SummaryStatistics-prop-variables": "zmienna(-e), dla której(-ych) należy obliczyć statystyki",
 	"Sunburst-description": "Oparta na d3 działka do wyświetlania ścieżek.",
 	"Sunburst-prop-breadcrumbs": "obiekt z wymiarami: `w` dla szerokości, `h` dla wysokości, `s` dla rozstawu, `t` dla szerokości czubka/ogonka",

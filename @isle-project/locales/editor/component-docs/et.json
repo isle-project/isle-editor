@@ -1283,7 +1283,7 @@
 	"SummaryStatistics-prop-omit": "kontrollib, kas puuduvad väärtused jäetakse välja",
 	"SummaryStatistics-prop-quantiles": "kvantiliidide massiivi, mis arvutatakse \"Kvantili\"-statistiku jaoks.",
 	"SummaryStatistics-prop-secondVariable": "teine muutuja korrelatsioonistatistika jaoks",
-	"SummaryStatistics-prop-statistics": "valitud muutujate jaoks arvutatav(ad) statistika(d)",
+	"SummaryStatistics-prop-statistics": "valitud muutujate jaoks arvutatav(ad) statistika(d) (kas `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, või `Quantile`).",
 	"SummaryStatistics-prop-variables": "muutuja(d), mille kohta statistikat arvutatakse",
 	"Sunburst-description": "d3-põhine sunburst-plot radade kuvamiseks.",
 	"Sunburst-prop-breadcrumbs": "objekt mõõtmetega: `w` laius, `h` kõrgus, `s` vahemaa, `t` tipu/saba laius.",

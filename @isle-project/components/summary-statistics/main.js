@@ -670,7 +670,7 @@ SummaryStatistics.defaultProps = {
 * Summary statistics
 *
 * @property {Object} data - object of value arrays
-* @property {Array<string>} statistics - statistics(s) to calculate for the selected variables
+* @property {Array<string>} statistics - statistics(s) to calculate for the selected variables (either 'Mean', `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, or `Quantile`)
 * @property {Array<string>} variables - variable(s) for which to calculate statistics
 * @property {Array<(string|Factor)>} group - name of grouping variable(s)
 * @property {boolean} omit - controls whether to omit missing values
