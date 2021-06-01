@@ -41,40 +41,79 @@ const siteConfig = {
 
 	i18n: {
 		defaultLocale: 'en',
-		locales: [ 'de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'zh' ],
+		locales: [ 'bg', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ],
 		localeConfigs: {
+			bg: {
+				label: 'Български - BG'
+			},
+			cs: {
+				label: 'Česky - CS'
+			},
+			da: {
+				label: 'Dansk - DA'
+			},
 			de: {
-				label: 'Deutsch'
+				label: 'Deutsch - DE'
+			},
+			el: {
+				label: 'Ελληνική - EL'
 			},
 			en: {
-				label: 'English'
+				label: 'English - EN'
 			},
 			es: {
-				label: 'Español'
+				label: 'Español - ES'
+			},
+			et: {
+				label: 'Eesti - ET'
+			},
+			fi: {
+				label: 'Suomalainen - FI'
 			},
 			fr: {
-				label: 'Français'
+				label: 'Français - FR'
+			},
+			hu: {
+				label: 'Hungarian - HU'
 			},
 			it: {
-				label: 'Italiano'
+				label: 'Italiano - IT'
 			},
 			ja: {
-				label: 'にほんご'
+				label: 'にほんご - JA'
+			},
+			lt: {
+				label: 'Lietuvių kalba - LT'
+			},
+			lv: {
+				label: 'Latviešu - LV'
 			},
 			nl: {
-				label: 'Nederlands'
+				label: 'Nederlands - NL'
 			},
 			pl: {
-				label: 'Polski'
+				label: 'Polski - PL'
 			},
 			pt: {
-				label: 'Porgtugês'
+				label: 'Porgtugês - PT'
+			},
+			ro: {
+				label: 'Românesc - RO'
 			},
 			ru: {
-				label: 'русский'
+				label: 'русский - RU'
+			},
+			sk: {
+				label: 'Slovenská - SK'
+			},
+			sl: {
+				label: 'Slovenski - SL'
+			},
+			sv: {
+				label: 'Svenska - SV'
 			},
 			zh: {
-				label: '中文'
+				label: '中文 - ZH'
 			}
 		}
 	},

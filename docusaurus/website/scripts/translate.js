@@ -4,7 +4,9 @@
 
 const axios = require( 'axios' );
 const glob = require( 'glob' );
-const fs = require( 'fs' );
+const path = require( 'path' );
+const { mkdir } = require( 'fs/promises' );
+const { existsSync, writeFileSync } = require( 'fs' );
 const qs = require( 'qs' );
 const readJSON = require( '@stdlib/fs/read-json' );
 const objectKeys = require( '@stdlib/utils/keys' );
@@ -21,7 +23,7 @@ const MAX_TRANSLATION_CALLS = 5;
 // MAIN //
 
 const options = {};
-glob( '**/en/**/*.json', options, function onFiles( err, files ) {
+glob( '**/en/**/*.json', options, async function onFiles( err, files ) {
 	console.log( files );
 
 	for ( let i = 0; i < files.length; i++ ) {
@@ -35,12 +37,14 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 			const key = refKeys[ i ];
 			sortedReference[ key ] = reference[ key ];
 		}
-		fs.writeFileSync( files[ i ], JSON.stringify( sortedReference, null, '\t' ).concat( '\n' ) );
+		writeFileSync( files[ i ], JSON.stringify( sortedReference, null, '\t' ).concat( '\n' ) );
 		for ( let j = 0; j < LANGUAGE_TARGETS.length; j++ ) {
 			const lng = LANGUAGE_TARGETS[ j ];
 			const filePath = replace( files[ i ], '/en/', `/${lng}/` );
-			if ( !fs.existsSync( filePath ) ) {
-				fs.writeFileSync( filePath, JSON.stringify( {} ) );
+			if ( !existsSync( filePath ) ) {
+				const targetDir = path.dirname( filePath );
+				await mkdir( targetDir, { recursive: true }); // eslint-disable-line no-await-in-loop
+				writeFileSync( filePath, JSON.stringify( {} ) );
 			}
 			const targetJSON = readJSON.sync( filePath );
 			const promises = [];
@@ -81,7 +85,7 @@ glob( '**/en/**/*.json', options, function onFiles( err, files ) {
 						const key = refKeys[ i ];
 						out[ key ] = targetJSON[ key ];
 					}
-					fs.writeFileSync( filePath, JSON.stringify( out, null, '\t' ).concat( '\n' ) );
+					writeFileSync( filePath, JSON.stringify( out, null, '\t' ).concat( '\n' ) );
 				})
 				.catch( err => {
 					console.log( err );
