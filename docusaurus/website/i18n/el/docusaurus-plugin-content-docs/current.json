@@ -1,0 +1,98 @@
+{
+	"sidebar.docs.category.Basic Components": {
+		"message": "Βασικά συστατικά",
+		"description": "The label for category Basic Components in sidebar docs"
+	},
+	"sidebar.docs.category.Components": {
+		"message": "Εξαρτήματα",
+		"description": "The label for category Components in sidebar docs"
+	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Στοιχεία δεδομένων",
+		"description": "The label for category Data Components in sidebar docs"
+	},
+	"sidebar.docs.category.Display Components": {
+		"message": "Στοιχεία οθόνης",
+		"description": "The label for category Display Components in sidebar docs"
+	},
+	"sidebar.docs.category.Distributions": {
+		"message": "Διανομές",
+		"description": "The label for category Distributions in sidebar docs"
+	},
+	"sidebar.docs.category.General Components": {
+		"message": "Γενικά στοιχεία",
+		"description": "The label for category General Components in sidebar docs"
+	},
+	"sidebar.docs.category.Headings": {
+		"message": "Τίτλοι",
+		"description": "The label for category Headings in sidebar docs"
+	},
+	"sidebar.docs.category.Input Components": {
+		"message": "Στοιχεία εισόδου",
+		"description": "The label for category Input Components in sidebar docs"
+	},
+	"sidebar.docs.category.Learning Components": {
+		"message": "Συνιστώσες μάθησης",
+		"description": "The label for category Learning Components in sidebar docs"
+	},
+	"sidebar.docs.category.Main Components": {
+		"message": "Κύρια συστατικά",
+		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Μοντέλα",
+		"description": "The label for category Models in sidebar docs"
+	},
+	"sidebar.docs.category.Online Services": {
+		"message": "Ηλεκτρονικές υπηρεσίες",
+		"description": "The label for category Online Services in sidebar docs"
+	},
+	"sidebar.docs.category.Overview": {
+		"message": "Επισκόπηση",
+		"description": "The label for category Overview in sidebar docs"
+	},
+	"sidebar.docs.category.Plot Components": {
+		"message": "Στοιχεία οικοπέδου",
+		"description": "The label for category Plot Components in sidebar docs"
+	},
+	"sidebar.docs.category.Presentation Components": {
+		"message": "Στοιχεία παρουσίασης",
+		"description": "The label for category Presentation Components in sidebar docs"
+	},
+	"sidebar.docs.category.Programmatic": {
+		"message": "Προγραμματισμός",
+		"description": "The label for category Programmatic in sidebar docs"
+	},
+	"sidebar.docs.category.Question Components": {
+		"message": "Συστατικά ερωτήσεων",
+		"description": "The label for category Question Components in sidebar docs"
+	},
+	"sidebar.docs.category.R Components": {
+		"message": "Εξαρτήματα R",
+		"description": "The label for category R Components in sidebar docs"
+	},
+	"sidebar.docs.category.Server": {
+		"message": "Διακομιστής",
+		"description": "The label for category Server in sidebar docs"
+	},
+	"sidebar.docs.category.Survey Components": {
+		"message": "Στοιχεία της έρευνας",
+		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Πίνακες",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Δοκιμές",
+		"description": "The label for category Tests in sidebar docs"
+	},
+	"sidebar.docs.category.Tutorials": {
+		"message": "Σεμινάρια",
+		"description": "The label for category Tutorials in sidebar docs"
+	},
+	"version.label": {
+		"message": "Επόμενο",
+		"description": "The label for version current"
+	}
+}

@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Μια επιλογή από βίντεο-διδασκαλίες σας βοηθούν να ξεκινήσετε και να δείτε πώς το ISLE μπορεί να ενσωματωθεί στην τάξη σας."
+	},
+	"Help Page": {
+		"message": "Σελίδα βοήθειας"
+	},
+	"help.browse-docs-heading": {
+		"message": "Αναζήτηση εγγράφων",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Κάντε ερωτήσεις σχετικά με την τεκμηρίωση και το έργο στο φόρουμ <a href=\"https://discourse.isledocs.com\">συζήτηση</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Γίνετε μέλος της Κοινότητας",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Το έργο αυτό συντηρείται από μια αφοσιωμένη ομάδα ανθρώπων.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Χρειάζεστε βοήθεια;",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Μάθετε τι καινούργιο υπάρχει σε αυτό το έργο περιηγούμενοι στις <a href=\"https://github.com/isle-project/isle-editor/releases\">εκδόσεις</a> του επεξεργαστή ISLE."
+	},
+	"help.stay-updated-heading": {
+		"message": "Μείνετε ενημερωμένοι",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Πληροφορίες σχετικά με τα χαρακτηριστικά του ISLE και τα σχετικά ερευνητικά έργα που συμβάλλουν στην ανάπτυξή του είναι διαθέσιμες στην ιστοσελίδα του έργου."
+	},
+	"open-link": {
+		"message": "Ανοίξτε το",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "ΣΥΧΝΈΣ ΕΡΩΤΉΣΕΙΣ",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Οι απαντήσεις σε συνήθεις ερωτήσεις σχετικά με την αξιοποίηση του ISLE για την τάξη σας συγκεντρώνονται στις Συχνές Ερωτήσεις.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Ξεκινήστε",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "Ταμπλό ISLE",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Χρησιμοποιήστε το ταμπλό του ISLE για να διαχειριστείτε το μάθημά σας, να διαχειριστείτε τα μαθήματα και να παρακολουθείτε την πρόοδο των μαθητών.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "Εκδότης ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Χρησιμοποιήστε τον επεξεργαστή ISLE για να δημιουργήσετε νέα μαθήματα ISLE, από διαδραστικές διαλέξεις έως εργαστηριακές δραστηριότητες ή εργασίες για το σπίτι.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "Διακομιστής ISLE",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Φιλοξενείστε μια παρουσία διακομιστή ISLE για τη διαχείριση χρηστών και τη συλλογή δεδομένων ή αναπτύξτε την σε έναν υπάρχοντα διακομιστή.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Ιστοσελίδα του έργου",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Καλώς ήρθατε στην τεκμηρίωση του <i>διαδραστικού περιβάλλοντος εκμάθησης στατιστικής (ISLE)</i> και του ISLE Editor για τη συγγραφή διαδραστικών μαθημάτων για τη στατιστική και συναφείς κλάδους. Ένας από τους στόχους μας είναι να ενθαρρύνουμε τους διδάσκοντες σε πανεπιστήμια και άλλα εκπαιδευτικά ιδρύματα να το χρησιμοποιήσουν για τους σκοπούς τους. Για ερωτήσεις, παρακαλούμε επικοινωνήστε μαζί μας μέσω ηλεκτρονικού ταχυδρομείου στη διεύθυνση pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Live Editor",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Αποτέλεσμα",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Κλείστε το",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Πλοήγηση στη σελίδα της λίστας του ιστολογίου",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Νεότερες καταχωρήσεις",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Παλαιότερες καταχωρήσεις",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Πλοήγηση στη σελίδα του blog post",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Newer Post",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Παλαιότερο άρθρο",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Μία θέση|{count} θέσεις",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Ένα λεπτό ανάγνωσης|{readingTime} min read",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Διαβάστε περισσότερα",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} με ετικέτα \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Νεότερες καταχωρήσεις",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Παλαιότερες καταχωρήσεις",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Διαβάστε περισσότερα",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Newer Post",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Παλαιότερο άρθρο",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Αντιγραφή",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Αντιγραφή",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Αντιγραφή κώδικα στο πρόχειρο",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Επεξεργασία αυτής της σελίδας",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Άμεσος σύνδεσμος στην επικεφαλίδα",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Μετάβαση στο κύριο περιεχόμενο",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Επόμενο",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Προηγούμενο",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Πλοήγηση στις σελίδες εγγράφων",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Επόμενο",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Προηγούμενο",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Απόρρευση πλευρικής γραμμής",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Απόρρευση πλευρικής γραμμής",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Αναπτύξτε την πλευρική μπάρα",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Αναπτύξτε την πλευρική μπάρα",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Κλείσιμο μενού",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Άνοιγμα μενού",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "τελευταία έκδοση",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Για ενημερωμένη τεκμηρίωση, ανατρέξτε στο {latestVersionLink} ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Αυτή είναι η τεκμηρίωση για το {siteTitle} {versionLabel}, η οποία δεν συντηρείται πλέον ενεργά.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Αυτή είναι η μη δημοσιευμένη τεκμηρίωση για το {siteTitle} {versionLabel} version.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Επεξεργασία αυτής της σελίδας",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " την {ημερομηνία}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " από τον {χρήστη}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Τελευταία ενημέρωση{ημερομηνία}{απόΧρήστη}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "Δεν μπορέσαμε να βρούμε αυτό που ψάχνατε.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Παρακαλούμε επικοινωνήστε με τον ιδιοκτήτη του ιστότοπου που σας συνέδεσε με την αρχική διεύθυνση URL και ενημερώστε τον ότι ο σύνδεσμός του είναι σπασμένος.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Η σελίδα δεν βρέθηκε",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Live Editor",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Αποτέλεσμα",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Αναζήτηση",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Αναζήτηση με Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Βρέθηκε ένα έγγραφο|{count} έγγραφα που βρέθηκαν",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Αναζήτηση στην τεκμηρίωση",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Αποτελέσματα αναζήτησης για",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Ανάκτηση νέων αποτελεσμάτων...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Αναζήτηση",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Πληκτρολογήστε την αναζήτησή σας εδώ",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Δεν βρέθηκαν αποτελέσματα",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Μετάβαση στο κύριο περιεχόμενο",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Ετικέτες:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Προβολή όλων των ετικετών",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Ετικέτες",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Εκπαιδευτικά βίντεο",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Πλήρης κατάλογος των βίντεο για το ISLE είναι διαθέσιμος στο <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >κάναλο YouTube</a> του έργου."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "Χρήση του ISLE στην τάξη",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Revealer και Blackout",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Χρήση του Sketchpad",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Μαθήματα styling",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Σύστημα έκδοσης εισιτηρίων",
+		"description": "Ticketing System"
+	}
+}

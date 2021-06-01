@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Pasirinktos vaizdo mokomosios programos padės jums pradėti dirbti ir sužinoti, kaip ISLE gali būti pritaikyta jūsų klasėje."
+	},
+	"Help Page": {
+		"message": "Pagalbos puslapis"
+	},
+	"help.browse-docs-heading": {
+		"message": "Naršyti dokumentus",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Užduokite klausimus apie dokumentaciją ir projektą <a href=\"https://discourse.isledocs.com\">diskusijų forume</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Prisijunkite prie bendruomenės",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Šį projektą prižiūri atsidavusi žmonių grupė.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Reikia pagalbos?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Sužinokite, kas naujo šiame projekte, peržiūrėdami <a href=\"https://github.com/isle-project/isle-editor/releases\">išleidimus</a> ISLE redaktoriaus"
+	},
+	"help.stay-updated-heading": {
+		"message": "Sekite naujienas",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Informacijos apie ISLE ypatybes ir susijusius mokslinių tyrimų projektus, kuriais grindžiamas jos kūrimas, galima rasti projekto interneto svetainėje."
+	},
+	"open-link": {
+		"message": "Atviras",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "DUK",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Atsakymai į dažniausiai užduodamus klausimus apie tai, kaip panaudoti ISLE savo klasei, pateikiami DUK.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Pradėkite",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE prietaisų skydelis",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Naudokitės ISLE prietaisų skydeliu kurso valdymui, pamokų administravimui ir mokinių pažangos stebėjimui.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE redaktorius",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Naudodamiesi ISLE redaktoriumi galite kurti naujas ISLE pamokas, pradedant interaktyviomis paskaitomis ir baigiant laboratoriniais užsiėmimais ar namų darbų užduotimis.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE serveris",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Priimkite ISLE serverio egzempliorių, skirtą naudotojams valdyti ir duomenims rinkti, arba dislokuokite jį esamame serveryje.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Projekto svetainė",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Sveiki atvykę į <i>interaktyvios statistikos mokymosi aplinkos (ISLE)</i> ir ISLE redaktoriaus, skirto interaktyvioms statistikos ir susijusių disciplinų pamokoms kurti, dokumentaciją. Vienas iš mūsų tikslų - paskatinti universitetų ir kitų mokymo įstaigų dėstytojus naudoti ją savo reikmėms. Kilus klausimams, susisiekite su mumis el. paštu pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Tiesioginis redaktorius",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Rezultatas",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Uždaryti",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Tinklaraščio sąrašo puslapio navigacija",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Naujesni įrašai",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Senesni įrašai",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Tinklaraščio įrašo puslapio navigacija",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Naujesnis įrašas",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Senesnis pranešimas",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Vienas pranešimas|{skaičius} pranešimų",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Viena perskaityta minutė|{skaitymo laikas} perskaityta minutė",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Skaityti daugiau",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} su žyma \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Naujesni įrašai",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Senesni įrašai",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Skaityti daugiau",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Naujesnis įrašas",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Senesnis pranešimas",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Nukopijuota",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Kopijuoti",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Nukopijuokite kodą į iškarpinę",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Redaguoti šį puslapį",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Tiesioginė nuoroda į antraštę",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Pereiti prie pagrindinio turinio",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Kitas",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Ankstesnis",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Dokumentų puslapių navigacija",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Kitas",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Ankstesnis",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Sugriauti šoninę juostą",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Sugriauti šoninę juostą",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Išskleisti šoninę juostą",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Išskleisti šoninę juostą",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Uždaryti meniu",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Atidaryti meniu",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "naujausia versija",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Naujausią dokumentaciją rasite {latestVersionLink} ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Tai yra {siteTitle} dokumentacija {versionLabel}, kuris nebėra aktyviai prižiūrimas.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Tai neišleista dokumentacija, skirta {siteTitle} {versionLabel} versija.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Redaguoti šį puslapį",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " {data}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " pagal {naudotojas}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Paskutinį kartą atnaujinta{atDate}{byUser}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "Neradome to, ko ieškojote.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Kreipkitės į svetainės, kuri jus susiejo su pradiniu URL adresu, savininką ir praneškite, kad jų nuoroda neveikia.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Puslapis nerastas",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Tiesioginis redaktorius",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Rezultatas",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Paieška",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Paieška pagal Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Rastas vienas dokumentas|{{skaičius} rastų dokumentų",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Paieška dokumentuose",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Paieškos rezultatai",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Naujų rezultatų gavimas...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Paieška",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Įveskite paiešką čia",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Rezultatų nerasta",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Pereiti prie pagrindinio turinio",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Žymos:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Peržiūrėti visas žymas",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Žymos",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Vaizdo pamokos",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Visą ISLE vaizdo įrašų sąrašą galima rasti projekto <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >\"YouTube\" kanale</a>."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "ISLE naudojimas klasėje",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "\"Revealer\" ir \"Blackout",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Eskizo naudojimas",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Stiliaus pamokos",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Bilietų sistema",
+		"description": "Ticketing System"
+	}
+}

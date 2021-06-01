@@ -1,0 +1,26 @@
+{
+	"item.label.Blog": {
+		"message": "Blogs",
+		"description": "Navbar item with label Blog"
+	},
+	"item.label.Docs": {
+		"message": "Dokumenti",
+		"description": "Navbar item with label Docs"
+	},
+	"item.label.Forum": {
+		"message": "Forums",
+		"description": "Navbar item with label Forum"
+	},
+	"item.label.GitHub": {
+		"message": "GitHub",
+		"description": "Navbar item with label GitHub"
+	},
+	"item.label.Help": {
+		"message": "Palīdzība",
+		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "ISLE dokumentācija",
+		"description": "The title in the navbar"
+	}
+}

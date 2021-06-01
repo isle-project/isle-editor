@@ -1,0 +1,98 @@
+{
+	"sidebar.docs.category.Basic Components": {
+		"message": "Základní součásti",
+		"description": "The label for category Basic Components in sidebar docs"
+	},
+	"sidebar.docs.category.Components": {
+		"message": "Komponenty",
+		"description": "The label for category Components in sidebar docs"
+	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Datové komponenty",
+		"description": "The label for category Data Components in sidebar docs"
+	},
+	"sidebar.docs.category.Display Components": {
+		"message": "Zobrazovací komponenty",
+		"description": "The label for category Display Components in sidebar docs"
+	},
+	"sidebar.docs.category.Distributions": {
+		"message": "Distribuce",
+		"description": "The label for category Distributions in sidebar docs"
+	},
+	"sidebar.docs.category.General Components": {
+		"message": "Obecné součásti",
+		"description": "The label for category General Components in sidebar docs"
+	},
+	"sidebar.docs.category.Headings": {
+		"message": "Rubriky",
+		"description": "The label for category Headings in sidebar docs"
+	},
+	"sidebar.docs.category.Input Components": {
+		"message": "Vstupní komponenty",
+		"description": "The label for category Input Components in sidebar docs"
+	},
+	"sidebar.docs.category.Learning Components": {
+		"message": "Součásti výuky",
+		"description": "The label for category Learning Components in sidebar docs"
+	},
+	"sidebar.docs.category.Main Components": {
+		"message": "Hlavní součásti",
+		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Modely",
+		"description": "The label for category Models in sidebar docs"
+	},
+	"sidebar.docs.category.Online Services": {
+		"message": "Online služby",
+		"description": "The label for category Online Services in sidebar docs"
+	},
+	"sidebar.docs.category.Overview": {
+		"message": "Přehled",
+		"description": "The label for category Overview in sidebar docs"
+	},
+	"sidebar.docs.category.Plot Components": {
+		"message": "Součásti pozemku",
+		"description": "The label for category Plot Components in sidebar docs"
+	},
+	"sidebar.docs.category.Presentation Components": {
+		"message": "Součásti prezentace",
+		"description": "The label for category Presentation Components in sidebar docs"
+	},
+	"sidebar.docs.category.Programmatic": {
+		"message": "Programové",
+		"description": "The label for category Programmatic in sidebar docs"
+	},
+	"sidebar.docs.category.Question Components": {
+		"message": "Součásti otázky",
+		"description": "The label for category Question Components in sidebar docs"
+	},
+	"sidebar.docs.category.R Components": {
+		"message": "R Komponenty",
+		"description": "The label for category R Components in sidebar docs"
+	},
+	"sidebar.docs.category.Server": {
+		"message": "Server",
+		"description": "The label for category Server in sidebar docs"
+	},
+	"sidebar.docs.category.Survey Components": {
+		"message": "Součásti průzkumu",
+		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Tabulky",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Testy",
+		"description": "The label for category Tests in sidebar docs"
+	},
+	"sidebar.docs.category.Tutorials": {
+		"message": "Výukové programy",
+		"description": "The label for category Tutorials in sidebar docs"
+	},
+	"version.label": {
+		"message": "Další",
+		"description": "The label for version current"
+	}
+}

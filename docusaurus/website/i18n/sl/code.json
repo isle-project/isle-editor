@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Izbor videoposnetkov vam bo pomagal začeti in si ogledati, kako lahko ISLE vključite v svoj razred."
+	},
+	"Help Page": {
+		"message": "Stran za pomoč"
+	},
+	"help.browse-docs-heading": {
+		"message": "Brskanje po dokumentih",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Postavite vprašanja o dokumentaciji in projektu na <a href=\"https://discourse.isledocs.com\">diskusijskem forumu</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Pridružite se skupnosti",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Ta projekt vzdržuje predana skupina ljudi.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Potrebujete pomoč?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Ugotovite, kaj&apos;je novega pri tem projektu, s pregledovanjem <a href=\"https://github.com/isle-project/isle-editor/releases\">izdaje</a> urejevalnika ISLE"
+	},
+	"help.stay-updated-heading": {
+		"message": "Bodite na tekočem",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Informacije o značilnostih sistema ISLE in povezanih raziskovalnih projektih, ki so bili podlaga za njegov razvoj, so na voljo na spletni strani projekta."
+	},
+	"open-link": {
+		"message": "Odpri",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "POGOSTA VPRAŠANJA",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Odgovore na pogosta vprašanja o tem, kako uporabiti ISLE za svoj razred, najdete v Pogosto zastavljenih vprašanjih.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Začnite z delom",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "Nadzorna plošča ISLE",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Z nadzorno ploščo ISLE lahko upravljate svoj tečaj, vodite lekcije in spremljate napredek učencev.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "Urednik ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Z urejevalnikom ISLE ustvarite nove lekcije ISLE, od interaktivnih predavanj do laboratorijskih dejavnosti ali domačih nalog.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "Strežnik ISLE",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Gostite primerek strežnika ISLE za upravljanje uporabnikov in zbiranje podatkov ali ga namestite v obstoječi strežnik.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Spletna stran projekta",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Dobrodošli v dokumentaciji <i>interaktivnega učnega okolja za statistiko (ISLE)</i> in urejevalnika ISLE Editor za pripravo interaktivnih učnih ur za statistiko in sorodne discipline. Eden od naših ciljev je spodbuditi inštruktorje na univerzah in drugih učnih ustanovah, da ga uporabijo za svoje namene. Za vprašanja se obrnite na nas po elektronski pošti na naslov pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Urejevalnik v živo",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Rezultat",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Zapri",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Navigacija po strani s seznamom blogov",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Novejši vnosi",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Starejši vnosi",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Navigacija po strani z objavami v blogu",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Novejša objava",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Starejša objava",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Ena objava|{število} objav",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Ena minuta branja|{bralni čas} minuta branja",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Preberite več",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPrispevki} označeni z \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Novejši vnosi",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Starejši vnosi",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Preberite več",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Novejša objava",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Starejša objava",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Kopirano",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Kopiraj",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Kopiranje kode v odložišče",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Urejanje te strani",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Neposredna povezava do naslova",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Preskoči na glavno vsebino",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Naslednji",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Prejšnji",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Navigacija po straneh dokumentov",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Naslednji",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Prejšnji",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Zbijanje stranske vrstice",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Zbijanje stranske vrstice",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Razširite stransko vrstico",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Razširite stransko vrstico",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Zapri meni",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Odprti meni",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "najnovejša različica",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Za posodobljeno dokumentacijo glejte {latestVersionLink} ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "To je dokumentacija za {siteTitle} {versionLabel}, ki se ne vzdržuje več.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "To je neobjavljena dokumentacija za {siteTitle} {versionLabel} različico.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Urejanje te strani",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " na {datum}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " s strani {uporabnik}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Nazadnje posodobljeno{atDate}{poUporabniku}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "Nismo našli tistega, kar ste iskali.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Obrnite se na lastnika spletnega mesta, ki vas je povezal z izvirnim naslovom URL, in mu sporočite, da je njegova povezava prekinjena.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Stran ni bila najdena",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Urejevalnik v živo",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Rezultat",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Iskanje",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Iskanje po Algoliji",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Najden en dokument|{število} najdenih dokumentov",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Iskanje po dokumentaciji",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Rezultati iskanja za",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Pridobivanje novih rezultatov...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Iskanje",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Tu vnesite svoje iskanje",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Rezultati niso bili najdeni",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Preskoči na glavno vsebino",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Oznake:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Oglejte si vse oznake",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Oznake",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Video vaje",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Celoten seznam videoposnetkov o ISLE je na voljo na <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >YouTube kanalu</a> projekta."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "Uporaba sistema ISLE v razredu",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Razkritje in zatemnitev",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Uporaba skicirke",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Učne ure oblikovanja",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Sistem izdajanja vozovnic",
+		"description": "Ticketing System"
+	}
+}

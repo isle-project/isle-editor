@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Video pamācību izlase palīdzēs jums sākt darbu un uzzināt, kā ISLE var iekļaut jūsu klasē."
+	},
+	"Help Page": {
+		"message": "Palīdzības lapa"
+	},
+	"help.browse-docs-heading": {
+		"message": "Pārlūkot dokumentus",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Uzdodiet jautājumus par dokumentāciju un projektu <a href=\"https://discourse.isledocs.com\">diskusiju forumā</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Pievienojieties kopienai",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Šo projektu uztur mērķtiecīga cilvēku grupa.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Nepieciešama palīdzība?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Uzziniet, kas&apos;jauns šajā projektā, pārlūkojot ISLE redaktora <a href=\"https://github.com/isle-project/isle-editor/releases\">izlaidumus</a>."
+	},
+	"help.stay-updated-heading": {
+		"message": "Sekojiet līdzi jaunumiem",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Informācija par ISLE funkcijām un saistītajiem pētniecības projektiem, kas ir tās izstrādes pamatā, ir pieejama projekta tīmekļa vietnē."
+	},
+	"open-link": {
+		"message": "Atvērt",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "BIEŽĀK UZDOTIE JAUTĀJUMI",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Atbildes uz biežāk uzdotajiem jautājumiem par to, kā izmantot ISLE jūsu klasei, ir apkopotas mūsu bieži uzdotajos jautājumos.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Sākt",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE Dashboard",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Izmantojiet ISLE paneli, lai pārvaldītu savu kursu, administrētu nodarbības un uzraudzītu skolēnu progresu.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE redaktors",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Izmantojiet ISLE redaktoru, lai izveidotu jaunas ISLE nodarbības, sākot no interaktīvām lekcijām līdz laboratorijas nodarbībām vai mājasdarbu uzdevumiem.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE serveris",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Izvietojiet ISLE servera gadījumu lietotāju pārvaldībai un datu vākšanai vai izvietojiet to esošajā serverī.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Projekta tīmekļa vietne",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Laipni lūgti <i>interaktīvās statistikas mācību vides (ISLE)</i> un ISLE redaktora dokumentācijā, kas paredzēta interaktīvu nodarbību veidošanai statistikas un saistīto disciplīnu jomā. Viens no mūsu mērķiem ir mudināt augstskolu un citu mācību iestāžu pasniedzējus izmantot to savām vajadzībām. Ja rodas jautājumi, lūdzu, sazinieties ar mums pa e-pastu pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Tiešraides redaktors",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Rezultāts",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Aizvērt",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Bloga saraksta lapas navigācija",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Jaunāki ieraksti",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Vecāki ieraksti",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Bloga ziņojuma lapas navigācija",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Jaunāka ziņa",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Vecāks raksts",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Viena ziņa|{skaits} ziņu",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Viena minūte|{lasīšanas laiks} min lasījums",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Lasīt vairāk",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} ar birku \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Jaunāki ieraksti",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Vecāki ieraksti",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Lasīt vairāk",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Jaunāka ziņa",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Vecāks raksts",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Kopēts",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Kopēt",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Koda kopēšana uz starpliktuvi",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Rediģēt šo lapu",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Tiešā saite uz virsrakstu",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Pāriet uz galveno saturu",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Nākamais",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Iepriekšējais",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Dokumentu lapu navigācija",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Nākamais",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Iepriekšējais",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Saraukt sānu joslu",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Saraukt sānu joslu",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Izvērst sānu joslu",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Izvērst sānu joslu",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Aizvērt izvēlni",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Atvērt izvēlni",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "jaunākā versija",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Lai iegūtu jaunāko dokumentāciju, skatiet {latestVersionLink} ({versijasLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Šī ir dokumentācija par {siteTitle} {versionLabel}, kas vairs netiek aktīvi uzturēta.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Šī ir neizdota dokumentācija par {siteTitle} {versionLabel} versija.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Rediģēt šo lapu",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " {datos}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " līdz {lietotājs}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Pēdējo reizi atjaunināts{atDate}{līdz lietotājam}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "Mēs nevarējām atrast meklēto.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Lūdzu, sazinieties ar vietnes īpašnieku, kas jūs sasaistīja ar sākotnējo URL, un informējiet viņu, ka saite ir bojāta.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Lapa nav atrasta",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Tiešraides redaktors",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Rezultāts",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Meklēšana",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Meklēt pēc Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Atrasts viens dokuments|{{count} atrasti dokumenti",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Meklēšana dokumentācijā",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Meklēšanas rezultāti",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Jaunu rezultātu iegūšana...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Meklēšana",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Ierakstiet meklēšanas veidu šeit",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Rezultāti nav atrasti",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Pāriet uz galveno saturu",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Tags:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Skatīt visas birkas",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Tags",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Video pamācības",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Pilns ISLE videoklipu saraksts ir pieejams projekta <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >YouTube kanālā</a>."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "ISLE izmantošana klasē",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Revealer un Blackout",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Skiču bloka lietošana",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Stila veidošanas nodarbības",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Biļešu sistēma",
+		"description": "Ticketing System"
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"sidebar.docs.category.Basic Components": {
+		"message": "Peruskomponentit",
+		"description": "The label for category Basic Components in sidebar docs"
+	},
+	"sidebar.docs.category.Components": {
+		"message": "Komponentit",
+		"description": "The label for category Components in sidebar docs"
+	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Tietokomponentit",
+		"description": "The label for category Data Components in sidebar docs"
+	},
+	"sidebar.docs.category.Display Components": {
+		"message": "Näytön komponentit",
+		"description": "The label for category Display Components in sidebar docs"
+	},
+	"sidebar.docs.category.Distributions": {
+		"message": "Jakelut",
+		"description": "The label for category Distributions in sidebar docs"
+	},
+	"sidebar.docs.category.General Components": {
+		"message": "Yleiset komponentit",
+		"description": "The label for category General Components in sidebar docs"
+	},
+	"sidebar.docs.category.Headings": {
+		"message": "Otsikot",
+		"description": "The label for category Headings in sidebar docs"
+	},
+	"sidebar.docs.category.Input Components": {
+		"message": "Tulokomponentit",
+		"description": "The label for category Input Components in sidebar docs"
+	},
+	"sidebar.docs.category.Learning Components": {
+		"message": "Oppimiskomponentit",
+		"description": "The label for category Learning Components in sidebar docs"
+	},
+	"sidebar.docs.category.Main Components": {
+		"message": "Tärkeimmät komponentit",
+		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Mallit",
+		"description": "The label for category Models in sidebar docs"
+	},
+	"sidebar.docs.category.Online Services": {
+		"message": "Online-palvelut",
+		"description": "The label for category Online Services in sidebar docs"
+	},
+	"sidebar.docs.category.Overview": {
+		"message": "Yleiskatsaus",
+		"description": "The label for category Overview in sidebar docs"
+	},
+	"sidebar.docs.category.Plot Components": {
+		"message": "Tontin osat",
+		"description": "The label for category Plot Components in sidebar docs"
+	},
+	"sidebar.docs.category.Presentation Components": {
+		"message": "Esityksen komponentit",
+		"description": "The label for category Presentation Components in sidebar docs"
+	},
+	"sidebar.docs.category.Programmatic": {
+		"message": "Ohjelmallinen",
+		"description": "The label for category Programmatic in sidebar docs"
+	},
+	"sidebar.docs.category.Question Components": {
+		"message": "Kysymyksen komponentit",
+		"description": "The label for category Question Components in sidebar docs"
+	},
+	"sidebar.docs.category.R Components": {
+		"message": "R-komponentit",
+		"description": "The label for category R Components in sidebar docs"
+	},
+	"sidebar.docs.category.Server": {
+		"message": "Palvelin",
+		"description": "The label for category Server in sidebar docs"
+	},
+	"sidebar.docs.category.Survey Components": {
+		"message": "Tutkimuksen osatekijät",
+		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Taulukot",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Testit",
+		"description": "The label for category Tests in sidebar docs"
+	},
+	"sidebar.docs.category.Tutorials": {
+		"message": "Oppaat",
+		"description": "The label for category Tutorials in sidebar docs"
+	},
+	"version.label": {
+		"message": "Seuraava",
+		"description": "The label for version current"
+	}
+}

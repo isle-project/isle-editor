@@ -1,0 +1,98 @@
+{
+	"sidebar.docs.category.Basic Components": {
+		"message": "Componente de bază",
+		"description": "The label for category Basic Components in sidebar docs"
+	},
+	"sidebar.docs.category.Components": {
+		"message": "Componente",
+		"description": "The label for category Components in sidebar docs"
+	},
+	"sidebar.docs.category.Data Components": {
+		"message": "Componente de date",
+		"description": "The label for category Data Components in sidebar docs"
+	},
+	"sidebar.docs.category.Display Components": {
+		"message": "Componente de afișare",
+		"description": "The label for category Display Components in sidebar docs"
+	},
+	"sidebar.docs.category.Distributions": {
+		"message": "Distribuții",
+		"description": "The label for category Distributions in sidebar docs"
+	},
+	"sidebar.docs.category.General Components": {
+		"message": "Componente generale",
+		"description": "The label for category General Components in sidebar docs"
+	},
+	"sidebar.docs.category.Headings": {
+		"message": "Rubrici",
+		"description": "The label for category Headings in sidebar docs"
+	},
+	"sidebar.docs.category.Input Components": {
+		"message": "Componente de intrare",
+		"description": "The label for category Input Components in sidebar docs"
+	},
+	"sidebar.docs.category.Learning Components": {
+		"message": "Componente de învățare",
+		"description": "The label for category Learning Components in sidebar docs"
+	},
+	"sidebar.docs.category.Main Components": {
+		"message": "Componente principale",
+		"description": "The label for category Main Components in sidebar docs"
+	},
+	"sidebar.docs.category.Models": {
+		"message": "Modele",
+		"description": "The label for category Models in sidebar docs"
+	},
+	"sidebar.docs.category.Online Services": {
+		"message": "Servicii online",
+		"description": "The label for category Online Services in sidebar docs"
+	},
+	"sidebar.docs.category.Overview": {
+		"message": "Prezentare generală",
+		"description": "The label for category Overview in sidebar docs"
+	},
+	"sidebar.docs.category.Plot Components": {
+		"message": "Componentele parcelei",
+		"description": "The label for category Plot Components in sidebar docs"
+	},
+	"sidebar.docs.category.Presentation Components": {
+		"message": "Componente de prezentare",
+		"description": "The label for category Presentation Components in sidebar docs"
+	},
+	"sidebar.docs.category.Programmatic": {
+		"message": "Programmatic",
+		"description": "The label for category Programmatic in sidebar docs"
+	},
+	"sidebar.docs.category.Question Components": {
+		"message": "Componente ale întrebărilor",
+		"description": "The label for category Question Components in sidebar docs"
+	},
+	"sidebar.docs.category.R Components": {
+		"message": "R Componente",
+		"description": "The label for category R Components in sidebar docs"
+	},
+	"sidebar.docs.category.Server": {
+		"message": "Server",
+		"description": "The label for category Server in sidebar docs"
+	},
+	"sidebar.docs.category.Survey Components": {
+		"message": "Componentele sondajului",
+		"description": "The label for category Survey Components in sidebar docs"
+	},
+	"sidebar.docs.category.Tables": {
+		"message": "Tabele",
+		"description": "The label for category Tables in sidebar docs"
+	},
+	"sidebar.docs.category.Tests": {
+		"message": "Teste",
+		"description": "The label for category Tests in sidebar docs"
+	},
+	"sidebar.docs.category.Tutorials": {
+		"message": "Tutoriale",
+		"description": "The label for category Tutorials in sidebar docs"
+	},
+	"version.label": {
+		"message": "Următorul",
+		"description": "The label for version current"
+	}
+}

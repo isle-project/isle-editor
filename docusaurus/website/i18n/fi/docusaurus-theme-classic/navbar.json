@@ -1,0 +1,26 @@
+{
+	"item.label.Blog": {
+		"message": "Blogi",
+		"description": "Navbar item with label Blog"
+	},
+	"item.label.Docs": {
+		"message": "Asiakirjat",
+		"description": "Navbar item with label Docs"
+	},
+	"item.label.Forum": {
+		"message": "Foorumi",
+		"description": "Navbar item with label Forum"
+	},
+	"item.label.GitHub": {
+		"message": "GitHub",
+		"description": "Navbar item with label GitHub"
+	},
+	"item.label.Help": {
+		"message": "Apua",
+		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "ISLE-asiakirjat",
+		"description": "The title in the navbar"
+	}
+}

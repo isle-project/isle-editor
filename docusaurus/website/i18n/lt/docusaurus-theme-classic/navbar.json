@@ -1,0 +1,26 @@
+{
+	"item.label.Blog": {
+		"message": "Tinklaraštis",
+		"description": "Navbar item with label Blog"
+	},
+	"item.label.Docs": {
+		"message": "Dokumentai",
+		"description": "Navbar item with label Docs"
+	},
+	"item.label.Forum": {
+		"message": "Forumas",
+		"description": "Navbar item with label Forum"
+	},
+	"item.label.GitHub": {
+		"message": "\"GitHub\"",
+		"description": "Navbar item with label GitHub"
+	},
+	"item.label.Help": {
+		"message": "Pagalba",
+		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "ISLE dokumentacija",
+		"description": "The title in the navbar"
+	}
+}

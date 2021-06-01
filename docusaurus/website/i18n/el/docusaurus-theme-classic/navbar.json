@@ -1,0 +1,26 @@
+{
+	"item.label.Blog": {
+		"message": "Blog",
+		"description": "Navbar item with label Blog"
+	},
+	"item.label.Docs": {
+		"message": "Έγγραφα",
+		"description": "Navbar item with label Docs"
+	},
+	"item.label.Forum": {
+		"message": "Φόρουμ",
+		"description": "Navbar item with label Forum"
+	},
+	"item.label.GitHub": {
+		"message": "GitHub",
+		"description": "Navbar item with label GitHub"
+	},
+	"item.label.Help": {
+		"message": "Βοήθεια",
+		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "Τεκμηρίωση ISLE",
+		"description": "The title in the navbar"
+	}
+}

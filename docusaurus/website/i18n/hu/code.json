@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "A videós oktatóvideók segítenek a kezdésben és abban, hogyan lehet az ISLE-t beépíteni az osztályterembe."
+	},
+	"Help Page": {
+		"message": "Súgó oldal"
+	},
+	"help.browse-docs-heading": {
+		"message": "Dokumentumok böngészése",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Tegye fel kérdéseit a dokumentációval és a projekttel kapcsolatban a <a href=\"https://discourse.isledocs.com\">vitafórumon</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Csatlakozzon a közösséghez",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "Ezt a projektet egy elhivatott csoport tartja fenn.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Segítségre van szüksége?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Tudja meg, hogy mi újdonság van ebben a projektben, ha az ISLE szerkesztő <a href=\"https://github.com/isle-project/isle-editor/releases\">kiadványok</a> között böngészik."
+	},
+	"help.stay-updated-heading": {
+		"message": "Maradjon naprakész",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Az ISLE jellemzőiről és a fejlesztését megalapozó kapcsolódó kutatási projektekről a projekt honlapján találhatók információk."
+	},
+	"open-link": {
+		"message": "Nyissa meg a  címet.",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "GYIK",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "A GYIK-ben összegyűjtöttük a válaszokat a leggyakoribb kérdésekre azzal kapcsolatban, hogyan használhatja ki az ISLE-t az osztálya számára.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Kezdje el",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "ISLE műszerfal",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Az ISLE műszerfal segítségével kezelheti a kurzusokat, adminisztrálhatja a leckéket és nyomon követheti a diákok előrehaladását.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "ISLE szerkesztő",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Az ISLE-szerkesztővel új ISLE-leckéket hozhat létre, az interaktív előadásoktól kezdve a laboratóriumi tevékenységekig vagy házi feladatokig.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "ISLE szerver",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Egy ISLE-kiszolgálópéldány üzemeltetése a felhasználók kezeléséhez és az adatgyűjtéshez, vagy telepítés egy meglévő kiszolgálóra.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "A projekt honlapja",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Üdvözöljük az <i>interaktív statisztikai tanulási környezet (ISLE)</i> és az ISLE-szerkesztő dokumentációjában, amely interaktív leckéket készít a statisztika és a kapcsolódó tudományágak számára. Egyik célunk, hogy az egyetemek és más tanintézmények oktatóit arra ösztönözzük, hogy használják ezt a programot saját céljaikra. Kérdéseivel forduljon hozzánk e-mailben a pgb AT andrew.cmu.edu címen.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Élő szerkesztő",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Eredmény",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Zárja be a",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Blog lista oldal navigáció",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Újabb bejegyzések",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Régebbi bejegyzések",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Blog post oldal navigáció",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Újabb bejegyzés",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Régebbi bejegyzés",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Egy hozzászólás|{szám} hozzászólások",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Egy perc olvasás|{readingTime} min olvasás",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Olvass tovább",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} tagged with \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Újabb bejegyzések",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Régebbi bejegyzések",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Olvass tovább",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Újabb bejegyzés",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Régebbi bejegyzés",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Másolva",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Másolás",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Kód másolása a vágólapra",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Az oldal szerkesztése",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Közvetlen link a címhez",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Ugrás a fő tartalomra",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Következő",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Előző",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Dokumentumok oldalak navigációja",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Következő",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Előző",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Oldalsáv összecsukása",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Oldalsáv összecsukása",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Oldalsáv bővítése",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Oldalsáv bővítése",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Menü bezárása",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Menü megnyitása",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "legújabb verzió",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "A legfrissebb dokumentációért lásd a {latestVersionLink} ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Ez a {siteTitle} dokumentációja. {versionLabel}, amelyet már nem tartanak fenn aktívan.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Ez a {siteTitle} kiadatlan dokumentációja. {versionLabel} verzió.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Az oldal szerkesztése",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " {dátum}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " {felhasználó}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Utolsó frissítés{dátum}{felhasználó által}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "Nem találtuk meg, amit keresett.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Kérjük, vegye fel a kapcsolatot az eredeti URL-címre mutató oldal tulajdonosával, és tájékoztassa őket, hogy a linkjük megszakadt.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Oldal nem található",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Élő szerkesztő",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Eredmény",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Keresés",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Keresés Algolia szerint",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Egy dokumentumot találtunk|{count} talált dokumentumok száma",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Keresés a dokumentációban",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Keresés eredményei a következő témában",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Új eredmények lekérése...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Keresés",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Írja be a keresést ide",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Nem találtak eredményt",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Ugrás a fő tartalomra",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Címkék:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Minden címke megtekintése",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Címkék",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Videó oktatóvideók",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Az ISLE-ről szóló videók teljes listája elérhető a projekt <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >YouTube-csatornáján</a>."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "Az ISLE használata az osztályban",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Revealer és Blackout",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "A Sketchpad használata",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Styling leckék",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Jegyrendszer",
+		"description": "Ticketing System"
+	}
+}

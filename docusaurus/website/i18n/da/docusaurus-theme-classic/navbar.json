@@ -1,0 +1,26 @@
+{
+	"item.label.Blog": {
+		"message": "Blog",
+		"description": "Navbar item with label Blog"
+	},
+	"item.label.Docs": {
+		"message": "Docs",
+		"description": "Navbar item with label Docs"
+	},
+	"item.label.Forum": {
+		"message": "Forum",
+		"description": "Navbar item with label Forum"
+	},
+	"item.label.GitHub": {
+		"message": "GitHub",
+		"description": "Navbar item with label GitHub"
+	},
+	"item.label.Help": {
+		"message": "Hjælp",
+		"description": "Navbar item with label Help"
+	},
+	"title": {
+		"message": "ISLE Dokumentation",
+		"description": "The title in the navbar"
+	}
+}

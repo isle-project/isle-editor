@@ -1,0 +1,359 @@
+{
+	".": {
+		"message": "."
+	},
+	"A selection of video tutorials help you get started and see how ISLE may be incorporated into your classroom.": {
+		"message": "Vybrané videonávody vám pomohou začít a zjistit, jak lze ISLE začlenit do vaší třídy."
+	},
+	"Help Page": {
+		"message": "Stránka nápovědy"
+	},
+	"help.browse-docs-heading": {
+		"message": "Procházet dokumenty",
+		"description": "Browse Docs Heading"
+	},
+	"help.join-community": {
+		"message": "Ptejte se na otázky týkající se dokumentace a projektu v <a href=\"https://discourse.isledocs.com\">diskusním fóru</a>."
+	},
+	"help.join-community-heading": {
+		"message": "Připojte se ke komunitě",
+		"description": "Join the Community Heading"
+	},
+	"help.maintained-by-people": {
+		"message": "O tento projekt se stará skupina obětavých lidí.",
+		"description": "Paragraph mentioning that project is maintained by multiple people"
+	},
+	"help.need-help-heading": {
+		"message": "Potřebujete pomoc?",
+		"description": "Help Page Top-Level Heading"
+	},
+	"help.stay-updated": {
+		"message": "Zjistěte, co je v tomto projektu nového, a projděte si <a href=\"https://github.com/isle-project/isle-editor/releases\">vydání</a> editoru ISLE."
+	},
+	"help.stay-updated-heading": {
+		"message": "Zůstaňte v obraze",
+		"description": "Stay Updated Heading"
+	},
+	"Information on the features of ISLE and related research projects informing its development are available on the project website.": {
+		"message": "Informace o vlastnostech systému ISLE a souvisejících výzkumných projektech, které se podílejí na jeho vývoji, jsou k dispozici na internetových stránkách projektu."
+	},
+	"open-link": {
+		"message": "Otevřít",
+		"description": "Label for button to open link."
+	},
+	"overview.faq": {
+		"message": "ČASTO KLADENÉ DOTAZY",
+		"description": "Frequently Asked Questions"
+	},
+	"overview.faq-intro": {
+		"message": "Odpovědi na nejčastější otázky týkající se využití systému ISLE pro vaši třídu jsou shromážděny v našich často kladených dotazech.",
+		"description": "Introductory paragraph for FAQ section."
+	},
+	"overview.get-started": {
+		"message": "Začněte",
+		"description": "Label for how to get started."
+	},
+	"overview.isle-dashboard": {
+		"message": "Přístrojová deska ISLE",
+		"description": "ISLE Dashboard"
+	},
+	"overview.isle-dashboard-intro": {
+		"message": "Pomocí ovládacího panelu ISLE můžete spravovat svůj kurz, spravovat lekce a sledovat pokrok studentů.",
+		"description": "Introduction of ISLE dashboard for course management."
+	},
+	"overview.isle-editor": {
+		"message": "Redaktor ISLE",
+		"description": "ISLE Editor"
+	},
+	"overview.isle-editor-into": {
+		"message": "Pomocí editoru ISLE můžete vytvářet nové lekce ISLE, od interaktivních přednášek až po laboratorní aktivity nebo domácí úkoly.",
+		"description": "Introduction of ISLE editor for creating lessons."
+	},
+	"overview.isle-server": {
+		"message": "Server ISLE",
+		"description": "ISLE Server"
+	},
+	"overview.isle-server-intro": {
+		"message": "Hostujte instanci serveru ISLE pro správu uživatelů a sběr dat nebo ji nasaďte na stávající server.",
+		"description": "Introduction of ISLE backend server."
+	},
+	"overview.project-website": {
+		"message": "Webové stránky projektu",
+		"description": "Project Website"
+	},
+	"overview.welcome": {
+		"message": "Vítejte v dokumentaci <i>interaktivního výukového prostředí pro statistiku (ISLE)</i> a editoru ISLE pro tvorbu interaktivních lekcí pro statistiku a příbuzné obory. Jedním z našich cílů je povzbudit vyučující na univerzitách a dalších vzdělávacích institucích, aby jej používali pro své účely. V případě dotazů nás prosím kontaktujte prostřednictvím e-mailu na adrese pgb AT andrew.cmu.edu.",
+		"description": "Welcome message at beginning of documentation"
+	},
+	"playground.live-editor": {
+		"message": "Živý editor",
+		"description": "Heading of live editor"
+	},
+	"playground.result": {
+		"message": "Výsledek",
+		"description": "Heading of output pane"
+	},
+	"theme.AnnouncementBar.closeButtonAriaLabel": {
+		"message": "Zavřít",
+		"description": "The ARIA label for close button of announcement bar"
+	},
+	"theme.blog.paginator.navAriaLabel": {
+		"message": "Navigace na stránce se seznamem blogů",
+		"description": "The ARIA label for the blog pagination"
+	},
+	"theme.blog.paginator.newerEntries": {
+		"message": "Novější příspěvky",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.blog.paginator.olderEntries": {
+		"message": "Starší příspěvky",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.blog.post.paginator.navAriaLabel": {
+		"message": "Navigace na stránce blogu",
+		"description": "The ARIA label for the blog posts pagination"
+	},
+	"theme.blog.post.paginator.newerPost": {
+		"message": "Novější příspěvek",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.blog.post.paginator.olderPost": {
+		"message": "Starší příspěvek",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.blog.post.plurals": {
+		"message": "Jeden příspěvek|{počet} příspěvků",
+		"description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readingTime.plurals": {
+		"message": "Minutové čtení|{Čas čtení} min. čtení",
+		"description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.blog.post.readMore": {
+		"message": "Přečtěte si více",
+		"description": "The label used in blog post item excerpts to link to full blog posts"
+	},
+	"theme.blog.tagTitle": {
+		"message": "{nPosts} označené \"{tagName}\"",
+		"description": "The title of the page for a blog tag"
+	},
+	"theme.BlogListPaginator.newerEntries": {
+		"message": "Novější příspěvky",
+		"description": "The label used to navigate to the newer blog posts page (previous page)"
+	},
+	"theme.BlogListPaginator.olderEntries": {
+		"message": "Starší příspěvky",
+		"description": "The label used to navigate to the older blog posts page (next page)"
+	},
+	"theme.BlogPostItem.readMore": {
+		"message": "Přečtěte si více",
+		"description": "The label used in blog post item excerps to link to full blog posts"
+	},
+	"theme.BlogPostPaginator.newerPost": {
+		"message": "Novější příspěvek",
+		"description": "The blog post button label to navigate to the newer/previous post"
+	},
+	"theme.BlogPostPaginator.olderPost": {
+		"message": "Starší příspěvek",
+		"description": "The blog post button label to navigate to the older/next post"
+	},
+	"theme.CodeBlock.copied": {
+		"message": "Zkopírováno",
+		"description": "The copied button label on code blocks"
+	},
+	"theme.CodeBlock.copy": {
+		"message": "Kopírovat",
+		"description": "The copy button label on code blocks"
+	},
+	"theme.CodeBlock.copyButtonAriaLabel": {
+		"message": "Kopírování kódu do schránky",
+		"description": "The ARIA label for copy code blocks button"
+	},
+	"theme.common.editThisPage": {
+		"message": "Upravit tuto stránku",
+		"description": "The link label to edit the current page"
+	},
+	"theme.common.headingLinkTitle": {
+		"message": "Přímý odkaz na nadpis",
+		"description": "Title for link to heading"
+	},
+	"theme.common.skipToMainContent": {
+		"message": "Přeskočit na hlavní obsah",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.DocPaginator.next": {
+		"message": "Další",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.DocPaginator.previous": {
+		"message": "Předchozí",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.paginator.navAriaLabel": {
+		"message": "Navigace na stránkách dokumentů",
+		"description": "The ARIA label for the docs pagination"
+	},
+	"theme.docs.paginator.next": {
+		"message": "Další",
+		"description": "The label used to navigate to the next doc"
+	},
+	"theme.docs.paginator.previous": {
+		"message": "Předchozí",
+		"description": "The label used to navigate to the previous doc"
+	},
+	"theme.docs.sidebar.collapseButtonAriaLabel": {
+		"message": "Sbalit postranní panel",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.collapseButtonTitle": {
+		"message": "Sbalit postranní panel",
+		"description": "The title attribute for collapse button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonAriaLabel": {
+		"message": "Rozbalit postranní panel",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.expandButtonTitle": {
+		"message": "Rozbalit postranní panel",
+		"description": "The ARIA label and title attribute for expand button of doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveCloseButtonLabel": {
+		"message": "Zavřít nabídku",
+		"description": "The ARIA label for close button of mobile doc sidebar"
+	},
+	"theme.docs.sidebar.responsiveOpenButtonLabel": {
+		"message": "Otevřít nabídku",
+		"description": "The ARIA label for open button of mobile doc sidebar"
+	},
+	"theme.docs.versions.latestVersionLinkLabel": {
+		"message": "nejnovější verze",
+		"description": "The label used for the latest version suggestion link label"
+	},
+	"theme.docs.versions.latestVersionSuggestionLabel": {
+		"message": "Aktuální dokumentaci naleznete v odkazu {latestVersionLink}. ({versionLabel}).",
+		"description": "The label userd to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unmaintainedVersionLabel": {
+		"message": "Toto je dokumentace pro {siteTitle} {versionLabel}, která již není aktivně udržována.",
+		"description": "The label used to tell the user that he's browsing an unmaintained doc version"
+	},
+	"theme.docs.versions.unreleasedVersionLabel": {
+		"message": "Toto je nezveřejněná dokumentace pro {siteTitle} {versionLabel} verze.",
+		"description": "The label used to tell the user that he's browsing an unreleased doc version"
+	},
+	"theme.EditThisPage.editThisPage": {
+		"message": "Upravit tuto stránku",
+		"description": "The link label to edit the current page"
+	},
+	"theme.lastUpdated.atDate": {
+		"message": " dne {datum}",
+		"description": "The words used to describe on which date a page has been last updated"
+	},
+	"theme.lastUpdated.byUser": {
+		"message": " od {uživatel}",
+		"description": "The words used to describe by who the page has been last updated"
+	},
+	"theme.lastUpdated.lastUpdatedAtBy": {
+		"message": "Naposledy aktualizováno{atDate}{byUser}",
+		"description": "The sentence used to display when a page has been last updated, and by who"
+	},
+	"theme.NotFound.p1": {
+		"message": "To, co jste hledali, jsme nenašli.",
+		"description": "The first paragraph of the 404 page"
+	},
+	"theme.NotFound.p2": {
+		"message": "Kontaktujte prosím vlastníka webu, který vás odkázal na původní adresu URL, a informujte ho o tom, že je jeho odkaz nefunkční.",
+		"description": "The 2nd paragraph of the 404 page"
+	},
+	"theme.NotFound.title": {
+		"message": "Stránka nebyla nalezena",
+		"description": "The title of the 404 page"
+	},
+	"theme.Playground.liveEditor": {
+		"message": "Živý editor",
+		"description": "The live editor label of the live codeblocks"
+	},
+	"theme.Playground.result": {
+		"message": "Výsledek",
+		"description": "The result label of the live codeblocks"
+	},
+	"theme.SearchBar.label": {
+		"message": "Vyhledávání",
+		"description": "The ARIA label and placeholder for search button"
+	},
+	"theme.SearchPage.algoliaLabel": {
+		"message": "Vyhledávání podle Algolia",
+		"description": "The ARIA label for Algolia mention"
+	},
+	"theme.SearchPage.documentsFound.plurals": {
+		"message": "Jeden nalezený dokument|{počet} nalezených dokumentů",
+		"description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+	},
+	"theme.SearchPage.emptyResultsTitle": {
+		"message": "Vyhledávání v dokumentaci",
+		"description": "The search page title for empty query"
+	},
+	"theme.SearchPage.existingResultsTitle": {
+		"message": "Výsledky hledání pro",
+		"description": "The search page title for non-empty query"
+	},
+	"theme.SearchPage.fetchingNewResults": {
+		"message": "Získávání nových výsledků...",
+		"description": "The paragraph for fetching new search results"
+	},
+	"theme.SearchPage.inputLabel": {
+		"message": "Vyhledávání",
+		"description": "The ARIA label for search page input"
+	},
+	"theme.SearchPage.inputPlaceholder": {
+		"message": "Zde zadejte své vyhledávání",
+		"description": "The placeholder for search page input"
+	},
+	"theme.SearchPage.noResultsText": {
+		"message": "Nebyly nalezeny žádné výsledky",
+		"description": "The paragraph for empty search result"
+	},
+	"theme.SkipToContent.skipToMainContent": {
+		"message": "Přeskočit na hlavní obsah",
+		"description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+	},
+	"theme.tags.tagsListLabel": {
+		"message": "Štítky:",
+		"description": "The label alongside a tag list"
+	},
+	"theme.tags.tagsPageLink": {
+		"message": "Zobrazit všechny štítky",
+		"description": "The label of the link targeting the tag list page"
+	},
+	"theme.tags.tagsPageTitle": {
+		"message": "Štítky",
+		"description": "The title of the tag list page"
+	},
+	"video-tutorials": {
+		"message": "Videonávody",
+		"description": "Video Tutorials"
+	},
+	"video-tutorials.channel-intro": {
+		"message": "Úplný seznam videí o ISLE je k dispozici na <a href=\"https://www.youtube.com/channel/UCF8LtWYmyYqPlZ9ZLrVC4Jw/videos\" >YouTube kanálu</a> projektu."
+	},
+	"video-tutorials.isle-in-class": {
+		"message": "Používání ISLE ve třídě",
+		"description": "Using ISLE in class"
+	},
+	"video-tutorials.revealer-and-blackout": {
+		"message": "Revealer a Blackout",
+		"description": "Revealer and Blackout"
+	},
+	"video-tutorials.sketchpad": {
+		"message": "Používání náčrtníku",
+		"description": "Using the Sketchpad"
+	},
+	"video-tutorials.styling-lessons": {
+		"message": "Lekce stylingu",
+		"description": "Styling Lessons"
+	},
+	"video-tutorials.ticketing-system": {
+		"message": "Systém prodeje vstupenek",
+		"description": "Ticketing System"
+	}
+}
