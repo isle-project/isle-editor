@@ -90,6 +90,7 @@ function formatArraySolution( solution, t ) {
 * @property {number} min - minimum allowed input value
 * @property {number} defaultValue - pre-selected value of number input
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {boolean} submitAfterFeedback - controls whether one should be able to resubmit even after the solution has been revealed)
 * @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is `true`)
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
@@ -279,11 +280,15 @@ class NumberQuestion extends Component {
 
 	renderSubmitButton() {
 		const session = this.context;
-		if ( this.props.until && session.startTime > this.props.until ) {
-			return <span className="title" style={{ marginLeft: 4 }} >{this.props.t('question-closed')}</span>;
+		const { until, nTries, solution, submitAfterFeedback, t } = this.props;
+		if ( until && session.startTime > until ) {
+			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
-		const solutionPresent = this.props.solution !== null;
-		const isDisabled = this.state.submitted && solutionPresent && this.state.numSubmissions >= this.props.nTries;
+		const solutionPresent = solution !== null;
+		const isDisabled = this.state.submitted && solutionPresent && (
+			( this.state.numSubmissions >= nTries && !submitAfterFeedback ) ||
+			this.state.correct
+		);
 		return (
 			<TimedButton
 				className="submit-button"
@@ -295,7 +300,7 @@ class NumberQuestion extends Component {
 					marginLeft: 3
 				}}
 			>
-				{ ( this.state.submitted && !this.props.solution ) ? this.props.t('resubmit') : this.props.t('submit') }
+				{ ( this.state.submitted && !solution ) ? t('resubmit') : t('submit') }
 			</TimedButton>
 		);
 	}
@@ -304,19 +309,24 @@ class NumberQuestion extends Component {
 	* React component render method.
 	*/
 	render() {
-		const nHints = this.props.hints.length;
-		const solutionPresent = this.props.solution !== null;
-		const isDisabled = this.state.submitted && solutionPresent && this.state.numSubmissions >= this.props.nTries;
+		const { chat, feedback, hints, hintPlacement, question, points,
+			provideFeedback, nTries, solution, submitAfterFeedback,
+			style, t } = this.props;
+		const nHints = hints.length;
+		const solutionPresent = solution !== null;
+		const isDisabled = this.state.submitted && solutionPresent && (
+			( this.state.numSubmissions >= nTries && !submitAfterFeedback ) ||
+			this.state.correct );
 		return (
 			<Panel
-				id={this.id} className="number-question" style={this.props.style} fullscreen
+				id={this.id} className="number-question" style={style} fullscreen
 				bodyStyle={{ display: 'inline-block', marginBottom: 6 }}
 			>
-				{ this.props.question ? <p><label>{this.props.question}</label></p> : null }
+				{ question ? <p><label>{question}</label></p> : null }
 				<div className="number-question-input-wrapper">
 					<NumberInput
 						step="any"
-						legend={this.props.t('your-answer')}
+						legend={t('your-answer')}
 						onChange={this.handleChange}
 						defaultValue={this.state.value}
 						disabled={isDisabled}
@@ -329,13 +339,13 @@ class NumberQuestion extends Component {
 					{
 						this.state.submitted &&
 						solutionPresent &&
-						this.props.provideFeedback &&
-						( this.state.correct || this.state.numSubmissions >= this.props.nTries ) ?
+						provideFeedback &&
+						( this.state.correct || this.state.numSubmissions >= nTries ) ?
 						<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-							{`${this.props.t('solution')}:   `}
-							{isArray( this.props.solution ) ?
-								formatArraySolution( this.props.solution, this.props.t ) :
-								String( this.props.solution )
+							{`${t('solution')}:   `}
+							{isArray( solution ) ?
+								formatArraySolution( solution, t ) :
+								String( solution )
 							}
 						</Badge>:
 						null
@@ -343,20 +353,20 @@ class NumberQuestion extends Component {
 				</div>
 				<ButtonToolbar className="number-question-toolbar">
 					<ResponseVisualizer
-						buttonLabel={this.props.t('answers')} id={this.id}
+						buttonLabel={t('answers')} id={this.id}
 						data={{
 							type: 'number',
-							question: this.props.question,
-							solution: this.props.solution
+							question: question,
+							solution: solution
 						}} info="NUMBER_QUESTION_SUBMISSION"
 						style={{ marginLeft: 3, marginRight: 3 }}
-						points={this.props.points}
+						points={points}
 					/>
 					{ nHints > 0 ?
 						<HintButton
 							onClick={this.logHint}
-							hints={this.props.hints}
-							placement={this.props.hintPlacement}
+							hints={hints}
+							placement={hintPlacement}
 							style={{
 								marginLeft: 3
 							}}
@@ -364,18 +374,18 @@ class NumberQuestion extends Component {
 						null
 					}
 					{
-						this.props.chat ?
+						chat ?
 							<div style={{ display: 'inline-block', marginLeft: 3 }}>
 								<ChatButton for={this.id} />
 							</div> : null
 					}
 					{this.renderSubmitButton()}
 				</ButtonToolbar>
-				{ this.props.feedback ? <FeedbackButtons
+				{ feedback ? <FeedbackButtons
 					id={this.id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
-				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
+				<GradeFeedbackRenderer for={this.id} points={points} />
 			</Panel>
 		);
 	}
@@ -395,6 +405,7 @@ NumberQuestion.defaultProps = {
 	min: NINF,
 	defaultValue: 0,
 	provideFeedback: true,
+	submitAfterFeedback: false,
 	nTries: 1,
 	disableSubmitNotification: false,
 	chat: false,
@@ -424,6 +435,7 @@ NumberQuestion.propTypes = {
 	min: PropTypes.number,
 	defaultValue: PropTypes.number,
 	provideFeedback: PropTypes.bool,
+	submitAfterFeedback: PropTypes.bool,
 	nTries: PropTypes.number,
 	disableSubmitNotification: PropTypes.bool,
 	chat: PropTypes.bool,
