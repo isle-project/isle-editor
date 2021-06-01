@@ -1,6 +1,6 @@
 // MODULES //
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import papplyRight from '@stdlib/utils/papply-right';
@@ -504,7 +504,9 @@ function generateStatistics({ data, t, statistics, variables, secondVariable, gr
 
 function SummaryStatistics({ variables, statistics, data, secondVariable, group, omit, quantiles }) {
 	const { t } = useTranslation( 'data-explorer' );
-	const e = generateStatistics({ data, t, statistics, variables, secondVariable, group, omit, quantiles });
+	const e = useMemo( () => {
+		return generateStatistics({ data, t, statistics, variables, secondVariable, group, omit, quantiles });
+	}, [ data, statistics, variables, group, omit, quantiles, secondVariable, t ] );
 	if ( e.group ) {
 		if ( e.statistics.length === 1 && e.statistics[0] === 'Correlation Matrix' ) {
 			return <CorrelationMatrix e={e} t={t} />;
