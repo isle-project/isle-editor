@@ -37,7 +37,7 @@ import TabItem from '@theme/TabItem';
         { label: 'Minimal', value: 'minimal' },
         { label: 'With Style', value: 'withStyle' },
         { label: 'Inline', value: 'inline' },
-        { label: 'With Hints', value: 'with Hints' },
+        { label: 'With Hints', value: 'withHints' },
         { label: 'Submit Function Hints', value: 'submitFunction' },
     ]}
     lazy
