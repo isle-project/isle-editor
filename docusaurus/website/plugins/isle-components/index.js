@@ -1,7 +1,10 @@
-// MAIN //
+// MODULES //
 
 const path = require( 'path' );
-const { DefinePlugin } = require( 'webpack' );
+const { DefinePlugin, DllReferencePlugin } = require( 'webpack' );
+const COMPONENTS_MANIFEST = require( './../../../../@isle-project/dll/components-manifest.json' );
+const LOCALES_MANIFEST = require( './../../../../@isle-project/dll/locales-manifest.json' );
+const SESSION_MANIFEST = require( './../../../../@isle-project/dll/session-manifest.json' );
 
 
 // VARIABLES //
@@ -15,9 +18,9 @@ const modulePaths = [
 ];
 
 
-// MODULES //
+// MAIN //
 
-module.exports = function main( context, options ) {
+function main( context, options ) {
 	return {
 		name: 'isle-components',
 		configureWebpack( config, isServer ) {
@@ -37,6 +40,15 @@ module.exports = function main( context, options ) {
 					}
 				},
 				plugins: [
+					new DllReferencePlugin({
+						manifest: LOCALES_MANIFEST
+					}),
+					new DllReferencePlugin({
+						manifest: SESSION_MANIFEST
+					}),
+					new DllReferencePlugin({
+						manifest: COMPONENTS_MANIFEST
+					}),
 					new DefinePlugin({
 						'process.env': {
 							NODE_ENV: '"production"'
@@ -113,4 +125,9 @@ module.exports = function main( context, options ) {
 			};
 		}
 	};
-};
+}
+
+
+// EXPORTS //
+
+module.exports = main;
