@@ -14,6 +14,7 @@ import SessionContext from '@isle-project/session/context.js';
 
 const debug = logger( 'isle:key-controls' );
 const RE_ALPHABETIC = /^[a-z]$/i;
+const INPUTS = [ 'input', 'textarea' ];
 
 
 // MAIN //
@@ -87,7 +88,11 @@ class KeyControls extends Component {
 			isFunction( fn )
 		) {
 			if ( RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
-				return;
+				const el = document.activeElement;
+				const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 || el.isContentEditable );
+				if ( inTextField || el.tagName === 'CANVAS' ) {
+					return;
+				}
 			}
 			event.preventDefault();
 			event.stopPropagation();
@@ -101,8 +106,15 @@ class KeyControls extends Component {
 		debug( `Received key press for document: ${keyName}` );
 		const fn = this.props.actions[ keyName ];
 		if ( !modifier && isFunction( fn ) ) {
-			if ( RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
-				return;
+			if (
+				RE_ALPHABETIC.test( keyName ) &&
+				document.activeElement !== document.body
+			) {
+				const el = document.activeElement;
+				const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 || el.isContentEditable );
+				if ( inTextField || el.tagName === 'CANVAS' ) {
+					return;
+				}
 			}
 			event.preventDefault();
 			event.stopPropagation();
