@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[30433],{736738:function(e){"use strict";e.exports=JSON.parse('{"generate":"Generowa\u0107"}')}}]);

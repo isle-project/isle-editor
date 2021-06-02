@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[97955],{391282:function(e){"use strict";e.exports=JSON.parse('{"hide-solution":"L\xf6sung ausblenden","show-solution":"L\xf6sung anzeigen","solution-available-tooltip":"L\xf6sung wird verf\xfcgbar, nachdem die Antwort eingereicht wurde","solution-available-tooltip-hints":"und alle Hinweise angefordert wurden"}')}}]);

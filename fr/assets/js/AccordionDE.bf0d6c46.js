@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[94962],{455147:function(e){"use strict";e.exports=JSON.parse('{"children-missing":"Das Akkordeon ben\xf6tigt mindestens zwei Kind-Elemente, damit es gerendert werden kann."}')}}]);

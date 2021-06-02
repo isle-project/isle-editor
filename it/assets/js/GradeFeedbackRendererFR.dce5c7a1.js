@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[18617],{334675:function(s){"use strict";s.exports=JSON.parse('{"display-instructor-feedback":"Cliquez pour afficher ou masquer les commentaires des instructeurs","your-points":"Vos points pour la question"}')}}]);

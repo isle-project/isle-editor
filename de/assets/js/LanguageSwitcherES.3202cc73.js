@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[49691],{974193:function(a){"use strict";a.exports=JSON.parse('{"change-language":"Cambiar Idioma","choose-language":"Elegir Idioma","loading-translations":"Cargando las traducciones... Podr\xeda tomar un par de segundos hasta que todas las traducciones est\xe9n cargadas."}')}}]);

@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[9394],{366425:function(e){"use strict";e.exports=JSON.parse('{"and":" oraz","key-not-found":"Klucz cytatowy nie znajduje si\u0119 w referencjach.","no-author":"Pole autora nie powinno by\u0107 puste.","no-references":"Nie ma \\"referencji\\" w preambule lekcji."}')}}]);

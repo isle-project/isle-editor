@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[88062],{45494:function(e){"use strict";e.exports=JSON.parse('{"close":"Close","fullscreen-header":"Fullscreen Display","fullscreen-tooltip":"Toggle Fullscreen"}')}}]);

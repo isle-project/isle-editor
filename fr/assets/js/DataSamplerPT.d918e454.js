@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[86276],{834716:function(e){"use strict";e.exports=JSON.parse('{"draw-sample":"Amostra de desenho","sample-size":"Tamanho da amostra"}')}}]);

@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[19938],{701385:function(a){"use strict";a.exports=JSON.parse('{"join-chat":"Join Chat","join-chat-id":"Join chat with ID {{id}}","leave-chat":"Leave Chat","leave-chat-id":"Leave chat with ID {{id}}","toggle-chat":"Toggle Chat"}')}}]);

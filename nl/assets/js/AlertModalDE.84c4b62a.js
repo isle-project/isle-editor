@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[9232],{916143:function(e){"use strict";e.exports=JSON.parse('{"confirm":"Best\xe4tigen"}')}}]);

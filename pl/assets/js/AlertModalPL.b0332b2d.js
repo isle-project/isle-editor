@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[2597],{968045:function(e){"use strict";e.exports=JSON.parse('{"confirm":"Potwierdzi\u0107"}')}}]);

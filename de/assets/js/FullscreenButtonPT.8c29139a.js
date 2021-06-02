@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[7333],{397962:function(e){"use strict";e.exports=JSON.parse('{"close":"Fechar","fullscreen-header":"Exibi\xe7\xe3o em tela cheia","fullscreen-tooltip":"Alternar tela cheia"}')}}]);

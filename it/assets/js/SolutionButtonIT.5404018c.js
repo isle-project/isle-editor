@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[50628],{714847:function(i){"use strict";i.exports=JSON.parse('{"hide-solution":"Nascondi la soluzione","show-solution":"Mostra la soluzione","solution-available-tooltip":"La soluzione diventa disponibile dopo l\'invio della risposta","solution-available-tooltip-hints":"e tutti i suggerimenti sono stati richiesti"}')}}]);

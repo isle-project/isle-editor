@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[23957],{444870:function(e){"use strict";e.exports=JSON.parse('{"all":"Tous","day":"Journ\xe9e","last-hour":"Derni\xe8re heure","month":"Mois","week":"Semaine","year":"Ann\xe9e"}')}}]);

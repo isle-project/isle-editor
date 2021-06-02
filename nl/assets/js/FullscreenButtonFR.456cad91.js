@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[27389],{439330:function(e){"use strict";e.exports=JSON.parse('{"close":"Fermer","fullscreen-header":"Affichage plein \xe9cran","fullscreen-tooltip":"Basculer en plein \xe9cran"}')}}]);

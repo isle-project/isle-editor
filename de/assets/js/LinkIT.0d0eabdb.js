@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[66248],{388497:function(n){"use strict";n.exports=JSON.parse('{"copy-link":"Copia link","open-link-tab":"Apri il link nella nuova scheda","open-link-window":"Apri il link in una nuova finestra","read-aloud":"Leggi ad alta voce"}')}}]);

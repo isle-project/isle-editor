@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[85146],{517542:function(e){"use strict";e.exports=JSON.parse('{"direction":"Kierunek","humidity":"wilgo\u0107","in":"w","loading-weather-data-for":"\u0141adowanie danych pogodowych dla {{loc}}...","wind":"Wiatr"}')}}]);

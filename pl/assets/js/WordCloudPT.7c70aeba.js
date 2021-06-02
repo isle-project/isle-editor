@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[19951],{252392:function(e){"use strict";e.exports=JSON.parse('{"save-word-cloud":"Salve o Word Cloud"}')}}]);

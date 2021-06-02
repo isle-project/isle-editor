@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[95370],{92541:function(e){"use strict";e.exports=JSON.parse('{"browse-wikipedia":"Browse Wikipedia","enter-text-and-click-globe":"Enter text and click the globe to search","reset":"Reset to default entry","wikipedia-page":"Wikipedia Page"}')}}]);

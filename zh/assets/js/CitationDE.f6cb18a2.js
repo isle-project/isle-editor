@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[68197],{709211:function(e){"use strict";e.exports=JSON.parse('{"and":" und ","key-not-found":"Zitationsschl\xfcssel in Referenzen nicht gefunden.","no-author":"Das Autorenfeld sollte nicht leer sein.","no-references":"Keine `references` in der Pr\xe4ambel der Lektion gefunden."}')}}]);

@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[72078],{240811:function(e){"use strict";e.exports=JSON.parse('{"click-to-minimize":"Cliquez pour r\xe9duire","click-to-remove":"Cliquez pour supprimer","custom-title":"Titre personnalis\xe9","instructor":"Instructeur","private":"Personnel","public":"Public","save":"Sauvegarder","type-in-your-note":"Tapez votre note"}')}}]);

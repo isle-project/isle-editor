@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[45491],{909648:function(e){"use strict";e.exports=JSON.parse('{"close":"Schlie\xdfen","fullscreen-header":"Vollbildschirm-Anzeige","fullscreen-tooltip":"Vollbildansicht ein-/ausschalten"}')}}]);

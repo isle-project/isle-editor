@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[19393],{242633:function(e){"use strict";e.exports=JSON.parse('{"back":"Zur\xfcck","close":"Schlie\xdfen","last":"Zuletzt","next":"Weiter","skip":"\xdcberspringen"}')}}]);

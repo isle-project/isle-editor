@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[20696],{695742:function(e){"use strict";e.exports=JSON.parse('{"close":"Cerca","missing-children":"El deslizador requiere al menos dos elementos infantiles para que se pueda representar.","next":"Siguiente","previous":"Anterior"}')}}]);

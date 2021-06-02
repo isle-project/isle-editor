@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[22884],{885577:function(e){"use strict";e.exports={confirm:"\u786e\u8ba4"}}}]);

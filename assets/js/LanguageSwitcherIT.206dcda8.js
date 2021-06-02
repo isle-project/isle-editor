@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[91963],{514894:function(e){"use strict";e.exports=JSON.parse('{"change-language":"Cambia lingua","choose-language":"Scegliere la lingua","loading-translations":"Caricamento delle traduzioni... Potrebbero volerci un paio di secondi prima che tutte le traduzioni vengano caricate."}')}}]);

@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[14014],{396516:function(e){"use strict";e.exports=JSON.parse('{"not-available":"niet beschikbaar","party":"Partij","president":"President:","questions":"Vragen","speech":"Spraak:","state-of-the-union-addresses":"Staat van de Unie Adressen","year":"Jaar"}')}}]);

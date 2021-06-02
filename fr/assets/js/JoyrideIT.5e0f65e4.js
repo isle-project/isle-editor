@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[42006],{825605:function(e){"use strict";e.exports=JSON.parse('{"back":"Indietro","close":"Chiudere","last":"Ultimo","next":"Avanti","skip":"Salta"}')}}]);

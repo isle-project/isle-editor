@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[95941],{579894:function(t){"use strict";t.exports=JSON.parse('{"all-students":"Tutti gli studenti","contents-of":"contenuto di ","from":"da","hide":"Nascondi","message":"Contenuto nascosto dall\'istruttore","reveal":"Rivela","to":"a"}')}}]);

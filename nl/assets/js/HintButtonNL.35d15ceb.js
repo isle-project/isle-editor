@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[72076],{908202:function(n){"use strict";n.exports=JSON.parse('{"close-hint":"Hint sluiten","close-hints":"Hints sluiten","get-hint":"Krijg Hint","hint":"Hint","hints":"Hints","next-hint":"Volgende Hint","show-hints":"Toon Hints"}')}}]);
