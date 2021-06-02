@@ -19,15 +19,17 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 	}
 	return ( <Card.Header as="h3">
 		<span className="unselectable" >{children}</span>
-		{ onHide ?
-			<Tooltip tooltip={hideTooltip || t( 'close' )} >
-				<button className="panel-hide-button fa fa-times" onClick={onHide} />
-			</Tooltip> : null
-		}
+		<div style={{ float: 'right' }} >
 		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}><button
-			className={`panel-hide-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
+			className={`panel-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
 			onClick={onMinimize}
 		/></Tooltip> : null }
+		{ onHide ?
+			<Tooltip tooltip={hideTooltip || t( 'close' )} >
+				<button className="panel-button fa fa-times" onClick={onHide} />
+			</Tooltip> : null
+		}
+		</div>
 	</Card.Header> );
 };
 
@@ -48,51 +50,53 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-const Wrapper = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
+const Panel = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
 	const [ minimized, setMinimized ] = useState( false );
-	return ( <Card
-		{...rest}
-		className={`panel ${className}`}
-		style={{
-			height: minimized ? '53px' : void 0,
-			...style
-		}}
-	>
-		{ fullscreen ? <FullscreenButton
-			header={header}
-			body={children}
-			footer={footer}
-			className={className}
-			owner
-		/> : null }
-		<Header
-			minimizable={minimizable} minimized={minimized}
-			onMinimize={() => {
-				setMinimized( !minimized );
-			}}
-			hideTooltip={hideTooltip} onHide={onHide}
-		>
-			{header}
-		</Header>
-		<Card.Body style={{
-			...bodyStyle,
-			display: minimized ? 'none' : null
-		}} >
-			{children}
-		</Card.Body>
-		{footer ? <Card.Footer
+	return (
+		<Card
+			{...rest}
+			className={`panel ${className}`}
 			style={{
-				...footerStyle,
-				display: minimized ? 'none' : null
+				height: minimized ? '53px' : void 0,
+				...style
 			}}
-		>{footer}</Card.Footer> : null}
-	</Card> );
+		>
+			{ fullscreen ? <FullscreenButton
+				header={header}
+				body={children}
+				footer={footer}
+				className={className}
+				owner
+			/> : null }
+			<Header
+				minimizable={minimizable} minimized={minimized}
+				onMinimize={() => {
+					setMinimized( !minimized );
+				}}
+				hideTooltip={hideTooltip} onHide={onHide}
+			>
+				{header}
+			</Header>
+			<Card.Body style={{
+				...bodyStyle,
+				display: minimized ? 'none' : null
+			}} >
+				{children}
+			</Card.Body>
+			{footer ? <Card.Footer
+				style={{
+					...footerStyle,
+					display: minimized ? 'none' : null
+				}}
+			>{footer}</Card.Footer> : null}
+		</Card>
+	);
 };
 
 
 // PROPERTIES //
 
-Wrapper.propTypes = {
+Panel.propTypes = {
 	className: PropTypes.string,
 	header: PropTypes.oneOfType([
 		PropTypes.string,
@@ -111,7 +115,7 @@ Wrapper.propTypes = {
 	onHide: PropTypes.func
 };
 
-Wrapper.defaultProps = {
+Panel.defaultProps = {
 	className: '',
 	header: null,
 	footer: null,
@@ -127,4 +131,4 @@ Wrapper.defaultProps = {
 
 // EXPORTS //
 
-export default withPropCheck( Wrapper );
+export default withPropCheck( Panel );

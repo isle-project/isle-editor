@@ -15,14 +15,13 @@
 	overflow: auto;
 }
 
-.panel-hide-button {
-	float: right;
+.panel-button {
 	border: none;
 	background: none;
 	color: #2e4468;
 }
 
-.panel-hide-button:hover {
+.panel-button:hover {
 	color: rgba(220, 53, 69, 0.6);
 }
 
