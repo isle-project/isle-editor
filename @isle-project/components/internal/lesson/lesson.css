@@ -294,11 +294,6 @@ mark {
 	border-color: black;
 }
 
-.btn-primary:focus,
-.btn-primary.focus {
-	box-shadow: 1px 1px 5px white;
-}
-
 .btn-primary:hover {
 	box-shadow: inset 1px 1px 5px white;
 	transition: 0.3s;
@@ -338,11 +333,6 @@ mark {
 
 .btn-success:hover {
 	box-shadow: inset 1px 1px 5px white;
-}
-
-.btn-success:focus,
-.btn-success.focus {
-	box-shadow: 1px 1px 5px white;
 }
 
 .btn-success.disabled,
