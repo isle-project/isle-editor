@@ -1,9 +1,10 @@
 // MODULES //
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
+import FocusTrap from 'focus-trap-react';
 import Tooltip from '@isle-project/components/tooltip';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -42,6 +43,7 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * @property {string} className - CSS class name
 * @property {(string|node)} header - panel heading (h3)
 * @property {(string|node)} footer - panel footer
+* @property {boolean} trapFocus - whether to trap the user's focus in the panel
 * @property {boolean} minimizable - whether the panel can be minimized
 * @property {boolean} fullscreen - whether the panel can be made fullscreen (only for instructors)
 * @property {string} hideTooltip - tooltip displayed over the hide button
@@ -50,47 +52,58 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-const Panel = ({ className, header, footer, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
+const Panel = ({ className, header, footer, trapFocus, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
 	const [ minimized, setMinimized ] = useState( false );
-	return (
-		<Card
-			{...rest}
-			className={`panel ${className}`}
-			style={{
-				height: minimized ? '53px' : void 0,
-				...style
+	const cardRef = useRef( null );
+	const card = <Card
+		{...rest}
+		className={`panel ${className}`}
+		style={{
+			height: minimized ? '53px' : void 0,
+			...style
+		}}
+		ref={cardRef}
+	>
+		{ fullscreen ? <FullscreenButton
+			header={header}
+			body={children}
+			footer={footer}
+			className={className}
+			owner
+		/> : null }
+		<Header
+			minimizable={minimizable} minimized={minimized}
+			onMinimize={() => {
+				setMinimized( !minimized );
 			}}
+			hideTooltip={hideTooltip} onHide={onHide}
 		>
-			{ fullscreen ? <FullscreenButton
-				header={header}
-				body={children}
-				footer={footer}
-				className={className}
-				owner
-			/> : null }
-			<Header
-				minimizable={minimizable} minimized={minimized}
-				onMinimize={() => {
-					setMinimized( !minimized );
-				}}
-				hideTooltip={hideTooltip} onHide={onHide}
-			>
-				{header}
-			</Header>
-			<Card.Body style={{
-				...bodyStyle,
+			{header}
+		</Header>
+		<Card.Body style={{
+			...bodyStyle,
+			display: minimized ? 'none' : null
+		}} >
+			{children}
+		</Card.Body>
+		{footer ? <Card.Footer
+			style={{
+				...footerStyle,
 				display: minimized ? 'none' : null
-			}} >
-				{children}
-			</Card.Body>
-			{footer ? <Card.Footer
-				style={{
-					...footerStyle,
-					display: minimized ? 'none' : null
-				}}
-			>{footer}</Card.Footer> : null}
-		</Card>
-	);
+			}}
+		>{footer}</Card.Footer> : null}
+	</Card>;
+	if ( trapFocus ) {
+		return ( <FocusTrap focusTrapOptions={{
+			clickOutsideDeactivates: true,
+			initialFocus: () => {
+				return cardRef.current;
+			}
+		}} >
+			{card}
+		</FocusTrap> );
+	}
+	return card;
 };
 
 
