@@ -13,6 +13,7 @@ import ActionLog from '@isle-project/components/internal/statusbar/action-log';
 import InstructorNotesEditor from '@isle-project/components/internal/statusbar/instructor-notes-editor';
 import animatePosition from '@isle-project/utils/animate-position';
 import Tooltip from '@isle-project/components/tooltip';
+import KeyControls from '@isle-project/components/key-controls';
 import SessionContext from '@isle-project/session/context.js';
 import { RECEIVED_USERS, SELECTED_COHORT, USER_FINALLY_REMOVED, USER_JOINED, USER_LEFT } from '@isle-project/constants/events.js';
 import UserList from './user_list.js';
@@ -26,6 +27,7 @@ import './instructor_view.css';
 
 const EDITOR_OFFSET = isElectron ? 15 : 0;
 const debug = logger( 'isle:statusbar-instructor-view' );
+const I = '(I)';
 
 
 // MAIN //
@@ -94,6 +96,7 @@ class InstructorView extends Component {
 	}
 
 	renderTabs = () => {
+		const { t } = this.props;
 		const session = this.context;
 		if ( this.state.hidden ) {
 			return null;
@@ -109,7 +112,7 @@ class InstructorView extends Component {
 					});
 				}}
 			>
-				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={this.props.t( 'activity' )} >
+				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={t( 'activity' )} >
 					<ResponseVisualizers
 						selectedCohort={session.selectedCohort}
 						session={session}
@@ -120,18 +123,18 @@ class InstructorView extends Component {
 								selectedID: id
 							});
 						}}
-						t={this.props.t}
+						t={t}
 					/>
 				</Tab> : null }
-				{ hasResponseVisualizers ? <Tab eventKey="student_responses" title={this.props.t( 'responses' )} >
+				{ hasResponseVisualizers ? <Tab eventKey="student_responses" title={t( 'responses' )} >
 					<StudentResponses
 						selectedCohort={session.selectedCohort}
 						session={session}
-						t={this.props.t}
+						t={t}
 						activeTab={this.state.activeTab}
 					/>
 				</Tab> : null }
-					<Tab eventKey="active_users" title={<span>{this.props.t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
+					<Tab eventKey="active_users" title={<span>{t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
 					<UserList
 						session={session}
 						onThumbnailClick={( email ) => {
@@ -141,17 +144,17 @@ class InstructorView extends Component {
 								selectedEmail: email
 							});
 						}}
-						t={this.props.t}
+						t={t}
 					/>
 				</Tab>
-				<Tab eventKey="action_log" title={this.props.t( 'action-log' )} >
+				<Tab eventKey="action_log" title={t( 'action-log' )} >
 					<ActionLog
 						selectedEmail={this.state.selectedEmail}
 						selectedID={this.state.selectedID}
-						t={this.props.t}
+						t={t}
 					/>
 				</Tab>
-				<Tab eventKey="instructor_notes" title={this.props.t( 'instructor-notes' )} >
+				<Tab eventKey="instructor_notes" title={t( 'instructor-notes' )} >
 					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotesEditor /> : null }
 				</Tab>
 			</Tabs>
@@ -159,6 +162,7 @@ class InstructorView extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
 		return (
 			<Fragment>
 				<div
@@ -171,24 +175,24 @@ class InstructorView extends Component {
 					}}
 				>
 					<div className="instructor-view-top">
-						<h3 style={{ marginTop: '20px' }}>{this.props.t( 'instructor-panel' )}</h3>
+						<h3 style={{ marginTop: '20px' }}>{t( 'instructor-panel' )}</h3>
 						<hr style={{ background: '#333', backgroundImage: 'linear-gradient(to right, #ccc, #333, #ccc)', height: '1px', border: 0 }} />
 					</div>
 					<div className="instructor-view-middle">
 						{this.renderTabs()}
 						<CohortSelect
 							id="instructor-view-cohort-select"
-							label={this.props.t( 'only-show-users-from')}
+							label={t( 'only-show-users-from')}
 							session={this.context}
-							t={this.props.t}
+							t={t}
 						/>
 					</div>
 					<div className="instructor-view-bottom"></div>
 				</div>
-				<Tooltip tooltip={this.state.hidden ? this.props.t( 'instructor-panel-open' ) : this.props.t( 'instructor-panel-close' )} placement="left" >
+				<Tooltip tooltip={`${this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )} ${I}`} placement="left" >
 					<div className="instructor-view-handler"
 						role="button" tabIndex={0}
-						aria-label={this.state.hidden ? this.props.t( 'instructor-panel-open' ) : this.props.t( 'instructor-panel-close' )}
+						aria-label={this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )}
 						onClick={this.toggleBar} onKeyPress={this.toggleBar}
 						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
 						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
@@ -201,6 +205,11 @@ class InstructorView extends Component {
 					>
 					</div>
 				</Tooltip>
+				<KeyControls
+					actions={{
+						'i': this.toggleBar
+					}}
+				/>
 			</Fragment>
 		);
 	}

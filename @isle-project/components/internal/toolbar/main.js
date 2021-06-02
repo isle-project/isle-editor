@@ -29,6 +29,10 @@ import './toolbar.css';
 // VARIABLES //
 
 const F2 = '(F2)';
+const Q = '(Q)';
+const D = '(D)';
+const S = '(S)';
+const T = '(T)';
 const DEFAULT_CUSTOM_STATE = {};
 
 
@@ -228,7 +232,7 @@ const Toolbar = () => {
 						}}
 						aria-label={`${queue ? close : open} ${t( 'help-queue' )}`}
 					>
-						<Tooltip tooltip={`${queue ? close : open} ${t( 'help-queue' )}`} placement="top" >
+						<Tooltip tooltip={`${queue ? close : open} ${t( 'help-queue' )} ${Q}`} placement="top" >
 							<span className="fa fa-lg fa-question-circle toolbar-icon" />
 						</Tooltip>
 						<Tooltip placement="right" tooltip={t( 'num-open-questions' )} >
@@ -237,7 +241,7 @@ const Toolbar = () => {
 					</Button> : null
 				}
 				<Tooltip
-					tooltip={`${sketchpad ? close : open} ${t( 'sketchpad' )}`}
+					tooltip={`${sketchpad ? close : open} ${t( 'sketchpad' )} ${S}`}
 					placement="top" onToggle={Sketchpad.preload}
 				>
 					<Button
@@ -254,7 +258,7 @@ const Toolbar = () => {
 					</Button>
 				</Tooltip>
 				<Tooltip
-					tooltip={`${help ? close : open} ${t( 'documentation' )}`}
+					tooltip={`${help ? close : open} ${t( 'documentation' )} ${D}`}
 				>
 					<Button
 						variant={help ? 'success' : 'light'}
@@ -271,7 +275,7 @@ const Toolbar = () => {
 				</Tooltip>
 				<Gate user disabled={!session.enableTicketing} >
 					<Tooltip
-						tooltip={`${ticketing ? close : open} ${t( 'ticketing' )}`}
+						tooltip={`${ticketing ? close : open} ${t( 'ticketing' )} ${T}`}
 						placement="top" onToggle={Ticketing.preload}
 					>
 						<Button
@@ -381,7 +385,11 @@ const Toolbar = () => {
 			{help ? <HelpPage session={session} onClose={toggleHelp} /> : null }
 			<KeyControls
 				actions={{
-					'F2': toggleCalculator
+					'F2': toggleCalculator,
+					'q': toggleQueue,
+					's': toggleSketchpad,
+					'd': toggleHelp,
+					't': toggleTicketing
 				}}
 			/>
 		</Fragment>

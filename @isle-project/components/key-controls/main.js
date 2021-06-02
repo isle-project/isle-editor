@@ -13,6 +13,7 @@ import SessionContext from '@isle-project/session/context.js';
 // VARIABLES //
 
 const debug = logger( 'isle:key-controls' );
+const RE_ALPHABETIC = /^[a-z]$/i;
 
 
 // MAIN //
@@ -85,6 +86,9 @@ class KeyControls extends Component {
 			!modifier &&
 			isFunction( fn )
 		) {
+			if ( RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
+				return;
+			}
 			event.preventDefault();
 			event.stopPropagation();
 			fn( event );
@@ -97,6 +101,9 @@ class KeyControls extends Component {
 		debug( `Received key press for document: ${keyName}` );
 		const fn = this.props.actions[ keyName ];
 		if ( !modifier && isFunction( fn ) ) {
+			if ( RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
+				return;
+			}
 			event.preventDefault();
 			event.stopPropagation();
 			fn( event );

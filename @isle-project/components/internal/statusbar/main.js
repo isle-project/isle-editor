@@ -39,6 +39,8 @@ const InstructorView = lazy( () => import( /* webpackChunkName: "InstructorView"
 const debug = logger( 'isle:statusbar' );
 const SERVER_ACTIVE_COLOR = 'rgb(130, 224, 160)';
 const NO_RESPONSE_FROM_SERVER_COLOR = 'rgb(209, 107, 71)';
+const G = '(G)';
+const B = '(B)';
 
 
 // FUNCTIONS //
@@ -415,7 +417,7 @@ class StatusBar extends Component {
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={t( 'blackout-tooltip' )} >
+								<Tooltip placement="bottom" tooltip={`${t( 'blackout-tooltip' )} ${B}`} >
 									<span role="button" tabIndex={0} aria-label={t( 'blackout-label' )}
 										onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
 										className="statusbar-blackscreen-mode statusbar-icon"
@@ -424,7 +426,7 @@ class StatusBar extends Component {
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={t( 'group-manager' )} >
+								<Tooltip placement="bottom" tooltip={`${t( 'group-manager' )} ${G}`} >
 									<span role="button" tabIndex={0} aria-label={t( 'group-manager' )}
 										onClick={this.toggleGroupManager} onKeyPress={this.toggleGroupManager}
 										className="statusbar-group-manager statusbar-icon"
@@ -565,7 +567,9 @@ class StatusBar extends Component {
 				/> : null}
 				<KeyControls
 					actions={{
-						'F7': this.toggleBarVisibility
+						'F7': this.toggleBarVisibility,
+						'b': this.toggleBlackScreen,
+						'g': this.toggleGroupManager
 					}}
 				/>
 				{ finishedLesson && !session.config.hideProgressBar ?
