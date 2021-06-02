@@ -5,7 +5,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "node -max_old_space_size=16384 node_modules/@docusaurus/core/bin/docusaurus deploy",
+    "deploy": "node -max_old_space_size=65536 node_modules/@docusaurus/core/bin/docusaurus deploy",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
   },
