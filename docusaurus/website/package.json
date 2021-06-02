@@ -3,7 +3,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "node -max_old_space_size=65536 node_modules/@docusaurus/core/bin/docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "node -max_old_space_size=65536 node_modules/@docusaurus/core/bin/docusaurus deploy",
     "write-translations": "docusaurus write-translations",
