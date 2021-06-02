@@ -638,7 +638,7 @@ class GroupManager extends Component {
 		return (
 			<Fragment>
 				<Draggable cancel=".card-body" default={{ x: 0.4 * window.innerWidth }} >
-					<Panel minimizable header={<span>
+					<Panel minimizable trapFocus header={<span>
 						<span className="fa fa-xs fa-user-friends" style={{ marginRight: 5 }} />
 						{this.props.t( 'group-manager' )}
 					</span>} onHide={this.props.onHide} style={{ width: 600 }} bodyStyle={{

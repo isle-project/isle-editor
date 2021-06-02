@@ -326,7 +326,7 @@ const Toolbar = () => {
 					<Panel
 						title={t( 'sketchpad' )}
 						style={{ maxWidth: 'none' }}
-						header={t( 'sketchpad' )} onHide={toggleSketchpad} minimizable
+						header={t( 'sketchpad' )} onHide={toggleSketchpad} minimizable trapFocus
 					>
 						<Sketchpad
 							id={`${session.namespaceName}-${session.lessonName}-toolbar-sketchpad`}

@@ -166,6 +166,7 @@ class Ticketing extends Component {
 							</span>}
 							onHide={this.props.onHide}
 							minimizable
+							trapFocus
 							style={{ maxWidth: 560 }}
 							bodyStyle={{ maxHeight: '75vh' }}
 						>

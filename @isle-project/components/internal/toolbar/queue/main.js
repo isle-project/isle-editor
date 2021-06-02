@@ -204,7 +204,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 		if ( session.isOwner() ) {
 			debug( 'User is an owner...' );
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
-				header={t( 'queue' )} onHide={onHide} minimizable
+				header={t( 'queue' )} onHide={onHide} minimizable trapFocus
 			>
 				<QueueTable
 					questions={session.questions}
@@ -231,7 +231,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 		if ( !isNull( spot ) ) {
 			const chatID = 'Queue_'+session.user.name;
 			out = <Panel className="queue-panel" tabIndex={0} role="button"
-				header={t( 'queue' )} onHide={handleHide} minimizable >
+				header={t( 'queue' )} onHide={handleHide} minimizable trapFocus >
 				<p>
 				<Trans i18nKey="queue-status" ns="Queue" >
 					Your question: <i>{{ question: text }}</i><br />
@@ -257,7 +257,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 		}
 		out = <Panel
 			className="queue-panel" tabIndex={0} role="button"
-			header={t( 'queue' )} onHide={handleHide} minimizable
+			header={t( 'queue' )} onHide={handleHide} minimizable trapFocus
 		>
 			<p>{t( 'queue-prompt' )}</p>
 			<FormGroup>

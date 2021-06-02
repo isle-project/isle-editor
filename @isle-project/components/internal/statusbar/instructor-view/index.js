@@ -2,6 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import logger from 'debug';
+import FocusTrap from 'focus-trap-react';
 import { withTranslation } from 'react-i18next';
 import Badge from 'react-bootstrap/Badge';
 import Tabs from 'react-bootstrap/Tabs';
@@ -103,66 +104,88 @@ class InstructorView extends Component {
 		}
 		const hasResponseVisualizers = !isEmptyObject( session.responseVisualizers );
 		return (
-			<Tabs
-				activeKey={this.state.activeTab}
-				id="instructor-view-tabs"
-				ref={( tabs ) => {
-					if ( tabs ) {
-						tabs.focus();
-					}
-				}}
-				onSelect={( eventKey ) => {
-					this.setState({
-						activeTab: eventKey
-					});
-				}}
-			>
-				{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={t( 'activity' )} >
-					<ResponseVisualizers
-						selectedCohort={session.selectedCohort}
-						session={session}
-						onThumbnailClick={( id ) => {
-							debug( 'Go to actions with id '+id+'...' );
+			<FocusTrap>
+				<div>
+					<Tabs
+						activeKey={this.state.activeTab}
+						id="instructor-view-tabs"
+						onSelect={( eventKey ) => {
 							this.setState({
-								activeTab: 'action_log',
-								selectedID: id
+								activeTab: eventKey
 							});
 						}}
-						t={t}
-					/>
-				</Tab> : null }
-				{ hasResponseVisualizers ? <Tab eventKey="student_responses" title={t( 'responses' )} >
-					<StudentResponses
-						selectedCohort={session.selectedCohort}
-						session={session}
-						t={t}
-						activeTab={this.state.activeTab}
-					/>
-				</Tab> : null }
-					<Tab eventKey="active_users" title={<span>{t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
-					<UserList
-						session={session}
-						onThumbnailClick={( email ) => {
-							debug( 'Go to actions from user '+email+'...' );
-							this.setState({
-								activeTab: 'action_log',
-								selectedEmail: email
-							});
-						}}
-						t={t}
-					/>
-				</Tab>
-				<Tab eventKey="action_log" title={t( 'action-log' )} >
-					<ActionLog
-						selectedEmail={this.state.selectedEmail}
-						selectedID={this.state.selectedID}
-						t={t}
-					/>
-				</Tab>
-				<Tab eventKey="instructor_notes" title={t( 'instructor-notes' )} >
-					{ this.state.activeTab === 'instructor_notes' ? <InstructorNotesEditor /> : null }
-				</Tab>
-			</Tabs>
+					>
+						{ hasResponseVisualizers ? <Tab eventKey="response_visualizers" title={t( 'activity' )} >
+							<ResponseVisualizers
+								selectedCohort={session.selectedCohort}
+								session={session}
+								onThumbnailClick={( id ) => {
+									debug( 'Go to actions with id '+id+'...' );
+									this.setState({
+										activeTab: 'action_log',
+										selectedID: id
+									});
+								}}
+								t={t}
+							/>
+						</Tab> : null }
+						{ hasResponseVisualizers ? <Tab eventKey="student_responses" title={t( 'responses' )} >
+							<StudentResponses
+								selectedCohort={session.selectedCohort}
+								session={session}
+								t={t}
+								activeTab={this.state.activeTab}
+							/>
+						</Tab> : null }
+							<Tab eventKey="active_users" title={<span>{t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
+							<UserList
+								session={session}
+								onThumbnailClick={( email ) => {
+									debug( 'Go to actions from user '+email+'...' );
+									this.setState({
+										activeTab: 'action_log',
+										selectedEmail: email
+									});
+								}}
+								t={t}
+							/>
+						</Tab>
+						<Tab eventKey="action_log" title={t( 'action-log' )} >
+							<ActionLog
+								selectedEmail={this.state.selectedEmail}
+								selectedID={this.state.selectedID}
+								t={t}
+							/>
+						</Tab>
+						<Tab eventKey="instructor_notes" title={t( 'instructor-notes' )} >
+							{ this.state.activeTab === 'instructor_notes' ? <InstructorNotesEditor /> : null }
+						</Tab>
+					</Tabs>
+					{this.renderHandler()}
+				</div>
+			</FocusTrap>
+		);
+	}
+
+	renderHandler() {
+		const { t } = this.props;
+		return (
+			<Tooltip tooltip={`${this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )} ${I}`} placement="left" >
+				<div className="instructor-view-handler"
+					role="button" tabIndex={0}
+					aria-label={this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )}
+					onClick={this.toggleBar} onKeyPress={this.toggleBar}
+					onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
+					onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
+					ref={( handler ) => { this.handler = handler; }}
+					style={{
+						right: EDITOR_OFFSET + 12,
+						borderWidth: this.state.hidden ? '15px 26px 15px 0' : '15px 0 15px 26px',
+						borderColor: this.state.hidden ? 'transparent #c95d0a transparent transparent' : 'transparent transparent transparent #c95d0a'
+					}}
+				>
+				</div>
+			</Tooltip>
 		);
 	}
 
@@ -195,22 +218,7 @@ class InstructorView extends Component {
 					</div>
 					<div className="instructor-view-bottom"></div>
 				</div>
-				<Tooltip tooltip={`${this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )} ${I}`} placement="left" >
-					<div className="instructor-view-handler"
-						role="button" tabIndex={0}
-						aria-label={this.state.hidden ? t( 'instructor-panel-open' ) : t( 'instructor-panel-close' )}
-						onClick={this.toggleBar} onKeyPress={this.toggleBar}
-						onMouseOver={this.onMouseOver} onFocus={this.onMouseOver}
-						onMouseOut={this.onMouseOut} onBlur={this.onMouseOut}
-						ref={( handler ) => { this.handler = handler; }}
-						style={{
-							right: EDITOR_OFFSET + 12,
-							borderWidth: this.state.hidden ? '15px 26px 15px 0' : '15px 0 15px 26px',
-							borderColor: this.state.hidden ? 'transparent #c95d0a transparent transparent' : 'transparent transparent transparent #c95d0a'
-						}}
-					>
-					</div>
-				</Tooltip>
+				{this.state.hidden ? this.renderHandler() : null}
 				<KeyControls
 					actions={{
 						'i': this.toggleBar

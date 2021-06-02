@@ -14,7 +14,7 @@ import ChatButton from '@isle-project/components/internal/chat-button';
 const ResponsesTable = ( props ) => {
 	const responsesPanel = <Draggable dragHandleClassName="card-header" >
 		<Panel className="engagement-meter-panel" header={props.t( 'poll-responses')} onHide={props.onHide}
-			minimizable style={{ width: 400 }}
+			minimizable trapFocus style={{ width: 400 }}
 		>
 			<ReactTable
 				className="engagement-table"

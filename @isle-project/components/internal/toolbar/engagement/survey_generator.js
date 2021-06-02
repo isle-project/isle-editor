@@ -204,6 +204,7 @@ const SurveyGenerator = ({ session, onHide }) => {
 			className="survey-generator"
 			onHide={session.isOwner() ? onHide : null}
 			hideTooltip={t( 'finish-survey' )}
+			trapFocus
 		>
 			{body}
 		</Panel>

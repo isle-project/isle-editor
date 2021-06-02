@@ -97,7 +97,7 @@ class EngagementMeter extends Component {
 				<Draggable dragHandleClassName="card-header" >
 					<Gate owner>
 						<Panel header={this.props.t( 'poll' )} hideTooltip={this.props.t( 'finish-poll' )} onHide={this.props.onHide}
-							className="engagement-meter-panel" minimizable
+							className="engagement-meter-panel" minimizable trapFocus
 						>
 							<div className="score-bottom" >
 								{this.state.mean ?

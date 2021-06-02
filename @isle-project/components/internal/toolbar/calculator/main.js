@@ -190,6 +190,7 @@ const Calculator = ( props ) => {
 					header={t( 'calculator' )} onHide={props.onHide} minimizable
 					style={props.style}
 					className={props.className}
+					trapFocus
 				>
 					<Container className="desaturated" >
 						<FormControl
@@ -279,6 +280,7 @@ const Calculator = ( props ) => {
 				style={props.style}
 				className={props.className}
 				minimizable
+				trapFocus
 			>
 				<Container className="desaturated" >
 					<FormControl
