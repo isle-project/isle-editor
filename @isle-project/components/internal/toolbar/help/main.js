@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import FocusTrap from 'focus-trap-react';
 import { withTranslation } from 'react-i18next';
 import pdfMake from 'pdfmake/build/pdfmake';
 import htmlToPdfMake from 'html-to-pdfmake';
@@ -21,6 +22,9 @@ import { OPEN_DOCUMENTATION } from '@isle-project/constants/actions';
 // VARIABLES //
 
 const debug = logger( 'isle:toolbar:help' );
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
+};
 
 
 // FUNCTIONS //
@@ -82,60 +86,62 @@ class HelpPage extends Component {
 		const hasStatusBar = !session.config.hideStatusBar && !session.config.removeStatusBar;
 		const { t } = this.props;
 		return (
-			<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1006 }}>
-				<Tab.Container id="left-tabs-example" defaultActiveKey="zeroth" onSelect={this.handleTabSelect} >
-					<h3>{t('documentation')}</h3>
-					<div className="help-buttons" >
-						<Button variant="outline-secondary" size="sm" onClick={this.handlePDFDownload} >{t('download-pdf')}</Button>
-						<button className="help-close-button fa fa-times" onClick={this.props.onClose} />
-					</div>
-					<Nav variant="pills" style={{ background: '#f8f9fa', padding: 6 }} >
-						{ this.hasDataTable ?
-							<Nav.Item>
-								<Nav.Link eventKey="data-table">{t('data-table-title')}</Nav.Link>
-							</Nav.Item> :
-							null
-						}
-						{ this.hasDataExplorer ?
-							<Nav.Item>
-								<Nav.Link eventKey="data-explorer">{t('data-explorer-title')}</Nav.Link>
-							</Nav.Item> :
-							null
-						}
-						{ !session.config.hideStatusBar && !session.config.removeStatusBar ?
-							<Nav.Item>
-								<Nav.Link eventKey="statusbar">{t('statusbar-title')}</Nav.Link>
-							</Nav.Item> :
-							null
-						}
-						{ this.hasQuestions ?
-							<Nav.Item>
-								<Nav.Link eventKey="questions">{t('questions-title')}</Nav.Link>
-							</Nav.Item> :
-							null
-						}
-					</Nav>
-					<Tab.Content ref={( div ) => { this.tabs = div; }} style={{ overflowY: 'scroll', height: '80vh' }}>
-						<Tab.Pane eventKey="zeroth">
-							<h4 style={{ textAlign: 'center', marginTop: '50%' }}>
-								{t('click-instruction')}
-							</h4>
-						</Tab.Pane>
-						{ this.hasDataTable ? <Tab.Pane eventKey="data-table">
-							<DataTableHelp t={t} />
-						</Tab.Pane> : null }
-						{ this.hasDataExplorer ? <Tab.Pane eventKey="data-explorer">
-							<DataExplorerHelp t={t} />
-						</Tab.Pane> : null }
-						{ hasStatusBar ? <Tab.Pane eventKey="statusbar">
-							<StatusBarHelp t={t} />
-						</Tab.Pane> : null }
-						{ this.hasQuestions ? <Tab.Pane eventKey="questions">
-							<QuestionsHelp t={t} />
-						</Tab.Pane> : null }
-					</Tab.Content>
-				</Tab.Container>
-			</Card>
+			<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
+				<Card body style={{ width: '40%', height: '100vh', position: 'fixed', right: 0, top: 0, zIndex: 1006 }}>
+					<Tab.Container id="left-tabs-example" defaultActiveKey="zeroth" onSelect={this.handleTabSelect} >
+						<h3>{t('documentation')}</h3>
+						<div className="help-buttons" >
+							<Button variant="outline-secondary" size="sm" onClick={this.handlePDFDownload} >{t('download-pdf')}</Button>
+							<button className="help-close-button fa fa-times" onClick={this.props.onClose} />
+						</div>
+						<Nav variant="pills" style={{ background: '#f8f9fa', padding: 6 }} >
+							{ this.hasDataTable ?
+								<Nav.Item>
+									<Nav.Link eventKey="data-table">{t('data-table-title')}</Nav.Link>
+								</Nav.Item> :
+								null
+							}
+							{ this.hasDataExplorer ?
+								<Nav.Item>
+									<Nav.Link eventKey="data-explorer">{t('data-explorer-title')}</Nav.Link>
+								</Nav.Item> :
+								null
+							}
+							{ !session.config.hideStatusBar && !session.config.removeStatusBar ?
+								<Nav.Item>
+									<Nav.Link eventKey="statusbar">{t('statusbar-title')}</Nav.Link>
+								</Nav.Item> :
+								null
+							}
+							{ this.hasQuestions ?
+								<Nav.Item>
+									<Nav.Link eventKey="questions">{t('questions-title')}</Nav.Link>
+								</Nav.Item> :
+								null
+							}
+						</Nav>
+						<Tab.Content ref={( div ) => { this.tabs = div; }} style={{ overflowY: 'scroll', height: '80vh' }}>
+							<Tab.Pane eventKey="zeroth">
+								<h4 style={{ textAlign: 'center', marginTop: '50%' }}>
+									{t('click-instruction')}
+								</h4>
+							</Tab.Pane>
+							{ this.hasDataTable ? <Tab.Pane eventKey="data-table">
+								<DataTableHelp t={t} />
+							</Tab.Pane> : null }
+							{ this.hasDataExplorer ? <Tab.Pane eventKey="data-explorer">
+								<DataExplorerHelp t={t} />
+							</Tab.Pane> : null }
+							{ hasStatusBar ? <Tab.Pane eventKey="statusbar">
+								<StatusBarHelp t={t} />
+							</Tab.Pane> : null }
+							{ this.hasQuestions ? <Tab.Pane eventKey="questions">
+								<QuestionsHelp t={t} />
+							</Tab.Pane> : null }
+						</Tab.Content>
+					</Tab.Container>
+				</Card>
+			</FocusTrap>
 		);
 	}
 }
