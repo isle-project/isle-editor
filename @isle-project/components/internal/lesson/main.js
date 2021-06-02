@@ -117,8 +117,8 @@ class Lesson extends Component {
 					>
 						{this.props.children}
 						<StickyNotes />
-						<LanguageSwitcher />
 						<InterfaceTourButton />
+						<LanguageSwitcher />
 					</div>
 				</ContextMenuTrigger>
 				<LessonContextMenu
