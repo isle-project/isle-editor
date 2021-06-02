@@ -106,6 +106,11 @@ class InstructorView extends Component {
 			<Tabs
 				activeKey={this.state.activeTab}
 				id="instructor-view-tabs"
+				ref={( tabs ) => {
+					if ( tabs ) {
+						tabs.focus();
+					}
+				}}
 				onSelect={( eventKey ) => {
 					this.setState({
 						activeTab: eventKey
@@ -173,6 +178,7 @@ class InstructorView extends Component {
 						display: this.state.hidden ? 'none' : 'inherit',
 						width: this.state.activeTab === 'student_responses' ? '65%' : '45%'
 					}}
+					tabIndex="-1"
 				>
 					<div className="instructor-view-top">
 						<h3 style={{ marginTop: '20px' }}>{t( 'instructor-panel' )}</h3>

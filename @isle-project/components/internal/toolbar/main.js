@@ -104,7 +104,6 @@ const Toolbar = () => {
 					variant="light"
 					className="toolbar-button"
 					onClick={toggleElement}
-					onKeyPress={toggleElement}
 				>
 					<span className={`fa fa-lg fa-${elem.icon} toolbar-icon`} />
 				</Button>
@@ -181,7 +180,6 @@ const Toolbar = () => {
 					variant="warning"
 					className="toolbar-buttongroup toolbar-toggle"
 					onClick={toggleToolbar}
-					onKeyPress={toggleToolbar}
 					aria-label={t('show-toolbar')}
 					style={{
 						display: showToolbar ? 'none' : 'inherit'
@@ -198,7 +196,6 @@ const Toolbar = () => {
 						variant="secondary"
 						className="toolbar-toggle"
 						onClick={toggleToolbar}
-						onKeyPress={toggleToolbar}
 						aria-label={t('hide-toolbar')}
 					>
 						<i className="fas fa-chevron-left"></i>
@@ -213,7 +210,6 @@ const Toolbar = () => {
 						variant={calculator ? 'success' : 'light'}
 						className="toolbar-button toolbar-calculator"
 						onClick={toggleCalculator}
-						onKeyPress={toggleCalculator}
 						style={{
 							display: !hide.calculator ? 'inline-block' : 'none'
 						}}
@@ -226,7 +222,7 @@ const Toolbar = () => {
 					<Button
 						variant={queue ? 'success' : 'light'}
 						className="toolbar-button toolbar-queue"
-						onClick={toggleQueue} onKeyPress={toggleQueue}
+						onClick={toggleQueue}
 						style={{
 							display: !hide.queue ? 'inline-block' : 'none'
 						}}
@@ -248,7 +244,6 @@ const Toolbar = () => {
 						variant={sketchpad ? 'success' : 'light'}
 						className="toolbar-button toolbar-sketchpad"
 						onClick={toggleSketchpad}
-						onKeyPress={toggleSketchpad}
 						style={{
 							display: !hide.sketchpad ? 'inline-block' : 'none'
 						}}
@@ -264,7 +259,6 @@ const Toolbar = () => {
 						variant={help ? 'success' : 'light'}
 						className="toolbar-button toolbar-help"
 						onClick={toggleHelp}
-						onKeyPress={toggleHelp}
 						aria-label={`${help ? close : open} ${t( 'documentation' )}`}
 						style={{
 							display: !hide.help ? 'inline-block' : 'none'
