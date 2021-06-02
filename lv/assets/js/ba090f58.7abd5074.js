@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[2934],{866353:function(e){"use strict";e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"New Documentation","permalink":"/lv/blog/2019/07/01/new-documentation"}]}')}}]);
