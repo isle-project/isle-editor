@@ -1292,7 +1292,7 @@ class Session {
 	* Retrieves text document identifiers for the lesson.
 	*/
 	getTextEditorDocuments = () => {
-		if ( !userRights.owner ) {
+		if ( !userRights || !userRights.owner ) {
 			return;
 		}
 		axios.get( this.server+'/text_editor_document_list?'+qs.stringify({
