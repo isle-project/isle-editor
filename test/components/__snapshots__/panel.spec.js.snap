@@ -41,6 +41,13 @@ exports[`<Panel /> renders a panel with a heading 1`] = `
     >
       Title
     </span>
+    <div
+      style={
+        Object {
+          "float": "right",
+        }
+      }
+    />
   </h3>
   <div
     className="card-body"
