@@ -489,8 +489,11 @@ class Tokenizer {
 				prevChar !== '\\'
 			) {
 				if ( !inString ) {
-					this._stringOpener = char;
-					inString = true;
+					// Do not treat a quote that is part of a contraction like "don't" as start of a string...
+					if ( !RE_ALPHACHAR.test( prevChar ) || !innerJSXStartTag ) {
+						this._stringOpener = char;
+						inString = true;
+					}
 				} else if ( char === this._stringOpener ) {
 					inString = false;
 				}
