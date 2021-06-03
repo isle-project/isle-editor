@@ -396,15 +396,18 @@ class GroupManager extends Component {
 			case 'progress':
 				return ( <div>
 					<p>
-					{t('create-groups-pairing-students', { input })}
+					{t('create-groups-pairing-students')}
+					{input}.
 					</p>
 				</div> );
 			case 'answers':
 				return ( <div>
 					<p>
-						{t('create-groups-with-answers', { input })}
+						{t('create-groups-with-answers')}
+						{input}
 						<br />
-						{t('to-the-question', { questionSelect })}
+						{t('to-the-question')}{': '}
+						{questionSelect}
 					</p>
 				</div> );
 			default:
