@@ -731,7 +731,9 @@ class DataExplorer extends Component {
 		for ( let i = 0; i < this.state.filters.length; i++ ) {
 			const filter = this.state.filters[ i ];
 			const col = data[ filter.id ];
-			if ( contains( this.state.quantitative, filter.id ) ) {
+			if (
+				hasProp( filter.value, 'min') && hasProp( filter.value, 'max' )
+			) {
 				// Case: We have a filter for a quantitative variable, which has a min and max value
 				for ( let z = 0; z < col.length; z++ ) {
 					if ( !( col[ z ] >= filter.value.min && col[ z ] <= filter.value.max ) ) {
