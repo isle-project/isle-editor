@@ -44,7 +44,7 @@ export const LANGUAGES = [
 	{ value: 'zh', label: 'chinese' }
 ];
 
-export const LANGUAGE_CODES = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
+export const LANGUAGE_CODES = [ 'en', 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 
 export const languageLabel = ( code ) => {
 	switch ( code ) {
