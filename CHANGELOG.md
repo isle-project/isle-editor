@@ -1,23 +1,35 @@
 # Changelog
 
+## [v0.75.8](https://github.com/isle-project/isle-editor/releases/tag/v0.75.8) (2021-06-03)
+
+This release fixes several issues concerning the Markdown parsing of ISLE lesson code, bugs in the data explorer, and comes with translations for multiple additional languages. It also improves accessibility of lessons by more ergonomic handling of user focus and additional hotkeys for interface elements. Last but not least, it adds a new standalone `<SummaryStatistics />` component that allows one to insert any table with summary statistics outside of the data explorer:
+
+![image](https://user-images.githubusercontent.com/1913638/120670335-4f386d00-c45e-11eb-8129-5c6c529c5ac5.png)
+
+
+**Fixed bugs:**
+
+- legend of labeled scatterplot doesn't show up until full-screen [\#2068](https://github.com/isle-project/isle-editor/issues/2068)
+- diagonal line on qqplot wrong or missing with transformed data [\#2067](https://github.com/isle-project/isle-editor/issues/2067)
+- toolbox doesn't appear in editor [\#2034](https://github.com/isle-project/isle-editor/issues/2034)
+
 ## [v0.75.7](https://github.com/isle-project/isle-editor/releases/tag/v0.75.7) (2021-05-18)
 
 This patch release comes with the following improvements:
 
 -   Fixes kmeans clustering results in case of missing data
 -   Changes position of fullscreen button to not overlap with tutorial button in presentation mode
--   Handle non-numeric binary arrays properly in <LearnConfidenceCoverageSample /> widget
--   Upgrade to new stdlib ndarray API for logistic and LASSO regression
+-   Handle non-numeric binary arrays properly in `<LearnConfidenceCoverageSample />` widget
+-   Upgrade to new `stdlib` ndarray API for logistic and LASSO regression
 -   Fixes change handler of input range in data table
--   Log interactions with <IFrame /> component
+-   Log interactions with `<IFrame />` component
 -   Fixes various property types and property descriptions
 
 ## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
 
-This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
-It also comes with a patch that fixes restoring original data from restricted data sets when using a shared custom data explorer.
-
 ## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-09)
+
+## [v0.75.2](https://github.com/isle-project/isle-editor/releases/tag/v0.75.2) (2021-04-08)
 
 Under `Help -> Release Notes`, one can now retrieve release notes documenting the changes that are introduced with a new editor release. In addition, the release comes with a new checkbox on the export page to indicate whether uploaded lessons should support offline access (previously enabled by default). One might want to uncheck this option when one expects to (repeatedly) change the lesson after users have already accessed it.
 
