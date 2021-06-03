@@ -13,6 +13,9 @@ const replace = require( '@stdlib/string/replace' );
 const RE_NODE_MODULE = /^[\s\S]*?\/node_modules\/([\s\S]+$)/;
 const pkgPath = path.join( __dirname, '..', 'package.json' );
 const pkg = require( pkgPath );
+const IGNORE_LIST = [
+	'!node_modules/function-bind/**/*'
+];
 
 
 // MAIN //
@@ -69,7 +72,9 @@ listDevDeps.stdout.on( 'close', ( code ) => {
 
 		DEV_DEPS.forEach( ( value ) => {
 			const ignorePattern = replace( value, RE_NODE_MODULE, '!node_modules/$1/**/*' );
-			extraResources.push( ignorePattern );
+			if ( !IGNORE_LIST.includes( ignorePattern ) ) {
+				extraResources.push( ignorePattern );
+			}
 		});
 
 		console.log( extraResources );
