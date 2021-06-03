@@ -294,7 +294,7 @@ const LineWrapper = ( props ) => {
 		outerTitle = i18n.t('outer-title-single', { tagName, startLineNumber });
 	}
 	else {
-		outerTitle += i18n.t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
+		outerTitle = i18n.t('outer-title-multiline', { tagName, startLineNumber, endLineNumber });
 	}
 	if ( props.isInline ) {
 		return (
