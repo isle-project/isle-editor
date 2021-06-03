@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "whether the panel can be minimized",
 	"Panel-prop-onHide": "callback invoked when the close button is clicked",
 	"Panel-prop-style": "CSS inline styles for container",
+	"Panel-prop-trapFocus": "whether to trap the user's focus in the panel",
 	"PieChart-description": "A pie chart component that by default displays the counts of all categories from a chosen variable.",
 	"PieChart-prop-data": "object of value arrays",
 	"PieChart-prop-group": "grouping variable",
