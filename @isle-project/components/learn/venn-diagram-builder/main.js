@@ -38,6 +38,7 @@ class VennDiagramBuilder extends Component {
 	}
 
 	generateTwoCategories( first, second, sizeA, sizeB, sizeAB ) {
+		const { t } = this.props;
 		const sets = [
 			{ sets: [ first ], size: sizeA },
 			{ sets: [ second ], size: sizeB },
@@ -65,7 +66,7 @@ class VennDiagramBuilder extends Component {
 				tooltip.transition().
 					duration( 400 ).
 					style( 'opacity', 0.9 );
-				tooltip.text( d.sets.join( ` ${this.props.t('and')} ` ) + ' (' + d.size + ')' );
+				tooltip.text( d.sets.join( ` ${t('and')} ` ) + ' (' + d.size + ')' );
 				const selection = d3.select( this ).
 					transition( 'tooltip' ).
 					duration( 400 );
@@ -96,6 +97,7 @@ class VennDiagramBuilder extends Component {
 	}
 
 	generateThreeCategories( first, second, third, sizeA, sizeB, sizeC, sizeAB, sizeBC, sizeAC, sizeABC ) {
+		const { t } = this.props;
 		const sets = [
 			{ sets: [ first ], size: sizeA },
 			{ sets: [ second ], size: sizeB },
@@ -129,7 +131,7 @@ class VennDiagramBuilder extends Component {
 					transition().
 					duration( 400 ).
 					style( 'opacity', 0.9 );
-				tooltip.text( d.sets.join( ' and ' ) + ' (' + d.size + ')' );
+				tooltip.text( d.sets.join( ` ${t('and')} ` ) + ' (' + d.size + ')' );
 				const selection = d3.select( this ).
 					transition( 'tooltip' ).
 					duration( 400 );
