@@ -14,7 +14,14 @@ import trim from '@stdlib/string/trim';
 import copy from '@stdlib/utils/copy';
 import NumberInput from '@isle-project/components/input/number';
 import TextInput from '@isle-project/components/input/text';
+import generateUID from '@isle-project/utils/uid';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './venn_diagram.css';
+
+
+// VARIABLES//
+
+const uid = generateUID( 'word-venn-diagram' );
 
 
 // MAIN //
@@ -41,6 +48,7 @@ class WordVennDiagram extends Component {
 			return out;
 		});
 
+		this.id = props.id || uid( props );
 		this.state = {
 			disabled: true,
 			words: new Array( 1 ),
@@ -88,7 +96,7 @@ class WordVennDiagram extends Component {
 
 	drawPlot = () => {
 		const sets = this.state.freqs;
-		const chart = d3.select( '#'+this.state.id );
+		const chart = d3.select( '#'+this.id+'-venn' );
 		chart.select( 'svg' ).remove();
 
 		let tooltip;
@@ -290,7 +298,7 @@ class WordVennDiagram extends Component {
 							right: 40,
 							top: 50
 						}}>{t('total-texts')}: {this.props.nTexts}</span>
-						<div></div>
+						<div id={`${this.id}-venn`}></div>
 					</Card.Body>
 				</Card>
 			</Fragment>
@@ -322,4 +330,4 @@ WordVennDiagram.defaultProps = {
 
 // EXPORTS //
 
-export default withTranslation( 'learn/venn-diagram' )( WordVennDiagram );
+export default withTranslation( 'learn/venn-diagram' )( withPropCheck( WordVennDiagram ) );
