@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import { findDOMNode } from 'react-dom';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -139,7 +140,10 @@ class NetworkPlot extends Component {
 				.duration(200)
 				.style( 'opacity', 0.9 );
 			tooltip
-				.html( t( 'number-of-edges', { nEdges: d.nEdges }) )
+				.html( i18next.exists( 'plotly:number-of-edges' ) ?
+					t( 'plotly:number-of-edges', { nEdges: d.nEdges }) :
+					'Number of Edges: '+d.nEdges
+				)
 				.style( 'left', (d3.event.pageX) + 'px' )
 				.style( 'top', (d3.event.pageY - 28) + 'px' );
 		});
@@ -238,4 +242,4 @@ NetworkPlot.propTypes = {
 
 // EXPORTS //
 
-export default withPropCheck( withTranslation( 'plotly' )( NetworkPlot ) );
+export default withTranslation( 'plotly' )( withPropCheck( NetworkPlot ) );
