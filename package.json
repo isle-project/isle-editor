@@ -197,7 +197,7 @@
     "profanities": "^2.14.0",
     "prop-types": "^15.5.10",
     "prosemirror-collab": "^1.2.2",
-    "prosemirror-commands": "^1.1.8",
+    "prosemirror-commands": "^1.1.9",
     "prosemirror-dropcursor": "^1.3.4",
     "prosemirror-gapcursor": "^1.1.5",
     "prosemirror-history": "^1.1.2",
