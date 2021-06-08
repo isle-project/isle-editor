@@ -7,3 +7,17 @@
 	stroke: #fff;
 	stroke-width: 1.5px;
 }
+
+.network-tooltip {
+	position: absolute;
+	text-align: center;
+	width: fit-content;
+	height: 24px;
+	padding: 3px;
+	font: 14px sans-serif;
+	background: black;
+	color: white;
+	border: 0px;
+	border-radius: 8px;
+	pointer-events: none;
+}

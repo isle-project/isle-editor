@@ -118,12 +118,10 @@ class NetworkPlot extends Component {
 				.attr( 'cy', function cy( d ) { return d.y; });
 		}
 
+		const tooltip = d3.select( 'body' ).append( 'div' )
+			.attr( 'class', 'network-tooltip' )
+			.style( 'opacity', 0 );
 		const t = this.props.t;
-		node.append( 'title' )
-			.text( function txt( d ) {
-				return t( 'number-of-edges', { nEdges: d.nEdges });
-			});
-
 		node.on( 'mouseover', function onMouseOver( d ) {
 			link.style( 'stroke-width', function strokeWidth( l ) {
 				if ( d === l.source || d === l.target ) {
@@ -137,10 +135,21 @@ class NetworkPlot extends Component {
 				}
 				return '#999';
 			});
+			tooltip.transition()
+				.duration(200)
+				.style( 'opacity', 0.9 );
+			tooltip
+				.html( t( 'number-of-edges', { nEdges: d.nEdges }) )
+				.style( 'left', (d3.event.pageX) + 'px' )
+				.style( 'top', (d3.event.pageY - 28) + 'px' );
 		});
 		node.on( 'mouseout', function onMouseOut() {
 			link.style( 'stroke-width', 2 );
 			link.style( 'stroke', '#999' );
+			tooltip
+				.transition()
+				.duration( 500 )
+				.style( 'opacity', 0 );
 		});
 	}
 
