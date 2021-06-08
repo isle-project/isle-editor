@@ -1,12 +1,30 @@
 // MODULES //
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
 import * as d3 from 'd3';
-import D3Plot from './d3_plot.js';
+import { withTranslation } from 'react-i18next';
+import { findDOMNode } from 'react-dom';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './style.css';
+
+
+// FUNCTIONS //
+
+function getOptions( propOps ) {
+	const options = ( typeof propOps === 'undefined' ) ? {} : propOps;
+	return {
+		margin: {
+			top: 20,
+			bottom: 30,
+			left: 50,
+			right: 50
+		},
+		xaxis: { orientation: 'bottom' },
+		yaxis: { orientation: 'left' },
+		...options
+	};
+}
 
 
 // MAIN //
@@ -18,12 +36,33 @@ import './style.css';
 * @property {number} height - height of the plot (in px)
 * @property {Object} data - object with `nodes` and `links`; `nodes` should be an object array of elements with an `id` property, `links` an object array with elements having a `source` and `target` id
 */
-class NetworkPlot extends D3Plot {
+class NetworkPlot extends Component {
 	constructor( props ) {
 		super( props );
+		this.opts = getOptions( props.options );
 	}
 
-	drawPlot( chart, data ) {
+	componentDidMount() {
+		this.chart = d3.select( findDOMNode( this ) )
+			.append( 'g' )
+			.attr( 'transform', 'translate(' + this.opts.margin.left + ',' + this.opts.margin.top + ')' );
+
+		this.initialize(
+			this.chart,
+			this.props.data,
+			this.opts
+		);
+	}
+
+	componentDidUpdate() {
+		this.update(
+			this.chart,
+			this.props.data,
+			this.opts
+		);
+	}
+
+	drawPlot = ( chart, data ) => {
 		const link = chart.append( 'g' )
 			.attr( 'class', 'links' )
 			.selectAll( 'line' )
@@ -146,8 +185,27 @@ class NetworkPlot extends D3Plot {
 		chart.selectAll( '.nodes' ).remove();
 
 		this.drawPlot( chart, data );
-
 		this.simulation.alphaTarget( 0.3 ).restart();
+	}
+
+	render() {
+		const { className, width, height, options } = this.props;
+		const opts = getOptions( options );
+		let classes = 'd3-plot';
+		if ( className ) {
+			classes = classes.concat( ' ', this.props.className );
+		}
+		return (
+			<svg
+				className={classes}
+				width={width + opts.margin.left + opts.margin.right}
+				height={height + opts.margin.top + opts.margin.bottom}
+				style={{
+					display: 'block',
+					margin: 'auto'
+				}}
+			></svg>
+		);
 	}
 }
 
