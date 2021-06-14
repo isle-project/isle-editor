@@ -123,7 +123,7 @@
     "@iktakahiro/markdown-it-katex": "^4.0.0",
     "@loadable/component": "^5.15.0",
     "@stdlib/stdlib": "0.0.94",
-    "acorn": "^8.3.0",
+    "acorn": "^8.4.0",
     "ansi-to-react": "6.1.5",
     "archiver": "^5.3.0",
     "autobind-decorator": "^2.2.1",
