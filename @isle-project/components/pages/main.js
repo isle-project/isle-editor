@@ -36,7 +36,7 @@ const uid = generateUID( 'pages' );
 * @property {string} size - size of the pagination buttons (either `default`, `lg`, or `sm`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {number} activePage - active page
-* @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both
+* @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both`
 * @property {boolean} disabled - controls whether the navigation bar is active or not
 * @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
