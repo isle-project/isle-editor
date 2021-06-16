@@ -835,7 +835,7 @@
 	"Pages-prop-disabled": "controls whether the navigation bar is active or not",
 	"Pages-prop-height": "the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added",
 	"Pages-prop-onSelect": "Function invoked when active change is changed. Receives the new active page index as a sole parameter",
-	"Pages-prop-pagination": "whether to show the pagination either on the `top`, `bottom`, or `both",
+	"Pages-prop-pagination": "whether to show the pagination either on the `top`, `bottom`, or `both`",
 	"Pages-prop-size": "size of the pagination buttons (either `default`, `lg`, or `sm`)",
 	"Pages-prop-style": "CSS inline styles",
 	"Pages-prop-title": "displayed title of the pages container",

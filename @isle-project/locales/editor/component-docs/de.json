@@ -835,7 +835,7 @@
 	"Pages-prop-disabled": "steuert, ob die Navigationsleiste aktiv ist oder nicht",
 	"Pages-prop-height": "die maximale Höhe des Containers. Wenn eine eingebettete Seite höher ist, wird eine vertikale Bildlaufleiste hinzugefügt",
 	"Pages-prop-onSelect": "Funktion, die aufgerufen wird, wenn der aktive Wechsel geändert wird. Erhält den neuen aktiven Seitenindex als einzigen Parameter",
-	"Pages-prop-pagination": "ob die Paginierung entweder \"oben\", \"unten\" oder \"beides\" angezeigt werden soll",
+	"Pages-prop-pagination": "ob die Paginierung entweder `top`, `bottom` oder `both` angezeigt werden soll",
 	"Pages-prop-size": "Größe der Paginierungsschaltflächen (entweder `default`, `lg`, oder `sm`)",
 	"Pages-prop-style": "CSS-Inline-Stile",
 	"Pages-prop-title": "angezeigter Titel des Seitencontainers",
