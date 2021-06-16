@@ -303,7 +303,7 @@
     "katex": "0.13.11",
     "localforage": "^1.9.0",
     "moment": "2.29.1",
-    "monaco-editor": "0.25.0",
+    "monaco-editor": "0.25.1",
     "monaco-editor-webpack-plugin": "^4.0.0",
     "pdfjs-dist": "2.8.335",
     "pdfmake": "^0.1.71",
