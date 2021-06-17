@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "ime spremenljivke, ki se prikaže",
 	"BarChart-description": "Stolpčni diagram.",
 	"BarChart-prop-data": "predmet polja vrednosti",
-	"BarChart-prop-direction": "kako urediti palice ob osi x (`vzpenjajoče se` ali `spadajoče se`)",
+	"BarChart-prop-direction": "kako urediti palice ob osi x (`ascending` ali `descending`)",
 	"BarChart-prop-group": "spremenljivka za razvrščanje v skupine",
 	"BarChart-prop-horizontal": "ali naj se vrstice prikažejo vodoravno",
 	"BarChart-prop-relative": "ali izračunati relativne frekvence znotraj vsake skupine.",

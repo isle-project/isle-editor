@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "Name der Variable, die angezeigt werden soll",
 	"BarChart-description": "Balkendiagramm.",
 	"BarChart-prop-data": "Objekt von Werte-Arrays",
-	"BarChart-prop-direction": "wie die Balken entlang der x-Achse angeordnet werden sollen; `ascending` (aufsteigend) oder `descending` (absteigend)",
+	"BarChart-prop-direction": "wie die Balken entlang der x-Achse angeordnet werden sollen; `ascending` oder `descending`",
 	"BarChart-prop-group": "Gruppierungsvariable",
 	"BarChart-prop-horizontal": "ob Balken horizontal angezeigt werden sollen",
 	"BarChart-prop-relative": "ob relative Häufigkeiten innerhalb jeder Gruppe berechnet werden sollen",

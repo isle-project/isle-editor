@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "název proměnné, která se má zobrazit",
 	"BarChart-description": "Sloupcový graf.",
 	"BarChart-prop-data": "objekt pole hodnot",
-	"BarChart-prop-direction": "jak uspořádat sloupce podél osy x (`vzestupně` nebo `sestupně`)",
+	"BarChart-prop-direction": "jak uspořádat sloupce podél osy x (`ascending` nebo `descending`)",
 	"BarChart-prop-group": "seskupovací proměnná",
 	"BarChart-prop-horizontal": "zda se mají sloupce zobrazovat vodorovně",
 	"BarChart-prop-relative": "zda vypočítat relativní četnosti uvnitř každé skupiny.",

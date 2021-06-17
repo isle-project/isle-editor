@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "rodytino kintamojo pavadinimas",
 	"BarChart-description": "Stulpelinė diagrama.",
 	"BarChart-prop-data": "verčių masyvų objektas",
-	"BarChart-prop-direction": "kaip išdėstyti barus palei x ašį (`Kylantis` arba `Krentantis`)",
+	"BarChart-prop-direction": "kaip išdėstyti barus palei x ašį (`ascending` arba `descending`)",
 	"BarChart-prop-group": "grupavimo kintamasis",
 	"BarChart-prop-horizontal": "ar rodyti juostas horizontaliai",
 	"BarChart-prop-relative": "ar apskaičiuoti santykinius dažnius kiekvienos grupės viduje.",

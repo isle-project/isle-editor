@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "naam van de weer te geven variabele",
 	"BarChart-description": "Staafdiagram.",
 	"BarChart-prop-data": "object van waardevermeerdering",
-	"BarChart-prop-direction": "hoe bestelt u de staven naast de x-as ('neerwaarts' of 'neerwaarts')?",
+	"BarChart-prop-direction": "hoe bestelt u de staven naast de x-as (`ascending` of `descending`)?",
 	"BarChart-prop-group": "groepsvariabele",
 	"BarChart-prop-horizontal": "het al dan niet horizontaal weergeven van balken",
 	"BarChart-prop-relative": "of de relatieve frequenties binnen elke groep moeten worden berekend",

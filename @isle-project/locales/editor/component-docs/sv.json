@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "namnet på den variabel som ska visas",
 	"BarChart-description": "Stapeldiagram.",
 	"BarChart-prop-data": "objekt av värdefält",
-	"BarChart-prop-direction": "Hur ordnar man staplar längs x-axeln (uppåtgående eller nedåtgående)?",
+	"BarChart-prop-direction": "Hur ordnar man staplar längs x-axeln (`ascending` eller `descending`)?",
 	"BarChart-prop-group": "grupperingsvariabel",
 	"BarChart-prop-horizontal": "Om staplarna ska visas horisontellt.",
 	"BarChart-prop-relative": "Om man ska beräkna relativa frekvenser inom varje grupp.",

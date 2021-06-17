@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "nom de la variable à afficher",
 	"BarChart-description": "Diagramme en barres.",
 	"BarChart-prop-data": "les tableaux d'objets de valeur",
-	"BarChart-prop-direction": "comment ordonner les barres le long de l'axe des x (\"ascendant\" ou \"descendant\")",
+	"BarChart-prop-direction": "comment ordonner les barres le long de l'axe des x (`ascending` ou `descending`)",
 	"BarChart-prop-group": "variable de regroupement",
 	"BarChart-prop-horizontal": "si les barres doivent être affichées horizontalement",
 	"BarChart-prop-relative": "s'il faut calculer les fréquences relatives à l'intérieur de chaque groupe",

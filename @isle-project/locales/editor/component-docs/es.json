@@ -20,7 +20,7 @@
 	"Anova-prop-variable": "nombre de la variable a mostrar",
 	"BarChart-description": "Gráfico de barras.",
 	"BarChart-prop-data": "objeto de las matrices de valor",
-	"BarChart-prop-direction": "cómo ordenar las barras a lo largo del eje x (`ascendente` o `descendente`)",
+	"BarChart-prop-direction": "cómo ordenar las barras a lo largo del eje x (`ascending` o `descending`)",
 	"BarChart-prop-group": "variable de agrupación",
 	"BarChart-prop-horizontal": "si mostrar las barras horizontalmente",
 	"BarChart-prop-relative": "si calcular las frecuencias relativas dentro de cada grupo",
