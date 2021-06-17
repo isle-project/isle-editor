@@ -14,6 +14,7 @@ const fs = require( 'fs' );
 const RE_VERSION = /([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/g;
 const RE_DLL_FILE = /(\.js|\.js\.LICENSE\.txt|\.css)$/;
 const SEMVER = [ 'major', 'minor', 'patch' ];
+const FOLDERS = [ 'components', 'constants', 'dll', 'locales', 'session', 'utils', 'webpack-cdn-plugin' ];
 let newVersion;
 let oldVersion;
 let type = ENV.VERSION;
@@ -25,22 +26,24 @@ if ( !contains( SEMVER, type ) ) {
 // MAIN //
 
 // Increment package versions:
-const pkgPath = join( __dirname, '..', '@isle-project', 'dll', 'package.json' );
-const pkg = require( pkgPath );
 
-pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
-	oldVersion = replace( match, RE_VERSION, '$1.$2.$3' );
-	if ( type === 'major' ) {
-		newVersion = `${Number( p1 ) + 1}.${0}.${0}`;
-	}
-	else if ( type === 'minor' ) {
-		newVersion = `${p1}.${Number( p2 ) + 1}.${0}`;
-	} else {
-		newVersion = `${p1}.${p2}.${Number( p3 ) + 1}`;
-	}
-	return newVersion;
+FOLDERS.forEach( folder => {
+	const pkgPath = join( __dirname, '..', '@isle-project', folder, 'package.json' );
+	const pkg = require( pkgPath );
+	pkg.version = replace( pkg.version, RE_VERSION, ( match, p1, p2, p3 ) => {
+		oldVersion = replace( match, RE_VERSION, '$1.$2.$3' );
+		if ( type === 'major' ) {
+			newVersion = `${Number( p1 ) + 1}.${0}.${0}`;
+		}
+		else if ( type === 'minor' ) {
+			newVersion = `${p1}.${Number( p2 ) + 1}.${0}`;
+		} else {
+			newVersion = `${p1}.${p2}.${Number( p3 ) + 1}`;
+		}
+		return newVersion;
+	});
+	fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 });
-fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 
 if ( type === 'major' || type === 'minor' || type === 'patch' ) {
 	const configPath = join( __dirname, '..', 'webpack.config.dll.js' );
