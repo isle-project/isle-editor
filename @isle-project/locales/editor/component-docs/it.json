@@ -1230,7 +1230,7 @@
 	"Slider-prop-infinite": "controlla se la presentazione si avvolge intorno al suo contenuto",
 	"Slider-prop-interval": "imposta un intervallo di tempo per il cambio automatico della slitta",
 	"Slider-prop-onClick": "richiamata quando si fa clic sui pulsanti successivi/precedenti",
-	"Slider-prop-pagination": "se mostrare la paginazione sia sul \"sopra\", \"sotto\" o \"entrambi\"",
+	"Slider-prop-pagination": "se mostrare la paginazione sia sul `top`, `bottom` o `both`",
 	"Slider-prop-style": "Stili in linea CSS",
 	"Slider-prop-swipe": "consente un comportamento di trascinamento/trascinamento",
 	"Slider-prop-title": "titolo per la presentazione / carosello da visualizzare nella sua parte superiore",

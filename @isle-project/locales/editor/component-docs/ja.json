@@ -1230,7 +1230,7 @@
 	"Slider-prop-infinite": "スライドショーの内容をラップするかどうかを制御します。",
 	"Slider-prop-interval": "自動スライドチェンジの時間間隔を設定します。",
 	"Slider-prop-onClick": "前後ボタンをクリックした時に呼び出されるコールバック",
-	"Slider-prop-pagination": "ページネーションを `top`, `bottom`, `両方に表示するかどうか。",
+	"Slider-prop-pagination": "ページネーションを `top`, `bottom`, `both`.",
 	"Slider-prop-style": "CSSインラインスタイル",
 	"Slider-prop-swipe": "ドラッグ/スワイプ動作を可能にする",
 	"Slider-prop-title": "スライドショー/カルーセルの上部に表示されるタイトル",
