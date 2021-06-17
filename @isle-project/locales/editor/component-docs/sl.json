@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Manjka opis.",
 	"StickyNote-description": "Samolepilni listek, na katerem je upodobljeno besedilo.",
 	"StickyNote-prop-body": "besedilo opombe",
-	"StickyNote-prop-color": "`rdeča`, `zelena`, `modra`, `rožnata` ali `oranžna`",
+	"StickyNote-prop-color": "`red`, `green`, `blue`, `pink`, ali `orange`",
 	"StickyNote-prop-date": "datum, ki se prikaže za opombo.",
 	"StickyNote-prop-draggable": "nadzoruje, ali naj bo mogoče povleči opombo.",
 	"StickyNote-prop-editable": "nadzoruje, ali je komponento mogoče urejati.",

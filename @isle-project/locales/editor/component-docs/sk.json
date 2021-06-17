@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Chýba popis.",
 	"StickyNote-description": "Samolepiaci lístok s textom.",
 	"StickyNote-prop-body": "text poznámky",
-	"StickyNote-prop-color": "buď `červená`, `zelená`, `modrá`, `ružová` alebo `oranžová`",
+	"StickyNote-prop-color": "buď `red`, `green`, `blue`, `pink`, alebo `orange`",
 	"StickyNote-prop-date": "dátum zobrazený pre poznámku",
 	"StickyNote-prop-draggable": "kontroluje, či má byť možné poznámku ťahať.",
 	"StickyNote-prop-editable": "kontroluje, či je komponent upraviteľný.",

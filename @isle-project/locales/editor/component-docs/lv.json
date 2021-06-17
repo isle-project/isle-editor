@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Trūkst apraksta.",
 	"StickyNote-description": "Līmlapiņa, uz kuras attēlots teksts.",
 	"StickyNote-prop-body": "piezīmes teksts",
-	"StickyNote-prop-color": "vai nu `sarkans`, `zaļš`, `zils`, `rozā`, vai `oranžs`.",
+	"StickyNote-prop-color": "vai `red`, `green`, `blue`, `pink`, vai `orange`",
 	"StickyNote-prop-date": "piezīmē redzamais datums.",
 	"StickyNote-prop-draggable": "kontrolē, vai ir iespējams vilkt piezīmi.",
 	"StickyNote-prop-editable": "nosaka, vai komponents ir rediģējams.",

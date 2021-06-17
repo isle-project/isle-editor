@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Trūksta aprašymo.",
 	"StickyNote-description": "Lipnus lapelis, kuriame atvaizduojamas tam tikras tekstas.",
 	"StickyNote-prop-body": "pastabos tekstas",
-	"StickyNote-prop-color": "`raudona`, `žalia`, `mėlyna`, `rožinė` arba `oranžinė`.",
+	"StickyNote-prop-color": "`red`, `green`, `blue`, `pink`, arba `orange`.",
 	"StickyNote-prop-date": "užrašo rodomą datą.",
 	"StickyNote-prop-draggable": "kontroliuoja, ar galima vilkti užrašą.",
 	"StickyNote-prop-editable": "kontroliuoja, ar komponentą galima redaguoti.",

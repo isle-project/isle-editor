@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "A leírás hiányzik.",
 	"StickyNote-description": "Egy öntapadós cetli, amely némi szöveget ad ki.",
 	"StickyNote-prop-body": "a feljegyzés szövege",
-	"StickyNote-prop-color": "\"piros\", \"zöld\", \"kék\", \"rózsaszín\" vagy \"narancssárga\".",
+	"StickyNote-prop-color": "`red`, `green`, `blue`, `pink`, vagy `orange`",
 	"StickyNote-prop-date": "a jegyzethez megjelenített dátum",
 	"StickyNote-prop-draggable": "azt szabályozza, hogy a jegyzetet lehet-e húzni.",
 	"StickyNote-prop-editable": "szabályozza, hogy a komponens szerkeszthető-e",

@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Der mangler en beskrivelse.",
 	"StickyNote-description": "En klistermærke, der gengiver noget tekst.",
 	"StickyNote-prop-body": "teksten til noten",
-	"StickyNote-prop-color": "enten `rød`, `grøn`, `blå`, `rosa`, eller `orange`",
+	"StickyNote-prop-color": "enten `red`, `green`, `blue`, `pink`, eller `orange`",
 	"StickyNote-prop-date": "en dato, der vises for noten",
 	"StickyNote-prop-draggable": "styrer, om man skal kunne trække noten rundt",
 	"StickyNote-prop-editable": "styrer, om komponenten kan redigeres",

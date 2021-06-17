@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Липсва описание.",
 	"StickyNote-description": "Самозалепващо се листче, което изобразява някакъв текст.",
 	"StickyNote-prop-body": "текст на бележката",
-	"StickyNote-prop-color": "или `червен`, `зелен`, `син`, `розов`, или `оранжев`",
+	"StickyNote-prop-color": "или  `red`, `green`, `blue`, `pink`, или `orange`",
 	"StickyNote-prop-date": "дата, която се показва за бележката",
 	"StickyNote-prop-draggable": "контролира дали да може да се плъзга бележката.",
 	"StickyNote-prop-editable": "контролира дали компонентът може да се редактира",

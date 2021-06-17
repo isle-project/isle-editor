@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Η περιγραφή λείπει.",
 	"StickyNote-description": "Ένα αυτοκόλλητο σημείωμα που αποδίδει κάποιο κείμενο.",
 	"StickyNote-prop-body": "κείμενο του σημειώματος",
-	"StickyNote-prop-color": "είτε \"κόκκινο\", \"πράσινο\", \"μπλε\", \"ροζ\" ή \"πορτοκαλί\".",
+	"StickyNote-prop-color": "είτε `red`, `green`, `blue`, `pink`, ή `orange`",
 	"StickyNote-prop-date": "μια ημερομηνία που εμφανίζεται για τη σημείωση",
 	"StickyNote-prop-draggable": "ελέγχει αν θα πρέπει να μπορεί κανείς να σύρει τη σημείωση",
 	"StickyNote-prop-editable": "ελέγχει αν το συστατικό είναι επεξεργάσιμο",

@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Die Beschreibung fehlt.",
 	"StickyNote-description": "Eine Haftnotiz, die einen Text wiedergibt.",
 	"StickyNote-prop-body": "Text des Hinweises",
-	"StickyNote-prop-color": "entweder `red`, `green`, `blue`, `pink` oder `orange`",
+	"StickyNote-prop-color": "entweder `red`, `green`, `blue`, `pink`, oder `orange`",
 	"StickyNote-prop-date": "ein angezeigtes Datum für die Notiz",
 	"StickyNote-prop-draggable": "steuert, ob man die Note herumziehen können soll",
 	"StickyNote-prop-editable": "steuert, ob die Komponente editierbar ist",

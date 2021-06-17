@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Kirjeldus puudub.",
 	"StickyNote-description": "Kleepsu, mis esitab teksti.",
 	"StickyNote-prop-body": "märkuse tekst",
-	"StickyNote-prop-color": "kas \"punane\", \"roheline\", \"sinine\", \"roosa\" või \"oranž\".",
+	"StickyNote-prop-color": "kas `red`, `green`, `blue`, `pink`, või `orange`",
 	"StickyNote-prop-date": "märkuse jaoks kuvatav kuupäev",
 	"StickyNote-prop-draggable": "kontrollib, kas nooti peaks olema võimalik lohistada",
 	"StickyNote-prop-editable": "kontrollib, kas komponent on redigeeritav",

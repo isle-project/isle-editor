@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "説明文は欠落しています。",
 	"StickyNote-description": "付箋紙で何かのテキストをレンダリングしています。",
 	"StickyNote-prop-body": "書き出し",
-	"StickyNote-prop-color": "赤、緑、青、ピンク、オレンジのいずれかを指定します。",
+	"StickyNote-prop-color": "`red`, `green`, `blue`, `pink`, または `orange`",
 	"StickyNote-prop-date": "ノートに表示される日付",
 	"StickyNote-prop-draggable": "ノートをドラッグするかどうかをコントロールします。",
 	"StickyNote-prop-editable": "コンポーネントが編集可能かどうかを制御します。",

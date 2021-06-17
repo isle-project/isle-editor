@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Descrierea lipsește.",
 	"StickyNote-description": "O notă autocolantă care redă un text.",
 	"StickyNote-prop-body": "Textul notei",
-	"StickyNote-prop-color": "fie `roșu`, `verde`, `albastru`, `roșu`, sau `portocaliu`.",
+	"StickyNote-prop-color": "fie `red`, `green`, `blue`, `pink`, sau `orange`",
 	"StickyNote-prop-date": "o dată afișată pentru nota respectivă",
 	"StickyNote-prop-draggable": "controlează dacă se poate glisa sau nu nota.",
 	"StickyNote-prop-editable": "controlează dacă componenta este editabilă sau nu",

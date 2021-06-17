@@ -1259,7 +1259,7 @@
 	"StatusBar-description": "Kuvaus puuttuu.",
 	"StickyNote-description": "Muistilappu, jossa on tekstiä.",
 	"StickyNote-prop-body": "muistion teksti",
-	"StickyNote-prop-color": "joko \"punainen\", \"vihreä\", \"sininen\", \"vaaleanpunainen\" tai \"oranssi\".",
+	"StickyNote-prop-color": "joko `red`, `green`, `blue`, `pink`, tai `orange`",
 	"StickyNote-prop-date": "muistiinpanon päivämäärän näyttö",
 	"StickyNote-prop-draggable": "valvoo, voiko nuotin vetää ympäriinsä.",
 	"StickyNote-prop-editable": "ohjaa, onko komponentti muokattavissa",
