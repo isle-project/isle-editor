@@ -11,9 +11,9 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.x",
-		"@isle-project/locales": "0.50.x",
-		"@isle-project/utils": "0.50.x"
+		"@isle-project/constants": "0.52.0",
+		"@isle-project/locales": "0.52.0",
+		"@isle-project/utils": "0.52.0"
 	},
 	"dependencies": {
 		"axios": "^0.21.0",
