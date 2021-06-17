@@ -13,7 +13,7 @@ import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import dt from '@stdlib/stats/base/dists/t/pdf';

@@ -21,7 +21,7 @@ import indexOf from '@stdlib/utils/index-of';
 import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
-import NINF from '@stdlib/constants/math/float64-ninf';
+import NINF from '@stdlib/constants/float64/ninf';
 import Alert from 'react-bootstrap/Alert';
 import Table from '@isle-project/components/table';
 import Image from '@isle-project/components/image';

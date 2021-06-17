@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Panel from '@isle-project/components/panel';
 import NumberInput from '@isle-project/components/input/number';
 import sample from '@stdlib/random/sample';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import isFunction from '@stdlib/assert/is-function';

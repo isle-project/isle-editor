@@ -11,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import dgeom from '@stdlib/stats/base/dists/geometric/pmf';
 import pgeom from '@stdlib/stats/base/dists/geometric/cdf';
 import qgeom from '@stdlib/stats/base/dists/geometric/quantile';

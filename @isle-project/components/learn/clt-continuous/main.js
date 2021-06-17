@@ -27,7 +27,7 @@ import pow from '@stdlib/math/base/special/pow';
 import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import TimedButton from '@isle-project/components/timed-button';
 import stdev from '@isle-project/utils/statistic/stdev';
 import mean from '@isle-project/utils/statistic/mean';

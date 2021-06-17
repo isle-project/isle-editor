@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import contains from '@stdlib/assert/contains';
 import copy from '@stdlib/utils/copy';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import NumberInput from '@isle-project/components/input/number';

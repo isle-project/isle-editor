@@ -1,7 +1,7 @@
 // MODULES //
 
-import PINF from '@stdlib/constants/math/float64-pinf';
-import NINF from '@stdlib/constants/math/float64-ninf';
+import PINF from '@stdlib/constants/float64/pinf';
+import NINF from '@stdlib/constants/float64/ninf';
 
 
 // MAIN //

@@ -6,7 +6,7 @@ import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
 import exp from '@stdlib/math/base/special/exp';
 import xlogy from '@stdlib/math/base/special/xlogy';
-import EPS from '@stdlib/constants/math/float64-eps';
+import EPS from '@stdlib/constants/float64/eps';
 import dbern from '@stdlib/stats/base/dists/bernoulli/pmf';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import mmult from '@isle-project/utils/mmult';

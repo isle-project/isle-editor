@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import roundn from '@stdlib/math/base/special/roundn';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import TeX from '@isle-project/components/tex';
 import NumberInput from '@isle-project/components/input/number';
 import Dashboard from '@isle-project/components/dashboard';

@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import dpois from '@stdlib/stats/base/dists/poisson/pmf';
 import ppois from '@stdlib/stats/base/dists/poisson/cdf';
 import qpois from '@stdlib/stats/base/dists/poisson/quantile';

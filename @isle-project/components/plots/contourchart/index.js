@@ -10,7 +10,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
 import Plotly from '@isle-project/components/plotly';
 import max from '@isle-project/utils/statistic/max';

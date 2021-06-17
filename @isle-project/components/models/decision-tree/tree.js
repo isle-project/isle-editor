@@ -31,7 +31,7 @@ import contains from '@stdlib/assert/contains';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import ln from '@stdlib/math/base/special/ln';
 import round from '@stdlib/math/base/special/round';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import Plot from './tree_plot.js';
 import split from './split.js';
 

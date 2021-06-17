@@ -8,7 +8,7 @@ import logger from 'debug';
 import { findDOMNode } from 'react-dom';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import vex from 'vex-js';
-import PINF from '@stdlib/constants/math/float64-pinf';
+import PINF from '@stdlib/constants/float64/pinf';
 import { ContextMenu, ContextMenuTrigger, MenuItem } from '@isle-project/components/internal/contextmenu';
 import useIsMounted from 'hooks/is-mounted';
 import './line_wrapper.css';

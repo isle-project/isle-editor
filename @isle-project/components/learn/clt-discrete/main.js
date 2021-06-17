@@ -14,7 +14,7 @@ import copy from '@stdlib/utils/copy';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import floor from '@stdlib/math/base/special/floor';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import NumberInput from '@isle-project/components/input/number';

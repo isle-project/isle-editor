@@ -7,7 +7,7 @@ import isMatrixLike from '@stdlib/assert/is-matrix-like';
 import exp from '@stdlib/math/base/special/exp';
 import ln from '@stdlib/math/base/special/ln';
 import pow from '@stdlib/math/base/special/pow';
-import PI from '@stdlib/constants/math/float64-pi';
+import PI from '@stdlib/constants/float64/pi';
 import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import max from '@isle-project/utils/statistic/max';

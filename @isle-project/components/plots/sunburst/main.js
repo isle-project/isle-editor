@@ -24,7 +24,7 @@ import * as d3 from 'd3';
 import logger from 'debug';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';
-import PI from '@stdlib/constants/math/float64-pi';
+import PI from '@stdlib/constants/float64/pi';
 import { CAT20 as COLORS } from '@isle-project/constants/colors';
 import generateUID from '@isle-project/utils/uid';
 import { withPropCheck } from '@isle-project/utils/prop-check';

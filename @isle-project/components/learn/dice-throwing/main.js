@@ -12,7 +12,7 @@ import inmap from '@stdlib/utils/inmap';
 import roundn from '@stdlib/math/base/special/roundn';
 import sample from '@stdlib/random/sample';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import NumberInput from '@isle-project/components/input/number';
 import FeedbackButtons from '@isle-project/components/feedback';
 

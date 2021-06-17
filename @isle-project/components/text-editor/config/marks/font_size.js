@@ -27,7 +27,7 @@
 // MODULES //
 
 import abs from '@stdlib/math/base/special/abs';
-import NINF from '@stdlib/constants/math/float64-ninf';
+import NINF from '@stdlib/constants/float64/ninf';
 import FONT_PT_SIZES from './../font_sizes.json';
 
 

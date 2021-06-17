@@ -1,6 +1,6 @@
 // MODULES //
 
-import PINF from '@stdlib/constants/math/float64-pinf';
+import PINF from '@stdlib/constants/float64/pinf';
 import * as types from 'constants/editor_actions.js';
 
 

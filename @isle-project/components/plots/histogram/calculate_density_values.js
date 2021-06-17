@@ -1,6 +1,6 @@
 // MODULES //
 
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
 import dexp from '@stdlib/stats/base/dists/exponential/pdf';

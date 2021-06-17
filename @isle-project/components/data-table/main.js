@@ -46,7 +46,7 @@ import generateUID from '@isle-project/utils/uid';
 import saveAs from '@isle-project/utils/file-saver';
 import SessionContext from '@isle-project/session/context.js';
 import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from '@isle-project/constants/actions.js';
-import NINF from '@stdlib/constants/math/float64-ninf';
+import NINF from '@stdlib/constants/float64/ninf';
 import SelectInput from '@isle-project/components/input/select';
 import { components } from 'react-select';
 import TutorialButton from './tutorial-button/index.js';

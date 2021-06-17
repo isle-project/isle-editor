@@ -30,7 +30,7 @@ import hasProp from '@stdlib/assert/has-property';
 import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import generateUID from '@isle-project/utils/uid';
 import SelectInput from '@isle-project/components/input/select';
 import TextEditor from '@isle-project/components/text-editor';

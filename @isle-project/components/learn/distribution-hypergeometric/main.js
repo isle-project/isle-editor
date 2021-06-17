@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { VictoryAxis, VictoryChart, VictoryBar, VictoryLine, VictoryTheme } from 'victory';
 import roundn from '@stdlib/math/base/special/roundn';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import dhypergeom from '@stdlib/stats/base/dists/hypergeometric/pmf';
 import phypergeom from '@stdlib/stats/base/dists/hypergeometric/cdf';
 import FeedbackButtons from '@isle-project/components/feedback';

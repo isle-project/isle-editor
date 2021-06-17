@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import sin from '@stdlib/math/base/special/sin';
 import cos from '@stdlib/math/base/special/cos';
-import PI from '@stdlib/constants/math/float64-pi';
+import PI from '@stdlib/constants/float64/pi';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './seal.css';
 

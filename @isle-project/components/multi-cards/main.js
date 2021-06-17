@@ -6,7 +6,7 @@ import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import shuffle from '@stdlib/random/shuffle';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isNull from '@stdlib/assert/is-null';
 import FlippableCard from '@isle-project/components/flippable-card';

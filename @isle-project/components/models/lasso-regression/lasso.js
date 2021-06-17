@@ -1,7 +1,7 @@
 // MODULES //
 
 import logger from 'debug';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import sign from '@stdlib/math/base/special/signum';
 import isArrayArray from '@stdlib/assert/is-array-array';
 import isMatrixLike from '@stdlib/assert/is-matrix-like';

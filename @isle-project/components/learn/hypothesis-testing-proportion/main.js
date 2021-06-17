@@ -13,7 +13,7 @@ import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import roundn from '@stdlib/math/base/special/roundn';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import isInfinite from '@stdlib/assert/is-infinite';
 import isnan from '@stdlib/assert/is-nan';
 import dnorm from '@stdlib/stats/base/dists/normal/pdf';

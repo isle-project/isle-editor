@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import ceil from '@stdlib/math/base/special/ceil';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';

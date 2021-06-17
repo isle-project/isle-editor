@@ -6,7 +6,7 @@ import { useDrop } from 'react-dnd';
 import { i18n } from '@isle-project/locales/editor';
 import logger from 'debug';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
-import PINF from '@stdlib/constants/math/float64-pinf';
+import PINF from '@stdlib/constants/float64/pinf';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import './line_buttons.css';
 

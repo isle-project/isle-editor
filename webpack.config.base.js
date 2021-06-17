@@ -10,7 +10,7 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 * External modules that need not to be bundled with the main electron application. Due to copying a significant chunk of the `node_modules` when bundling as `externalResources` so that users can use these packages, placing a package in this list avoids code duplication.
 */
 const EXTERNALS = [
-	'@stdlib/stdlib',
+	'@stdlib/*',
 	'archiver',
 	'camelcase',
 	'child_process',

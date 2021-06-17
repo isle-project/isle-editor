@@ -14,7 +14,7 @@ import logger from 'debug';
 import abs from '@stdlib/math/base/special/abs';
 import roundn from '@stdlib/math/base/special/roundn';
 import randu from '@stdlib/random/base/randu';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import lognormal from '@stdlib/stats/base/dists/lognormal';
 import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from '@isle-project/components/feedback';

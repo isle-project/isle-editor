@@ -20,8 +20,8 @@ import deg2rad from '@stdlib/math/base/special/deg2rad';
 import roundn from '@stdlib/math/base/special/roundn';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import stack from '@stdlib/utils/stack';
-import PI from '@stdlib/constants/math/float64-pi';
-import E from '@stdlib/constants/math/float64-e';
+import PI from '@stdlib/constants/float64/pi';
+import E from '@stdlib/constants/float64/e';
 
 
 // VARIABLES //

@@ -16,7 +16,7 @@ import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-plain-object';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import Timer from '@isle-project/components/timer';
 import FreeTextQuestion from '@isle-project/components/questions/free-text';
 import MultipleChoiceQuestion from '@isle-project/components/questions/multiple-choice';

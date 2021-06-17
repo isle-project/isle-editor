@@ -10,7 +10,7 @@ import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import contains from '@stdlib/assert/contains';
 import lowess from '@stdlib/stats/lowess';
-import linspace from '@stdlib/math/utils/linspace';
+import linspace from '@stdlib/array/linspace';
 import roundn from '@stdlib/math/base/special/roundn';
 import mapValues from '@stdlib/utils/map-values';
 import groupBy from '@stdlib/utils/group-by';

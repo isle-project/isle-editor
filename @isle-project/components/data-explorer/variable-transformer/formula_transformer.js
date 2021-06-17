@@ -18,7 +18,7 @@ import Panel from '@isle-project/components/panel';
 import Collapse from '@isle-project/components/collapse';
 import TextArea from '@isle-project/components/input/text-area';
 import Tooltip from '@isle-project/components/tooltip';
-import incrspace from '@stdlib/math/utils/incrspace';
+import incrspace from '@stdlib/array/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
