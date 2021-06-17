@@ -18,6 +18,7 @@
 	},
 	"dependencies": {
 		"@iktakahiro/markdown-it-katex": "^4.0.0",
+		"@loadable/component": "^5.15.0",
 		"axios": "^0.21.1",
 		"classnames": "^2.3.1",
 		"codemirror": "^5.60.0",
