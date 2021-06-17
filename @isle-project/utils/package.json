@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/utils",
-	"version": "0.50.2",
+	"version": "0.50.3",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -12,9 +12,9 @@
 	"main": "index.js",
 	"dependencies": {
 		"debug": "4.3.1",
-		"i18next": "^19.8.4",
-		"react": "17.0.1",
-		"react-dom": "17.0.1",
-		"typo-js": "^1.0.3"
+		"i18next": "^20.3.2",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"typo-js": "^1.2.0"
 	}
 }

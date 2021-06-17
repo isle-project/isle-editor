@@ -5,8 +5,11 @@
 const { join } = require( 'path' );
 const contains = require( '@stdlib/assert/contains' );
 const replace = require( '@stdlib/string/replace' );
+const startsWith = require( '@stdlib/string/starts-with' );
+const objectKeys = require( '@stdlib/utils/keys' );
 const ENV = require( '@stdlib/process/env' );
 const fs = require( 'fs' );
+const mainPkgJson = require( './../package.json' );
 
 
 // VARIABLES //
@@ -42,6 +45,18 @@ FOLDERS.forEach( folder => {
 		}
 		return newVersion;
 	});
+	let keys = objectKeys( pkg.peerDependencies );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		if ( startsWith( key, '@isle-project' ) ) {
+			pkg.peerDependencies[ key ] = newVersion;
+		}
+	}
+	keys = objectKeys( pkg.dependencies );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		pkg.dependencies[ key ] = ( mainPkgJson.dependencies[ key ] || mainPkgJson.devDependencies[ key ] );
+	}
 	fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, '\t' ).concat( '\n' ) );
 });
 
