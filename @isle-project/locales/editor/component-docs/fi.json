@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "voidaanko paneeli minimoida",
 	"Panel-prop-onHide": "callback, joka käynnistetään, kun sulkemispainiketta napsautetaan.",
 	"Panel-prop-style": "CSS inline-tyylit säiliölle",
+	"Panel-prop-trapFocus": "halutaanko käyttäjän fokus jäädyttää paneeliin.",
 	"PieChart-description": "Piirakkakaavio-komponentti, joka näyttää oletusarvoisesti kaikkien luokkien lukumäärät valitusta muuttujasta.",
 	"PieChart-prop-data": "arvojoukkojen objekti",
 	"PieChart-prop-group": "ryhmittelymuuttuja",

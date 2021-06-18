@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "si le panel peut être réduit au minimum",
 	"Panel-prop-onHide": "rappel invoqué lorsque le bouton de fermeture est cliqué",
 	"Panel-prop-style": "Styles CSS en ligne pour le conteneur",
+	"Panel-prop-trapFocus": "si le focus de l'utilisateur doit être piégé dans le panneau.",
 	"PieChart-description": "Un camembert qui, par défaut, affiche les comptes de toutes les catégories d'une variable choisie.",
 	"PieChart-prop-data": "les tableaux d'objets de valeur",
 	"PieChart-prop-group": "variable de regroupement",

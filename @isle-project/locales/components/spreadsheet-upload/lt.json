@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV įkėlimo pažanga",
 	"csv-upload-prompt": "Įkelkite duomenų rinkinį (CSV formatu)",
 	"drop-file": "Įmeskite failą čia",
 	"error-message": "Bandant perskaityti failą buvo pastebėta ši klaida",

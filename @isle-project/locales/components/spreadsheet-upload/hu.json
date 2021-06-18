@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV feltöltés előrehaladása",
 	"csv-upload-prompt": "Kérjük, töltsön fel egy adatkészletet (CSV formátumban).",
 	"drop-file": "Dobja ide a fájlt",
 	"error-message": "A következő hiba lépett fel a fájl beolvasása során",

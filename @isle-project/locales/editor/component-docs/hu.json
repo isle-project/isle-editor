@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "minimalizálható-e a panel",
 	"Panel-prop-onHide": "callback, amelyet a bezárás gombra kattintáskor hívnak elő.",
 	"Panel-prop-style": "CSS inline stílusok a konténerhez",
+	"Panel-prop-trapFocus": "hogy a felhasználó fókusza a panelben maradjon-e",
 	"PieChart-description": "Egy kördiagram komponens, amely alapértelmezés szerint egy kiválasztott változó összes kategóriájának számadatait jeleníti meg.",
 	"PieChart-prop-data": "értéktáblák objektuma",
 	"PieChart-prop-group": "csoportosító változó",

@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "czy panel może być zminimalizowany",
 	"Panel-prop-onHide": "wywołanie zwrotne po kliknięciu przycisku zamknięcia",
 	"Panel-prop-style": "Style inline CSS dla kontenerów",
+	"Panel-prop-trapFocus": "czy uwięzić fokus użytkownika w panelu",
 	"PieChart-description": "Składnik wykresu kołowego, który domyślnie wyświetla zliczenia wszystkich kategorii z wybranej zmiennej.",
 	"PieChart-prop-data": "przedmiot tablice wartości",
 	"PieChart-prop-group": "zmienna grupowania",

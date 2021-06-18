@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "ob das Panel minimiert werden kann",
 	"Panel-prop-onHide": "Callback, der aufgerufen wird, wenn die Schließen-Schaltfläche angeklickt wird",
 	"Panel-prop-style": "CSS-Inlinestile für Container",
+	"Panel-prop-trapFocus": "ob der Fokus des Benutzers im Panel gefangen werden soll",
 	"PieChart-description": "Eine Tortendiagramm-Komponente, die standardmäßig die Anzahl aller Kategorien einer ausgewählten Variablen anzeigt.",
 	"PieChart-prop-data": "Objekt von Werte-Arrays",
 	"PieChart-prop-group": "Gruppierungsvariable",

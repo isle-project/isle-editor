@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "パネルを最小化できるかどうか",
 	"Panel-prop-onHide": "閉じボタンがクリックされた時に呼び出されるコールバック",
 	"Panel-prop-style": "コンテナ用CSSインラインスタイル",
+	"Panel-prop-trapFocus": "ユーザーのフォーカスをパネルにトラップするかどうか",
 	"PieChart-description": "デフォルトでは、選択された変数からのすべてのカテゴリのカウントを表示する円グラフコンポーネントです。",
 	"PieChart-prop-data": "値の配列のオブジェクト",
 	"PieChart-prop-group": "グループ化変数",

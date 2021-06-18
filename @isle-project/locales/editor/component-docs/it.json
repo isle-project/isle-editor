@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "se il pannello può essere ridotto al minimo",
 	"Panel-prop-onHide": "richiamata quando si fa clic sul pulsante di chiusura",
 	"Panel-prop-style": "Stili in linea CSS per container",
+	"Panel-prop-trapFocus": "se intrappolare il focus dell'utente nel pannello",
 	"PieChart-description": "Un componente del grafico a torta che per default visualizza i conteggi di tutte le categorie di una variabile scelta.",
 	"PieChart-prop-data": "oggetto delle matrici di valori",
 	"PieChart-prop-group": "variabile di raggruppamento",

@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "dacă panoul poate fi minimizat",
 	"Panel-prop-onHide": "callback invocat atunci când se face clic pe butonul de închidere",
 	"Panel-prop-style": "Stiluri CSS inline pentru container",
+	"Panel-prop-trapFocus": "dacă trebuie să rețină atenția utilizatorului în panou",
 	"PieChart-description": "O componentă de diagramă circulară care, în mod implicit, afișează numărul tuturor categoriilor dintr-o variabilă aleasă.",
 	"PieChart-prop-data": "obiect de matrice de valori",
 	"PieChart-prop-group": "variabilă de grupare",

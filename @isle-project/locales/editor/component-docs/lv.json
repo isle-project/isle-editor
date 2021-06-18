@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "vai paneli var samazināt līdz minimumam.",
 	"Panel-prop-onHide": "atsauces zvans, kas tiek izsaukts, kad ir noklikšķināts uz aizvēršanas pogas.",
 	"Panel-prop-style": "CSS iebūvētie stili konteineram",
+	"Panel-prop-trapFocus": "vai aizturēt lietotāja fokusu panelī.",
 	"PieChart-description": "Pīrāga diagrammas komponents, kas pēc noklusējuma parāda visu kategoriju skaitu no izvēlētā mainīgā lieluma.",
 	"PieChart-prop-data": "vērtību masīvu objekts",
 	"PieChart-prop-group": "grupēšanas mainīgais",

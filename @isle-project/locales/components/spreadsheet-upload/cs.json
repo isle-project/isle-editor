@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Průběh nahrávání CSV",
 	"csv-upload-prompt": "Nahrajte prosím soubor dat (formát CSV)",
 	"drop-file": "Vložte soubor sem",
 	"error-message": "Při pokusu o přečtení souboru došlo k následující chybě",

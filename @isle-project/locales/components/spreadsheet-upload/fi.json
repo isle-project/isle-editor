@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV:n latauksen edistyminen",
 	"csv-upload-prompt": "Lataa tietokokonaisuus (CSV-muodossa).",
 	"drop-file": "Pudota tiedosto tänne",
 	"error-message": "Seuraava virhe tapahtui, kun tiedostoa yritettiin lukea.",

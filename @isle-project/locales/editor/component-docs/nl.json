@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "of het paneel kan worden geminimaliseerd",
 	"Panel-prop-onHide": "terugbellen wordt aangeroepen wanneer op de sluitknop wordt geklikt",
 	"Panel-prop-style": "CSS inline-stijlen voor containers",
+	"Panel-prop-trapFocus": "of de focus van de gebruiker in het paneel moet worden gevangen",
 	"PieChart-description": "Een taartdiagramcomponent die standaard de tellingen van alle categorieën van een gekozen variabele weergeeft.",
 	"PieChart-prop-data": "object van waardevermeerdering",
 	"PieChart-prop-group": "groepsvariabele",

@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV Upload Progress",
 	"csv-upload-prompt": "Please upload a data set (CSV format)",
 	"drop-file": "Drop file here",
 	"error-message": "The following error was encountered while trying to read the file",

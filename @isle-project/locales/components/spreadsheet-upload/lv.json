@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV augšupielādes progress",
 	"csv-upload-prompt": "Lūdzu, augšupielādējiet datu kopu (CSV formātā)",
 	"drop-file": "Lejupielādējiet failu šeit",
 	"error-message": "Mēģinot nolasīt failu, tika pieļauta šāda kļūda",

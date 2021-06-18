@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Framsteg för CSV-uppladdning",
 	"csv-upload-prompt": "Ladda upp en datamängd (CSV-format)",
 	"drop-file": "Lämna filen här",
 	"error-message": "Följande fel uppstod när du försökte läsa filen",

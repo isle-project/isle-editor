@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Progresul încărcării CSV",
 	"csv-upload-prompt": "Vă rugăm să încărcați un set de date (format CSV)",
 	"drop-file": "Aruncați fișierul aici",
 	"error-message": "Următoarea eroare a fost întâlnită în timpul încercării de citire a fișierului",

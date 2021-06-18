@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSVアップロードの進捗状況",
 	"csv-upload-prompt": "データセット（CSV形式）をアップロードしてください",
 	"drop-file": "ファイルのドロップはこちら",
 	"error-message": "ファイルを読み込もうとすると、以下のエラーが発生しました。",

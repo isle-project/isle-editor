@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "ali je mogoče ploščo zmanjšati na najmanjšo možno mero.",
 	"Panel-prop-onHide": "povratni klic, ki se sproži, ko je kliknjen gumb za zapiranje.",
 	"Panel-prop-style": "Vnosni slogi CSS za vsebnik",
+	"Panel-prop-trapFocus": "ali naj se uporabnikovo osredotočenje ujame na ploščo.",
 	"PieChart-description": "Komponenta krožnega diagrama, ki privzeto prikazuje število vseh kategorij iz izbrane spremenljivke.",
 	"PieChart-prop-data": "predmet polja vrednosti",
 	"PieChart-prop-group": "spremenljivka za razvrščanje v skupine",

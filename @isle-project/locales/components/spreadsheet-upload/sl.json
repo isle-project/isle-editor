@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Napredek nalaganja CSV",
 	"csv-upload-prompt": "Prenesite nabor podatkov (format CSV)",
 	"drop-file": "Spustite datoteko tukaj",
 	"error-message": "Pri poskusu branja datoteke je prišlo do naslednje napake",

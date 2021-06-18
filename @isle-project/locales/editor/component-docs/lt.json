@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "ar skydelį galima sumažinti iki minimumo.",
 	"Panel-prop-onHide": "atgalinis skambutis, inicijuojamas, kai paspaudžiamas uždarymo mygtukas.",
 	"Panel-prop-style": "Konteinerio CSS vidinės eilutės stiliai",
+	"Panel-prop-trapFocus": "ar naudotojo fokusas turi būti fiksuojamas skydelyje",
 	"PieChart-description": "Skritulinės diagramos komponentas, kuris pagal numatytuosius nustatymus rodo visų pasirinkto kintamojo kategorijų skaičių.",
 	"PieChart-prop-data": "verčių masyvų objektas",
 	"PieChart-prop-group": "grupavimo kintamasis",

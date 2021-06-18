@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "Om panelen kan minimeras.",
 	"Panel-prop-onHide": "callback som aktiveras när stängningsknappen klickas",
 	"Panel-prop-style": "CSS inline-stilar för behållare",
+	"Panel-prop-trapFocus": "om användarens fokus ska fastna i panelen eller inte",
 	"PieChart-description": "En cirkeldiagramkomponent som som standard visar antalet av alla kategorier från en vald variabel.",
 	"PieChart-prop-data": "objekt av värdefält",
 	"PieChart-prop-group": "grupperingsvariabel",

@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "zda lze panel minimalizovat",
 	"Panel-prop-onHide": "zpětné volání vyvolané po kliknutí na tlačítko zavřít.",
 	"Panel-prop-style": "Řádkové styly CSS pro kontejner",
+	"Panel-prop-trapFocus": "zda má být na panelu zachyceno zaměření uživatele.",
 	"PieChart-description": "Komponenta koláčového grafu, která ve výchozím nastavení zobrazuje počty všech kategorií vybrané proměnné.",
 	"PieChart-prop-data": "objekt pole hodnot",
 	"PieChart-prop-group": "seskupovací proměnná",

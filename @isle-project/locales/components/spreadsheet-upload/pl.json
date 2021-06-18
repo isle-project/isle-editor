@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Postęp przesyłania CSV",
 	"csv-upload-prompt": "Prosimy o przesłanie zestawu danych (format CSV)",
 	"drop-file": "Wrzuć teczkę tutaj",
 	"error-message": "Podczas próby odczytania pliku napotkano następujący błąd",

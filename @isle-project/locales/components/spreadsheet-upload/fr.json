@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Progression du téléchargement du CSV",
 	"csv-upload-prompt": "Veuillez télécharger un ensemble de données (format CSV)",
 	"drop-file": "Déposer le fichier ici",
 	"error-message": "L'erreur suivante a été rencontrée en essayant de lire le fichier",

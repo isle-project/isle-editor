@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "面板是否可以最小化",
 	"Panel-prop-onHide": "当点击关闭按钮时调用回调。",
 	"Panel-prop-style": "容器的CSS内联样式",
+	"Panel-prop-trapFocus": "是否将用户的焦点锁定在面板上",
 	"PieChart-description": "一个饼图组件，默认情况下，它显示所选变量的所有类别的计数。",
 	"PieChart-prop-data": "值数组对象",
 	"PieChart-prop-group": "分组变量",

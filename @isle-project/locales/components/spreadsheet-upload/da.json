@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "Fremskridt med CSV-opload",
 	"csv-upload-prompt": "Upload venligst et datasæt (CSV-format)",
 	"drop-file": "Smid filen her",
 	"error-message": "Følgende fejl opstod under forsøget på at læse filen",

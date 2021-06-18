@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "kas paneeli saab minimeerida",
 	"Panel-prop-onHide": "callback, mis kutsutakse esile, kui klõpsatakse sulgemisnupule",
 	"Panel-prop-style": "Konteineri CSS inline stiilid",
+	"Panel-prop-trapFocus": "kas kasutaja fookus jääb paneelil lõksu.",
 	"PieChart-description": "Tordiagrammi komponent, mis vaikimisi kuvab kõikide kategooriate arvu valitud muutujast.",
 	"PieChart-prop-data": "väärtuste massiivi objekt",
 	"PieChart-prop-group": "rühmitav muutuja",

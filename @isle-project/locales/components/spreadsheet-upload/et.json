@@ -1,4 +1,5 @@
 {
+	"csv-upload-progress": "CSV üleslaadimise edenemine",
 	"csv-upload-prompt": "Palun laadige üles andmekogum (CSV-vormingus).",
 	"drop-file": "Pane fail siia",
 	"error-message": "Faili lugemise ajal ilmnes järgmine viga",

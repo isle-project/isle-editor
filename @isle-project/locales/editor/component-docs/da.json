@@ -851,6 +851,7 @@
 	"Panel-prop-minimizable": "om panelet kan minimeres",
 	"Panel-prop-onHide": "callback, der påkaldes, når der klikkes på lukkeknappen",
 	"Panel-prop-style": "CSS inline-stilarter til container",
+	"Panel-prop-trapFocus": "om brugerens fokus skal fanges i panelet",
 	"PieChart-description": "En cirkeldiagramkomponent, der som standard viser tællingerne af alle kategorier fra en valgt variabel.",
 	"PieChart-prop-data": "objekt af værdi-arrays",
 	"PieChart-prop-group": "grupperingsvariabel",
