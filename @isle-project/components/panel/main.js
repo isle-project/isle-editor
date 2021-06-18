@@ -13,12 +13,12 @@ import './panel.css';
 
 // FUNCTIONS //
 
-const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinimize }) => {
+const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimized, onMinimize }) => {
 	const { t } = useTranslation( 'panel' );
 	if ( !children ) {
 		return null;
 	}
-	return ( <Card.Header as="h3">
+	return ( <Card.Header as={headerTag} >
 		<span className="unselectable" >{children}</span>
 		<div style={{ float: 'right' }} >
 		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}><button
@@ -41,7 +41,8 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * Card component.
 *
 * @property {string} className - CSS class name
-* @property {(string|node)} header - panel heading (h3)
+* @property {(string|node)} header - panel heading
+* @property {string} headerTag - tag used for the panel heading
 * @property {(string|node)} footer - panel footer
 * @property {boolean} trapFocus - whether to trap the user's focus in the panel
 * @property {boolean} minimizable - whether the panel can be minimized
@@ -52,7 +53,7 @@ const Header = ({ children, hideTooltip, onHide, minimizable, minimized, onMinim
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-const Panel = ({ className, header, footer, trapFocus, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
+const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
 	const [ minimized, setMinimized ] = useState( false );
 	const cardRef = useRef( null );
 	const card = <Card
@@ -77,6 +78,7 @@ const Panel = ({ className, header, footer, trapFocus, minimizable, fullscreen, 
 				setMinimized( !minimized );
 			}}
 			hideTooltip={hideTooltip} onHide={onHide}
+			headerTag={headerTag}
 		>
 			{header}
 		</Header>
@@ -115,6 +117,7 @@ Panel.propTypes = {
 		PropTypes.string,
 		PropTypes.node
 	]),
+	headerTag: PropTypes.string,
 	footer: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.node
@@ -131,6 +134,7 @@ Panel.propTypes = {
 Panel.defaultProps = {
 	className: '',
 	header: null,
+	headerTag: 'h3',
 	footer: null,
 	minimizable: false,
 	fullscreen: false,
