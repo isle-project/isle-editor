@@ -36,23 +36,15 @@ import './slider.css';
 class DefaultSlider extends Component {
 	constructor( props ) {
 		super( props );
-		let nChildren = 0;
-		const childDivs = props.children && props.children.length > 0 ?
-			React.Children.map( props.children, ( child ) => {
-				if ( isLineButtons( child ) ) {
-					return null;
-				}
-				nChildren += 1;
-				return ( <div hidden={nChildren !== 1}> {child} </div> );
-			}) : <div></div>;
 		this.state = {
-			nChildren,
-			childDivs,
+			nChildren: 0,
+			childDivs: null,
 			currentSlide: 1
 		};
 	}
 
 	componentDidMount() {
+		this.createSlides();
 		if ( this.slider ) {
 			this.slider.slickGoTo( this.props.goto );
 		}
@@ -60,23 +52,27 @@ class DefaultSlider extends Component {
 
 	componentDidUpdate( prevProps ) {
 		if ( this.props.children !== prevProps.children ) {
-			let nChildren = 0;
-			const childDivs = this.props.children && this.props.children.length > 0 ?
-				React.Children.map( this.props.children, ( child ) => {
-					if ( isLineButtons( child ) ) {
-						return null;
-					}
-					nChildren += 1;
-					return <div hidden={this.state.currentSlide !== nChildren ? true : void 0} > {child} </div>;
-				}) : <div></div>;
-			this.setState({
-				childDivs,
-				nChildren
-			});
+			this.createSlides();
 		}
 		if ( this.props.goto !== prevProps.goto && this.slider ) {
 			this.slider.slickGoTo( this.props.goto );
 		}
+	}
+
+	createSlides() {
+		let nChildren = 0;
+		const childDivs = this.props.children && this.props.children.length > 0 ?
+			React.Children.map( this.props.children, ( child ) => {
+				if ( isLineButtons( child ) ) {
+					return null;
+				}
+				nChildren += 1;
+				return <div hidden={this.state.currentSlide !== nChildren ? true : void 0} > {child} </div>;
+			}) : <div></div>;
+		this.setState({
+			childDivs,
+			nChildren
+		});
 	}
 
 	renderTitle() {
@@ -106,7 +102,7 @@ class DefaultSlider extends Component {
 			nextArrow: <NextArrow pagination={this.props.pagination} onClick={this.props.onClick} t={this.props.t} />,
 			...this.props,
 			beforeChange: ( oldIndex, newIndex ) => {
-				this.setState({ currentSlide: newIndex+1 });
+				this.setState({ currentSlide: newIndex+1 }, this.createSlides );
 				closeHintButtons( this.slider );
 			},
 			style: {
