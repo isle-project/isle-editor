@@ -419,6 +419,7 @@ class ResponseVisualizer extends Component {
 		if ( !this.props.id ) {
 			return <Gate owner><span className="title no-id-message">{this.props.t('no-id')}</span></Gate>;
 		}
+		const { t } = this.props;
 		const session = this.context;
 		let nUsers;
 		if ( session.selectedCohort ) {
@@ -435,7 +436,7 @@ class ResponseVisualizer extends Component {
 		infoRate *= 100.0;
 		let focusRate = focusUsers.length / nUsers;
 		focusRate *= 100.0;
-		const buttonLabel = this.props.buttonLabel || this.props.t('actions');
+		const buttonLabel = this.props.buttonLabel || t('actions');
 		return (
 			<div
 				id={`${this.props.id}_response_visualizer`}
@@ -447,7 +448,7 @@ class ResponseVisualizer extends Component {
 						<Tooltip
 							placement='top'
 							tooltip={this.props.showID ? <span>
-								{this.props.t('open-tooltip', { label: uncapitalize( buttonLabel ), id: this.props.id })}
+								{t('open-tooltip', { label: uncapitalize( buttonLabel ), id: this.props.id })}
 							</span> : null}
 						>
 							<Button
@@ -466,11 +467,11 @@ class ResponseVisualizer extends Component {
 							placement="top"
 							overlay={this.renderTooltip()}
 						>
-							<ProgressBar style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
-								<ProgressBar variant="info" now={infoRate} max={100} min={0} />
-								<ProgressBar variant="warning" now={focusRate} max={100} min={0} />
-								<ProgressBar variant="success" now={successRate} max={100} min={0} />
-								<ProgressBar variant="danger" now={dangerRate} max={100} min={0} />
+							<ProgressBar aria-label={t('interaction-rate')} style={{ width: '100%', marginTop: '3px', height: '0.7rem', boxShadow: '0 0 2px black' }}>
+								<ProgressBar aria-label={this.props.info} variant="info" now={infoRate} max={100} min={0} />
+								<ProgressBar aria-label={t('focus-rate')} variant="warning" now={focusRate} max={100} min={0} />
+								{this.props.success ? <ProgressBar aria-label={this.props.success} variant="success" now={successRate} max={100} min={0} /> : null}
+								{this.props.danger ? <ProgressBar aria-label={this.props.danger} variant="danger" now={dangerRate} max={100} min={0} /> : null}
 							</ProgressBar>
 						</OverlayTrigger>
 					</ButtonGroup>

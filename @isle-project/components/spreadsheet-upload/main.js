@@ -153,7 +153,11 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 				onChange={handleHeaderChange}
 			/>
 			{ uploading ?
-				<ProgressBar now={completed} label={`${completed}%`} /> :
+				<ProgressBar
+					aria-label={t('csv-upload-progress')}
+					now={completed}
+					label={`${completed}%`}
+				/> :
 				null
 			}
 		</Card.Body>

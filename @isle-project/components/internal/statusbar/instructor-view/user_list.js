@@ -260,7 +260,10 @@ class UserList extends Component {
 								</span>
 							</Tooltip>
 							<Tooltip placement="bottom" tooltip={this.props.t( 'lesson-progress' )}>
-								<ProgressBar className="user-list-progress" now={userProgress[ user.email ] * 100} />
+								<ProgressBar
+									aria-label={`${this.props.t( 'lesson-progress' )}: ${user.email}}`}
+									className="user-list-progress" now={userProgress[ user.email ] * 100}
+								/>
 							</Tooltip>
 							{ showInteractionButtons ? <ChatButton
 								showTooltip={false} for={this.props.t( 'chat-with', { name: user.name })}
@@ -298,20 +301,25 @@ class UserList extends Component {
 		const activeIDs = keys( ID_COUNTS );
 		return (
 			<Fragment>
-				<ProgressBar style={{ cursor: 'pointer' }} onClick={this.filter} >
-					{activeIDs.map( ( id, key ) => {
-						const pos = indexOf( IDs, id );
-						const color = CAT20[ pos % CAT20.length ];
-						return ( <ProgressBar
-							style={{
-								background: this.state.filter !== id ? color : 'gold'
-							}}
-							key={key}
-							now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0}
-							label={id}
-						/> );
-					})}
-				</ProgressBar>
+				<Tooltip placement="left" tooltip={this.props.t( 'users-interacting-with' )} >
+					<ProgressBar
+						aria-label={this.props.t( 'users-interacting-with' )}
+						style={{ cursor: 'pointer' }} onClick={this.filter}
+					>
+						{activeIDs.map( ( id, key ) => {
+							const pos = indexOf( IDs, id );
+							const color = CAT20[ pos % CAT20.length ];
+							return ( <ProgressBar
+								style={{
+									background: this.state.filter !== id ? color : 'gold'
+								}}
+								key={key}
+								now={( ID_COUNTS[ id ] / ID_COUNT_SUM ) * 100.0}
+								label={id}
+							/> );
+						})}
+					</ProgressBar>
+				</Tooltip>
 				{list}
 			</Fragment>
 		);

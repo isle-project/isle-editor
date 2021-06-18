@@ -378,7 +378,7 @@ class DataTable extends Component {
 				showOnStartup: dataInfo.showOnStartup || null
 			},
 			showSaveModal: false,
-			id
+			id: this.id // eslint-disable-line react/no-unused-state
 		};
 	}
 

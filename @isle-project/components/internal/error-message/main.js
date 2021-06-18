@@ -31,12 +31,12 @@ const ErrorMessage = ( props ) => {
 			</pre>
 			<ButtonGroup style={{ position: 'absolute', top: 12, right: 22 }} >
 				<Tooltip tooltip={t('toggle-error-stack-trace')} placement="left" >
-					<Button variant="outline-secondary" onClick={toggleStack} >
+					<Button aria-label={t('toggle-error-stack-trace')} variant="outline-secondary" onClick={toggleStack} >
 						<i className="fas fa-layer-group"></i>
 					</Button>
 				</Tooltip>
 				<Tooltip tooltip={t('retry')}>
-					<Button variant="outline-secondary" onClick={props.resetError} >
+					<Button aria-label={t('retry')} variant="outline-secondary" onClick={props.resetError} >
 						<i className="fas fa-redo"></i>
 					</Button>
 				</Tooltip>
