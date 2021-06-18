@@ -798,7 +798,7 @@ class DataTable extends Component {
 			width: 30
 		});
 		const saveButton = <Tooltip placement="bottom" tooltip={this.props.disableDownload ? this.props.t('download-disabled') : this.props.t('download-data')} >
-			<Button className="save-button" variant="light" onClick={this.toggleSaveModal} disabled={this.props.disableDownload} >
+			<Button name={this.props.t('download-data')} className="save-button" variant="light" onClick={this.toggleSaveModal} disabled={this.props.disableDownload} >
 				<i className="fas fa-download"></i>
 			</Button>
 		</Tooltip>;
