@@ -43,7 +43,7 @@ class DefaultSlider extends Component {
 					return null;
 				}
 				nChildren += 1;
-				return ( <div> {child} </div> );
+				return ( <div hidden={nChildren !== 1}> {child} </div> );
 			}) : <div></div>;
 		this.state = {
 			nChildren,
@@ -67,7 +67,7 @@ class DefaultSlider extends Component {
 						return null;
 					}
 					nChildren += 1;
-					return <div> {child} </div>;
+					return <div hidden={this.state.currentSlide !== nChildren ? true : void 0} > {child} </div>;
 				}) : <div></div>;
 			this.setState({
 				childDivs,
