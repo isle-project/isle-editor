@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Click on an item in the menu to learn more about it...",
+	"close-documentation": "Close Documentation",
 	"data-explorer-p1": "The ISLE data explorer allows you to analyze datasets using a point-and-click interface. The data explorer is split into two panes, a left-hand pane where you can toggle between a spreadsheet view of the data to be analyzed and other optional components such as a report writing editor or a list of questions. The right-hand side is an output pane that contains all the output (summary statistics, plots, results of hypothesis test) that you have created.",
 	"data-explorer-p2": "New outputs can be generated via the toolbox, which can be opened by clicking on the \"Show Toolbox\" button. A newly generated plot or table will be appended to the list of output elements show on the right-hand side",
 	"data-explorer-p3": "The red buttons with the \"x\" icons can be used to delete individual output elements, whereas the \"Clear All\" button at the bottom will remove all output elements",

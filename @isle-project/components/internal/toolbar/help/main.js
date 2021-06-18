@@ -92,7 +92,7 @@ class HelpPage extends Component {
 						<h3>{t('documentation')}</h3>
 						<div className="help-buttons" >
 							<Button variant="outline-secondary" size="sm" onClick={this.handlePDFDownload} >{t('download-pdf')}</Button>
-							<button className="help-close-button fa fa-times" onClick={this.props.onClose} />
+							<button aria-label={t('close-documentation')} className="help-close-button fa fa-times" onClick={this.props.onClose} />
 						</div>
 						<Nav variant="pills" style={{ background: '#f8f9fa', padding: 6 }} >
 							{ this.hasDataTable ?

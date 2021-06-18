@@ -360,7 +360,7 @@ class JSShell extends Component {
 
 	renderResetButton() {
 		return (
-			<button className="js-shell-reset" onClick={this.resetConsole} >
+			<button aria-label={this.props.t('reset')} className="js-shell-reset" onClick={this.resetConsole} >
 				<i className="fas fa-times"></i>
 			</button>
 		);

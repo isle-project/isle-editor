@@ -483,6 +483,7 @@ class Recorder extends Component {
 				{ this.state.selectedSources.length > 0 ?
 					<div className="recorder-button-container">
 						<button
+							aria-label={this.props.t('toggle-recording')}
 							className="recorder-button"
 							onClick={this.handleClick}
 							style={{

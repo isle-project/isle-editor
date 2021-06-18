@@ -21,10 +21,13 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 	return ( <Card.Header as={headerTag} >
 		<span className="unselectable" >{children}</span>
 		<div style={{ float: 'right' }} >
-		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}><button
-			className={`panel-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
-			onClick={onMinimize}
-		/></Tooltip> : null }
+		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}>
+			<button
+				aria-label={minimized ? t( 'maximize' ) : t( 'minimize' )}
+				className={`panel-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
+				onClick={onMinimize}
+			/>
+		</Tooltip> : null }
 		{ onHide ?
 			<Tooltip tooltip={hideTooltip || t( 'close' )} >
 				<button className="panel-button fa fa-times" onClick={onHide} />

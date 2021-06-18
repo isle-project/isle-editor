@@ -146,6 +146,7 @@ class EnlargeableGrid extends Component {
 					this.props.children.map( ( x, i ) => {
 						return (
 							<button
+								aria-label="Enlarge"
 								key={i}
 								onClick={this.enlargeDivFactory( i )}
 								style={{ border: '2px solid darkgray', cursor: 'zoom-in', background: 'none' }}

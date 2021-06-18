@@ -75,6 +75,7 @@ class BeaconTooltip extends Component {
 					{...this.props}
 				>
 					<button
+						aria-label="Tooltip Beacon Button"
 						className="beacon-button"
 					>
 						<span className="beacon-inner" />

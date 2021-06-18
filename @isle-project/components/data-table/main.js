@@ -205,7 +205,7 @@ function createColumns( props, state ) {
 					</span>
 				</Tooltip>
 				<Tooltip placement="left" tooltip={t('remove-variable')} >
-					<button className="fa fa-times delete-button" onClick={( evt ) => {
+					<button aria-label={t('remove-variable')} className="fa fa-times delete-button" onClick={( evt ) => {
 						evt.stopPropagation();
 						props.onColumnDelete( key );
 					}} />

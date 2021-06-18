@@ -83,6 +83,7 @@ const Wikipedia = ({ defaultEntry, style }) => {
 					placeholder={t('enter-text-and-click-globe')}
 				/>
 				<button
+					aria-label={t('search')}
 					onClick={() => {
 						getResult( text );
 					}}
