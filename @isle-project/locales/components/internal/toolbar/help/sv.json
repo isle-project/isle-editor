@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klicka på ett objekt i menyn för att få mer information om det...",
+	"close-documentation": "Stäng dokumentationen",
 	"data-explorer-p1": "Med ISLE:s datautforskare kan du analysera datamängder med hjälp av ett gränssnitt där du kan peka och klicka. Dataexploratorn är uppdelad i två rutor, en vänsterruta där du kan växla mellan en kalkylbladsvy av de data som ska analyseras och andra valfria komponenter som en redigerare för rapportskrivning eller en lista med frågor. Den högra sidan är en utdatafönsterruta som innehåller alla utdata (sammanfattande statistik, diagram, resultat av hypotesprövning) som du har skapat.",
 	"data-explorer-p2": "Nya utgångar kan genereras via verktygslådan, som öppnas genom att klicka på knappen \"Visa verktygslåda\". En nyproducerad graf eller tabell kommer att läggas till i listan över utdataelement som visas på höger sida.",
 	"data-explorer-p3": "De röda knapparna med \"x\"-ikoner kan användas för att ta bort enskilda utdataelement, medan knappen \"Clear All\" längst ner tar bort alla utdataelement.",

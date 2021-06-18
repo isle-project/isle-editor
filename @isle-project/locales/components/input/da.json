@@ -8,6 +8,7 @@
 	"integer": "heltal",
 	"larger-or-equal-to": "større end eller lig med",
 	"number": "nummer",
+	"select-between": "Vælg mellem",
 	"select-placeholder": "Vælg...",
 	"slider-disabled": "Slider-inputtet er deaktiveret lige nu.",
 	"smaller-or-equal-to": "mindre end eller lig med"

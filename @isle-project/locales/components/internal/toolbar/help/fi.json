@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klikkaa valikon kohdetta saadaksesi lisätietoja siitä...",
+	"close-documentation": "Sulje dokumentaatio",
 	"data-explorer-p1": "ISLE data explorer -ohjelman avulla voit analysoida tietokokonaisuuksia osoittamalla ja napsauttamalla käyttöliittymää. Data explorer on jaettu kahteen ruutuun, vasemmanpuoleiseen ruutuun, jossa voit vaihtaa analysoitavien tietojen taulukkonäkymän ja muiden valinnaisten osien, kuten raportin kirjoittamiseen tarkoitetun editorin tai kysymysluettelon välillä. Oikeanpuoleinen osa on tulostusruutu, joka sisältää kaikki luomasi tuotokset (yhteenvetotilastot, kuvaajat, hypoteesitestin tulokset).",
 	"data-explorer-p2": "Uusia ulostuloja voidaan luoda työkalupakista, joka avataan napsauttamalla \"Näytä työkalupakki\" -painiketta. Äskettäin luotu kuvaaja tai taulukko liitetään oikealla puolella olevaan tulostuselementtien luetteloon.",
 	"data-explorer-p3": "Punaisilla painikkeilla, joissa on \"x\"-kuvakkeet, voidaan poistaa yksittäisiä lähtöelementtejä, kun taas alareunan \"Tyhjennä kaikki\"-painike poistaa kaikki lähtöelementit.",

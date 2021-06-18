@@ -8,6 +8,7 @@
 	"integer": "integer",
 	"larger-or-equal-to": "larger or equal to",
 	"number": "number",
+	"select-between": "Select between",
 	"select-placeholder": "Select...",
 	"slider-disabled": "The slider input is disabled right now.",
 	"smaller-or-equal-to": "smaller or equal to"

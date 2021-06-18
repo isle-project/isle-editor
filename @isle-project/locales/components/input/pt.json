@@ -8,6 +8,7 @@
 	"integer": "inteiro",
 	"larger-or-equal-to": "maior ou igual a",
 	"number": "número",
+	"select-between": "Selecione entre",
 	"select-placeholder": "Selecione...",
 	"slider-disabled": "A entrada do controle deslizante está desativada no momento.",
 	"smaller-or-equal-to": "menor ou igual a"

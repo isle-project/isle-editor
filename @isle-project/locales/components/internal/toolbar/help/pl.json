@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Kliknij na pozycję w menu, aby dowiedzieć się więcej na jej temat...",
+	"close-documentation": "Dokumentacja zamknięcia",
 	"data-explorer-p1": "Eksplorator danych ISLE pozwala na analizę zbiorów danych za pomocą interfejsu typu \"wskaż i kliknij\". Eksplorator danych jest podzielony na dwie szyby, lewą, w której można przełączać się pomiędzy widokiem arkusza kalkulacyjnego danych do analizy a innymi opcjonalnymi komponentami, takimi jak edytor zapisu raportów lub lista pytań. Po prawej stronie znajduje się okienko wyjściowe, które zawiera wszystkie utworzone dane wyjściowe (statystyki podsumowujące, wykresy, wyniki testu hipotez).",
 	"data-explorer-p2": "Nowe wyjścia można wygenerować poprzez Toolbox, który można otworzyć klikając na przycisk \"Show Toolbox\". Nowo wygenerowana działka lub tabela zostanie dołączona do listy elementów wyjściowych pokazanych po prawej stronie.",
 	"data-explorer-p3": "Czerwone przyciski z ikonami \"x\" mogą być używane do usuwania poszczególnych elementów wyjściowych, natomiast przycisk \"Clear All\" na dole usuwa wszystkie elementy wyjściowe.",

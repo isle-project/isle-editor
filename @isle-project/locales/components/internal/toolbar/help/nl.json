@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klik op een item in het menu om er meer over te weten te komen...",
+	"close-documentation": "Documentatie sluiten",
 	"data-explorer-p1": "Met de ISLE-dataverkenner kunt u datasets analyseren met behulp van een point-and-click-interface. De dataverkenner is opgesplitst in twee vensters, een linkervenster waar u kunt schakelen tussen een spreadsheetweergave van de te analyseren gegevens en andere optionele onderdelen zoals een editor voor het schrijven van rapporten of een lijst met vragen. Het rechterdeelvenster is een uitvoervenster dat alle uitvoer (samenvattende statistieken, plots, resultaten van de hypothesetest) bevat die u hebt gemaakt.",
 	"data-explorer-p2": "Nieuwe uitgangen kunnen worden gegenereerd via de toolbox, die kan worden geopend door te klikken op de knop \"Show Toolbox\". Een nieuw gegenereerde plot of tabel zal worden toegevoegd aan de lijst met uitvoerelementen die aan de rechterkant worden weergegeven",
 	"data-explorer-p3": "De rode knoppen met de \"x\"-symbolen kunnen worden gebruikt om afzonderlijke uitvoerelementen te wissen, terwijl de \"Alles wissen\"-knop aan de onderkant alle uitvoerelementen verwijdert.",

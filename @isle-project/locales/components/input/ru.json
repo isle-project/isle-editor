@@ -8,6 +8,7 @@
 	"integer": "целое число",
 	"larger-or-equal-to": "больше или равнозначный",
 	"number": "номер",
+	"select-between": "Выберите между",
 	"select-placeholder": "Выберите...",
 	"slider-disabled": "Вход ползунка сейчас отключен.",
 	"smaller-or-equal-to": "меньший или равный"

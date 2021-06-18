@@ -8,6 +8,7 @@
 	"integer": "sveikasis skaičius",
 	"larger-or-equal-to": "didesnis arba lygus",
 	"number": "numeris",
+	"select-between": "Pasirinkite",
 	"select-placeholder": "Pasirinkite...",
 	"slider-disabled": "Dabar slankiklio įvestis yra išjungta.",
 	"smaller-or-equal-to": "mažesnis arba lygus"

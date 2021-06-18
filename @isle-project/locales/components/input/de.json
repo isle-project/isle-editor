@@ -8,6 +8,7 @@
 	"integer": "Ganzzahl",
 	"larger-or-equal-to": "größer oder gleich",
 	"number": "Nummer",
+	"select-between": "Wählen Sie zwischen",
 	"select-placeholder": "Wählen Sie...",
 	"slider-disabled": "Die Schiebereglereingabe ist im Moment deaktiviert.",
 	"smaller-or-equal-to": "kleiner oder gleich"

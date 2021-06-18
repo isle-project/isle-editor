@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Spustelėkite meniu elementą ir sužinokite apie jį daugiau...",
+	"close-documentation": "Uždaryti dokumentaciją",
 	"data-explorer-p1": "ISLE duomenų tyrėjas leidžia analizuoti duomenų rinkinius naudojant \"nukreipk ir spustelk\" sąsają. Duomenų tyrėjas padalytas į du skydelius: kairiajame skydelyje galima perjungti analizuojamų duomenų skaičiuoklės vaizdą ir kitus papildomus komponentus, pavyzdžiui, ataskaitos rašymo redaktorių arba klausimų sąrašą. Dešinėje pusėje yra išvesties langas, kuriame pateikiama visa jūsų sukurta išvestis (suvestinė statistika, diagramos, hipotezės testo rezultatai).",
 	"data-explorer-p2": "Naujas išvestis galima kurti naudojant įrankių dėžutę, kurią galima atidaryti spustelėjus mygtuką \"Rodyti įrankių dėžutę\". Naujai sukurtas grafikas arba lentelė bus įtraukti į dešinėje pusėje rodomą išvesties elementų sąrašą.",
 	"data-explorer-p3": "Raudonais mygtukais su \"x\" piktogramomis galima ištrinti atskirus išvesties elementus, o apačioje esančiu mygtuku \"Clear All\" (Išvalyti viską) bus pašalinti visi išvesties elementai.",

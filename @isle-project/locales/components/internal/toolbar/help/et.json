@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klõpsake menüüs oleval elemendil, et selle kohta rohkem teada saada...",
+	"close-documentation": "Dokumentatsiooni sulgemine",
 	"data-explorer-p1": "ISLE andmeeksploreri abil saate analüüsida andmekogumeid, kasutades näitamise ja klõpsamise kasutajaliidest. Andmete otsija on jagatud kaheks paneeliks: vasakpoolne paneel, kus saab vahetada analüüsitavate andmete arvutustabeli vaate ja muude valikuliste komponentide, näiteks aruande koostamise redaktori või küsimuste loetelu vahel. Parempoolne osa on väljundpaneel, mis sisaldab kõiki teie loodud väljundeid (koondstatistika, graafikud, hüpoteesitesti tulemused).",
 	"data-explorer-p2": "Uusi väljundeid saab genereerida tööriistakasti kaudu, mille saab avada, klõpsates nupul \"Show Toolbox\". Äsja loodud graafik või tabel lisatakse paremal olevasse väljundelementide loendisse.",
 	"data-explorer-p3": "Punaseid nuppe \"x\" ikoonidega saab kasutada üksikute väljundelementide kustutamiseks, samas kui allosas olev nupp \"Tühjenda kõik\" eemaldab kõik väljundelemendid.",

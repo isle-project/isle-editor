@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Cliccare su una voce del menu per saperne di più...",
+	"close-documentation": "Chiudere la documentazione",
 	"data-explorer-p1": "Il data explorer ISLE permette di analizzare set di dati utilizzando un'interfaccia \"punta e clicca\". Il data explorer è diviso in due riquadri, un riquadro a sinistra dove è possibile passare da una visualizzazione su foglio di calcolo dei dati da analizzare ad altri componenti opzionali come un editor per la scrittura di rapporti o un elenco di domande. Il lato destro è un riquadro di output che contiene tutti gli output (statistiche riassuntive, trame, risultati del test di ipotesi) che avete creato.",
 	"data-explorer-p2": "Le nuove uscite possono essere generate tramite il toolbox, che può essere aperto cliccando sul pulsante \"Mostra Toolbox\". Una nuova trama o tabella generata verrà aggiunta all'elenco degli elementi di output mostrati sul lato destro",
 	"data-explorer-p3": "I pulsanti rossi con le icone \"x\" possono essere usati per cancellare i singoli elementi di uscita, mentre il pulsante \"Clear All\" in basso rimuoverà tutti gli elementi di uscita",

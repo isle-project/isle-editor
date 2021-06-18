@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Kliknutím na položku v nabídce se o ní dozvíte více...",
+	"close-documentation": "Zavřít dokumentaci",
 	"data-explorer-p1": "Průzkumník dat ISLE umožňuje analyzovat datové sady pomocí rozhraní \"ukaž a klikni\". Průzkumník dat je rozdělen na dva panely, levý panel, ve kterém můžete přepínat mezi tabulkovým zobrazením analyzovaných dat a dalšími volitelnými komponentami, jako je editor pro psaní zpráv nebo seznam otázek. Na pravé straně je podokno výstupů, které obsahuje všechny výstupy (souhrnné statistiky, grafy, výsledky testu hypotéz), které jste vytvořili.",
 	"data-explorer-p2": "Nové výstupy lze generovat prostřednictvím sady nástrojů, kterou otevřete kliknutím na tlačítko \"Zobrazit sadu nástrojů\". Nově vygenerovaný graf nebo tabulka se připojí k seznamu výstupních prvků zobrazenému na pravé straně.",
 	"data-explorer-p3": "Červená tlačítka s ikonami \"x\" slouží k odstranění jednotlivých výstupních prvků, zatímco tlačítko \"Clear All\" v dolní části odstraní všechny výstupní prvky.",

@@ -8,6 +8,7 @@
 	"integer": "entero",
 	"larger-or-equal-to": "más grande o igual a",
 	"number": "número",
+	"select-between": "Seleccione entre",
 	"select-placeholder": "Seleccione...",
 	"slider-disabled": "La entrada del deslizador está desactivada ahora mismo.",
 	"smaller-or-equal-to": "más pequeño o igual a"

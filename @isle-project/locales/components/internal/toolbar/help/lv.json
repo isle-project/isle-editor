@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Noklikšķiniet uz izvēlnes elementa, lai uzzinātu vairāk par to...",
+	"close-documentation": "Aizvērt Dokumentācija",
 	"data-explorer-p1": "ISLE datu pārlūks ļauj analizēt datu kopas, izmantojot \"norādiet un noklikšķiniet\" saskarni. Datu pētnieks ir sadalīts divos paneļos - kreisajā panelī, kurā var pārslēgties starp analizējamo datu izklājlapas skatu un citiem izvēles komponentiem, piemēram, atskaites rakstīšanas redaktoru vai jautājumu sarakstu. Labajā pusē ir izvades logs, kurā ir visi jūsu izveidotie rezultāti (kopsavilkuma statistika, grafiki, hipotēžu testa rezultāti).",
 	"data-explorer-p2": "Jaunas izejas var ģenerēt, izmantojot rīku komplektu, ko var atvērt, noklikšķinot uz pogas \"Rādīt rīku komplektu\". Jaunizveidotais grafiks vai tabula tiks pievienota izvades elementu sarakstam, kas redzams labajā pusē.",
 	"data-explorer-p3": "Sarkanās pogas ar \"x\" ikonām var izmantot, lai dzēstu atsevišķus izvades elementus, bet poga \"Clear All\" apakšā dzēš visus izvades elementus.",

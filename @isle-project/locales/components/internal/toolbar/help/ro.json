@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Faceți clic pe un element din meniu pentru a afla mai multe despre acesta...",
+	"close-documentation": "Închideți documentația",
 	"data-explorer-p1": "Exploratorul de date ISLE vă permite să analizați seturi de date utilizând o interfață de tip \"point-and-click\". Exploratorul de date este împărțit în două panouri, un panou din stânga în care puteți comuta între o vizualizare în foaie de calcul a datelor care urmează să fie analizate și alte componente opționale, cum ar fi un editor de redactare a rapoartelor sau o listă de întrebări. Partea din dreapta este un panou de ieșire care conține toate rezultatele (statistici de sinteză, diagrame, rezultate ale testului de ipoteză) pe care le-ați creat.",
 	"data-explorer-p2": "Noile ieșiri pot fi generate prin intermediul cutiei de instrumente, care poate fi deschisă făcând clic pe butonul \"Show Toolbox\" (Afișare cutie de instrumente). Un grafic sau un tabel nou generat va fi adăugat la lista de elemente de ieșire afișată în partea dreaptă.",
 	"data-explorer-p3": "Butoanele roșii cu pictogramele \"x\" pot fi utilizate pentru a șterge elemente de ieșire individuale, în timp ce butonul \"Clear All\" din partea de jos va șterge toate elementele de ieșire.",

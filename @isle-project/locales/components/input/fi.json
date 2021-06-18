@@ -8,6 +8,7 @@
 	"integer": "kokonaisluku",
 	"larger-or-equal-to": "suurempi tai yhtä suuri kuin",
 	"number": "numero",
+	"select-between": "Valitse seuraavista vaihtoehdoista",
 	"select-placeholder": "Valitse...",
 	"slider-disabled": "Liukusäätimen syöttö on tällä hetkellä pois käytöstä.",
 	"smaller-or-equal-to": "pienempi tai yhtä suuri kuin"

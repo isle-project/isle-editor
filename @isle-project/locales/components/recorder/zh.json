@@ -11,5 +11,6 @@
 	"recording-uploaded": "上传的记录",
 	"recording-uploaded-message": "您的录音已成功上传，可在以下网址访问：",
 	"screen": "屏幕",
+	"toggle-recording": "切换录音",
 	"upload-file": "上传文件"
 }

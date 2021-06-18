@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Kattintson a menüben egy elemre, hogy többet tudjon meg róla...",
+	"close-documentation": "Dokumentáció bezárása",
 	"data-explorer-p1": "Az ISLE-adatkutató lehetővé teszi az adathalmazok elemzését egy mutass-és-kattints-felület segítségével. Az adatkutató két ablakra van osztva, egy bal oldali ablakra, ahol az elemzendő adatok táblázatos nézete és más opcionális komponensek, például egy jelentéskészítő szerkesztő vagy egy kérdéslista között válthat. A jobb oldali rész egy kimeneti ablaktábla, amely az összes létrehozott kimenetet (összefoglaló statisztikák, ábrák, hipotézisvizsgálat eredményei) tartalmazza.",
 	"data-explorer-p2": "Új kimenetek az eszköztáron keresztül hozhatók létre, amely az \"Eszköztár megjelenítése\" gombra kattintva nyitható meg. Az újonnan létrehozott grafikon vagy táblázat hozzá lesz csatolva a jobb oldalon megjelenő kimeneti elemek listájához.",
 	"data-explorer-p3": "Az \"x\" ikonokkal ellátott piros gombok segítségével törölhetünk egyes kimeneti elemeket, míg az alul található \"Clear All\" gomb az összes kimeneti elemet eltávolítja.",

@@ -8,6 +8,7 @@
 	"integer": "celo število",
 	"larger-or-equal-to": "večja ali enaka",
 	"number": "številka",
+	"select-between": "Izberite med",
 	"select-placeholder": "Izberite...",
 	"slider-disabled": "Vnos drsnika je zdaj onemogočen.",
 	"smaller-or-equal-to": "manjši ali enak"

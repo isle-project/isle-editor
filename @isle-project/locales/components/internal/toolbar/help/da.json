@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klik på et emne i menuen for at få mere at vide om det...",
+	"close-documentation": "Luk dokumentation",
 	"data-explorer-p1": "ISLE-dataeksploratoren giver dig mulighed for at analysere datasæt ved hjælp af en peg-og-klik-grænseflade. Dataudforskeren er opdelt i to ruder, et venstre rude, hvor du kan skifte mellem en regnearkvisning af de data, der skal analyseres, og andre valgfrie komponenter som f.eks. en editor til at skrive rapporter eller en liste over spørgsmål. Højre side er en outputrude, der indeholder alle de output (sammenfattende statistikker, plots, resultater af hypotesetest), som du har oprettet.",
 	"data-explorer-p2": "Nye udgange kan genereres via værktøjskassen, som åbnes ved at klikke på knappen \"Vis værktøjskasse\". Et nyligt genereret plot eller en ny genereret tabel vil blive tilføjet til listen over outputelementer, der vises i højre side",
 	"data-explorer-p3": "De røde knapper med \"x\"-ikonerne kan bruges til at slette individuelle outputelementer, mens knappen \"Clear All\" nederst i billedet vil fjerne alle outputelementer.",

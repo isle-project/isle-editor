@@ -8,6 +8,7 @@
 	"integer": "täisarv",
 	"larger-or-equal-to": "suurem või võrdne",
 	"number": "number",
+	"select-between": "Valige järgmiste valikute vahel",
 	"select-placeholder": "Valige...",
 	"slider-disabled": "Liuguri sisend on praegu välja lülitatud.",
 	"smaller-or-equal-to": "väiksem või võrdne"

@@ -8,6 +8,7 @@
 	"integer": "entier",
 	"larger-or-equal-to": "supérieur ou égal à",
 	"number": "numéro",
+	"select-between": "Choisissez entre",
 	"select-placeholder": "Sélectionnez...",
 	"slider-disabled": "L'entrée du curseur est désactivée pour le moment.",
 	"smaller-or-equal-to": "inférieur ou égal à"

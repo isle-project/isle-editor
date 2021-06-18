@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Klicken Sie auf einen Eintrag im Menü, um mehr darüber zu erfahren...",
+	"close-documentation": "Dokumentation schließen",
 	"data-explorer-p1": "Der ISLE-Daten-Explorer ermöglicht Ihnen die Analyse von Datenbeständen über eine Point-and-Click-Schnittstelle. Der Daten-Explorer ist in zwei Bereiche unterteilt, einen linken Bereich, in dem Sie zwischen einer Tabellenkalkulationsansicht der zu analysierenden Daten und anderen optionalen Komponenten wie einem Editor zum Erstellen von Berichten oder einer Fragenliste umschalten können. Die rechte Seite ist ein Ausgabefenster, das alle von Ihnen erstellten Ausgaben (Zusammenfassungsstatistiken, Diagramme, Ergebnisse des Hypothesentests) enthält.",
 	"data-explorer-p2": "Neue Ausgaben können über die Toolbox generiert werden, die durch Klicken auf die Schaltfläche \"Show Toolbox\" geöffnet werden kann. Ein neu generierter Plot oder eine neu generierte Tabelle wird an die Liste der Ausgabeelemente angehängt, die auf der rechten Seite angezeigt wird",
 	"data-explorer-p3": "Die roten Schaltflächen mit den \"x\"-Symbolen können zum Löschen einzelner Ausgabeelemente verwendet werden, während die Schaltfläche \"Alle löschen\" unten alle Ausgabeelemente entfernt.",

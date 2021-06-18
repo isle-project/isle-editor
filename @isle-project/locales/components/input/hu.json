@@ -8,6 +8,7 @@
 	"integer": "integer",
 	"larger-or-equal-to": "nagyobb vagy egyenlő, mint",
 	"number": "szám",
+	"select-between": "Válasszon a következők közül",
 	"select-placeholder": "Válassza ki...",
 	"slider-disabled": "A csúszka bemenet jelenleg le van tiltva.",
 	"smaller-or-equal-to": "kisebb vagy egyenlő"

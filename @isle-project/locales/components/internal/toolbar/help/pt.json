@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Clique em um item do menu para saber mais sobre ele...",
+	"close-documentation": "Fechar documentação",
 	"data-explorer-p1": "O explorador de dados ISLE permite analisar conjuntos de dados usando uma interface do tipo apontar e clicar. O explorador de dados é dividido em dois painéis, um painel à esquerda onde você pode alternar entre uma visualização em planilha dos dados a serem analisados e outros componentes opcionais, tais como um editor de relatórios ou uma lista de perguntas. O lado direito é um painel de saída que contém toda a saída (estatísticas resumidas, gráficos, resultados do teste de hipóteses) que você criou.",
 	"data-explorer-p2": "Novas saídas podem ser geradas através da caixa de ferramentas, que pode ser aberta clicando no botão \"Mostrar caixa de ferramentas\". Um gráfico ou tabela recém gerada será anexada à lista de elementos de saída mostrados no lado direito.",
 	"data-explorer-p3": "Os botões vermelhos com os ícones \"x\" podem ser usados para apagar elementos de saída individuais, enquanto o botão \"Limpar tudo\", na parte inferior, removerá todos os elementos de saída",

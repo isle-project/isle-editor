@@ -1,5 +1,6 @@
 {
 	"click-instruction": "Kliknite na element v meniju, če želite izvedeti več o njem...",
+	"close-documentation": "Zapri dokumentacijo",
 	"data-explorer-p1": "Raziskovalec podatkov ISLE omogoča analizo podatkovnih nizov z vmesnikom \"pokaži in klikni\". Raziskovalec podatkov je razdeljen na dve plošči, in sicer na levo ploščo, v kateri lahko preklapljate med prikazom preglednice s podatki, ki jih želite analizirati, in drugimi izbirnimi komponentami, kot sta urejevalnik za pisanje poročil ali seznam vprašanj. Desna stran je podokno z rezultati, ki vsebuje vse rezultate (zbirne statistike, grafe, rezultate testa hipotez), ki ste jih ustvarili.",
 	"data-explorer-p2": "Nove izhode lahko ustvarite v orodjarni, ki jo odprete s klikom na gumb \"Prikaži orodjarno\". Na novo ustvarjen graf ali tabela bo dodana na seznam izhodnih elementov, ki je prikazan na desni strani.",
 	"data-explorer-p3": "Z rdečimi gumbi z ikonami \"x\" lahko izbrišete posamezne izhodne elemente, z gumbom \"Clear All\" na dnu pa izbrišete vse izhodne elemente.",
