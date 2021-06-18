@@ -55,6 +55,8 @@ class FilterInputRange extends Component {
 			this.inputRange = div;
 		}} >
 			<InputRange
+				ariaLabelledby={this.props.ariaLabelledby}
+				ariaControls={this.props.ariaControls}
 				allowSameValues
 				maxValue={this.props.maxValue}
 				minValue={this.props.minValue}

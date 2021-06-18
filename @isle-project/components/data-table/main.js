@@ -252,6 +252,8 @@ function createColumns( props, state ) {
 						min: minValue
 					};
 					return ( <FilterInputRange
+						ariaLabelledby={`header-${key}`}
+						ariaControls={state.id}
 						defaultValue={filter ? filter.value : defaultVal}
 						onChange={onChange} maxValue={maxValue} minValue={minValue}
 						t={t}
@@ -375,7 +377,8 @@ class DataTable extends Component {
 				variables: dataInfo.variables || null,
 				showOnStartup: dataInfo.showOnStartup || null
 			},
-			showSaveModal: false
+			showSaveModal: false,
+			id
 		};
 	}
 
@@ -798,7 +801,7 @@ class DataTable extends Component {
 			width: 30
 		});
 		const saveButton = <Tooltip placement="bottom" tooltip={this.props.disableDownload ? this.props.t('download-disabled') : this.props.t('download-data')} >
-			<Button name={this.props.t('download-data')} className="save-button" variant="light" onClick={this.toggleSaveModal} disabled={this.props.disableDownload} >
+			<Button aria-label={this.props.t('download-data')} className="save-button" variant="light" onClick={this.toggleSaveModal} disabled={this.props.disableDownload} >
 				<i className="fas fa-download"></i>
 			</Button>
 		</Tooltip>;

@@ -41,7 +41,7 @@ class Tutorial extends Component {
 					</Tooltip>}
 				>
 					<Button
-						name={this.props.t('show-tutorial')}
+						aria-label={this.props.t('show-tutorial')}
 						className="help-button"
 						variant="light"
 						onClick={this.startTour}
