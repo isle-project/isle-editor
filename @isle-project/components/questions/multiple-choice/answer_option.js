@@ -44,7 +44,9 @@ const AnswerOption = ( props ) => {
 		<ListGroupItem className="multiple-choice-answer"
 			variant={variant}
 			onClick={props.onAnswerSelected}
+			onKeyPress={props.onAnswerSelected}
 			active={props.active}
+			tabIndex={0} role="button"
 		>
 			{answerContent}
 		</ListGroupItem>
