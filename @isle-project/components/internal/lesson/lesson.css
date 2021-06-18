@@ -62,6 +62,10 @@ pre code {
 	word-break: break-word;
 }
 
+code {
+	color: #db0c6b;
+}
+
 .Lesson > p,
 .outer-element > p {
 	margin-top: 1rem;
