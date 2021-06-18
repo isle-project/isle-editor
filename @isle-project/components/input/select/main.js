@@ -169,6 +169,7 @@ const SelectInput = ( props ) => {
 				}
 				<Select
 					id={id.current}
+					aria-label={`${t('select-between')} ${props.options.join( ', ' )}`}
 					name="form-field-name"
 					menuShouldScrollIntoView={false}
 					{...props}
