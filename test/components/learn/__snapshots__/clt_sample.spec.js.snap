@@ -79,6 +79,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
                         >
                           <input
                             aria-autocomplete="list"
+                            aria-label="select-between Gender, Drugs, Complications, Cost, Age, Interventions, ERVisit, Comorbidities, Duration"
                             autoCapitalize="none"
                             autoComplete="off"
                             autoCorrect="off"

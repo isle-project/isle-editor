@@ -78,6 +78,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                           >
                             <input
                               aria-autocomplete="list"
+                              aria-label="select-between One-Sample, Two-Sample"
                               autoCapitalize="none"
                               autoComplete="off"
                               autoCorrect="off"

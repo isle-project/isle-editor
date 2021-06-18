@@ -1,10 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Typewriter /> renders correctly when just supplied text 1`] = `
-<span
-  className="typewriter"
-  style={Object {}}
->
-  
-</span>
-`;
+exports[`<Typewriter /> renders correctly when just supplied text 1`] = `null`;
