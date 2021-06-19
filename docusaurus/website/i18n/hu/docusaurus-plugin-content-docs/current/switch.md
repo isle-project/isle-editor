@@ -10,7 +10,7 @@ A Switch komponens lehetővé teszi egy elem megjelenítését egy több elemet 
 
 * __active__ | `boolean`: szabályozza, hogy a kapcsoló aktív-e vagy sem. Default: `true`.
 * __tooltip__ | `string`: tooltip, amely megjelenik, ha a kapcsolóelem fölé mozgatjuk a gépet. Default: `none`.
-* __tooltipPos__ | `string`: a tooltip elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'top'`.
+* __tooltipPos__ | `string`: a tooltip elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'top'`.
 * __className__ | `string`: a körülvevő span elem osztályneve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onChange__ | `function`: callback, amelyet az elemek váltásakor hívnak meg. Első argumentumként az aktuálisan megjelenített gyermek indexét kapja.. Default: `onChange() {}`.

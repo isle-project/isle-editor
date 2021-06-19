@@ -14,7 +14,7 @@ Un componente de entrada seleccionado. Puede ser usado como parte de un tablero 
 * __disabled__ | `boolean`: controla si la entrada está activa o no. Default: `false`.
 * __inline__ | `boolean`: indica si la entrada se muestra en línea. Default: `false`.
 * __legend__ | `(string|node)`: El texto que se muestra junto a la entrada. Default: `''`.
-* __menuPlacement__ | `string`: colocación del menú en relación con el control (ya sea "auto", "arriba" o "abajo"). Default: `'auto'`.
+* __menuPlacement__ | `string`: colocación del menú en relación con el control (ya sea "auto", `top` o `bottom`). Default: `'auto'`.
 * __multi__ | `boolean`: controla si uno puede seleccionar varias respuestas. Default: `false`.
 * __onChange__ | `function`: función de llamada de retorno que se invocará cuando se haga una elección. Default: `onChange() {}`.
 * __options__ | `array`: de indicar las opciones disponibles para el usuario. Default: `[]`.

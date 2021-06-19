@@ -9,7 +9,7 @@ Kysymys, jossa käyttäjää pyydetään lataamaan kuva.
 ## Vaihtoehdot
 
 * __question__ | `(string|node)`: kysymyksen teksti. Default: `''`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.

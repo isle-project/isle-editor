@@ -14,7 +14,7 @@ En udvalgt indgangskomponent. Kan bruges som en del af et ISLE-dashboard eller s
 * __disabled__ | `boolean`: styrer, om indgangen er aktiv eller ej. Default: `false`.
 * __inline__ | `boolean`: angiver, om input vises inline. Default: `false`.
 * __legend__ | `(string|node)`: tekst, der vises ved siden af indtastningen. Default: `''`.
-* __menuPlacement__ | `string`: menuens placering i forhold til kontrolelementet (enten "automatisk", "øverst" eller "nederst"). Default: `'auto'`.
+* __menuPlacement__ | `string`: menuens placering i forhold til kontrolelementet (enten "automatisk", "øverst" eller `bottom`). Default: `'auto'`.
 * __multi__ | `boolean`: kontrollerer, om man kan vælge flere svar. Default: `false`.
 * __onChange__ | `function`: callback-funktion, der skal påkaldes, når der er truffet et valg. Default: `onChange() {}`.
 * __options__ | `array`: array med angivelse af de valgmuligheder, der er til rådighed for brugeren. Default: `[]`.

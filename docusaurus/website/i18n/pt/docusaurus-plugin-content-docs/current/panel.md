@@ -9,7 +9,8 @@ Componente do cartão.
 ## Opções
 
 * __className__ | `string`: Nome da classe CSS. Default: `''`.
-* __header__ | `(string|node)`: título do painel (h3). Default: `none`.
+* __header__ | `(string|node)`: título do painel. Default: `none`.
+* __headerTag__ | `string`: etiqueta utilizada para o cabeçalho do painel. Default: `'h3'`.
 * __footer__ | `(string|node)`: rodapé do painel. Default: `none`.
 * __minimizable__ | `boolean`: se o painel pode ser minimizado. Default: `false`.
 * __fullscreen__ | `boolean`: se o painel pode ser feito em tela cheia (somente para instrutores). Default: `false`.

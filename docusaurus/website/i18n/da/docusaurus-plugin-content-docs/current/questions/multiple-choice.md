@@ -11,7 +11,7 @@ En ISLE-komponent, der gengiver et multiple choice-spørgsmål. Den understøtte
 * __question__ | `(string|node)`: det spørgsmål, der vises øverst i multiple choice-komponenten. Default: `''`.
 * __solution__ | `(number|array)`: et nummer, der angiver, hvilket svar der er korrekt, eller en "række" af de korrekte svarnumre, hvis den lærende skal kunne vælge flere svar. Default: `none`.
 * __answers__ | `array (required)`: en `array` af svarobjekter. Hvert svar skal være et objekt med felter `content` og `explanation`, som angiver den viste svarmulighed og en forklaring, der er synlig efter at spørgsmålet er blevet indsendt for at forklare, hvorfor svaret er korrekt eller forkert.. Default: `none`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __disabled__ | `boolean`: kontrollerer, om spørgsmålet er deaktiveret. Default: `false`.

@@ -11,7 +11,7 @@ En komponent för ordningsfrågor som ber eleven att få en samling element i r�
 * __question__ | `(string|node)`: Fråga där eleven måste sätta de tillgängliga alternativen i rätt ordning.. Default: `''`.
 * __options__ | `array (required)`: En uppsättning texter som eleven ska ordna i rätt ordning (som antas vara den ordning som anges).. Default: `none`.
 * __provideFeedback__ | `boolean`: styr om det ska visas ett meddelande om huruvida det inlämnade svaret är korrekt eller inte.. Default: `true`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.

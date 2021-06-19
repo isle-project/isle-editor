@@ -10,7 +10,7 @@ Un componente de preguntas de rango que pide a los estudiantes que proporcionen 
 
 * __question__ | `(string|node)`: La pregunta que se muestra. Default: `''`.
 * __solution__ | `array<number>`: una matriz de dos elementos que contiene los puntos finales del rango correcto. Default: `none`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'top'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __labels__ | `array`: matriz de dos elementos de etiquetas personalizadas distintas de "inferior" y "superior". Default: `none`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.

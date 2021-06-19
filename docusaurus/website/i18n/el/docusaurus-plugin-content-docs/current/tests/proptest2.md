@@ -14,7 +14,7 @@ sidebar_label: Two-Sample Proportion Test
 * __var2__ | `(string|Factor)`: όνομα της δεύτερης μεταβλητής (πρέπει να παρέχεται η λέξη `var2` ή `group`). Default: `none`.
 * __group__ | `(string|Factor)`: όνομα της μεταβλητής ομαδοποίησης (πρέπει να παρέχονται οι μεταβλητές "var2" ή "group"). Default: `none`.
 * __alpha__ | `number`: επίπεδο σημαντικότητας. Default: `0.05`.
-* __direction__ | `string`: κατεύθυνση δοκιμής (είτε "μικρότερη", "μεγαλύτερη" ή "αμφίπλευρη"). Default: `'two-sided'`.
+* __direction__ | `string`: κατεύθυνση δοκιμής (είτε `less`, `greater` ή `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: διαφορά υπό H0. Default: `0`.
 * __showDecision__ | `boolean`: ελέγχει αν θα εμφανίζεται αν η μηδενική υπόθεση απορρίπτεται στο καθορισμένο επίπεδο σημαντικότητας. Default: `false`.
 

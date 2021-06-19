@@ -16,7 +16,7 @@ Teste médio de duas amostras.
 * __xstdev__ | `number`: primeiro desvio padrão (para 'Teste Z'). Default: `none`.
 * __ystdev__ | `number`: segundo desvio padrão (para 'Teste Z'). Default: `none`.
 * __alpha__ | `number`: nível de significância. Default: `0.05`.
-* __direction__ | `string`: direção de teste (ou "sem", "maior", ou "de dois lados"). Default: `'two-sided'`.
+* __direction__ | `string`: direção de teste (ou `less`, `greater`, ou `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: diferença sob H0. Default: `0`.
 * __showDecision__ | `boolean`: controla se a hipótese nula deve ser rejeitada no nível de significância especificado. Default: `false`.
 

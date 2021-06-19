@@ -14,7 +14,7 @@ Klausimas su atsakymu, sudarytas iš kelių pasirinkimo langelių.
 * __options__ | `object`: objektas su rakto ir vertės poromis, kurių raktai turi formą `row:col`, pvz., `0:0`, `0:1`, `1:0` ir t. t., o jų atitinkamos reikšmės yra galimų atsakymų variantų masyvai atskiriems pasirinktiems klausimams.. Default: `{}`.
 * __solution__ | `object`: sprendimo objektas su raktų ir verčių poromis, kurių raktai turi formą `row:col`, pvz., `0:0`, `0:1`, `1:0` ir t. t., o jų atitinkamos reikšmės yra teisingo atsakymo elemento indeksas iš atitinkamo `options` masyvo.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'bottom'`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __provideFeedback__ | `string`: ar pateikti "jokio" grįžtamojo ryšio, "individualų" grįžtamąjį ryšį apie pateiktą (-us) atsakymą (-us), ar "bendrą" grįžtamąjį ryšį apie visus klausimus.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: ar leisti pateikti informaciją, jei kiekviename pasirinkimo langelyje nėra padarytas pasirinkimas.. Default: `false`.

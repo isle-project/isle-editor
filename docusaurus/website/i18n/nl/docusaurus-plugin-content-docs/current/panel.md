@@ -9,7 +9,8 @@ Kaartcomponent.
 ## Opties
 
 * __className__ | `string`: CSS-klasse-naam. Default: `''`.
-* __header__ | `(string|node)`: paneelpost (h3). Default: `none`.
+* __header__ | `(string|node)`: paneelkop. Default: `none`.
+* __headerTag__ | `string`: tag gebruikt voor de paneelkop. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneelvoettekst. Default: `none`.
 * __minimizable__ | `boolean`: of het paneel kan worden geminimaliseerd. Default: `false`.
 * __fullscreen__ | `boolean`: of het paneel op volledig scherm kan worden gemaakt (alleen voor instructeurs). Default: `false`.

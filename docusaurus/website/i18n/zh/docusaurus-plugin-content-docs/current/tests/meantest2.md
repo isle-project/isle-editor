@@ -16,7 +16,7 @@ sidebar_label: Two-Sample Mean Test
 * __xstdev__ | `number`: 第一个标准差(对于 "Z测试"). Default: `none`.
 * __ystdev__ | `number`: 二次标准差(对于 "Z测试"). Default: `none`.
 * __alpha__ | `number`: 显著性水平. Default: `0.05`.
-* __direction__ | `string`: 测试方向(可选择 "少"、"大 "或 "双面"). Default: `'two-sided'`.
+* __direction__ | `string`: 测试方向(可选择 `less`, `greater` 或 `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: 在H0下的差异. Default: `0`.
 * __showDecision__ | `boolean`: 控制是否显示在指定的显著性水平上拒绝零假设。. Default: `false`.
 

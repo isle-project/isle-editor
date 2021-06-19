@@ -18,7 +18,7 @@ Balkendiagramm.
 * __relative__ | `boolean`: ob relative Häufigkeiten innerhalb jeder Gruppe berechnet werden sollen. Default: `false`.
 * __totalPercent__ | `boolean`: ob die Gesamtbalken als relative Häufigkeiten angezeigt werden sollen. Default: `false`.
 * __xOrder__ | `string`: entweder `Gesamt`, `Kategorie`, `Min`, `Max`, `Mittel`, oder `Median`. Default: `none`.
-* __direction__ | `string`: wie die Balken entlang der x-Achse angeordnet werden sollen; `ascending` (aufsteigend) oder `descending` (absteigend). Default: `'ascending'`.
+* __direction__ | `string`: wie die Balken entlang der x-Achse angeordnet werden sollen; `ascending` oder `descending`. Default: `'ascending'`.
 
 
 ## Beispiele

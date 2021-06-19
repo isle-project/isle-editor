@@ -14,7 +14,7 @@ Proportionstest med två stickprov.
 * __var2__ | `(string|Factor)`: namnet på den andra variabeln (`var2` eller `group` måste anges). Default: `none`.
 * __group__ | `(string|Factor)`: Namnet på grupperingsvariabeln (`var2` eller `group` måste anges).. Default: `none`.
 * __alpha__ | `number`: signifikansnivå. Default: `0.05`.
-* __direction__ | `string`: Testets riktning (antingen "mindre", "större" eller "tvåsidig").. Default: `'two-sided'`.
+* __direction__ | `string`: Testets riktning (antingen `less`, `greater` eller `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: skillnad enligt H0. Default: `0`.
 * __showDecision__ | `boolean`: kontrollerar om det ska visas om nollhypotesen förkastas på den angivna signifikansnivån.. Default: `false`.
 

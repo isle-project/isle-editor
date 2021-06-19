@@ -9,7 +9,7 @@ sidebar_label: Number Question
 ## Επιλογές
 
 * __question__ | `(string|node)`: ερώτηση αριθμού. Default: `''`.
-* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε "πάνω", "αριστερά", "δεξιά" ή "κάτω"). Default: `'top'`.
+* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε `top`, `left`, `right` ή `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: υποδείξεις που παρέχουν καθοδήγηση για τον τρόπο απάντησης στην ερώτηση. Default: `[]`.
 * __feedback__ | `boolean`: ελέγχει αν θα εμφανίζονται κουμπιά ανάδρασης. Default: `true`.
 * __solution__ | `(number|array<number>)`: μια αριθμητική απάντηση στο πρόβλημα (ή πολλαπλές σωστές απαντήσεις εάν παρέχεται ένας πίνακας). Default: `none`.

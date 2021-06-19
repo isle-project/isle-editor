@@ -9,7 +9,7 @@ sidebar_label: Number Question
 ## 选项
 
 * __question__ | `(string|node)`: 号码题. Default: `''`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __solution__ | `(number|array<number>)`: 问题的数字答案（如果提供数组，则提供多个正确答案. Default: `none`.

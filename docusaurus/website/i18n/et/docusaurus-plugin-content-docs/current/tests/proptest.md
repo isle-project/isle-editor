@@ -12,7 +12,7 @@ sidebar_label: One-Sample Proportion Test
 * __variable__ | `(string|Factor) (required)`: muutuja nimi. Default: `none`.
 * __success__ | `any (required)`: edu kategooria `muutuja`. Default: `none`.
 * __alpha__ | `number`: olulisuse tase. Default: `0.05`.
-* __direction__ | `string`: testi suund (kas "vähem", "suurem" või "kahepoolne").. Default: `'two-sided'`.
+* __direction__ | `string`: testi suund (kas `less`, `greater` või `two-sided`).. Default: `'two-sided'`.
 * __p0__ | `number`: osakaal nullhüpoteesi korral. Default: `0.5`.
 * __showDecision__ | `boolean`: kontrollib, kas näidata, kas nullhüpotees lükatakse tagasi määratud olulisuse tasemel.. Default: `false`.
 

@@ -9,7 +9,7 @@ Numerokysymyskomponentti.
 ## Vaihtoehdot
 
 * __question__ | `(string|node)`: numerokysymys. Default: `''`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __solution__ | `(number|array<number>)`: numeerinen vastaus ongelmaan (tai useita oikeita vastauksia, jos on annettu joukko).. Default: `none`.

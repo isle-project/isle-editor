@@ -9,7 +9,7 @@ Komponenta z vprašanjem o številu.
 ## Možnosti
 
 * __question__ | `(string|node)`: vprašanje o številu. Default: `''`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'top'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __solution__ | `(number|array<number>)`: številčni odgovor na problem (ali več pravilnih odgovorov, če je priloženo polje).. Default: `none`.

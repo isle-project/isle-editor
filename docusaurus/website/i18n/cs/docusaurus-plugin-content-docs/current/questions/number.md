@@ -9,7 +9,7 @@ Složka s otázkou na číslo.
 ## Možnosti
 
 * __question__ | `(string|node)`: otázka na číslo. Default: `''`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'top'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __solution__ | `(number|array<number>)`: číselnou odpověď na problém (nebo více správných odpovědí, pokud je zadáno pole).. Default: `none`.

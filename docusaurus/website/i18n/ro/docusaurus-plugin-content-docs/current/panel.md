@@ -9,7 +9,8 @@ Componenta cardului.
 ## Opțiuni
 
 * __className__ | `string`: Numele clasei CSS. Default: `''`.
-* __header__ | `(string|node)`: titlul panoului (h3). Default: `none`.
+* __header__ | `(string|node)`: titlul panoului. Default: `none`.
+* __headerTag__ | `string`: utilizată pentru titlul panoului. Default: `'h3'`.
 * __footer__ | `(string|node)`: foaia de subsol a panoului. Default: `none`.
 * __minimizable__ | `boolean`: dacă panoul poate fi minimizat. Default: `false`.
 * __fullscreen__ | `boolean`: dacă panoul poate fi transformat în ecran complet (numai pentru instructori). Default: `false`.

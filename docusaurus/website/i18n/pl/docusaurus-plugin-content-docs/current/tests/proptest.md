@@ -12,7 +12,7 @@ Test proporcji jednej próbki.
 * __variable__ | `(string|Factor) (required)`: nazwa zmiennej. Default: `none`.
 * __success__ | `any (required)`: kategoria sukcesu `zmiennej`. Default: `none`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
-* __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.
+* __direction__ | `string`: kierunek testu (albo `less`, `greater`, albo `two-sided`). Default: `'two-sided'`.
 * __p0__ | `number`: proporcja pod hipotezą zerową. Default: `0.5`.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 

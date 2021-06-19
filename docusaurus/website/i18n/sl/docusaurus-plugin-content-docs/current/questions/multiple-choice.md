@@ -11,7 +11,7 @@ Komponenta ISLE, ki prikazuje vprašanje z več možnostmi izbire. Podpira prime
 * __question__ | `(string|node)`: vprašanje, ki je prikazano na vrhu komponente z več možnostmi izbire.. Default: `''`.
 * __solution__ | `(number|array)`: številka, ki označuje, kateri odgovor je pravilen, ali niz številk pravilnih odgovorov, če bi učenec lahko izbral več odgovorov. Default: `none`.
 * __answers__ | `array (required)`: `mrežo` objektov za odgovore. Vsak odgovor mora biti objekt s polji `content` in `explanation`, ki označujeta prikazano možnost odgovora in razlago, vidno po oddaji vprašanja, ki pojasnjuje, zakaj je odgovor pravilen ali napačen.. Default: `none`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __disabled__ | `boolean`: nadzoruje, ali je vprašanje onemogočeno.. Default: `false`.

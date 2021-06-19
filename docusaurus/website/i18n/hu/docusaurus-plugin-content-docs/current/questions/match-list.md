@@ -10,7 +10,7 @@ Egy ISLE komponens, amely egy olyan kérdést jelenít meg, amelyben a tanulóna
 
 * __question__ | `(string|node)`: a mérkőzéslista kérdéskomponensének tetején megjelenítendő kérdés. Default: `''`.
 * __elements__ | `array<{a,b}>`: egy "tömb", amely a helyes párokat tartalmazza, és a szabad szöveges kérdéskomponens tetején jelenik meg. Minden `array` elemnek egy `objektumnak` kell lennie `a` és `b` tulajdonságokkal; a zavaró válaszok hozzáadásához csak `a` vagy `b` tulajdonságú elemeket kell megadnia.. Default: `[]`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
 * __provideFeedback__ | `boolean`: jelzi, hogy a megoldásnak a tanulók válaszainak elküldése után is elérhetőnek kell-e lennie.. Default: `true`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.

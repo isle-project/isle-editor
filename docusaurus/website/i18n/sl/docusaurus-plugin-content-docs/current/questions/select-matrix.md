@@ -14,7 +14,7 @@ Vprašanje z odgovorom, sestavljenim iz več izbirnih polj.
 * __options__ | `object`: objekt s pari ključ-vrednost s ključi v obliki `row:col`, npr. `0:0`, `0:1`, `1:0` itd., njihove ustrezne vrednosti pa so polja možnih izbir odgovorov za posamezna izbrana vprašanja. Default: `{}`.
 * __solution__ | `object`: objekt rešitve s pari ključ-vrednost s ključi v obliki `vrstica:stolpec`, npr. `0:0`, `0:1`, `1:0` itd., njihove ustrezne vrednosti pa so indeksi elementa pravilnega odgovora iz ustreznega polja `možnosti`.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __provideFeedback__ | `string`: ali želite zagotoviti `nikaj´ povratnih informacij, `posamezne´ povratne informacije o predloženih odgovorih ali `splošne´ povratne informacije za vsa vprašanja.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: ali dovoliti predložitev brez izbire v vsakem polju za izbiro.. Default: `false`.

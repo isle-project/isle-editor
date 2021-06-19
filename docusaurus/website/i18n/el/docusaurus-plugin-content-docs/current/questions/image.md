@@ -9,7 +9,7 @@ sidebar_label: Image Question
 ## Επιλογές
 
 * __question__ | `(string|node)`: κείμενο της ερώτησης. Default: `''`.
-* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε "πάνω", "αριστερά", "δεξιά" ή "κάτω"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε `top`, `left`, `right` ή `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: υποδείξεις που παρέχουν καθοδήγηση για τον τρόπο απάντησης στην ερώτηση. Default: `[]`.
 * __feedback__ | `boolean`: ελέγχει αν θα εμφανίζονται κουμπιά ανάδρασης. Default: `true`.
 * __chat__ | `boolean`: ελέγχει αν το στοιχείο θα πρέπει να έχει ενσωματωμένη συνομιλία. Default: `false`.

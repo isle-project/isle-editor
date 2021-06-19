@@ -11,7 +11,7 @@ ISLE puslapiavimo komponentas, leidžiantis naudotojui žingsnis po žingsnio pe
 * __activePage__ | `number`: aktyvus puslapis. Default: `1`.
 * __disabled__ | `boolean`: kontroliuoja, ar navigacijos juosta yra aktyvi, ar ne.. Default: `false`.
 * __title__ | `string`: rodomas puslapių konteinerio pavadinimas. Default: `''`.
-* __pagination__ | `string`: ar puslapius rodyti `viršuje`, `apačioje`, ar `dviejose`.. Default: `'top'`.
+* __pagination__ | `string`: ar puslapius rodyti `top`, `bottom`, ar `both`.. Default: `'top'`.
 * __size__ | `string`: puslapiavimo mygtukų dydis (`default`, `lg` arba `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: didžiausias konteinerio aukštis. Jei įterptasis puslapis yra aukštesnis, pridedama vertikali slinkties juosta. Default: `none`.
 * __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.

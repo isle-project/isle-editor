@@ -13,7 +13,7 @@ Test korelacji.
 * __var2__ | `string (required)`: nazwa drugiej zmiennej. Default: `none`.
 * __rho0__ | `number`: wartość korelacji pod hipotezą zerową. Default: `0`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
-* __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.
+* __direction__ | `string`: kierunek testu (albo `less`, `greater`, albo `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 
 

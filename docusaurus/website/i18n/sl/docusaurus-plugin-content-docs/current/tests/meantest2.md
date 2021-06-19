@@ -16,7 +16,7 @@ Dvoumenski test povprečne vrednosti.
 * __xstdev__ | `number`: prvi standardni odklon (za `Z Test`). Default: `none`.
 * __ystdev__ | `number`: drugi standardni odklon (za `Z Test`). Default: `none`.
 * __alpha__ | `number`: raven pomembnosti. Default: `0.05`.
-* __direction__ | `string`: smer testa (`manjši`, `večji` ali `obojestranski`). Default: `'two-sided'`.
+* __direction__ | `string`: smer testa (`less`, `greater` ali `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: razlika pod H0. Default: `0`.
 * __showDecision__ | `boolean`: nadzoruje, ali se prikaže, če je ničelna hipoteza zavrnjena pri določeni ravni pomembnosti.. Default: `false`.
 

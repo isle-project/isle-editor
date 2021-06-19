@@ -12,7 +12,7 @@ sidebar_label: One-Sample Proportion Test
 * __variable__ | `(string|Factor) (required)`: име на променливата. Default: `none`.
 * __success__ | `any (required)`: категория за успех на `променлива`. Default: `none`.
 * __alpha__ | `number`: ниво на значимост. Default: `0.05`.
-* __direction__ | `string`: посока на теста (`малко`, `повече` или `двустранно`). Default: `'two-sided'`.
+* __direction__ | `string`: посока на теста (`less`, `greater` или `two-sided`). Default: `'two-sided'`.
 * __p0__ | `number`: дял при нулева хипотеза. Default: `0.5`.
 * __showDecision__ | `boolean`: контролира дали да се показва, ако нулевата хипотеза е отхвърлена при зададеното ниво на значимост. Default: `false`.
 

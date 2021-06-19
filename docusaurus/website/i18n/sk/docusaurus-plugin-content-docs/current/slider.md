@@ -12,7 +12,7 @@ Komponent, ktorý zobrazuje svoje deti v prezentácii alebo kolotoči.
 * __dots__ | `boolean`: zobrazenie bodov v spodnej časti na rýchlu navigáciu na ľubovoľnú snímku. Default: `true`.
 * __fade__ | `boolean`: ovláda, či sa na prechod medzi snímkami použije fading.. Default: `false`.
 * __draggable__ | `boolean`: kontroluje, či používatelia môžu prechádzať medzi snímkami ťahaním.. Default: `false`.
-* __pagination__ | `string`: či sa má stránkovanie zobrazovať buď na `vrchu`, `spodku` alebo `obidvoch`.. Default: `'bottom'`.
+* __pagination__ | `string`: či sa má stránkovanie zobrazovať buď na `vrchu`, `bottom` alebo `obidvoch`.. Default: `'bottom'`.
 * __goto__ | `number`: Ak je vlastnosť zmenená, komponent skočí na snímku s vybraným indexom. Default: `0`.
 * __infinite__ | `boolean`: ovláda, či sa prezentácia obteká okolo svojho obsahu.. Default: `false`.
 * __interval__ | `number`: nastaví časový interval pre automatickú výmenu snímok. Default: `none`.

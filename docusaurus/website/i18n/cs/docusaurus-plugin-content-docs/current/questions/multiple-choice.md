@@ -11,7 +11,7 @@ Komponenta ISLE, která vykresluje otázku s výběrem odpovědi. Podporuje př�
 * __question__ | `(string|node)`: otázka zobrazená v horní části složky s výběrem odpovědi.. Default: `''`.
 * __solution__ | `(number|array)`: číslo označující, která odpověď je správná, nebo "pole" čísel správných odpovědí v případě, že by žák měl být schopen vybrat více odpovědí.. Default: `none`.
 * __answers__ | `array (required)`: pole objektů odpovědí. Každá odpověď by měla být objektem s poli `obsah` a `vysvětlení`, která označují zobrazenou možnost odpovědi a vysvětlení viditelné po odeslání otázky, které vysvětluje, proč je odpověď správná nebo nesprávná.. Default: `none`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __disabled__ | `boolean`: kontroluje, zda je otázka zakázána. Default: `false`.

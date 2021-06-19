@@ -10,7 +10,7 @@ Slēdža komponents ļauj parādīt vienu elementu no vairāku elementu saraksta
 
 * __active__ | `boolean`: kontrolē, vai slēdzis ir aktīvs vai nav. Default: `true`.
 * __tooltip__ | `string`: Rīkjoslas uzraksts, kas tiek parādīts, uzbraucot virs slēdža elementa.. Default: `none`.
-* __tooltipPos__ | `string`: uzraksta izvietojums (`augšā`, `kreisajā`, `pa kreisi`, `pa labi` vai `apakšā`).. Default: `'top'`.
+* __tooltipPos__ | `string`: uzraksta izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'top'`.
 * __className__ | `string`: klases nosaukums aptverošajam span elementam. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onChange__ | `function`: atgriezeniskais zvans, kas tiek izsaukts, kad elementi tiek pārslēgti. Kā pirmo argumentu saņem pašlaik rādītā bērna indeksu.. Default: `onChange() {}`.

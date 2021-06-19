@@ -13,7 +13,7 @@ Korrelaatiotesti.
 * __var2__ | `string (required)`: toisen muuttujan nimi. Default: `none`.
 * __rho0__ | `number`: korrelaatioarvo nollahypoteesin tapauksessa. Default: `0`.
 * __alpha__ | `number`: merkitsevyystaso. Default: `0.05`.
-* __direction__ | `string`: testin suunta (joko "pienempi", "suurempi" tai "kaksipuolinen").. Default: `'two-sided'`.
+* __direction__ | `string`: testin suunta (joko `less`, `greater` tai `two-sided`).. Default: `'two-sided'`.
 * __showDecision__ | `boolean`: valvoo, näytetäänkö, jos nollahypoteesi hylätään määritetyllä merkitsevyystasolla.. Default: `false`.
 
 

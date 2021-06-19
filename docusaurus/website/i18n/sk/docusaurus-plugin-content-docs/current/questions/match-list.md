@@ -10,13 +10,13 @@ Komponent ISLE, ktorý zobrazuje otázku, v ktorej má žiak priradiť k sebe sp
 
 * __question__ | `(string|node)`: otázka, ktorá sa má zobraziť v hornej časti súčasti zoznamu otázok.. Default: `''`.
 * __elements__ | `array<{a,b}>`: `množina` správnych dvojíc zobrazená v hornej časti komponentu voľného textu otázky. Každý prvok `array` musí byť `objekt` s vlastnosťami `a` a `b`; na pridanie distraktorových odpovedí dodajte prvky len s vlastnosťami `a` alebo `b`. Default: `[]`.
-* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `hore`, `vľavo`, `vpravo` alebo `spodku`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `top`, `left`, `right` alebo `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovedy, ktoré poskytujú návod, ako odpovedať na otázku. Default: `[]`.
 * __provideFeedback__ | `boolean`: uvádza, či by riešenie malo byť prístupné po odoslaní odpovedí žiakov.. Default: `true`.
 * __feedback__ | `boolean`: ovláda, či sa majú zobrazovať tlačidlá spätnej väzby.. Default: `true`.
 * __chat__ | `boolean`: kontroluje, či má mať prvok integrovaný chat. Default: `false`.
 * __colorScale__ | `array`: ak je nastavené, pre dlaždice sa použijú dodané farby. Default: `none`.
-* __shuffle__ | `string`: určuje, či sa majú premiešať stĺpce `vľavo`, `vpravo` alebo `obidva`, ktorých prvky sa majú porovnať; zadaním hodnoty `none` alebo akejkoľvek inej hodnoty sa prvky na oboch stranách nepremiešajú (môže byť užitočné v prípade, že neexistuje žiadne riešenie). Default: `'both'`.
+* __shuffle__ | `string`: určuje, či sa majú premiešať stĺpce `left`, `right` alebo `obidva`, ktorých prvky sa majú porovnať; zadaním hodnoty `none` alebo akejkoľvek inej hodnoty sa prvky na oboch stranách nepremiešajú (môže byť užitočné v prípade, že neexistuje žiadne riešenie). Default: `'both'`.
 * __disableSubmitNotification__ | `boolean`: kontroluje, či sa majú vypnúť oznámenia o odoslaní.. Default: `false`.
 * __submissionMsg__ | `string`: oznámenie zobrazené pri prvom odoslaní odpovede žiakom. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: oznámenie zobrazené pre všetky podania po prvom podaní. Default: `'You have successfully re-submitted your answer.'`.

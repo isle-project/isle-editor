@@ -10,7 +10,7 @@ Switch-komponenten gör det möjligt att visa ett element ur en lista med flera 
 
 * __active__ | `boolean`: kontrollerar om växeln är aktiv eller inte. Default: `true`.
 * __tooltip__ | `string`: tooltip som visas när man håller muspekaren över växelelementet. Default: `none`.
-* __tooltipPos__ | `string`: placering av verktygstipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'top'`.
+* __tooltipPos__ | `string`: placering av verktygstipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __className__ | `string`: Klassnamn för det omslutande span-elementet.. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onChange__ | `function`: callback som aktiveras när element byts ut. Det första argumentet är indexet för det barn som visas för tillfället.. Default: `onChange() {}`.

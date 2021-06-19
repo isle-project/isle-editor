@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `object` med CSS-nyckelvärdespar som ska tillämpas på ekvationsbehållaren.. Default: `{}`.
 * __tag__ | `string`: Anpassade tecken som visas för ekvationer på displayen på höger sida. Standardvärdet är ekvationens nummer i lektionen.. Default: `none`.
 * __elems__ | `object`: `object` med `keys` som betecknar LaTeX-tecken och motsvarande värden som är konfigurationsobjekt för att göra dem interaktiva. Om du ställer in ett `tooltip`-alternativ visas en tooltip när du håller muspekaren över LaTeX-tecknen. Genom att ställa in en egenskap `variable` visas ett inmatningsreglage för att ändra respektive tillståndsvariabel; i detta fall stöds ytterligare egenskaper `legend`, `min`, `max` och `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: Popover-position för de angivna "elementen" (antingen "topp", "höger", "botten" eller "vänster").. Default: `'top'`.
+* __popoverPlacement__ | `string`: Popover-position för de angivna "elementen" (antingen `top`, `right`, `bottom` eller `left`).. Default: `'top'`.
 * __onPopover__ | `function`: callback-funktion när en popover-funktion slås på eller av; tar emot visningsstatusen som ett boolsk värde som enda argument.. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback-funktion som aktiveras när en användare klickar på ekvationen.. Default: `none`.
 

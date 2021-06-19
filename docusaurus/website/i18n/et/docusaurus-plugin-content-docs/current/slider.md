@@ -12,7 +12,7 @@ Komponent, mis kuvab oma lapsi slaidiesituses või karussellis.
 * __dots__ | `boolean`: kuvatakse punkte allosas, et kiiresti liikuda mis tahes slaidi juurde. Default: `true`.
 * __fade__ | `boolean`: kontrollib, kas slaidide vaheliseks üleminekuks kasutatakse fadingut.. Default: `false`.
 * __draggable__ | `boolean`: kontrollib, kas kasutajad saavad slaidide vahel navigeerimiseks neid lohistada.. Default: `false`.
-* __pagination__ | `string`: kas kuvada lehekülgede kaupa kas "üleval", "all" või "mõlemal".. Default: `'bottom'`.
+* __pagination__ | `string`: kas kuvada lehekülgede kaupa kas `top`, `bottom` või `both`.. Default: `'bottom'`.
 * __goto__ | `number`: Kui omadust muudetakse, hüppab komponent valitud indeksiga slaidi juurde.. Default: `0`.
 * __infinite__ | `boolean`: kontrollib, kas slaidiesitlus kerib ümber oma sisu.. Default: `false`.
 * __interval__ | `number`: määrab automaatse slaidivahetuse ajaintervalli. Default: `none`.

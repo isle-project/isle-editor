@@ -9,7 +9,8 @@ Kartenkomponente.
 ## Optionen
 
 * __className__ | `string`: CSS-Klassenname. Default: `''`.
-* __header__ | `(string|node)`: Panel-Überschrift (h3). Default: `none`.
+* __header__ | `(string|node)`: Überschrift. Default: `none`.
+* __headerTag__ | `string`: Tag, das für die Überschrift des Panels verwendet wird. Default: `'h3'`.
 * __footer__ | `(string|node)`: Panel-Fußzeile. Default: `none`.
 * __minimizable__ | `boolean`: ob das Panel minimiert werden kann. Default: `false`.
 * __fullscreen__ | `boolean`: ob das Bedienfeld in den Vollbildmodus versetzt werden kann (nur für Kursleiter). Default: `false`.

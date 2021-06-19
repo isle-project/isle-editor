@@ -13,7 +13,7 @@ Una prueba de media de una muestra.
 * __type__ | `string`: tipo de prueba (`Z Test` o `T Test`). Default: `'T Test'`.
 * __stdev__ | `number`: desviación estándar (para la "Prueba Z"). Default: `none`.
 * __alpha__ | `number`: nivel de importancia. Default: `0.05`.
-* __direction__ | `string`: dirección de prueba (ya sea "menos", "más grande" o "de dos lados"). Default: `'two-sided'`.
+* __direction__ | `string`: dirección de prueba (ya sea `less`, `greater` o `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: media bajo la hipótesis nula. Default: `0`.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 

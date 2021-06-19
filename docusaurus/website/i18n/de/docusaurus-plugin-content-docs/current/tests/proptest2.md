@@ -14,7 +14,7 @@ Zwei-Stichproben-Verhältnis-Test.
 * __var2__ | `(string|Factor)`: Name der zweiten Variablen (`var2` oder `group` muss angegeben werden). Default: `none`.
 * __group__ | `(string|Factor)`: Name der Gruppierungsvariable (`var2` oder `group` müssen angegeben werden). Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
-* __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
+* __direction__ | `string`: Testrichtung (entweder `less`, `greater`, oder `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: Unterschied unter H0. Default: `0`.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 

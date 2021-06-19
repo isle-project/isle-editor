@@ -10,7 +10,7 @@ Egy ISLE-komponens olyan kérdésekhez, amelyekre a tanulóknak szabad szöveges
 
 * __question__ | `(string|node)`: a szabadszöveges kérdéskomponens tetején megjelenő kérdés. Default: `''`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'top'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
 * __solution__ | `(string|node)`: modellértékű válasz a problémára. Default: `''`.
 * __instantSolution__ | `boolean`: hogy a modellválasz megjelenítését azonnal át lehet-e kapcsolni. Default: `false`.

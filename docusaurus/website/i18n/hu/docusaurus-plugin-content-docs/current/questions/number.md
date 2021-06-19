@@ -9,7 +9,7 @@ Egy számkérdés-összetevő.
 ## Opciók
 
 * __question__ | `(string|node)`: számkérdés. Default: `''`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'top'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
 * __solution__ | `(number|array<number>)`: a feladatra adott numerikus válasz (vagy több helyes válasz, ha tömböt adunk meg). Default: `none`.

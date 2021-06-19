@@ -13,7 +13,7 @@ Valitud küsimuste komponent.
 * __solution__ | `number`: lahenduse elemendi indeks `options`is. Default: `none`.
 * __preselected__ | `number`: eelnevalt valitud vastusevariandi indeks. Default: `0`.
 * __inline__ | `boolean`: kontrollib, kas komponent renderdatakse inline või mitte. Default: `false`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.
 * __chat__ | `boolean`: kontrollib, kas elemendil peaks olema integreeritud vestlus. Default: `false`.

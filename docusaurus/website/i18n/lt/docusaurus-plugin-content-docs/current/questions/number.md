@@ -9,7 +9,7 @@ Klausimo apie skaičių komponentas.
 ## Parinktys
 
 * __question__ | `(string|node)`: skaičius klausimas. Default: `''`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'top'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __solution__ | `(number|array<number>)`: skaitinis uždavinio atsakymas (arba keli teisingi atsakymai, jei pateikiamas masyvas).. Default: `none`.

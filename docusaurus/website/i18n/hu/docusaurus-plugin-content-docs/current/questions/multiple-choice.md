@@ -11,7 +11,7 @@ Egy ISLE komponens, amely egy feleletválasztós kérdést jelenít meg. Támoga
 * __question__ | `(string|node)`: a feleletválasztós komponens tetején megjelenő kérdés. Default: `''`.
 * __solution__ | `(number|array)`: a helyes választ jelölő szám, vagy a helyes válaszok számainak "sorozata", ha a tanulónak több választ is ki kell tudnia választani.. Default: `none`.
 * __answers__ | `array (required)`: a válaszobjektumok "tömbje". Minden válasznak egy objektumnak kell lennie, amelynek `tartalom` és `magyarázat` mezői jelölik a megjelenített válaszlehetőséget és a kérdés elküldése után látható magyarázatot, amely megmagyarázza, hogy a válasz miért helyes vagy helytelen.. Default: `none`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
 * __disabled__ | `boolean`: ellenőrzi, hogy a kérdés ki van-e kapcsolva. Default: `false`.

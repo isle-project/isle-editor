@@ -14,7 +14,7 @@ Dviejų imčių proporcijų testas.
 * __var2__ | `(string|Factor)`: antrojo kintamojo pavadinimas (reikia nurodyti `var2` arba `group`). Default: `none`.
 * __group__ | `(string|Factor)`: grupuojančio kintamojo pavadinimas (būtina nurodyti `var2` arba `group`). Default: `none`.
 * __alpha__ | `number`: reikšmingumo lygis. Default: `0.05`.
-* __direction__ | `string`: testo kryptis (`mažesnė`, `didesnė` arba `dvipusė`).. Default: `'two-sided'`.
+* __direction__ | `string`: testo kryptis (`less`, `greater` arba `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: skirtumas pagal H0. Default: `0`.
 * __showDecision__ | `boolean`: kontroliuoja, ar rodyti, jei nulinė hipotezė atmetama esant nurodytam reikšmingumo lygiui.. Default: `false`.
 

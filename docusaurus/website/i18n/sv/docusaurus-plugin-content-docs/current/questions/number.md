@@ -9,7 +9,7 @@ En komponent med en nummerfråga.
 ## Alternativ
 
 * __question__ | `(string|node)`: fråga om antal. Default: `''`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'top'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __solution__ | `(number|array<number>)`: Ett numeriskt svar på problemet (eller flera korrekta svar om en matris har angetts).. Default: `none`.

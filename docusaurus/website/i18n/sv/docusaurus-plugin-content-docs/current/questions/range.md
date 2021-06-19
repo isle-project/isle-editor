@@ -10,7 +10,7 @@ En fråga om intervall där eleverna ombeds ange en nedre och övre slutpunkt.
 
 * __question__ | `(string|node)`: visade frågan. Default: `''`.
 * __solution__ | `array<number>`: en matris med två element som innehåller ändpunkterna för det korrekta intervallet.. Default: `none`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'top'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __labels__ | `array`: en matris med två element av andra anpassade etiketter än "Lower" och "Upper".. Default: `none`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.

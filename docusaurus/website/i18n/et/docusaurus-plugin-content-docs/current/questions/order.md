@@ -11,7 +11,7 @@ Järjekorra küsimuste komponent, mis palub õpilasel viia elementide kogum õig
 * __question__ | `(string|node)`: küsimus, mille puhul õpilane peab viima olemasolevad "valikud" õigesse järjekorda.. Default: `''`.
 * __options__ | `array (required)`: tekstide massiivi, mille õpilane peab viima õigesse järjekorda (eeldatavasti on tegemist esitatud järjekorraga).. Default: `none`.
 * __provideFeedback__ | `boolean`: kontrollib, kas näidata teadet, mis näitab, kas esitatud vastus on õige või mitte.. Default: `true`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.
 * __chat__ | `boolean`: kontrollib, kas elemendil peaks olema integreeritud vestlus. Default: `false`.

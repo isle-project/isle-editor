@@ -9,7 +9,8 @@ Componente della scheda.
 ## Opzioni
 
 * __className__ | `string`: Nome della classe CSS. Default: `''`.
-* __header__ | `(string|node)`: intestazione del pannello (h3). Default: `none`.
+* __header__ | `(string|node)`: intestazione del pannello. Default: `none`.
+* __headerTag__ | `string`: usato per l'intestazione del pannello. Default: `'h3'`.
 * __footer__ | `(string|node)`: piè di pagina. Default: `none`.
 * __minimizable__ | `boolean`: se il pannello può essere ridotto al minimo. Default: `false`.
 * __fullscreen__ | `boolean`: se il pannello può essere fatto a schermo intero (solo per gli istruttori). Default: `false`.

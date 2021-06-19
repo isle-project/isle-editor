@@ -9,7 +9,7 @@ sidebar_label: Number Question
 ## Опции
 
 * __question__ | `(string|node)`: въпрос за броя. Default: `''`.
-* __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'top'`.
+* __hintPlacement__ | `string`: разположение на подсказките (или `top`, `right`, `left`, или `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: подсказки, които дават насоки за това как да отговорите на въпроса. Default: `[]`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.
 * __solution__ | `(number|array<number>)`: цифров отговор на задачата (или няколко верни отговора, ако е предоставен масив).. Default: `none`.

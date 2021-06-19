@@ -16,7 +16,7 @@ Dwukrotny test średniej próby.
 * __xstdev__ | `number`: pierwsze odchylenie standardowe (dla `Testu Z`). Default: `none`.
 * __ystdev__ | `number`: drugie odchylenie standardowe (dla `Testu Z`). Default: `none`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
-* __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.
+* __direction__ | `string`: kierunek testu (albo `less`, `greater`, albo `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: różnica poniżej H0. Default: `0`.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 

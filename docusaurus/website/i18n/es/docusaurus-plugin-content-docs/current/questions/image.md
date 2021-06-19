@@ -9,7 +9,7 @@ Una pregunta que pide al usuario que suba una imagen.
 ## Opciones
 
 * __question__ | `(string|node)`: texto de la pregunta. Default: `''`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __chat__ | `boolean`: controla si el elemento debe tener un chat integrado. Default: `false`.

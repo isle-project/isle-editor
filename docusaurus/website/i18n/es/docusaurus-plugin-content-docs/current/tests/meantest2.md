@@ -16,7 +16,7 @@ Prueba de media de dos muestras.
 * __xstdev__ | `number`: primera desviación estándar (para la "Prueba Z"). Default: `none`.
 * __ystdev__ | `number`: segunda desviación estándar (para la "Prueba Z"). Default: `none`.
 * __alpha__ | `number`: nivel de importancia. Default: `0.05`.
-* __direction__ | `string`: dirección de prueba (ya sea "menos", "más grande" o "de dos lados"). Default: `'two-sided'`.
+* __direction__ | `string`: dirección de prueba (ya sea `less`, `greater` o `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: diferencia bajo H0. Default: `0`.
 * __showDecision__ | `boolean`: controla si se muestra si la hipótesis nula es rechazada en el nivel de significación especificado. Default: `false`.
 

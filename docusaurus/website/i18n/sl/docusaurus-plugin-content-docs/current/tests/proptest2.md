@@ -14,7 +14,7 @@ Dvoumni proporcionalni test.
 * __var2__ | `(string|Factor)`: ime druge spremenljivke (treba je navesti `var2` ali `group`). Default: `none`.
 * __group__ | `(string|Factor)`: ime skupinske spremenljivke (treba je navesti `var2` ali `group`). Default: `none`.
 * __alpha__ | `number`: raven pomembnosti. Default: `0.05`.
-* __direction__ | `string`: smer testa (`manjši`, `večji` ali `obojestranski`). Default: `'two-sided'`.
+* __direction__ | `string`: smer testa (`less`, `greater` ali `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: razlika pod H0. Default: `0`.
 * __showDecision__ | `boolean`: nadzoruje, ali se prikaže, če je ničelna hipoteza zavrnjena pri določeni ravni pomembnosti.. Default: `false`.
 

@@ -11,7 +11,7 @@ Egy sorrendkérdés-összetevő, amely arra kéri a tanulót, hogy az elemek gy�
 * __question__ | `(string|node)`: kérdés, amelyben a tanulónak a rendelkezésre álló "lehetőségeket" kell a helyes sorrendbe állítania.. Default: `''`.
 * __options__ | `array (required)`: szövegek tömbje, amelyeket a tanulónak a helyes sorrendbe kell helyeznie (feltételezhetően a megadott sorrendben).. Default: `none`.
 * __provideFeedback__ | `boolean`: szabályozza, hogy megjelenjen-e értesítés arról, hogy a beküldött válasz helyes-e vagy sem.. Default: `true`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
 * __chat__ | `boolean`: szabályozza, hogy az elemnek legyen-e integrált chatje. Default: `false`.

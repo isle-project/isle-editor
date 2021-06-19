@@ -12,7 +12,7 @@ Učna komponenta za izračun verjetnosti normalne porazdelitve.
 * __hideCDF__ | `boolean`: nadzoruje, ali naj se skrije parcela CDF.. Default: `false`.
 * __minStDev__ | `number`: najmanjši standardni odklon. Default: `1`.
 * __step__ | `(number|string)`: velikost koraka vnosa za pomikanje. Default: `0.01`.
-* __tabs__ | `array<string>`: kateri zavihki se prikažejo (`manjši`, `večji` ali `območje`).. Default: `[
+* __tabs__ | `array<string>`: kateri zavihki se prikažejo (`less`, `greater` ali `območje`).. Default: `[
   'smaller',
   'greater',
   'range'

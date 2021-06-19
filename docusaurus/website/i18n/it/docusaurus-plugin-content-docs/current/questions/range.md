@@ -10,9 +10,9 @@ Una componente di domanda di gamma che chiede agli studenti di fornire un punto 
 
 * __question__ | `(string|node)`: domanda visualizzata. Default: `''`.
 * __solution__ | `array<number>`: array a due elementi contenente i punti finali del corretto intervallo. Default: `none`.
-* __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'top'`.
+* __hintPlacement__ | `string`: posizionamento dei suggerimenti (`top`, `left`, `right` o `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
-* __labels__ | `array`: array a due elementi di etichette personalizzate diverse da "Abbassare" e "In alto". Default: `none`.
+* __labels__ | `array`: array a due elementi di etichette personalizzate diverse da "Abbassare" e "`top`". Default: `none`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __chat__ | `boolean`: controlla se l'elemento deve avere una chat integrata. Default: `false`.
 * __digits__ | `number`: numero di cifre che devono corrispondere tra la soluzione e la risposta fornita dall'utente. Se non è dato o impostato a zero, il componente verifica la stretta uguaglianza. Se impostato a 0, verifica l'uguaglianza dei numeri interi. Default: `3`.

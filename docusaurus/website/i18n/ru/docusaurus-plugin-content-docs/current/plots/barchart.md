@@ -18,7 +18,7 @@ sidebar_label: Bar Chart
 * __relative__ | `boolean`: следует ли вычислять относительные частоты внутри каждой группы. Default: `false`.
 * __totalPercent__ | `boolean`: отображать ли общие полосы в качестве относительных частот. Default: `false`.
 * __xOrder__ | `string`: либо `тотал`, `категория`, `мин`, `макс`, `медиан`, либо `медиан". Default: `none`.
-* __direction__ | `string`: как заказать бары вдоль оси x (`возбуждающийся` или `растающий`). Default: `'ascending'`.
+* __direction__ | `string`: как заказать бары вдоль оси x (`ascending` или `descending`). Default: `'ascending'`.
 
 
 ## Примеры

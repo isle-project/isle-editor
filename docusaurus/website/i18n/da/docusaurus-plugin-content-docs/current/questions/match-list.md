@@ -10,7 +10,7 @@ En ISLE-komponent, der gengiver et spørgsmål, hvor den lærende skal matche el
 
 * __question__ | `(string|node)`: spørgsmål, der skal vises øverst i spørgelistekomponenten for matchlisten. Default: `''`.
 * __elements__ | `array<{a,b}>`: et `array` med de korrekte par, der vises øverst i den frie tekstkomponent. Hvert `array`-element skal være et `object` med `a` og `b`-egenskaber; angiv elementer med kun `a` eller `b`-egenskaber for at tilføje distraherende svar.. Default: `[]`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __provideFeedback__ | `boolean`: angiver, om løsningen skal være tilgængelig, efter at eleverne har afgivet deres svar. Default: `true`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.

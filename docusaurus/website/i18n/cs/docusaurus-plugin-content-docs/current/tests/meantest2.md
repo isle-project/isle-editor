@@ -16,7 +16,7 @@ Dvouvýběrový průměrný test.
 * __xstdev__ | `number`: první směrodatná odchylka (pro `Z test`). Default: `none`.
 * __ystdev__ | `number`: druhá směrodatná odchylka (pro `Z test`). Default: `none`.
 * __alpha__ | `number`: úroveň významnosti. Default: `0.05`.
-* __direction__ | `string`: směr testu (buď `menší`, `větší`, nebo `oboustranný`).. Default: `'two-sided'`.
+* __direction__ | `string`: směr testu (buď `less`, `greater`, nebo `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: rozdíl podle H0. Default: `0`.
 * __showDecision__ | `boolean`: řídí, zda se má zobrazit, pokud je nulová hypotéza zamítnuta na zadané hladině významnosti.. Default: `false`.
 

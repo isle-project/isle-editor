@@ -13,7 +13,7 @@ Valittu kysymysosa.
 * __solution__ | `number`: ratkaisuelementin indeksi `options`:ssa. Default: `none`.
 * __preselected__ | `number`: ennalta valitun vastausvaihtoehdon indeksi. Default: `0`.
 * __inline__ | `boolean`: ohjaa, renderöidäänkö komponentti riviin vai ei.. Default: `false`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.

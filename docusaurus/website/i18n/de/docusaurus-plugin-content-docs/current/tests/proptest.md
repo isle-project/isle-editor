@@ -12,7 +12,7 @@ Ein-Stichproben-Verhältnis-Test.
 * __variable__ | `(string|Factor) (required)`: Name der Variablen. Default: `none`.
 * __success__ | `any (required)`: Erfolgskategorie von `Variable`. Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
-* __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
+* __direction__ | `string`: Testrichtung (entweder `less`, `greater`, oder `two-sided`). Default: `'two-sided'`.
 * __p0__ | `number`: Anteil unter der Nullhypothese. Default: `0.5`.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 

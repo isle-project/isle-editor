@@ -13,7 +13,7 @@ Korrelationstest.
 * __var2__ | `string (required)`: Name der zweiten Variablen. Default: `none`.
 * __rho0__ | `number`: Korrelationswert unter der Nullhypothese. Default: `0`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
-* __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
+* __direction__ | `string`: Testrichtung (entweder `less`, `greater`, oder `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 
 

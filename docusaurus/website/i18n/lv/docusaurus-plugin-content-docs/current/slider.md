@@ -12,7 +12,7 @@ Sastāvdaļa, kas rāda savus bērnus slaidrādē vai karuseļa veidā.
 * __dots__ | `boolean`: displeja punkti apakšā, lai ātri pārietu uz jebkuru slaidu.. Default: `true`.
 * __fade__ | `boolean`: nosaka, vai pārejai starp diapozitīviem tiek izmantota fedings.. Default: `false`.
 * __draggable__ | `boolean`: kontrolē, vai lietotāji var vilkt slaidus, lai pārvietotos starp tiem.. Default: `false`.
-* __pagination__ | `string`: vai lappušu numerācija tiks parādīta `augšā`, `apakšā` vai `apakšā`.. Default: `'bottom'`.
+* __pagination__ | `string`: vai lappušu numerācija tiks parādīta `top`, `bottom` vai `bottom`.. Default: `'bottom'`.
 * __goto__ | `number`: Ja īpašība tiek mainīta, komponents pāriet uz slaidu ar izvēlēto indeksu.. Default: `0`.
 * __infinite__ | `boolean`: kontrolē, vai slaidšovs apvij savu saturu.. Default: `false`.
 * __interval__ | `number`: nosaka laika intervālu automātiskai diapozitīvu maiņai.. Default: `none`.

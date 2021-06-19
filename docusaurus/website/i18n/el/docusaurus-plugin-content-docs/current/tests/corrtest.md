@@ -13,7 +13,7 @@ sidebar_label: Correlation Test
 * __var2__ | `string (required)`: όνομα της δεύτερης μεταβλητής. Default: `none`.
 * __rho0__ | `number`: τιμή συσχέτισης υπό τη μηδενική υπόθεση. Default: `0`.
 * __alpha__ | `number`: επίπεδο σημαντικότητας. Default: `0.05`.
-* __direction__ | `string`: κατεύθυνση δοκιμής (είτε "μικρότερη", "μεγαλύτερη" ή "αμφίπλευρη"). Default: `'two-sided'`.
+* __direction__ | `string`: κατεύθυνση δοκιμής (είτε `less`, `greater` ή `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: ελέγχει αν θα εμφανίζεται αν η μηδενική υπόθεση απορρίπτεται στο καθορισμένο επίπεδο σημαντικότητας. Default: `false`.
 
 

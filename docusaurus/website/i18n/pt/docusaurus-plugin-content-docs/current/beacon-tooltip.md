@@ -11,7 +11,7 @@ Componente que coloca um farol na lição, seja independentemente ou ligado a um
 * __title__ | `(string|node)`: título a ser exibido na parte superior da ponta da ferramenta. Default: `none`.
 * __content__ | `(string|node)`: conteúdo da ponta da ferramenta. Default: `'`content` comes here...'`.
 * __event__ | `string`: se ajustado para "clicar", a ponta da ferramenta é alternada ao clicar no sinalizador; se ajustado para "pairar", a ponta da ferramenta é ativada por meio de pairar. Default: `'click'`.
-* __placement__ | `string`: colocação da ponta da ferramenta em relação ao "alvo" (ou "topo", "topo - início", "topo - fim", "fundo", "fundo - fim", "esquerda", "esquerda - início", "esquerda - fim", "direita", "direita - início", "direita - fim", "centro", "auto", ou "centro"). Default: `'left'`.
+* __placement__ | `string`: colocação da ponta da ferramenta em relação ao "alvo" (ou `top`, "topo - início", "topo - fim", `bottom`, "fundo - fim", `left`, "esquerda - início", "esquerda - fim", `right`, "direita - início", "direita - fim", "centro", "auto", ou "centro"). Default: `'left'`.
 * __target__ | `string`: classe ou seletor de identificação de elemento para anexar a ponta de ferramenta. Default: `''`.
 * __offset__ | `number`: distância entre a ponta da ferramenta e o `alvo` em pixels. Default: `15`.
 * __onChange__ | `function`: chamada de retorno invocada quando da mudança de estado da ponta da ferramenta. Recebe dois argumentos: a "ação" (abrir ou fechar) e a passada "brocas". Default: `onChange() {}`.

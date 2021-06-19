@@ -18,7 +18,7 @@ Gráfico de barras.
 * __relative__ | `boolean`: si calcular las frecuencias relativas dentro de cada grupo. Default: `false`.
 * __totalPercent__ | `boolean`: si mostrar las barras generales como frecuencias relativas. Default: `false`.
 * __xOrder__ | `string`: ya sea "total", "categoría", "min", "máximo", "medio", o "medio". Default: `none`.
-* __direction__ | `string`: cómo ordenar las barras a lo largo del eje x (`ascendente` o `descendente`). Default: `'ascending'`.
+* __direction__ | `string`: cómo ordenar las barras a lo largo del eje x (`ascending` o `descending`). Default: `'ascending'`.
 
 
 ## Ejemplos

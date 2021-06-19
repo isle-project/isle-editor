@@ -9,7 +9,8 @@ Composant de la carte.
 ## Options
 
 * __className__ | `string`: Nom de la classe CSS. Default: `''`.
-* __header__ | `(string|node)`: titre du panel (h3). Default: `none`.
+* __header__ | `(string|node)`: titre du panneau. Default: `none`.
+* __headerTag__ | `string`: utilisé pour l'en-tête du panneau. Default: `'h3'`.
 * __footer__ | `(string|node)`: pied de page du panneau. Default: `none`.
 * __minimizable__ | `boolean`: si le panel peut être réduit au minimum. Default: `false`.
 * __fullscreen__ | `boolean`: si le panneau peut être mis en plein écran (uniquement pour les instructeurs). Default: `false`.

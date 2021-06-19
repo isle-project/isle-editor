@@ -14,7 +14,7 @@ Otázka s odpovědí, která se skládá z několika políček.
 * __options__ | `object`: objekt s dvojicemi klíč-hodnota s klíči ve tvaru `řádek:sloupec`, např. `0:0`, `0:1`, `1:0` atd., a jejich odpovídajícími hodnotami jsou pole možných variant odpovědí pro jednotlivé výběrové otázky.. Default: `{}`.
 * __solution__ | `object`: objekt řešení s dvojicemi klíč-hodnota s klíči ve tvaru `řádek:sloupec`, např. `0:0`, `0:1`, `1:0` atd., a jejich odpovídajícími hodnotami jsou indexy prvků správné odpovědi z příslušného pole `možnosti`.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'bottom'`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __provideFeedback__ | `string`: zda poskytnout `žádnou` zpětnou vazbu vůbec, `individuální` zpětnou vazbu k předloženým odpovědím nebo `celkovou` zpětnou vazbu ke všem otázkám.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: zda povolit podání bez výběru v každém výběrovém poli.. Default: `false`.

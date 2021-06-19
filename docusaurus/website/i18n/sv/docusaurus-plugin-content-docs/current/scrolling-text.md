@@ -10,7 +10,7 @@ En dynamisk bakgrundskomponent som går igenom en lista med texter med ett visst
 
 * __text__ | `(string|array<string>)`: text eller en lista över texter som ska visas. Default: `[]`.
 * __loop__ | `boolean`: anger om processen ska visas i all oändlighet. Default: `false`.
-* __direction__ | `string`: textflödets riktning (antingen "vänster", "höger", "upp", "ner", "spårning", "fokus" eller "virvel").. Default: `'right'`.
+* __direction__ | `string`: textflödets riktning (antingen `left`, `right`, "upp", "ner", "spårning", "fokus" eller "virvel").. Default: `'right'`.
 * __hold__ | `number`: den tid som texten står stilla (i sekunder). Default: `5`.
 * __wait__ | `number`: tiden innan en ny text kommer in (i sekunder). Default: `3`.
 * __inTime__ | `number`: tid för ingångseffekten (i sekunder). Default: `1`.

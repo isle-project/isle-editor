@@ -9,7 +9,7 @@ Um componente de várias perguntas.
 ## Opções
 
 * __question__ | `(string|node)`: pergunta numérica. Default: `''`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __solution__ | `(number|array<number>)`: uma resposta numérica ao problema (ou múltiplas respostas corretas se uma matriz for fornecida). Default: `none`.

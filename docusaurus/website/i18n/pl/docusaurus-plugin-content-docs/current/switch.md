@@ -10,7 +10,7 @@ Komponent przełącznika pozwala na wyświetlenie jednego elementu z listy kilku
 
 * __active__ | `boolean`: kontroluje, czy przełącznik jest aktywny, czy nie. Default: `true`.
 * __tooltip__ | `string`: etykieta narzędzi wyświetlana po najechaniu na element przełączający. Default: `none`.
-* __tooltipPos__ | `string`: umiejscowienie końcówki narzędzia (`top`, `lewo`, `prawo` lub `dół`). Default: `'top'`.
+* __tooltipPos__ | `string`: umiejscowienie końcówki narzędzia (`top`, `left`, `right` lub `bottom`). Default: `'top'`.
 * __className__ | `string`: nazwa klasy dla zamkniętego elementu przęsła. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onChange__ | `function`: wywołanie zwrotne po włączeniu elementów. Otrzymuje jako swój pierwszy argument indeks aktualnie wyświetlanego dziecka. Default: `onChange() {}`.

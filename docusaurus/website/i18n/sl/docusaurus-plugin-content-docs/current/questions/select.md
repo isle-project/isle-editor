@@ -13,7 +13,7 @@ Izbrana komponenta vprašanja.
 * __solution__ | `number`: indeks elementa rešitve v `options`. Default: `none`.
 * __preselected__ | `number`: indeks vnaprej izbrane možnosti odgovora. Default: `0`.
 * __inline__ | `boolean`: nadzoruje, ali se komponenta prikaže v vrstici ali ne.. Default: `false`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'top'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __chat__ | `boolean`: nadzoruje, ali naj ima element integriran klepet.. Default: `false`.

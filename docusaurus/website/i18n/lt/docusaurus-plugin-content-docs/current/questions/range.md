@@ -10,7 +10,7 @@ Klausimo apie intervalą komponentas, kuriame mokinių prašoma nurodyti apatin�
 
 * __question__ | `(string|node)`: rodomas klausimas. Default: `''`.
 * __solution__ | `array<number>`: dviejų elementų masyvas, kuriame yra teisingo intervalo galiniai taškai.. Default: `none`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'top'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __labels__ | `array`: dviejų elementų masyvą, kuriame yra pasirinktinių etikečių, išskyrus "Lower" ir "Upper".. Default: `none`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.

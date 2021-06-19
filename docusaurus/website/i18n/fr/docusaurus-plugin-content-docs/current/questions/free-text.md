@@ -10,7 +10,7 @@ Un volet ISLE pour les questions dont les réponses des étudiants doivent être
 
 * __question__ | `(string|node)`: la question affichée en haut de l'élément de question de texte libre. Default: `''`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'top'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __solution__ | `(string|node)`: une réponse modèle au problème. Default: `''`.
 * __instantSolution__ | `boolean`: si l'on peut basculer l'affichage de la réponse modèle immédiatement. Default: `false`.

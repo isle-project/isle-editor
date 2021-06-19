@@ -11,7 +11,7 @@ Komponent s otázkami o poradí, ktorý od študenta vyžaduje, aby usporiadal z
 * __question__ | `(string|node)`: otázka, pri ktorej musí študent zoradiť dostupné možnosti do správneho poradia. Default: `''`.
 * __options__ | `array (required)`: pole textov, ktoré má študent zoradiť v správnom poradí (predpokladá sa, že v dodanom poradí). Default: `none`.
 * __provideFeedback__ | `boolean`: ovláda, či sa má zobraziť oznámenie o tom, či je odoslaná odpoveď správna alebo nie.. Default: `true`.
-* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `hore`, `vľavo`, `vpravo` alebo `spodku`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `top`, `left`, `right` alebo `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovedy, ktoré poskytujú návod, ako odpovedať na otázku. Default: `[]`.
 * __feedback__ | `boolean`: ovláda, či sa majú zobrazovať tlačidlá spätnej väzby.. Default: `true`.
 * __chat__ | `boolean`: kontroluje, či má mať prvok integrovaný chat. Default: `false`.

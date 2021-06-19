@@ -9,7 +9,7 @@ Jautājums, kurā lietotājam tiek prasīts augšupielādēt attēlu.
 ## Iespējas
 
 * __question__ | `(string|node)`: jautājuma teksts. Default: `''`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.

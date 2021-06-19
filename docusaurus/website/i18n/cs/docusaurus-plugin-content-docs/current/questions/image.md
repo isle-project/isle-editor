@@ -9,7 +9,7 @@ Otázka, která uživatele vyzve k nahrání obrázku.
 ## Možnosti
 
 * __question__ | `(string|node)`: text otázky. Default: `''`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __chat__ | `boolean`: řídí, zda má mít prvek integrovaný chat. Default: `false`.

@@ -18,7 +18,7 @@ Wykres słupkowy.
 * __relative__ | `boolean`: czy obliczyć częstotliwości względne wewnątrz każdej grupy. Default: `false`.
 * __totalPercent__ | `boolean`: czy wyświetlać paski ogólne jako częstotliwości względne. Default: `false`.
 * __xOrder__ | `string`: `ogółem`, `kategorią`, `min`, `max`, `środkiem` lub `medianem`. Default: `none`.
-* __direction__ | `string`: jak zamawiać pręty wzdłuż osi x (`skośne` lub `skośne`). Default: `'ascending'`.
+* __direction__ | `string`: jak zamawiać pręty wzdłuż osi x (`ascending` lub `descending`). Default: `'ascending'`.
 
 
 ## Przykłady

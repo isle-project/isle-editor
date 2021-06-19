@@ -10,7 +10,7 @@ sidebar_label: Free Text Question
 
 * __question__ | `(string|node)`: въпросът, показан в горната част на компонента за свободен текст.. Default: `''`.
 * __hints__ | `array<(string|node)>`: указания за това как да отговорите на въпроса. Default: `[]`.
-* __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'top'`.
+* __hintPlacement__ | `string`: разположение на подсказките (или `top`, `right`, `left`, или `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.
 * __solution__ | `(string|node)`: примерен отговор на проблема. Default: `''`.
 * __instantSolution__ | `boolean`: дали може да се превключва незабавно показването на отговора на модела. Default: `false`.

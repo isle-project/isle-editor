@@ -13,7 +13,7 @@ Izvēlētā jautājuma komponents.
 * __solution__ | `number`: risinājuma elementa indekss `options`. Default: `none`.
 * __preselected__ | `number`: iepriekš izvēlētās atbildes iespējas indekss. Default: `0`.
 * __inline__ | `boolean`: kontrolē, vai komponents tiek attēlots inline vai nē.. Default: `false`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'top'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.

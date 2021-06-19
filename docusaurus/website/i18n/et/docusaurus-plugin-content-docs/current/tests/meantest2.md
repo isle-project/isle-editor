@@ -16,7 +16,7 @@ Kahe proovi keskmine test.
 * __xstdev__ | `number`: esimene standardhälve (Z-testi puhul). Default: `none`.
 * __ystdev__ | `number`: teine standardhälve (Z-testi puhul). Default: `none`.
 * __alpha__ | `number`: olulisuse tase. Default: `0.05`.
-* __direction__ | `string`: testi suund (kas "vähem", "suurem" või "kahepoolne").. Default: `'two-sided'`.
+* __direction__ | `string`: testi suund (kas `less`, `greater` või `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: erinevus H0 korral. Default: `0`.
 * __showDecision__ | `boolean`: kontrollib, kas näidata, kas nullhüpotees lükatakse tagasi määratud olulisuse tasemel.. Default: `false`.
 

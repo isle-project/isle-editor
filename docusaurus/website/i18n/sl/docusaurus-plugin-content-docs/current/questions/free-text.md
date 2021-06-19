@@ -10,7 +10,7 @@ Komponenta ISLE za vprašanja, pri katerih morajo učenci odgovarjati v obliki p
 
 * __question__ | `(string|node)`: vprašanje, prikazano na vrhu komponente vprašanja s prostim besedilom.. Default: `''`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'top'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __solution__ | `(string|node)`: vzorčni odgovor na problem. Default: `''`.
 * __instantSolution__ | `boolean`: ali je mogoče takoj preklopiti prikaz vzorčnega odgovora. Default: `false`.

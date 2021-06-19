@@ -11,7 +11,7 @@ Järjestyskysymyskomponentti, jossa oppilasta pyydetään saattamaan kokoelma el
 * __question__ | `(string|node)`: kysymys, jossa opiskelijan on asetettava käytettävissä olevat "vaihtoehdot" oikeaan järjestykseen.. Default: `''`.
 * __options__ | `array (required)`: joukko tekstejä, jotka oppilaan on saatettava oikeaan järjestykseen (oletetaan, että ne ovat annetussa järjestyksessä).. Default: `none`.
 * __provideFeedback__ | `boolean`: valvoo, näytetäänkö ilmoitus siitä, onko vastaus oikein vai ei.. Default: `true`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.

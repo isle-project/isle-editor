@@ -11,7 +11,7 @@ Un composant ISLE qui rend une question à choix multiple. Il permet à l'appren
 * __question__ | `(string|node)`: la question affichée en haut de la composante à choix multiples. Default: `''`.
 * __solution__ | `(number|array)`: un numéro indiquant la réponse correcte ou un "tableau" des numéros de réponse correcte au cas où l'apprenant serait capable de sélectionner plusieurs réponses. Default: `none`.
 * __answers__ | `array (required)`: un "tableau" d'objets de réponse. Chaque réponse doit être un objet avec des champs "contenu" et "explication", qui indiquent l'option de réponse affichée et une explication visible après que la question ait été soumise pour expliquer pourquoi la réponse est correcte ou incorrecte. Default: `none`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __disabled__ | `boolean`: contrôle si la question est handicapée. Default: `false`.

@@ -14,7 +14,7 @@ Egy kérdés, amelynek válasza több válaszdobozból áll.
 * __options__ | `object`: objektum kulcs-érték párokkal, amelyek kulcsai a `sor:oszlop` formájúak, pl. `0:0`, `0:1`, `1:0` stb., és a hozzájuk tartozó értékek az egyes select kérdések lehetséges válaszlehetőségeit tartalmazó tömbök.. Default: `{}`.
 * __solution__ | `object`: megoldás objektum kulcs-érték párokkal, amelyek kulcsainak a `sor:oszlop` formája van, pl. `0:0`, `0:1`, `1:0` stb., és a hozzájuk tartozó értékek a megfelelő válasz elemének indexe a megfelelő `opciók` tömbből.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
-* __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: a tippek elhelyezése (vagy `top`, `left`, `right`, vagy `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
 * __provideFeedback__ | `string`: hogy egyáltalán "semmilyen" visszajelzést, "egyéni" visszajelzést adjon a beadott válasz(ok)ra, vagy "általános" visszajelzést az összes kérdésre vonatkozóan.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: engedélyezi-e, hogy az egyes jelölőnégyzetekben történő kiválasztás nélkül is lehessen benyújtani a pályázatokat. Default: `false`.

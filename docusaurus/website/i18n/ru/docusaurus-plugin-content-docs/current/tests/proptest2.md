@@ -14,7 +14,7 @@ sidebar_label: Two-Sample Proportion Test
 * __var2__ | `(string|Factor)`: имя второй переменной (`var2` или `group` должны быть поставлены). Default: `none`.
 * __group__ | `(string|Factor)`: имя переменной группировки (необходимо указать `var2` или `group`). Default: `none`.
 * __alpha__ | `number`: уровень значимости. Default: `0.05`.
-* __direction__ | `string`: направление теста (либо `без`, `грэйтер`, либо `двухстороннее`). Default: `'two-sided'`.
+* __direction__ | `string`: направление теста (либо `less`, `greater`, либо `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: разница ниже H0. Default: `0`.
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 

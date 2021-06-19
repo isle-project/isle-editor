@@ -9,7 +9,7 @@ En fråga som ber användaren att ladda upp en bild.
 ## Alternativ
 
 * __question__ | `(string|node)`: text för frågan. Default: `''`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.

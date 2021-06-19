@@ -14,7 +14,7 @@ Una domanda con una risposta composta da più caselle di selezione.
 * __options__ | `object`: con coppie chiave-valore con chiavi aventi la forma `row:col`, p.e. `0:0`, `0:1`, `1:0` ecc. e i loro valori corrispondenti sono array delle possibili scelte di risposta per le singole domande selezionate. Default: `{}`.
 * __solution__ | `object`: oggetto soluzione con coppie chiave-valore con chiavi che hanno la forma `row:col`, p.e. `0:0`, `0:1`, `1:0` ecc. e i loro valori corrispondenti sono l'indice dell'elemento di risposta corretto dalla rispettiva matrice `options`. Default: `{}`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
-* __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'bottom'`.
+* __hintPlacement__ | `string`: posizionamento dei suggerimenti (`top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __provideFeedback__ | `string`: se fornire un feedback "nessuno", un feedback "individuale" sulla/e risposta/e fornita/e o un feedback "generale" per tutte le domande. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: se consentire l'invio senza selezione in ogni casella di selezione. Default: `false`.

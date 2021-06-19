@@ -4214,6 +4214,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "headerTag",
+				"type": "string",
+				"description": "Panel-prop-headerTag",
+				"defaultValue": "h3"
+			},
+			{
 				"name": "footer",
 				"type": "(string|node)",
 				"description": "Panel-prop-footer",

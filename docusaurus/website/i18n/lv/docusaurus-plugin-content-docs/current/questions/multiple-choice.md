@@ -11,7 +11,7 @@ ISLE komponents, kas atveido jautājumu ar vairākiem atbilžu variantiem. Tā a
 * __question__ | `(string|node)`: jautājums, kas parādīts vairāku atbilžu izvēles komponenta augšpusē.. Default: `''`.
 * __solution__ | `(number|array)`: skaitlis, kas apzīmē pareizo atbildi, vai pareizo atbilžu numuru kopums, ja skolēnam būtu jāspēj izvēlēties vairākas atbildes.. Default: `none`.
 * __answers__ | `array (required)`: atbilžu objektu `maseja`. Katrai atbildei jābūt objektam ar `saturs` un `paskaidrojums` laukiem, kas apzīmē parādīto atbildes variantu un skaidrojumu, kas redzams pēc jautājuma iesniegšanas, lai paskaidrotu, kāpēc atbilde ir pareiza vai nepareiza.. Default: `none`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __disabled__ | `boolean`: kontrolē, vai jautājums ir atspējots. Default: `false`.

@@ -14,7 +14,7 @@ Kahe proovi proportsioonitest.
 * __var2__ | `(string|Factor)`: teise muutuja nimi (tuleb esitada `var2` või `group`). Default: `none`.
 * __group__ | `(string|Factor)`: grupeeriva muutuja nimi (tuleb esitada `var2` või `group`). Default: `none`.
 * __alpha__ | `number`: olulisuse tase. Default: `0.05`.
-* __direction__ | `string`: testi suund (kas "vähem", "suurem" või "kahepoolne").. Default: `'two-sided'`.
+* __direction__ | `string`: testi suund (kas `less`, `greater` või `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: erinevus H0 korral. Default: `0`.
 * __showDecision__ | `boolean`: kontrollib, kas näidata, kas nullhüpotees lükatakse tagasi määratud olulisuse tasemel.. Default: `false`.
 

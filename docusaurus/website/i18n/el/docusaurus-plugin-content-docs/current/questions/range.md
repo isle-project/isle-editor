@@ -10,7 +10,7 @@ sidebar_label: Range Question
 
 * __question__ | `(string|node)`: εμφανιζόμενη ερώτηση. Default: `''`.
 * __solution__ | `array<number>`: πίνακας δύο στοιχείων που περιέχει τα τελικά σημεία του σωστού εύρους. Default: `none`.
-* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε "πάνω", "αριστερά", "δεξιά" ή "κάτω"). Default: `'top'`.
+* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε `top`, `left`, `right` ή `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: υποδείξεις που παρέχουν καθοδήγηση για τον τρόπο απάντησης στην ερώτηση. Default: `[]`.
 * __labels__ | `array`: πίνακας δύο στοιχείων με προσαρμοσμένες ετικέτες εκτός των "Lower" και "Upper". Default: `none`.
 * __feedback__ | `boolean`: ελέγχει αν θα εμφανίζονται κουμπιά ανάδρασης. Default: `true`.

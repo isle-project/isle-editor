@@ -12,7 +12,7 @@ sidebar_label: Slider
 * __dots__ | `boolean`: 下部にドットを表示して、スライドにすばやく移動できるようにしました。. Default: `true`.
 * __fade__ | `boolean`: スライド間の遷移にフェードを使用するかどうかを制御します。. Default: `false`.
 * __draggable__ | `boolean`: ユーザーがスライドをドラッグしてスライド間を移動できるかどうかを制御します。. Default: `false`.
-* __pagination__ | `string`: ページネーションを `top`, `bottom`, `両方に表示するかどうか。. Default: `'bottom'`.
+* __pagination__ | `string`: ページネーションを `top`, `bottom`, `both`.. Default: `'bottom'`.
 * __goto__ | `number`: プロパティが変更された場合、コンポーネントは、選択されたインデックスを持つスライドにジャンプします。. Default: `0`.
 * __infinite__ | `boolean`: スライドショーの内容をラップするかどうかを制御します。. Default: `false`.
 * __interval__ | `number`: 自動スライドチェンジの時間間隔を設定します。. Default: `none`.

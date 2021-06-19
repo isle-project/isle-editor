@@ -14,7 +14,7 @@ Divu izlases proporciju tests.
 * __var2__ | `(string|Factor)`: otrā mainīgā nosaukums (jānorāda `var2` vai `group`).. Default: `none`.
 * __group__ | `(string|Factor)`: grupēšanas mainīgā nosaukums (jānorāda `var2` vai `group`).. Default: `none`.
 * __alpha__ | `number`: nozīmīguma līmenis. Default: `0.05`.
-* __direction__ | `string`: testa virziens (`mazāks`, `lielāks` vai `divpusējs`).. Default: `'two-sided'`.
+* __direction__ | `string`: testa virziens (`less`, `greater` vai `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: atšķirība saskaņā ar H0. Default: `0`.
 * __showDecision__ | `boolean`: kontrolē, vai attēlot, ja nulles hipotēze ir noraidīta pie norādītā nozīmīguma līmeņa.. Default: `false`.
 

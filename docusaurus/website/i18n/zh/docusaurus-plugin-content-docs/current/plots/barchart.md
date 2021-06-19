@@ -18,7 +18,7 @@ sidebar_label: Bar Chart
 * __relative__ | `boolean`: 是否计算各组内的相对频率？. Default: `false`.
 * __totalPercent__ | `boolean`: 是否将整体条形图显示为相对频率. Default: `false`.
 * __xOrder__ | `string`: "总数"、"类别"、"最小值"、"最大值"、"平均值 "或 "中位数 "中的任意一个。. Default: `none`.
-* __direction__ | `string`: 如何在X轴旁排列柱形图（"升 "或 "降"）？. Default: `'ascending'`.
+* __direction__ | `string`: 如何在X轴旁排列柱形图(`ascending` 或 `descending`). Default: `'ascending'`.
 
 
 ## 例子

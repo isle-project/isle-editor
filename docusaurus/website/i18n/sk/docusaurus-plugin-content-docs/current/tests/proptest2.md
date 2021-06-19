@@ -14,7 +14,7 @@ Dvojvýberový proporčný test.
 * __var2__ | `(string|Factor)`: názov druhej premennej (je potrebné uviesť `var2` alebo `group`). Default: `none`.
 * __group__ | `(string|Factor)`: názov zoskupujúcej premennej (je potrebné uviesť `var2` alebo `group`). Default: `none`.
 * __alpha__ | `number`: úroveň významnosti. Default: `0.05`.
-* __direction__ | `string`: smer testu (buď `menej`, `viac` alebo `obojstranne`). Default: `'two-sided'`.
+* __direction__ | `string`: smer testu (buď `less`, `greater` alebo `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: rozdiel podľa H0. Default: `0`.
 * __showDecision__ | `boolean`: kontroluje, či sa zobrazí, ak je nulová hypotéza zamietnutá na zadanej hladine významnosti.. Default: `false`.
 

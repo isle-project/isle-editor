@@ -10,7 +10,7 @@ ISLE komponentas, skirtas klausimams, į kuriuos mokiniai turėtų atsakyti lais
 
 * __question__ | `(string|node)`: laisvo teksto klausimų komponento viršuje rodomas klausimas.. Default: `''`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'top'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'top'`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __solution__ | `(string|node)`: pavyzdinis atsakymas į problemą. Default: `''`.
 * __instantSolution__ | `boolean`: ar galima iš karto perjungti modelio atsakymo rodymą. Default: `false`.

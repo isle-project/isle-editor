@@ -11,7 +11,7 @@ ISLE-komponentti, joka renderöi monivalintakysymyksen. Se tukee tapauksia, jois
 * __question__ | `(string|node)`: monivalintakomponentin yläosassa näkyvä kysymys.. Default: `''`.
 * __solution__ | `(number|array)`: numero, joka osoittaa, mikä vastaus on oikea, tai oikeiden vastausnumeroiden "joukko", jos oppijan pitäisi pystyä valitsemaan useita vastauksia.. Default: `none`.
 * __answers__ | `array (required)`: vastausobjektien joukko. Jokaisen vastauksen tulisi olla objekti, jossa on `content`- ja `explanation`-kentät, jotka ilmaisevat näytettävän vastausvaihtoehdon ja selityksen, joka näkyy kysymyksen lähettämisen jälkeen ja selittää, miksi vastaus on oikea tai väärä.. Default: `none`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __disabled__ | `boolean`: valvoo, onko kysymys poistettu käytöstä. Default: `false`.

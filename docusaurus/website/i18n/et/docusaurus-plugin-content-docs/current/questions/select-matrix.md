@@ -14,7 +14,7 @@ Küsimus, mille vastus koosneb mitmest valikukastist.
 * __options__ | `object`: objekt võtme- ja väärtuse paaridega, mille võtmed on kujul `row:col`, nt `0:0`, `0:1`, `1:0` jne, ja nende vastavad väärtused on üksikute valikuküsimuste võimalike vastusevariantide massiivid.. Default: `{}`.
 * __solution__ | `object`: lahenduse objekt, mille võtme- ja väärtuse paarid võtmed on kujul `row:col`, nt `0:0`, `0:1`, `1:0` jne, ja nende vastavad väärtused on õige vastuse elemendi indeks vastavast `options` massiivi elemendist. Default: `{}`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'bottom'`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.
 * __provideFeedback__ | `string`: kas anda tagasisidet "üldse mitte mingi", "individuaalset" tagasisidet esitatud vastuse(te) kohta või "üldist" tagasisidet kõigi küsimuste kohta.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: kas lubada esitamist ilma igas valikukastis tehtud valikuta. Default: `false`.

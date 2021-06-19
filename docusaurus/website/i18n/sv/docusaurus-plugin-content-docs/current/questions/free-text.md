@@ -10,7 +10,7 @@ En ISLE-komponent för frågor där elevernas svar ska lämnas i form av fritext
 
 * __question__ | `(string|node)`: den fråga som visas överst i fritextfrågan.. Default: `''`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'top'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __solution__ | `(string|node)`: En modell för att lösa problemet.. Default: `''`.
 * __instantSolution__ | `boolean`: Om man kan växla mellan visningen av modellens svar omedelbart.. Default: `false`.

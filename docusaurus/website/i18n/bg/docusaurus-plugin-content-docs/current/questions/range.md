@@ -10,7 +10,7 @@ sidebar_label: Range Question
 
 * __question__ | `(string|node)`: показан въпрос. Default: `''`.
 * __solution__ | `array<number>`: двуелементен масив, съдържащ крайните точки на правилния диапазон. Default: `none`.
-* __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'top'`.
+* __hintPlacement__ | `string`: разположение на подсказките (или `top`, `right`, `left`, или `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: указания за това как да отговорите на въпроса. Default: `[]`.
 * __labels__ | `array`: двуелементен масив от персонализирани етикети, различни от "Lower" и "Upper". Default: `none`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.

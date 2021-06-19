@@ -13,7 +13,7 @@ sidebar_label: One-Sample Mean Test
 * __type__ | `string`: тип теста (`Z Test` или `T Test`). Default: `'T Test'`.
 * __stdev__ | `number`: стандартное отклонение (для `Z Test`). Default: `none`.
 * __alpha__ | `number`: уровень значимости. Default: `0.05`.
-* __direction__ | `string`: направление теста (либо `без`, `грэйтер`, либо `двухстороннее`). Default: `'two-sided'`.
+* __direction__ | `string`: направление теста (либо `less`, `greater`, либо `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: среднее значение по нулевой гипотезе. Default: `0`.
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 

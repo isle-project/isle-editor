@@ -9,7 +9,7 @@ Vprašanje, ki od uporabnika zahteva, da naloži sliko.
 ## Možnosti
 
 * __question__ | `(string|node)`: besedilo za vprašanje. Default: `''`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
 * __chat__ | `boolean`: nadzoruje, ali naj ima element integriran klepet.. Default: `false`.

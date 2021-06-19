@@ -10,7 +10,7 @@ sidebar_label: Free Text Question
 
 * __question__ | `(string|node)`: την ερώτηση που εμφανίζεται στην κορυφή του στοιχείου ερωτήσεων ελεύθερου κειμένου. Default: `''`.
 * __hints__ | `array<(string|node)>`: υποδείξεις που παρέχουν καθοδήγηση για τον τρόπο απάντησης στην ερώτηση. Default: `[]`.
-* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε "πάνω", "αριστερά", "δεξιά" ή "κάτω"). Default: `'top'`.
+* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε `top`, `left`, `right` ή `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: ελέγχει αν θα εμφανίζονται κουμπιά ανάδρασης. Default: `true`.
 * __solution__ | `(string|node)`: μια πρότυπη απάντηση στο πρόβλημα. Default: `''`.
 * __instantSolution__ | `boolean`: αν μπορεί κανείς να αλλάξει αμέσως την εμφάνιση της πρότυπης απάντησης. Default: `false`.

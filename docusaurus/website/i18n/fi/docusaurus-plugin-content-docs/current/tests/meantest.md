@@ -13,7 +13,7 @@ Yhden otoksen keskiarvotesti.
 * __type__ | `string`: testin tyyppi (Z- tai T-testi).. Default: `'T Test'`.
 * __stdev__ | `number`: keskihajonta (Z-testiä varten). Default: `none`.
 * __alpha__ | `number`: merkitsevyystaso. Default: `0.05`.
-* __direction__ | `string`: testin suunta (joko "pienempi", "suurempi" tai "kaksipuolinen").. Default: `'two-sided'`.
+* __direction__ | `string`: testin suunta (joko `less`, `greater` tai `two-sided`).. Default: `'two-sided'`.
 * __mu0__ | `number`: keskiarvo nollahypoteesin mukaisesti. Default: `0`.
 * __showDecision__ | `boolean`: valvoo, näytetäänkö, jos nollahypoteesi hylätään määritetyllä merkitsevyystasolla.. Default: `false`.
 

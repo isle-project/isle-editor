@@ -13,7 +13,7 @@ En komponent för utvalda frågor.
 * __solution__ | `number`: index för lösningselementet i `options`.. Default: `none`.
 * __preselected__ | `number`: index för förvalda svarsalternativ. Default: `0`.
 * __inline__ | `boolean`: kontrollerar om komponenten ska återges inline eller inte. Default: `false`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'top'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.

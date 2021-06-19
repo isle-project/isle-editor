@@ -12,7 +12,7 @@ Oppimiskomponentti normaalijakauman todennäköisyyksien laskemiseen.
 * __hideCDF__ | `boolean`: valvoo, piilotetaanko CDF-diagrammit. Default: `false`.
 * __minStDev__ | `number`: pienin keskihajonta. Default: `1`.
 * __step__ | `(number|string)`: vierityssyötteen askelkoko. Default: `0.01`.
-* __tabs__ | `array<string>`: mitkä välilehdet näytetään (joko "pienempi", "suurempi" tai "alue").. Default: `[
+* __tabs__ | `array<string>`: mitkä välilehdet näytetään (joko `less`, `greater` tai "alue").. Default: `[
   'smaller',
   'greater',
   'range'

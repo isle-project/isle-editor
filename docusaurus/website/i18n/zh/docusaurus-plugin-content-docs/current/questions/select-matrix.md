@@ -14,7 +14,7 @@ sidebar_label: Select Question Matrix
 * __options__ | `object`: 对象的键值对，键值形式为`row:col`，例如`0:0`、`0:1`、`1:0`等，其相应的值是各个选择题可能的答案选择数组。. Default: `{}`.
 * __solution__ | `object`: 含有键值对的解决方案对象，键值形式为`row:col`，例如`0:0`，`0:1`，`1:0`等，其相应的值是相应`选项`数组中正确答案元素的索引。. Default: `{}`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'bottom'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'bottom'`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __provideFeedback__ | `string`: 是提供 "无 "反馈，还是对提交的答案提供 "个别 "反馈，还是对所有问题提供 "总体 "反馈；. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: 是否允许在每个选择框中不做选择的情况下进行提交。. Default: `false`.

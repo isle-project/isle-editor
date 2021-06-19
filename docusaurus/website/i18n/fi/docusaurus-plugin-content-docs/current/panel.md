@@ -9,7 +9,8 @@ Kortin osa.
 ## Vaihtoehdot
 
 * __className__ | `string`: CSS-luokan nimi. Default: `''`.
-* __header__ | `(string|node)`: paneelin otsikko (h3). Default: `none`.
+* __header__ | `(string|node)`: paneelin otsikko. Default: `none`.
+* __headerTag__ | `string`: tag, jota käytetään paneelin otsikossa. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneelin alatunniste. Default: `none`.
 * __minimizable__ | `boolean`: voidaanko paneeli minimoida. Default: `false`.
 * __fullscreen__ | `boolean`: voidaanko paneeli tehdä koko näytön kokoiseksi (vain ohjaajille).. Default: `false`.

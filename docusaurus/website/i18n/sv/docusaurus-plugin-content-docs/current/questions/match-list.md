@@ -10,7 +10,7 @@ En ISLE-komponent som visar en fråga där eleven måste matcha element från tv
 
 * __question__ | `(string|node)`: fråga som ska visas högst upp i matchlistan frågekomponent.. Default: `''`.
 * __elements__ | `array<{a,b}>`: ett "array" med de korrekta paren som visas överst i fritextfrågan. Varje `array`-element måste vara ett `object` med egenskaperna `a` och `b`; förse element med endast egenskaperna `a` eller `b` för att lägga till distraherande svar.. Default: `[]`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __provideFeedback__ | `boolean`: anger om lösningen ska vara tillgänglig efter att eleverna har lämnat in sina svar.. Default: `true`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.

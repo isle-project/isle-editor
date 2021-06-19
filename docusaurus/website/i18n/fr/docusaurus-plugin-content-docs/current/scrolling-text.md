@@ -10,7 +10,7 @@ Un élément d'arrière-plan dynamique qui parcourt une liste de textes à un in
 
 * __text__ | `(string|array<string>)`: texte ou liste de textes à afficher. Default: `[]`.
 * __loop__ | `boolean`: indique si le processus doit être affiché à l'infini. Default: `false`.
-* __direction__ | `string`: la direction du flux de texte (soit "à gauche", "à droite", "en haut", "en bas", "à la trace", "au foyer", ou "en rotation"). Default: `'right'`.
+* __direction__ | `string`: la direction du flux de texte (soit `left`, `right`, `top`, `bottom`, "à la trace", "au foyer", ou "en rotation"). Default: `'right'`.
 * __hold__ | `number`: le temps d'immobilisation du texte (en secondes). Default: `5`.
 * __wait__ | `number`: le délai avant l'arrivée d'un nouveau texte (en secondes). Default: `3`.
 * __inTime__ | `number`: durée de l'effet d'entrée (en secondes). Default: `1`.

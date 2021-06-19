@@ -11,7 +11,7 @@ Kārtības jautājumu komponents, kas liek skolēnam sakārtot elementu kopumu p
 * __question__ | `(string|node)`: jautājums, kurā skolēnam ir jāsakārto pieejamie `varianti` pareizā secībā.. Default: `''`.
 * __options__ | `array (required)`: tekstu masīvs, kas skolēnam jāsakārto pareizā secībā (pieņemts, ka tā ir norādītā secība).. Default: `none`.
 * __provideFeedback__ | `boolean`: kontrolē, vai tiek rādīts paziņojums, kas parāda, vai iesniegtā atbilde ir pareiza vai nē.. Default: `true`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.

@@ -18,7 +18,7 @@ sidebar_label: Bar Chart
 * __relative__ | `boolean`: αν θα υπολογίζονται οι σχετικές συχνότητες μέσα σε κάθε ομάδα. Default: `false`.
 * __totalPercent__ | `boolean`: αν θα εμφανίζονται οι συνολικές μπάρες ως σχετικές συχνότητες. Default: `false`.
 * __xOrder__ | `string`: είτε `total`, `category`, `min`, `max`, `mean`, ή `median`. Default: `none`.
-* __direction__ | `string`: πώς να διατάξετε τις ράβδους κατά μήκος του άξονα x ("αύξουσα" ή "φθίνουσα"). Default: `'ascending'`.
+* __direction__ | `string`: πώς να διατάξετε τις ράβδους κατά μήκος του άξονα x (`ascending` ή `descending`). Default: `'ascending'`.
 
 
 ## Παραδείγματα

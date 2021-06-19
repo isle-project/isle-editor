@@ -9,7 +9,8 @@ Součást karty.
 ## Možnosti
 
 * __className__ | `string`: Název třídy CSS. Default: `''`.
-* __header__ | `(string|node)`: nadpis panelu (h3). Default: `none`.
+* __header__ | `(string|node)`: záhlaví panelu. Default: `none`.
+* __headerTag__ | `string`: tag použitý pro záhlaví panelu. Default: `'h3'`.
 * __footer__ | `(string|node)`: zápatí panelu. Default: `none`.
 * __minimizable__ | `boolean`: zda lze panel minimalizovat. Default: `false`.
 * __fullscreen__ | `boolean`: zda lze panel zobrazit na celou obrazovku (pouze pro instruktory).. Default: `false`.

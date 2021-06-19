@@ -13,7 +13,7 @@ Egymintás átlagteszt.
 * __type__ | `string`: a vizsgálat típusa (Z-teszt vagy T-teszt). Default: `'T Test'`.
 * __stdev__ | `number`: szórás (Z-teszt esetén). Default: `none`.
 * __alpha__ | `number`: szignifikancia szint. Default: `0.05`.
-* __direction__ | `string`: a teszt iránya (vagy "kisebb", "nagyobb", vagy "kétoldalú"). Default: `'two-sided'`.
+* __direction__ | `string`: a teszt iránya (vagy `less`, `greater`, vagy `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: a nullhipotézis szerinti átlag. Default: `0`.
 * __showDecision__ | `boolean`: ellenőrzi, hogy megjelenjen-e, ha a nullhipotézis a megadott szignifikancia szinten elutasításra kerül.. Default: `false`.
 

@@ -13,7 +13,7 @@ sidebar_label: Select Question
 * __solution__ | `number`: "选项 "中解决方案要素的索引。. Default: `none`.
 * __preselected__ | `number`: 预选答案选项索引. Default: `0`.
 * __inline__ | `boolean`: 控制该组件是否被内嵌渲染。. Default: `false`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __chat__ | `boolean`: 控制该元素是否应该有一个集成的聊天. Default: `false`.

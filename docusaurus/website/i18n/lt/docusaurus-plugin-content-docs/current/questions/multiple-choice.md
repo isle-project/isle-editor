@@ -11,7 +11,7 @@ ISLE komponentas, kuris atvaizduoja daugkartinio pasirinkimo klausimą. Jis pala
 * __question__ | `(string|node)`: klausimas, rodomas kelių pasirinkimų komponento viršuje.. Default: `''`.
 * __solution__ | `(number|array)`: skaičius, žymintis teisingą atsakymą, arba teisingų atsakymų skaičių masyvas, jei mokinys gali pasirinkti kelis atsakymus.. Default: `none`.
 * __answers__ | `array (required)`: atsakymų objektų `dėžė`. Kiekvienas atsakymas turėtų būti objektas su `turinio` ir `paaiškinimo` laukais, kurie žymi rodomą atsakymo variantą ir paaiškinimą, matomą pateikus klausimą, paaiškinantį, kodėl atsakymas yra teisingas arba neteisingas.. Default: `none`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __disabled__ | `boolean`: kontroliuoja, ar klausimas yra išjungtas.. Default: `false`.

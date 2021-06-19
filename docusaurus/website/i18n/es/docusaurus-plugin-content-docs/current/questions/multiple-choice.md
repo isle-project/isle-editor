@@ -11,7 +11,7 @@ Un componente de ISLE que hace una pregunta de opción múltiple. Apoya el caso 
 * __question__ | `(string|node)`: la pregunta que aparece en la parte superior del componente de selección múltiple. Default: `''`.
 * __solution__ | `(number|array)`: número que denota qué respuesta es correcta o una "matriz" de los números de respuesta correctos en caso de que el estudiante deba ser capaz de seleccionar múltiples respuestas. Default: `none`.
 * __answers__ | `array (required)`: una "matriz" de objetos de respuesta. Cada respuesta debe ser un objeto con campos de "contenido" y "explicación", que denotan la opción de respuesta mostrada y una explicación visible después de que la pregunta haya sido presentada para explicar por qué la respuesta es correcta o incorrecta. Default: `none`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __disabled__ | `boolean`: controla si la pregunta está desactivada. Default: `false`.

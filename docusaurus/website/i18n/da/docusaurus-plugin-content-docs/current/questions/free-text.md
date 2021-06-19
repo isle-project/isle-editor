@@ -10,7 +10,7 @@ En ISLE-komponent til spørgsmål, hvor elevernes svar skal gives i form af fri 
 
 * __question__ | `(string|node)`: det spørgsmål, der vises øverst i spørgselselementet med fritekst. Default: `''`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'top'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __solution__ | `(string|node)`: en model til løsning af problemet. Default: `''`.
 * __instantSolution__ | `boolean`: om man straks kan skifte mellem visning af modelbesvarelsen. Default: `false`.

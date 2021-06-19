@@ -14,7 +14,7 @@ Kysymys, jonka vastaus koostuu useista valintaruuduista.
 * __options__ | `object`: objekti, jossa on avain-arvopareja, joiden avaimet ovat muotoa `row:col`, esim. `0:0`, `0:1`, `1:0` jne., ja niiden vastaavat arvot ovat yksittäisten valintakysymysten mahdollisten vastausvaihtoehtojen taulukoita.. Default: `{}`.
 * __solution__ | `object`: ratkaisuobjekti, jossa on avain-arvopareja, joiden avaimet ovat muotoa `row:col`, esim. `0:0`, `0:1`, `1:0` jne. ja joiden vastaavat arvot ovat oikean vastauselementin indeksi vastaavasta `options`-joukosta.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'bottom'`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __provideFeedback__ | `string`: annetaanko palautetta "ei lainkaan", "yksittäistä" palautetta annetuista vastauksista vai "yleistä" palautetta kaikista kysymyksistä.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: sallitaanko lähettäminen ilman kussakin valintaruudussa tehtyä valintaa.. Default: `false`.

@@ -10,7 +10,7 @@ sidebar_label: Scrolling Text
 
 * __text__ | `(string|array<string>)`: 文本或要显示的文本列表. Default: `[]`.
 * __loop__ | `boolean`: 表示该过程是否要无限显示。. Default: `false`.
-* __direction__ | `string`: 文本流的方向（可以是 "左"、"右"、"上"、"下"、"跟踪"、"焦点 "或 "旋涡"）。. Default: `'right'`.
+* __direction__ | `string`: 文本流的方向（可以是 `left`、"右"、`top`、`bottom`、"跟踪"、"焦点 "或 "旋涡"）。. Default: `'right'`.
 * __hold__ | `number`: 静止时间(秒). Default: `5`.
 * __wait__ | `number`: 新文本到达前的时间（秒）。. Default: `3`.
 * __inTime__ | `number`: 入场时间(秒). Default: `1`.

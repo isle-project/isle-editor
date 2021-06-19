@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `object` CSS-avain-arvopareilla, joita sovelletaan yhtälön säiliöön.. Default: `{}`.
 * __tag__ | `string`: Oikealla puolella näkyvät näyttöyhtälöiden mukautetut merkit. Oletusarvo on oppitunnin sisällä olevan yhtälön numero.. Default: `none`.
 * __elems__ | `object`: `objekti`, jossa `avaimet` tarkoittavat LaTeX-merkkejä ja niiden vastaavat arvot ovat konfigurointi `objekteja`, jotta ne olisivat interaktiivisia. Työkaluvihjeen asettaminen näyttää työkaluvihjeen, kun LaTeX-merkkien päälle viedään hiiren kursori. Muuttujaominaisuuden `variable` asettaminen näyttää liukusäätimen, jolla voidaan muuttaa vastaavaa tilamuuttujaa; tässä tapauksessa tuetaan lisäominaisuuksia `legend`, `min`, `max` ja `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: ponnahdusikkunan sijainti määritetyille "elementeille" (joko "ylhäällä", "oikealla", "alhaalla" tai "vasemmalla").. Default: `'top'`.
+* __popoverPlacement__ | `string`: ponnahdusikkunan sijainti määritetyille "elementeille" (joko `top`, `right`, `bottom` tai `left`).. Default: `'top'`.
 * __onPopover__ | `function`: callback `function`, kun ponnahdusikkuna kytketään päälle tai pois päältä; saa ainoana argumenttinaan näytön tilan boolean-arvona.. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback `function`, joka käynnistyy aina kun käyttäjä klikkaa yhtälöä.. Default: `none`.
 

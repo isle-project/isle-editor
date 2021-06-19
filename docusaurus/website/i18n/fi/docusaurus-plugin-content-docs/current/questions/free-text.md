@@ -10,7 +10,7 @@ ISLE-komponentti kysymyksille, joihin oppilaiden olisi vastattava vapaan tekstin
 
 * __question__ | `(string|node)`: vapaatekstikysymysosion yläosassa näkyvä kysymys.. Default: `''`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'top'`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
 * __solution__ | `(string|node)`: mallivastaus ongelmaan. Default: `''`.
 * __instantSolution__ | `boolean`: voiko mallivastauksen näyttöä vaihtaa välittömästi?. Default: `false`.

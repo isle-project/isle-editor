@@ -12,7 +12,7 @@ En komponent som visar sina barn i ett bildspel eller en karusell.
 * __dots__ | `boolean`: visning av prickar i botten för att snabbt navigera till en bild.. Default: `true`.
 * __fade__ | `boolean`: Kontrollerar om fading används för att övergå mellan diabilderna.. Default: `false`.
 * __draggable__ | `boolean`: kontrollerar om användare kan dra i bildrutorna för att navigera mellan dem. Default: `false`.
-* __pagination__ | `string`: om sidindelningen ska visas antingen på "topp", "botten" eller "båda".. Default: `'bottom'`.
+* __pagination__ | `string`: om sidindelningen ska visas antingen på `top`, `bottom` eller "båda".. Default: `'bottom'`.
 * __goto__ | `number`: Om egenskapen ändras, hoppar komponenten till bilden med det valda indexet.. Default: `0`.
 * __infinite__ | `boolean`: kontrollerar om bildspelet ska svepas runt sitt innehåll. Default: `false`.
 * __interval__ | `number`: ställer in ett tidsintervall för ett automatiskt byte av diabilder. Default: `none`.

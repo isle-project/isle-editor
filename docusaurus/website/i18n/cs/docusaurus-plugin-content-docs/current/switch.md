@@ -10,7 +10,7 @@ Komponenta Switch umožňuje zobrazit jeden prvek ze seznamu několika prvků. U
 
 * __active__ | `boolean`: řídí, zda je přepínač aktivní, nebo ne. Default: `true`.
 * __tooltip__ | `string`: nápověda zobrazená při najetí na přepínací prvek. Default: `none`.
-* __tooltipPos__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'top'`.
+* __tooltipPos__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'top'`.
 * __className__ | `string`: název třídy pro obklopující prvek span. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
 * __onChange__ | `function`: zpětné volání vyvolané při přepnutí prvků. Jako první argument obdrží index aktuálně zobrazeného podřízeného prvku.. Default: `onChange() {}`.

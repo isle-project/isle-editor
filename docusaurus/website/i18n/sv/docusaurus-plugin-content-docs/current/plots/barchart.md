@@ -18,7 +18,7 @@ Stapeldiagram.
 * __relative__ | `boolean`: Om man ska beräkna relativa frekvenser inom varje grupp.. Default: `false`.
 * __totalPercent__ | `boolean`: Om de totala staplarna ska visas som relativa frekvenser.. Default: `false`.
 * __xOrder__ | `string`: antingen `total`, `category`, `min`, `max`, `mean` eller `median`.. Default: `none`.
-* __direction__ | `string`: Hur ordnar man staplar längs x-axeln (uppåtgående eller nedåtgående)?. Default: `'ascending'`.
+* __direction__ | `string`: Hur ordnar man staplar längs x-axeln (`ascending` eller `descending`)?. Default: `'ascending'`.
 
 
 ## Exempel

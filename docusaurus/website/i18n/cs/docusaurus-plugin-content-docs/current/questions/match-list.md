@@ -10,7 +10,7 @@ Komponenta ISLE, která vykresluje otázku, v níž má žák správně přiřad
 
 * __question__ | `(string|node)`: otázka, která se má zobrazit v horní části součásti seznamu otázek.. Default: `''`.
 * __elements__ | `array<{a,b}>`: pole `array` obsahující správné dvojice, které se zobrazí v horní části volného textu otázky. Každý prvek `array` musí být `objekt` s vlastnostmi `a` a `b`; pro přidání distraktorových odpovědí dodejte prvky pouze s vlastnostmi `a` nebo `b`.. Default: `[]`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __provideFeedback__ | `boolean`: označuje, zda má být řešení přístupné i po odeslání odpovědí žáků.. Default: `true`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.

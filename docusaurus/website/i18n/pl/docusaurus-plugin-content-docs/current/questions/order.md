@@ -11,7 +11,7 @@ Element pytania o porządek, który prosi ucznia o uporządkowanie zbioru elemen
 * __question__ | `(string|node)`: pytanie, na które student musi uporządkować dostępne `opcje` w odpowiedniej kolejności. Default: `''`.
 * __options__ | `array (required)`: szereg tekstów, które student musi wnieść do właściwego zamówienia (zakładając, że jest to zamówienie dostarczone). Default: `none`.
 * __provideFeedback__ | `boolean`: kontroluje, czy ma zostać wyświetlone powiadomienie informujące o tym, czy udzielona odpowiedź jest prawidłowa, czy też nie. Default: `true`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo "na górze", "w lewo", "w prawo", albo "na dole"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo `top`, `left`, `right`, albo `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __chat__ | `boolean`: kontroluje, czy dany element powinien mieć zintegrowaną rozmowę. Default: `false`.

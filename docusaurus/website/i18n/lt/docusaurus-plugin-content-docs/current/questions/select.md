@@ -13,7 +13,7 @@ Pasirinkto klausimo komponentas.
 * __solution__ | `number`: sprendimo elemento indeksas `options`. Default: `none`.
 * __preselected__ | `number`: iš anksto pasirinkto atsakymo varianto indeksas. Default: `0`.
 * __inline__ | `boolean`: kontroliuoja, ar komponentas bus atvaizduojamas į eilutę, ar ne.. Default: `false`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'top'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __chat__ | `boolean`: kontroliuoja, ar elementas turi turėti integruotą pokalbių. Default: `false`.

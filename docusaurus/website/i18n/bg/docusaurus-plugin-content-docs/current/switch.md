@@ -10,7 +10,7 @@ sidebar_label: Switch Components
 
 * __active__ | `boolean`: контролира дали превключвателят е активен или не. Default: `true`.
 * __tooltip__ | `string`: подсказка за инструменти, показвана при преминаване с мишката над елемента на превключвателя. Default: `none`.
-* __tooltipPos__ | `string`: разположение на подсказката за инструменти (`горе`, `ляво`, `дясно` или `долу`). Default: `'top'`.
+* __tooltipPos__ | `string`: разположение на подсказката за инструменти (`top`, `right`, `left` или `bottom`). Default: `'top'`.
 * __className__ | `string`: име на класа на ограждащия елемент span. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 * __onChange__ | `function`: обратна връзка, извикана при превключване на елементи. Получава като първи аргумент индекса на текущо показваното дете. Default: `onChange() {}`.

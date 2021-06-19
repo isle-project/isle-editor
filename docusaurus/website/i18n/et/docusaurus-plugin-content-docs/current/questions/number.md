@@ -9,7 +9,7 @@ Number küsimus komponent.
 ## Valikud
 
 * __question__ | `(string|node)`: numbriküsimus. Default: `''`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.
 * __solution__ | `(number|array<number>)`: numbriline vastus probleemile (või mitu õiget vastust, kui on esitatud massiivi).. Default: `none`.

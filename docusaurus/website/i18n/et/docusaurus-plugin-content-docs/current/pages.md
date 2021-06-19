@@ -11,7 +11,7 @@ ISLE lehekülgede liigendamise komponent, mis võimaldab kasutajal liikuda lehek
 * __activePage__ | `number`: aktiivne lehekülg. Default: `1`.
 * __disabled__ | `boolean`: kontrollib, kas navigatsiooniriba on aktiivne või mitte. Default: `false`.
 * __title__ | `string`: kuvatakse lehekülgede konteineri pealkiri. Default: `''`.
-* __pagination__ | `string`: kas kuvada lehekülgede kaupa kas "üleval", "all" või "mõlemal".. Default: `'top'`.
+* __pagination__ | `string`: kas kuvada lehekülgede kaupa kas `top`, `bottom` või `both`.. Default: `'top'`.
 * __size__ | `string`: leheküljenuppude suurus (kas `default`, `lg` või `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: konteineri maksimaalne kõrgus. Kui varjatud lehekülg on kõrgem, lisatakse vertikaalne kerimisriba.. Default: `none`.
 * __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.

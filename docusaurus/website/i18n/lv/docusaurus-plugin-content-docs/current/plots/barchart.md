@@ -18,7 +18,7 @@ Svītru diagramma.
 * __relative__ | `boolean`: vai aprēķināt relatīvās frekvences katras grupas iekšienē.. Default: `false`.
 * __totalPercent__ | `boolean`: vai kopējās joslas attēlot kā relatīvās frekvences. Default: `false`.
 * __xOrder__ | `string`: vai nu `kopējais`, `kategorija`, `min`, `max`, `vidējais`, vai `mediāna`.. Default: `none`.
-* __direction__ | `string`: kā sakārtot joslas gar x asi (`augošā` vai `samazinošā`). Default: `'ascending'`.
+* __direction__ | `string`: kā sakārtot joslas gar x asi (`ascending` vai `descending`). Default: `'ascending'`.
 
 
 ## Piemēri

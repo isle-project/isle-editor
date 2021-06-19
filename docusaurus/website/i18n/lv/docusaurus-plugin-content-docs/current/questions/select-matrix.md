@@ -14,7 +14,7 @@ Jautājums ar atbildi, kas sastāv no vairākiem izvēles rūtiņām.
 * __options__ | `object`: objekts ar atslēgu-vērtību pāriem, kuru atslēgas ir formā `row:col`, piemēram, `0:0`, `0:1`, `1:0` utt., un to atbilstošās vērtības ir atsevišķu atlases jautājumu iespējamo atbilžu masīvi.. Default: `{}`.
 * __solution__ | `object`: risinājuma objekts ar atslēgu-vērtību pāriem, kuru atslēgas ir formā `row:col`, piemēram, `0:0`, `0:1`, `1:0` utt., un to atbilstošās vērtības ir pareizās atbildes elementa indekss no attiecīgā `options` masīva.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'bottom'`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __provideFeedback__ | `string`: vai vispār sniegt `nevienu` atgriezenisko saiti, `individuālu` atgriezenisko saiti par iesniegto(-ajām) atbildi(-ēm) vai `kopējo` atgriezenisko saiti par visiem jautājumiem.. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: vai atļaut iesniegšanu bez izvēles katrā izvēles lodziņā.. Default: `false`.

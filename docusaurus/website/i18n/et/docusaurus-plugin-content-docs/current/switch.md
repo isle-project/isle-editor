@@ -10,7 +10,7 @@ Komponent Switch võimaldab kuvada ühte elementi mitmest elemendist koosnevast 
 
 * __active__ | `boolean`: kontrollib, kas lüliti on aktiivne või mitte. Default: `true`.
 * __tooltip__ | `string`: tööriistavihik, mis kuvatakse, kui viidakse hiirega üle lülituselemendi. Default: `none`.
-* __tooltipPos__ | `string`: tööriistakriipsu paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'top'`.
+* __tooltipPos__ | `string`: tööriistakriipsu paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'top'`.
 * __className__ | `string`: ümbritseva span elemendi klassi nimi. Default: `''`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onChange__ | `function`: callback, mis kutsutakse esile, kui elemendid vahetatakse. Saab esimese argumendina hetkel kuvatava lapse indeksi.. Default: `onChange() {}`.

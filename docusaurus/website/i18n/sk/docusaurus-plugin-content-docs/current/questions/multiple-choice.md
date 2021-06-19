@@ -11,7 +11,7 @@ Komponent ISLE, ktorý vykresľuje otázku s viacerými možnosťami. Podporuje 
 * __question__ | `(string|node)`: otázka zobrazená v hornej časti komponentu s výberom odpovede. Default: `''`.
 * __solution__ | `(number|array)`: číslo označujúce, ktorá odpoveď je správna, alebo "pole" čísel správnych odpovedí v prípade, že by žiak mal byť schopný vybrať viacero odpovedí. Default: `none`.
 * __answers__ | `array (required)`: pole objektov odpovedí. Každá odpoveď by mala byť objektom s poliami `obsah` a `vysvetlenie`, ktoré označujú zobrazenú možnosť odpovede a vysvetlenie viditeľné po odoslaní otázky, ktoré vysvetľuje, prečo je odpoveď správna alebo nesprávna.. Default: `none`.
-* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `hore`, `vľavo`, `vpravo` alebo `spodku`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `top`, `left`, `right` alebo `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovedy, ktoré poskytujú návod, ako odpovedať na otázku. Default: `[]`.
 * __feedback__ | `boolean`: ovláda, či sa majú zobrazovať tlačidlá spätnej väzby.. Default: `true`.
 * __disabled__ | `boolean`: kontroluje, či je otázka vypnutá. Default: `false`.

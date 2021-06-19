@@ -10,13 +10,13 @@ Un componente de ISLE que hace una pregunta en la que el aprendiz tiene que empa
 
 * __question__ | `(string|node)`: pregunta que se mostrará en la parte superior del componente de la pregunta de la lista de coincidencia. Default: `''`.
 * __elements__ | `array<{a,b}>`: una "matriz" que contiene los pares correctos mostrados en la parte superior del componente de preguntas de texto libre. Cada elemento de la "matriz" debe ser un "objeto" con propiedades "a" y "b"; suministrar elementos con sólo propiedades "a" o "b" para añadir respuestas de distracción. Default: `[]`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __provideFeedback__ | `boolean`: indica si la solución debe ser accesible después de que los alumnos presenten sus respuestas. Default: `true`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __chat__ | `boolean`: controla si el elemento debe tener un chat integrado. Default: `false`.
 * __colorScale__ | `array`: si se establece, los colores suministrados se utilizan para los azulejos. Default: `none`.
-* __shuffle__ | `string`: especifica si se barajan las columnas "izquierda", "derecha" o "ambas" cuyos elementos tienen que coincidir; suministre "ninguno" o cualquier otro valor para no barajar los elementos de ninguno de los lados (puede ser útil en caso de que no haya solución). Default: `'both'`.
+* __shuffle__ | `string`: especifica si se barajan las columnas `left`, `right` o "ambas" cuyos elementos tienen que coincidir; suministre "ninguno" o cualquier otro valor para no barajar los elementos de ninguno de los lados (puede ser útil en caso de que no haya solución). Default: `'both'`.
 * __disableSubmitNotification__ | `boolean`: controla si se desactivan las notificaciones de presentación. Default: `false`.
 * __submissionMsg__ | `string`: La notificación que se muestra cuando el aprendiz presenta su respuesta por primera vez. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: notificación mostrada para todas las presentaciones después de la primera. Default: `'You have successfully re-submitted your answer.'`.

@@ -10,7 +10,7 @@ Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczon
 
 * __question__ | `(string|node)`: pytanie wyświetlane w górnej części komponentu pytań tekstowych. Default: `''`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo "na górze", "w lewo", "w prawo", albo "na dole"). Default: `'top'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo `top`, `left`, `right`, albo `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __solution__ | `(string|node)`: modelowa odpowiedź na problem. Default: `''`.
 * __instantSolution__ | `boolean`: czy można od razu przełączyć wyświetlanie odpowiedzi modelu. Default: `false`.

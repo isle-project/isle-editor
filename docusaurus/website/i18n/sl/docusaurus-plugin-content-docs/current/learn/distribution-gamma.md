@@ -12,7 +12,7 @@ Učna komponenta za izračun verjetnosti porazdelitve gama.
 * __scaleParameterization__ | `boolean`: določa, ali naj se namesto oblike in stopnje uporabi parametrizacija, ki vključuje parameter oblike in lestvice.. Default: `false`.
 * __step__ | `(number|string)`: velikost koraka vnosa za pomikanje. Default: `0.01`.
 * __symbols__ | `boolean`: ali naj se za parametre prikažejo grški simboli. Default: `true`.
-* __tabs__ | `array<string>`: kateri zavihki se prikažejo (`manjši`, `večji` ali `območje`).. Default: `[
+* __tabs__ | `array<string>`: kateri zavihki se prikažejo (`less`, `greater` ali `območje`).. Default: `[
   'smaller',
   'greater',
   'range'

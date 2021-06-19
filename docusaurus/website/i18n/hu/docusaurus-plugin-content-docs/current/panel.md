@@ -9,7 +9,8 @@ Kártyaelem.
 ## Opciók
 
 * __className__ | `string`: CSS osztály neve. Default: `''`.
-* __header__ | `(string|node)`: panelcím (h3). Default: `none`.
+* __header__ | `(string|node)`: panelcím. Default: `none`.
+* __headerTag__ | `string`: címke, amelyet a panel fejlécéhez használnak. Default: `'h3'`.
 * __footer__ | `(string|node)`: panel lábléc. Default: `none`.
 * __minimizable__ | `boolean`: minimalizálható-e a panel. Default: `false`.
 * __fullscreen__ | `boolean`: a panel teljes képernyőre tehető-e (csak oktatók számára). Default: `false`.

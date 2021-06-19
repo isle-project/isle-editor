@@ -16,7 +16,7 @@ sidebar_label: Two-Sample Mean Test
 * __xstdev__ | `number`: первое стандартное отклонение (для `Z Test`). Default: `none`.
 * __ystdev__ | `number`: второе стандартное отклонение (для `Z Test`). Default: `none`.
 * __alpha__ | `number`: уровень значимости. Default: `0.05`.
-* __direction__ | `string`: направление теста (либо `без`, `грэйтер`, либо `двухстороннее`). Default: `'two-sided'`.
+* __direction__ | `string`: направление теста (либо `less`, `greater`, либо `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: разница ниже H0. Default: `0`.
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 

@@ -10,7 +10,7 @@ Komponenta Switch omogoča prikaz enega elementa s seznama več elementov. Upora
 
 * __active__ | `boolean`: nadzoruje, ali je stikalo aktivno ali ne.. Default: `true`.
 * __tooltip__ | `string`: namig, ki se prikaže ob podrsavanju nad elementom stikala. Default: `none`.
-* __tooltipPos__ | `string`: postavitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`).. Default: `'top'`.
+* __tooltipPos__ | `string`: postavitev namigov (`top`, `left`, `right` ali `bottom`).. Default: `'top'`.
 * __className__ | `string`: ime razreda za obkrožajoči element span. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onChange__ | `function`: povratni klic, ki se sproži ob preklopu elementov. Kot prvi argument prejme indeks trenutno prikazanega otroka.. Default: `onChange() {}`.

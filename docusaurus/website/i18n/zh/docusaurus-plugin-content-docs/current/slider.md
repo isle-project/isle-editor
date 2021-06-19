@@ -12,7 +12,7 @@ sidebar_label: Slider
 * __dots__ | `boolean`: 在底部显示圆点，以便快速导航到任何幻灯片。. Default: `true`.
 * __fade__ | `boolean`: 控制是否在幻灯片之间使用渐变。. Default: `false`.
 * __draggable__ | `boolean`: 控制用户是否可以拖动幻灯片在它们之间导航。. Default: `false`.
-* __pagination__ | `string`: 是否在 "顶部"、"底部 "或 "两者 "显示分页。. Default: `'bottom'`.
+* __pagination__ | `string`: 是否在 `top`, `bottom` 或 `both` 显示分页。. Default: `'bottom'`.
 * __goto__ | `number`: 如果属性被改变，组件将跳转到所选索引的幻灯片上。. Default: `0`.
 * __infinite__ | `boolean`: 控制幻灯片是否环绕其内容。. Default: `false`.
 * __interval__ | `number`: 设置自动换片的时间间隔。. Default: `none`.

@@ -10,7 +10,7 @@ Um componente de perguntas de gama que pede aos estudantes que forneçam um pont
 
 * __question__ | `(string|node)`: pergunta exibida. Default: `''`.
 * __solution__ | `array<number>`: matriz de dois elementos contendo os pontos finais da faixa correta. Default: `none`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __labels__ | `array`: dois elementos de rótulos personalizados que não "Baixar" e "Alto". Default: `none`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.

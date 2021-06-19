@@ -18,7 +18,7 @@ Riba graafik.
 * __relative__ | `boolean`: kas arvutada suhtelised sagedused iga rühma sees. Default: `false`.
 * __totalPercent__ | `boolean`: kas kuvada üldised tulbad suhteliste sagedustena. Default: `false`.
 * __xOrder__ | `string`: kas "kokku", "kategooria", "miinimum", "maksimum", "keskmine" või "mediaan".. Default: `none`.
-* __direction__ | `string`: kuidas järjestada ribasid x-telje ääres ("kasvav" või "kahanev"). Default: `'ascending'`.
+* __direction__ | `string`: kuidas järjestada ribasid x-telje ääres (`ascending` või `descending`). Default: `'ascending'`.
 
 
 ## Näited

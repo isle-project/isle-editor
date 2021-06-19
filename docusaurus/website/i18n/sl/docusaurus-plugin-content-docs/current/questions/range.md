@@ -10,7 +10,7 @@ Sestavni del vprašanja o razponu, ki od učencev zahteva, da navedejo spodnjo i
 
 * __question__ | `(string|node)`: prikazano vprašanje. Default: `''`.
 * __solution__ | `array<number>`: polje dveh elementov, ki vsebuje končne točke pravilnega območja. Default: `none`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'top'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __labels__ | `array`: polje dveh elementov oznak po meri, razen "Lower" in "Upper".. Default: `none`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.

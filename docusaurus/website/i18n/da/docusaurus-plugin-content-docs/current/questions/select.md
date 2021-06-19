@@ -13,7 +13,7 @@ En komponent med udvalgte spørgsmål.
 * __solution__ | `number`: indeks for løsningselementet i `options`.. Default: `none`.
 * __preselected__ | `number`: indeks for forudvalgt svarmulighed. Default: `0`.
 * __inline__ | `boolean`: styrer, om komponenten skal gengives inline eller ej. Default: `false`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'top'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.

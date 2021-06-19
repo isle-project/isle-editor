@@ -13,7 +13,7 @@ Korelační test.
 * __var2__ | `string (required)`: název druhé proměnné. Default: `none`.
 * __rho0__ | `number`: hodnota korelace při nulové hypotéze. Default: `0`.
 * __alpha__ | `number`: úroveň významnosti. Default: `0.05`.
-* __direction__ | `string`: směr testu (buď `menší`, `větší`, nebo `oboustranný`).. Default: `'two-sided'`.
+* __direction__ | `string`: směr testu (buď `less`, `greater`, nebo `two-sided`).. Default: `'two-sided'`.
 * __showDecision__ | `boolean`: řídí, zda se má zobrazit, pokud je nulová hypotéza zamítnuta na zadané hladině významnosti.. Default: `false`.
 
 

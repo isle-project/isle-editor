@@ -13,7 +13,7 @@ sidebar_label: One-Sample Mean Test
 * __type__ | `string`: τύπος δοκιμής (δοκιμή "Ζ" ή δοκιμή "Τ"). Default: `'T Test'`.
 * __stdev__ | `number`: τυπική απόκλιση (για τη δοκιμή Ζ). Default: `none`.
 * __alpha__ | `number`: επίπεδο σημαντικότητας. Default: `0.05`.
-* __direction__ | `string`: κατεύθυνση δοκιμής (είτε "μικρότερη", "μεγαλύτερη" ή "αμφίπλευρη"). Default: `'two-sided'`.
+* __direction__ | `string`: κατεύθυνση δοκιμής (είτε `less`, `greater` ή `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: μέσος όρος υπό τη μηδενική υπόθεση. Default: `0`.
 * __showDecision__ | `boolean`: ελέγχει αν θα εμφανίζεται αν η μηδενική υπόθεση απορρίπτεται στο καθορισμένο επίπεδο σημαντικότητας. Default: `false`.
 

@@ -10,7 +10,7 @@ ISLE komponentas, kuris atvaizduoja klausimą, kuriame besimokantysis turi teisi
 
 * __question__ | `(string|node)`: klausimas, kuris bus rodomas atitikmenų sąrašo klausimo komponento viršuje.. Default: `''`.
 * __elements__ | `array<{a,b}>`: "masyvas", kuriame yra teisingos poros, rodomas laisvo teksto klausimo komponento viršuje. Kiekvienas `dėžutės` elementas turi būti `objektas` su `a` ir `b` savybėmis; norėdami pridėti atsakymus atitraukiančius atsakymus, pateikite elementus tik su `a` arba `b` savybėmis.. Default: `[]`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __provideFeedback__ | `boolean`: nurodo, ar sprendimas turėtų būti prieinamas po to, kai besimokantieji pateikia savo atsakymus.. Default: `true`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.

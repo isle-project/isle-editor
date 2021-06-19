@@ -9,7 +9,7 @@ sidebar_label: Image Question
 ## Опции
 
 * __question__ | `(string|node)`: текст на въпроса. Default: `''`.
-* __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: разположение на подсказките (или `top`, `right`, `left`, или `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: указания за това как да отговорите на въпроса. Default: `[]`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.
 * __chat__ | `boolean`: контролира дали елементът трябва да има интегриран чат. Default: `false`.

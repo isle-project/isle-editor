@@ -10,7 +10,7 @@ Um componente de fundo dinâmico que percorre uma lista de textos em um interval
 
 * __text__ | `(string|array<string>)`: texto ou lista de textos a serem exibidos. Default: `[]`.
 * __loop__ | `boolean`: indica se o processo deve ser exibido infinitamente. Default: `false`.
-* __direction__ | `string`: a direção do fluxo do texto (ou "esquerda", "direita", "para cima", "para baixo", "para baixo", "focagem", ou "redemoinho"). Default: `'right'`.
+* __direction__ | `string`: a direção do fluxo do texto (ou `left`, `right`, "para cima", "para baixo", "para baixo", "focagem", ou "redemoinho"). Default: `'right'`.
 * __hold__ | `number`: o tempo que o texto permanece parado (em segundos). Default: `5`.
 * __wait__ | `number`: o tempo antes da chegada de um novo texto (em segundos). Default: `3`.
 * __inTime__ | `number`: tempo do efeito de entrada (em segundos). Default: `1`.

@@ -9,7 +9,8 @@ Kortelės sudedamoji dalis.
 ## Parinktys
 
 * __className__ | `string`: CSS klasės pavadinimas. Default: `''`.
-* __header__ | `(string|node)`: skydelio antraštė (h3). Default: `none`.
+* __header__ | `(string|node)`: skydelio antraštė. Default: `none`.
+* __headerTag__ | `string`: žyma, naudojama skydelio antraštei. Default: `'h3'`.
 * __footer__ | `(string|node)`: skydelio poraštė. Default: `none`.
 * __minimizable__ | `boolean`: ar skydelį galima sumažinti iki minimumo.. Default: `false`.
 * __fullscreen__ | `boolean`: ar skydelis gali būti per visą ekraną (tik instruktoriams).. Default: `false`.

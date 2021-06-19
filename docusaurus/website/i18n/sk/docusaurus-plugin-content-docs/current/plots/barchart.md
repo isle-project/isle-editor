@@ -18,7 +18,7 @@ Stĺpcový graf.
 * __relative__ | `boolean`: či vypočítať relatívne frekvencie v každej skupine. Default: `false`.
 * __totalPercent__ | `boolean`: či sa majú celkové stĺpce zobrazovať ako relatívne frekvencie. Default: `false`.
 * __xOrder__ | `string`: buď `celkom`, `kategória`, `min`, `max`, `median` alebo `median`. Default: `none`.
-* __direction__ | `string`: ako zoradiť tyče vedľa osi x (`vzostupne` alebo `zostupne`). Default: `'ascending'`.
+* __direction__ | `string`: ako zoradiť tyče vedľa osi x (`ascending` alebo `descending`). Default: `'ascending'`.
 
 
 ## Príklady

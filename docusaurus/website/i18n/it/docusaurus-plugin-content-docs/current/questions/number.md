@@ -9,7 +9,7 @@ Una componente di domanda numero.
 ## Opzioni
 
 * __question__ | `(string|node)`: domanda numero. Default: `''`.
-* __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'top'`.
+* __hintPlacement__ | `string`: posizionamento dei suggerimenti (`top`, `left`, `right` o `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __solution__ | `(number|array<number>)`: una risposta numerica al problema (o più risposte corrette se viene fornito un array). Default: `none`.

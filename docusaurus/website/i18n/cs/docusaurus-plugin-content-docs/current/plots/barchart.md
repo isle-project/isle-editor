@@ -18,7 +18,7 @@ Sloupcový graf.
 * __relative__ | `boolean`: zda vypočítat relativní četnosti uvnitř každé skupiny.. Default: `false`.
 * __totalPercent__ | `boolean`: zda se mají celkové sloupce zobrazovat jako relativní četnosti. Default: `false`.
 * __xOrder__ | `string`: buď `celkem`, `kategorie`, `min`, `max`, `průměr` nebo `medián`.. Default: `none`.
-* __direction__ | `string`: jak uspořádat sloupce podél osy x (`vzestupně` nebo `sestupně`). Default: `'ascending'`.
+* __direction__ | `string`: jak uspořádat sloupce podél osy x (`ascending` nebo `descending`). Default: `'ascending'`.
 
 
 ## Příklady

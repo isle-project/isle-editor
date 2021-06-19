@@ -9,7 +9,7 @@ Et spørgsmål, der beder brugeren om at uploade et billede.
 ## Indstillinger
 
 * __question__ | `(string|node)`: tekst til spørgsmålet. Default: `''`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.

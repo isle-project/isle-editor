@@ -13,7 +13,7 @@ Korrelationstest.
 * __var2__ | `string (required)`: navnet på den anden variabel. Default: `none`.
 * __rho0__ | `number`: korrelationsværdi under nulhypotesen. Default: `0`.
 * __alpha__ | `number`: signifikansniveau. Default: `0.05`.
-* __direction__ | `string`: testretning (enten "mindre", "større" eller "tosidet"). Default: `'two-sided'`.
+* __direction__ | `string`: testretning (enten `less`, `greater` eller `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: kontrollerer, om der skal vises, hvis nulhypotesen forkastes ved det angivne signifikansniveau. Default: `false`.
 
 

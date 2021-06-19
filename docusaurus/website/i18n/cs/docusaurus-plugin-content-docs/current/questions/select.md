@@ -13,7 +13,7 @@ Složka vybraných otázek.
 * __solution__ | `number`: index prvku řešení v `options`. Default: `none`.
 * __preselected__ | `number`: index předvybrané možnosti odpovědi. Default: `0`.
 * __inline__ | `boolean`: řídí, zda se komponenta vykreslí inline, nebo ne.. Default: `false`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'top'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __chat__ | `boolean`: řídí, zda má mít prvek integrovaný chat. Default: `false`.

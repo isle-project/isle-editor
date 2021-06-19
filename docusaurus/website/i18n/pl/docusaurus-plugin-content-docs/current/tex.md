@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `obiekt` z parami klucz-wartość CSS, które mają być zastosowane do kontenera równań. Default: `{}`.
 * __tag__ | `string`: Niestandardowe znaki wyświetlane dla równań wyświetlanych po prawej stronie. Domyślny numer równania wewnątrz lekcji. Default: `none`.
 * __elems__ | `object`: `obiekt` z `kluczami` oznaczającymi znaki LaTeXa i odpowiadającymi im wartościami będącymi konfiguracją `obiektów` aby uczynić je interaktywnymi. Ustawienie opcji `podpowiedzi narzędzia` spowoduje wyświetlenie podpowiedzi po najechaniu kursorem na znaki LaTeXa. Ustawienie właściwości `zmienna` spowoduje wyświetlenie suwaka wejściowego do zmiany odpowiedniej zmiennej stanu; w tym przypadku obsługiwane są dodatkowe właściwości `legend`, `min`, `max` i `step`. Default: `{}`.
-* __popoverPlacement__ | `string`: pozycja popover dla określonych `elemów` (albo `top`, `prawda`, `dół`, albo `lewo`). Default: `'top'`.
+* __popoverPlacement__ | `string`: pozycja popover dla określonych `elemów` (albo `top`, `right`, `bottom`, albo `left`). Default: `'top'`.
 * __onPopover__ | `function`: callback `funkcja` przy włączonym lub wyłączonym popoverze sterowania; otrzymuje status wyświetlania jako boolean jako jedyny argument. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback `funkcja` wywoływana za każdym razem, gdy użytkownik kliknie na równanie. Default: `none`.
 

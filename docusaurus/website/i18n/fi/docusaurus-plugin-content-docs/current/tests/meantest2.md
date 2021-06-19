@@ -16,7 +16,7 @@ Kahden otoksen keskiarvotesti.
 * __xstdev__ | `number`: ensimmäinen keskihajonta (Z-testiä varten). Default: `none`.
 * __ystdev__ | `number`: toinen keskihajonta (Z-testiä varten). Default: `none`.
 * __alpha__ | `number`: merkitsevyystaso. Default: `0.05`.
-* __direction__ | `string`: testin suunta (joko "pienempi", "suurempi" tai "kaksipuolinen").. Default: `'two-sided'`.
+* __direction__ | `string`: testin suunta (joko `less`, `greater` tai `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: ero H0:ssa. Default: `0`.
 * __showDecision__ | `boolean`: valvoo, näytetäänkö, jos nollahypoteesi hylätään määritetyllä merkitsevyystasolla.. Default: `false`.
 

@@ -13,7 +13,7 @@ Mittelwerttest bei einer Stichprobe.
 * __type__ | `string`: Art des Tests (`Z-Test` oder `T-Test`). Default: `'T Test'`.
 * __stdev__ | `number`: Standardabweichung (für "Z-Test"). Default: `none`.
 * __alpha__ | `number`: Signifikanzniveau. Default: `0.05`.
-* __direction__ | `string`: Testrichtung (entweder `weniger`, `größer`, oder `zweiseitig`). Default: `'two-sided'`.
+* __direction__ | `string`: Testrichtung (entweder `less`, `greater`, oder `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: Mittelwert unter der Nullhypothese. Default: `0`.
 * __showDecision__ | `boolean`: steuert, ob angezeigt werden soll, wenn die Nullhypothese bei dem angegebenen Signifikanzniveau abgelehnt wird. Default: `false`.
 

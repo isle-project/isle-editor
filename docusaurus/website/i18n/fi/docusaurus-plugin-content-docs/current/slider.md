@@ -12,7 +12,7 @@ Komponentti, joka näyttää lapsensa diaesityksenä tai karusellina.
 * __dots__ | `boolean`: näytön alareunassa olevat pisteet, joiden avulla voit siirtyä nopeasti mihin tahansa diaan.. Default: `true`.
 * __fade__ | `boolean`: ohjaa, käytetäänkö häivytystä siirtymisessä diojen välillä.. Default: `false`.
 * __draggable__ | `boolean`: ohjaa, voivatko käyttäjät raahata dioja siirtyäkseen niiden välillä.. Default: `false`.
-* __pagination__ | `string`: näytetäänkö sivunumerointi joko "ylhäällä", "alhaalla" vai "molemmissa".. Default: `'bottom'`.
+* __pagination__ | `string`: näytetäänkö sivunumerointi joko `top`, `bottom` vai `both`.. Default: `'bottom'`.
 * __goto__ | `number`: Jos ominaisuutta muutetaan, komponentti hyppää diaan, jonka indeksi on valittu.. Default: `0`.
 * __infinite__ | `boolean`: ohjaa, kiertääkö diaesitys sen sisällön ympärille.. Default: `false`.
 * __interval__ | `number`: asettaa aikaväli automaattiselle dianvaihdolle. Default: `none`.

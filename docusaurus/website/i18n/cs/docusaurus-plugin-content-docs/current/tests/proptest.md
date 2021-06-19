@@ -12,7 +12,7 @@ Jednovýběrový proporční test.
 * __variable__ | `(string|Factor) (required)`: název proměnné. Default: `none`.
 * __success__ | `any (required)`: kategorie úspěchu `proměnná`. Default: `none`.
 * __alpha__ | `number`: úroveň významnosti. Default: `0.05`.
-* __direction__ | `string`: směr testu (buď `menší`, `větší`, nebo `oboustranný`).. Default: `'two-sided'`.
+* __direction__ | `string`: směr testu (buď `less`, `greater`, nebo `two-sided`).. Default: `'two-sided'`.
 * __p0__ | `number`: podíl při nulové hypotéze. Default: `0.5`.
 * __showDecision__ | `boolean`: řídí, zda se má zobrazit, pokud je nulová hypotéza zamítnuta na zadané hladině významnosti.. Default: `false`.
 

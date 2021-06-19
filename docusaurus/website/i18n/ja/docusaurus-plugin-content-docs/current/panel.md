@@ -9,7 +9,8 @@ sidebar_label: Panel
 ## オプション
 
 * __className__ | `string`: CSSクラス名. Default: `''`.
-* __header__ | `(string|node)`: パネル見出し(H3). Default: `none`.
+* __header__ | `(string|node)`: パネル見出し. Default: `none`.
+* __headerTag__ | `string`: パネルの見出しに使われるタグ. Default: `'h3'`.
 * __footer__ | `(string|node)`: パネルフッター. Default: `none`.
 * __minimizable__ | `boolean`: パネルを最小化できるかどうか. Default: `false`.
 * __fullscreen__ | `boolean`: パネルをフルスクリーンにできるかどうか (インストラクターのみ). Default: `false`.

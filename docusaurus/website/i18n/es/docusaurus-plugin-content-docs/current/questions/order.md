@@ -11,7 +11,7 @@ Un componente de la pregunta de orden que pide al estudiante traer una colecció
 * __question__ | `(string|node)`: pregunta para la cual el estudiante tiene que poner las "opciones" disponibles en el orden correcto. Default: `''`.
 * __options__ | `array (required)`: una serie de textos que el estudiante tiene que traer en el orden correcto (se asume que es el orden suministrado). Default: `none`.
 * __provideFeedback__ | `boolean`: controla si mostrar una notificación que muestre si la respuesta presentada es correcta o no. Default: `true`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __chat__ | `boolean`: controla si el elemento debe tener un chat integrado. Default: `false`.

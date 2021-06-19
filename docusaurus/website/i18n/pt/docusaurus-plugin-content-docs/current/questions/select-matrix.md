@@ -14,7 +14,7 @@ Uma pergunta com uma resposta que consiste em múltiplas caixas de seleção.
 * __options__ | `object`: objeto com pares de chaves de valor com chaves com a forma `row:col`, por exemplo `0:0`, `0:1`, `1:0` etc., e seus valores correspondentes sendo matrizes das possíveis escolhas de resposta para as perguntas individuais selecionadas. Default: `{}`.
 * __solution__ | `object`: objeto de solução com pares de chaves de valor com chaves com a forma `row:col`, por exemplo `0:0`, `0:1`, `1:0` etc., e seus valores correspondentes sendo o índice do elemento de resposta correto da respectiva matriz de `opções`. Default: `{}`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __provideFeedback__ | `string`: se fornecer "nenhum" feedback, "feedback individual" sobre a(s) resposta(s) apresentada(s), ou "feedback global" para todas as perguntas. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: permitir ou não envios sem uma seleção feita em cada caixa de seleção. Default: `false`.

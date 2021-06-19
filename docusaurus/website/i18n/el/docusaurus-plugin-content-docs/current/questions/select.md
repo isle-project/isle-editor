@@ -13,7 +13,7 @@ sidebar_label: Select Question
 * __solution__ | `number`: δείκτης του στοιχείου της λύσης στο `options`. Default: `none`.
 * __preselected__ | `number`: δείκτης προεπιλεγμένης επιλογής απάντησης. Default: `0`.
 * __inline__ | `boolean`: ελέγχει αν το συστατικό απεικονίζεται inline ή όχι. Default: `false`.
-* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε "πάνω", "αριστερά", "δεξιά" ή "κάτω"). Default: `'top'`.
+* __hintPlacement__ | `string`: τοποθέτηση των υποδείξεων (είτε `top`, `left`, `right` ή `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: υποδείξεις που παρέχουν καθοδήγηση για τον τρόπο απάντησης στην ερώτηση. Default: `[]`.
 * __feedback__ | `boolean`: ελέγχει αν θα εμφανίζονται κουμπιά ανάδρασης. Default: `true`.
 * __chat__ | `boolean`: ελέγχει αν το στοιχείο θα πρέπει να έχει ενσωματωμένη συνομιλία. Default: `false`.

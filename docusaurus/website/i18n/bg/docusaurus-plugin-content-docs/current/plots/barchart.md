@@ -18,7 +18,7 @@ sidebar_label: Bar Chart
 * __relative__ | `boolean`: дали да се изчисляват относителните честоти във всяка група. Default: `false`.
 * __totalPercent__ | `boolean`: дали да се показват общите барове като относителни честоти. Default: `false`.
 * __xOrder__ | `string`: `общо`, `категория`, `мин`, `макс`, `средна` или `медиана`. Default: `none`.
-* __direction__ | `string`: как да подредите баровете покрай оста x (`нарастващи` или `намаляващи`). Default: `'ascending'`.
+* __direction__ | `string`: как да подредите баровете покрай оста x (`ascending` или `descending`). Default: `'ascending'`.
 
 
 ## Примери

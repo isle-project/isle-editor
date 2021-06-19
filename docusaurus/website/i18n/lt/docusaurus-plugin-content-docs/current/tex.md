@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `objektas` su CSS raktų-verčių poromis, kurios bus taikomos lygties konteineriui. Default: `{}`.
 * __tag__ | `string`: Dešinėje pusėje rodomi pasirinktiniai ženklai, skirti lygtims rodyti. Numatytoji reikšmė - lygties numeris pamokoje.. Default: `none`.
 * __elems__ | `object`: `objektas`, kurio `raktai` žymi LaTeX simbolius, o atitinkamos reikšmės yra konfigūracijos `objektai`, kad jie būtų interaktyvūs. Nustačius `tooltip` parinktį, užvedus pelės žymeklį ant LaTeX simbolių, bus rodoma įrankių užuomina. Nustačius savybę `variable` (kintamasis), bus rodomas įvesties slankiklis, kuriuo galima keisti atitinkamą būsenos kintamąjį; šiuo atveju palaikomos papildomos savybės `legend`, `min`, `max` ir `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: iššokančio skydelio padėtis nurodytoms `elems` (`viršuje`, `dešinėje`, `apačioje`, `apačioje` arba `kairėje`). Default: `'top'`.
+* __popoverPlacement__ | `string`: iššokančio skydelio padėtis nurodytoms `elems` (`top`, `right`, `bottom`, `bottom` arba `left`). Default: `'top'`.
 * __onPopover__ | `function`: grįžtamojo ryšio `funkcija`, kai įjungiamas arba išjungiamas iššokantis valdymo langelis; vienintelis argumentas - rodymo būsena.. Default: `onPopover() {}`.
 * __onClick__ | `function`: grįžtamojo ryšio `funkcija`, iškviečiama kiekvieną kartą, kai naudotojas paspaudžia lygtį.. Default: `none`.
 

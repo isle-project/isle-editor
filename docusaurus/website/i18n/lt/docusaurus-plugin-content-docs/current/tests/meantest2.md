@@ -16,7 +16,7 @@ Dviejų imčių vidurkio testas.
 * __xstdev__ | `number`: pirmasis standartinis nuokrypis (`Z testui`). Default: `none`.
 * __ystdev__ | `number`: antrasis standartinis nuokrypis (`Z testui`). Default: `none`.
 * __alpha__ | `number`: reikšmingumo lygis. Default: `0.05`.
-* __direction__ | `string`: testo kryptis (`mažesnė`, `didesnė` arba `dvipusė`).. Default: `'two-sided'`.
+* __direction__ | `string`: testo kryptis (`less`, `greater` arba `two-sided`).. Default: `'two-sided'`.
 * __diff__ | `number`: skirtumas pagal H0. Default: `0`.
 * __showDecision__ | `boolean`: kontroliuoja, ar rodyti, jei nulinė hipotezė atmetama esant nurodytam reikšmingumo lygiui.. Default: `false`.
 

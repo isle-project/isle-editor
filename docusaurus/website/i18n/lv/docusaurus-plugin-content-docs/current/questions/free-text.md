@@ -10,7 +10,7 @@ ISLE komponents jautājumiem, uz kuriem skolēniem atbildes jāsniedz brīvā te
 
 * __question__ | `(string|node)`: brīvā teksta jautājuma komponenta augšpusē redzamais jautājums.. Default: `''`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'top'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'top'`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __solution__ | `(string|node)`: parauga atbilde uz problēmu. Default: `''`.
 * __instantSolution__ | `boolean`: vai var uzreiz pārslēgt modeļa atbildes rādīšanu.. Default: `false`.

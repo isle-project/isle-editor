@@ -10,9 +10,9 @@ Un élément de question de gamme qui demande aux élèves de fournir un point d
 
 * __question__ | `(string|node)`: question affichée. Default: `''`.
 * __solution__ | `array<number>`: tableau à deux éléments contenant les points terminaux de la plage correcte. Default: `none`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'top'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
-* __labels__ | `array`: un ensemble à deux éléments d'étiquettes personnalisées autres que "En bas" et "Haut de page. Default: `none`.
+* __labels__ | `array`: un ensemble à deux éléments d'étiquettes personnalisées autres que `bottom` et "Haut de page. Default: `none`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.
 * __digits__ | `number`: nombre de chiffres qui doivent correspondre entre la solution et la réponse fournie par l'utilisateur. S'il n'est pas donné ou s'il est fixé à zéro, le composant vérifie la stricte égalité. S'il est défini à 0, il vérifie l'égalité des nombres entiers. Default: `3`.

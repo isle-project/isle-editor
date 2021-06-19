@@ -13,7 +13,7 @@ sidebar_label: Select Question
 * __solution__ | `number`: индекс на елемента на решението в `options`. Default: `none`.
 * __preselected__ | `number`: индекс на предварително избран вариант за отговор. Default: `0`.
 * __inline__ | `boolean`: контролира дали компонентът да се визуализира inline или не.. Default: `false`.
-* __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'top'`.
+* __hintPlacement__ | `string`: разположение на подсказките (или `top`, `right`, `left`, или `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: указания за това как да отговорите на въпроса. Default: `[]`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.
 * __chat__ | `boolean`: контролира дали елементът трябва да има интегриран чат. Default: `false`.

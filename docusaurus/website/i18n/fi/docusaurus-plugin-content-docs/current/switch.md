@@ -10,7 +10,7 @@ Switch-komponentti mahdollistaa yhden elementin näyttämisen useista elementeis
 
 * __active__ | `boolean`: ohjaa, onko kytkin aktiivinen vai ei. Default: `true`.
 * __tooltip__ | `string`: työkaluvihje, joka näytetään, kun hiiren kursori siirretään kytkinelementin päälle.. Default: `none`.
-* __tooltipPos__ | `string`: työkaluvihjeen sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'top'`.
+* __tooltipPos__ | `string`: työkaluvihjeen sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'top'`.
 * __className__ | `string`: ympäröivän span-elementin luokan nimi. Default: `''`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onChange__ | `function`: callback, jota kutsutaan, kun elementtejä vaihdetaan. Vastaanottaa ensimmäisenä argumenttinaan parhaillaan näytettävän lapsen indeksin.. Default: `onChange() {}`.

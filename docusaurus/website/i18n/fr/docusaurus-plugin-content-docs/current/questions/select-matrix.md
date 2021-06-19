@@ -14,7 +14,7 @@ Une question dont la réponse consiste en plusieurs cases de sélection.
 * __options__ | `object`: objet avec des paires clé-valeur avec des clés ayant la forme "row:col", par exemple "0:0", "0:1", "1:0", etc., et leurs valeurs correspondantes étant des tableaux de choix de réponse possibles pour les différentes questions de sélection. Default: `{}`.
 * __solution__ | `object`: objet solution avec des paires clé-valeur avec des clés ayant la forme `row:col`, par exemple `0:0`, `0:1`, `1:0` etc., et leurs valeurs correspondantes étant l'index de l'élément de réponse correcte du tableau `options` respectif. Default: `{}`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __provideFeedback__ | `string`: s'il convient de fournir un retour d'information "aucun", un retour d'information "individuel" sur la ou les réponses soumises, ou un retour d'information "global" pour toutes les questions. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: s'il faut autoriser les soumissions sans sélection dans chaque case de sélection. Default: `false`.

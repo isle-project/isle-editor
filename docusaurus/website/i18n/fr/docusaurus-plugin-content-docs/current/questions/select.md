@@ -13,7 +13,7 @@ Un volet de questions choisies.
 * __solution__ | `number`: élément d'index de la solution dans les "options. Default: `none`.
 * __preselected__ | `number`: index de l'option de réponse présélectionnée. Default: `0`.
 * __inline__ | `boolean`: contrôle si le composant est rendu en ligne ou non. Default: `false`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'top'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.

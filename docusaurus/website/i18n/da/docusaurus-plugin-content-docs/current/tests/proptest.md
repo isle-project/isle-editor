@@ -12,7 +12,7 @@ Proportionstest med én stikprøve.
 * __variable__ | `(string|Factor) (required)`: navnet på variablen. Default: `none`.
 * __success__ | `any (required)`: succeskategori af `variabel`. Default: `none`.
 * __alpha__ | `number`: signifikansniveau. Default: `0.05`.
-* __direction__ | `string`: testretning (enten "mindre", "større" eller "tosidet"). Default: `'two-sided'`.
+* __direction__ | `string`: testretning (enten `less`, `greater` eller `two-sided`). Default: `'two-sided'`.
 * __p0__ | `number`: andel under nulhypotesen. Default: `0.5`.
 * __showDecision__ | `boolean`: kontrollerer, om der skal vises, hvis nulhypotesen forkastes ved det angivne signifikansniveau. Default: `false`.
 

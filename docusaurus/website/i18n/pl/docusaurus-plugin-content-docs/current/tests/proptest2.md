@@ -14,7 +14,7 @@ Test na dwie próbki.
 * __var2__ | `(string|Factor)`: nazwa drugiej zmiennej (należy podać `var2` lub `grupę`). Default: `none`.
 * __group__ | `(string|Factor)`: nazwa zmiennej grupowania (należy podać `var2` lub `grupę`). Default: `none`.
 * __alpha__ | `number`: poziom istotności. Default: `0.05`.
-* __direction__ | `string`: kierunek testu (albo "bez", "większy", albo "dwustronny"). Default: `'two-sided'`.
+* __direction__ | `string`: kierunek testu (albo `less`, `greater`, albo `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: różnica poniżej H0. Default: `0`.
 * __showDecision__ | `boolean`: kontroluje, czy hipoteza zerowa ma być wyświetlana, jeśli zostanie odrzucona na określonym poziomie istotności. Default: `false`.
 

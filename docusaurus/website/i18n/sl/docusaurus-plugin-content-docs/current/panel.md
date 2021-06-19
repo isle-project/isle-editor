@@ -9,7 +9,8 @@ Sestavni del kartice.
 ## Možnosti
 
 * __className__ | `string`: Ime razreda CSS. Default: `''`.
-* __header__ | `(string|node)`: naslov plošče (h3). Default: `none`.
+* __header__ | `(string|node)`: naslov plošče. Default: `none`.
+* __headerTag__ | `string`: oznaka, ki se uporablja za naslov plošče. Default: `'h3'`.
 * __footer__ | `(string|node)`: noga plošče. Default: `none`.
 * __minimizable__ | `boolean`: ali je mogoče ploščo zmanjšati na najmanjšo možno mero.. Default: `false`.
 * __fullscreen__ | `boolean`: ali je mogoče ploščo prikazati v celozaslonskem načinu (samo za inštruktorje).. Default: `false`.

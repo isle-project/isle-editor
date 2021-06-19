@@ -11,7 +11,7 @@ En komponent med spørgsmål om rækkefølge, der beder eleven om at bringe en s
 * __question__ | `(string|node)`: spørgsmål, hvor den studerende skal bringe de tilgængelige "valgmuligheder" i den rigtige rækkefølge. Default: `''`.
 * __options__ | `array (required)`: en række tekster, som den studerende skal bringe i den korrekte rækkefølge (som antages at være den angivne rækkefølge). Default: `none`.
 * __provideFeedback__ | `boolean`: styrer, om der skal vises en meddelelse, der viser, om det indsendte svar er korrekt eller ej. Default: `true`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.

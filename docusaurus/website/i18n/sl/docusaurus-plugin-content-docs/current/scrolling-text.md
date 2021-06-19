@@ -10,7 +10,7 @@ Dinamična komponenta ozadja, ki v določenem časovnem intervalu ciklično prem
 
 * __text__ | `(string|array<string>)`: besedilo ali seznam besedil, ki se prikažejo.. Default: `[]`.
 * __loop__ | `boolean`: označuje, ali se proces prikazuje v neskončnost.. Default: `false`.
-* __direction__ | `string`: smer toka besedila (`levo`, `desno`, `zgoraj`, `dol`, `sledenje`, `fokus` ali `vijuganje`).. Default: `'right'`.
+* __direction__ | `string`: smer toka besedila (`left`, `right`, `top`, `dol`, `sledenje`, `fokus` ali `vijuganje`).. Default: `'right'`.
 * __hold__ | `number`: čas, ko besedilo miruje (v sekundah). Default: `5`.
 * __wait__ | `number`: čas do prihoda novega besedila (v sekundah). Default: `3`.
 * __inTime__ | `number`: čas vstopnega učinka (v sekundah). Default: `1`.

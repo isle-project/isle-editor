@@ -11,7 +11,7 @@ Un élément de question d'ordre qui demande à l'élève d'amener une collectio
 * __question__ | `(string|node)`: question pour laquelle l'étudiant doit mettre les "options" disponibles dans le bon ordre. Default: `''`.
 * __options__ | `array (required)`: un ensemble de textes que l'étudiant doit mettre dans l'ordre correct (supposé être l'ordre fourni). Default: `none`.
 * __provideFeedback__ | `boolean`: contrôle l'affichage d'une notification indiquant si la réponse soumise est correcte ou non. Default: `true`.
-* __hintPlacement__ | `string`: l'emplacement des indices (soit "en haut", "à gauche", "à droite" ou "en bas"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: l'emplacement des indices (soit `top`, `left`, `right` ou `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: des conseils sur la façon de répondre à la question. Default: `[]`.
 * __feedback__ | `boolean`: contrôle l'affichage des boutons de rétroaction. Default: `true`.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.

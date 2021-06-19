@@ -10,7 +10,7 @@ ISLE-komponentti, joka esittää kysymyksen, jossa oppijan on yhdistettävä kah
 
 * __question__ | `(string|node)`: kysymys, joka näytetään otteluluettelon kysymyskomponentin yläosassa.. Default: `''`.
 * __elements__ | `array<{a,b}>`: `array`, jossa oikeat parit näkyvät vapaan tekstin kysymysosan yläosassa. Jokaisen `array`-elementin on oltava `objekti`, jolla on `a`- ja `b`-ominaisuudet; anna elementtejä, joilla on vain `a`- tai `b`-ominaisuudet, lisätäksesi häiritseviä vastauksia.. Default: `[]`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __provideFeedback__ | `boolean`: ilmoittaa, onko ratkaisun oltava käytettävissä sen jälkeen, kun oppijat ovat lähettäneet vastauksensa.. Default: `true`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.

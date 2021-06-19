@@ -14,7 +14,7 @@ Izvēlēties ievades komponentu. Var izmantot kā daļu no ISLE paneļa vai atse
 * __disabled__ | `boolean`: kontrolē, vai ievade ir aktīva vai nav.. Default: `false`.
 * __inline__ | `boolean`: norāda, vai ievade tiek rādīta rindkopā.. Default: `false`.
 * __legend__ | `(string|node)`: teksts, kas tiek parādīts blakus ievadītajam. Default: `''`.
-* __menuPlacement__ | `string`: izvēlnes izvietojums attiecībā pret vadības ierīci (`automātiski`, `augšā` vai `apakšā`).. Default: `'auto'`.
+* __menuPlacement__ | `string`: izvēlnes izvietojums attiecībā pret vadības ierīci (`automātiski`, `top` vai `bottom`).. Default: `'auto'`.
 * __multi__ | `boolean`: kontrolē, vai var izvēlēties vairākas atbildes.. Default: `false`.
 * __onChange__ | `function`: atgriezeniskā zvana funkcija, kas jāizsauc, kad ir izdarīta izvēle.. Default: `onChange() {}`.
 * __options__ | `array`: masīvs, kurā norādītas lietotājam pieejamās izvēles. Default: `[]`.

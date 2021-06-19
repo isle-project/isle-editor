@@ -9,7 +9,8 @@ Kortkomponent.
 ## Indstillinger
 
 * __className__ | `string`: CSS-klassens navn. Default: `''`.
-* __header__ | `(string|node)`: paneloverskrift (h3). Default: `none`.
+* __header__ | `(string|node)`: panelets overskrift. Default: `none`.
+* __headerTag__ | `string`: tag, der anvendes til panelets overskrift. Default: `'h3'`.
 * __footer__ | `(string|node)`: panelfod. Default: `none`.
 * __minimizable__ | `boolean`: om panelet kan minimeres. Default: `false`.
 * __fullscreen__ | `boolean`: om panelet kan gøres fuldt skærm (kun for instruktører). Default: `false`.

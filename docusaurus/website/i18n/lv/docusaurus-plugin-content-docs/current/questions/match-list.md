@@ -10,7 +10,7 @@ ISLE komponents, kas atveido jautājumu, kurā skolēnam ir pareizi jāsalāgo e
 
 * __question__ | `(string|node)`: jautājums, kas tiks parādīts atbilstības saraksta jautājuma komponenta augšpusē.. Default: `''`.
 * __elements__ | `array<{a,b}>`: `matu masīvs`, kurā ir pareizie pāri, kas parādās brīvā teksta jautājuma komponenta augšpusē. Katram `maseja` elementam jābūt `objektam` ar `a` un `b` īpašībām; lai pievienotu atbildes, kas novērš atbildes, sniedziet elementus tikai ar `a` vai `b` īpašībām.. Default: `[]`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __provideFeedback__ | `boolean`: norāda, vai risinājumam jābūt pieejamam pēc tam, kad skolēni ir iesnieguši savas atbildes.. Default: `true`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.

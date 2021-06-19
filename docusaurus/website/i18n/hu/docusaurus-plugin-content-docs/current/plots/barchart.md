@@ -18,7 +18,7 @@ Sávdiagram.
 * __relative__ | `boolean`: kiszámítja-e a relatív gyakoriságokat az egyes csoportokon belül. Default: `false`.
 * __totalPercent__ | `boolean`: hogy az összesített sávokat relatív gyakoriságként jelenítse-e meg. Default: `false`.
 * __xOrder__ | `string`: vagy "összesen", "kategória", "minimum", "maximum", "átlag" vagy "medián".. Default: `none`.
-* __direction__ | `string`: hogyan rendezzük a sávokat az x-tengely mentén (`felmenő` vagy `lemenő`). Default: `'ascending'`.
+* __direction__ | `string`: hogyan rendezzük a sávokat az x-tengely mentén (`ascending` vagy `descending`). Default: `'ascending'`.
 
 
 ## Példák

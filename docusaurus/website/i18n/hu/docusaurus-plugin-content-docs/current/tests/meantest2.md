@@ -16,7 +16,7 @@ Kétmintás átlagteszt.
 * __xstdev__ | `number`: első szórás (a "Z teszt" esetében). Default: `none`.
 * __ystdev__ | `number`: második szórás (a "Z-teszt" esetében). Default: `none`.
 * __alpha__ | `number`: szignifikancia szint. Default: `0.05`.
-* __direction__ | `string`: a teszt iránya (vagy "kisebb", "nagyobb", vagy "kétoldalú"). Default: `'two-sided'`.
+* __direction__ | `string`: a teszt iránya (vagy `less`, `greater`, vagy `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: különbség H0 alatt. Default: `0`.
 * __showDecision__ | `boolean`: ellenőrzi, hogy megjelenjen-e, ha a nullhipotézis a megadott szignifikancia szinten elutasításra kerül.. Default: `false`.
 

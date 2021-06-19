@@ -11,7 +11,7 @@ Klausimo apie tvarką komponentas, kuriame mokinys turi teisingai sudėlioti ele
 * __question__ | `(string|node)`: klausimas, kuriame mokinys turi teisingai sudėlioti galimus variantus.. Default: `''`.
 * __options__ | `array (required)`: tekstų masyvas, kurį mokinys turi surikiuoti teisinga tvarka (manoma, kad tai bus pateikta tvarka).. Default: `none`.
 * __provideFeedback__ | `boolean`: kontroliuoja, ar rodyti pranešimą, ar pateiktas atsakymas yra teisingas, ar ne.. Default: `true`.
-* __hintPlacement__ | `string`: užuominų vieta (`viršuje`, `kairėje`, `dešinėje`, `dešinėje` arba `apačioje`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: užuominų vieta (`top`, `left`, `right` arba `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: užuominos, kuriose pateikiamos rekomendacijos, kaip atsakyti į klausimą.. Default: `[]`.
 * __feedback__ | `boolean`: kontroliuoja, ar rodyti grįžtamojo ryšio mygtukus.. Default: `true`.
 * __chat__ | `boolean`: kontroliuoja, ar elementas turi turėti integruotą pokalbių. Default: `false`.

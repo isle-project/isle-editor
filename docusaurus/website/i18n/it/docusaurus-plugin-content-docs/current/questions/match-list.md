@@ -10,13 +10,13 @@ Un componente ISLE che rende una domanda in cui l'allievo deve far corrispondere
 
 * __question__ | `(string|node)`: domanda da visualizzare in cima al componente domanda della lista delle partite. Default: `''`.
 * __elements__ | `array<{a,b}>`: un `array` che contiene le coppie corrette visualizzate nella parte superiore del componente di domanda a testo libero. Ogni elemento `array` deve essere un `oggetto` con proprietà `a` e `b`; fornire elementi con solo proprietà `a` o `b` per aggiungere le risposte del distrattore. Default: `[]`.
-* __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'bottom'`.
+* __hintPlacement__ | `string`: posizionamento dei suggerimenti (`top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
 * __provideFeedback__ | `boolean`: indica se la soluzione deve essere accessibile dopo che gli studenti hanno inviato le loro risposte. Default: `true`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __chat__ | `boolean`: controlla se l'elemento deve avere una chat integrata. Default: `false`.
 * __colorScale__ | `array`: se impostati, i colori forniti vengono utilizzati per le piastrelle. Default: `none`.
-* __shuffle__ | `string`: specifica se mischiare le colonne `a sinistra`, `a destra` o `entrambi` i cui elementi devono essere abbinati; fornire `none` o qualsiasi altro valore per non mischiare gli elementi su entrambi i lati (può essere utile nel caso in cui non ci sia una soluzione presente). Default: `'both'`.
+* __shuffle__ | `string`: specifica se mischiare le colonne ``left``, ``right`` o `entrambi` i cui elementi devono essere abbinati; fornire `none` o qualsiasi altro valore per non mischiare gli elementi su entrambi i lati (può essere utile nel caso in cui non ci sia una soluzione presente). Default: `'both'`.
 * __disableSubmitNotification__ | `boolean`: controlla se disabilitare le notifiche di presentazione. Default: `false`.
 * __submissionMsg__ | `string`: notifica visualizzata quando il discente invia la sua risposta per la prima volta. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: notifica visualizzata per tutti gli invii dopo il primo. Default: `'You have successfully re-submitted your answer.'`.

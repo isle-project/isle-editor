@@ -10,7 +10,7 @@ Vaihteluvälikysymys, jossa oppilaita pyydetään antamaan alempi ja ylempi lopp
 
 * __question__ | `(string|node)`: näytetty kysymys. Default: `''`.
 * __solution__ | `array<number>`: kahden elementin joukko, joka sisältää oikean alueen päätepisteet.. Default: `none`.
-* __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjeiden sijainti (joko `top`, `left`, `right` tai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __labels__ | `array`: kahden elementin joukko muita mukautettuja merkintöjä kuin "Lower" ja "Upper".. Default: `none`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.

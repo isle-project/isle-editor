@@ -12,7 +12,7 @@ Výuková komponenta pro výpočet pravděpodobností normálního rozdělení.
 * __hideCDF__ | `boolean`: řídí, zda se mají skrýt grafy CDF. Default: `false`.
 * __minStDev__ | `number`: minimální směrodatná odchylka. Default: `1`.
 * __step__ | `(number|string)`: velikost kroku posuvného vstupu. Default: `0.01`.
-* __tabs__ | `array<string>`: které karty se mají zobrazit (buď `menší`, `větší`, nebo `rozsah`).. Default: `[
+* __tabs__ | `array<string>`: které karty se mají zobrazit (buď `less`, `greater`, nebo `rozsah`).. Default: `[
   'smaller',
   'greater',
   'range'

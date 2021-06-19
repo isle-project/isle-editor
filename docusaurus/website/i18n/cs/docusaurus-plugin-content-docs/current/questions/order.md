@@ -11,7 +11,7 @@ Komponenta s otázkami na pořadí, která žádá studenta, aby seřadil kolekc
 * __question__ | `(string|node)`: otázka, u které musí student seřadit dostupné možnosti do správného pořadí.. Default: `''`.
 * __options__ | `array (required)`: pole textů, které má student seřadit do správného pořadí (předpokládá se, že jde o dodané pořadí).. Default: `none`.
 * __provideFeedback__ | `boolean`: řídí, zda se má zobrazit oznámení o tom, zda je odeslaná odpověď správná, nebo ne.. Default: `true`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __chat__ | `boolean`: řídí, zda má mít prvek integrovaný chat. Default: `false`.

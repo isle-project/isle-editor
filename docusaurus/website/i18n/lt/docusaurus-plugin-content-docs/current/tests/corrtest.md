@@ -13,7 +13,7 @@ Koreliacijos testas.
 * __var2__ | `string (required)`: antrojo kintamojo pavadinimas. Default: `none`.
 * __rho0__ | `number`: koreliacijos vertė, esant nulinei hipotezei. Default: `0`.
 * __alpha__ | `number`: reikšmingumo lygis. Default: `0.05`.
-* __direction__ | `string`: testo kryptis (`mažesnė`, `didesnė` arba `dvipusė`).. Default: `'two-sided'`.
+* __direction__ | `string`: testo kryptis (`less`, `greater` arba `two-sided`).. Default: `'two-sided'`.
 * __showDecision__ | `boolean`: kontroliuoja, ar rodyti, jei nulinė hipotezė atmetama esant nurodytam reikšmingumo lygiui.. Default: `false`.
 
 

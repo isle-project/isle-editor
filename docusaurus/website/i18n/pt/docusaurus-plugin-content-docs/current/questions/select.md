@@ -13,7 +13,7 @@ Um componente de pergunta seleta.
 * __solution__ | `number`: índice de elemento de solução em `opções'. Default: `none`.
 * __preselected__ | `number`: índice de opção de resposta pré-selecionada. Default: `0`.
 * __inline__ | `boolean`: controla se o componente é ou não tornado em linha. Default: `false`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.

@@ -14,7 +14,7 @@ Izberite vhodno komponento. Uporablja se lahko kot del armaturne plošče ISLE a
 * __disabled__ | `boolean`: nadzoruje, ali je vhod aktiven ali ne.. Default: `false`.
 * __inline__ | `boolean`: označuje, ali se vnos prikaže v vrstici.. Default: `false`.
 * __legend__ | `(string|node)`: besedilo, ki se prikaže ob vnosu. Default: `''`.
-* __menuPlacement__ | `string`: umestitev menija glede na upravljalnik (`avto`, `zgoraj` ali `spodaj`).. Default: `'auto'`.
+* __menuPlacement__ | `string`: umestitev menija glede na upravljalnik (`avto`, `top` ali `bottom`).. Default: `'auto'`.
 * __multi__ | `boolean`: nadzoruje, ali lahko izberete več odgovorov.. Default: `false`.
 * __onChange__ | `function`: funkcija povratne zveze, ki se sproži ob izbiri.. Default: `onChange() {}`.
 * __options__ | `array`: polje z navedbo možnosti, ki so na voljo uporabniku.. Default: `[]`.

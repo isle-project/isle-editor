@@ -10,7 +10,7 @@ Dynamická komponenta na pozadí, která v zadaném intervalu cykluje seznam tex
 
 * __text__ | `(string|array<string>)`: text nebo seznam textů, které se mají zobrazit. Default: `[]`.
 * __loop__ | `boolean`: určuje, zda se proces má zobrazovat nekonečně dlouho.. Default: `false`.
-* __direction__ | `string`: směr toku textu (buď `vlevo`, `vpravo`, `nahoru`, `dolů`, `sledování`, `ostření` nebo `vlnění`).. Default: `'right'`.
+* __direction__ | `string`: směr toku textu (buď `left`, `right`, `nahoru`, `dolů`, `sledování`, `ostření` nebo `vlnění`).. Default: `'right'`.
 * __hold__ | `number`: doba, po kterou text zůstane v klidu (v sekundách). Default: `5`.
 * __wait__ | `number`: doba, než přijde nová zpráva (v sekundách).. Default: `3`.
 * __inTime__ | `number`: čas vstupního efektu (v sekundách). Default: `1`.

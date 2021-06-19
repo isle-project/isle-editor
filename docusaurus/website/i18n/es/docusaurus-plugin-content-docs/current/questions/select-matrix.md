@@ -14,7 +14,7 @@ Una pregunta con una respuesta que consiste en múltiples cuadros de selección.
 * __options__ | `object`: con pares clave-valor con claves que tienen la forma "fila:col", por ejemplo "0:0", "0:1", "1:0", etc., y sus valores correspondientes son arreglos de las posibles opciones de respuesta para las preguntas individuales seleccionadas. Default: `{}`.
 * __solution__ | `object`: Objeto de solución con pares clave-valor con claves que tienen la forma "fila:col", por ejemplo "0:0", "0:1", "1:0", etc., y sus valores correspondientes son el índice del elemento de respuesta correcta de la respectiva matriz de "opciones". Default: `{}`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __provideFeedback__ | `string`: si proporcionar "ninguna" retroalimentación en absoluto, retroalimentación "individual" en las respuestas presentadas, o retroalimentación "general" para todas las preguntas. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: si se permite la presentación de propuestas sin que se haga una selección en cada casilla de selección. Default: `false`.

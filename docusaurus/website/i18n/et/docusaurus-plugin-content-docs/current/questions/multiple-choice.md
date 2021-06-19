@@ -11,7 +11,7 @@ ISLE komponent, mis esitab valikvastustega küsimuse. See toetab juhtumeid, kus 
 * __question__ | `(string|node)`: valikvastustega osa ülaosas kuvatav küsimus. Default: `''`.
 * __solution__ | `(number|array)`: number, mis tähistab, milline vastus on õige, või õigete vastuste numbrite "rida", kui õppija peaks saama valida mitu vastust.. Default: `none`.
 * __answers__ | `array (required)`: vastusobjektide "rida". Iga vastus peaks olema objekt, millel on väljad `content` ja `explanation`, mis tähistavad kuvatavat vastusevarianti ja pärast küsimuse esitamist nähtavat selgitust, mis selgitab, miks vastus on õige või vale.. Default: `none`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.
 * __disabled__ | `boolean`: kontrollib, kas küsimus on välja lülitatud. Default: `false`.

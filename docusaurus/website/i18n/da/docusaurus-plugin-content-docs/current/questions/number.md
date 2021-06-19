@@ -9,7 +9,7 @@ En komponent med et antal spørgsmål.
 ## Indstillinger
 
 * __question__ | `(string|node)`: spørgsmål om antal. Default: `''`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'top'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __solution__ | `(number|array<number>)`: et numerisk svar på problemet (eller flere korrekte svar, hvis der er angivet et array). Default: `none`.

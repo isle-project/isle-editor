@@ -9,7 +9,8 @@ Kaardi komponent.
 ## Valikud
 
 * __className__ | `string`: CSS klassi nimi. Default: `''`.
-* __header__ | `(string|node)`: paneeli pealkiri (h3). Default: `none`.
+* __header__ | `(string|node)`: paneeli pealkiri. Default: `none`.
+* __headerTag__ | `string`: paneeli pealkirja jaoks kasutatav silt. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneeli alumine osa. Default: `none`.
 * __minimizable__ | `boolean`: kas paneeli saab minimeerida. Default: `false`.
 * __fullscreen__ | `boolean`: kas paneeli saab muuta täisekraaniliseks (ainult instruktoritele). Default: `false`.

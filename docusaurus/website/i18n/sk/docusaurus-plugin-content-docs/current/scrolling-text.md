@@ -10,7 +10,7 @@ Dynamický komponent na pozadí, ktorý v určenom intervale cyklicky prechádza
 
 * __text__ | `(string|array<string>)`: text alebo zoznam textov, ktoré sa majú zobraziť. Default: `[]`.
 * __loop__ | `boolean`: označuje, či sa má proces zobrazovať donekonečna. Default: `false`.
-* __direction__ | `string`: smer toku textu (buď `vľavo`, `vpravo`, `nahoru`, `nadol`, `sledovanie`, `ostrosť` alebo `vlnenie`). Default: `'right'`.
+* __direction__ | `string`: smer toku textu (buď `left`, `right`, `nahoru`, `nadol`, `sledovanie`, `ostrosť` alebo `vlnenie`). Default: `'right'`.
 * __hold__ | `number`: čas, počas ktorého sa text nehýbe (v sekundách). Default: `5`.
 * __wait__ | `number`: čas do príchodu novej správy (v sekundách). Default: `3`.
 * __inTime__ | `number`: čas vstupného efektu (v sekundách). Default: `1`.

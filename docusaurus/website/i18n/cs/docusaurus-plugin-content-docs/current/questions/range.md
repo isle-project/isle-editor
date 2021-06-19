@@ -10,7 +10,7 @@ Složka s otázkou na rozsah, která od studentů vyžaduje, aby uvedli dolní a
 
 * __question__ | `(string|node)`: zobrazená otázka. Default: `''`.
 * __solution__ | `array<number>`: dvouprvkové pole obsahující koncové body správného rozsahu. Default: `none`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'top'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __labels__ | `array`: dvouprvkové pole vlastních štítků jiných než "Lower" a "Upper".. Default: `none`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.

@@ -9,7 +9,7 @@ Jautājuma komponents.
 ## Iespējas
 
 * __question__ | `(string|node)`: jautājums par numuru. Default: `''`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'top'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
 * __solution__ | `(number|array<number>)`: skaitlisku atbildi uz uzdevumu (vai vairākas pareizas atbildes, ja ir sniegts masīvs).. Default: `none`.

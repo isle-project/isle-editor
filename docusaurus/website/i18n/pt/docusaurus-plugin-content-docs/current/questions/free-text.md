@@ -10,7 +10,7 @@ Um componente ISLE para perguntas onde as respostas dos estudantes devem ser for
 
 * __question__ | `(string|node)`: a pergunta exibida na parte superior do componente de pergunta de texto livre. Default: `''`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'top'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'top'`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __solution__ | `(string|node)`: uma resposta modelo para o problema. Default: `''`.
 * __instantSolution__ | `boolean`: se é possível alternar a exibição da resposta do modelo imediatamente. Default: `false`.

@@ -11,7 +11,7 @@ sidebar_label: Multiple Choice Question
 * __question__ | `(string|node)`: 题目显示在选择题的顶部。. Default: `''`.
 * __solution__ | `(number|array)`: 表示正确答案的数字，或在学习者能够选择多个答案的情况下，表示正确答案的 "数组"。. Default: `none`.
 * __answers__ | `array (required)`: 答案对象的 "数组"。每个答案应该是一个对象，有 "内容 "和 "解释 "字段，表示所显示的答案选项和提交问题后可见的解释，以解释为什么答案正确或不正确。. Default: `none`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'bottom'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __disabled__ | `boolean`: 控制问题是否被禁用. Default: `false`.

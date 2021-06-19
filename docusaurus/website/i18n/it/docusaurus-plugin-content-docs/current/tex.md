@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `oggetto` con coppie chiave-valore CSS da applicare al contenitore dell'equazione. Default: `{}`.
 * __tag__ | `string`: Caratteri personalizzati visualizzati per le equazioni di visualizzazione sul lato destro. Il valore predefinito è il numero dell'equazione all'interno della lezione. Default: `none`.
 * __elems__ | `object`: "oggetto" con "tasti" che indicano i caratteri LaTeX e i loro valori corrispondenti sono "oggetti" di configurazione per renderli interattivi. L'impostazione di un'opzione `tooltip` mostrerà un tooltip quando si passa sopra i caratteri LaTeX. Impostando una proprietà `variabile` verrà visualizzato un cursore di input per cambiare la rispettiva variabile di stato; in questo caso, sono supportate le proprietà aggiuntive `legend`, `min`, `max` e `step`. Default: `{}`.
-* __popoverPlacement__ | `string`: posizione popover per gli `elems` specificati (sia `top`, `destra`, `bottom`, o `left`). Default: `'top'`.
+* __popoverPlacement__ | `string`: posizione popover per gli `elems` specificati (sia `top`, `right`, `bottom`, o `left`). Default: `'top'`.
 * __onPopover__ | `function`: richiamata `funzione` quando un popover di controllo viene attivato o disattivato; riceve lo stato di visualizzazione come booleano come unico argomento. Default: `onPopover() {}`.
 * __onClick__ | `function`: richiamata `funzione` invocata ogni volta che un utente clicca sull'equazione. Default: `none`.
 

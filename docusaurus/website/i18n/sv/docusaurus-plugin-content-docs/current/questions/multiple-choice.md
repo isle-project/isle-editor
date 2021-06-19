@@ -11,7 +11,7 @@ En ISLE-komponent som visar en flervalsfråga. Den stöder fall där eleven mås
 * __question__ | `(string|node)`: den fråga som visas högst upp i flervalskomponenten. Default: `''`.
 * __solution__ | `(number|array)`: Ett nummer som anger vilket svar som är rätt eller en "rad" med nummer för de rätta svaren om eleven ska kunna välja flera svar.. Default: `none`.
 * __answers__ | `array (required)`: ett "array" av svarsobjekt. Varje svar bör vara ett objekt med fälten `content` och `explanation`, som anger det visade svarsalternativet och en förklaring som är synlig efter det att frågan har lämnats in för att förklara varför svaret är korrekt eller felaktigt.. Default: `none`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __disabled__ | `boolean`: kontrollerar om frågan är inaktiverad eller inte. Default: `false`.

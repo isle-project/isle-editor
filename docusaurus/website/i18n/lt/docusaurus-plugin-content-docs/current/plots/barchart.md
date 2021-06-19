@@ -18,7 +18,7 @@ Stulpelinė diagrama.
 * __relative__ | `boolean`: ar apskaičiuoti santykinius dažnius kiekvienos grupės viduje.. Default: `false`.
 * __totalPercent__ | `boolean`: ar rodyti bendras juostas kaip santykinius dažnius.. Default: `false`.
 * __xOrder__ | `string`: `bendra`, `kategorija`, `min`, `max`, `vidurkis` arba `mediana`.. Default: `none`.
-* __direction__ | `string`: kaip išdėstyti barus palei x ašį (`Kylantis` arba `Krentantis`). Default: `'ascending'`.
+* __direction__ | `string`: kaip išdėstyti barus palei x ašį (`ascending` arba `descending`). Default: `'ascending'`.
 
 
 ## Pavyzdžiai

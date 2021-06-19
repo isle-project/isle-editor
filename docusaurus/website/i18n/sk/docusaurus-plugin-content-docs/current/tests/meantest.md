@@ -13,7 +13,7 @@ Jednovýberový test priemernej hodnoty.
 * __type__ | `string`: typ testu (`Z Test` alebo `T Test`). Default: `'T Test'`.
 * __stdev__ | `number`: štandardná odchýlka (pre `Z test`). Default: `none`.
 * __alpha__ | `number`: úroveň významnosti. Default: `0.05`.
-* __direction__ | `string`: smer testu (buď `menej`, `viac` alebo `obojstranne`). Default: `'two-sided'`.
+* __direction__ | `string`: smer testu (buď `less`, `greater` alebo `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: priemer pri nulovej hypotéze. Default: `0`.
 * __showDecision__ | `boolean`: kontroluje, či sa zobrazí, ak je nulová hypotéza zamietnutá na zadanej hladine významnosti.. Default: `false`.
 

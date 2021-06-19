@@ -9,7 +9,8 @@ sidebar_label: Panel
 ## 选项
 
 * __className__ | `string`: CSS类名. Default: `''`.
-* __header__ | `(string|node)`: 板块标题(h3). Default: `none`.
+* __header__ | `(string|node)`: 面板标题. Default: `none`.
+* __headerTag__ | `string`: 用于面板标题的标签. Default: `'h3'`.
 * __footer__ | `(string|node)`: 页脚. Default: `none`.
 * __minimizable__ | `boolean`: 面板是否可以最小化. Default: `false`.
 * __fullscreen__ | `boolean`: 是否可以全屏显示(只对教师开放). Default: `false`.

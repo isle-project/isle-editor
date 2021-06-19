@@ -13,7 +13,7 @@ sidebar_label: Correlation Test
 * __var2__ | `string (required)`: имя второй переменной. Default: `none`.
 * __rho0__ | `number`: значение корреляции при нулевой гипотезе. Default: `0`.
 * __alpha__ | `number`: уровень значимости. Default: `0.05`.
-* __direction__ | `string`: направление теста (либо `без`, `грэйтер`, либо `двухстороннее`). Default: `'two-sided'`.
+* __direction__ | `string`: направление теста (либо `less`, `greater`, либо `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: управляет отображением того, отвергается ли нулевая гипотеза на указанном уровне значимости. Default: `false`.
 
 

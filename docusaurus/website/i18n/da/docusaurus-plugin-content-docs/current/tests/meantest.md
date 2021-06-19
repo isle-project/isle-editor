@@ -13,7 +13,7 @@ Test af middelværdien ved en prøve.
 * __type__ | `string`: testtype (`Z-test` eller `T-test`). Default: `'T Test'`.
 * __stdev__ | `number`: standardafvigelse (for `Z Test`). Default: `none`.
 * __alpha__ | `number`: signifikansniveau. Default: `0.05`.
-* __direction__ | `string`: testretning (enten "mindre", "større" eller "tosidet"). Default: `'two-sided'`.
+* __direction__ | `string`: testretning (enten `less`, `greater` eller `two-sided`). Default: `'two-sided'`.
 * __mu0__ | `number`: middelværdien under nulhypotesen. Default: `0`.
 * __showDecision__ | `boolean`: kontrollerer, om der skal vises, hvis nulhypotesen forkastes ved det angivne signifikansniveau. Default: `false`.
 

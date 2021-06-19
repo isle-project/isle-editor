@@ -18,7 +18,7 @@ Søjlediagram.
 * __relative__ | `boolean`: om der skal beregnes relative frekvenser inden for hver gruppe. Default: `false`.
 * __totalPercent__ | `boolean`: om de samlede søjler skal vises som relative frekvenser. Default: `false`.
 * __xOrder__ | `string`: enten `total`, `category`, `min`, `max`, `mean`, eller `median`. Default: `none`.
-* __direction__ | `string`: hvordan man ordner søjler langs x-aksen (`opstigende` eller `nedadgående`). Default: `'ascending'`.
+* __direction__ | `string`: hvordan man ordner søjler langs x-aksen (`ascending` eller `descending`). Default: `'ascending'`.
 
 
 ## Eksempler

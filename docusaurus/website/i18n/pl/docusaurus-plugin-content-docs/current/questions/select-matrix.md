@@ -14,7 +14,7 @@ Pytanie z odpowiedzią składającą się z wielu pól wyboru.
 * __options__ | `object`: obiekt z parami klucz-wartość z kluczami posiadającymi postać `row:col`, np. `0:0`, `0:1`, `1:0` itd., a odpowiadające im wartości są tablicami możliwych do wyboru odpowiedzi na poszczególne wybrane pytania. Default: `{}`.
 * __solution__ | `object`: obiekt rozwiązania z parami klucz-wartość z kluczami o postaci `row:col`, np. `0:0`, `0:1`, `1:0` itd., a odpowiadające im wartości są indeksem prawidłowego elementu odpowiedzi z odpowiedniej tablicy `opcji. Default: `{}`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo "na górze", "w lewo", "w prawo", albo "na dole"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo `top`, `left`, `right`, albo `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.
 * __provideFeedback__ | `string`: czy w ogóle przekazywać "żadne" informacje zwrotne, "indywidualne" informacje zwrotne dotyczące przedłożonych odpowiedzi, czy też "ogólne" informacje zwrotne dotyczące wszystkich pytań. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: czy zezwolić na składanie wniosków bez zaznaczenia w każdym polu wyboru. Default: `false`.

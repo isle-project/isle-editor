@@ -12,7 +12,7 @@ En inlärningskomponent för beräkning av sannolikheter för en gammafördelnin
 * __scaleParameterization__ | `boolean`: Kontrollerar om parametrisering med en form- och skalparameter ska användas i stället för form och hastighet.. Default: `false`.
 * __step__ | `(number|string)`: stegstorlek för rullningsinmatningen. Default: `0.01`.
 * __symbols__ | `boolean`: Om grekiska symboler ska visas för parametrar.. Default: `true`.
-* __tabs__ | `array<string>`: vilka flikar som ska visas (antingen "mindre", "större" eller "intervall").. Default: `[
+* __tabs__ | `array<string>`: vilka flikar som ska visas (antingen `less`, `greater` eller "intervall").. Default: `[
   'smaller',
   'greater',
   'range'

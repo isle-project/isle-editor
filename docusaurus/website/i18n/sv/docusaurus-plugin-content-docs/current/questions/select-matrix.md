@@ -14,7 +14,7 @@ En fråga med ett svar som består av flera valbara rutor.
 * __options__ | `object`: objekt med nyckel-värdepar med nycklar av formen `row:col`, t.ex. `0:0`, `0:1`, `1:0` etc., och motsvarande värden är matriser med möjliga svarsalternativ för de enskilda frågorna.. Default: `{}`.
 * __solution__ | `object`: lösningsobjekt med nyckel-värdepar med nycklar av formen `row:col`, t.ex. `0:0`, `0:1`, `1:0` etc., och deras motsvarande värden är indexet för det korrekta svarselementet från respektive `options`-matris.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
-* __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placering av tipsen (antingen `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
 * __provideFeedback__ | `string`: om du ska ge "ingen" feedback alls, "individuell" feedback på de inlämnade svaren eller "övergripande" feedback för alla frågor. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: Om det är tillåtet att tillåta inlämningar utan att ett val har gjorts i varje ruta.. Default: `false`.

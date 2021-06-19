@@ -10,7 +10,7 @@ sidebar_label: Range Question
 
 * __question__ | `(string|node)`: 题目. Default: `''`.
 * __solution__ | `array<number>`: 包含正确范围端点的两元素数组。. Default: `none`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
 * __labels__ | `array`: 除 "较低"和 "上层"以外的自定义标签的双元素数组。. Default: `none`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.

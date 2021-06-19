@@ -9,7 +9,8 @@ sidebar_label: Panel
 ## Επιλογές
 
 * __className__ | `string`: Όνομα κλάσης CSS. Default: `''`.
-* __header__ | `(string|node)`: επικεφαλίδα πίνακα (h3). Default: `none`.
+* __header__ | `(string|node)`: επικεφαλίδα πίνακα. Default: `none`.
+* __headerTag__ | `string`: ετικέτα που χρησιμοποιείται για την επικεφαλίδα του πίνακα. Default: `'h3'`.
 * __footer__ | `(string|node)`: υποσέλιδο πάνελ. Default: `none`.
 * __minimizable__ | `boolean`: αν ο πίνακας μπορεί να ελαχιστοποιηθεί. Default: `false`.
 * __fullscreen__ | `boolean`: αν ο πίνακας μπορεί να γίνει πλήρης οθόνη (μόνο για εκπαιδευτές). Default: `false`.

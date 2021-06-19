@@ -10,7 +10,7 @@ Diapazona jautājuma komponents, kurā skolēniem jānorāda apakšējais un aug
 
 * __question__ | `(string|node)`: parādīts jautājums. Default: `''`.
 * __solution__ | `array<number>`: divu elementu masīvs, kas satur pareizā diapazona galapunktus.. Default: `none`.
-* __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'top'`.
+* __hintPlacement__ | `string`: mājienu izvietojums (`top`, `left`, `right` vai `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: norādes, kā atbildēt uz jautājumu.. Default: `[]`.
 * __labels__ | `array`: divu elementu masīvs ar pielāgotām etiķetēm, kas nav "Lower" un "Upper".. Default: `none`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.

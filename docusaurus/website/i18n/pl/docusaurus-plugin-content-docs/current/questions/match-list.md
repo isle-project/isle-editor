@@ -10,7 +10,7 @@ Komponent ISLE, który sprawia, że pytanie, w którym uczący się musi we wła
 
 * __question__ | `(string|node)`: pytanie, które ma być wyświetlane na górze elementu listy pytań ofertowych. Default: `''`.
 * __elements__ | `array<{a,b}>`: `rówka` trzymająca właściwe pary wyświetlana na górze komponentu pytania swobodnego tekstu. Każdy `arrada` musi być obiektem` z właściwościami `a` i `b`; dostarcza elementy tylko z właściwościami `a` lub `b` aby dodać odpowiedzi rozpraszające. Default: `[]`.
-* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo "na górze", "w lewo", "w prawo", albo "na dole"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umieszczenie podpowiedzi (albo `top`, `left`, `right`, albo `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __provideFeedback__ | `boolean`: wskazuje, czy rozwiązanie powinno być dostępne po udzieleniu odpowiedzi przez uczących się. Default: `true`.
 * __feedback__ | `boolean`: kontroluje, czy mają być wyświetlane przyciski sprzężenia zwrotnego. Default: `true`.

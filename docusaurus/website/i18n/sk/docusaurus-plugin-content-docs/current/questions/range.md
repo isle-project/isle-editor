@@ -10,7 +10,7 @@ Rozsahová otázka, ktorá od študentov vyžaduje, aby uviedli dolný a horný 
 
 * __question__ | `(string|node)`: zobrazená otázka. Default: `''`.
 * __solution__ | `array<number>`: dvojprvkové pole obsahujúce koncové body správneho rozsahu. Default: `none`.
-* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `hore`, `vľavo`, `vpravo` alebo `spodku`). Default: `'top'`.
+* __hintPlacement__ | `string`: umiestnenie nápovedy (buď `top`, `left`, `right` alebo `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: nápovedy, ktoré poskytujú návod, ako odpovedať na otázku. Default: `[]`.
 * __labels__ | `array`: dvojprvkové pole vlastných štítkov iných ako "Lower" a "Upper". Default: `none`.
 * __feedback__ | `boolean`: ovláda, či sa majú zobrazovať tlačidlá spätnej väzby.. Default: `true`.

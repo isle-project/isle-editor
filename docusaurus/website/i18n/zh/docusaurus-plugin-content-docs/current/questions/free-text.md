@@ -10,7 +10,7 @@ sidebar_label: Free Text Question
 
 * __question__ | `(string|node)`: 问题显示在自由文本问题组件的顶部。. Default: `''`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'top'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'top'`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __solution__ | `(string|node)`: 示范答案. Default: `''`.
 * __instantSolution__ | `boolean`: 是否可以立即切换显示模型答案。. Default: `false`.

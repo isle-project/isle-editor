@@ -16,7 +16,7 @@ Test de la moyenne sur deux échantillons.
 * __xstdev__ | `number`: premier écart-type (pour le "Test Z"). Default: `none`.
 * __ystdev__ | `number`: deuxième écart-type (pour le "Test Z"). Default: `none`.
 * __alpha__ | `number`: niveau de signification. Default: `0.05`.
-* __direction__ | `string`: la direction du test (soit "moins", "plus" ou "double"). Default: `'two-sided'`.
+* __direction__ | `string`: la direction du test (soit `less`, `greater` ou `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: différence sous H0. Default: `0`.
 * __showDecision__ | `boolean`: contrôle s'il faut afficher si l'hypothèse nulle est rejetée au niveau de signification spécifié. Default: `false`.
 

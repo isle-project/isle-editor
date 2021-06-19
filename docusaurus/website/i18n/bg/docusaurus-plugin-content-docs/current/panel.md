@@ -9,7 +9,8 @@ sidebar_label: Panel
 ## Опции
 
 * __className__ | `string`: Име на CSS клас. Default: `''`.
-* __header__ | `(string|node)`: заглавие на панела (h3). Default: `none`.
+* __header__ | `(string|node)`: заглавие на панела. Default: `none`.
+* __headerTag__ | `string`: таг, използван за заглавието на панела. Default: `'h3'`.
 * __footer__ | `(string|node)`: колонтитул на панела. Default: `none`.
 * __minimizable__ | `boolean`: дали панелът може да бъде сведен до минимум. Default: `false`.
 * __fullscreen__ | `boolean`: дали панелът може да се използва на цял екран (само за инструктори). Default: `false`.

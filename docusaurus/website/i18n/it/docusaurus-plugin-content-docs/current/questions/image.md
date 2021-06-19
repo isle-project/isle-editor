@@ -9,7 +9,7 @@ Una domanda che chiede all'utente di caricare un'immagine.
 ## Opzioni
 
 * __question__ | `(string|node)`: testo per la domanda. Default: `''`.
-* __hintPlacement__ | `string`: posizionamento dei suggerimenti (in alto, a sinistra, a destra o in basso). Default: `'bottom'`.
+* __hintPlacement__ | `string`: posizionamento dei suggerimenti (`top`, `left`, `right` o `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: suggerimenti che forniscono indicazioni su come rispondere alla domanda. Default: `[]`.
 * __feedback__ | `boolean`: controlla se visualizzare i pulsanti di feedback. Default: `true`.
 * __chat__ | `boolean`: controlla se l'elemento deve avere una chat integrata. Default: `false`.

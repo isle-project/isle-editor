@@ -9,7 +9,7 @@ Un componente de preguntas numéricas.
 ## Opciones
 
 * __question__ | `(string|node)`: pregunta de número. Default: `''`.
-* __hintPlacement__ | `string`: la colocación de las pistas (ya sea "arriba", "izquierda", "derecha" o "abajo"). Default: `'top'`.
+* __hintPlacement__ | `string`: la colocación de las pistas (ya sea `top`, `left`, `right` o `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: consejos que proporcionan orientación sobre cómo responder a la pregunta. Default: `[]`.
 * __feedback__ | `boolean`: controla si se muestran los botones de retroalimentación. Default: `true`.
 * __solution__ | `(number|array<number>)`: una respuesta numérica al problema (o múltiples respuestas correctas si se suministra un array). Default: `none`.

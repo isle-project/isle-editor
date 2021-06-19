@@ -12,7 +12,7 @@ En inlärningskomponent för beräkning av sannolikheter i en normalfördelning.
 * __hideCDF__ | `boolean`: kontrollerar om CDF-ritningarna ska döljas. Default: `false`.
 * __minStDev__ | `number`: Minsta standardavvikelse.. Default: `1`.
 * __step__ | `(number|string)`: stegstorlek för rullningsinmatningen. Default: `0.01`.
-* __tabs__ | `array<string>`: vilka flikar som ska visas (antingen "mindre", "större" eller "intervall").. Default: `[
+* __tabs__ | `array<string>`: vilka flikar som ska visas (antingen `less`, `greater` eller "intervall").. Default: `[
   'smaller',
   'greater',
   'range'

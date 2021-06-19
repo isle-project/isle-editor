@@ -8,7 +8,7 @@ Un componente de aprendizaje que ilustra el Teorema del Límite Central (CLT) pa
 
 ## Opciones
 
-* __distributions__ | `array<string>`: distribuciones estadísticas a elegir ('uniforme', 'exponencial', y/o 'normal'). Default: `[
+* __distributions__ | `array<string>`: distribuciones estadísticas a elegir (`uniform`, `exponential`, y/o `normal`). Default: `[
   'uniform',
   'exponential',
   'normal'

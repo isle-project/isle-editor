@@ -18,7 +18,7 @@ Stolpčni diagram.
 * __relative__ | `boolean`: ali izračunati relativne frekvence znotraj vsake skupine.. Default: `false`.
 * __totalPercent__ | `boolean`: ali naj se skupni stolpci prikažejo kot relativne frekvence.. Default: `false`.
 * __xOrder__ | `string`: bodisi `skupaj`, `kategorija`, `min`, `max`, `srednja` ali `mediana`. Default: `none`.
-* __direction__ | `string`: kako urediti palice ob osi x (`vzpenjajoče se` ali `spadajoče se`). Default: `'ascending'`.
+* __direction__ | `string`: kako urediti palice ob osi x (`ascending` ali `descending`). Default: `'ascending'`.
 
 
 ## Primeri

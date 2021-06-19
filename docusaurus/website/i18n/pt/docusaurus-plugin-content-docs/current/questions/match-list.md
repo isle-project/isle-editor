@@ -10,13 +10,13 @@ Um componente ISLE que faz uma pergunta na qual o aprendiz tem que fazer corresp
 
 * __question__ | `(string|node)`: pergunta a ser exibida no topo do componente de perguntas da lista de partidas. Default: `''`.
 * __elements__ | `array<{a,b}>`: um "raio" segurando os pares corretos exibidos na parte superior do componente de perguntas de texto livre. Cada elemento de "raio" deve ser um "objeto" com propriedades "a" e "b"; fornecer elementos apenas com propriedades "a" ou "b" para adicionar respostas de distração. Default: `[]`.
-* __hintPlacement__ | `string`: colocação das dicas (ou "cima", "esquerda", "direita", ou "baixo"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: colocação das dicas (ou `top`, `left`, `right`, ou `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: dicas que orientam como responder à pergunta. Default: `[]`.
 * __provideFeedback__ | `boolean`: indica se a solução deve ser acessível após os alunos apresentarem suas respostas. Default: `true`.
 * __feedback__ | `boolean`: controla se devem ser exibidos botões de feedback. Default: `true`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.
 * __colorScale__ | `array`: se estiver definido, as cores fornecidas são usadas para as telhas. Default: `none`.
-* __shuffle__ | `string`: especifica se as colunas "esquerda", "direita" ou "ambas" devem ser embaralhadas; fornecer "ninguém" ou qualquer outro valor para não embaralhar elementos em nenhum dos lados (pode ser útil no caso de não haver solução presente). Default: `'both'`.
+* __shuffle__ | `string`: especifica se as colunas `left`, `right` ou "ambas" devem ser embaralhadas; fornecer "ninguém" ou qualquer outro valor para não embaralhar elementos em nenhum dos lados (pode ser útil no caso de não haver solução presente). Default: `'both'`.
 * __disableSubmitNotification__ | `boolean`: controla se as notificações de submissão devem ser desativadas. Default: `false`.
 * __submissionMsg__ | `string`: notificação exibida quando o aprendiz apresenta sua resposta pela primeira vez. Default: `'You have successfully submitted your answer.'`.
 * __resubmissionMsg__ | `string`: notificação exibida para todos os envios após o primeiro. Default: `'You have successfully re-submitted your answer.'`.

@@ -10,7 +10,7 @@ ISLE komponent, mis esitab küsimuse, milles õppija peab kahe loendi elemente o
 
 * __question__ | `(string|node)`: küsimus, mis kuvatakse mängu nimekirja küsimuste komponendi ülaosas. Default: `''`.
 * __elements__ | `array<{a,b}>`: vabatekstilise küsimuse komponendi ülaosas kuvatavad õiged paarid. Iga "massiivi" element peab olema "objekt", millel on "a" ja "b" omadused; segavate vastuste lisamiseks tuleb esitada ainult "a" või "b" omadustega elemendid.. Default: `[]`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'bottom'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __provideFeedback__ | `boolean`: näitab, kas lahendus peaks olema kättesaadav pärast seda, kui õppijad on oma vastused esitanud.. Default: `true`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.

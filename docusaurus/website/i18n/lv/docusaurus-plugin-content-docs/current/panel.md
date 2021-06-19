@@ -9,7 +9,8 @@ Kartes komponents.
 ## Iespējas
 
 * __className__ | `string`: CSS klases nosaukums. Default: `''`.
-* __header__ | `(string|node)`: paneļa virsraksts (h3). Default: `none`.
+* __header__ | `(string|node)`: paneļa virsraksts. Default: `none`.
+* __headerTag__ | `string`: paneļa virsrakstam izmantotā birka. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneļa pēdiņa. Default: `none`.
 * __minimizable__ | `boolean`: vai paneli var samazināt līdz minimumam.. Default: `false`.
 * __fullscreen__ | `boolean`: vai panelis var būt pilnekrāna (tikai instruktoriem).. Default: `false`.

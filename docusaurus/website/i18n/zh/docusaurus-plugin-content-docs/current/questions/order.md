@@ -11,7 +11,7 @@ sidebar_label: Order Question
 * __question__ | `(string|node)`: 学生必须将可用的 "选项 "按正确的顺序排列出来。. Default: `''`.
 * __options__ | `array (required)`: 课文数组，学生必须将课文按正确的顺序排列（假设为提供的顺序）。. Default: `none`.
 * __provideFeedback__ | `boolean`: 控制是否显示提交的答案是否正确的通知。. Default: `true`.
-* __hintPlacement__ | `string`: 提示的位置（可以是 "上"、"左"、"右 "或 "下"）。. Default: `'bottom'`.
+* __hintPlacement__ | `string`: 提示的位置（可以是 `top`、`left`、`right`, 或 `bottom`）。. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: 指导如何回答问题的提示。. Default: `[]`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
 * __chat__ | `boolean`: 控制该元素是否应该有一个集成的聊天. Default: `false`.

@@ -10,7 +10,7 @@ Složka ISLE pro otázky, na které by studenti měli odpovídat formou volného
 
 * __question__ | `(string|node)`: otázka zobrazená v horní části volného textu.. Default: `''`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
-* __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'top'`.
+* __hintPlacement__ | `string`: umístění nápovědy (buď `top`, `left`, `right`, nebo `bottom`).. Default: `'top'`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
 * __solution__ | `(string|node)`: vzorová odpověď na problém. Default: `''`.
 * __instantSolution__ | `boolean`: zda lze okamžitě přepnout zobrazení modelové odpovědi.. Default: `false`.

@@ -16,7 +16,7 @@ Test af middelværdi med to stikprøver.
 * __xstdev__ | `number`: første standardafvigelse (for `Z Test`). Default: `none`.
 * __ystdev__ | `number`: anden standardafvigelse (for `Z Test`). Default: `none`.
 * __alpha__ | `number`: signifikansniveau. Default: `0.05`.
-* __direction__ | `string`: testretning (enten "mindre", "større" eller "tosidet"). Default: `'two-sided'`.
+* __direction__ | `string`: testretning (enten `less`, `greater` eller `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: forskel under H0. Default: `0`.
 * __showDecision__ | `boolean`: kontrollerer, om der skal vises, hvis nulhypotesen forkastes ved det angivne signifikansniveau. Default: `false`.
 

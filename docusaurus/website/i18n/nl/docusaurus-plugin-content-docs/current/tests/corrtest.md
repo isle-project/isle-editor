@@ -13,7 +13,7 @@ Correlatietest.
 * __var2__ | `string (required)`: naam van tweede variabele. Default: `none`.
 * __rho0__ | `number`: correlatiewaarde onder de nulhypothese. Default: `0`.
 * __alpha__ | `number`: significantieniveau. Default: `0.05`.
-* __direction__ | `string`: testrichting (ofwel `minder`, `groter`, of `tweezijdig`). Default: `'two-sided'`.
+* __direction__ | `string`: testrichting (ofwel `less`, `greater`, of `two-sided`). Default: `'two-sided'`.
 * __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen. Default: `false`.
 
 

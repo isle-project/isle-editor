@@ -14,7 +14,7 @@ Et spørgsmål med et svar, der består af flere afkrydsningsfelter.
 * __options__ | `object`: objekt med nøgle-værdipar med nøgler af formen `row:col`, f.eks. `0:0`, `0:1`, `1:0` osv., og deres tilsvarende værdier er arrays af de mulige svarmuligheder for de enkelte udvalgte spørgsmål. Default: `{}`.
 * __solution__ | `object`: løsningsobjekt med nøgle-værdipar med nøgler af formen `row:col`, f.eks. `0:0`, `0:1`, `1:0` osv., og deres tilsvarende værdier er indekset for det korrekte svarelement fra det respektive `options`-array.. Default: `{}`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'bottom'`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
 * __provideFeedback__ | `string`: om der skal gives "ingen" feedback overhovedet, "individuel" feedback på de(t) indsendte svar eller "samlet" feedback for alle spørgsmål. Default: `'individual'`.
 * __allowIncomplete__ | `boolean`: om der skal tillades indsendelser, uden at der er foretaget et valg i hvert afkrydsningsfelt. Default: `false`.

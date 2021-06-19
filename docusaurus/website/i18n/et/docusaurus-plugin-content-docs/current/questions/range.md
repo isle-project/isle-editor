@@ -10,7 +10,7 @@ Küsimuse osa, milles palutakse õpilastel esitada alumine ja ülemine lõpp-pun
 
 * __question__ | `(string|node)`: kuvatav küsimus. Default: `''`.
 * __solution__ | `array<number>`: kaheelemendiline massiivi, mis sisaldab õige vahemiku lõpp-punkte. Default: `none`.
-* __hintPlacement__ | `string`: vihjete paigutus (kas "üleval", "vasakul", "paremal" või "all").. Default: `'top'`.
+* __hintPlacement__ | `string`: vihjete paigutus (kas `top`, `left`, `right` või `bottom`).. Default: `'top'`.
 * __hints__ | `array<(string|node)>`: vihjeid, mis annavad suuniseid küsimusele vastamiseks. Default: `[]`.
 * __labels__ | `array`: kaheelemendiline massiivi muudest kohandatud siltidest kui "Lower" ja "Upper".. Default: `none`.
 * __feedback__ | `boolean`: kontrollib, kas tagasiside nuppe kuvada. Default: `true`.

@@ -12,7 +12,7 @@ Komponentas, kuris rodo savo vaikus skaidrių rodymo arba karuselės pavidalu.
 * __dots__ | `boolean`: rodyti taškus apačioje, kad būtų galima greitai pereiti prie bet kurios skaidrės.. Default: `true`.
 * __fade__ | `boolean`: kontroliuoja, ar perėjimui tarp skaidrių bus naudojamas išblukimas.. Default: `false`.
 * __draggable__ | `boolean`: kontroliuoja, ar naudotojai gali vilkti skaidres ir naršyti tarp jų.. Default: `false`.
-* __pagination__ | `string`: ar puslapius rodyti `viršuje`, `apačioje`, ar `dviejose`.. Default: `'bottom'`.
+* __pagination__ | `string`: ar puslapius rodyti `top`, `bottom`, ar `dviejose`.. Default: `'bottom'`.
 * __goto__ | `number`: Jei savybė pakeista, komponentas pereina į skaidrę su pasirinktu indeksu. Default: `0`.
 * __infinite__ | `boolean`: kontroliuoja, ar skaidrių rodymas apjuosia jo turinį.. Default: `false`.
 * __interval__ | `number`: nustato automatinio skaidrių keitimo laiko intervalą.. Default: `none`.

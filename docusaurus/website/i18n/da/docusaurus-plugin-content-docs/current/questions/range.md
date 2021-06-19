@@ -10,7 +10,7 @@ En spørgeskemakomponent, der beder eleverne om at angive et nedre og øvre ende
 
 * __question__ | `(string|node)`: viste spørgsmål. Default: `''`.
 * __solution__ | `array<number>`: et array med to elementer, der indeholder endepunkterne for det korrekte område. Default: `none`.
-* __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'top'`.
+* __hintPlacement__ | `string`: placeringen af vejledningerne (enten `top`, `left`, `right` eller `bottom`). Default: `'top'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __labels__ | `array`: et array med to elementer af andre brugerdefinerede etiketter end "Lower" og "Upper". Default: `none`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.

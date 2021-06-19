@@ -9,7 +9,8 @@ Komponent karty.
 ## Opcje
 
 * __className__ | `string`: Nazwa klasy CSS. Default: `''`.
-* __header__ | `(string|node)`: nagłówek panelu (h3). Default: `none`.
+* __header__ | `(string|node)`: nagłówek panelu. Default: `none`.
+* __headerTag__ | `string`: znacznik używany dla nagłówka panelu. Default: `'h3'`.
 * __footer__ | `(string|node)`: stopka panelu. Default: `none`.
 * __minimizable__ | `boolean`: czy panel może być zminimalizowany. Default: `false`.
 * __fullscreen__ | `boolean`: czy panel może być wykonany w trybie pełnoekranowym (tylko dla instruktorów). Default: `false`.

@@ -10,7 +10,7 @@ Komponenta ISLE, ki prikaže vprašanje, v katerem mora učenec pravilno povezat
 
 * __question__ | `(string|node)`: vprašanje, ki se prikaže na vrhu komponente vprašanja seznama ujemanj.. Default: `''`.
 * __elements__ | `array<{a,b}>`: `mrežo` s pravilnimi pari, ki je prikazana na vrhu komponente vprašanja s prostim besedilom. Vsak element `array` mora biti `objekt` z lastnostmi `a` in `b`; če želite dodati odgovore, ki odvračajo pozornost, dodajte elemente samo z lastnostmi `a` ali `b`.. Default: `[]`.
-* __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'bottom'`.
+* __hintPlacement__ | `string`: umestitev namigov (`top`, `left`, `right` ali `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __provideFeedback__ | `boolean`: označuje, ali naj bo rešitev dostopna, ko učenci oddajo svoje odgovore.. Default: `true`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.

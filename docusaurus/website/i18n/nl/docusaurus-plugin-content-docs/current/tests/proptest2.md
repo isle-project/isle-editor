@@ -14,7 +14,7 @@ Twee-steekproef proportionele test.
 * __var2__ | `(string|Factor)`: naam van de tweede variabele (`var2` of `groep` moet worden verstrekt). Default: `none`.
 * __group__ | `(string|Factor)`: naam van de groepsvariabele (`var2` of `groep` moet worden verstrekt). Default: `none`.
 * __alpha__ | `number`: significantieniveau. Default: `0.05`.
-* __direction__ | `string`: testrichting (ofwel `minder`, `groter`, of `tweezijdig`). Default: `'two-sided'`.
+* __direction__ | `string`: testrichting (ofwel `less`, `greater`, of `two-sided`). Default: `'two-sided'`.
 * __diff__ | `number`: verschil onder H0. Default: `0`.
 * __showDecision__ | `boolean`: controleert of de nulhypothese wordt weergegeven als deze op het gespecificeerde significantieniveau wordt verworpen. Default: `false`.
 

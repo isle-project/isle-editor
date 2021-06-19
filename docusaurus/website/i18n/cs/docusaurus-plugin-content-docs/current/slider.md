@@ -12,7 +12,7 @@ Komponenta, která zobrazuje své potomky v prezentaci nebo kolotoči.
 * __dots__ | `boolean`: zobrazení bodů v dolní části pro rychlou navigaci na libovolný snímek.. Default: `true`.
 * __fade__ | `boolean`: řídí, zda se pro přechod mezi snímky použije fading.. Default: `false`.
 * __draggable__ | `boolean`: řídí, zda mohou uživatelé přetahovat snímky a pohybovat se mezi nimi.. Default: `false`.
-* __pagination__ | `string`: zda se má stránkování zobrazovat buď na `hoře`, `dole`, nebo `obojí`.. Default: `'bottom'`.
+* __pagination__ | `string`: zda se má stránkování zobrazovat buď na `top`, `bottom`, nebo `both`.. Default: `'bottom'`.
 * __goto__ | `number`: Pokud je vlastnost změněna, komponenta přejde na snímek s vybraným indexem.. Default: `0`.
 * __infinite__ | `boolean`: řídí, zda se má prezentace obtékat kolem svého obsahu.. Default: `false`.
 * __interval__ | `number`: nastaví časový interval pro automatickou výměnu sklíček.. Default: `none`.
