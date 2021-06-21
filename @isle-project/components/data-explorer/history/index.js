@@ -48,6 +48,7 @@ import PrincipalComponentAnalysis from '@isle-project/components/models/principa
 import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
 import KMeans from '@isle-project/components/models/kmeans';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
+import SummaryStatistics from '@isle-project/components/summary-statistics';
 import SearchBar from './search.js';
 import TextSelect from './text_select.js';
 
@@ -208,6 +209,9 @@ class HistoryPanel extends Component {
 			const params = { ...this.props, ...elem.value };
 			let output;
 			switch ( elem.type ) {
+				case 'DATA_EXPLORER_SUMMARY_STATISTICS':
+					output = <SummaryStatistics {...params} />;
+					break;
 				case 'DATA_EXPLORER_BARCHART':
 					output = <BarChart {...params} />;
 					break;
