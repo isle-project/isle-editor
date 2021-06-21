@@ -128,7 +128,7 @@
 }
 
 .statusbar-button:focus-visible {
-	outline-offset: none;
+	outline: none;
 }
 
 .statusbar-left {
