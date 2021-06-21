@@ -55,7 +55,7 @@ const Option = props => {
 };
 const GroupHeading = props => {
 	props = { ...props };
-	props.children = i18n.t( 'DataExplorer:'+props.children );
+	props.children = i18n.t( 'data-explorer:'+props.children );
 	return <components.GroupHeading {...props} />;
 };
 
@@ -160,33 +160,26 @@ class SummaryStatisticsMenu extends Component {
 		const statistics = this.state.selectedStats.map( x => x.value );
 		const quantiles = this.state.quantiles.map( x => x.value );
 		const group = this.state.group ? this.state.group.map( x => x.value ) : null;
-		const statLabels = [];
-		for ( let i = 0; i < statistics.length; i++ ) {
-			const stat = statistics[ i ];
-			if ( stat === 'Quantile' ) {
-				for ( let j = 0; j < quantiles.length; j++ ) {
-					const quantile = quantiles[ j ];
-					statLabels.push(
-						`${round( quantile*100 )}% ${this.props.t('quantile')}`
-					);
-				}
-			} else {
-				statLabels.push( stat );
-			}
-		}
-		if ( statLabels[ 0 ] === 'Correlation Matrix' ) {
-			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
-				statistic: statLabels,
+		if ( statistics[ 0 ] === 'Correlation Matrix' ) {
+			const action = {
+				statistics: statistics,
 				variables: this.state.variables,
-				group
-			});
+				group,
+				omit: this.state.omit
+			};
+			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, action );
 		} else {
-			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, {
-				statistic: statLabels,
+			const action = {
+				statistics: statistics,
 				variables: this.state.variables,
-				secondVariable: statLabels[ 0 ] === 'Correlation' ? this.state.secondVariable : null,
-				group
-			});
+				secondVariable: statistics[ 0 ] === 'Correlation' ? this.state.secondVariable : null,
+				group,
+				omit: this.state.omit
+			};
+			if ( contains( statistics, 'Quantile' ) ) {
+				action.quantiles = quantiles;
+			}
+			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, action );
 		}
 		const elem = <SummaryStatistics
 			data={this.props.data}
