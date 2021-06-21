@@ -257,7 +257,16 @@ class FullscreenActionDisplay extends Component {
 			return 0;
 		}
 		const value = wordWrap( String( action.value ) );
-		const noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
+		let noLines = ( value.match( RE_NEWLINE ) || '' ).length + 1;
+		if ( this.props.showExtended ) {
+			const { type } = this.props.data;
+			const smallCol = type === 'number' || type === 'factor';
+			if ( smallCol ) {
+				noLines += 2;
+			} else {
+				noLines += 1;
+			}
+		}
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${noLines} lines.` );
 		return lines;
