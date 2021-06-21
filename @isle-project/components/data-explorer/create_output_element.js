@@ -150,7 +150,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === PropTest2
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Test Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
+			{createButtons( t('output-test'), e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{e}
 		</pre>;
 		return elem;
@@ -160,7 +160,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === FrequencyTable
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Table Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
+			{createButtons( t('output-table'), e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
@@ -176,7 +176,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === RandomForest
 	) {
 		const elem = <pre key={idx} >
-			{createButtons( 'Model Output', e, clearOutput, idx, subsetFilters, onFilters, t )}
+			{createButtons( t('output-model'), e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
@@ -208,7 +208,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 	}
 	else if ( e.type === SummaryStatistics ) {
 		const elem = <pre key={idx} >
-			{createButtons( e.type, e, clearOutput, idx, subsetFilters, onFilters, t )}
+			{createButtons( t('summary-statistics' ), e, clearOutput, idx, subsetFilters, onFilters, t )}
 			{makeDraggable( e )}
 		</pre>;
 		return elem;
