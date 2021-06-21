@@ -16,7 +16,6 @@ import selectStyles from '@isle-project/components/input/select/styles';
 import Tooltip from '@isle-project/components/tooltip';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import round from '@stdlib/math/base/special/round';
 import SummaryStatistics from '@isle-project/components/summary-statistics';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import CreatableSelect from 'react-select/creatable';
