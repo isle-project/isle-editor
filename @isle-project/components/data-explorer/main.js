@@ -1312,7 +1312,7 @@ DataExplorer.defaultProps = {
 	},
 	dataTable: true,
 	dataTableProps: {},
-	history: false,
+	history: true,
 	tabs: [],
 	questions: [],
 	transformer: true,
