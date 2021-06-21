@@ -17,6 +17,8 @@
 	"chat-members": "Medlemmarna på {{name}} chattar:",
 	"chat-with": "Chatta med {{name}}",
 	"class-progress": "Nuvarande framsteg i klassen: {{progress}}%",
+	"click-to-collapse": "Klicka för att minska",
+	"click-to-expand": "Klicka för att expandera",
 	"close": "Stäng",
 	"close-groups": "Stäng grupper",
 	"close-groups-confirm": "Vill ni verkligen stänga grupperna?",

@@ -17,6 +17,8 @@
 	"chat-members": " {{name}} liikmed vestlevad:",
 	"chat-with": "Vestelda koos {{name}}",
 	"class-progress": "Praeguse klassi edusammud: {{progress}}%",
+	"click-to-collapse": "Klõpsake kokkuvarisemiseks",
+	"click-to-expand": "Klõpsake laiendamiseks",
 	"close": "Sulge",
 	"close-groups": "Sulge rühmad",
 	"close-groups-confirm": "Kas te tõesti tahate gruppe sulgeda?",

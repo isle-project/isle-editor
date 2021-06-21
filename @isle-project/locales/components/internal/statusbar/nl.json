@@ -17,6 +17,8 @@
 	"chat-members": "Leden van {{name}} chat:",
 	"chat-with": "Chat met {{name}}",
 	"class-progress": "Huidige klasse vooruitgang: {{progress}}%",
+	"click-to-collapse": "Klik om in te klappen",
+	"click-to-expand": "Klik om uit te breiden",
 	"close": "Sluiten",
 	"close-groups": "Groepen sluiten",
 	"close-groups-confirm": "Wil je de groepen echt sluiten?",

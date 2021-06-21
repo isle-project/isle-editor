@@ -17,6 +17,8 @@
 	"chat-members": "Τα μέλη του {{name}} συνομιλούν:",
 	"chat-with": "Συνομιλία με {{name}}",
 	"class-progress": "Τρέχουσα πρόοδος στην τάξη: {{progress}}%",
+	"click-to-collapse": "Κάντε κλικ για να καταρρεύσει",
+	"click-to-expand": "Κάντε κλικ για να επεκτείνετε",
 	"close": "Κλείστε το",
 	"close-groups": "Κλείστε ομάδες",
 	"close-groups-confirm": "Θέλετε πραγματικά να κλείσετε τις ομάδες;",

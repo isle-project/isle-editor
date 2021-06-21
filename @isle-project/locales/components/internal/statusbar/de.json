@@ -17,6 +17,8 @@
 	"chat-members": "Mitglieder von {{name}} Chat:",
 	"chat-with": "Chatten mit {{name}}",
 	"class-progress": "Aktueller Klassenfortschritt: {{progress}}%",
+	"click-to-collapse": "Zum Zuklappen klicken",
+	"click-to-expand": "Klicken zum Erweitern",
 	"close": "Schließen",
 	"close-groups": "Gruppen schliessen",
 	"close-groups-confirm": "Wollen Sie die Gruppen wirklich schließen?",

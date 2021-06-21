@@ -17,6 +17,8 @@
 	"chat-members": "{{name}} Członkowie pogaduszek.",
 	"chat-with": "Chat z {{nazwiskiem}}",
 	"class-progress": "Aktualne postępy w klasie: {{progress}}%",
+	"click-to-collapse": "Kliknij, aby zwinąć",
+	"click-to-expand": "Kliknij, aby rozwinąć",
 	"close": "Zamknij",
 	"close-groups": "Bliskie grupy",
 	"close-groups-confirm": "Naprawdę chcesz zamknąć te grupy?",

@@ -17,6 +17,8 @@
 	"chat-members": "A {{name}} chat tagjai:",
 	"chat-with": "Csevegés {{name}}",
 	"class-progress": "Az osztály aktuális fejlődése: {{progress}}%",
+	"click-to-collapse": "Kattintson az összecsukáshoz",
+	"click-to-expand": "Kattintson a bővítéshez",
 	"close": "Zárja be a",
 	"close-groups": "Csoportok bezárása",
 	"close-groups-confirm": "Tényleg be akarod zárni a csoportokat?",

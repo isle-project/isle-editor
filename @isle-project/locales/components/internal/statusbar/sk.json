@@ -17,6 +17,8 @@
 	"chat-members": "Členovia skupiny {{name}} chat:",
 	"chat-with": "Chatujte s {{name}}",
 	"class-progress": "Aktuálny pokrok triedy: {{progress}}%",
+	"click-to-collapse": "Kliknutím na tlačidlo sa zrúti",
+	"click-to-expand": "Kliknite na tlačidlo expandovať",
 	"close": "Zatvoriť",
 	"close-groups": "Uzavreté skupiny",
 	"close-groups-confirm": "Naozaj chcete zatvoriť skupiny?",

@@ -17,6 +17,8 @@
 	"chat-members": " {{name}} pokalbių svetainės nariai:",
 	"chat-with": "Bendraukite su {{name}}",
 	"class-progress": "Dabartinė klasės pažanga: {{progress}}%",
+	"click-to-collapse": "Spustelėkite, jei norite suardyti",
+	"click-to-expand": "Spustelėkite, norėdami išplėsti",
 	"close": "Uždaryti",
 	"close-groups": "Uždaryti grupes",
 	"close-groups-confirm": "Ar tikrai norite uždaryti grupes?",

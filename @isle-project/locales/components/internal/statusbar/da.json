@@ -17,6 +17,8 @@
 	"chat-members": "Medlemmer af {{name}} chat:",
 	"chat-with": "Chat med {{name}}",
 	"class-progress": "Nuværende klasses fremskridt: {{progress}}%",
+	"click-to-collapse": "Klik for at lukke",
+	"click-to-expand": "Klik for at udvide",
 	"close": "Luk",
 	"close-groups": "Luk grupper",
 	"close-groups-confirm": "Ønsker du virkelig at lukke grupperne?",

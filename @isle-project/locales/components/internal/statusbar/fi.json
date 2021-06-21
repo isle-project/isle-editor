@@ -17,6 +17,8 @@
 	"chat-members": "Jäsenet {{name}} chat:",
 	"chat-with": "Keskustele {{name}}",
 	"class-progress": "Tämänhetkinen edistyminen luokassa: {{progress}}%",
+	"click-to-collapse": "Klikkaa sulkeaksesi",
+	"click-to-expand": "Laajenna klikkaamalla",
 	"close": "Sulje",
 	"close-groups": "Sulje ryhmät",
 	"close-groups-confirm": "Haluatteko todella sulkea ryhmät?",

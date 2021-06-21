@@ -17,6 +17,8 @@
 	"chat-members": "名前}}チャットのメンバーです。",
 	"chat-with": "チャットで{{name}}と",
 	"class-progress": "現在のクラスの進捗状況。{{progress}}%%のようになっています。",
+	"click-to-collapse": "クリックして折りたたむ",
+	"click-to-expand": "クリックして拡大",
 	"close": "閉じる",
 	"close-groups": "クローズグループ",
 	"close-groups-confirm": "本当にグループを閉じたいのか？",

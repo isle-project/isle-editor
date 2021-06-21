@@ -17,6 +17,8 @@
 	"chat-members": "聊天的成员{{name}}。",
 	"chat-with": "与{{name}}聊天",
 	"class-progress": "当前班级进度。{{progress}}%",
+	"click-to-collapse": "点击折叠",
+	"click-to-expand": "点击展开",
 	"close": "关闭",
 	"close-groups": "关闭组",
 	"close-groups-confirm": "你真的想关闭群组吗？",

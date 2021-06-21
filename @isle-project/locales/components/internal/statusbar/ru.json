@@ -17,6 +17,8 @@
 	"chat-members": "Члены {{name}} чата:",
 	"chat-with": "Поболтать с {{name}}",
 	"class-progress": "Текущий классовый прогресс: {{progress}}%",
+	"click-to-collapse": "Нажмите, чтобы свернуть",
+	"click-to-expand": "Нажмите, чтобы увеличить",
 	"close": "Закрыть",
 	"close-groups": "Закрытые группы",
 	"close-groups-confirm": "Ты действительно хочешь закрыть группы?",

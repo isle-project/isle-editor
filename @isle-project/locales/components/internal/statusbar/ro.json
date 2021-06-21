@@ -17,6 +17,8 @@
 	"chat-members": "Membrii {{name}} chat:",
 	"chat-with": "Chat cu {{name}}",
 	"class-progress": "Progresul actual al clasei: {{progress}}%",
+	"click-to-collapse": "Faceți clic pentru a restrânge",
+	"click-to-expand": "Faceți clic pentru a extinde",
 	"close": "Închideți",
 	"close-groups": "Grupuri apropiate",
 	"close-groups-confirm": "Chiar vreți să închideți grupurile?",

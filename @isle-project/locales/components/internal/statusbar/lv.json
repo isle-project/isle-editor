@@ -17,6 +17,8 @@
 	"chat-members": " {{name}} tērzēšanas dalībnieki:",
 	"chat-with": "Tērzēšana ar {{name}}",
 	"class-progress": "Pašreizējais klases progress: {{progress}}%",
+	"click-to-collapse": "Noklikšķiniet, lai sabruktu",
+	"click-to-expand": "Noklikšķiniet, lai paplašinātu",
 	"close": "Aizvērt",
 	"close-groups": "Aizvērt grupas",
 	"close-groups-confirm": "Vai tiešām vēlaties slēgt grupas?",

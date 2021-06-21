@@ -17,6 +17,8 @@
 	"chat-members": "Člani spletne strani {{name}} klepetajo:",
 	"chat-with": "Klepetajte z {{name}}",
 	"class-progress": "Trenutni napredek razreda: {{progress}}%",
+	"click-to-collapse": "Kliknite za zrušitev",
+	"click-to-expand": "Kliknite za razširitev",
 	"close": "Zapri",
 	"close-groups": "Zaprite skupine",
 	"close-groups-confirm": "Ali res želite zapreti skupine?",

@@ -17,6 +17,8 @@
 	"chat-members": "Членове на {{name}} чат:",
 	"chat-with": "Чат с {{name}}",
 	"class-progress": "Текущ напредък на класа: {{progress}}%",
+	"click-to-collapse": "Кликнете, за да се сринете",
+	"click-to-expand": "Кликнете, за да разширите",
 	"close": "Затвори",
 	"close-groups": "Близки групи",
 	"close-groups-confirm": "Наистина ли искате да закриете групите?",

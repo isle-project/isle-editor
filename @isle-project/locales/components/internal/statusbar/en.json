@@ -17,6 +17,8 @@
 	"chat-members": "Members of {{name}} chat:",
 	"chat-with": "Chat with {{name}}",
 	"class-progress": "Current class progress: {{progress}}%",
+	"click-to-collapse": "Click to collapse",
+	"click-to-expand": "Click to expand",
 	"close": "Close",
 	"close-groups": "Close Groups",
 	"close-groups-confirm": "Do you really want to close the groups?",
