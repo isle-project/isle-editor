@@ -71,9 +71,15 @@ if ( type === 'major' || type === 'minor' || type === 'patch' ) {
 	console.log( `Replacing ${oldVersion} with ${newVersion} in index.html...` );
 	const htmlPath = join( __dirname, '..', 'app', 'bundler', 'index.html' );
 	const html = fs.readFileSync( htmlPath, 'utf8' );
-
 	out = replace( html, `dll@${oldVersion}`, `dll@${newVersion}` );
 	fs.writeFileSync( htmlPath, out );
+
+	console.log( `Replacing ${oldVersion} with ${newVersion} in @isle-project/locales/index.js...` );
+	const jsPath = join( __dirname, '..', '@isle-project', 'locales', 'index.js' );
+	const js = fs.readFileSync( jsPath, 'utf8' );
+
+	out = replace( js, `locales@${oldVersion}`, `locales@${newVersion}` );
+	fs.writeFileSync( jsPath, out );
 }
 
 // Delete current DLL files:
