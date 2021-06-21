@@ -6,6 +6,8 @@
 	"all-cohorts": "Visas grupas",
 	"anonymized": "Anonimizēts",
 	"anonymous": "Anonīms",
+	"blackout-intro-owner": "Šobrīd šis ekrāns ir paslēpts visiem lietotājiem. Iziet no aptumšošanas režīma, noklikšķinot uz kvadrātveida pogas statusa joslā vai nospiežot attiecīgo karsto taustiņu ({{hotkey}}).",
+	"blackout-intro-user": "Ekrānu ir paslēpis pasniedzējs.",
 	"blackout-label": "Ekrāna aptumšošana",
 	"blackout-tooltip": "Melns ekrāns ikvienam",
 	"broadcast-message": "Raidījums Ziņojums",

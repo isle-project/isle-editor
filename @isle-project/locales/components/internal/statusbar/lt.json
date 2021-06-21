@@ -6,6 +6,8 @@
 	"all-cohorts": "Visos kohortos",
 	"anonymized": "Anonimizuota",
 	"anonymous": "Anoniminis",
+	"blackout-intro-owner": "Šiuo metu ekranas yra paslėptas visiems naudotojams. Iš užtemdymo režimo išeikite spustelėję būsenos juostoje esantį kvadratinį mygtuką arba paspaudę atitinkamą spartųjį klavišą ({{hotkey}}).",
+	"blackout-intro-user": "Ekraną paslėpė instruktorius.",
 	"blackout-label": "Užtemdytas ekranas",
 	"blackout-tooltip": "Užtemdytas ekranas visiems",
 	"broadcast-message": "Transliuoti žinutę",

@@ -6,6 +6,8 @@
 	"all-cohorts": "Toutes les cohortes",
 	"anonymized": "Anonymisé",
 	"anonymous": "Anonyme",
+	"blackout-intro-owner": "L'écran est actuellement masqué pour tous les utilisateurs. Pour quitter le mode d'occultation, cliquez sur le bouton carré dans la barre d'état ou appuyez sur le raccourci clavier correspondant ({{hotkey}}).",
+	"blackout-intro-user": "L'écran a été caché par l'instructeur.",
 	"blackout-label": "Écran noir",
 	"blackout-tooltip": "Un écran noir pour tous",
 	"broadcast-message": "Message diffusé",

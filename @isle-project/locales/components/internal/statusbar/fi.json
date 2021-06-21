@@ -6,6 +6,8 @@
 	"all-cohorts": "Kaikki kohortit",
 	"anonymized": "Anonymisoitu",
 	"anonymous": "Anonyymi",
+	"blackout-intro-owner": "Näyttö on tällä hetkellä piilotettu kaikilta käyttäjiltä. Poistu pimennystilasta napsauttamalla tilarivin sisällä olevaa neliöpainiketta tai painamalla vastaavaa pikanäppäintä ({{hotkey}}).",
+	"blackout-intro-user": "Ohjaaja on piilottanut näytön.",
 	"blackout-label": "Pimeä näyttö",
 	"blackout-tooltip": "Pimennysnäyttö kaikille",
 	"broadcast-message": "Lähetysviesti",

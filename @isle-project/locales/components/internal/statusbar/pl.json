@@ -6,6 +6,8 @@
 	"all-cohorts": "Wszystkie kohorty",
 	"anonymized": "Zanonimizowany",
 	"anonymous": "Anonimowy",
+	"blackout-intro-owner": "Ekran jest obecnie ukryty dla wszystkich użytkowników. Wyjdź z trybu zaciemnienia klikając na kwadratowy przycisk wewnątrz paska stanu lub naciskając odpowiedni klawisz skrótu ({{hotkey}})",
+	"blackout-intro-user": "Ekran został zasłonięty przez prowadzącego.",
 	"blackout-label": "Ekran zaciemnienia",
 	"blackout-tooltip": "Ekran zaciemnienia dla wszystkich",
 	"broadcast-message": "Wiadomość nadawcza",

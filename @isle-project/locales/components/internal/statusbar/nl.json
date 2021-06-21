@@ -6,6 +6,8 @@
 	"all-cohorts": "Alle Cohorten",
 	"anonymized": "Anoniem gemaakt",
 	"anonymous": "Anoniem",
+	"blackout-intro-owner": "Het scherm is momenteel verborgen voor alle gebruikers. Verlaat de verduisteringsmodus door te klikken op de vierkante knop in de statusbalk of door te drukken op de respectieve sneltoets ({{hotkey}})",
+	"blackout-intro-user": "Het scherm is verborgen door de instructeur.",
 	"blackout-label": "Verduisteringsscherm",
 	"blackout-tooltip": "Verduisteringsscherm voor iedereen",
 	"broadcast-message": "Uitzendingsbericht",

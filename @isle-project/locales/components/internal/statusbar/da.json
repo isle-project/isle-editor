@@ -6,6 +6,8 @@
 	"all-cohorts": "Alle kohorter",
 	"anonymized": "Anonymiseret",
 	"anonymous": "Anonym",
+	"blackout-intro-owner": "Skærmbilledet er i øjeblikket skjult for alle brugere. Forlad mørklægningstilstanden ved at klikke på den firkantede knap i statuslinjen eller ved at trykke på den pågældende genvejstast ({{hotkey}})",
+	"blackout-intro-user": "Skærmen er blevet skjult af instruktøren.",
 	"blackout-label": "Sorte skærm",
 	"blackout-tooltip": "Sort skærm for alle",
 	"broadcast-message": "Broadcast-meddelelse",

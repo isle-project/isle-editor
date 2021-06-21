@@ -6,6 +6,8 @@
 	"all-cohorts": "所有群组",
 	"anonymized": "匿名化",
 	"anonymous": "无名氏",
+	"blackout-intro-owner": "目前，所有用户的屏幕都是隐藏的。通过点击状态栏内的方形按钮或按下相应的热键({{hotkey}})退出封锁模式。",
+	"blackout-intro-user": "屏幕已被教员隐藏。",
 	"blackout-label": "黑屏",
 	"blackout-tooltip": "大家都黑屏",
 	"broadcast-message": "广播信息",

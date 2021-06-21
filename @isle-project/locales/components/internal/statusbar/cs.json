@@ -6,6 +6,8 @@
 	"all-cohorts": "Všechny kohorty",
 	"anonymized": "Anonymizované",
 	"anonymous": "Anonymní",
+	"blackout-intro-owner": "Obrazovka je v současné době pro všechny uživatele skrytá. Režim zatemnění ukončíte kliknutím na čtvercové tlačítko uvnitř stavového řádku nebo stisknutím příslušné klávesové zkratky ({{hotkey}}).",
+	"blackout-intro-user": "Obrazovka byla instruktorem skryta.",
 	"blackout-label": "Zatemnění obrazovky",
 	"blackout-tooltip": "Zatemnění obrazovky pro všechny",
 	"broadcast-message": "Vysílání zprávy",

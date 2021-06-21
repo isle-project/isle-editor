@@ -6,6 +6,8 @@
 	"all-cohorts": "Alla kohorter",
 	"anonymized": "Anonymiserad",
 	"anonymous": "Anonymt",
+	"blackout-intro-owner": "Skärmen är för närvarande dold för alla användare. Du kan avsluta mörkläggningsläget genom att klicka på den fyrkantiga knappen i statusfältet eller genom att trycka på respektive snabbtangent ({{hotkey}}).",
+	"blackout-intro-user": "Skärmen har dolts av instruktören.",
 	"blackout-label": "Svartlistad skärm",
 	"blackout-tooltip": "Svartlistning av skärmen för alla",
 	"broadcast-message": "Sändning av meddelande",

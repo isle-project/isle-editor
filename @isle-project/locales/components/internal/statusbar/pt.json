@@ -6,6 +6,8 @@
 	"all-cohorts": "Todos os Coortes",
 	"anonymized": "Anonimizado",
 	"anonymous": "Anônimo",
+	"blackout-intro-owner": "A tela está atualmente oculta para todos os usuários. Saia do modo blackout clicando no botão quadrado dentro da barra de status ou pressionando a respectiva tecla de atalho ({{hotkey}})",
+	"blackout-intro-user": "A tela foi escondida pelo instrutor.",
 	"blackout-label": "Tela de black out",
 	"blackout-tooltip": "Tela apagada para todos",
 	"broadcast-message": "Mensagem de radiodifusão",

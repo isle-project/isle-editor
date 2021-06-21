@@ -6,6 +6,8 @@
 	"all-cohorts": "Alle Kohorten",
 	"anonymized": "Anonymisiert",
 	"anonymous": "Anonym",
+	"blackout-intro-owner": "Der Bildschirm ist derzeit für alle Benutzer ausgeblendet. Beenden Sie den Ausblendungsmodus, indem Sie auf die quadratische Schaltfläche innerhalb der Statusleiste klicken oder den entsprechenden Hotkey ({{hotkey}}) drücken",
+	"blackout-intro-user": "Der Bildschirm wurde vom Kursleiter ausgeblendet.",
 	"blackout-label": "Bildschirm verdunkeln",
 	"blackout-tooltip": "Bildschirm verdunkeln für alle",
 	"broadcast-message": "Nachricht senden",

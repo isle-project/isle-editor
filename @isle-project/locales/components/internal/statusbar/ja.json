@@ -6,6 +6,8 @@
 	"all-cohorts": "すべてのコホート",
 	"anonymized": "匿名化された",
 	"anonymous": "アノニマス",
+	"blackout-intro-owner": "現在、すべてのユーザーに対して画面が非表示になっています。ブラックアウトモードを終了するには、ステータスバーの四角いボタンをクリックするか、それぞれのホットキー({{hotkey}})を押してください。",
+	"blackout-intro-user": "画面は講師が隠しています。",
 	"blackout-label": "ブラックアウト画面",
 	"blackout-tooltip": "みんなのブラックアウト画面",
 	"broadcast-message": "ブロードキャストメッセージ",

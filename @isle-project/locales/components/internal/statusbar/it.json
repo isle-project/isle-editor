@@ -6,6 +6,8 @@
 	"all-cohorts": "Tutte le coorti",
 	"anonymized": "Anonimato",
 	"anonymous": "Anonimo",
+	"blackout-intro-owner": "Lo schermo è attualmente nascosto per tutti gli utenti. Esci dalla modalità di oscuramento cliccando sul pulsante quadrato all'interno della barra di stato o premendo il rispettivo tasto di scelta rapida ({{hotkey}})",
+	"blackout-intro-user": "Lo schermo è stato nascosto dall'istruttore.",
 	"blackout-label": "Schermo oscurato",
 	"blackout-tooltip": "Schermo oscurato per tutti",
 	"broadcast-message": "Trasmissione del messaggio",

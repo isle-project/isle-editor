@@ -6,6 +6,8 @@
 	"all-cohorts": "All Cohorts",
 	"anonymized": "Anonymized",
 	"anonymous": "Anonymous",
+	"blackout-intro-owner": "The screen is currently hidden for all users. Exit the blackout mode by clicking on the square button inside the statusbar or pressing the respective hotkey ({{hotkey}})",
+	"blackout-intro-user": "The screen has been hidden by the instructor.",
 	"blackout-label": "Black out screen",
 	"blackout-tooltip": "Black out screen for everyone",
 	"broadcast-message": "Broadcast Message",

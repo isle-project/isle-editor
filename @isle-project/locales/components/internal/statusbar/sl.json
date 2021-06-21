@@ -6,6 +6,8 @@
 	"all-cohorts": "Vse kohorte",
 	"anonymized": "Anonimizirano",
 	"anonymous": "Anonimni",
+	"blackout-intro-owner": "Zaslon je trenutno skrit za vse uporabnike. Način zatemnitve zapustite s klikom na kvadratni gumb v vrstici stanja ali s pritiskom ustrezne vroče tipke ({{hotkey}}).",
+	"blackout-intro-user": "Inštruktor je zaslon skril.",
 	"blackout-label": "Zaslon se zatemni",
 	"blackout-tooltip": "Črni zaslon za vse",
 	"broadcast-message": "Oddajno sporočilo",

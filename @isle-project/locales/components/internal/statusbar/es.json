@@ -6,6 +6,8 @@
 	"all-cohorts": "Todas las cohortes",
 	"anonymized": "Anonimizado",
 	"anonymous": "Anónimo",
+	"blackout-intro-owner": "La pantalla está actualmente oculta para todos los usuarios. Salga del modo oculto haciendo clic en el botón cuadrado dentro de la barra de estado o pulsando la tecla de acceso directo correspondiente ({{hotkey}})",
+	"blackout-intro-user": "La pantalla ha sido ocultada por el instructor.",
 	"blackout-label": "Pantalla de apagado",
 	"blackout-tooltip": "Pantalla de apagado para todos",
 	"broadcast-message": "Mensaje de transmisión",

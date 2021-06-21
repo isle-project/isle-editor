@@ -6,6 +6,8 @@
 	"all-cohorts": "Toate cohortele",
 	"anonymized": "Anonimat",
 	"anonymous": "Anonimul",
+	"blackout-intro-owner": "Ecranul este în prezent ascuns pentru toți utilizatorii. Ieșiți din modul blackout făcând clic pe butonul pătrat din interiorul barei de stare sau apăsând tasta rapidă respectivă ({{hotkey}})",
+	"blackout-intro-user": "Ecranul a fost ascuns de către instructor.",
 	"blackout-label": "Ecranul negru",
 	"blackout-tooltip": "Ecranul negru pentru toată lumea",
 	"broadcast-message": "Mesaj de difuzare",

@@ -6,6 +6,8 @@
 	"all-cohorts": "Minden kohorsz",
 	"anonymized": "Anonimizált",
 	"anonymous": "Névtelen",
+	"blackout-intro-owner": "A képernyő jelenleg minden felhasználó számára el van rejtve. Az elsötétítési módból az állapotsoron belüli négyzet alakú gombra kattintva vagy a megfelelő gyorsbillentyű lenyomásával ({{hotkey}}) léphet ki.",
+	"blackout-intro-user": "A képernyőt az oktató eltakarta.",
 	"blackout-label": "Képernyő elsötétítése",
 	"blackout-tooltip": "Black out képernyő mindenkinek",
 	"broadcast-message": "Üzenet sugárzása",
