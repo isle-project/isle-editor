@@ -125,7 +125,12 @@ const Typewriter = ({ text, hold, interval, delay, random, sound, style }) => {
 		setState( DEFAULT_STATE );
 	}, [ delay, text, interval, hold, sound ] );
 	return (
-		<span className="typewriter" style={style} ref={elemRef} >
+		<span className="typewriter" style={style} ref={( span ) => {
+			if ( !elemRef.current ) {
+				elemRef.current = span;
+				isInViewport();
+			}
+		}} >
 			{state.displayedText}
 		</span>
 	);
