@@ -83,9 +83,9 @@ class StatusBar extends Component {
 			showProgressBar: false,
 			isProgressLeaving: false,
 			progress: 0,
-			duration: '0'
+			duration: '0',
+			hidden: true
 		};
-		this.hidden = true;
 	}
 
 	componentDidMount() {
@@ -262,25 +262,25 @@ class StatusBar extends Component {
 	}
 
 	toggleBar = () => {
-		if ( this.hidden ) {
+		if ( this.state.hidden ) {
 			animatePosition( this.statusbar, 'top', 0, 300 );
 			this.statusbar.style.opacity = 1.0;
-			this.hidden = false;
+			this.setState({ hidden: false });
 		} else {
 			animatePosition( this.statusbar, 'top', -32, 300 );
 			this.statusbar.style.opacity = 0.95;
-			this.hidden = true;
+			this.setState({ hidden: true });
 		}
 	}
 
 	onMouseOver = () => {
-		if ( this.hidden ) {
+		if ( this.state.hidden ) {
 			this.statusbar.style.opacity = 1.0;
 		}
 	}
 
 	onMouseOut = () => {
-		if ( this.hidden ) {
+		if ( this.state.hidden ) {
 			this.statusbar.style.opacity = 0.95;
 		}
 	}
@@ -388,6 +388,46 @@ class StatusBar extends Component {
 		}
 	}
 
+	renderUpperBar() {
+		if ( this.state.hidden ) {
+			return null;
+		}
+		const { t } = this.props;
+		const session = this.context;
+		if ( session.anonymous ) {
+			return (
+				<div>
+					<Button
+						size="sm"
+						className="statusbar-button"
+						variant="outline-secondary"
+						style={{ position: 'absolute', right: '60px' }}
+						onClick={this.login}
+						disabled={!session.live}
+					>{t( 'login' )}</Button>
+					{session.settings.allowUserRegistrations !== false ? <Button
+						size="sm"
+						className="statusbar-button"
+						variant="outline-secondary"
+						style={{ position: 'absolute', right: '-20px' }}
+						onClick={this.signup}
+						disabled={!session.live}
+					>{t( 'signup' )}</Button> : null}
+				</div>
+			);
+		}
+		return (
+			<Fragment>
+				<a href={session.server} target="_blank" rel="noopener noreferrer" id="statusbar-dashboard-button" size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '60px' }}>
+					{t( 'goto-dashboard' )}
+				</a>
+				<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ position: 'absolute', right: '-20px' }} onClick={this.logout}>
+					{t( 'logout' )}
+				</Button>
+			</Fragment>
+		);
+	}
+
 	render() {
 		const session = this.context;
 		const { t } = this.props;
@@ -423,7 +463,9 @@ class StatusBar extends Component {
 							display: !this.state.showStatusBar ? 'none' : null
 						}}
 					>
-						<div className="statusbar-left"></div>
+						<Tooltip tooltip={this.state.hidden ? t( 'click-to-expand' ) : t( 'click-to-collapse' )} placement="left" >
+							<div className="statusbar-left"></div>
+						</Tooltip>
 						<div className="statusbar-middle">
 							<VoiceControl session={this.context} t={t} />
 							{isOwner ?
@@ -493,40 +535,14 @@ class StatusBar extends Component {
 								className="statusbar-icon statusbar-text-chat"
 								onClick={preventPropagation}
 							/> : null }
-							{ session.anonymous ?
-								<div>
-									{session.settings.allowUserRegistrations !== false ? <Button
-										size="sm"
-										className="statusbar-button"
-										variant="outline-secondary"
-										style={{ float: 'right', marginRight: '-20px' }}
-										onClick={this.signup}
-										disabled={!session.live}
-									>{t( 'signup' )}</Button> : null}
-									<Button
-										size="sm"
-										className="statusbar-button"
-										variant="outline-secondary"
-										style={{ float: 'right', marginRight: '10px' }}
-										onClick={this.login}
-										disabled={!session.live}
-									>{t( 'login' )}</Button>
-								</div> :
-								<Fragment>
-									<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }} onClick={this.logout}>
-										{t( 'logout' )}
-									</Button>
-									<a href={session.server} target="_blank" rel="noopener noreferrer" >
-										<Button id="statusbar-dashboard-button" size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '10px' }}>
-											{t( 'goto-dashboard' )}
-										</Button>
-									</a>
-								</Fragment> }
+							{this.renderUpperBar()}
 							<div className="statusbar-text">
 								ISLE
 							</div>
 						</div>
-						<div className="statusbar-right"></div>
+						<Tooltip tooltip={this.state.hidden ? t( 'click-to-expand' ) : t( 'click-to-collapse' )} placement="right" >
+							<div className="statusbar-right"></div>
+						</Tooltip>
 						<div
 							className={`statusbar-progress ${this.state.isProgressLeaving ? 'progress-fade-out' : ''} `}
 							style={{
@@ -559,11 +575,6 @@ class StatusBar extends Component {
 							</Gate>
 						</div>
 					</div>
-					<Suspense fallback={null} >
-						<Gate owner>
-							<InstructorView />
-						</Gate>
-					</Suspense>
 					{!this.state.showStatusBar && ( isOwner || isElectron ) ?
 						<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-exit' )} (F7)`} >
 							<span className="statusbar-presentation-mode-lone-icon" role="button" tabIndex={0}
@@ -575,6 +586,11 @@ class StatusBar extends Component {
 						null
 					}
 				</div>
+				<Suspense fallback={null} >
+					<Gate owner>
+						<InstructorView />
+					</Gate>
+				</Suspense>
 				{this.state.visibleLogin ? <Login show={this.state.visibleLogin} onClose={this.closeLogin} /> : null}
 				{this.state.visibleSignup ? <Signup show={this.state.visibleSignup} onClose={this.closeSignup} /> : null}
 				{this.state.visibleLogout ? <ConfirmModal

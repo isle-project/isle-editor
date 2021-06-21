@@ -113,11 +113,22 @@
 	box-shadow: 0 0 2px grey inset;
 	border-radius: 0;
 	border: solid 1px darkgray;
+	color: #6c757d;
 }
 
 .statusbar-button:hover {
 	background: #c49978;
+	color: #6c757d;;
+	text-decoration: inherit;
 	box-shadow: 0 0 4px white inset;
+}
+
+.statusbar-button:focus {
+	box-shadow: 0 0 0 0.2rem rgb(108 117 125 / 50%);
+}
+
+.statusbar-button:focus-visible {
+	outline-offset: none;
 }
 
 .statusbar-left {
