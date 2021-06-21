@@ -171,7 +171,7 @@ class SummaryStatisticsMenu extends Component {
 					);
 				}
 			} else {
-				statLabels.push( stat.label );
+				statLabels.push( stat );
 			}
 		}
 		if ( statLabels[ 0 ] === 'Correlation Matrix' ) {
