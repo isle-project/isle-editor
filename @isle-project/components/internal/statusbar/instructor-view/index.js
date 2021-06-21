@@ -29,6 +29,9 @@ import './instructor_view.css';
 const EDITOR_OFFSET = isElectron ? 15 : 0;
 const debug = logger( 'isle:statusbar-instructor-view' );
 const I = '(I)';
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
+};
 
 
 // MAIN //
@@ -104,7 +107,7 @@ class InstructorView extends Component {
 		}
 		const hasResponseVisualizers = !isEmptyObject( session.responseVisualizers );
 		return (
-			<FocusTrap>
+			<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
 				<div>
 					<Tabs
 						activeKey={this.state.activeTab}
