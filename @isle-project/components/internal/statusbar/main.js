@@ -165,7 +165,7 @@ class StatusBar extends Component {
 				if ( data.value ) {
 					createBlackScreen(
 						session.isOwner() ?
-						this.props.t( 'blackout-intro-owner', { hotkey: 'b' } ) :
+						this.props.t( 'blackout-intro-owner', { hotkey: 'F8' } ) :
 						this.props.t( 'blackout-intro-user' )
 					);
 				} else {
@@ -242,7 +242,7 @@ class StatusBar extends Component {
 		if ( !blackscreen ) {
 			createBlackScreen(
 				session.isOwner() ?
-				this.props.t( 'blackout-intro-owner', { hotkey: 'b' } ) :
+				this.props.t( 'blackout-intro-owner', { hotkey: 'F8' } ) :
 				this.props.t( 'blackout-intro-user' )
 			);
 			session.log({
@@ -587,7 +587,7 @@ class StatusBar extends Component {
 				<KeyControls
 					actions={{
 						'F7': this.toggleBarVisibility,
-						'b': this.toggleBlackScreen,
+						'F8': this.toggleBlackScreen,
 						'g': this.toggleGroupManager
 					}}
 				/>
