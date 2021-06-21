@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.4",
+	"version": "0.50.5",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,10 +11,10 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.4",
-		"@isle-project/locales": "0.50.4",
-		"@isle-project/session": "0.50.4",
-		"@isle-project/utils": "0.50.4"
+		"@isle-project/constants": "0.50.5",
+		"@isle-project/locales": "0.50.5",
+		"@isle-project/session": "0.50.5",
+		"@isle-project/utils": "0.50.5"
 	},
 	"dependencies": {
 		"@iktakahiro/markdown-it-katex": "^4.0.0",
@@ -22,7 +22,7 @@
 		"ansi-to-react": "6.1.5",
 		"axios": "^0.21.1",
 		"classnames": "^2.3.1",
-		"codemirror": "^5.60.0",
+		"codemirror": "^5.62.0",
 		"compute-argmax": "^1.0.0",
 		"compute-chebyshev-distance": "^1.0.2",
 		"compute-chunkify": "0.0.0",
@@ -57,7 +57,7 @@
 		"murmurhash3js": "^3.0.1",
 		"pdfjs-dist": "2.9.359",
 		"pdfmake": "^0.1.71",
-		"plotly.js": "2.0.0",
+		"plotly.js": "2.1.0",
 		"platform": "^1.3.6",
 		"pressure": "^2.1.2",
 		"profanities": "2.14.0",
