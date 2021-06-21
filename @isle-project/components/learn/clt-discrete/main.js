@@ -317,7 +317,7 @@ class DiscreteCLT extends Component {
 								{ this.state.avgPHats ?
 									<p>
 										<span className="title"> {t('mean-of')} <TeX raw="\hat p" />&#39;s: </span>
-										&nbsp;{this.state.avgPHats.toFixed( 3 )} ({t('shown-as-blue-line')})
+										&nbsp;{this.state.avgPHats.toFixed( 3 )} ({t('shown-as-red-line')})
 									</p> : null
 								}
 								{ this.state.stdevPHats ?
