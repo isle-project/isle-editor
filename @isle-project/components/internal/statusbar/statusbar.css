@@ -222,6 +222,13 @@
 	animation: anim-fade-in 2s;
 }
 
+#blackscreen-notice {
+	margin-top: 2%;
+	margin-left: 2%;
+	font-size: 1.5em;
+	color: white;
+}
+
 .statusbar-voice-text {
 	position: fixed;
 	font-size: 2em;

@@ -55,6 +55,18 @@ function preventPropagation( event ) {
 	event.stopPropagation();
 }
 
+function createBlackScreen( text ) {
+	const blackscreen = document.createElement( 'div' );
+	blackscreen.setAttribute( 'id', 'blackscreen' );
+	const lesson = document.getElementById( 'Lesson' );
+	lesson.appendChild( blackscreen );
+
+	const notice = document.createElement( 'div' );
+	notice.setAttribute( 'id', 'blackscreen-notice' );
+	notice.innerText = text;
+	blackscreen.append( notice );
+}
+
 
 // MAIN //
 
@@ -145,12 +157,17 @@ class StatusBar extends Component {
 			) {
 				this.forceUpdate();
 			}
-			else if ( type === MEMBER_ACTION && data.type === TOGGLE_BLACKSCREEN ) {
+			else if (
+				type === MEMBER_ACTION &&
+				data.type === TOGGLE_BLACKSCREEN &&
+				data.email !== session.user.email
+			) {
 				if ( data.value ) {
-					const blackscreen = document.createElement( 'div' );
-					blackscreen.setAttribute( 'id', 'blackscreen' );
-					const lesson = document.getElementById( 'Lesson' );
-					lesson.appendChild( blackscreen );
+					createBlackScreen(
+						session.isOwner() ?
+						this.props.t( 'blackout-intro-owner', { hotkey: 'b' } ) :
+						this.props.t( 'blackout-intro-user' )
+					);
 				} else {
 					const blackscreen = document.getElementById( 'blackscreen' );
 					if ( blackscreen ) {
@@ -219,13 +236,15 @@ class StatusBar extends Component {
 		if ( event ) {
 			event.stopPropagation();
 		}
+		debug( 'Toggling blackout mode...' );
 		let blackscreen = document.getElementById( 'blackscreen' );
 		const session = this.context;
 		if ( !blackscreen ) {
-			blackscreen = document.createElement( 'div' );
-			blackscreen.setAttribute( 'id', 'blackscreen' );
-			const lesson = document.getElementById( 'Lesson' );
-			lesson.appendChild( blackscreen );
+			createBlackScreen(
+				session.isOwner() ?
+				this.props.t( 'blackout-intro-owner', { hotkey: 'b' } ) :
+				this.props.t( 'blackout-intro-user' )
+			);
 			session.log({
 				id: 'statusbar',
 				type: TOGGLE_BLACKSCREEN,
