@@ -39,8 +39,9 @@ const InstructorView = lazy( () => import( /* webpackChunkName: "InstructorView"
 const debug = logger( 'isle:statusbar' );
 const SERVER_ACTIVE_COLOR = 'rgb(130, 224, 160)';
 const NO_RESPONSE_FROM_SERVER_COLOR = 'rgb(209, 107, 71)';
+const F8 = '(F8)';
+const F7 = '(F7)';
 const G = '(G)';
-const B = '(B)';
 
 
 // FUNCTIONS //
@@ -426,7 +427,7 @@ class StatusBar extends Component {
 						<div className="statusbar-middle">
 							<VoiceControl session={this.context} t={t} />
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-tooltip' )} (F7)`} >
+								<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-tooltip' )} ${F7}`} >
 									<span role="button" tabIndex={0}
 										onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
 										className="statusbar-presentation-mode statusbar-icon"
@@ -436,7 +437,7 @@ class StatusBar extends Component {
 									</span>
 								</Tooltip> : null }
 							{isOwner ?
-								<Tooltip placement="bottom" tooltip={`${t( 'blackout-tooltip' )} ${B}`} >
+								<Tooltip placement="bottom" tooltip={`${t( 'blackout-tooltip' )} ${F8}`} >
 									<span role="button" tabIndex={0} aria-label={t( 'blackout-label' )}
 										onClick={this.toggleBlackScreen} onKeyPress={this.toggleBlackScreen}
 										className="statusbar-blackscreen-mode statusbar-icon"

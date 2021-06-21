@@ -29,8 +29,10 @@ import './toolbar.css';
 // VARIABLES //
 
 const F2 = '(F2)';
+const C = '(C)';
 const Q = '(Q)';
 const D = '(D)';
+const P = '(P)';
 const S = '(S)';
 const T = '(T)';
 const DEFAULT_CUSTOM_STATE = {};
@@ -175,7 +177,7 @@ const Toolbar = () => {
 	const open = t( 'open' );
 	return (
 		<Fragment>
-			<Tooltip tooltip={t('show-toolbar')} placement="top" >
+			<Tooltip tooltip={`${t('show-toolbar')} ${F2}`} placement="top" >
 				<Button
 					variant="warning"
 					className="toolbar-buttongroup toolbar-toggle"
@@ -191,7 +193,7 @@ const Toolbar = () => {
 			<ButtonGroup className="toolbar-buttongroup" style={{
 				display: showToolbar ? 'inherit' : 'none'
 			}} >
-				<Tooltip tooltip={t('hide-toolbar')} placement="top" >
+				<Tooltip tooltip={`${t('hide-toolbar')} ${F2}`} placement="top" >
 					<Button
 						variant="secondary"
 						className="toolbar-toggle"
@@ -203,7 +205,7 @@ const Toolbar = () => {
 				</Tooltip>
 				{elements.filter( x => !!x.component ).map( ( x, i ) => renderButton( x, i ))}
 				<Tooltip
-					tooltip={`${calculator ? close : open} ${t( 'calculator' )} ${F2}`}
+					tooltip={`${calculator ? close : open} ${t( 'calculator' )} ${C}`}
 					placement="top"
 				>
 					<Button
@@ -285,7 +287,7 @@ const Toolbar = () => {
 				</Gate>
 				<Gate owner inline showOwnerInPresentationMode >
 					<Tooltip
-						tooltip={engagementInProgress ? t( 'finish-poll' ) : t( 'polls' )}
+						tooltip={`${engagementInProgress ? t( 'finish-poll' ) : t( 'polls' )} ${P}`}
 						placement="right"
 					>
 						<Button
@@ -379,11 +381,13 @@ const Toolbar = () => {
 			{help ? <HelpPage session={session} onClose={toggleHelp} /> : null }
 			<KeyControls
 				actions={{
-					'F2': toggleCalculator,
+					'F2': toggleToolbar,
+					'c': toggleCalculator,
 					'q': toggleQueue,
 					's': toggleSketchpad,
 					'd': toggleHelp,
-					't': toggleTicketing
+					't': toggleTicketing,
+					'p': toggleEngagement
 				}}
 			/>
 		</Fragment>

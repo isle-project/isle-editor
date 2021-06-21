@@ -10,14 +10,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import { ENGAGEMENT_SURVEY_START } from '@isle-project/constants/actions.js';
 
 
-// VARIABLES //
-
-const L = '(L)';
-const F = '(F)';
-const Y = '(Y)';
-const P = '(P)';
-
-
 // MAIN //
 
 const EngagementButtons = ( props ) => {
@@ -58,7 +50,7 @@ const EngagementButtons = ( props ) => {
 	return (
 		<Fragment>
 			<ButtonGroup vertical className="toolbar-engagement-buttons" {...props} >
-				<Tooltip tooltip={`${t( 'yes-no' )} ${Y}`} placement="right" >
+				<Tooltip tooltip={`${t( 'yes-no' )} (1)`} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -68,7 +60,7 @@ const EngagementButtons = ( props ) => {
 						<span className="fa fa-lg fa-check toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={`${t( 'slow-fast' )} ${F}`} placement="right" >
+				<Tooltip tooltip={`${t( 'slow-fast' )} (2)`} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -78,7 +70,7 @@ const EngagementButtons = ( props ) => {
 						<span className="fa fa-lg fa-tachometer-alt toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={`${t( 'like-dislike' )} ${L}`} placement="right" >
+				<Tooltip tooltip={`${t( 'like-dislike' )} (3)`} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -88,7 +80,7 @@ const EngagementButtons = ( props ) => {
 						<span className="fa fa-lg fa-thumbs-up toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Tooltip tooltip={`${t( 'survey' )} ${P}`} placement="right" >
+				<Tooltip tooltip={`${t( 'survey' )} (4)`} placement="right" >
 					<Button
 						variant="light"
 						className="toolbar-button"
@@ -101,10 +93,10 @@ const EngagementButtons = ( props ) => {
 			</ButtonGroup>
 			<KeyControls
 				actions={{
-					'l': startLikeDislikeSurvey,
-					'f': startSpeedSurvey,
-					'y': startYesNoSurvey,
-					'p': startSurvey
+					'1': startLikeDislikeSurvey,
+					'2': startSpeedSurvey,
+					'3': startYesNoSurvey,
+					'4': startSurvey
 				}}
 			/>
 		</Fragment>
