@@ -22,7 +22,7 @@ To komponento učenci uporabljajo za kratko povzemanje predstavljenih podatkov i
 * __editorTitle__ | `string`: niz, ki označuje naslov raziskovalca, ki se prikaže.. Default: `none`.
 * __dataTable__ | `boolean`: logična vrednost, ki označuje, ali naj se podatkovna tabela skrije pred pogledom.. Default: `true`.
 * __dataTableProps__ | `object`: lastnosti, posredovane komponenti podatkovne tabele (glej dokumentacijo za <DataTable />). Default: `{}`.
-* __history__ | `boolean`: nadzoruje, ali naj se prikaže dnevnik zgodovine izvedenih dejanj.. Default: `false`.
+* __history__ | `boolean`: nadzoruje, ali naj se prikaže dnevnik zgodovine izvedenih dejanj.. Default: `true`.
 * __reportMode__ | `string`: nadzoruje, ali naj se spremembe urejevalnika sinhronizirajo za vse (`sodelovanje`), med uporabniki v skupinah (`skupina`) ali ne (`posameznik`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: logična vrednost, ki označuje, ali naj se prikaže gostota histograma. Default: `true`.
 * __models__ | `array`: niz nizov, ki označujejo modele, ki jih je mogoče uporabiti za podatke.. Default: `[

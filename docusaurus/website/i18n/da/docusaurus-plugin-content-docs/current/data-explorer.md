@@ -22,7 +22,7 @@ Denne komponent bruges af eleverne til kort at opsummere data, når de præsente
 * __editorTitle__ | `string`: streng, der angiver titlen på den explorer, der skal vises. Default: `none`.
 * __dataTable__ | `boolean`: boolsk værdi, der angiver, om datatabellen skal skjules fra visning. Default: `true`.
 * __dataTableProps__ | `object`: egenskaber, der overføres til datatabellens komponent (se dokumentationen for <DataTable />). Default: `{}`.
-* __history__ | `boolean`: styrer, om der skal vises en historiklog over udførte handlinger. Default: `false`.
+* __history__ | `boolean`: styrer, om der skal vises en historiklog over udførte handlinger. Default: `true`.
 * __reportMode__ | `string`: styrer, om redigeringsændringer skal synkroniseres for alle (`collaborative`), på tværs af brugere i grupper (`group`) eller ikke (`individual`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolsk værdi, der angiver, om der skal vises histogramtætheder. Default: `true`.
 * __models__ | `array`: array af strenge, der angiver de modeller, der kan tilpasses til dataene. Default: `[

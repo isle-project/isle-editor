@@ -22,7 +22,7 @@ sidebar_label: Data Explorer
 * __editorTitle__ | `string`: virkne, kas norāda rādāmā pārlūka nosaukumu.. Default: `none`.
 * __dataTable__ | `boolean`: boolean vērtība, kas norāda, vai datu tabulu paslēpt no skata.. Default: `true`.
 * __dataTableProps__ | `object`: datu tabulas komponentei nodotās īpašības (skat. dokumentāciju <DataTable />).. Default: `{}`.
-* __history__ | `boolean`: kontrolē, vai tiek rādīts veikto darbību vēstures žurnāls.. Default: `false`.
+* __history__ | `boolean`: kontrolē, vai tiek rādīts veikto darbību vēstures žurnāls.. Default: `true`.
 * __reportMode__ | `string`: nosaka, vai sinhronizēt redaktora izmaiņas visiem lietotājiem (`kooperatīvs`), visiem lietotājiem grupās (`grupa`) vai nesinhronizēt (`individuāls`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolean vērtība, kas norāda, vai attēlot histogrammas blīvumu.. Default: `true`.
 * __models__ | `array`: virkņu masīvs, kurā norādīti modeļi, kurus var piemērot datiem.. Default: `[

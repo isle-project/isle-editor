@@ -22,7 +22,7 @@ Cette composante est utilisée par les étudiants pour résumer brièvement les 
 * __editorTitle__ | `string`: chaîne indiquant le titre de l'explorateur à afficher. Default: `none`.
 * __dataTable__ | `boolean`: valeur booléenne indiquant s'il faut cacher la table de données. Default: `true`.
 * __dataTableProps__ | `object`: les propriétés transmises au composant de table de données (voir la documentation pour <DataTable />). Default: `{}`.
-* __history__ | `boolean`: contrôle l'affichage ou non d'un historique des actions réalisées. Default: `false`.
+* __history__ | `boolean`: contrôle l'affichage ou non d'un historique des actions réalisées. Default: `true`.
 * __reportMode__ | `string`: contrôle si les modifications de l'éditeur doivent être synchronisées pour tous (`collaboratif`), entre les utilisateurs d'un groupe (`groupe`), ou non (`individuel`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: valeur booléenne indiquant s'il faut afficher les densités de l'histogramme. Default: `true`.
 * __models__ | `array`: un ensemble de chaînes de caractères indiquant les modèles qui peuvent être adaptés aux données. Default: `[

@@ -22,7 +22,7 @@ Deze component wordt door de studenten gebruikt om de gegevens kort samen te vat
 * __editorTitle__ | `string`: tekenreeks die de titel van de te tonen verkenner aangeeft. Default: `none`.
 * __dataTable__ | `boolean`: booleaanse waarde die aangeeft of de gegevenstabel aan het zicht moet worden onttrokken. Default: `true`.
 * __dataTableProps__ | `object`: eigenschappen doorgegeven aan de datatabelcomponent (zie documentatie voor <DataTable />). Default: `{}`.
-* __history__ | `boolean`: controleert of er een historiek van uitgevoerde acties wordt weergegeven. Default: `false`.
+* __history__ | `boolean`: controleert of er een historiek van uitgevoerde acties wordt weergegeven. Default: `true`.
 * __reportMode__ | `string`: bepaalt of de wijzigingen in de editor voor iedereen worden gesynchroniseerd (`collaboratief`), tussen gebruikers in groepen (`groep`), of niet (`individueel`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: booleaanse waarde die aangeeft of de histogramdichtheid moet worden weergegeven. Default: `true`.
 * __models__ | `array`: array van strings die de modellen aangeven die op de gegevens kunnen passen. Default: `[

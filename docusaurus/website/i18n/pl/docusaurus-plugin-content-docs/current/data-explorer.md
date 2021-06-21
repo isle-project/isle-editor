@@ -22,7 +22,7 @@ Ten komponent jest wykorzystywany przez uczniów do krótkiego podsumowania dany
 * __editorTitle__ | `string`: ciąg znaków wskazujący tytuł badacza, który ma zostać wyświetlony. Default: `none`.
 * __dataTable__ | `boolean`: wartość boolean wskazująca, czy należy ukryć tabelę danych z widoku. Default: `true`.
 * __dataTableProps__ | `object`: właściwości przekazane do komponentu tabeli danych (patrz dokumentacja dla <DataTable />). Default: `{}`.
-* __history__ | `boolean`: kontroluje, czy ma być wyświetlany dziennik historii przeprowadzonych działań. Default: `false`.
+* __history__ | `boolean`: kontroluje, czy ma być wyświetlany dziennik historii przeprowadzonych działań. Default: `true`.
 * __reportMode__ | `string`: kontroluje czy synchronizować zmiany w edytorze dla wszystkich (`współpracujących`), dla wszystkich użytkowników w grupach (`grupach`), czy też nie (`indywidualnie`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: wartość boolean wskazująca, czy mają być wyświetlane gęstości histogramów. Default: `true`.
 * __models__ | `array`: szereg łańcuchów wskazujących modele, które mogą zmieścić się na danych. Default: `[

@@ -22,7 +22,7 @@ Den här komponenten används av eleverna för att kort sammanfatta data som pre
 * __editorTitle__ | `string`: sträng som anger titeln på den utforskare som ska visas. Default: `none`.
 * __dataTable__ | `boolean`: Boolsk värde som anger om datatabellen ska döljas från visning.. Default: `true`.
 * __dataTableProps__ | `object`: Egenskaper som skickas till datatabellskomponenten (se dokumentationen för <DataTable />).. Default: `{}`.
-* __history__ | `boolean`: Kontrollerar om en historisk logg över utförda åtgärder ska visas.. Default: `false`.
+* __history__ | `boolean`: Kontrollerar om en historisk logg över utförda åtgärder ska visas.. Default: `true`.
 * __reportMode__ | `string`: styr om ändringar i redigeraren ska synkroniseras för alla (`collaborative`), mellan användare i grupper (`group`) eller inte (`individual`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: Booleanskt värde som anger om histogramtätheter ska visas.. Default: `true`.
 * __models__ | `array`: en rad strängar som anger de modeller som kan anpassas till uppgifterna.. Default: `[

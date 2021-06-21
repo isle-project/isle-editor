@@ -22,7 +22,7 @@ sidebar_label: Data Explorer
 * __editorTitle__ | `string`: eilutė, nurodanti rodomą tyrėjo pavadinimą. Default: `none`.
 * __dataTable__ | `boolean`: loginė reikšmė, rodanti, ar duomenų lentelę paslėpti nuo peržiūros.. Default: `true`.
 * __dataTableProps__ | `object`: duomenų lentelės komponentui perduodamos savybės (žr. <DataTable /> dokumentaciją).. Default: `{}`.
-* __history__ | `boolean`: kontroliuoja, ar rodyti atliktų veiksmų istorijos žurnalą.. Default: `false`.
+* __history__ | `boolean`: kontroliuoja, ar rodyti atliktų veiksmų istorijos žurnalą.. Default: `true`.
 * __reportMode__ | `string`: kontroliuoja, ar sinchronizuoti redaktoriaus pakeitimus visiems (`bendradarbiavimas`), visiems naudotojams grupėse (`grupė`), ar ne (`individualus`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: loginė reikšmė, rodanti, ar rodyti histogramos tankį. Default: `true`.
 * __models__ | `array`: eilutės, nurodančios modelius, kuriuos galima pritaikyti duomenims, masyvas. Default: `[

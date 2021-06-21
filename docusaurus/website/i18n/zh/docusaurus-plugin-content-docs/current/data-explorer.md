@@ -22,7 +22,7 @@ sidebar_label: Data Explorer
 * __editorTitle__ | `string`: 字符串，表示要显示的资源管理器的标题。. Default: `none`.
 * __dataTable__ | `boolean`: 表示是否隐藏数据表的布尔值。. Default: `true`.
 * __dataTableProps__ | `object`: 传递给数据表组件的属性(见<DataTable />文档). Default: `{}`.
-* __history__ | `boolean`: 控制是否显示已执行行动的历史日志。. Default: `false`.
+* __history__ | `boolean`: 控制是否显示已执行行动的历史日志。. Default: `true`.
 * __reportMode__ | `string`: 控制是否为每个人("合作")、组中的用户("组")或不同步编辑更改("个人"). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: 表示是否显示直方图密度的布尔值。. Default: `true`.
 * __models__ | `array`: 表示可能适合数据的模型的字符串数组。. Default: `[

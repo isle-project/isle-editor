@@ -474,7 +474,7 @@
 				"name": "history",
 				"type": "boolean",
 				"description": "DataExplorer-prop-history",
-				"defaultValue": false
+				"defaultValue": true
 			},
 			{
 				"name": "reportMode",

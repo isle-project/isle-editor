@@ -22,7 +22,7 @@ Diese Komponente wird von den Schülern verwendet, um Daten kurz zusammenzufasse
 * __editorTitle__ | `string`: String, der den Titel des anzuzeigenden Explorers angibt. Default: `none`.
 * __dataTable__ | `boolean`: boolescher Wert, der angibt, ob die Datentabelle ausgeblendet werden soll. Default: `true`.
 * __dataTableProps__ | `object`: Eigenschaften, die an die Datentabellenkomponente übergeben werden (siehe Dokumentation zu <DataTable />). Default: `{}`.
-* __history__ | `boolean`: steuert, ob ein Verlaufsprotokoll der ausgeführten Aktionen angezeigt werden soll. Default: `false`.
+* __history__ | `boolean`: steuert, ob ein Verlaufsprotokoll der ausgeführten Aktionen angezeigt werden soll. Default: `true`.
 * __reportMode__ | `string`: steuert, ob Editoränderungen für alle (`collaborative`), für Benutzer in Gruppen (`group`) oder nicht (`individual`) synchronisiert werden sollen. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolescher Wert, der angibt, ob Histogramm-Dichten angezeigt werden sollen. Default: `true`.
 * __models__ | `array`: Array von Strings, die Modelle angeben, die an die Daten angepasst werden können. Default: `[

@@ -22,7 +22,7 @@ Ezt a komponenst a diákok arra használják, hogy röviden összefoglalják az 
 * __editorTitle__ | `string`: a megjelenítendő felfedező címét jelző karakterlánc. Default: `none`.
 * __dataTable__ | `boolean`: boolean érték, amely jelzi, hogy elrejtse-e az adattáblát a nézetből. Default: `true`.
 * __dataTableProps__ | `object`: az adattábla komponensnek átadott tulajdonságok (lásd a dokumentációt a <DataTable /> oldalon).. Default: `{}`.
-* __history__ | `boolean`: szabályozza, hogy megjelenjen-e az elvégzett műveletek előzménynaplója. Default: `false`.
+* __history__ | `boolean`: szabályozza, hogy megjelenjen-e az elvégzett műveletek előzménynaplója. Default: `true`.
 * __reportMode__ | `string`: szabályozza, hogy a szerkesztő módosításait mindenki számára (`collaborative`), a csoportok felhasználói között (`group`), vagy nem (`individual`) szinkronizálják-e.. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolean érték, amely jelzi, hogy a hisztogram sűrűsége megjelenjen-e. Default: `true`.
 * __models__ | `array`: az adatokra illeszthető modelleket jelző karakterláncok tömbje. Default: `[

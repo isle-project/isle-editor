@@ -22,7 +22,7 @@ Questo componente è utilizzato dagli studenti per riassumere brevemente i dati 
 * __editorTitle__ | `string`: stringa che indica il titolo dell'esploratore da visualizzare. Default: `none`.
 * __dataTable__ | `boolean`: valore booleano che indica se nascondere la tabella dei dati alla vista. Default: `true`.
 * __dataTableProps__ | `object`: proprietà passate al componente tabella dati (vedi documentazione per <DataTable />). Default: `{}`.
-* __history__ | `boolean`: controlla se visualizzare un registro cronologico delle azioni effettuate. Default: `false`.
+* __history__ | `boolean`: controlla se visualizzare un registro cronologico delle azioni effettuate. Default: `true`.
 * __reportMode__ | `string`: controlla se sincronizzare i cambiamenti dell'editor per tutti (`collaborative`), tra gli utenti in gruppi (`gruppo`), oppure no (`individuale`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: valore booleano che indica se visualizzare le densità degli istogrammi. Default: `true`.
 * __models__ | `array`: array di stringhe che indicano i modelli che possono essere adattati ai dati. Default: `[

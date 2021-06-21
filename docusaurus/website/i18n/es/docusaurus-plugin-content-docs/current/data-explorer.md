@@ -22,7 +22,7 @@ Los estudiantes utilizan este componente para resumir brevemente los datos a med
 * __editorTitle__ | `string`: cadena que indica el título del explorador que se va a mostrar. Default: `none`.
 * __dataTable__ | `boolean`: valor booleano que indica si se debe ocultar la tabla de datos de la vista. Default: `true`.
 * __dataTableProps__ | `object`: propiedades pasadas al componente de la tabla de datos (ver documentación de <Tabla de datos />). Default: `{}`.
-* __history__ | `boolean`: controla si se muestra un registro histórico de las acciones realizadas. Default: `false`.
+* __history__ | `boolean`: controla si se muestra un registro histórico de las acciones realizadas. Default: `true`.
 * __reportMode__ | `string`: controla si se sincronizan los cambios del editor para todos (`colaborativo`), entre usuarios en grupos (`grupo`), o no (`individual`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: valor booleano que indica si mostrar las densidades del histograma. Default: `true`.
 * __models__ | `array`: una serie de cadenas que indican los modelos que pueden encajar en los datos. Default: `[

@@ -22,7 +22,7 @@ Seda komponenti kasutavad õpilased andmete esitamisel lühikese kokkuvõtte teg
 * __editorTitle__ | `string`: string, mis näitab kuvatava exploreri pealkirja. Default: `none`.
 * __dataTable__ | `boolean`: boolean-väärtus, mis näitab, kas andmetabelit varjatakse vaatamise eest.. Default: `true`.
 * __dataTableProps__ | `object`: andmetabeli komponendile edastatud omadused (vt dokumentatsiooni <DataTable />). Default: `{}`.
-* __history__ | `boolean`: kontrollib, kas kuvada teostatud tegevuste ajalooprotokoll. Default: `false`.
+* __history__ | `boolean`: kontrollib, kas kuvada teostatud tegevuste ajalooprotokoll. Default: `true`.
 * __reportMode__ | `string`: kontrollib, kas sünkroniseerida redaktori muudatused kõigile (`collaborative`), rühmade kasutajatele (`group`) või mitte (`individual`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolean väärtus, mis näitab, kas kuvada histogrammi tihedust. Default: `true`.
 * __models__ | `array`: stringide massiivi, mis näitab mudeleid, mida võib andmetele sobitada.. Default: `[

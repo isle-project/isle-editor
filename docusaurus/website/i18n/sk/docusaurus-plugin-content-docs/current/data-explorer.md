@@ -22,7 +22,7 @@ Túto zložku študenti používajú na stručné zhrnutie prezentovaných údaj
 * __editorTitle__ | `string`: reťazec označujúci názov prieskumníka, ktorý sa má zobraziť. Default: `none`.
 * __dataTable__ | `boolean`: logická hodnota, ktorá určuje, či sa má tabuľka údajov skryť pred zobrazením. Default: `true`.
 * __dataTableProps__ | `object`: vlastnosti odovzdané komponentu tabuľky údajov (pozri dokumentáciu na <DataTable />). Default: `{}`.
-* __history__ | `boolean`: ovláda, či sa má zobraziť protokol histórie vykonaných akcií.. Default: `false`.
+* __history__ | `boolean`: ovláda, či sa má zobraziť protokol histórie vykonaných akcií.. Default: `true`.
 * __reportMode__ | `string`: určuje, či sa majú synchronizovať zmeny v editore pre všetkých (`collaborative`), pre všetkých používateľov v skupinách (`group`) alebo nie (`individual`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: logická hodnota, ktorá určuje, či sa má zobraziť hustota histogramu. Default: `true`.
 * __models__ | `array`: pole reťazcov označujúcich modely, ktoré sa môžu použiť na údaje. Default: `[

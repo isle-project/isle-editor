@@ -22,7 +22,7 @@ Această componentă este utilizată de elevi pentru a rezuma pe scurt datele pr
 * __editorTitle__ | `string`: șir care indică titlul exploratorului care urmează să fie afișat. Default: `none`.
 * __dataTable__ | `boolean`: valoare booleană care indică dacă tabelul de date trebuie ascuns din vedere. Default: `true`.
 * __dataTableProps__ | `object`: proprietăți transmise componentei tabel de date (a se vedea documentația pentru <DataTable />). Default: `{}`.
-* __history__ | `boolean`: controlează dacă se afișează sau nu un jurnal istoric al acțiunilor efectuate. Default: `false`.
+* __history__ | `boolean`: controlează dacă se afișează sau nu un jurnal istoric al acțiunilor efectuate. Default: `true`.
 * __reportMode__ | `string`: controlează dacă se sincronizează modificările editorului pentru toată lumea (`collaborative`), între utilizatorii din grupuri (`group`) sau nu (`individual`). Default: `'individual'`.
 * __histogramDensities__ | `boolean`: valoare booleană care indică dacă se afișează densitățile histogramei. Default: `true`.
 * __models__ | `array`: matrice de șiruri de caractere care indică modelele care pot fi adaptate la date. Default: `[

@@ -22,7 +22,7 @@ sidebar_label: Data Explorer
 * __editorTitle__ | `string`: 表示されるエクスプローラのタイトルを示す文字列. Default: `none`.
 * __dataTable__ | `boolean`: データテーブルをビューから隠すかどうかを示すブール値. Default: `true`.
 * __dataTableProps__ | `object`: プロパティはデータテーブルコンポーネントに渡されます (<DataTable /> のドキュメントを参照してください)。. Default: `{}`.
-* __history__ | `boolean`: 実行されたアクションの履歴ログを表示するかどうかを制御します。. Default: `false`.
+* __history__ | `boolean`: 実行されたアクションの履歴ログを表示するかどうかを制御します。. Default: `true`.
 * __reportMode__ | `string`: エディタの変更を全員に同期させるか (`collaborative`)、グループ内のユーザに同期させるか (`group`)、同期させないか (`individual`) を制御します。. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: ヒストグラムの密度を表示するかどうかを示すブール値. Default: `true`.
 * __models__ | `array`: データに適合するモデルを示す文字列の配列. Default: `[

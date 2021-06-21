@@ -22,7 +22,7 @@ Tätä komponenttia opiskelijat käyttävät lyhyeen yhteenvetoon esitetyistä t
 * __editorTitle__ | `string`: merkkijono, joka ilmaisee näytettävän etsimen otsikon.. Default: `none`.
 * __dataTable__ | `boolean`: boolean-arvo, joka ilmaisee, piilotetaanko datataulukko näkyvistä.. Default: `true`.
 * __dataTableProps__ | `object`: datataulukkokomponentille välitettävät ominaisuudet (katso dokumentaatio osoitteesta <DataTable />).. Default: `{}`.
-* __history__ | `boolean`: valvoo, näytetäänkö suoritettujen toimien historialoki.. Default: `false`.
+* __history__ | `boolean`: valvoo, näytetäänkö suoritettujen toimien historialoki.. Default: `true`.
 * __reportMode__ | `string`: määrittää, synkronoidaanko editorin muutokset kaikille (`collaborative`), ryhmäkäyttäjille (`group`) vai ei (`individual`).. Default: `'individual'`.
 * __histogramDensities__ | `boolean`: boolean-arvo, joka ilmaisee, näytetäänkö histogrammin tiheydet.. Default: `true`.
 * __models__ | `array`: joukko merkkijonoja, jotka osoittavat malleja, jotka voidaan sovittaa dataan.. Default: `[
