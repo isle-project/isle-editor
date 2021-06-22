@@ -819,9 +819,7 @@ class DataTable extends Component {
 									cursor: dataInfo.info.length > 0 ? 'pointer' : 'inherit'
 								}}
 							>
-								<h4 className='data-table-title-button-h4'>
-									{dataInfo.name ? dataInfo.name : this.props.t('data')}
-								</h4>
+								{dataInfo.name ? dataInfo.name : this.props.t('data')}
 							</Button>
 						</Tooltip>
 						{saveButton}

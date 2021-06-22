@@ -9,6 +9,13 @@
 	border-color: #0000004d;
 	box-shadow: none;
 	width: calc(100% - 88px);
+	font-size: 21px;
+	letter-spacing: 2.5px;
+	margin: 0px;
+	text-align: center;
+	color: #ca5800;
+	font-weight: 600;
+	font-family: Open Sans Condensed;
 }
 
 .save-button {
@@ -48,13 +55,6 @@
 .label-number-rows {
 	display: block;
 	font-size: 16px;
-	text-align: center;
-}
-
-.data-table-title-button-h4 {
-	font-size: 21px;
-	letter-spacing: 2.5px;
-	margin: 0px;
 	text-align: center;
 }
 
