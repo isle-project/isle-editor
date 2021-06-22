@@ -29,7 +29,8 @@ const BUTTON_INACTIVE_COLOR = '#6e6e6e';
 const Button = ( props ) => {
 	if ( props.disabled ) {
 		return (
-			<button onMouseDown={props.onMouseDown}
+			<button
+				onClick={props.onClick}
 				style={{
 					active: props.active,
 					color: props.active ? 'black' : BUTTON_INACTIVE_COLOR,
@@ -43,7 +44,8 @@ const Button = ( props ) => {
 	}
 	return (
 		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={props.t( props.title )} placement="bottom" >
-			<button onMouseDown={props.onMouseDown}
+			<button
+				onClick={props.onClick}
 				style={{
 					active: props.active,
 					color: props.active ? 'black' : BUTTON_INACTIVE_COLOR
@@ -56,7 +58,7 @@ const Button = ( props ) => {
 };
 
 const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, t }) => {
-	const onMenuMouseDown = ( item ) => e => {
+	const onClick = ( item ) => e => {
 		e.preventDefault();
 		if ( item.run ) {
 			debug( 'Run command', item, e );
@@ -71,7 +73,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			active={item.active && state ? item.active( state ) : false}
 			disabled={item.enable && state ? !item.enable( state ) : false}
 			title={typeof item.title === 'string' ? t( item.title ) : ''}
-			onMouseDown={onMenuMouseDown(item)}
+			onClick={onClick(item)}
 			t={t}
 		>
 			{isString( item.content ) ? t( item.content ) : item.content}
@@ -89,7 +91,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 		return (
 			<DropdownItem
 				key={`dropdown-item-${itemKey}`}
-				onMouseDown={onMenuMouseDown(item)}
+				onClick={onClick(item)}
 			>{isString( item.content ) ? t( item.content ) : item.content}</DropdownItem>
 		);
 	};
@@ -102,7 +104,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				paddingTop: 3,
 				paddingBottom: 3
 			}}
-			onMouseDown={onMenuMouseDown(item)}
+			onClick={onClick(item)}
 		>{item.content}</DropdownItem>
 	);
 	const renderMenuGroupButtons = ( items ) => {
