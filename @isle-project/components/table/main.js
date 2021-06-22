@@ -36,7 +36,7 @@ import './sortable.css';
 
 const NUM_RE = /^-?[£$¤]?[\d,.]+%?$/;
 const TRIM_RE = /^\s+|\s+$/g;
-const CLICK_EVENTS = [ 'click' ];
+const CLICK_EVENTS = [ 'click', 'keypress' ];
 if ( isTouchDevice() ) {
 	CLICK_EVENTS.push( 'touchstart' );
 }
@@ -121,6 +121,8 @@ function setupClickableTH( table, th, i ) {
 			for ( let _i = 0, _len = ths.length; _i < _len; _i++ ) {
 				th = ths[_i];
 				th.setAttribute( 'data-sorted', 'false' );
+				th.setAttribute( 'role', 'button' );
+				th.setAttribute( 'tabindex', '0' );
 				th.removeAttribute( 'data-sorted-direction' );
 			}
 		}
