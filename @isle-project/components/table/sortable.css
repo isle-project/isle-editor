@@ -82,8 +82,8 @@ table[data-sortable].sortable-theme-bootstrap tbody td {
 
 /* line 18, ../sass/sortable-theme-bootstrap.sass */
 table[data-sortable].sortable-theme-bootstrap thead th[data-sorted="true"] {
-	color: #3a87ad;
-	background: #d9edf7;
+	color: #0e73a5;
+	background: #ecf5f9;
 	border-bottom-color: #bce8f1;
 }
 
