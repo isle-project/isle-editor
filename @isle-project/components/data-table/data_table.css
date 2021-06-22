@@ -13,7 +13,7 @@
 	letter-spacing: 2.5px;
 	margin: 0px;
 	text-align: center;
-	color: #ca5800;
+	color: #ca5800 !important;
 	font-weight: 600;
 	font-family: Open Sans Condensed;
 }
