@@ -27,7 +27,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import markdownit from 'markdown-it';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import isTypedArray from '@stdlib/assert/is-typed-array';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import contains from '@stdlib/assert/contains';
 import lowercase from '@stdlib/string/lowercase';
 import floor from '@stdlib/math/base/special/floor';
@@ -88,20 +87,21 @@ function generalComparer( a, b ) {
 }
 
 function createDescriptions( descriptions, t ) {
-	const strTable = [];
-	for ( let varName in descriptions ) {
-		if ( hasOwnProp( descriptions, varName ) ) {
-			strTable.push( <tr key={varName} >
-				<td>{varName}</td><td>{descriptions[varName]}</td>
-			</tr>);
-		}
+	const keys = objectKeys( descriptions );
+	const arr = new Array( keys.length );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		arr[ i ] = <tr key={`${key}-${i}`} >
+			<td>{`${key}`}</td>
+			<td>{descriptions[ key ]}</td>
+		</tr>;
 	}
 	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
 		<thead>
 			<tr><th>{t('name')}</th><th>{t('description')}</th></tr>
 		</thead>
 		<tbody>
-		{strTable}
+			{arr}
 		</tbody>
 	</table> );
 }
