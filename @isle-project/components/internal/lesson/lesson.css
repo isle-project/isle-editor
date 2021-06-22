@@ -523,7 +523,11 @@ h4 {
 }
 
 .navbar-light .navbar-nav .nav-link {
-	color: rgba(0, 0, 0, 0.54);
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.navbar-light .navbar-nav .active {
+	color: rgba(0, 0, 0, 1);
 }
 
 .dropdown-item.active,
