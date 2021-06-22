@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import FocusTrap from 'focus-trap-react';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import Button from 'react-bootstrap/Button';
@@ -31,6 +32,9 @@ import './categorical_transformer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:variable-transformer' );
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
+};
 
 
 // FUNCTIONS //
@@ -292,71 +296,73 @@ class CategoricalTransformer extends Component {
 			<Draggable cancel=".card-body" onDragStart={( event ) => {
 				event.stopPropagation();
 			}} style={{ zIndex: 1006 }} >
-				<Panel
-					onHide={this.props.onHide}
-					show={this.props.show}
-					header={t('categorical-transformer-header')}
-					footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
-						{t('create-new-variable')}
-					</Button>}
-					bodyStyle={{
-						maxHeight: 'calc(100vh - 200px)',
-						overflowY: 'auto',
-						position: 'relative'
-					}}
-					role="button" tabIndex={0}
-				>
-					<Row>
-						<Col md={4}>
-							<SelectInput
-								legend={t('first-variable')}
-								defaultValue={this.state.firstVar || ''}
-								options={this.props.categorical}
-								onChange={this.handleFirstVariableChange}
-							/>
-						</Col>
-						<Col md={4}>
-							<SelectInput
-								clearable
-								legend={t('optional-second-variable')}
-								defaultValue={this.state.secondVar || ''}
-								options={this.props.categorical}
-								onChange={this.handleSecondVariableChange}
-							/>
-						</Col>
-					</Row>
-					<Row style={{ overflowX: 'auto', width: '100%' }}>
-						{this.renderTable()}
-					</Row>
-					<Row>
-						<Tooltip tooltip={t('treat-labels-as-numbers-tooltip')}>
-							<CheckboxInput
-								legend={t('treat-labels-as-numbers')}
-								defaultValue={false}
-								disabled={!this.state.onlyNumbers}
-								onChange={() => {
-									this.setState({
-										castNumeric: !this.state.castNumeric
-									});
-								}}
-							/>
-						</Tooltip>
-					</Row>
-					<Row>
-						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>{t('name-new-variable')}:</FormLabel>
-							<FormControl
-								type="text"
-								placeholder={t('select-name')}
-								onChange={this.handleGeneratedNameChange}
-								onKeyPress={this.handleKeyPress}
-							/>
-							<FormText>
-								{t('new-variable-appended')}
-							</FormText>
-						</FormGroup>
-					</Row>
-				</Panel>
+				<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
+					<Panel
+						onHide={this.props.onHide}
+						show={this.props.show}
+						header={t('categorical-transformer-header')}
+						footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
+							{t('create-new-variable')}
+						</Button>}
+						bodyStyle={{
+							maxHeight: 'calc(100vh - 200px)',
+							overflowY: 'auto',
+							position: 'relative'
+						}}
+						role="button" tabIndex={0}
+					>
+						<Row>
+							<Col md={4}>
+								<SelectInput
+									legend={t('first-variable')}
+									defaultValue={this.state.firstVar || ''}
+									options={this.props.categorical}
+									onChange={this.handleFirstVariableChange}
+								/>
+							</Col>
+							<Col md={4}>
+								<SelectInput
+									clearable
+									legend={t('optional-second-variable')}
+									defaultValue={this.state.secondVar || ''}
+									options={this.props.categorical}
+									onChange={this.handleSecondVariableChange}
+								/>
+							</Col>
+						</Row>
+						<Row style={{ overflowX: 'auto', width: '100%' }}>
+							{this.renderTable()}
+						</Row>
+						<Row>
+							<Tooltip tooltip={t('treat-labels-as-numbers-tooltip')}>
+								<CheckboxInput
+									legend={t('treat-labels-as-numbers')}
+									defaultValue={false}
+									disabled={!this.state.onlyNumbers}
+									onChange={() => {
+										this.setState({
+											castNumeric: !this.state.castNumeric
+										});
+									}}
+								/>
+							</Tooltip>
+						</Row>
+						<Row>
+							<FormGroup style={{ margin: 8 }}>
+								<FormLabel>{t('name-new-variable')}:</FormLabel>
+								<FormControl
+									type="text"
+									placeholder={t('select-name')}
+									onChange={this.handleGeneratedNameChange}
+									onKeyPress={this.handleKeyPress}
+								/>
+								<FormText>
+									{t('new-variable-appended')}
+								</FormText>
+							</FormGroup>
+						</Row>
+					</Panel>
+				</FocusTrap>
 			</Draggable>
 		);
 	}

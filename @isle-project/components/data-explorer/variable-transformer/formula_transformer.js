@@ -3,6 +3,7 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
+import FocusTrap from 'focus-trap-react';
 import Table from 'react-bootstrap/Table';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -32,6 +33,9 @@ import './formula_transformer.css';
 const DIGITS = incrspace( 0, 10, 1 );
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 const RE_DIGITS_START = /^[0-9]/;
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
+};
 
 
 // FUNCTIONS //
@@ -172,155 +176,157 @@ class FormulaTransformer extends Component {
 			<Draggable cancel=".card-body" onDragStart={( event ) => {
 				event.stopPropagation();
 			}} style={{ zIndex: 1006 }} >
-				<Panel
-					show={this.props.show}
-					onHide={this.props.onHide}
-					header={this.props.t('formula-transformer-header')}
-					footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >{this.props.t('create-new-variable')}</Button>}
-					role="button" tabIndex={0}
-					bodyStyle={{
-						maxHeight: 'calc(100vh - 200px)',
-						overflowY: 'auto',
-						position: 'relative'
-					}}
-				>
-					<div className="formula-transformer-body">
-						<Collapse headerClassName="title" header={this.state.showGuide ? t('hide-example-guide') : t('show-example-guide')} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
-							<p>{t('formula-transformer-example-intro')}</p>
-							<Table condensed >
-								<thead>
-									<tr>
-										<th>{t('type')}</th>
-										<th>{t('example')}</th>
-										<th>{t('description')}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>{t('interaction')}:</td>
-										<td><code>datum.{this.props.quantitative[0]} * datum.{this.props.quantitative[1]}</code></td>
-										<td>
-											<Trans i18nKey="example-description-multiply" ns="DataExplorer" >
-												Multiply values of variables <code>{{ first: this.props.quantitative[0] }}</code> and <code>{{ second: this.props.quantitative[1] }}</code>
-											</Trans>
-										</td>
-									</tr>
-									<tr>
-										<td>{t('transformation')}:</td>
-										<td><code>exp( datum.{this.props.quantitative[0]} )</code></td>
-										<td>
-											<Trans i18nKey="example-description-exponential" ns="DataExplorer" >
-												Natural exponential function of variable <code>{{ variable: this.props.quantitative[0] }}</code>
-											</Trans>
-										</td>
-									</tr>
-									<tr>
-										<td>{t('function')}:</td>
-										<td><code>9/5 * {this.props.quantitative[0]} + 32</code></td>
-										<td>
-											<Trans i18nKey="example-description-calculation" ns="DataExplorer" >
-												Multiply values of <code>{{ variable: this.props.quantitative[0] }}</code> by <code>9/5</code> and add <code>32</code>
-											</Trans>
-										</td>
-									</tr>
-								</tbody>
-							</Table>
-						</Collapse>
-						<hr />
-						<div className="mb-2" >
-							<ButtonToolbar style={{ marginBottom: 5 }} >
-								<Dropdown className="mr-2">
-									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-										{t('quantitative')}
-									</Dropdown.Toggle>
-									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-										{continuousItems}
-									</Dropdown.Menu>
-								</Dropdown>
-								<Dropdown className="mr-2">
-									<Dropdown.Toggle variant="light" id="dropdown-custom-components">
-										{t('categorical')}
-									</Dropdown.Toggle>
-									<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
-										{this.props.categorical.map( ( v, i ) => {
-											return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
-										})}
-									</Dropdown.Menu>
-								</Dropdown>
-							</ButtonToolbar>
-						</div>
-						<Card className="mb-2" >
-							<Card.Body>
+				<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
+					<Panel
+						show={this.props.show}
+						onHide={this.props.onHide}
+						header={this.props.t('formula-transformer-header')}
+						footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >{this.props.t('create-new-variable')}</Button>}
+						role="button" tabIndex={0}
+						bodyStyle={{
+							maxHeight: 'calc(100vh - 200px)',
+							overflowY: 'auto',
+							position: 'relative'
+						}}
+					>
+						<div className="formula-transformer-body">
+							<Collapse headerClassName="title" header={this.state.showGuide ? t('hide-example-guide') : t('show-example-guide')} visible={this.state.showGuide} onClick={() => this.setState({ showGuide: !this.state.showGuide })}>
+								<p>{t('formula-transformer-example-intro')}</p>
+								<Table condensed >
+									<thead>
+										<tr>
+											<th>{t('type')}</th>
+											<th>{t('example')}</th>
+											<th>{t('description')}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>{t('interaction')}:</td>
+											<td><code>datum.{this.props.quantitative[0]} * datum.{this.props.quantitative[1]}</code></td>
+											<td>
+												<Trans i18nKey="example-description-multiply" ns="DataExplorer" >
+													Multiply values of variables <code>{{ first: this.props.quantitative[0] }}</code> and <code>{{ second: this.props.quantitative[1] }}</code>
+												</Trans>
+											</td>
+										</tr>
+										<tr>
+											<td>{t('transformation')}:</td>
+											<td><code>exp( datum.{this.props.quantitative[0]} )</code></td>
+											<td>
+												<Trans i18nKey="example-description-exponential" ns="DataExplorer" >
+													Natural exponential function of variable <code>{{ variable: this.props.quantitative[0] }}</code>
+												</Trans>
+											</td>
+										</tr>
+										<tr>
+											<td>{t('function')}:</td>
+											<td><code>9/5 * {this.props.quantitative[0]} + 32</code></td>
+											<td>
+												<Trans i18nKey="example-description-calculation" ns="DataExplorer" >
+													Multiply values of <code>{{ variable: this.props.quantitative[0] }}</code> by <code>9/5</code> and add <code>32</code>
+												</Trans>
+											</td>
+										</tr>
+									</tbody>
+								</Table>
+							</Collapse>
+							<hr />
+							<div className="mb-2" >
 								<ButtonToolbar style={{ marginBottom: 5 }} >
-									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
-									</ButtonGroup>
-									<ButtonGroup size="sm" className="mr-2" >
-										<Tooltip placement="top" tooltip={t('open-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
-										<Tooltip placement="top" tooltip={t('closing-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
-									</ButtonGroup>
-									<ButtonGroup size="sm" className="mr-2" >
-										<Tooltip placement="top" tooltip={t('addition')}><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>
-										<Tooltip placement="top" tooltip={t('subtraction')}><Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button></Tooltip>
-										<Tooltip placement="top" tooltip={t('multiplication')}><Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button></Tooltip>
-										<Tooltip placement="top" tooltip={t('division')}><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
-									</ButtonGroup>
-									<ButtonGroup size="sm" className="mr-2" >
-										<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >{t('or')}</Button>
-										<Button variant="light" onClick={this.insertLiteralFactory(' !')} >{t('not')}</Button>
-									</ButtonGroup>
-									<ButtonGroup size="sm" className="me-2">
-										{FUNCTION_KEYS.map( ( v, i ) => {
-											return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
-										})}
-									</ButtonGroup>
+									<Dropdown className="mr-2">
+										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
+											{t('quantitative')}
+										</Dropdown.Toggle>
+										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+											{continuousItems}
+										</Dropdown.Menu>
+									</Dropdown>
+									<Dropdown className="mr-2">
+										<Dropdown.Toggle variant="light" id="dropdown-custom-components">
+											{t('categorical')}
+										</Dropdown.Toggle>
+										<Dropdown.Menu variant="light" as={CustomMenu} id="bg-nested-dropdown">
+											{this.props.categorical.map( ( v, i ) => {
+												return <Dropdown.Item key={i} onClick={this.insertVarFactory( v )} eventKey={i}>{v}</Dropdown.Item>;
+											})}
+										</Dropdown.Menu>
+									</Dropdown>
 								</ButtonToolbar>
-								<ButtonToolbar>
-									<ButtonGroup size="sm" className="mr-2" >
-										{DIGITS.map( ( d, i ) => {
-											return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
-										})}
-										<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
-									</ButtonGroup>
-								</ButtonToolbar>
-							</Card.Body>
-						</Card>
-						<Card className="mb-2" >
-							<Card.Body>
-								<TextArea
-									ref={div => { this.textarea = div; }}
-									legend={`${t('expression')}:`}
-									placeholder={t('enter-formula')}
-									value={this.state.code}
-									onChange={this.handleCodeChange}
-									onBlur={( event ) => {
-										const selectionStart = event.target.selectionStart;
-										this.setState({
-											selection: selectionStart
-										});
-									}}
-									rows={3}
+							</div>
+							<Card className="mb-2" >
+								<Card.Body>
+									<ButtonToolbar style={{ marginBottom: 5 }} >
+										<ButtonGroup size="sm" className="mr-2" >
+											<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
+											<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
+											<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
+											<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
+										</ButtonGroup>
+										<ButtonGroup size="sm" className="mr-2" >
+											<Tooltip placement="top" tooltip={t('open-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('closing-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ) ')} >)</Button></Tooltip>
+										</ButtonGroup>
+										<ButtonGroup size="sm" className="mr-2" >
+											<Tooltip placement="top" tooltip={t('addition')}><Button variant="light" onClick={this.insertLiteralFactory(' + ')} >+</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('subtraction')}><Button variant="light" onClick={this.insertLiteralFactory(' - ')} >-</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('multiplication')}><Button variant="light" onClick={this.insertLiteralFactory(' * ')} >*</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('division')}><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
+										</ButtonGroup>
+										<ButtonGroup size="sm" className="mr-2" >
+											<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button>
+											<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >{t('or')}</Button>
+											<Button variant="light" onClick={this.insertLiteralFactory(' !')} >{t('not')}</Button>
+										</ButtonGroup>
+										<ButtonGroup size="sm" className="me-2">
+											{FUNCTION_KEYS.map( ( v, i ) => {
+												return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
+											})}
+										</ButtonGroup>
+									</ButtonToolbar>
+									<ButtonToolbar>
+										<ButtonGroup size="sm" className="mr-2" >
+											{DIGITS.map( ( d, i ) => {
+												return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
+											})}
+											<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
+										</ButtonGroup>
+									</ButtonToolbar>
+								</Card.Body>
+							</Card>
+							<Card className="mb-2" >
+								<Card.Body>
+									<TextArea
+										ref={div => { this.textarea = div; }}
+										legend={`${t('expression')}:`}
+										placeholder={t('enter-formula')}
+										value={this.state.code}
+										onChange={this.handleCodeChange}
+										onBlur={( event ) => {
+											const selectionStart = event.target.selectionStart;
+											this.setState({
+												selection: selectionStart
+											});
+										}}
+										rows={3}
+									/>
+								</Card.Body>
+							</Card>
+							<FormGroup style={{ margin: 8 }}>
+								<FormLabel>{t('name-new-variable')}:</FormLabel>
+								<FormControl
+									type="text"
+									placeholder={t('select-name')}
+									onChange={this.handleNameChange}
+									onKeyPress={this.handleKeyPress}
 								/>
-							</Card.Body>
-						</Card>
-						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>{t('name-new-variable')}:</FormLabel>
-							<FormControl
-								type="text"
-								placeholder={t('select-name')}
-								onChange={this.handleNameChange}
-								onKeyPress={this.handleKeyPress}
-							/>
-							<FormText>
-								{t('new-variable-appended')}
-							</FormText>
-						</FormGroup>
-					</div>
-				</Panel>
+								<FormText>
+									{t('new-variable-appended')}
+								</FormText>
+							</FormGroup>
+						</div>
+					</Panel>
+				</FocusTrap>
 			</Draggable>
 		);
 	}

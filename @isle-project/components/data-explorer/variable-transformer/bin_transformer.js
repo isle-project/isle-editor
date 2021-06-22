@@ -3,6 +3,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import FocusTrap from 'focus-trap-react';
 import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -47,6 +48,9 @@ const HISTOGRAM_SETTINGS = {
 	densityType: 'Data-driven',
 	chooseBins: false,
 	nBins: null
+};
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
 };
 
 
@@ -430,22 +434,24 @@ const BinningTransformer = ( props ) => {
 	};
 	return (
 		<Draggable cancel=".card-body" onDragStart={stopPropagation} style={{ zIndex: 1006 }} >
-			<Panel
-				onHide={props.onHide}
-				show={props.show}
-				header={props.t('bin-transformer-header')}
-				footer={<Button onClick={makeNewVar} disabled={invalidName} >
-					{props.t('create-new-variable')}
-				</Button>}
-				bodyStyle={{
-					maxHeight: 'calc(100vh - 200px)',
-					overflowY: 'auto',
-					position: 'relative'
-				}}
-				role="button" tabIndex={0}
-			>
-				{renderBody()}
-			</Panel>
+			<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
+				<Panel
+					onHide={props.onHide}
+					show={props.show}
+					header={props.t('bin-transformer-header')}
+					footer={<Button onClick={makeNewVar} disabled={invalidName} >
+						{props.t('create-new-variable')}
+					</Button>}
+					bodyStyle={{
+						maxHeight: 'calc(100vh - 200px)',
+						overflowY: 'auto',
+						position: 'relative'
+					}}
+					role="button" tabIndex={0}
+				>
+					{renderBody()}
+				</Panel>
+			</FocusTrap>
 		</Draggable>
 	);
 };

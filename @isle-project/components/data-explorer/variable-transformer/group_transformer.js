@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
+import FocusTrap from 'focus-trap-react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -23,6 +24,9 @@ import { DATA_EXPLORER_GROUP_TRANSFORMER } from '@isle-project/constants/actions
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer:group-transformer' );
+const FOCUS_TRAP_OPTIONS = {
+	clickOutsideDeactivates: true
+};
 
 
 // MAIN //
@@ -140,48 +144,50 @@ class GroupTransformer extends Component {
 			<Draggable cancel=".card-body" onDragStart={( event ) => {
 				event.stopPropagation();
 			}} style={{ zIndex: 1006 }} >
-				<Panel
-					onHide={this.props.onHide}
-					show={this.props.show}
-					header={this.props.t('group-transformer-header')}
-					footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
-						{this.props.t('create-new-variable')}
-					</Button>}
-					role="button" tabIndex={0}
-					bodyStyle={{
-						maxHeight: 'calc(100vh - 200px)',
-						overflowY: 'auto',
-						position: 'relative'
-					}}
-				>
-					<Row>
-						<Col>
-							<NumberInput
-								legend={this.props.t('number-of-groups')}
-								onChange={this.handleGroupNumberChange}
-								defaultValue={this.state.nGroups}
-								step={1}
-								min={1}
-								max={99}
-							/>
-						</Col>
-					</Row>
-					{this.renderTable()}
-					<Row>
-						<FormGroup style={{ margin: 8 }}>
-							<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
-							<FormControl
-								type="text"
-								placeholder={this.props.t('select-name')}
-								onChange={this.handleGeneratedNameChange}
-								onKeyPress={this.handleKeyPress}
-							/>
-							<FormText>
-								{this.props.t('new-variable-appended')}
-							</FormText>
-						</FormGroup>
-					</Row>
-				</Panel>
+				<FocusTrap focusTrapOptions={FOCUS_TRAP_OPTIONS} >
+					<Panel
+						onHide={this.props.onHide}
+						show={this.props.show}
+						header={this.props.t('group-transformer-header')}
+						footer={<Button onClick={this.makeNewVar} disabled={!hasValidValues}>
+							{this.props.t('create-new-variable')}
+						</Button>}
+						role="button" tabIndex={0}
+						bodyStyle={{
+							maxHeight: 'calc(100vh - 200px)',
+							overflowY: 'auto',
+							position: 'relative'
+						}}
+					>
+						<Row>
+							<Col>
+								<NumberInput
+									legend={this.props.t('number-of-groups')}
+									onChange={this.handleGroupNumberChange}
+									defaultValue={this.state.nGroups}
+									step={1}
+									min={1}
+									max={99}
+								/>
+							</Col>
+						</Row>
+						{this.renderTable()}
+						<Row>
+							<FormGroup style={{ margin: 8 }}>
+								<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
+								<FormControl
+									type="text"
+									placeholder={this.props.t('select-name')}
+									onChange={this.handleGeneratedNameChange}
+									onKeyPress={this.handleKeyPress}
+								/>
+								<FormText>
+									{this.props.t('new-variable-appended')}
+								</FormText>
+							</FormGroup>
+						</Row>
+					</Panel>
+				</FocusTrap>
 			</Draggable>
 		);
 	}
