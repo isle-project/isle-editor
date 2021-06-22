@@ -39,7 +39,6 @@
 }
 
 .help-button {
-	float: right;
 	color: var(--quartary);
 	box-shadow: none;
 	background: rgba(0, 0, 0, 0.05);
