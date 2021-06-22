@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.76.0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.0) (2021-06-22)
+
+This release fixes various translations, improves accessibility of lessons, and introduces various new hotkeys for statusbar and toolbar elements. For the data explorer, the __history__ tab is now visible by default and works for all generated output.
+
+Starting with this release, ISLE lessons use the newest version of the socket.io client, __which requires that the ISLE server backend is running the latest version for lessons built from this release to work properly.__
+
+**Fixed bugs:**
+
+- Pages -\> component wizard -\> pagination:  menu is missing "both" [\#2123](https://github.com/isle-project/isle-editor/issues/2123)
+- typo in LearnDiscreteCLT [\#2115](https://github.com/isle-project/isle-editor/issues/2115)
+- \[bug\]: In Answers-\>Show Extended, scrolling goes haywire [\#2090](https://github.com/isle-project/isle-editor/issues/2090)
+
 ## [v0.75.8](https://github.com/isle-project/isle-editor/releases/tag/v0.75.8) (2021-06-03)
 
 This release fixes several issues concerning the Markdown parsing of ISLE lesson code, bugs in the data explorer, and comes with translations for multiple additional languages. It also improves accessibility of lessons by more ergonomic handling of user focus and additional hotkeys for interface elements. Last but not least, it adds a new standalone `<SummaryStatistics />` component that allows one to insert any table with summary statistics outside of the data explorer:
