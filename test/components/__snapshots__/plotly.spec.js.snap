@@ -1,3 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Plotly /> renders a Plotly visualization 1`] = `null`;
+exports[`<Plotly /> renders a Plotly visualization 1`] = `
+<div
+  className="plotly-container"
+  style={
+    Object {
+      "height": "100%",
+      "width": 300,
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className={null}
+    style={
+      Object {
+        "height": "100%",
+        "width": 300,
+        "zIndex": 1,
+      }
+    }
+  />
+</div>
+`;
