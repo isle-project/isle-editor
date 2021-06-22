@@ -50,6 +50,10 @@ const transformValue = ( value ) => {
 	return out;
 };
 
+function preventFormPageReload( e ) {
+	e.preventDefault();
+}
+
 
 // MAIN //
 
@@ -159,7 +163,7 @@ const SelectInput = ( props ) => {
 		clearable = props.clearable;
 	}
 	return (
-		<Form className="input" style={{ ...style }} >
+		<Form className="input" style={{ ...style }} onSubmit={preventFormPageReload} >
 			<FormGroup controlId={`${id.current}-form`} >
 				{ props.legend ?
 					<Tooltip tooltip={props.tooltip}>
