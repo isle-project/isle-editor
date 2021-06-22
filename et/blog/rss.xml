@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>ISLE Documentation Blog</title>
-        <link>https://isledocs.com/blog</link>
+        <link>https://isledocs.com/et/blog</link>
         <description>ISLE Documentation Blog</description>
         <lastBuildDate>Mon, 01 Jul 2019 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
