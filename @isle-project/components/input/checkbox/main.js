@@ -66,6 +66,12 @@ const CheckboxInput = ( props ) => {
 		onChange( newValue );
 		updateValue( newValue );
 	}, [ onChange, updateValue ] );
+	const handleKeyPress = useCallback( ( event ) => {
+		if ( event.which === 13 ) {
+			onChange( !value );
+			updateValue( !value );
+		}
+	}, [ onChange, updateValue, value ] );
 	const handleSpanChange = () => {
 		const newValue = props.value !== null ? !props.value : !value;
 		onChange( newValue );
@@ -77,6 +83,7 @@ const CheckboxInput = ( props ) => {
 		checked={props.value !== null ? props.value : value}
 		value="checkbox"
 		onChange={handleChange}
+		onKeyPress={handleKeyPress}
 		disabled={disabled}
 		aria-label={props.tooltip}
 	></input>;
