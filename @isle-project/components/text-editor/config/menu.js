@@ -109,14 +109,16 @@ export const marks = [
 		content: icons.strong,
 		enable: isEnabled,
 		active: markActive( schema.marks.strong ),
-		run: toggleMark( schema.marks.strong )
+		run: toggleMark( schema.marks.strong ),
+		hotkey: 'Ctrl+B'
 	},
 	{
 		title: 'emphasis',
 		content: icons.em,
 		enable: isEnabled,
 		active: markActive( schema.marks.em ),
-		run: toggleMark( schema.marks.em )
+		run: toggleMark( schema.marks.em ),
+		hotkey: 'Ctrl+I'
 	},
 	new LinkSetURLCommand()
 ];
@@ -127,35 +129,40 @@ export const extraMarks = [
 		content: icons.underline,
 		enable: isEnabled,
 		active: markActive( schema.marks.underline ),
-		run: toggleMark( schema.marks.underline )
+		run: toggleMark( schema.marks.underline ),
+		hotkey: 'Ctrl+U'
 	},
 	{
 		title: 'strikethrough',
 		content: icons.strikethrough,
 		enable: isEnabled,
 		active: markActive( schema.marks.strikethrough ),
-		run: toggleMark( schema.marks.strikethrough )
+		run: toggleMark( schema.marks.strikethrough ),
+		hotkey: 'Ctrl+S'
 	},
 	{
 		title: 'code',
 		content: icons.code,
 		enable: isEnabled,
 		active: markActive( schema.marks.code ),
-		run: toggleMark( schema.marks.code )
+		run: toggleMark( schema.marks.code ),
+		hotkey: 'Ctrl+C'
 	},
 	{
 		title: 'subscript',
 		content: icons.subscript,
 		enable: isEnabled,
 		active: markActive( schema.marks.subscript ),
-		run: toggleMark( schema.marks.subscript )
+		run: toggleMark( schema.marks.subscript ),
+		hotkey: 'Ctrl+L'
 	},
 	{
 		title: 'superscript',
 		content: icons.superscript,
 		enable: isEnabled,
 		active: markActive( schema.marks.superscript ),
-		run: toggleMark( schema.marks.superscript)
+		run: toggleMark( schema.marks.superscript),
+		hotkey: 'Ctrl+P'
 	}
 ];
 
@@ -172,14 +179,16 @@ export const blocks = [
 		content: 'H1',
 		active: activeHeadingFactory( 1 ),
 		enable: setBlockType( schema.nodes.heading, { level: 1 } ),
-		run: setBlockType( schema.nodes.heading, { level: 1 } )
+		run: setBlockType( schema.nodes.heading, { level: 1 } ),
+		hotkey: 'Shift+Ctrl+1'
 	},
 	{
 		title: 'change-heading-2',
 		content: 'H2',
 		active: activeHeadingFactory( 2 ),
 		enable: setBlockType( schema.nodes.heading, { level: 2 } ),
-		run: setBlockType( schema.nodes.heading, { level: 2 } )
+		run: setBlockType( schema.nodes.heading, { level: 2 } ),
+		hotkey: 'Shift+Ctrl+2'
 	}
 ];
 
@@ -188,19 +197,22 @@ export const headers = [
 		title: 'change-heading-3',
 		content: 'Heading 3',
 		enable: setBlockType( schema.nodes.heading, { level: 3 } ),
-		run: setBlockType( schema.nodes.heading, { level: 3 } )
+		run: setBlockType( schema.nodes.heading, { level: 3 } ),
+		hotkey: 'Shift+Ctrl+3'
 	},
 	{
 		title: 'change-heading-4',
 		content: 'Heading 4',
 		enable: setBlockType( schema.nodes.heading, { level: 4 } ),
-		run: setBlockType( schema.nodes.heading, { level: 4 } )
+		run: setBlockType( schema.nodes.heading, { level: 4 } ),
+		hotkey: 'Shift+Ctrl+4'
 	},
 	{
 		title: 'change-heading-5',
 		content: 'Heading 5',
 		enable: setBlockType( schema.nodes.heading, { level: 5 } ),
-		run: setBlockType( schema.nodes.heading, { level: 5 } )
+		run: setBlockType( schema.nodes.heading, { level: 5 } ),
+		hotkey: 'Shift+Ctrl+5'
 	}
 ];
 

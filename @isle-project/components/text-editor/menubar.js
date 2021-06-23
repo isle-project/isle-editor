@@ -42,8 +42,12 @@ const Button = ( props ) => {
 			>{props.children}</button>
 		);
 	}
+	let tooltip = props.t( props.title );
+	if ( props.hotkey ) {
+		tooltip += ` (${props.hotkey})`;
+	}
 	return (
-		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={props.t( props.title )} placement="bottom" >
+		<Tooltip key={`${props.itemKey}-tooltip`} tooltip={tooltip} placement="bottom" >
 			<button
 				onClick={props.onClick}
 				style={{
@@ -57,7 +61,7 @@ const Button = ( props ) => {
 	);
 };
 
-const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, t }) => {
+const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, container, t }) => {
 	const onClick = ( item ) => e => {
 		e.preventDefault();
 		if ( item.run ) {
@@ -73,6 +77,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			active={item.active && state ? item.active( state ) : false}
 			disabled={item.enable && state ? !item.enable( state ) : false}
 			title={typeof item.title === 'string' ? t( item.title ) : ''}
+			hotkey={item.hotkey}
 			onClick={onClick(item)}
 			t={t}
 		>
