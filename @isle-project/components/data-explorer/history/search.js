@@ -30,6 +30,7 @@ class Search extends Component {
 			<FormGroup>
 				<InputGroup size="small" >
 					<FormControl
+						aria-label="Search"
 						type="text"
 						placeholder="Search actions..."
 						onChange={this.handleSearch}
