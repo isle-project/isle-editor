@@ -85,7 +85,7 @@ const CheckboxInput = ( props ) => {
 		onChange={handleChange}
 		onKeyPress={handleKeyPress}
 		disabled={disabled}
-		aria-label={props.tooltip}
+		aria-label={props.legend}
 	></input>;
 	if ( props.inline === true ) {
 		return (
