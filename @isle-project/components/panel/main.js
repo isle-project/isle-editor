@@ -30,7 +30,11 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 		</Tooltip> : null }
 		{ onHide ?
 			<Tooltip tooltip={hideTooltip || t( 'close' )} >
-				<button className="panel-button fa fa-times" onClick={onHide} />
+				<button
+					aria-label={t( 'close' )}
+					className="panel-button fa fa-times"
+					onClick={onHide}
+				/>
 			</Tooltip> : null
 		}
 		</div>

@@ -194,8 +194,10 @@ const Calculator = ( props ) => {
 				>
 					<Container className="desaturated" >
 						<FormControl
+							aria-label={t( 'calculator-input' )}
 							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
-							type="text" id="calc-text-area"
+							type="text"
+							id="calc-text-area"
 							value={String(visible)}
 							onChange={handleTypeChange}
 							ref={textInput}

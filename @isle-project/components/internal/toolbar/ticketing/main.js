@@ -138,6 +138,7 @@ class Ticketing extends Component {
 							<ListGroup.Item key={`file-${idx}`}>
 								{file.name}
 								<Button
+									aria-label={this.props.t('delete')}
 									variant="danger"
 									size="sm"
 									onClick={this.removeFileFactory( idx )}
@@ -176,7 +177,7 @@ class Ticketing extends Component {
 								options={COMPONENTS}
 								onChange={this.handleComponentChange}
 							/>
-							<FormGroup>
+							<FormGroup controlId="ticket-title" >
 								<FormLabel>{t('title')}:</FormLabel>
 								<FormControl
 									type="text"
@@ -192,7 +193,7 @@ class Ticketing extends Component {
 							/>
 							{this.renderAttachments()}
 							<Tooltip tooltip={t('attach-file')} >
-								<Button onClick={this.attachFile} >
+								<Button aria-label={t('attach-file')} onClick={this.attachFile} >
 									<i className="fas fa-paperclip"></i>
 								</Button>
 							</Tooltip>
