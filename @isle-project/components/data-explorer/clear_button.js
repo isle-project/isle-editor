@@ -15,6 +15,7 @@ const ClearButton = ( props ) => (
 		tooltip={props.t('DataExplorer:delete')}
 	>
 		<Button
+			aria-label={props.t('DataExplorer:delete')}
 			variant="outline-danger"
 			size="sm"
 			onClick={props.onClick}

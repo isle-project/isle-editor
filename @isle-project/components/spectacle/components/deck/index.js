@@ -156,6 +156,7 @@ class CustomDeck extends Component {
 			</Gate>
 			<Tooltip tooltip={t('toggle-overview-mode')} placement="bottom" >
 				<div
+					aria-label={t('toggle-overview-mode')}
 					tabIndex={0} role="button"
 					className="overview-mode-button"
 					onClick={toggleOverviewMode}

@@ -38,6 +38,7 @@ const BoxShadows = ({ active, style, onChange, t }) => {
 						<ListGroup.Item key={`shadow-${idx}`}>
 							{shadow}
 							<Button
+								aria-label={t('delete')}
 								variant="danger"
 								size="sm"
 								onClick={() => {

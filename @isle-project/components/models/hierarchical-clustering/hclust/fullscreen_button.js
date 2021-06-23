@@ -34,6 +34,7 @@ class FullscreenButton extends Component {
 					tooltip={t('toggle-fullscreen')}
 				>
 					<Button
+						aria-label={t('toggle-fullscreen')}
 						variant="outline-danger"
 						size="sm"
 						onClick={this.toggleFullscreen}

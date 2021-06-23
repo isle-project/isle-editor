@@ -28,7 +28,8 @@ const DateTimePicker = ({ prop, onChange, onHide }) => {
 			</h3>
 			<Button
 				size="sm" variant="warning"
-				className="configurator-date-time-picker-close-button" onClick={onHide}
+				className="configurator-date-time-picker-close-button"
+				onClick={onHide}
 			>
 				<div className="fa fa-times" />
 			</Button>

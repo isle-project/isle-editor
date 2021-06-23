@@ -80,6 +80,7 @@ const ComponentStyler = ({ tagName, show, componentStyle, style, appendCSSToPrea
 					{t('apply-to-all-elements', { tagName })}
 				</Button> : null }
 				<Button
+					aria-label={t('close')}
 					size="sm" variant="warning"
 					className="component-styler-close-button" onClick={onHide}
 				>

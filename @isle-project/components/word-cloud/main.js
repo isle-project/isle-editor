@@ -37,6 +37,12 @@ import { withPropCheck } from '@isle-project/utils/prop-check';
 
 const fill = scaleOrdinal( schemeCategory10 );
 const RE_NUMBERS = /[+-]?[\d.]+e?[+-]?\d*/g;
+const BUTTON_STYLE = {
+	position: 'absolute',
+	right: -12,
+	top: -12,
+	zIndex: 2
+};
 
 
 // FUNCTIONS //
@@ -331,12 +337,10 @@ class Wrapper extends Component {
 	render() {
 		return ( <div style={{ width: this.props.width, position: 'relative', ...this.props.style }} >
 			{ this.props.saveButton && this.state.wordCounts.length > 0 ? <Tooltip placement="left" tooltip={this.props.t('save-word-cloud')} >
-				<Button size="sm" variant="light" onClick={this.saveToPNG} style={{
-					position: 'absolute',
-					right: -12,
-					top: -12,
-					zIndex: 2
-				}} aria-label={this.props.t('save-word-cloud')} >
+				<Button
+					size="sm" variant="light" onClick={this.saveToPNG}
+					style={BUTTON_STYLE} aria-label={this.props.t('save-word-cloud')}
+				>
 					<div className="fa fa-save" />
 				</Button>
 			</Tooltip> : null }

@@ -162,7 +162,7 @@ class SelectQuestion extends Component {
 								return <option key={idx} value={e}>{e}</option>;
 							})}
 						</FormControl>
-						<Button size="small" variant={`outline-${this.state.answerState}`} disabled={isValid} style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
+						<Button aria-label={this.props.t('submit')} size="small" variant={`outline-${this.state.answerState}`} disabled={isValid} style={{ display: 'inline', marginTop: -3 }} onClick={this.handleSubmit} >
 							<i className="fa fa-check-square"></i>
 						</Button>
 					</span>

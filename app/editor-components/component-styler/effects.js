@@ -71,6 +71,7 @@ const Effects = ({ active, style, onChange, t }) => {
 						<ListGroup.Item key={`transition-${idx}`}>
 							{transition}
 							<Button
+								aria-label={t('delete')}
 								variant="danger"
 								size="sm"
 								onClick={() => {

@@ -19,6 +19,7 @@ const QuestionButton = ( props ) => {
 	return (
 		<OverlayTrigger trigger={[ 'click', 'hover', 'focus' ]} placement="left" rootClose overlay={popover}>
 			<Button
+				aria-label={props.title}
 				size="sm"
 				variant="outline-secondary"
 				className="question-button"
@@ -28,6 +29,9 @@ const QuestionButton = ( props ) => {
 		</OverlayTrigger>
 	);
 };
+
+
+// PROPERTIES //
 
 QuestionButton.propTypes = {
 	'content': PropTypes.oneOfType([ PropTypes.string, PropTypes.node ]).isRequired,

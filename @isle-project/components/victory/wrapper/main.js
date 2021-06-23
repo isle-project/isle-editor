@@ -10,6 +10,16 @@ import Tooltip from '@isle-project/components/tooltip';
 import { svgString2Image, getSVGString } from '@isle-project/utils/svg';
 
 
+// VARIABLES //
+
+const BUTTON_STYLE = {
+	position: 'absolute',
+	right: -12,
+	top: -12,
+	zIndex: 2
+};
+
+
 // MAIN //
 
 /**
@@ -43,12 +53,10 @@ class VictoryWrapper extends Component {
 			this.victoryWrapper = div;
 		}} style={{ position: 'relative' }}>
 			<Tooltip placement="left" tooltip={this.props.t('save-plot')} >
-				<Button size="sm" variant="light" onClick={this.saveToPNG} style={{
-						position: 'absolute',
-						right: -12,
-						top: -12,
-						zIndex: 2
-					}}
+				<Button
+					aria-label={this.props.t('save-plot')}
+					size="sm" variant="light" onClick={this.saveToPNG}
+					style={BUTTON_STYLE}
 				>
 					<div className="fa fa-save" />
 				</Button>

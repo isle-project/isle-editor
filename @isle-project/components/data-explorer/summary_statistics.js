@@ -41,6 +41,7 @@ const Option = props => {
 			placement="right" rootClose overlay={popover}
 		>
 			<Button
+				aria-label={i18n.t( 'data-explorer:'+props.data.label )}
 				size="sm"
 				variant="outline-secondary"
 				className="question-button"

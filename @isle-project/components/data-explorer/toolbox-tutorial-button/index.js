@@ -38,15 +38,17 @@ class Tutorial extends Component {
 	}
 
 	render() {
+		const tooltip = this.props.t( this.state.running ? 'close-tutorial' : 'show-tutorial' );
 		return (
 			<Fragment>
 				<OverlayTrigger
 					placement="left"
 					overlay={<Tooltip>
-						{this.props.t( this.state.running ? 'close-tutorial' : 'show-tutorial' )}
+						{tooltip}
 					</Tooltip>}
 				>
 					<Button
+						aria-label={tooltip}
 						variant="secondary" size="sm"
 						onClick={this.toggleTour}
 						style={{
