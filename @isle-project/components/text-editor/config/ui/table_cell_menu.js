@@ -27,7 +27,7 @@ class TableCellMenu extends React.PureComponent {
 		<DropdownItem
 			key={`dropdown-item-${itemKey}`}
 			onMouseDown={this.onMenuMouseDown(item)}
-		>{i18n.t( `TextEditor:${item.content}` )}</DropdownItem>
+		>{i18n.t( `text-editor:${item.content}` )}</DropdownItem>
 	)
 
 	render() {

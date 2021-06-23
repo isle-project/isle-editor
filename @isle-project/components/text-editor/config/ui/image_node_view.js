@@ -346,7 +346,7 @@ class ImageViewBody extends React.PureComponent {
 		const errorView = error ?
 			<span className="editor-image-view-error" >{Icons.error} </span> :
 			null;
-		const errorTitle = error ? `${i18n.t('TextEditor:unable-to-load-image')} ${attrs.src || ''}` : void 0;
+		const errorTitle = error ? `${i18n.t('text-editor:unable-to-load-image')} ${attrs.src || ''}` : void 0;
 		const img = <img
 			alt=""
 			className="editor-image-view-body-img"

@@ -78,10 +78,10 @@ class LinkURLEditor extends React.PureComponent {
 		const { url } = this.state;
 		const error = url ? BAD_CHARACTER_PATTERN.test( url ) : false;
 
-		let label = i18n.t('TextEditor:apply');
+		let label = i18n.t('text-editor:apply');
 		let disabled = !!error;
 		if ( href ) {
-			label = url ? i18n.t('TextEditor:apply') : i18n.t('TextEditor:remove');
+			label = url ? i18n.t('text-editor:apply') : i18n.t('text-editor:remove');
 			disabled = error;
 		} else {
 			disabled = error || !url;
@@ -90,19 +90,19 @@ class LinkURLEditor extends React.PureComponent {
 			<div className="image-url-editor">
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>{i18n.t('TextEditor:add-link')}</legend>
+						<legend>{i18n.t('text-editor:add-link')}</legend>
 						<input
 							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 							onChange={this._onURLChange}
 							onKeyDown={this._onKeyDown}
-							placeholder={i18n.t('TextEditor:paste-url')}
+							placeholder={i18n.t('text-editor:paste-url')}
 							spellCheck={false}
 							type="text"
 							value={url || ''}
 						/>
 					</fieldset>
 					<div className="editor-form-buttons">
-						<CustomButton label={i18n.t('TextEditor:cancel')} onClick={this._cancel} />
+						<CustomButton label={i18n.t('text-editor:cancel')} onClick={this._cancel} />
 						<CustomButton
 							active={true}
 							disabled={disabled}

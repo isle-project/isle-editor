@@ -75,12 +75,12 @@ class AnnotationEditor extends React.PureComponent {
 			<div className="annotation-editor" >
 				<form className="editor-form" onSubmit={preventEventDefault}>
 					<fieldset>
-						<legend>{i18n.t('TextEditor:annotation-text')}</legend>
+						<legend>{i18n.t('text-editor:annotation-text')}</legend>
 						<FormControl
 							autoFocus={true} // eslint-disable-line jsx-a11y/no-autofocus
 							onChange={this._onTextChange}
 							onKeyDown={this._onKeyDown}
-							placeholder={i18n.t('TextEditor:enter-annotation')}
+							placeholder={i18n.t('text-editor:enter-annotation')}
 							spellCheck={false}
 							as="textarea"
 							rows={5}
@@ -89,11 +89,11 @@ class AnnotationEditor extends React.PureComponent {
 						/>
 					</fieldset>
 					<div className="editor-form-buttons">
-						<CustomButton label={i18n.t('TextEditor:cancel')} onClick={this._cancel} />
+						<CustomButton label={i18n.t('text-editor:cancel')} onClick={this._cancel} />
 						<CustomButton
 							active={true}
 							disabled={annotation.length === 0}
-							label={i18n.t('TextEditor:submit')}
+							label={i18n.t('text-editor:submit')}
 							onClick={this._apply}
 						/>
 					</div>

@@ -126,18 +126,18 @@ class ImageUploadEditor extends React.PureComponent {
 		const className = cx('editor-image-upload-editor', {
 			pending, error
 		});
-		let label = i18n.t('TextEditor:choose-an-image-file');
+		let label = i18n.t('text-editor:choose-an-image-file');
 
 		if ( pending ) {
 			label = <Spinner animation="border" role="status" />;
 		} else if ( error ) {
-			label = i18n.t('TextEditor:error-while-uploading');
+			label = i18n.t('text-editor:error-while-uploading');
 		}
 		return (
 			<div className={className}>
 				<form className="editor-form">
 					<fieldset>
-						<legend>{i18n.t('TextEditor:upload-image')}</legend>
+						<legend>{i18n.t('text-editor:upload-image')}</legend>
 						<div className="editor-image-upload-editor-body">
 							<div className="editor-image-upload-editor-label">{label}</div>
 							<input
@@ -153,7 +153,7 @@ class ImageUploadEditor extends React.PureComponent {
 					</fieldset>
 					<div className="editor-form-buttons">
 						<CustomButton
-							label={i18n.t('TextEditor:cancel')}
+							label={i18n.t('text-editor:cancel')}
 							onClick={this._cancel}
 						/>
 					</div>
