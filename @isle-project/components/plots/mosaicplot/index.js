@@ -68,7 +68,7 @@ export function generateMosaicPlotCode({ data, variables, showColors, axisLabels
 
 function MosaicPlot({ data, id, variables, showColors, axisLabels, action, onShare, onPlotDone }) {
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	const code = generateMosaicPlotCode({ data, variables, showColors, axisLabels });
 	return (

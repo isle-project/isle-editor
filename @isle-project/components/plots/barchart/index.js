@@ -152,7 +152,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	let yaxis;
 	if ( horizontal ) {
 		xaxis = {
-			title: ( totalPercent || relative ) ? i18n.t('Plotly:proportion') : i18n.t('Plotly:count')
+			title: ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:count')
 		};
 		yaxis = {
 			title: group ? group : variable,
@@ -176,7 +176,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			tickcolor: 'white'
 		};
 		yaxis = {
-			title: ( totalPercent || relative ) ? i18n.t('Plotly:proportion') : i18n.t('Plotly:Count')
+			title: ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:Count')
 		};
 	}
 	return {
@@ -185,7 +185,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			barmode: stackBars ? 'stack' : null,
 			xaxis,
 			yaxis,
-			title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable,
+			title: group ? `${variable} ${i18n.t('plotly:given')} ${group}` : variable,
 			hovermode: 'closest'
 		}
 	};
@@ -217,7 +217,7 @@ const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackB
 		return generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
 	}, [ data, direction, group, horizontal, relative, stackBars, summary, totalPercent, variable, xOrder, yvar ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

@@ -83,7 +83,7 @@ function ScatterPlotMatrix({ id, data, variables, color, action, onShare, onSele
 		return generateScatterplotMatrixConfig({ data, variables, color });
 	}, [ color, data, variables ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

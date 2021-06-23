@@ -113,7 +113,7 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					y: predictedLinear,
 					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 					mode: 'lines',
-					name: i18n.t('Plotly:linear-fit'),
+					name: i18n.t('plotly:linear-fit'),
 					type: 'line'
 				});
 			}
@@ -125,13 +125,13 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 					x: values,
 					y: predictedSmooth,
 					mode: 'lines',
-					name: i18n.t('Plotly:smoothed-fit'),
+					name: i18n.t('plotly:smoothed-fit'),
 					type: 'line'
 				});
 			}
 		}
 		layout = {
-			title: `${x} ${i18n.t('Plotly:vs')} ${y}`,
+			title: `${x} ${i18n.t('plotly:vs')} ${y}`,
 			xaxis: {
 				showgrid: true,
 				zeroline: true,
@@ -287,7 +287,7 @@ export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColo
 				subplots: subplots
 			},
 			annotations: annotations,
-			title: `${x} ${i18n.t('Plotly:vs')} ${y} ${i18n.t('Plotly:given')} ${group}`
+			title: `${x} ${i18n.t('plotly:vs')} ${y} ${i18n.t('plotly:given')} ${group}`
 		};
 	}
 	return {
@@ -307,7 +307,7 @@ function HeatMap({ id, data, x, y, overlayPoints, alternateColor, group, commonX
 		return generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan });
 	}, [ alternateColor, commonXAxis, commonYAxis, data, group, overlayPoints, regressionMethod, smoothSpan, x, y ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return ( <Plotly
 		editable

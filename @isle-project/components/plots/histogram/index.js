@@ -191,7 +191,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
-			title: `${variable} ${i18n.t('Plotly:given')} ${group}`,
+			title: `${variable} ${i18n.t('plotly:given')} ${group}`,
 			...SETTINGS
 		};
 		if ( groupMode === 'Facets' ) {
@@ -219,7 +219,7 @@ function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity
 		return generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
 	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, groupMode, nBins, nCols, variable, xBins ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

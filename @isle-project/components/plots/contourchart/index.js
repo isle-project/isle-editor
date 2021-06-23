@@ -80,7 +80,7 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 				y: predictedLinear,
 				text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 				mode: 'lines',
-				name: i18n.t('Plotly:linear-fit'),
+				name: i18n.t('plotly:linear-fit'),
 				type: 'line',
 				line: {
 					color: 'steelblue'
@@ -95,7 +95,7 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 				x: values,
 				y: predictedSmooth,
 				mode: 'lines',
-				name: i18n.t('Plotly:smoothed-fit'),
+				name: i18n.t('plotly:smoothed-fit'),
 				type: 'line',
 				line: {
 					color: 'tomato'
@@ -104,7 +104,7 @@ export function generateContourChart({ data, x, y, overlayPoints, regressionMeth
 		}
 	}
 	const layout = {
-		title: `${x} ${i18n.t('Plotly:vs')} ${y}`,
+		title: `${x} ${i18n.t('plotly:vs')} ${y}`,
 		xaxis: {
 			showgrid: true,
 			zeroline: true,
@@ -133,7 +133,7 @@ function ContourChart({ id, data, x, y, overlayPoints, smoothSpan, regressionMet
 		return generateContourChart({ data, x, y, overlayPoints, regressionMethod, smoothSpan });
 	}, [ data, overlayPoints, regressionMethod, smoothSpan, x, y ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

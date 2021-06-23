@@ -47,7 +47,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 	return {
 		data: traces,
 		layout: {
-			title: group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable,
+			title: group ? `${variable} ${i18n.t('plotly:given')} ${group}` : variable,
 			xaxis: {
 				type: 'category'
 			}
@@ -66,7 +66,7 @@ function ViolinPlot({ data, variable, id, group, showBox, action, onShare }) {
 		return generateViolinplotConfig({ data, variable, group, showBox });
 	}, [ data, group, showBox, variable ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

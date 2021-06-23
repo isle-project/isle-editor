@@ -216,7 +216,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 			y: y,
 			type: nobs > 2000 ? 'scattergl' : 'scatter',
 			mode: mode,
-			name: i18n.t('Plotly:points'),
+			name: i18n.t('plotly:points'),
 			marker: {
 				symbol: 'circle',
 				size: size ? scale( data[ size ], 5.0, 10.0 ) : 5.0
@@ -326,7 +326,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 					y: predictedLinear,
 					text: `${roundn( coefs[ 0 ], -6 )} + x * ${roundn( coefs[ 1 ], -6 )}`, // eslint-disable-line i18next/no-literal-string
 					mode: 'lines',
-					name: i18n.t('Plotly:linear-fit'),
+					name: i18n.t('plotly:linear-fit'),
 					type: 'line'
 				});
 			}
@@ -338,7 +338,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 					x: values,
 					y: predictedSmooth,
 					mode: 'lines',
-					name: i18n.t('Plotly:smoothed-fit'),
+					name: i18n.t('plotly:smoothed-fit'),
 					type: 'line'
 				});
 			}
@@ -364,7 +364,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				bordercolor: '#E2E2E2',
 				borderwidth: 2
 			},
-			title: `${yval} ${i18n.t('Plotly:vs')} ${xval}`
+			title: `${yval} ${i18n.t('plotly:vs')} ${xval}`
 		}
 	};
 }
@@ -380,7 +380,7 @@ function ScatterPlot({ id, data, xval, yval, text, color, type, size, regression
 		return generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan });
 	}, [ color, data, lineBy, regressionLine, regressionMethod, size, smoothSpan, text, type, xval, yval ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return (
 		<Plotly

@@ -131,7 +131,7 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 		}
 	}
 	const layout = {
-		title: group.length > 0 ? `${variable[ 0 ]} ${i18n.t('Plotly:given')} ${group.join( ', ')}` : variable.join( ', ' ),
+		title: group.length > 0 ? `${variable[ 0 ]} ${i18n.t('plotly:given')} ${group.join( ', ')}` : variable.join( ', ' ),
 		xaxis: {
 			title: orientation === 'vertical' && group.length === 2 ? group[ 1 ] : '',
 			type: orientation === 'vertical' ? 'category' : null,
@@ -188,10 +188,10 @@ const BoxPlot = ({ data, variable, group, orientation, overlayPoints, id, action
 		});
 	}, [ data, group, orientation, overlayPoints, variable ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	if ( !variable ) {
-		return <Alert variant="danger">{i18n.t('Plotly:variable-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:variable-missing')}</Alert>;
 	}
 	return ( <Plotly
 		editable

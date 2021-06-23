@@ -110,9 +110,9 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 		}
 	}
 	let title;
-	const tmp = group ? `${variable} ${i18n.t('Plotly:given')} ${group}` : variable;
+	const tmp = group ? `${variable} ${i18n.t('plotly:given')} ${group}` : variable;
 	if ( summaryVariable ) {
-		title = `${summaryVariable} ${i18n.t('Plotly:per')} ${tmp}`;
+		title = `${summaryVariable} ${i18n.t('plotly:per')} ${tmp}`;
 	} else {
 		title = tmp;
 	}
@@ -142,7 +142,7 @@ function PieChart({ variable, group, data, summaryVariable, id, action, onShare 
 		});
 	}, [ data, group, summaryVariable, variable ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return ( <Plotly
 		editable

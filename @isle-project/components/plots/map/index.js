@@ -124,10 +124,10 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 		});
 		let title = 'Map';
 		if ( variable ) {
-			title += ` ${i18n.t('Plotly:of')} ${variable}`;
+			title += ` ${i18n.t('plotly:of')} ${variable}`;
 		}
 		if ( scope ) {
-			title += ` ${variable ? i18n.t('Plotly:in') : i18n.t('Plotly:of')} ${startcase( scope )}`;
+			title += ` ${variable ? i18n.t('plotly:in') : i18n.t('plotly:of')} ${startcase( scope )}`;
 		}
 		return {
 			data: traces,
@@ -160,7 +160,7 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 
 function Map({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, id, action, onShare }) {
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	const config = generateMapConfig({ data, locationmode, longitude, latitude, locations, variable, scope, showLand });
 	return (

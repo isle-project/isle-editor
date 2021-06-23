@@ -55,9 +55,9 @@ export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 	const config = {
 		data: traces,
 		layout: {
-			title: x ? `${y} ${i18n.t('Plotly:vs')} ${x}` : y,
+			title: x ? `${y} ${i18n.t('plotly:vs')} ${x}` : y,
 			xaxis: {
-				title: x ? x : i18n.t('Plotly:index')
+				title: x ? x : i18n.t('plotly:index')
 			},
 			yaxis: {
 				title: y
@@ -84,7 +84,7 @@ const LinePlot = ({ data, x, y, group, showPoints, id, action, onShare }) => {
 		});
 	}, [ data, group, showPoints, x, y ] );
 	if ( !data ) {
-		return <Alert variant="danger">{i18n.t('Plotly:data-missing')}</Alert>;
+		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
 	return ( <Plotly
 		editable draggable id={id} fit
