@@ -105,6 +105,19 @@ const CheckboxInput = ( props ) => {
 		);
 	}
 	const onSpanChange = disabled ? noop : handleSpanChange;
+	if ( disabled ) {
+		return (
+			<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
+				<div id={id.current} className="input checkbox-input-div" style={props.style}>
+					{input}
+					<span
+						className="checkbox-legend"
+						style={{ color: 'darkgray' }}
+					>{props.legend}</span>
+				</div>
+			</Tooltip>
+		);
+	}
 	return (
 		<Tooltip tooltip={props.tooltip} placement={props.tooltipPlacement} >
 			<div id={id.current} className="input checkbox-input-div" style={props.style}>
@@ -112,9 +125,6 @@ const CheckboxInput = ( props ) => {
 				<span
 					role="button" tabIndex={0}
 					className="checkbox-legend"
-					style={{
-						color: disabled ? 'darkgray' : null
-					}}
 					onClick={onSpanChange} onKeyPress={onSpanChange}
 				>{props.legend}</span>
 			</div>
