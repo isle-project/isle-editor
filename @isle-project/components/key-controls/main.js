@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
+import lowercase from '@stdlib/string/lowercase';
 import isFunction from '@stdlib/assert/is-function';
 import SessionContext from '@isle-project/session/context.js';
 
@@ -78,16 +79,27 @@ class KeyControls extends Component {
 	}
 
 	triggerEvent = ( event ) => {
-		const keyName = event.key;
+		const keyName = lowercase( event.key );
 		debug( `Received key press for container: ${keyName}` );
-		const fn = this.props.actions[ keyName ];
-		const modifier = event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
+		let modifiers = '';
+		if ( event.ctrlKey ) {
+			modifiers += 'ctrl+';
+		}
+		if ( event.shiftKey ) {
+			modifiers += 'shift+';
+		}
+		if ( event.altKey ) {
+			modifiers += 'alt+';
+		}
+		if ( event.metaKey ) {
+			modifiers += 'meta+';
+		}
+		const fn = this.props.actions[ modifiers+keyName ];
 		if (
 			document.activeElement === this.props.container &&
-			!modifier &&
 			isFunction( fn )
 		) {
-			if ( RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
+			if ( !modifiers && RE_ALPHABETIC.test( keyName ) && document.activeElement !== document.body ) {
 				const el = document.activeElement;
 				const inTextField = el && ( INPUTS.indexOf( el.tagName.toLowerCase() ) !== -1 || el.isContentEditable );
 				if ( inTextField || el.tagName === 'CANVAS' ) {
@@ -101,12 +113,25 @@ class KeyControls extends Component {
 	}
 
 	triggerDocEvent = ( event ) => {
-		const keyName = event.key;
-		const modifier = event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
+		const keyName = lowercase( event.key );
 		debug( `Received key press for document: ${keyName}` );
-		const fn = this.props.actions[ keyName ];
-		if ( !modifier && isFunction( fn ) ) {
+		let modifiers = '';
+		if ( event.ctrlKey ) {
+			modifiers += 'ctrl+';
+		}
+		if ( event.shiftKey ) {
+			modifiers += 'shift+';
+		}
+		if ( event.altKey ) {
+			modifiers += 'alt+';
+		}
+		if ( event.metaKey ) {
+			modifiers += 'meta+';
+		}
+		const fn = this.props.actions[ modifiers+keyName ];
+		if ( isFunction( fn ) ) {
 			if (
+				!modifiers &&
 				RE_ALPHABETIC.test( keyName ) &&
 				document.activeElement !== document.body
 			) {
