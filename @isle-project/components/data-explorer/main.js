@@ -42,6 +42,7 @@ import Plotly from '@isle-project/components/plotly';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SpreadsheetUpload from '@isle-project/components/spreadsheet-upload';
 import RPlot from '@isle-project/components/r/plot';
+import KeyControls from '@isle-project/components/key-controls';
 import DataTable from '@isle-project/components/data-table';
 const ToolboxButton = lazy( () => import( /* webpackChunkName: "Toolbox" */ './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
@@ -80,6 +81,12 @@ import { generateContourChart } from '@isle-project/components/plots/contourchar
 
 const debug = logger( 'isle:data-explorer' );
 const uid = generateUID( 'data-explorer' );
+const KEYS = {
+	'questions': '(Shift+Alt+Q)',
+	'history': '(Shift+Alt+H)',
+	'data': '(Shift+Alt+D)',
+	'editor': '(Shift+Alt+E)'
+};
 
 
 // FUNCTIONS //
@@ -997,21 +1004,22 @@ class DataExplorer extends Component {
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
 			<Col xs={6} md={6} >
 				<Card style={{ height: this.props.style.height, minHeight: this.props.style.height || window.innerHeight*0.9, padding: 0 }} >
-					<Navbar className="data-explorer-navbar" onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
+					<Navbar className="data-explorer-navbar" value={this.state.openedNav} onSelect={( eventKey => this.setState({ openedNav: eventKey }))}>
 						<Nav>
 							{ hasQuestions ? <Nav.Item className="explorer-data-nav">
-								<Nav.Link eventKey="questions" active={this.state.openedNav === 'questions'}>
+								<Nav.Link title={`${this.props.t('questions')} ${KEYS[ 'questions' ]}`} eventKey="questions" active={this.state.openedNav === 'questions'}>
 									{this.props.t('questions')}
 								</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.dataTable ? <Nav.Item className="explorer-data-nav" >
-								<Nav.Link eventKey="data" active={this.state.openedNav === 'data'}>
+								<Nav.Link title={`${this.props.t('data')} ${KEYS[ 'data' ]}`} eventKey="data" active={this.state.openedNav === 'data'}>
 									{this.props.t('data')}
 								</Nav.Link>
 							</Nav.Item> : null }
 							{ this.props.editor ?
 								<Nav.Item className="explorer-editor-nav">
 									<Nav.Link
+										title={`${this.props.editorTitle ? this.props.editorTitle : this.props.t('report')} ${KEYS[ 'editor' ]}`}
 										active={this.state.openedNav === 'editor'}
 										eventKey="editor"
 									>{this.props.editorTitle ? this.props.editorTitle : this.props.t('report')}</Nav.Link>
@@ -1020,6 +1028,7 @@ class DataExplorer extends Component {
 							{ this.props.history ?
 								<Nav.Item className="explorer-editor-nav">
 									<Nav.Link
+										title={`${this.props.t('history')} ${KEYS[ 'history' ]}`}
 										active={this.state.openedNav === 'history'}
 										eventKey="history"
 									>
@@ -1292,6 +1301,14 @@ class DataExplorer extends Component {
 					<Button size="sm" variant="outline-danger" block onClick={() => {
 						this.setState({ output: []});
 					}}>{this.props.t('clear-all')}</Button>
+					<KeyControls
+						actions={{
+							'shift+alt+r': () => this.setState({ openedNav: 'editor' }),
+							'shift+alt+h': () => this.setState({ openedNav: 'history' }),
+							'shift+alt+d': () => this.setState({ openedNav: 'data' }),
+							'shift+alt+q': () => this.setState({ openedNav: 'questions' })
+						}}
+					/>
 				</div>
 			</Col>
 		</Row>;

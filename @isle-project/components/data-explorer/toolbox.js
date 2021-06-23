@@ -8,6 +8,7 @@ import Loadable from '@isle-project/components/internal/loadable';
 import Draggable from '@isle-project/components/draggable';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import KeyControls from '@isle-project/components/key-controls';
 import isElectron from '@isle-project/utils/is-electron';
 import noop from '@stdlib/utils/noop';
 const ToolboxTutorialButton = Loadable( () => import( /* webpackChunkName: "ToolboxTutorialButton" */ '@isle-project/components/data-explorer/toolbox-tutorial-button' ) );
@@ -19,6 +20,7 @@ const ToolboxTabs = Loadable( () => import( /* webpackChunkName: "ToolboxTabs" *
 const FOCUS_TRAP_OPTIONS = {
 	clickOutsideDeactivates: true
 };
+const HOTKEY = '(Shift+Alt+T)';
 
 
 // MAIN //
@@ -71,11 +73,20 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 	const button = <Button
 		variant="secondary" size="sm" className="hide-toolbox-button"
 		onClick={toggleShow} ref={buttonRef}
+		title={`${show ? t('hide-toolbox' ) : t( 'show-toolbox' )} ${HOTKEY}`}
 	>
 		{show ? t('hide-toolbox' ) : t( 'show-toolbox' )}
 	</Button>;
+	const controls = <KeyControls
+		actions={{
+			'shift+alt+t': toggleShow
+		}}
+	/>;
 	if ( !show ) {
-		return button;
+		return ( <Fragment>
+			{button}
+			{controls}
+		</Fragment> );
 	}
 	return (
 		<Fragment>
@@ -155,6 +166,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 					</Card>
 				</FocusTrap>
 			</Draggable>
+			{controls}
 		</Fragment>
 	);
 };
