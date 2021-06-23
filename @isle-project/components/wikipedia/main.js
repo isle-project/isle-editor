@@ -17,7 +17,7 @@ import './wikipedia.css';
 // FUNCTIONS //
 
 function extractTopic( value ) {
-	const marker = i18n.t('Wikipedia:about' );
+	const marker = i18n.t('wikipedia:about' );
 	const x = value.search( marker );
 	if ( x !== -1 ){
 		x += ( marker.length +1 );

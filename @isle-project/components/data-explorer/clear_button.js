@@ -12,10 +12,10 @@ const ClearButton = ( props ) => (
 	<Tooltip
 		id="clear_tooltip"
 		placement={props.tooltipPlacement}
-		tooltip={props.t('DataExplorer:delete')}
+		tooltip={props.t('data-explorer:delete')}
 	>
 		<Button
-			aria-label={props.t('DataExplorer:delete')}
+			aria-label={props.t('data-explorer:delete')}
 			variant="outline-danger"
 			size="sm"
 			onClick={props.onClick}

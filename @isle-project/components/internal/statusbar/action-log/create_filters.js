@@ -12,7 +12,7 @@ import './create_filters.css';
 function createFilters( filter, callback ) {
 	let entries = filter ? objectEntries( filter ) : [];
 	let newFilters = <Fragment>
-		<span className="title">{i18n.t('StatusBar:filters')}</span>
+		<span className="title">{i18n.t('internal/statusbar:filters')}</span>
 		<span style={{ position: 'relative', width: 'auto', fontSize: '12px', fontFamily: 'Open Sans' }}>
 			{entries.map( ( arr, idx ) => {
 				return ( <button
