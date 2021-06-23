@@ -85,7 +85,7 @@ const KEYS = {
 	'questions': '(Shift+Alt+Q)',
 	'history': '(Shift+Alt+H)',
 	'data': '(Shift+Alt+D)',
-	'editor': '(Shift+Alt+E)'
+	'editor': '(Shift+Alt+R)'
 };
 
 
