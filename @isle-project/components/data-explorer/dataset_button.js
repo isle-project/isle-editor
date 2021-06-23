@@ -35,6 +35,7 @@ class DatasetButton extends Component {
 					tooltip={this.props.t('show-dataset-info')}
 				>
 					<Button
+						aria-label={this.props.t('show-dataset-info')}
 						variant="outline-danger"
 						size="sm"
 						ref={( button ) => { this.button = button; }}

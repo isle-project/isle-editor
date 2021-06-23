@@ -82,7 +82,7 @@ const Image = ( props ) => {
 							return toolbars.concat([
 								{
 									key: 'Background',
-									render: <i className="fas fa-tint"></i>,
+									render: <i className="fas fa-tint" aria-label={props.t('toggle-color-picker')} ></i>,
 									onClick: () => {
 										setShowPicker( !showPicker );
 									}

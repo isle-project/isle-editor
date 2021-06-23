@@ -106,12 +106,12 @@ const EditableText = ( props ) => {
 						</Button>
 					</Tooltip> : null }
 					{ editing ? <Tooltip tooltip={t('discard-changes')} >
-						<Button size="sm" variant="secondary" onClick={cancelChange} >
+						<Button aria-label={t('discard-changes')} size="sm" variant="secondary" onClick={cancelChange} >
 							<i className="fas fa-trash-restore-alt" />
 						</Button>
 					</Tooltip>: null }
 					{ editing ? <Tooltip tooltip={t('save-changes')} >
-						<Button size="sm" variant="secondary" onClick={saveText} >
+						<Button aria-label={t('save-changes')} size="sm" variant="secondary" onClick={saveText} >
 							<i className="fas fa-share" />
 						</Button>
 					</Tooltip>: null }

@@ -41,6 +41,7 @@ const FilterList = ( props ) => {
 				onClick={() => {
 					props.onRemove( i );
 				}}
+				aria-label="remove"
 			>
 				<i className="fas fa-times"></i>
 			</Button> : null}

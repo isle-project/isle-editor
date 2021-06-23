@@ -81,7 +81,7 @@ class GradeFeedbackRenderer extends Component {
 					>
 						<div style={{ marginTop: 6, marginBottom: 6 }}>
 							{this.props.for}
-							<Button variant="secondary" size="sm" onClick={() => {
+							<Button aria-label={this.props.t('close')} variant="secondary" size="sm" onClick={() => {
 								this.setState({
 									showMessages: false
 								});
@@ -121,6 +121,7 @@ class GradeFeedbackRenderer extends Component {
 				</Badge>
 				{hasMessages ? <Tooltip tooltip={this.props.t('display-instructor-feedback')} >
 					<Button
+						aria-label={this.props.t('display-instructor-feedback')}
 						ref={( button ) => {
 							this.messagesButton = button;
 						}}

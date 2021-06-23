@@ -299,35 +299,37 @@ class HistoryView extends Component {
 		}
 		return (
 			<Fragment>
-				<Button variant="light" onClick={this.props.onClose} >
-					<i className="fas fa-arrow-left"></i>
-				</Button>
+				<Tooltip tooltip={t('close')} >
+					<Button aria-label={t('close')} variant="light" onClick={this.props.onClose} >
+						<i className="fas fa-arrow-left"></i>
+					</Button>
+				</Tooltip>
 				<span className="title text-editor-playback-title" >
 					{t('document-history')}
 				</span>
 				<ButtonGroup>
 					<Tooltip tooltip={t('jump-to-beginning')} show={!notSignedIn} placement="bottom" >
-						<Button variant="light" onClick={this.reset} disabled={notSignedIn} >
+						<Button aria-label={t('jump-to-beginning')} variant="light" onClick={this.reset} disabled={notSignedIn} >
 							<i className="fas fa-fast-backward" ></i>
 						</Button>
 					</Tooltip>
 					<Tooltip tooltip={t('play-in-reverse')} show={!notSignedIn && document && counter !== 0 && !this.state.running} placement="bottom" >
-						<Button variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0 || this.state.running} >
+						<Button aria-label={t('play-in-reverse')} variant="light" onClick={this.playBackward} disabled={notSignedIn || !document || counter === 0 || this.state.running} >
 							<i className="fas fa-play fa-rotate-180" ></i>
 						</Button>
 					</Tooltip>
 					<Tooltip tooltip={t('stop')} show={!notSignedIn && this.state.running} placement="bottom" >
-						<Button variant="light" onClick={this.stop} disabled={notSignedIn || !this.state.running} >
+						<Button aria-label={t('stop')} variant="light" onClick={this.stop} disabled={notSignedIn || !this.state.running} >
 							<i className="fas fa-pause" ></i>
 						</Button>
 					</Tooltip>
 					<Tooltip tooltip={t('play')} show={!notSignedIn && document && ( document.steps.length > counter ) && !this.state.running} placement="bottom" >
-						<Button variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter ) || this.state.running} >
+						<Button aria-label={t('play')} variant="light" onClick={this.playForward} disabled={notSignedIn || !document || ( document.steps.length <= counter ) || this.state.running} >
 							<i className="fas fa-play" ></i>
 						</Button>
 					</Tooltip>
 					<Tooltip tooltip={t('jump-to-end')} show={!notSignedIn && document && ( document.steps.length > counter )} placement="bottom" >
-						<Button variant="light" onClick={this.fastForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
+						<Button aria-label={t('jump-to-end')} variant="light" onClick={this.fastForward} disabled={notSignedIn || !document || ( document.steps.length <= counter )} >
 							<i className="fas fa-fast-forward" ></i>
 						</Button>
 					</Tooltip>

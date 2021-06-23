@@ -182,6 +182,7 @@ class HistoryPanel extends Component {
 			{ this.props.instructorFeedback ?
 				<OverlayTrigger trigger="click" placement="left" rootClose overlay={popover} >
 					<Button
+						aria-label={this.props.t('leave-feedback')}
 						variant="info"
 						size="sm"
 						style={{ position: 'absolute', top: 5, right: 45 }}
@@ -192,6 +193,7 @@ class HistoryPanel extends Component {
 				null
 			}
 			<Button
+				aria-label={this.props.t('repeat')}
 				variant="success"
 				size="sm"
 				onClick={this.handleRecreationFactory( index )}
