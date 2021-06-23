@@ -124,11 +124,10 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			{renderMenuGroupButtons( menu.blocks )}
 			{menu.headers ? <Fragment>
 				<DropdownButton
-					title=""
+					title={<span className="screenreader">{t('headers')}</span>}
 					variant="outline-secondary"
 					size="sm"
 					style={{ display: 'inline-block', marginRight: 4 }}
-					aria-label="Headers"
 				>
 					{menu.headers.map( createDropdownButtons )}
 				</DropdownButton>
@@ -164,7 +163,10 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				<Fragment>
 					<i className="prose-separator">|</i>
 					<DropdownButton
-						title={icons.insert}
+						title={<Fragment>
+							{icons.insert}
+							<span className="screenreader">{t('insert')}</span>
+						</Fragment>}
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
 						name="Insert"
@@ -176,7 +178,10 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 				<Fragment>
 					<i className="prose-separator">|</i>
 					<DropdownButton
-						title={icons.table}
+						title={<Fragment>
+							{icons.table}
+							<span className="screenreader">{t('table')}</span>
+						</Fragment>}
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
 						name="Table"

@@ -784,6 +784,13 @@ label {
 	background-image: url(https://isle.heinz.cmu.edu/white_carbonfiber_1543854970404.png);
 }
 
+.screenreader {
+	position: absolute;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
 /********************** ANIMATION CLASSES **************************/
 
 @keyframes anim-fade-in {
