@@ -222,21 +222,24 @@ export const wraps = [
 		content: icons.blockquote,
 		active: blockActive( schema.nodes.blockquote ),
 		enable: wrapIn( schema.nodes.blockquote ),
-		run: wrapIn( schema.nodes.blockquote )
+		run: wrapIn( schema.nodes.blockquote ),
+		hotkey: 'Ctrl+>'
 	},
 	{
 		title: 'wrap-bullet-list',
 		content: icons.bullet_list,
 		active: blockActive( schema.nodes.bullet_list ),
 		enable: wrapInList( schema.nodes.bullet_list ),
-		run: wrapInList( schema.nodes.bullet_list )
+		run: wrapInList( schema.nodes.bullet_list ),
+		hotkey: 'Shift+Ctrl+8'
 	},
 	{
 		title: 'wrap-ordered-list',
 		content: icons.ordered_list,
 		active: blockActive( schema.nodes.ordered_list ),
 		enable: wrapInList( schema.nodes.ordered_list ),
-		run: wrapInList( schema.nodes.ordered_list )
+		run: wrapInList( schema.nodes.ordered_list ),
+		hotkey: 'Shift+Ctrl+9'
 	}
 ];
 
@@ -307,19 +310,22 @@ export const history = [
 		title: 'undo-last-change',
 		content: icons.undo,
 		enable: undo,
-		run: undo
+		run: undo,
+		hotkey: 'Ctrl+Z'
 	},
 	{
 		title: 'redo-last-undone-change',
 		content: icons.redo,
 		enable: redo,
-		run: redo
+		run: redo,
+		hotkey: 'Ctrl+Y'
 	},
 	{
 		title: 'select-parent-node',
 		content: icons.selectParent,
 		run: selectParentNode,
-		select: state => selectParentNode( state )
+		select: state => selectParentNode( state ),
+		hotkey: 'Escape'
 	}
 ];
 

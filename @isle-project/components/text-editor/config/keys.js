@@ -43,8 +43,8 @@ const insertRule = ( state, dispatch ) => {
 const keys = {
 	'Alt-ArrowDown': joinDown,
 	'Alt-ArrowUp': joinUp,
-	'Ctrl->': wrapIn( schema.nodes.blockquote ),
 	'Ctrl-Enter': chainCommands( exitCode, insertBreak ),
+	'Mod->': wrapIn( schema.nodes.blockquote ),
 	'Mod-_': insertRule,
 	'Mod-[': liftListItem( schema.nodes.list_item ),
 	'Mod-]': sinkListItem( schema.nodes.list_item ),
