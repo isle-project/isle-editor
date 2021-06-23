@@ -8,6 +8,7 @@ import logger from 'debug';
 import objectKeys from '@stdlib/utils/keys';
 import lowercase from '@stdlib/string/lowercase';
 import isFunction from '@stdlib/assert/is-function';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import SessionContext from '@isle-project/session/context.js';
 
 
@@ -54,7 +55,12 @@ class KeyControls extends Component {
 		debug( `Add keydown event listeners for ${this.props.container ? 'container' : 'document'}: ${keys.join( ', ')}` );
 		if ( this.props.container ) {
 			try {
-				const node = ReactDOM.findDOMNode( this.props.container );
+				let node;
+				if ( isString( this.props.container ) ) {
+					node = document.querySelector( this.props.container );
+				} else {
+					node = ReactDOM.findDOMNode( this.props.container );
+				}
 				node.addEventListener( 'keydown', this.triggerEvent );
 			} catch ( err ) {
 				debug( err.message );
@@ -69,7 +75,12 @@ class KeyControls extends Component {
 		debug( `Remove keydown event listeners for ${container ? 'container' : 'document'}: ${keys.join( ', ')}` );
 		if ( container ) {
 			try {
-				const node = ReactDOM.findDOMNode( container );
+				let node;
+				if ( isString( this.props.container ) ) {
+					node = document.querySelector( this.props.container );
+				} else {
+					node = ReactDOM.findDOMNode( this.props.container );
+				}
 				node.removeEventListener( 'keydown', this.triggerEvent );
 			} catch ( err ) {
 				debug( err.message );
@@ -162,7 +173,7 @@ KeyControls.defaultProps = {
 
 KeyControls.propTypes = {
 	actions: PropTypes.objectOf( PropTypes.func ),
-	container: PropTypes.oneOfType([ PropTypes.object, PropTypes.element ])
+	container: PropTypes.oneOfType([ PropTypes.object, PropTypes.element, PropTypes.string ])
 };
 
 KeyControls.contextType = SessionContext;
