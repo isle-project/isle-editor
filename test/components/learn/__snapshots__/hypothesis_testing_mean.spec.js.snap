@@ -36,6 +36,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
             >
               <form
                 className="input"
+                onSubmit={[Function]}
                 style={Object {}}
               >
                 <div
@@ -161,6 +162,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
               </form>
               <form
                 className="input"
+                onSubmit={[Function]}
                 style={Object {}}
               >
                 <div

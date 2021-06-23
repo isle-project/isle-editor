@@ -36,6 +36,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
             >
               <form
                 className="input"
+                onSubmit={[Function]}
                 style={Object {}}
               >
                 <div

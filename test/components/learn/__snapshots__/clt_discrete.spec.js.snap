@@ -246,11 +246,12 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
               style={Object {}}
             >
               <input
-                aria-label=""
+                aria-label="overlay-normal-density"
                 checked={false}
                 className="checkbox-input"
                 disabled={false}
                 onChange={[Function]}
+                onKeyPress={[Function]}
                 type="checkbox"
                 value="checkbox"
               />
@@ -259,11 +260,6 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
                 onClick={[Function]}
                 onKeyPress={[Function]}
                 role="button"
-                style={
-                  Object {
-                    "color": null,
-                  }
-                }
                 tabIndex={0}
               >
                 overlay-normal-density
