@@ -20,6 +20,7 @@
 	left: 0;
 	right: 0;
 	width: 83%;
+	z-index: 2;
 }
 
 .statusbar-cohort {
