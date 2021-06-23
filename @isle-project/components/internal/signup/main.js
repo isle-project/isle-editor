@@ -203,6 +203,7 @@ class Signup extends Component {
 							controlId="signup-form-password-confirmation"
 						>
 							<FormControl
+								aria-label={this.props.t( 'confirm-password' )}
 								name="passwordRepeat"
 								type="password"
 								placeholder={this.props.t( 'confirm-password' )}
