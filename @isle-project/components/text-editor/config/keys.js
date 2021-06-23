@@ -20,6 +20,7 @@ import {
 } from 'prosemirror-schema-list';
 import { goToNextCell } from 'prosemirror-tables';
 import objectKeys from '@stdlib/utils/keys';
+import { alignLeft, alignCenter, alignRight, alignJustify } from './text_alignment';
 import schema from './schema';
 
 
@@ -70,6 +71,10 @@ const keys = {
 	'Shift-Ctrl-8': wrapInList( schema.nodes.bullet_list ),
 	'Shift-Ctrl-9': wrapInList( schema.nodes.ordered_list ),
 	'Shift-Enter': chainCommands( exitCode, insertBreak ),
+	'Shift-Ctrl-l': alignLeft,
+	'Shift-Ctrl-r': alignRight,
+	'Shift-Ctrl-c': alignCenter,
+	'Shift-Ctrl-j': alignJustify,
 	'Shift-Mod-z': redo,
 	'Shift-Tab': goToNextCell(-1),
 	Backspace: undoInputRule,

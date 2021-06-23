@@ -112,6 +112,58 @@ const isActiveFactory = ( alignment ) => {
 	};
 };
 
+export function alignLeft( state, dispatch ) {
+	const { schema, selection } = state;
+	const tr = setTextAlign(
+		state.tr.setSelection( selection ),
+		schema,
+		'left'
+	);
+	if ( tr.docChanged ) {
+		return dispatch && dispatch(tr);
+	}
+	return false;
+}
+
+export function alignCenter( state, dispatch ) {
+	const { schema, selection } = state;
+	const tr = setTextAlign(
+		state.tr.setSelection( selection ),
+		schema,
+		'center'
+	);
+	if ( tr.docChanged ) {
+		return dispatch && dispatch(tr);
+	}
+	return false;
+}
+
+export function alignRight( state, dispatch ) {
+	const { schema, selection } = state;
+	const tr = setTextAlign(
+		state.tr.setSelection( selection ),
+		schema,
+		'right'
+	);
+	if ( tr.docChanged ) {
+		return dispatch && dispatch(tr);
+	}
+	return false;
+}
+
+export function alignJustify( state, dispatch ) {
+	const { schema, selection } = state;
+	const tr = setTextAlign(
+		state.tr.setSelection( selection ),
+		schema,
+		'justify'
+	);
+	if ( tr.docChanged ) {
+		return dispatch && dispatch(tr);
+	}
+	return false;
+}
+
 
 // MAIN //
 
@@ -121,72 +173,32 @@ const alignment = [
 		content: icons.alignLeft,
 		enable: isEnabled,
 		active: isActiveFactory( 'left' ),
-		run: ( state, dispatch ) => {
-			const { schema, selection } = state;
-			const tr = setTextAlign(
-				state.tr.setSelection( selection ),
-				schema,
-				'left'
-			);
-			if ( tr.docChanged ) {
-				return dispatch && dispatch(tr);
-			}
-			return false;
-		}
+		run: alignLeft,
+		hotkey: 'Shift+Ctrl+L'
 	},
 	{
 		title: 'align-center',
 		content: icons.alignCenter,
 		enable: isEnabled,
 		active: isActiveFactory( 'center' ),
-		run: ( state, dispatch ) => {
-			const { schema, selection } = state;
-			const tr = setTextAlign(
-				state.tr.setSelection( selection ),
-				schema,
-				'center'
-			);
-			if ( tr.docChanged ) {
-				return dispatch && dispatch(tr);
-			}
-			return false;
-		}
+		run: alignCenter,
+		hotkey: 'Shift+Ctrl+C'
 	},
 	{
 		title: 'align-right',
 		content: icons.alignRight,
 		enable: isEnabled,
 		active: isActiveFactory( 'right' ),
-		run: ( state, dispatch ) => {
-			const { schema, selection } = state;
-			const tr = setTextAlign(
-				state.tr.setSelection( selection ),
-				schema,
-				'right'
-			);
-			if ( tr.docChanged ) {
-				return dispatch && dispatch(tr);
-			}
-			return false;
-		}
+		run: alignRight,
+		hotkey: 'Shift+Ctrl+R'
 	},
 	{
 		title: 'justified',
 		content: icons.alignJustify,
 		enable: isEnabled,
 		active: isActiveFactory( 'justify' ),
-		run: ( state, dispatch ) => {
-			const { schema, selection } = state;
-			const tr = setTextAlign(
-				state.tr.setSelection( selection ),
-				schema,
-				'justify'
-			);
-			if ( tr.docChanged ) {
-				return dispatch && dispatch(tr);
-			}
-			return false;
-		}
+		run: alignJustify,
+		hotkey: 'Shift+Ctrl+J'
 	}
 ];
 
