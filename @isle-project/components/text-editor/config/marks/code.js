@@ -24,13 +24,11 @@
 
 // :: MarkSpec Code font mark. Represented as a `<code>` element.
 const code = {
-	code: {
-		parseDOM: [
-			{ tag: 'code' }
-		],
-		toDOM() {
-			return [ 'code', 0 ];
-		}
+	parseDOM: [
+		{ tag: 'code' }
+	],
+	toDOM() {
+		return [ 'code', 0 ];
 	}
 };
 
