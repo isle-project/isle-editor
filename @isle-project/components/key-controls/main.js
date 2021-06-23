@@ -90,13 +90,14 @@ class KeyControls extends Component {
 	}
 
 	triggerEvent = ( event ) => {
-		const keyName = lowercase( event.key );
+		let keyName = event.key;
 		debug( `Received key press for container: ${keyName}` );
 		let modifiers = '';
 		if ( event.ctrlKey ) {
 			modifiers += 'ctrl+';
 		}
 		if ( event.shiftKey ) {
+			keyName = lowercase( keyName );
 			modifiers += 'shift+';
 		}
 		if ( event.altKey ) {
@@ -124,13 +125,14 @@ class KeyControls extends Component {
 	}
 
 	triggerDocEvent = ( event ) => {
-		const keyName = lowercase( event.key );
+		const keyName = event.key;
 		debug( `Received key press for document: ${keyName}` );
 		let modifiers = '';
 		if ( event.ctrlKey ) {
 			modifiers += 'ctrl+';
 		}
 		if ( event.shiftKey ) {
+			keyName = lowercase( keyName );
 			modifiers += 'shift+';
 		}
 		if ( event.altKey ) {
