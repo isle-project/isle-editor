@@ -20,7 +20,7 @@
 	left: 0;
 	right: 0;
 	width: 83%;
-	z-index: 2;
+	z-index: 5;
 }
 
 .statusbar-cohort {
@@ -304,13 +304,13 @@
 }
 
 .statusbar-profile {
+	position: absolute;
+	top: -18px;
+	left: -35px;
 	width: 33px;
 	height: 33px;
 	border: solid 1px darkgray;
 	border-radius: 0.25rem;
-	margin-left: -35px;
-	margin-top: -18px;
-	float: left;
 }
 
 #unfinished-container {
