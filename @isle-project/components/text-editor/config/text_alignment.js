@@ -174,7 +174,7 @@ const alignment = [
 		enable: isEnabled,
 		active: isActiveFactory( 'left' ),
 		run: alignLeft,
-		hotkey: 'Shift+Ctrl+L'
+		hotkey: 'Ctrl+Alt+L'
 	},
 	{
 		title: 'align-center',
@@ -182,7 +182,7 @@ const alignment = [
 		enable: isEnabled,
 		active: isActiveFactory( 'center' ),
 		run: alignCenter,
-		hotkey: 'Shift+Ctrl+C'
+		hotkey: 'Ctrl+Alt+C'
 	},
 	{
 		title: 'align-right',
@@ -190,7 +190,7 @@ const alignment = [
 		enable: isEnabled,
 		active: isActiveFactory( 'right' ),
 		run: alignRight,
-		hotkey: 'Shift+Ctrl+R'
+		hotkey: 'Ctrl+Alt+R'
 	},
 	{
 		title: 'justified',
@@ -198,7 +198,7 @@ const alignment = [
 		enable: isEnabled,
 		active: isActiveFactory( 'justify' ),
 		run: alignJustify,
-		hotkey: 'Shift+Ctrl+J'
+		hotkey: 'Ctrl+Alt+J'
 	}
 ];
 
