@@ -9,13 +9,13 @@ import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Popover from 'react-bootstrap/Popover';
 import { select } from 'd3';
-import katex from 'katex';
 import NINF from '@stdlib/constants/float64/ninf';
 import PINF from '@stdlib/constants/float64/pinf';
 import keys from '@stdlib/utils/keys';
 import NumberInput from '@isle-project/components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import MathJax from '@isle-project/utils/mathjax';
 import './tex.css';
 
 
@@ -154,8 +154,12 @@ class TeX extends Component {
 	*/
 	render() {
 		const input = isNumber( this.props.raw ) ? this.props.raw.toString() : this.props.raw;
-		let str;
-
+		const equation = <MathJax.Provider>
+			<MathJax.Node
+				displayType={this.props.displayMode ? 'display' : 'inline'}
+				texCode={input}
+			/>
+		</MathJax.Provider>;
 		const overlays = <span>
 			<Overlay
 				show={this.state.showTooltip}
@@ -179,17 +183,6 @@ class TeX extends Component {
 				</Popover>
 			</Overlay>
 		</span>;
-
-		try {
-			str = katex.renderToString( input, {
-				displayMode: this.props.displayMode
-			});
-		} catch ( e ) {
-			str = '';
-		}
-		let math = {
-			__html: str
-		};
 		if ( this.props.displayMode === true ) {
 			const tag = this.props.numbered ?
 				<div
@@ -202,11 +195,6 @@ class TeX extends Component {
 				>
 					{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
 				</div> : null;
-			const equation = <span
-				ref={( span ) => { this.katex = span; }}
-				dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
-				aria-hidden={!!math}
-			/>;
 			if ( this.props.onClick ) {
 				return (
 					<div
@@ -232,17 +220,11 @@ class TeX extends Component {
 				{overlays}
 			</div> );
 		}
-		const equation = <span
-			dangerouslySetInnerHTML={math} // eslint-disable-line react/no-danger
-			aria-hidden={!!math}
-			style={{ whiteSpace: 'nowrap' }}
-		/>;
 		if ( this.props.onClick ) {
 			return (
 				<span
 					className="tex"
 					role="button" tabIndex={0}
-					ref={( span ) => { this.katex = span; }}
 					style={this.props.style}
 					onClick={this.props.onClick} onKeyPress={this.props.onClick}
 					aria-label="Equation"
@@ -255,7 +237,6 @@ class TeX extends Component {
 		return (
 			<span
 				className="tex"
-				ref={( span ) => { this.katex = span; }}
 				style={this.props.style}
 				aria-label="Equation"
 			>
