@@ -471,7 +471,7 @@ function bundleLesson( options ) {
 				{
 					test: /\.js$/,
 					exclude: [
-						/node_modules(?:\/|\\)(?!@iktakahiro(?:\/|\\)markdown-it-katex)/,
+						/node_modules/,
 						/fonts\.js$/
 					],
 					loader: 'babel-loader',
@@ -498,20 +498,7 @@ function bundleLesson( options ) {
 							resolve( basePath, './node_modules/@babel/preset-react' )
 						],
 						babelrc: false,
-						cacheDirectory: true,
-						overrides: [{
-							test: [
-								resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' )
-							],
-							presets: [
-								[ resolve( basePath, './node_modules/@babel/preset-env' ), {
-									modules: 'commonjs',
-									targets: {
-										ie: '11'
-									}
-								}]
-							]
-						}]
+						cacheDirectory: true
 					}
 				},
 				{

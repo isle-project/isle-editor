@@ -7,13 +7,6 @@
 		"version": "0.21.1"
 	},
 	{
-		"name": "katex",
-		"alias": "KaTeX",
-		"var": "katex",
-		"path": "katex.min.js",
-		"version": "0.12.0"
-	},
-	{
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",

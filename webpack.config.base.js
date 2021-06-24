@@ -24,7 +24,6 @@ const EXTERNALS = [
 	'form-data',
 	'fsevents',
 	'markdown-it',
-	'@iktakahiro/markdown-it-katex',
 	'minimist',
 	'ml-pca',
 	'murmurhash3js',

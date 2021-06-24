@@ -275,7 +275,6 @@ const config = {
 		'pdfmake/build/pdfmake': 'pdfMake',
 		'pdfmake/build/vfs_fonts.js': 'pdfMake',
 		'plotly.js': 'Plotly',
-		'katex': 'katex',
 		'moment': 'moment',
 		'victory': 'Victory',
 		'd3': 'd3',

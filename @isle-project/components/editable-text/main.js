@@ -8,7 +8,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import Gate from '@isle-project/components/gate';
-import katex from '@iktakahiro/markdown-it-katex';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
@@ -23,10 +22,6 @@ const md = markdownit({
 	xhtmlOut: true,
 	breaks: true,
 	typographer: false
-});
-md.use( katex, {
-	throwOnError: false,
-	errorColor: '#cc0000'
 });
 
 

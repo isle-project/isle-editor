@@ -6,7 +6,6 @@ const createHTML = ( title, body ) => `<!doctype html>
 		<meta charset=utf-8>
 		<title>${title}</title>
 		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.9/dist/katex.min.css" crossorigin="anonymous">
 		<style media="screen" type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;
@@ -146,7 +145,24 @@ const createHTML = ( title, body ) => `<!doctype html>
 				opacity: 1;
 			}
 		</style>
+		<script>
+			MathJax = {
+				loader: { load: [] }
+				options: {}
+				tex: {
+					inlineMath: [
+						['$', '$'],
+						[ '\\(', '\\)' ]
+					],
+					displayMath: [
+						['$$', '$$'],
+						['\\[', '\\]']
+					]
+				}
+			};
+		</script>
 		<script src="https://kit.fontawesome.com/3a7c01b4b9.js" crossorigin="anonymous"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 	</head>
 	<body>
 	${body}

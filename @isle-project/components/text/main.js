@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
-import katex from '@iktakahiro/markdown-it-katex';
 import logger from 'debug';
 import ltrim from '@stdlib/string/left-trim';
 import VoiceControl from '@isle-project/components/internal/voice-control';
@@ -24,10 +23,6 @@ const md = markdownit({
 	xhtmlOut: true,
 	breaks: true,
 	typographer: false
-});
-md.use( katex, {
-	throwOnError: false,
-	errorColor: '#cc0000'
 });
 
 
