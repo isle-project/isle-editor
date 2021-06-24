@@ -125,7 +125,7 @@ class KeyControls extends Component {
 	}
 
 	triggerDocEvent = ( event ) => {
-		const keyName = event.key;
+		let keyName = event.key;
 		debug( `Received key press for document: ${keyName}` );
 		let modifiers = '';
 		if ( event.ctrlKey ) {
