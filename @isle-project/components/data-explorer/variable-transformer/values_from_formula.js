@@ -1,9 +1,11 @@
 // MODULES //
 
+import power from '@stdlib/math/base/special/pow';
 import round from '@stdlib/math/base/special/round';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import exp from '@stdlib/math/base/special/exp';
-import power from '@stdlib/math/base/special/pow';
+import max from '@stdlib/math/base/special/max';
+import min from '@stdlib/math/base/special/min';
 import ln from '@stdlib/math/base/special/ln';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
@@ -16,6 +18,8 @@ import FUNCTION_KEYS from './function_keys.json';
 const FUNCTIONS = [
 	exp,
 	ln,
+	max,
+	min,
 	power,
 	round,
 	sqrt

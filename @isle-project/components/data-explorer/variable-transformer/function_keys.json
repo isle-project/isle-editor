@@ -1,6 +1,8 @@
 [
 	"exp",
 	"ln",
+	"max",
+	"min",
 	"power",
 	"round",
 	"sqrt"
