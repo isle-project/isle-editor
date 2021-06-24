@@ -85,7 +85,7 @@ const Provider = ({ children }) => {
 			runCallbacks();
 		}
 	}, 100);
-	useEffect(() => {
+	useEffect( () => {
 		// Case: Trigger typesetting in case no formulas were rendered.
 		triggerProcessing();
 	});
@@ -97,7 +97,6 @@ const Provider = ({ children }) => {
 		promiseMakers,
 		triggerProcessing
 	};
-	console.log( value );
 	return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 

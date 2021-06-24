@@ -28,7 +28,7 @@
 
 import ConfigProvider from './config_provider.js';
 import Context from './context.js';
-import MathJaxNode from './node.js';
+import Node from './node.js';
 import Provider from './provider.js';
 import useMathJax from './use_math_jax.js';
 
@@ -38,7 +38,7 @@ import useMathJax from './use_math_jax.js';
 const main = {
 	ConfigProvider,
 	Context,
-	MathJaxNode,
+	Node,
 	Provider,
 	useMathJax
 };
