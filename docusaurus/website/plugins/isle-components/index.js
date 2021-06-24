@@ -60,7 +60,7 @@ function main( context, options ) {
 						{
 							test: /\.js$/,
 							exclude: [
-								/node_modules(?:\/|\\)(?!debug|@iktakahiro(?:\/|\\)markdown-it-katex)/,
+								/node_modules(?:\/|\\)(?!debug)/,
 								/fonts\.js$/,
 								/markdown-to-html/
 							],
@@ -91,8 +91,7 @@ function main( context, options ) {
 								cacheDirectory: true,
 								overrides: [{
 									test: [
-										resolve( basePath, './node_modules/debug/**/*.js' ),
-										resolve( basePath, './node_modules/@iktakahiro/markdown-it-katex/**/*.js' )
+										resolve( basePath, './node_modules/debug/**/*.js' )
 									],
 									presets: [
 										[ '@babel/preset-env', {
