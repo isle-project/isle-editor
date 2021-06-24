@@ -1433,11 +1433,12 @@ label {
 	width: 100%;
 }
 
-.react-contextmenu {
+.react-contextmenu,
+.CtxtMenu_Menu {
 	font-size: 28px;
 	z-index: 1004;
-	box-shadow: 0 0 2px darkgrey;
-	font-family: Open Sans Condensed;
+	box-shadow: 0 0 2px darkgrey !important;
+	font-family: Open Sans Condensed !important;
 }
 
 .Pane1 .react-contextmenu {
