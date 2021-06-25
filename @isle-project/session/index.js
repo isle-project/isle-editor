@@ -33,6 +33,7 @@ import isFunction from '@stdlib/assert/is-function';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import isArray from '@stdlib/assert/is-array';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
+import isNull from '@stdlib/assert/is-null';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import countBy from '@stdlib/utils/count-by';
 import identity from '@stdlib/utils/identity-function';
@@ -2381,7 +2382,9 @@ class Session {
 			this.setProgress( action.id );
 
 			debug( 'Send to socket connections after ID is attached...' );
-			this.sendSocketMessage( action, to );
+			if ( !isNull( to ) ) {
+				this.sendSocketMessage( action, to );
+			}
 
 			// If first action, create session on server:
 			if ( this.actions.length === 1 ) {
