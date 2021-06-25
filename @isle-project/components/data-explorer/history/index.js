@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
 import Alert from 'react-bootstrap/Alert';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
@@ -31,6 +33,9 @@ function filterForWords( actions, word ) {
 		if ( elem.type.search( expr ) > -1 ) {
 			keep = true;
 		}
+		else if ( elem.email.search( expr ) > -1 ) {
+			keep = true;
+		}
 		else {
 			for ( let key in elem.value ) {
 				if (
@@ -49,18 +54,46 @@ function filterForWords( actions, word ) {
 	return out;
 }
 
+function filterUsers( actions, includes, session ) {
+	const out = [];
+	if ( includes.length === 2 ) {
+		return actions;
+	}
+	if ( includes.length === 0 ) {
+		return out;
+	}
+	if ( includes[ 0 ] === 'own' ) {
+		for ( let i = 0; i < actions.length; i++ ) {
+			const elem = actions[ i ];
+			if ( elem.email === session.user.email ) {
+				out.push( elem );
+			}
+		}
+		return out;
+	}
+	// Case: includes[ 0 ]  === 'others' ){
+	for ( let i = 0; i < actions.length; i++ ) {
+		const elem = actions[ i ];
+		if ( elem.email !== session.user.email ) {
+			out.push( elem );
+		}
+	}
+	return out;
+}
+
 
 // MAIN //
 
 class HistoryPanel extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		super( props );
 
 		this.state = {
 			filtered: props.actions,
 			searchWords: [],
 			nActions: props.actions.length,
-			notes: {}
+			notes: {},
+			includes: [ 'own', 'others' ]
 		};
 	}
 
@@ -68,33 +101,34 @@ class HistoryPanel extends Component {
 		if ( nextProps.actions.length > prevState.nActions ) {
 			return {
 				filtered: nextProps.actions,
-				nActions: nextProps.actions.length
+				nActions: nextProps.actions.length,
+				includes: [ 'own', 'others' ]
 			};
 		}
 		return null;
 	}
 
 	handleSearch = ( value ) => {
+		const filtered = filterUsers( this.props.actions, this.state.includes, this.props.session );
 		if ( isStrictEqual( value, '' ) ) {
 			this.setState({
-				filtered: this.props.actions,
+				filtered,
 				searchWords: []
 			});
 		} else {
 			this.setState({
-				filtered: filterForWords( this.props.actions, value ),
+				filtered: filterForWords( filtered, value ),
 				searchWords: [ value ]
 			});
 		}
 	}
 
 	renderListGroupItem = ( index, key ) => {
-		const n = this.state.filtered.length - 1;
-		const elem = this.state.filtered[ n - index ];
+		const elem = this.state.filtered[ index ];
 		const date = new Date( elem.absoluteTime );
 		let printout = '';
 		const value = elem.value;
-		const title = `${elem.type} | Time: ${date.toLocaleTimeString()} - ${date.toLocaleDateString()}`; // eslint-disable-line i18next/no-literal-string
+		const title = `${elem.type} | Time: ${date.toLocaleTimeString()} - ${date.toLocaleDateString()} | ${elem.email}`; // eslint-disable-line i18next/no-literal-string
 		for ( let key in value ) {
 			if ( hasOwnProp( value, key ) && key !== 'showDecision' ) {
 				const val = value[ key ];
@@ -181,6 +215,15 @@ class HistoryPanel extends Component {
 		};
 	}
 
+	handleOwnChange = ( includes ) => {
+		const filtered = filterUsers( this.props.actions, includes, this.props.session );
+		this.setState({
+			includes,
+			filtered,
+			searchWords: []
+		});
+	}
+
 	render() {
 		if ( !this.state.filtered ) {
 			return null;
@@ -205,6 +248,26 @@ class HistoryPanel extends Component {
 						minSize={10}
 					/>
 				</div>
+				{this.props.reportMode !== 'individual' ? <ToggleButtonGroup
+					name="options"
+					onChange={this.handleOwnChange}
+					type="checkbox"
+					size="small"
+					value={this.state.includes}
+				>
+					<ToggleButton
+						variant="outline-secondary"
+						value="own"
+					>
+						{this.props.t('own')}
+					</ToggleButton>
+					<ToggleButton
+						variant="outline-secondary"
+						value="others"
+					>
+						{this.props.t('others')}
+					</ToggleButton>
+				</ToggleButtonGroup> : null}
 				<span className="title" style={{ float: 'right', marginRight: 20 }} >
 					{this.state.filtered.length} {this.props.t('actions')}
 				</span>

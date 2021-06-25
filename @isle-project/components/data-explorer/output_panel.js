@@ -1,6 +1,7 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Button from 'react-bootstrap/Button';
 import scrollTo from '@isle-project/utils/scroll-to';
 
 
@@ -10,6 +11,10 @@ import scrollTo from '@isle-project/utils/scroll-to';
 * Returns the filled output panel.
 */
 class OutputPanel extends Component {
+	constructor( props ) {
+		super( props );
+	}
+
 	/**
 	* Scrolls to the bottom of the output panel after result has been inserted.
 	*/
@@ -20,18 +25,30 @@ class OutputPanel extends Component {
 	}
 
 	render() {
+		const { t, header, output } = this.props;
 		return (
-			<div
-				className="data-explorer-output-panel"
-				style={{
-					height: ( window.innerHeight*0.9 ) - 80
-				}}
-				ref={( div ) => {
-					this.outputPanel = div;
-				}}
-			>
-				{this.props.output}
-			</div>
+			<Fragment>
+				<div className="card-header clearfix">
+					<h3 className="data-explorer-output-header">
+						{t('output')}
+					</h3>
+					{header}
+				</div>
+				<div
+					className="data-explorer-output-panel"
+					style={{
+						height: ( window.innerHeight*0.9 ) - 80
+					}}
+					ref={( div ) => {
+						this.outputPanel = div;
+					}}
+				>
+					{output}
+				</div>
+				<Button size="sm" variant="outline-danger" block onClick={this.props.clearOutput}>
+					{t('clear-all')}
+				</Button>
+			</Fragment>
 		);
 	}
 }
