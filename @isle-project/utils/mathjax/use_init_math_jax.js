@@ -44,7 +44,12 @@ const defaultOptions = {
 		}
 	},
 	loader: {
-		load: []
+		load: [ '[tex]/action', '[tex]/html' ]
+	},
+	tex: {
+		packages: {
+			'[+]': [ 'action', 'html' ]
+		}
 	},
 	options: {
 		enableMenu: true,
@@ -98,10 +103,10 @@ const defaultOptions = {
 };
 
 const importMathJax = () => {
-	var script = document.createElement('script');
-	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+	const script = document.createElement('script');
+	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
 	script.async = true;
-	document.head.appendChild(script);
+	document.head.appendChild( script );
 };
 
 
