@@ -55,8 +55,9 @@ import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.
 import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
-import { RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
+import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import recreateOutput from './history/recreate_output.js';
 import './data_explorer.css';
 
 
@@ -185,16 +186,19 @@ class DataExplorer extends Component {
 			filters: []
 		};
 
-		this.logAction = ( type, value ) => {
+		this.logAction = ( type, value, recipients ) => {
 			if ( this.state.subsetFilters ) {
 				value = { ...value, filters: this.state.subsetFilters };
 			}
 			const session = this.context;
+			if ( !recipients ) {
+				recipients = this.props.reportMode === 'collaborative' ? 'members' : 'owners';
+			}
 			session.log({
 				id: this.id,
 				type,
 				value
-			});
+			}, recipients );
 		};
 	}
 
@@ -283,9 +287,9 @@ class DataExplorer extends Component {
 				this.restoreTransformations( actions );
 			}
 		}
-		this.unsubscribe = session.subscribe( ( type, value ) => {
+		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-				const currentUserActions = value;
+				const currentUserActions = action;
 				const actions = currentUserActions[ this.id ];
 				if ( this.props.data && isObjectArray( actions ) ) {
 					this.restoreTransformations( actions );
@@ -306,6 +310,23 @@ class DataExplorer extends Component {
 					});
 				}
 			}
+			else if ( type === MEMBER_ACTION ) {
+				if ( action.id !== this.id || action.email === session.user.email ) {
+					return;
+				}
+				const output = recreateOutput( action, {
+					session: this.context,
+					data: this.state.data,
+					quantitative: this.state.quantitative,
+					categorical: this.state.categorical
+				});
+				if ( output ) {
+					this.addToOutputs( output );
+				} else {
+					this.restoreTransformations( [ action ] );
+				}
+				this.logAction( action.type, action.value, session.user.email );
+			}
 		});
 	}
 
@@ -317,7 +338,9 @@ class DataExplorer extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	restoreTransformations = ( actions ) => {
@@ -334,11 +357,11 @@ class DataExplorer extends Component {
 					}
 				break;
 				case DATA_EXPLORER_BIN_TRANSFORMER: {
-					const { name, variable, breaks, catNames } = action.value;
+					const { name, variable, breaks, categories } = action.value;
 					debug( `Should add binned variable ${name}` );
 					if ( !hasProp( this.props.data, name ) ) {
 						const rawData = state.data[ variable ];
-						const values = retrieveBinnedValues( rawData, catNames, breaks );
+						const values = retrieveBinnedValues( rawData, categories, breaks );
 						state = this.transformVariable( name, values, state );
 					}
 				}
