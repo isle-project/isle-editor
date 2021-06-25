@@ -1,47 +1,8 @@
-/**
-* Adapted from: https://gitlab.tu-berlin.de/innodoc/react-mathjax-node
-*
-* MIT License
-*
-* Copyright (c) 2019 Mirko Dietrich, TU Berlin
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
-
 // VARIABLES //
 
-// if MathJax import has been triggered
-let mathJaxImported = false;
-// if MathJax is ready
-let mathJaxReady = false;
-
-const pageReadyCallbacks = [];
-
-const defaultOptions = {
+const DEFAULT_OPTIONS = {
 	startup: {
-		typeset: false,
-		pageReady: () => {
-			mathJaxReady = true;
-			while ( pageReadyCallbacks.length > 0 ) {
-				pageReadyCallbacks.pop()();
-			}
-		}
+		typeset: false
 	},
 	loader: {
 		load: [ '[tex]/action', '[tex]/html' ]
@@ -104,7 +65,7 @@ const defaultOptions = {
 
 const importMathJax = () => {
 	const script = document.createElement('script');
-	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js';
+	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
 	script.async = true;
 	document.head.appendChild( script );
 };
@@ -112,29 +73,5 @@ const importMathJax = () => {
 
 // MAIN //
 
-const useInitMathJax = () => {
-	if ( typeof window !== 'undefined' ) {
-		return new Promise((resolve) => {
-			if ( mathJaxImported ) {
-				if ( mathJaxReady ) {
-					resolve();
-				} else {
-					pageReadyCallbacks.push( resolve );
-				}
-			} else {
-				mathJaxImported = true;
-				let readyCallback = resolve;
-				// MathJax reads options from window.MathJax
-				window.MathJax = defaultOptions;
-				pageReadyCallbacks.push( readyCallback );
-				importMathJax();
-			}
-		});
-	}
-	return void 0; // no-op on server
-};
-
-
-// EXPORTS //
-
-export default useInitMathJax;
+window.MathJax = DEFAULT_OPTIONS;
+importMathJax();

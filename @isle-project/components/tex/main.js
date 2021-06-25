@@ -2,7 +2,7 @@
 
 // MODULES //
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
@@ -10,10 +10,10 @@ import NINF from '@stdlib/constants/float64/ninf';
 import PINF from '@stdlib/constants/float64/pinf';
 import replace from '@stdlib/string/replace';
 import objectKeys from '@stdlib/utils/keys';
+import rescape from '@stdlib/utils/escape-regexp-string';
 import NumberInput from '@isle-project/components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import MathJax from '@isle-project/utils/mathjax';
 import './tex.css';
 
 
@@ -29,14 +29,17 @@ function processEquation( raw, elems ) {
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		const el = elems[ key ];
-		const RE_KEY = new RegExp( '(^| )'+key+'($| )' );
+		const RE_KEY = new RegExp( '(^| )(\\\\)?'+rescape( key )+'($| )' );
 		let replacement = '';
 		if ( el.tooltip ) {
-			replacement += `\\texttip{${key}}{${el.tooltip}}`; // eslint-disable-line i18next/no-literal-string
+			replacement += `\\texttip{$2${key}}{${el.tooltip}}`; // eslint-disable-line i18next/no-literal-string
+		} else {
+			replacement = '$2'+key;
 		}
 		if ( el.onChange ) {
 			replacement = `\\class{tex-clickable}{\\cssId{tex-${key}}{${replacement}}}`; // eslint-disable-line i18next/no-literal-string
 		}
+		replacement = '$1' + replacement + '$3';
 		raw = replace( raw, RE_KEY, replacement );
 	}
 	return raw;
@@ -58,14 +61,24 @@ function processEquation( raw, elems ) {
 * @property {Function} onPopover - callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument
 * @property {Function} onClick - callback `function` invoked whenever a user clicks on the equation
 */
-const TeX = ({ raw, displayMode, numbered, style, tag, elems , popoverPlacement, onPopover, onClick }) => {
+const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, onPopover, onClick }) => {
 	const [ id ] = useState( counter );
+	const eqRef = useRef( null );
 	const [ popover, setPopover ] = useState( {} );
 	const [ config, setConfig ] = useState( {} );
-	const { addCallback, removeCallback } = useContext( MathJax.Context );
 	useEffect( () => {
-		counter += 1;
-		const callback = () => {
+		let output = eqRef.current;
+		output.innerHTML = '';
+		window.MathJax.texReset();
+		var options = window.MathJax.getMetricsFor(output);
+		options.display = displayMode;
+		let input = isNumber( raw ) ? raw.toString() : raw;
+		input = processEquation( input, elems );
+		window.MathJax.tex2chtmlPromise( input, options ).then( ( node ) => {
+			output.appendChild( node );
+			window.MathJax.startup.document.clear();
+			window.MathJax.startup.document.updateDocument();
+
 			const keys = objectKeys( elems );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
@@ -92,7 +105,7 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems , popoverPlacement,
 									show: true,
 									content: el.body,
 									target: this,
-									name: key,
+									name: key
 								});
 								onPopover( true );
 							} else {
@@ -108,19 +121,13 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems , popoverPlacement,
 					});
 				}
 			}
-		};
-		addCallback( callback );
+		});
+		counter += 1;
 		return () => {
-			removeCallback( callback );
 			counter = 1;
 		};
 	});
-	let input = isNumber( raw ) ? raw.toString() : raw;
-	input = processEquation( input, elems );
-	const equation = <MathJax.Node
-		displayType={displayMode ? 'display' : 'inline'}
-		texCode={input}
-	/>;
+	const equation = <span ref={eqRef} ></span>;
 	const overlay = <Overlay
 		show={popover.show}
 		container={document.body}
@@ -227,13 +234,6 @@ TeX.defaultProps = {
 };
 
 
-const Wrapper = ( props ) => {
-	return ( <MathJax.Provider>
-		<TeX {...props} />
-	</MathJax.Provider> );
-};
-
-
 // EXPORTS //
 
-export default withPropCheck( Wrapper );
+export default withPropCheck( TeX );
