@@ -124,7 +124,8 @@ class HistoryPanel extends Component {
 	}
 
 	renderListGroupItem = ( index, key ) => {
-		const elem = this.state.filtered[ index ];
+		const n = this.state.filtered.length - 1;
+		const elem = this.state.filtered[ n - index ];
 		const date = new Date( elem.absoluteTime );
 		let printout = '';
 		const value = elem.value;
