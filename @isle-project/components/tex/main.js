@@ -24,7 +24,7 @@ let counter = 1;
 
 // FUNCTIONS //
 
-function processEquation( raw, elems ) {
+function processEquation( raw, elems, id ) {
 	const keys = objectKeys( elems );
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
@@ -37,7 +37,7 @@ function processEquation( raw, elems ) {
 			replacement = '$2'+key;
 		}
 		if ( el.onChange ) {
-			replacement = `\\class{tex-clickable}{\\cssId{tex-${key}}{${replacement}}}`; // eslint-disable-line i18next/no-literal-string
+			replacement = `\\class{tex-clickable}{\\cssId{tex-${id}-${key}}{${replacement}}}`; // eslint-disable-line i18next/no-literal-string
 		}
 		replacement = '$1' + replacement + '$3';
 		raw = replace( raw, RE_KEY, replacement );
@@ -72,7 +72,7 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 		var options = window.MathJax.getMetricsFor(output);
 		options.display = displayMode;
 		let input = isNumber( raw ) ? raw.toString() : raw;
-		input = processEquation( input, elems );
+		input = processEquation( input, elems, id );
 		window.MathJax.tex2chtmlPromise( input, options ).then( ( node ) => {
 			output.innerHTML = '';
 			output.appendChild( node );
@@ -83,7 +83,7 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
 				const el = elems[ key ];
-				const node = document.getElementById( 'tex-'+key );
+				const node = document.getElementById( 'tex-'+id+'-'+key );
 				if ( node ) {
 					node.addEventListener( 'click', function onClick() {
 						if ( el.variable ) {
@@ -103,15 +103,13 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 								setConfig( newConfig );
 								setPopover({
 									show: true,
-									content: el.body,
-									target: this,
+									target: node,
 									name: key
 								});
 								onPopover( true );
 							} else {
 								setPopover({
 									show: false,
-									content: null,
 									target: null,
 									name: null
 								});
@@ -130,8 +128,7 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 	const equation = <span ref={eqRef} ></span>;
 	const overlay = <Overlay
 		show={popover.show}
-		container={document.body}
-		target={popover.target}
+		target={eqRef.current}
 		placement={popoverPlacement}
 	>
 		<Popover id="popover-top">
@@ -228,7 +225,7 @@ TeX.defaultProps = {
 	style: {},
 	tag: null,
 	elems: {},
-	popoverPlacement: 'top',
+	popoverPlacement: 'bottom',
 	onPopover() {},
 	onClick: null
 };
