@@ -2,16 +2,14 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-bootstrap/Overlay';
-import Tooltip from 'react-bootstrap/Tooltip';
 import Popover from 'react-bootstrap/Popover';
-import { select } from 'd3';
 import NINF from '@stdlib/constants/float64/ninf';
 import PINF from '@stdlib/constants/float64/pinf';
-import keys from '@stdlib/utils/keys';
+import replace from '@stdlib/string/replace';
+import objectKeys from '@stdlib/utils/keys';
 import NumberInput from '@isle-project/components/input/number';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -22,6 +20,27 @@ import './tex.css';
 // VARIABLES //
 
 let counter = 1;
+
+
+// FUNCTIONS //
+
+function processEquation( raw, elems ) {
+	const keys = objectKeys( elems );
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		const el = elems[ key ];
+		const RE_KEY = new RegExp( '(^| )'+key+'($| )' );
+		let replacement = '';
+		if ( el.tooltip ) {
+			replacement += `\\texttip{${key}}{${el.tooltip}}`; // eslint-disable-line i18next/no-literal-string
+		}
+		if ( el.onChange ) {
+			replacement = `\\class{tex-clickable}{\\cssId{tex-${key}}{${replacement}}}`; // eslint-disable-line i18next/no-literal-string
+		}
+		raw = replace( raw, RE_KEY, replacement );
+	}
+	return raw;
+}
 
 
 // MAIN //
@@ -39,213 +58,145 @@ let counter = 1;
 * @property {Function} onPopover - callback `function` when a control popover is toggled on or off; receives the display status as a boolean as its sole argument
 * @property {Function} onClick - callback `function` invoked whenever a user clicks on the equation
 */
-class TeX extends Component {
-	constructor( props ) {
-		super( props );
-		let initialState = {
-			legend: '',
-			showTooltip: false,
-			tooltipText: '',
-			showPopover: false,
-			popoverContent: null,
-			popoverName: null
-		};
-
-		if ( props.displayMode === true ) {
-			initialState.id = counter;
-			counter += 1;
-		}
-		this.state = initialState;
-	}
-
-	componentDidMount() {
-		this.registerElements();
-	}
-
-	componentDidUpdate() {
-		this.registerElements();
-	}
-
-	componentWillUnmount() {
-		counter = 1;
-	}
-
-	registerElements() {
-		const dom = findDOMNode( this );
-		const self = this;
-		select( dom ).
-			selectAll( '.mord' ).
-			each( onMord );
-
-		function onMord( d ) {
-			const $this = select( this );
-			if ( self.state.popoverTarget !== this ) {
-				$this.style( 'color', 'inherit' );
-			}
-			keys( self.props.elems ).forEach( ( prop ) => {
-				let elem = self.props.elems[ prop ];
-				if ( $this.text() === prop ) {
-					if ( elem.variable ) {
-						$this.style( 'cursor', 'pointer' );
-						$this.style( 'color', 'blue' );
-					}
-					$this.on( 'mouseover', function onMouseOver() {
-						$this.style( 'color', 'red' );
-						if ( elem.tooltip ) {
-							self.setState({
-								showTooltip: true,
-								tooltipText: elem.tooltip,
-								tooltipTarget: this
-							});
-						}
-					}).on( 'mouseout', function onMouseOut() {
-						if ( !self.state.showPopover ) {
-							$this.style( 'color', 'blue' );
-						}
-						if ( elem.tooltip ) {
-							self.setState({
-								showTooltip: false
-							});
-						}
-					})
-					.on( 'click', function onClick() {
-						if ( elem.variable ) {
-							let config = {
-								legend: elem.legend || elem.variable,
-								min: elem.min || NINF,
-								max: elem.max || PINF,
-								step: elem.step || 'any'
+const TeX = ({ raw, displayMode, numbered, style, tag, elems , popoverPlacement, onPopover, onClick }) => {
+	const [ id ] = useState( counter );
+	const [ popover, setPopover ] = useState( {} );
+	const [ config, setConfig ] = useState( {} );
+	const { addCallback, removeCallback } = useContext( MathJax.Context );
+	useEffect( () => {
+		counter += 1;
+		const callback = () => {
+			const keys = objectKeys( elems );
+			for ( let i = 0; i < keys.length; i++ ) {
+				const key = keys[ i ];
+				const el = elems[ key ];
+				const node = document.getElementById( 'tex-'+key );
+				if ( node ) {
+					node.addEventListener( 'click', function onClick() {
+						if ( el.variable ) {
+							let newConfig = {
+								legend: el.legend || el.variable,
+								min: el.min || NINF,
+								max: el.max || PINF,
+								step: el.step || 'any'
 							};
-							if ( elem.onChange ) {
-								config.onChange = elem.onChange;
-								config.defaultValue = elem.defaultValue;
+							if ( el.onChange ) {
+								newConfig.onChange = el.onChange;
+								newConfig.defaultValue = el.defaultValue;
 							} else {
-								config.bind = elem.variable;
+								newConfig.bind = el.variable;
 							}
-							if ( self.state.popoverName !== prop ) {
-								self.setState({
-									showTooltip: false,
-									showPopover: true,
-									popoverContent: elem.body,
-									popoverTarget: this,
-									popoverName: prop,
-									config
+							if ( popover.name !== key ) {
+								setConfig( newConfig );
+								setPopover({
+									show: true,
+									content: el.body,
+									target: this,
+									name: key,
 								});
-								self.props.onPopover( true );
+								onPopover( true );
 							} else {
-								self.setState({
-									showTooltip: false,
-									showPopover: false,
-									popoverContent: null,
-									popoverTarget: null,
-									popoverName: null
+								setPopover({
+									show: false,
+									content: null,
+									target: null,
+									name: null
 								});
-								self.props.onPopover( false );
+								onPopover( false );
 							}
 						}
 					});
 				}
-			});
-		}
-	}
-
-	/**
-	* React component render method.
-	*/
-	render() {
-		const input = isNumber( this.props.raw ) ? this.props.raw.toString() : this.props.raw;
-		const equation = <MathJax.Provider>
-			<MathJax.Node
-				displayType={this.props.displayMode ? 'display' : 'inline'}
-				texCode={input}
-			/>
-		</MathJax.Provider>;
-		const overlays = <span>
-			<Overlay
-				show={this.state.showTooltip}
-				container={document.body}
-				target={this.state.tooltipTarget}
-				placement="top"
-			>
-				<Tooltip id="tooltip-top">{this.state.tooltipText}</Tooltip>
-			</Overlay>
-			<Overlay
-				show={this.state.showPopover}
-				container={document.body}
-				target={this.state.popoverTarget}
-				placement={this.props.popoverPlacement}
-			>
-				<Popover id="popover-top">
-					<NumberInput
-						inline
-						{...this.state.config}
-					/>
-				</Popover>
-			</Overlay>
-		</span>;
-		if ( this.props.displayMode === true ) {
-			const tag = this.props.numbered ?
-				<div
-					className="tag"
-					style={{
-						float: 'right',
-						marginTop: 5,
-						marginRight: 5
-					}}
-				>
-					{ this.props.tag !== null ? this.props.tag : '[' + this.state.id + ']' }
-				</div> : null;
-			if ( this.props.onClick ) {
-				return (
-					<div
-						className="tex"
-						role="button" tabIndex={0}
-						style={this.props.style}
-						onClick={this.props.onClick} onKeyPress={this.props.onClick}
-						aria-label="Equation"
-					>
-						{tag}
-						{equation}
-						{overlays}
-					</div>
-				);
 			}
-			return ( <div
-				className="tex"
-				style={this.props.style}
-				aria-label="Equation"
+		};
+		addCallback( callback );
+		return () => {
+			removeCallback( callback );
+			counter = 1;
+		};
+	});
+	let input = isNumber( raw ) ? raw.toString() : raw;
+	input = processEquation( input, elems );
+	const equation = <MathJax.Node
+		displayType={displayMode ? 'display' : 'inline'}
+		texCode={input}
+	/>;
+	const overlay = <Overlay
+		show={popover.show}
+		container={document.body}
+		target={popover.target}
+		placement={popoverPlacement}
+	>
+		<Popover id="popover-top">
+			<NumberInput
+				inline
+				{...config}
+			/>
+		</Popover>
+	</Overlay>;
+	if ( displayMode === true ) {
+		const tagDiv = numbered ?
+			<div
+				className="tag"
+				style={{
+					float: 'right',
+					marginTop: 5,
+					marginRight: 5
+				}}
 			>
-				{tag}
-				{equation}
-				{overlays}
-			</div> );
-		}
-		if ( this.props.onClick ) {
+				{ tag !== null ? tag : '[' + id + ']' }
+			</div> : null;
+		if ( onClick ) {
 			return (
-				<span
+				<div
 					className="tex"
 					role="button" tabIndex={0}
-					style={this.props.style}
-					onClick={this.props.onClick} onKeyPress={this.props.onClick}
+					style={style}
+					onClick={onClick} onKeyPress={onClick}
 					aria-label="Equation"
 				>
+					{tagDiv}
 					{equation}
-					{overlays}
-				</span>
+					{overlay}
+				</div>
 			);
 		}
+		return ( <div
+			className="tex"
+			style={style}
+			aria-label="Equation"
+		>
+			{tagDiv}
+			{equation}
+			{overlay}
+		</div> );
+	}
+	if ( onClick ) {
 		return (
 			<span
 				className="tex"
-				style={this.props.style}
+				role="button" tabIndex={0}
+				style={style}
+				onClick={onClick} onKeyPress={onClick}
 				aria-label="Equation"
 			>
 				{equation}
-				{overlays}
+				{overlay}
 			</span>
 		);
 	}
-}
+	return (
+		<span
+			className="tex"
+			style={style}
+			aria-label="Equation"
+		>
+			{equation}
+			{overlay}
+		</span>
+	);
+};
+
 
 // PROPERTIES //
 
@@ -276,6 +227,13 @@ TeX.defaultProps = {
 };
 
 
+const Wrapper = ( props ) => {
+	return ( <MathJax.Provider>
+		<TeX {...props} />
+	</MathJax.Provider> );
+};
+
+
 // EXPORTS //
 
-export default withPropCheck( TeX );
+export default withPropCheck( Wrapper );

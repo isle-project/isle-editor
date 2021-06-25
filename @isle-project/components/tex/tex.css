@@ -1,3 +1,7 @@
-.katex .mord {
-	color: inherit;
+.tex-clickable:hover {
+	color: red;
+}
+
+.tex-clickable {
+	cursor: pointer;
 }
