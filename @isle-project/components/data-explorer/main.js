@@ -57,7 +57,6 @@ import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import recreateOutput from './history/recreate_output.js';
 import './data_explorer.css';
 
 
@@ -186,14 +185,12 @@ class DataExplorer extends Component {
 			filters: []
 		};
 
-		this.logAction = ( type, value, recipients ) => {
+		this.logAction = ( type, value ) => {
 			if ( this.state.subsetFilters ) {
 				value = { ...value, filters: this.state.subsetFilters };
 			}
 			const session = this.context;
-			if ( !recipients ) {
-				recipients = this.props.reportMode === 'collaborative' ? 'members' : 'owners';
-			}
+			const recipients = this.props.reportMode === 'collaborative' ? 'members' : 'owners';
 			session.log({
 				id: this.id,
 				type,
@@ -314,18 +311,15 @@ class DataExplorer extends Component {
 				if ( action.id !== this.id || action.email === session.user.email ) {
 					return;
 				}
-				const output = recreateOutput( action, {
-					session: this.context,
-					data: this.state.data,
-					quantitative: this.state.quantitative,
-					categorical: this.state.categorical
-				});
-				if ( output ) {
-					this.addToOutputs( output );
-				} else {
+				if (
+					action.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
+					action.type === DATA_EXPLORER_BIN_TRANSFORMER ||
+					action.type === DATA_EXPLORER_CAT_TRANSFORMER ||
+					action.type === DATA_EXPLORER_DELETE_VARIABLE
+				) {
 					this.restoreTransformations( [ action ] );
 				}
-				this.logAction( action.type, action.value, session.user.email );
+				this.context.currentUserActions[ this.id ].push( action );
 			}
 		});
 	}
@@ -1239,6 +1233,7 @@ class DataExplorer extends Component {
 								quantitative={this.state.quantitative}
 								categorical={this.state.categorical}
 								t={this.props.t}
+								reportMode={this.props.reportMode}
 							/> : null
 						}
 						{ this.props.editor ?
@@ -1259,9 +1254,13 @@ class DataExplorer extends Component {
 			</Col>
 			<Col xs={6} md={6}>
 				<div className="card card-default" style={{ height: this.props.style.height, minHeight: this.props.style.height || window.innerHeight*0.9, padding: 0 }} >
-					<div className="card-header clearfix">
-						<h3 className="data-explorer-output-header">{this.props.t('output')}</h3>
-						<Gate owner>
+					<OutputPanel
+						output={this.state.output}
+						ref={( div ) => {
+							this.outputPanel = div;
+						}}
+						session={this.context}
+						header={<Gate owner>
 							<Modal
 								show={this.state.showStudentPlots}
 								onHide={this.toggleStudentPlots}
@@ -1316,14 +1315,13 @@ class DataExplorer extends Component {
 								onClick={this.toggleStudentPlots}
 							>{this.props.t('open-shared-plots')}</Button>
 							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
-						</Gate>
-					</div>
-					<OutputPanel output={this.state.output} ref={( div ) => {
-						this.outputPanel = div;
-					}} />
-					<Button size="sm" variant="outline-danger" block onClick={() => {
-						this.setState({ output: []});
-					}}>{this.props.t('clear-all')}</Button>
+						</Gate>}
+						clearOutput={() => {
+							this.setState({ output: []});
+						}}
+						reportMode={this.props.reportMode}
+						t={this.props.t}
+					/>
 					<KeyControls
 						actions={{
 							'shift+alt+r': () => this.setState({ openedNav: 'editor' }),
