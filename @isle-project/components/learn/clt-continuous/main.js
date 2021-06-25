@@ -128,12 +128,12 @@ function initHandleSelect(dist) {
 	} else if ( dist === 'exponential' ) {
 		return ( <TeX
 			raw={'\\text{Exponential}(\\lambda = 1)'}
-			elems={{ 'λ': { tooltip: 'Rate parameter' }}}
+			elems={{ 'lambda': { tooltip: 'Rate parameter' }}}
 		/> );
 	}
 	return ( <TeX
 		raw={'\\text{Normal}( \\mu = 0, \\sigma = 1)'}
-		elems={{ 'μ': { tooltip: 'Mean' }, 'σ': { tooltip: 'Standard deviation' }}}
+		elems={{ 'mu': { tooltip: 'Mean' }, 'sigma': { tooltip: 'Standard deviation' }}}
 	/> );
 }
 
@@ -199,13 +199,13 @@ class ContinuousCLT extends Component {
 			break;
 		case 2:
 			formula = <TeX
-				elems={{ 'λ': { tooltip: t('rate-parameter') }}}
+				elems={{ 'lambda': { tooltip: t('rate-parameter') }}}
 				raw={`\\text{Exponential}( \\lambda = ${this.state.lambda})`}
 			/>;
 			break;
 		case 3:
 			formula = <TeX
-				elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
+				elems={{ 'mu': { tooltip: t('mean') }, 'sigma': { tooltip: t('standard-deviation') }}}
 				raw={`\\text{Normal}( \\mu = ${this.state.mu}, \\sigma = ${this.state.sigma })`}
 			/>;
 			break;
@@ -373,7 +373,7 @@ class ContinuousCLT extends Component {
 				onChange={( lambda ) => {
 					const formula = <TeX
 						raw={`\\text{Exponential}(\\lambda = ${lambda})`}
-						elems={{ 'λ': { tooltip: t('rate-parameter') }}}
+						elems={{ 'lambda': { tooltip: t('rate-parameter') }}}
 					/>;
 					this.setState({ 'lambda': lambda, 'distFormula': formula });
 				}}
@@ -416,7 +416,7 @@ class ContinuousCLT extends Component {
 				onChange={( mu ) => {
 					const formula = <TeX
 						raw={`\\text{Normal}( \\mu = ${mu}, \\sigma = ${this.state.sigma})`}
-						elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
+						elems={{ 'mu': { tooltip: t('mean') }, 'sigma': { tooltip: t('standard-deviation') }}}
 					/>;
 					this.setState({ 'mu': mu, 'distFormula': formula });
 				}}
@@ -427,7 +427,7 @@ class ContinuousCLT extends Component {
 				onChange={( sigma ) => {
 					const formula = <TeX
 						raw={`\\text{Normal}(${this.state.mu},${sigma})`}
-						elems={{ 'μ': { tooltip: t('mean') }, 'σ': { tooltip: t('standard-deviation') }}}
+						elems={{ 'mu': { tooltip: t('mean') }, 'sigma': { tooltip: t('standard-deviation') }}}
 					/>;
 					this.setState({ 'sigma': sigma, 'distFormula': formula });
 				}}

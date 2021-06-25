@@ -28,7 +28,7 @@ import './confidence_coverage_binomial.css';
 const ELEM_TOOLTIPS = {
 	'p': { tooltip: 'Success probability' },
 	'n': { tooltip: 'Number of trials' },
-	'α': { tooltip: 'Significance level' },
+	'alpha': { tooltip: 'Significance level' },
 	'Z': { tooltip: 'Standard normal quantile' }
 };
 
@@ -169,7 +169,7 @@ class ConfidenceCoverageBinomial extends Component {
 		} else {
 			intro = <div>
 				<p>
-					<Trans i18nKey="binomial-intro" ns="LearnConfidenceCoverage" >Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat p \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? t('click-pop-proportion') : t('click-sample-proportion')}`} active={this.props.sampleStats} onChange={( pos ) => {
+					<Trans i18nKey="binomial-intro" ns="LearnConfidenceCoverage" >Now we will switch to asking a Yes/No question about a population. We are interested in estimating the true population proportion <TeX raw="p" /> of &quot;Yes&quot; answers (for example, what proportion of the population has blue eyes?).  We can take a sample of size <TeX raw="n" />, find how many observations in our sample are a &quot;Yes&quot; (X), and then estimate the true proportion <TeX raw="p" /> with <TeX raw="\hat p = \frac{X}{n}" elems={ELEM_TOOLTIPS} />. Then <TeX raw="\hat{p} \sim \text{Normal}\left( p, \sqrt{ \tfrac{p(1-p)}{n} } \right)" elems={ELEM_TOOLTIPS} />. Our confidence interval is then <Switch tooltip={`${this.state.useSampleProp ? t('click-pop-proportion') : t('click-sample-proportion')}`} active={this.props.sampleStats} onChange={( pos ) => {
 					this.setState({
 						useSampleProp: pos === 1
 					});

@@ -27,10 +27,10 @@ import stdev from '@isle-project/utils/statistic/stdev.js';
 // VARIABLES //
 
 const ELEM_TOOLTIPS = {
-	'μ': { tooltip: 'Mean' },
-	'σ': { tooltip: 'Standard Deviation' },
+	'mu': { tooltip: 'Mean' },
+	'sigma': { tooltip: 'Standard Deviation' },
 	'n': { tooltip: 'Sample Size' },
-	'α': { tooltip: 'Significance level' },
+	'alpha': { tooltip: 'Significance level' },
 	'Z': { tooltip: 'Standard normal quantile' },
 	'S': { tooltip: 'Sample standard deviation' }
 };

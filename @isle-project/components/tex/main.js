@@ -68,13 +68,13 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 	const [ config, setConfig ] = useState( {} );
 	useEffect( () => {
 		let output = eqRef.current;
-		output.innerHTML = '';
 		window.MathJax.texReset();
 		var options = window.MathJax.getMetricsFor(output);
 		options.display = displayMode;
 		let input = isNumber( raw ) ? raw.toString() : raw;
 		input = processEquation( input, elems );
 		window.MathJax.tex2chtmlPromise( input, options ).then( ( node ) => {
+			output.innerHTML = '';
 			output.appendChild( node );
 			window.MathJax.startup.document.clear();
 			window.MathJax.startup.document.updateDocument();

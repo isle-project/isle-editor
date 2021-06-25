@@ -40,7 +40,7 @@ const EQN_TOOLTIPS = {
 	's': {
 		tooltip: 'Standard Deviation'
 	},
-	'μ': {
+	'mu': {
 		tooltip: 'True mean'
 	},
 	'x': {
@@ -362,7 +362,7 @@ class MeanTest extends Component {
 						style={{
 							fontSize: '1.5em'
 						}}
-						raw={`${statChar} = \\frac{\\bar x - \\mu}{${sSym} / \\sqrt{n}}`}
+						raw={`${statChar} = \\frac{\\bar{x} - \\mu}{${sSym} / \\sqrt{n}}`}
 						elems={EQN_TOOLTIPS}
 					/>
 				}
