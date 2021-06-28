@@ -121,7 +121,7 @@
     "@babel/register": "7.14.5",
     "@babel/runtime": "^7.14.6",
     "@loadable/component": "^5.15.0",
-    "@stdlib/array": "^0.0.8",
+    "@stdlib/array": "^0.0.9",
     "@stdlib/assert": "^0.0.8",
     "@stdlib/constants": "^0.0.8",
     "@stdlib/datasets": "^0.0.9",
