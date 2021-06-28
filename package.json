@@ -123,7 +123,7 @@
     "@loadable/component": "^5.15.0",
     "@stdlib/array": "^0.0.8",
     "@stdlib/assert": "^0.0.8",
-    "@stdlib/constants": "^0.0.8",
+    "@stdlib/constants": "^0.0.9",
     "@stdlib/datasets": "^0.0.9",
     "@stdlib/fs": "^0.0.8",
     "@stdlib/math": "^0.0.7",
