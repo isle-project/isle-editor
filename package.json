@@ -133,7 +133,7 @@
     "@stdlib/process": "^0.0.8",
     "@stdlib/random": "^0.0.8",
     "@stdlib/stats": "^0.0.9",
-    "@stdlib/string": "^0.0.9",
+    "@stdlib/string": "^0.0.10",
     "@stdlib/utils": "^0.0.8",
     "acorn": "^8.4.1",
     "ansi-to-react": "6.1.5",
