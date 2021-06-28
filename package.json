@@ -309,7 +309,7 @@
     "eslint-plugin-testing-library": "^4.6.0",
     "glob": "^7.1.7",
     "hard-source-webpack-plugin": "^0.13.1",
-    "jest": "^27.0.5",
+    "jest": "^27.0.6",
     "jest-canvas-mock": "^2.3.1",
     "jest-cli": "^27.0.5",
     "js-yaml": "4.1.0",
