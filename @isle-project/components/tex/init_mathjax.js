@@ -40,9 +40,9 @@ const DEFAULT_OPTIONS = {
 			viewBraille: true,                // display Braille output as subtitles
 
 			backgroundColor: 'White',           // color for background of selected sub-expression
-			backgroundOpacity: 1,             // opacity for background of selected sub-expression
+			backgroundOpacity: 100,             // opacity for background of selected sub-expression
 			foregroundColor: 'Magenta',          // color to use for text of selected sub-expression
-			foregroundOpacity: 1,              // opacity for text of selected sub-expression
+			foregroundOpacity: 100,              // opacity for text of selected sub-expression
 
 			highlight: 'None',                 // type of highlighting for collapsible sub-expressions
 			flame: false,                      // color collapsible sub-expressions
