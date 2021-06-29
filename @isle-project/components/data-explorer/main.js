@@ -48,12 +48,14 @@ const ToolboxButton = lazy( () => import( /* webpackChunkName: "Toolbox" */ './t
 import SessionContext from '@isle-project/session/context.js';
 import OutputPanel from './output_panel.js';
 import History from './history';
+import recreateOutput from './history/recreate_output.js';
 import createOutputElement from './create_output_element.js';
 import FilterList from './filter_list.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
+	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT,
 	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -353,6 +355,43 @@ class DataExplorer extends Component {
 		}
 	}
 
+	restoreOutputs = ( actions ) => {
+		debug( 'Restore elements in output pane...' );
+		const candidates = [];
+		const skip = [];
+		for ( let i = 0; i < actions.length; i++ ) {
+			const action = actions[ i ];
+			if ( action.type === DATA_EXPLORER_CLEAR_OUTPUT_PANE ) {
+				break;
+			}
+			else if ( action.type === DATA_EXPLORER_DELETE_OUTPUT ) {
+				skip.push( action.value );
+			}
+			candidates.push( action );
+		}
+		const output = [];
+		const outputProps = {
+			logAction: this.logAction,
+			session: this.context,
+			data: this.state.data,
+			quantitative: this.state.quantitative,
+			categorical: this.state.categorical
+		};
+		for ( let i = candidates.length - 1; i >= 0; i-- ) {
+			const idx = candidates.length - 1 - i;
+			if ( contains( skip, idx ) ) {
+				continue;
+			}
+			const node = recreateOutput( candidates[ i ], outputProps );
+			if ( node ) {
+				const element = createOutputElement( node, idx, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
+				output.push( element );
+			}
+		}
+		debug( `Restored ${output.length} elements.` );
+		this.setState({ output });
+	}
+
 	restoreTransformations = ( actions ) => {
 		let state = this.state;
 		debug( 'Restoring transformations...' );
@@ -393,7 +432,9 @@ class DataExplorer extends Component {
 			}
 		}
 		state.data = copy( state.data, 1 );
-		this.setState( state );
+		this.setState( state, () => {
+			this.restoreOutputs( actions );
+		});
 	}
 
 	resetStorage = () => {
@@ -450,7 +491,13 @@ class DataExplorer extends Component {
 	* Remove output element at the specified index.
 	*/
 	clearOutput = ( idx ) => {
-		let newOutputs = this.state.output.slice();
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: DATA_EXPLORER_DELETE_OUTPUT,
+			value: idx
+		}, 'owners' );
+		const newOutputs = this.state.output.slice();
 		newOutputs[ idx ] = null;
 		this.setState({
 			output: newOutputs
@@ -1333,6 +1380,11 @@ class DataExplorer extends Component {
 							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
 						</Gate>}
 						clearOutput={() => {
+							session.log({
+								id: this.id,
+								type: DATA_EXPLORER_CLEAR_OUTPUT_PANE,
+								value: null
+							}, 'owners' );
 							this.setState({ output: []});
 						}}
 						reportMode={this.props.reportMode}
