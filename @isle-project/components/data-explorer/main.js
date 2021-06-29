@@ -190,7 +190,7 @@ class DataExplorer extends Component {
 				value = { ...value, filters: this.state.subsetFilters };
 			}
 			const session = this.context;
-			const recipients = this.props.reportMode === 'collaborative' ? 'members' : 'owners';
+			const recipients = this.props.reportMode !== 'individual' ? 'members' : 'owners';
 			session.log({
 				id: this.id,
 				type,
@@ -310,6 +310,22 @@ class DataExplorer extends Component {
 			else if ( type === MEMBER_ACTION ) {
 				if ( action.id !== this.id || action.email === session.user.email ) {
 					return;
+				}
+				if ( this.props.reportMode === 'group' ) {
+					if ( !session.group ) {
+						return;
+					}
+					const members = session.group.members;
+					let inGroup = false;
+					for ( let i = 0; i < members.length; i++ ) {
+						if ( members[ i ].email === action.email ) {
+							inGroup = true;
+							break;
+						}
+					}
+					if ( !inGroup ) {
+						return;
+					}
 				}
 				if (
 					action.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
