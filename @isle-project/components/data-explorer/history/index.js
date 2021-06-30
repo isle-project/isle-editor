@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
@@ -17,115 +17,82 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPlainObject from '@stdlib/assert/is-plain-object';
+import { DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT } from '@isle-project/constants/actions.js';
+import SessionContext from '@isle-project/session/context.js';
 import recreateOutput from './recreate_output.js';
 import TextSelect from './text_select.js';
 import SearchBar from './search.js';
 
 
-// FUNCTIONS //
-
-function filterForWords( actions, word ) {
-	const expr = new RegExp( word, 'i' );
-	const out = [];
-	for ( let i = 0; i < actions.length; i++ ) {
-		const elem = actions[ i ];
-		let keep = false;
-		if ( elem.type.search( expr ) > -1 ) {
-			keep = true;
-		}
-		else if ( elem.email.search( expr ) > -1 ) {
-			keep = true;
-		}
-		else {
-			for ( let key in elem.value ) {
-				if (
-					key.search( expr ) > -1 ||
-					String( elem.value[ key ] ).search( expr ) > -1
-				) {
-					keep = true;
-					break;
-				}
-			}
-		}
-		if ( keep ) {
-			out.push( elem );
-		}
-	}
-	return out;
-}
-
-function filterUsers( actions, includes, session ) {
-	const out = [];
-	if ( includes.length === 2 ) {
-		return actions;
-	}
-	if ( includes.length === 0 ) {
-		return out;
-	}
-	if ( includes[ 0 ] === 'own' ) {
-		for ( let i = 0; i < actions.length; i++ ) {
-			const elem = actions[ i ];
-			if ( elem.email === session.user.email ) {
-				out.push( elem );
-			}
-		}
-		return out;
-	}
-	// Case: includes[ 0 ]  === 'others' ){
-	for ( let i = 0; i < actions.length; i++ ) {
-		const elem = actions[ i ];
-		if ( elem.email !== session.user.email ) {
-			out.push( elem );
-		}
-	}
-	return out;
-}
-
-
 // MAIN //
 
-class HistoryPanel extends Component {
-	constructor( props, context ) {
-		super( props );
+const HistoryPanel = ( props ) => {
+	const [ searchWords, setSearchWords ] = useState( [] );
+	const [ includes, setIncludes ] = useState( [ 'own', 'others' ] );
+	const [ notes, setNotes ] = useState( {} );
+	const session = useContext( SessionContext );
 
-		this.state = {
-			filtered: props.actions,
-			searchWords: [],
-			nActions: props.actions.length,
-			notes: {},
-			includes: [ 'own', 'others' ]
+	const filtered = [];
+	const expr = new RegExp( searchWords[ 0 ], 'i' );
+	if ( includes.length !== 0 ) {
+		for ( let i = 0; i < props.actions.length; i++ ) {
+			const action = props.actions[ i ];
+			if (
+				action.type === DATA_EXPLORER_CLEAR_OUTPUT_PANE ||
+				action.type === DATA_EXPLORER_DELETE_OUTPUT
+			) {
+				continue;
+			}
+			let keep = false;
+			if ( action.type.search( expr ) > -1 ) {
+				keep = true;
+			}
+			else if ( action.email.search( expr ) > -1 ) {
+				keep = true;
+			}
+			else {
+				for ( let key in action.value ) {
+					if (
+						key.search( expr ) > -1 ||
+						String( action.value[ key ] ).search( expr ) > -1
+					) {
+						keep = true;
+						break;
+					}
+				}
+			}
+			if ( includes.length !== 2 ) {
+				if ( includes[ 0 ] === 'own' ) {
+					if ( action.email !== session.user.email ) {
+						keep = false;
+					}
+				} else if ( action.email === session.user.email ) {
+					// Case: includes[ 0 ]  === 'others'
+					keep = false;
+				}
+			}
+			if ( keep ) {
+				filtered.push( action );
+			}
+		}
+	}
+	const handleRecreationFactory = ( idx ) => {
+		const elem = filtered[ idx ];
+		return () => {
+			const output = recreateOutput( elem, props );
+			props.onCreated( output );
+			props.logAction( elem.type, elem.value );
 		};
-	}
-
-	static getDerivedStateFromProps( nextProps, prevState ) {
-		if ( nextProps.actions.length > prevState.nActions ) {
-			return {
-				filtered: nextProps.actions,
-				nActions: nextProps.actions.length,
-				includes: [ 'own', 'others' ]
-			};
-		}
-		return null;
-	}
-
-	handleSearch = ( value ) => {
-		const filtered = filterUsers( this.props.actions, this.state.includes, this.props.session );
+	};
+	const handleSearch = ( value ) => {
 		if ( isStrictEqual( value, '' ) ) {
-			this.setState({
-				filtered,
-				searchWords: []
-			});
+			setSearchWords( [] );
 		} else {
-			this.setState({
-				filtered: filterForWords( filtered, value ),
-				searchWords: [ value ]
-			});
+			setSearchWords( [ value ] );
 		}
-	}
-
-	renderListGroupItem = ( index, key ) => {
-		const n = this.state.filtered.length - 1;
-		const elem = this.state.filtered[ n - index ];
+	};
+	const renderListGroupItem = ( index, key ) => {
+		const elem = filtered[ index ];
 		const date = new Date( elem.absoluteTime );
 		let printout = '';
 		const value = elem.value;
@@ -140,29 +107,27 @@ class HistoryPanel extends Component {
 			}
 		}
 		const popover = <Popover id={`history-note-popover-${index}`} style={{ width: 250 }} >
-			<PopoverTitle>{this.props.t('leave-note')}</PopoverTitle>
+			<PopoverTitle>{props.t('leave-note')}</PopoverTitle>
 			<PopoverContent>
 				<TextSelect options={[
 					'Did you consider any confounding variables?',
 					'You should check model diagnostics'
 				]} onSubmit={({ value }) => {
-					const notes = { ...this.state.notes };
-					if ( notes[ index ] ) {
-						notes[ index] += `\n${value}`;
+					const newNotes = { ...notes };
+					if ( newNotes[ index ] ) {
+						newNotes[ index] += `\n${value}`;
 					} else {
-						notes[ index ] = value;
+						newNotes[ index ] = value;
 					}
-					this.setState({
-						notes
-					});
-				}} t={this.props.t} />
+					setNotes( newNotes );
+				}} t={props.t} />
 			</PopoverContent>
 		</Popover>;
 		return ( <ListGroupItem>
 			<div className="actionNote">
 				<span className="title">
 					<Highlighter
-						searchWords={this.state.searchWords}
+						searchWords={searchWords}
 						autoEscape={true}
 						textToHighlight={title}
 					/>
@@ -170,21 +135,21 @@ class HistoryPanel extends Component {
 			</div>
 			<div className="actionNote">
 				<Highlighter
-					searchWords={this.state.searchWords}
+					searchWords={searchWords}
 					autoEscape={true}
 					textToHighlight={printout}
 				/>
 			</div>
-			{ this.state.notes[ index ] ?
+			{ notes[ index ] ?
 				<Alert variant="warning" >
-					{this.state.notes[ index ]}
+					{notes[ index ]}
 				</Alert> :
 				null
 			}
-			{ this.props.instructorFeedback ?
+			{ props.instructorFeedback ?
 				<OverlayTrigger trigger="click" placement="left" rootClose overlay={popover} >
 					<Button
-						aria-label={this.props.t('leave-feedback')}
+						aria-label={props.t('leave-feedback')}
 						variant="info"
 						size="sm"
 						style={{ position: 'absolute', top: 5, right: 45 }}
@@ -195,87 +160,62 @@ class HistoryPanel extends Component {
 				null
 			}
 			<Button
-				aria-label={this.props.t('repeat')}
+				aria-label={props.t('repeat')}
 				variant="success"
 				size="sm"
-				onClick={this.handleRecreationFactory( index )}
+				onClick={handleRecreationFactory( index )}
 				style={{ position: 'absolute', top: 5, right: 5 }}
 			>
 				<i className="fas fa-redo"></i>
 			</Button>
 		</ListGroupItem> );
-	}
-
-	handleRecreationFactory = ( idx ) => {
-		const n = this.state.filtered.length - 1;
-		const elem = this.state.filtered[ n - idx ];
-		return () => {
-			const output = recreateOutput( elem, this.props );
-			this.props.onCreated( output );
-			this.props.logAction( elem.type, elem.value );
-		};
-	}
-
-	handleOwnChange = ( includes ) => {
-		const filtered = filterUsers( this.props.actions, includes, this.props.session );
-		this.setState({
-			includes,
-			filtered,
-			searchWords: []
-		});
-	}
-
-	render() {
-		if ( !this.state.filtered ) {
-			return null;
-		}
-		return (
-			<div style={this.props.style} >
-				<SearchBar
-					onClick={this.handleSearch}
+	};
+	return (
+		<div style={props.style} >
+			<SearchBar
+				onClick={handleSearch}
+			/>
+			<div style={{
+				marginLeft: 0,
+				overflowY: 'scroll',
+				height: 0.75 * window.innerHeight,
+				border: 'solid 1px rgba(0,0,0,0.125)'
+			}} >
+				<ReactList
+					initialIndex={0}
+					itemRenderer={renderListGroupItem}
+					length={filtered.length}
+					type="simple"
+					pageSize={50}
+					minSize={10}
 				/>
-				<div style={{
-					marginLeft: 0,
-					overflowY: 'scroll',
-					height: 0.75 * window.innerHeight,
-					border: 'solid 1px rgba(0,0,0,0.125)'
-				}} >
-					<ReactList
-						initialIndex={0}
-						itemRenderer={this.renderListGroupItem}
-						length={this.state.filtered.length}
-						type="simple"
-						pageSize={50}
-						minSize={10}
-					/>
-				</div>
-				{this.props.reportMode !== 'individual' ? <ToggleButtonGroup
-					name="options"
-					onChange={this.handleOwnChange}
-					type="checkbox"
-					size="small"
-					value={this.state.includes}
-				>
-					<ToggleButton
-						variant="outline-secondary"
-						value="own"
-					>
-						{this.props.t('own')}
-					</ToggleButton>
-					<ToggleButton
-						variant="outline-secondary"
-						value="others"
-					>
-						{this.props.t('others')}
-					</ToggleButton>
-				</ToggleButtonGroup> : null}
-				<span className="title" style={{ float: 'right', marginRight: 20 }} >
-					{this.state.filtered.length} {this.props.t('actions')}
-				</span>
 			</div>
-		);
-	}
-}
+			{props.reportMode !== 'individual' ? <ToggleButtonGroup
+				name="options"
+				onChange={setIncludes}
+				type="checkbox"
+				size="small"
+				value={includes}
+			>
+				<ToggleButton
+					variant="outline-secondary"
+					value="own"
+				>
+					{props.t('own')}
+				</ToggleButton>
+				<ToggleButton
+					variant="outline-secondary"
+					value="others"
+				>
+					{props.t('others')}
+				</ToggleButton>
+			</ToggleButtonGroup> : null}
+			<span className="title" style={{ float: 'right', marginRight: 20 }} >
+				{filtered.length} {props.t('actions')}
+			</span>
+		</div>
+	);
+};
 
 
 // PROPERTIES //
