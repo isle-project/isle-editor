@@ -38,7 +38,7 @@ const HistoryPanel = ( props ) => {
 	useEffect( () => {
 		let unsubscribe;
 		if ( session ) {
-			session.subscribe( ( type, action ) => {
+			unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === MEMBER_ACTION && action.id === props.explorerID ) {
 					forceUpdate();
 				}
