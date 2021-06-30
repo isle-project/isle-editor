@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.6",
+	"version": "0.50.7",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,10 +11,10 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.6",
-		"@isle-project/locales": "0.50.6",
-		"@isle-project/session": "0.50.6",
-		"@isle-project/utils": "0.50.6"
+		"@isle-project/constants": "0.50.7",
+		"@isle-project/locales": "0.50.7",
+		"@isle-project/session": "0.50.7",
+		"@isle-project/utils": "0.50.7"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.0",
@@ -38,7 +38,7 @@
 		"focus-trap-react": "^8.5.1",
 		"history": "4.10.1",
 		"html-to-image": "^1.6.2",
-		"html-to-pdfmake": "^2.2.4",
+		"html-to-pdfmake": "^2.3.0",
 		"i18next": "^20.3.2",
 		"i18next-browser-languagedetector": "^6.1.1",
 		"ieee754": "^1.2.1",
@@ -55,7 +55,7 @@
 		"murmurhash3js": "^3.0.1",
 		"pdfjs-dist": "2.9.359",
 		"pdfmake": "^0.1.71",
-		"plotly.js": "2.1.0",
+		"plotly.js": "2.2.0",
 		"platform": "^1.3.6",
 		"pressure": "^2.1.2",
 		"profanities": "2.14.0",
@@ -74,7 +74,7 @@
 		"prosemirror-tables": "1.1.1",
 		"prosemirror-transform": "^1.3.2",
 		"prosemirror-utils": "^0.9.6",
-		"prosemirror-view": "^1.18.6",
+		"prosemirror-view": "^1.18.8",
 		"qrcode": "^1.4.4",
 		"react": "17.0.2",
 		"react-bootstrap": "1.6.1",
@@ -111,6 +111,6 @@
 		"text-miner": "^1.3.0",
 		"uniq": "^1.0.1",
 		"venn.js": "0.2.20",
-		"victory": "35.8.6"
+		"victory": "35.9.0"
 	}
 }
