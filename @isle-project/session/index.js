@@ -2369,14 +2369,14 @@ class Session {
 			// Attach received action ID:
 			action.sessiondataID = res.id;
 
-			// Push to respective array of currentUserActions hash table:
+			// Add to the beginning of the respective array of the `currentUserActions` hash table:
 			const actions = this.currentUserActions;
 			this.setScore( action );
 			if ( actions ) {
 				if ( !actions[ action.id ]) {
 					actions[ action.id ] = [ action ];
 				} else {
-					actions[ action.id ].push( action );
+					actions[ action.id ].unshift( action );
 				}
 			}
 			this.setProgress( action.id );
