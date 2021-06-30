@@ -191,7 +191,7 @@
     "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^12.0.5",
-    "mini-css-extract-plugin": "^1.6.2",
+    "mini-css-extract-plugin": "^2.0.0",
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
     "ml-matrix": "^6.8.0",
