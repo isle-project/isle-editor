@@ -337,7 +337,7 @@ class DataExplorer extends Component {
 				) {
 					this.restoreTransformations( [ action ] );
 				}
-				this.context.currentUserActions[ this.id ].push( action );
+				this.context.currentUserActions[ this.id ].unshift( action );
 			}
 		});
 	}
