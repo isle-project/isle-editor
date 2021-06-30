@@ -384,7 +384,7 @@ class DataExplorer extends Component {
 			}
 			const node = recreateOutput( candidates[ i ], outputProps );
 			if ( node ) {
-				const element = createOutputElement( node, idx, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
+				const element = createOutputElement( node, output.length, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
 				output.push( element );
 			}
 		}
@@ -1285,10 +1285,10 @@ class DataExplorer extends Component {
 									</Col>
 								</Row>
 						</div>
-						{ this.props.history ?
+						{ this.props.history && this.state.openedNav === 'history' ?
 							<History
+								explorerID={this.id}
 								actions={this.context.currentUserActions[ this.id ]}
-								style={{ display: this.state.openedNav !== 'history' ? 'none' : null }}
 								onCreated={this.addToOutputs}
 								logAction={this.logAction}
 								session={this.context}
