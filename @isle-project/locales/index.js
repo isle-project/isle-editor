@@ -21,7 +21,7 @@ i18n
 		debug: !!process.env.DEBUG_I18N, // eslint-disable-line no-process-env
 		lng: windowGlobal.localStorage && windowGlobal.localStorage.getItem( 'i18nextLng' ) || 'en',
 		fallbackLng: 'en',
-		ns: [ 'general' ],
+		ns: [ 'general', 'session' ],
 		defaultNS: 'general',
 		backend: {
 			loadPath: 'https://cdn.jsdelivr.net/npm/@isle-project/locales@0.50.7/components/{{ns}}/{{lng}}.json'
