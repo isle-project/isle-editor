@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactList from 'react-list';
 import Highlighter from 'react-highlight-words';
@@ -18,6 +18,8 @@ import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPlainObject from '@stdlib/assert/is-plain-object';
 import { DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT } from '@isle-project/constants/actions.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
 import SessionContext from '@isle-project/session/context.js';
 import recreateOutput from './recreate_output.js';
 import TextSelect from './text_select.js';
@@ -31,7 +33,23 @@ const HistoryPanel = ( props ) => {
 	const [ includes, setIncludes ] = useState( [ 'own', 'others' ] );
 	const [ notes, setNotes ] = useState( {} );
 	const session = useContext( SessionContext );
+	const forceUpdate = useForceUpdate();
 
+	useEffect( () => {
+		let unsubscribe;
+		if ( session ) {
+			session.subscribe( ( type, action ) => {
+				if ( type === MEMBER_ACTION && action.id === props.explorerID ) {
+					forceUpdate();
+				}
+			});
+		}
+		return () => {
+			if ( unsubscribe ) {
+				unsubscribe();
+			}
+		};
+	});
 	const filtered = [];
 	const expr = new RegExp( searchWords[ 0 ], 'i' );
 	if ( includes.length !== 0 ) {
@@ -190,29 +208,32 @@ const HistoryPanel = ( props ) => {
 					minSize={10}
 				/>
 			</div>
-			{props.reportMode !== 'individual' ? <ToggleButtonGroup
-				name="options"
-				onChange={setIncludes}
-				type="checkbox"
-				size="small"
-				value={includes}
-			>
-				<ToggleButton
-					variant="outline-secondary"
-					value="own"
+			<div style={{ float: 'right', marginRight: 20 }} >
+				{props.reportMode !== 'individual' ? <ToggleButtonGroup
+					name="options"
+					onChange={setIncludes}
+					type="checkbox"
+					size="small"
+					value={includes}
+					style={{ padding: 6 }}
 				>
-					{props.t('own')}
-				</ToggleButton>
-				<ToggleButton
-					variant="outline-secondary"
-					value="others"
-				>
-					{props.t('others')}
-				</ToggleButton>
-			</ToggleButtonGroup> : null}
-			<span className="title" style={{ float: 'right', marginRight: 20 }} >
-				{filtered.length} {props.t('actions')}
-			</span>
+					<ToggleButton
+						variant="outline-secondary"
+						value="own"
+					>
+						{props.t('own-actions')}
+					</ToggleButton>
+					<ToggleButton
+						variant="outline-secondary"
+						value="others"
+					>
+						{props.t('others-actions')}
+					</ToggleButton>
+				</ToggleButtonGroup> : null}
+				<span className="title" >
+					{filtered.length} {props.t('actions')}
+				</span>
+			</div>
 		</div>
 	);
 };
