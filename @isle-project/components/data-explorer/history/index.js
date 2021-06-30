@@ -16,8 +16,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
-import isPlainObject from '@stdlib/assert/is-plain-object';
-import { DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT } from '@isle-project/constants/actions.js';
+import isPrimitive from '@stdlib/assert/is-primitive';
+import { DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
 import SessionContext from '@isle-project/session/context.js';
@@ -57,7 +57,8 @@ const HistoryPanel = ( props ) => {
 			const action = props.actions[ i ];
 			if (
 				action.type === DATA_EXPLORER_CLEAR_OUTPUT_PANE ||
-				action.type === DATA_EXPLORER_DELETE_OUTPUT
+				action.type === DATA_EXPLORER_DELETE_OUTPUT ||
+				action.type === DATA_EXPLORER_DELETE_VARIABLE
 			) {
 				continue;
 			}
@@ -119,7 +120,7 @@ const HistoryPanel = ( props ) => {
 			if ( hasOwnProp( value, key ) && key !== 'showDecision' ) {
 				const val = value[ key ];
 				if ( !isUndefinedOrNull( val ) && key !== 'plotId' ) {
-					printout += `${key}: ${isPlainObject( val ) ? JSON.stringify( val ) : val}`;
+					printout += `${key}: ${!isPrimitive( val ) ? JSON.stringify( val ) : val}`;
 					printout += '\t';
 				}
 			}
