@@ -93,6 +93,7 @@
 	"fullscreen-display": "Полноэкранный просмотр",
 	"function": "Функция",
 	"generate": "Создать",
+	"generate-random-data": "Генерировать случайные данные",
 	"group-by": "Group By:",
 	"group-by-statistics-tooltip": "Рассчитывайте статистику(ы) отдельно для наблюдений из каждой категории одной или двух группируемых переменных(ы).",
 	"group-proportion": "Доля группы",

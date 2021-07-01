@@ -93,6 +93,7 @@
 	"fullscreen-display": "フルスクリーン表示",
 	"function": "機能",
 	"generate": "生成",
+	"generate-random-data": "ランダムデータの生成",
 	"group-by": "グループ別。",
 	"group-by-statistics-tooltip": "1つまたは2つのグループ化変数(s)の各カテゴリからのオブザベーションについて，個別に統計量(s)を計算する．",
 	"group-proportion": "グループ比率",

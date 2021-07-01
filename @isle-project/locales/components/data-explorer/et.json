@@ -93,6 +93,7 @@
 	"fullscreen-display": "Täisekraaniline ekraan",
 	"function": "Funktsioon",
 	"generate": "Genereeri",
+	"generate-random-data": "Juhuslike andmete genereerimine",
 	"group-by": "Rühm:",
 	"group-by-statistics-tooltip": "Arvutage statistika(d) eraldi iga kategooria vaatluste kohta kas ühe või kahe rühmamuutuja(de) kohta.",
 	"group-proportion": "Rühma osakaal",

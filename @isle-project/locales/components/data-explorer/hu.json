@@ -93,6 +93,7 @@
 	"fullscreen-display": "Teljes képernyős megjelenítés",
 	"function": "Funkció",
 	"generate": "Generálja",
+	"generate-random-data": "Véletlenszerű adatok generálása",
 	"group-by": "Csoport:",
 	"group-by-statistics-tooltip": "Számítsa ki a statisztika(ka)t külön-külön az egy vagy két csoportosító változó(k) minden egyes kategóriájából származó megfigyelésekre.",
 	"group-proportion": "Csoportarány",

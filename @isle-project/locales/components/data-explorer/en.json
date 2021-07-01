@@ -93,6 +93,7 @@
 	"fullscreen-display": "Fullscreen Display",
 	"function": "Function",
 	"generate": "Generate",
+	"generate-random-data": "Generate Random Data",
 	"group-by": "Group By:",
 	"group-by-statistics-tooltip": "Calculate the statistic(s) separately for observations from each category of either one or two grouping variable(s)",
 	"group-proportion": "Group Proportion",

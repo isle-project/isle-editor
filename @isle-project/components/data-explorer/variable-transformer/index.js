@@ -7,6 +7,7 @@ import BinTransformer from './bin_transformer.js';
 import FormulaTransformer from './formula_transformer.js';
 import CategoricalModal from './categorical_transformer.js';
 import GroupModal from './group_transformer.js';
+import RandomModal from './random-transformer';
 
 
 // MAIN //
@@ -32,6 +33,11 @@ const Transformer = ( props ) => {
 	};
 	const toggleGroupModal = () => {
 		const newActive = active === 'group' ? null : 'group';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	const toggleRandomModal = () => {
+		const newActive = active === 'random' ? null : 'random';
 		setActive( newActive );
 		props.onActive( newActive );
 	};
@@ -76,6 +82,16 @@ const Transformer = ( props ) => {
 			break;
 			case 'group':
 				modal = <GroupModal
+					show={true}
+					onHide={toggleGroupModal}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					data={data}
+					t={t}
+				/>;
+			break;
+			case 'random':
+				modal = <RandomModal
 					show={true}
 					onHide={toggleGroupModal}
 					logAction={logAction}
@@ -129,6 +145,16 @@ const Transformer = ( props ) => {
 						style={{ fontSize: '1.2em' }}
 					>
 						{t('create-groups')}
+					</Button>
+				</div>
+				<div style={{ padding: 12 }} >
+					<Button
+						onClick={toggleRandomModal}
+						variant="primary"
+						block
+						style={{ fontSize: '1.2em' }}
+					>
+						{t('generate-random-data')}
 					</Button>
 				</div>
 			</div>
