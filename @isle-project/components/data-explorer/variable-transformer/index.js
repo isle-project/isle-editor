@@ -93,7 +93,7 @@ const Transformer = ( props ) => {
 			case 'random':
 				modal = <RandomModal
 					show={true}
-					onHide={toggleGroupModal}
+					onHide={toggleRandomModal}
 					logAction={logAction}
 					onGenerate={onGenerate}
 					data={data}
