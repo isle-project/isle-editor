@@ -93,6 +93,7 @@
 	"fullscreen-display": "全屏显示",
 	"function": "功能",
 	"generate": "生成",
+	"generate-random-data": "生成随机数据",
 	"group-by": "组别：",
 	"group-by-statistics-tooltip": "分别计算每个类别中一个或两个分组变量的观测值的统计数字。",
 	"group-proportion": "集团比例",

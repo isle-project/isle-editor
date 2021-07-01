@@ -93,6 +93,7 @@
 	"fullscreen-display": "Fullskärmsvisning",
 	"function": "Funktion",
 	"generate": "Generera",
+	"generate-random-data": "Generera slumpmässiga data",
 	"group-by": "Grupp av:",
 	"group-by-statistics-tooltip": "Beräkna statistiken/statistikerna separat för observationer från varje kategori av antingen en eller två grupperingsvariabler.",
 	"group-proportion": "Grupp Andel",

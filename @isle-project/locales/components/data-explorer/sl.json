@@ -93,6 +93,7 @@
 	"fullscreen-display": "Celozaslonski prikaz",
 	"function": "Funkcija",
 	"generate": "Ustvarjanje",
+	"generate-random-data": "Ustvarjanje naključnih podatkov",
 	"group-by": "Skupina po:",
 	"group-by-statistics-tooltip": "Izračunajte statistiko(-e) ločeno za opazovanja iz vsake kategorije ene ali dveh skupinskih spremenljivk.",
 	"group-proportion": "Delež skupine",

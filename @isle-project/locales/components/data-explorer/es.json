@@ -93,6 +93,7 @@
 	"fullscreen-display": "Pantalla completa",
 	"function": "Función",
 	"generate": "Generar",
+	"generate-random-data": "Generar datos aleatorios",
 	"group-by": "Agrupar por:",
 	"group-by-statistics-tooltip": "Calcular la(s) estadística(s) por separado para las observaciones de cada categoría de una o dos variables de agrupación",
 	"group-proportion": "Proporción del grupo",

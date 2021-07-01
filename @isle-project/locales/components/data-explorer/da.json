@@ -93,6 +93,7 @@
 	"fullscreen-display": "Visning i fuld skærm",
 	"function": "Funktion",
 	"generate": "Generer",
+	"generate-random-data": "Generering af tilfældige data",
 	"group-by": "Gruppe af:",
 	"group-by-statistics-tooltip": "Beregn statistikken/statistikkerne særskilt for observationer fra hver kategori af enten en eller to grupperingsvariable(r)",
 	"group-proportion": "Gruppe Andel",

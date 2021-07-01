@@ -93,6 +93,7 @@
 	"fullscreen-display": "Koko näytön näyttö",
 	"function": "Toiminto",
 	"generate": "Luo",
+	"generate-random-data": "Satunnaisten tietojen luominen",
 	"group-by": "Ryhmän nimi:",
 	"group-by-statistics-tooltip": "Lasketaan tilasto(t) erikseen joko yhden tai kahden ryhmämuuttujan (-muuttujien) kunkin luokan havainnoista.",
 	"group-proportion": "Ryhmän osuus",

@@ -93,6 +93,7 @@
 	"fullscreen-display": "Wyświetlacz pełnoekranowy",
 	"function": "Funkcja",
 	"generate": "Generować",
+	"generate-random-data": "Generowanie danych losowych",
 	"group-by": "Grupa przez:",
 	"group-by-statistics-tooltip": "Statystykę (statystyki) należy obliczyć oddzielnie dla obserwacji z każdej kategorii jednej lub dwóch zmiennych grupowych",
 	"group-proportion": "Grupa Proporcja",
