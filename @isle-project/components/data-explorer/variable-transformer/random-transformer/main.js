@@ -3,6 +3,8 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import FocusTrap from 'focus-trap-react';
+import { useTranslation } from 'react-i18next';
+import { components } from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import FormControl from 'react-bootstrap/FormControl';
@@ -11,6 +13,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
 import random from '@stdlib/random/base';
 import objectKeys from '@stdlib/utils/keys';
+import capitalize from '@stdlib/string/capitalize';
 import NumberInput from '@isle-project/components/input/number';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
@@ -57,13 +60,13 @@ const DISTRIBUTION_PARAMS = {
 	'beta': [
 		{
 			'name': 'alpha',
-			'description': 'first-shape-parameter',
+			'description': 'first-shape',
 			'min': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'beta',
-			'description': 'second-shape-parameter',
+			'description': 'second-shape',
 			'min': 0,
 			'step': 'any'
 		}
@@ -71,13 +74,13 @@ const DISTRIBUTION_PARAMS = {
 	'betaprime': [
 		{
 			'name': 'alpha',
-			'description': 'first-shape-parameter',
+			'description': 'first-shape',
 			'min': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'beta',
-			'description': 'second-shape-parameter',
+			'description': 'second-shape',
 			'min': 0,
 			'step': 'any'
 		}
@@ -85,7 +88,7 @@ const DISTRIBUTION_PARAMS = {
 	'binomial': [
 		{
 			'name': 'n',
-			'description': 'number-independent-observations',
+			'description': 'number-of-draws-trials',
 			'min': 0,
 			'step': 1
 		},
@@ -100,12 +103,12 @@ const DISTRIBUTION_PARAMS = {
 	'cauchy': [
 		{
 			'name': 'x0',
-			'description': 'location-parameter',
+			'description': 'location',
 			'step': 'any'
 		},
 		{
 			'name': 'gamma',
-			'description': 'scale-parameter',
+			'description': 'scale',
 			'min': 0,
 			'step': 'any'
 		}
@@ -121,7 +124,7 @@ const DISTRIBUTION_PARAMS = {
 	'exponential': [
 		{
 			'name': 'lambda',
-			'description': 'rate-parameter',
+			'description': 'rate',
 			'min': 0,
 			'step': 'any'
 		}
@@ -129,13 +132,13 @@ const DISTRIBUTION_PARAMS = {
 	'f': [
 		{
 			'name': 'd1',
-			'description': 'degrees of freedom',
+			'description': 'degrees-of-freedom',
 			'min': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'd2',
-			'description': 'degree of freedom',
+			'description': 'degrees-of-freedom',
 			'min': 0,
 			'step': 'any'
 		}
@@ -143,13 +146,13 @@ const DISTRIBUTION_PARAMS = {
 	'gamma': [
 		{
 			'name': 'alpha',
-			'description': 'shape-parameter',
+			'description': 'shape',
 			'min': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'beta',
-			'description': 'rate-parameter',
+			'description': 'rate',
 			'min': 0,
 			'step': 'any'
 		}
@@ -178,7 +181,7 @@ const DISTRIBUTION_PARAMS = {
 		},
 		{
 			'name': 'n',
-			'description': 'number-of-draws',
+			'description': 'number-of-draws-trials',
 			'min': 0,
 			'step': 1
 		}
@@ -186,12 +189,12 @@ const DISTRIBUTION_PARAMS = {
 	'logistic': [
 		{
 			'name': 'mu',
-			'description': 'location-parameter',
+			'description': 'location',
 			'step': 'any'
 		},
 		{
 			'name': 's',
-			'description': 'scale-parameter',
+			'description': 'scale',
 			'min': 0,
 			'step': 'any'
 		}
@@ -199,12 +202,12 @@ const DISTRIBUTION_PARAMS = {
 	'lognormal': [
 		{
 			'name': 'mu',
-			'description': 'location-parameter',
+			'description': 'location',
 			'step': 'any'
 		},
 		{
 			'name': 'sigma',
-			'description': 'scale-parameter',
+			'description': 'scale',
 			'min': 0,
 			'step': 'any'
 		}
@@ -212,7 +215,7 @@ const DISTRIBUTION_PARAMS = {
 	'normal': [
 		{
 			'name': 'mu',
-			'description': 'mean-parameter',
+			'description': 'mean',
 			'step': 'any'
 		},
 		{
@@ -225,7 +228,7 @@ const DISTRIBUTION_PARAMS = {
 	'poisson': [
 		{
 			'name': 'lambda',
-			'description': 'mean-parameter',
+			'description': 'mean',
 			'min': 0,
 			'step': 'any'
 		}
@@ -241,12 +244,12 @@ const DISTRIBUTION_PARAMS = {
 	'triangular': [
 		{
 			'name': 'a',
-			'description': 'minimum-support',
+			'description': 'minimum',
 			'step': 'any'
 		},
 		{
 			'name': 'b',
-			'description': 'maximum-support',
+			'description': 'maximum',
 			'step': 'any'
 		},
 		{
@@ -258,29 +261,49 @@ const DISTRIBUTION_PARAMS = {
 	'uniform': [
 		{
 			'name': 'a',
-			'description': 'minimum-support',
+			'description': 'minimum',
 			'step': 'any'
 		},
 		{
 			'name': 'b',
-			'description': 'maximum-support',
+			'description': 'maximum',
 			'step': 'any'
 		}
 	],
 	'weibull': [
 		{
 			'name': 'k',
-			'description': 'scale-parameter',
+			'description': 'scale',
 			'min': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'lambda',
-			'description': 'shape-parameter',
+			'description': 'shape',
 			'min': 0,
 			'step': 'any'
 		}
 	]
+};
+const Option = props => {
+	return ( <components.Option key={props.data.label} {...props} >
+		<span style={{
+			opacity: props.isSelected ? 0.5 : 1
+		}}>{capitalize( props.data.label )}</span>
+	</components.Option> );
+};
+const SingleValue = props => {
+	return (
+		<components.SingleValue {...props}>
+			{capitalize( props.data.label )}
+		</components.SingleValue>
+	);
+};
+const BODY_STYLE = {
+	maxHeight: 'calc(100vh - 200px)',
+	overflowY: 'auto',
+	position: 'relative',
+	padding: '12px 36px 12px 36px'
 };
 
 
@@ -290,6 +313,7 @@ const RandomTransformer = ( props ) => {
 	const [ name, setName ] = useState( null );
 	const [ distribution, setDistribution ] = useState( DISTRIBUTIONS[ 0 ] );
 	const [ params, setParams ] = useState( [ 1, 1, 1 ] );
+	const { t } = useTranslation( 'learn/distribution' );
 	const createVariable = useCallback( () => {
 		const keys = objectKeys( props.data );
 		const nobs = props.data[ keys[ 0 ] ].length;
@@ -319,32 +343,28 @@ const RandomTransformer = ( props ) => {
 			<Panel
 				onHide={props.onHide}
 				show={props.show}
-				header={props.t('random-transformer-header')}
+				header={t('data-explorer:generate-random-data')}
 				footer={<Button onClick={createVariable} >
-					{props.t('create-new-variable')}
+					{t('data-explorer:create-new-variable')}
 				</Button>}
 				role="button" tabIndex={0}
-				bodyStyle={{
-					maxHeight: 'calc(100vh - 200px)',
-					overflowY: 'auto',
-					position: 'relative',
-					padding: 36
-				}}
+				bodyStyle={BODY_STYLE}
 			>
 				<Row>
 					<SelectInput
 						value={distribution}
-						legend={props.t('select-distribution')}
+						legend={t('select-distribution')}
 						options={DISTRIBUTIONS}
 						onChange={setDistribution}
+						components={{ Option, SingleValue }}
 					/>
 				</Row>
 				<Row>
 					{DISTRIBUTION_PARAMS[ distribution ].map( ( x, idx ) => {
 						return ( <NumberInput
 							key={idx}
-							legend={x.name}
-							description={x.description}
+							legend={t( x.name )}
+							description={t( x.description )}
 							value={params[ idx ]}
 							onChange={( value ) => {
 								const newParams = params.slice();
@@ -359,15 +379,15 @@ const RandomTransformer = ( props ) => {
 				</Row>
 				<Row>
 					<FormGroup>
-						<FormLabel>{props.t('name-new-variable')}:</FormLabel>
+						<FormLabel>{t('data-explorer:name-new-variable')}:</FormLabel>
 						<FormControl
 							type="text"
-							placeholder={props.t('select-name')}
+							placeholder={t('data-explorer:select-name')}
 							onChange={handleGeneratedNameChange}
 							onKeyPress={handleKeyPress}
 						/>
 						<FormText>
-							{props.t('new-variable-appended')}
+							{t('data-explorer:new-variable-appended')}
 						</FormText>
 					</FormGroup>
 				</Row>
