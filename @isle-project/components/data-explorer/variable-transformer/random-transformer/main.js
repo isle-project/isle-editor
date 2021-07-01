@@ -374,6 +374,7 @@ const RandomTransformer = ( props ) => {
 							max={x.max}
 							min={x.min}
 							step={x.step}
+							tooltipPlacement="bottom"
 						/> );
 					})}
 				</Row>
