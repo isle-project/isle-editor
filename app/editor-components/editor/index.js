@@ -44,6 +44,7 @@ import createResourcesDirectoryIfNeeded from 'utils/create-resources-directory-i
 import SpellChecker from '@isle-project/utils/spell-checker';
 import today from '@isle-project/utils/today';
 import electronStore from 'store/electron.js';
+import loadRequires from 'utils/load-requires';
 import uploadBugImage from './upload_bug_image.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
@@ -51,7 +52,6 @@ import IS_WINDOWS from '@stdlib/assert/is-windows';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
 const EditorComponentStyler = Loadable( () => import( 'editor-components/editor-component-styler' ) );
-import loadRequires from '../preview/load_requires.js';
 import scrollIntoView from './scroll_into_view.js';
 import EditorFooter from './footer.js';
 import './editor.css';
