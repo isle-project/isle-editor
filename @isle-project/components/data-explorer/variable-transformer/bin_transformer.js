@@ -396,7 +396,7 @@ const BinningTransformer = ( props ) => {
 				</Button>
 				<p>
 					{props.t('drag-red-bars')}
-					(<NumberInput legend={props.t('digits-after-comma-snap')} min={0} max={9} inline defaultValue={snapDigits} onChange={setSnapDigits} />)
+					(<NumberInput legend={props.t('digits-after-decimal-snap')} min={0} max={9} inline defaultValue={snapDigits} onChange={setSnapDigits} />)
 				</p>
 				<div style={{ height: 250 }}>
 					<Plotly
