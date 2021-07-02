@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.10",
+	"version": "0.50.11",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,10 +11,10 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.10",
-		"@isle-project/locales": "0.50.10",
-		"@isle-project/session": "0.50.10",
-		"@isle-project/utils": "0.50.10"
+		"@isle-project/constants": "0.50.11",
+		"@isle-project/locales": "0.50.11",
+		"@isle-project/session": "0.50.11",
+		"@isle-project/utils": "0.50.11"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.0",
@@ -38,7 +38,7 @@
 		"focus-trap-react": "^8.5.1",
 		"history": "4.10.1",
 		"html-to-image": "^1.6.2",
-		"html-to-pdfmake": "^2.3.0",
+		"html-to-pdfmake": "^2.3.1",
 		"i18next": "^20.3.2",
 		"i18next-browser-languagedetector": "^6.1.1",
 		"ieee754": "^1.2.1",
@@ -46,7 +46,7 @@
 		"is-touch-device": "^1.0.1",
 		"js-yaml": "4.1.0",
 		"lodash.debounce": "^4.0.8",
-		"markdown-it": "^12.0.5",
+		"markdown-it": "^12.1.0",
 		"ml-kmeans": "^5.0.0",
 		"ml-matrix": "^6.8.0",
 		"ml-pca": "4.0.2",
