@@ -50,14 +50,18 @@ const config = {
 		...baseConfig.resolve,
 		alias: {
 			...baseConfig.resolve.alias,
-			'v8-compile-cache': false
+			'v8-compile-cache': false,
+			'utils/load-requires': false
 		},
 		fallback: {
 			'path': path.resolve( './node_modules/path-browserify' ),
 			'stream': path.resolve( './node_modules/stream-browserify' ),
 			'os': path.resolve('./node_modules/os-browserify/browser' ),
+			'crypto': false,
 			'domain': false,
-			'fs': false
+			'fs': false,
+			'http': false,
+			'https': false
 		}
 	},
 
