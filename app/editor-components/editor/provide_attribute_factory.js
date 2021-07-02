@@ -199,13 +199,14 @@ function factory( monaco, t ) {
 						};
 					}
 					if ( prop.type === 'string' ) {
-						const options = extractOptionsFromDescription( prop.description );
+						const description = t( 'ComponentDocs:'+prop.description );
+						const options = extractOptionsFromDescription( description );
 						if ( options ) {
 							return {
 								suggestions: options.map( x => {
 									return {
 										label: x,
-										documentation: prop.description,
+										documentation: description,
 										kind: monaco.languages.CompletionItemKind.Snippet,
 										insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
 										insertText: x,
