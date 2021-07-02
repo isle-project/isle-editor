@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `objekts` ar CSS atslēgas-vērtības pāriem, kas jāpiemēro vienādojuma konteineram.. Default: `{}`.
 * __tag__ | `string`: Pielāgotās rakstzīmes, kas parādītas vienādojumu attēlošanai labajā pusē. Pēc noklusējuma vienādojuma numurs stundas iekšienē.. Default: `none`.
 * __elems__ | `object`: `objekts` ar `atslēgām`, kas apzīmē LaTeX rakstzīmes, un to atbilstošajām vērtībām, kas ir konfigurācijas `objekti`, lai tās būtu interaktīvas. Iestatot opciju `tooltip`, uznirstot virs LaTeX rakstzīmēm, tiks parādīts uzraksts. Nosakot īpašību `mainīgais`, tiks parādīts ievades slīdnis, lai mainītu attiecīgo stāvokļa mainīgo; šajā gadījumā tiek atbalstītas papildu īpašības `legend`, `min`, `max` un `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: uznirstošā loga pozīcija norādītajai `elems` (`top`, `right`, `bottom` vai `left`).. Default: `'top'`.
+* __popoverPlacement__ | `string`: uznirstošā loga pozīcija norādītajai `elems` (`top`, `right`, `bottom` vai `left`).. Default: `'bottom'`.
 * __onPopover__ | `function`: atgriezeniskā izsaukuma `funkcija`, kad tiek ieslēgts vai izslēgts uznirstošais logs; kā vienīgo argumentu saņem displeja statusu kā boolean.. Default: `onPopover() {}`.
 * __onClick__ | `function`: atgriezeniskā zvana `funkcija`, kas tiek izsaukta ikreiz, kad lietotājs noklikšķina uz vienādojuma.. Default: `none`.
 

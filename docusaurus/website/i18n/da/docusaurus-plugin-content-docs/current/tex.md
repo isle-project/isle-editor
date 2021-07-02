@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `object` med CSS-nøgle-værdipar, der skal anvendes på ligningsbeholderen. Default: `{}`.
 * __tag__ | `string`: Brugerdefinerede tegn vises til visningsligninger i højre side. Standard er nummeret på ligningen i lektionen. Default: `none`.
 * __elems__ | `object`: `object` med `nøgler`, der angiver LaTeX-tegn og deres tilsvarende værdier som konfigurations `objekter` for at gøre dem interaktive. Indstilling af en `tooltip` indstilling vil vise en tooltip når man holder musen over LaTeX-tegnene. Indstilling af en `variable`-egenskab vil vise en indtastningsskyder for at ændre den respektive tilstandsvariabel; i dette tilfælde understøttes yderligere egenskaber `legend`, `min`, `max` og `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: popover-position for de angivne `elems` (enten `top`, `right`, `bottom` eller `left`). Default: `'top'`.
+* __popoverPlacement__ | `string`: popover-position for de angivne `elems` (enten `top`, `right`, `bottom` eller `left`). Default: `'bottom'`.
 * __onPopover__ | `function`: callback-funktion, når en popover-kontrol er slået til eller fra; modtager visningsstatus som boolsk værdi som eneste argument. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback-funktion, der påkaldes, når en bruger klikker på ligningen. Default: `none`.
 

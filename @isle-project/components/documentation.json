@@ -2485,7 +2485,7 @@
 			},
 			{
 				"name": "container",
-				"type": "(object|element)",
+				"type": "(object|element|string)",
 				"description": "KeyControls-prop-container",
 				"defaultValue": null
 			}
@@ -8059,7 +8059,7 @@
 				"name": "popoverPlacement",
 				"type": "string",
 				"description": "TeX-prop-popoverPlacement",
-				"defaultValue": "top"
+				"defaultValue": "bottom"
 			},
 			{
 				"name": "onPopover",

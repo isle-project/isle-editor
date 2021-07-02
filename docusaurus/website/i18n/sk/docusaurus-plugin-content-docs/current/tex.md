@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `objekt` s dvojicami kľúč-hodnota CSS, ktoré sa majú použiť na kontajner rovnice. Default: `{}`.
 * __tag__ | `string`: Vlastné znaky zobrazené pre zobrazenie rovníc na pravej strane. Predvolené nastavenie je číslo rovnice vo vnútri lekcie. Default: `none`.
 * __elems__ | `object`: `objekt`, pričom `kľúče` označujú znaky LaTeXu a ich zodpovedajúce hodnoty sú konfiguračné `objekty`, aby boli interaktívne. Nastavením voľby `tooltip` sa po prejdení nad znakmi LaTeXu zobrazí nápoveda. Nastavenie vlastnosti `variable` zobrazí vstupný posuvník na zmenu príslušnej stavovej premennej; v tomto prípade sú podporované ďalšie vlastnosti `legend`, `min`, `max` a `step`. Default: `{}`.
-* __popoverPlacement__ | `string`: pozícia popoveru pre zadané `elemy` (buď `top`, `right`, `bottom` alebo `left`). Default: `'top'`.
+* __popoverPlacement__ | `string`: pozícia popoveru pre zadané `elemy` (buď `top`, `right`, `bottom` alebo `left`). Default: `'bottom'`.
 * __onPopover__ | `function`: spätné volanie `funkcia` pri zapnutí alebo vypnutí ovládacieho prvku popover; ako jediný argument prijíma stav zobrazenia ako boolean. Default: `onPopover() {}`.
 * __onClick__ | `function`: spätné volanie `funkcia` vyvolané vždy, keď používateľ klikne na rovnicu. Default: `none`.
 

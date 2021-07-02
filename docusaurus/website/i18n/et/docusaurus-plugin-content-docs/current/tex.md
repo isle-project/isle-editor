@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `objekti` CSS võtmeväärtuspaaridega, mida rakendatakse võrrandi konteinerile. Default: `{}`.
 * __tag__ | `string`: Kohandatud tähemärgid, mis kuvatakse õigel poolel olevate võrrandite kuvamiseks. Vaikimisi on tunnis sisalduva võrrandi number.. Default: `none`.
 * __elems__ | `object`: `objekti`, kus `võtmed` tähistavad LaTeXi tähemärke ja nende vastavad väärtused on konfiguratsiooni `objektid`, et muuta need interaktiivseks. Valiku `tooltip` seadistamine näitab LaTeXi tähemärkide kohal hõljudes tööriistavihikut. Omaduse `variable` seadistamine kuvab sisendliuguri vastava olekumuutuja muutmiseks; sel juhul on toetatud täiendavad omadused `legend`, `min`, `max` ja `step`.. Default: `{}`.
-* __popoverPlacement__ | `string`: popoveri positsioon määratud "elementide" jaoks (kas `top`, `right`, `bottom` või `left`).. Default: `'top'`.
+* __popoverPlacement__ | `string`: popoveri positsioon määratud "elementide" jaoks (kas `top`, `right`, `bottom` või `left`).. Default: `'bottom'`.
 * __onPopover__ | `function`: tagasilöögifunktsioon `function`, kui kontrollpopover on sisse või välja lülitatud; saab ainsa argumendina booleanina kuvamise staatuse.. Default: `onPopover() {}`.
 * __onClick__ | `function`: tagasilöögifunktsioon, mis käivitub iga kord, kui kasutaja klikib võrrandile. Default: `none`.
 

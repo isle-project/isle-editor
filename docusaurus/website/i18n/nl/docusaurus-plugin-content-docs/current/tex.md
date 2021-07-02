@@ -14,7 +14,7 @@ sidebar_label: LaTeX Equations
 * __style__ | `object`: `Object` met CSS-sleutelwaardeparen die op de vergelijkingscontainer moeten worden toegepast. Default: `{}`.
 * __tag__ | `string`: Aangepaste tekens die worden weergegeven voor de weergave van vergelijkingen aan de rechterkant. Standaardinstelling van het nummer van de vergelijking in de les. Default: `none`.
 * __elems__ | `object`: `Object` met `toetsen` die de LaTeX karakters en hun corresponderende waarden aangeven als configuratie `objecten` om ze interactief te maken. Het instellen van een `tooltip` optie zal een tooltip tonen wanneer u met de muis over de LaTeX-tekens gaat. Het instellen van een `variabele` eigenschap zal een invoerschuifbalk tonen om de respectievelijke toestandsvariabele te wijzigen; in dit geval worden aanvullende eigenschappen `legend`, `min`, `max` en `stap` ondersteund. Default: `{}`.
-* __popoverPlacement__ | `string`: popoverpositie voor de opgegeven `elementen` (ofwel `top`, `right`, `bottom`, of `left`). Default: `'top'`.
+* __popoverPlacement__ | `string`: popoverpositie voor de opgegeven `elementen` (ofwel `top`, `right`, `bottom`, of `left`). Default: `'bottom'`.
 * __onPopover__ | `function`: callback `functie` wanneer een control popover aan of uit wordt geschakeld; ontvangt de display status als een boolean als enige argument. Default: `onPopover() {}`.
 * __onClick__ | `function`: callback `functie` aangeroepen wanneer een gebruiker op de vergelijking klikt. Default: `none`.
 
