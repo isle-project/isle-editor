@@ -21,7 +21,7 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 	return ( <Card.Header as={headerTag} >
 		<span className="unselectable" >{children}</span>
 		<div style={{ float: 'right' }} >
-		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )}>
+		{ minimizable ? <Tooltip tooltip={minimized ? t( 'maximize' ) : t( 'minimize' )} placement="left" >
 			<button
 				aria-label={minimized ? t( 'maximize' ) : t( 'minimize' )}
 				className={`panel-button ${minimized ? 'far fa-window-maximize' : 'fas fa-window-minimize'}`}
