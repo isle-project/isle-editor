@@ -62,7 +62,7 @@
 	"delete": "Изтриване на",
 	"description": "Описание",
 	"difference-h0": "Разлика при H0",
-	"digits-after-comma-snap": "цифри след запетаята, за да се придържате към",
+	"digits-after-decimal-snap": "цифри след десетичната запетая, за да се",
 	"direction": "Посока:",
 	"display": "Дисплей:",
 	"display-density": "Показване на плътност вместо бройки",

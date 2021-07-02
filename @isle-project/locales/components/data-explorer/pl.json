@@ -62,7 +62,7 @@
 	"delete": "Skreślić",
 	"description": "Opis",
 	"difference-h0": "Różnica pod H0",
-	"digits-after-comma-snap": "cyfry po przecinku, aby pstryknąć do",
+	"digits-after-decimal-snap": "cyfry po przecinku dziesiętnym, aby przejść do",
 	"direction": "Kierunek:",
 	"display": "Wyświetlacz:",
 	"display-density": "Gęstość wyświetlania zamiast liczenia",

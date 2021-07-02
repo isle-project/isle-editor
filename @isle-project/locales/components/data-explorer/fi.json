@@ -62,7 +62,7 @@
 	"delete": "Poista",
 	"description": "Kuvaus",
 	"difference-h0": "Ero H0:ssa",
-	"digits-after-comma-snap": "numerot pilkun jälkeen napsahtaa",
+	"digits-after-decimal-snap": "desimaalipisteen jälkeiset numerot, jotka napsahtavat kohtaan",
 	"direction": "Suunta:",
 	"display": "Näyttö:",
 	"display-density": "Näytä tiheys lukumäärien sijasta",

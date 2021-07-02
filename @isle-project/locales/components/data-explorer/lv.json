@@ -62,7 +62,7 @@
 	"delete": "Dzēst",
 	"description": "Apraksts",
 	"difference-h0": "Atšķirība saskaņā ar H0",
-	"digits-after-comma-snap": "ciparus pēc komata, lai piesaistītu",
+	"digits-after-decimal-snap": "ciparus pēc decimālpunkta, lai pieslēgtu pie",
 	"direction": "Virziens:",
 	"display": "Displejs:",
 	"display-density": "Rādīt blīvumu, nevis skaitļus",

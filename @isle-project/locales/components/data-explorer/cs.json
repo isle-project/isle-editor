@@ -62,7 +62,7 @@
 	"delete": "Odstranit",
 	"description": "Popis",
 	"difference-h0": "Rozdíl podle H0",
-	"digits-after-comma-snap": "číslice za čárkou pro přichycení na",
+	"digits-after-decimal-snap": "číslic za desetinnou čárkou, aby se přichytily na",
 	"direction": "Směr:",
 	"display": "Zobrazení:",
 	"display-density": "Zobrazení hustoty místo počtů",

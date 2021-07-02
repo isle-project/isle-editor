@@ -62,7 +62,7 @@
 	"delete": "Slet",
 	"description": "Beskrivelse",
 	"difference-h0": "Forskel under H0",
-	"digits-after-comma-snap": "cifre efter kommaet for at slå til",
+	"digits-after-decimal-snap": "cifre efter decimalkommaet til at gå til",
 	"direction": "Retning:",
 	"display": "Visning:",
 	"display-density": "Vis tætheden i stedet for tællinger",

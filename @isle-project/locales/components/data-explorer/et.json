@@ -62,7 +62,7 @@
 	"delete": "Kustuta",
 	"description": "Kirjeldus",
 	"difference-h0": "Erinevus H0 puhul",
-	"digits-after-comma-snap": "numbrid pärast koma, et snap to",
+	"digits-after-decimal-snap": "numbrid pärast kümnendmärki, et napsata juurde",
 	"direction": "Suund:",
 	"display": "Näita:",
 	"display-density": "Näita tihedust loenduste asemel",

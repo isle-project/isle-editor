@@ -62,7 +62,7 @@
 	"delete": "Ištrinti",
 	"description": "Aprašymas",
 	"difference-h0": "Skirtumas pagal H0",
-	"digits-after-comma-snap": "skaitmenys po kablelio, kad būtų galima prisijungti prie",
+	"digits-after-decimal-snap": "skaitmenis po kablelio, kad būtų galima priartėti prie",
 	"direction": "Kryptis:",
 	"display": "Ekranas:",
 	"display-density": "Rodyti tankį, o ne skaičių",

@@ -62,7 +62,7 @@
 	"delete": "Verwijder",
 	"description": "Beschrijving",
 	"difference-h0": "Verschil onder H0",
-	"digits-after-comma-snap": "cijfers na de komma om te klikken naar",
+	"digits-after-decimal-snap": "cijfers achter de komma om te springen naar",
 	"direction": "Richting:",
 	"display": "Weergave:",
 	"display-density": "Weergavedichtheid in plaats van tellingen",

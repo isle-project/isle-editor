@@ -62,7 +62,7 @@
 	"delete": "Cancellare",
 	"description": "Descrizione",
 	"difference-h0": "Differenza sotto H0",
-	"digits-after-comma-snap": "cifre dopo la virgola per scattare a",
+	"digits-after-decimal-snap": "cifre dopo il punto decimale per scattare a",
 	"direction": "Direzione:",
 	"display": "Display:",
 	"display-density": "Densità del display al posto dei conteggi",

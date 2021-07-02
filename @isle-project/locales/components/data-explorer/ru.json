@@ -62,7 +62,7 @@
 	"delete": "Удалить",
 	"description": "Описание",
 	"difference-h0": "Разница при H0",
-	"digits-after-comma-snap": "цифры после запятой для оснастки",
+	"digits-after-decimal-snap": "цифры после десятичной точки для перехода к",
 	"direction": "Направление:",
 	"display": "Дисплей:",
 	"display-density": "Плотность отображения вместо подсчетов",

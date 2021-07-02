@@ -62,6 +62,7 @@
 	"shape": "Form",
 	"standard-deviation": "Standardavvikelse",
 	"students-t-distribution": "Studentens T-fördelning",
+	"subpopulation-size": "Delpopulationens storlek",
 	"success-probability": "Sannolikhet för framgång",
 	"success-probability-of": "och en sannolikhet för framgång på",
 	"successes-until-stop": "Framgångar tills stopp",

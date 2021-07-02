@@ -62,7 +62,7 @@
 	"delete": "削除",
 	"description": "説明",
 	"difference-h0": "H0以下の差",
-	"digits-after-comma-snap": "コンマの後の数字がスナップするように",
+	"digits-after-decimal-snap": "小数点以下の桁数に合わせて",
 	"direction": "方向。",
 	"display": "表示します。",
 	"display-density": "カウントの代わりに密度を表示",

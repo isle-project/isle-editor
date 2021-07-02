@@ -62,7 +62,7 @@
 	"delete": "Izbriši",
 	"description": "Opis",
 	"difference-h0": "Razlika pod H0",
-	"digits-after-comma-snap": "številke za vejico, da se približa",
+	"digits-after-decimal-snap": "številk za decimalno vejico, da se zaskoči na",
 	"direction": "Smer:",
 	"display": "Zaslon:",
 	"display-density": "Prikaz gostote namesto števila",

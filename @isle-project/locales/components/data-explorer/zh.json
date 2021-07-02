@@ -62,7 +62,7 @@
 	"delete": "删除",
 	"description": "说明",
 	"difference-h0": "H0下的差异",
-	"digits-after-comma-snap": "逗号后的数字",
+	"digits-after-decimal-snap": "小数点后的数字，以捕捉到",
 	"direction": "方向：",
 	"display": "显示。",
 	"display-density": "显示密度而不是计数",

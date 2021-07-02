@@ -62,7 +62,7 @@
 	"delete": "Törölje a  címet.",
 	"description": "Leírás",
 	"difference-h0": "H0 szerinti különbség",
-	"digits-after-comma-snap": "számjegyek a vessző után, hogy bepattanjon",
+	"digits-after-decimal-snap": "számjegyek a tizedesvessző után, hogy bepattanjon a",
 	"direction": "Irány:",
 	"display": "Megjelenítés:",
 	"display-density": "Számok helyett sűrűség megjelenítése",

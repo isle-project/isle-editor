@@ -62,7 +62,7 @@
 	"delete": "Ștergeți",
 	"description": "Descriere",
 	"difference-h0": "Diferența sub H0",
-	"digits-after-comma-snap": "cifrele după virgulă pentru a trece la",
+	"digits-after-decimal-snap": "cifrele de după virgulă pentru a trece la",
 	"direction": "Direcția:",
 	"display": "Afișaj:",
 	"display-density": "Afișați densitatea în loc de număr",

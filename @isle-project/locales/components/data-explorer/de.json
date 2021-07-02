@@ -62,7 +62,7 @@
 	"delete": "Löschen",
 	"description": "Beschreibung",
 	"difference-h0": "Differenz unter H0",
-	"digits-after-comma-snap": "Ziffern nach dem Komma zum Einrasten",
+	"digits-after-decimal-snap": "Ziffern nach dem Dezimalpunkt zum Einrasten",
 	"direction": "Richtung:",
 	"display": "Anzeige:",
 	"display-density": "Dichte anstelle von Anzahl darstellen",

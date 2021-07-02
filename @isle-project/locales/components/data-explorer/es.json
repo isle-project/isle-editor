@@ -62,7 +62,7 @@
 	"delete": "Eliminar",
 	"description": "Descripción",
 	"difference-h0": "Diferencia bajo H0",
-	"digits-after-comma-snap": "dígitos después de la coma para encajar",
+	"digits-after-decimal-snap": "dígitos después del punto decimal para ajustarse a",
 	"direction": "Dirección:",
 	"display": "Mostrar:",
 	"display-density": "Mostrar la densidad en lugar de los recuentos",

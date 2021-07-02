@@ -62,7 +62,7 @@
 	"delete": "Delete",
 	"description": "Description",
 	"difference-h0": "Difference under H0",
-	"digits-after-comma-snap": "digits after comma to snap to",
+	"digits-after-decimal-snap": "digits after the decimal point to snap to",
 	"direction": "Direction:",
 	"display": "Display:",
 	"display-density": "Display density instead of counts",

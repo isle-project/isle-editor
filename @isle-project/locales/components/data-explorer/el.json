@@ -62,7 +62,7 @@
 	"delete": "Διαγραφή",
 	"description": "Περιγραφή",
 	"difference-h0": "Διαφορά υπό H0",
-	"digits-after-comma-snap": "ψηφία μετά το κόμμα για να μετακινηθείτε σε",
+	"digits-after-decimal-snap": "τα ψηφία μετά το δεκαδικό σημείο για να μετατοπιστεί σε",
 	"direction": "Κατεύθυνση:",
 	"display": "Οθόνη:",
 	"display-density": "Εμφάνιση πυκνότητας αντί για μετρήσεις",

@@ -62,7 +62,7 @@
 	"delete": "Ta bort",
 	"description": "Beskrivning",
 	"difference-h0": "Skillnad enligt H0",
-	"digits-after-comma-snap": "siffror efter kommatecken för att koppla till",
+	"digits-after-decimal-snap": "siffror efter decimaltecknet för att övergå till",
 	"direction": "Riktning:",
 	"display": "Visa:",
 	"display-density": "Visa densitet i stället för antal",

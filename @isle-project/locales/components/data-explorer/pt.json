@@ -62,7 +62,7 @@
 	"delete": "Excluir",
 	"description": "Descrição",
 	"difference-h0": "Diferença sob H0",
-	"digits-after-comma-snap": "dígitos após vírgula para",
+	"digits-after-decimal-snap": "dígitos após a vírgula decimal para",
 	"direction": "Direção:",
 	"display": "Mostrar:",
 	"display-density": "Densidade de exibição em vez de contagens",
