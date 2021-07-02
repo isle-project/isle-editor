@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.76.1](https://github.com/isle-project/isle-editor/releases/tag/v0.76.1) (2021-07-02)
+
+This patch release further improves accessibility of lessons, including by usage of the MathJax library for the rendering of LaTeX equations. It also adds further hotkeys for usage of the text editor and other components.
+
+**Implemented enhancements:**
+
+- \[bug\]: "minimize" tooltip is cut off by edge of browser [\#2171](https://github.com/isle-project/isle-editor/issues/2171)
+- \[typo\]: Toolbox -\> Tests:  "chi square"  [\#2137](https://github.com/isle-project/isle-editor/issues/2137)
+
 ## [v0.76.0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.0) (2021-06-22)
 
 This release fixes various translations, improves accessibility of lessons, and introduces various new hotkeys for statusbar and toolbar elements. For the data explorer, the __history__ tab is now visible by default and works for all generated output.
@@ -38,9 +47,6 @@ This patch release comes with the following improvements:
 -   Fixes various property types and property descriptions
 
 ## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
-
-This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
-It also comes with a patch that fixes restoring original data from restricted data sets when using a shared custom data explorer.
 
 ## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-09)
 
