@@ -24,7 +24,7 @@ function main( context, options ) {
 	return {
 		name: 'isle-components',
 		configureWebpack( config, isServer ) {
-			return {
+			const customConfig = {
 				resolve: {
 					modules: modulePaths,
 					alias: {
@@ -122,6 +122,10 @@ function main( context, options ) {
 					]
 				}
 			};
+			if ( isServer ) {
+				customConfig.resolve.alias[ './wrapped_components.js' ] = './empty_components.js';
+			}
+			return customConfig;
 		}
 	};
 }
