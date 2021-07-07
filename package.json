@@ -127,7 +127,7 @@
     "@stdlib/constants": "^0.0.9",
     "@stdlib/datasets": "^0.0.10",
     "@stdlib/fs": "^0.0.9",
-    "@stdlib/math": "^0.0.8",
+    "@stdlib/math": "^0.0.9",
     "@stdlib/namespace": "^0.0.9",
     "@stdlib/ndarray": "^0.0.10",
     "@stdlib/nlp": "^0.0.8",
