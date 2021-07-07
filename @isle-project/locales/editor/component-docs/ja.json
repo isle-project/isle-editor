@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "サイズを `sm` とすることで、セルのパディングを半分にしてテーブルをコンパクトにします。",
 	"Table-prop-striped": "<tbody>内のテーブル行にゼブラストライプを追加します。",
 	"Table-prop-variant": "表の色を反転 - バリアントをダークに設定することで、暗い背景に明るいテキストで表の色を反転させます。",
-	"TeX-description": "TeX`はLaTeX方程式を表示するために使用できるISLE要素です。このコンポーネントは [KaTeX](https://github.com/Khan/KaTeX) を使用して、高速なレンダリングを実現しています。",
+	"TeX-description": "TeX`はLaTeX方程式を表示するために使用できるISLE要素です。",
 	"TeX-prop-displayMode": "式をインラインで表示するか表示モードで表示するかを示す `boolean`。",
 	"TeX-prop-elems": "オブジェクト `keys` は LaTeX 文字を表し、その値は設定用の `オブジェクト` であり、対話的なものにするためのものです。オプション `tooltip` を設定すると、LaTeX 文字の上にカーソルを置いたときにツールチップを表示します。この場合、追加のプロパティ `legend`, `min`, `max`, `step` がサポートされています。",
 	"TeX-prop-numbered": "表示モード方程式の方程式番号を表示するかどうかを制御します。",

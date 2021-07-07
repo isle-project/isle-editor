@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` est un élément ISLE qui peut être utilisé pour afficher des équations LaTeX. Sous le capot, le composant utilise [KaTeX] (https://github.com/Khan/KaTeX) pour un rendu ultra rapide.
+`TeX` est un élément ISLE qui peut être utilisé pour afficher des équations LaTeX.
 
 ## Options
 

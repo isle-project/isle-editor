@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-A `TeX` egy ISLE elem, amely LaTeX egyenletek megjelenítésére használható. A motorháztető alatt a komponens a [KaTeX](https://github.com/Khan/KaTeX) programot használja a villámgyors megjelenítéshez.
+A `TeX` egy ISLE elem, amely LaTeX egyenletek megjelenítésére használható.
 
 ## Opciók
 

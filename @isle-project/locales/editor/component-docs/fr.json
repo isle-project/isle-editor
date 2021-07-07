@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "rendre les tableaux plus compacts en réduisant de moitié le rembourrage des cellules en fixant la taille comme \"m\"",
 	"Table-prop-striped": "ajoute des rayures zébrées à n'importe quelle ligne du tableau dans le <corps>",
 	"Table-prop-variant": "inverser les couleurs du tableau - avec un texte clair sur un fond sombre en définissant la variante comme étant foncée",
-	"TeX-description": "`TeX` est un élément ISLE qui peut être utilisé pour afficher des équations LaTeX. Sous le capot, le composant utilise [KaTeX] (https://github.com/Khan/KaTeX) pour un rendu ultra rapide.",
+	"TeX-description": "`TeX` est un élément ISLE qui peut être utilisé pour afficher des équations LaTeX.",
 	"TeX-prop-displayMode": "booléen\" indiquant s'il faut afficher l'équation en ligne ou en mode d'affichage",
 	"TeX-prop-elems": "objet\" avec des \"clés\" désignant des caractères LaTeX et leurs valeurs correspondantes étant des \"objets\" de configuration pour les rendre interactifs. La définition d'une option \"tooltip\" affichera une info-bulle lors du survol des caractères LaTeX. La définition d'une propriété `variable` affichera un curseur d'entrée pour changer la variable d'état respective ; dans ce cas, les propriétés supplémentaires `legend`, `min`, `max`, et `step` sont supportées",
 	"TeX-prop-numbered": "contrôle l'affichage ou non d'un numéro d'équation pour les équations du mode d'affichage",

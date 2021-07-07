@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "muuta tabelid kompaktsemaks, vähendades lahtrite polsterduse poole võrra, määrates suuruse `sm`.",
 	"Table-prop-striped": "lisab sebrakriipsu igale tabelireale, mis asub tabelis <tbody>",
 	"Table-prop-variant": "inverteerida tabeli värvid - heleda tekstiga tumedal taustal, määrates variandi tumedaks",
-	"TeX-description": "`TeX` on ISLE element, mida saab kasutada LaTeXi võrrandite kuvamiseks. Kapuutsi all kasutab komponent [KaTeX](https://github.com/Khan/KaTeX), mis tagab ülikiire renderdamise.",
+	"TeX-description": "`TeX` on ISLE element, mida saab kasutada LaTeXi võrrandite kuvamiseks.",
 	"TeX-prop-displayMode": "`boolean`, mis näitab, kas võrrand kuvatakse rida- või kuvamisrežiimis",
 	"TeX-prop-elems": "`objekti`, kus `võtmed` tähistavad LaTeXi tähemärke ja nende vastavad väärtused on konfiguratsiooni `objektid`, et muuta need interaktiivseks. Valiku `tooltip` seadistamine näitab LaTeXi tähemärkide kohal hõljudes tööriistavihikut. Omaduse `variable` seadistamine kuvab sisendliuguri vastava olekumuutuja muutmiseks; sel juhul on toetatud täiendavad omadused `legend`, `min`, `max` ja `step`.",
 	"TeX-prop-numbered": "kontrollib, kas kuvamisrežiimi võrrandite puhul kuvatakse võrrandi number",

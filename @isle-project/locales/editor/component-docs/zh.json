@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "通过将单元格大小设置为`sm`，将单元格间距减半，使表格更加紧凑。",
 	"Table-prop-striped": "为<tbody>中的任何表行添加斑马线。",
 	"Table-prop-variant": "反转表格的颜色--通过将变体设置为深色，在深色背景上显示浅色文字。",
-	"TeX-description": "`TeX`是一个ISLE元素，可用于显示LaTeX方程。在内部，该组件使用[KaTeX](https://github.com/Khan/KaTeX)进行快速渲染。",
+	"TeX-description": "`TeX`是一个ISLE元素，可用于显示LaTeX方程。在内部",
 	"TeX-prop-displayMode": "`boolean`表示是以内联方式还是显示方式显示方程。",
 	"TeX-prop-elems": "`对象'，`键'表示LaTeX字符，其相应的值是配置`对象'，使其具有互动性。设置`tooltip`选项将在悬停在LaTeX字符上时显示一个工具提示。设置 \"变量 \"属性将显示一个输入滑块来改变相应的状态变量；在这种情况下，支持额外的属性 \"legend\"、\"min\"、\"max \"和 \"step\"。",
 	"TeX-prop-numbered": "控制是否显示显示模式方程的方程号。",

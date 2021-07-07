@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "gør tabellerne mere kompakte ved at halvere cellens fyldning ved at indstille størrelsen som `sm`",
 	"Table-prop-striped": "tilføjer zebra-striber til enhver række i tabellen inden for <tbody>",
 	"Table-prop-variant": "vende farverne i tabellen om - med lys tekst på mørk baggrund ved at indstille variant som mørk",
-	"TeX-description": "`TeX` er et ISLE-element, der kan bruges til at vise LaTeX-ligninger. Under motorhjelmen bruger komponenten [KaTeX](https://github.com/Khan/KaTeX) til lynhurtig gengivelse.",
+	"TeX-description": "`TeX` er et ISLE-element, der kan bruges til at vise LaTeX-ligninger.",
 	"TeX-prop-displayMode": "`boolean`, der angiver, om ligningen skal vises inline eller i displaytilstand",
 	"TeX-prop-elems": "`object` med `nøgler`, der angiver LaTeX-tegn og deres tilsvarende værdier som konfigurations `objekter` for at gøre dem interaktive. Indstilling af en `tooltip` indstilling vil vise en tooltip når man holder musen over LaTeX-tegnene. Indstilling af en `variable`-egenskab vil vise en indtastningsskyder for at ændre den respektive tilstandsvariabel; i dette tilfælde understøttes yderligere egenskaber `legend`, `min`, `max` og `step`.",
 	"TeX-prop-numbered": "styrer, om der skal vises et ligningsnummer for ligninger i visningstilstand",

@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "maak de tafels compacter door de celvulling doormidden te snijden door de grootte als `sm` in te stellen",
 	"Table-prop-striped": "voegt zebra-striping toe aan elke tabelrij binnen de <tbody>",
 	"Table-prop-variant": "de kleuren van de tabel omkeren - met lichte tekst op donkere achtergronden door variant als donker in te stellen",
-	"TeX-description": "`TeX` is een ISLE-element dat kan worden gebruikt om LaTeX-vergelijkingen weer te geven. Onder de motorkap gebruikt het element [KaTeX](https://github.com/Khan/KaTeX) voor een razendsnelle weergave.",
+	"TeX-description": "`TeX` is een ISLE-element dat kan worden gebruikt om LaTeX-vergelijkingen weer te geven.",
 	"TeX-prop-displayMode": "Boolean' geeft aan of de vergelijking inline of in de weergavemodus moet worden weergegeven",
 	"TeX-prop-elems": "`Object` met `toetsen` die de LaTeX karakters en hun corresponderende waarden aangeven als configuratie `objecten` om ze interactief te maken. Het instellen van een `tooltip` optie zal een tooltip tonen wanneer u met de muis over de LaTeX-tekens gaat. Het instellen van een `variabele` eigenschap zal een invoerschuifbalk tonen om de respectievelijke toestandsvariabele te wijzigen; in dit geval worden aanvullende eigenschappen `legend`, `min`, `max` en `stap` ondersteund",
 	"TeX-prop-numbered": "bepaalt of er een vergelijkingsnummer moet worden weergegeven voor de weergave van vergelijkingen voor de weergavemodus",

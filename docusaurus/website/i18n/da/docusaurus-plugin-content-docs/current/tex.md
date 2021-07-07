@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` er et ISLE-element, der kan bruges til at vise LaTeX-ligninger. Under motorhjelmen bruger komponenten [KaTeX](https://github.com/Khan/KaTeX) til lynhurtig gengivelse.
+`TeX` er et ISLE-element, der kan bruges til at vise LaTeX-ligninger.
 
 ## Indstillinger
 

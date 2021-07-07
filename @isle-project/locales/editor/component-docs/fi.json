@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "tehdä taulukoista tiiviimpiä puolittamalla solujen pehmusteet asettamalla kooksi `sm`.",
 	"Table-prop-striped": "lisää seepra-raidoituksen mihin tahansa taulukkoriviin, jotka ovat sisällä <tbody>",
 	"Table-prop-variant": "käännä taulukon värit - vaalea teksti tummalla taustalla asettamalla variantti tummaksi.",
-	"TeX-description": "`TeX` on ISLE-elementti, jota voidaan käyttää LaTeX-yhtälöiden näyttämiseen. Konepellin alla komponentti käyttää [KaTeX](https://github.com/Khan/KaTeX) -ohjelmaa erittäin nopeaan renderöintiin.",
+	"TeX-description": "`TeX` on ISLE-elementti, jota voidaan käyttää LaTeX-yhtälöiden näyttämiseen.",
 	"TeX-prop-displayMode": "`boolean`, joka osoittaa, näytetäänkö yhtälö rivissä vai näyttötilassa.",
 	"TeX-prop-elems": "`objekti`, jossa `avaimet` tarkoittavat LaTeX-merkkejä ja niiden vastaavat arvot ovat konfigurointi `objekteja`, jotta ne olisivat interaktiivisia. Työkaluvihjeen asettaminen näyttää työkaluvihjeen, kun LaTeX-merkkien päälle viedään hiiren kursori. Muuttujaominaisuuden `variable` asettaminen näyttää liukusäätimen, jolla voidaan muuttaa vastaavaa tilamuuttujaa; tässä tapauksessa tuetaan lisäominaisuuksia `legend`, `min`, `max` ja `step`.",
 	"TeX-prop-numbered": "valvoo, näytetäänkö yhtälön numero näyttötilan yhtälöille.",

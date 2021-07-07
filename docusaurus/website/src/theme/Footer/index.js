@@ -19,7 +19,7 @@ import styles from './styles.module.css';
 
 // FUNCTIONS //
 
-function FooterLink({to, href, label, ...props}) {
+function FooterLink({ to, href, label, ...props }) {
 	const toUrl = useBaseUrl(to);
 	return (
 		<Link

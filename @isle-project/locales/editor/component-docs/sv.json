@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "göra tabellerna mer kompakta genom att halvera cellutfyllnaden genom att ställa in storlek som `sm`.",
 	"Table-prop-striped": "lägger till zebraränder på alla tabellrader inom <tbody>",
 	"Table-prop-variant": "vända färgerna i tabellen - med ljus text på mörk bakgrund genom att ställa in variant som mörk",
-	"TeX-description": "`TeX` är ett ISLE-element som kan användas för att visa LaTeX-ekvationer. Under huven använder komponenten [KaTeX](https://github.com/Khan/KaTeX) för en mycket snabb rendering.",
+	"TeX-description": "`TeX` är ett ISLE-element som kan användas för att visa LaTeX-ekvationer.",
 	"TeX-prop-displayMode": "`boolean` som anger om ekvationen ska visas inline eller i visningsläge.",
 	"TeX-prop-elems": "`object` med `keys` som betecknar LaTeX-tecken och motsvarande värden som är konfigurationsobjekt för att göra dem interaktiva. Om du ställer in ett `tooltip`-alternativ visas en tooltip när du håller muspekaren över LaTeX-tecknen. Genom att ställa in en egenskap `variable` visas ett inmatningsreglage för att ändra respektive tillståndsvariabel; i detta fall stöds ytterligare egenskaper `legend`, `min`, `max` och `step`.",
 	"TeX-prop-numbered": "Kontrollerar om ett ekvationsnummer ska visas för ekvationer i visningsläge.",

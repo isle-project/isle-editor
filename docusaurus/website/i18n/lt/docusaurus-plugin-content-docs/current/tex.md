@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` yra ISLE elementas, kurį galima naudoti LaTeX lygtims rodyti. Komponentas naudoja [KaTeX](https://github.com/Khan/KaTeX), kad vaizdas būtų atvaizduojamas itin greitai.
+`TeX` yra ISLE elementas, kurį galima naudoti LaTeX lygtims rodyti.
 
 ## Parinktys
 

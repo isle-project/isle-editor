@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "padarīt tabulas kompaktākas, samazinot šūnu polsterējumu uz pusi, iestatot izmēru `sm`.",
 	"Table-prop-striped": "jebkurā tabulas rindā, kas atrodas vienībā <tbody>",
 	"Table-prop-variant": "apvērst tabulas krāsas - ar gaišu tekstu uz tumša fona, iestatot variantu kā tumšu.",
-	"TeX-description": "`TeX` ir ISLE elements, ko var izmantot LaTeX vienādojumu attēlošanai. Komponents izmanto [KaTeX](https://github.com/Khan/KaTeX), lai nodrošinātu ārkārtīgi ātru atveidošanu.",
+	"TeX-description": "`TeX` ir ISLE elements, ko var izmantot LaTeX vienādojumu attēlošanai.",
 	"TeX-prop-displayMode": "`boolean`, kas norāda, vai vienādojumu attēlot rindas vai displeja režīmā.",
 	"TeX-prop-elems": "`objekts` ar `atslēgām`, kas apzīmē LaTeX rakstzīmes, un to atbilstošajām vērtībām, kas ir konfigurācijas `objekti`, lai tās būtu interaktīvas. Iestatot opciju `tooltip`, uznirstot virs LaTeX rakstzīmēm, tiks parādīts uzraksts. Nosakot īpašību `mainīgais`, tiks parādīts ievades slīdnis, lai mainītu attiecīgo stāvokļa mainīgo; šajā gadījumā tiek atbalstītas papildu īpašības `legend`, `min`, `max` un `step`.",
 	"TeX-prop-numbered": "kontrolē, vai parādīt vienādojuma numuru vienādojumiem displeja režīmā.",

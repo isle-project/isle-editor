@@ -49,7 +49,7 @@ function processEquation( raw, elems, id ) {
 // MAIN //
 
 /**
-* `TeX` is an ISLE element that can be used to display LaTeX equations. Under the hood, the component uses [KaTeX](https://github.com/Khan/KaTeX) for blazingly fast rendering.
+* `TeX` is an ISLE element that can be used to display LaTeX equations.
 *
 * @property {(string|number)} raw - The literal LaTeX `string` to render. Also accepts `numbers`
 * @property {boolean} displayMode - `boolean` indicating whether to display the equation inline or in display mode

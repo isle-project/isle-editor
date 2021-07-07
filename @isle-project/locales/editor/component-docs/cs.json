@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "zkompaktnění tabulek zkrácením výplně buněk na polovinu nastavením velikosti `sm`.",
 	"Table-prop-striped": "přidá pruhování zebra do libovolného řádku tabulky v rámci <tbody>",
 	"Table-prop-variant": "invertovat barvy tabulky - se světlým textem na tmavém pozadí nastavením varianty jako tmavé.",
-	"TeX-description": "`TeX` je prvek ISLE, který lze použít k zobrazení rovnic LaTeXu. Pod kapotou používá komponenta [KaTeX](https://github.com/Khan/KaTeX) pro bleskurychlé vykreslování.",
+	"TeX-description": "`TeX` je prvek ISLE, který lze použít k zobrazení rovnic LaTeXu.",
 	"TeX-prop-displayMode": "`boolean` určující, zda se má rovnice zobrazit inline nebo v režimu zobrazení",
 	"TeX-prop-elems": "`objekt`, přičemž `klíče` označují znaky LaTeXu a jejich odpovídající hodnoty jsou konfigurační `objekty`, které jsou interaktivní. Nastavením volby `tooltip` se při najetí na znaky LaTeXu zobrazí nápověda. Nastavení vlastnosti `proměnná` zobrazí vstupní posuvník pro změnu příslušné stavové proměnné; v tomto případě jsou podporovány další vlastnosti `legenda`, `min`, `max` a `krok`.",
 	"TeX-prop-numbered": "řídí, zda se má u rovnic v režimu zobrazení zobrazit číslo rovnice.",

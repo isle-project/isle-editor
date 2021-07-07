@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` to element ISLE, który może być użyty do wyświetlania równań LaTeX. Pod maską, element ten używa [KaTeX](https://github.com/Khan/KaTeX) do błyskawicznego renderowania.
+`TeX` to element ISLE, który może być użyty do wyświetlania równań LaTeX.
 
 ## Opcje
 

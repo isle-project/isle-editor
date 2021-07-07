@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "a táblázatok kompaktabbá tétele a cellák kitöltésének felére csökkentésével a méret \"sm\" beállításával",
 	"Table-prop-striped": "zebra-csíkozást ad a táblázat bármely sorához a <tbody>",
 	"Table-prop-variant": "a táblázat színeinek megfordítása - világos szöveggel sötét háttéren a variáns sötétként való beállításával",
-	"TeX-description": "A `TeX` egy ISLE elem, amely LaTeX egyenletek megjelenítésére használható. A motorháztető alatt a komponens a [KaTeX](https://github.com/Khan/KaTeX) programot használja a villámgyors megjelenítéshez.",
+	"TeX-description": "A `TeX` egy ISLE elem, amely LaTeX egyenletek megjelenítésére használható.",
 	"TeX-prop-displayMode": "`boolean`, amely jelzi, hogy az egyenletet sorban vagy kijelző módban jelenítse-e meg",
 	"TeX-prop-elems": "`objektum`, ahol a `kulcsok` LaTeX karaktereket jelölnek, a hozzájuk tartozó értékek pedig konfigurációs `objektumok`, hogy interaktívvá tegyék őket. A `tooltip` opció beállításával a LaTeX karakterek fölött lebegve megjelenik egy tooltip. A `variable` tulajdonság beállítása egy beviteli csúszkát jelenít meg a megfelelő állapotváltozó megváltoztatására; ebben az esetben további tulajdonságok, a `legend`, `min`, `max` és `step` támogatottak.",
 	"TeX-prop-numbered": "szabályozza, hogy megjelenítse-e az egyenletszámot a kijelző módú egyenleteknél",

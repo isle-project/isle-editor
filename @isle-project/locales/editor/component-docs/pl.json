@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "sprawiają, że stoły są bardziej kompaktowe, tnąc wyściełanie komórek na pół przez ustawienie wielkości jako `sm`",
 	"Table-prop-striped": "dodaje pasek zebry do dowolnego rzędu stołu w obrębie <tbody>",
 	"Table-prop-variant": "odwrócić kolory tabeli - z jasnym tekstem na ciemnym tle poprzez ustawienie wariantu jako ciemny",
-	"TeX-description": "`TeX` to element ISLE, który może być użyty do wyświetlania równań LaTeX. Pod maską, element ten używa [KaTeX](https://github.com/Khan/KaTeX) do błyskawicznego renderowania.",
+	"TeX-description": "`TeX` to element ISLE, który może być użyty do wyświetlania równań LaTeX.",
 	"TeX-prop-displayMode": "`boolean` wskazujący, czy równanie ma być wyświetlane w linii, czy w trybie wyświetlania",
 	"TeX-prop-elems": "`obiekt` z `kluczami` oznaczającymi znaki LaTeXa i odpowiadającymi im wartościami będącymi konfiguracją `obiektów` aby uczynić je interaktywnymi. Ustawienie opcji `podpowiedzi narzędzia` spowoduje wyświetlenie podpowiedzi po najechaniu kursorem na znaki LaTeXa. Ustawienie właściwości `zmienna` spowoduje wyświetlenie suwaka wejściowego do zmiany odpowiedniej zmiennej stanu; w tym przypadku obsługiwane są dodatkowe właściwości `legend`, `min`, `max` i `step`",
 	"TeX-prop-numbered": "kontroluje, czy ma być wyświetlany numer równania dla równań trybu wyświetlania",

@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "tabele postanejo bolj kompaktne, tako da z nastavitvijo velikosti `sm` prepolovite polnilo celic.",
 	"Table-prop-striped": "doda črto zebra v vsako vrstico tabele znotraj <tbody>",
 	"Table-prop-variant": "obrne barve tabele - s svetlim besedilom na temnem ozadju z nastavitvijo variante kot temne",
-	"TeX-description": "`TeX` je element ISLE, ki se lahko uporablja za prikaz enačb LaTeX. Komponenta uporablja [KaTeX](https://github.com/Khan/KaTeX) za izjemno hitro prikazovanje.",
+	"TeX-description": "`TeX` je element ISLE, ki se lahko uporablja za prikaz enačb LaTeX.",
 	"TeX-prop-displayMode": "`boolean`, ki označuje, ali naj se enačba prikaže v vrstici ali v načinu prikaza",
 	"TeX-prop-elems": "`objekt` s `ključi`, ki označujejo znake LaTeXa, njihove ustrezne vrednosti pa so konfiguracijski `objekti`, da so interaktivni. Če nastavite možnost `tooltip`, se ob premikanju z miško nad znaki LaTeX-a prikaže namig. Nastavitev lastnosti `premenjava` bo prikazala vhodni drsnik za spreminjanje ustrezne spremenljivke stanja; v tem primeru so podprte dodatne lastnosti `legenda`, `min`, `max` in `koraka`.",
 	"TeX-prop-numbered": "nadzoruje, ali se pri enačbah v načinu prikaza prikaže številka enačbe.",

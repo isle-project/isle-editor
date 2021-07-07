@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` je prvek ISLE, který lze použít k zobrazení rovnic LaTeXu. Pod kapotou používá komponenta [KaTeX](https://github.com/Khan/KaTeX) pro bleskurychlé vykreslování.
+`TeX` je prvek ISLE, který lze použít k zobrazení rovnic LaTeXu.
 
 ## Možnosti
 

@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-TeX`はLaTeX方程式を表示するために使用できるISLE要素です。このコンポーネントは [KaTeX](https://github.com/Khan/KaTeX) を使用して、高速なレンダリングを実現しています。
+TeX`はLaTeX方程式を表示するために使用できるISLE要素です。
 
 ## オプション
 

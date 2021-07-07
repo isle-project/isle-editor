@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "face tabelele mai compacte prin înjumătățirea umpluturii celulelor prin setarea dimensiunii ca `sm`.",
 	"Table-prop-striped": "adaugă dungi de zebră la orice rând de tabel din interiorul câmpului <tbody>",
 	"Table-prop-variant": "inversează culorile tabelului - cu text deschis pe fundaluri întunecate prin setarea variantei ca fiind întunecată",
-	"TeX-description": "`TeX` este un element ISLE care poate fi utilizat pentru a afișa ecuații LaTeX. Sub capotă, componenta utilizează [KaTeX](https://github.com/Khan/KaTeX) pentru o redare extrem de rapidă.",
+	"TeX-description": "`TeX` este un element ISLE care poate fi utilizat pentru a afișa ecuații LaTeX.",
 	"TeX-prop-displayMode": "`boolean` care indică dacă se afișează ecuația în linie sau în modul de afișare",
 	"TeX-prop-elems": "`object` cu `keys` care desemnează caractere LaTeX și valorile lor corespunzătoare fiind configurarea `objects` pentru a le face interactive. Setarea unei opțiuni `tooltip` va afișa un tooltip atunci când se trece peste caracterele LaTeX. Setarea unei proprietăți `variable` va afișa un cursor de intrare pentru a modifica variabila de stare respectivă; în acest caz, sunt acceptate proprietățile suplimentare `legend`, `min`, `max` și `step`.",
 	"TeX-prop-numbered": "controlează dacă se afișează un număr de ecuație pentru ecuațiile din modul de afișare",

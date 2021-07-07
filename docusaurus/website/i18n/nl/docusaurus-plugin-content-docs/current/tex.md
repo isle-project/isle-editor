@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` is een ISLE-element dat kan worden gebruikt om LaTeX-vergelijkingen weer te geven. Onder de motorkap gebruikt het element [KaTeX](https://github.com/Khan/KaTeX) voor een razendsnelle weergave.
+`TeX` is een ISLE-element dat kan worden gebruikt om LaTeX-vergelijkingen weer te geven.
 
 ## Opties
 

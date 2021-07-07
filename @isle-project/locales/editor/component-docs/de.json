@@ -1309,7 +1309,7 @@
 	"Table-prop-size": "Tabellen kompakter machen, indem Sie die Zellenauffüllung halbieren, indem Sie die Größe auf `sm` setzen",
 	"Table-prop-striped": "fügt Zebrastreifen zu jeder Tabellenzeile innerhalb des <tbody> hinzu",
 	"Table-prop-variant": "die Farben der Tabelle invertieren - bei hellem Text auf dunklem Hintergrund durch Setzen von Variante als dunkel",
-	"TeX-description": "TeX\" ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werden kann. Unter der Haube verwendet die Komponente [KaTeX](https://github.com/Khan/KaTeX) für rasend schnelles Rendering.",
+	"TeX-description": "TeX\" ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werden kann.",
 	"TeX-prop-displayMode": "`boolean`, das angibt, ob die Gleichung inline oder im Anzeigemodus angezeigt werden soll",
 	"TeX-prop-elems": "`Objekt`, wobei `Schlüssel` LaTeX-Zeichen bezeichnen und die entsprechenden Werte Konfigurations-`Objekte` sind, um sie interaktiv zu machen. Das Setzen einer `tooltip`-Option zeigt einen Tooltip an, wenn der Mauszeiger über die LaTeX-Zeichen bewegt wird. Das Setzen einer `variable`-Eigenschaft zeigt einen Eingabeschieberegler zum Ändern der jeweiligen Zustandsvariablen an; in diesem Fall werden zusätzlich die Eigenschaften `legend`, `min`, `max` und `step` unterstützt",
 	"TeX-prop-numbered": "steuert, ob eine Gleichungsnummer für Gleichungen im Anzeigemodus angezeigt werden soll",

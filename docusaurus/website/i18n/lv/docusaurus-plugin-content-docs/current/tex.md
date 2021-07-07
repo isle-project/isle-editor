@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` ir ISLE elements, ko var izmantot LaTeX vienādojumu attēlošanai. Komponents izmanto [KaTeX](https://github.com/Khan/KaTeX), lai nodrošinātu ārkārtīgi ātru atveidošanu.
+`TeX` ir ISLE elements, ko var izmantot LaTeX vienādojumu attēlošanai.
 
 ## Iespējas
 

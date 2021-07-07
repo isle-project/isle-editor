@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` on ISLE element, mida saab kasutada LaTeXi võrrandite kuvamiseks. Kapuutsi all kasutab komponent [KaTeX](https://github.com/Khan/KaTeX), mis tagab ülikiire renderdamise.
+`TeX` on ISLE element, mida saab kasutada LaTeXi võrrandite kuvamiseks.
 
 ## Valikud
 
