@@ -129,7 +129,7 @@
     "@stdlib/fs": "^0.0.9",
     "@stdlib/math": "^0.0.8",
     "@stdlib/namespace": "^0.0.9",
-    "@stdlib/ndarray": "^0.0.10",
+    "@stdlib/ndarray": "^0.0.11",
     "@stdlib/nlp": "^0.0.8",
     "@stdlib/process": "^0.0.9",
     "@stdlib/random": "^0.0.9",
