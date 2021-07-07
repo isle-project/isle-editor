@@ -131,7 +131,7 @@
     "@stdlib/namespace": "^0.0.9",
     "@stdlib/ndarray": "^0.0.10",
     "@stdlib/nlp": "^0.0.8",
-    "@stdlib/process": "^0.0.9",
+    "@stdlib/process": "^0.0.10",
     "@stdlib/random": "^0.0.9",
     "@stdlib/stats": "^0.0.10",
     "@stdlib/string": "^0.0.10",
