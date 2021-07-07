@@ -28,13 +28,13 @@ const ButtonColorPicker = ( props ) => {
 				backgroundColor: props.color, width: 38, height: 38
 			}} onClick={handleClick} >
 			</Button>
-			<Overlay target={target.current} show={show} placement="bottom-end" >
+			{ show ? <Overlay target={target.current} show={show} placement="bottom-end" >
 				<Popover id={`${props.variant}-popover`} style={{ zIndex: 1051 }}>
 					<PopoverContent>
 						<SketchPicker {...props} />
 					</PopoverContent>
 				</Popover>
-			</Overlay>
+			</Overlay> : null }
 		</Fragment>
 	);
 };
