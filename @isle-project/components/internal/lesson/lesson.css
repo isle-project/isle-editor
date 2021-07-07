@@ -684,10 +684,6 @@ a {
 	text-align: center;
 }
 
-.Presentation .katex {
-	font: normal 2.21rem KaTeX_Main, Times New Roman, serif;
-}
-
 .modal-container {
 	position: relative;
 }
