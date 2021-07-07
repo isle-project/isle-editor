@@ -125,7 +125,7 @@
     "@stdlib/array": "^0.0.9",
     "@stdlib/assert": "^0.0.9",
     "@stdlib/constants": "^0.0.9",
-    "@stdlib/datasets": "^0.0.10",
+    "@stdlib/datasets": "^0.0.12",
     "@stdlib/fs": "^0.0.9",
     "@stdlib/math": "^0.0.8",
     "@stdlib/namespace": "^0.0.9",
