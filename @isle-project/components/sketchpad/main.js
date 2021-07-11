@@ -21,7 +21,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
 import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
-import isMobile from 'is-mobile';
+import IS_MOBILE from '@stdlib/assert/is-mobile';
 import Checkbox from '@isle-project/components/input/checkbox';
 import Tooltip from '@isle-project/components/tooltip';
 import FeedbackButtons from '@isle-project/components/feedback';
@@ -96,9 +96,6 @@ const DPR = window.devicePixelRatio || 1.0;
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
 }
-const IS_MOBILE = isMobile({
-	tablet: true
-});
 
 
 // FUNCTIONS //

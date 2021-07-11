@@ -10,7 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import isMobile from 'is-mobile';
+import IS_MOBILE from '@stdlib/assert/is-mobile';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
@@ -28,9 +28,6 @@ import './calculator.css';
 const debug = logger( 'isle:calculator' );
 const RE_SPLIT_KEY = /([() +\-/*^!])/;
 const RE_OPERATOR = /[+\-/*^!]/;
-const IS_MOBILE = isMobile({
-	tablet: true
-});
 
 
 // MAIN //
