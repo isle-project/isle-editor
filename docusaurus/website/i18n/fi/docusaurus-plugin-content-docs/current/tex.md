@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` on ISLE-elementti, jota voidaan käyttää LaTeX-yhtälöiden näyttämiseen. 
+`TeX` on ISLE-elementti, jota voidaan käyttää LaTeX-yhtälöiden näyttämiseen.
 
 ## Vaihtoehdot
 

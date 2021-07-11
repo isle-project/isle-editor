@@ -52,7 +52,7 @@ Deze component wordt door de studenten gebruikt om de gegevens kort samen te vat
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: array van knooppunten die de omliggende tekst- en vraagcomponenten aangeven die in een venster met tabbladen moeten worden weergegeven. Default: `[]`.
+* __questions__ | `(array|object)`: array van nodes van tekst- en vraagcomponenten die moeten worden weergegeven in een `questions` tabblad of een object van eigenschappen die worden doorgegeven aan een onderliggende `<Pages />` component. Default: `none`.
 * __showTestDecisions__ | `boolean`: booleaanse aanduiding of de beslissingen die voor elke test worden genomen op basis van de berekende p-waarden moeten worden getoond. Default: `true`.
 * __statistics__ | `array`: reeks reeksen van reeksen die aangeven welke samenvattende statistieken kunnen worden berekend. Default: `[
   'Mean',

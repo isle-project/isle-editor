@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX` е ISLE елемент, който може да се използва за показване на уравнения в LaTeX. 
+`TeX` е ISLE елемент, който може да се използва за показване на уравнения в LaTeX.
 
 ## Опции
 

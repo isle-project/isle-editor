@@ -22,7 +22,7 @@ const TOPLEVEL_DIR = path.resolve( __dirname, '..', '..', '..' );
 const RE_HANDLEBAR_EXPRESSION = /\{\{([^}]+)\}\}/g;
 const RE_BACKTICK_EXPRESSION = /`([^`]+?)`/g;
 const RE_XML_HANDLEBAR_GROUPS = /<x>([^<]+)<\/x>/g;
-const RE_XML_BACKTICK_GROUPS = /<y>([^<]+)<\/y>/g;
+const RE_XML_BACKTICK_GROUPS = /`([^<]+)<\/y>/g;
 
 
 // MAIN //
@@ -62,7 +62,7 @@ glob( '@isle-project/locales/**/en.json', options, function onFiles( err, files 
 					let textToTranslate = reference[ key ];
 					if ( textToTranslate ) {
 						textToTranslate = replace( textToTranslate, RE_HANDLEBAR_EXPRESSION, '<x>$1</x>' );
-						textToTranslate = replace( textToTranslate, RE_BACKTICK_EXPRESSION, '<y>$1</y>' );
+						textToTranslate = replace( textToTranslate, RE_BACKTICK_EXPRESSION, '`$1`' );
 						console.log( 'Translate `'+textToTranslate+'` to '+lng );
 						if ( promises.length < MAX_TRANSLATION_CALLS ) {
 							promiseKeys.push( key );

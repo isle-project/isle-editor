@@ -52,7 +52,7 @@ Cette composante est utilisée par les étudiants pour résumer brièvement les 
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: un ensemble de nœuds indiquant les éléments de texte et de question environnants à afficher dans une fenêtre à onglets. Default: `[]`.
+* __questions__ | `(array|object)`: un tableau de nœuds de composants de texte et de questions à afficher dans un onglet `questions` ou un objet de propriétés transmises à un composant sous-jacent. `<Pages />` sous-jacent. Default: `none`.
 * __showTestDecisions__ | `boolean`: booléen indiquant s'il faut montrer les décisions prises pour chaque test sur la base des valeurs p calculées. Default: `true`.
 * __statistics__ | `array`: un tableau de chaînes de caractères indiquant les statistiques sommaires qui peuvent être calculées. Default: `[
   'Mean',

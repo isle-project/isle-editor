@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "käivitamisel avatud lehekülg",
 	"DataExplorer-prop-plots": "stringide massiivi, mis näitab, milliseid graafikuid kasutajale näidata.",
 	"DataExplorer-prop-quantitative": "stringide massiivi, mis näitab iga kvantitatiivse muutuja nime",
-	"DataExplorer-prop-questions": "sõlmede massiivi, mis näitab ümbritsevat teksti ja küsimuste komponente, mis kuvatakse vahekaardiga aknas",
+	"DataExplorer-prop-questions": "teksti- ja küsimuskomponentide sõlmede massiivi, mis kuvatakse `questions` vahekaardil, või objekti omaduste objekti, mis on edastatud allolevasse `<Pages />` komponendile",
 	"DataExplorer-prop-reportMode": "kontrollib, kas sünkroniseerida redaktori muudatused kõigile (`collaborative`), rühmade kasutajatele (`group`) või mitte (`individual`).",
 	"DataExplorer-prop-showTestDecisions": "boolean, mis näitab, kas näidata iga testi puhul tehtud otsuseid, mis põhinevad arvutatud p-väärtustel.",
 	"DataExplorer-prop-statistics": "stringide massiivi, mis näitab, milliseid kokkuvõtlikke statistilisi andmeid võib arvutada.",

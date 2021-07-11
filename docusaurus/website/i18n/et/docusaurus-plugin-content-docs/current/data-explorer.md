@@ -52,7 +52,7 @@ Seda komponenti kasutavad õpilased andmete esitamisel lühikese kokkuvõtte teg
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: sõlmede massiivi, mis näitab ümbritsevat teksti ja küsimuste komponente, mis kuvatakse vahekaardiga aknas. Default: `[]`.
+* __questions__ | `(array|object)`: teksti- ja küsimuskomponentide sõlmede massiivi, mis kuvatakse `questions` vahekaardil, või objekti omaduste objekti, mis on edastatud allolevasse `<Pages />` komponendile. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, mis näitab, kas näidata iga testi puhul tehtud otsuseid, mis põhinevad arvutatud p-väärtustel.. Default: `true`.
 * __statistics__ | `array`: stringide massiivi, mis näitab, milliseid kokkuvõtlikke statistilisi andmeid võib arvutada.. Default: `[
   'Mean',

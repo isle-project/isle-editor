@@ -52,7 +52,7 @@ This component is used by students to briefly summarize data as it is presented 
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: array of nodes indicating surrounding text and question components to be displayed in a tabbed window. Default: `[]`.
+* __questions__ | `(array|object)`: array of nodes of text and question components to be displayed in a `questions` tab or an object of properties passed down to an underlying `<Pages />` component. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean indicating whether to show the decisions made for each test based on the calculated p-values. Default: `true`.
 * __statistics__ | `array`: array of strings indicating which summary statistics may be calculated. Default: `[
   'Mean',

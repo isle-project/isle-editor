@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "lapa, kas tiek atvērta pie palaišanas",
 	"DataExplorer-prop-plots": "virkņu masīvs, kas norāda, kurus laukumus parādīt lietotājam.",
 	"DataExplorer-prop-quantitative": "virkņu masīvs, kurā norādīts katra kvantitatīvā mainīgā nosaukums.",
-	"DataExplorer-prop-questions": "mezglu masīvs, kurā norādīti apkārtējie teksta un jautājuma komponenti, kas jāattēlo cilnes logā.",
+	"DataExplorer-prop-questions": "teksta un jautājuma komponentu mezglu masīvs, kas jāattēlo `questions` cilnē, vai īpašību objekts, kas nodots pakārtotai sistēmai `<Pages />` komponentei",
 	"DataExplorer-prop-reportMode": "nosaka, vai sinhronizēt redaktora izmaiņas visiem lietotājiem (`kooperatīvs`), visiem lietotājiem grupās (`grupa`) vai nesinhronizēt (`individuāls`).",
 	"DataExplorer-prop-showTestDecisions": "boolean, kas norāda, vai parādīt katram testam pieņemtos lēmumus, pamatojoties uz aprēķinātajām p-vērtībām.",
 	"DataExplorer-prop-statistics": "virkņu masīvs, kas norāda, kuru kopsavilkuma statistiku var aprēķināt.",

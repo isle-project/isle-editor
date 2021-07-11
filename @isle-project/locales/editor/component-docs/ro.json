@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "pagina deschisă la pornire",
 	"DataExplorer-prop-plots": "matrice de șiruri de caractere care indică ce parcele trebuie afișate utilizatorului",
 	"DataExplorer-prop-quantitative": "matrice de șiruri de caractere care indică numele fiecărei variabile cantitative",
-	"DataExplorer-prop-questions": "matrice de noduri care indică textul înconjurător și componentele întrebărilor care urmează să fie afișate într-o fereastră cu file",
+	"DataExplorer-prop-questions": "matrice de noduri de componente de text și de întrebări care urmează să fie afișate într-o filă `questions` sau un obiect de proprietăți transmise la un sistem subiacent `<Pages />` componentă",
 	"DataExplorer-prop-reportMode": "controlează dacă se sincronizează modificările editorului pentru toată lumea (`collaborative`), între utilizatorii din grupuri (`group`) sau nu (`individual`)",
 	"DataExplorer-prop-showTestDecisions": "boolean care indică dacă trebuie afișate deciziile luate pentru fiecare test pe baza valorilor p calculate",
 	"DataExplorer-prop-statistics": "matrice de șiruri de caractere care indică ce statistici sumare pot fi calculate",

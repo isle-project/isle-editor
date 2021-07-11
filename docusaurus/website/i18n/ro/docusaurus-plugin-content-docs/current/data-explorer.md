@@ -52,7 +52,7 @@ Această componentă este utilizată de elevi pentru a rezuma pe scurt datele pr
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: matrice de noduri care indică textul înconjurător și componentele întrebărilor care urmează să fie afișate într-o fereastră cu file. Default: `[]`.
+* __questions__ | `(array|object)`: matrice de noduri de componente de text și de întrebări care urmează să fie afișate într-o filă `questions` sau un obiect de proprietăți transmise la un sistem subiacent `<Pages />` componentă. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean care indică dacă trebuie afișate deciziile luate pentru fiecare test pe baza valorilor p calculate. Default: `true`.
 * __statistics__ | `array`: matrice de șiruri de caractere care indică ce statistici sumare pot fi calculate. Default: `[
   'Mean',

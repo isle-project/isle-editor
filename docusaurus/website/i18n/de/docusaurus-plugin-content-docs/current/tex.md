@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-TeX ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werden kann.
+TeX" ist ein ISLE-Element, das zur Anzeige von LaTeX-Gleichungen verwendet werden kann.
 
 ## Optionen
 

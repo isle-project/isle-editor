@@ -532,9 +532,9 @@
 			},
 			{
 				"name": "questions",
-				"type": "array",
+				"type": "(array|object)",
 				"description": "DataExplorer-prop-questions",
-				"defaultValue": []
+				"defaultValue": null
 			},
 			{
 				"name": "showTestDecisions",

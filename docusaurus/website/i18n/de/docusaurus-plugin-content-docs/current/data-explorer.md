@@ -52,7 +52,7 @@ Diese Komponente wird von den Schülern verwendet, um Daten kurz zusammenzufasse
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: Array von Knoten, die umgebende Text- und Fragekomponenten angeben, die in einem Fenster mit Registerkarten angezeigt werden sollen. Default: `[]`.
+* __questions__ | `(array|object)`: Array mit Knoten von Text- und Fragekomponenten, die in einer Registerkarte `questions` angezeigt werden sollen, oder ein Objekt mit Eigenschaften, das an eine darunterliegende `<Pages />` Komponente. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolescher Wert, der angibt, ob die für jeden Test getroffenen Entscheidungen basierend auf den berechneten p-Werten angezeigt werden sollen. Default: `true`.
 * __statistics__ | `array`: Array von Strings, die angeben, welche Zusammenfassungsstatistiken berechnet werden dürfen. Default: `[
   'Mean',

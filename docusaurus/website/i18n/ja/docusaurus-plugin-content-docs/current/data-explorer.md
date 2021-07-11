@@ -52,7 +52,7 @@ sidebar_label: Data Explorer
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: タブ付きウィンドウに表示される周囲のテキストと質問の要素を示すノードの配列. Default: `[]`.
+* __questions__ | `(array|object)`:  `questions` タブに表示されるテキストと質問コンポーネントのノードの配列、または基礎となるコンポーネントに渡されるプロパティのオブジェクト。 `<Pages />`コンポーネント. Default: `none`.
 * __showTestDecisions__ | `boolean`: 計算されたp値に基づいて各テストの決定を表示するかどうかを示すブール値. Default: `true`.
 * __statistics__ | `array`: サマリー統計量が計算される可能性があることを示す文字列の配列. Default: `[
   'Mean',

@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "stran, odprta ob zagonu",
 	"DataExplorer-prop-plots": "niz nizov, ki določajo, katere parcele naj se prikažejo uporabniku.",
 	"DataExplorer-prop-quantitative": "polje nizov, ki označuje ime vsake kvantitativne spremenljivke",
-	"DataExplorer-prop-questions": "niz vozlišč, ki označujejo okoliško besedilo in komponente vprašanja, ki se prikažejo v oknu z zavihki",
+	"DataExplorer-prop-questions": "polje vozlišč sestavnih delov besedila in vprašanj, ki se prikažejo v zavihku `questions`, ali predmet lastnosti, ki se posreduje osnovnemu `<Pages />` komponente",
 	"DataExplorer-prop-reportMode": "nadzoruje, ali naj se spremembe urejevalnika sinhronizirajo za vse (`sodelovanje`), med uporabniki v skupinah (`skupina`) ali ne (`posameznik`).",
 	"DataExplorer-prop-showTestDecisions": "boolean, ki označuje, ali naj se prikažejo odločitve za vsak test na podlagi izračunanih p-vrednosti.",
 	"DataExplorer-prop-statistics": "polje nizov, ki določajo, katere zbirne statistike se lahko izračunajo.",

@@ -52,7 +52,7 @@ sidebar_label: Data Explorer
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: mazgų, nurodančių aplinkinį tekstą ir klausimo komponentus, kurie turi būti rodomi skirtuko lange, masyvas. Default: `[]`.
+* __questions__ | `(array|object)`:  `questions` skirtuke rodomų teksto ir klausimo komponentų mazgų masyvas arba savybių objektas, perduodamas pagrindiniam `<Pages />` komponentui. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, nurodantis, ar rodyti kiekvieno testo sprendimus, priimtus remiantis apskaičiuotomis p vertėmis.. Default: `true`.
 * __statistics__ | `array`: eilučių masyvas, nurodantis, kokią suvestinę statistiką galima apskaičiuoti.. Default: `[
   'Mean',

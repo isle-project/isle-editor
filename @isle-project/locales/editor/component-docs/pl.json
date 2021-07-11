@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "strona otwierana przy uruchamianiu",
 	"DataExplorer-prop-plots": "tablica łańcuchów wskazująca, które wątki mają być pokazane użytkownikowi",
 	"DataExplorer-prop-quantitative": "szereg ciągów znaków wskazujących nazwę każdej zmiennej ilościowej",
-	"DataExplorer-prop-questions": "tablica węzłów wskazujących otaczający tekst i komponenty pytań, które mają być wyświetlane w oknie zakładkowym",
+	"DataExplorer-prop-questions": "tablicę węzłów komponentów tekstowych i pytań do wyświetlenia w zakładce `questions` lub obiekt właściwości przekazywanych do bazowego komponentu `<Pages />` komponentu",
 	"DataExplorer-prop-reportMode": "kontroluje czy synchronizować zmiany w edytorze dla wszystkich (`współpracujących`), dla wszystkich użytkowników w grupach (`grupach`), czy też nie (`indywidualnie`)",
 	"DataExplorer-prop-showTestDecisions": "boolean wskazujący, czy należy wykazać decyzje podjęte dla każdego badania w oparciu o obliczone wartości p",
 	"DataExplorer-prop-statistics": "szereg łańcuchów wskazujących, które z podsumowań statystycznych mogą być obliczane",

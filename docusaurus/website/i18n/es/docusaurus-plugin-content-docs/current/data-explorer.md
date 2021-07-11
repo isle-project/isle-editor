@@ -52,7 +52,7 @@ Los estudiantes utilizan este componente para resumir brevemente los datos a med
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: una serie de nodos que indican el texto circundante y los componentes de la pregunta que se mostrarán en una ventana con pestañas. Default: `[]`.
+* __questions__ | `(array|object)`: matriz de nodos de componentes de texto y preguntas que se mostrarán en una pestaña de `questions` o un objeto de propiedades que se pasa a un componente subyacente `<Pages />` componente subyacente. Default: `none`.
 * __showTestDecisions__ | `boolean`: booleana que indica si mostrar las decisiones tomadas para cada prueba basada en los valores p calculados. Default: `true`.
 * __statistics__ | `array`: una serie de cadenas que indican qué estadísticas resumidas pueden calcularse. Default: `[
   'Mean',

@@ -52,7 +52,7 @@ Denne komponent bruges af eleverne til kort at opsummere data, når de præsente
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: array af knuder, der angiver omgivende tekst og spørgsmålskomponenter, der skal vises i et fanebladvindue. Default: `[]`.
+* __questions__ | `(array|object)`: array af knuder med tekst- og spørgsmålskomponenter, der skal vises i en `questions` -fane, eller et objekt med egenskaber, der overføres til en underliggende `<Pages />` komponent. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, der angiver, om der skal vises de beslutninger, der er truffet for hver test på grundlag af de beregnede p-værdier. Default: `true`.
 * __statistics__ | `array`: array af strenge, der angiver, hvilke sammenfattende statistikker der kan beregnes. Default: `[
   'Mean',

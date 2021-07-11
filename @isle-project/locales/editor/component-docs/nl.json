@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "pagina geopend bij het opstarten",
 	"DataExplorer-prop-plots": "array van strings die aangeven welke percelen aan de gebruiker moeten worden getoond",
 	"DataExplorer-prop-quantitative": "reeks reeksen strengen met aanduiding van de naam van elke kwantitatieve variabele",
-	"DataExplorer-prop-questions": "array van knooppunten die de omliggende tekst- en vraagcomponenten aangeven die in een venster met tabbladen moeten worden weergegeven",
+	"DataExplorer-prop-questions": "array van nodes van tekst- en vraagcomponenten die moeten worden weergegeven in een `questions` tabblad of een object van eigenschappen die worden doorgegeven aan een onderliggende `<Pages />` component",
 	"DataExplorer-prop-reportMode": "bepaalt of de wijzigingen in de editor voor iedereen worden gesynchroniseerd (`collaboratief`), tussen gebruikers in groepen (`groep`), of niet (`individueel`)",
 	"DataExplorer-prop-showTestDecisions": "booleaanse aanduiding of de beslissingen die voor elke test worden genomen op basis van de berekende p-waarden moeten worden getoond",
 	"DataExplorer-prop-statistics": "reeks reeksen van reeksen die aangeven welke samenvattende statistieken kunnen worden berekend",

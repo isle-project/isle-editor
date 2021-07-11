@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "käynnistyksen yhteydessä avattava sivu",
 	"DataExplorer-prop-plots": "joukko merkkijonoja, jotka osoittavat, mitkä piirrokset näytetään käyttäjälle.",
 	"DataExplorer-prop-quantitative": "joukko merkkijonoja, jotka ilmaisevat kunkin määrällisen muuttujan nimen.",
-	"DataExplorer-prop-questions": "joukko solmuja, jotka ilmaisevat ympäröivän tekstin ja kysymysosien osat, jotka näytetään välilehtikohtaisessa ikkunassa.",
+	"DataExplorer-prop-questions": " `questions` -välilehdellä näytettävien teksti- ja kysymyskomponenttien solmujen joukko tai kohde, joka sisältää ominaisuuksia, jotka siirretään alla olevaan `<Pages />` komponentille",
 	"DataExplorer-prop-reportMode": "määrittää, synkronoidaanko editorin muutokset kaikille (`collaborative`), ryhmäkäyttäjille (`group`) vai ei (`individual`).",
 	"DataExplorer-prop-showTestDecisions": "boolean, joka osoittaa, näytetäänkö kullekin testille tehdyt päätökset, jotka perustuvat laskettuihin p-arvoihin.",
 	"DataExplorer-prop-statistics": "joukko merkkijonoja, jotka osoittavat, mitä yhteenvetotilastoja voidaan laskea.",

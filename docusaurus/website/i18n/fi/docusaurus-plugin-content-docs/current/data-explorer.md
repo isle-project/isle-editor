@@ -52,7 +52,7 @@ Tätä komponenttia opiskelijat käyttävät lyhyeen yhteenvetoon esitetyistä t
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: joukko solmuja, jotka ilmaisevat ympäröivän tekstin ja kysymysosien osat, jotka näytetään välilehtikohtaisessa ikkunassa.. Default: `[]`.
+* __questions__ | `(array|object)`:  `questions` -välilehdellä näytettävien teksti- ja kysymyskomponenttien solmujen joukko tai kohde, joka sisältää ominaisuuksia, jotka siirretään alla olevaan `<Pages />` komponentille. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, joka osoittaa, näytetäänkö kullekin testille tehdyt päätökset, jotka perustuvat laskettuihin p-arvoihin.. Default: `true`.
 * __statistics__ | `array`: joukko merkkijonoja, jotka osoittavat, mitä yhteenvetotilastoja voidaan laskea.. Default: `[
   'Mean',

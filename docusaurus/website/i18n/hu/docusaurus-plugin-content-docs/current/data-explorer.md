@@ -52,7 +52,7 @@ Ezt a komponenst a diákok arra használják, hogy röviden összefoglalják az 
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: a füles ablakban megjelenítendő környező szöveget és kérdéskomponenseket jelző csomópontok tömbje. Default: `[]`.
+* __questions__ | `(array|object)`: a `questions` lapon megjelenítendő szöveg- és kérdéskomponensek csomópontjainak tömbje, vagy a tulajdonságok egy objektuma, amelyet egy alapul szolgáló `<Pages />` komponensre. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, amely jelzi, hogy az egyes teszteknél a kiszámított p-értékek alapján hozott döntéseket meg kell-e jeleníteni.. Default: `true`.
 * __statistics__ | `array`: stringekből álló tömb, amely jelzi, hogy mely összefoglaló statisztikák számolhatók ki.. Default: `[
   'Mean',

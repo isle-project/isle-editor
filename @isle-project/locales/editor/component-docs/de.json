@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "beim Start geöffnete Seite",
 	"DataExplorer-prop-plots": "Array von Strings, die angeben, welche Plots dem Benutzer angezeigt werden sollen",
 	"DataExplorer-prop-quantitative": "Array von Strings, die den Namen jeder quantitativen Variablen angeben",
-	"DataExplorer-prop-questions": "Array von Knoten, die umgebende Text- und Fragekomponenten angeben, die in einem Fenster mit Registerkarten angezeigt werden sollen",
+	"DataExplorer-prop-questions": "Array mit Knoten von Text- und Fragekomponenten, die in einer Registerkarte `questions` angezeigt werden sollen, oder ein Objekt mit Eigenschaften, das an eine darunterliegende `<Pages />` Komponente",
 	"DataExplorer-prop-reportMode": "steuert, ob Editoränderungen für alle (`collaborative`), für Benutzer in Gruppen (`group`) oder nicht (`individual`) synchronisiert werden sollen",
 	"DataExplorer-prop-showTestDecisions": "boolescher Wert, der angibt, ob die für jeden Test getroffenen Entscheidungen basierend auf den berechneten p-Werten angezeigt werden sollen",
 	"DataExplorer-prop-statistics": "Array von Strings, die angeben, welche Zusammenfassungsstatistiken berechnet werden dürfen",

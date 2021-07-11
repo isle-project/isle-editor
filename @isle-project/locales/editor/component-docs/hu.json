@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "indításkor megnyitott oldal",
 	"DataExplorer-prop-plots": "stringek tömbje, amely jelzi, hogy mely ábrákat kell megmutatni a felhasználónak",
 	"DataExplorer-prop-quantitative": "az egyes mennyiségi változók nevét jelző stringek tömbje",
-	"DataExplorer-prop-questions": "a füles ablakban megjelenítendő környező szöveget és kérdéskomponenseket jelző csomópontok tömbje",
+	"DataExplorer-prop-questions": "a `questions` lapon megjelenítendő szöveg- és kérdéskomponensek csomópontjainak tömbje, vagy a tulajdonságok egy objektuma, amelyet egy alapul szolgáló `<Pages />` komponensre",
 	"DataExplorer-prop-reportMode": "szabályozza, hogy a szerkesztő módosításait mindenki számára (`collaborative`), a csoportok felhasználói között (`group`), vagy nem (`individual`) szinkronizálják-e.",
 	"DataExplorer-prop-showTestDecisions": "boolean, amely jelzi, hogy az egyes teszteknél a kiszámított p-értékek alapján hozott döntéseket meg kell-e jeleníteni.",
 	"DataExplorer-prop-statistics": "stringekből álló tömb, amely jelzi, hogy mely összefoglaló statisztikák számolhatók ki.",

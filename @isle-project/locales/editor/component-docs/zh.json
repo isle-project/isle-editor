@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "开机页",
 	"DataExplorer-prop-plots": "字符串数组，表示要显示给用户的图。",
 	"DataExplorer-prop-quantitative": "表示每个定量变量名称的字符串数组。",
-	"DataExplorer-prop-questions": "数组节点，表示周围的文本和问题组件要在标签窗口中显示。",
+	"DataExplorer-prop-questions": "在`questions` 标签中显示的文本和问题组件的节点数组，或传递到底层的属性对象 `<Pages />`组件",
 	"DataExplorer-prop-reportMode": "控制是否为每个人(\"合作\")、组中的用户(\"组\")或不同步编辑更改(\"个人\")",
 	"DataExplorer-prop-showTestDecisions": "boolean，表示是否要根据计算出的p值来显示每个测试的决定。",
 	"DataExplorer-prop-statistics": "表示可以计算哪些汇总统计的字符串数组。",

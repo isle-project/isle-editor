@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "side åbnes ved opstart",
 	"DataExplorer-prop-plots": "array af strenge, der angiver, hvilke plot der skal vises for brugeren",
 	"DataExplorer-prop-quantitative": "array af strenge, der angiver navnet på hver kvantitativ variabel",
-	"DataExplorer-prop-questions": "array af knuder, der angiver omgivende tekst og spørgsmålskomponenter, der skal vises i et fanebladvindue",
+	"DataExplorer-prop-questions": "array af knuder med tekst- og spørgsmålskomponenter, der skal vises i en `questions` -fane, eller et objekt med egenskaber, der overføres til en underliggende `<Pages />` komponent",
 	"DataExplorer-prop-reportMode": "styrer, om redigeringsændringer skal synkroniseres for alle (`collaborative`), på tværs af brugere i grupper (`group`) eller ikke (`individual`)",
 	"DataExplorer-prop-showTestDecisions": "boolean, der angiver, om der skal vises de beslutninger, der er truffet for hver test på grundlag af de beregnede p-værdier",
 	"DataExplorer-prop-statistics": "array af strenge, der angiver, hvilke sammenfattende statistikker der kan beregnes",

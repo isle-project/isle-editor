@@ -52,7 +52,7 @@ sidebar_label: Data Explorer
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: 数组节点，表示周围的文本和问题组件要在标签窗口中显示。. Default: `[]`.
+* __questions__ | `(array|object)`: 在`questions` 标签中显示的文本和问题组件的节点数组，或传递到底层的属性对象 `<Pages />`组件. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean，表示是否要根据计算出的p值来显示每个测试的决定。. Default: `true`.
 * __statistics__ | `array`: 表示可以计算哪些汇总统计的字符串数组。. Default: `[
   'Mean',

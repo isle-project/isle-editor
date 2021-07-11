@@ -52,7 +52,7 @@ Tuto složku studenti používají ke stručnému shrnutí prezentovaných dat a
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: pole uzlů označujících okolní text a součásti otázky, které se mají zobrazit v okně se záložkou.. Default: `[]`.
+* __questions__ | `(array|object)`: pole uzlů textových a otázkových komponent, které se mají zobrazit na kartě `questions`, nebo objekt vlastností předávaný podkladovému modulu `<Pages />` komponenty. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean určující, zda se mají zobrazit rozhodnutí učiněná pro každý test na základě vypočtených p-hodnot.. Default: `true`.
 * __statistics__ | `array`: pole řetězců označujících, které souhrnné statistiky lze vypočítat.. Default: `[
   'Mean',

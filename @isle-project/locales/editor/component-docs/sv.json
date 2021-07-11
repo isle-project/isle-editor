@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "sida som öppnas vid start",
 	"DataExplorer-prop-plots": "en rad strängar som anger vilka tomter som ska visas för användaren.",
 	"DataExplorer-prop-quantitative": "en array av strängar som anger namnet på varje kvantitativ variabel.",
-	"DataExplorer-prop-questions": "en matris av noder som anger omgivande text och frågekomponenter som ska visas i ett fönster med flikar.",
+	"DataExplorer-prop-questions": "matris av noder med text- och frågekomponenter som ska visas i en flik på `questions` eller ett objekt med egenskaper som överförs till en underliggande `<Pages />` komponent",
 	"DataExplorer-prop-reportMode": "styr om ändringar i redigeraren ska synkroniseras för alla (`collaborative`), mellan användare i grupper (`group`) eller inte (`individual`).",
 	"DataExplorer-prop-showTestDecisions": "Boolean som anger om besluten som fattats för varje test baserat på de beräknade p-värdena ska visas.",
 	"DataExplorer-prop-statistics": "en rad strängar som anger vilken sammanfattande statistik som kan beräknas.",

@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "stránka otvorená pri spustení",
 	"DataExplorer-prop-plots": "pole reťazcov označujúcich, ktoré grafy sa majú zobraziť používateľovi",
 	"DataExplorer-prop-quantitative": "pole reťazcov označujúcich názov každej kvantitatívnej premennej",
-	"DataExplorer-prop-questions": "pole uzlov označujúcich okolitý text a komponenty otázky, ktoré sa majú zobraziť v okne so záložkou",
+	"DataExplorer-prop-questions": "pole uzlov textových a otázkových komponentov, ktoré sa majú zobraziť na karte `questions`, alebo objekt vlastností odovzdaný základnému `<Pages />` komponentu",
 	"DataExplorer-prop-reportMode": "určuje, či sa majú synchronizovať zmeny v editore pre všetkých (`collaborative`), pre všetkých používateľov v skupinách (`group`) alebo nie (`individual`).",
 	"DataExplorer-prop-showTestDecisions": "boolean určujúci, či sa majú zobrazovať rozhodnutia prijaté pre každý test na základe vypočítaných p-hodnot.",
 	"DataExplorer-prop-statistics": "pole reťazcov označujúcich, ktoré súhrnné štatistiky sa môžu vypočítať",

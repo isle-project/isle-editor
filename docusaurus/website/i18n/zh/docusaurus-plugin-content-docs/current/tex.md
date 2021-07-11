@@ -4,7 +4,7 @@ title: LaTeX Equations
 sidebar_label: LaTeX Equations
 ---
 
-`TeX`是一个ISLE元素，可用于显示LaTeX方程。在内部.
+`TeX`是一个ISLE元素，可用于显示LaTeX方程。在内部
 
 ## 选项
 

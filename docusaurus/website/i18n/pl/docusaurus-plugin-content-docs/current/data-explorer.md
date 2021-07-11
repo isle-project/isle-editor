@@ -52,7 +52,7 @@ Ten komponent jest wykorzystywany przez uczniów do krótkiego podsumowania dany
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: tablica węzłów wskazujących otaczający tekst i komponenty pytań, które mają być wyświetlane w oknie zakładkowym. Default: `[]`.
+* __questions__ | `(array|object)`: tablicę węzłów komponentów tekstowych i pytań do wyświetlenia w zakładce `questions` lub obiekt właściwości przekazywanych do bazowego komponentu `<Pages />` komponentu. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean wskazujący, czy należy wykazać decyzje podjęte dla każdego badania w oparciu o obliczone wartości p. Default: `true`.
 * __statistics__ | `array`: szereg łańcuchów wskazujących, które z podsumowań statystycznych mogą być obliczane. Default: `[
   'Mean',

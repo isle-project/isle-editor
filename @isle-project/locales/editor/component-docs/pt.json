@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "página aberta no início da operação",
 	"DataExplorer-prop-plots": "matriz de cordas indicando quais parcelas mostrar para o usuário",
 	"DataExplorer-prop-quantitative": "matriz de cordas indicando o nome de cada variável quantitativa",
-	"DataExplorer-prop-questions": "matriz de nós indicando o texto ao redor e os componentes da pergunta a serem exibidos em uma janela com abas",
+	"DataExplorer-prop-questions": "matriz de nós de texto e componentes de perguntas a serem exibidos em uma guia `questions` ou um objeto de propriedades passado para um objeto subjacente `<Pages />` componente",
 	"DataExplorer-prop-reportMode": "controla a sincronização das mudanças de editor para todos (`colaborativo'), entre usuários em grupos (`grupo'), ou não (`individual')",
 	"DataExplorer-prop-showTestDecisions": "booleano indicando se mostrar as decisões tomadas para cada teste com base nos p-valores calculados",
 	"DataExplorer-prop-statistics": "conjunto de cordas indicando quais estatísticas resumidas podem ser calculadas",

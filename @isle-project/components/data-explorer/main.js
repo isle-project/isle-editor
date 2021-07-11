@@ -127,7 +127,7 @@ function checkVariables( data, variables ) {
 * @property {Array<string>} models - array of strings indicating models that may be fit on the data
 * @property {string} opened - page opened at startup
 * @property {Array<string>} plots - array of strings indicating which plots to show to the user
-* @property {Array<node>} questions - array of nodes indicating surrounding text and question components to be displayed in a tabbed window
+* @property {Array<node>} questions - array of nodes of text and question components to be displayed in a `questions` tab or an object of properties passed down to an underlying `<Pages />` component
 * @property {boolean} showTestDecisions - boolean indicating whether to show the decisions made for each test based on the calculated p-values
 * @property {Array<string>} statistics - array of strings indicating which summary statistics may be calculated
 * @property {Array<string>} tables - array of strings indicating which tables may be created from the data
@@ -176,7 +176,7 @@ class DataExplorer extends Component {
 			groupVars,
 			ready,
 			showStudentPlots: false,
-			openedNav: props.opened || ( isArray( props.questions ) && props.questions.length > 0 ? 'questions' : 'data' ),
+			openedNav: props.opened || ( !isNull( props.questions ) ? 'questions' : 'data' ),
 			studentPlots: [],
 			subsetFilters: null,
 			unaltered: {
@@ -1079,7 +1079,10 @@ class DataExplorer extends Component {
 		}
 
 		const session = this.context;
-		const hasQuestions = isArray( this.props.questions ) && this.props.questions.length > 0;
+		const hasQuestions = !isNull( this.props.questions );
+		const questionProps = isArray( this.props.questions ) ?
+			{ children: this.props.questions } :
+			this.props.questions;
 		const pagesHeight = this.props.style.height || ( window.innerHeight*0.9 ) - 165;
 		const mainContainer = <Row className="no-gutter data-explorer" style={this.props.style} >
 			<Col xs={6} md={6} >
@@ -1191,7 +1194,8 @@ class DataExplorer extends Component {
 							style={{
 								display: this.state.openedNav !== 'questions' ? 'none' : null
 							}}
-						>{this.props.questions}</Pages> : null }
+							{...questionProps}
+						/> : null }
 						<div
 							style={{
 								display: this.state.openedNav !== 'data' ? 'none' : null
@@ -1420,7 +1424,7 @@ DataExplorer.defaultProps = {
 	dataTableProps: {},
 	history: true,
 	tabs: [],
-	questions: [],
+	questions: null,
 	transformer: true,
 	statistics: [
 		'Mean',
@@ -1510,7 +1514,10 @@ DataExplorer.propTypes = {
 	models: PropTypes.array,
 	opened: PropTypes.oneOf([ 'data', 'toolbox', 'editor' ]),
 	plots: PropTypes.array,
-	questions: PropTypes.array,
+	questions: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.object
+	]),
 	showTestDecisions: PropTypes.bool,
 	statistics: PropTypes.array,
 	style: PropTypes.object,

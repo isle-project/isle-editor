@@ -52,7 +52,7 @@ sidebar_label: Data Explorer
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: mezglu masīvs, kurā norādīti apkārtējie teksta un jautājuma komponenti, kas jāattēlo cilnes logā.. Default: `[]`.
+* __questions__ | `(array|object)`: teksta un jautājuma komponentu mezglu masīvs, kas jāattēlo `questions` cilnē, vai īpašību objekts, kas nodots pakārtotai sistēmai `<Pages />` komponentei. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, kas norāda, vai parādīt katram testam pieņemtos lēmumus, pamatojoties uz aprēķinātajām p-vērtībām.. Default: `true`.
 * __statistics__ | `array`: virkņu masīvs, kas norāda, kuru kopsavilkuma statistiku var aprēķināt.. Default: `[
   'Mean',

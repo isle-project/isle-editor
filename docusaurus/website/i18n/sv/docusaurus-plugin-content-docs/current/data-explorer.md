@@ -52,7 +52,7 @@ Den här komponenten används av eleverna för att kort sammanfatta data som pre
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: en matris av noder som anger omgivande text och frågekomponenter som ska visas i ett fönster med flikar.. Default: `[]`.
+* __questions__ | `(array|object)`: matris av noder med text- och frågekomponenter som ska visas i en flik på `questions` eller ett objekt med egenskaper som överförs till en underliggande `<Pages />` komponent. Default: `none`.
 * __showTestDecisions__ | `boolean`: Boolean som anger om besluten som fattats för varje test baserat på de beräknade p-värdena ska visas.. Default: `true`.
 * __statistics__ | `array`: en rad strängar som anger vilken sammanfattande statistik som kan beräknas.. Default: `[
   'Mean',

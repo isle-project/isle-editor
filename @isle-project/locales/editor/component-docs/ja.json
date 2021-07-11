@@ -149,7 +149,7 @@
 	"DataExplorer-prop-opened": "起動時に開いたページ",
 	"DataExplorer-prop-plots": "ユーザに表示するプロットを示す文字列の配列",
 	"DataExplorer-prop-quantitative": "各量的変数の名前を示す文字列の配列",
-	"DataExplorer-prop-questions": "タブ付きウィンドウに表示される周囲のテキストと質問の要素を示すノードの配列",
+	"DataExplorer-prop-questions": " `questions` タブに表示されるテキストと質問コンポーネントのノードの配列、または基礎となるコンポーネントに渡されるプロパティのオブジェクト。 `<Pages />`コンポーネント",
 	"DataExplorer-prop-reportMode": "エディタの変更を全員に同期させるか (`collaborative`)、グループ内のユーザに同期させるか (`group`)、同期させないか (`individual`) を制御します。",
 	"DataExplorer-prop-showTestDecisions": "計算されたp値に基づいて各テストの決定を表示するかどうかを示すブール値",
 	"DataExplorer-prop-statistics": "サマリー統計量が計算される可能性があることを示す文字列の配列",

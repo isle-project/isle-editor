@@ -52,7 +52,7 @@ To komponento učenci uporabljajo za kratko povzemanje predstavljenih podatkov i
   'Violin Plot',
   'QQ Plot'
 ]`.
-* __questions__ | `array`: niz vozlišč, ki označujejo okoliško besedilo in komponente vprašanja, ki se prikažejo v oknu z zavihki. Default: `[]`.
+* __questions__ | `(array|object)`: polje vozlišč sestavnih delov besedila in vprašanj, ki se prikažejo v zavihku `questions`, ali predmet lastnosti, ki se posreduje osnovnemu `<Pages />` komponente. Default: `none`.
 * __showTestDecisions__ | `boolean`: boolean, ki označuje, ali naj se prikažejo odločitve za vsak test na podlagi izračunanih p-vrednosti.. Default: `true`.
 * __statistics__ | `array`: polje nizov, ki določajo, katere zbirne statistike se lahko izračunajo.. Default: `[
   'Mean',
