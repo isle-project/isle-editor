@@ -27,7 +27,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactBootstrapTable from 'react-bootstrap/Table';
-import isTouchDevice from 'is-touch-device';
+import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './sortable.css';
 
@@ -37,7 +37,7 @@ import './sortable.css';
 const NUM_RE = /^-?[£$¤]?[\d,.]+%?$/;
 const TRIM_RE = /^\s+|\s+$/g;
 const CLICK_EVENTS = [ 'click', 'keypress' ];
-if ( isTouchDevice() ) {
+if ( IS_TOUCH_DEVICE ) {
 	CLICK_EVENTS.push( 'touchstart' );
 }
 let sortableTypesObject;

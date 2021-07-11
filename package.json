@@ -189,7 +189,6 @@
     "i18next-http-backend": "^1.2.6",
     "ieee754": "^1.2.1",
     "is-mobile": "^3.0.0",
-    "is-touch-device": "^1.0.1",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^12.1.0",
     "mini-css-extract-plugin": "^2.0.0",

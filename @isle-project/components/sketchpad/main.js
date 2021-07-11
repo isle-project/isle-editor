@@ -20,7 +20,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Select from 'react-select';
-import isTouchDevice from 'is-touch-device';
+import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
 import isMobile from 'is-mobile';
 import Checkbox from '@isle-project/components/input/checkbox';
 import Tooltip from '@isle-project/components/tooltip';
@@ -93,7 +93,6 @@ const MIN_SWIPE_X = 45;
 const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
-const hasTouch = isTouchDevice();
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
 }
@@ -1287,7 +1286,7 @@ class Sketchpad extends Component {
 			}
 			ctx.beginPath();
 			this.draw( event );
-		} else if ( hasTouch ) {
+		} else if ( IS_TOUCH_DEVICE ) {
 			this.handleClick( event );
 		}
 	}
@@ -2380,7 +2379,7 @@ class Sketchpad extends Component {
 					});
 				}} glyph="save" size="sm" />
 				<TooltipButton tooltip={t('upload-to-server')} onClick={this.uploadSketches} glyph="upload" size="sm" />
-				{ hasTouch ? <TooltipButton tooltip={this.state.swiping ? t('disable-swiping') : t('enable-swiping')} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
+				{ IS_TOUCH_DEVICE ? <TooltipButton tooltip={this.state.swiping ? t('disable-swiping') : t('enable-swiping')} variant={this.state.swiping ? 'success' : 'secondary'} onClick={this.toggleSwiping} glyph="fingerprint" size="sm" /> : null }
 			</ButtonGroup>
 		);
 	}

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shuffle from '@stdlib/random/shuffle';
 import { DndProvider } from 'react-dnd';
-import isTouchDevice from 'is-touch-device';
+import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import noop from '@stdlib/utils/noop';
@@ -13,8 +13,7 @@ import Card from './card.js';
 
 // VARIABLES //
 
-const hasTouch = isTouchDevice();
-const DnDBackend = hasTouch ? TouchBackend : HTML5Backend;
+const DnDBackend = IS_TOUCH_DEVICE ? TouchBackend : HTML5Backend;
 
 
 // MAIN //
