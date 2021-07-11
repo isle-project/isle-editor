@@ -82,14 +82,14 @@ const createHelpMenu = ( i18n ) => {
 				label: i18n.t('EditorMenu:report-bug'),
 				accelerator: '',
 				click: () => {
-					actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=bug_report.md' );
+					actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=bug_report.yml' );
 				}
 			},
 			{
 				label: i18n.t('EditorMenu:request-new-feature'),
 				accelerator: '',
 				click: () => {
-					actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=feature_request.md' );
+					actions.openBrowser( 'https://github.com/isle-project/isle-editor/issues/new?template=feature_request.yml' );
 				}
 			},
 			{
