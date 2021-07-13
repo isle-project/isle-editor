@@ -52,9 +52,12 @@ const IFrame = ( props ) => {
 				});
 			}
 		};
-		window.addEventListener( 'blur', listener );
+		const onBlur = () => {
+			setTimeout( listener, 0 );
+		};
+		window.addEventListener( 'blur', onBlur );
 		return () => {
-			window.removeEventListener( 'blur', listener );
+			window.removeEventListener( 'blur', onBlur );
 		};
 	}, [ session ] );
 	useEffect( () => {
