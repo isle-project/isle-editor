@@ -310,10 +310,14 @@ class DataExplorer extends Component {
 				}
 			}
 			else if ( type === MEMBER_ACTION ) {
-				if ( action.id !== this.id || action.email === session.user.email ) {
+				if (
+					action.id !== this.id ||
+					action.email === session.user.email ||
+					this.props.reportMode === 'individual'
+				) {
 					return;
 				}
-				if ( this.props.reportMode === 'group' ) {
+				else if ( this.props.reportMode === 'group' ) {
 					if ( !session.group ) {
 						return;
 					}
@@ -329,6 +333,7 @@ class DataExplorer extends Component {
 						return;
 					}
 				}
+				// Case: `collaborative` or `group` mode
 				if (
 					action.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
 					action.type === DATA_EXPLORER_BIN_TRANSFORMER ||
