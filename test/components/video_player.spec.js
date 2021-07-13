@@ -14,4 +14,15 @@ describe( '<VideoPlayer />', function test() {
 		const { container } = render( <VideoPlayer url="https://youtu.be/Lkj8b25ppZo" /> );
 		expect( container ).not.toBeEmptyDOMElement();
 	});
+
+	it( 'renders a video player with controls', () => {
+		const { container } = render( <VideoPlayer url="https://youtu.be/Lkj8b25ppZo" controls /> );
+		expect( container ).not.toBeEmptyDOMElement();
+	});
+
+	it( 'renders a video player with controls and a custom style', () => {
+		const { container } = render( <VideoPlayer id="player" url="https://youtu.be/Lkj8b25ppZo" controls style={{ width: '100%' }} /> );
+		const player = container.querySelector( '#player' );
+		expect( player ).toHaveStyle( { width: '100%' } );
+	});
 });
