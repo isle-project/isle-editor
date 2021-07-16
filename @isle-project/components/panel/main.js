@@ -53,6 +53,7 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 * @property {(string|node)} footer - panel footer
 * @property {boolean} trapFocus - whether to trap the user's focus in the panel
 * @property {boolean} minimizable - whether the panel can be minimized
+* @property {boolean} defaultMinimized - controls whether the panel should be minimized by default (only applicable when `minimizable` is set to `true`)
 * @property {boolean} fullscreen - whether the panel can be made fullscreen (only for instructors)
 * @property {string} hideTooltip - tooltip displayed over the hide button
 * @property {Function} onHide - callback invoked when the close button is clicked
@@ -60,8 +61,8 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 * @property {Object} bodyStyle - CSS inline styles for body
 * @property {Object} footerStyle - CSS inline styles for footer
 */
-const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
-	const [ minimized, setMinimized ] = useState( false );
+const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, defaultMinimized, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
+	const [ minimized, setMinimized ] = useState( minimizable ? defaultMinimized : false );
 	const cardRef = useRef( null );
 	const card = <Card
 		{...rest}
@@ -130,6 +131,7 @@ Panel.propTypes = {
 		PropTypes.node
 	]),
 	minimizable: PropTypes.bool,
+	defaultMinimized: PropTypes.bool,
 	fullscreen: PropTypes.bool,
 	hideTooltip: PropTypes.string,
 	bodyStyle: PropTypes.object,
@@ -144,6 +146,7 @@ Panel.defaultProps = {
 	headerTag: 'h3',
 	footer: null,
 	minimizable: false,
+	defaultMinimized: false,
 	fullscreen: false,
 	hideTooltip: null,
 	bodyStyle: {},
