@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import generateUID from '@isle-project/utils/uid';
@@ -43,7 +44,7 @@ const IFrame = ( props ) => {
 	const { t } = useTranslation( 'iframe' );
 
 	useEffect( () => {
-		const listener = () => {
+		const logger = () => {
 			if ( document.activeElement === iframeRef.current ) {
 				session.log({
 					id: id.current,
@@ -52,12 +53,13 @@ const IFrame = ( props ) => {
 				});
 			}
 		};
-		const onBlur = () => {
-			setTimeout( listener, 0 );
+		const handleEvent = () => {
+			setTimeout( logger, 0 );
 		};
-		window.addEventListener( 'blur', onBlur );
+		const eventType = IS_TOUCH_DEVICE? 'touchstart' : 'blur';
+		window.addEventListener( eventType, handleEvent );
 		return () => {
-			window.removeEventListener( 'blur', onBlur );
+			window.removeEventListener( eventType, handleEvent );
 		};
 	}, [ session ] );
 	useEffect( () => {
