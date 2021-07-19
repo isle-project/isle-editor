@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { I18nextProvider } from 'react-i18next';
+import { i18n } from '@isle-project/locales';
 import ErrorMessage from '@isle-project/components/internal/error-message';
 
 
@@ -30,11 +32,15 @@ class ErrorBoundary extends Component {
 
 	render() {
 		if ( this.state.error ) {
-			return ( <ErrorMessage
-				error={this.state.error}
-				componentName={this.props.component}
-				resetError={this.handleErrorReset}
-			/> );
+			return (
+				<I18nextProvider i18n={i18n} >
+					<ErrorMessage
+						error={this.state.error}
+						componentName={this.props.component}
+						resetError={this.handleErrorReset}
+					/>
+				</I18nextProvider>
+			);
 		}
 		return this.props.children;
 	}
