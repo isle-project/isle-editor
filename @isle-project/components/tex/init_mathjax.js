@@ -5,11 +5,11 @@ const DEFAULT_OPTIONS = {
 		typeset: false
 	},
 	loader: {
-		load: [ '[tex]/action', '[tex]/html' ]
+		load: [ '[tex]/action', '[tex]/html', '[tex]/boldsymbol' ]
 	},
 	tex: {
 		packages: {
-			'[+]': [ 'action', 'html' ]
+			'[+]': [ 'action', 'html', 'boldsymbol' ]
 		}
 	},
 	options: {
