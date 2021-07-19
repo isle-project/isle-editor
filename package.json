@@ -273,7 +273,6 @@
     "text-miner": "^1.3.0",
     "typo-js": "^1.2.0",
     "uniq": "^1.0.1",
-    "use-debounce": "^7.0.0",
     "v8-compile-cache": "^2.3.0",
     "venn.js": "0.2.20",
     "webpack": "5.45.1",
