@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
+import debounce from 'lodash.debounce';
 import NINF from '@stdlib/constants/float64/ninf';
 import PINF from '@stdlib/constants/float64/pinf';
 import replace from '@stdlib/string/replace';
@@ -45,6 +46,11 @@ function processEquation( raw, elems, id ) {
 	return raw;
 }
 
+const updateEquations = debounce( () => {
+	window.MathJax.startup.document.clear();
+	window.MathJax.startup.document.updateDocument();
+}, 200 );
+
 
 // MAIN //
 
@@ -81,8 +87,7 @@ const TeX = ({ raw, displayMode, numbered, style, tag, elems, popoverPlacement, 
 		window.MathJax.tex2chtmlPromise( input, options ).then( ( node ) => {
 			output.innerHTML = '';
 			output.appendChild( node );
-			window.MathJax.startup.document.clear();
-			window.MathJax.startup.document.updateDocument();
+			updateEquations();
 
 			const keys = objectKeys( elems );
 			for ( let i = 0; i < keys.length; i++ ) {
