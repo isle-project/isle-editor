@@ -17,6 +17,11 @@
 
 // MAIN //
 
+/**
+ * Returns today's date.
+ *
+ * @returns {string} today's date formatted as `<month>/<day>/<year>` or `<day>/<month>/<year>` depending on locale.
+ */
 function today() {
 	const date = new Date();
 	let day = date.getDate();

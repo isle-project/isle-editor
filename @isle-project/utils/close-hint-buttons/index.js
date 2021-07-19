@@ -7,6 +7,12 @@ import { i18n } from '@isle-project/locales';
 
 // MAIN //
 
+/**
+ * Closes all the hint buttons inside the given element.
+ *
+ * @param {HTMLElement} el - element to search for hint buttons
+ * @returns {void}
+ */
 function closeHintButtons( elem ) {
 	if ( !elem ) {
 		return;

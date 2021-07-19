@@ -31,6 +31,11 @@ import { useState, useCallback } from 'react';
 
 // MAIN //
 
+/**
+ * Hook to force an update of the component.
+ *
+ * @returns {Function} update function
+ */
 function useForceUpdate() {
 	const [ , setTick ] = useState( 0 );
 	const update = useCallback( () => {

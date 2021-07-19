@@ -17,6 +17,12 @@
 
 // MAIN //
 
+/**
+ * Incrementally generates a unique ID.
+ *
+ * @param {string} prefix - prefix for the generated ID
+ * @returns {string} unique ID
+ */
 function generateUID( prefix ) {
 	let counter = 1;
 

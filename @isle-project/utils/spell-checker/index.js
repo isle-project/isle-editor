@@ -28,6 +28,13 @@ const RE_DIGITS = /\d+/;
 
 // FUNCTION //
 
+/**
+ * Returns the index of the next whitespace character in `str` after `pos`.
+ *
+ * @param {string} str - string to search
+ * @param {number} pos - starting position
+ * @returns {number} index of next whitespace character
+ */
 const nextWhitespace = ( str, pos ) => {
 	for ( let i = pos; i < str.length; i++ ) {
 		const v = str[ i ];
@@ -41,6 +48,13 @@ const nextWhitespace = ( str, pos ) => {
 
 // MAIN //
 
+/**
+ * Checks if words in a text are misspelled.
+ *
+ * @param {string} text - text to check
+ * @param {Object} [options] - function options
+ * @param {string} [options.language='en'] - language of the text
+ */
 function SpellChecker( text, options ) {
 	// Initialize
 	options = options || {};

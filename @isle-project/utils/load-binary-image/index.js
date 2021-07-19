@@ -1,7 +1,13 @@
 // MAIN //
 
+/**
+ * Loads a binary image.
+ *
+ * @param {string} file - image path
+ * @returns {Promise} a promise which resolves with an object containing the image data and metadata
+ */
 function loadBinaryImage( file ) {
-	return new Promise((resolve, reject) => {
+	return new Promise( ( resolve, reject ) => {
 		const { FileReader } = window;
 		if ( FileReader ) {
 			const reader = new FileReader();
@@ -17,7 +23,7 @@ function loadBinaryImage( file ) {
 			};
 			reader.readAsDataURL(file);
 		} else {
-			reject(new Error('FileReader is not available'));
+			reject( new Error( 'FileReader is not available' ) );
 		}
 	});
 }

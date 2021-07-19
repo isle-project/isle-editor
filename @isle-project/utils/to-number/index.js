@@ -5,6 +5,12 @@ import trim from '@stdlib/string/trim';
 
 // MAIN //
 
+/**
+ * Converts a number string to a number.
+ *
+ * @param {string} val - number string
+ * @returns {number} number
+ */
 function toNumber( val ) {
 	val = trim( val );
 	switch ( val ) {

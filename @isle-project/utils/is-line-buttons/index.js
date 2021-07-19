@@ -7,6 +7,12 @@ import { isPrimitive as isInteger } from '@stdlib/assert/is-integer';
 
 // MAIN //
 
+/**
+ * Returns whether an object represents a line buttons component.
+ *
+ * @param {Object} elem - element to test
+ * @returns {boolean} boolean indicating whether an object represents a line buttons component
+ */
 function isLineButtons( elem ) {
 	return (
 		isPlainObject( elem ) &&

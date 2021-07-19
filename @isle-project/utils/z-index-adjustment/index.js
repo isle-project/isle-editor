@@ -17,6 +17,12 @@
 
 // MAIN //
 
+/**
+ * Returns a z-index adjustment for an element.
+ *
+ * @param {Element} child - element
+ * @returns {number} z-index
+ */
 function zIndexAdjustment( child ) {
 	if ( !child ) {
 		return 0;

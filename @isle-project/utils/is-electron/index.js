@@ -6,6 +6,9 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 
 // MAIN //
 
+/**
+ * Constant indicating whether an environment is an Electron environment.
+ */
 const isElectron =
 	typeof process === 'object' &&
 	isObject( process.versions ) &&

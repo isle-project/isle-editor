@@ -74,6 +74,12 @@ const ALPHANUMERIC = [
 
 // MAIN //
 
+/**
+ * Returns a random string of alphanumeric characters of the specified length.
+ *
+ * @param {NonNegativeInteger} [len=32] - string length
+ * @returns {string} random string
+ */
 function alphanumeric( len = 32 ) {
 	const codePoints = sample( ALPHANUMERIC, {
 		size: len

@@ -18,6 +18,12 @@ const NUM_WRAPPER_LINES = 9;
 
 // MAIN //
 
+/**
+ * Format an error message by adjusting line numbers and removing hidden code.
+ *
+ * @param {string} msg - error message
+ * @returns {string} formatted error message
+ */
 const formatError = ( msg ) => {
 	msg = msg.replace( RE_ANSI, '\n' );
 	msg = msg.replace( RE_STATUSBAR, '\n' );

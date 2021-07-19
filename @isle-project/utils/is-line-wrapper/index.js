@@ -5,6 +5,12 @@ import isPlainObject from '@stdlib/assert/is-plain-object';
 
 // MAIN //
 
+/**
+ * Validates if a element is a line wrapper object.
+ *
+ * @param {*} element - element to validate
+ * @returns {boolean} boolean indicating if a element is a line wrapper object
+ */
 function isLineWrapper( element ) {
 	return (
 		isPlainObject( element ) &&

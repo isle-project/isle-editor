@@ -7,6 +7,15 @@ import runif from '@stdlib/random/base/discrete-uniform';
 
 // MAIN //
 
+/**
+ * Hook to invoke a function after a random interval.
+ *
+ * @param {Function} callback - function to invoke
+ * @param {number} minDelay - minimum delay in milliseconds
+ * @param {number} maxDelay - maximum delay in milliseconds
+ * @param {number} [initialDelay=0] - initial delay in milliseconds
+ * @returns {void}
+ */
 const useRandomInterval = ( callback, minDelay, maxDelay, initialDelay = 0 ) => {
 	const timeout = useRef( null );
 	const savedCallback = useRef( callback );
