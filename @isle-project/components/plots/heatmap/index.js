@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import contains from '@stdlib/assert/contains';
@@ -24,6 +23,8 @@ import calculateCoefficients from '@isle-project/utils/linear-regression/calcula
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // FUNCTIONS //
@@ -44,14 +45,6 @@ function toArrayArray( arr ) {
 		out[ i ] = row;
 	}
 	return out;
-}
-
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
-}
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
 }
 
 export function generateHeatmapConfig({ data, x, y, overlayPoints, alternateColor, group, commonXAxis, commonYAxis, regressionMethod, smoothSpan }) {

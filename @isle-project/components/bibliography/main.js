@@ -10,6 +10,12 @@ import SessionContext from '@isle-project/session/context.js';
 
 // FUNCTIONS //
 
+/**
+ * Returns a formatted string of the author's name.
+ *
+ * @param {string} author - author(s)
+ * @returns {string} formatted string of the author(s)
+ */
 function generateAuthorString( author ) {
 	if ( !author ) {
 		return '';

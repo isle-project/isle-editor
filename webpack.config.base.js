@@ -12,7 +12,6 @@ import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 const EXTERNALS = [
 	'@stdlib/*',
 	'archiver',
-	'camelcase',
 	'child_process',
 	'compute-chunkify',
 	'cross-spawn',

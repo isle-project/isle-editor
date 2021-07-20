@@ -7,7 +7,6 @@ import { useTranslation, Trans } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import ttest2 from '@stdlib/stats/ttest2';
 import ztest2 from '@stdlib/stats/ztest2';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isNull from '@stdlib/assert/is-null';
 import isnan from '@stdlib/assert/is-nan';
 import replace from '@stdlib/string/replace';
@@ -19,6 +18,7 @@ import TeX from '@isle-project/components/tex';
 import escapeLatex from '@isle-project/utils/escape-latex';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 
 
 // VARIABLES //
@@ -29,10 +29,6 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
 
 // FUNCTIONS //
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
 
 function retrieveGroupedValues( data, x, group ) {
 	debug( 'Updating the variable when supplying groups...' );

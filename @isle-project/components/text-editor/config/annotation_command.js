@@ -37,6 +37,11 @@ import createPopUp from './ui/create_popup.js';
 
 // FUNCTIONS //
 
+/**
+ * Generate a random unique ID for an annotation.
+ *
+ * @returns {number} unique identifier
+ */
 function randomID() {
 	return Math.floor( Math.random() * 0xffffffff );
 }

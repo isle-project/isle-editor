@@ -7,9 +7,6 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Table from '@isle-project/components/table';
 import Tooltip from '@isle-project/components/tooltip';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import isnan from '@stdlib/assert/is-nan';
 import objectValues from '@stdlib/utils/values';
 import mapValues from '@stdlib/utils/map-values';
 import incrsumabs2 from '@stdlib/stats/incr/sumabs2';
@@ -23,6 +20,8 @@ import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // VARIABLES //
@@ -48,14 +47,6 @@ function calculateCoefficients( x, y ) {
 	const slope = C2 / C1;
 	const yint = ymu - slope*xmu;
 	return { yint, slope, xg: x, yg: y };
-}
-
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
-}
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
 }
 
 function extractValues({ x, y, data, group, omitMissing }) {

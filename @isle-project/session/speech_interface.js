@@ -26,7 +26,7 @@ import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import noop from '@stdlib/utils/noop';
 import hasOwnProp from '@stdlib/assert/has-own-property';
-import camelcase from '@isle-project/utils/camelcase';
+import camelcase from '@stdlib/string/camelcase';
 
 
 // VARIABLES //

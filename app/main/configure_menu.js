@@ -11,6 +11,9 @@ import createWindowMenu from './menus/window';
 
 // MAIN //
 
+/**
+ * Main application menu.
+ */
 function configureMenu({ app }) {
 	const template = process.platform === 'darwin' ? [ createISLE({ app, i18n }) ] : [];
 	return [

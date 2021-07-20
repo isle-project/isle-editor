@@ -4,22 +4,16 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
 import qnorm from '@stdlib/stats/base/dists/normal/quantile';
 import { i18n } from '@isle-project/locales';
 import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import ascending from './ascending.js';
 
 
 // FUNCTIONS //
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
-
 
 export function generateQQPlotConfig( y, variable ) {
 	let annotations;

@@ -15,6 +15,12 @@ const debug = logger( 'isle-editor' );
 
 // FUNCTIONS //
 
+/**
+ * Open a URL in external browser.
+ *
+ * @param {Event} e - event
+ * @param {string} url - URL to open
+ */
 function openExternal( e, url ) {
 	e.preventDefault();
 	shell.openExternal( url );

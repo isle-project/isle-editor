@@ -6,7 +6,6 @@ import Alert from 'react-bootstrap/Alert';
 import { i18n } from '@isle-project/locales';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
-import isnan from '@stdlib/assert/is-nan';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
@@ -14,6 +13,7 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 import by from '@isle-project/utils/by';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import calculateDensityValues from './calculate_density_values.js';
 
 
@@ -28,10 +28,6 @@ const SETTINGS = {
 
 
 // FUNCTIONS //
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
 
 function setBins( config, vals, binStrategy, nBins, xbins ) {
 	const maxVal = isNumber( xbins.end ) ? xbins.end : max( vals );

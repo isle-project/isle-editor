@@ -11,9 +11,6 @@ import round from '@stdlib/math/base/special/round';
 import fCDF from '@stdlib/stats/base/dists/f/cdf';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import isnan from '@stdlib/assert/is-nan';
 import abs from '@stdlib/math/base/special/abs';
 import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import Table from '@isle-project/components/table';
@@ -25,6 +22,7 @@ import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // VARIABLES //
@@ -36,14 +34,6 @@ const R2 = 'R²:';
 
 
 // FUNCTIONS //
-
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
-}
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
 
 function designMatrix( x, y, data, quantitative, intercept ) {
 	if ( !isArray( x ) ) {

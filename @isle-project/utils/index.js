@@ -7,7 +7,6 @@ import beforeUnload from '@isle-project/utils/before-unload';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import by from '@isle-project/utils/by';
 import by2 from '@isle-project/utils/by2';
-import camelcase from '@isle-project/utils/camelcase';
 import closeHintButtons from '@isle-project/utils/close-hint-buttons';
 import divide from '@isle-project/utils/divide';
 import escapeLaTeX from '@isle-project/utils/escape-latex';
@@ -64,7 +63,6 @@ const scope = {
 	blobToBase64,
 	by,
 	by2,
-	camelcase,
 	closeHintButtons,
 	divide,
 	escapeLaTeX,

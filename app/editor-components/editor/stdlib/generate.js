@@ -23,6 +23,12 @@ const RE_DOT_UPPER =/([a-z]+)\.([A-Z])/g;
 
 // FUNCTIONS //
 
+/**
+ * Changes a `stdlib` package alias to a camelcase-formatted name.
+ *
+ * @param {string} alias - `stdlib` package alias
+ * @returns {string} camelcase-formatted name
+ */
 function toCamelCase( str ) {
 	let out = replace( str, RE_DOT, ( match, p1 ) => {
 		return uppercase( p1 );

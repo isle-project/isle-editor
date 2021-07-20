@@ -18,6 +18,12 @@ const WARNING_STYLE = {
 
 // FUNCTIONS //
 
+/**
+ * Extracts a surname from a given string.
+ *
+ * @param {string} name - name to parse
+ * @returns {string} surname
+ */
 function extractSurname( name ) {
 	name = trim( name );
 	if ( contains( name, ',' ) ) {

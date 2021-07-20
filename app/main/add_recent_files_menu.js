@@ -13,12 +13,21 @@ const recentFiles = config.get( 'recentFiles' ) || [];
 
 // FUNCTIONS //
 
+/**
+ * Return a function to open a recent file.
+ *
+ * @param {string} path - file path
+ * @returns {Function} function to open file path
+ */
 function openRecentFactory( path ) {
 	return ( menuItem, browserWindow ) => {
 		actions.openFile( path, browserWindow );
 	};
 }
 
+/**
+ * Adds menu items to the application's "Recent Files" sub-menu.
+ */
 function addRecentFilesMenu() {
 	const currentMenu = Menu.getApplicationMenu();
 	let fileMenu = null;

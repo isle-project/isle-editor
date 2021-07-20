@@ -6,6 +6,14 @@ import createCSSProperty from './create_css_property.js';
 
 // MAIN //
 
+/**
+ * Converts a JSX style object to a CSS rule.
+ *
+ * @param {string} selector - CSS selector for which to apply the style
+ * @param {Object} style - style object
+ * @param {string} [indent='\t'] - whitespace indentation
+ * @returns {string} CSS rule
+ */
 function createCSSRuleSet( selector, style, indent = '\t' ) {
 	const keys = objectKeys( style );
 	let out = '';

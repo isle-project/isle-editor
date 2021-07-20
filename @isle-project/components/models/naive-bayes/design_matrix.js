@@ -2,22 +2,10 @@
 
 import contains from '@stdlib/assert/contains';
 import ndarray from '@stdlib/ndarray/array';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import isnan from '@stdlib/assert/is-nan';
 import isArray from '@stdlib/assert/is-array';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
-
-
-// FUNCTIONS //
-
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
-}
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // MAIN //

@@ -10,10 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
 import ndarray from '@stdlib/ndarray/array';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isArray from '@stdlib/assert/is-array';
-import isnan from '@stdlib/assert/is-nan';
 import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
 import roundn from '@stdlib/math/base/special/roundn';
@@ -24,6 +21,8 @@ import extractCategoriesFromValues from '@isle-project/utils/extract-categories-
 import subtract from '@isle-project/utils/subtract';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import isMissing from '@isle-project/utils/is-missing';
 import irls from './logistic_regression.js';
 
 
@@ -34,14 +33,6 @@ const T = 't';
 
 
 // FUNCTIONS //
-
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
-}
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
 
 function designMatrix( x, y, data, quantitative, intercept, success ) {
 	const predictors = [];

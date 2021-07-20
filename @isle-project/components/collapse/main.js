@@ -17,6 +17,12 @@ const debug = logger( 'isle:vertical-slider' );
 
 // FUNCTIONS //
 
+/**
+ * Returns a class given the current visibility.
+ *
+ * @param {boolean} val - current visibility status
+ * @returns {boolean} collapse classes depending on visibility status
+ */
 function getClassName( val ) {
 	if ( val === false ) {
 		return 'vs-body vs-hidden';

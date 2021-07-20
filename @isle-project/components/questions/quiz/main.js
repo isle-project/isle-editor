@@ -31,6 +31,7 @@ import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
 import generateUID from '@isle-project/utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED, QUIZ_FINISHED } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import isHTMLConfig from './is_html_config.js';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
 import './quiz.css';
@@ -74,16 +75,6 @@ const DOC_STYLES = {
 		bold: true
 	}
 };
-
-
-// FUNCTIONS //
-
-function isHTMLConfig( elem ) {
-	return (
-		isObject( elem ) &&
-		elem.component
-	);
-}
 
 
 // MAIN //

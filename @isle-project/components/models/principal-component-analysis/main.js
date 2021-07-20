@@ -7,17 +7,12 @@ import { PCA } from 'ml-pca';
 import { withTranslation } from 'react-i18next';
 import Table from '@isle-project/components/table';
 import incrspace from '@stdlib/array/incrspace';
-import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import isnan from '@stdlib/assert/is-nan';
 import Plotly from '@isle-project/components/plotly';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 
 
 // FUNCTIONS //
-
-function isNonMissingNumber( x ) {
-	return isNumber( x ) && !isnan( x );
-}
 
 const summaryTable = ( stdev, variance, cumVariance, t ) => {
 	/* eslint-disable i18next/no-literal-string */

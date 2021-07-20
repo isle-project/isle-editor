@@ -19,6 +19,12 @@ const debug = logger( 'isle:multi-cards' );
 
 // FUNCTIONS //
 
+/**
+ * Duplicates elements in an array.
+ *
+ * @param {Array} arr - array to duplicate
+ * @returns {Array} duplicated array
+ */
 function duplicateElements( arr ) {
 	const out = [];
 	for ( let i = 0; i < arr.length; i++ ){

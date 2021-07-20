@@ -1,5 +1,12 @@
 // MAIN //
 
+/**
+ * Creates HTML report file.
+ *
+ * @param {string} title - report title
+ * @param {string} body - report body
+ * @returns {string} HTML report file
+ */
 const createHTML = ( title, body ) => `<!doctype html>
 <html lang=en>
 	<head>

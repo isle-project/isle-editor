@@ -3,20 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import isObject from '@stdlib/assert/is-plain-object';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
+import isHTMLConfig from './is_html_config.js';
 import './multiple-choice-styles.css';
-
-
-// FUNCTIONS //
-
-function isHTMLConfig( elem ) {
-	return (
-		isObject( elem ) &&
-		elem.component
-	);
-}
 
 
 // MAIN //

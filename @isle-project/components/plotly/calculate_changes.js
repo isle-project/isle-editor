@@ -1,5 +1,12 @@
 // FUNCTIONS //
 
+/**
+ * Returns the text of a layout property.
+ *
+ * @param {Object} layout - layout object
+ * @param {string} prop - property name
+ * @returns layout text
+ */
 function getText( layout, prop ) {
 	let out;
 	if ( !layout ) {
@@ -16,6 +23,13 @@ function getText( layout, prop ) {
 
 // MAIN //
 
+/**
+ * Calculates the changes between two layouts.
+ *
+ * @param {Object} newLayout - new layout
+ * @param {Object} oldLayout - old layout
+ * @returns {Array} array of changes
+ */
 function calculateChanges( newLayout, oldLayout ) {
 	const changes = [];
 	const newTitle = getText( newLayout, 'title' );

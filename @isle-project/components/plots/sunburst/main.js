@@ -39,6 +39,12 @@ const uid = generateUID( 'sunburst' );
 
 // FUNCTIONS //
 
+/**
+ * Creates a color mapping for a set of categories.
+ *
+ * @param {Array} categories - array of category names
+ * @returns {Object} color mapping
+ */
 function createColorMapping( categories ) {
 	const out = {};
 	if ( !categories ) {

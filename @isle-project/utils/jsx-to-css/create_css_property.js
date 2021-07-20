@@ -37,6 +37,12 @@ const UNQUOTED_CONTENT_RE = /^(normal|none|(\b(url\([^)]*\)|chapter_counter|attr
 
 // FUNCTIONS
 
+/**
+ * Hyphenates a string by replacing all uppercase characters with their lowercase equivalent and prepends a hyphen (-).
+ *
+ * @param {string} str - string to hyphenate
+ * @returns {string} hyphenated string
+ */
 function hyphenate( string ) {
 	return lowercase( string.replace( UPPERCASE_RE, '-$1' ) );
 }
@@ -44,6 +50,13 @@ function hyphenate( string ) {
 
 // MAIN //
 
+/**
+ * Creates a CSS property name from a JSX attribute name.
+ *
+ * @param {string} key - CSS property name
+ * @param {*} value - CSS property value
+ * @returns {string} CSS property
+ */
 function createCSSProperty( key, value ) {
 	if ( !UNITLESS[ key ] && isNumber( value ) ) {
 		value = '' + value + 'px';

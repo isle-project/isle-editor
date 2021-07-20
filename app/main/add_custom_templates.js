@@ -49,6 +49,9 @@ const SUPPLIED_TEMPLATES = [{
 
 // MAIN //
 
+/**
+ * Add custom templates to the application menu.
+ */
 function addCustomTemplates() {
 	const currentMenu = Menu.getApplicationMenu();
 	let customTemplates = null;
