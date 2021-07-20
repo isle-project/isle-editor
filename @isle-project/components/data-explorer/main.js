@@ -93,6 +93,13 @@ const KEYS = {
 
 // FUNCTIONS //
 
+/**
+ * Returns whether the list of variables contains a variable that is not present in the data.
+ *
+ * @param {Object} data - a data object
+ * @param {Array} variables - list of variables
+ * @returns {boolean} a boolean indicating whether the list of variables contains a variable not present in the data
+ */
 function checkVariables( data, variables ) {
 	if ( variables.length === 0 ) {
 		return true;

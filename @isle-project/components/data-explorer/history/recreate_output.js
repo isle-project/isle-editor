@@ -38,6 +38,13 @@ import SummaryStatistics from '@isle-project/components/summary-statistics';
 
 // MAIN //
 
+/**
+ * Recreates output.
+ *
+ * @param {Object} action - action object
+ * @param {Object} props - data explorer props
+ * @returns {Node} output element
+ */
 function recreateOutput( action, props ) {
 	const params = { ...props, ...action.value };
 	let output;

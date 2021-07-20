@@ -18,6 +18,13 @@ const RE_HEADING = /h\d/;
 
 // FUNCTIONS //
 
+/**
+ * Returns a group indicator for the given snippet.
+ *
+ * @private
+ * @param {Object} v - snippet object
+ * @returns {string} group indicator
+ */
 function groupIndicator( v ) {
 	v.name = trim( v.name );
 	if ( contains( GROUPINGS.R, v.name ) ) {

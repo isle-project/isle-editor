@@ -11,6 +11,9 @@ import Checkbox from '@isle-project/components/input/checkbox';
 
 // MAIN //
 
+/**
+ * A search component.
+ */
 const Search = ({ extended, onClick, t }) => {
 	const [ search, setSearch ] = useState( '' );
 	const [ caseSensitive, setCaseSensitive ] = useState( false );

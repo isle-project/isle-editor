@@ -5,6 +5,13 @@ const isWhitespace = require( './is_whitespace.js' );
 
 // MAIN //
 
+/**
+ * Determines if the sub-string at the specified position is an empty line.
+ *
+ * @param {Buffer} buffer - buffer containing the sub-string
+ * @param {number} pos - position of the sub-string
+ * @returns {boolean} boolean indicating whether the sub-string is an empty line
+ */
 function isEmptyLine( buffer, pos ) {
 	if (
 		buffer[ pos ] === '\r'

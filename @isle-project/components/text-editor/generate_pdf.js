@@ -13,6 +13,14 @@ const RE_IMG_TOOLTIP = /<pre class="img-tooltip">[\s\S]*?<\/pre>/g;
 
 // FUNCTIONS //
 
+/**
+ * Returns an object of styles.
+ *
+ * @private
+ * @param {number} customFontSize - custom font size
+ * @param {boolean} poster - whether to return styles for a report
+ * @returns {Object} styles object
+ */
 function makeSTYLES( customFontSize = 12, poster = false ) {
 	// the 16 (html font) is x + 4 --> 12 font
 	const pdfSize = customFontSize - 4;
@@ -52,6 +60,13 @@ function makeSTYLES( customFontSize = 12, poster = false ) {
 	);
 }
 
+/**
+ * Returns a boolean indicating whether the provided configuration is for a poster.
+ *
+ * @private
+ * @param {Object} config - configuration object
+ * @returns {boolean} whether the provided configuration is for a poster
+ */
 function isPoster( config ) {
 	if (
 		config.pageSize.width === 72 * 42 &&
@@ -65,6 +80,15 @@ function isPoster( config ) {
 
 // MAIN //
 
+/**
+ * Generates a PDF document object.
+ *
+ * @param {string} html - html of report
+ * @param {Object} config - configuration object
+ * @param {number} standardFontSize - standard font size
+ * @param {number} editorWidth - editor width
+ * @returns {Object} PDF document object
+ */
 function generatePDF( html, config, standardFontSize, editorWidth ) {
 	const widthReplacer = ( match, p1 ) => {
 		const width = parseFloat( p1 ) * max( config.pageSize.width / editorWidth, 1 );

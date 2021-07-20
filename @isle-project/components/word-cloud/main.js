@@ -47,6 +47,13 @@ const BUTTON_STYLE = {
 
 // FUNCTIONS //
 
+/**
+ * Returns a list of stopwords.
+ *
+ * @private
+ * @param {string} language - language code
+ * @returns {Array} stopwords
+ */
 const generateStopwords = ( language ) => {
 	let stopwords;
 	switch ( language ) {
@@ -79,6 +86,14 @@ const generateStopwords = ( language ) => {
 	return stopwords;
 };
 
+/**
+ * Guess whether two arrays are equal.
+ *
+ * @private
+ * @param {Array} x - first array
+ * @param {Array} y - second array
+ * @returns {boolean} boolean giving a guess of whether the two arrays are equal after checking the first ten values
+ */
 function guessEquality( x, y ) {
 	let nobs = min( x.length, 10 );
 	for ( let i = 0; i < nobs; i++ ) {
@@ -89,9 +104,20 @@ function guessEquality( x, y ) {
 	return true;
 }
 
+/**
+ * Returns a bag-of-words representation of a set of texts.
+ *
+ * @private
+ * @param {Object} options - function options
+ * @param {Array} options.texts - array of texts
+ * @param {Array} options.stopwords - array of stopwords
+ * @param {number} options.minCount - minimum word frequency
+ * @param {Array} options.customStopwords - array of custom stopwords
+ * @returns {Object} bag-of-words representation with `min` and `max` counts and an array of word counts
+ */
 const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 	if ( !isArray( texts ) || texts.length === 0 ) {
-		return { min: PINF, max: NINF, wordCounts: []};
+		return { min: PINF, max: NINF, wordCounts: [] };
 	}
 	stopwords = stopwords.concat( customStopwords );
 	let tokens = [];

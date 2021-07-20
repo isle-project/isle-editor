@@ -8,6 +8,12 @@ import floor from '@stdlib/math/base/special/floor';
 
 // FUNCTIONS //
 
+/**
+ * Generates an array with 100 elements from a standard uniform distribution.
+ *
+ * @private
+ * @returns {Array} array of 100 draws from a standard uniform distribution
+ */
 function generatePoints() {
 	let points = new Array( 100 );
 	for ( let i = 0; i < points.length; i++ ) {

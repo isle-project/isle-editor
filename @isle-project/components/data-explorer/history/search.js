@@ -9,6 +9,9 @@ import FormGroup from 'react-bootstrap/FormGroup';
 
 // MAIN //
 
+/**
+ * Displays a search input.
+ */
 class Search extends Component {
 	constructor() {
 		super();

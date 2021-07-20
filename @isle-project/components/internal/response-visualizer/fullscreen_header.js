@@ -8,6 +8,9 @@ import isArray from '@stdlib/assert/is-array';
 
 // MAIN //
 
+/**
+ * A fullscreen header component.
+ */
 const FullscreenHeader = ( props ) => {
 	let select = null;
 	if ( isArray( props.cohorts ) ) {

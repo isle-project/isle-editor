@@ -25,6 +25,9 @@ const debug = logger( 'isle:statusbar:instructor-view' );
 
 // FUNCTIONS //
 
+/**
+ * Removes the glow effect on currently focused elements.
+ */
 function removeGlowElems() {
 	// Remove glow effect from previously highlighted elements:
 	const focused = document.getElementsByClassName( 'focus-glow' );

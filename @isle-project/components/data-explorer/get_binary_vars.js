@@ -6,6 +6,13 @@ import isNull from '@stdlib/assert/is-null';
 
 // MAIN //
 
+/**
+ * Returns a list of binary variables.
+ *
+ * @param {Array} vars - variable names
+ * @param {Object} data - data object
+ * @returns {Array} list of binary variables
+ */
 function getBinaryVars( vars, data ) {
 	const out = [];
 	for ( let i = 0; i < vars.length; i++ ) {

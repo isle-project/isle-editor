@@ -23,8 +23,13 @@ import './load_datasets.js';
 
 // FUNCTIONS //
 
+/**
+ * Prevents the propagation of the event to avoid triggering Algolia when typing `/`.
+ *
+ * @private
+ * @param {SyntheticEvent} event
+ */
 function preventPropagation( event ) {
-	// Prevent propagation to avoid triggering Algolia when typing `/`:
 	event.stopPropagation();
 }
 
@@ -32,6 +37,14 @@ function preventPropagation( event ) {
 // VARIABLES //
 
 const RE_STR_RAW = /String.raw`([^`]+)`/;
+
+/**
+ * Transforms code by wrapping it inside a Provider and Lesson component.
+ *
+ * @private
+ * @param {string} code - code to transform
+ * @returns {string} transformed code
+ */
 const transformCode = ( code ) => {
 	try {
 		code = markdownToHTML( code );
@@ -47,6 +60,9 @@ const transformCode = ( code ) => {
 
 // MAIN //
 
+/**
+ * A playground component.
+ */
 function Playground({ children, theme, ...props }) {
 	const [ copied, setCopied ] = useState( false );
 	theme = theme || vsLight;

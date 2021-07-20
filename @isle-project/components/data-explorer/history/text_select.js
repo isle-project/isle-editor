@@ -33,6 +33,9 @@ const createOption = ( label ) => ({
 
 // MAIN //
 
+/**
+ * A select component for selecting a text.
+ */
 class TextSelect extends Component {
 	constructor( props ) {
 		super( props );

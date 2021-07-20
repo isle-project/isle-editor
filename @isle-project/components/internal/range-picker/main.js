@@ -8,6 +8,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import DateRangePicker from 'react-dates/esm/components/DateRangePicker';
+import constantFunction from '@stdlib/utils/constant-function';
 import './_datepicker.css';
 
 
@@ -18,13 +19,7 @@ const ACTIVE_STYLE = {
 	color: 'white',
 	textShadow: 'none'
 };
-
-
-// FUNCTIONS //
-
-function alwaysFalse() {
-	return false;
-}
+const alwaysFalse = constantFunction( false );
 
 
 // MAIN //

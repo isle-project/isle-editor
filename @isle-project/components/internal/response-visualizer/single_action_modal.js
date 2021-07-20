@@ -7,6 +7,13 @@ import removeLast from '@stdlib/string/remove-last';
 
 // FUNCTIONS //
 
+/**
+ * Returns a time string.
+ *
+ * @private
+ * @param {number} absoluteTime - the absolute time of the action in milliseconds
+ * @returns {string} a string date representation of the time
+ */
 function toTimeString( absoluteTime ) {
 	const date = new Date( absoluteTime );
 	return `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`;
@@ -15,6 +22,9 @@ function toTimeString( absoluteTime ) {
 
 // MAIN //
 
+/**
+ * Creates a modal dialog for displaying a single action.
+ */
 const SingleActionModal = ( props ) => {
 	return (
 		<Modal

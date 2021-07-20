@@ -37,6 +37,12 @@ const debug = logger( 'isle:learn:hypothesis-testing-proportion' );
 
 // FUNCTIONS //
 
+/**
+ * Evaluates the normal probability density function (PDF) at a given value.
+ *
+ * @param {number} d - input value
+ * @returns {Object} object with the value (`x`) and corresponding density (`y`)
+ */
 function normalPDF( d ) {
 	return { x: d, y: dnorm( d, 0, 1 ) };
 }

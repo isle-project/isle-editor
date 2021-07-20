@@ -39,11 +39,13 @@ import split from './split.js';
 // FUNCTIONS //
 
 /**
-* Calculating how many elements have the same
-* values
-*
-* @param values - array of values
-*/
+ * Calculating how many elements have the same values.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {Object} object with counts
+ */
 function countUniqueValues( values, indices ) {
 	const counter = {};
 
@@ -62,10 +64,13 @@ function countUniqueValues( values, indices ) {
 }
 
 /**
-* Finding value which is most frequent in an array.
-*
-* @param values - array of values
-*/
+ * Finding value which is most frequent in an array.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {number} most frequent value
+ */
 function mostFrequentValue( values, indices ) {
 	// Counting number of occurrences:
 	const counter = countUniqueValues( values, indices );
@@ -81,6 +86,14 @@ function mostFrequentValue( values, indices ) {
 	return mostFrequentValue;
 }
 
+/**
+ * Calculates the GINI coefficient for the given values.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {number} GINI coefficient
+ */
 function gini( values, indices ) {
 	const counter = countUniqueValues( values, indices );
 	let out = 0;
@@ -94,10 +107,13 @@ function gini( values, indices ) {
 }
 
 /**
-* Calculating entropy of a variable.
-*
-* @param values - array of values
-*/
+ * Calculating entropy of a variable.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {number} entropy value
+ */
 function entropy( values, indices ) {
 	// Count number of occurrences of each value:
 	const counter = countUniqueValues( values, indices );
@@ -112,10 +128,13 @@ function entropy( values, indices ) {
 }
 
 /**
-* Calculates the variance of a variable.
-*
-* @param values - array of values
-*/
+ * Calculates the variance of a variable.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {number} variance
+ */
 function variance( values, indices ) {
 	const len = indices.length;
 	let delta = 0;
@@ -141,10 +160,13 @@ function variance( values, indices ) {
 }
 
 /**
-* Calculates the mean of a variable.
-*
-* @param values - array of values
-*/
+ * Calculates the mean of a variable.
+ *
+ * @private
+ * @param {Array} values - array of values
+ * @param {Array} indices - array of indices
+ * @returns {number} mean value
+ */
 function mean( values, indices ) {
 	const len = indices.length;
 	if ( !len ) {
@@ -158,6 +180,7 @@ function mean( values, indices ) {
 	}
 	return mu;
 }
+
 
 // VARIABLES //
 

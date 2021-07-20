@@ -37,6 +37,14 @@ const AREA_STYLE = {
 
 // FUNCTIONS //
 
+/**
+ * Returns a domain object for a distribution with the specified mean and standard deviation.
+ *
+ * @private
+ * @param {number} mean - distribution mean
+ * @param {number} sigma - distribution standard deviation
+ * @returns {Object} domain object with `x` and `y` properties
+ */
 function calculateDomain( mean, sd ) {
 	return {
 		x: [ mean - 6 - sd*3, mean + 6 + sd*3 ],
