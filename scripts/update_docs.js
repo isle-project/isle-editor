@@ -55,7 +55,7 @@ const files = glob( path.join( '**', 'index.js' ), {
 	'cwd': path.join( __dirname, '..', '@isle-project', 'components' )
 });
 const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
-const RE_JSDOC = /(\/\*\*[\s\S]*?\*\/)\r?\n(?:class|export default)|(\/\*\*[\s\S]*?@property[\s\S]*?\*\/)\r?\n(?:const)/;
+const RE_JSDOC = /(\/\*\*\s*\n(?:[^*]|(?:\*(?!\/)))*\*\/)\r?\n(?:class|export default)|(\/\*\*\s*\n(?:[^*]|(?:\*(?!\/)))*@property(?:[^*]|(?:\*(?!\/)))*\*\/)\r?\n(?:const)/;
 const RE_TYPES = /\.(propTypes ?= ?{[\s\S]*?};)/;
 const RE_DEFAULTS = /\.(defaultProps ?= ?{[\s\S]*?};)/;
 const SCOPE_KEYS = [
