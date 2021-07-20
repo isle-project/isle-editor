@@ -21,7 +21,14 @@ const styles = [
 
 // FUNCTIONS //
 
-function getEffect(ndx) {
+/**
+ * Returns the effect for the specified index.
+ *
+ * @private
+ * @param {number} index - index
+ * @returns {Node} effect node
+ */
+function getEffect( index ) {
 	const general = {
 		fontSize: 50,
 		fontWeight: 800,
@@ -29,7 +36,7 @@ function getEffect(ndx) {
 		width: '60%',
 		float: 'left'
 	};
-	const style = styles[ndx];
+	const style = styles[ index ];
 	return (
 		<div>
 			<div style={general} className={style}>{style}</div>
@@ -42,6 +49,12 @@ function getEffect(ndx) {
 	);
 }
 
+/**
+ * Returns a list of effects.
+ *
+ * @private
+ * @returns {Array} array of effects
+ */
 function getEffects() {
 	const list = [];
 	for ( let i = 0; i < styles.length; i++) {
@@ -53,6 +66,9 @@ function getEffects() {
 
 // MAIN //
 
+/**
+ * Text effects for use in the animation component.
+ */
 const TextEffects = ({ t }) => {
 	const list = getEffects();
 	const template = 'style = {{ fontSize: 60, animationDuration: \'5s\', backgroundImage: \'url(linear-gradient( 45deg, blue, yellow, red, white)\' }}';

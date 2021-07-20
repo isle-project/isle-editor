@@ -32,6 +32,13 @@ import './time.css';
 
 // FUNCTIONS //
 
+/**
+ * Convert a date to a string of the form HH:MM:SS PM/AM.
+ *
+ * @private
+ * @param {Date} date - input data
+ * @returns {string} formatted start time string
+ */
 function startTime( date ) {
 	let hours = date.getHours();
 	let minutes = date.getMinutes();

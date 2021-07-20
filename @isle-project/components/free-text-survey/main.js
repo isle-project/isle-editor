@@ -35,6 +35,13 @@ const uid = generateUID( 'free-text-survey' );
 
 // FUNCTIONS //
 
+/**
+ * Checks a response for profanity and returns the first one.
+ *
+ * @private
+ * @param {string} text to check
+ * @returns {(string|null)} first profanity or null
+ */
 function containsProfanity( text ) {
 	text = lowercase( text );
 	const tokens = tokenize( text );

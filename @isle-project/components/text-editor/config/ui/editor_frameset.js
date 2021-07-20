@@ -40,19 +40,29 @@ export const FRAMESET_BODY_CLASSNAME = 'text-editor-frame-body';
 
 // FUNCTIONS //
 
+/**
+ * Returns the a CSS pixel value for the given input value.
+ *
+ * @private
+ * @param {*} val - input value
+ * @returns {string} CSS value
+ */
 function toCSS( val ) {
-	if (typeof val === 'number') {
+	if ( typeof val === 'number' ) {
 		return val + 'px';
 	}
 	if ( isUndefinedOrNull( val ) ) {
 		return 'auto';
 	}
-	return String(val);
+	return String( val );
 }
 
 
 // MAIN //
 
+/**
+ * Renders a frame set for the text editor.
+ */
 class EditorFrameset extends React.PureComponent {
 	render() {
 		const {

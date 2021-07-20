@@ -10,20 +10,20 @@ import isArray from '@stdlib/assert/is-array';
 import entries from '@stdlib/utils/entries';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
-import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import Table from '@isle-project/components/table';
 import statistic from '@isle-project/utils/statistic';
 import { Factor } from '@isle-project/utils/factor-variable';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import groupedCompleteCases from './grouped_complete_cases.js';
+import groupedCases from './grouped_cases.js';
+import completeCases from './complete_cases.js';
+import by2WithCount from './by2_with_count.js';
 
 
 // VARIABLES //
 
 const N = 'N';
 const IQR = 'IQR';
-const SORT_OPTS = {
-	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
-};
 
 
 // FUNCTIONS //
@@ -122,181 +122,6 @@ const CorrelationMatrix = ({ e, t }) => {
 	}
 	return <CorrelationTable result={e.result} variables={e.variables} />;
 };
-
-
-function byWithCount( arr, factor, funs, group ) {
-	let table = {};
-	for ( let i = 0; i < arr.length; i++ ) {
-		if ( !isArray( table[ factor[ i ] ]) ) {
-			table[ factor[ i ] ] = [];
-		}
-		table[ factor[ i ] ].push( arr[ i ]);
-	}
-	let keys = objectKeys( table );
-	if ( group.length === 2 ) {
-		const cat1 = group[ 0 ].categories;
-		const cat2 = group[ 1 ].categories;
-		if ( cat1 && cat2 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
-				return diff;
-			});
-		}
-		else if ( cat1 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = cat1.indexOf( as[ 0 ] ) - cat1.indexOf( bs[ 0 ] );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				return as[ 1 ].localeCompare( bs[ 1 ], void 0, SORT_OPTS );
-			});
-		}
-		else if ( cat2 ) {
-			keys.sort( ( a, b ) => {
-				const as = a.split( ':' );
-				const bs = b.split( ':' );
-				let diff = as[ 0 ].localeCompare( bs[ 0 ], void 0, SORT_OPTS );
-				if ( diff !== 0 ) {
-					return diff;
-				}
-				diff = cat2.indexOf( as[ 1 ] ) - cat2.indexOf( bs[ 1 ] );
-				return diff;
-			});
-		}
-		else {
-			keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-		}
-	} else if ( group.length === 1 && group[ 0 ].categories ) {
-		keys = extractUsedCategories( table, group[ 0 ] );
-	} else {
-		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-	}
-	const out = {};
-	for ( let i = 0; i < keys.length; i++ ) {
-		const key = keys[ i ];
-		out[ key ] = {
-			value: funs.map( f => f( table[ key ] ) ),
-			size: table[ key ].length
-		};
-	}
-	return out;
-}
-
-function by2WithCount( arr1, arr2, factor, funs, group ) {
-	let result = {};
-	let ret1 = {};
-	let ret2 = {};
-	for ( let i = 0; i < factor.length; i++ ) {
-		if ( !isArray( ret1[ factor[ i ] ]) ) {
-			ret1[ factor[ i ] ] = [];
-			ret2[ factor[ i ] ] = [];
-		}
-		ret1[ factor[ i ] ].push( arr1[ i ]);
-		ret2[ factor[ i ] ].push( arr2[ i ]);
-	}
-	let keys;
-	if ( group.length === 1 ) {
-		keys = extractUsedCategories( ret1, group[ 0 ] );
-	} else {
-		keys = objectKeys( ret1 );
-		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
-	}
-	for ( let i = 0; i < keys.length; i++ ) {
-		const key = keys[ i ];
-		result[ key ] = {
-			value: funs.map( f => f( ret1[ key ], ret2[ key ]) ),
-			size: ret1[ key ].length
-		};
-	}
-	return { keys, result };
-}
-
-function groupedCompleteCases( arrs, groupData ) {
-	const indices = [];
-	const len = arrs[ 0 ].length;
-	for ( let j = 0; j < len; j++ ) {
-		let complete = true;
-		for ( let i = 0; i < arrs.length; i++ ) {
-			const x = arrs[ i ][ j ];
-			if ( !isNumber( x ) || isnan( x ) ) {
-				complete = false;
-				break;
-			}
-		}
-		if ( complete ) {
-			indices.push( j );
-		}
-	}
-	const out = {};
-	for ( let i = 0; i < arrs.length; i++ ) {
-		for ( let j = 0; j < indices.length; j++ ) {
-			const group = groupData[ indices[ j ] ];
-			if ( !out[ group ] ) {
-				out[ group ] = new Array( arrs.length );
-				for ( let k = 0; k < arrs.length; k++ ) {
-					out[ group ][ k ] = [];
-				}
-			}
-			const idx = indices[ j ];
-			out[ group ][ i ].push( arrs[ i ][ idx ] );
-		}
-	}
-	return out;
-}
-
-function groupedCases( arrs, groupData ) {
-	const out = {};
-	const len = arrs[ 0 ].length;
-	for ( let i = 0; i < arrs.length; i++ ) {
-		for ( let j = 0; j < len; j++ ) {
-			const group = groupData[ j ];
-			if ( !out[ group ] ) {
-				out[ group ] = new Array( arrs.length );
-				for ( let k = 0; k < arrs.length; k++ ) {
-					out[ group ][ k ] = [];
-				}
-			}
-			out[ group ][ i ].push( arrs[ i ][ j ] );
-		}
-	}
-	return out;
-}
-
-function completeCases( arrs ) {
-	const indices = [];
-	const len = arrs[ 0 ].length;
-	for ( let j = 0; j < len; j++ ) {
-		let complete = true;
-		for ( let i = 0; i < arrs.length; i++ ) {
-			const x = arrs[ i ][ j ];
-			if ( !isNumber( x ) || isnan( x ) ) {
-				complete = false;
-				break;
-			}
-		}
-		if ( complete ) {
-			indices.push( j );
-		}
-	}
-	const out = new Array( arrs.length );
-	for ( let i = 0; i < arrs.length; i++ ) {
-		const arr = new Array( indices.length );
-		for ( let j = 0; j < indices.length; j++ ) {
-			const idx = indices[ j ];
-			arr[ j ] = arrs[ i ][ idx ];
-		}
-		out[ i ] = arr;
-	}
-	return out;
-}
 
 function generateStatistics({ data, t, statistics, variables, secondVariable, group, omit, quantiles }) {
 	const funs = [];

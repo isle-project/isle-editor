@@ -6,18 +6,8 @@ import Card from 'react-bootstrap/Card';
 import NumberInput from '@isle-project/components/input/number';
 import { CAT20 } from '@isle-project/constants/colors';
 import { VictoryPie } from 'victory';
+import sum from '@isle-project/utils/statistic/sum';
 import './proportions.css';
-
-
-// FUNCTIONS //
-
-function sum( arr ) {
-	let out = 0;
-	for ( let n = 0; n < arr.length; n++ ) {
-		out += arr[ n ];
-	}
-	return out;
-}
 
 
 // MAIN //

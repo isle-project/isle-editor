@@ -18,6 +18,7 @@ import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import Panel from '@isle-project/components/panel';
 import { PROPORTIONS_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import sum from '@isle-project/utils/statistic/sum';
 import './proportions_survey.css';
 
 
@@ -25,20 +26,6 @@ import './proportions_survey.css';
 
 const debug = logger( 'isle:proportions-survey' );
 const uid = generateUID( 'proportions-survey' );
-
-
-// FUNCTIONS //
-
-function sum( arr ) {
-	let out = 0.0;
-	if ( !arr ) {
-		return out;
-	}
-	for ( let n = 0; n < arr.length; n++ ) {
-		out += arr[ n ];
-	}
-	return out;
-}
 
 
 // MAIN //

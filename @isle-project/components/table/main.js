@@ -46,6 +46,15 @@ let sortableTypes;
 
 // FUNCTIONS //
 
+/**
+ * Adds an event listener to an element.
+ *
+ * @private
+ * @param {HTMLElement} el - DOM element
+ * @param {string} event - event name
+ * @param {Function} handler - event handler
+ * @returns {void}
+ */
 function addEventListener( el, event, handler ) {
 	if ( el.addEventListener !== null ) {
 		return el.addEventListener( event, handler, false );

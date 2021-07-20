@@ -3,6 +3,7 @@
 import isPositiveNumber from '@stdlib/assert/is-positive-number';
 import isFunction from '@stdlib/assert/is-function';
 import isArray from '@stdlib/assert/is-array';
+import sum from '@isle-project/utils/statistic/sum';
 
 
 // FUNCTIONS //
@@ -19,21 +20,6 @@ import isArray from '@stdlib/assert/is-array';
 function weight( kernel, bandwidth, x0, xi ) {
 	const arg = ( xi - x0 ) / bandwidth;
 	return kernel( arg );
-}
-
-/**
-* Sums elements of an array.
-*
-* @private
-* @param {Array} arr - input array
-* @returns {number} array sum
-*/
-function sum( arr ) {
-	let ret = 0;
-	for ( let i = 0; i < arr.length; i++ ){
-		ret += arr[ i ];
-	}
-	return ret;
 }
 
 /**

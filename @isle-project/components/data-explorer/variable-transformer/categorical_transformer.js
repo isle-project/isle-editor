@@ -39,6 +39,13 @@ const FOCUS_TRAP_OPTIONS = {
 
 // FUNCTIONS //
 
+/**
+ * Escapes dots in a string.
+ *
+ * @private
+ * @param {string} str - string to escape
+ * @returns {string} escaped string
+ */
 function escapeDots( str ) {
 	if ( !str ) {
 		return str;
@@ -46,6 +53,13 @@ function escapeDots( str ) {
 	return replace( str, '.', '[dot]' );
 }
 
+/**
+ * Checks whether all values of the supplied object are digit strings.
+ *
+ * @private
+ * @param {Object} nameMappings - object of name to digit mappings to check
+ * @returns {boolean} boolean indicating whether all values are digit strings
+ */
 function checkNumericLabels( nameMappings ) {
 	const keys = objectKeys( nameMappings );
 	let allNumeric = true;

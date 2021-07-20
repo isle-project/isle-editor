@@ -12,6 +12,9 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 * @returns {(number|null)} sum or null
 */
 function sum( arr ) {
+	if ( !arr ) {
+		return null;
+	}
 	const len = arr.length;
 	if ( !len ) {
 		return null;
