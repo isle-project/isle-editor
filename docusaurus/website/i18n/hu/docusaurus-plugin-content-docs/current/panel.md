@@ -13,6 +13,7 @@ Kártyaelem.
 * __headerTag__ | `string`: címke, amelyet a panel fejlécéhez használnak. Default: `'h3'`.
 * __footer__ | `(string|node)`: panel lábléc. Default: `none`.
 * __minimizable__ | `boolean`: minimalizálható-e a panel. Default: `false`.
+* __defaultMinimized__ | `boolean`: szabályozza, hogy a panel alapértelmezés szerint minimalizálva legyen-e (csak akkor alkalmazható, ha a `minimizable` értéke `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: a panel teljes képernyőre tehető-e (csak oktatók számára). Default: `false`.
 * __hideTooltip__ | `string`: tooltip megjelenik az elrejtés gomb felett. Default: `none`.
 * __bodyStyle__ | `object`: CSS inline stílusok a testhez. Default: `{}`.

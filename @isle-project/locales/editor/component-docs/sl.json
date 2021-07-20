@@ -843,6 +843,7 @@
 	"Panel-description": "Sestavni del kartice.",
 	"Panel-prop-bodyStyle": "Vnosni slogi CSS za telo",
 	"Panel-prop-className": "Ime razreda CSS",
+	"Panel-prop-defaultMinimized": "nadzoruje, ali naj bo plošča privzeto minimizirana (velja samo, če je `minimizable` nastavljeno na `true`).",
 	"Panel-prop-footer": "noga plošče",
 	"Panel-prop-footerStyle": "Vmesni slogi CSS za nogo",
 	"Panel-prop-fullscreen": "ali je mogoče ploščo prikazati v celozaslonskem načinu (samo za inštruktorje).",

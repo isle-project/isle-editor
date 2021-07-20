@@ -13,6 +13,7 @@ Komponent karty.
 * __headerTag__ | `string`: znacznik używany dla nagłówka panelu. Default: `'h3'`.
 * __footer__ | `(string|node)`: stopka panelu. Default: `none`.
 * __minimizable__ | `boolean`: czy panel może być zminimalizowany. Default: `false`.
+* __defaultMinimized__ | `boolean`: kontroluje czy panel powinien być domyślnie zminimalizowany (dotyczy tylko gdy `minimizable` jest ustawione na `true`). Default: `false`.
 * __fullscreen__ | `boolean`: czy panel może być wykonany w trybie pełnoekranowym (tylko dla instruktorów). Default: `false`.
 * __hideTooltip__ | `string`: etykieta narzędzi wyświetlana nad przyciskiem ukrywania. Default: `none`.
 * __bodyStyle__ | `object`: CSS style inline dla ciała. Default: `{}`.

@@ -843,6 +843,7 @@
 	"Panel-description": "Componente de la tarjeta.",
 	"Panel-prop-bodyStyle": "Estilos en línea CSS para el cuerpo",
 	"Panel-prop-className": "Nombre de la clase CSS",
+	"Panel-prop-defaultMinimized": "controla si el panel debe minimizarse por defecto (sólo se aplica cuando `minimizable` se establece como `true`)",
 	"Panel-prop-footer": "panel de pie de página",
 	"Panel-prop-footerStyle": "Estilos en línea CSS para el pie de página",
 	"Panel-prop-fullscreen": "si el panel puede hacerse a pantalla completa (sólo para los instructores)",

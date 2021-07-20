@@ -13,6 +13,7 @@ Kartes komponents.
 * __headerTag__ | `string`: paneļa virsrakstam izmantotā birka. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneļa pēdiņa. Default: `none`.
 * __minimizable__ | `boolean`: vai paneli var samazināt līdz minimumam.. Default: `false`.
+* __defaultMinimized__ | `boolean`: nosaka, vai panelis pēc noklusējuma ir jāpadara minimizēts (piemērojams tikai tad, ja `minimizable` ir iestatīts uz `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: vai panelis var būt pilnekrāna (tikai instruktoriem).. Default: `false`.
 * __hideTooltip__ | `string`: virs slēpt pogas parādīts uzraksts. Default: `none`.
 * __bodyStyle__ | `object`: CSS iebūvēti stili korpusam. Default: `{}`.

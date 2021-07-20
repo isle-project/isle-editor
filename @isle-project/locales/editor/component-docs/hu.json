@@ -843,6 +843,7 @@
 	"Panel-description": "Kártyaelem.",
 	"Panel-prop-bodyStyle": "CSS inline stílusok a testhez",
 	"Panel-prop-className": "CSS osztály neve",
+	"Panel-prop-defaultMinimized": "szabályozza, hogy a panel alapértelmezés szerint minimalizálva legyen-e (csak akkor alkalmazható, ha a `minimizable` értéke `true`).",
 	"Panel-prop-footer": "panel lábléc",
 	"Panel-prop-footerStyle": "CSS inline stílusok a lábléchez",
 	"Panel-prop-fullscreen": "a panel teljes képernyőre tehető-e (csak oktatók számára)",

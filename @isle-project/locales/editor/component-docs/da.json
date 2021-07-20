@@ -843,6 +843,7 @@
 	"Panel-description": "Kortkomponent.",
 	"Panel-prop-bodyStyle": "CSS inline-stilarter for krop",
 	"Panel-prop-className": "CSS-klassens navn",
+	"Panel-prop-defaultMinimized": "styrer, om panelet skal minimeres som standard (gælder kun, når `minimizable` er indstillet til `true`)",
 	"Panel-prop-footer": "panelfod",
 	"Panel-prop-footerStyle": "CSS inline-stilarter til sidefod",
 	"Panel-prop-fullscreen": "om panelet kan gøres fuldt skærm (kun for instruktører)",

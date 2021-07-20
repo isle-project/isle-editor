@@ -13,6 +13,7 @@ Komponent karty.
 * __headerTag__ | `string`: značka použitá pre nadpis panela. Default: `'h3'`.
 * __footer__ | `(string|node)`: päta panelu. Default: `none`.
 * __minimizable__ | `boolean`: či je možné panel minimalizovať. Default: `false`.
+* __defaultMinimized__ | `boolean`: kontroluje, či má byť panel predvolene minimalizovaný (platí len vtedy, keď je `minimizable` nastavené na `true`). Default: `false`.
 * __fullscreen__ | `boolean`: či je možné panel zobraziť na celú obrazovku (len pre inštruktorov). Default: `false`.
 * __hideTooltip__ | `string`: nápovedu zobrazenú nad tlačidlom skryť. Default: `none`.
 * __bodyStyle__ | `object`: Riadkové štýly CSS pre telo. Default: `{}`.

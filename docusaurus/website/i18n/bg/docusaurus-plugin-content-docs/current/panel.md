@@ -13,6 +13,7 @@ sidebar_label: Panel
 * __headerTag__ | `string`: таг, използван за заглавието на панела. Default: `'h3'`.
 * __footer__ | `(string|node)`: колонтитул на панела. Default: `none`.
 * __minimizable__ | `boolean`: дали панелът може да бъде сведен до минимум. Default: `false`.
+* __defaultMinimized__ | `boolean`: контролира дали панелът да бъде минимизиран по подразбиране (приложимо само когато `minimizable` е зададено на `true`). Default: `false`.
 * __fullscreen__ | `boolean`: дали панелът може да се използва на цял екран (само за инструктори). Default: `false`.
 * __hideTooltip__ | `string`: подсказка за инструменти, показвана над бутона за скриване. Default: `none`.
 * __bodyStyle__ | `object`: CSS вградени стилове за тялото. Default: `{}`.

@@ -843,6 +843,7 @@
 	"Panel-description": "Компонент на картата.",
 	"Panel-prop-bodyStyle": "CSS вградени стилове за тялото",
 	"Panel-prop-className": "Име на CSS клас",
+	"Panel-prop-defaultMinimized": "контролира дали панелът да бъде минимизиран по подразбиране (приложимо само когато `minimizable` е зададено на `true`)",
 	"Panel-prop-footer": "колонтитул на панела",
 	"Panel-prop-footerStyle": "CSS вградени стилове за footer",
 	"Panel-prop-fullscreen": "дали панелът може да се използва на цял екран (само за инструктори)",

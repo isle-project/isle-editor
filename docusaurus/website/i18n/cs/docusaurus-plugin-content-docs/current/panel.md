@@ -13,6 +13,7 @@ Součást karty.
 * __headerTag__ | `string`: tag použitý pro záhlaví panelu. Default: `'h3'`.
 * __footer__ | `(string|node)`: zápatí panelu. Default: `none`.
 * __minimizable__ | `boolean`: zda lze panel minimalizovat. Default: `false`.
+* __defaultMinimized__ | `boolean`: určuje, zda má být panel ve výchozím nastavení minimalizován (platí pouze v případě, že je `minimizable` nastaveno na `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: zda lze panel zobrazit na celou obrazovku (pouze pro instruktory).. Default: `false`.
 * __hideTooltip__ | `string`: nápověda zobrazená nad tlačítkem skrýt. Default: `none`.
 * __bodyStyle__ | `object`: Řádkové styly CSS pro tělo. Default: `{}`.

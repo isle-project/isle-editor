@@ -13,6 +13,7 @@ Kortin osa.
 * __headerTag__ | `string`: tag, jota käytetään paneelin otsikossa. Default: `'h3'`.
 * __footer__ | `(string|node)`: paneelin alatunniste. Default: `none`.
 * __minimizable__ | `boolean`: voidaanko paneeli minimoida. Default: `false`.
+* __defaultMinimized__ | `boolean`: ohjaa, minimoidaanko paneeli oletusarvoisesti (sovelletaan vain, kun `minimizable` on asetettu `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: voidaanko paneeli tehdä koko näytön kokoiseksi (vain ohjaajille).. Default: `false`.
 * __hideTooltip__ | `string`: Piilota-painikkeen yläpuolella näkyvä työkaluvihje. Default: `none`.
 * __bodyStyle__ | `object`: CSS-inline-tyylit runkoa varten. Default: `{}`.

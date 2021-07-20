@@ -843,6 +843,7 @@
 	"Panel-description": "Kartes komponents.",
 	"Panel-prop-bodyStyle": "CSS iebūvēti stili korpusam",
 	"Panel-prop-className": "CSS klases nosaukums",
+	"Panel-prop-defaultMinimized": "nosaka, vai panelis pēc noklusējuma ir jāpadara minimizēts (piemērojams tikai tad, ja `minimizable` ir iestatīts uz `true`).",
 	"Panel-prop-footer": "paneļa pēdiņa",
 	"Panel-prop-footerStyle": "CSS iebūvētie stili pēdiņai",
 	"Panel-prop-fullscreen": "vai panelis var būt pilnekrāna (tikai instruktoriem).",

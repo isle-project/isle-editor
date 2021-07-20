@@ -843,6 +843,7 @@
 	"Panel-description": "卡片组件。",
 	"Panel-prop-bodyStyle": "身体的CSS内联样式",
 	"Panel-prop-className": "CSS类名",
+	"Panel-prop-defaultMinimized": "控制面板是否应该默认最小化（只适用于`minimizable`被设置为`true`时）。",
 	"Panel-prop-footer": "页脚",
 	"Panel-prop-footerStyle": "页脚的CSS内联样式",
 	"Panel-prop-fullscreen": "是否可以全屏显示(只对教师开放)",

@@ -843,6 +843,7 @@
 	"Panel-description": "Komponent karty.",
 	"Panel-prop-bodyStyle": "Riadkové štýly CSS pre telo",
 	"Panel-prop-className": "Názov triedy CSS",
+	"Panel-prop-defaultMinimized": "kontroluje, či má byť panel predvolene minimalizovaný (platí len vtedy, keď je `minimizable` nastavené na `true`)",
 	"Panel-prop-footer": "päta panelu",
 	"Panel-prop-footerStyle": "Riadkové štýly CSS pre pätičku",
 	"Panel-prop-fullscreen": "či je možné panel zobraziť na celú obrazovku (len pre inštruktorov)",

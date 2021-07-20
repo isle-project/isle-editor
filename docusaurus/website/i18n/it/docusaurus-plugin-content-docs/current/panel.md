@@ -13,6 +13,7 @@ Componente della scheda.
 * __headerTag__ | `string`: usato per l'intestazione del pannello. Default: `'h3'`.
 * __footer__ | `(string|node)`: piè di pagina. Default: `none`.
 * __minimizable__ | `boolean`: se il pannello può essere ridotto al minimo. Default: `false`.
+* __defaultMinimized__ | `boolean`: controlla se il pannello deve essere minimizzato di default (applicabile solo quando `minimizzabile` è impostato a `true`). Default: `false`.
 * __fullscreen__ | `boolean`: se il pannello può essere fatto a schermo intero (solo per gli istruttori). Default: `false`.
 * __hideTooltip__ | `string`: tooltip visualizzato sopra il pulsante hide. Default: `none`.
 * __bodyStyle__ | `object`: Stili in linea CSS per il corpo. Default: `{}`.

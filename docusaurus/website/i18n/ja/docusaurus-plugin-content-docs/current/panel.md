@@ -13,6 +13,7 @@ sidebar_label: Panel
 * __headerTag__ | `string`: パネルの見出しに使われるタグ. Default: `'h3'`.
 * __footer__ | `(string|node)`: パネルフッター. Default: `none`.
 * __minimizable__ | `boolean`: パネルを最小化できるかどうか. Default: `false`.
+* __defaultMinimized__ | `boolean`: パネルをデフォルトで最小化するかどうかを制御します（`minimizable`が`true`に設定されている場合のみ適用されます）。. Default: `false`.
 * __fullscreen__ | `boolean`: パネルをフルスクリーンにできるかどうか (インストラクターのみ). Default: `false`.
 * __hideTooltip__ | `string`: 非表示ボタンの上に表示されるツールチップ. Default: `none`.
 * __bodyStyle__ | `object`: 本文のCSSインラインスタイル. Default: `{}`.

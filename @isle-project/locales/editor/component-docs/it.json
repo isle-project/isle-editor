@@ -843,6 +843,7 @@
 	"Panel-description": "Componente della scheda.",
 	"Panel-prop-bodyStyle": "Stili in linea CSS per il corpo",
 	"Panel-prop-className": "Nome della classe CSS",
+	"Panel-prop-defaultMinimized": "controlla se il pannello deve essere minimizzato di default (applicabile solo quando `minimizzabile` è impostato a `true`)",
 	"Panel-prop-footer": "piè di pagina",
 	"Panel-prop-footerStyle": "Stili in linea CSS per piè di pagina",
 	"Panel-prop-fullscreen": "se il pannello può essere fatto a schermo intero (solo per gli istruttori)",

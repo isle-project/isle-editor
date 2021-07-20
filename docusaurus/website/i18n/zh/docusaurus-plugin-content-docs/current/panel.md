@@ -13,6 +13,7 @@ sidebar_label: Panel
 * __headerTag__ | `string`: 用于面板标题的标签. Default: `'h3'`.
 * __footer__ | `(string|node)`: 页脚. Default: `none`.
 * __minimizable__ | `boolean`: 面板是否可以最小化. Default: `false`.
+* __defaultMinimized__ | `boolean`: 控制面板是否应该默认最小化（只适用于`minimizable`被设置为`true`时）。. Default: `false`.
 * __fullscreen__ | `boolean`: 是否可以全屏显示(只对教师开放). Default: `false`.
 * __hideTooltip__ | `string`: 隐藏按钮上显示的工具提示. Default: `none`.
 * __bodyStyle__ | `object`: 身体的CSS内联样式. Default: `{}`.

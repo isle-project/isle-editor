@@ -13,6 +13,7 @@ Kortkomponent.
 * __headerTag__ | `string`: tag, der anvendes til panelets overskrift. Default: `'h3'`.
 * __footer__ | `(string|node)`: panelfod. Default: `none`.
 * __minimizable__ | `boolean`: om panelet kan minimeres. Default: `false`.
+* __defaultMinimized__ | `boolean`: styrer, om panelet skal minimeres som standard (gælder kun, når `minimizable` er indstillet til `true`). Default: `false`.
 * __fullscreen__ | `boolean`: om panelet kan gøres fuldt skærm (kun for instruktører). Default: `false`.
 * __hideTooltip__ | `string`: tooltip, der vises over skjul-knappen. Default: `none`.
 * __bodyStyle__ | `object`: CSS inline-stilarter for krop. Default: `{}`.

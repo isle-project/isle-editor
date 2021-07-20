@@ -13,6 +13,7 @@ Kartenkomponente.
 * __headerTag__ | `string`: Tag, das für die Überschrift des Panels verwendet wird. Default: `'h3'`.
 * __footer__ | `(string|node)`: Panel-Fußzeile. Default: `none`.
 * __minimizable__ | `boolean`: ob das Panel minimiert werden kann. Default: `false`.
+* __defaultMinimized__ | `boolean`: steuert, ob das Panel standardmäßig minimiert werden soll (nur anwendbar, wenn `minimizable` auf `true` gesetzt ist). Default: `false`.
 * __fullscreen__ | `boolean`: ob das Bedienfeld in den Vollbildmodus versetzt werden kann (nur für Kursleiter). Default: `false`.
 * __hideTooltip__ | `string`: Tooltip, der über der Ausblenden-Schaltfläche angezeigt wird. Default: `none`.
 * __bodyStyle__ | `object`: CSS-Inline-Stile für Body. Default: `{}`.

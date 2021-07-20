@@ -843,6 +843,7 @@
 	"Panel-description": "Kartenkomponente.",
 	"Panel-prop-bodyStyle": "CSS-Inline-Stile für Body",
 	"Panel-prop-className": "CSS-Klassenname",
+	"Panel-prop-defaultMinimized": "steuert, ob das Panel standardmäßig minimiert werden soll (nur anwendbar, wenn `minimizable` auf `true` gesetzt ist)",
 	"Panel-prop-footer": "Panel-Fußzeile",
 	"Panel-prop-footerStyle": "CSS-Inlinestile für Fußzeile",
 	"Panel-prop-fullscreen": "ob das Bedienfeld in den Vollbildmodus versetzt werden kann (nur für Kursleiter)",

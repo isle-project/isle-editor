@@ -13,6 +13,7 @@ Componente do cartão.
 * __headerTag__ | `string`: etiqueta utilizada para o cabeçalho do painel. Default: `'h3'`.
 * __footer__ | `(string|node)`: rodapé do painel. Default: `none`.
 * __minimizable__ | `boolean`: se o painel pode ser minimizado. Default: `false`.
+* __defaultMinimized__ | `boolean`: controla se o painel deve ser minimizado por padrão (aplicável somente quando "minimizável" estiver definido como "verdadeiro"). Default: `false`.
 * __fullscreen__ | `boolean`: se o painel pode ser feito em tela cheia (somente para instrutores). Default: `false`.
 * __hideTooltip__ | `string`: ponta de ferramenta exibida sobre o botão de ocultar. Default: `none`.
 * __bodyStyle__ | `object`: Estilos de CSS em linha para o corpo. Default: `{}`.

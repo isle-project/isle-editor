@@ -843,6 +843,7 @@
 	"Panel-description": "Kortin osa.",
 	"Panel-prop-bodyStyle": "CSS-inline-tyylit runkoa varten",
 	"Panel-prop-className": "CSS-luokan nimi",
+	"Panel-prop-defaultMinimized": "ohjaa, minimoidaanko paneeli oletusarvoisesti (sovelletaan vain, kun `minimizable` on asetettu `true`).",
 	"Panel-prop-footer": "paneelin alatunniste",
 	"Panel-prop-footerStyle": "CSS-inline-tyylit alatunnisteeseen",
 	"Panel-prop-fullscreen": "voidaanko paneeli tehdä koko näytön kokoiseksi (vain ohjaajille).",

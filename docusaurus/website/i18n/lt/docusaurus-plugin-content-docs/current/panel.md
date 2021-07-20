@@ -13,6 +13,7 @@ Kortelės sudedamoji dalis.
 * __headerTag__ | `string`: žyma, naudojama skydelio antraštei. Default: `'h3'`.
 * __footer__ | `(string|node)`: skydelio poraštė. Default: `none`.
 * __minimizable__ | `boolean`: ar skydelį galima sumažinti iki minimumo.. Default: `false`.
+* __defaultMinimized__ | `boolean`: kontroliuoja, ar skydelis pagal nutylėjimą turėtų būti sumažintas (taikoma tik tada, kai `minimizable` nustatyta į `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: ar skydelis gali būti per visą ekraną (tik instruktoriams).. Default: `false`.
 * __hideTooltip__ | `string`: virš paslėpimo mygtuko rodoma užuomina. Default: `none`.
 * __bodyStyle__ | `object`: CSS įvesties stilius kūnui. Default: `{}`.

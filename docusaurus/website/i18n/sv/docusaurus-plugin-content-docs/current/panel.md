@@ -13,6 +13,7 @@ Kortkomponent.
 * __headerTag__ | `string`: tagg som används för panelens rubrik. Default: `'h3'`.
 * __footer__ | `(string|node)`: panelens fotnot. Default: `none`.
 * __minimizable__ | `boolean`: Om panelen kan minimeras.. Default: `false`.
+* __defaultMinimized__ | `boolean`: kontrollerar om panelen ska minimeras som standard (gäller endast när `minimizable` är satt till `true`). Default: `false`.
 * __fullscreen__ | `boolean`: om panelen kan göras fullskärmad (endast för instruktörer). Default: `false`.
 * __hideTooltip__ | `string`: verktygstips som visas över knappen Dölj. Default: `none`.
 * __bodyStyle__ | `object`: CSS inline-stilar för kroppen. Default: `{}`.

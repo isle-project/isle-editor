@@ -843,6 +843,7 @@
 	"Panel-description": "Kortkomponent.",
 	"Panel-prop-bodyStyle": "CSS inline-stilar för kroppen",
 	"Panel-prop-className": "Namn på CSS-klass",
+	"Panel-prop-defaultMinimized": "kontrollerar om panelen ska minimeras som standard (gäller endast när `minimizable` är satt till `true`)",
 	"Panel-prop-footer": "panelens fotnot",
 	"Panel-prop-footerStyle": "CSS inline-stilar för sidfot",
 	"Panel-prop-fullscreen": "om panelen kan göras fullskärmad (endast för instruktörer)",

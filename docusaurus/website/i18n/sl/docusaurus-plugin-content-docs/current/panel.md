@@ -13,6 +13,7 @@ Sestavni del kartice.
 * __headerTag__ | `string`: oznaka, ki se uporablja za naslov plošče. Default: `'h3'`.
 * __footer__ | `(string|node)`: noga plošče. Default: `none`.
 * __minimizable__ | `boolean`: ali je mogoče ploščo zmanjšati na najmanjšo možno mero.. Default: `false`.
+* __defaultMinimized__ | `boolean`: nadzoruje, ali naj bo plošča privzeto minimizirana (velja samo, če je `minimizable` nastavljeno na `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: ali je mogoče ploščo prikazati v celozaslonskem načinu (samo za inštruktorje).. Default: `false`.
 * __hideTooltip__ | `string`: namig, ki se prikaže nad gumbom za skrivanje.. Default: `none`.
 * __bodyStyle__ | `object`: Vnosni slogi CSS za telo. Default: `{}`.

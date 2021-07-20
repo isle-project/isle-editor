@@ -843,6 +843,7 @@
 	"Panel-description": "Komponent karty.",
 	"Panel-prop-bodyStyle": "CSS style inline dla ciała",
 	"Panel-prop-className": "Nazwa klasy CSS",
+	"Panel-prop-defaultMinimized": "kontroluje czy panel powinien być domyślnie zminimalizowany (dotyczy tylko gdy `minimizable` jest ustawione na `true`)",
 	"Panel-prop-footer": "stopka panelu",
 	"Panel-prop-footerStyle": "Style inline CSS dla stopki",
 	"Panel-prop-fullscreen": "czy panel może być wykonany w trybie pełnoekranowym (tylko dla instruktorów)",

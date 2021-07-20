@@ -13,6 +13,7 @@ Composant de la carte.
 * __headerTag__ | `string`: utilisé pour l'en-tête du panneau. Default: `'h3'`.
 * __footer__ | `(string|node)`: pied de page du panneau. Default: `none`.
 * __minimizable__ | `boolean`: si le panel peut être réduit au minimum. Default: `false`.
+* __defaultMinimized__ | `boolean`: contrôle si le panneau doit être minimisé par défaut (seulement applicable quand `minimizable` est défini à `true`). Default: `false`.
 * __fullscreen__ | `boolean`: si le panneau peut être mis en plein écran (uniquement pour les instructeurs). Default: `false`.
 * __hideTooltip__ | `string`: info-bulle affichée au-dessus du bouton "masquer. Default: `none`.
 * __bodyStyle__ | `object`: Styles CSS en ligne pour le corps. Default: `{}`.

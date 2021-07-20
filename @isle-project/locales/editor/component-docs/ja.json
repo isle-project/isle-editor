@@ -843,6 +843,7 @@
 	"Panel-description": "カードコンポーネント。",
 	"Panel-prop-bodyStyle": "本文のCSSインラインスタイル",
 	"Panel-prop-className": "CSSクラス名",
+	"Panel-prop-defaultMinimized": "パネルをデフォルトで最小化するかどうかを制御します（`minimizable`が`true`に設定されている場合のみ適用されます）。",
 	"Panel-prop-footer": "パネルフッター",
 	"Panel-prop-footerStyle": "フッター用CSSインラインスタイル",
 	"Panel-prop-fullscreen": "パネルをフルスクリーンにできるかどうか (インストラクターのみ)",

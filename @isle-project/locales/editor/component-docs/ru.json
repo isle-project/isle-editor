@@ -843,6 +843,7 @@
 	"Panel-description": "Компонент карты.",
 	"Panel-prop-bodyStyle": "CSS встраиваемые стили для кузова",
 	"Panel-prop-className": "название класса CSS",
+	"Panel-prop-defaultMinimized": "управляет тем, должна ли панель быть свернута по умолчанию (применяется только в том случае, если `minimizable` установлено в `true`)",
 	"Panel-prop-footer": "нижний колонтитул",
 	"Panel-prop-footerStyle": "CSS-стили для нижнего колонтитула",
 	"Panel-prop-fullscreen": "можно ли сделать панель в полноэкранном режиме (только для инструкторов)",

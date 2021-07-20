@@ -843,6 +843,7 @@
 	"Panel-description": "Kaartcomponent.",
 	"Panel-prop-bodyStyle": "CSS inline stijlen voor het lichaam",
 	"Panel-prop-className": "CSS-klasse-naam",
+	"Panel-prop-defaultMinimized": "bepaalt of het paneel standaard geminimaliseerd moet worden (alleen van toepassing als `minimaliseerbaar` is ingesteld op `true`)",
 	"Panel-prop-footer": "paneelvoettekst",
 	"Panel-prop-footerStyle": "CSS inline stijlen voor footer",
 	"Panel-prop-fullscreen": "of het paneel op volledig scherm kan worden gemaakt (alleen voor instructeurs)",

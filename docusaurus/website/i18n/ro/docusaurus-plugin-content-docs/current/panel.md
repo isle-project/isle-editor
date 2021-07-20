@@ -13,6 +13,7 @@ Componenta cardului.
 * __headerTag__ | `string`: utilizată pentru titlul panoului. Default: `'h3'`.
 * __footer__ | `(string|node)`: foaia de subsol a panoului. Default: `none`.
 * __minimizable__ | `boolean`: dacă panoul poate fi minimizat. Default: `false`.
+* __defaultMinimized__ | `boolean`: controlează dacă panoul trebuie să fie minimizat în mod implicit (se aplică numai atunci când `minimizable` este setat la `true`). Default: `false`.
 * __fullscreen__ | `boolean`: dacă panoul poate fi transformat în ecran complet (numai pentru instructori). Default: `false`.
 * __hideTooltip__ | `string`: tooltip afișat deasupra butonului de ascundere. Default: `none`.
 * __bodyStyle__ | `object`: Stiluri CSS inline pentru corp. Default: `{}`.

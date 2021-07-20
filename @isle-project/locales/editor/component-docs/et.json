@@ -843,6 +843,7 @@
 	"Panel-description": "Kaardi komponent.",
 	"Panel-prop-bodyStyle": "CSS inline stiilid keha jaoks",
 	"Panel-prop-className": "CSS klassi nimi",
+	"Panel-prop-defaultMinimized": "kontrollib, kas paneel peaks olema vaikimisi minimeeritud (rakendub ainult siis, kui `minimizable` on seatud `true`).",
 	"Panel-prop-footer": "paneeli alumine osa",
 	"Panel-prop-footerStyle": "CSS inline stiilid jalusesse",
 	"Panel-prop-fullscreen": "kas paneeli saab muuta täisekraaniliseks (ainult instruktoritele)",

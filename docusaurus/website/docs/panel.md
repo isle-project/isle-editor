@@ -13,6 +13,7 @@ Card component.
 * __headerTag__ | `string`: tag used for the panel heading. Default: `'h3'`.
 * __footer__ | `(string|node)`: panel footer. Default: `none`.
 * __minimizable__ | `boolean`: whether the panel can be minimized. Default: `false`.
+* __defaultMinimized__ | `boolean`: controls whether the panel should be minimized by default (only applicable when `minimizable` is set to `true`). Default: `false`.
 * __fullscreen__ | `boolean`: whether the panel can be made fullscreen (only for instructors). Default: `false`.
 * __hideTooltip__ | `string`: tooltip displayed over the hide button. Default: `none`.
 * __bodyStyle__ | `object`: CSS inline styles for body. Default: `{}`.

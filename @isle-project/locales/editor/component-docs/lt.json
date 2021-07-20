@@ -843,6 +843,7 @@
 	"Panel-description": "Kortelės sudedamoji dalis.",
 	"Panel-prop-bodyStyle": "CSS įvesties stilius kūnui",
 	"Panel-prop-className": "CSS klasės pavadinimas",
+	"Panel-prop-defaultMinimized": "kontroliuoja, ar skydelis pagal nutylėjimą turėtų būti sumažintas (taikoma tik tada, kai `minimizable` nustatyta į `true`).",
 	"Panel-prop-footer": "skydelio poraštė",
 	"Panel-prop-footerStyle": "\"CSS\" eilutės stilius poraštėje",
 	"Panel-prop-fullscreen": "ar skydelis gali būti per visą ekraną (tik instruktoriams).",

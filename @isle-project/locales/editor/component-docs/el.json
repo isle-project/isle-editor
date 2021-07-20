@@ -843,6 +843,7 @@
 	"Panel-description": "Στοιχείο κάρτας.",
 	"Panel-prop-bodyStyle": "Στυλ CSS inline για το σώμα",
 	"Panel-prop-className": "Όνομα κλάσης CSS",
+	"Panel-prop-defaultMinimized": "ελέγχει αν ο πίνακας θα πρέπει να ελαχιστοποιείται από προεπιλογή (εφαρμόζεται μόνο όταν το `minimizable` έχει οριστεί σε `true`)",
 	"Panel-prop-footer": "υποσέλιδο πάνελ",
 	"Panel-prop-footerStyle": "Στυλ CSS inline για υποσέλιδο",
 	"Panel-prop-fullscreen": "αν ο πίνακας μπορεί να γίνει πλήρης οθόνη (μόνο για εκπαιδευτές)",
