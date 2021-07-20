@@ -31,6 +31,12 @@ import { fromHTMlElement } from './rects';
 
 // EXPORTS //
 
+/**
+ * Checks if an element is fully visible.
+ *
+ * @param {HTMLElement} el - DOM element
+ * @returns {boolean} true if the element is fully visible, otherwise false
+ */
 export default function isElementFullyVisible( el ) {
 	const { x, y, w, h } = fromHTMlElement( el );
 

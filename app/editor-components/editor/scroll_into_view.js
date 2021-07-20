@@ -5,6 +5,13 @@ import isHidden from '@isle-project/utils/is-hidden';
 
 // MAIN //
 
+/**
+ * Scrolls the element at the specified line into view.
+ *
+ * @param {number} lineNumber - line number
+ * @param {number} startColumn - column number
+ * @returns {void}
+ */
 function scrollIntoView( lineNumber, startColumn ) {
 	const elem = document.getElementById( 'line-'+lineNumber+'-'+startColumn );
 	if ( elem ) {

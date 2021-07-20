@@ -7,6 +7,14 @@ import merge from '@stdlib/utils/merge';
 
 // FUNCTIONS //
 
+/**
+ * Merge strategy for preamble fields.
+ *
+ * @param {*} a - first comparison value
+ * @param {*} b - second comparison value
+ * @param {string} key - object key
+ * @returns merged value
+ */
 function mergeStrategy( a, b, key ) {
 	if ( key === 'author' ) {
 		if ( isString( a ) ) {

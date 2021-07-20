@@ -23,6 +23,13 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
 
 // FUNCTIONS //
 
+/**
+ * Extracts numeric, non-missing values from a data set.
+ *
+ * @param {Object} data - data set
+ * @param {string} value - name of the value to extract
+ * @returns {Array} numeric, non-missing values
+ */
 function extractValues( data, variable ) {
 	const x = data[ variable ];
 	const arr = [];

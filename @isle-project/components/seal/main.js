@@ -11,10 +11,22 @@ import './seal.css';
 
 // FUNCTIONS //
 
+/**
+ * Computes the sine of an angle in degrees.
+ *
+ * @param {number} angleDegrees - input angle in degrees
+ * @returns {number} sine of the input angle
+ */
 function sinDegrees( angleDegrees ) {
 	return sin( angleDegrees * PI/180 );
 }
 
+/**
+ * Computes the cosine of an angle in degrees.
+ *
+ * @param {number} angleDegrees - input angle in degrees
+ * @returns {number} cosine of the input angle
+ */
 function cosDegrees( angleDegrees ) {
 	return cos( angleDegrees * PI/180 );
 }

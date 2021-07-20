@@ -1,3 +1,14 @@
+// FUNCTIONS //
+
+/**
+ * Counts the links from node `i > j > k` or `i > k`.
+ *
+ * @private
+ * @param {Array} links - graph links
+ * @param {number} i - i-th node index
+ * @param {number} j - j-th node index
+ * @param {number} k - k-th node index
+ */
 function countLinks( links, i, j, k ) {
 	let count = 0;
 	for ( let l = 0; l < links.length; l++ ) {
@@ -18,6 +29,13 @@ function countLinks( links, i, j, k ) {
 
 // MAIN //
 
+/**
+ * Calculates the transitivity of a graph.
+ *
+ * @param {Array} nodes - graph nodes
+ * @param {Array} links - graph links
+ * @returns {number} transitivity
+ */
 function calculateTransitivity( nodes, links ) {
 	let numTriangles = 0;
 	let numTriples = 0;

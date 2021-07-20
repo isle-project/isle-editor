@@ -16,6 +16,12 @@ const RE_ENDS_WITH_WHITESPACE = /[ \t]+$/;
 
 // MAIN //
 
+/**
+ * Returns a function for providing completions for preamble fields.
+ *
+ * @param {Object} monaco - a monaco editor instance
+ * @returns {Function} function providing completions
+ */
 function factory( monaco ) {
 	return provideCompletionItems;
 

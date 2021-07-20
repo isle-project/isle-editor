@@ -14,6 +14,12 @@ const RE_TAG_START = /<[a-z]*$/i;
 
 // MAIN //
 
+/**
+ * Returns a function which provides completion items for component snippets.
+ *
+ * @param {Object} monaco - monaco editor instance
+ * @param {Function} t - translation function
+ */
 function factory( monaco, t ) {
 	return provideCompletionItems;
 

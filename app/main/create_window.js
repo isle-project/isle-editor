@@ -29,6 +29,15 @@ function openExternal( e, url ) {
 
 // MAIN //
 
+/**
+ * Creates an Electron window.
+ *
+ * @param {Object} [options] - window options
+ * @param {string} [options.filePath] - file path
+ * @param {Function} [options.callback] - callback invoked upon window creation
+ * @param {string} [options.fromTemplate] - template name
+ * @returns {Object} Electron window instance
+ */
 function createWindow({ filePath, callback, fromTemplate } = {}) {
 	/* eslint-disable no-process-env */
 

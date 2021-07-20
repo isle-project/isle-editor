@@ -17,6 +17,12 @@ const DEFAULT_RADII = {
 
 // FUNCTIONS //
 
+/**
+ * Extracts a radii object from a given border radius string.
+ *
+ * @param {string} borderRadius - border radius string
+ * @returns {object} object with `radii` and `overall` properties
+ */
 function extractRadii( borderRadius ) {
 	if ( !borderRadius ) {
 		return {

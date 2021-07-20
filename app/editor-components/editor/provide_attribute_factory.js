@@ -22,6 +22,13 @@ const RE_OBJECT_PROPERTY = /([a-z]+):\s*$/i;
 
 // FUNCTIONS //
 
+/**
+ * Generates a replacement opposite to the provided default value.
+ *
+ * @private
+ * @param {*} defaultValue - default value
+ * @returns {string} replacement value
+ */
 function generateReplacement( defaultValue ) {
 	const match = RE_FUNCTION.exec( defaultValue );
 	if ( match ) {
@@ -58,6 +65,12 @@ function generateReplacement( defaultValue ) {
 
 // MAIN //
 
+/**
+ * Returns a function which provides a default value for an attribute.
+ *
+ * @param {Object} monaco - monaco editor instance
+ * @param {Function} t - trnslation function
+ */
 function factory( monaco, t ) {
 	return provideCompletionItems;
 

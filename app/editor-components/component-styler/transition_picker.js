@@ -120,6 +120,16 @@ const CSS_DEFAULT_VALUE = { label: 'All Properties', value: 'all' };
 
 // FUNCTIONS //
 
+/**
+ * Creates a CSS transition string.
+ *
+ * @param {Object} options - CSS options
+ * @param {string} options.type - CSS transition type
+ * @param {string} options.duration - CSS transition duration
+ * @param {string} options.easing - CSS transition easing
+ * @param {string} options.delay - CSS transition delay
+ * @returns {string} CSS transition string
+ */
 function createTransition({ type, duration, easing, delay }) {
 	let out = `${type} ${duration}s`; // eslint-disable-line i18next/no-literal-string
 	if ( easing ) {

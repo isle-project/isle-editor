@@ -58,6 +58,13 @@ const debug = logger( 'spectacle:manager' );
 
 // FUNCTIONS //
 
+/**
+ * Returns the swipe direction for the given touch event.
+ *
+ * @private
+ * @param {Object} touch - touch event
+ * @returns {number} swipe direction (1, -1, or 0)
+ */
 function swipeDirection( touch ) {
 	const xDist = touch.x1 - touch.x2;
 	const yDist = touch.y1 - touch.y2;

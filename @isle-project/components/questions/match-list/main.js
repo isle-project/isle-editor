@@ -33,6 +33,13 @@ const uid = generateUID( 'match-list-question' );
 
 // FUNCTIONS //
 
+/**
+ * Returns a color scale of the specified length.
+ *
+ * @private
+ * @param {number} length - number of colors to generate
+ * @returns {Array} color scale
+ */
 function createColorScale( length ) {
 	const color = d3.scaleLinear().domain([ 1, length ])
 		.interpolate( d3.interpolateHclLong )

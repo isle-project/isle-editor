@@ -17,6 +17,16 @@ import './plot.css';
 
 // FUNCTIONS //
 
+/**
+ * Creates an image tag for a plot.
+ *
+ * @private
+ * @param {Object} options - function options
+ * @param {string} options.id - identifier
+ * @param {Object} options.metadata - plot metadata
+ * @param {string} options.plot - base64-encoded string of plot
+ * @returns {string} image tag
+ */
 function createImgHTML({ id, meta, plot }) {
 	let img;
 	if ( !meta ) {

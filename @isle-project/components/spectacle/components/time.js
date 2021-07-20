@@ -33,6 +33,9 @@ import './time.css';
 
 // MAIN //
 
+/**
+ * React component for displaying a time.
+ */
 function Time() {
 	return <div className="spectacle-time-container" ><Clock /></div>;
 }

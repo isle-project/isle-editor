@@ -51,6 +51,14 @@ const SYMBOLS = [
 
 // FUNCTIONS //
 
+/**
+ * Scales elements of a data array to the range [a,b].
+ *
+ * @param {Array} arr - array of data
+ * @param {number} a - minimum value
+ * @param {number} b - maximum value
+ * @returns {Array} scaled data
+ */
 function scale( arr, a, b ) {
 	const [ minimum, maximum ] = minmax( arr );
 	const range = maximum - minimum;

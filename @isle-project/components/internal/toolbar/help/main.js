@@ -17,6 +17,7 @@ import StatusBarHelp from './statusbar.js';
 import QuestionsHelp from './questions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import { OPEN_DOCUMENTATION } from '@isle-project/constants/actions';
+import getDataUrl from './get_data_url.js';
 
 
 // VARIABLES //
@@ -25,18 +26,6 @@ const debug = logger( 'isle:toolbar:help' );
 const FOCUS_TRAP_OPTIONS = {
 	clickOutsideDeactivates: true
 };
-
-
-// FUNCTIONS //
-
-function getDataUrl( img ) {
-	const canvas = document.createElement( 'canvas' );
-	const ctx = canvas.getContext( '2d' );
-	canvas.width = img.width * 3;
-	canvas.height = img.height * 3;
-	ctx.drawImage( img, 0, 0, img.width * 3, img.height * 3 );
-	return canvas.toDataURL( 'image/jpeg' );
-}
 
 
 // MAIN //

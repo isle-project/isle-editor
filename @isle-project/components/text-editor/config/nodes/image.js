@@ -32,10 +32,17 @@ const EMPTY_CSS_VALUE = new Set(['0%', '0pt', '0px']);
 
 // FUNCTIONS //
 
-function getAttrs( dom ) {
-	const { cssFloat, display, marginTop, marginLeft } = dom.style;
-	let { width, height } = dom.style;
-	let align = dom.getAttribute( 'data-align' ) || dom.getAttribute( 'align' );
+/**
+ * Return image attributes from a DOM node.
+ *
+ * @private
+ * @param {Node} elem - DOM node
+ * @returns {Object} object with image attributes
+ */
+function getAttrs( elem ) {
+	const { cssFloat, display, marginTop, marginLeft } = elem.style;
+	let { width, height } = elem.style;
+	let align = elem.getAttribute( 'data-align' ) || elem.getAttribute( 'align' );
 	if ( align ) {
 		align = /(left|right|center)/.test(align) ? align : null;
 	} else if ( cssFloat === 'left' && !display ) {
@@ -45,12 +52,12 @@ function getAttrs( dom ) {
 	} else if ( !cssFloat && display === 'block' ) {
 		align = 'block';
 	}
-	width = width || dom.getAttribute( 'width' );
-	height = height || dom.getAttribute( 'height' );
+	width = width || elem.getAttribute( 'width' );
+	height = height || elem.getAttribute( 'height' );
 
 	let crop = null;
 	let rotate = null;
-	const { parentElement } = dom;
+	const { parentElement } = elem;
 	if ( parentElement instanceof HTMLElement ) {
 		// Special case for Google doc's image.
 		const ps = parentElement.style;
@@ -81,12 +88,12 @@ function getAttrs( dom ) {
 	}
 	return {
 		align,
-		alt: dom.getAttribute('alt') || null,
+		alt: elem.getAttribute('alt') || null,
 		crop,
 		height: parseInt(height, 10) || null,
 		rotate,
-		src: dom.getAttribute('src') || null,
-		title: dom.getAttribute('title') || null,
+		src: elem.getAttribute('src') || null,
+		title: elem.getAttribute('title') || null,
 		width: parseInt(width, 10) || null
 	};
 }

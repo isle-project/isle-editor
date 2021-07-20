@@ -1,5 +1,11 @@
 // MAIN //
 
+/**
+ * Copies a HTML string to the clipboard.
+ *
+ * @param {string} html - string to copy to the clipboard
+ * @returns {void}
+ */
 function html2clipboard( html ) {
 	const container = document.createElement( 'div' );
 	container.innerHTML = html;

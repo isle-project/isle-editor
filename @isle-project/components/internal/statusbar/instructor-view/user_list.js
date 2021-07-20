@@ -30,8 +30,10 @@ const IDs = []; // array of IDs for lesson elements
 
 // FUNCTIONS //
 
+/**
+ * Removes glow effect from previously highlighted elements.
+ */
 function removeGlowElems() {
-	// Remove glow effect from previously highlighted elements:
 	const focused = document.getElementsByClassName( 'focus-glow' );
 	while ( focused.length ) {
 		focused[0].classList.remove( 'focus-glow' );

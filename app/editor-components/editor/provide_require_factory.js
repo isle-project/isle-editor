@@ -5,6 +5,13 @@ import NAMESPACE from './stdlib/namespace.json';
 
 // MAIN //
 
+/**
+ * Returns a factory for creating a require function.
+ *
+ * @param {Object} monaco - a monaco editor instance
+ * @param {Function} t - translation function
+ * @returns {Function} function to provide `require` completions
+ */
 function factory( monaco, t ) {
 	return provideCompletionItems;
 

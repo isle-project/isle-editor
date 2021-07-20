@@ -32,7 +32,7 @@ import './time.css';
 
 // FUNCTIONS //
 
-function startTime(date) {
+function startTime( date ) {
 	let hours = date.getHours();
 	let minutes = date.getMinutes();
 	let seconds = date.getSeconds();

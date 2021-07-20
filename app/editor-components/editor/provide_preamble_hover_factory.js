@@ -14,6 +14,12 @@ for ( let i = 0; i < PREAMBLE_FIELDS.length; i++ ) {
 
 // MAIN //
 
+/**
+ * Returns a function which provides preamble field's hover text.
+ *
+ * @param {Object} monaco - monaco editor instance
+ * @returns {Function} function which provides preamble field's hover texts
+ */
 function factory( monaco ) {
 	return provideHoverItems;
 

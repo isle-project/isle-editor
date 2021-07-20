@@ -45,6 +45,11 @@ const RE_LINES = /\r?\n/g;
 
 // FUNCTIONS //
 
+/**
+ * Clears the global variables that were `require`d from the old preamble.
+ *
+ * @param {Object} oldPreamble - old preamble
+ */
 function clearGlobalVariables( oldPreamble ) {
 	const { require } = oldPreamble;
 	let keys = objectKeys( require );

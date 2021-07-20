@@ -28,6 +28,12 @@ const OUTER_ELEMENT = {
 
 // FUNCTIONS //
 
+/**
+ * Returns a boolean indicating whether an element is a DOM node.
+ *
+ * @param {*} elem - element
+ * @returns {boolean} boolean indicating whether an element is a DOM node
+ */
 function isDOMElement( elem ) {
 	return elem instanceof Element || elem instanceof HTMLDocument;
 }
