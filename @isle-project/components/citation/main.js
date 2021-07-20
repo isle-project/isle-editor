@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import SessionContext from '@isle-project/session/context.js';
+import extractSurname from './extract_surname.js';
 
 
 // VARIABLES //

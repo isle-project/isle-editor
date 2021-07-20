@@ -18,6 +18,7 @@ import groupedCompleteCases from './grouped_complete_cases.js';
 import groupedCases from './grouped_cases.js';
 import completeCases from './complete_cases.js';
 import by2WithCount from './by2_with_count.js';
+import byWithCount from './by_with_count.js';
 
 
 // VARIABLES //
