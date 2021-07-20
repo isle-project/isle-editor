@@ -2,34 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import sin from '@stdlib/math/base/special/sin';
-import cos from '@stdlib/math/base/special/cos';
-import PI from '@stdlib/constants/float64/pi';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import sinDegrees from './sin_degrees.js';
+import cosDegrees from './cos_degrees.js';
 import './seal.css';
-
-
-// FUNCTIONS //
-
-/**
- * Computes the sine of an angle in degrees.
- *
- * @param {number} angleDegrees - input angle in degrees
- * @returns {number} sine of the input angle
- */
-function sinDegrees( angleDegrees ) {
-	return sin( angleDegrees * PI/180 );
-}
-
-/**
- * Computes the cosine of an angle in degrees.
- *
- * @param {number} angleDegrees - input angle in degrees
- * @returns {number} cosine of the input angle
- */
-function cosDegrees( angleDegrees ) {
-	return cos( angleDegrees * PI/180 );
-}
 
 
 // VARIABLES //

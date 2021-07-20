@@ -10,29 +10,12 @@ import incrspace from '@stdlib/array/incrspace';
 import isObjectArray from '@stdlib/assert/is-object-array';
 import isNull from '@stdlib/assert/is-null';
 import FlippableCard from '@isle-project/components/flippable-card';
+import duplicateElements from './duplicate_elements';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:multi-cards' );
-
-
-// FUNCTIONS //
-
-/**
- * Duplicates elements in an array.
- *
- * @param {Array} arr - array to duplicate
- * @returns {Array} duplicated array
- */
-function duplicateElements( arr ) {
-	const out = [];
-	for ( let i = 0; i < arr.length; i++ ){
-		out.push( arr[ i ]);
-		out.push( arr[ i ]);
-	}
-	return out;
-}
 
 
 // MAIN //

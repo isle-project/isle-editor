@@ -20,35 +20,12 @@ import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/const
 import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import createMessage from './create_message.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:lesson-submit' );
-
-
-// FUNCTIONS //
-
-/**
- * Creates an email message object.
- *
- * @private
- * @param {Object} session - session object
- * @param {string} message - message to send
- * @param {Function} t - translate function
- * @returns {Object} email message object
- */
-function createMessage( session, message, t ) {
-	return {
-		text: t('lesson-completed-msg', {
-			name: session.user.name,
-			lessonName: session.lessonName,
-			namespaceName: session.namespaceName,
-			msg: message || ''
-		}),
-		subject: `${session.lessonName} ${t('successfully-completed')}!`
-	};
-}
 
 
 // MAIN //

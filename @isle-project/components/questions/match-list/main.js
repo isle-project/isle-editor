@@ -6,9 +6,7 @@ import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import shuffle from '@stdlib/random/shuffle';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import * as d3 from 'd3';
 import generateUID from '@isle-project/utils/uid';
 import SolutionButton from '@isle-project/components/solution-button';
 import ChatButton from '@isle-project/components/internal/chat-button';
@@ -21,6 +19,7 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import createColorScale from './create_color_scale.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
 
@@ -29,28 +28,6 @@ import './match_list_question.css';
 
 const debug = logger( 'isle:match-list-question' );
 const uid = generateUID( 'match-list-question' );
-
-
-// FUNCTIONS //
-
-/**
- * Returns a color scale of the specified length.
- *
- * @private
- * @param {number} length - number of colors to generate
- * @returns {Array} color scale
- */
-function createColorScale( length ) {
-	const color = d3.scaleLinear().domain([ 1, length ])
-		.interpolate( d3.interpolateHclLong )
-		.range([ d3.rgb( 'violet' ), d3.rgb( 'yellow' ) ]);
-
-	const colorScale = new Array( length );
-	for ( let i = 0; i < length; i++ ) {
-		colorScale[ i ] = color( i );
-	}
-	return shuffle( colorScale );
-}
 
 
 // MAIN //

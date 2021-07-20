@@ -7,28 +7,13 @@ import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isNull from '@stdlib/assert/is-null';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import VSHeader from './vs-header.js';
+import createClass from './create_class.js';
 import './vertical-slider.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:vertical-slider' );
-
-
-// FUNCTIONS //
-
-/**
- * Returns a class given the current visibility.
- *
- * @param {boolean} val - current visibility status
- * @returns {boolean} collapse classes depending on visibility status
- */
-function getClassName( val ) {
-	if ( val === false ) {
-		return 'vs-body vs-hidden';
-	}
-	return 'vs-body vs-display';
-}
 
 
 // MAIN //
@@ -51,7 +36,7 @@ class Collapse extends Component {
 		const visible = props.visible || props.defaultVisible;
 		this.state = {
 			visible: visible,
-			className: getClassName( visible )
+			className: createClass( visible )
 		};
 	}
 
@@ -60,7 +45,7 @@ class Collapse extends Component {
 			debug( 'Override visible state...' );
 			const newState = {
 				visible: nextProps.visible,
-				className: getClassName( nextProps.visible )
+				className: createClass( nextProps.visible )
 			};
 			return newState;
 		}
@@ -73,7 +58,7 @@ class Collapse extends Component {
 			this.props.onClick( v );
 			this.setState({
 				visible: v,
-				className: getClassName( v )
+				className: createClass( v )
 			});
 		} else {
 			this.props.onClick( this.props.visible );

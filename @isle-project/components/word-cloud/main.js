@@ -54,7 +54,7 @@ const BUTTON_STYLE = {
  * @param {string} language - language code
  * @returns {Array} stopwords
  */
-const generateStopwords = ( language ) => {
+function generateStopwords( language ) {
 	let stopwords;
 	switch ( language ) {
 		default:
@@ -84,7 +84,7 @@ const generateStopwords = ( language ) => {
 		break;
 	}
 	return stopwords;
-};
+}
 
 /**
  * Guess whether two arrays are equal.
@@ -115,7 +115,7 @@ function guessEquality( x, y ) {
  * @param {Array} options.customStopwords - array of custom stopwords
  * @returns {Object} bag-of-words representation with `min` and `max` counts and an array of word counts
  */
-const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
+function createBagOfWords({ texts, stopwords, minCount, customStopwords }) {
 	if ( !isArray( texts ) || texts.length === 0 ) {
 		return { min: PINF, max: NINF, wordCounts: [] };
 	}
@@ -170,7 +170,7 @@ const createBagOfWords = ({ texts, stopwords, minCount, customStopwords }) => {
 		}
 	}
 	return { min, max, wordCounts: filtered };
-};
+}
 
 
 // MAIN //

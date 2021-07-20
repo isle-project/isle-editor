@@ -3,8 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import trim from '@stdlib/string/trim';
-import contains from '@stdlib/assert/contains';
 import SessionContext from '@isle-project/session/context.js';
 
 
@@ -14,23 +12,6 @@ const WARNING_STYLE = {
 	background: 'red',
 	color: 'white'
 };
-
-
-// FUNCTIONS //
-
-/**
- * Extracts a surname from a given string.
- *
- * @param {string} name - name to parse
- * @returns {string} surname
- */
-function extractSurname( name ) {
-	name = trim( name );
-	if ( contains( name, ',' ) ) {
-		return name.substring( 0, name.indexOf( ',' ) );
-	}
-	return name.substring( name.lastIndexOf( ' ' ) + 1 );
-}
 
 
 // MAIN //
