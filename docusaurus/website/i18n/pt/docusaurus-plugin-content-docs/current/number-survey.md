@@ -21,7 +21,6 @@ Um componente de pesquisa no qual o instrutor pode coletar dados numéricos de p
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

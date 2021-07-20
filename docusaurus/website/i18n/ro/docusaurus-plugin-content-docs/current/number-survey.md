@@ -21,7 +21,6 @@ O componentă de sondaj în care instructorul poate colecta date numerice de la 
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

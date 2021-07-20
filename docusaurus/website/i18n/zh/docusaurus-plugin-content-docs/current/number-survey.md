@@ -21,7 +21,6 @@ sidebar_label: Number Survey
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

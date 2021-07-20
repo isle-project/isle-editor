@@ -21,7 +21,6 @@ Een enquêteonderdeel waarbij de docent in real-time numerieke enquêtegegevens 
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

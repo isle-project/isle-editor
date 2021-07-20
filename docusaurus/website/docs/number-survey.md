@@ -21,7 +21,6 @@ A survey component in which the instructor may collect numeric survey data from 
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

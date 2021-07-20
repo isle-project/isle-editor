@@ -21,7 +21,6 @@ Komponent prieskumu, v ktorom môže inštruktor zbierať číselné údaje z pr
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

@@ -21,7 +21,6 @@ Egy felmérési komponens, amelyben az oktató valós időben gyűjthet numeriku
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

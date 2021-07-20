@@ -21,7 +21,6 @@ Composante de l'enquête dans laquelle l'instructeur peut recueillir des donnée
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

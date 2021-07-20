@@ -21,7 +21,6 @@ En enkätkomponent där läraren kan samla in numeriska enkätdata från elevern
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}

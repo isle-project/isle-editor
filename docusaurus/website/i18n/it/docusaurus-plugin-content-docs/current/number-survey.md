@@ -21,7 +21,6 @@ Una componente di sondaggio in cui l'istruttore può raccogliere dati numerici d
 ```jsx live
 <NumberSurvey
     allowMultipleAnswers={true}
-    anonymous="false"
     id="generic_mean_question"
     question="Submit a number"
     defaultValue={0}
