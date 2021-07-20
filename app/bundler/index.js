@@ -537,12 +537,7 @@ function bundleLesson( options ) {
 				},
 				{
 					test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
-					use: {
-						loader: 'file-loader',
-						options: {
-							name: 'static/media/[name].[hash:8].[ext]'
-						}
-					}
+					type: 'asset/resource'
 				}
 			],
 			noParse: /node_modules\/json-schema\/lib\/validate\.js/
@@ -673,7 +668,8 @@ function bundleLesson( options ) {
 	config.output = {
 		path: appDir,
 		publicPath: './',
-		filename: minify ? './js/[name].bundle.min.js' : './js/[name].bundle.js'
+		filename: minify ? './js/[name].bundle.min.js' : './js/[name].bundle.js',
+		assetModuleFilename: 'static/media/[name][ext][query]'
 	};
 	let compiler;
 	try {

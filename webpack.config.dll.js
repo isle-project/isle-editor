@@ -48,12 +48,7 @@ const config = {
 			},
 			{
 				test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
-				use: {
-					loader: 'file-loader',
-					options: {
-						name: 'static/media/[name].[hash:8].[ext]'
-					}
-				}
+				type: 'asset/resource'
 			}
 		]
 	},
@@ -239,7 +234,8 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.13/'
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.13/',
+		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {
 		minimize: true,

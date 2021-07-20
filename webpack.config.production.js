@@ -73,7 +73,7 @@ const config = {
 			},
 			{
 				test: /\.txt$/,
-				use: 'raw-loader'
+				type: 'asset/source'
 			},
 			{
 				test: /\.svg$/i,
@@ -83,9 +83,7 @@ const config = {
 			},
 			{
 				test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
-				use: [
-					'file-loader'
-				]
+				type: 'asset/resource'
 			},
 			{
 				test: /\.css$/,

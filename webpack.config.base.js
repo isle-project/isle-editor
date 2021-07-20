@@ -81,7 +81,7 @@ export default {
 		},
 		{
 			test: /\.txt$/,
-			use: 'raw-loader'
+			type: 'asset/source'
 		},
 		{
 			test: /\.css$/,
@@ -92,12 +92,7 @@ export default {
 		},
 		{
 			test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
-			use: {
-				loader: 'file-loader',
-				options: {
-					name: 'static/media/[name].[hash:8].[ext]'
-				}
-			}
+			type: 'asset/resource'
 		}],
 		noParse: [
 			/node_modules\/json-schema\/lib\/validate\.js/
@@ -107,7 +102,8 @@ export default {
 		path: join( __dirname, 'dist' ),
 		filename: 'bundle.js',
 		libraryTarget: 'commonjs2',
-		globalObject: '(typeof self !== "undefined" ? self : this)'
+		globalObject: '(typeof self !== "undefined" ? self : this)',
+		assetModuleFilename: 'static/media/[name][ext][query]'
 	},
 	resolve: {
 		alias: {

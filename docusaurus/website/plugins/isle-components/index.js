@@ -112,12 +112,7 @@ function main( context, options ) {
 						},
 						{
 							test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|ogg)(\?.*)?$/,
-							use: {
-								loader: 'file-loader',
-								options: {
-									name: 'static/media/[name].[hash:8].[ext]'
-								}
-							}
+							type: 'asset/resource'
 						}
 					]
 				}
