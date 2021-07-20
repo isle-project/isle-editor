@@ -3,11 +3,11 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import SortableTree from 'react-sortable-tree';
+import SortableTree from '@nosferatu500/react-sortable-tree';
 import Card from 'react-bootstrap/Card';
 import FormControl from 'react-bootstrap/FormControl';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import 'react-sortable-tree/style.css'; // This only needs to be imported once in your app
+import '@nosferatu500/react-sortable-tree/style.css'; // This only needs to be imported once in your app
 
 
 // MAIN //
