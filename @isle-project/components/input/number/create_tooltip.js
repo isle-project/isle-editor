@@ -6,6 +6,16 @@ import NINF from '@stdlib/constants/float64/ninf';
 
 // MAIN //
 
+/**
+ * Creates a tooltip for a number input.
+ *
+ * @param {Object} options - function options
+ * @param {number} options.min - minimum value
+ * @param {number} options.max - maximum value
+ * @param {number} options.step - step size
+ * @param {Function} options.t - translation function
+ * @returns {string} tooltip
+ */
 function createTooltip({ min, max, step, t }) {
 	let tooltip = `${t('enter')} ${ step === 1 ? t('integer') : t('number')} `;
 	if ( max !== PINF && min !== NINF ) {

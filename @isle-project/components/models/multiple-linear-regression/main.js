@@ -22,6 +22,7 @@ import mean from '@isle-project/utils/statistic/mean';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import isMissing from '@isle-project/utils/is-missing';
 
 

@@ -5,6 +5,9 @@ import React from 'react';
 
 // MAIN //
 
+/**
+ * A component which displays a location's weather.
+ */
 function Location({ name, sys }) {
 	return (
 		<div className="weather-location">

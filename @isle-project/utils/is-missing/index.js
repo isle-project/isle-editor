@@ -13,7 +13,7 @@ import isnan from '@stdlib/assert/is-nan';
  * @returns {boolean} boolean indicating whether the provided value is missing
  */
 function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x );
+	return isnan( x ) || isUndefinedOrNull( x ) || x === '';
 }
 
 

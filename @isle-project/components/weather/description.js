@@ -5,6 +5,9 @@ import React from 'react';
 
 // MAIN //
 
+/**
+ * Component displaying a description of the weather.
+ */
 function Description({ weather }) {
 	if ( !weather ) {
 		return null;

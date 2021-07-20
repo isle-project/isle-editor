@@ -1,20 +1,6 @@
 // MODULES //
 
-import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import isnan from '@stdlib/assert/is-nan';
-
-
-// FUNCTIONS //
-
-/**
- * Returns a boolean indicating whether a value is missing.
- *
- * @param {*} x - input value
- * @returns {boolean} boolean indicating whether `x` is a missing value
- */
-function isMissing( x ) {
-	return isnan( x ) || isUndefinedOrNull( x ) || x === '';
-}
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // VARIABLES //

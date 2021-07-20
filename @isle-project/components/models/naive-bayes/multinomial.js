@@ -8,17 +8,7 @@ import exp from '@stdlib/math/base/special/exp';
 import isArrayArray from '@stdlib/assert/is-array-array';
 import isMatrixLike from '@stdlib/assert/is-matrix-like';
 import ln from '@stdlib/math/base/special/ln';
-
-
-// FUNCTIONS //
-
-const sum = ( arr ) => {
-	let out = 0;
-	for ( let i = 0; i < arr.length; i++ ) {
-		out += arr[ i ];
-	}
-	return out;
-};
+import sum from '@isle-project/utils/statistic/sum';
 
 
 // MAIN //

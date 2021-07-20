@@ -5,12 +5,7 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import contains from '@stdlib/assert/contains';
-import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
-import countBy from '@stdlib/utils/count-by';
-import identity from '@stdlib/utils/identity-function';
-import objectKeys from '@stdlib/utils/keys';
-import sqrt from '@stdlib/math/base/special/sqrt';
 import Button from 'react-bootstrap/Button';
 import Tooltip from '@isle-project/components/tooltip';
 import Table from '@isle-project/components/table';
@@ -18,6 +13,7 @@ import multiply from '@isle-project/utils/multiply';
 import zScore from '@isle-project/utils/zscore';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import designMatrix from './design_matrix.js';
 import LASSO from './lasso.js';
 
 
@@ -54,65 +50,6 @@ const summaryTable = ( x, intercept, result, t ) => {
 		</Table>
 	);
 };
-
-function designMatrix( x, data, quantitative, intercept ) {
-	if ( !isArray( x ) ) {
-		x = [ x ];
-	}
-	const matrix = [];
-	const predictors = [];
-	const hash = {};
-	const standardized = {};
-	const categoricalStats = {};
-	const nobs = data[ x[ 0 ] ].length;
-	for ( let j = 0; j < x.length; j++ ) {
-		if ( contains( quantitative, x[ j ] ) ) {
-			const values = zScore( data[ x[ j ] ] );
-			standardized[ x[ j ] ] = values;
-			predictors.push( x[ j ] );
-		} else {
-			const values = data[ x[ j ] ];
-			const counts = countBy( values, identity );
-			const categories = x[ j ].categories || objectKeys( counts );
-			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-				const label = `${x[ j ]}_${categories[ k ]}`;
-				predictors.push( label );
-				const p = counts[ categories[ k ] ] / nobs;
-				categoricalStats[ label ] = {
-					mu: p,
-					sigma: sqrt( p * (1-p) )
-				};
-			}
-			hash[ x[ j ] ] = categories;
-		}
-	}
-	for ( let i = 0; i < nobs; i++ ) {
-		const row = [];
-		if ( intercept ) {
-			row.push( 1 );
-		}
-		for ( let j = 0; j < x.length; j++ ) {
-			if ( contains( quantitative, x[ j ] ) ) {
-				const values = standardized[ x[ j ] ];
-				row.push( values[ i ] );
-			} else {
-				const values = data[ x[ j ] ];
-				const categories = hash[ x[ j ] ];
-				const val = values[ i ];
-				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					const { mu, sigma } = categoricalStats[ `${x[ j ]}_${categories[ k ]}` ];
-					row.push(
-						( val === categories[ k ] ) ?
-						( 1 - mu ) / sigma :
-						-mu / sigma
-					);
-				}
-			}
-		}
-		matrix.push( row );
-	}
-	return { matrix, predictors, categoricalStats, standardized };
-}
 
 const fitModel = ({ x, y, lambda, data, quantitative, intercept }) => {
 	try {

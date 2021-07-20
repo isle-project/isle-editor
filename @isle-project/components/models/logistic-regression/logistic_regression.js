@@ -11,6 +11,7 @@ import dbern from '@stdlib/stats/base/dists/bernoulli/pmf';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import mmult from '@isle-project/utils/mmult';
 import transpose from '@isle-project/utils/transpose';
+import sum from '@isle-project/utils/statistic/sum';
 import multiplyMatrices from './multiply_matrices.js';
 import colMult from './col_mult.js';
 import multiply from './multiply.js';
@@ -23,14 +24,6 @@ const EPSILON = 1e-8;
 
 
 // FUNCTIONS //
-
-const sum = ( arr ) => {
-	let res = 0;
-	for ( let i = 0; i < arr.length; i++ ) {
-		res += arr[ i ];
-	}
-	return res;
-};
 
 const variance = ( mu ) => {
 	const out = new Float64Array( mu.length );

@@ -53,19 +53,46 @@ const ResizeDirection = {
 
 // FUNCTIONS //
 
-function setWidth(el, width, height) {
+/**
+ * Sets the width of an element.
+ *
+ * @private
+ * @param {HTMLElement} el - element
+ * @param {number} width - element width
+ * @param {number} height - element height (unused)
+ */
+function setWidth( el, width, height ) {
 	el.style.width = width + 'px';
 }
 
-function setHeight(el, width, height) {
+/**
+ * Sets the height of an element.
+ *
+ * @private
+ * @param {HTMLElement} el - element
+ * @param {number} width - element width (unused)
+ * @param {number} height - element height
+ */
+function setHeight( el, width, height ) {
 	el.style.height = height + 'px';
 }
 
-function setSize(el, width, height) {
-	el.style.width = Math.round(width) + 'px';
-	el.style.height = Math.round(height) + 'px';
+/**
+ * Sets the height and width of an element.
+ *
+ * @private
+ * @param {HTMLElement} el - element
+ * @param {number} width - element width
+ * @param {number} height - element height
+ */
+function setSize( el, width, height ) {
+	el.style.width = Math.round( width ) + 'px';
+	el.style.height = Math.round( height ) + 'px';
 }
 
+/**
+ * Image resize box control component.
+ */
 class ImageResizeBoxControl extends React.PureComponent {
 	constructor( props ) {
 		super( props );

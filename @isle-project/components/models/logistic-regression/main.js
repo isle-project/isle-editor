@@ -8,8 +8,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import contains from '@stdlib/assert/contains';
-import ndarray from '@stdlib/ndarray/array';
 import isArray from '@stdlib/assert/is-array';
 import abs from '@stdlib/math/base/special/abs';
 import pnorm from '@stdlib/stats/base/dists/normal/cdf';
@@ -17,12 +15,11 @@ import roundn from '@stdlib/math/base/special/roundn';
 import Tooltip from '@isle-project/components/tooltip';
 import Table from '@isle-project/components/table';
 import TeX from '@isle-project/components/tex';
-import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import subtract from '@isle-project/utils/subtract';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
-import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
-import isMissing from '@isle-project/utils/is-missing';
+import designMatrixMissing from './design_matrix_missing.js';
+import designMatrix from './design_matrix.js';
 import irls from './logistic_regression.js';
 
 
@@ -33,107 +30,6 @@ const T = 't';
 
 
 // FUNCTIONS //
-
-function designMatrix( x, y, data, quantitative, intercept, success ) {
-	const predictors = [];
-	const hash = {};
-	const nobs = data[ x[ 0 ] ].length;
-	for ( let j = 0; j < x.length; j++ ) {
-		const values = data[ x[ j ] ];
-		if ( contains( quantitative, x[ j ] ) ) {
-			predictors.push( x[ j ] );
-		} else {
-			const categories = extractCategoriesFromValues( values, x[ j ] );
-			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-				predictors.push( `${x[ j ]}_${categories[ k ]}` );
-			}
-			hash[ x[ j ] ] = categories;
-		}
-	}
-	const buffer = new Float64Array( nobs * (predictors.length+1) );
-	for ( let i = 0; i < nobs; i++ ) {
-		if ( intercept ) {
-			buffer[ (predictors.length+1)*i ] = 1;
-		}
-		let colIndex = 0;
-		for ( let j = 0; j < x.length; j++ ) {
-			const values = data[ x[ j ] ];
-			if ( contains( quantitative, x[ j ] ) ) {
-				colIndex += 1;
-				buffer[ (predictors.length+1)*i + colIndex ] = values[ i ];
-			} else {
-				const categories = hash[ x[ j ] ];
-				const val = values[ i ];
-				for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-					colIndex += 1;
-					buffer[ (predictors.length+1)*i + colIndex ] = ( val === categories[ k ] ) ? 1 : 0;
-				}
-			}
-		}
-	}
-	const matrix = ndarray( buffer, {
-		shape: [ nobs, predictors.length+1 ]
-	});
-	const yvalues = data[ y ].map( v => {
-		return v === success ? 1 : 0;
-	});
-	return { matrix, predictors, yvalues, nobs };
-}
-
-function designMatrixMissing( x, y, data, quantitative, intercept, success ) {
-	const predictors = [];
-	const hash = {};
-	for ( let j = 0; j < x.length; j++ ) {
-		const values = data[ x[ j ] ];
-		if ( contains( quantitative, x[ j ] ) ) {
-			predictors.push( x[ j ] );
-		} else {
-			const categories = extractCategoriesFromValues( values, x[ j ] );
-			for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-				predictors.push( `${x[ j ]}_${categories[ k ]}` );
-			}
-			hash[ x[ j ] ] = categories;
-		}
-	}
-	let buffer = [];
-	const yvalues = [];
-	for ( let i = 0; i < data[ x[ 0 ] ].length; i++ ) {
-		let missing = false;
-		const row = [];
-		if ( intercept ) {
-			row.push( 1 );
-		}
-		for ( let j = 0; j < x.length; j++ ) {
-			const values = data[ x[ j ] ];
-			if ( contains( quantitative, x[ j ] ) ) {
-				if ( isNonMissingNumber( values[ i ] ) ) {
-					row.push( values[ i ] );
-				} else {
-					missing = true;
-				}
-			} else {
-				const val = values[ i ];
-				if ( isMissing( val ) ) {
-					missing = true;
-				} else {
-					const categories = hash[ x[ j ] ];
-					for ( let k = intercept ? 1 : 0; k < categories.length; k++ ) {
-						row.push( ( val === categories[ k ] ) ? 1 : 0 );
-					}
-				}
-			}
-		}
-		if ( !missing ) {
-			buffer = buffer.concat( row );
-			yvalues.push( data[ y ][ i ] === success ? 1 : 0 );
-		}
-	}
-	const nobs = yvalues.length;
-	const matrix = ndarray( buffer, {
-		shape: [ nobs, predictors.length+1 ]
-	});
-	return { matrix, predictors, yvalues, nobs };
-}
 
 const summaryTable = ( x, intercept, result, t ) => {
 	return (
