@@ -60,7 +60,7 @@ const ContourChart = Loadable( () => import( /* webpackChunkName: "ContourChartM
 const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, groupingVariables, logAction, data,
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
 	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
-	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate, onTransformerBeingActive, onPredict,
+	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onTransformerBeingActive, onPredict,
 	on2dSelection, onQQPlotSelection
 }) => {
 	const nStatistics = statistics.length;

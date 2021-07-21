@@ -28,8 +28,8 @@ const HOTKEY = '(Shift+Alt+T)';
 
 const Toolbox = ({ id, categorical, quantitative, originalQuantitative, groupingVariables, logAction, data,
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
-	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
-	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate,
+	transformer, onBarchartSelection, onCategoricalGenerate, onCreated,
+	onGenerateTransformedVariable, onHistogramSelection, onPlotDone, onQuantitativeGenerate,
 	on2dSelection, onQQPlotSelection, onTutorialStart, onTutorialCompletion, onPredict
 }) => {
 	const { t } = useTranslation( 'data-explorer' );
@@ -160,7 +160,6 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 								onHistogramSelection={onHistogramSelection}
 								onCategoricalGenerate={onCategoricalGenerate}
 								onQuantitativeGenerate={onQuantitativeGenerate}
-								onBothGenerate={onBothGenerate}
 								onPredict={onPredict}
 							/>
 						</Card.Body>

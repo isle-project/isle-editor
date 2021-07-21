@@ -1355,14 +1355,6 @@ class DataExplorer extends Component {
 										data
 									});
 								}}
-								onBothGenerate={( quantitative, categorical, data ) => {
-									this.setState({
-										quantitative,
-										categorical,
-										groupVars: categorical.slice(),
-										data
-									});
-								}}
 								onTutorialStart={this.props.onTutorialStart}
 								onTutorialCompletion={this.props.onTutorialCompletion}
 								onPredict={this.onPredict}
