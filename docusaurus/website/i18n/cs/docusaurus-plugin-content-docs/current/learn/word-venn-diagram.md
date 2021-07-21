@@ -19,6 +19,6 @@ Vennův diagram vizualizující výskyt slov v dokumentech dodané matice termí
 ## Příklady
 
 ```jsx live
-<LearnWordVennDiagram />
+<LearnWordVennDiagram vocabulary={[ 'hello', 'my', 'friend' ]} tdm={[{ "0": 1, "1": 1, "2": 1}, { "0": 1, "1": 0, "2": 1 }, { "0": 1, "1": 1, "2": 1}]} nTexts={2} />
 ```
 

@@ -19,6 +19,6 @@ Ett venndiagram som visualiserar samvariation av ord i dokument i en matris för
 ## Exempel
 
 ```jsx live
-<LearnWordVennDiagram />
+<LearnWordVennDiagram vocabulary={[ 'hello', 'my', 'friend' ]} tdm={[{ "0": 1, "1": 1, "2": 1}, { "0": 1, "1": 0, "2": 1 }, { "0": 1, "1": 1, "2": 1}]} nTexts={2} />
 ```
 

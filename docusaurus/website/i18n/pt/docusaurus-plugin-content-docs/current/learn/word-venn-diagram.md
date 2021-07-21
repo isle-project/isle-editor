@@ -19,6 +19,6 @@ Um diagrama venn que visualiza a co-ocorrência de palavras em documentos de uma
 ## Exemplos
 
 ```jsx live
-<LearnWordVennDiagram />
+<LearnWordVennDiagram vocabulary={[ 'hello', 'my', 'friend' ]} tdm={[{ "0": 1, "1": 1, "2": 1}, { "0": 1, "1": 0, "2": 1 }, { "0": 1, "1": 1, "2": 1}]} nTexts={2} />
 ```
 

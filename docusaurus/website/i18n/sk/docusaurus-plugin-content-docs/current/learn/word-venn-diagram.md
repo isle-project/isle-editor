@@ -19,6 +19,6 @@ Vennov diagram vizualizujúci spoluvýskyt slov v dokumentoch dodanej matice ter
 ## Príklady
 
 ```jsx live
-<LearnWordVennDiagram />
+<LearnWordVennDiagram vocabulary={[ 'hello', 'my', 'friend' ]} tdm={[{ "0": 1, "1": 1, "2": 1}, { "0": 1, "1": 0, "2": 1 }, { "0": 1, "1": 1, "2": 1}]} nTexts={2} />
 ```
 
