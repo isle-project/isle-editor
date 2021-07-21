@@ -105,7 +105,7 @@ function extractValues({ x, y, data, group, omitMissing }) {
 * @property {(string|Factor)} group - grouping variable
 * @property {boolean} omitMissing - controls whether to omit missing values in model fitting
 * @property {Function} onDiagnostics - callback invoked with diagnostic plots
-* @property {Function} onPredict - callback invoked with fitted values and residuals
+* @property {Function} onPredict - callback invoked with a predict function to make predictions for new data
 */
 class SimpleLinearRegression extends Component {
 	constructor( props ) {
@@ -197,17 +197,20 @@ class SimpleLinearRegression extends Component {
 					}) )}
 					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
-							const xd = data[ x ];
-							const yd = data[ y ];
-							const yhat = new Float64Array( yd.length );
-							const resid = new Float64Array( yd.length );
-							const groups = data[ group ];
-							for ( let i = 0; i < yhat.length; i++ ) {
-								const [ yint, slope ] = res[ groups[ i ] ];
-								yhat[ i ] = yint + slope * xd[ i ];
-								resid[ i ] = yd[ i ] - yhat[ i ];
-							}
-							this.props.onPredict( yhat, resid, COUNTER );
+							const predict = ( data ) => {
+								const xd = data[ x ];
+								const yd = data[ y ];
+								const fitted = new Float64Array( yd.length );
+								const residuals = new Float64Array( yd.length );
+								const groups = data[ group ];
+								for ( let i = 0; i < fitted.length; i++ ) {
+									const [ yint, slope ] = res[ groups[ i ] ];
+									fitted[ i ] = yint + slope * xd[ i ];
+									residuals[ i ] = yd[ i ] - fitted[ i ];
+								}
+								return { fitted, residuals };
+							};
+							this.props.onPredict( predict, COUNTER );
 						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
@@ -312,15 +315,18 @@ class SimpleLinearRegression extends Component {
 					</Table>
 					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
-							const xd = data[ x ];
-							const yd = data[ y ];
-							const yhat = new Array( yd.length );
-							const resid = new Array( yd.length );
-							for ( let i = 0; i < yhat.length; i++ ) {
-								yhat[ i ] = yint + slope * xd[ i ];
-								resid[ i ] = yd[ i ] - yhat[ i ];
-							}
-							this.props.onPredict( yhat, resid, COUNTER );
+							const predict = ( data ) => {
+								const xd = data[ x ];
+								const yd = data[ y ];
+								const fitted = new Array( yd.length );
+								const residuals = new Array( yd.length );
+								for ( let i = 0; i < fitted.length; i++ ) {
+									fitted[ i ] = yint + slope * xd[ i ];
+									residuals[ i ] = yd[ i ] - fitted[ i ];
+								}
+								return { fitted, residuals };
+							};
+							this.props.onPredict( predict, COUNTER );
 						}}>{this.props.t('use-model-to-predict')}</Button>
 					</Tooltip> : null }
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {

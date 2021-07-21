@@ -8,8 +8,6 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import isArray from '@stdlib/assert/is-array';
-import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import memoize from '@stdlib/utils/memoize';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
@@ -73,27 +71,7 @@ class LogisticRegressionMenu extends Component {
 			intercept={intercept}
 			omitMissing={omitMissing}
 			quantitative={this.props.quantitative}
-			onPredict={( yhat, probs, resid, counter ) => {
-				const newData = copy( this.props.data, 1 );
-				const newQuantitative = this.props.quantitative.slice();
-				const newCategorical = this.props.categorical.slice();
-				let name = 'probs_logis' + counter;
-				newData[ name ] = probs;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				name = 'pred_logis' + counter;
-				newData[ name ] = yhat;
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				name = 'resid_logis' + counter;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				newData[ name ] = resid;
-				this.props.onGenerate( newQuantitative, newCategorical, newData );
-			}}
+			onPredict={this.props.onPredict}
 		/>;
 		this.props.logAction( DATA_EXPLORER_LOGISTIC_REGRESSION, {
 			y, x, intercept

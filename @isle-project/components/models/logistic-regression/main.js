@@ -99,7 +99,7 @@ const fitModel = ({ y, success, x, intercept, omitMissing, data, quantitative })
 * @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
 * @property {boolean} omitMissing - controls whether to omit missing values
 * @property {boolean} intercept - controls whether to fit a model with an intercept term
-* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+* @property {Function} onPredict - callback invoked with a predict function to make predictions for new data
 */
 class LogisticRegression extends Component {
 	constructor( props ) {
@@ -135,15 +135,18 @@ class LogisticRegression extends Component {
 	}
 
 	handlePredict = () => {
-		let { x, y, data, quantitative, intercept, success } = this.props;
+		let { x, y, quantitative, intercept, success } = this.props;
 		if ( !isArray( x ) ) {
 			x = [ x ];
 		}
-		const { matrix, yvalues } = designMatrix( x, y, data, quantitative, intercept, success );
-		const probs = this.state.result.predict( matrix );
-		const resid = subtract( probs, yvalues );
-		const yhat = probs.map( x => x > this.state.probabilityThreshold );
-		this.props.onPredict( yhat, probs, resid, COUNTER );
+		const predict = ( data ) => {
+			const { matrix, yvalues } = designMatrix( x, y, data, quantitative, intercept, success );
+			const probs = this.state.result.predict( matrix );
+			const residuals = subtract( probs, yvalues );
+			const yhat = probs.map( x => x > this.state.probabilityThreshold );
+			return { yhat, probs, residuals };
+		};
+		this.props.onPredict( predict, COUNTER );
 	}
 
 	render() {

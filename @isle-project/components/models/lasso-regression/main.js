@@ -104,7 +104,7 @@ const fitModel = ({ x, y, lambda, data, quantitative, intercept }) => {
 * @property {Array<string>} quantitative - array of variables in `data` that are `quantitative`
 * @property {number} lambda - regularization parameter
 * @property {boolean} intercept - controls whether to fit a model with an intercept term
-* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+* @property {Function} onPredict - callback invoked with a predict function to make predictions for new data
 */
 class LassoRegression extends Component {
 	constructor( props ) {
@@ -137,13 +137,19 @@ class LassoRegression extends Component {
 	}
 
 	handlePredict = () => {
-		const { matrix } = designMatrix( this.props.x, this.props.data, this.props.quantitative, this.props.intercept );
-		let { fitted, residuals } = this.state.result.predict( matrix );
+		const predict = ( data ) => {
+			const { matrix } = designMatrix( this.props.x, data, this.props.quantitative, this.props.intercept );
+			let fitted = this.state.result.predict( matrix );
 
-		// Convert fitted values and residuals back to original scale before standardizing:
-		fitted = multiply( fitted, this.state.yvalues.sigma );
-		residuals = multiply( residuals, -this.state.yvalues.sigma );
-		this.props.onPredict( fitted, residuals, COUNTER );
+			// Convert fitted values back to original scale before standardizing:
+			fitted = multiply( fitted, this.state.yvalues.sigma );
+			const residuals = new Array( fitted.length );
+			for ( let i = 0; i < fitted.length; i++ ) {
+				residuals[ i ] = data[ this.props.y ][ i ] - fitted[ i ];
+			}
+			return { fitted, residuals };
+		};
+		this.props.onPredict( predict, COUNTER );
 	}
 
 	render() {

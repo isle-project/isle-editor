@@ -5,13 +5,10 @@ import PropTypes from 'prop-types';
 import uniq from 'uniq';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import { DATA_EXPLORER_NAIVE_BAYES } from '@isle-project/constants/actions.js';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
-import { designMatrix } from '@isle-project/components/models/naive-bayes/design_matrix.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -30,28 +27,7 @@ const NaiveBayesMenu = ( props ) => {
 			data={props.data}
 			quantitative={props.quantitative}
 			categorical={props.categorical}
-			onPredict={( results, counter ) => {
-				const newData = copy( props.data, 1 );
-				const newQuantitative = props.quantitative.slice();
-				const { matrix } = designMatrix( x, y, props.data, props.quantitative );
-				const probs = results.predictProbs( matrix );
-				for ( let i = 0; i < results.classes.length; i++ ) {
-					const name = 'probs_' + results.classes[ i ] + '_bayes' + counter;
-					const classProbs = probs.map( x => x[ i ] );
-					newData[ name ] = classProbs;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-				}
-				const pred = results.predict( matrix );
-				const name = 'pred_bayes'+ counter;
-				newData[ name ] = pred;
-				const newCategorical = props.categorical.slice();
-				if ( !contains( newCategorical, name ) ) {
-					newCategorical.push( name );
-				}
-				props.onGenerate( newQuantitative, newCategorical, newData );
-			}}
+			onPredict={props.onPredict}
 		/>;
 		props.logAction( DATA_EXPLORER_NAIVE_BAYES, {
 			y, x, omitMissing

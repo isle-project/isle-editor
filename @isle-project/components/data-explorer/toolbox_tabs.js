@@ -60,7 +60,7 @@ const ContourChart = Loadable( () => import( /* webpackChunkName: "ContourChartM
 const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, groupingVariables, logAction, data,
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
 	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
-	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate, onTransformerBeingActive,
+	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate, onTransformerBeingActive, onPredict,
 	on2dSelection, onQQPlotSelection
 }) => {
 	const nStatistics = statistics.length;
@@ -432,7 +432,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onQuantitativeGenerate}
+					onPredict={onPredict['multiple-linear-regression']}
 					t={t}
 				/>;
 			break;
@@ -444,7 +444,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onBothGenerate}
+					onPredict={onPredict['decision-tree']}
 					t={t}
 				/>;
 			break;
@@ -456,7 +456,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onBothGenerate}
+					onPredict={onPredict['random-forest']}
 					t={t}
 				/>;
 			break;
@@ -468,7 +468,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onQuantitativeGenerate}
+					onPredict={onPredict['lasso']}
 					t={t}
 				/>;
 			break;
@@ -480,7 +480,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onBothGenerate}
+					onPredict={onPredict['logistic']}
 					t={t}
 				/>;
 			break;
@@ -492,7 +492,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					data={data}
 					logAction={logAction}
 					session={session}
-					onGenerate={onQuantitativeGenerate}
+					onPredict={onPredict['simple-linear-regression']}
 					t={t}
 				/>;
 				break;
@@ -542,7 +542,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 						data={data}
 						logAction={logAction}
 						session={session}
-						onGenerate={onBothGenerate}
+						onPredict={onPredict['naive-bayes']}
 						t={t}
 					/>;
 				break;

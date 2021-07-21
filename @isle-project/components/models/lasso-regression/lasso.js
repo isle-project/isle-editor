@@ -173,7 +173,7 @@ LassoFit.prototype.iterate = function iterate() {
 };
 
 /**
-* Calculates the current model fitted values (yhat) and residuals (e = y - yhat).
+* Calculates the current model fitted values (yhat).
 *
 * @returns {Object} fitted values and residuals
 */
@@ -182,11 +182,7 @@ LassoFit.prototype.predict = function predict( x ) {
 		x = ndarray( x );
 	}
 	const fitted = mmult( x, this.beta );
-	const residuals = new Array( this.N );
-	for ( let i = 0; i < this.N; i++ ) {
-		residuals[ i ] = this.y[ i ] - fitted[ i ];
-	}
-	return { fitted, residuals };
+	return fitted;
 };
 
 

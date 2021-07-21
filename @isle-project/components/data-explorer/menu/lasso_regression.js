@@ -3,8 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import unique from 'uniq';
-import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import TeX from '@isle-project/components/tex';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
@@ -18,28 +16,14 @@ import QuestionButton from './../question_button.js';
 // MAIN //
 
 const LassoRegressionMenu = ( props ) => {
-	const { data, categorical, quantitative, t, logAction, onCreated, onGenerate } = props;
+	const { categorical, quantitative, t, logAction, onCreated, onPredict } = props;
 	const compute = ( y, x, lambda, intercept ) => {
 		const output = <LassoRegression
 			x={x} y={y}
 			lambda={lambda} intercept={intercept}
-			data={data}
+			data={props.data}
 			quantitative={quantitative}
-			onPredict={( fitted, residuals, counter ) => {
-				const newData = copy( data, 1 );
-				const newQuantitative = quantitative.slice();
-				let name = 'pred_lasso' + counter;
-				newData[ name ] = fitted;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				name = 'resid_lasso' + counter;
-				newData[ name ] = residuals;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				onGenerate( newQuantitative, newData );
-			}}
+			onPredict={onPredict}
 		/>;
 		logAction( DATA_EXPLORER_LASSO_REGRESSION, {
 			y, x, intercept, lambda

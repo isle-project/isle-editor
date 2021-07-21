@@ -5,14 +5,11 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import unique from 'uniq';
-import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import Collapse from '@isle-project/components/collapse';
 import DecisionTree from '@isle-project/components/models/decision-tree';
 import { DATA_EXPLORER_DECISION_TREE } from '@isle-project/constants/actions.js';
-import subtract from '@isle-project/utils/subtract';
 import QuestionButton from '../question_button.js';
 
 
@@ -34,40 +31,7 @@ const DecisionTreeMenu = ( props ) => {
 			data={props.data} quantitative={props.quantitative}
 			scoreThreshold={scoreThreshold} maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
-			onPredict={( tree, counter ) => {
-				const newData = copy( props.data, 1 );
-				if ( type === 'Classification' ) {
-					const newCategorical = props.categorical.slice();
-					const yhat = tree.predict( newData ).map( x => String( x ) );
-					let name = 'pred_tree' + counter;
-					newData[ name ] = yhat;
-					if ( !contains( newCategorical, name ) ) {
-						newCategorical.push( name );
-					}
-					name = 'correct_tree' + counter;
-					const yvalues = props.data[ y ];
-					newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
-					if ( !contains( newCategorical, name ) ) {
-						newCategorical.push( name );
-					}
-					props.onGenerate( props.quantitative, newCategorical, newData );
-				}
-				else {
-					const newQuantitative = props.quantitative.slice();
-					const yhat = tree.predict( newData );
-					let name = 'pred_tree' + counter;
-					newData[ name ] = yhat;
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					name = 'resid_tree' + counter;
-					newData[ name ] = subtract( yhat, props.data[ y ] );
-					if ( !contains( newQuantitative, name ) ) {
-						newQuantitative.push( name );
-					}
-					props.onGenerate( newQuantitative, props.categorical, newData );
-				}
-			}}
+			onPredict={props.onPredict}
 		/>;
 		props.logAction( DATA_EXPLORER_DECISION_TREE, {
 			y, x, type

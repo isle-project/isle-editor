@@ -214,7 +214,7 @@ const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
 * @property {boolean} omitMissing - controls whether to omit missing values
 * @property {boolean} intercept - controls whether to fit a model with an intercept term
 * @property {Function} onDiagnostics - callback invoked with diagnostic plots
-* @property {Function} onPredict - callback invoked with predictions and residuals after model fitting
+* @property {Function} onPredict - callback invoked with a predict function to make predictions for new data
 */
 class MultipleLinearRegression extends Component {
 	constructor( props ) {
@@ -280,12 +280,15 @@ class MultipleLinearRegression extends Component {
 	}
 
 	handlePredict = () => {
-		const { data, quantitative, intercept } = this.props;
-		let { x, y } = this.props;
-		const { matrix } = designMatrix( x, y, data, quantitative, intercept );
-		const yhat = this.state.result.predict( matrix ).map( v => v[ 0 ] );
-		const resid = subtract( data[ y ], yhat );
-		this.props.onPredict( yhat, resid, COUNTER );
+		const { quantitative, intercept } = this.props;
+		const predict = ( data ) => {
+			const { x, y } = this.props;
+			const { matrix } = designMatrix( x, y, data, quantitative, intercept );
+			const fitted = this.state.result.predict( matrix ).map( v => v[ 0 ] );
+			const residuals = subtract( data[ y ], fitted );
+			return { fitted, residuals };
+		};
+		this.props.onPredict( predict, COUNTER );
 	}
 
 	render() {

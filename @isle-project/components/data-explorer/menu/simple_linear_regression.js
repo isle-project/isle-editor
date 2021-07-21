@@ -25,21 +25,7 @@ const SimpleLinearRegressionMenu = ( props ) => {
 			y={y} x={x}
 			group={group} omitMissing={omitMissing}
 			data={props.data}
-			onPredict={( yhat, resid, counter ) => {
-				const newData = copy( props.data, 1 );
-				const newQuantitative = props.quantitative.slice();
-				let name = 'pred_slm'+counter;
-				newData[ name ] = yhat;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				name = 'resid_slm'+counter;
-				if ( !contains( newQuantitative, name ) ) {
-					newQuantitative.push( name );
-				}
-				newData[ name ] = resid;
-				props.onGenerate( newQuantitative, newData );
-			}}
+			onPredict={props.onPredict}
 			onDiagnostics={props.onCreated}
 		/>;
 		props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {

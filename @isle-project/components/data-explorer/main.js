@@ -46,6 +46,7 @@ import KeyControls from '@isle-project/components/key-controls';
 import DataTable from '@isle-project/components/data-table';
 const ToolboxButton = lazy( () => import( /* webpackChunkName: "Toolbox" */ './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
+import subtract from '@isle-project/utils/subtract';
 import OutputPanel from './output_panel.js';
 import History from './history';
 import recreateOutput from './history/recreate_output.js';
@@ -932,6 +933,175 @@ class DataExplorer extends Component {
 		return data;
 	}
 
+	onPredict = {
+		'decision-tree': ( tree, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newCategorical = this.state.categorical.slice();
+			const newQuantitative = this.state.quantitative.slice();
+			if ( tree.type === 'classification' ) {
+				const yhat = tree.predict( newData ).map( x => String( x ) );
+				let name = 'pred_tree' + counter;
+				newData[ name ] = yhat;
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+				name = 'correct_tree' + counter;
+				const yvalues = newData[ tree.response ];
+				newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+			}
+			else {
+				const yhat = tree.predict( newData );
+				let name = 'pred_tree' + counter;
+				newData[ name ] = yhat;
+				if ( !contains( newQuantitative, name ) ) {
+					newQuantitative.push( name );
+				}
+				name = 'resid_tree' + counter;
+				newData[ name ] = subtract( yhat, newData[ tree.response ] );
+				if ( !contains( newQuantitative, name ) ) {
+					newQuantitative.push( name );
+				}
+			}
+			this.setState({
+				categorical: newCategorical,
+				quantitative: newQuantitative,
+				data: newData
+			});
+		},
+		'lasso': ( predict, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newQuantitative = this.state.quantitative.slice();
+			let name = 'pred_lasso' + counter;
+			const { fitted, residuals } = predict( newData );
+			newData[ name ] = fitted;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			name = 'resid_lasso' + counter;
+			newData[ name ] = residuals;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			this.setState({
+				quantitative: newQuantitative,
+				data: newData
+			});
+		},
+		'logistic': ( predict, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newQuantitative = this.state.quantitative.slice();
+			const newCategorical = this.state.categorical.slice();
+			const { yhat, probs, residuals } = predict( newData );
+			let name = 'probs_logis' + counter;
+			newData[ name ] = probs;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			name = 'pred_logis' + counter;
+			newData[ name ] = yhat;
+			if ( !contains( newCategorical, name ) ) {
+				newCategorical.push( name );
+			}
+			name = 'resid_logis' + counter;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			newData[ name ] = residuals;
+			this.setState({
+				categorical: newCategorical,
+				quantitative: newQuantitative,
+				data: newData
+			});
+		},
+		'multiple-linear-regression': ( predict, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newQuantitative = this.state.quantitative.slice();
+			const { fitted, residuals } = predict( newData );
+			let name = 'pred_lm'+counter;
+			newData[ name ] = fitted;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			name = 'resid_lm'+counter;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			newData[ name ] = residuals;
+			this.setState({
+				quantitative: newQuantitative,
+				data: newData
+			});
+		},
+		'random-forest': ( forest, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newCategorical = this.state.categorical.slice();
+			if ( forest.type === 'classification' ) {
+				const yhat = forest.predict( newData ).map( x => String( x ) );
+				let name = 'pred_forest' + counter;
+				newData[ name ] = yhat;
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+				name = 'correct_forest' + counter;
+				const yvalues = this.state.data[ forest.response ];
+				newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
+				if ( !contains( newCategorical, name ) ) {
+					newCategorical.push( name );
+				}
+			}
+			this.setState({
+				categorical: newCategorical,
+				data: newData
+			});
+		},
+		'simple-linear-regression': ( predict, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const { fitted, residuals } = predict( newData );
+			const newQuantitative = this.state.quantitative.slice();
+			let name = 'pred_slm'+counter;
+			newData[ name ] = fitted;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			name = 'resid_slm'+counter;
+			if ( !contains( newQuantitative, name ) ) {
+				newQuantitative.push( name );
+			}
+			newData[ name ] = residuals;
+			this.setState({
+				quantitative: newQuantitative,
+				data: newData
+			});
+		},
+		'naive-bayes': ( predict, counter ) => {
+			const newData = copy( this.state.data, 1 );
+			const newQuantitative = this.state.quantitative.slice();
+			const { fitted, classProbs } = predict( newData );
+			const keys = Object.keys( classProbs );
+			for ( let i = 0; i < keys.length; i++ ) {
+				const name = keys[ i ];
+				newData[ name ] = classProbs[ name ];
+				if ( !contains( newQuantitative, name ) ) {
+					newQuantitative.push( name );
+				}
+			}
+			const name = 'pred_bayes'+ counter;
+			newData[ name ] = fitted;
+			const newCategorical = this.state.categorical.slice();
+			if ( !contains( newCategorical, name ) ) {
+				newCategorical.push( name );
+			}
+			this.setState({
+				categorical: newCategorical,
+				quantitative: newQuantitative,
+				data: newData
+			});
+		}
+	}
+
 	onRestoreData = () => {
 		const data = this.restoreData();
 		this.setState({
@@ -1195,6 +1365,7 @@ class DataExplorer extends Component {
 								}}
 								onTutorialStart={this.props.onTutorialStart}
 								onTutorialCompletion={this.props.onTutorialCompletion}
+								onPredict={this.onPredict}
 							/>
 						</Suspense>
 					</Navbar>

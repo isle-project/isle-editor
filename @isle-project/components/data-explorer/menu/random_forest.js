@@ -68,25 +68,7 @@ class RandomForestMenu extends Component {
 			minItemsCount={minItemsCount}
 			quantitative={this.props.quantitative}
 			data={this.props.data}
-			onPredict={( forest, counter ) => {
-				const newData = copy( this.props.data, 1 );
-				if ( type === 'Classification' ) {
-					const newCategorical = this.props.categorical.slice();
-					const yhat = forest.predict( newData ).map( x => String( x ) );
-					let name = 'pred_forest' + counter;
-					newData[ name ] = yhat;
-					if ( !contains( newCategorical, name ) ) {
-						newCategorical.push( name );
-					}
-					name = 'correct_forest' + counter;
-					const yvalues = this.props.data[ y ];
-					newData[ name ] = yhat.map( ( x, i ) => x === String( yvalues[ i ] ) ? 'Yes' : 'No' );
-					if ( !contains( newCategorical, name ) ) {
-						newCategorical.push( name );
-					}
-					this.props.onGenerate( this.props.quantitative, newCategorical, newData );
-				}
-			}}
+			onPredict={this.props.onPredict}
 		/>;
 		this.props.logAction( DATA_EXPLORER_RANDOM_FOREST, {
 			y, x, type, nTrees, nTry

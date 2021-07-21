@@ -229,6 +229,9 @@ function ClassificationTreeConstructor( opts ) {
 		}
 		return predict( this.root, data, idx );
 	};
+
+	this.type = 'classification';
+	this.response = opts.response;
 }
 
 /**
@@ -264,6 +267,9 @@ function RegressionTreeConstructor( opts ) {
 		}
 		return Number( predict( this.root, data, idx ) );
 	};
+
+	this.type = 'regression';
+	this.response = opts.response;
 }
 
 /**
@@ -294,6 +300,8 @@ function RandomForestClassifierConstructor( opts ) {
 		}
 		return predictRandomForest( this.trees, data, idx );
 	};
+	this.type = 'classification';
+	this.response = opts.response;
 }
 
 /**

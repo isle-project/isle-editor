@@ -13,6 +13,15 @@ import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 
 // FUNCTIONS //
 
+/**
+ * Returns a summary table of the cluster centers.
+ *
+ * @private
+ * @param {Array} variables - array of variable names
+ * @param {Array} centroids - array of centroid objects
+ * @param {Function} t - translation function
+ * @returns {Node} summary table
+ */
 const summaryTable = ( variables, centroids, t ) => {
 	return (
 		<Table bordered size="sm">

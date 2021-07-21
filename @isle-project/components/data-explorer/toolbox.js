@@ -30,7 +30,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 	statistics, tables, models, plots, tests, showHistogramDensityOption, showTestDecisions,
 	transformer, onBarchartSelection, onCategoricalGenerate, onCreated, onGenerateTransformedVariable,
 	onHistogramSelection, onPlotDone, onQuantitativeGenerate, onBothGenerate,
-	on2dSelection, onQQPlotSelection, onTutorialStart, onTutorialCompletion
+	on2dSelection, onQQPlotSelection, onTutorialStart, onTutorialCompletion, onPredict
 }) => {
 	const { t } = useTranslation( 'data-explorer' );
 	const [ disableDragging, setDisableDragging ] = useState( false );
@@ -161,6 +161,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 								onCategoricalGenerate={onCategoricalGenerate}
 								onQuantitativeGenerate={onQuantitativeGenerate}
 								onBothGenerate={onBothGenerate}
+								onPredict={onPredict}
 							/>
 						</Card.Body>
 					</Card>

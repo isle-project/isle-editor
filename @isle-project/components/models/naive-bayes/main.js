@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import Table from '@isle-project/components/table';
 import contains from '@stdlib/assert/contains';
+import copy from '@stdlib/utils/copy';
+import Table from '@isle-project/components/table';
 import exp from '@stdlib/math/base/special/exp';
 import Tooltip from '@isle-project/components/tooltip';
 import { gaussian } from './naive_bayes.js';
@@ -148,7 +149,24 @@ class NaiveBayes extends Component {
 	}
 
 	handlePrediction = () => {
-		this.props.onPredict( this.state.result, COUNTER );
+		const predict = ( data ) => {
+			const result = this.state.result;
+			const { matrix } = designMatrix( this.props.x, this.props.y, data, this.props.quantitative );
+			const probs = result.predictProbs( matrix );
+			const classProbs = {};
+			for ( let i = 0; i < result.classes.length; i++ ) {
+				const name = 'probs_' + result.classes[ i ] + '_bayes' + COUNTER;
+				classProbs[ name ] = probs.map( x => x[ i ] );
+			}
+			const fitted = result.predict( matrix );
+			const name = 'pred_bayes'+ COUNTER;
+			const newCategorical = this.props.categorical.slice();
+			if ( !contains( newCategorical, name ) ) {
+				newCategorical.push( name );
+			}
+			return { fitted, classProbs };
+		};
+		this.props.onPredict( predict, COUNTER );
 	}
 
 	render() {
