@@ -14,7 +14,7 @@ sidebar_label: LASSO Regression
 * __quantitative__ | `array<string> (required)`: массив переменных в `данных`, которые являются `количественными''. Default: `none`.
 * __lambda__ | `number`: параметр регуляризации. Default: `0.001`.
 * __intercept__ | `boolean`: контролирует, подходить ли к модели с термином перехвата. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: обратный вызов, вызываемый с помощью функции предсказания, чтобы сделать предсказания для новых данных. Default: `onPredict() {}`.
 
 
 ## Примеры

@@ -14,7 +14,7 @@ Jednoduchá lineárna regresia.
 * __group__ | `(string|Factor)`: zoskupovanie premenných. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, či sa majú chýbajúce hodnoty pri fitovaní modelu vynechať.. Default: `false`.
 * __onDiagnostics__ | `function`: spätné volanie vyvolané s diagnostickými pozemkami. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: spätné volanie vyvolané funkciou predict na vytvorenie predpovedí pre nové údaje. Default: `none`.
 
 
 ## Príklady

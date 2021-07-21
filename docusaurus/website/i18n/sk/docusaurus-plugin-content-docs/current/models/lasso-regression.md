@@ -14,7 +14,7 @@ LASSO regresia.
 * __quantitative__ | `array<string> (required)`: pole premenných v `data`, ktoré sú `kvantitatívne`. Default: `none`.
 * __lambda__ | `number`: parameter regularizácie. Default: `0.001`.
 * __intercept__ | `boolean`: kontroluje, či sa má použiť model s intercepčným členom. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: spätné volanie vyvolané funkciou predict na vytvorenie predpovedí pre nové údaje. Default: `onPredict() {}`.
 
 
 ## Príklady

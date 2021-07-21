@@ -15,7 +15,7 @@ Večkratna linearna regresija.
 * __omitMissing__ | `boolean`: nadzoruje, ali se manjkajoče vrednosti izpustijo.. Default: `false`.
 * __intercept__ | `boolean`: določa, ali naj se model prilagodi z izrazom intercept.. Default: `true`.
 * __onDiagnostics__ | `function`: povratni klic, sprožen z diagnostičnimi parcelami. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: povratni klic, ki se sproži s funkcijo napovedi za napovedovanje novih podatkov.. Default: `none`.
 
 
 ## Primeri

@@ -14,7 +14,7 @@ LASSO回帰。
 * __quantitative__ | `array<string> (required)`: 定量的`data`の変数の配列. Default: `none`.
 * __lambda__ | `number`: せいきかパラメタ. Default: `0.001`.
 * __intercept__ | `boolean`: は，切片項を持つモデルを適合させるかどうかを制御します．. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: 新しいデータの予測を行うpredict関数で呼び出されるコールバック. Default: `onPredict() {}`.
 
 
 ## 例としては、以下のようなものがあります。

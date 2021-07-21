@@ -14,7 +14,7 @@ sidebar_label: LASSO Regression
 * __quantitative__ | `array<string> (required)`: πίνακας μεταβλητών στα "δεδομένα" που είναι "ποσοτικές. Default: `none`.
 * __lambda__ | `number`: παράμετρος κανονικοποίησης. Default: `0.001`.
 * __intercept__ | `boolean`: ελέγχει αν θα προσαρμοστεί ένα μοντέλο με όρο διακοπής. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: callback που καλείται με μια συνάρτηση predict για να κάνει προβλέψεις για νέα δεδομένα. Default: `onPredict() {}`.
 
 
 ## Παραδείγματα

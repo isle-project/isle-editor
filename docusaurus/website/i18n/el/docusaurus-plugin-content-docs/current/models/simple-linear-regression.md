@@ -14,7 +14,7 @@ sidebar_label: Simple Linear Regression
 * __group__ | `(string|Factor)`: μεταβλητή ομαδοποίησης. Default: `none`.
 * __omitMissing__ | `boolean`: ελέγχει αν θα παραλείπονται οι ελλείπουσες τιμές κατά την προσαρμογή του μοντέλου. Default: `false`.
 * __onDiagnostics__ | `function`: callback που καλείται με διαγνωστικά οικόπεδα. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback που καλείται με μια συνάρτηση predict για να κάνει προβλέψεις για νέα δεδομένα. Default: `none`.
 
 
 ## Παραδείγματα

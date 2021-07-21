@@ -15,7 +15,7 @@ sidebar_label: Logistic Regression
 * __quantitative__ | `array<string> (required)`: "数据 "中的 "定量 "变量数组。. Default: `none`.
 * __omitMissing__ | `boolean`: 控制是否省略缺失值. Default: `false`.
 * __intercept__ | `boolean`: 控制是否拟合带有截距项的模型。. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: 用预测函数调用回调，对新数据进行预测. Default: `none`.
 
 
 ## 例子

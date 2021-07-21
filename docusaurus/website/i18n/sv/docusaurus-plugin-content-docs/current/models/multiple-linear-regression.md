@@ -15,7 +15,7 @@ Multipel linjär regression.
 * __omitMissing__ | `boolean`: kontrollerar om saknade värden ska utelämnas. Default: `false`.
 * __intercept__ | `boolean`: kontrollerar om en modell ska anpassas med en interceptterm. Default: `true`.
 * __onDiagnostics__ | `function`: callback som anropas med diagnostiska tomter. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback som åberopas med en prediktionsfunktion för att göra förutsägelser för nya data.. Default: `none`.
 
 
 ## Exempel

@@ -15,7 +15,7 @@ sidebar_label: Multiple Linear Regression
 * __omitMissing__ | `boolean`: 控制是否省略缺失值. Default: `false`.
 * __intercept__ | `boolean`: 控制是否拟合带有截距项的模型。. Default: `true`.
 * __onDiagnostics__ | `function`: 诊断图调用的回调. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: 用预测函数调用回调，对新数据进行预测. Default: `none`.
 
 
 ## 例子

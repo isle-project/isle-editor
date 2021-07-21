@@ -15,7 +15,7 @@ Logistic regression.
 * __quantitative__ | `array<string> (required)`: array of variables in `data` that are `quantitative`. Default: `none`.
 * __omitMissing__ | `boolean`: controls whether to omit missing values. Default: `false`.
 * __intercept__ | `boolean`: controls whether to fit a model with an intercept term. Default: `true`.
-* __onPredict__ | `function`: callback invoked with predictions and residuals after model fitting. Default: `none`.
+* __onPredict__ | `function`: callback invoked with a predict function to make predictions for new data. Default: `none`.
 
 
 ## Examples

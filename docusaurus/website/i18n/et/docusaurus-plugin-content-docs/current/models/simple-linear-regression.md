@@ -14,7 +14,7 @@ Lihtne lineaarne regressioon.
 * __group__ | `(string|Factor)`: rühmitav muutuja. Default: `none`.
 * __omitMissing__ | `boolean`: kontrollib, kas puuduvaid väärtusi jäetakse mudeli sobitamisel välja.. Default: `false`.
 * __onDiagnostics__ | `function`: callback, mida kutsutakse üles koos diagnostiliste joonistega. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback, mida kutsutakse esile koos predict funktsiooniga, et teha ennustused uute andmete kohta. Default: `none`.
 
 
 ## Näited

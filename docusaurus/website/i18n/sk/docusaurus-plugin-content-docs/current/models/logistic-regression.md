@@ -15,7 +15,7 @@ Logistická regresia.
 * __quantitative__ | `array<string> (required)`: pole premenných v `data`, ktoré sú `kvantitatívne`. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, či sa majú vynechať chýbajúce hodnoty.. Default: `false`.
 * __intercept__ | `boolean`: kontroluje, či sa má použiť model s intercepčným členom. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: spätné volanie vyvolané funkciou predict na vytvorenie predpovedí pre nové údaje. Default: `none`.
 
 
 ## Príklady

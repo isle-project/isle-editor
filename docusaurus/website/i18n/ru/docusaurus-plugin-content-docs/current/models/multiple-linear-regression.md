@@ -15,7 +15,7 @@ sidebar_label: Multiple Linear Regression
 * __omitMissing__ | `boolean`: контролирует, следует ли пропустить недостающие значения. Default: `false`.
 * __intercept__ | `boolean`: контролирует, подходить ли к модели с термином перехвата. Default: `true`.
 * __onDiagnostics__ | `function`: обратный вызов с помощью диагностических графиков. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: обратный вызов, вызываемый с помощью функции предсказания, чтобы сделать предсказания для новых данных. Default: `none`.
 
 
 ## Примеры

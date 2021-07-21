@@ -14,7 +14,7 @@ LASSO regressie.
 * __quantitative__ | `array<string> (required)`: array van variabelen in `data` die `kwantitatief` zijn. Default: `none`.
 * __lambda__ | `number`: regularisatieparameter. Default: `0.001`.
 * __intercept__ | `boolean`: controleert of er een model met een onderscheppende term moet passen. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: callback aangeroepen met een voorspellingsfunctie om voorspellingen te doen voor nieuwe gegevens. Default: `onPredict() {}`.
 
 
 ## Voorbeelden

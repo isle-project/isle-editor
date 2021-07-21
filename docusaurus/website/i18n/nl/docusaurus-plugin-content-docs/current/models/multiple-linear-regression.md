@@ -15,7 +15,7 @@ Meervoudige lineaire regressie.
 * __omitMissing__ | `boolean`: controleert of ontbrekende waarden moeten worden weggelaten. Default: `false`.
 * __intercept__ | `boolean`: controleert of er een model met een onderscheppende term moet passen. Default: `true`.
 * __onDiagnostics__ | `function`: callback ingeroepen met diagnostische percelen. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback aangeroepen met een voorspellingsfunctie om voorspellingen te doen voor nieuwe gegevens. Default: `none`.
 
 
 ## Voorbeelden

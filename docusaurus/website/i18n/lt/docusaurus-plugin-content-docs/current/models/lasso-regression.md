@@ -14,7 +14,7 @@ LASSO regresija.
 * __quantitative__ | `array<string> (required)`: `data` kintamųjų, kurie yra `kvantitatyvūs`, masyvas. Default: `none`.
 * __lambda__ | `number`: reguliavimo parametras. Default: `0.001`.
 * __intercept__ | `boolean`: kontroliuoja, ar taikyti modelį su intercepcijos nariu.. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: grįžtamasis skambutis, iškviečiamas su funkcija predict, kad būtų galima prognozuoti naujus duomenis.. Default: `onPredict() {}`.
 
 
 ## Pavyzdžiai

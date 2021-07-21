@@ -14,7 +14,7 @@ Regresia LASSO.
 * __quantitative__ | `array<string> (required)`: matrice de variabile din `data` care sunt `cuantitative`.. Default: `none`.
 * __lambda__ | `number`: parametrul de regularizare. Default: `0.001`.
 * __intercept__ | `boolean`: controlează dacă se potrivește un model cu un termen de interceptare. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: callback invocat cu o funcție de predicție pentru a face predicții pentru date noi. Default: `onPredict() {}`.
 
 
 ## Exemple

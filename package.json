@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.76.1",
+  "version": "0.76.2",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -1487,6 +1487,7 @@
       "!node_modules/is-windows/**/*",
       "!node_modules/regex-not/node_modules/extend-shallow/**/*",
       "!node_modules/default-gateway/node_modules/cross-spawn/**/*",
+      "!node_modules/default-gateway/node_modules/is-stream/**/*",
       "!node_modules/default-gateway/node_modules/npm-run-path/**/*",
       "!node_modules/prr/**/*",
       "!node_modules/webpack-dev-server/node_modules/cliui/node_modules/ansi-regex/**/*",

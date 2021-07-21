@@ -14,7 +14,7 @@ LASSO-regressio.
 * __quantitative__ | `array<string> (required)`: joukko `data`:n muuttujia, jotka ovat `kvantitatiivisia`.. Default: `none`.
 * __lambda__ | `number`: regularisointiparametri. Default: `0.001`.
 * __intercept__ | `boolean`: valvoo, sovitetaanko malli, jossa on leikkaustermi.. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: callback, jota kutsutaan predict-funktion kanssa uusien tietojen ennustamista varten.. Default: `onPredict() {}`.
 
 
 ## Esimerkkejä

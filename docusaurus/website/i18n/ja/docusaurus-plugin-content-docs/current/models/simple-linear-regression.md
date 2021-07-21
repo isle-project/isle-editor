@@ -14,7 +14,7 @@ sidebar_label: Simple Linear Regression
 * __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
 * __omitMissing__ | `boolean`: モデルフィッティングで欠損値を省略するかどうかを制御します。. Default: `false`.
 * __onDiagnostics__ | `function`: 診断プロットで呼び出されるコールバック. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: 新しいデータの予測を行うpredict関数で呼び出されるコールバック. Default: `none`.
 
 
 ## 例としては、以下のようなものがあります。

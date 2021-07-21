@@ -14,7 +14,7 @@ Prosta regresja liniowa.
 * __group__ | `(string|Factor)`: zmienna grupowania. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, czy należy pominąć brakujące wartości w montażu modelu. Default: `false`.
 * __onDiagnostics__ | `function`: wywołanie zwrotne z wykresami diagnostycznymi. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: wywołanie zwrotne wywołane z funkcją przewidywania w celu dokonania przewidywań dla nowych danych. Default: `none`.
 
 
 ## Przykłady

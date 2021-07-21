@@ -15,7 +15,7 @@ Daugialypė tiesinė regresija.
 * __omitMissing__ | `boolean`: kontroliuoja, ar praleisti trūkstamas reikšmes.. Default: `false`.
 * __intercept__ | `boolean`: kontroliuoja, ar taikyti modelį su intercepcijos nariu.. Default: `true`.
 * __onDiagnostics__ | `function`: atgalinis skambutis, iškviestas su diagnostiniais sklypais. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: grįžtamasis skambutis, iškviečiamas su funkcija predict, kad būtų galima prognozuoti naujus duomenis.. Default: `none`.
 
 
 ## Pavyzdžiai

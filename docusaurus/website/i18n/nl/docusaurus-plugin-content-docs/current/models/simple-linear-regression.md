@@ -14,7 +14,7 @@ Eenvoudige lineaire regressie.
 * __group__ | `(string|Factor)`: groepsvariabele. Default: `none`.
 * __omitMissing__ | `boolean`: controleert of ontbrekende waarden in de modelaanpassing moeten worden weggelaten. Default: `false`.
 * __onDiagnostics__ | `function`: callback ingeroepen met diagnostische percelen. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback aangeroepen met een voorspellingsfunctie om voorspellingen te doen voor nieuwe gegevens. Default: `none`.
 
 
 ## Voorbeelden

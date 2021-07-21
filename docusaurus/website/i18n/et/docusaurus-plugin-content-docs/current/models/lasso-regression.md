@@ -14,7 +14,7 @@ LASSO regressioon.
 * __quantitative__ | `array<string> (required)`: muutujate massiivi "andmed", mis on "kvantitatiivsed".. Default: `none`.
 * __lambda__ | `number`: normaliseerimise parameeter. Default: `0.001`.
 * __intercept__ | `boolean`: kontrollib, kas mudelile sobitada intertseptiterminiga.. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: callback, mida kutsutakse esile koos predict funktsiooniga, et teha ennustused uute andmete kohta. Default: `onPredict() {}`.
 
 
 ## Näited

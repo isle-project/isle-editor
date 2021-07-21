@@ -15,7 +15,7 @@ Regresie liniară multiplă.
 * __omitMissing__ | `boolean`: controlează dacă se omit valorile lipsă. Default: `false`.
 * __intercept__ | `boolean`: controlează dacă se potrivește un model cu un termen de interceptare. Default: `true`.
 * __onDiagnostics__ | `function`: callback invocat cu parcele de diagnosticare. Default: `none`.
-* __onPredict__ | `function`: undefined. Default: `none`.
+* __onPredict__ | `function`: callback invocat cu o funcție de predicție pentru a face predicții pentru date noi. Default: `none`.
 
 
 ## Exemple

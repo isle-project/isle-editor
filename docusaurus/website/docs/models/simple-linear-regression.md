@@ -14,7 +14,7 @@ Simple linear regression.
 * __group__ | `(string|Factor)`: grouping variable. Default: `none`.
 * __omitMissing__ | `boolean`: controls whether to omit missing values in model fitting. Default: `false`.
 * __onDiagnostics__ | `function`: callback invoked with diagnostic plots. Default: `none`.
-* __onPredict__ | `function`: callback invoked with fitted values and residuals. Default: `none`.
+* __onPredict__ | `function`: callback invoked with a predict function to make predictions for new data. Default: `none`.
 
 
 ## Examples

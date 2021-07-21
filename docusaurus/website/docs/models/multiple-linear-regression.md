@@ -15,7 +15,7 @@ Multiple linear regression.
 * __omitMissing__ | `boolean`: controls whether to omit missing values. Default: `false`.
 * __intercept__ | `boolean`: controls whether to fit a model with an intercept term. Default: `true`.
 * __onDiagnostics__ | `function`: callback invoked with diagnostic plots. Default: `none`.
-* __onPredict__ | `function`: callback invoked with predictions and residuals after model fitting. Default: `none`.
+* __onPredict__ | `function`: callback invoked with a predict function to make predictions for new data. Default: `none`.
 
 
 ## Examples

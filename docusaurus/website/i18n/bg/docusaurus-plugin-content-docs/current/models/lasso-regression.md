@@ -14,7 +14,7 @@ LASSO регресия.
 * __quantitative__ | `array<string> (required)`: масив от променливи в `data`, които са `количествени`. Default: `none`.
 * __lambda__ | `number`: параметър на регуларизация. Default: `0.001`.
 * __intercept__ | `boolean`: контролира дали да се използва модел с член intercept. Default: `true`.
-* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
+* __onPredict__ | `function`: обратна връзка, извикана с функция за предсказване, за да се направят прогнози за нови данни.. Default: `onPredict() {}`.
 
 
 ## Примери
