@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.13",
+	"version": "0.50.14",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,17 +11,17 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.13",
-		"@isle-project/locales": "0.50.13",
-		"@isle-project/session": "0.50.13",
-		"@isle-project/utils": "0.50.13"
+		"@isle-project/constants": "0.50.14",
+		"@isle-project/locales": "0.50.14",
+		"@isle-project/session": "0.50.14",
+		"@isle-project/utils": "0.50.14"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.0",
 		"ansi-to-react": "6.1.5",
 		"axios": "^0.21.1",
 		"classnames": "^2.3.1",
-		"codemirror": "^5.62.0",
+		"codemirror": "^5.62.1",
 		"compute-argmax": "^1.0.0",
 		"compute-chebyshev-distance": "^1.0.2",
 		"compute-chunkify": "0.0.0",
@@ -87,10 +87,10 @@
 		"react-floater": "^0.7.3",
 		"react-grid-layout": "^1.2.5",
 		"react-highlight-words": "^0.17.0",
-		"react-i18next": "^11.11.2",
+		"react-i18next": "^11.11.3",
 		"react-innertext": "^1.1.5",
 		"react-input-range": "^1.2.1",
-		"react-list": "^0.8.15",
+		"react-list": "^0.8.16",
 		"react-player": "^2.9.0",
 		"react-joyride": "2.2.1",
 		"react-json-tree": "^0.15.0",
@@ -100,7 +100,6 @@
 		"react-rnd": "10.3.4",
 		"react-select": "4.3.1",
 		"react-slick": "0.28.1",
-		"react-sortable-tree": "^2.8.0",
 		"react-table": "6.11.5",
 		"react-transition-group": "^4.4.2",
 		"react-viewer": "^3.2.2",
