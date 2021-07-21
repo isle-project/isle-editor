@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import unique from 'uniq';
-import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
-import copy from '@stdlib/utils/copy';
 import floor from '@stdlib/math/base/special/floor';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import SelectInput from '@isle-project/components/input/select';
@@ -178,8 +176,8 @@ RandomForestMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onGenerate: PropTypes.func.isRequired,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	onPredict: PropTypes.func.isRequired
 };
 
 

@@ -79,8 +79,8 @@ LassoRegressionMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onGenerate: PropTypes.func.isRequired,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	onPredict: PropTypes.func.isRequired
 };
 
 

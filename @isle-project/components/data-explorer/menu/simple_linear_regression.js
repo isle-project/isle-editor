@@ -2,8 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import copy from '@stdlib/utils/copy';
-import contains from '@stdlib/assert/contains';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
@@ -80,8 +78,8 @@ SimpleLinearRegressionMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onGenerate: PropTypes.func.isRequired,
-	onCreated: PropTypes.func.isRequired
+	onCreated: PropTypes.func.isRequired,
+	onPredict: PropTypes.func.isRequired
 };
 
 
