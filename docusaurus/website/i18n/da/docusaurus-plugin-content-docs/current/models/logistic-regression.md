@@ -15,7 +15,7 @@ Logistisk regression.
 * __quantitative__ | `array<string> (required)`: array af variabler i `data`, der er `kvantitative`.. Default: `none`.
 * __omitMissing__ | `boolean`: kontrollerer, om manglende værdier skal udelades. Default: `false`.
 * __intercept__ | `boolean`: styrer, om der skal tilpasses en model med et interceptterme. Default: `true`.
-* __onPredict__ | `function`: callback påkaldt med forudsigelser og residualer efter tilpasning af modellen. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Eksempler

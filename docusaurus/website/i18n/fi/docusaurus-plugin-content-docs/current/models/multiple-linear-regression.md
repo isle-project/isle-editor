@@ -15,7 +15,7 @@ Moninkertainen lineaarinen regressio.
 * __omitMissing__ | `boolean`: valvoo, jätetäänkö puuttuvat arvot pois. Default: `false`.
 * __intercept__ | `boolean`: valvoo, sovitetaanko malli, jossa on leikkaustermi.. Default: `true`.
 * __onDiagnostics__ | `function`: callback kutsutaan diagnostisten tonttien kanssa. Default: `none`.
-* __onPredict__ | `function`: callback, jota kutsutaan ennusteiden ja jäännösten kanssa mallin sovittamisen jälkeen.. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Esimerkkejä

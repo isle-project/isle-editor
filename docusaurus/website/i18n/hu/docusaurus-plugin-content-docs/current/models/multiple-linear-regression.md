@@ -15,7 +15,7 @@ Többszörös lineáris regresszió.
 * __omitMissing__ | `boolean`: szabályozza, hogy a hiányzó értékek elhagyhatók-e. Default: `false`.
 * __intercept__ | `boolean`: szabályozza, hogy a modellhez illesszenek-e intercept-termet. Default: `true`.
 * __onDiagnostics__ | `function`: callback, amelyet diagnosztikai ábrákkal hívnak meg. Default: `none`.
-* __onPredict__ | `function`: callback, amelyet a modellillesztés után az előrejelzésekkel és a maradékokkal hívunk meg. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Példák

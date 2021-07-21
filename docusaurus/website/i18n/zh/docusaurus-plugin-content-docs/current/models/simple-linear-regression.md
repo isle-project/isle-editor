@@ -14,7 +14,7 @@ sidebar_label: Simple Linear Regression
 * __group__ | `(string|Factor)`: 分组变量. Default: `none`.
 * __omitMissing__ | `boolean`: 控制是否在模型拟合中忽略缺失值. Default: `false`.
 * __onDiagnostics__ | `function`: 诊断图调用的回调. Default: `none`.
-* __onPredict__ | `function`: 用拟合值和残差调用回调。. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## 例子

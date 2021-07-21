@@ -14,7 +14,7 @@ Regresión de LASSO.
 * __quantitative__ | `array<string> (required)`: de variables en los "datos" que son "cuantitativos". Default: `none`.
 * __lambda__ | `number`: parámetro de regularización. Default: `0.001`.
 * __intercept__ | `boolean`: controla si se ajusta a un modelo con un término de intercepción. Default: `true`.
-* __onPredict__ | `function`: llamada de retorno invocada con predicciones y residuos después del ajuste del modelo. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Ejemplos

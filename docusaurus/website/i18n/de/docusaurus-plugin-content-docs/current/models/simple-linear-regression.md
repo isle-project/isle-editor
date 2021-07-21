@@ -14,7 +14,7 @@ Einfache lineare Regression.
 * __group__ | `(string|Factor)`: Gruppierungsvariable. Default: `none`.
 * __omitMissing__ | `boolean`: steuert, ob fehlende Werte bei der Modellanpassung ausgelassen werden sollen. Default: `false`.
 * __onDiagnostics__ | `function`: Callback, der mit Diagnoseplots aufgerufen wird. Default: `none`.
-* __onPredict__ | `function`: Callback, der mit angepassten Werten und Residuen aufgerufen wird. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Beispiele

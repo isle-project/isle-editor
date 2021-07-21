@@ -14,7 +14,7 @@ LASSO-Regression.
 * __quantitative__ | `array<string> (required)`: Array von Variablen in `Daten`, die `quantitativ` sind. Default: `none`.
 * __lambda__ | `number`: Regelungsparameter. Default: `0.001`.
 * __intercept__ | `boolean`: steuert, ob ein Modell mit einem Intercept-Term angepasst werden soll. Default: `true`.
-* __onPredict__ | `function`: Callback, der mit Vorhersagen und Residuen nach der Modellanpassung aufgerufen wird. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Beispiele

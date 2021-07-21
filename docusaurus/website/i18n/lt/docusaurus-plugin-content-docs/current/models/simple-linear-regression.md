@@ -14,7 +14,7 @@ Paprastoji tiesinė regresija.
 * __group__ | `(string|Factor)`: grupavimo kintamasis. Default: `none`.
 * __omitMissing__ | `boolean`: kontroliuoja, ar rengiant modelį praleisti trūkstamas reikšmes.. Default: `false`.
 * __onDiagnostics__ | `function`: atgalinis skambutis, iškviestas su diagnostiniais sklypais. Default: `none`.
-* __onPredict__ | `function`: atgalinis skambutis, iškviečiamas su pritaikytomis vertėmis ir liekanomis. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Pavyzdžiai

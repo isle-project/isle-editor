@@ -15,7 +15,7 @@ Régression linéaire multiple.
 * __quantitative__ | `array<string> (required)`: tableau de variables dans les "données" qui sont "quantitatives. Default: `none`.
 * __omitMissing__ | `boolean`: contrôle s'il faut omettre les valeurs manquantes. Default: `false`.
 * __intercept__ | `boolean`: contrôle s'il faut faire correspondre un modèle avec un terme d'interception. Default: `true`.
-* __onPredict__ | `function`: rappel invoqué avec les prédictions et les résidus après ajustement du modèle. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Exemples

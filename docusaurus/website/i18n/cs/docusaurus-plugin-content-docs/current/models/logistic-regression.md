@@ -15,7 +15,7 @@ Logistická regrese.
 * __quantitative__ | `array<string> (required)`: pole proměnných v `data`, které jsou `kvantitativní`.. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, zda se mají vynechat chybějící hodnoty.. Default: `false`.
 * __intercept__ | `boolean`: řídí, zda se má model přizpůsobit intercepčnímu členu.. Default: `true`.
-* __onPredict__ | `function`: zpětné volání vyvolané s předpověďmi a zbytky po fitování modelu. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Příklady

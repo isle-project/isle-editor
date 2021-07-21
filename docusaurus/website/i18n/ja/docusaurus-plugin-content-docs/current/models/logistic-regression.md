@@ -15,7 +15,7 @@ sidebar_label: Logistic Regression
 * __quantitative__ | `array<string> (required)`: 定量的`data`の変数の配列. Default: `none`.
 * __omitMissing__ | `boolean`: 欠損値を省略するかどうかを制御します。. Default: `false`.
 * __intercept__ | `boolean`: は，切片項を持つモデルを適合させるかどうかを制御します．. Default: `true`.
-* __onPredict__ | `function`: モデルフィッティング後の予測値と残差で呼び出されるコールバック. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## 例としては、以下のようなものがあります。

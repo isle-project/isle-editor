@@ -15,7 +15,7 @@ Logistiline regressioon.
 * __quantitative__ | `array<string> (required)`: muutujate massiivi "andmed", mis on "kvantitatiivsed".. Default: `none`.
 * __omitMissing__ | `boolean`: kontrollib, kas puuduvad väärtused jäetakse välja. Default: `false`.
 * __intercept__ | `boolean`: kontrollib, kas mudelile sobitada intertseptiterminiga.. Default: `true`.
-* __onPredict__ | `function`: callback, mida kutsutakse üles koos prognooside ja jääkidega pärast mudeli sobitamist. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Näited

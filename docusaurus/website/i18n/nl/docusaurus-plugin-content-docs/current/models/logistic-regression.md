@@ -15,7 +15,7 @@ Meervoudige lineaire regressie.
 * __quantitative__ | `array<string> (required)`: array van variabelen in `data` die `kwantitatief` zijn. Default: `none`.
 * __omitMissing__ | `boolean`: controleert of ontbrekende waarden moeten worden weggelaten. Default: `false`.
 * __intercept__ | `boolean`: controleert of er een model met een onderscheppende term moet passen. Default: `true`.
-* __onPredict__ | `function`: callback ingeroepen met voorspellingen en restmateriaal na modelaanpassing. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Voorbeelden

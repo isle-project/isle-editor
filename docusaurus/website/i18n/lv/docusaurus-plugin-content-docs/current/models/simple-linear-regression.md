@@ -14,7 +14,7 @@ Vienkāršā lineārā regresija.
 * __group__ | `(string|Factor)`: grupēšanas mainīgais. Default: `none`.
 * __omitMissing__ | `boolean`: kontrolē, vai modeļa piemērošanā izlaist trūkstošās vērtības.. Default: `false`.
 * __onDiagnostics__ | `function`: izsaukums, kas izsaukts ar diagnostikas zemes gabaliem. Default: `none`.
-* __onPredict__ | `function`: izsaukums atpakaļsaitē, kas izsaukts ar pielāgotām vērtībām un atlikumiem. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Piemēri

@@ -15,7 +15,7 @@ Wielokrotna regresja liniowa.
 * __quantitative__ | `array<string> (required)`: szereg zmiennych w `danych`, które są `ilościowe`. Default: `none`.
 * __omitMissing__ | `boolean`: kontroluje, czy należy pominąć brakujące wartości. Default: `false`.
 * __intercept__ | `boolean`: kontroluje, czy model ma być wyposażony w termin przechwytywania. Default: `true`.
-* __onPredict__ | `function`: wywołanie zwrotne z przewidywaniami i pozostałościami po dopasowaniu modelu. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Przykłady

@@ -14,7 +14,7 @@ Jednoduchá lineární regrese.
 * __group__ | `(string|Factor)`: seskupovací proměnná. Default: `none`.
 * __omitMissing__ | `boolean`: řídí, zda se mají při fitování modelu vynechat chybějící hodnoty.. Default: `false`.
 * __onDiagnostics__ | `function`: zpětné volání vyvolané s diagnostickými pozemky. Default: `none`.
-* __onPredict__ | `function`: zpětné volání vyvolané s fitovanými hodnotami a reziduály. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Příklady

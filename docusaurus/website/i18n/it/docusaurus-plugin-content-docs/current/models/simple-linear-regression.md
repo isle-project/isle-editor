@@ -14,7 +14,7 @@ Semplice regressione lineare.
 * __group__ | `(string|Factor)`: variabile di raggruppamento. Default: `none`.
 * __omitMissing__ | `boolean`: controlla se omettere i valori mancanti nel montaggio del modello. Default: `false`.
 * __onDiagnostics__ | `function`: richiamata invocata con trame diagnostiche. Default: `none`.
-* __onPredict__ | `function`: richiamata invocata con i valori montati e i residui. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Esempi

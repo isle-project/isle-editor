@@ -14,7 +14,7 @@ Regressione LASSO.
 * __quantitative__ | `array<string> (required)`: array di variabili in "dati" che sono "quantitative. Default: `none`.
 * __lambda__ | `number`: parametro di regolarizzazione. Default: `0.001`.
 * __intercept__ | `boolean`: controlla se inserire un modello con un termine di intercettazione. Default: `true`.
-* __onPredict__ | `function`: richiamo invocato con previsioni e residui dopo il montaggio del modello. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Esempi

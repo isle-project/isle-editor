@@ -14,7 +14,7 @@ LASSO regresszió.
 * __quantitative__ | `array<string> (required)`: az "adatok" változóinak tömbje, amelyek "mennyiségi" változók. Default: `none`.
 * __lambda__ | `number`: regularizációs paraméter. Default: `0.001`.
 * __intercept__ | `boolean`: szabályozza, hogy a modellhez illesszenek-e intercept-termet. Default: `true`.
-* __onPredict__ | `function`: callback, amelyet a modellillesztés után az előrejelzésekkel és a maradékokkal hívunk meg. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Példák

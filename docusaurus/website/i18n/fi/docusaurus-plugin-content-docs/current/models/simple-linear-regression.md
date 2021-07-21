@@ -14,7 +14,7 @@ Yksinkertainen lineaarinen regressio.
 * __group__ | `(string|Factor)`: ryhmittelymuuttuja. Default: `none`.
 * __omitMissing__ | `boolean`: valvoo, jätetäänkö puuttuvat arvot pois mallin sovituksessa.. Default: `false`.
 * __onDiagnostics__ | `function`: callback kutsutaan diagnostisten tonttien kanssa. Default: `none`.
-* __onPredict__ | `function`: callback, jota kutsutaan sovitetuilla arvoilla ja jäännöksillä.. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Esimerkkejä

@@ -15,7 +15,7 @@ Regressione lineare multipla.
 * __omitMissing__ | `boolean`: controlla se omettere i valori mancanti. Default: `false`.
 * __intercept__ | `boolean`: controlla se inserire un modello con un termine di intercettazione. Default: `true`.
 * __onDiagnostics__ | `function`: richiamata invocata con trame diagnostiche. Default: `none`.
-* __onPredict__ | `function`: richiamo invocato con previsioni e residui dopo il montaggio del modello. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Esempi

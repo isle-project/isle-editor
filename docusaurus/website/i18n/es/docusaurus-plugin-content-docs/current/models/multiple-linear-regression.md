@@ -15,7 +15,7 @@ Regresión lineal múltiple.
 * __omitMissing__ | `boolean`: controla si se omiten los valores que faltan. Default: `false`.
 * __intercept__ | `boolean`: controla si se ajusta a un modelo con un término de intercepción. Default: `true`.
 * __onDiagnostics__ | `function`: llamada de vuelta invocada con gráficos de diagnóstico. Default: `none`.
-* __onPredict__ | `function`: llamada de retorno invocada con predicciones y residuos después del ajuste del modelo. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Ejemplos

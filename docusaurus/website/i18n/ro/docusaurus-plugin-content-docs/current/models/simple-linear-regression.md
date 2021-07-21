@@ -14,7 +14,7 @@ Regresie liniară simplă.
 * __group__ | `(string|Factor)`: variabilă de grupare. Default: `none`.
 * __omitMissing__ | `boolean`: controlează dacă se omit valorile lipsă în ajustarea modelului. Default: `false`.
 * __onDiagnostics__ | `function`: callback invocat cu parcele de diagnosticare. Default: `none`.
-* __onPredict__ | `function`: callback invocat cu valorile ajustate și reziduurile. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Exemple

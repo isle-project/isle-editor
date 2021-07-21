@@ -15,7 +15,7 @@ Logisztikus regresszió.
 * __quantitative__ | `array<string> (required)`: az "adatok" változóinak tömbje, amelyek "mennyiségi" változók. Default: `none`.
 * __omitMissing__ | `boolean`: szabályozza, hogy a hiányzó értékek elhagyhatók-e. Default: `false`.
 * __intercept__ | `boolean`: szabályozza, hogy a modellhez illesszenek-e intercept-termet. Default: `true`.
-* __onPredict__ | `function`: callback, amelyet a modellillesztés után az előrejelzésekkel és a maradékokkal hívunk meg. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Példák

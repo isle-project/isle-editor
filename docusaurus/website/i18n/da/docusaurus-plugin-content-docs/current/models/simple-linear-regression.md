@@ -14,7 +14,7 @@ Simpel lineær regression.
 * __group__ | `(string|Factor)`: grupperingsvariabel. Default: `none`.
 * __omitMissing__ | `boolean`: kontrollerer, om manglende værdier skal udelades ved tilpasning af modellen. Default: `false`.
 * __onDiagnostics__ | `function`: callback påkaldt med diagnostiske plot. Default: `none`.
-* __onPredict__ | `function`: callback påkaldt med tilpassede værdier og residualer. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Eksempler

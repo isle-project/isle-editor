@@ -14,7 +14,7 @@ Egyszerű lineáris regresszió.
 * __group__ | `(string|Factor)`: csoportosító változó. Default: `none`.
 * __omitMissing__ | `boolean`: szabályozza, hogy a hiányzó értékeket kihagyja-e a modellillesztés során.. Default: `false`.
 * __onDiagnostics__ | `function`: callback, amelyet a diagnosztikai ábrákkal hívnak meg. Default: `none`.
-* __onPredict__ | `function`: visszahívás, amelyet az illesztett értékekkel és a maradékokkal hívnak meg. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Példák

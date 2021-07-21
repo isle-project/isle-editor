@@ -15,7 +15,7 @@ sidebar_label: Logistic Regression
 * __quantitative__ | `array<string> (required)`: масив от променливи в `data`, които са `количествени`. Default: `none`.
 * __omitMissing__ | `boolean`: контролира дали да се пропускат липсващи стойности.. Default: `false`.
 * __intercept__ | `boolean`: контролира дали да се използва модел с член intercept. Default: `true`.
-* __onPredict__ | `function`: обратна връзка, извикана с прогнозите и остатъците след напасване на модела. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Примери

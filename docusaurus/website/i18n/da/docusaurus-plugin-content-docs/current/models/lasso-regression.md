@@ -14,7 +14,7 @@ LASSO-regression.
 * __quantitative__ | `array<string> (required)`: array af variabler i `data`, der er `kvantitative`.. Default: `none`.
 * __lambda__ | `number`: regulariseringsparameter. Default: `0.001`.
 * __intercept__ | `boolean`: kontrollerer, om der skal tilpasses en model med et interceptterme. Default: `true`.
-* __onPredict__ | `function`: callback påkaldt med forudsigelser og residualer efter tilpasning af modellen. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Eksempler

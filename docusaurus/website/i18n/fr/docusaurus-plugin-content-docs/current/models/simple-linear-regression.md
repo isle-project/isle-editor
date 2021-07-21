@@ -14,7 +14,7 @@ Régression linéaire simple.
 * __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
 * __omitMissing__ | `boolean`: contrôle s'il faut omettre les valeurs manquantes dans l'ajustement du modèle. Default: `false`.
 * __onDiagnostics__ | `function`: rappel invoqué avec les tracés de diagnostic. Default: `none`.
-* __onPredict__ | `function`: rappel invoqué avec valeurs ajustées et résidus. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Exemples

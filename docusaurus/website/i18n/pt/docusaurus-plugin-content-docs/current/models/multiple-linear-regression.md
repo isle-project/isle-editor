@@ -15,7 +15,7 @@ Regressão linear múltipla.
 * __omitMissing__ | `boolean`: controla se devem ser omitidos os valores em falta. Default: `false`.
 * __intercept__ | `boolean`: controla se um modelo deve ser adaptado com um termo de interceptação. Default: `true`.
 * __onDiagnostics__ | `function`: chamada de retorno invocada com parcelas de diagnóstico. Default: `none`.
-* __onPredict__ | `function`: chamada de retorno invocada com previsões e resíduos após a montagem do modelo. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Exemplos

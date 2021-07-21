@@ -14,7 +14,7 @@ sidebar_label: Simple Linear Regression
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
 * __omitMissing__ | `boolean`: контролирует, следует ли пропустить недостающие значения при подгонке модели. Default: `false`.
 * __onDiagnostics__ | `function`: обратный вызов с помощью диагностических графиков. Default: `none`.
-* __onPredict__ | `function`: обратный вызов с установленными значениями и остатками. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Примеры

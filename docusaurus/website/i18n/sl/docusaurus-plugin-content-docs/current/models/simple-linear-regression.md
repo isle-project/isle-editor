@@ -14,7 +14,7 @@ Enostavna linearna regresija.
 * __group__ | `(string|Factor)`: spremenljivka za razvrščanje v skupine. Default: `none`.
 * __omitMissing__ | `boolean`: nadzoruje, ali naj se manjkajoče vrednosti pri prilagajanju modela izpustijo.. Default: `false`.
 * __onDiagnostics__ | `function`: povratni klic, sprožen z diagnostičnimi parcelami. Default: `none`.
-* __onPredict__ | `function`: povratni klic, sprožen z vgrajenimi vrednostmi in ostanki. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Primeri

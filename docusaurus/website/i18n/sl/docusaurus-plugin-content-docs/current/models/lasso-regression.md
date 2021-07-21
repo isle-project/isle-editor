@@ -14,7 +14,7 @@ Regresija LASSO.
 * __quantitative__ | `array<string> (required)`: polje spremenljivk v `data`, ki so `kvantitativne`. Default: `none`.
 * __lambda__ | `number`: parameter regularizacije. Default: `0.001`.
 * __intercept__ | `boolean`: določa, ali naj se model prilagodi z izrazom intercept.. Default: `true`.
-* __onPredict__ | `function`: povratni klic, ki se sproži z napovedmi in ostanki po prilagajanju modela. Default: `onPredict() {}`.
+* __onPredict__ | `function`: undefined. Default: `onPredict() {}`.
 
 
 ## Primeri

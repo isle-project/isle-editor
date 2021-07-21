@@ -15,7 +15,7 @@ sidebar_label: Multiple Linear Regression
 * __omitMissing__ | `boolean`: ελέγχει αν θα παραλείπονται οι ελλείπουσες τιμές. Default: `false`.
 * __intercept__ | `boolean`: ελέγχει αν θα προσαρμοστεί ένα μοντέλο με όρο διακοπής. Default: `true`.
 * __onDiagnostics__ | `function`: callback που καλείται με διαγνωστικά οικόπεδα. Default: `none`.
-* __onPredict__ | `function`: callback που καλείται με τις προβλέψεις και τα κατάλοιπα μετά την προσαρμογή του μοντέλου. Default: `none`.
+* __onPredict__ | `function`: undefined. Default: `none`.
 
 
 ## Παραδείγματα
