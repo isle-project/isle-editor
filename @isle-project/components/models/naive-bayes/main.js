@@ -6,7 +6,6 @@ import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
-import copy from '@stdlib/utils/copy';
 import Table from '@isle-project/components/table';
 import exp from '@stdlib/math/base/special/exp';
 import Tooltip from '@isle-project/components/tooltip';
