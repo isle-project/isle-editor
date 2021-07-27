@@ -4,12 +4,12 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import capitalize from '@stdlib/string/capitalize';
 import { ContextMenuTrigger, ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
-import objectKeys from '@stdlib/utils/keys';
 import Tooltip from '@isle-project/components/tooltip';
 import Loadable from '@isle-project/components/internal/loadable';
 import electronStore from 'store/electron.js';
-import { LANGUAGES } from '@isle-project/constants/deepl';
+import { LANGUAGES } from '@isle-project/constants/languages';
 import { addResources } from '@isle-project/locales/editor';
 const AnimationHelp = Loadable( () => import( 'editor-components/animation-help' ) );
 const MarkdownHelp = Loadable( () => import( 'editor-components/markdown-help' ) );
@@ -19,11 +19,11 @@ const EditorTutorial = Loadable( () => import( 'editor-components/tutorial' ) );
 
 // VARIABLES //
 
-const LANGUAGE_NAMES = objectKeys( LANGUAGES );
+const LANGUAGE_NAMES = LANGUAGES.map( x => capitalize( x.label ) );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
-const LANGUAGE_OBJECTS = LANGUAGE_NAMES.map( x => {
+const LANGUAGE_OBJECTS = LANGUAGE_NAMES.map( ( x, idx ) => {
 	return {
-		language: LANGUAGES[ x ]
+		language: LANGUAGES[ idx ].value
 	};
 });
 

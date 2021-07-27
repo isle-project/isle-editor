@@ -3,12 +3,12 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import objectKeys from '@stdlib/utils/keys';
+import capitalize from '@stdlib/string/capitalize';
 import lowercase from '@stdlib/string/lowercase';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import { ContextMenu, MenuItem, SubMenu } from '@isle-project/components/internal/contextmenu';
-import { LANGUAGES } from '@isle-project/constants/deepl';
+import { LANGUAGES } from '@isle-project/constants/languages';
 import Tooltip from '@isle-project/components/tooltip';
 import SearchBar from 'editor-components/searchbar';
 import GROUPED_SNIPPETS from 'snippets/grouped_snippets.json';
@@ -19,7 +19,7 @@ import './contextmenu.css';
 
 // VARIABLES //
 
-const LANGUAGE_NAMES = objectKeys( LANGUAGES );
+const LANGUAGE_NAMES = LANGUAGES.map( x => capitalize( x.label ) );
 const ISLE_SERVER_TOKEN = electronStore.get( 'token' );
 const RE_WHITESPACE = require( '@stdlib/regexp/whitespace' ).REGEXP;
 const BUTTON_STYLE = {
@@ -221,7 +221,7 @@ class EditorContextMenu extends Component {
 						return (
 							<MenuItem
 								key={idx} data={{
-									language: LANGUAGES[ name ]
+									language: LANGUAGES[ idx ].value
 								}}
 								onClick={this.handleTranslateSelectionClick}
 							>
