@@ -44,6 +44,7 @@ const Barchart = Loadable( () => import( /* webpackChunkName: "BarchartMenu" */ 
 const Boxplot = Loadable( () => import( /* webpackChunkName: "BoxplotMenu" */ '@isle-project/components/data-explorer/menu/boxplot' ) );
 const Heatmap = Loadable( () => import( /* webpackChunkName: "HeatmapMenu" */ '@isle-project/components/data-explorer/menu/heatmap' ) );
 const Histogram = Loadable( () => import( /* webpackChunkName: "HistogramMenu" */ '@isle-project/components/data-explorer/menu/histogram' ) );
+const IntervalPlot = Loadable( () => import( /* webpackChunkName: "IntervalplotMenu" */ '@isle-project/components/data-explorer/menu/intervalplot' ) );
 const Lineplot = Loadable( () => import( /* webpackChunkName: "LineplotMenu" */'@isle-project/components/data-explorer/menu/lineplot' ) );
 const Map = Loadable( () => import( /* webpackChunkName: "MapMenu" */ '@isle-project/components/data-explorer/menu/map' ) );
 const MosaicPlot = Loadable( () => import( /* webpackChunkName: "MosaicPlotMenu" */ '@isle-project/components/data-explorer/menu/mosaicplot' ) );
@@ -251,6 +252,14 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					session={session}
 					showDensityOption={showHistogramDensityOption}
 					onSelected={onHistogramSelection}
+					t={t}
+				/>;
+				break;
+			case 'Interval Plot':
+				content = <IntervalPlot
+					{...quantitativeProps}
+					logAction={logAction}
+					session={session}
 					t={t}
 				/>;
 				break;

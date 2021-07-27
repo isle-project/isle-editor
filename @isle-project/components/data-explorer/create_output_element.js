@@ -12,6 +12,7 @@ import BarChart from '@isle-project/components/plots/barchart';
 import ContourChart from '@isle-project/components/plots/contourchart';
 import HeatMap from '@isle-project/components/plots/heatmap';
 import Histogram from '@isle-project/components/plots/histogram';
+import IntervalPlot from '@isle-project/components/plots/interval-plot';
 import LinePlot from '@isle-project/components/plots/lineplot';
 import Map from '@isle-project/components/plots/map';
 import MosaicPlot from '@isle-project/components/plots/mosaicplot';
@@ -106,6 +107,7 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === ContourChart ||
 		e.type === HeatMap ||
 		e.type === Histogram ||
+		e.type === IntervalPlot ||
 		e.type === LinePlot ||
 		e.type === Map ||
 		e.type === MosaicPlot ||

@@ -1624,6 +1624,7 @@ DataExplorer.defaultProps = {
 		'Pie Chart',
 		'Mosaic Plot',
 		'Histogram',
+		'Interval Plot',
 		'Box Plot',
 		'Line Plot',
 		'Scatterplot',
