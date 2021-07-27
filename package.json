@@ -320,7 +320,7 @@
     "react-draggable": "^4.4.3",
     "react-linear-gradient-picker": "^1.2.3",
     "react-list": "^0.8.16",
-    "react-monaco-editor": "0.43.0",
+    "react-monaco-editor": "0.44.0",
     "react-player": "^2.9.0",
     "react-refresh": "^0.10.0",
     "react-test-renderer": "17.0.2",
