@@ -204,7 +204,7 @@ class SimpleLinearRegression extends Component {
 								const residuals = new Float64Array( yd.length );
 								const groups = data[ group ];
 								for ( let i = 0; i < fitted.length; i++ ) {
-									const [ yint, slope ] = res[ groups[ i ] ];
+									const { yint, slope } = res[ groups[ i ] ];
 									fitted[ i ] = yint + slope * xd[ i ];
 									residuals[ i ] = yd[ i ] - fitted[ i ];
 								}
@@ -220,7 +220,7 @@ class SimpleLinearRegression extends Component {
 						const resid = new Float64Array( yd.length );
 						const groups = data[ group ];
 						for ( let i = 0; i < yhat.length; i++ ) {
-							const [ yint, slope ] = res[ groups[ i ] ];
+							const { yint, slope } = res[ groups[ i ] ];
 							yhat[ i ] = yint + slope * xd[ i ];
 							resid[ i ] = yd[ i ] - yhat[ i ];
 						}
