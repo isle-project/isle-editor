@@ -216,48 +216,40 @@ class SimpleLinearRegression extends Component {
 					{ this.props.onDiagnostics ? <Button variant="secondary" size="sm" style={{ marginLeft: 6 }} onClick={() => {
 						const xd = data[ x ];
 						const yd = data[ y ];
-						const yhat = new Float64Array( yd.length );
-						const resid = new Float64Array( yd.length );
+						const fitted = new Float64Array( yd.length );
+						const residuals = new Float64Array( yd.length );
 						const groups = data[ group ];
-						for ( let i = 0; i < yhat.length; i++ ) {
+						for ( let i = 0; i < fitted.length; i++ ) {
 							const { yint, slope } = res[ groups[ i ] ];
-							yhat[ i ] = yint + slope * xd[ i ];
-							resid[ i ] = yd[ i ] - yhat[ i ];
+							fitted[ i ] = yint + slope * xd[ i ];
+							residuals[ i ] = yd[ i ] - fitted[ i ];
 						}
-						const qqPlot = {
-							variable: t('qq-plot-of-residuals'),
-							type: 'Chart',
-							value: <Plotly
-								draggable
-								editable fit
-								{...generateQQPlotConfig( resid, 'residuals' )}
-								meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
-							/>
-						};
-						const residualPlot = {
-							variable: t('residuals-vs-fitted'),
-							type: 'Chart',
-							value: <Plotly
-								draggable editable fit
-								data={[
-									{
-										x: yhat,
-										y: resid,
-										mode: 'markers'
-									}
-								]}
-								layout={{
-									xaxis: {
-										title: t('fitted-values')
-									},
-									yaxis: {
-										title: t('residuals')
-									},
-									title: t('residuals-vs-fitted')
-								}}
-								meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
-							/>
-						};
+						const qqPlot = <Plotly
+							draggable
+							editable fit
+							{...generateQQPlotConfig( residuals, 'residuals' )}
+							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
+						/>;
+						const residualPlot = <Plotly
+							draggable editable fit
+							data={[
+								{
+									x: fitted,
+									y: residuals,
+									mode: 'markers'
+								}
+							]}
+							layout={{
+								xaxis: {
+									title: t('fitted-values')
+								},
+								yaxis: {
+									title: t('residuals')
+								},
+								title: t('residuals-vs-fitted')
+							}}
+							meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
+						/>;
 						this.props.onDiagnostics([ qqPlot, residualPlot ]);
 					}} >
 						{t('model-diagnostics')}
