@@ -137,6 +137,7 @@ const siteConfig = {
 		colorMode: {
 			disableSwitch: true
 		},
+		hideableSidebar: true,
 		footer: {
 			logo: {
 				alt: 'ISLE Logo',
