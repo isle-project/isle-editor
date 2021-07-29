@@ -216,7 +216,10 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
 	autoStart: PropTypes.bool,
 	autoUpdate: PropTypes.bool,
-	description: PropTypes.string,
+	description: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	disabled: PropTypes.bool,
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
