@@ -297,7 +297,7 @@ class ProportionTest extends Component {
 						displayMode
 						tag=""
 						style={{ fontSize: '1.5em' }}
-						raw="z = \frac{\hat p - p}{\sqrt{p (1-p) / n}}"
+						raw="z = \frac{\hat{p} - p}{\sqrt{p (1-p) / n}}"
 						elems={{
 							'n': {
 								tooltip: t('sample-size')
