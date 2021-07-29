@@ -50,11 +50,13 @@ if ( process ) {
 		}
 	});
 }
+const START_TIME = new Date();
 
 
 // FUNCTIONS //
 
 const logMsg = ( msg ) => {
+	msg += ' (elapsed: '+(new Date()-START_TIME)+'ms)';
 	if ( process.send ) {
 		process.send( msg );
 	} else {
@@ -679,6 +681,7 @@ function bundleLesson( options ) {
 	try {
 		logMsg( 'Creating webpack configuration...' );
 		compiler = webpack( config );
+		logMsg( 'Webpack configuration created...' );
 	} catch ( err ) {
 		return logMsg( 'Encountered an error while creating configuration object: '+err.message );
 	}
