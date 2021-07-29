@@ -400,7 +400,8 @@ function bundleLesson( options ) {
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
-			chunkFilename: 'css/[id].css'
+			chunkFilename: 'css/[id].css',
+			experimentalUseImportModule: true
 		}),
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
@@ -430,6 +431,9 @@ function bundleLesson( options ) {
 		].concat( plugins );
 	}
 	const config = {
+		cache: {
+			type: 'memory'
+		},
 		context: resolve( basePath ),
 		resolve: {
 			modules: modulePaths,
