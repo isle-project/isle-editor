@@ -26,6 +26,7 @@ import randomstring from '@isle-project/utils/randomstring/ascii';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import endsWith from '@stdlib/string/ends-with';
+import startsWith from '@stdlib/string/starts-with';
 import removeLast from '@stdlib/string/remove-last';
 import isArray from '@stdlib/assert/is-array';
 import pick from '@stdlib/utils/pick';
@@ -290,7 +291,7 @@ class UploadLesson extends Component {
 		const child = cp.fork( script, [ settingsPath ], options );
 		child.on( 'message', message => {
 			console.log( message ); // eslint-disable-line no-console
-			if ( message === 'success' ) {
+			if ( startsWith( message, 'success' ) ) {
 				debug( 'Lesson successfully bundled...' );
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
 					debug( 'Lesson successfully zipped...' );
