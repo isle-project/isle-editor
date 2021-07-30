@@ -197,7 +197,7 @@
     "ml-pca": "4.0.2",
     "ml-regression-multivariate-linear": "^2.0.2",
     "murmurhash3js": "^3.0.1",
-    "node": "16.5.0",
+    "node": "16.6.0",
     "node-bin-setup": "^1.0.6",
     "node-libs-browser": "^2.2.0",
     "node-pty": "0.10.1",
@@ -283,7 +283,7 @@
   "devDependencies": {
     "@babel/eslint-plugin": "7.14.5",
     "@babel/plugin-proposal-export-default-from": "^7.14.5",
-    "@electron/remote": "^1.1.0",
+    "@electron/remote": "^1.2.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
