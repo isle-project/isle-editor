@@ -13,12 +13,15 @@ import './multiple-choice-styles.css';
 // MAIN //
 
 const AnswerOption = ( props ) => {
+	let className;
 	let variant;
 	if ( props.correct === true ) {
 		variant = 'success';
+		className = 'multiple-choice-answer-correct-popover';
 	}
 	else if ( props.correct === false ) {
 		variant = 'danger';
+		className = 'multiple-choice-answer-incorrect-popover';
 	}
 	else if ( props.solution === true ) {
 		// Case: User did not pick correct answer...
@@ -28,7 +31,10 @@ const AnswerOption = ( props ) => {
 		convertJSONtoJSX( props.answerContent ) :
 		props.answerContent;
 	const popover =
-		<Popover id={props.no}>
+		<Popover
+			id={props.no}
+			className={className}
+		>
 			<strong>{ props.solution ? 'Correct answer' : 'Incorrect answer' }{props.answerExplanation ? ': ' : ''}</strong>
 			{props.answerExplanation}
 		</Popover>;
@@ -47,7 +53,7 @@ const AnswerOption = ( props ) => {
 		return (
 			<OverlayTrigger
 				trigger={[ 'click', 'hover' ]}
-				placement="auto"
+				placement="bottom"
 				overlay={popover}
 			>
 				<ListGroupItem className="multiple-choice-answer"

@@ -31,3 +31,24 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
+
+.multiple-choice-answer-incorrect-popover {
+	background-color: #bb2d3b;
+	color: white;
+	padding: 2px;
+}
+
+.multiple-choice-answer-correct-popover {
+	background-color: #3c763d;
+	color: white;
+	padding: 2px;
+}
+
+.multiple-choice-answer-incorrect-popover > .arrow:after {
+	border-bottom-color: #bb2d3b;
+}
+
+.multiple-choice-answer-correct-popover > .arrow:after {
+	border-bottom-color: #3c763d;
+}
+
