@@ -287,7 +287,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "ajv": "8.6.1",
+    "ajv": "8.6.2",
     "codecov": "^3.8.2",
     "concurrently": "^6.2.0",
     "css-minimizer-webpack-plugin": "^3.0.1",
