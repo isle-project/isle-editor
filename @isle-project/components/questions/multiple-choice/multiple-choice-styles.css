@@ -44,11 +44,11 @@
 	padding: 2px;
 }
 
-.multiple-choice-answer-incorrect-popover > .arrow:after {
+.multiple-choice-answer-incorrect-popover > .arrow::after {
 	border-bottom-color: #bb2d3b;
 }
 
-.multiple-choice-answer-correct-popover > .arrow:after {
+.multiple-choice-answer-correct-popover > .arrow::after {
 	border-bottom-color: #3c763d;
 }
 
