@@ -19,6 +19,8 @@ Een histogram.
 * __nBins__ | `number`: aangepast aantal bakken. Default: `none`.
 * __nCols__ | `number`: aantal kolommen bij weergave van een gefacetteerd gegroepeerd histogram. Default: `none`.
 * __xBins__ | `{start,size,end}`: object met `start`, `grootte`, en `eind` eigenschappen die het eetgedrag regelen. Default: `{}`.
+* __sameXRange__ | `boolean`: indien waar, zal het x-as bereik voor elk facet hetzelfde zijn als het algemene histogram. Default: `false`.
+* __sameYRange__ | `boolean`: indien waar, zal het y-as bereik voor elk facet hetzelfde zijn als het totale histogram. Default: `false`.
 
 
 ## Voorbeelden

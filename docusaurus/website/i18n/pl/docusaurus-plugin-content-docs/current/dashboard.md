@@ -10,7 +10,7 @@ Tablica rozdzielcza do łączenia obsługi wielu pól wejściowych dla dzieci.
 
 * __autoStart__ | `boolean`: jeśli jest ustawiona na `true`, funkcja `onGenerate` jest wykonywana przy uruchamianiu z domyślnymi wartościami wejściowymi. Default: `true`.
 * __autoUpdate__ | `boolean`: kontroluje, czy funkcja `onGenerate` powinna być wywoływana automatycznie, gdy zmienia się jedno z pól wejściowych dziecka. Default: `false`.
-* __description__ | `string`: opis tablicy rozdzielczej. Default: `''`.
+* __description__ | `(string|node)`: opis tablicy rozdzielczej. Default: `''`.
 * __disabled__ | `boolean`: kontroluje, czy tablica rozdzielcza jest wyłączona. Default: `false`.
 * __label__ | `string`: etykieta z guzikiem. Default: `none`.
 * __maxWidth__ | `number`: maksymalna szerokość tablicy rozdzielczej. Default: `600`.

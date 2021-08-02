@@ -19,6 +19,8 @@ Histogramma.
 * __nBins__ | `number`: pielāgotais tvertņu skaits. Default: `none`.
 * __nCols__ | `number`: kolonnu skaits, kad tiek rādīta šķautņaina grupēta histogramma.. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekts ar `start`, `size` un `end` īpašībām, kas regulē binning uzvedību.. Default: `{}`.
+* __sameXRange__ | `boolean`: ja true, katras šķautnes x-as diapazons būs tāds pats kā kopējā histogramma.. Default: `false`.
+* __sameYRange__ | `boolean`: ja true, y ass diapazons katrai šķautnei būs tāds pats kā kopējai histogrammai.. Default: `false`.
 
 
 ## Piemēri

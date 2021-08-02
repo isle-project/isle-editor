@@ -10,7 +10,7 @@ Un tableau de bord permettant de combiner le traitement de plusieurs champs de s
 
 * __autoStart__ | `boolean`: si elle est définie à "true", la fonction "onGenerate" est exécutée au démarrage avec les valeurs d'entrée par défaut. Default: `true`.
 * __autoUpdate__ | `boolean`: contrôle si la fonction "onGenerate" doit être invoquée automatiquement lorsqu'un des champs de saisie enfant change. Default: `false`.
-* __description__ | `string`: description du tableau de bord. Default: `''`.
+* __description__ | `(string|node)`: description du tableau de bord. Default: `''`.
 * __disabled__ | `boolean`: contrôle si le tableau de bord doit être désactivé. Default: `false`.
 * __label__ | `string`: étiquette du bouton. Default: `none`.
 * __maxWidth__ | `number`: largeur maximale du tableau de bord. Default: `600`.

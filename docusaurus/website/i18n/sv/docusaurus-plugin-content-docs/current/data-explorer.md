@@ -43,6 +43,7 @@ Den här komponenten används av eleverna för att kort sammanfatta data som pre
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

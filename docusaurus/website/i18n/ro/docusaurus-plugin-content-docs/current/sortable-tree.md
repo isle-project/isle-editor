@@ -11,7 +11,7 @@ Un înveliș subțire în jurul [react-sortable-tree](https://www.npmjs.com/pack
 * __treeData__ | `array<object> (required)`: matrice de obiecte cu `title` (eticheta primară pentru nod),
 `subtitle` (eticheta secundară), `expanded` (afișează copiii nodului dacă este setat la true) și/sau
 `children` (matrice de noduri copil aparținând nodului respectiv).. Default: `none`.
-* __title__ | `string`: titlul antetului. Default: `none`.
+* __title__ | `(string|node)`: titlul antetului. Default: `none`.
 
 
 ## Exemple

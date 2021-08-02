@@ -17,7 +17,7 @@ sidebar_label: Seal
 * __noOrnaments__ | `boolean`: εμποδίζει την απόδοση των διακοσμητικών στοιχείων. Default: `false`.
 * __removable__ | `boolean`: ελέγχει αν η σημείωση αφαιρείται όταν γίνεται κλικ. Default: `false`.
 * __style__ | `object`: το στυλ για το στοιχείο. Default: `none`.
-* __title__ | `string`: τίτλος σφραγίδας. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: τίτλος σφραγίδας. Default: `'Enter a title'`.
 * __upper__ | `string`: το άνω κείμενο. Default: `'The upper text'`.
 * __upperArc__ | `number`: το τόξο για το άνω κείμενο. Default: `150`.
 

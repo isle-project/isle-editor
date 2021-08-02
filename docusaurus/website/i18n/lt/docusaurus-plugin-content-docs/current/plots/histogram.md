@@ -19,6 +19,8 @@ Histograma.
 * __nBins__ | `number`: pasirinktinis talpyklų skaičius. Default: `none`.
 * __nCols__ | `number`: stulpelių skaičius, kai rodoma grupinė histograma.. Default: `none`.
 * __xBins__ | `{start,size,end}`: objektas su `pradžios`, `dydžio` ir `galutinės` savybėmis, reguliuojančiomis suskirstymo elgesį.. Default: `{}`.
+* __sameXRange__ | `boolean`: jei true, kiekvieno aspekto x ašies diapazonas bus toks pat kaip ir bendra histograma.. Default: `false`.
+* __sameYRange__ | `boolean`: jei true, kiekvieno aspekto y ašies diapazonas bus toks pat kaip ir bendra histograma.. Default: `false`.
 
 
 ## Pavyzdžiai

@@ -19,6 +19,8 @@ Et histogram.
 * __nBins__ | `number`: brugerdefineret antal beholdere. Default: `none`.
 * __nCols__ | `number`: antallet af kolonner ved visning af et grupperet histogram med facetter. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt med egenskaberne `start`, `size` og `end`, der regulerer binning-adfærd. Default: `{}`.
+* __sameXRange__ | `boolean`: hvis det er sandt, vil x-akseområdet for hver facet være det samme som det samlede histogram. Default: `false`.
+* __sameYRange__ | `boolean`: hvis det er sandt, vil y-akseområdet for hver facet være det samme som det samlede histogram. Default: `false`.
 
 
 ## Eksempler

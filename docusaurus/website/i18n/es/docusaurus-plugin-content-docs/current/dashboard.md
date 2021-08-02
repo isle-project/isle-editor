@@ -10,7 +10,7 @@ Un tablero para combinar el manejo de múltiples campos de entrada de niños.
 
 * __autoStart__ | `boolean`: si se establece en "true", la función "onGenerate" se ejecuta al inicio con los valores de entrada por defecto. Default: `true`.
 * __autoUpdate__ | `boolean`: controla si la función "onGenerate" debe ser invocada automáticamente cuando uno de los campos de entrada del niño cambia. Default: `false`.
-* __description__ | `string`: descripción del tablero de mandos. Default: `''`.
+* __description__ | `(string|node)`: descripción del tablero de mandos. Default: `''`.
 * __disabled__ | `boolean`: controla si el tablero de mandos debe ser desactivado. Default: `false`.
 * __label__ | `string`: etiqueta del botón. Default: `none`.
 * __maxWidth__ | `number`: anchura máxima del tablero de mandos. Default: `600`.

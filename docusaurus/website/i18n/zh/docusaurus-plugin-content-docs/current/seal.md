@@ -17,7 +17,7 @@ sidebar_label: Seal
 * __noOrnaments__ | `boolean`: 阻止装饰品的呈现. Default: `false`.
 * __removable__ | `boolean`: 控制点击时是否删除该音符. Default: `false`.
 * __style__ | `object`: 元素的样式. Default: `none`.
-* __title__ | `string`: 封号. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: 封号. Default: `'Enter a title'`.
 * __upper__ | `string`: 上文. Default: `'The upper text'`.
 * __upperArc__ | `number`: 弧线. Default: `150`.
 

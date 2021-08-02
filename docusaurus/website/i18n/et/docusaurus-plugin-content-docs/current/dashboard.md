@@ -10,7 +10,7 @@ Armatuurlaud mitme lapse sisendvälja käsitlemise kombineerimiseks.
 
 * __autoStart__ | `boolean`: kui see on seatud `true`, siis käivitatakse funktsioon `onGenerate` käivitamisel vaikimisi sisendväärtustega.. Default: `true`.
 * __autoUpdate__ | `boolean`: kontrollib, kas funktsioon "onGenerate" peaks automaatselt käivituma, kui üks laps-sisendusväljadest muutub.. Default: `false`.
-* __description__ | `string`: armatuurlaua kirjeldus. Default: `''`.
+* __description__ | `(string|node)`: armatuurlaua kirjeldus. Default: `''`.
 * __disabled__ | `boolean`: kontrollib, kas armatuurlaud keelatakse. Default: `false`.
 * __label__ | `string`: nupu silt. Default: `none`.
 * __maxWidth__ | `number`: armatuurlaua maksimaalne laius. Default: `600`.

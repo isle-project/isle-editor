@@ -17,7 +17,7 @@ sidebar_label: Seal
 * __noOrnaments__ | `boolean`: 装飾品のレンダリングを妨げる. Default: `false`.
 * __removable__ | `boolean`: は、クリックしたときにノートが削除されるかどうかを制御します。. Default: `false`.
 * __style__ | `object`: 要素のスタイル. Default: `none`.
-* __title__ | `string`: 印鑑名. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: 印鑑名. Default: `'Enter a title'`.
 * __upper__ | `string`: 上文. Default: `'The upper text'`.
 * __upperArc__ | `number`: 上段テキストの円弧. Default: `150`.
 

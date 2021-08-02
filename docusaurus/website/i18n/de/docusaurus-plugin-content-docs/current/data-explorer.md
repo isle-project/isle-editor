@@ -43,6 +43,7 @@ Diese Komponente wird von den Schülern verwendet, um Daten kurz zusammenzufasse
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

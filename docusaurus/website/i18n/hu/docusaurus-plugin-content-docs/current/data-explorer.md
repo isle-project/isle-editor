@@ -43,6 +43,7 @@ Ezt a komponenst a diákok arra használják, hogy röviden összefoglalják az 
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

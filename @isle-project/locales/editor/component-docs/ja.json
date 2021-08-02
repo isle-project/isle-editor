@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "グループ化されたヒストグラムを重ねて表示するか (`Overlay`)、あるいは隣り合った別々のプロットに表示するか (`Facets`)。",
 	"Histogram-prop-nBins": "慣習的な箱の数",
 	"Histogram-prop-nCols": "ファセットグループ化されたヒストグラムを表示する際の列数",
+	"Histogram-prop-sameXRange": "trueの場合、各ファセットのX軸方向の範囲は、全体のヒストグラムと同じになります。",
+	"Histogram-prop-sameYRange": "trueの場合、各ファセットのY軸の範囲は、全体のヒストグラムと同じになります。",
 	"Histogram-prop-variable": "表示用変数",
 	"Histogram-prop-xBins": "オブジェクトで、ビニング動作を制御する `start`, `size`, `end` プロパティを持ちます。",
 	"hr-description": "文書内のテーマ区切りを定義する水平規則。",

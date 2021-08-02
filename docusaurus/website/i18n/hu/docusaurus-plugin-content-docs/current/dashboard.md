@@ -10,7 +10,7 @@ Egy műszerfal több gyermek beviteli mező kezelésének kombinálására.
 
 * __autoStart__ | `boolean`: ha "igaz"-ra van állítva, akkor az "onGenerate" függvényt indításkor az alapértelmezett bemeneti értékekkel hajtja végre.. Default: `true`.
 * __autoUpdate__ | `boolean`: szabályozza, hogy az "onGenerate" függvény automatikusan meghívásra kerüljön-e, amikor az egyik gyermek beviteli mező megváltozik.. Default: `false`.
-* __description__ | `string`: műszerfal leírása. Default: `''`.
+* __description__ | `(string|node)`: műszerfal leírása. Default: `''`.
 * __disabled__ | `boolean`: szabályozza, hogy a műszerfal ki legyen-e kapcsolva. Default: `false`.
 * __label__ | `string`: gomb címkéje. Default: `none`.
 * __maxWidth__ | `number`: a műszerfal maximális szélessége. Default: `600`.

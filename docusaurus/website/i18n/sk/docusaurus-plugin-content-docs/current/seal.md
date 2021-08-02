@@ -17,7 +17,7 @@ Schvaľovacia pečať.
 * __noOrnaments__ | `boolean`: zabraňuje vykresľovaniu ornamentov. Default: `false`.
 * __removable__ | `boolean`: kontroluje, či sa poznámka po kliknutí odstráni.. Default: `false`.
 * __style__ | `object`: štýl pre prvok. Default: `none`.
-* __title__ | `string`: názov pečate. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: názov pečate. Default: `'Enter a title'`.
 * __upper__ | `string`: horný text. Default: `'The upper text'`.
 * __upperArc__ | `number`: oblúk pre horný text. Default: `150`.
 

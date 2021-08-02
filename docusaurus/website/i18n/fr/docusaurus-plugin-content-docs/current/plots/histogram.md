@@ -19,6 +19,8 @@ Un histogramme.
 * __nBins__ | `number`: nombre de bacs personnalisé. Default: `none`.
 * __nCols__ | `number`: nombre de colonnes lors de l'affichage d'un histogramme groupé à facettes. Default: `none`.
 * __xBins__ | `{start,size,end}`: objet avec les propriétés "start", "size" et "end" qui régissent le comportement du binning. Default: `{}`.
+* __sameXRange__ | `boolean`: si vrai, l'étendue de l'axe des x pour chaque facette sera la même que l'histogramme global. Default: `false`.
+* __sameYRange__ | `boolean`: si vrai, l'étendue de l'axe des y pour chaque facette sera la même que l'histogramme global. Default: `false`.
 
 
 ## Exemples

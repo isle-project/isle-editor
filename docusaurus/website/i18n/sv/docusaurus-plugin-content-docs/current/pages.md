@@ -10,7 +10,7 @@ En ISLE-komponent för sidindelning som gör det möjligt för användaren att g
 
 * __activePage__ | `number`: aktiv sida. Default: `1`.
 * __disabled__ | `boolean`: kontrollerar om navigeringsfältet är aktivt eller inte. Default: `false`.
-* __title__ | `string`: sidans titel som visas i behållaren. Default: `''`.
+* __title__ | `(string|node)`: sidans titel som visas i behållaren. Default: `''`.
 * __pagination__ | `string`: om sidindelningen ska visas antingen på `top`, `bottom` eller `both`.. Default: `'top'`.
 * __size__ | `string`: Storlek på pagineringsknapparna (antingen `default`, `lg` eller `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: behållarens maximala höjd. Om en inbäddad sida är högre läggs ett vertikalt rullningsfält till.. Default: `none`.

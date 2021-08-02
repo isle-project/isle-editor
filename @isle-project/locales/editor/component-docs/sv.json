@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "Om grupperade histogram ska läggas över varandra (`Overlay`) eller i separata diagram bredvid varandra (`Facets`).",
 	"Histogram-prop-nBins": "anpassat antal fack",
 	"Histogram-prop-nCols": "antal kolumner vid visning av ett grupperat histogram med facetter.",
+	"Histogram-prop-sameXRange": "Om det är sant kommer x-axelns intervall för varje facett att vara detsamma som det övergripande histogrammet.",
+	"Histogram-prop-sameYRange": "Om det är sant kommer y-axelns intervall för varje facett att vara detsamma som det övergripande histogrammet.",
 	"Histogram-prop-variable": "variabel för att visa",
 	"Histogram-prop-xBins": "objekt med egenskaperna `start`, `size` och `end` som styr binning",
 	"hr-description": "Horisontell regel som definierar en tematisk brytpunkt i dokumentet.",

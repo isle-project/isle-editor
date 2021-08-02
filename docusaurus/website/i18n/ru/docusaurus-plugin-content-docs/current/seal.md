@@ -17,7 +17,7 @@ sidebar_label: Seal
 * __noOrnaments__ | `boolean`: препятствует рендерингу орнаментов. Default: `false`.
 * __removable__ | `boolean`: управляет тем, удаляется ли записка при нажатии. Default: `false`.
 * __style__ | `object`: стиль элемента. Default: `none`.
-* __title__ | `string`: название печати. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: название печати. Default: `'Enter a title'`.
 * __upper__ | `string`: верхний текст. Default: `'The upper text'`.
 * __upperArc__ | `number`: дуга для верхнего текста. Default: `150`.
 

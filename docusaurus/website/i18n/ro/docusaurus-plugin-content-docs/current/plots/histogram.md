@@ -19,6 +19,8 @@ O histogramă.
 * __nBins__ | `number`: număr personalizat de compartimente. Default: `none`.
 * __nCols__ | `number`: numărul de coloane la afișarea unei histograme grupate pe fațete. Default: `none`.
 * __xBins__ | `{start,size,end}`: obiect cu proprietățile `start`, `size` și `end` care guvernează comportamentul de binning. Default: `{}`.
+* __sameXRange__ | `boolean`: dacă este adevărat, intervalul de pe axa x pentru fiecare fațetă va fi același cu cel al histogramei generale. Default: `false`.
+* __sameYRange__ | `boolean`: dacă este adevărat, intervalul axei y pentru fiecare fațetă va fi același cu cel al histogramei generale.. Default: `false`.
 
 
 ## Exemple

@@ -10,7 +10,7 @@ Egy ISLE lapozási komponens, amely lehetővé teszi a felhasználó számára, 
 
 * __activePage__ | `number`: aktív oldal. Default: `1`.
 * __disabled__ | `boolean`: szabályozza, hogy a navigációs sáv aktív legyen-e vagy sem. Default: `false`.
-* __title__ | `string`: az oldalak konténerének megjelenített címe. Default: `''`.
+* __title__ | `(string|node)`: az oldalak konténerének megjelenített címe. Default: `''`.
 * __pagination__ | `string`: hogy a lapozás a `top`, `bottom` vagy `both` oldalon jelenjen meg.. Default: `'top'`.
 * __size__ | `string`: a lapozási gombok mérete (vagy `default`, `lg`, vagy `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: a tartály maximális magassága. Ha egy beágyazott oldal magasabb, a rendszer függőleges görgetősávot ad hozzá.. Default: `none`.

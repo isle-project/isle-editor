@@ -8,7 +8,7 @@ sidebar_label: Slider
 
 ## オプション
 
-* __title__ | `string`: スライドショー/カルーセルの上部に表示されるタイトル. Default: `''`.
+* __title__ | `(string|node)`: スライドショー/カルーセルの上部に表示されるタイトル. Default: `none`.
 * __dots__ | `boolean`: 下部にドットを表示して、スライドにすばやく移動できるようにしました。. Default: `true`.
 * __fade__ | `boolean`: スライド間の遷移にフェードを使用するかどうかを制御します。. Default: `false`.
 * __draggable__ | `boolean`: ユーザーがスライドをドラッグしてスライド間を移動できるかどうかを制御します。. Default: `false`.

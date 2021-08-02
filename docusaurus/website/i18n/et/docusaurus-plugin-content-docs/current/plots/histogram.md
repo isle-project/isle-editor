@@ -19,6 +19,8 @@ Histogramm.
 * __nBins__ | `number`: kohandatud mahutite arv. Default: `none`.
 * __nCols__ | `number`: veergude arv, kui kuvatakse grupeeritud histogrammi fassettide kaupa. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt, mille omadused `start`, `size` ja `end` reguleerivad binningu käitumist.. Default: `{}`.
+* __sameXRange__ | `boolean`: kui see on tõsi, siis on iga tahu x-telje vahemik sama, mis üldine histogramm.. Default: `false`.
+* __sameYRange__ | `boolean`: kui see on tõsi, siis on iga tahu y-telje vahemik sama, mis üldine histogramm.. Default: `false`.
 
 
 ## Näited

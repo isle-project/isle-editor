@@ -8,7 +8,7 @@ Sastāvdaļa, kas rāda savus bērnus slaidrādē vai karuseļa veidā.
 
 ## Iespējas
 
-* __title__ | `string`: slaidšova/karuseļa virsraksts, kas tiks parādīts tā augšpusē.. Default: `''`.
+* __title__ | `(string|node)`: slaidšova/karuseļa virsraksts, kas tiks parādīts tā augšpusē.. Default: `none`.
 * __dots__ | `boolean`: displeja punkti apakšā, lai ātri pārietu uz jebkuru slaidu.. Default: `true`.
 * __fade__ | `boolean`: nosaka, vai pārejai starp diapozitīviem tiek izmantota fedings.. Default: `false`.
 * __draggable__ | `boolean`: kontrolē, vai lietotāji var vilkt slaidus, lai pārvietotos starp tiem.. Default: `false`.

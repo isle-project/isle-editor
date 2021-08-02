@@ -17,7 +17,7 @@ Heakskiidu pitser.
 * __noOrnaments__ | `boolean`: takistab ornamentide renderdamist. Default: `false`.
 * __removable__ | `boolean`: kontrollib, kas märkus eemaldatakse, kui sellele klõpsatakse. Default: `false`.
 * __style__ | `object`: elemendi stiil. Default: `none`.
-* __title__ | `string`: pitseri nimetus. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: pitseri nimetus. Default: `'Enter a title'`.
 * __upper__ | `string`: ülemine tekst. Default: `'The upper text'`.
 * __upperArc__ | `number`: ülemise teksti kaari. Default: `150`.
 

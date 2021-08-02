@@ -11,7 +11,7 @@ A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-
 * __treeData__ | `array<object> (required)`: array of objects with `title` (primary label for the node),
 `subtitle` (secondary label), `expanded` (display the children of the node if set to true), and/or
 `children` (array of child nodes belonging to the respective node). Default: `none`.
-* __title__ | `string`: header title. Default: `none`.
+* __title__ | `(string|node)`: header title. Default: `none`.
 
 
 ## Examples

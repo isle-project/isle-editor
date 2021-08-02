@@ -19,6 +19,8 @@ Histogrammi.
 * __nBins__ | `number`: mukautettu lokeroiden määrä. Default: `none`.
 * __nCols__ | `number`: sarakkeiden lukumäärä näytettäessä ryhmiteltyä fasettihistogrammia.. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekti, jonka "start"-, "size"- ja "end"-ominaisuudet ohjaavat binning-käyttäytymistä.. Default: `{}`.
+* __sameXRange__ | `boolean`: jos true, x-akselin vaihteluväli on sama kuin koko histogrammissa.. Default: `false`.
+* __sameYRange__ | `boolean`: jos true, y-akselin vaihteluväli kullakin osa-alueella on sama kuin koko histogrammissa.. Default: `false`.
 
 
 ## Esimerkkejä

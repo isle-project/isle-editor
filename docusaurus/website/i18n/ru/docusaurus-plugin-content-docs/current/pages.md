@@ -10,7 +10,7 @@ sidebar_label: Pages
 
 * __activePage__ | `number`: активная страница. Default: `1`.
 * __disabled__ | `boolean`: управляет тем, активна или нет панель навигации. Default: `false`.
-* __title__ | `string`: отображаемое название контейнера страниц. Default: `''`.
+* __title__ | `(string|node)`: отображаемое название контейнера страниц. Default: `''`.
 * __pagination__ | `string`: показывать ли пагинацию на `top`, `bottom`, или на `both`. Default: `'top'`.
 * __size__ | `string`: размер кнопок нумерации страниц (либо `default`, либо `lg`, либо `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: максимальная высота контейнера. Если встроенная страница выше, добавляется вертикальная полоса прокрутки. Default: `none`.

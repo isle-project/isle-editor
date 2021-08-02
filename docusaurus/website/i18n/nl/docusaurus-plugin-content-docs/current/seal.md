@@ -17,7 +17,7 @@ Een keurmerk.
 * __noOrnaments__ | `boolean`: verhindert de weergave van de ornamenten. Default: `false`.
 * __removable__ | `boolean`: controleert of de notitie wordt verwijderd wanneer er op wordt geklikt. Default: `false`.
 * __style__ | `object`: de stijl voor het element. Default: `none`.
-* __title__ | `string`: verzegelingstitel. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: verzegelingstitel. Default: `'Enter a title'`.
 * __upper__ | `string`: de bovenste tekst. Default: `'The upper text'`.
 * __upperArc__ | `number`: de boog voor de bovenste tekst. Default: `150`.
 

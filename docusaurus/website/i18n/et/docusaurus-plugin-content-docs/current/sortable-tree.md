@@ -11,7 +11,7 @@ sidebar_label: Sortable Tree
 * __treeData__ | `array<object> (required)`: objektide massiivi "pealkirjaga" (sõlme esmane silt),
 `subtitle` (sekundaarne silt), `expanded` (kuvab sõlme lapsi, kui see on seatud tõeseks) ja/või
 `children` (vastava sõlme juurde kuuluvate lastesõlmede massiivi).. Default: `none`.
-* __title__ | `string`: päise pealkiri. Default: `none`.
+* __title__ | `(string|node)`: päise pealkiri. Default: `none`.
 
 
 ## Näited

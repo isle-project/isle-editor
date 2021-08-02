@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "dacă se suprapun histogramele grupate unul peste altul (`Overlay`) sau în diagrame separate unul lângă altul (`Facets`)",
 	"Histogram-prop-nBins": "număr personalizat de compartimente",
 	"Histogram-prop-nCols": "numărul de coloane la afișarea unei histograme grupate pe fațete",
+	"Histogram-prop-sameXRange": "dacă este adevărat, intervalul de pe axa x pentru fiecare fațetă va fi același cu cel al histogramei generale",
+	"Histogram-prop-sameYRange": "dacă este adevărat, intervalul axei y pentru fiecare fațetă va fi același cu cel al histogramei generale.",
 	"Histogram-prop-variable": "variabilă pentru a afișa",
 	"Histogram-prop-xBins": "obiect cu proprietățile `start`, `size` și `end` care guvernează comportamentul de binning",
 	"hr-description": "Regula orizontală care definește o pauză tematică în document.",

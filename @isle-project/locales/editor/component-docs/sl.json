@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "ali naj se združeni histogrami prekrijejo drug na drugega (`Overlay`) ali v ločenih ploskvah drug ob drugem (`Facets`)",
 	"Histogram-prop-nBins": "število košaric po meri",
 	"Histogram-prop-nCols": "število stolpcev pri prikazu histograma z razvrščenimi stranicami",
+	"Histogram-prop-sameXRange": "če je true, bo območje osi x za vsako stran enako celotnemu histogramu.",
+	"Histogram-prop-sameYRange": "če je to res, bo obseg osi y za vsako stran enak celotnemu histogramu.",
 	"Histogram-prop-variable": "spremenljivka za prikaz",
 	"Histogram-prop-xBins": "objekt z lastnostmi `začetek`, `velikost` in `konec`, ki določajo obnašanje pri biniranju",
 	"hr-description": "Vodoravno pravilo, ki določa tematski prelom v dokumentu.",

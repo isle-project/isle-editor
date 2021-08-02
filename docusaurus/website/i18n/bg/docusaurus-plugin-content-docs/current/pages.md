@@ -10,7 +10,7 @@ sidebar_label: Pages
 
 * __activePage__ | `number`: активна страница. Default: `1`.
 * __disabled__ | `boolean`: контролира дали навигационната лента е активна или не. Default: `false`.
-* __title__ | `string`: изведено заглавие на контейнера за страници. Default: `''`.
+* __title__ | `(string|node)`: изведено заглавие на контейнера за страници. Default: `''`.
 * __pagination__ | `string`: дали да се показва странирането в `top`, `bottom` или `both`. Default: `'top'`.
 * __size__ | `string`: размер на бутоните за страниране (или `default`, `lg`, или `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: максималната височина на контейнера. Ако вградената страница е по-висока, се добавя вертикална лента за превъртане. Default: `none`.

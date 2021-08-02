@@ -17,7 +17,7 @@ En godkännandestämpel.
 * __noOrnaments__ | `boolean`: förhindrar rendering av ornamenten. Default: `false`.
 * __removable__ | `boolean`: kontrollerar om notisen tas bort när man klickar på den. Default: `false`.
 * __style__ | `object`: stilen för elementet. Default: `none`.
-* __title__ | `string`: sigill titel. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: sigill titel. Default: `'Enter a title'`.
 * __upper__ | `string`: den övre texten. Default: `'The upper text'`.
 * __upperArc__ | `number`: bågen för den övre texten. Default: `150`.
 

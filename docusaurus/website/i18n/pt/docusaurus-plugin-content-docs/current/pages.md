@@ -10,7 +10,7 @@ Um componente de paginação ISLE que permite que o usuário passe por uma seqü
 
 * __activePage__ | `number`: página ativa. Default: `1`.
 * __disabled__ | `boolean`: controla se a barra de navegação está ativa ou não. Default: `false`.
-* __title__ | `string`: título exibido do conteúdo das páginas. Default: `''`.
+* __title__ | `(string|node)`: título exibido do conteúdo das páginas. Default: `''`.
 * __pagination__ | `string`: se mostrar a paginação ou na `top`, `bottom`, ou `both`. Default: `'top'`.
 * __size__ | `string`: tamanho dos botões de paginação (ou `default`, `lg`, ou `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: a altura máxima do recipiente. Se uma página embutida for mais alta, uma barra de rolagem vertical é adicionada. Default: `none`.

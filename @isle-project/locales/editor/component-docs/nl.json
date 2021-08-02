@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "of gegroepeerde histogrammen over elkaar heen moeten worden gelegd (`Overlay`) of in afzonderlijke percelen naast elkaar (`Facets`)",
 	"Histogram-prop-nBins": "aangepast aantal bakken",
 	"Histogram-prop-nCols": "aantal kolommen bij weergave van een gefacetteerd gegroepeerd histogram",
+	"Histogram-prop-sameXRange": "indien waar, zal het x-as bereik voor elk facet hetzelfde zijn als het algemene histogram",
+	"Histogram-prop-sameYRange": "indien waar, zal het y-as bereik voor elk facet hetzelfde zijn als het totale histogram",
 	"Histogram-prop-variable": "weer te geven variabele",
 	"Histogram-prop-xBins": "object met `start`, `grootte`, en `eind` eigenschappen die het eetgedrag regelen",
 	"hr-description": "Horizontale regel die een thematische breuk in het document definieert.",

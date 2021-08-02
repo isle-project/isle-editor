@@ -11,7 +11,7 @@ Tenký obal okolo [react-sortable-tree](https://www.npmjs.com/package/react-sort
 * __treeData__ | `array<object> (required)`: pole objektov s `title` (primárnym označením uzla),
 `subtitle` (sekundárne označenie), `expanded` (zobrazenie detí uzla, ak je nastavené na true) a/alebo
 `children` (pole podriadených uzlov patriacich príslušnému uzlu). Default: `none`.
-* __title__ | `string`: názov záhlavia. Default: `none`.
+* __title__ | `(string|node)`: názov záhlavia. Default: `none`.
 
 
 ## Príklady

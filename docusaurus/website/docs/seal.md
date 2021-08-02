@@ -17,7 +17,7 @@ An approval seal.
 * __noOrnaments__ | `boolean`: prevents rendering of the ornaments. Default: `false`.
 * __removable__ | `boolean`: controls whether the note is removed when clicked. Default: `false`.
 * __style__ | `object`: the style for the element. Default: `none`.
-* __title__ | `string`: seal title. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: seal title. Default: `'Enter a title'`.
 * __upper__ | `string`: the upper text. Default: `'The upper text'`.
 * __upperArc__ | `number`: the arc for the upper text. Default: `150`.
 

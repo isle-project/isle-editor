@@ -10,7 +10,7 @@ A dashboard for combining the handling of multiple child input fields.
 
 * __autoStart__ | `boolean`: if set to `true`, the `onGenerate` function is executed at startup with the default input values. Default: `true`.
 * __autoUpdate__ | `boolean`: controls whether the `onGenerate` function should be invoked automatically when one of the child input fields changes. Default: `false`.
-* __description__ | `string`: dashboard description. Default: `''`.
+* __description__ | `(string|node)`: dashboard description. Default: `''`.
 * __disabled__ | `boolean`: controls whether the dashboard shall be disabled. Default: `false`.
 * __label__ | `string`: button label. Default: `none`.
 * __maxWidth__ | `number`: maximum width of dashboard. Default: `600`.

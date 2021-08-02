@@ -10,7 +10,7 @@ Ovládací panel pro kombinaci zpracování více podřízených vstupních pol�
 
 * __autoStart__ | `boolean`: pokud je nastaveno na `true`, funkce `onGenerate` se při spuštění spustí s výchozími vstupními hodnotami.. Default: `true`.
 * __autoUpdate__ | `boolean`: řídí, zda se má funkce `onGenerate` vyvolat automaticky, když se změní jedno z podřízených vstupních polí.. Default: `false`.
-* __description__ | `string`: popis přístrojové desky. Default: `''`.
+* __description__ | `(string|node)`: popis přístrojové desky. Default: `''`.
 * __disabled__ | `boolean`: řídí, zda má být přístrojová deska vypnuta. Default: `false`.
 * __label__ | `string`: štítek tlačítka. Default: `none`.
 * __maxWidth__ | `number`: maximální šířka přístrojové desky. Default: `600`.

@@ -17,7 +17,7 @@ Hyväksymismerkki.
 * __noOrnaments__ | `boolean`: estää koristeiden renderöinnin. Default: `false`.
 * __removable__ | `boolean`: valvoo, poistetaanko huomautus, kun sitä napsautetaan. Default: `false`.
 * __style__ | `object`: elementin tyyli. Default: `none`.
-* __title__ | `string`: sinetin nimi. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: sinetin nimi. Default: `'Enter a title'`.
 * __upper__ | `string`: ylempi teksti. Default: `'The upper text'`.
 * __upperArc__ | `number`: ylemmän tekstin kaari. Default: `150`.
 

@@ -17,7 +17,7 @@ Ein Prüfsiegel.
 * __noOrnaments__ | `boolean`: verhindert das Rendering der Ornamente. Default: `false`.
 * __removable__ | `boolean`: steuert, ob die Notiz beim Anklicken entfernt wird. Default: `false`.
 * __style__ | `object`: der Stil für das Element. Default: `none`.
-* __title__ | `string`: Siegel-Titel. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: Siegel-Titel. Default: `'Enter a title'`.
 * __upper__ | `string`: der obere Text. Default: `'The upper text'`.
 * __upperArc__ | `number`: der Bogen für den oberen Text. Default: `150`.
 

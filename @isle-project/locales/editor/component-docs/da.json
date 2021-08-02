@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "om grupperede histogrammer skal overlejres oven på hinanden (`Overlay`) eller i separate plot ved siden af hinanden (`Facets`)",
 	"Histogram-prop-nBins": "brugerdefineret antal beholdere",
 	"Histogram-prop-nCols": "antallet af kolonner ved visning af et grupperet histogram med facetter",
+	"Histogram-prop-sameXRange": "hvis det er sandt, vil x-akseområdet for hver facet være det samme som det samlede histogram",
+	"Histogram-prop-sameYRange": "hvis det er sandt, vil y-akseområdet for hver facet være det samme som det samlede histogram",
 	"Histogram-prop-variable": "variabel til visning",
 	"Histogram-prop-xBins": "objekt med egenskaberne `start`, `size` og `end`, der regulerer binning-adfærd",
 	"hr-description": "Vandret regel, der definerer et tematisk brud i dokumentet.",

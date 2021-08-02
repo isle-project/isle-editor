@@ -10,7 +10,7 @@ sidebar_label: Pages
 
 * __activePage__ | `number`: ενεργή σελίδα. Default: `1`.
 * __disabled__ | `boolean`: ελέγχει αν η γραμμή πλοήγησης είναι ενεργή ή όχι. Default: `false`.
-* __title__ | `string`: εμφανιζόμενος τίτλος του δοχείου των σελίδων. Default: `''`.
+* __title__ | `(string|node)`: εμφανιζόμενος τίτλος του δοχείου των σελίδων. Default: `''`.
 * __pagination__ | `string`: αν θα εμφανίζεται η σελιδοποίηση είτε στην `top`, είτε στο `bottom`, είτε `both`.. Default: `'top'`.
 * __size__ | `string`: μέγεθος των κουμπιών σελιδοποίησης (είτε `default`, `lg`, ή `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: το μέγιστο ύψος του δοχείου. Εάν μια ενσωματωμένη σελίδα είναι ψηλότερη, προστίθεται μια κατακόρυφη γραμμή κύλισης.. Default: `none`.

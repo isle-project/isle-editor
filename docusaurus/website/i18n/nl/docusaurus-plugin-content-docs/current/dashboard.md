@@ -10,7 +10,7 @@ Een dashboard voor het combineren van de afhandeling van meerdere kinderinvoerve
 
 * __autoStart__ | `boolean`: indien ingesteld op `true`, wordt de functie `onGenerate` bij het opstarten uitgevoerd met de standaard invoerwaarden. Default: `true`.
 * __autoUpdate__ | `boolean`: bepaalt of de `onGenerate` functie automatisch moet worden aangeroepen als een van de invoervelden van het kind verandert. Default: `false`.
-* __description__ | `string`: dashboardbeschrijving. Default: `''`.
+* __description__ | `(string|node)`: dashboardbeschrijving. Default: `''`.
 * __disabled__ | `boolean`: controleert of het dashboard moet worden uitgeschakeld. Default: `false`.
 * __label__ | `string`: knoplabel. Default: `none`.
 * __maxWidth__ | `number`: maximale breedte van het dashboard. Default: `600`.

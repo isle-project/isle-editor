@@ -8,7 +8,7 @@ Komponenta, ki prikazuje svoje otroke v diaprojekciji ali vrtiljaku.
 
 ## Možnosti
 
-* __title__ | `string`: naslov za diaprojekcijo / vrtiljak, ki se prikaže na vrhu.. Default: `''`.
+* __title__ | `(string|node)`: naslov za diaprojekcijo / vrtiljak, ki se prikaže na vrhu.. Default: `none`.
 * __dots__ | `boolean`: prikažite pike na dnu za hitro krmarjenje do katere koli diapozitivne ploščice.. Default: `true`.
 * __fade__ | `boolean`: določa, ali se za prehod med diapozitivi uporablja funkcija fading.. Default: `false`.
 * __draggable__ | `boolean`: nadzoruje, ali lahko uporabniki povlečejo diapozitive in se premikajo med njimi.. Default: `false`.

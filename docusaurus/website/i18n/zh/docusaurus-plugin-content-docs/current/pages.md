@@ -10,7 +10,7 @@ sidebar_label: Pages
 
 * __activePage__ | `number`: 活动页. Default: `1`.
 * __disabled__ | `boolean`: 控制导航栏是否处于活动状态. Default: `false`.
-* __title__ | `string`: 页面容器的显示标题. Default: `''`.
+* __title__ | `(string|node)`: 页面容器的显示标题. Default: `''`.
 * __pagination__ | `string`: 是否在 "顶部"、"底部 "或 "两者 "显示分页。. Default: `'top'`.
 * __size__ | `string`: 分页按钮的大小（可以是 "default"、"lg "或 "sm"）。. Default: `'default'`.
 * __height__ | `(number|string)`: 容器的最大高度。如果嵌入式页面较高，则会添加一个垂直滚动条。. Default: `none`.

@@ -8,7 +8,7 @@ Element, który wyświetla swoje dzieci w pokazie slajdów lub na karuzeli.
 
 ## Opcje
 
-* __title__ | `string`: tytuł pokazu slajdów / karuzeli, która ma być wyświetlana u góry. Default: `''`.
+* __title__ | `(string|node)`: tytuł pokazu slajdów / karuzeli, która ma być wyświetlana u góry. Default: `none`.
 * __dots__ | `boolean`: Kropki na dole wyświetlacza pozwalają na szybką nawigację do dowolnego slajdu. Default: `true`.
 * __fade__ | `boolean`: kontroluje, czy do przechodzenia między slajdami stosuje się blaknięcie. Default: `false`.
 * __draggable__ | `boolean`: kontroluje, czy użytkownicy mogą przeciągać slajdy, aby nawigować między nimi. Default: `false`.

@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "ob gruppierte Histogramme übereinander (`Overlay`) oder in separaten Plots nebeneinander (`Facets`) liegen sollen",
 	"Histogram-prop-nBins": "Benutzerdefinierte Anzahl von Fächern",
 	"Histogram-prop-nCols": "Anzahl der Spalten bei der Anzeige eines facettierten gruppierten Histogramms",
+	"Histogram-prop-sameXRange": "wenn wahr, ist der Bereich der x-Achse für jede Facette derselbe wie der des Gesamthistogramms",
+	"Histogram-prop-sameYRange": "wenn wahr, ist der y-Achsenbereich für jede Facette derselbe wie der des Gesamthistogramms",
 	"Histogram-prop-variable": "Variable zur Anzeige",
 	"Histogram-prop-xBins": "Objekt mit den Eigenschaften `start`, `size` und `end`, die das Binning-Verhalten steuern",
 	"hr-description": "Horizontale Regel, die einen thematischen Bruch im Dokument definiert.",

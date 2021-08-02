@@ -11,7 +11,7 @@ sidebar_label: Sortable Tree
 * __treeData__ | `array<object> (required)`: масив от обекти с `title` (основен етикет на възела),
 `subtitle` (вторичен етикет), `expanded` (показва децата на възела, ако е зададено true) и/или
 `children` (масив от дъщерни възли, принадлежащи на съответния възел). Default: `none`.
-* __title__ | `string`: заглавие на заглавието. Default: `none`.
+* __title__ | `(string|node)`: заглавие на заглавието. Default: `none`.
 
 
 ## Примери

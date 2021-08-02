@@ -8,7 +8,7 @@ Een onderdeel dat zijn kinderen laat zien in een diashow of carrousel.
 
 ## Opties
 
-* __title__ | `string`: titel voor de diashow / carrousel die bovenaan wordt getoond. Default: `''`.
+* __title__ | `(string|node)`: titel voor de diashow / carrousel die bovenaan wordt getoond. Default: `none`.
 * __dots__ | `boolean`: weergavepunten aan de onderkant om snel naar een willekeurige dia te kunnen navigeren. Default: `true`.
 * __fade__ | `boolean`: controleert of het verbleken wordt gebruikt voor de overgang tussen de dia's. Default: `false`.
 * __draggable__ | `boolean`: bepaalt of gebruikers de dia's kunnen verslepen om tussen de dia's te navigeren. Default: `false`.

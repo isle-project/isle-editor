@@ -19,6 +19,8 @@ Ett histogram.
 * __nBins__ | `number`: anpassat antal fack. Default: `none`.
 * __nCols__ | `number`: antal kolumner vid visning av ett grupperat histogram med facetter.. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt med egenskaperna `start`, `size` och `end` som styr binning. Default: `{}`.
+* __sameXRange__ | `boolean`: Om det är sant kommer x-axelns intervall för varje facett att vara detsamma som det övergripande histogrammet.. Default: `false`.
+* __sameYRange__ | `boolean`: Om det är sant kommer y-axelns intervall för varje facett att vara detsamma som det övergripande histogrammet.. Default: `false`.
 
 
 ## Exempel

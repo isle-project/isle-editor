@@ -43,6 +43,7 @@ Denne komponent bruges af eleverne til kort at opsummere data, når de præsente
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "kas grupeeritud histogramme üksteise peale (`Overlay`) või eraldi graafikutena üksteise kõrval (`Facets`).",
 	"Histogram-prop-nBins": "kohandatud mahutite arv",
 	"Histogram-prop-nCols": "veergude arv, kui kuvatakse grupeeritud histogrammi fassettide kaupa",
+	"Histogram-prop-sameXRange": "kui see on tõsi, siis on iga tahu x-telje vahemik sama, mis üldine histogramm.",
+	"Histogram-prop-sameYRange": "kui see on tõsi, siis on iga tahu y-telje vahemik sama, mis üldine histogramm.",
 	"Histogram-prop-variable": "muutuja kuvamiseks",
 	"Histogram-prop-xBins": "objekt, mille omadused `start`, `size` ja `end` reguleerivad binningu käitumist.",
 	"hr-description": "Horisontaalne reegel, mis määratleb dokumendis temaatilise katkestuse.",

@@ -10,7 +10,7 @@ sidebar_label: Dashboard
 
 * __autoStart__ | `boolean`: ако е зададена стойност `true`, функцията `onGenerate` се изпълнява при стартиране със стойностите по подразбиране. Default: `true`.
 * __autoUpdate__ | `boolean`: контролира дали функцията `onGenerate` да се извиква автоматично, когато едно от полетата за въвеждане на детето се промени.. Default: `false`.
-* __description__ | `string`: описание на таблото за управление. Default: `''`.
+* __description__ | `(string|node)`: описание на таблото за управление. Default: `''`.
 * __disabled__ | `boolean`: контролира дали таблото за управление да бъде деактивирано. Default: `false`.
 * __label__ | `string`: етикет на бутона. Default: `none`.
 * __maxWidth__ | `number`: максимална ширина на таблото за управление. Default: `600`.

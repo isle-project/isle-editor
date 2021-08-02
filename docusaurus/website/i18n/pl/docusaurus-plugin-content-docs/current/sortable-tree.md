@@ -11,7 +11,7 @@ Cienka owijka wokół [reaktywnego drzewa sortowalnego] (https://www.npmjs.com/p
 * __treeData__ | `array<object> (required)`: tablica obiektów z `title` (podstawowa etykieta węzła),
 `subtitle` (etykieta drugorzędna), `expanded` (wyświetlenie dzieci węzła, jeśli ustawione na true), i/lub
 `children` (tablica węzłów podrzędnych należących do danego węzła). Default: `none`.
-* __title__ | `string`: tytuł nagłówka. Default: `none`.
+* __title__ | `(string|node)`: tytuł nagłówka. Default: `none`.
 
 
 ## Przykłady

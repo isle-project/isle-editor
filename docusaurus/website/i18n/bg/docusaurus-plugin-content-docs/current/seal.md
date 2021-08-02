@@ -17,7 +17,7 @@ sidebar_label: Seal
 * __noOrnaments__ | `boolean`: предотвратява изобразяването на орнаментите. Default: `false`.
 * __removable__ | `boolean`: контролира дали бележката се премахва при щракване върху нея.. Default: `false`.
 * __style__ | `object`: стилът на елемента. Default: `none`.
-* __title__ | `string`: заглавие на печата. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: заглавие на печата. Default: `'Enter a title'`.
 * __upper__ | `string`: горният текст. Default: `'The upper text'`.
 * __upperArc__ | `number`: дъгата за горния текст. Default: `150`.
 

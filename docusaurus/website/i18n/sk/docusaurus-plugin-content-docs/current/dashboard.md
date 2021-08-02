@@ -10,7 +10,7 @@ Ovládací panel na kombináciu spracovania viacerých vstupných polí pre deti
 
 * __autoStart__ | `boolean`: ak je nastavená na `true`, funkcia `onGenerate` sa vykoná pri spustení s predvolenými vstupnými hodnotami. Default: `true`.
 * __autoUpdate__ | `boolean`: riadi, či sa má funkcia `onGenerate` automaticky zavolať, keď sa zmení jedno z podriadených vstupných polí.. Default: `false`.
-* __description__ | `string`: Popis prístrojovej dosky. Default: `''`.
+* __description__ | `(string|node)`: Popis prístrojovej dosky. Default: `''`.
 * __disabled__ | `boolean`: kontroluje, či má byť prístrojová doska vypnutá.. Default: `false`.
 * __label__ | `string`: Štítok tlačidla. Default: `none`.
 * __maxWidth__ | `number`: maximálna šírka prístrojovej dosky. Default: `600`.

@@ -43,6 +43,7 @@ Ten komponent jest wykorzystywany przez uczniów do krótkiego podsumowania dany
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

@@ -10,7 +10,7 @@ Vadības panelis, lai apvienotu vairāku bērnu ievades lauku apstrādi.
 
 * __autoStart__ | `boolean`: ja iestatīts uz `true`, funkcija `onGenerate` tiek izpildīta palaišanas laikā ar noklusējuma ievades vērtībām.. Default: `true`.
 * __autoUpdate__ | `boolean`: nosaka, vai `onGenerate` funkcija jāizsauc automātiski, kad mainās kāds no pakārtotajiem ievades laukiem.. Default: `false`.
-* __description__ | `string`: Vadības paneļa apraksts. Default: `''`.
+* __description__ | `(string|node)`: Vadības paneļa apraksts. Default: `''`.
 * __disabled__ | `boolean`: kontrolē, vai instrumentu panelis ir atspējots.. Default: `false`.
 * __label__ | `string`: pogas etiķete. Default: `none`.
 * __maxWidth__ | `number`: maksimālais instrumentu paneļa platums. Default: `600`.

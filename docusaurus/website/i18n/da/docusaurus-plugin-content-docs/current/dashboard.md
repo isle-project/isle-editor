@@ -10,7 +10,7 @@ Et dashboard til at kombinere håndteringen af flere indtastningsfelter for bør
 
 * __autoStart__ | `boolean`: hvis indstillet til `true`, udføres funktionen `onGenerate` ved opstart med standard inputværdierne. Default: `true`.
 * __autoUpdate__ | `boolean`: styrer, om funktionen `onGenerate` skal kaldes automatisk, når et af de underordnede inputfelter ændres. Default: `false`.
-* __description__ | `string`: beskrivelse af instrumentbrættet. Default: `''`.
+* __description__ | `(string|node)`: beskrivelse af instrumentbrættet. Default: `''`.
 * __disabled__ | `boolean`: kontrollerer, om instrumentbrættet skal være deaktiveret. Default: `false`.
 * __label__ | `string`: knapmærke. Default: `none`.
 * __maxWidth__ | `number`: maksimal bredde af instrumentbrættet. Default: `600`.

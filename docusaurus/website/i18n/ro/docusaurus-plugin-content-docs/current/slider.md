@@ -8,7 +8,7 @@ O componentă care își afișează copiii într-o prezentare de diapozitive sau
 
 ## Opțiuni
 
-* __title__ | `string`: titlul pentru prezentarea de diapozitive / caruselul care va fi afișat în partea de sus a acestuia. Default: `''`.
+* __title__ | `(string|node)`: titlul pentru prezentarea de diapozitive / caruselul care va fi afișat în partea de sus a acestuia. Default: `none`.
 * __dots__ | `boolean`: puncte de afișare în partea de jos pentru navigarea rapidă la orice diapozitiv. Default: `true`.
 * __fade__ | `boolean`: controlează dacă se utilizează fading pentru tranziția între diapozitive. Default: `false`.
 * __draggable__ | `boolean`: controlează dacă utilizatorii pot trage diapozitivele pentru a naviga între ele. Default: `false`.

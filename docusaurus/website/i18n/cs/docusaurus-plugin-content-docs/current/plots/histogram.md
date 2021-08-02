@@ -19,6 +19,8 @@ Histogram.
 * __nBins__ | `number`: vlastní počet košů. Default: `none`.
 * __nCols__ | `number`: počet sloupců při zobrazení seskupeného histogramu s fasetami. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt s vlastnostmi `start`, `size` a `end`, které určují chování při binningu.. Default: `{}`.
+* __sameXRange__ | `boolean`: pokud je true, bude rozsah osy x pro každý aspekt stejný jako celkový histogram.. Default: `false`.
+* __sameYRange__ | `boolean`: pokud je true, bude rozsah osy y pro každý aspekt stejný jako celkový histogram.. Default: `false`.
 
 
 ## Příklady

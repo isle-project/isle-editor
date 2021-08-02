@@ -17,7 +17,7 @@ Un sello de aprobación.
 * __noOrnaments__ | `boolean`: impide la reproducción de los adornos. Default: `false`.
 * __removable__ | `boolean`: controla si la nota se elimina al hacer clic. Default: `false`.
 * __style__ | `object`: el estilo para el elemento. Default: `none`.
-* __title__ | `string`: título del sello. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: título del sello. Default: `'Enter a title'`.
 * __upper__ | `string`: el texto superior. Default: `'The upper text'`.
 * __upperArc__ | `number`: el arco para el texto superior. Default: `150`.
 

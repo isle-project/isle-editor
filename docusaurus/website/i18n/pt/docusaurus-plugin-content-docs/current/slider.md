@@ -8,7 +8,7 @@ Um componente que exibe seus filhos em um slideshow ou carrossel.
 
 ## Opções
 
-* __title__ | `string`: título do slideshow / carrossel a ser exibido em sua parte superior. Default: `''`.
+* __title__ | `(string|node)`: título do slideshow / carrossel a ser exibido em sua parte superior. Default: `none`.
 * __dots__ | `boolean`: pontos de exibição no fundo para navegar rapidamente para qualquer slide. Default: `true`.
 * __fade__ | `boolean`: controla se o desbotamento é usado para a transição entre as lâminas. Default: `false`.
 * __draggable__ | `boolean`: controla se os usuários podem arrastar os slides para navegar entre eles. Default: `false`.

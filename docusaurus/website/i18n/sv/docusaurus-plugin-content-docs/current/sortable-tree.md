@@ -11,7 +11,7 @@ En tunn omslagsform kring [react-sortable-tree] (https://www.npmjs.com/package/r
 * __treeData__ | `array<object> (required)`: array av objekt med `title` (primär etikett för noden),
 `subtitle` (sekundär etikett), `expanded` (visar nodens barn om den är inställd på true) och/eller
 `children` (matris med barnnoder som tillhör respektive nod).. Default: `none`.
-* __title__ | `string`: rubriktitel. Default: `none`.
+* __title__ | `(string|node)`: rubriktitel. Default: `none`.
 
 
 ## Exempel

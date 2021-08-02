@@ -17,7 +17,7 @@ Patvirtinimo antspaudas.
 * __noOrnaments__ | `boolean`: neleidžia atvaizduoti ornamentų. Default: `false`.
 * __removable__ | `boolean`: kontroliuoja, ar paspaudus pastabą ji bus pašalinta.. Default: `false`.
 * __style__ | `object`: elemento stilius. Default: `none`.
-* __title__ | `string`: antspaudo pavadinimas. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: antspaudo pavadinimas. Default: `'Enter a title'`.
 * __upper__ | `string`: viršutinį tekstą. Default: `'The upper text'`.
 * __upperArc__ | `number`: viršutinio teksto lankas. Default: `150`.
 

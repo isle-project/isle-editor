@@ -10,7 +10,7 @@ ISLE lapu kārtošanas komponents, kas ļauj lietotājam soli pa solim pāriet l
 
 * __activePage__ | `number`: aktīvā lapa. Default: `1`.
 * __disabled__ | `boolean`: nosaka, vai navigācijas josla ir vai nav aktīva.. Default: `false`.
-* __title__ | `string`: parādīts lappušu konteinera virsraksts. Default: `''`.
+* __title__ | `(string|node)`: parādīts lappušu konteinera virsraksts. Default: `''`.
 * __pagination__ | `string`: vai lappušu numerācija tiks parādīta `top`, `bottom` vai `bottom`.. Default: `'top'`.
 * __size__ | `string`: Lapošanas pogas lielums (vai nu `default`, `lg`, vai `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: konteinera maksimālais augstums. Ja iegultā lapa ir augstāka, tiek pievienota vertikālā ritināšanas josla.. Default: `none`.

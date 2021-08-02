@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "či sa majú zoskupené histogramy prekrývať nad sebou (`Overlay`) alebo v samostatných grafoch vedľa seba (`Facets`)",
 	"Histogram-prop-nBins": "vlastný počet zásobníkov",
 	"Histogram-prop-nCols": "počet stĺpcov pri zobrazovaní zoskupeného histogramu",
+	"Histogram-prop-sameXRange": "ak je to pravda, rozsah osi x pre každý aspekt bude rovnaký ako celkový histogram",
+	"Histogram-prop-sameYRange": "ak je to pravda, rozsah osi y pre každý aspekt bude rovnaký ako celkový histogram",
 	"Histogram-prop-variable": "premenná na zobrazenie",
 	"Histogram-prop-xBins": "objekt s vlastnosťami `start`, `size` a `end`, ktoré určujú správanie pri binningu",
 	"hr-description": "Vodorovné pravidlo definujúce tematický zlom v dokumente.",

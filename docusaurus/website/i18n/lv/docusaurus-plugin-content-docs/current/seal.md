@@ -17,7 +17,7 @@ Apstiprinājuma zīmogs.
 * __noOrnaments__ | `boolean`: novērš ornamentu atveidošanu. Default: `false`.
 * __removable__ | `boolean`: kontrolē, vai pēc klikšķa uz piezīmes tiek noņemta.. Default: `false`.
 * __style__ | `object`: elementa stilu. Default: `none`.
-* __title__ | `string`: zīmoga nosaukums. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: zīmoga nosaukums. Default: `'Enter a title'`.
 * __upper__ | `string`: augšējais teksts. Default: `'The upper text'`.
 * __upperArc__ | `number`: augšējā teksta loka. Default: `150`.
 

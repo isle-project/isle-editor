@@ -10,7 +10,7 @@ Komponenta ISLE pro stránkování, která umožňuje uživateli postupně proch
 
 * __activePage__ | `number`: aktivní stránka. Default: `1`.
 * __disabled__ | `boolean`: řídí, zda je navigační panel aktivní, nebo ne. Default: `false`.
-* __title__ | `string`: zobrazený název kontejneru stránek. Default: `''`.
+* __title__ | `(string|node)`: zobrazený název kontejneru stránek. Default: `''`.
 * __pagination__ | `string`: zda se má stránkování zobrazovat buď na `top`, `bottom`, nebo `both`.. Default: `'top'`.
 * __size__ | `string`: velikost tlačítek pro stránkování (buď `default`, `lg`, nebo `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: maximální výška kontejneru. Pokud je vložená stránka vyšší, přidá se svislý posuvník.. Default: `none`.

@@ -8,7 +8,7 @@ sidebar_label: Slider
 
 ## 选项
 
-* __title__ | `string`: 幻灯片/旋转木马的标题要显示在其顶部。. Default: `''`.
+* __title__ | `(string|node)`: 幻灯片/旋转木马的标题要显示在其顶部。. Default: `none`.
 * __dots__ | `boolean`: 在底部显示圆点，以便快速导航到任何幻灯片。. Default: `true`.
 * __fade__ | `boolean`: 控制是否在幻灯片之间使用渐变。. Default: `false`.
 * __draggable__ | `boolean`: 控制用户是否可以拖动幻灯片在它们之间导航。. Default: `false`.

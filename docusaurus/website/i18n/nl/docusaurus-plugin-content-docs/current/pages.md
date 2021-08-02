@@ -10,7 +10,7 @@ Een ISLE-paginatiecomponent die de gebruiker in staat stelt om door een reeks pa
 
 * __activePage__ | `number`: actieve pagina. Default: `1`.
 * __disabled__ | `boolean`: bepaalt of de navigatiebalk actief is of niet. Default: `false`.
-* __title__ | `string`: weergegeven titel van de paginacontainer. Default: `''`.
+* __title__ | `(string|node)`: weergegeven titel van de paginacontainer. Default: `''`.
 * __pagination__ | `string`: om de paginering te laten zien op de `top`, `bottom` of `both'. Default: `'top'`.
 * __size__ | `string`: grootte van de pagineerknoppen (ofwel `default`, `lg`, of `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: de maximale hoogte van de container. Als een ingesloten pagina hoger is, wordt een verticale schuifbalk toegevoegd. Default: `none`.

@@ -43,6 +43,7 @@ To komponento učenci uporabljajo za kratko povzemanje predstavljenih podatkov i
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

@@ -10,7 +10,7 @@ Komponent stránkovania ISLE, ktorý umožňuje používateľovi prechádzať po
 
 * __activePage__ | `number`: aktívna stránka. Default: `1`.
 * __disabled__ | `boolean`: kontroluje, či je navigačný panel aktívny alebo nie.. Default: `false`.
-* __title__ | `string`: zobrazený názov kontajnera stránok. Default: `''`.
+* __title__ | `(string|node)`: zobrazený názov kontajnera stránok. Default: `''`.
 * __pagination__ | `string`: či sa má stránkovanie zobrazovať buď na `top`, `bottom` alebo `both`.. Default: `'top'`.
 * __size__ | `string`: veľkosť tlačidiel stránkovania (buď `default`, `lg`, alebo `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: maximálna výška kontajnera. Ak je vložená stránka vyššia, pridá sa vertikálny posuvník. Default: `none`.

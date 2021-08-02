@@ -8,7 +8,7 @@ Komponent, mis kuvab oma lapsi slaidiesituses või karussellis.
 
 ## Valikud
 
-* __title__ | `string`: slaidiesitluse / karusselli pealkiri, mis kuvatakse selle ülaosas. Default: `''`.
+* __title__ | `(string|node)`: slaidiesitluse / karusselli pealkiri, mis kuvatakse selle ülaosas. Default: `none`.
 * __dots__ | `boolean`: kuvatakse punkte allosas, et kiiresti liikuda mis tahes slaidi juurde. Default: `true`.
 * __fade__ | `boolean`: kontrollib, kas slaidide vaheliseks üleminekuks kasutatakse fadingut.. Default: `false`.
 * __draggable__ | `boolean`: kontrollib, kas kasutajad saavad slaidide vahel navigeerimiseks neid lohistada.. Default: `false`.

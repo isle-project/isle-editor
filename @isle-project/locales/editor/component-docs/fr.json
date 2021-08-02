@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "la superposition d'histogrammes groupés (\"Overlay\") ou la mise en place de graphiques séparés les uns à côté des autres (\"Facets\")",
 	"Histogram-prop-nBins": "nombre de bacs personnalisé",
 	"Histogram-prop-nCols": "nombre de colonnes lors de l'affichage d'un histogramme groupé à facettes",
+	"Histogram-prop-sameXRange": "si vrai, l'étendue de l'axe des x pour chaque facette sera la même que l'histogramme global",
+	"Histogram-prop-sameYRange": "si vrai, l'étendue de l'axe des y pour chaque facette sera la même que l'histogramme global",
 	"Histogram-prop-variable": "variable à afficher",
 	"Histogram-prop-xBins": "objet avec les propriétés \"start\", \"size\" et \"end\" qui régissent le comportement du binning",
 	"hr-description": "Règle horizontale définissant une rupture thématique dans le document.",

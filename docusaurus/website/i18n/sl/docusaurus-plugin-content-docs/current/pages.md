@@ -10,7 +10,7 @@ Komponenta za paginacijo ISLE, ki uporabniku omogoča, da se pomika po zaporedju
 
 * __activePage__ | `number`: aktivna stran. Default: `1`.
 * __disabled__ | `boolean`: nadzoruje, ali je navigacijska vrstica aktivna ali ne.. Default: `false`.
-* __title__ | `string`: prikazan naslov vsebnika strani. Default: `''`.
+* __title__ | `(string|node)`: prikazan naslov vsebnika strani. Default: `''`.
 * __pagination__ | `string`: ali naj se paginacija prikaže na `top`, `bottom` ali `both`. Default: `'top'`.
 * __size__ | `string`: velikost gumbov za paginacijo (bodisi `default`, `lg` ali `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: največjo višino posode. Če je vstavljena stran višja, se doda navpična drsna vrstica. Default: `none`.

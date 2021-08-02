@@ -17,7 +17,7 @@ Pečat odobritve.
 * __noOrnaments__ | `boolean`: preprečuje upodabljanje ornamentov. Default: `false`.
 * __removable__ | `boolean`: nadzoruje, ali se opomba odstrani, ko jo kliknete.. Default: `false`.
 * __style__ | `object`: slog za element. Default: `none`.
-* __title__ | `string`: naslov pečata. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: naslov pečata. Default: `'Enter a title'`.
 * __upper__ | `string`: zgornje besedilo. Default: `'The upper text'`.
 * __upperArc__ | `number`: lok za zgornje besedilo. Default: `150`.
 

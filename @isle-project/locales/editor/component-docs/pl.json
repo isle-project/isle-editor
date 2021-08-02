@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "czy nakładać na siebie zgrupowane histogramy (`Overlay`), czy też w oddzielnych działkach obok siebie (`Facets`)",
 	"Histogram-prop-nBins": "niestandardowa liczba pojemników",
 	"Histogram-prop-nCols": "liczba kolumn podczas wyświetlania fasetowanego histogramu grupowego",
+	"Histogram-prop-sameXRange": "jeśli prawda, to zakres osi x dla każdej fasety będzie taki sam jak histogram ogólny",
+	"Histogram-prop-sameYRange": "jeśli prawda, to zakres osi y dla każdej fasety będzie taki sam jak histogram ogólny",
 	"Histogram-prop-variable": "zmienna do wyświetlania",
 	"Histogram-prop-xBins": "obiekt z \"startem\", \"rozmiarem\" i \"końcowymi\" właściwościami regulującymi zachowanie kosza",
 	"hr-description": "Reguła pozioma określająca przerwę tematyczną w dokumencie.",

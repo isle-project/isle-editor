@@ -11,7 +11,7 @@ Egy vékony burkolat a [react-sortable-tree](https://www.npmjs.com/package/react
 * __treeData__ | `array<object> (required)`: objektumok tömbje a `title` (a csomópont elsődleges címkéje),
 `subtitle` (másodlagos címke), `expanded` (a csomópont gyermekeinek megjelenítése, ha igazra van állítva), és/vagy
 `children` (az adott csomóponthoz tartozó gyermek csomópontok tömbje).. Default: `none`.
-* __title__ | `string`: fejléc címe. Default: `none`.
+* __title__ | `(string|node)`: fejléc címe. Default: `none`.
 
 
 ## Példák

@@ -43,6 +43,7 @@ This component is used by students to briefly summarize data as it is presented 
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

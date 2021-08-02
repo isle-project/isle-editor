@@ -8,7 +8,7 @@ Komponentas, kuris rodo savo vaikus skaidrių rodymo arba karuselės pavidalu.
 
 ## Parinktys
 
-* __title__ | `string`: skaidrių rodymo / karuselės pavadinimas, kuris bus rodomas jos viršuje.. Default: `''`.
+* __title__ | `(string|node)`: skaidrių rodymo / karuselės pavadinimas, kuris bus rodomas jos viršuje.. Default: `none`.
 * __dots__ | `boolean`: rodyti taškus apačioje, kad būtų galima greitai pereiti prie bet kurios skaidrės.. Default: `true`.
 * __fade__ | `boolean`: kontroliuoja, ar perėjimui tarp skaidrių bus naudojamas išblukimas.. Default: `false`.
 * __draggable__ | `boolean`: kontroliuoja, ar naudotojai gali vilkti skaidres ir naršyti tarp jų.. Default: `false`.

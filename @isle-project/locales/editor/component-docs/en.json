@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)",
 	"Histogram-prop-nBins": "custom number of bins",
 	"Histogram-prop-nCols": "number of columns when displaying a facetted grouped histogram",
+	"Histogram-prop-sameXRange": "if true, the x-axis range for each facet will be the same as the overall histogram",
+	"Histogram-prop-sameYRange": "if true, the y-axis range for each facet will be the same as the overall histogram",
 	"Histogram-prop-variable": "variable to display",
 	"Histogram-prop-xBins": "object with `start`, `size`, and `end` properties governing binning behavior",
 	"hr-description": "Horizontal rule defining a thematic break in the document.",

@@ -10,7 +10,7 @@ sidebar_label: Pages
 
 * __activePage__ | `number`: アクティブページ. Default: `1`.
 * __disabled__ | `boolean`: はナビゲーションバーがアクティブかどうかを制御します。. Default: `false`.
-* __title__ | `string`: ページコンテナの表示タイトル. Default: `''`.
+* __title__ | `(string|node)`: ページコンテナの表示タイトル. Default: `''`.
 * __pagination__ | `string`: ページネーションを `top`, `bottom`, `両方に表示するかどうか。. Default: `'top'`.
 * __size__ | `string`: ページ分割ボタンのサイズ (`default`, `lg`, `sm` のいずれか). Default: `'default'`.
 * __height__ | `(number|string)`: コンテナの最大高さを指定します。埋め込みページの高さが高い場合、垂直スクロールバーが追加されます。. Default: `none`.

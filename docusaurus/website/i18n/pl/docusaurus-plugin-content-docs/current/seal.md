@@ -17,7 +17,7 @@ Plomba homologacyjna.
 * __noOrnaments__ | `boolean`: zapobiega renderowaniu ozdób. Default: `false`.
 * __removable__ | `boolean`: kontroluje, czy notatka jest usuwana po kliknięciu. Default: `false`.
 * __style__ | `object`: styl dla elementu. Default: `none`.
-* __title__ | `string`: tytuł stempla. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: tytuł stempla. Default: `'Enter a title'`.
 * __upper__ | `string`: tekst górny. Default: `'The upper text'`.
 * __upperArc__ | `number`: łuk dla tekstu górnego. Default: `150`.
 

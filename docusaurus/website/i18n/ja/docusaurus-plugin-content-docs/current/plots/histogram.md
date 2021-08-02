@@ -19,6 +19,8 @@ sidebar_label: Histogram
 * __nBins__ | `number`: 慣習的な箱の数. Default: `none`.
 * __nCols__ | `number`: ファセットグループ化されたヒストグラムを表示する際の列数. Default: `none`.
 * __xBins__ | `{start,size,end}`: オブジェクトで、ビニング動作を制御する `start`, `size`, `end` プロパティを持ちます。. Default: `{}`.
+* __sameXRange__ | `boolean`: trueの場合、各ファセットのX軸方向の範囲は、全体のヒストグラムと同じになります。. Default: `false`.
+* __sameYRange__ | `boolean`: trueの場合、各ファセットのY軸の範囲は、全体のヒストグラムと同じになります。. Default: `false`.
 
 
 ## 例としては、以下のようなものがあります。

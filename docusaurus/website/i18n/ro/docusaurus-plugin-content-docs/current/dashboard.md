@@ -10,7 +10,7 @@ Un tablou de bord pentru combinarea manipulării mai multor câmpuri de intrare 
 
 * __autoStart__ | `boolean`: dacă este setată la `true`, funcția `onGenerate` este executată la pornire cu valorile de intrare implicite.. Default: `true`.
 * __autoUpdate__ | `boolean`: controlează dacă funcția `onGenerate` trebuie să fie invocată automat atunci când unul dintre câmpurile de intrare copil se modifică.. Default: `false`.
-* __description__ | `string`: descrierea tabloului de bord. Default: `''`.
+* __description__ | `(string|node)`: descrierea tabloului de bord. Default: `''`.
 * __disabled__ | `boolean`: controlează dacă tabloul de bord trebuie dezactivat. Default: `false`.
 * __label__ | `string`: eticheta butonului. Default: `none`.
 * __maxWidth__ | `number`: lățimea maximă a tabloului de bord. Default: `600`.

@@ -43,6 +43,7 @@ Túto zložku študenti používajú na stručné zhrnutie prezentovaných údaj
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

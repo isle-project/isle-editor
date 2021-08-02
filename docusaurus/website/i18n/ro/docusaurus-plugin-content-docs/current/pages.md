@@ -10,7 +10,7 @@ O componentă de paginare ISLE care permite utilizatorului să parcurgă o secve
 
 * __activePage__ | `number`: pagina activă. Default: `1`.
 * __disabled__ | `boolean`: controlează dacă bara de navigare este activă sau nu. Default: `false`.
-* __title__ | `string`: titlul afișat al paginilor container. Default: `''`.
+* __title__ | `(string|node)`: titlul afișat al paginilor container. Default: `''`.
 * __pagination__ | `string`: dacă se va afișa paginarea fie în `top`, `bottom`, sau `both`.. Default: `'top'`.
 * __size__ | `string`: dimensiunea butoanelor de paginare (fie `default`, `lg`, sau `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: înălțimea maximă a containerului. Dacă o pagină încorporată este mai înaltă, se adaugă o bară de defilare verticală.. Default: `none`.

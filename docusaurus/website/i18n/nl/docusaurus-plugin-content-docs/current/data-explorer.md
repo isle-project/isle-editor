@@ -43,6 +43,7 @@ Deze component wordt door de studenten gebruikt om de gegevens kort samen te vat
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

@@ -10,7 +10,7 @@ Un componente de paginación ISLE que permite al usuario pasar por una secuencia
 
 * __activePage__ | `number`: página activa. Default: `1`.
 * __disabled__ | `boolean`: controla si la barra de navegación está activa o no. Default: `false`.
-* __title__ | `string`: título mostrado de las páginas contenedor. Default: `''`.
+* __title__ | `(string|node)`: título mostrado de las páginas contenedor. Default: `''`.
 * __pagination__ | `string`: si mostrar la paginación en la `top`, `bottom`, o `both`. Default: `'top'`.
 * __size__ | `string`: tamaño de los botones de paginación (ya sea `default`, `lg`, o `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: la altura máxima del contenedor. Si una página incrustada es más alta, se añade una barra de desplazamiento vertical. Default: `none`.

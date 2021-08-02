@@ -8,7 +8,7 @@ Olyan komponens, amely a gyermekeit diavetítésben vagy körhintában jeleníti
 
 ## Opciók
 
-* __title__ | `string`: a diavetítés / körhinta címe, amely a tetején jelenik meg. Default: `''`.
+* __title__ | `(string|node)`: a diavetítés / körhinta címe, amely a tetején jelenik meg. Default: `none`.
 * __dots__ | `boolean`: alul pontok megjelenítése a gyors navigáláshoz bármelyik diához. Default: `true`.
 * __fade__ | `boolean`: szabályozza, hogy a diák közötti átmenetre használjon-e halványítást.. Default: `false`.
 * __draggable__ | `boolean`: szabályozza, hogy a felhasználók húzhatják-e a diákat a közöttük való navigáláshoz.. Default: `false`.

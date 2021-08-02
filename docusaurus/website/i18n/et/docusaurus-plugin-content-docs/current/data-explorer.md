@@ -43,6 +43,7 @@ Seda komponenti kasutavad õpilased andmete esitamisel lühikese kokkuvõtte teg
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

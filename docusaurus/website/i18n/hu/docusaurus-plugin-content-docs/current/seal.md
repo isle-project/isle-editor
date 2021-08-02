@@ -17,7 +17,7 @@ Jóváhagyási pecsét.
 * __noOrnaments__ | `boolean`: megakadályozza a díszek megjelenítését. Default: `false`.
 * __removable__ | `boolean`: szabályozza, hogy a megjegyzés eltávolításra kerüljön-e, ha rákattintanak. Default: `false`.
 * __style__ | `object`: az elem stílusa. Default: `none`.
-* __title__ | `string`: pecsét címe. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: pecsét címe. Default: `'Enter a title'`.
 * __upper__ | `string`: a felső szöveg. Default: `'The upper text'`.
 * __upperArc__ | `number`: a felső szöveg ívét. Default: `150`.
 

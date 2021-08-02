@@ -19,6 +19,8 @@ Histogram.
 * __nBins__ | `number`: niestandardowa liczba pojemników. Default: `none`.
 * __nCols__ | `number`: liczba kolumn podczas wyświetlania fasetowanego histogramu grupowego. Default: `none`.
 * __xBins__ | `{start,size,end}`: obiekt z "startem", "rozmiarem" i "końcowymi" właściwościami regulującymi zachowanie kosza. Default: `{}`.
+* __sameXRange__ | `boolean`: jeśli prawda, to zakres osi x dla każdej fasety będzie taki sam jak histogram ogólny. Default: `false`.
+* __sameYRange__ | `boolean`: jeśli prawda, to zakres osi y dla każdej fasety będzie taki sam jak histogram ogólny. Default: `false`.
 
 
 ## Przykłady

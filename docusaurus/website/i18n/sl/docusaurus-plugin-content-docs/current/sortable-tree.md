@@ -11,7 +11,7 @@ Tanek ovoj okoli [react-sortable-tree](https://www.npmjs.com/package/react-sorta
 * __treeData__ | `array<object> (required)`: polje objektov z `naslovom` (primarna oznaka vozlišča),
 `podnaslov` (sekundarna oznaka), `razširjeno` (prikaže otroke vozlišča, če je nastavljeno na true) in/ali
 `deti` (polje podrejenih vozlišč, ki pripadajo zadevnemu vozlišču).. Default: `none`.
-* __title__ | `string`: naslov glave. Default: `none`.
+* __title__ | `(string|node)`: naslov glave. Default: `none`.
 
 
 ## Primeri

@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "hogy a csoportosított hisztogramokat egymásra helyezzük-e (`Overlay`) vagy különálló ábrákon egymás mellett (`Facets`).",
 	"Histogram-prop-nBins": "tárolók egyéni száma",
 	"Histogram-prop-nCols": "oszlopok száma egy fakultatív csoportosított hisztogram megjelenítésekor",
+	"Histogram-prop-sameXRange": "ha igaz, akkor az x-tengely tartománya az egyes fakultásokhoz ugyanaz lesz, mint a teljes hisztogramé.",
+	"Histogram-prop-sameYRange": "ha igaz, akkor az y-tengelyek tartománya minden egyes facet esetében ugyanaz lesz, mint a teljes hisztogramé.",
 	"Histogram-prop-variable": "változó a megjelenítéshez",
 	"Histogram-prop-xBins": "objektum a \"start\", \"size\" és \"end\" tulajdonságokkal, amelyek a binning viselkedést szabályozzák.",
 	"hr-description": "Vízszintes szabály, amely egy tematikus törést határoz meg a dokumentumban.",

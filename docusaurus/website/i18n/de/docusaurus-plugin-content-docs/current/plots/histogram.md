@@ -19,6 +19,8 @@ Ein Histogramm.
 * __nBins__ | `number`: Benutzerdefinierte Anzahl von Fächern. Default: `none`.
 * __nCols__ | `number`: Anzahl der Spalten bei der Anzeige eines facettierten gruppierten Histogramms. Default: `none`.
 * __xBins__ | `{start,size,end}`: Objekt mit den Eigenschaften `start`, `size` und `end`, die das Binning-Verhalten steuern. Default: `{}`.
+* __sameXRange__ | `boolean`: wenn wahr, ist der Bereich der x-Achse für jede Facette derselbe wie der des Gesamthistogramms. Default: `false`.
+* __sameYRange__ | `boolean`: wenn wahr, ist der y-Achsenbereich für jede Facette derselbe wie der des Gesamthistogramms. Default: `false`.
 
 
 ## Beispiele

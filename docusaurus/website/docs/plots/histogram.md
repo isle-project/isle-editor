@@ -19,6 +19,8 @@ A histogram.
 * __nBins__ | `number`: custom number of bins. Default: `none`.
 * __nCols__ | `number`: number of columns when displaying a facetted grouped histogram. Default: `none`.
 * __xBins__ | `{start,size,end}`: object with `start`, `size`, and `end` properties governing binning behavior. Default: `{}`.
+* __sameXRange__ | `boolean`: if true, the x-axis range for each facet will be the same as the overall histogram. Default: `false`.
+* __sameYRange__ | `boolean`: if true, the y-axis range for each facet will be the same as the overall histogram. Default: `false`.
 
 
 ## Examples

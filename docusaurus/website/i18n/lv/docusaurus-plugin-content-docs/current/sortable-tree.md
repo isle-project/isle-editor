@@ -11,7 +11,7 @@ Plāns apvalks ap [react-sortable-tree](https://www.npmjs.com/package/react-sort
 * __treeData__ | `array<object> (required)`: objektu masīvs ar `title` (mezgla primārais marķējums),
 `subtitle` (sekundārais marķējums), `expanded` (parādīt mezgla bērnus, ja iestatīts uz true) un/vai
 `children` (attiecīgajam mezglam piederošo mezglu bērnu mezglu masīvs).. Default: `none`.
-* __title__ | `string`: virsraksta virsraksts. Default: `none`.
+* __title__ | `(string|node)`: virsraksta virsraksts. Default: `none`.
 
 
 ## Piemēri

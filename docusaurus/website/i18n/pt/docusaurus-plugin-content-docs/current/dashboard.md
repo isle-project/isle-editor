@@ -10,7 +10,7 @@ Um painel de controle para combinar o manuseio de múltiplos campos de entrada d
 
 * __autoStart__ | `boolean`: se definida como "verdadeira", a função "Gerar" é executada na inicialização com os valores de entrada padrão. Default: `true`.
 * __autoUpdate__ | `boolean`: controla se a função "Gerar" deve ser invocada automaticamente quando um dos campos de entrada de crianças muda. Default: `false`.
-* __description__ | `string`: descrição do painel de instrumentos. Default: `''`.
+* __description__ | `(string|node)`: descrição do painel de instrumentos. Default: `''`.
 * __disabled__ | `boolean`: controla se o painel de instrumentos deve ser desativado. Default: `false`.
 * __label__ | `string`: etiqueta do botão. Default: `none`.
 * __maxWidth__ | `number`: largura máxima do painel de instrumentos. Default: `600`.

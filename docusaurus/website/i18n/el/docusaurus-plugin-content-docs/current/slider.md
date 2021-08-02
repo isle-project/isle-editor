@@ -8,7 +8,7 @@ sidebar_label: Slider
 
 ## Επιλογές
 
-* __title__ | `string`: τίτλος για το slideshow / carousel που θα εμφανίζεται στην κορυφή του. Default: `''`.
+* __title__ | `(string|node)`: τίτλος για το slideshow / carousel που θα εμφανίζεται στην κορυφή του. Default: `none`.
 * __dots__ | `boolean`: εμφάνιση κουκκίδων στο κάτω μέρος για γρήγορη πλοήγηση σε οποιαδήποτε διαφάνεια. Default: `true`.
 * __fade__ | `boolean`: ελέγχει αν χρησιμοποιείται το fading για τη μετάβαση μεταξύ των διαφανειών. Default: `false`.
 * __draggable__ | `boolean`: ελέγχει αν οι χρήστες μπορούν να σύρουν τις διαφάνειες για να πλοηγηθούν μεταξύ τους. Default: `false`.

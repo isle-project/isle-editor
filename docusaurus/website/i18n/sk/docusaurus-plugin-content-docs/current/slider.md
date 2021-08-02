@@ -8,7 +8,7 @@ Komponent, ktorý zobrazuje svoje deti v prezentácii alebo kolotoči.
 
 ## Možnosti
 
-* __title__ | `string`: názov prezentácie/karuselu, ktorý sa zobrazí v jej hornej časti. Default: `''`.
+* __title__ | `(string|node)`: názov prezentácie/karuselu, ktorý sa zobrazí v jej hornej časti. Default: `none`.
 * __dots__ | `boolean`: zobrazenie bodov v spodnej časti na rýchlu navigáciu na ľubovoľnú snímku. Default: `true`.
 * __fade__ | `boolean`: ovláda, či sa na prechod medzi snímkami použije fading.. Default: `false`.
 * __draggable__ | `boolean`: kontroluje, či používatelia môžu prechádzať medzi snímkami ťahaním.. Default: `false`.

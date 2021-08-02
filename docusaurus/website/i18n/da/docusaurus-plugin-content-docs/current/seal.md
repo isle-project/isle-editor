@@ -17,7 +17,7 @@ Et godkendelsesstempel.
 * __noOrnaments__ | `boolean`: forhindrer gengivelse af ornamenter. Default: `false`.
 * __removable__ | `boolean`: styrer, om noten skal fjernes, når der klikkes på den. Default: `false`.
 * __style__ | `object`: stilen for elementet. Default: `none`.
-* __title__ | `string`: segl titel. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: segl titel. Default: `'Enter a title'`.
 * __upper__ | `string`: den øverste tekst. Default: `'The upper text'`.
 * __upperArc__ | `number`: buen for den øverste tekst. Default: `150`.
 

@@ -8,7 +8,7 @@ Komponentti, joka näyttää lapsensa diaesityksenä tai karusellina.
 
 ## Vaihtoehdot
 
-* __title__ | `string`: diaesityksen / karusellin otsikko, joka näytetään sen yläosassa.. Default: `''`.
+* __title__ | `(string|node)`: diaesityksen / karusellin otsikko, joka näytetään sen yläosassa.. Default: `none`.
 * __dots__ | `boolean`: näytön alareunassa olevat pisteet, joiden avulla voit siirtyä nopeasti mihin tahansa diaan.. Default: `true`.
 * __fade__ | `boolean`: ohjaa, käytetäänkö häivytystä siirtymisessä diojen välillä.. Default: `false`.
 * __draggable__ | `boolean`: ohjaa, voivatko käyttäjät raahata dioja siirtyäkseen niiden välillä.. Default: `false`.

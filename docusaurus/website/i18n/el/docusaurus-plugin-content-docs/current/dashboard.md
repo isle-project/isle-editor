@@ -10,7 +10,7 @@ sidebar_label: Dashboard
 
 * __autoStart__ | `boolean`: αν οριστεί σε `true`, η συνάρτηση `onGenerate` εκτελείται κατά την εκκίνηση με τις προεπιλεγμένες τιμές εισόδου. Default: `true`.
 * __autoUpdate__ | `boolean`: ελέγχει αν η συνάρτηση `onGenerate` θα πρέπει να καλείται αυτόματα όταν αλλάζει ένα από τα πεδία εισόδου των παιδιών.. Default: `false`.
-* __description__ | `string`: περιγραφή ταμπλό. Default: `''`.
+* __description__ | `(string|node)`: περιγραφή ταμπλό. Default: `''`.
 * __disabled__ | `boolean`: ελέγχει αν το ταμπλό θα απενεργοποιηθεί. Default: `false`.
 * __label__ | `string`: ετικέτα κουμπιού. Default: `none`.
 * __maxWidth__ | `number`: μέγιστο πλάτος του ταμπλό. Default: `600`.

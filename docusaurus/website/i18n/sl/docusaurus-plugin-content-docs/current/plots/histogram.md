@@ -19,6 +19,8 @@ Histogram.
 * __nBins__ | `number`: število košaric po meri. Default: `none`.
 * __nCols__ | `number`: število stolpcev pri prikazu histograma z razvrščenimi stranicami. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt z lastnostmi `začetek`, `velikost` in `konec`, ki določajo obnašanje pri biniranju. Default: `{}`.
+* __sameXRange__ | `boolean`: če je true, bo območje osi x za vsako stran enako celotnemu histogramu.. Default: `false`.
+* __sameYRange__ | `boolean`: če je to res, bo obseg osi y za vsako stran enak celotnemu histogramu.. Default: `false`.
 
 
 ## Primeri

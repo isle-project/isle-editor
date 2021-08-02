@@ -10,7 +10,7 @@ En instrumentpanel för att kombinera hanteringen av flera inmatningsfält för 
 
 * __autoStart__ | `boolean`: Om den är inställd på "true" utförs funktionen "onGenerate" vid uppstart med standardvärdena för indata.. Default: `true`.
 * __autoUpdate__ | `boolean`: kontrollerar om funktionen "onGenerate" ska aktiveras automatiskt när ett av de underordnade inmatningsfälten ändras.. Default: `false`.
-* __description__ | `string`: beskrivning av instrumentpanelen. Default: `''`.
+* __description__ | `(string|node)`: beskrivning av instrumentpanelen. Default: `''`.
 * __disabled__ | `boolean`: Kontrollerar om instrumentpanelen ska inaktiveras.. Default: `false`.
 * __label__ | `string`: knappmärke. Default: `none`.
 * __maxWidth__ | `number`: instrumentpanelens maximala bredd. Default: `600`.

@@ -19,6 +19,8 @@ sidebar_label: Histogram
 * __nBins__ | `number`: 自定义箱数. Default: `none`.
 * __nCols__ | `number`: 显示分面分组直方图时的列数。. Default: `none`.
 * __xBins__ | `{start,size,end}`: 对象，具有 "start"、"size "和 "end "属性，管理分批行为。. Default: `{}`.
+* __sameXRange__ | `boolean`: 如果为真，每个面的X轴范围将与整个直方图相同。. Default: `false`.
+* __sameYRange__ | `boolean`: 如果为真，每个面的Y轴范围将与整个直方图相同。. Default: `false`.
 
 
 ## 例子

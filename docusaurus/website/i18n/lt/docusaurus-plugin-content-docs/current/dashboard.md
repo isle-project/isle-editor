@@ -10,7 +10,7 @@ Informacinis skydelis, skirtas sujungti kelių vaikų įvesties laukų tvarkymą
 
 * __autoStart__ | `boolean`: jei nustatyta `true`, funkcija `onGenerate` vykdoma paleidimo metu su numatytosiomis įvesties reikšmėmis.. Default: `true`.
 * __autoUpdate__ | `boolean`: kontroliuoja, ar funkcija `onGenerate` turi būti automatiškai iškviečiama, kai pasikeičia vienas iš įvesties laukų.. Default: `false`.
-* __description__ | `string`: prietaisų skydelio aprašymas. Default: `''`.
+* __description__ | `(string|node)`: prietaisų skydelio aprašymas. Default: `''`.
 * __disabled__ | `boolean`: kontroliuoja, ar prietaisų skydelis turi būti išjungtas.. Default: `false`.
 * __label__ | `string`: mygtuko etiketė. Default: `none`.
 * __maxWidth__ | `number`: didžiausias prietaisų skydelio plotis. Default: `600`.

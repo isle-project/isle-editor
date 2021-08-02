@@ -19,6 +19,8 @@ Egy hisztogram.
 * __nBins__ | `number`: tárolók egyéni száma. Default: `none`.
 * __nCols__ | `number`: oszlopok száma egy fakultatív csoportosított hisztogram megjelenítésekor. Default: `none`.
 * __xBins__ | `{start,size,end}`: objektum a "start", "size" és "end" tulajdonságokkal, amelyek a binning viselkedést szabályozzák.. Default: `{}`.
+* __sameXRange__ | `boolean`: ha igaz, akkor az x-tengely tartománya az egyes fakultásokhoz ugyanaz lesz, mint a teljes hisztogramé.. Default: `false`.
+* __sameYRange__ | `boolean`: ha igaz, akkor az y-tengelyek tartománya minden egyes facet esetében ugyanaz lesz, mint a teljes hisztogramé.. Default: `false`.
 
 
 ## Példák

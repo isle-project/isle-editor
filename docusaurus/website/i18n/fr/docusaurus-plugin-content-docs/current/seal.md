@@ -17,7 +17,7 @@ Un sceau d'approbation.
 * __noOrnaments__ | `boolean`: empêche la restitution des ornements. Default: `false`.
 * __removable__ | `boolean`: contrôle si la note est retirée lorsqu'on clique dessus. Default: `false`.
 * __style__ | `object`: le style de l'élément. Default: `none`.
-* __title__ | `string`: titre du sceau. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: titre du sceau. Default: `'Enter a title'`.
 * __upper__ | `string`: le texte supérieur. Default: `'The upper text'`.
 * __upperArc__ | `number`: l'arc pour le texte supérieur. Default: `150`.
 

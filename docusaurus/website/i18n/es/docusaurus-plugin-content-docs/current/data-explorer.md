@@ -43,6 +43,7 @@ Los estudiantes utilizan este componente para resumir brevemente los datos a med
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "se devem sobrepor histogramas agrupados uns sobre os outros (`Overlay') ou em parcelas separadas umas ao lado das outras (`Facetas')",
 	"Histogram-prop-nBins": "número personalizado de silos",
 	"Histogram-prop-nCols": "número de colunas ao exibir um histograma agrupado facetado",
+	"Histogram-prop-sameXRange": "se for verdade, o alcance do eixo x para cada faceta será o mesmo que o histograma geral",
+	"Histogram-prop-sameYRange": "se for verdade, o alcance do eixo y para cada faceta será o mesmo que o histograma geral",
 	"Histogram-prop-variable": "variável a exibir",
 	"Histogram-prop-xBins": "objeto com propriedades de \"início\", \"tamanho\" e \"fim\" que governam o comportamento de encinchamento",
 	"hr-description": "Regra horizontal que define uma ruptura temática no documento.",

@@ -11,7 +11,7 @@ sidebar_label: Sortable Tree
 * __treeData__ | `array<object> (required)`: πίνακας αντικειμένων με "τίτλο" (κύρια ετικέτα για τον κόμβο),
 `subtitle` (δευτερεύουσα ετικέτα), `expanded` (εμφανίζει τα παιδιά του κόμβου αν έχει οριστεί σε true), ή/και
 `children` (πίνακας των κόμβων-παιδιών που ανήκουν στον αντίστοιχο κόμβο). Default: `none`.
-* __title__ | `string`: τίτλος κεφαλίδας. Default: `none`.
+* __title__ | `(string|node)`: τίτλος κεφαλίδας. Default: `none`.
 
 
 ## Παραδείγματα

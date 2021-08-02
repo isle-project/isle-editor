@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "si superponer los histogramas agrupados unos sobre otros (`Superponer`) o en parcelas separadas una al lado de la otra (`Facetas`)",
 	"Histogram-prop-nBins": "número personalizado de contenedores",
 	"Histogram-prop-nCols": "número de columnas cuando se muestra un histograma agrupado facetado",
+	"Histogram-prop-sameXRange": "si es verdadero, el rango del eje x para cada faceta será el mismo que el histograma general",
+	"Histogram-prop-sameYRange": "si es verdadero, el rango del eje y para cada faceta será el mismo que el histograma general",
 	"Histogram-prop-variable": "variable a mostrar",
 	"Histogram-prop-xBins": "con propiedades de \"inicio\", \"tamaño\" y \"fin\" que rigen el comportamiento de los contenedores",
 	"hr-description": "Regla horizontal que define una ruptura temática en el documento.",

@@ -19,6 +19,8 @@ Un istogramma.
 * __nBins__ | `number`: numero personalizzato di bidoni. Default: `none`.
 * __nCols__ | `number`: numero di colonne quando si visualizza un istogramma raggruppato sfaccettato. Default: `none`.
 * __xBins__ | `{start,size,end}`: oggetto con proprietà `start`, `size` e `end` che regolano il comportamento di binning. Default: `{}`.
+* __sameXRange__ | `boolean`: se vero, l'intervallo dell'asse x per ogni sfaccettatura sarà lo stesso dell'istogramma generale. Default: `false`.
+* __sameYRange__ | `boolean`: se vero, l'intervallo dell'asse y per ogni sfaccettatura sarà lo stesso dell'istogramma generale. Default: `false`.
 
 
 ## Esempi

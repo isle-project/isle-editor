@@ -8,7 +8,7 @@ Un componente que muestra a sus hijos en una presentación de diapositivas o en 
 
 ## Opciones
 
-* __title__ | `string`: título de la presentación de diapositivas / carrusel que se mostrará en su parte superior. Default: `''`.
+* __title__ | `(string|node)`: título de la presentación de diapositivas / carrusel que se mostrará en su parte superior. Default: `none`.
 * __dots__ | `boolean`: mostrar puntos en la parte inferior para navegar rápidamente a cualquier diapositiva. Default: `true`.
 * __fade__ | `boolean`: controla si el desvanecimiento se utiliza para la transición entre las diapositivas. Default: `false`.
 * __draggable__ | `boolean`: controla si los usuarios pueden arrastrar las diapositivas para navegar entre ellas. Default: `false`.

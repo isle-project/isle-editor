@@ -10,7 +10,7 @@ sidebar_label: Dashboard
 
 * __autoStart__ | `boolean`: 如果设置为 "true"，"onGenerate "函数在启动时以默认输入值执行。. Default: `true`.
 * __autoUpdate__ | `boolean`: 控制当一个子输入字段发生变化时，是否应自动调用 "onGenerate "函数。. Default: `false`.
-* __description__ | `string`: 仪表盘描述. Default: `''`.
+* __description__ | `(string|node)`: 仪表盘描述. Default: `''`.
 * __disabled__ | `boolean`: 控制是否禁用仪表盘. Default: `false`.
 * __label__ | `string`: 纽扣标签. Default: `none`.
 * __maxWidth__ | `number`: 仪表盘的最大宽度. Default: `600`.

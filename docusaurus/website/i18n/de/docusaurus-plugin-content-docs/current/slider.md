@@ -8,7 +8,7 @@ Eine Komponente, die ihre Kinder in einer Diashow oder einem Karussell anzeigt.
 
 ## Optionen
 
-* __title__ | `string`: Titel für die Diashow / das Karussell, der im oberen Bereich angezeigt werden soll. Default: `''`.
+* __title__ | `(string|node)`: Titel für die Diashow / das Karussell, der im oberen Bereich angezeigt werden soll. Default: `none`.
 * __dots__ | `boolean`: Anzeigepunkte am unteren Rand zum schnellen Navigieren zu jeder Folie. Default: `true`.
 * __fade__ | `boolean`: steuert, ob die Überblendung für den Übergang zwischen den Dias verwendet wird. Default: `false`.
 * __draggable__ | `boolean`: steuert, ob Benutzer die Folien ziehen können, um zwischen ihnen zu navigieren. Default: `false`.

@@ -10,7 +10,7 @@ sidebar_label: Dashboard
 
 * __autoStart__ | `boolean`: если установлено значение `true`, то функция `onGenerate` выполняется при запуске с входными значениями по умолчанию. Default: `true`.
 * __autoUpdate__ | `boolean`: управляет тем, должна ли функция `onGenerate` вызываться автоматически при изменении одного из полей дочернего входа. Default: `false`.
-* __description__ | `string`: описание приборной панели. Default: `''`.
+* __description__ | `(string|node)`: описание приборной панели. Default: `''`.
 * __disabled__ | `boolean`: контролирует, должна ли приборная панель быть отключена. Default: `false`.
 * __label__ | `string`: наклейка на кнопку. Default: `none`.
 * __maxWidth__ | `number`: максимальная ширина приборной панели. Default: `600`.

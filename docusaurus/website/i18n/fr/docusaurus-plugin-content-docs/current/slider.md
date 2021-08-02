@@ -8,7 +8,7 @@ Un élément qui présente ses enfants dans un diaporama ou un carrousel.
 
 ## Options
 
-* __title__ | `string`: titre du diaporama / carrousel à afficher en haut. Default: `''`.
+* __title__ | `(string|node)`: titre du diaporama / carrousel à afficher en haut. Default: `none`.
 * __dots__ | `boolean`: des points d'affichage en bas pour naviguer rapidement vers une diapositive. Default: `true`.
 * __fade__ | `boolean`: contrôle si le fondu enchaîné est utilisé pour la transition entre les diapositives. Default: `false`.
 * __draggable__ | `boolean`: contrôle si les utilisateurs peuvent faire glisser les diapositives pour naviguer entre elles. Default: `false`.

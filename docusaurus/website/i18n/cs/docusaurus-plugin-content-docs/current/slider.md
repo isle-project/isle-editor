@@ -8,7 +8,7 @@ Komponenta, která zobrazuje své potomky v prezentaci nebo kolotoči.
 
 ## Možnosti
 
-* __title__ | `string`: název pro prezentaci / kolotoč, který se zobrazí v jeho horní části.. Default: `''`.
+* __title__ | `(string|node)`: název pro prezentaci / kolotoč, který se zobrazí v jeho horní části.. Default: `none`.
 * __dots__ | `boolean`: zobrazení bodů v dolní části pro rychlou navigaci na libovolný snímek.. Default: `true`.
 * __fade__ | `boolean`: řídí, zda se pro přechod mezi snímky použije fading.. Default: `false`.
 * __draggable__ | `boolean`: řídí, zda mohou uživatelé přetahovat snímky a pohybovat se mezi nimi.. Default: `false`.

@@ -43,6 +43,7 @@ Această componentă este utilizată de elevi pentru a rezuma pe scurt datele pr
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

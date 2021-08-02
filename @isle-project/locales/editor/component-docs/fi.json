@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "asetetaanko ryhmitellyt histogrammit päällekkäin (`Overlay`) vai erillisinä kuvioina vierekkäin (`Facets`).",
 	"Histogram-prop-nBins": "mukautettu lokeroiden määrä",
 	"Histogram-prop-nCols": "sarakkeiden lukumäärä näytettäessä ryhmiteltyä fasettihistogrammia.",
+	"Histogram-prop-sameXRange": "jos true, x-akselin vaihteluväli on sama kuin koko histogrammissa.",
+	"Histogram-prop-sameYRange": "jos true, y-akselin vaihteluväli kullakin osa-alueella on sama kuin koko histogrammissa.",
 	"Histogram-prop-variable": "muuttuja näyttää",
 	"Histogram-prop-xBins": "objekti, jonka \"start\"-, \"size\"- ja \"end\"-ominaisuudet ohjaavat binning-käyttäytymistä.",
 	"hr-description": "Vaakasuora sääntö, joka määrittelee temaattisen katkoksen asiakirjassa.",

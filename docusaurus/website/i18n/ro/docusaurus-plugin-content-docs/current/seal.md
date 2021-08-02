@@ -17,7 +17,7 @@ Un sigiliu de aprobare.
 * __noOrnaments__ | `boolean`: împiedică redarea ornamentelor. Default: `false`.
 * __removable__ | `boolean`: controlează dacă nota este eliminată atunci când se face clic pe ea. Default: `false`.
 * __style__ | `object`: stilul pentru elementul respectiv. Default: `none`.
-* __title__ | `string`: titlul sigiliului. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: titlul sigiliului. Default: `'Enter a title'`.
 * __upper__ | `string`: textul superior. Default: `'The upper text'`.
 * __upperArc__ | `number`: arcul pentru textul de sus. Default: `150`.
 

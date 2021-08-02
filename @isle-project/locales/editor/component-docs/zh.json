@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "是将分组直方图叠加在一起(\"Overlay\")，还是叠加在彼此相邻的独立图中(\"Facets\")",
 	"Histogram-prop-nBins": "自定义箱数",
 	"Histogram-prop-nCols": "显示分面分组直方图时的列数。",
+	"Histogram-prop-sameXRange": "如果为真，每个面的X轴范围将与整个直方图相同。",
+	"Histogram-prop-sameYRange": "如果为真，每个面的Y轴范围将与整个直方图相同。",
 	"Histogram-prop-variable": "变量显示",
 	"Histogram-prop-xBins": "对象，具有 \"start\"、\"size \"和 \"end \"属性，管理分批行为。",
 	"hr-description": "水平规则定义了文件中的主题中断。",

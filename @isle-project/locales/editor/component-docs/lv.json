@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "vai pārklāt sagrupētas histogrammas vienu virs otras (`Overlay`) vai atsevišķos laukumos blakus (`Facets`).",
 	"Histogram-prop-nBins": "pielāgotais tvertņu skaits",
 	"Histogram-prop-nCols": "kolonnu skaits, kad tiek rādīta šķautņaina grupēta histogramma.",
+	"Histogram-prop-sameXRange": "ja true, katras šķautnes x-as diapazons būs tāds pats kā kopējā histogramma.",
+	"Histogram-prop-sameYRange": "ja true, y ass diapazons katrai šķautnei būs tāds pats kā kopējai histogrammai.",
 	"Histogram-prop-variable": "mainīgais lielums, lai parādītu",
 	"Histogram-prop-xBins": "objekts ar `start`, `size` un `end` īpašībām, kas regulē binning uzvedību.",
 	"hr-description": "Horizontāls noteikums, kas nosaka tematisko pārtraukumu dokumentā.",

@@ -17,7 +17,7 @@ Un sigillo di approvazione.
 * __noOrnaments__ | `boolean`: impedisce la resa degli ornamenti. Default: `false`.
 * __removable__ | `boolean`: controlla se la nota viene rimossa quando si fa clic su. Default: `false`.
 * __style__ | `object`: lo stile per l'elemento. Default: `none`.
-* __title__ | `string`: titolo del sigillo. Default: `'Enter a title'`.
+* __title__ | `(string|node)`: titolo del sigillo. Default: `'Enter a title'`.
 * __upper__ | `string`: il testo `top`. Default: `'The upper text'`.
 * __upperArc__ | `number`: l'arco per il testo superiore. Default: `150`.
 

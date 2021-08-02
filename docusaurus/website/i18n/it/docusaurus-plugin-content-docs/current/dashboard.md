@@ -10,7 +10,7 @@ Un cruscotto per combinare la gestione di più campi di input per bambini.
 
 * __autoStart__ | `boolean`: se impostata su "true", la funzione "onGenerate" viene eseguita all'avvio con i valori di ingresso predefiniti. Default: `true`.
 * __autoUpdate__ | `boolean`: controlla se la funzione `onGenerate` deve essere invocata automaticamente quando uno dei campi di input figlio cambia. Default: `false`.
-* __description__ | `string`: descrizione del cruscotto. Default: `''`.
+* __description__ | `(string|node)`: descrizione del cruscotto. Default: `''`.
 * __disabled__ | `boolean`: controlla se il cruscotto deve essere disabilitato. Default: `false`.
 * __label__ | `string`: Etichetta a bottone. Default: `none`.
 * __maxWidth__ | `number`: larghezza massima del cruscotto. Default: `600`.

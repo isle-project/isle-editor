@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "se sovrapporre istogrammi raggruppati l'uno sull'altro (`Overlay`) o in trame separate l'una accanto all'altra (`Facets`)",
 	"Histogram-prop-nBins": "numero personalizzato di bidoni",
 	"Histogram-prop-nCols": "numero di colonne quando si visualizza un istogramma raggruppato sfaccettato",
+	"Histogram-prop-sameXRange": "se vero, l'intervallo dell'asse x per ogni sfaccettatura sarà lo stesso dell'istogramma generale",
+	"Histogram-prop-sameYRange": "se vero, l'intervallo dell'asse y per ogni sfaccettatura sarà lo stesso dell'istogramma generale",
 	"Histogram-prop-variable": "variabile da visualizzare",
 	"Histogram-prop-xBins": "oggetto con proprietà `start`, `size` e `end` che regolano il comportamento di binning",
 	"hr-description": "Regola orizzontale che definisce una rottura tematica nel documento.",

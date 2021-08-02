@@ -10,7 +10,7 @@ En ISLE-pagineringskomponent, der gør det muligt for brugeren at gå gennem en 
 
 * __activePage__ | `number`: aktiv side. Default: `1`.
 * __disabled__ | `boolean`: styrer, om navigationslinjen er aktiv eller ej. Default: `false`.
-* __title__ | `string`: visning af sidernes titel i containeren. Default: `''`.
+* __title__ | `(string|node)`: visning af sidernes titel i containeren. Default: `''`.
 * __pagination__ | `string`: om paginering skal vises enten `top`, `bottom` eller `both` dele. Default: `'top'`.
 * __size__ | `string`: størrelsen af pagineringsknapperne (enten `default`, `lg` eller `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: beholderens maksimale højde. Hvis en indlejret side er højere, tilføjes en lodret rullebjælke. Default: `none`.

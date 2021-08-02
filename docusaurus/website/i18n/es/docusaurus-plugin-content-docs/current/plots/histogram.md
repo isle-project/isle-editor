@@ -19,6 +19,8 @@ Un histograma.
 * __nBins__ | `number`: número personalizado de contenedores. Default: `none`.
 * __nCols__ | `number`: número de columnas cuando se muestra un histograma agrupado facetado. Default: `none`.
 * __xBins__ | `{start,size,end}`: con propiedades de "inicio", "tamaño" y "fin" que rigen el comportamiento de los contenedores. Default: `{}`.
+* __sameXRange__ | `boolean`: si es verdadero, el rango del eje x para cada faceta será el mismo que el histograma general. Default: `false`.
+* __sameYRange__ | `boolean`: si es verdadero, el rango del eje y para cada faceta será el mismo que el histograma general. Default: `false`.
 
 
 ## Ejemplos

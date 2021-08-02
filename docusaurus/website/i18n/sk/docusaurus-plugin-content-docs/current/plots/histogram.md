@@ -19,6 +19,8 @@ Histogram.
 * __nBins__ | `number`: vlastný počet zásobníkov. Default: `none`.
 * __nCols__ | `number`: počet stĺpcov pri zobrazovaní zoskupeného histogramu. Default: `none`.
 * __xBins__ | `{start,size,end}`: objekt s vlastnosťami `start`, `size` a `end`, ktoré určujú správanie pri binningu. Default: `{}`.
+* __sameXRange__ | `boolean`: ak je to pravda, rozsah osi x pre každý aspekt bude rovnaký ako celkový histogram. Default: `false`.
+* __sameYRange__ | `boolean`: ak je to pravda, rozsah osi y pre každý aspekt bude rovnaký ako celkový histogram. Default: `false`.
 
 
 ## Príklady

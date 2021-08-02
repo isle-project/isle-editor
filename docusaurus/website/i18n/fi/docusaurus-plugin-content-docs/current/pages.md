@@ -10,7 +10,7 @@ ISLE-sivukomponentti, jonka avulla käyttäjä voi siirtyä sivusarjan läpi.
 
 * __activePage__ | `number`: aktiivinen sivu. Default: `1`.
 * __disabled__ | `boolean`: ohjaa, onko navigointipalkki aktiivinen vai ei. Default: `false`.
-* __title__ | `string`: sivujen säiliön näytetty otsikko. Default: `''`.
+* __title__ | `(string|node)`: sivujen säiliön näytetty otsikko. Default: `''`.
 * __pagination__ | `string`: näytetäänkö sivunumerointi joko `top`, `bottom` vai `both`.. Default: `'top'`.
 * __size__ | `string`: sivunumeropainikkeiden koko (joko `default`, `lg` tai `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: säiliön enimmäiskorkeus. Jos upotettu sivu on korkeampi, lisätään pystysuora vierityspalkki.. Default: `none`.

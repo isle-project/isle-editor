@@ -10,7 +10,7 @@ Kojelauta, jossa yhdistetään useiden lapsisyöttökenttien käsittely.
 
 * __autoStart__ | `boolean`: jos arvoksi asetetaan `true`, `onGenerate`-funktio suoritetaan käynnistyksen yhteydessä oletussyöttöarvoilla.. Default: `true`.
 * __autoUpdate__ | `boolean`: ohjaa, onko `onGenerate`-toiminto käynnistettävä automaattisesti, kun jokin lapsen syöttökentistä muuttuu.. Default: `false`.
-* __description__ | `string`: kojelaudan kuvaus. Default: `''`.
+* __description__ | `(string|node)`: kojelaudan kuvaus. Default: `''`.
 * __disabled__ | `boolean`: valvoo, poistetaanko kojelauta käytöstä. Default: `false`.
 * __label__ | `string`: painikkeen etiketti. Default: `none`.
 * __maxWidth__ | `number`: kojelaudan enimmäisleveys. Default: `600`.

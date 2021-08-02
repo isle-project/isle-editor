@@ -363,6 +363,8 @@
 	"Histogram-prop-groupMode": "ar sugrupuotas histogramas dengti vieną ant kitos (`Overlay`), ar atskirose diagramose šalia viena kitos (`Facets`).",
 	"Histogram-prop-nBins": "pasirinktinis talpyklų skaičius",
 	"Histogram-prop-nCols": "stulpelių skaičius, kai rodoma grupinė histograma.",
+	"Histogram-prop-sameXRange": "jei true, kiekvieno aspekto x ašies diapazonas bus toks pat kaip ir bendra histograma.",
+	"Histogram-prop-sameYRange": "jei true, kiekvieno aspekto y ašies diapazonas bus toks pat kaip ir bendra histograma.",
 	"Histogram-prop-variable": "kintamasis rodomas",
 	"Histogram-prop-xBins": "objektas su `pradžios`, `dydžio` ir `galutinės` savybėmis, reguliuojančiomis suskirstymo elgesį.",
 	"hr-description": "Horizontali taisyklė, apibrėžianti dokumento teminę pertrauką.",

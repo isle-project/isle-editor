@@ -8,7 +8,7 @@ En komponent som visar sina barn i ett bildspel eller en karusell.
 
 ## Alternativ
 
-* __title__ | `string`: titel för bildspelet/karusellen som ska visas högst upp i bildspelet/karusellen. Default: `''`.
+* __title__ | `(string|node)`: titel för bildspelet/karusellen som ska visas högst upp i bildspelet/karusellen. Default: `none`.
 * __dots__ | `boolean`: visning av prickar i botten för att snabbt navigera till en bild.. Default: `true`.
 * __fade__ | `boolean`: Kontrollerar om fading används för att övergå mellan diabilderna.. Default: `false`.
 * __draggable__ | `boolean`: kontrollerar om användare kan dra i bildrutorna för att navigera mellan dem. Default: `false`.

@@ -10,7 +10,7 @@ Nadzorna plošča za združevanje ravnanja z več otroškimi vnosnimi polji.
 
 * __autoStart__ | `boolean`: če je nastavljena na `true`, se funkcija `onGenerate` izvede ob zagonu s privzetimi vhodnimi vrednostmi. Default: `true`.
 * __autoUpdate__ | `boolean`: določa, ali naj se funkcija `onGenerate` samodejno sproži, ko se spremeni eno od podrejenih vnosnih polj.. Default: `false`.
-* __description__ | `string`: opis armaturne plošče. Default: `''`.
+* __description__ | `(string|node)`: opis armaturne plošče. Default: `''`.
 * __disabled__ | `boolean`: nadzoruje, ali je armaturna plošča onemogočena.. Default: `false`.
 * __label__ | `string`: oznaka gumba. Default: `none`.
 * __maxWidth__ | `number`: največja širina armaturne plošče. Default: `600`.

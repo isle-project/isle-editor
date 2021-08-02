@@ -43,6 +43,7 @@ Tätä komponenttia opiskelijat käyttävät lyhyeen yhteenvetoon esitetyistä t
   'Pie Chart',
   'Mosaic Plot',
   'Histogram',
+  'Interval Plot',
   'Box Plot',
   'Line Plot',
   'Scatterplot',

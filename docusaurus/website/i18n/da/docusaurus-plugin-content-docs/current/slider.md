@@ -8,7 +8,7 @@ En komponent, der viser sine børn i et diasshow eller en karrusel.
 
 ## Indstillinger
 
-* __title__ | `string`: titel for diasshowet/karrusellen, der skal vises øverst i toppen. Default: `''`.
+* __title__ | `(string|node)`: titel for diasshowet/karrusellen, der skal vises øverst i toppen. Default: `none`.
 * __dots__ | `boolean`: visning af prikker i bunden for hurtigt at navigere til et dias. Default: `true`.
 * __fade__ | `boolean`: styrer, om der skal bruges fading til at skifte mellem dias. Default: `false`.
 * __draggable__ | `boolean`: styrer, om brugerne kan trække i dias for at navigere mellem dem. Default: `false`.

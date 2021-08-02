@@ -19,6 +19,8 @@ Um histograma.
 * __nBins__ | `number`: número personalizado de silos. Default: `none`.
 * __nCols__ | `number`: número de colunas ao exibir um histograma agrupado facetado. Default: `none`.
 * __xBins__ | `{start,size,end}`: objeto com propriedades de "início", "tamanho" e "fim" que governam o comportamento de encinchamento. Default: `{}`.
+* __sameXRange__ | `boolean`: se for verdade, o alcance do eixo x para cada faceta será o mesmo que o histograma geral. Default: `false`.
+* __sameYRange__ | `boolean`: se for verdade, o alcance do eixo y para cada faceta será o mesmo que o histograma geral. Default: `false`.
 
 
 ## Exemplos
