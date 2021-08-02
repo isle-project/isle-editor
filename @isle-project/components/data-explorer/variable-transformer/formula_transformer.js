@@ -30,6 +30,7 @@ import './formula_transformer.css';
 
 // VARIABLES //
 
+const RE_NAME_RANGE = /datum\.([^0-9]+)(\d+):datum\.\1(\d+)/;
 const DIGITS = incrspace( 0, 10, 1 );
 const RE_LAST_EXPRESSION = /(?:^|\n)([^\n]*)$/;
 const RE_DIGITS_START = /^[0-9]/;
@@ -84,6 +85,18 @@ class FormulaTransformer extends Component {
 
 	handleGenerate = () => {
 		let { code, name } = this.state;
+		if ( RE_NAME_RANGE.test( code ) ) {
+			const match = RE_NAME_RANGE.exec( code );
+			const prefix = match[ 1 ];
+			const start = parseInt( match[ 2 ], 10 );
+			const end = parseInt( match[ 3 ], 10 );
+			let replacement = '';
+			for ( let i = start; i <= end; i++ ) {
+				replacement += `datum.${prefix}${i}`; // eslint-disable-line i18next/no-literal-string
+				replacement += i < end ? ',' : '';
+			}
+			code = replace( code, match[ 0 ], replacement );
+		}
 		if ( !contains( code, 'return ' ) ) {
 			code = replace( code, RE_LAST_EXPRESSION, '\nreturn $1' );
 		}
@@ -258,10 +271,10 @@ class FormulaTransformer extends Component {
 								<Card.Body>
 									<ButtonToolbar style={{ marginBottom: 5 }} >
 										<ButtonGroup size="sm" className="mr-2" >
-											<Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button>
-											<Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button>
-											<Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button>
-											<Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button>
+											<Tooltip placement="top" tooltip={t('smaller-than')} ><Button variant="light" onClick={this.insertLiteralFactory(' < ')} >{'<'}</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('greater-than')} ><Button variant="light" onClick={this.insertLiteralFactory(' > ')} >{'>'}</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('smaller-or-equal')} ><Button variant="light" onClick={this.insertLiteralFactory(' <= ')} >{'<='}</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('greater-or-equal')} ><Button variant="light" onClick={this.insertLiteralFactory(' >= ')} >{'>='}</Button></Tooltip>
 										</ButtonGroup>
 										<ButtonGroup size="sm" className="mr-2" >
 											<Tooltip placement="top" tooltip={t('open-parenthesis')} ><Button variant="light" onClick={this.insertLiteralFactory(' ( ')} >(</Button></Tooltip>
@@ -274,22 +287,26 @@ class FormulaTransformer extends Component {
 											<Tooltip placement="top" tooltip={t('division')}><Button variant="light" onClick={this.insertLiteralFactory(' / ')} >/</Button></Tooltip>
 										</ButtonGroup>
 										<ButtonGroup size="sm" className="mr-2" >
-											<Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button>
-											<Button variant="light" onClick={this.insertLiteralFactory(' || ')} >{t('or')}</Button>
-											<Button variant="light" onClick={this.insertLiteralFactory(' !')} >{t('not')}</Button>
-										</ButtonGroup>
-										<ButtonGroup size="sm" className="me-2">
-											{FUNCTION_KEYS.map( ( v, i ) => {
-												return <Button key={i} variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>;
-											})}
+											<Tooltip placement="top" tooltip={t('boolean-and')}><Button variant="light" onClick={this.insertLiteralFactory(' && ')} >{t('and')}</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('boolean-or')}><Button variant="light" onClick={this.insertLiteralFactory(' || ')} >{t('or')}</Button></Tooltip>
+											<Tooltip placement="top" tooltip={t('boolean-not')}><Button variant="light" onClick={this.insertLiteralFactory(' !')} >{t('not')}</Button></Tooltip>
 										</ButtonGroup>
 									</ButtonToolbar>
-									<ButtonToolbar>
+									<ButtonToolbar style={{ marginBottom: 5 }} >
 										<ButtonGroup size="sm" className="mr-2" >
 											{DIGITS.map( ( d, i ) => {
 												return <Button key={i} variant="light" onClick={this.insertLiteralFactory( `${d}`)} >{d}</Button>;
 											})}
 											<Button variant="light" onClick={this.insertLiteralFactory('.')} >.</Button>
+										</ButtonGroup>
+									</ButtonToolbar>
+									<ButtonToolbar>
+										<ButtonGroup size="sm" className="me-2" >
+											{FUNCTION_KEYS.map( ( v, i ) => {
+												return ( <Tooltip key={i} placement="bottom" tooltip={t(v+'-tooltip')} >
+													<Button variant="light" onClick={this.insertFuncFactory( v )} eventKey={i}>{v}</Button>
+												</Tooltip> );
+											})}
 										</ButtonGroup>
 									</ButtonToolbar>
 								</Card.Body>

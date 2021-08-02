@@ -1,9 +1,12 @@
 [
 	"exp",
 	"ln",
+	"round",
+	"sqrt",
+	"power",
 	"max",
 	"min",
-	"power",
-	"round",
-	"sqrt"
+	"mean",
+	"stdev",
+	"sum"
 ]

@@ -10,7 +10,26 @@ import ln from '@stdlib/math/base/special/ln';
 import isObject from '@stdlib/assert/is-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isNull from '@stdlib/assert/is-null';
+import stdev from '@isle-project/utils/statistic/stdev.js';
+import mean from '@isle-project/utils/statistic/mean.js';
+import sum from '@isle-project/utils/statistic/sum.js';
 import FUNCTION_KEYS from './function_keys.json';
+
+
+// FUNCTIONS //
+
+/**
+ * Turns a function accepting an array of numbers into a function accepting a variable number of arguments.
+ *
+ * @private
+ * @param {Function} func - function to wrap
+ * @returns {Function} wrapped function
+ */
+const variadicFunction = ( func ) => {
+	return ( ...args ) => {
+		return func( args );
+	};
+};
 
 
 // VARIABLES //
@@ -18,11 +37,14 @@ import FUNCTION_KEYS from './function_keys.json';
 const FUNCTIONS = [
 	exp,
 	ln,
+	round,
+	sqrt,
+	power,
 	max,
 	min,
-	power,
-	round,
-	sqrt
+	variadicFunction( mean ),
+	variadicFunction( stdev ),
+	variadicFunction( sum )
 ];
 
 
