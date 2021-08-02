@@ -53,7 +53,7 @@ const AnswerOption = ( props ) => {
 		return (
 			<OverlayTrigger
 				trigger={[ 'click', 'hover' ]}
-				placement="bottom"
+				placement="top-end"
 				overlay={popover}
 			>
 				<ListGroupItem className="multiple-choice-answer"
