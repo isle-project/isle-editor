@@ -52,9 +52,10 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	return config;
 }
 
-export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins = {}}) {
+export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
 	let traces;
 	let layout;
+	let keys;
 
 	if ( !group ) {
 		let vals = data[ variable ];
@@ -106,7 +107,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			return nonmissing;
 		});
 		traces = [];
-		const keys = extractUsedCategories( freqs, group );
+		keys = extractUsedCategories( freqs, group );
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / nCols );
 		if ( groupMode === 'Facets' ) {
@@ -193,6 +194,16 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 		if ( groupMode === 'Facets' ) {
 			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
 			layout.height = 300 + ( ( nRows - 1 ) * 150 );
+			if ( sameXRange ) {
+				for ( let i = 1; i <= keys.length; i++ ) {
+					layout[ 'xaxis'+i ] = { matches: 'x' };
+				}
+			}
+			if ( sameYRange ) {
+				for ( let i = 1; i <= keys.length; i++ ) {
+					layout[ 'yaxis'+i ] = { matches: 'y' };
+				}
+			}
 		} else {
 			layout.barmode = 'overlay';
 			layout.xaxis = { title: variable };
@@ -207,13 +218,13 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, action, onShare, onSelected }) {
+function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange, action, onShare, onSelected }) {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins });
-	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, groupMode, nBins, nCols, variable, xBins ] );
+		return generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
+	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, groupMode, nBins, nCols, variable, xBins, sameXRange, sameYRange ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
@@ -248,7 +259,9 @@ Histogram.defaultProps = {
 	binStrategy: 'Automatic',
 	nBins: null,
 	nCols: null,
-	xBins: {}
+	xBins: {},
+	sameXRange: false,
+	sameYRange: false
 };
 
 Histogram.propTypes = {
@@ -269,7 +282,9 @@ Histogram.propTypes = {
 		start: PropTypes.number,
 		size: PropTypes.number,
 		end: PropTypes.number
-	})
+	}),
+	sameXRange: PropTypes.bool,
+	sameYRange: PropTypes.bool
 };
 
 
@@ -289,5 +304,7 @@ Histogram.propTypes = {
 * @property {number} nBins - custom number of bins
 * @property {number} nCols - number of columns when displaying a facetted grouped histogram
 * @property {Object} xBins - object with `start`, `size`, and `end` properties governing binning behavior
+* @property {boolean} sameXRange - if true, the x-axis range for each facet will be the same as the overall histogram
+* @property {boolean} sameYRange - if true, the y-axis range for each facet will be the same as the overall histogram
 */
 export default withPropCheck( Histogram );

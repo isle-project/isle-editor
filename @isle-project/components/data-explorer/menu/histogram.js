@@ -32,6 +32,8 @@ const HistogramMenu = ( props ) => {
 	const [ displayDensity, setDisplayDensity ] = useState( false );
 	const [ densityType, setDensityType ] = useState( null );
 	const [ bandwidthAdjust, setBandwidthAdjust ] = useState( 1 );
+	const [ sameXRange, setSameXRange ] = useState( false );
+	const [ sameYRange, setSameYRange ] = useState( false );
 	const [ variable, setVariable ] = useState( props.defaultValue || props.variables[ 0 ] );
 	const [ group, setGroup ] = useState( null );
 	const [ groupMode, setGroupMode ] = useState( 'Overlay' );
@@ -54,7 +56,9 @@ const HistogramMenu = ( props ) => {
 			groupMode,
 			displayDensity,
 			densityType,
-			binStrategy
+			binStrategy,
+			sameXRange,
+			sameYRange
 		};
 		if ( binStrategy === 'Select # of bins' ) {
 			state.nBins = nBins;
@@ -87,14 +91,16 @@ const HistogramMenu = ( props ) => {
 				<QuestionButton title={t('Histogram')} content={t('Histogram-description')} />
 			</Card.Header>
 			<Card.Body>
-				<SelectInput
-					legend={t('variable')}
-					defaultValue={variable}
-					options={variables}
-					onChange={setVariable}
-				/>
 				<Row>
-					<Col md={5} >
+					<Col md={6}>
+						<SelectInput
+							legend={t('variable')}
+							defaultValue={variable}
+							options={variables}
+							onChange={setVariable}
+						/>
+					</Col>
+					<Col md={6} >
 						<SelectInput
 							legend={t('group-by')}
 							options={groupingVariables}
@@ -102,7 +108,9 @@ const HistogramMenu = ( props ) => {
 							onChange={setGroup}
 						/>
 					</Col>
-					<Col md={4} >
+				</Row>
+				<Row>
+					<Col md={6} >
 						{ group ? <SelectInput
 							legend={`${t('mode')}:`}
 							defaultValue={groupMode}
@@ -110,23 +118,40 @@ const HistogramMenu = ( props ) => {
 							onChange={setGroupMode}
 						/> : null }
 					</Col>
-					<Col md={3} >
-						{ group && groupMode === 'Facets' ? <NumberInput
-							legend={t('columns')}
-							defaultValue={2}
-							min={1}
-							onChange={setNCols}
-							style={{
-								marginTop: 0
-							}}
-							inputStyle={{
-								width: 70,
-								marginLeft: 0,
-								marginTop: 2
-							}}
-						/> : null }
+					<Col md={6} >
+						{ group && groupMode === 'Facets' ?
+							<NumberInput
+								legend={t('columns')}
+								defaultValue={2}
+								min={1}
+								onChange={setNCols}
+								style={{
+									marginTop: 0
+								}}
+								inputStyle={{
+									width: 50,
+									marginLeft: 0,
+									marginTop: 2
+								}}
+							/> : null }
 					</Col>
 				</Row>
+				{ group && groupMode === 'Facets' ? <Row>
+					<Col md={6} >
+						<CheckboxInput
+							legend={t('common-x-axis')}
+							defaultValue={sameXRange}
+							onChange={setSameXRange}
+						/>
+					</Col>
+					<Col md={6} >
+						<CheckboxInput
+							legend={t('common-y-axis')}
+							defaultValue={sameYRange}
+							onChange={setSameYRange}
+						/>
+					</Col>
+				</Row> : null }
 				<div>
 					<SelectInput
 						legend={t('binning-strategy')}
