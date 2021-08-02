@@ -7,6 +7,7 @@
 	"drag-plot": "Drag Plot",
 	"given": "с учётом",
 	"in": "на сайте",
+	"intervalplot-title": "Интервальный график ({{confidenceLevel}}% ДИ средних значений)",
 	"linear-fit": "Линейный монтаж",
 	"number-of-edges": "Количество краев: {{nEdges}}.",
 	"of": "от",

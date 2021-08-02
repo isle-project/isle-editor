@@ -7,6 +7,7 @@
 	"drag-plot": "Plot ziehen",
 	"given": "gegeben",
 	"in": "in",
+	"intervalplot-title": "Intervalldiagramm ({{confidenceLevel}}% CI der Mittelwerte)",
 	"linear-fit": "Lineare Anpassung",
 	"number-of-edges": "Anzahl der Kanten: {{nEdges}}.",
 	"of": "von",

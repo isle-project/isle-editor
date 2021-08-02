@@ -7,6 +7,7 @@
 	"drag-plot": "Trama de tragere",
 	"given": "având în vedere",
 	"in": "în",
+	"intervalplot-title": "Graficul de interval ({{confidenceLevel}}% IC al mediilor)",
 	"linear-fit": "Ajustare liniară",
 	"number-of-edges": "Număr de muchii: {{nEdges}}.",
 	"of": "de",

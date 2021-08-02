@@ -7,6 +7,7 @@
 	"drag-plot": "Плъзгане на парцела",
 	"given": "даден",
 	"in": "в",
+	"intervalplot-title": "Интервална диаграма ({{confidenceLevel}}% CI на средните стойности)",
 	"linear-fit": "Линейно прилягане",
 	"number-of-edges": "Брой ръбове: {{nEdges}}.",
 	"of": "на",

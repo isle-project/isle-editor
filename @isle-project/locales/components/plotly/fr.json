@@ -7,6 +7,7 @@
 	"drag-plot": "Tracé",
 	"given": "donné",
 	"in": "dans",
+	"intervalplot-title": "Tracé des intervalles ({{confidenceLevel}}% CI des moyennes)",
 	"linear-fit": "Ajustement linéaire",
 	"number-of-edges": "Nombre de bords : {{nEdges}}.",
 	"of": "de",

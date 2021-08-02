@@ -7,6 +7,7 @@
 	"drag-plot": "Velciet zemes gabalu",
 	"given": "ņemot vērā",
 	"in": "vietnē",
+	"intervalplot-title": "Intervāla diagramma ({{confidenceLevel}}% vidējo vērtību intervāls)",
 	"linear-fit": "Lineāra pielāgošana",
 	"number-of-edges": "Malu skaits: {{nEdges}}.",
 	"of": "no",

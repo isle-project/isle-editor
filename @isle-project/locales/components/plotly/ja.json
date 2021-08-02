@@ -7,6 +7,7 @@
 	"drag-plot": "ドラッグプロット",
 	"given": "授けられた",
 	"in": "に於いて",
+	"intervalplot-title": "区間プロット ({{confidenceLevel}}% CI of means )",
 	"linear-fit": "線形フィット",
 	"number-of-edges": "エッジの数。{{nEdges}}.",
 	"of": "の",

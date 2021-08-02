@@ -7,6 +7,7 @@
 	"drag-plot": "Přetahování pozemku",
 	"given": "vzhledem k",
 	"in": "na adrese",
+	"intervalplot-title": "Intervalový graf ({{confidenceLevel}}% CI středních hodnot)",
 	"linear-fit": "Lineární přizpůsobení",
 	"number-of-edges": "Počet hran: {{nEdges}}.",
 	"of": "z",

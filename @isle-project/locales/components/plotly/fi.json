@@ -7,6 +7,7 @@
 	"drag-plot": "Drag Plot",
 	"given": "annettu",
 	"in": "osoitteessa",
+	"intervalplot-title": "Intervallidiagrammi ({{confidenceLevel}}% CI of means )",
 	"linear-fit": "Lineaarinen sovitus",
 	"number-of-edges": "Reunojen lukumäärä: {{nEdges}}.",
 	"of": "",

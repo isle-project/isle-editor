@@ -7,6 +7,7 @@
 	"drag-plot": "Vilkimo sklypas",
 	"given": "atsižvelgiant į .",
 	"in": "",
+	"intervalplot-title": "Intervalinis grafikas ({{confidenceLevel}}% vidurkių CI)",
 	"linear-fit": "Linijinis pritaikymas",
 	"number-of-edges": "Briaunų skaičius: {{nEdges}}.",
 	"of": "iš",

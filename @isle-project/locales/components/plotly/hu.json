@@ -7,6 +7,7 @@
 	"drag-plot": "Drag Plot",
 	"given": "adott",
 	"in": "a  oldalon.",
+	"intervalplot-title": "Intervallum diagram ({{confidenceLevel}}% CI of means)",
 	"linear-fit": "Lineáris illesztés",
 	"number-of-edges": "Szélek száma: {{nEdges}}.",
 	"of": "",

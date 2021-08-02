@@ -7,6 +7,7 @@
 	"drag-plot": "Lote de Arrastar",
 	"given": "dado",
 	"in": "em",
+	"intervalplot-title": "Lote de Intervalo ({{confidenceLevel}}% CI de meios)",
 	"linear-fit": "Ajuste Linear",
 	"number-of-edges": "Número de bordas: {{nEdges}}.",
 	"of": "de",

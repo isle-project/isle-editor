@@ -7,6 +7,7 @@
 	"drag-plot": "Trækkeplot",
 	"given": "givet",
 	"in": "på",
+	"intervalplot-title": "Intervalplot ({{confidenceLevel}}% CI for middelværdierne)",
 	"linear-fit": "Lineær tilpasning",
 	"number-of-edges": "Antal kanter: {{nEdges}}.",
 	"of": "på",

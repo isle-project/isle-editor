@@ -7,6 +7,7 @@
 	"drag-plot": "Drag Plot",
 	"given": "dado",
 	"in": "en",
+	"intervalplot-title": "Gráfico de intervalos ({{confidenceLevel}}% CI de las medias)",
 	"linear-fit": "Ajuste lineal",
 	"number-of-edges": "Número de aristas: {{nEdges}}.",
 	"of": "de",

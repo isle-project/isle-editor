@@ -7,6 +7,7 @@
 	"drag-plot": "Ťahanie pozemku",
 	"given": "vzhľadom na",
 	"in": "na stránke",
+	"intervalplot-title": "Intervalový graf ({{confidenceLevel}}% CI stredných hodnôt)",
 	"linear-fit": "Lineárne prispôsobenie",
 	"number-of-edges": "Počet hrán: {{nEdges}}.",
 	"of": "z",
