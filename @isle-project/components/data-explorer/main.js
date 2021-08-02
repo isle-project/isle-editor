@@ -672,17 +672,32 @@ class DataExplorer extends Component {
 
 	onGenerateTransformedVariable = ( name, values ) => {
 		const session = this.context;
+		if ( isArray( name ) ) {
+			let newVarState;
+			for ( let i = 0; i < name.length; i++ ) {
+				newVarState = this.transformVariable( name[ i ], values[ i ], newVarState );
+			}
+			session.addNotification({
+				title: this.props.t( 'variables-created' ),
+				message: this.props.t( 'variables-created-msg', {
+					name: name.join( ', ' )
+				}),
+				level: 'success',
+				position: 'tr'
+			});
+			return this.setState( newVarState );
+		}
 		if ( hasProp( this.props.data, name ) ) {
 			return session.addNotification({
-				title: this.props.t('variable-exists'),
-				message: this.props.t('variable-exists-msg'),
+				title: this.props.t( 'variable-exists' ),
+				message: this.props.t( 'variable-exists-msg' ),
 				level: 'error',
 				position: 'tr'
 			});
 		}
 		session.addNotification({
-			title: this.props.t('variable-created'),
-			message: this.props.t('variable-created-msg', {
+			title: this.props.t( 'variable-created' ),
+			message: this.props.t( 'variable-created-msg', {
 				name
 			}),
 			level: 'success',

@@ -23,6 +23,7 @@ import { DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/action
 
 // VARIABLES //
 
+const RE_NAME_RANGE = /^([^0-9]+)(\d+):\1(\d+)$/;
 const FOCUS_TRAP_OPTIONS = {
 	clickOutsideDeactivates: true
 };
@@ -317,14 +318,33 @@ const RandomTransformer = ( props ) => {
 	const createVariable = useCallback( () => {
 		const keys = objectKeys( props.data );
 		const nobs = props.data[ keys[ 0 ] ].length;
-		const values = new Array( nobs );
-		for ( let i = 0; i < nobs; i++ ) {
-			values[ i ] = random[ distribution ].apply( null, params );
-		}
 		props.logAction( DATA_EXPLORER_RANDOM_TRANSFORMER, {
 			distribution, name
 		});
-		props.onGenerate( name, values );
+		const match = RE_NAME_RANGE.exec( name );
+		if ( match && match.length === 4 ) {
+			const prefix = match[ 1 ];
+			const start = parseInt( match[ 2 ], 10 );
+			const end = parseInt( match[ 3 ], 10 );
+			const names = [];
+			const values = [];
+			for ( let i = start; i <= end; i++ ) {
+				const x = new Array( nobs );
+				for ( let j = 0; j < nobs; j++ ) {
+					x[ j ] = random[ distribution ].apply( null, params );
+				}
+				values.push( x );
+				names.push( `${prefix}${i}` );
+			}
+			props.onGenerate( names, values );
+		}
+		else {
+			const values = new Array( nobs );
+			for ( let i = 0; i < nobs; i++ ) {
+				values[ i ] = random[ distribution ].apply( null, params );
+			}
+			props.onGenerate( name, values );
+		}
 		props.onHide();
 	}, [ distribution, name, params, props ] );
 
