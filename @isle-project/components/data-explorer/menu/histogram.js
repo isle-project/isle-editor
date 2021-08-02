@@ -126,10 +126,10 @@ const HistogramMenu = ( props ) => {
 								min={1}
 								onChange={setNCols}
 								style={{
-									marginTop: 0
+									marginTop: 30
 								}}
 								inputStyle={{
-									width: 50,
+									width: 70,
 									marginLeft: 0,
 									marginTop: 2
 								}}
