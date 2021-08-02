@@ -28,7 +28,7 @@ function ignoreDrag( evt ) {
 /**
 * Component allowing students upload a *.csv spreadsheet.
 *
-* @property {string} title - card title
+* @property {(string|node)} title - card title
 * @property {Function} onUpload - callback function called with ( err, output ) after loading of file
 */
 const SpreadsheetUpload = ({ title, onUpload }) => {
@@ -120,7 +120,7 @@ const SpreadsheetUpload = ({ title, onUpload }) => {
 
 	const completed = round( percentCompleted * 100.0 );
 	return ( <Card>
-		<Card.Header as="h2">
+		<Card.Header as="h2" >
 			{title || t('title')}
 		</Card.Header>
 		<Card.Body>
@@ -174,7 +174,7 @@ SpreadsheetUpload.defaultProps = {
 
 SpreadsheetUpload.propTypes = {
 	onUpload: PropTypes.func,
-	title: PropTypes.string
+	title: PropTypes.oneOfType( [ PropTypes.string, PropTypes.node ] )
 };
 
 

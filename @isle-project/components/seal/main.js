@@ -20,7 +20,7 @@ const DIFF = 4;
 *
 * @property {boolean} active - controls whether seal is active or grayed out
 * @property {number} scale - object size (if not explicitly set, the seal is not rescaled)
-* @property {string} title - seal title
+* @property {(string|node)} title - seal title
 * @property {string} lower - the lower text
 * @property {number} lowerArc - the arc for the lower text
 * @property {string} upper - the upper text
@@ -200,7 +200,10 @@ Seal.propTypes = {
 	noOrnaments: PropTypes.bool,
 	removable: PropTypes.bool,
 	style: PropTypes.object,
-	title: PropTypes.string,
+	title: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	upper: PropTypes.string,
 	upperArc: PropTypes.number
 };

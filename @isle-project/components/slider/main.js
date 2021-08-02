@@ -21,7 +21,7 @@ import './slider.css';
 /**
 * A component which displays its children in a slideshow or carousel.
 *
-* @property {string} title - title for the slideshow / carousel to be displayed at its top
+* @property {(string|node)} title - title for the slideshow / carousel to be displayed at its top
 * @property {boolean} dots - display dots at the bottom for quickly navigating to any slide
 * @property {boolean} fade - controls whether fading is used for transitioning between the slides
 * @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both
@@ -76,15 +76,24 @@ class DefaultSlider extends Component {
 	}
 
 	renderTitle() {
-		if ( this.props.title === '' ) {
+		if ( !this.props.title ) {
 			return null;
 		}
+		const currentSlideDisplay = <span style={{ float: 'right' }}>
+			{this.state.currentSlide} / {this.state.childDivs.length}
+		</span>;
+		if ( isString( this.props.title ) ) {
+			return (
+				<Card.Header as="h3" >
+					{this.props.title}
+					{currentSlideDisplay}
+				</Card.Header>
+			);
+		}
 		return (
-			<Card.Header as="h3">
+			<Card.Header >
 				{this.props.title}
-				<span style={{ float: 'right' }}>
-					{this.state.currentSlide} / {this.state.childDivs.length}
-				</span>
+				{currentSlideDisplay}
 			</Card.Header>
 		);
 	}
@@ -137,7 +146,7 @@ class DefaultSlider extends Component {
 // PROPERTIES //
 
 DefaultSlider.defaultProps = {
-	title: '',
+	title: null,
 	dots: true,
 	fade: false,
 	draggable: false,
@@ -151,7 +160,10 @@ DefaultSlider.defaultProps = {
 };
 
 DefaultSlider.propTypes = {
-	title: PropTypes.string,
+	title: PropTypes.oneOfType( [
+		PropTypes.string,
+		PropTypes.node
+	] ),
 	dots: PropTypes.bool,
 	fade: PropTypes.bool,
 	draggable: PropTypes.bool,

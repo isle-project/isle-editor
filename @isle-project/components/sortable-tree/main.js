@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import SortableTree from '@nosferatu500/react-sortable-tree';
 import Card from 'react-bootstrap/Card';
 import FormControl from 'react-bootstrap/FormControl';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import '@nosferatu500/react-sortable-tree/style.css'; // This only needs to be imported once in your app
 
@@ -15,7 +16,7 @@ import '@nosferatu500/react-sortable-tree/style.css'; // This only needs to be i
 /**
 * A thin wrapper around [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) that supports all properties of said component.
 *
-* @property {string} title - header title
+* @property {(string|node)} title - header title
 * @property {Array<object>} treeData - array of objects with `title` (primary label for the node),
 `subtitle` (secondary label), `expanded` (display the children of the node if set to true), and/or
 `children` (array of child nodes belonging to the respective node)
@@ -30,7 +31,7 @@ const Tree = ({ title, treeData, ...rest }) => {
 	return (
 		<Card>
 			<Card.Header style={{ minHeight: 80, position: 'relative' }}>
-				<Card.Title as="h2">{title}</Card.Title>
+				{isString( title ) ? <Card.Title as="h2">{title}</Card.Title> : title}
 				<div style={{ position: 'absolute', top: 10, right: 30, padding: 10 }}>
 					<FormControl style={{ float: 'right', width: 200, marginLeft: 20 }} type="text" onChange={handleSearchOnChange} />
 					<span className="title" style={{ float: 'right' }}>{t('search')}: </span>
@@ -57,7 +58,7 @@ const Tree = ({ title, treeData, ...rest }) => {
 
 Tree.propTypes = {
 	treeData: PropTypes.arrayOf( PropTypes.object ).isRequired,
-	title: PropTypes.string
+	title: PropTypes.oneOfType( [ PropTypes.string, PropTypes.node ] )
 };
 
 Tree.defaultProps = {

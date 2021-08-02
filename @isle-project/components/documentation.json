@@ -357,7 +357,7 @@
 			},
 			{
 				"name": "description",
-				"type": "string",
+				"type": "(string|node)",
 				"description": "Dashboard-prop-description",
 				"defaultValue": ""
 			},
@@ -520,6 +520,7 @@
 					"Pie Chart",
 					"Mosaic Plot",
 					"Histogram",
+					"Interval Plot",
 					"Box Plot",
 					"Line Plot",
 					"Scatterplot",
@@ -4156,7 +4157,7 @@
 			},
 			{
 				"name": "title",
-				"type": "string",
+				"type": "(string|node)",
 				"description": "Pages-prop-title",
 				"defaultValue": ""
 			},
@@ -4673,6 +4674,18 @@
 				"type": "{start,size,end}",
 				"description": "Histogram-prop-xBins",
 				"defaultValue": {}
+			},
+			{
+				"name": "sameXRange",
+				"type": "boolean",
+				"description": "Histogram-prop-sameXRange",
+				"defaultValue": false
+			},
+			{
+				"name": "sameYRange",
+				"type": "boolean",
+				"description": "Histogram-prop-sameYRange",
+				"defaultValue": false
 			}
 		],
 		"description": "Histogram-description"
@@ -6804,7 +6817,7 @@
 			},
 			{
 				"name": "title",
-				"type": "string",
+				"type": "(string|node)",
 				"description": "Seal-prop-title",
 				"defaultValue": "Enter a title"
 			},
@@ -7017,9 +7030,9 @@
 		"props": [
 			{
 				"name": "title",
-				"type": "string",
+				"type": "(string|node)",
 				"description": "Slider-prop-title",
-				"defaultValue": ""
+				"defaultValue": null
 			},
 			{
 				"name": "dots",
@@ -7093,7 +7106,7 @@
 			},
 			{
 				"name": "title",
-				"type": "string",
+				"type": "(string|node)",
 				"description": "SortableTree-prop-title",
 				"defaultValue": null
 			}

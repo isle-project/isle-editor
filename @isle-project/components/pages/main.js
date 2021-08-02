@@ -9,6 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from '@isle-project/utils/uid';
 import VoiceControl from '@isle-project/components/internal/voice-control';
 import Tooltip from '@isle-project/components/tooltip';
@@ -32,7 +33,7 @@ const uid = generateUID( 'pages' );
 /**
 * An ISLE pagination component that allows the user to step through a sequence of pages.
 *
-* @property {string} title - displayed title of the pages container
+* @property {(string|node)} title - displayed title of the pages container
 * @property {string} size - size of the pagination buttons (either `default`, `lg`, or `sm`)
 * @property {number} height - the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added
 * @property {number} activePage - active page
@@ -156,7 +157,7 @@ class Pages extends Component {
 		}
 		const nChildren = children.length;
 		const header = <Card.Header>
-			<h3>{this.props.title}</h3>
+			{isString( this.props.title ) ? <h3>{this.props.title}</h3> : this.props.title}
 		</Card.Header>;
 		const items = [];
 		if ( nChildren <= 6 ) {
@@ -282,7 +283,10 @@ class Pages extends Component {
 Pages.propTypes = {
 	activePage: PropTypes.number,
 	disabled: PropTypes.bool,
-	title: PropTypes.string,
+	title: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.node
+	]),
 	pagination: PropTypes.oneOf([
 		'top',
 		'bottom',
