@@ -77,7 +77,7 @@ const IntervalPlotMenu = ({ data, variables, groupingVariables, t, session, logA
 				/>
 				<Button
 					variant="primary" block onClick={generateIntervalPlot}
-					disabled={!selectedVariable}
+					disabled={!selectedVariable || !group}
 				>
 					{t('generate')}
 				</Button>
