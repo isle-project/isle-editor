@@ -12,8 +12,10 @@
 	"lesson-submitted": "Lezione presentata!",
 	"lesson-successfully-completed": "Lezione completata con successo.",
 	"login": "Login",
+	"only-latest": "Includere solo le mie ultime risposte",
 	"responses-header": "Risposte per la lezione ISLE",
 	"signup": "Iscriviti",
+	"submission": "Presentazione",
 	"submit": "Invia a",
 	"successfully-completed": "completato con successo"
 }

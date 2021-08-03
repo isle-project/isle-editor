@@ -12,8 +12,10 @@
 	"lesson-submitted": "レッスンを提出しました!",
 	"lesson-successfully-completed": "レッスンは無事終了しました。",
 	"login": "ログイン",
+	"only-latest": "私の最新の回答のみを掲載",
 	"responses-header": "ISLEレッスンへの対応",
 	"signup": "サインアップ",
+	"submission": "提出",
 	"submit": "提出",
 	"successfully-completed": "上手くいった"
 }

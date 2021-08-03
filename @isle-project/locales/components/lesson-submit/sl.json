@@ -12,8 +12,10 @@
 	"lesson-submitted": "Predložena lekcija!",
 	"lesson-successfully-completed": "Učna ura je bila uspešno zaključena.",
 	"login": "Prijava",
+	"only-latest": "Vključite samo moje najnovejše odgovore",
 	"responses-header": "Odzivi za lekcijo ISLE",
 	"signup": "Prijavite se",
+	"submission": "Predložitev",
 	"submit": "Pošlji",
 	"successfully-completed": "uspešno zaključen"
 }

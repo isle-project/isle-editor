@@ -12,8 +12,10 @@
 	"lesson-submitted": "Õppetund esitatud!",
 	"lesson-successfully-completed": "Õppetund edukalt lõpetatud.",
 	"login": "Logi sisse",
+	"only-latest": "Sisaldab ainult minu viimaseid vastuseid",
 	"responses-header": "Vastused ISLE õppetundide jaoks",
 	"signup": "Registreeru",
+	"submission": "Esitamine",
 	"submit": "Esita",
 	"successfully-completed": "edukalt lõpetatud"
 }

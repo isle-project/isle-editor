@@ -12,8 +12,10 @@
 	"lesson-submitted": "Урок представлен!",
 	"lesson-successfully-completed": "Урок успешно завершен.",
 	"login": "Вход",
+	"only-latest": "Включите только мои последние ответы",
 	"responses-header": "Ответы на урок ISLE",
 	"signup": "Зарегистрироваться",
+	"submission": "Представление",
 	"submit": "Отправить .",
 	"successfully-completed": "успешно завершённый"
 }

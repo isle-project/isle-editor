@@ -12,8 +12,10 @@
 	"lesson-submitted": "Lektion indsendt!",
 	"lesson-successfully-completed": "Lektionen er afsluttet med succes.",
 	"login": "Login",
+	"only-latest": "Kun mine seneste svar medtages",
 	"responses-header": "Svar til ISLE-lektionen",
 	"signup": "Tilmeld dig",
+	"submission": "Indsendelse",
 	"submit": "Indsend",
 	"successfully-completed": "afsluttet med succes"
 }

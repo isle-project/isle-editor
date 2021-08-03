@@ -12,8 +12,10 @@
 	"lesson-submitted": "A lecke leadva!",
 	"lesson-successfully-completed": "A lecke sikeresen befejeződött.",
 	"login": "Bejelentkezés",
+	"only-latest": "Csak a legutóbbi válaszaimat tartalmazza",
 	"responses-header": "Válaszok az ISLE leckére",
 	"signup": "Feliratkozás",
+	"submission": "Beküldés",
 	"submit": "Küldje be a",
 	"successfully-completed": "sikeresen befejezve"
 }

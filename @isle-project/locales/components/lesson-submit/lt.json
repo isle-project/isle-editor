@@ -12,8 +12,10 @@
 	"lesson-submitted": "Pateikta pamoka!",
 	"lesson-successfully-completed": "Pamoka sėkmingai baigta.",
 	"login": "Prisijungimas",
+	"only-latest": "Įtraukite tik mano naujausius atsakymus",
 	"responses-header": "ISLE pamokos atsakymai",
 	"signup": "Užsiregistruokite",
+	"submission": "Pateikimas",
 	"submit": "Pateikti",
 	"successfully-completed": "sėkmingai užbaigtas"
 }

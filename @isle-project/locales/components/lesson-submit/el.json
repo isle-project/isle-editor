@@ -12,8 +12,10 @@
 	"lesson-submitted": "Το μάθημα υποβλήθηκε!",
 	"lesson-successfully-completed": "Το μάθημα ολοκληρώθηκε με επιτυχία.",
 	"login": "Σύνδεση",
+	"only-latest": "Συμπεριλάβετε μόνο τις τελευταίες μου απαντήσεις",
 	"responses-header": "Απαντήσεις για το μάθημα ISLE",
 	"signup": "Εγγραφείτε",
+	"submission": "Υποβολή",
 	"submit": "Υποβολή",
 	"successfully-completed": "Ολοκληρώθηκε με επιτυχία"
 }

@@ -56,7 +56,7 @@ class LessonSubmit extends Component {
 
 	componentDidMount() {
 		const session = this.context;
-		this.unsubsribe = session.subscribe( ( type ) => {
+		this.unsubscribe = session.subscribe( ( type ) => {
 			if (
 				type === RECEIVED_USER_RIGHTS ||
 				type === LOGGED_IN ||
@@ -68,10 +68,10 @@ class LessonSubmit extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubsribe();
+		this.unsubscribe();
 	}
 
-	createReponseSummaryDoc = () => {
+	createResponseSummaryDoc = () => {
 		const session = this.context;
 		const doc = {
 			content: [
@@ -159,7 +159,7 @@ class LessonSubmit extends Component {
 						} else {
 							actions.forEach( ( action, idx ) => {
 								doc.content.push({
-									text: 'Submission #'+idx+':'
+									text: this.props.t('submission') + ' #' + ( idx+1 ) + ':'
 								});
 								this.addAction( action, doc, dataType, visualizer );
 							});
@@ -240,8 +240,8 @@ class LessonSubmit extends Component {
 		});
 	}
 
-	handleLatestChange = ( value ) => {
-		this.setState({ onlyLatest: value });
+	handleLatestChange = () => {
+		this.setState({ onlyLatest: !this.state.onlyLatest });
 	}
 
 	finalizeSession = () => {
@@ -277,14 +277,14 @@ class LessonSubmit extends Component {
 			dismissible: 'button',
 			children: <div style={{ marginBottom: '40px' }}>
 				{ hasMultipleSubmissions ? <CheckboxInput
-					legend="Only include my latest answers"
-					value={this.state.onlyLatest}
+					legend={this.props.t('only-latest')}
+					defaultValue={this.state.onlyLatest}
 					onChange={this.handleLatestChange}
 				/> : null }
 				<Button
 					variant="success"
-					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
-					onClick={this.createReponseSummaryDoc}
+					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: hasMultipleSubmissions ? '0px' : '10px' }}
+					onClick={this.createResponseSummaryDoc}
 				>{this.props.t('download-pdf')}</Button>
 			</div>,
 			onRemove: () => {

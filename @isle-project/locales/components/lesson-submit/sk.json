@@ -12,8 +12,10 @@
 	"lesson-submitted": "Predložená lekcia!",
 	"lesson-successfully-completed": "Lekcia bola úspešne ukončená.",
 	"login": "Prihlásenie",
+	"only-latest": "Zahrňte len moje najnovšie odpovede",
 	"responses-header": "Odpovede na lekciu ISLE",
 	"signup": "Zaregistrujte sa",
+	"submission": "Odoslanie",
 	"submit": "Odoslať",
 	"successfully-completed": "úspešne ukončené"
 }

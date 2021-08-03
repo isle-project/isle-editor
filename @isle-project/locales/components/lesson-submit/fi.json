@@ -12,8 +12,10 @@
 	"lesson-submitted": "Oppitunti toimitettu!",
 	"lesson-successfully-completed": "Oppitunti suoritettu onnistuneesti.",
 	"login": "Kirjaudu sisään",
+	"only-latest": "Sisällytä vain viimeisimmät vastaukseni",
 	"responses-header": "Vastaukset ISLE-tunnille",
 	"signup": "Rekisteröidy",
+	"submission": "Toimitusosoite",
 	"submit": "Lähetä",
 	"successfully-completed": "onnistuneesti suoritettu"
 }

@@ -12,8 +12,10 @@
 	"lesson-submitted": "Lecție transmisă!",
 	"lesson-successfully-completed": "Lecție finalizată cu succes.",
 	"login": "Autentificare",
+	"only-latest": "Includeți doar ultimele mele răspunsuri",
 	"responses-header": "Răspunsuri pentru lecția ISLE",
 	"signup": "Înscrieți-vă",
+	"submission": "Trimitere",
 	"submit": "Trimiteți",
 	"successfully-completed": "finalizat cu succes"
 }

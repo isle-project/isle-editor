@@ -12,8 +12,10 @@
 	"lesson-submitted": "Nodarbība iesniegta!",
 	"lesson-successfully-completed": "Nodarbība ir veiksmīgi pabeigta.",
 	"login": "Pieteikšanās",
+	"only-latest": "Iekļaujiet tikai manas jaunākās atbildes",
 	"responses-header": "Atbildes par ISLE nodarbību",
 	"signup": "Reģistrējieties",
+	"submission": "Iesniegšana",
 	"submit": "Iesniegt",
 	"successfully-completed": "veiksmīgi pabeigts"
 }

@@ -12,8 +12,10 @@
 	"lesson-submitted": "Lesson submitted!",
 	"lesson-successfully-completed": "Lesson successfully completed.",
 	"login": "Login",
+	"only-latest": "Only include my latest answers",
 	"responses-header": "Responses for ISLE lesson",
 	"signup": "Sign up",
+	"submission": "Submission",
 	"submit": "Submit",
 	"successfully-completed": "successfully completed"
 }
