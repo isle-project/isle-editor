@@ -17,16 +17,6 @@ import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import calculateDensityValues from './calculate_density_values.js';
 
 
-// VARIABLES //
-
-const SETTINGS = {
-	yaxis: {
-		tickformat: '-,.4r'
-	},
-	selectdirection: 'h'
-};
-
-
 // FUNCTIONS //
 
 function setBins( config, vals, binStrategy, nBins, xbins ) {
@@ -93,7 +83,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			},
 			reversescale: true,
 			title: variable,
-			...SETTINGS
+			selectdirection: 'h'
 		};
 	} else {
 		let freqs = by( data[ variable ], data[ group ], arr => {
@@ -188,8 +178,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
-			title: `${variable} ${i18n.t('plotly:given')} ${group}`,
-			...SETTINGS
+			title: `${variable} ${i18n.t('plotly:given')} ${group}`
 		};
 		if ( groupMode === 'Facets' ) {
 			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
