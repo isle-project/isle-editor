@@ -69,7 +69,7 @@ function generateReplacement( defaultValue ) {
  * Returns a function which provides a default value for an attribute.
  *
  * @param {Object} monaco - monaco editor instance
- * @param {Function} t - trnslation function
+ * @param {Function} t - translation function
  */
 function factory( monaco, t ) {
 	return provideCompletionItems;
