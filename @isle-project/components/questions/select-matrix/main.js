@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import copy from '@stdlib/utils/copy';
@@ -18,6 +17,7 @@ import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import generateUID from '@isle-project/utils/uid';
+import Panel from '@isle-project/components/panel';
 import HintButton from '@isle-project/components/hint-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import ChatButton from '@isle-project/components/internal/chat-button';
@@ -55,6 +55,7 @@ const uid = generateUID( 'select-question-matrix' );
 * @property {string} failureMsg - notification text displayed upon submitting incorrect answers
 * @property {string} successMsg - notification text displayed upon submitting correct answers
 * @property {boolean} chat - controls whether the element should have an integrated chat
+* @property {Object} panelProps - additional properties to be passed to the outer <Panel /> component
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter
@@ -271,7 +272,12 @@ class SelectQuestionMatrix extends Component {
 			( nAnswers < nInputs && !this.props.allowIncomplete ) ||
 			this.state.completed;
 		return (
-			<Card id={this.id} border={this.state.answerState} className={`select-question-matrix ${this.props.className}`} style={this.props.style} body >
+			<Panel
+				id={this.id} border={this.state.answerState}
+				className={`select-question-matrix ${this.props.className}`}
+				style={this.props.style}
+				{...this.props.panelProps}
+			>
 				{ this.props.question ? <label>{this.props.question}</label> : null }
 				{this.renderColumnNames()}
 				{this.renderRows()}
@@ -307,7 +313,7 @@ class SelectQuestionMatrix extends Component {
 						style={{ float: 'left' }}
 					/> : null }
 				</div>
-			</Card>
+			</Panel>
 		);
 	}
 }
@@ -331,6 +337,7 @@ SelectQuestionMatrix.defaultProps = {
 	successMsg: null,
 	cellLabels: {},
 	chat: false,
+	panelProps: {},
 	className: '',
 	style: {},
 	onSubmit() {}
@@ -357,6 +364,7 @@ SelectQuestionMatrix.propTypes = {
 	successMsg: PropTypes.string,
 	cellLabels: PropTypes.object,
 	chat: PropTypes.bool,
+	panelProps: PropTypes.object,
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onSubmit: PropTypes.func
