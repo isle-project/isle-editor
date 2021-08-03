@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { useTranslation } from 'react-i18next';
@@ -110,9 +110,12 @@ const SelectInput = ( props ) => {
 		}
 	}, [ bind ]);
 
-	const options = props.options ? props.options.map( e => {
-		return { 'label': e, 'value': e };
-	}) : [];
+	const options = useMemo( () => {
+		debug( 'Options have changed...' );
+		return props.options ? props.options.map( e => {
+			return { 'label': e, 'value': e };
+		}) : [];
+	}, [ props.options ] );
 	const handleChange = useCallback( ( newValue ) => {
 		debug( 'Received a new value: ' + JSON.stringify( newValue ) );
 		setValue( newValue );
