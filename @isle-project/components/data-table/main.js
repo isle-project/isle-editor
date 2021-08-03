@@ -137,12 +137,33 @@ function filterMethodCategories( filter, row, column ) {
 	return String( row[ id ] ) === filter.value;
 }
 
+
+/**
+ * Returns the maximum length of any of the arrays in the given object.
+ *
+ * @private
+ * @param {Object} obj - object to check
+ * @param {Array} keys - array of keys to check
+ * @returns {number} maximum length
+ */
+function maxLength( obj, keys ) {
+	let v = 0;
+	for ( let i = 0; i < keys.length; i++ ) {
+		const key = keys[ i ];
+		const arr = obj[ key ];
+		if ( isArray( arr ) && arr.length > v ) {
+			v = arr.length;
+		}
+	}
+	return v;
+}
+
 function createRows( data ) {
 	if ( isEmptyObject( data ) ) {
 		return [];
 	}
 	const keys = objectKeys( data );
-	const nRows = data[ keys[ 0 ] ].length;
+	const nRows = maxLength( data, keys );
 	const rows = new Array( nRows );
 	for ( let i = 0; i < nRows; i++ ) {
 		rows[ i ] = {};
