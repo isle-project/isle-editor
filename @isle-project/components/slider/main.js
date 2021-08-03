@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import closeHintButtons from '@isle-project/utils/close-hint-buttons';
 import { withPropCheck } from '@isle-project/utils/prop-check';
