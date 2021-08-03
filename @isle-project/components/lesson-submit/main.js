@@ -15,6 +15,7 @@ import round from '@stdlib/math/base/special/round';
 import beforeUnload from '@isle-project/utils/before-unload';
 import Signup from '@isle-project/components/internal/signup';
 import Login from '@isle-project/components/internal/login';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import SessionContext from '@isle-project/session/context.js';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
 import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
@@ -48,7 +49,8 @@ class LessonSubmit extends Component {
 		this.state = {
 			showUserModal: false,
 			visibleLogin: false,
-			visibleSignup: false
+			visibleSignup: false,
+			onlyLatest: true
 		};
 	}
 
@@ -151,33 +153,15 @@ class LessonSubmit extends Component {
 					if ( actions ) {
 						actions = actions.filter( x => x.type === type );
 						actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
-						const lastAction = actions[ actions.length-1 ];
-						if ( dataType === 'image' ) {
-							doc.content.push({
-								image: lastAction.value,
-								width: 500
-							});
-						}
-						else if ( dataType === 'factor' ) {
-							let levels = visualizer.ref.props.data.levels;
-							levels = levels.map( ( x, i ) => {
-								let out = isString( x ) ? x : innerText( x );
-								if ( !out ) {
-									out = `${this.props.t('choice')} ${i+1}`;
-								}
-								return out;
-							});
-							let text;
-							if ( isArray( lastAction.value ) ) {
-								text = lastAction.value.map( x => levels[ x ] ).join( ', ' );
-							} else {
-								text = levels[ lastAction.value ];
-							}
-							doc.content.push({ text });
-						}
-						else {
-							doc.content.push({
-								text: lastAction.value
+						if ( this.state.onlyLatest ) {
+							const lastAction = actions[ actions.length-1 ];
+							this.addAction( lastAction, doc, dataType, visualizer );
+						} else {
+							actions.forEach( ( action, idx ) => {
+								doc.content.push({
+									text: 'Submission #'+idx+':'
+								});
+								this.addAction( action, doc, dataType, visualizer );
 							});
 						}
 					}
@@ -185,6 +169,37 @@ class LessonSubmit extends Component {
 			}
 		}
 		pdfMake.createPdf( doc ).download( 'responses.pdf' );
+	}
+
+	addAction = ( action, doc, dataType, visualizer ) => {
+		if ( dataType === 'image' ) {
+			doc.content.push({
+				image: action.value,
+				width: 500
+			});
+		}
+		else if ( dataType === 'factor' ) {
+			let levels = visualizer.ref.props.data.levels;
+			levels = levels.map( ( x, i ) => {
+				let out = isString( x ) ? x : innerText( x );
+				if ( !out ) {
+					out = `${this.props.t('choice')} ${i+1}`;
+				}
+				return out;
+			});
+			let text;
+			if ( isArray( action.value ) ) {
+				text = action.value.map( x => levels[ x ] ).join( ', ' );
+			} else {
+				text = levels[ action.value ];
+			}
+			doc.content.push({ text });
+		}
+		else {
+			doc.content.push({
+				text: action.value
+			});
+		}
 	}
 
 	closeUserModal = () => {
@@ -223,7 +238,11 @@ class LessonSubmit extends Component {
 			visibleLogin: false,
 			showUserModal: false
 		});
-	};
+	}
+
+	handleLatestChange = ( value ) => {
+		this.setState({ onlyLatest: value });
+	}
 
 	finalizeSession = () => {
 		debug( 'Finalizing session...' );
@@ -235,20 +254,33 @@ class LessonSubmit extends Component {
 			}
 		}
 		session.finalize();
-		let notificationMesage = this.props.t('lesson-successfully-completed');
+		let notificationMessage = this.props.t('lesson-successfully-completed');
 		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
-			notificationMesage += this.props.t('confirmation-email');
+			notificationMessage += this.props.t('confirmation-email');
 			const msg = createMessage( session, this.props.message, this.props.t );
 			session.sendMail( msg, session.user.email );
 		}
+		let hasMultipleSubmissions = false;
+		const ids = session.responseVisualizerIds || [];
+		ids.forEach( ( id ) => {
+			const actions = session.currentUserActions[ id ] || [];
+			if ( actions.length > 1 ) {
+				hasMultipleSubmissions = true;
+			}
+		});
 		session.addNotification({
 			title: this.props.t('completed'),
-			message: notificationMesage,
+			message: notificationMessage,
 			level: 'success',
 			position: 'tr',
 			autoDismiss: 0,
 			dismissible: 'button',
 			children: <div style={{ marginBottom: '40px' }}>
+				{ hasMultipleSubmissions ? <CheckboxInput
+					legend="Only include my latest answers"
+					value={this.state.onlyLatest}
+					onChange={this.handleLatestChange}
+				/> : null }
 				<Button
 					variant="success"
 					size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
