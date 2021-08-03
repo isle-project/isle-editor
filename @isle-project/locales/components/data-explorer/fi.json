@@ -292,6 +292,8 @@
 	"total-percentages": "Yhteensä Prosenttiosuudet",
 	"transform": "Muunnos",
 	"transformation": "Muutos",
+	"treat-as-categorical": "Käsittele kategorisesti",
+	"treat-as-quantitative": "Käsittele määrällisenä",
 	"treat-labels-as-numbers": "Käsittele luokkien merkintöjä numeroina (kaikkien uusien merkintöjen on oltava numeroita).",
 	"treat-labels-as-numbers-tooltip": "Jos kaikkien luokkien uudet arvot ovat numeerisia, voit rastittaa tämän ruudun luodaksesi määrällisen muuttujan kategorisen muuttujan sijasta.",
 	"Two-Sample Mean Test": "Kahden otoksen keskiarvotesti",

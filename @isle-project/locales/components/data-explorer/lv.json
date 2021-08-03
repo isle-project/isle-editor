@@ -292,6 +292,8 @@
 	"total-percentages": "Kopējais procentuālais daudzums",
 	"transform": "Pārveidot",
 	"transformation": "Transformācija",
+	"treat-as-categorical": "Uzskatīt par kategorisku",
+	"treat-as-quantitative": "Apstrādāt kā kvantitatīvu",
 	"treat-labels-as-numbers": "kategorijas etiķetes uzskatīt par cipariem (visām jaunajām etiķetēm jābūt cipariem).",
 	"treat-labels-as-numbers-tooltip": "Ja jaunās vērtības visām kategorijām ir skaitliskas, varat atzīmēt šo lodziņu, lai kategoriju vietā izveidotu kvantitatīvu mainīgo.",
 	"Two-Sample Mean Test": "Divu izlases vidējo vērtību tests",

@@ -292,6 +292,8 @@
 	"total-percentages": "总百分比",
 	"transform": "转变",
 	"transformation": "转型",
+	"treat-as-categorical": "作为分类处理",
+	"treat-as-quantitative": "作为定量处理",
 	"treat-labels-as-numbers": "将类别标签视为数字（所有新标签都需要是数字）。",
 	"treat-labels-as-numbers-tooltip": "如果所有类别的新值都是数值，您可以勾选此框来创建一个定量变量，而不是一个分类变量。",
 	"Two-Sample Mean Test": "两个样本平均测试",

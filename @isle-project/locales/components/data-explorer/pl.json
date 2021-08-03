@@ -292,6 +292,8 @@
 	"total-percentages": "Procenty ogółem",
 	"transform": "Transformacja",
 	"transformation": "Transformacja",
+	"treat-as-categorical": "Traktować jako kategoryczne",
+	"treat-as-quantitative": "Traktować jako ilościowe",
 	"treat-labels-as-numbers": "Traktuj etykiety kategorii jako numery (wszystkie nowe etykiety muszą być cyframi)",
 	"treat-labels-as-numbers-tooltip": "Jeśli nowe wartości dla wszystkich kategorii są liczbowe, możesz zaznaczyć to pole, aby utworzyć zmienną ilościową zamiast kategoryczną",
 	"Two-Sample Mean Test": "Dwupróbkowy test średni",

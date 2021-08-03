@@ -14,8 +14,9 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Dropdown from 'react-bootstrap/Dropdown';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import Draggable from '@isle-project/components/draggable';
-import CheckboxInput from '@isle-project/components/input/checkbox';
 import Panel from '@isle-project/components/panel';
 import Collapse from '@isle-project/components/collapse';
 import TextArea from '@isle-project/components/input/text-area';
@@ -346,17 +347,31 @@ class FormulaTransformer extends Component {
 									{t('new-variable-appended')}
 								</FormText>
 							</FormGroup>
-							<Tooltip tooltip={t('treat-as-categorical')}>
-								<CheckboxInput
-									legend={t('treat-as-categorical')}
-									defaultValue={this.state.asCategorical}
-									onChange={() => {
-										this.setState({
-											asCategorical: !this.state.asCategorical
-										});
-									}}
-								/>
-							</Tooltip>
+							<ToggleButtonGroup
+								name="options"
+								onChange={( value ) => {
+									this.setState({
+										asCategorical: value
+									});
+								}}
+								type="radio"
+								size="small"
+								value={this.state.asCategorical}
+								style={{ padding: 6 }}
+							>
+								<ToggleButton
+									variant="outline-secondary"
+									value={false}
+								>
+									{t('treat-as-quantitative')}
+								</ToggleButton>
+								<ToggleButton
+									variant="outline-secondary"
+									value={true}
+								>
+									{t('treat-as-categorical')}
+								</ToggleButton>
+							</ToggleButtonGroup>
 						</div>
 					</Panel>
 				</FocusTrap>

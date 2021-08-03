@@ -292,6 +292,8 @@
 	"total-percentages": "Total Porcentajes",
 	"transform": "Transformar",
 	"transformation": "Transformación",
+	"treat-as-categorical": "Tratar como categórico",
+	"treat-as-quantitative": "Tratar como cuantitativo",
 	"treat-labels-as-numbers": "Tratar las etiquetas de las categorías como números (todas las nuevas etiquetas deben ser dígitos)",
 	"treat-labels-as-numbers-tooltip": "Si los nuevos valores de todas las categorías son numéricos, puede marcar esta casilla para crear una variable cuantitativa en lugar de una categórica",
 	"Two-Sample Mean Test": "Prueba de media de dos muestras",

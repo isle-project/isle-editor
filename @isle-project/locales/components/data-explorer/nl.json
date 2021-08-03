@@ -292,6 +292,8 @@
 	"total-percentages": "Totaal Percentages",
 	"transform": "Transformeer",
 	"transformation": "Transformatie",
+	"treat-as-categorical": "Behandel als categorisch",
+	"treat-as-quantitative": "Behandel als kwantitatief",
 	"treat-labels-as-numbers": "Behandel categorie-etiketten als nummers (alle nieuwe etiketten moeten cijfers zijn)",
 	"treat-labels-as-numbers-tooltip": "Als de nieuwe waarden voor alle categorieën numeriek zijn, kunt u dit vakje aankruisen om een kwantitatieve variabele aan te maken in plaats van een categorische.",
 	"Two-Sample Mean Test": "Twee-steekproef Gemiddelde test",

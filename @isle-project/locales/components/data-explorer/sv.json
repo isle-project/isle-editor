@@ -292,6 +292,8 @@
 	"total-percentages": "Totala procentandelar",
 	"transform": "Förvandla",
 	"transformation": "Omvandling",
+	"treat-as-categorical": "Behandlas som kategorisk",
+	"treat-as-quantitative": "Behandla som kvantitativ",
 	"treat-labels-as-numbers": "Behandla kategorimärken som siffror (alla nya märken måste vara siffror).",
 	"treat-labels-as-numbers-tooltip": "Om de nya värdena för alla kategorier är numeriska kan du kryssa i denna ruta för att skapa en kvantitativ variabel i stället för en kategorisk.",
 	"Two-Sample Mean Test": "Test av medelvärde med två stickprov",

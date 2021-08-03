@@ -292,6 +292,8 @@
 	"total-percentages": "Total Percentages",
 	"transform": "Transform",
 	"transformation": "Transformation",
+	"treat-as-categorical": "Treat as categorical",
+	"treat-as-quantitative": "Treat as quantitative",
 	"treat-labels-as-numbers": "Treat category labels as numbers (all new labels need to be digits)",
 	"treat-labels-as-numbers-tooltip": "If the new values for all categories are numeric, you may tick this box to create a quantitative variable instead of a categorical one",
 	"Two-Sample Mean Test": "Two-Sample Mean Test",

@@ -292,6 +292,8 @@
 	"total-percentages": "Total procente",
 	"transform": "Transformare",
 	"transformation": "Transformare",
+	"treat-as-categorical": "Se tratează ca fiind categorice",
+	"treat-as-quantitative": "Se tratează ca fiind cantitativ",
 	"treat-labels-as-numbers": "Tratați etichetele de categorie ca numere (toate etichetele noi trebuie să fie cifre)",
 	"treat-labels-as-numbers-tooltip": "În cazul în care noile valori pentru toate categoriile sunt numerice, puteți bifa această casetă pentru a crea o variabilă cantitativă în loc de una categorială.",
 	"Two-Sample Mean Test": "Testul mediei cu două eșantioane",

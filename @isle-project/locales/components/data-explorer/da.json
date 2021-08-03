@@ -292,6 +292,8 @@
 	"total-percentages": "Procentdele i alt",
 	"transform": "Transform",
 	"transformation": "Transformation",
+	"treat-as-categorical": "Behandles som kategorisk",
+	"treat-as-quantitative": "Behandles som kvantitativ",
 	"treat-labels-as-numbers": "Behandl kategorimærker som tal (alle nye etiketter skal være tal)",
 	"treat-labels-as-numbers-tooltip": "Hvis de nye værdier for alle kategorier er numeriske, kan du afkrydse dette felt for at oprette en kvantitativ variabel i stedet for en kategorisk variabel",
 	"Two-Sample Mean Test": "Test af middelværdi med to stikprøver",

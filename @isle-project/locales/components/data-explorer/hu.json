@@ -292,6 +292,8 @@
 	"total-percentages": "Teljes százalékos arányok",
 	"transform": "Átalakítás",
 	"transformation": "Átalakulás",
+	"treat-as-categorical": "Kategorikusan kell kezelni",
+	"treat-as-quantitative": "Mennyiségként kezeljük",
 	"treat-labels-as-numbers": "A kategóriacímkéket számként kezelje (minden új címkének számjegynek kell lennie).",
 	"treat-labels-as-numbers-tooltip": "Ha az összes kategória új értékei numerikusak, akkor bejelölheti ezt a négyzetet, hogy kategorikus változó helyett mennyiségi változót hozzon létre.",
 	"Two-Sample Mean Test": "Kétmintás átlagteszt",

@@ -292,6 +292,8 @@
 	"total-percentages": "Protsendid kokku",
 	"transform": "Transform",
 	"transformation": "Ümberkujundamine",
+	"treat-as-categorical": "Käsitleda kategooriliselt",
+	"treat-as-quantitative": "Käsitleda kui kvantitatiivset",
 	"treat-labels-as-numbers": "Käsitleda kategooriate märgiseid numbritena (kõik uued märgised peavad olema numbrilised)",
 	"treat-labels-as-numbers-tooltip": "Kui kõigi kategooriate uued väärtused on numbrilised, võite märkida selle kasti, et luua kategorilise muutuja asemel kvantitatiivne muutuja.",
 	"Two-Sample Mean Test": "Kahe proovi keskmine test",

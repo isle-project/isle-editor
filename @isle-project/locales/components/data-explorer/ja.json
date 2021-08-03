@@ -292,6 +292,8 @@
 	"total-percentages": "総比率",
 	"transform": "トランスフォーム",
 	"transformation": "変形",
+	"treat-as-categorical": "カテゴライズされている",
+	"treat-as-quantitative": "定量的に扱う",
 	"treat-labels-as-numbers": "カテゴリラベルを数字として扱う（新しいラベルはすべて数字にする必要があります",
 	"treat-labels-as-numbers-tooltip": "すべてのカテゴリの新しい値が数値である場合、このボックスにチェックを入れて、カテゴリ変数ではなく量的変数を作成することができます。",
 	"Two-Sample Mean Test": "二標本平均検定",

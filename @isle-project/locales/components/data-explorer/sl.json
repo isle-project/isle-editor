@@ -292,6 +292,8 @@
 	"total-percentages": "Odstotki skupaj",
 	"transform": "Preoblikovanje",
 	"transformation": "Preobrazba",
+	"treat-as-categorical": "Obravnava kot kategorična",
+	"treat-as-quantitative": "Obravnava kot količinska",
 	"treat-labels-as-numbers": "oznake kategorij obravnavajte kot številke (vse nove oznake morajo biti številčne).",
 	"treat-labels-as-numbers-tooltip": "Če so nove vrednosti za vse kategorije številčne, lahko označite to polje, da ustvarite kvantitativno spremenljivko namesto kategorične.",
 	"Two-Sample Mean Test": "Test srednjih vrednosti za dva vzorca",

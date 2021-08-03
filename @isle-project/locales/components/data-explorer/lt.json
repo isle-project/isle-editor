@@ -292,6 +292,8 @@
 	"total-percentages": "Iš viso procentais",
 	"transform": "Transformuoti",
 	"transformation": "Transformacija",
+	"treat-as-categorical": "Traktuoti kaip kategorinį",
+	"treat-as-quantitative": "Traktuoti kaip kiekybinį",
 	"treat-labels-as-numbers": "kategorijų etiketes laikyti skaičiais (visos naujos etiketės turi būti skaitmeninės)",
 	"treat-labels-as-numbers-tooltip": "Jei naujos visų kategorijų reikšmės yra skaitinės, galite pažymėti šį langelį, kad vietoj kategorinio kintamojo sukurtumėte kiekybinį kintamąjį.",
 	"Two-Sample Mean Test": "Dviejų imčių vidurkio testas",

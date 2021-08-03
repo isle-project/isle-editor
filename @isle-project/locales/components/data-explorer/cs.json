@@ -292,6 +292,8 @@
 	"total-percentages": "Procenta celkem",
 	"transform": "Transformovat",
 	"transformation": "Transformace",
+	"treat-as-categorical": "Zacházejte s nimi jako s kategorickými",
+	"treat-as-quantitative": "Zacházejte s nimi jako s kvantitativními",
 	"treat-labels-as-numbers": "Zacházejte se štítky kategorií jako s čísly (všechny nové štítky musí být číslice).",
 	"treat-labels-as-numbers-tooltip": "Pokud jsou nové hodnoty pro všechny kategorie číselné, můžete zaškrtnout toto políčko, abyste vytvořili kvantitativní proměnnou místo kategoriální.",
 	"Two-Sample Mean Test": "Test dvouvýběrového průměru",
