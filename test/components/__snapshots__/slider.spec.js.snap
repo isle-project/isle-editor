@@ -52,7 +52,7 @@ exports[`<Slider /> renders a slider for child elements (dragging disabled) 1`] 
       }
       swipe={false}
       t={[Function]}
-      title=""
+      title={null}
     >
       0
     </div>
@@ -188,7 +188,7 @@ exports[`<Slider /> renders a slider for child elements (without dots for naviga
       }
       swipe={false}
       t={[Function]}
-      title=""
+      title={null}
     >
       0
     </div>
@@ -248,7 +248,7 @@ exports[`<Slider /> renders a slider for child elements 1`] = `
       }
       swipe={false}
       t={[Function]}
-      title=""
+      title={null}
     >
       0
     </div>
