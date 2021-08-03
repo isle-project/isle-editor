@@ -206,6 +206,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 			}
 		} else {
 			layout.barmode = 'overlay';
+			layout.hovermode = 'x';
 			layout.xaxis = { title: variable };
 		}
 	}
