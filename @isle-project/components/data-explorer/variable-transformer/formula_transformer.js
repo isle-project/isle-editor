@@ -15,6 +15,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Draggable from '@isle-project/components/draggable';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import Panel from '@isle-project/components/panel';
 import Collapse from '@isle-project/components/collapse';
 import TextArea from '@isle-project/components/input/text-area';
@@ -79,7 +80,8 @@ class FormulaTransformer extends Component {
 			code: props.defaultCode,
 			selection: null,
 			name: '',
-			showGuide: false
+			showGuide: false,
+			asCategorical: false
 		};
 	}
 
@@ -106,6 +108,9 @@ class FormulaTransformer extends Component {
 			this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
 				code, name
 			});
+			if ( this.state.asCategorical ) {
+				values = values.map( x => String( x ) );
+			}
 			this.props.onGenerate( name, values );
 		} catch ( err ) {
 			return this.props.session.addNotification({
@@ -341,6 +346,17 @@ class FormulaTransformer extends Component {
 									{t('new-variable-appended')}
 								</FormText>
 							</FormGroup>
+							<Tooltip tooltip={t('treat-as-categorical')}>
+								<CheckboxInput
+									legend={t('treat-as-categorical')}
+									defaultValue={this.state.asCategorical}
+									onChange={() => {
+										this.setState({
+											asCategorical: !this.state.asCategorical
+										});
+									}}
+								/>
+							</Tooltip>
 						</div>
 					</Panel>
 				</FocusTrap>
