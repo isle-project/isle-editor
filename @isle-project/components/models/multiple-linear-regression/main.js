@@ -259,7 +259,7 @@ class MultipleLinearRegression extends Component {
 		const hist = <Histogram
 			data={{ 'Residuals': this.state.resid }}
 			variable="Residuals"
-			title={t('histogram-title', { x: 'Residuals' })}
+			title={t('plotly:histogram-title', { x: 'Residuals' })}
 		/>;
 		const residualPlot = <Plotly
 			draggable editable fit

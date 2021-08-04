@@ -447,24 +447,24 @@ const RandomTransformer = ( props ) => {
 							variant="outline-secondary"
 							value={false}
 						>
-							{t('treat-as-quantitative')}
+							{t('data-explorer:treat-as-quantitative')}
 						</ToggleButton>
 						<ToggleButton
 							variant="outline-secondary"
 							value={true}
 						>
-							{t('treat-as-categorical')}
+							{t('data-explorer:treat-as-categorical')}
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</Row> : null }
 				<Row>
 					<NumberInput
-						legend={t('number-of-observations')}
+						legend={t('data-explorer:number-of-observations')}
 						value={nObs}
 						onChange={setNObs}
 						min={0}
 						step={1}
-						tooltip={t('number-of-observations-tooltip')}
+						tooltip={t('data-explorer:number-of-observations-tooltip')}
 					/>
 				</Row>
 			</Panel>
