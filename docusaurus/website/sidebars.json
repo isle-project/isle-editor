@@ -111,6 +111,7 @@
           "plots/contourchart",
           "plots/heatmap",
           "plots/histogram",
+          "plots/interval-plot",
           "plots/lineplot",
           "plots/map",
           "plots/mosaicplot",

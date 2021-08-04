@@ -153,6 +153,7 @@ import BoxPlot from '@isle-project/components/plots/boxplot';
 import ContourChart from '@isle-project/components/plots/contourchart';
 import HeatMap from '@isle-project/components/plots/heatmap';
 import Histogram from '@isle-project/components/plots/histogram';
+import IntervalPlot from '@isle-project/components/plots/interval-plot';
 import LinePlot from '@isle-project/components/plots/lineplot';
 import Map from '@isle-project/components/plots/map';
 import MosaicPlot from '@isle-project/components/plots/mosaicplot';
@@ -339,6 +340,7 @@ const Components = {
 	ContourChart,
 	HeatMap,
 	Histogram,
+	IntervalPlot,
 	LinePlot,
 	Map,
 	MosaicPlot,
