@@ -626,7 +626,7 @@ function bundleLesson( options ) {
 
 	// Copy CSS file:
 	mkdirSync( join( appDir, 'css' ) );
-	copyFileSync( join( basePath, 'app', 'css', 'custom.css' ), join( appDir, 'css', 'custom.css' ) );
+	writeFileSync( join( appDir, 'css', 'custom.css' ), '' );
 	if ( meta.css ) {
 		if ( isURI( encodeURI( meta.css ) ) ) {
 			str += `const cssLink = document.createElement( 'link' );
