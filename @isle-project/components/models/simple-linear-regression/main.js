@@ -338,9 +338,9 @@ class SimpleLinearRegression extends Component {
 							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 						/>;
 						const hist = <Histogram
-							data={{ x: resid }}
-							variable="x"
-							title={t('residuals')}
+							data={{ 'Residuals': resid }}
+							variable="Residuals"
+							title={t('histogram-title', { x: 'Residuals' })}
 						/>;
 						const residualPlot = <Plotly
 							draggable editable fit
