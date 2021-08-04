@@ -122,6 +122,8 @@
 	"interaction": "Interaktion",
 	"interactions-functions": "Interaktioner, omvandlingar (t.ex. sqrt), funktioner",
 	"Interquartile Range": "Interkvartilområde",
+	"Interval Plot": "Intervallplot",
+	"Interval Plot-description": "En intervalldiagram visar konfidensintervallen för gruppernas medelvärden och gör det möjligt att visuellt jämföra medelvärdena för en kvantitativ variabel mellan olika grupper.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritm för att dela in observationerna i k kluster genom att iterativt tilldela dem till det kluster som har det närmaste medelvärdet.",
 	"Kruskal-Wallis Test": "Kruskal-Wallis-test",

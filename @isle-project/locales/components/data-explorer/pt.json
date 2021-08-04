@@ -122,6 +122,8 @@
 	"interaction": "Interação",
 	"interactions-functions": "Interações, Transformações (por exemplo, sqrt), Funções",
 	"Interquartile Range": "Faixa Interquartil",
+	"Interval Plot": "Lote de Intervalo",
+	"Interval Plot-description": "Um gráfico de intervalo exibe os intervalos de confiança para os meios de grupo e como tal permite comparar visualmente as médias de uma variável quantitativa entre grupos.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritmo para dividir as observações em k clusters, atribuindo-as iterativamente ao cluster com a média mais próxima.",
 	"Kruskal-Wallis Test": "Teste Kruskal-Wallis",

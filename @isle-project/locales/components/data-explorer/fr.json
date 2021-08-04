@@ -122,6 +122,8 @@
 	"interaction": "Interaction",
 	"interactions-functions": "Interactions, Transformations (par exemple, sqrt), Fonctions",
 	"Interquartile Range": "Interquartile",
+	"Interval Plot": "Tracé d'intervalles",
+	"Interval Plot-description": "Un diagramme d'intervalle affiche les intervalles de confiance pour les moyennes des groupes et permet ainsi de comparer visuellement les moyennes d'une variable quantitative entre les groupes.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algorithme permettant de partitionner les observations en k grappes en les assignant itérativement à la grappe dont la moyenne est la plus proche.",
 	"Kruskal-Wallis Test": "Test de Kruskal-Wallis",

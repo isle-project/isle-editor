@@ -122,6 +122,8 @@
 	"interaction": "Mijiedarbība",
 	"interactions-functions": "Mijiedarbība, Transformācijas (piem., sqrt), Funkcijas",
 	"Interquartile Range": "Starpkvartiļu diapazons",
+	"Interval Plot": "Intervāla diagramma",
+	"Interval Plot-description": "Intervālu diagramma parāda grupu vidējo vērtību ticamības intervālus un ļauj vizuāli salīdzināt kvantitatīvā mainīgā lieluma vidējos lielumus dažādās grupās.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritms novērojumu sadalīšanai k klasteros, iteratīvi piešķirot tos klasterim ar tuvāko vidējo vērtību.",
 	"Kruskal-Wallis Test": "Kruskala-Valisa tests",

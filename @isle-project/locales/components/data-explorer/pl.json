@@ -122,6 +122,8 @@
 	"interaction": "Interakcja",
 	"interactions-functions": "Interakcje, Przekształcenia (np. sqrt), Funkcje",
 	"Interquartile Range": "Zakres międzykwartylowy",
+	"Interval Plot": "Wykres interwałowy",
+	"Interval Plot-description": "Wykres interwałowy wyświetla przedziały ufności dla średnich grup i jako taki pozwala na wizualne porównanie średnich zmiennej ilościowej w różnych grupach.",
 	"kmeans": "oznacza",
 	"kmeans-description": "Algorytm podziału obserwacji na k klastrów poprzez iteracyjne przypisanie ich do klastra z najbliższą średnią.",
 	"Kruskal-Wallis Test": "Test Kruskal-Wallis",

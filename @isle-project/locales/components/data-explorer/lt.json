@@ -122,6 +122,8 @@
 	"interaction": "Sąveika",
 	"interactions-functions": "Sąveika, transformacijos (pvz., sqrt), funkcijos",
 	"Interquartile Range": "Tarpkvartilinis intervalas",
+	"Interval Plot": "Intervalo grafikas",
+	"Interval Plot-description": "Intervaliniame grafike rodomi grupių vidurkių pasikliautinieji intervalai, todėl galima vizualiai palyginti kiekybinio kintamojo vidurkius skirtingose grupėse.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritmas, skirtas suskirstyti stebinius į k klasterių, iteraciniu būdu priskiriant juos klasteriui su artimiausiu vidurkiu.",
 	"Kruskal-Wallis Test": "Kruskal-Wallis testas",

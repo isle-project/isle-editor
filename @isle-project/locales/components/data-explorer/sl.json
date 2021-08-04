@@ -122,6 +122,8 @@
 	"interaction": "Interakcija",
 	"interactions-functions": "Interakcije, pretvorbe (npr. sqrt), funkcije",
 	"Interquartile Range": "Medkvadratno območje",
+	"Interval Plot": "Diagram intervala",
+	"Interval Plot-description": "Intervalni graf prikazuje intervale zaupanja za povprečja skupin in kot tak omogoča vizualno primerjavo povprečij kvantitativne spremenljivke med skupinami.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritem za razdelitev opazovanj v k grozdov z iterativno dodelitvijo v grozd z najbližjo srednjo vrednostjo.",
 	"Kruskal-Wallis Test": "Kruskal-Wallisov test",

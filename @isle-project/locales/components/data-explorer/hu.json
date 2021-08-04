@@ -122,6 +122,8 @@
 	"interaction": "Interakció",
 	"interactions-functions": "Kölcsönhatások, transzformációk (pl. sqrt), függvények",
 	"Interquartile Range": "Interkvartilis tartomány",
+	"Interval Plot": "Intervallum ábrázolás",
+	"Interval Plot-description": "Az intervallumdiagram megjeleníti a csoportátlagok konfidenciaintervallumait, és mint ilyen, lehetővé teszi egy mennyiségi változó csoportonkénti átlagainak vizuális összehasonlítását.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritmus a megfigyelések k klaszterre történő felosztására azáltal, hogy a megfigyeléseket iteratív módon a legközelebbi átlaggal rendelkező klaszterhez rendeljük.",
 	"Kruskal-Wallis Test": "Kruskal-Wallis teszt",

@@ -122,6 +122,8 @@
 	"interaction": "Vuorovaikutus",
 	"interactions-functions": "Vuorovaikutukset, muunnokset (esim. sqrt), funktiot",
 	"Interquartile Range": "Interkvartiiliväli",
+	"Interval Plot": "Intervallipiirros",
+	"Interval Plot-description": "Intervallidiagrammi näyttää ryhmien keskiarvojen luottamusvälit, ja sen avulla voidaan vertailla visuaalisesti määrällisen muuttujan keskiarvoja eri ryhmien välillä.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritmi, jolla havainnot jaetaan k klusteriin jakamalla ne iteratiivisesti klusteriin, jonka keskiarvo on lähimpänä.",
 	"Kruskal-Wallis Test": "Kruskal-Wallisin testi",

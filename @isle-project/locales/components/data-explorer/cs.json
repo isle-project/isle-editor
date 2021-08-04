@@ -122,6 +122,8 @@
 	"interaction": "Interakce",
 	"interactions-functions": "Interakce, transformace (např. sqrt), funkce",
 	"Interquartile Range": "Mezikvartilové rozpětí",
+	"Interval Plot": "Intervalový graf",
+	"Interval Plot-description": "Intervalový graf zobrazuje intervaly spolehlivosti pro skupinové průměry a umožňuje tak vizuálně porovnat průměry kvantitativní proměnné napříč skupinami.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritmus pro rozdělení pozorování do k shluků iterativním přiřazením do shluku s nejbližším průměrem.",
 	"Kruskal-Wallis Test": "Kruskalův-Wallisův test",

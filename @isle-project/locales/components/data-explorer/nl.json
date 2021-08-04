@@ -122,6 +122,8 @@
 	"interaction": "Interactie",
 	"interactions-functions": "Interacties, Transformaties (bijv. sqrt), Functies",
 	"Interquartile Range": "Interkwartielbereik",
+	"Interval Plot": "Interval Plot",
+	"Interval Plot-description": "Een intervalplot toont de betrouwbaarheidsintervallen voor groepsgemiddelden en maakt het als zodanig mogelijk de gemiddelden van een kwantitatieve variabele visueel te vergelijken tussen groepen.",
 	"kmeans": "betekent",
 	"kmeans-description": "Algoritme om waarnemingen op te splitsen in k-clusters door ze iteratief toe te wijzen aan het cluster met het dichtstbijzijnde gemiddelde.",
 	"Kruskal-Wallis Test": "Kruskal-Wallis-test",

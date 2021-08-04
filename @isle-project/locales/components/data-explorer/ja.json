@@ -122,6 +122,8 @@
 	"interaction": "相互作用",
 	"interactions-functions": "相互作用、変換（例：sqrt）、関数",
 	"Interquartile Range": "四分位間距離",
+	"Interval Plot": "インターバルプロット",
+	"Interval Plot-description": "インターバルプロットは、グループの平均値の信頼区間を表示するもので、定量的な変数の平均値をグループ間で視覚的に比較することができます。",
 	"kmeans": "意思表示",
 	"kmeans-description": "最も近い平均を持つクラスタに反復的に割り当てることで、オブザベーションをk個のクラスタに分割するアルゴリズム．",
 	"Kruskal-Wallis Test": "クラスカルワリス検定",

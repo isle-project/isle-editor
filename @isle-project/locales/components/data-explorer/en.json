@@ -122,6 +122,8 @@
 	"interaction": "Interaction",
 	"interactions-functions": "Interactions, Transformations (e.g., sqrt), Functions",
 	"Interquartile Range": "Interquartile Range",
+	"Interval Plot": "Interval Plot",
+	"Interval Plot-description": "An interval plot displays the confidence intervals for group means and as such allows one to visually compare the averages of a quantitative variable across groups.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algorithm to partition observations into k clusters by iteratively assigning them to the cluster with the nearest mean.",
 	"Kruskal-Wallis Test": "Kruskal-Wallis Test",

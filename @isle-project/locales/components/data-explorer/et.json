@@ -122,6 +122,8 @@
 	"interaction": "Interaktsioon",
 	"interactions-functions": "Interaktsioonid, teisendused (nt sqrt), funktsioonid",
 	"Interquartile Range": "Kvartiilidevaheline vahemik",
+	"Interval Plot": "Intervalli graafik",
+	"Interval Plot-description": "Intervalldiagramm näitab rühmade keskmiste usaldusvahemikke ja võimaldab seega visuaalselt võrrelda kvantitatiivse muutuja keskmisi väärtusi rühmade lõikes.",
 	"kmeans": "kmeans",
 	"kmeans-description": "Algoritm vaatluste jaotamiseks k klastrisse, määrates need iteratiivselt lähima keskmisega klastrisse.",
 	"Kruskal-Wallis Test": "Kruskal-Wallise test",

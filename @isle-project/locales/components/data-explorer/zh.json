@@ -122,6 +122,8 @@
 	"interaction": "互动",
 	"interactions-functions": "相互作用、变换（如平方）、函数。",
 	"Interquartile Range": "四分位数范围",
+	"Interval Plot": "区间图",
+	"Interval Plot-description": "区间图显示小组平均值的置信区间，因此可以直观地比较各组定量变量的平均数。",
 	"kmeans": "经济手段",
 	"kmeans-description": "通过迭代将观测值分配到具有最接近平均值的聚类中的算法，将观测值划分为k个聚类。",
 	"Kruskal-Wallis Test": "Kruskal-Wallis检验",
