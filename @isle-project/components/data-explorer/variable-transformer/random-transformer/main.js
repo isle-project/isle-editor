@@ -309,6 +309,7 @@ const SingleValue = props => {
 		</components.SingleValue>
 	);
 };
+const SELECT_COMPONENTS = { Option, SingleValue };
 const BODY_STYLE = {
 	maxHeight: 'calc(100vh - 200px)',
 	overflowY: 'auto',
@@ -397,7 +398,7 @@ const RandomTransformer = ( props ) => {
 						legend={t('select-distribution')}
 						options={DISTRIBUTIONS}
 						onChange={setDistribution}
-						components={{ Option, SingleValue }}
+						components={SELECT_COMPONENTS}
 					/>
 				</Row>
 				<Row>
