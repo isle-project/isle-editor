@@ -16,6 +16,7 @@ import tCDF from '@stdlib/stats/base/dists/t/cdf';
 import Table from '@isle-project/components/table';
 import Tooltip from '@isle-project/components/tooltip';
 import Plotly from '@isle-project/components/plotly';
+import Histogram from '@isle-project/components/plots/histogram';
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import subtract from '@isle-project/utils/subtract';
 import mean from '@isle-project/utils/statistic/mean';
@@ -255,6 +256,11 @@ class MultipleLinearRegression extends Component {
 			{...generateQQPlotConfig( this.state.resid, 'residuals' )}
 			meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
 		/>;
+		const hist = <Histogram
+			data={{ x: this.state.resid }}
+			variable="x"
+			title={t('residuals')}
+		/>;
 		const residualPlot = <Plotly
 			draggable editable fit
 			data={[
@@ -276,7 +282,7 @@ class MultipleLinearRegression extends Component {
 			}}
 			meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
 		/>;
-		this.props.onDiagnostics([ qqPlot, residualPlot ]);
+		this.props.onDiagnostics([ qqPlot, hist, residualPlot ]);
 	}
 
 	handlePredict = () => {

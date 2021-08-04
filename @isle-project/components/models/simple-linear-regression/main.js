@@ -15,6 +15,7 @@ import abs from '@stdlib/math/base/special/abs';
 import sqrt from '@stdlib/math/base/special/sqrt';
 import mean from '@isle-project/utils/statistic/mean';
 import Plotly from '@isle-project/components/plotly';
+import Histogram from '@isle-project/components/plots/histogram';
 import { generateQQPlotConfig } from '@isle-project/components/plots/qqplot';
 import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
@@ -336,6 +337,11 @@ class SimpleLinearRegression extends Component {
 							{...generateQQPlotConfig( resid, 'residuals' )}
 							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 						/>;
+						const hist = <Histogram
+							data={{ x: resid }}
+							variable="x"
+							title={t('residuals')}
+						/>;
 						const residualPlot = <Plotly
 							draggable editable fit
 							data={[
@@ -357,7 +363,7 @@ class SimpleLinearRegression extends Component {
 							}}
 							meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 						/>;
-						this.props.onDiagnostics([ qqPlot, residualPlot ]);
+						this.props.onDiagnostics([ qqPlot, hist, residualPlot ]);
 					}} >
 						{t('model-diagnostics')}
 					</Button> : null }
