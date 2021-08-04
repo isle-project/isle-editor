@@ -1,5 +1,32 @@
 # Changelog
 
+## [v0.76.3](https://github.com/isle-project/isle-editor/releases/tag/v0.76.3) (2021-08-04)
+
+This release comes with various enhancements and bug fixes while improving the usability of the random number generator tools in the data explorer (under `Transform -> Generate Random Data`).
+
+It is now possible to generate multiple columns of random variates via the `:` operator to delineate a range. For example,
+
+![image](https://user-images.githubusercontent.com/1913638/128200965-44c00107-8bb4-41fa-acb1-1e26c1e90c2f.png)
+
+will create five new columns called `Z1`, `Z2`, `Z3`, `Z4`, and `Z5` with draws from the respective t distribution to the data table. The formula transformation tool also allows one to use such ranges, making it easy for example to calculate the row sums of `Z1` to `Z5` via `sum( datum.Z1:datum.Z5 )`.
+
+**Implemented enhancements:**
+
+- request some Panel functionalities in SelectQuestionMatrix [\#2257](https://github.com/isle-project/isle-editor/issues/2257)
+- suggestion for different placement of "right/wrong" flags [\#2252](https://github.com/isle-project/isle-editor/issues/2252)
+- Model Diagnostics: Histogram of Residuals [\#2236](https://github.com/isle-project/isle-editor/issues/2236)
+- Interval Plots [\#2235](https://github.com/isle-project/isle-editor/issues/2235)
+- Faceted plots [\#2228](https://github.com/isle-project/isle-editor/issues/2228)
+- "select submission to view" jumps back to top upon re-opening [\#2008](https://github.com/isle-project/isle-editor/issues/2008)
+- Allow re-submissions for numeric questions [\#1321](https://github.com/isle-project/isle-editor/issues/1321)
+
+**Fixed bugs:**
+
+- \[Bug\]: Diagnostic Plots for Simple Linear Regression not generated [\#2260](https://github.com/isle-project/isle-editor/issues/2260)
+- \[bug\] vertical scale on just one histogram of panel [\#2088](https://github.com/isle-project/isle-editor/issues/2088)
+- autopopup is sometimes blank [\#1701](https://github.com/isle-project/isle-editor/issues/1701)
+- numbers of ordered list render in pdf as all "1"s [\#1351](https://github.com/isle-project/isle-editor/issues/1351)
+
 ## [v0.76.2](https://github.com/isle-project/isle-editor/releases/tag/v0.76.2) (2021-07-21)
 
 This patch release fixes the rendering of several LaTeX equation tags, adds a property to govern whether a minimizable panel should be collapsed by default, and comes with other small improvements.
@@ -55,9 +82,6 @@ This patch release comes with the following improvements:
 -   Fixes various property types and property descriptions
 
 ## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
-
-This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
-It also comes with a patch that fixes restoring original data from restricted data sets when using a shared custom data explorer.
 
 ## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-09)
 
