@@ -292,7 +292,7 @@
     "concurrently": "^6.2.0",
     "css-minimizer-webpack-plugin": "^3.0.1",
     "doctrine": "^3.0.0",
-    "electron": "13.1.7",
+    "electron": "13.1.8",
     "electron-builder": "22.11.7",
     "electron-devtools-installer": "github:MarshallOfSound/electron-devtools-installer",
     "eslint-plugin-i18next": "^5.1.0",
