@@ -4702,6 +4702,45 @@
 		],
 		"description": "Histogram-description"
 	},
+	"IntervalPlot": {
+		"props": [
+			{
+				"name": "data",
+				"type": "object (required)",
+				"description": "IntervalPlot-prop-data"
+			},
+			{
+				"name": "variable",
+				"type": "string (required)",
+				"description": "IntervalPlot-prop-variable"
+			},
+			{
+				"name": "group",
+				"type": "(string|Factor)",
+				"description": "IntervalPlot-prop-group",
+				"defaultValue": null
+			},
+			{
+				"name": "orientation",
+				"type": "string",
+				"description": "IntervalPlot-prop-orientation",
+				"defaultValue": "vertical"
+			},
+			{
+				"name": "significanceLevel",
+				"type": "number",
+				"description": "IntervalPlot-prop-significanceLevel",
+				"defaultValue": 0.05
+			},
+			{
+				"name": "multipleTestingAdjustment",
+				"type": "boolean",
+				"description": "IntervalPlot-prop-multipleTestingAdjustment",
+				"defaultValue": false
+			}
+		],
+		"description": "IntervalPlot-description"
+	},
 	"LinePlot": {
 		"props": [
 			{

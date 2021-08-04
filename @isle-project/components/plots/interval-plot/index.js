@@ -166,16 +166,6 @@ export function generateIntervalPlotConfig({ data, variable, group, orientation,
 
 // MAIN //
 
-/**
-* An interval plot.
-*
-* @property {Object} data - object of value arrays
-* @property {string} variable - variable(s) to display
-* @property {(string|Factor)} group - grouping variable
-* @property {string} orientation - `vertical` or `horizontal` orientation
-* @property {number} significanceLevel - significance level
-* @property {boolean} multipleTestingAdjustment - controls whether to adjust the significance level to control the false discovery rate
-*/
 const IntervalPlot = ({ data, variable, group, orientation, significanceLevel, multipleTestingAdjustment, id, action, onShare }) =>{
 	const config = useMemo( () => {
 		if ( !data || !variable ) {
@@ -233,4 +223,14 @@ IntervalPlot.propTypes = {
 
 // EXPORTS //
 
+/**
+* An interval plot.
+*
+* @property {Object} data - object of value arrays
+* @property {string} variable - variable(s) to display
+* @property {(string|Factor)} group - grouping variable
+* @property {string} orientation - `vertical` or `horizontal` orientation
+* @property {number} significanceLevel - significance level
+* @property {boolean} multipleTestingAdjustment - controls whether to adjust the significance level to control the false discovery rate
+*/
 export default withPropCheck( IntervalPlot );

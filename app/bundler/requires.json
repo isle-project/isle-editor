@@ -186,6 +186,7 @@
 	"ContourChart": "@isle-project/components/plots/contourchart",
 	"HeatMap": "@isle-project/components/plots/heatmap",
 	"Histogram": "@isle-project/components/plots/histogram",
+	"IntervalPlot": "@isle-project/components/plots/interval-plot",
 	"LinePlot": "@isle-project/components/plots/lineplot",
 	"Map": "@isle-project/components/plots/map",
 	"MosaicPlot": "@isle-project/components/plots/mosaicplot",
