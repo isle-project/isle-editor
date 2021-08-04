@@ -127,6 +127,10 @@
       "value": "<Citation citeKey=\"${1:Enter key}\" />"
     },
     {
+      "name": "IntervalPlot",
+      "value": "<IntervalPlot data={${1:null}} variable=\"${2:}\" group=\"${3:}\" />"
+    },
+    {
       "name": "SummaryStatistics",
       "value": "<SummaryStatistics data={${1:null}} variables={[${2:}]} statistics={[${3:}]} />"
     }

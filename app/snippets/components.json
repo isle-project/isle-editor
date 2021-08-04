@@ -760,6 +760,10 @@
 		"value": "<Histogram data={${1:null}} variable=\"${2:}\" />"
 	},
 	{
+		"name": "IntervalPlot",
+		"value": "<IntervalPlot data={${1:null}} variable=\"${2:}\" group=\"${3:}\" />"
+	},
+	{
 		"name": "LinePlot",
 		"value": "<LinePlot data={${1:null}} y=\"${2:}\" />"
 	},
