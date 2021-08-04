@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.76.2",
+  "version": "0.76.3",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -1481,7 +1481,6 @@
       "!node_modules/http-proxy-middleware/node_modules/fill-range/**/*",
       "!node_modules/http-proxy-middleware/node_modules/is-descriptor/**/*",
       "!node_modules/assign-symbols/**/*",
-      "!node_modules/http-proxy-middleware/node_modules/is-extendable/**/*",
       "!node_modules/extglob/node_modules/define-property/**/*",
       "!node_modules/expand-brackets/**/*",
       "!node_modules/nanomatch/node_modules/define-property/**/*",
