@@ -695,18 +695,24 @@ class Editor extends Component {
 			if ( this.props.insertion.oldText ) {
 				const model = this.editor.getModel();
 				const match = model.findNextMatch( this.props.insertion.oldText, 0, false, true, null, false );
-				range = match.range;
+				if ( match ) {
+					range = match.range;
+				}
 			} else {
 				const selection = this.editor.getSelection();
-				range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+				if ( selection ) {
+					range = new this.monaco.Range( selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn );
+				}
 			}
-			const op = {
-				range: range,
-				text: String( this.props.insertion.text ),
-				forceMoveMarkers: true
-			};
-			this.immediateUpdate = true;
-			this.editor.executeEdits( 'my-source', [ op ] );
+			if ( range ) {
+				const op = {
+					range: range,
+					text: String( this.props.insertion.text ),
+					forceMoveMarkers: true
+				};
+				this.immediateUpdate = true;
+				this.editor.executeEdits( 'my-source', [ op ] );
+			}
 		}
 		if ( this.props.elementRangeVersion !== prevProps.elementRangeVersion ) {
 			if ( this.props.elementRangeAction === 'delete' ) {
