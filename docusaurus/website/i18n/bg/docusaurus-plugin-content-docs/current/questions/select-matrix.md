@@ -23,6 +23,7 @@ sidebar_label: Select Question Matrix
 * __successMsg__ | `string`: текст на известие, който се показва при подаване на верни отговори. Default: `none`.
 * __cellLabels__ | `object`: етикети за клетки, дефинирани от обект с ключове с формат `row:col`. Default: `{}`.
 * __chat__ | `boolean`: контролира дали елементът трябва да има интегриран чат. Default: `false`.
+* __panelProps__ | `object`: допълнителни свойства, които да се предават на външния компонент <Panel /> . Default: `{}`.
 * __className__ | `string`: име на класа. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 * __onSubmit__ | `function`: функция за обратна връзка, която се извиква при подаване с отговорите като първи и булев параметър, указващ коректност, като втори параметър. Default: `onSubmit() {}`.

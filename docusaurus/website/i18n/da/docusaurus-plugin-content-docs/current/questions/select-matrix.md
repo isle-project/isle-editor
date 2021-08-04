@@ -23,6 +23,7 @@ Et spørgsmål med et svar, der består af flere afkrydsningsfelter.
 * __successMsg__ | `string`: Meddelelsestekst, der vises ved indsendelse af korrekte svar. Default: `none`.
 * __cellLabels__ | `object`: etiketter for celler defineret af objekt med nøgler i formatet `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.
+* __panelProps__ | `object`: yderligere egenskaber, der skal overføres til den ydre <Panel /> -komponent. Default: `{}`.
 * __className__ | `string`: klassens navn. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onSubmit__ | `function`: callback-funktion, der påkaldes ved indsendelse med svarene som første parameter og en boolean, der angiver korrekthed, som anden parameter. Default: `onSubmit() {}`.

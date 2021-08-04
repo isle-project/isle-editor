@@ -23,6 +23,7 @@ Otázka s odpoveďou pozostávajúca z viacerých výberových polí.
 * __successMsg__ | `string`: text oznámenia zobrazený po odoslaní správnych odpovedí. Default: `none`.
 * __cellLabels__ | `object`: štítky pre bunky definované objektom s kľúčmi vo formáte `riadok:stĺpec`. Default: `{}`.
 * __chat__ | `boolean`: kontroluje, či má mať prvok integrovaný chat. Default: `false`.
+* __panelProps__ | `object`: ďalšie vlastnosti, ktoré sa majú odovzdať vonkajšej zložke <Panel /> . Default: `{}`.
 * __className__ | `string`: názov triedy. Default: `''`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 * __onSubmit__ | `function`: spätné volanie vyvolané po odoslaní s odpoveďami ako prvým a logickým parametrom označujúcim správnosť ako druhým parametrom. Default: `onSubmit() {}`.

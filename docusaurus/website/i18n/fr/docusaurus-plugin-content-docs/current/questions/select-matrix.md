@@ -23,6 +23,7 @@ Une question dont la réponse consiste en plusieurs cases de sélection.
 * __successMsg__ | `string`: texte de notification affiché lors de la soumission des réponses correctes. Default: `none`.
 * __cellLabels__ | `object`: des étiquettes pour les cellules définies par objet avec des clés ayant le format "row:col. Default: `{}`.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.
+* __panelProps__ | `object`: propriétés supplémentaires à transmettre au composant externe <Panel /> . Default: `{}`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onSubmit__ | `function`: fonction de rappel invoquée lors de la soumission avec les réponses comme premier paramètre et un booléen indiquant l'exactitude comme second paramètre. Default: `onSubmit() {}`.

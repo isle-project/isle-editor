@@ -23,6 +23,7 @@ O întrebare cu un răspuns format din mai multe casete de selectare.
 * __successMsg__ | `string`: text de notificare afișat la trimiterea răspunsurilor corecte. Default: `none`.
 * __cellLabels__ | `object`: etichete pentru celulele definite de un obiect cu chei având formatul `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: controlează dacă elementul trebuie să aibă un chat integrat. Default: `false`.
+* __panelProps__ | `object`: proprietăți suplimentare care trebuie transmise componentei exterioare <Panel /> . Default: `{}`.
 * __className__ | `string`: numele clasei. Default: `''`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onSubmit__ | `function`: funcția callback invocată la trimiterea răspunsurilor ca prim parametru și un boolean care indică corectitudinea ca al doilea parametru. Default: `onSubmit() {}`.

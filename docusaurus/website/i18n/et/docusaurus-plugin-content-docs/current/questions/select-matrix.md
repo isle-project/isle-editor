@@ -23,6 +23,7 @@ Küsimus, mille vastus koosneb mitmest valikukastist.
 * __successMsg__ | `string`: õigete vastuste esitamisel kuvatav teavitustekst. Default: `none`.
 * __cellLabels__ | `object`: märgised lahtritele, mis on määratletud objektiga, mille võtmed on formaadis `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: kontrollib, kas elemendil peaks olema integreeritud vestlus. Default: `false`.
+* __panelProps__ | `object`: täiendavad omadused, mis edastatakse väliskomponendile <Panel />.. Default: `{}`.
 * __className__ | `string`: klassi nimi. Default: `''`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onSubmit__ | `function`: tagasilöögifunktsioon, mis kutsutakse üles esitamisel ja mille esimeseks parameetriks on vastused ja teiseks parameetriks boolean, mis näitab korrektsust.. Default: `onSubmit() {}`.

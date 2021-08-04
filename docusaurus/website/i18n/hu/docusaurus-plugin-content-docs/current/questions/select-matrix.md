@@ -23,6 +23,7 @@ Egy kérdés, amelynek válasza több válaszdobozból áll.
 * __successMsg__ | `string`: a helyes válaszok elküldésekor megjelenő értesítő szöveg. Default: `none`.
 * __cellLabels__ | `object`: a `sor:oszlop` formátumú kulcsokkal rendelkező objektum által meghatározott cellák címkéi. Default: `{}`.
 * __chat__ | `boolean`: szabályozza, hogy az elemnek legyen-e integrált chatje. Default: `false`.
+* __panelProps__ | `object`: további tulajdonságok, amelyeket a külső <Panel /> komponensnek kell átadni.. Default: `{}`.
 * __className__ | `string`: osztály neve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onSubmit__ | `function`: callback függvény, amely az elküldéskor hívódik elő a válaszokkal, mint első, és egy boolean értékkel, amely a helyességet jelzi, mint második paraméter.. Default: `onSubmit() {}`.

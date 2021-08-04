@@ -23,6 +23,7 @@ Eine Frage mit einer Antwort, die aus mehreren Auswahlfeldern besteht.
 * __successMsg__ | `string`: Benachrichtigungstext, der beim Absenden richtiger Antworten angezeigt wird. Default: `none`.
 * __cellLabels__ | `object`: Beschriftungen für Zellen, die durch ein Objekt definiert sind, dessen Schlüssel das Format "Zeile:Spalte" haben. Default: `{}`.
 * __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.
+* __panelProps__ | `object`: zusätzliche Eigenschaften, die an die äußere Komponente <Panel /> zu übergeben sind. Default: `{}`.
 * __className__ | `string`: Klassenname. Default: `''`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onSubmit__ | `function`: Callback-Funktion, die bei der Übermittlung mit den Antworten als erstem und einem die Korrektheit angebenden Booleschen Wert als zweitem Parameter aufgerufen wird. Default: `onSubmit() {}`.

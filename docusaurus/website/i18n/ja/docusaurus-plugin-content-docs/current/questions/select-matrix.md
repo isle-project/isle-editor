@@ -23,6 +23,7 @@ sidebar_label: Select Question Matrix
 * __successMsg__ | `string`: 出題通知文. Default: `none`.
 * __cellLabels__ | `object`: キーが `row:col` の形式を持つオブジェクトで定義されたセルのラベル。. Default: `{}`.
 * __chat__ | `boolean`: 要素が統合されたチャットを持つべきかどうかを制御します。. Default: `false`.
+* __panelProps__ | `object`: 外側の<Panel /> コンポーネントに渡される追加プロパティ. Default: `{}`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onSubmit__ | `function`: コールバック関数は、第一のパラメータとして答えを、第二のパラメータとして正しさを示すブール値を指定して、提出時に呼び出されます。. Default: `onSubmit() {}`.

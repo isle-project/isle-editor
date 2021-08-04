@@ -6207,6 +6207,12 @@
 				"defaultValue": false
 			},
 			{
+				"name": "panelProps",
+				"type": "object",
+				"description": "SelectQuestionMatrix-prop-panelProps",
+				"defaultValue": {}
+			},
+			{
 				"name": "className",
 				"type": "string",
 				"description": "SelectQuestionMatrix-prop-className",

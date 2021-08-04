@@ -23,6 +23,7 @@ Een vraag met een antwoord bestaande uit meerdere selectievakjes.
 * __successMsg__ | `string`: meldingstekst die wordt weergegeven bij het indienen van de juiste antwoorden. Default: `none`.
 * __cellLabels__ | `object`: labels voor cellen gedefinieerd door object met sleutels in het formaat `row:col`. Default: `{}`.
 * __chat__ | `boolean`: bepaalt of het element een geïntegreerde chat moet hebben. Default: `false`.
+* __panelProps__ | `object`: aanvullende eigenschappen die aan de buitenste <Panel /> component moeten worden doorgegeven. Default: `{}`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onSubmit__ | `function`: callback-functie die wordt aangeroepen bij de indiening met de antwoorden als eerste en een booleaanse functie die de juistheid als tweede parameter aangeeft. Default: `onSubmit() {}`.

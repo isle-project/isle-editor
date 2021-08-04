@@ -23,6 +23,7 @@ Kysymys, jonka vastaus koostuu useista valintaruuduista.
 * __successMsg__ | `string`: ilmoitusteksti, joka näytetään oikeiden vastausten lähettämisen yhteydessä. Default: `none`.
 * __cellLabels__ | `object`: sellaisten solujen merkinnät, jotka on määritelty objektilla, jonka avaimet ovat muotoa `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.
+* __panelProps__ | `object`: lisäominaisuudet, jotka välitetään ulommalle <Panel /> -komponentille.. Default: `{}`.
 * __className__ | `string`: luokan nimi. Default: `''`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onSubmit__ | `function`: callback-funktio, joka käynnistetään lähetyksen yhteydessä ja jonka ensimmäisenä parametrina ovat vastaukset ja toisena boolean-parametrina oikeellisuutta osoittava boolean-arvo.. Default: `onSubmit() {}`.

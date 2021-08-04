@@ -23,6 +23,7 @@ Jautājums ar atbildi, kas sastāv no vairākiem izvēles rūtiņām.
 * __successMsg__ | `string`: paziņojuma teksts, kas tiek parādīts pēc pareizo atbilžu iesniegšanas. Default: `none`.
 * __cellLabels__ | `object`: etiķetes šūnām, ko definē objekts ar atslēgām formātā `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.
+* __panelProps__ | `object`: papildu rekvizīti, kas jānodod ārējam <Panel /> komponentam.. Default: `{}`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onSubmit__ | `function`: atsauces funkcija, kas tiek izsaukta pēc iesniegšanas ar atbildēm kā pirmo parametru un boolean, kas norāda pareizību, kā otro parametru.. Default: `onSubmit() {}`.

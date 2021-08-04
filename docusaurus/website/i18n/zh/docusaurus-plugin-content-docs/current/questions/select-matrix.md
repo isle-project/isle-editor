@@ -23,6 +23,7 @@ sidebar_label: Select Question Matrix
 * __successMsg__ | `string`: 提交正确答案时显示的通知文字. Default: `none`.
 * __cellLabels__ | `object`: 对象定义的单元格的标签，键值格式为 "row:col"。. Default: `{}`.
 * __chat__ | `boolean`: 控制该元素是否应该有一个集成的聊天. Default: `false`.
+* __panelProps__ | `object`: 要传递给外部<Panel /> 组件的额外属性. Default: `{}`.
 * __className__ | `string`: 班名. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onSubmit__ | `function`: 提交时调用的回调函数，第一个参数是答案，第二个参数是表示正确性的布尔值。. Default: `onSubmit() {}`.

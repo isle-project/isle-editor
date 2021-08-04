@@ -23,6 +23,7 @@ En fråga med ett svar som består av flera valbara rutor.
 * __successMsg__ | `string`: Meddelandetext som visas när du skickar in rätt svar.. Default: `none`.
 * __cellLabels__ | `object`: Etiketter för celler som definieras av objekt med nycklar i formatet `row:col`.. Default: `{}`.
 * __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.
+* __panelProps__ | `object`: Ytterligare egenskaper som ska skickas till den yttre <Panel /> -komponenten.. Default: `{}`.
 * __className__ | `string`: Klassnamn.. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onSubmit__ | `function`: callback-funktion som anropas vid inlämning med svaren som första parameter och en boolean som anger korrekthet som andra parameter.. Default: `onSubmit() {}`.

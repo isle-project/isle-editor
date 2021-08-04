@@ -23,6 +23,7 @@ A question with an answer consisting of multiple select boxes.
 * __successMsg__ | `string`: notification text displayed upon submitting correct answers. Default: `none`.
 * __cellLabels__ | `object`: labels for cells defined by object with keys having the format `row:col`. Default: `{}`.
 * __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
+* __panelProps__ | `object`: additional properties to be passed to the outer <Panel /> component. Default: `{}`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSubmit__ | `function`: callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter. Default: `onSubmit() {}`.

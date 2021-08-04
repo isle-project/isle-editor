@@ -23,6 +23,7 @@ Klausimas su atsakymu, sudarytas iš kelių pasirinkimo langelių.
 * __successMsg__ | `string`: pranešimo tekstas, rodomas pateikus teisingus atsakymus.. Default: `none`.
 * __cellLabels__ | `object`: objekto apibrėžtų langelių su raktais, kurių formatas `row:col`, etiketės. Default: `{}`.
 * __chat__ | `boolean`: kontroliuoja, ar elementas turi turėti integruotą pokalbių. Default: `false`.
+* __panelProps__ | `object`: papildomos savybės, perduodamos išoriniam <Panel /> komponentui.. Default: `{}`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 * __onSubmit__ | `function`: grįžtamojo ryšio funkcija, iškviečiama pateikus atsakymus, kurių pirmasis parametras yra atsakymai, o antrasis - teisingumą rodantis loginis rodiklis.. Default: `onSubmit() {}`.
