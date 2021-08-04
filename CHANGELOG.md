@@ -1,6 +1,6 @@
 # Changelog
 
-## [v0.76.3](https://github.com/isle-project/isle-editor/releases/tag/v0.76.3) (2021-08-04)
+## [v0.76.4](https://github.com/isle-project/isle-editor/releases/tag/v0.76.4) (2021-08-04)
 
 This release comes with various enhancements and bug fixes while improving the usability of the random number generator tools in the data explorer (under `Transform -> Generate Random Data`).
 
