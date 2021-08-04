@@ -207,6 +207,11 @@ class SelectQuestionMatrix extends Component {
 				singleValue: ( base ) => ({
 					...base,
 					color: valueColor
+				}),
+				menu: base => ({
+					...base,
+					width: 'max-content',
+					minWidth: '100%'
 				})
 			}}
 		/>;
