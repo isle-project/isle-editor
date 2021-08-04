@@ -42,7 +42,7 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	return config;
 }
 
-export function generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
+export function generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
 	let traces;
 	let layout;
 	let keys;
@@ -82,7 +82,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 				fixedrange: true
 			},
 			reversescale: true,
-			title: variable,
+			title: title || variable,
 			selectdirection: 'h'
 		};
 	} else {
@@ -178,7 +178,7 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 				title: displayDensity ? 'Density' : 'Count',
 				fixedrange: true
 			},
-			title: `${variable} ${i18n.t('plotly:given')} ${group}`
+			title: title || `${variable} ${i18n.t('plotly:given')} ${group}`
 		};
 		if ( groupMode === 'Facets' ) {
 			layout.grid = { rows: nRows, columns: nCols, pattern: 'independent' };
@@ -208,13 +208,13 @@ export function generateHistogramConfig({ data, variable, group, groupMode, nCol
 
 // MAIN //
 
-function Histogram({ id, data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange, action, onShare, onSelected }) {
+function Histogram({ id, data, variable, group, title, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange, action, onShare, onSelected }) {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateHistogramConfig({ data, variable, group, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
-	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, groupMode, nBins, nCols, variable, xBins, sameXRange, sameYRange ] );
+		return generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
+	}, [ bandwidthAdjust, binStrategy, data, densityType, displayDensity, group, title, groupMode, nBins, nCols, variable, xBins, sameXRange, sameYRange ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
@@ -286,6 +286,7 @@ Histogram.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
 * @property {(string|Factor)} group - grouping variable
+* @property {string} title - title of histogram
 * @property {(string|Factor)} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
 * @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
 * @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
