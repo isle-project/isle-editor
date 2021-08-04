@@ -16,6 +16,7 @@ Kartes komponents.
 * __defaultMinimized__ | `boolean`: nosaka, vai panelis pēc noklusējuma ir jāpadara minimizēts (piemērojams tikai tad, ja `minimizable` ir iestatīts uz `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: vai panelis var būt pilnekrāna (tikai instruktoriem).. Default: `false`.
 * __hideTooltip__ | `string`: virs slēpt pogas parādīts uzraksts. Default: `none`.
+* __trapFocus__ | `boolean`: vai aizturēt lietotāja fokusu panelī.. Default: `false`.
 * __bodyStyle__ | `object`: CSS iebūvēti stili korpusam. Default: `{}`.
 * __footerStyle__ | `object`: CSS iebūvētie stili pēdiņai. Default: `{}`.
 * __style__ | `object`: CSS iebūvētie stili konteineram. Default: `{}`.

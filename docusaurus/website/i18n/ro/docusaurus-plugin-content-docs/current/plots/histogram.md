@@ -11,6 +11,7 @@ O histogramă.
 * __data__ | `object (required)`: obiect de matrice de valori. Default: `none`.
 * __variable__ | `string (required)`: variabilă pentru a afișa. Default: `none`.
 * __group__ | `(string|Factor)`: variabilă de grupare. Default: `none`.
+* __title__ | `string`: titlul histogramei. Default: `none`.
 * __groupMode__ | `string`: dacă se suprapun histogramele grupate unul peste altul (`Overlay`) sau în diagrame separate unul lângă altul (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controlează dacă se afișează valorile densității în loc de numere pe axa y.. Default: `false`.
 * __densityType__ | `string`: atunci când se afișează densități, se poate suprapune fie o distribuție parametrică (`Normal`, `Uniform` sau `Exponențială`), fie o estimare neparametrică a densității kernel (`Data-driven`).. Default: `none`.

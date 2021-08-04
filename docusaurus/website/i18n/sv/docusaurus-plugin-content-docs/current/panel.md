@@ -16,6 +16,7 @@ Kortkomponent.
 * __defaultMinimized__ | `boolean`: kontrollerar om panelen ska minimeras som standard (gäller endast när `minimizable` är satt till `true`). Default: `false`.
 * __fullscreen__ | `boolean`: om panelen kan göras fullskärmad (endast för instruktörer). Default: `false`.
 * __hideTooltip__ | `string`: verktygstips som visas över knappen Dölj. Default: `none`.
+* __trapFocus__ | `boolean`: om användarens fokus ska fastna i panelen eller inte. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline-stilar för kroppen. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline-stilar för sidfot. Default: `{}`.
 * __style__ | `object`: CSS inline-stilar för behållare. Default: `{}`.

@@ -16,6 +16,7 @@ Kortin osa.
 * __defaultMinimized__ | `boolean`: ohjaa, minimoidaanko paneeli oletusarvoisesti (sovelletaan vain, kun `minimizable` on asetettu `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: voidaanko paneeli tehdä koko näytön kokoiseksi (vain ohjaajille).. Default: `false`.
 * __hideTooltip__ | `string`: Piilota-painikkeen yläpuolella näkyvä työkaluvihje. Default: `none`.
+* __trapFocus__ | `boolean`: halutaanko käyttäjän fokus jäädyttää paneeliin.. Default: `false`.
 * __bodyStyle__ | `object`: CSS-inline-tyylit runkoa varten. Default: `{}`.
 * __footerStyle__ | `object`: CSS-inline-tyylit alatunnisteeseen. Default: `{}`.
 * __style__ | `object`: CSS inline-tyylit säiliölle. Default: `{}`.

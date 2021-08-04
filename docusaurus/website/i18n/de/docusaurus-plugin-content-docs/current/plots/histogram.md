@@ -11,6 +11,7 @@ Ein Histogramm.
 * __data__ | `object (required)`: Objekt von Werte-Arrays. Default: `none`.
 * __variable__ | `string (required)`: Variable zur Anzeige. Default: `none`.
 * __group__ | `(string|Factor)`: Gruppierungsvariable. Default: `none`.
+* __title__ | `string`: Titel des Histogramms. Default: `none`.
 * __groupMode__ | `string`: ob gruppierte Histogramme übereinander (`Overlay`) oder in separaten Plots nebeneinander (`Facets`) liegen sollen. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: steuert, ob Dichtewerte anstelle von Zählwerten auf der y-Achse angezeigt werden sollen. Default: `false`.
 * __densityType__ | `string`: bei der Darstellung von Dichten kann entweder eine parametrische Verteilung (`Normal`, `Uniform` oder `Exponential`) oder eine nicht-parametrische Kernel-Dichte-Schätzung (`Daten-gesteuert`) überlagert werden. Default: `none`.

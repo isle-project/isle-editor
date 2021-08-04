@@ -4251,6 +4251,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "trapFocus",
+				"type": "boolean",
+				"description": "Panel-prop-trapFocus",
+				"defaultValue": false
+			},
+			{
 				"name": "bodyStyle",
 				"type": "object",
 				"description": "Panel-prop-bodyStyle",
@@ -4625,6 +4631,12 @@
 				"name": "group",
 				"type": "(string|Factor)",
 				"description": "Histogram-prop-group",
+				"defaultValue": null
+			},
+			{
+				"name": "title",
+				"type": "string",
+				"description": "Histogram-prop-title",
 				"defaultValue": null
 			},
 			{

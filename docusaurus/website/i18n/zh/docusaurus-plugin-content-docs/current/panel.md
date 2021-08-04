@@ -16,6 +16,7 @@ sidebar_label: Panel
 * __defaultMinimized__ | `boolean`: 控制面板是否应该默认最小化（只适用于`minimizable`被设置为`true`时）。. Default: `false`.
 * __fullscreen__ | `boolean`: 是否可以全屏显示(只对教师开放). Default: `false`.
 * __hideTooltip__ | `string`: 隐藏按钮上显示的工具提示. Default: `none`.
+* __trapFocus__ | `boolean`: 是否将用户的焦点锁定在面板上. Default: `false`.
 * __bodyStyle__ | `object`: 身体的CSS内联样式. Default: `{}`.
 * __footerStyle__ | `object`: 页脚的CSS内联样式. Default: `{}`.
 * __style__ | `object`: 容器的CSS内联样式. Default: `{}`.

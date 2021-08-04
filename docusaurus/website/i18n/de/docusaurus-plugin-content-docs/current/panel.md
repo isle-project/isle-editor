@@ -16,6 +16,7 @@ Kartenkomponente.
 * __defaultMinimized__ | `boolean`: steuert, ob das Panel standardmäßig minimiert werden soll (nur anwendbar, wenn `minimizable` auf `true` gesetzt ist). Default: `false`.
 * __fullscreen__ | `boolean`: ob das Bedienfeld in den Vollbildmodus versetzt werden kann (nur für Kursleiter). Default: `false`.
 * __hideTooltip__ | `string`: Tooltip, der über der Ausblenden-Schaltfläche angezeigt wird. Default: `none`.
+* __trapFocus__ | `boolean`: ob der Fokus des Benutzers im Panel gefangen werden soll. Default: `false`.
 * __bodyStyle__ | `object`: CSS-Inline-Stile für Body. Default: `{}`.
 * __footerStyle__ | `object`: CSS-Inlinestile für Fußzeile. Default: `{}`.
 * __style__ | `object`: CSS-Inlinestile für Container. Default: `{}`.

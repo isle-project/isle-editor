@@ -16,6 +16,7 @@ Kaardi komponent.
 * __defaultMinimized__ | `boolean`: kontrollib, kas paneel peaks olema vaikimisi minimeeritud (rakendub ainult siis, kui `minimizable` on seatud `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: kas paneeli saab muuta täisekraaniliseks (ainult instruktoritele). Default: `false`.
 * __hideTooltip__ | `string`: tööriistavihik, mis kuvatakse nupu peitmise kohal. Default: `none`.
+* __trapFocus__ | `boolean`: kas kasutaja fookus jääb paneelil lõksu.. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stiilid keha jaoks. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stiilid jalusesse. Default: `{}`.
 * __style__ | `object`: Konteineri CSS inline stiilid. Default: `{}`.

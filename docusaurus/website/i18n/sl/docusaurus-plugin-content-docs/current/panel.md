@@ -16,6 +16,7 @@ Sestavni del kartice.
 * __defaultMinimized__ | `boolean`: nadzoruje, ali naj bo plošča privzeto minimizirana (velja samo, če je `minimizable` nastavljeno na `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: ali je mogoče ploščo prikazati v celozaslonskem načinu (samo za inštruktorje).. Default: `false`.
 * __hideTooltip__ | `string`: namig, ki se prikaže nad gumbom za skrivanje.. Default: `none`.
+* __trapFocus__ | `boolean`: ali naj se uporabnikovo osredotočenje ujame na ploščo.. Default: `false`.
 * __bodyStyle__ | `object`: Vnosni slogi CSS za telo. Default: `{}`.
 * __footerStyle__ | `object`: Vmesni slogi CSS za nogo. Default: `{}`.
 * __style__ | `object`: Vnosni slogi CSS za vsebnik. Default: `{}`.

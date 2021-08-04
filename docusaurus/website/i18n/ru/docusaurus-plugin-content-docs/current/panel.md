@@ -16,6 +16,7 @@ sidebar_label: Panel
 * __defaultMinimized__ | `boolean`: управляет тем, должна ли панель быть свернута по умолчанию (применяется только в том случае, если `minimizable` установлено в `true`). Default: `false`.
 * __fullscreen__ | `boolean`: можно ли сделать панель в полноэкранном режиме (только для инструкторов). Default: `false`.
 * __hideTooltip__ | `string`: всплывающая подсказка, отображаемая над кнопкой скрытия. Default: `none`.
+* __trapFocus__ | `boolean`: удерживать ли фокус пользователя на панели. Default: `false`.
 * __bodyStyle__ | `object`: CSS встраиваемые стили для кузова. Default: `{}`.
 * __footerStyle__ | `object`: CSS-стили для нижнего колонтитула. Default: `{}`.
 * __style__ | `object`: CSS встраиваемые стили для контейнера. Default: `{}`.

@@ -11,6 +11,7 @@ sidebar_label: Histogram
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variable__ | `string (required)`: 表示用変数. Default: `none`.
 * __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
+* __title__ | `string`: ヒストグラムのタイトル. Default: `none`.
 * __groupMode__ | `string`: グループ化されたヒストグラムを重ねて表示するか (`Overlay`)、あるいは隣り合った別々のプロットに表示するか (`Facets`)。. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: y軸にカウントではなく密度値を表示するかどうかを制御します。. Default: `false`.
 * __densityType__ | `string`: 密度を表示する際には、パラメトリック分布（`正規分布`, `一様分布`, `指数分布`）かノンパラメトリックカーネル密度推定値（`データ駆動型`）を重ね合わせることができます。. Default: `none`.

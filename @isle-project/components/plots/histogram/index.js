@@ -243,6 +243,7 @@ function Histogram({ id, data, variable, group, title, groupMode, nCols, display
 Histogram.defaultProps = {
 	group: null,
 	groupMode: 'Overlay',
+	title: null,
 	displayDensity: false,
 	densityType: null,
 	bandwidthAdjust: 1,
@@ -261,6 +262,7 @@ Histogram.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]),
+	title: PropTypes.string,
 	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
 	displayDensity: PropTypes.bool,
 	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),

@@ -16,6 +16,7 @@ Componente de la tarjeta.
 * __defaultMinimized__ | `boolean`: controla si el panel debe minimizarse por defecto (sólo se aplica cuando `minimizable` se establece como `true`). Default: `false`.
 * __fullscreen__ | `boolean`: si el panel puede hacerse a pantalla completa (sólo para los instructores). Default: `false`.
 * __hideTooltip__ | `string`: La punta de la herramienta que se muestra sobre el botón de ocultar. Default: `none`.
+* __trapFocus__ | `boolean`: si se atrapa el foco del usuario en el panel. Default: `false`.
 * __bodyStyle__ | `object`: Estilos en línea CSS para el cuerpo. Default: `{}`.
 * __footerStyle__ | `object`: Estilos en línea CSS para el pie de página. Default: `{}`.
 * __style__ | `object`: Estilos en línea de CSS para el contenedor. Default: `{}`.

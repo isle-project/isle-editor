@@ -16,6 +16,7 @@ Componenta cardului.
 * __defaultMinimized__ | `boolean`: controlează dacă panoul trebuie să fie minimizat în mod implicit (se aplică numai atunci când `minimizable` este setat la `true`). Default: `false`.
 * __fullscreen__ | `boolean`: dacă panoul poate fi transformat în ecran complet (numai pentru instructori). Default: `false`.
 * __hideTooltip__ | `string`: tooltip afișat deasupra butonului de ascundere. Default: `none`.
+* __trapFocus__ | `boolean`: dacă trebuie să rețină atenția utilizatorului în panou. Default: `false`.
 * __bodyStyle__ | `object`: Stiluri CSS inline pentru corp. Default: `{}`.
 * __footerStyle__ | `object`: Stiluri CSS inline pentru subsol de pagină. Default: `{}`.
 * __style__ | `object`: Stiluri CSS inline pentru container. Default: `{}`.

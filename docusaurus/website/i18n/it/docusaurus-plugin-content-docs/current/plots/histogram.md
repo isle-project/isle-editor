@@ -11,6 +11,7 @@ Un istogramma.
 * __data__ | `object (required)`: oggetto delle matrici di valori. Default: `none`.
 * __variable__ | `string (required)`: variabile da visualizzare. Default: `none`.
 * __group__ | `(string|Factor)`: variabile di raggruppamento. Default: `none`.
+* __title__ | `string`: titolo dell'istogramma. Default: `none`.
 * __groupMode__ | `string`: se sovrapporre istogrammi raggruppati l'uno sull'altro (`Overlay`) o in trame separate l'una accanto all'altra (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controlla se visualizzare i valori di densità invece dei conteggi sull'asse y. Default: `false`.
 * __densityType__ | `string`: quando si visualizzano le densità, si può sia sovrapporre una distribuzione parametrica (`Normale`, `Uniforme`, o `Exponenziale`) sia una stima non parametrica della densità del kernel (`Data-driven`). Default: `none`.

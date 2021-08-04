@@ -16,6 +16,7 @@ Componente do cartão.
 * __defaultMinimized__ | `boolean`: controla se o painel deve ser minimizado por padrão (aplicável somente quando "minimizável" estiver definido como "verdadeiro"). Default: `false`.
 * __fullscreen__ | `boolean`: se o painel pode ser feito em tela cheia (somente para instrutores). Default: `false`.
 * __hideTooltip__ | `string`: ponta de ferramenta exibida sobre o botão de ocultar. Default: `none`.
+* __trapFocus__ | `boolean`: se o foco do usuário no painel deve ser aprisionado. Default: `false`.
 * __bodyStyle__ | `object`: Estilos de CSS em linha para o corpo. Default: `{}`.
 * __footerStyle__ | `object`: Estilos em linha de CSS para rodapé. Default: `{}`.
 * __style__ | `object`: Estilos em linha de CSS para contêineres. Default: `{}`.

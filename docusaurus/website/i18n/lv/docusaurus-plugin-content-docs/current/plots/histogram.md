@@ -11,6 +11,7 @@ Histogramma.
 * __data__ | `object (required)`: vērtību masīvu objekts. Default: `none`.
 * __variable__ | `string (required)`: mainīgais lielums, lai parādītu. Default: `none`.
 * __group__ | `(string|Factor)`: grupēšanas mainīgais. Default: `none`.
+* __title__ | `string`: histogrammas nosaukums. Default: `none`.
 * __groupMode__ | `string`: vai pārklāt sagrupētas histogrammas vienu virs otras (`Overlay`) vai atsevišķos laukumos blakus (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontrolē, vai uz y-asis attēlot blīvuma vērtības, nevis skaitļus.. Default: `false`.
 * __densityType__ | `string`: parādot blīvumus, var pārklāt parametrisku sadalījumu (`Normāls`, `vienmērīgs` vai `eksponenciāls`) vai neparametrisku kodola blīvuma novērtējumu (`Data-driven`).. Default: `none`.

@@ -16,6 +16,7 @@ Composant de la carte.
 * __defaultMinimized__ | `boolean`: contrôle si le panneau doit être minimisé par défaut (seulement applicable quand `minimizable` est défini à `true`). Default: `false`.
 * __fullscreen__ | `boolean`: si le panneau peut être mis en plein écran (uniquement pour les instructeurs). Default: `false`.
 * __hideTooltip__ | `string`: info-bulle affichée au-dessus du bouton "masquer. Default: `none`.
+* __trapFocus__ | `boolean`: si le focus de l'utilisateur doit être piégé dans le panneau.. Default: `false`.
 * __bodyStyle__ | `object`: Styles CSS en ligne pour le corps. Default: `{}`.
 * __footerStyle__ | `object`: Styles CSS en ligne pour le pied de page. Default: `{}`.
 * __style__ | `object`: Styles CSS en ligne pour le conteneur. Default: `{}`.

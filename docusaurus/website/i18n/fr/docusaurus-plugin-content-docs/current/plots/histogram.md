@@ -11,6 +11,7 @@ Un histogramme.
 * __data__ | `object (required)`: les tableaux d'objets de valeur. Default: `none`.
 * __variable__ | `string (required)`: variable à afficher. Default: `none`.
 * __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
+* __title__ | `string`: titre de l'histogramme. Default: `none`.
 * __groupMode__ | `string`: la superposition d'histogrammes groupés ("Overlay") ou la mise en place de graphiques séparés les uns à côté des autres ("Facets"). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: contrôle si les valeurs de densité doivent être affichées sur l'axe des y au lieu des comptes. Default: `false`.
 * __densityType__ | `string`: lors de l'affichage des densités, on peut soit superposer une distribution paramétrique (`Normal`, `Uniforme`, ou `Exponentiel`) ou une estimation non-paramétrique de la densité du noyau (`Data-driven`). Default: `none`.

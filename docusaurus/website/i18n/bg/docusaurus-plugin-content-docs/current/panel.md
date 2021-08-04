@@ -16,6 +16,7 @@ sidebar_label: Panel
 * __defaultMinimized__ | `boolean`: контролира дали панелът да бъде минимизиран по подразбиране (приложимо само когато `minimizable` е зададено на `true`). Default: `false`.
 * __fullscreen__ | `boolean`: дали панелът може да се използва на цял екран (само за инструктори). Default: `false`.
 * __hideTooltip__ | `string`: подсказка за инструменти, показвана над бутона за скриване. Default: `none`.
+* __trapFocus__ | `boolean`: дали да задържа фокуса на потребителя в панела. Default: `false`.
 * __bodyStyle__ | `object`: CSS вградени стилове за тялото. Default: `{}`.
 * __footerStyle__ | `object`: CSS вградени стилове за footer. Default: `{}`.
 * __style__ | `object`: CSS вградени стилове за контейнер. Default: `{}`.

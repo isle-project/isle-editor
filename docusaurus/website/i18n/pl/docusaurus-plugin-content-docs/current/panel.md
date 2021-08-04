@@ -16,6 +16,7 @@ Komponent karty.
 * __defaultMinimized__ | `boolean`: kontroluje czy panel powinien być domyślnie zminimalizowany (dotyczy tylko gdy `minimizable` jest ustawione na `true`). Default: `false`.
 * __fullscreen__ | `boolean`: czy panel może być wykonany w trybie pełnoekranowym (tylko dla instruktorów). Default: `false`.
 * __hideTooltip__ | `string`: etykieta narzędzi wyświetlana nad przyciskiem ukrywania. Default: `none`.
+* __trapFocus__ | `boolean`: czy uwięzić fokus użytkownika w panelu. Default: `false`.
 * __bodyStyle__ | `object`: CSS style inline dla ciała. Default: `{}`.
 * __footerStyle__ | `object`: Style inline CSS dla stopki. Default: `{}`.
 * __style__ | `object`: Style inline CSS dla kontenerów. Default: `{}`.

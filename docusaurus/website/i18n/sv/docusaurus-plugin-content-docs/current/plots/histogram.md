@@ -11,6 +11,7 @@ Ett histogram.
 * __data__ | `object (required)`: objekt av värdefält. Default: `none`.
 * __variable__ | `string (required)`: variabel för att visa. Default: `none`.
 * __group__ | `(string|Factor)`: grupperingsvariabel. Default: `none`.
+* __title__ | `string`: titel på histogrammet. Default: `none`.
 * __groupMode__ | `string`: Om grupperade histogram ska läggas över varandra (`Overlay`) eller i separata diagram bredvid varandra (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: Kontrollerar om täthetsvärden ska visas i stället för antal på y-axeln.. Default: `false`.
 * __densityType__ | `string`: När man visar tätheter kan man antingen lägga över en parametrisk fördelning (`Normal`, `Uniform` eller `Exponential`) eller en icke-parametrisk kärndensitetsuppskattning (`Data-driven`).. Default: `none`.

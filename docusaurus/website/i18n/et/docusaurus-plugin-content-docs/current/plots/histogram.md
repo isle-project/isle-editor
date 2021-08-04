@@ -11,6 +11,7 @@ Histogramm.
 * __data__ | `object (required)`: väärtuste massiivi objekt. Default: `none`.
 * __variable__ | `string (required)`: muutuja kuvamiseks. Default: `none`.
 * __group__ | `(string|Factor)`: rühmitav muutuja. Default: `none`.
+* __title__ | `string`: histogrammi pealkiri. Default: `none`.
 * __groupMode__ | `string`: kas grupeeritud histogramme üksteise peale (`Overlay`) või eraldi graafikutena üksteise kõrval (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontrollib, kas y-teljel näidatakse loenduste asemel tiheduse väärtusi.. Default: `false`.
 * __densityType__ | `string`: tiheduste kuvamisel saab üle kanda kas parameetrilise jaotuse (`Normal`, `Uniform` või `Eksponentsiaalne`) või mitteparameetrilise kerneli tiheduse hinnangu (`Data-driven`).. Default: `none`.

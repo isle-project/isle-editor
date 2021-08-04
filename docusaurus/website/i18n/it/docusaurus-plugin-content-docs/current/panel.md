@@ -16,6 +16,7 @@ Componente della scheda.
 * __defaultMinimized__ | `boolean`: controlla se il pannello deve essere minimizzato di default (applicabile solo quando `minimizzabile` è impostato a `true`). Default: `false`.
 * __fullscreen__ | `boolean`: se il pannello può essere fatto a schermo intero (solo per gli istruttori). Default: `false`.
 * __hideTooltip__ | `string`: tooltip visualizzato sopra il pulsante hide. Default: `none`.
+* __trapFocus__ | `boolean`: se intrappolare il focus dell'utente nel pannello. Default: `false`.
 * __bodyStyle__ | `object`: Stili in linea CSS per il corpo. Default: `{}`.
 * __footerStyle__ | `object`: Stili in linea CSS per piè di pagina. Default: `{}`.
 * __style__ | `object`: Stili in linea CSS per container. Default: `{}`.

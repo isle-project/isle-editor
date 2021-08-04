@@ -16,6 +16,7 @@ Kortelės sudedamoji dalis.
 * __defaultMinimized__ | `boolean`: kontroliuoja, ar skydelis pagal nutylėjimą turėtų būti sumažintas (taikoma tik tada, kai `minimizable` nustatyta į `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: ar skydelis gali būti per visą ekraną (tik instruktoriams).. Default: `false`.
 * __hideTooltip__ | `string`: virš paslėpimo mygtuko rodoma užuomina. Default: `none`.
+* __trapFocus__ | `boolean`: ar naudotojo fokusas turi būti fiksuojamas skydelyje. Default: `false`.
 * __bodyStyle__ | `object`: CSS įvesties stilius kūnui. Default: `{}`.
 * __footerStyle__ | `object`: "CSS" eilutės stilius poraštėje. Default: `{}`.
 * __style__ | `object`: Konteinerio CSS vidinės eilutės stiliai. Default: `{}`.

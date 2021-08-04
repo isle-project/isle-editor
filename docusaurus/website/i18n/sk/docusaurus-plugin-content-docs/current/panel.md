@@ -16,6 +16,7 @@ Komponent karty.
 * __defaultMinimized__ | `boolean`: kontroluje, či má byť panel predvolene minimalizovaný (platí len vtedy, keď je `minimizable` nastavené na `true`). Default: `false`.
 * __fullscreen__ | `boolean`: či je možné panel zobraziť na celú obrazovku (len pre inštruktorov). Default: `false`.
 * __hideTooltip__ | `string`: nápovedu zobrazenú nad tlačidlom skryť. Default: `none`.
+* __trapFocus__ | `boolean`: či sa má fokus používateľa zachytiť na paneli. Default: `false`.
 * __bodyStyle__ | `object`: Riadkové štýly CSS pre telo. Default: `{}`.
 * __footerStyle__ | `object`: Riadkové štýly CSS pre pätičku. Default: `{}`.
 * __style__ | `object`: Riadkové štýly CSS pre kontajner. Default: `{}`.

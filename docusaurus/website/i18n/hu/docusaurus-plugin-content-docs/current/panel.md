@@ -16,6 +16,7 @@ Kártyaelem.
 * __defaultMinimized__ | `boolean`: szabályozza, hogy a panel alapértelmezés szerint minimalizálva legyen-e (csak akkor alkalmazható, ha a `minimizable` értéke `true`).. Default: `false`.
 * __fullscreen__ | `boolean`: a panel teljes képernyőre tehető-e (csak oktatók számára). Default: `false`.
 * __hideTooltip__ | `string`: tooltip megjelenik az elrejtés gomb felett. Default: `none`.
+* __trapFocus__ | `boolean`: hogy a felhasználó fókusza a panelben maradjon-e. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stílusok a testhez. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stílusok a lábléchez. Default: `{}`.
 * __style__ | `object`: CSS inline stílusok a konténerhez. Default: `{}`.

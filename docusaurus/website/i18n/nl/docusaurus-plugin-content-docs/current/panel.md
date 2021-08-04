@@ -16,6 +16,7 @@ Kaartcomponent.
 * __defaultMinimized__ | `boolean`: bepaalt of het paneel standaard geminimaliseerd moet worden (alleen van toepassing als `minimaliseerbaar` is ingesteld op `true`). Default: `false`.
 * __fullscreen__ | `boolean`: of het paneel op volledig scherm kan worden gemaakt (alleen voor instructeurs). Default: `false`.
 * __hideTooltip__ | `string`: tooltip weergegeven over de verbergingsknop. Default: `none`.
+* __trapFocus__ | `boolean`: of de focus van de gebruiker in het paneel moet worden gevangen. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stijlen voor het lichaam. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stijlen voor footer. Default: `{}`.
 * __style__ | `object`: CSS inline-stijlen voor containers. Default: `{}`.

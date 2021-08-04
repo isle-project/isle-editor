@@ -11,6 +11,7 @@ Histograma.
 * __data__ | `object (required)`: verčių masyvų objektas. Default: `none`.
 * __variable__ | `string (required)`: kintamasis rodomas. Default: `none`.
 * __group__ | `(string|Factor)`: grupavimo kintamasis. Default: `none`.
+* __title__ | `string`: histogramos pavadinimas. Default: `none`.
 * __groupMode__ | `string`: ar sugrupuotas histogramas dengti vieną ant kitos (`Overlay`), ar atskirose diagramose šalia viena kitos (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontroliuoja, ar y ašyje rodyti tankio vertes, o ne skaičių.. Default: `false`.
 * __densityType__ | `string`: rodant tankį, galima uždengti parametrinį pasiskirstymą (`Normalusis`, `Vienodasis` arba `Eksponentinis`) arba neparametrinį branduolio tankio įvertį (`Data-driven`).. Default: `none`.

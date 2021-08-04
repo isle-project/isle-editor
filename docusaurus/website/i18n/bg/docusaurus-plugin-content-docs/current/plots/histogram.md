@@ -11,6 +11,7 @@ sidebar_label: Histogram
 * __data__ | `object (required)`: обект от масиви със стойности. Default: `none`.
 * __variable__ | `string (required)`: променлива за показване. Default: `none`.
 * __group__ | `(string|Factor)`: променлива за групиране. Default: `none`.
+* __title__ | `string`: заглавие на хистограмата. Default: `none`.
 * __groupMode__ | `string`: дали групираните хистограми да се наслагват една върху друга (`Overlay`) или в отделни графики една до друга (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: контролира дали да се показват стойности на плътността вместо бройки по оста y. Default: `false`.
 * __densityType__ | `string`: когато се показват плътности, може да се наслагва параметрично разпределение (`Normal`, `Uniform` или `Exponential`) или непараметрична ядрена оценка на плътността (`Data-driven`).. Default: `none`.

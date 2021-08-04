@@ -11,6 +11,7 @@ Histogram.
 * __data__ | `object (required)`: objekt polí hodnôt. Default: `none`.
 * __variable__ | `string (required)`: premenná na zobrazenie. Default: `none`.
 * __group__ | `(string|Factor)`: zoskupovanie premenných. Default: `none`.
+* __title__ | `string`: názov histogramu. Default: `none`.
 * __groupMode__ | `string`: či sa majú zoskupené histogramy prekrývať nad sebou (`Overlay`) alebo v samostatných grafoch vedľa seba (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: ovláda, či sa majú na osi y zobrazovať hodnoty hustoty namiesto počtov.. Default: `false`.
 * __densityType__ | `string`: pri zobrazovaní hustôt je možné prekryť parametrické rozdelenie (`Normálne`, `Jednotkové` alebo `Exponenciálne`) alebo neparametrický jadrový odhad hustoty (`Data-driven`). Default: `none`.

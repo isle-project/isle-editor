@@ -16,6 +16,7 @@ Kortkomponent.
 * __defaultMinimized__ | `boolean`: styrer, om panelet skal minimeres som standard (gælder kun, når `minimizable` er indstillet til `true`). Default: `false`.
 * __fullscreen__ | `boolean`: om panelet kan gøres fuldt skærm (kun for instruktører). Default: `false`.
 * __hideTooltip__ | `string`: tooltip, der vises over skjul-knappen. Default: `none`.
+* __trapFocus__ | `boolean`: om brugerens fokus skal fanges i panelet. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline-stilarter for krop. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline-stilarter til sidefod. Default: `{}`.
 * __style__ | `object`: CSS inline-stilarter til container. Default: `{}`.

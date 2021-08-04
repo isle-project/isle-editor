@@ -11,6 +11,7 @@ Histogrammi.
 * __data__ | `object (required)`: arvojoukkojen objekti. Default: `none`.
 * __variable__ | `string (required)`: muuttuja näyttää. Default: `none`.
 * __group__ | `(string|Factor)`: ryhmittelymuuttuja. Default: `none`.
+* __title__ | `string`: histogrammin otsikko. Default: `none`.
 * __groupMode__ | `string`: asetetaanko ryhmitellyt histogrammit päällekkäin (`Overlay`) vai erillisinä kuvioina vierekkäin (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: valvoo, näytetäänkö y-akselilla tiheysarvot lukumäärien sijasta.. Default: `false`.
 * __densityType__ | `string`: kun näytetään tiheyksiä, voidaan päälle asettaa joko parametrinen jakauma (`Normaali`, `Yhtenäinen` tai `Exponentiaalinen`) tai ei-parametrinen ydintiheysestimaatti (`Data-driven`).. Default: `none`.

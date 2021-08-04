@@ -11,6 +11,7 @@ sidebar_label: Histogram
 * __data__ | `object (required)`: αντικείμενο των πινάκων τιμών. Default: `none`.
 * __variable__ | `string (required)`: μεταβλητή για την εμφάνιση. Default: `none`.
 * __group__ | `(string|Factor)`: μεταβλητή ομαδοποίησης. Default: `none`.
+* __title__ | `string`: τίτλος ιστογράμματος. Default: `none`.
 * __groupMode__ | `string`: αν θα επικαλύπτονται ομαδοποιημένα ιστογράμματα το ένα πάνω στο άλλο (`Overlay`) ή σε ξεχωριστά διαγράμματα το ένα δίπλα στο άλλο (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: ελέγχει αν θα εμφανίζονται τιμές πυκνότητας αντί για μετρήσεις στον άξονα y. Default: `false`.
 * __densityType__ | `string`: κατά την εμφάνιση πυκνοτήτων, μπορεί κανείς είτε να επικαλύψει μια παραμετρική κατανομή (`Normal`, `Uniform`, ή `Exponential`) είτε μια μη παραμετρική εκτίμηση πυκνότητας πυρήνα (`Data-driven`). Default: `none`.

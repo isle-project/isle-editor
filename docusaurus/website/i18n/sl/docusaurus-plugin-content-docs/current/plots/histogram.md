@@ -11,6 +11,7 @@ Histogram.
 * __data__ | `object (required)`: predmet polja vrednosti. Default: `none`.
 * __variable__ | `string (required)`: spremenljivka za prikaz. Default: `none`.
 * __group__ | `(string|Factor)`: spremenljivka za razvrščanje v skupine. Default: `none`.
+* __title__ | `string`: naslov histograma. Default: `none`.
 * __groupMode__ | `string`: ali naj se združeni histogrami prekrijejo drug na drugega (`Overlay`) ali v ločenih ploskvah drug ob drugem (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: nadzoruje, ali naj se na osi y namesto števila prikažejo vrednosti gostote.. Default: `false`.
 * __densityType__ | `string`: pri prikazu gostot lahko prekrijemo parametrično porazdelitev (`Normalna`, `enakomerna` ali `eksponencialna`) ali neparametrično oceno gostote jedra (`Data-driven`).. Default: `none`.

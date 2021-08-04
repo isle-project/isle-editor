@@ -16,6 +16,7 @@ sidebar_label: Panel
 * __defaultMinimized__ | `boolean`: ελέγχει αν ο πίνακας θα πρέπει να ελαχιστοποιείται από προεπιλογή (εφαρμόζεται μόνο όταν το `minimizable` έχει οριστεί σε `true`). Default: `false`.
 * __fullscreen__ | `boolean`: αν ο πίνακας μπορεί να γίνει πλήρης οθόνη (μόνο για εκπαιδευτές). Default: `false`.
 * __hideTooltip__ | `string`: tooltip που εμφανίζεται πάνω από το κουμπί απόκρυψης. Default: `none`.
+* __trapFocus__ | `boolean`: αν θα παγιδεύεται η εστίαση του χρήστη στον πίνακα. Default: `false`.
 * __bodyStyle__ | `object`: Στυλ CSS inline για το σώμα. Default: `{}`.
 * __footerStyle__ | `object`: Στυλ CSS inline για υποσέλιδο. Default: `{}`.
 * __style__ | `object`: Στυλ CSS inline για δοχείο. Default: `{}`.

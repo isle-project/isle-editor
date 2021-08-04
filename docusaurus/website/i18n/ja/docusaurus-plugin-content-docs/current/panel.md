@@ -16,6 +16,7 @@ sidebar_label: Panel
 * __defaultMinimized__ | `boolean`: パネルをデフォルトで最小化するかどうかを制御します（`minimizable`が`true`に設定されている場合のみ適用されます）。. Default: `false`.
 * __fullscreen__ | `boolean`: パネルをフルスクリーンにできるかどうか (インストラクターのみ). Default: `false`.
 * __hideTooltip__ | `string`: 非表示ボタンの上に表示されるツールチップ. Default: `none`.
+* __trapFocus__ | `boolean`: ユーザーのフォーカスをパネルにトラップするかどうか. Default: `false`.
 * __bodyStyle__ | `object`: 本文のCSSインラインスタイル. Default: `{}`.
 * __footerStyle__ | `object`: フッター用CSSインラインスタイル. Default: `{}`.
 * __style__ | `object`: コンテナ用CSSインラインスタイル. Default: `{}`.

@@ -11,6 +11,7 @@ Egy hisztogram.
 * __data__ | `object (required)`: értéktáblák objektuma. Default: `none`.
 * __variable__ | `string (required)`: változó a megjelenítéshez. Default: `none`.
 * __group__ | `(string|Factor)`: csoportosító változó. Default: `none`.
+* __title__ | `string`: a hisztogram címe. Default: `none`.
 * __groupMode__ | `string`: hogy a csoportosított hisztogramokat egymásra helyezzük-e (`Overlay`) vagy különálló ábrákon egymás mellett (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: szabályozza, hogy az y-tengelyen a sűrűségértékek jelenjenek-e meg a számlálás helyett.. Default: `false`.
 * __densityType__ | `string`: a sűrűségek megjelenítésekor vagy egy parametrikus eloszlást (`Normális`, `Egyenletes` vagy `Exponenciális`) vagy egy nem parametrikus kernel sűrűségbecslést (`Adatvezérelt`) lehet ráteríteni.. Default: `none`.
