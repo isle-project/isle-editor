@@ -11,6 +11,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import contains from '@stdlib/assert/contains';
 import random from '@stdlib/random/base';
 import objectKeys from '@stdlib/utils/keys';
 import capitalize from '@stdlib/string/capitalize';
@@ -47,6 +50,12 @@ const DISTRIBUTIONS = [
 	'triangular',
 	'uniform',
 	'weibull'
+];
+const DISTS_WITH_TOGGLE = [
+	'bernoulli',
+	'binomial',
+	'geometric',
+	'poisson'
 ];
 const DISTRIBUTION_PARAMS = {
 	'bernoulli': [
@@ -312,12 +321,13 @@ const BODY_STYLE = {
 
 const RandomTransformer = ( props ) => {
 	const [ name, setName ] = useState( null );
-	const [ distribution, setDistribution ] = useState( DISTRIBUTIONS[ 0 ] );
+	const [ distribution, setDistribution ] = useState( DISTRIBUTIONS[ 13 ] );
 	const [ params, setParams ] = useState( [ 1, 1, 1 ] );
+	const [ asCategorical, setAsCategorical ] = useState( false );
+	const keys = objectKeys( props.data );
+	const [ nObs, setNObs ] = useState( props.data[ keys[ 0 ] ].length );
 	const { t } = useTranslation( 'learn/distribution' );
 	const createVariable = useCallback( () => {
-		const keys = objectKeys( props.data );
-		const nobs = props.data[ keys[ 0 ] ].length;
 		props.logAction( DATA_EXPLORER_RANDOM_TRANSFORMER, {
 			distribution, name
 		});
@@ -328,34 +338,45 @@ const RandomTransformer = ( props ) => {
 			const end = parseInt( match[ 3 ], 10 );
 			const names = [];
 			const values = [];
-			for ( let i = start; i <= end; i++ ) {
-				const x = new Array( nobs );
-				for ( let j = 0; j < nobs; j++ ) {
-					x[ j ] = random[ distribution ].apply( null, params );
+			if ( asCategorical ) {
+				for ( let i = start; i <= end; i++ ) {
+					const x = new Array( nObs );
+					for ( let j = 0; j < nObs; j++ ) {
+						x[ j ] = String( random[ distribution ].apply( null, params ) );
+					}
+					values.push( x );
+					names.push( `${prefix}${i}` );
 				}
-				values.push( x );
-				names.push( `${prefix}${i}` );
+			} else {
+				for ( let i = start; i <= end; i++ ) {
+					const x = new Array( nObs );
+					for ( let j = 0; j < nObs; j++ ) {
+						x[ j ] = random[ distribution ].apply( null, params );
+					}
+					values.push( x );
+					names.push( `${prefix}${i}` );
+				}
 			}
 			props.onGenerate( names, values );
 		}
 		else {
-			const values = new Array( nobs );
-			for ( let i = 0; i < nobs; i++ ) {
+			const values = new Array( nObs );
+			for ( let i = 0; i < nObs; i++ ) {
 				values[ i ] = random[ distribution ].apply( null, params );
 			}
 			props.onGenerate( name, values );
 		}
 		props.onHide();
-	}, [ distribution, name, params, props ] );
+	}, [ asCategorical, distribution, name, nObs, params, props ] );
 
-	const handleKeyPress = ( event ) => {
+	const handleKeyPress = useCallback( ( event ) => {
 		if ( event.charCode === 13 && name.length >= 2 ) {
 			createVariable();
 		}
-	};
-	const handleGeneratedNameChange = ( event ) => {
+	}, [ createVariable, name ] );
+	const handleGeneratedNameChange = useCallback( ( event ) => {
 		setName( event.target.value );
-	};
+	}, [ setName ] );
 	return ( <Draggable cancel=".card-body" onDragStart={( event ) => {
 		event.stopPropagation();
 	}} style={{ zIndex: 1006 }} >
@@ -364,7 +385,7 @@ const RandomTransformer = ( props ) => {
 				onHide={props.onHide}
 				show={props.show}
 				header={t('data-explorer:generate-random-data')}
-				footer={<Button onClick={createVariable} >
+				footer={<Button onClick={createVariable} disabled={!name || name.length === 0} >
 					{t('data-explorer:create-new-variable')}
 				</Button>}
 				role="button" tabIndex={0}
@@ -411,6 +432,39 @@ const RandomTransformer = ( props ) => {
 							{t('data-explorer:new-variable-appended')}
 						</FormText>
 					</FormGroup>
+				</Row>
+				{contains( DISTS_WITH_TOGGLE, distribution ) ? <Row>
+					<ToggleButtonGroup
+						name="options"
+						onChange={setAsCategorical}
+						type="radio"
+						size="small"
+						value={asCategorical}
+						style={{ padding: 6 }}
+					>
+						<ToggleButton
+							variant="outline-secondary"
+							value={false}
+						>
+							{t('treat-as-quantitative')}
+						</ToggleButton>
+						<ToggleButton
+							variant="outline-secondary"
+							value={true}
+						>
+							{t('treat-as-categorical')}
+						</ToggleButton>
+					</ToggleButtonGroup>
+				</Row> : null }
+				<Row>
+					<NumberInput
+						legend={t('number-of-observations')}
+						value={nObs}
+						onChange={setNObs}
+						min={0}
+						step={1}
+						tooltip={t('number-of-observations-tooltip')}
+					/>
 				</Row>
 			</Panel>
 		</FocusTrap>
