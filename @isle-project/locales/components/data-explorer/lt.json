@@ -170,6 +170,8 @@
 	"not": "ne",
 	"number-of-clusters": "Klasterių skaičius",
 	"number-of-groups": "Grupių skaičius",
+	"number-of-observations": "Stebėjimų skaičius",
+	"number-of-observations-tooltip": "Generuoti pasirinktinį stebėjimų skaičių (pradedant nuo indekso 0)",
 	"number-of-trees": "Medžių skaičius",
 	"old": "Senasis",
 	"omit-missing": "Trūkstamų verčių praleidimas",

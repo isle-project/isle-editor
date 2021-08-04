@@ -170,6 +170,8 @@
 	"not": "否",
 	"number-of-clusters": "クラスター数",
 	"number-of-groups": "グループ数",
+	"number-of-observations": "観察数",
+	"number-of-observations-tooltip": "カスタム数のオブザベーションを生成する（インデックス0から始まる",
 	"number-of-trees": "木の数",
 	"old": "旧",
 	"omit-missing": "欠落している値を省略する",

@@ -170,6 +170,8 @@
 	"not": "ne",
 	"number-of-clusters": "Klasteru skaits",
 	"number-of-groups": "Grupu skaits",
+	"number-of-observations": "Novērojumu skaits",
+	"number-of-observations-tooltip": "Izveidot pielāgotu novērojumu skaitu (sākot no indeksa 0)",
 	"number-of-trees": "Koku skaits",
 	"old": "Vecais",
 	"omit-missing": "Izlaist trūkstošās vērtības",

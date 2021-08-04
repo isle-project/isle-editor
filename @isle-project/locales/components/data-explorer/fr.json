@@ -170,6 +170,8 @@
 	"not": "pas",
 	"number-of-clusters": "Nombre de grappes",
 	"number-of-groups": "Nombre de groupes",
+	"number-of-observations": "Nombre d'observations",
+	"number-of-observations-tooltip": "Générer un nombre personnalisé d'observations (en commençant par l'indice 0)",
 	"number-of-trees": "Nombre d'arbres",
 	"old": "Ancien",
 	"omit-missing": "Omettre les valeurs manquantes",

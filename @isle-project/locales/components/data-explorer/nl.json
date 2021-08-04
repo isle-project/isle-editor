@@ -170,6 +170,8 @@
 	"not": "niet",
 	"number-of-clusters": "Aantal clusters",
 	"number-of-groups": "Aantal groepen",
+	"number-of-observations": "Aantal waarnemingen",
+	"number-of-observations-tooltip": "Genereer een aangepast aantal waarnemingen (beginnend bij index 0)",
 	"number-of-trees": "Aantal bomen",
 	"old": "Oude",
 	"omit-missing": "Laat ontbrekende waarden weg",

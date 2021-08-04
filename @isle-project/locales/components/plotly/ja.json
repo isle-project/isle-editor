@@ -6,6 +6,7 @@
 	"data-missing": "データがありません。",
 	"drag-plot": "ドラッグプロット",
 	"given": "授けられた",
+	"histogram-title": "のヒストグラム{{x}}",
 	"in": "に於いて",
 	"intervalplot-title": "区間プロット ({{confidenceLevel}}% CI of means )",
 	"linear-fit": "線形フィット",

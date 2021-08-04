@@ -6,6 +6,7 @@
 	"data-missing": "Brak danych.",
 	"drag-plot": "Wleczoną działkę",
 	"given": "podany",
+	"histogram-title": "Histogram {{x}}",
 	"in": "w",
 	"intervalplot-title": "Interval Plot ({{confidenceLevel}}% CI of means)",
 	"linear-fit": "Dopasowanie liniowe",

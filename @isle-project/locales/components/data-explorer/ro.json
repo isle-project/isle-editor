@@ -170,6 +170,8 @@
 	"not": "nu",
 	"number-of-clusters": "Numărul de clustere",
 	"number-of-groups": "Număr de grupuri",
+	"number-of-observations": "Numărul de observații",
+	"number-of-observations-tooltip": "Generarea unui număr personalizat de observații (începând cu indicele 0)",
 	"number-of-trees": "Numărul de arbori",
 	"old": "Vechi",
 	"omit-missing": "Omiterea valorilor lipsă",

@@ -6,6 +6,7 @@
 	"data-missing": "Les données sont manquantes.",
 	"drag-plot": "Tracé",
 	"given": "donné",
+	"histogram-title": "Histogramme de {{x}}",
 	"in": "dans",
 	"intervalplot-title": "Tracé des intervalles ({{confidenceLevel}}% CI des moyennes)",
 	"linear-fit": "Ajustement linéaire",

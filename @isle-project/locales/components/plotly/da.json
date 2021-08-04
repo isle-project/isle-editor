@@ -6,6 +6,7 @@
 	"data-missing": "Der mangler data.",
 	"drag-plot": "Trækkeplot",
 	"given": "givet",
+	"histogram-title": "Histogram af {{x}}",
 	"in": "på",
 	"intervalplot-title": "Intervalplot ({{confidenceLevel}}% CI for middelværdierne)",
 	"linear-fit": "Lineær tilpasning",

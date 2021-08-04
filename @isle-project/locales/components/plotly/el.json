@@ -6,6 +6,7 @@
 	"data-missing": "Τα δεδομένα λείπουν.",
 	"drag-plot": "Σχέδιο σύρσιμο",
 	"given": "δεδομένο",
+	"histogram-title": "Ιστόγραμμα του {{x}}",
 	"in": "στο",
 	"intervalplot-title": "Διάγραμμα διαστήματος ({{confidenceLevel}}% CI των μέσων)",
 	"linear-fit": "Γραμμική προσαρμογή",

@@ -170,6 +170,8 @@
 	"not": "mitte",
 	"number-of-clusters": "Klastrite arv",
 	"number-of-groups": "Rühmade arv",
+	"number-of-observations": "Vaatluste arv",
+	"number-of-observations-tooltip": "Looge kohandatud vaatluste arv (alates indeksist 0).",
 	"number-of-trees": "Puude arv",
 	"old": "Vana",
 	"omit-missing": "Puuduvad väärtused välja jätta",

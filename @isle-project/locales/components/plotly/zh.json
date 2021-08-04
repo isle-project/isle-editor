@@ -6,6 +6,7 @@
 	"data-missing": "数据缺失。",
 	"drag-plot": "拖拽情节",
 	"given": "鉴于",
+	"histogram-title": "直方图{{x}}",
 	"in": "在",
 	"intervalplot-title": "区间图 ({{confidenceLevel}}% CI 的平均值)",
 	"linear-fit": "线性拟合",

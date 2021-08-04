@@ -6,6 +6,7 @@
 	"data-missing": "Chybějící údaje.",
 	"drag-plot": "Přetahování pozemku",
 	"given": "vzhledem k",
+	"histogram-title": "Histogram {{x}}",
 	"in": "na adrese",
 	"intervalplot-title": "Intervalový graf ({{confidenceLevel}}% CI středních hodnot)",
 	"linear-fit": "Lineární přizpůsobení",

@@ -6,6 +6,7 @@
 	"data-missing": "Az adatok hiányoznak.",
 	"drag-plot": "Drag Plot",
 	"given": "adott",
+	"histogram-title": "Histogram a {{x}}",
 	"in": "a  oldalon.",
 	"intervalplot-title": "Intervallum diagram ({{confidenceLevel}}% CI of means)",
 	"linear-fit": "Lineáris illesztés",

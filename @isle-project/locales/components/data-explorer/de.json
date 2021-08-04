@@ -170,6 +170,8 @@
 	"not": "nicht",
 	"number-of-clusters": "Anzahl von Clustern",
 	"number-of-groups": "Anzahl der Gruppen",
+	"number-of-observations": "Anzahl der Beobachtungen",
+	"number-of-observations-tooltip": "Erzeugen einer benutzerdefinierten Anzahl von Beobachtungen (beginnend bei Index 0)",
 	"number-of-trees": "Anzahl der Bäume",
 	"old": "Vorherig",
 	"omit-missing": "Fehlende Werte auslassen",

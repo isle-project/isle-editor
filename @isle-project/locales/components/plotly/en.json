@@ -6,6 +6,7 @@
 	"data-missing": "Data are missing.",
 	"drag-plot": "Drag Plot",
 	"given": "given",
+	"histogram-title": "Histogram of {{x}}",
 	"in": "in",
 	"intervalplot-title": "Interval Plot ({{confidenceLevel}}% CI of means)",
 	"linear-fit": "Linear Fit",

@@ -6,6 +6,7 @@
 	"data-missing": "Er ontbreken gegevens.",
 	"drag-plot": "Sleep Plot",
 	"given": "gezien",
+	"histogram-title": "Histogram van {{x}}",
 	"in": "in",
 	"intervalplot-title": "Intervalplot ({{confidenceLevel}}% CI van gemiddelden)",
 	"linear-fit": "Lineaire pasvorm",

@@ -6,6 +6,7 @@
 	"data-missing": "Trūkst datu.",
 	"drag-plot": "Velciet zemes gabalu",
 	"given": "ņemot vērā",
+	"histogram-title": "Histogramma {{x}}",
 	"in": "vietnē",
 	"intervalplot-title": "Intervāla diagramma ({{confidenceLevel}}% vidējo vērtību intervāls)",
 	"linear-fit": "Lineāra pielāgošana",

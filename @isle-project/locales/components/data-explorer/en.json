@@ -170,6 +170,8 @@
 	"not": "not",
 	"number-of-clusters": "Number of clusters",
 	"number-of-groups": "Number of groups",
+	"number-of-observations": "Number of observations",
+	"number-of-observations-tooltip": "Generate a custom number of observations (starting at index 0)",
 	"number-of-trees": "Number of trees",
 	"old": "Old",
 	"omit-missing": "Omit missing values",

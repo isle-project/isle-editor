@@ -6,6 +6,7 @@
 	"data-missing": "Uppgifter saknas.",
 	"drag-plot": "Dragplot",
 	"given": "på följande adress:",
+	"histogram-title": "Histogram av {{x}}",
 	"in": "på",
 	"intervalplot-title": "Intervalldiagram ({{confidenceLevel}}% CI för medelvärdena)",
 	"linear-fit": "Linjär anpassning",

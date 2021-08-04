@@ -170,6 +170,8 @@
 	"not": "ei",
 	"number-of-clusters": "Klusterien lukumäärä",
 	"number-of-groups": "Ryhmien lukumäärä",
+	"number-of-observations": "Havaintojen lukumäärä",
+	"number-of-observations-tooltip": "Luodaan mukautettu määrä havaintoja (alkaen indeksistä 0).",
 	"number-of-trees": "Puiden lukumäärä",
 	"old": "Vanha",
 	"omit-missing": "Puuttuvat arvot jätetään pois",

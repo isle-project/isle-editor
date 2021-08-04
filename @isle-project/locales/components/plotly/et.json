@@ -6,6 +6,7 @@
 	"data-missing": "Andmed puuduvad.",
 	"drag-plot": "Drag Plot",
 	"given": "antud",
+	"histogram-title": "Histogramm {{x}}",
 	"in": "aadressil",
 	"intervalplot-title": "Intervalldiagramm ({{confidenceLevel}}% CI of means)",
 	"linear-fit": "Lineaarne sobivus",

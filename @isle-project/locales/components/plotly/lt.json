@@ -6,6 +6,7 @@
 	"data-missing": "Trūksta duomenų.",
 	"drag-plot": "Vilkimo sklypas",
 	"given": "atsižvelgiant į .",
+	"histogram-title": "Histograma {{x}}",
 	"in": "",
 	"intervalplot-title": "Intervalinis grafikas ({{confidenceLevel}}% vidurkių CI)",
 	"linear-fit": "Linijinis pritaikymas",

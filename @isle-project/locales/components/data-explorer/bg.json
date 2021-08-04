@@ -170,6 +170,8 @@
 	"not": "не",
 	"number-of-clusters": "Брой клъстери",
 	"number-of-groups": "Брой групи",
+	"number-of-observations": "Брой наблюдения",
+	"number-of-observations-tooltip": "Генериране на потребителски брой наблюдения (като се започне от индекс 0)",
 	"number-of-trees": "Брой дървета",
 	"old": "Стар",
 	"omit-missing": "Пропускане на липсващи стойности",

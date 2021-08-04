@@ -170,6 +170,8 @@
 	"not": "nem",
 	"number-of-clusters": "Klaszterek száma",
 	"number-of-groups": "Csoportok száma",
+	"number-of-observations": "Megfigyelések száma",
+	"number-of-observations-tooltip": "Egyéni számú megfigyelés generálása (0 indexszel kezdődően)",
 	"number-of-trees": "Fák száma",
 	"old": "Régi",
 	"omit-missing": "Hiányzó értékek elhagyása",

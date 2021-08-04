@@ -6,6 +6,7 @@
 	"data-missing": "Данные отсутствуют.",
 	"drag-plot": "Drag Plot",
 	"given": "с учётом",
+	"histogram-title": "Гистограмма {{x}}",
 	"in": "на сайте",
 	"intervalplot-title": "Интервальный график ({{confidenceLevel}}% ДИ средних значений)",
 	"linear-fit": "Линейный монтаж",

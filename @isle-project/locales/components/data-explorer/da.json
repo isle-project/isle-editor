@@ -170,6 +170,8 @@
 	"not": "ikke",
 	"number-of-clusters": "Antal klynger",
 	"number-of-groups": "Antal grupper",
+	"number-of-observations": "Antal observationer",
+	"number-of-observations-tooltip": "Generer et brugerdefineret antal observationer (startende ved indeks 0)",
 	"number-of-trees": "Antal træer",
 	"old": "Gamle",
 	"omit-missing": "udelade manglende værdier",

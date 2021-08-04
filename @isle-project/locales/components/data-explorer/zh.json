@@ -170,6 +170,8 @@
 	"not": "不",
 	"number-of-clusters": "群组数量",
 	"number-of-groups": "组别数量",
+	"number-of-observations": "观察数",
+	"number-of-observations-tooltip": "产生一个自定义的观察值数量（从索引0开始）。",
 	"number-of-trees": "树木数量",
 	"old": "旧",
 	"omit-missing": "省略缺失的数值",

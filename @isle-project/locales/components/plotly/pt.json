@@ -6,6 +6,7 @@
 	"data-missing": "Faltam dados.",
 	"drag-plot": "Lote de Arrastar",
 	"given": "dado",
+	"histogram-title": "Histograma de {{x}}",
 	"in": "em",
 	"intervalplot-title": "Lote de Intervalo ({{confidenceLevel}}% CI de meios)",
 	"linear-fit": "Ajuste Linear",

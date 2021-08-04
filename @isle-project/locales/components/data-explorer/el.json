@@ -170,6 +170,8 @@
 	"not": "όχι",
 	"number-of-clusters": "Αριθμός συστάδων",
 	"number-of-groups": "Αριθμός ομάδων",
+	"number-of-observations": "Αριθμός παρατηρήσεων",
+	"number-of-observations-tooltip": "Δημιουργία ενός προσαρμοσμένου αριθμού παρατηρήσεων (ξεκινώντας από το δείκτη 0)",
 	"number-of-trees": "Αριθμός δέντρων",
 	"old": "Παλιό",
 	"omit-missing": "Παραλείψτε τις ελλείπουσες τιμές",

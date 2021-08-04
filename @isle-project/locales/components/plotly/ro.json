@@ -6,6 +6,7 @@
 	"data-missing": "Datele lipsesc.",
 	"drag-plot": "Trama de tragere",
 	"given": "având în vedere",
+	"histogram-title": "Histograma de {{x}}",
 	"in": "în",
 	"intervalplot-title": "Graficul de interval ({{confidenceLevel}}% IC al mediilor)",
 	"linear-fit": "Ajustare liniară",

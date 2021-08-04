@@ -6,6 +6,7 @@
 	"data-missing": "Tiedot puuttuvat.",
 	"drag-plot": "Drag Plot",
 	"given": "annettu",
+	"histogram-title": "Histogrammi {{x}}",
 	"in": "osoitteessa",
 	"intervalplot-title": "Intervallidiagrammi ({{confidenceLevel}}% CI of means )",
 	"linear-fit": "Lineaarinen sovitus",

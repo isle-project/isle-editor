@@ -170,6 +170,8 @@
 	"not": "inte",
 	"number-of-clusters": "Antal kluster",
 	"number-of-groups": "Antal grupper",
+	"number-of-observations": "Antal observationer",
+	"number-of-observations-tooltip": "Generera ett anpassat antal observationer (med början vid index 0).",
 	"number-of-trees": "Antal träd",
 	"old": "Gamla",
 	"omit-missing": "Utelämna saknade värden.",

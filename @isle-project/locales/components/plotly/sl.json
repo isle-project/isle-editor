@@ -6,6 +6,7 @@
 	"data-missing": "Podatki manjkajo.",
 	"drag-plot": "Povlecite parcelo",
 	"given": "na spletni strani .",
+	"histogram-title": "Histogram {{x}}",
 	"in": "na spletnem mestu",
 	"intervalplot-title": "Intervalni diagram ({{confidenceLevel}}% CI srednjih vrednosti)",
 	"linear-fit": "Linearno prileganje",

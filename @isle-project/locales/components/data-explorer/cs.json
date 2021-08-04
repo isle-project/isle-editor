@@ -170,6 +170,8 @@
 	"not": "ne",
 	"number-of-clusters": "Počet klastrů",
 	"number-of-groups": "Počet skupin",
+	"number-of-observations": "Počet pozorování",
+	"number-of-observations-tooltip": "Generování vlastního počtu pozorování (počínaje indexem 0)",
 	"number-of-trees": "Počet stromů",
 	"old": "Starý",
 	"omit-missing": "Vynechání chybějících hodnot",

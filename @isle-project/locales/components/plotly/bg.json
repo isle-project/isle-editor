@@ -6,6 +6,7 @@
 	"data-missing": "Липсват данни.",
 	"drag-plot": "Плъзгане на парцела",
 	"given": "даден",
+	"histogram-title": "Хистограма на {{x}}",
 	"in": "в",
 	"intervalplot-title": "Интервална диаграма ({{confidenceLevel}}% CI на средните стойности)",
 	"linear-fit": "Линейно прилягане",

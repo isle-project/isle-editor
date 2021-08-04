@@ -170,6 +170,8 @@
 	"not": "ne",
 	"number-of-clusters": "Število grozdov",
 	"number-of-groups": "Število skupin",
+	"number-of-observations": "Število opazovanj",
+	"number-of-observations-tooltip": "Ustvari poljubno število opazovanj (začenši z indeksom 0)",
 	"number-of-trees": "Število dreves",
 	"old": "Stari",
 	"omit-missing": "Opustitev manjkajočih vrednosti",
