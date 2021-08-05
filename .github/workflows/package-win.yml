@@ -15,7 +15,10 @@ jobs:
       continue-on-error: true
       run: |
         npm ci
-        npm run package-ci
+        npm run package-win
+    - uses: actions/upload-artifact@v2
+      with:
+        name: windows-release
+        path: release/
       env:
         CI: true
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
