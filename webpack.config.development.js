@@ -2,12 +2,12 @@
 
 // MODULES //
 
-import path from 'path';
-import { spawn } from 'child_process';
-import webpack from 'webpack';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
-import baseConfig from './webpack.config.base';
+const path = require( 'path' );
+const { spawn } = require( 'child_process' );
+const webpack = require( 'webpack' );
+const ReactRefreshWebpackPlugin = require( '@pmmmwh/react-refresh-webpack-plugin' );
+const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
+const baseConfig = require( './webpack.config.base' );
 
 
 // VARIABLES //
@@ -118,4 +118,4 @@ const config = smp.wrap({
 
 // EXPORTS //
 
-export default config;
+module.exports = config;

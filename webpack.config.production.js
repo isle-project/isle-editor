@@ -1,10 +1,10 @@
 // MODULES //
 
-import webpack from 'webpack';
-import path from 'path';
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import baseConfig from './webpack.config.base';
+const webpack = require( 'webpack' );
+const path = require( 'path' );
+const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
+const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const baseConfig = require( './webpack.config.base' );
 
 
 // VARIABLES //
@@ -36,13 +36,8 @@ const config = {
 	optimization: {
 		minimize: true,
 		minimizer: [
-			new TerserPlugin({
-				terserOptions: {
-					warnings: true,
-					keep_fnames: true,
-					keep_classnames: true,
-					mangle: true
-				}
+			new ESBuildMinifyPlugin({
+				target: 'es2015'
 			})
 		]
 	},
@@ -55,13 +50,10 @@ const config = {
 				test: /.js$/,
 				use: [
 					{
-						loader: 'babel-loader',
+						loader: 'esbuild-loader',
 						options: {
-							plugins: [
-								'@babel/plugin-transform-react-constant-elements',
-								'@babel/plugin-transform-react-inline-elements'
-							],
-							cacheDirectory: true
+							loader: 'jsx',
+							target: 'es2015'
 						}
 					}
 				],
@@ -114,4 +106,4 @@ const config = {
 
 // EXPORTS //
 
-export default smp.wrap( config );
+module.exports = smp.wrap( config );

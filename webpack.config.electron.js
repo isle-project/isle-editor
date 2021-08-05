@@ -1,8 +1,8 @@
 // MODULES //
 
-import webpack from 'webpack';
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
-import baseConfig from './webpack.config.base';
+const webpack = require( 'webpack' );
+const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
+const baseConfig = require( './webpack.config.base' );
 
 
 // VARIABLES //
@@ -55,4 +55,4 @@ const config = smp.wrap({
 
 // EXPORTS //
 
-export default config;
+module.exports = config;

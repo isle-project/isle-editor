@@ -2,10 +2,10 @@
 
 // MODULES //
 
-import path from 'path';
-import webpack from 'webpack';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import baseConfig from './webpack.config.base';
+const path = require( 'path' );
+const webpack = require( 'webpack' );
+const ReactRefreshWebpackPlugin = require( '@pmmmwh/react-refresh-webpack-plugin' );
+const baseConfig = require( './webpack.config.base' );
 
 
 // VARIABLES //
@@ -115,4 +115,4 @@ const config = {
 
 // EXPORTS //
 
-export default config;
+module.exports = config;

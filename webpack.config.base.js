@@ -1,7 +1,7 @@
 // MODULES //
 
-import { join, resolve } from 'path';
-import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
+const { join, resolve } = require( 'path' );
+const MonacoWebpackPlugin = require( 'monaco-editor-webpack-plugin' );
 
 
 // VARIABLES //
@@ -58,17 +58,16 @@ const EXTERNALS = [
 
 // MAIN //
 
-export default {
+const config = {
 	module: {
 		rules: [ {
 			test: /\.js?$/,
 			use: [
 				{
-					loader: 'babel-loader',
+					loader: 'esbuild-loader',
 					options: {
-						babelrc: true,
-						cacheDirectory: true,
-						cacheCompression: false
+						loader: 'jsx',
+						target: 'es2015'
 					}
 				}
 			],
@@ -163,3 +162,8 @@ export default {
 	],
 	externals: EXTERNALS
 };
+
+
+// EXPORTS //
+
+module.exports = config;
