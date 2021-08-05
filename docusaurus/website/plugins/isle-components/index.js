@@ -64,44 +64,10 @@ function main( context, options ) {
 								/fonts\.js$/,
 								/markdown-to-html/
 							],
-							loader: 'babel-loader',
+							loader: 'esbuild-loader',
 							options: {
-								plugins: [
-									'@babel/plugin-transform-react-constant-elements',
-									'@babel/plugin-transform-react-inline-elements',
-									'babel-plugin-transform-react-remove-prop-types',
-									'@babel/plugin-transform-react-jsx',
-									'@babel/plugin-proposal-class-properties',
-									'@babel/plugin-syntax-dynamic-import',
-									[ '@babel/plugin-transform-runtime', {
-										'regenerator': true
-									}]
-								],
-								presets: [
-									[ '@babel/preset-env', {
-										targets: {
-											ie: '11'
-										},
-										useBuiltIns: 'usage',
-										corejs: 2
-									}],
-									'@babel/preset-react'
-								],
-								babelrc: false,
-								cacheDirectory: true,
-								overrides: [{
-									test: [
-										resolve( basePath, './node_modules/debug/**/*.js' )
-									],
-									presets: [
-										[ '@babel/preset-env', {
-											modules: 'commonjs',
-											targets: {
-												ie: '11'
-											}
-										}]
-									]
-								}]
+								loader: 'jsx',
+								target: 'es2015'
 							}
 						},
 						{

@@ -6,7 +6,7 @@ const { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, write
 const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
 const webpack = require( 'webpack' );
-const TerserPlugin = require( 'terser-webpack-plugin' );
+const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
@@ -480,45 +480,18 @@ function bundleLesson( options ) {
 						/node_modules/,
 						/fonts\.js$/
 					],
-					loader: 'babel-loader',
+					loader: 'esbuild-loader',
 					options: {
-						plugins: [
-							resolve( basePath, './node_modules/@babel/plugin-transform-react-constant-elements' ),
-							resolve( basePath, './node_modules/@babel/plugin-transform-react-inline-elements' ),
-							resolve( basePath, './node_modules/babel-plugin-transform-react-remove-prop-types' ),
-							resolve( basePath, './node_modules/@babel/plugin-transform-react-jsx' ),
-							resolve( basePath, './node_modules/@babel/plugin-proposal-class-properties' ),
-							resolve( basePath, './node_modules/@babel/plugin-syntax-dynamic-import' ),
-							[ resolve( basePath, './node_modules/@babel/plugin-transform-runtime' ), {
-								'regenerator': true
-							}]
-						],
-						presets: [
-							[ resolve( basePath, './node_modules/@babel/preset-env' ), {
-								targets: {
-									ie: '11'
-								},
-								useBuiltIns: 'usage',
-								corejs: 3
-							}],
-							resolve( basePath, './node_modules/@babel/preset-react' )
-						],
-						babelrc: false,
-						cacheDirectory: true
+						loader: 'jsx',
+						target: 'es2015'
 					}
 				},
 				{
 					test: /(sum-series|is-typed-array|node_modules\/ml-)[\s\S]+?\.js$/,
-					loader: 'babel-loader',
+					loader: 'esbuild-loader',
 					options: {
-						presets: [
-							[ resolve( basePath, './node_modules/@babel/preset-env' ), {
-								modules: 'commonjs',
-								targets: {
-									ie: '11'
-								}
-							}]
-						]
+						loader: 'jsx',
+						target: 'es2015'
 					}
 				},
 				{
@@ -559,40 +532,8 @@ function bundleLesson( options ) {
 				}
 			},
 			minimizer: [
-				new TerserPlugin({
-					terserOptions: {
-						warnings: true,
-						compress: {
-							arrows: false,
-							booleans: false,
-							collapse_vars: false,
-							comparisons: false,
-							computed_props: false,
-							hoist_funs: false,
-							hoist_props: false,
-							hoist_vars: false,
-							if_return: false,
-							inline: false,
-							join_vars: false,
-							keep_infinity: false,
-							loops: false,
-							negate_iife: false,
-							properties: false,
-							reduce_funcs: false,
-							reduce_vars: false,
-							sequences: false,
-							side_effects: false,
-							switches: false,
-							top_retain: false,
-							toplevel: false,
-							typeofs: false,
-							unused: false,
-							conditionals: true,
-							dead_code: true,
-							evaluate: true
-						},
-						mangle: true
-					}
+				new ESBuildMinifyPlugin({
+					target: 'es2015'
 				})
 			]
 		},
