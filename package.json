@@ -70,6 +70,7 @@
     "package-linux": "npm run build && electron-builder build --linux",
     "package-win": "npm run build && electron-builder build --win --x64",
     "postinstall": "electron-builder install-app-deps",
+    "prerelease": "npm version prerelease --preid=alpha --ignore-scripts",
     "start-main-dev": "cross-env START_HOT=1 NODE_ENV=development electron ./main.development.js",
     "start-renderer-dev": "cross-env NODE_ENV=development node --max-old-space-size=16384 --trace-warnings ./node_modules/webpack/bin/webpack serve --config=webpack.config.development.js --mode=development",
     "test": "jest",
