@@ -161,7 +161,7 @@ function setupClickableTH( table, th, i ) {
 			let _j;
 			for ( let position = _j = 0, _len1 = _ref.length; _j < _len1; position = ++_j ) {
 				const row = _ref[position];
-				const value = getNodeValue(row.cells[i]);
+				let value = getNodeValue(row.cells[i]);
 				if ( type.comparator ) {
 					value = type.comparator(value);
 				}
@@ -253,6 +253,7 @@ const Table = ({ clickable, ...rest }) => {
 	const tableRef = useRef( null );
 	useEffect( () => {
 		if ( clickable ) {
+			console.log( 'Initialize clickable table...' );
 			const table = tableRef.current;
 			if ( !table ) {
 				return;
