@@ -240,6 +240,7 @@ function getNodeValue( node ) {
 /**
 * A basic bootstrap table.
 *
+* @property {boolean} clickable - controls whether or not the table cells are clickable
 * @property {boolean} bordered - adds borders on all sides of the table and cells
 * @property {boolean} borderless - removes all borders on the table and cells, including table header
 * @property {boolean} hover - enable a hover state on table rows within a <tbody>
@@ -281,10 +282,13 @@ class Table extends Component {
 	}
 
 	render() {
-		return ( <ReactBootstrapTable
-			ref={div => { this.table = div; }}
-			data-sortable
-			className="sortable-theme-bootstrap" {...this.props} />
+		return (
+			<ReactBootstrapTable
+				ref={div => { this.table = div; }}
+				data-sortable
+				className="sortable-theme-bootstrap"
+				{...this.props}
+			/>
 		);
 	}
 }
@@ -295,6 +299,7 @@ class Table extends Component {
 Table.propTypes = {
 	bordered: PropTypes.bool,
 	borderless: PropTypes.bool,
+	clickable: PropTypes.bool,
 	hover: PropTypes.bool,
 	responsive: PropTypes.oneOfType([ PropTypes.string, PropTypes.bool ]),
 	size: PropTypes.string,
@@ -305,6 +310,7 @@ Table.propTypes = {
 Table.defaultProps = {
 	bordered: false,
 	borderless: false,
+	clickable: true,
 	hover: false,
 	responsive: null,
 	size: null,

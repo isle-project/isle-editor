@@ -232,7 +232,7 @@ class CategoricalTransformer extends Component {
 		const varFreqs = countBy( values, identity );
 		const keys = extractUsedCategories( varFreqs, variable );
 		return (
-			<Table bordered style={{ margin: 8 }} >
+			<Table bordered style={{ margin: 8 }} clickable={false} >
 				<thead>
 					<tr>
 						<th>{this.props.t('old')}:</th>
