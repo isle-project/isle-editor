@@ -24,7 +24,7 @@
 
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ReactBootstrapTable from 'react-bootstrap/Table';
 import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
@@ -249,49 +249,45 @@ function getNodeValue( node ) {
 * @property {boolean} striped - adds zebra-striping to any table row within the <tbody>
 * @property {string} variant - invert the colors of the table — with light text on dark backgrounds by setting variant as dark
 */
-class Table extends Component {
-	componentDidMount() {
-		this.initTable();
-	}
-
-	initTable() {
-		const table = this.table;
-		if ( !table ) {
-			return;
-		}
-		const _ref = table.tHead;
-		if ( ( _ref ? _ref.rows.length : void 0 ) !== 1 ) {
-			return;
-		}
-		if ( table.getAttribute( 'data-sortable-initialized') === 'true' ) {
-			return;
-		}
-		table.setAttribute( 'data-sortable-initialized', 'true' );
-		const ths = table.querySelectorAll( 'th' );
-		let _i;
-		for ( let i = _i = 0, _len = ths.length; _i < _len; i = ++_i ) {
-			const th = ths[i];
-			if (
-				th.getAttribute( 'data-sortable' ) !== 'false' &&
-				!th.className.includes( 'not-sortable' )
-			) {
-				setupClickableTH( table, th, i );
+const Table = ({ clickable, ...rest }) => {
+	const tableRef = useRef( null );
+	useEffect( () => {
+		if ( clickable ) {
+			const table = tableRef.current;
+			if ( !table ) {
+				return;
 			}
+			const _ref = table.tHead;
+			if ( ( _ref ? _ref.rows.length : void 0 ) !== 1 ) {
+				return;
+			}
+			if ( table.getAttribute( 'data-sortable-initialized') === 'true' ) {
+				return;
+			}
+			table.setAttribute( 'data-sortable-initialized', 'true' );
+			const ths = table.querySelectorAll( 'th' );
+			let _i;
+			for ( let i = _i = 0, _len = ths.length; _i < _len; i = ++_i ) {
+				const th = ths[i];
+				if (
+					th.getAttribute( 'data-sortable' ) !== 'false' &&
+					!th.className.includes( 'not-sortable' )
+				) {
+					setupClickableTH( table, th, i );
+				}
+			}
+			tableRef.current = table;
 		}
-		return table;
-	}
-
-	render() {
-		return (
-			<ReactBootstrapTable
-				ref={div => { this.table = div; }}
-				data-sortable
-				className="sortable-theme-bootstrap"
-				{...this.props}
-			/>
-		);
-	}
-}
+	}, [ clickable ] );
+	return (
+		<ReactBootstrapTable
+			ref={tableRef}
+			data-sortable
+			className="sortable-theme-bootstrap"
+			{...rest}
+		/>
+	);
+};
 
 
 // PROPERTIES //
