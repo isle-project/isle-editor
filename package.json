@@ -165,7 +165,7 @@
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
-    "focus-trap-react": "^8.5.1",
+    "focus-trap-react": "^8.7.1",
     "form-data": "^4.0.0",
     "fs-extra": "8.1.0",
     "history": "4.10.1",
