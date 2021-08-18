@@ -330,7 +330,7 @@
     "vex-js": "^4.1.0",
     "victory": "35.10.1",
     "webpack-cli": "4.8.0",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^4.0.0",
     "xterm-addon-search": "^0.8.0",
     "xterm-addon-web-links": "^0.4.0"
   },
