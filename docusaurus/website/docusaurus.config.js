@@ -25,7 +25,8 @@ const siteConfig = {
 					sidebarPath: require.resolve( './sidebars.json' ),
 					editUrl: 'https://github.com/isle-project/isle-editor/edit/master/docusaurus/website',
 					showLastUpdateAuthor: true,
-					showLastUpdateTime: true
+					showLastUpdateTime: true,
+					sidebarCollapsible: true
 				},
 				theme: {
 					customCss: require.resolve('./static/css/custom.css')
@@ -215,7 +216,6 @@ const siteConfig = {
 			]
 		},
 		image: 'img/docusaurus.png',
-		sidebarCollapsible: true,
 		algolia: {
 			apiKey: '79d8a88e3298cd96be31662732f18703',
 			indexName: 'isledocs',
