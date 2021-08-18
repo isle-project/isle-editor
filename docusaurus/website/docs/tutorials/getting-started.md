@@ -20,8 +20,8 @@ If you are already part of a course, you might not see your profile when you log
 
 As you can see in the image above, when you first make an account you will not have instructor access to ISLE. Creating and managing a course requires instructor access:
 
-1. Contact Philipp Burckhardt (pgb@andrew.cmu.edu) to obtain a write-access token.
-2. If your profile is not displayed, navigate to your profile by clicking your name in the top right (next to the Log Out button).
+1. Contact your ISLE administrator to obtain a write-access token or ask them to directly grant you instructor privileges.
+2. If you have received a token, navigate to your profile by clicking your name in the top right of the ISLE dashboard (next to the Log Out button).
 3. Click **Edit Profile**, on the left of the page.
 4. Click **Get Instructor Access**.
 5. Enter the write-access token and click **Submit**.
