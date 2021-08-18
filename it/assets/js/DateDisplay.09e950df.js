@@ -1,1 +1,0 @@
-(self.webpackChunk=self.webpackChunk||[]).push([[8390],{849685:function(e,t,n){"use strict";n.r(t);var a=n(858255);n(202784);t.default=function(){var e=new Date;return(0,a.Z)("span",{},void 0,e.getMonth()+1,"/",e.getDate(),"/",e.getFullYear())}}}]);

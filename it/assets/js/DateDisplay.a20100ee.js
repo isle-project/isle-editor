@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8390],{990517:function(e,t,n){n.r(t);var a=n(202784);t.default=function(){var e=new Date;return a.createElement("span",null,e.getMonth()+1,"/",e.getDate(),"/",e.getFullYear())}}}]);
