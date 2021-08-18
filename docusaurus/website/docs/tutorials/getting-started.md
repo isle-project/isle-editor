@@ -49,7 +49,7 @@ To create a cohort:
 2. Click **Edit Course** (blue symbol of pencil in square).
 3. Under Manage Cohorts click **Create Cohort**.
 4. Enter a **title** for the cohort and choose start and end dates.
-5. You can manually add students with by entering their emails, or you can leave this field blank and have them enroll manually. In case you add an email address not associated with an ISLE account, the student will automatically have a generated user account and receive an email with instructions to complete registration _on the start date of the cohort_.
+5. You can manually add students by entering their emails, or you can leave this field blank and have them enroll on their own. Multiple students can be added to the cohort at once by pasting a comma-separated list of emails into the select box. In case you add an email address not associated with an ISLE account, the student will automatically have a generated user account and receive an email with instructions to complete registration _on the start date of the cohort_.
 6. By default, once a cohort has been created students can manually enroll in that cohort. To keep the cohort private, click the **Tick to prevent students from enrolling** box.
 7. You may add an optional email filter (generally recommended). Only accounts created with an email containing this expression can enroll in the course. For example, to make the course available only to students of Carnegie Mellon University, I could enter **andrew.cmu.edu** into the filter. This allows you to require students to use their school email address, for example, which is very helpful for attributing ISLE work to the correct student.
 8. Click **Create**.
