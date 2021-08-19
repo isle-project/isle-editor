@@ -74,29 +74,27 @@ const config = smp.wrap({
 
 	devServer: {
 		port,
-		publicPath,
 		compress: true,
-		stats: 'errors-only',
-
-		inline: true,
-		lazy: false,
+		devMiddleware: {
+			stats: 'errors-only',
+			publicPath
+		},
 		hot: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
-		contentBase: path.join( __dirname, 'dist' ),
-		watchOptions: {
-			aggregateTimeout: 300,
-			ignored: /node_modules/,
-			poll: 1000 // Check for changes every second
+		static: {
+			directory: path.join( __dirname, 'dist' )
 		},
 		historyApiFallback: {
 			verbose: true,
 			disableDotRule: false
 		},
-		overlay: {
-			warnings: false,
-			errors: true
+		client: {
+			overlay: {
+				warnings: false,
+				errors: true
+			}
 		},
-		before() {
+		onBeforeSetupMiddleware() {
 			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
 				console.log( 'Starting Main Process...' ); // eslint-disable-line no-console
 				spawn(
@@ -115,7 +113,7 @@ const config = smp.wrap({
 	}
 });
 
-
+console.log( config.module.rules );
 // EXPORTS //
 
 module.exports = config;

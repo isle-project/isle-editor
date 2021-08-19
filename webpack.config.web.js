@@ -87,27 +87,25 @@ const config = {
 
 	devServer: {
 		port,
-		publicPath,
 		compress: true,
-		stats: 'errors-only',
-
-		inline: true,
-		lazy: false,
+		devMiddleware: {
+			stats: 'errors-only',
+			publicPath
+		},
 		hot: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
-		contentBase: path.join( __dirname, 'dist' ),
-		watchOptions: {
-			aggregateTimeout: 300,
-			ignored: /node_modules/,
-			poll: 1000 // Check for changes every second
+		static: {
+			directory: path.join( __dirname, 'dist' )
 		},
 		historyApiFallback: {
 			verbose: true,
 			disableDotRule: false
 		},
-		overlay: {
-			warnings: false,
-			errors: true
+		client: {
+			overlay: {
+				warnings: false,
+				errors: true
+			}
 		}
 	}
 };
