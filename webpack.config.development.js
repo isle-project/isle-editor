@@ -5,7 +5,6 @@
 const path = require( 'path' );
 const { spawn } = require( 'child_process' );
 const webpack = require( 'webpack' );
-const ReactRefreshWebpackPlugin = require( '@pmmmwh/react-refresh-webpack-plugin' );
 const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const baseConfig = require( './webpack.config.base' );
 
@@ -60,7 +59,6 @@ const config = smp.wrap({
 
 	plugins: [
 		...baseConfig.plugins,
-		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: true
 		}),
@@ -79,8 +77,8 @@ const config = smp.wrap({
 			stats: 'errors-only',
 			publicPath
 		},
+		disableHostCheck: true,
 		hot: true,
-		headers: { 'Access-Control-Allow-Origin': '*' },
 		static: {
 			directory: path.join( __dirname, 'dist' )
 		},

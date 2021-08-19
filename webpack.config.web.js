@@ -4,7 +4,6 @@
 
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const ReactRefreshWebpackPlugin = require( '@pmmmwh/react-refresh-webpack-plugin' );
 const baseConfig = require( './webpack.config.base' );
 
 
@@ -73,7 +72,6 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new ReactRefreshWebpackPlugin(),
 		new webpack.HotModuleReplacementPlugin({
 			multiStep: true
 		}),
@@ -92,6 +90,7 @@ const config = {
 			stats: 'errors-only',
 			publicPath
 		},
+		disableHostCheck: true,
 		hot: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		static: {
