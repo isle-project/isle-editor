@@ -90,7 +90,7 @@ const config = {
 			stats: 'errors-only',
 			publicPath
 		},
-		disableHostCheck: true,
+		firewall: false,
 		hot: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		static: {

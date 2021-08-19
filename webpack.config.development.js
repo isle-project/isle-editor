@@ -77,7 +77,7 @@ const config = smp.wrap({
 			stats: 'errors-only',
 			publicPath
 		},
-		disableHostCheck: true,
+		firewall: false,
 		hot: true,
 		static: {
 			directory: path.join( __dirname, 'dist' )
