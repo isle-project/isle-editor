@@ -7,6 +7,7 @@ const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
 const webpack = require( 'webpack' );
 const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
@@ -413,6 +414,17 @@ function bundleLesson( options ) {
 				NODE_ENV: '"production"'
 			}
 		}),
+		new webpack.ProgressPlugin({
+			activeModules: true,
+			entries: true,
+			handler( percentage, message, ...args ) {
+				logMsg( `${percentage}: ${message} ${args.join( ', ' )}` );
+			},
+			profile: true
+		}),
+		new SpeedMeasurePlugin({
+			outputTarget: logMsg
+		}),
 		new WorkboxWebpackPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: false,
@@ -468,6 +480,7 @@ function bundleLesson( options ) {
 				),
 				'domain': false
 			},
+			extensions: ['.js', '.json' ],
 			symlinks: false,
 			unsafeCache: true,
 			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
@@ -616,7 +629,8 @@ function bundleLesson( options ) {
 		path: appDir,
 		publicPath: './',
 		filename: minify ? './js/[name].bundle.min.js' : './js/[name].bundle.js',
-		assetModuleFilename: 'static/media/[name][ext][query]'
+		assetModuleFilename: 'static/media/[name][ext][query]',
+		pathinfo: false
 	};
 	let compiler;
 	try {
