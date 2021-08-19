@@ -236,7 +236,7 @@ const config = {
 		minimizer: [
 			new ESBuildMinifyPlugin({
 				target: 'es2015',
-				legalComments: 'eof'
+				legalComments: 'none'
 			}),
 			new CssMinimizerPlugin()
 		]
