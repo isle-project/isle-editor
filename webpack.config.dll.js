@@ -3,6 +3,7 @@
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
+const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 
 
 // MAIN //
@@ -14,17 +15,10 @@ const config = {
 				test: /\.js?$/,
 				use: [
 					{
-						loader: 'babel-loader',
+						loader: 'esbuild-loader',
 						options: {
-							plugins: [
-								'@babel/plugin-proposal-export-default-from',
-								'@babel/plugin-proposal-class-properties'
-							],
-							presets: [
-								'@babel/preset-env'
-							],
-							cacheDirectory: true,
-							cacheCompression: false
+							loader: 'jsx',
+							target: 'es2015'
 						}
 					}
 				],
@@ -234,13 +228,15 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.17/',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.21/',
 		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {
 		minimize: true,
 		minimizer: [
-			'...',
+			new ESBuildMinifyPlugin({
+				target: 'es2015'
+			}),
 			new CssMinimizerPlugin()
 		]
 	},
@@ -255,6 +251,7 @@ const config = {
 			}
 		})
 	],
+	devtool: 'source-map',
 	externals: {
 		'axios': 'axios',
 		'localforage': 'localforage',
