@@ -262,7 +262,7 @@
     "uniq": "^1.0.1",
     "v8-compile-cache": "^2.3.0",
     "venn.js": "0.2.20",
-    "webpack": "5.51.0",
+    "webpack": "5.51.1",
     "webpack-manifest-plugin": "4.0.2",
     "workbox-webpack-plugin": "6.2.4",
     "worker-loader": "^3.0.7",
