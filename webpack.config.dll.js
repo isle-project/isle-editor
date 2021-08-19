@@ -4,6 +4,7 @@ const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 
 // MAIN //
@@ -30,7 +31,7 @@ const config = {
 			{
 				test: /\.css$/,
 				use: [
-					'style-loader',
+					MiniCssExtractPlugin.loader,
 					'css-loader'
 				]
 			},
@@ -242,6 +243,9 @@ const config = {
 		]
 	},
 	plugins: [
+		new MiniCssExtractPlugin({
+			ignoreOrder: true
+		}),
 		new DllPlugin({
 			path: join( __dirname, '@isle-project', 'dll', '[name]-manifest.json' ),
 			name: '[name]_dll'
