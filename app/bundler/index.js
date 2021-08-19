@@ -629,7 +629,7 @@ function bundleLesson( options ) {
 	compiler.run( ( err, stats ) => {
 		unlinkSync( indexPath );
 		if ( err ) {
-			logMsg('Encountered an error during bundling: ' + err.message );
+			logMsg( 'Encountered an error during bundling: ' + err.message );
 			removeSync( appDir );
 			return logMsg(err.message );
 		}
@@ -653,6 +653,11 @@ function bundleLesson( options ) {
 			const statsJSON = stats.toJson();
 			writeFileSync( statsFile, JSON.stringify( statsJSON ) );
 		}
+		compiler.close( ( closeErr ) => {
+			if ( closeErr ) {
+				logMsg('Encountered an error while closing the compiler: ' + closeErr.message );
+			}
+		});
 		return logMsg( 'success' );
 	});
 }
