@@ -228,14 +228,15 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.21/',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.18/',
 		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {
 		minimize: true,
 		minimizer: [
 			new ESBuildMinifyPlugin({
-				target: 'es2015'
+				target: 'es2015',
+				legalComments: 'eof'
 			}),
 			new CssMinimizerPlugin()
 		]
