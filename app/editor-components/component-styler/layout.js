@@ -16,6 +16,7 @@ import ColorPicker from '@isle-project/components/color-picker';
 import SelectInput from '@isle-project/components/input/select';
 import UnitInputBase from './unit_input_base.js';
 import DISPLAY_TYPES from './display_types.json';
+import 'react-linear-gradient-picker/dist/index.css';
 import './layout.css';
 
 
