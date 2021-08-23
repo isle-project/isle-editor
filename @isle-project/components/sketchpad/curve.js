@@ -118,12 +118,12 @@ function curve( ctx, points, width, height, tension, numOfSeg, close ) {
 			const t1y = (pt4 - pts[i-1]) * tension;
 			const t2x = (pts[i+4] - pt1) * tension;
 			const t2y = (pts[i+5] - pt2) * tension;
-			const c = 0;
+			let c = 0;
 			for ( t = 0; t < numOfSeg; t++ ) {
-				const c1 = cache[c++];
-				const c2 = cache[c++];
-				const c3 = cache[c++];
-				const c4 = cache[c++];
+				const c1 = cache[ c++ ];
+				const c2 = cache[ c++ ];
+				const c3 = cache[ c++ ];
+				const c4 = cache[ c++ ];
 				res[rPos++] = c1 * pt1 + c2 * pt3 + c3 * t1x + c4 * t2x;
 				res[rPos++] = c1 * pt2 + c2 * pt4 + c3 * t1y + c4 * t2y;
 			}
