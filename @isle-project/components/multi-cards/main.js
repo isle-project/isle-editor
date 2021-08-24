@@ -74,7 +74,7 @@ const MultiCards = ({ id, animation, values, memory, oneTime, style, containerSt
 			list[ positions.current[ i ] ] = <FlippableCard
 				value={state.cardList[ i ].opened}
 				disabled={state.blocked}
-				containerStyle={containerStyle} frontStyle={frontStyle} backStyle={backStyle}
+				containerStyle={{ float: 'left', ...containerStyle }} frontStyle={frontStyle} backStyle={backStyle}
 				onChange={( value ) => {
 					const { cardList, blocked } = state;
 					const arr = cardList.slice();
@@ -140,7 +140,7 @@ const MultiCards = ({ id, animation, values, memory, oneTime, style, containerSt
 		for ( let i = 0; i < values.length; i++ ) {
 			list[ positions.current[ i ] ] = <FlippableCard
 				value={state.cardList[ i ].opened}
-				containerStyle={containerStyle} frontStyle={frontStyle} backStyle={backStyle}
+				containerStyle={{ float: 'left', ...containerStyle }} frontStyle={frontStyle} backStyle={backStyle}
 				onChange={( value ) => {
 					const arr = state.cardList.slice();
 					arr[ i ] = {

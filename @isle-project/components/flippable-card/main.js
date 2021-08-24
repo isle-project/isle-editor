@@ -60,7 +60,6 @@ const FlippableCard = ( props ) => {
 	const flipped = props.value !== void 0 ? props.value : isFlipped;
 	const styles = {
 		container: {
-			float: 'left',
 			perspective: props.perspective,
 			transformStyle: 'preserve-3d',
 			width: props.size,
