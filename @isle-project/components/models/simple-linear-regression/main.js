@@ -251,7 +251,12 @@ class SimpleLinearRegression extends Component {
 							}}
 							meta={{ type: 'regression residuals vs. fitted', x: xd, y: yd }}
 						/>;
-						this.props.onDiagnostics([ qqPlot, residualPlot ]);
+						const hist = <Histogram
+							data={{ 'Residuals': residuals }}
+							variable="Residuals"
+							title={t('plotly:histogram-title', { x: 'Residuals' })}
+						/>;
+						this.props.onDiagnostics([ qqPlot, hist, residualPlot ]);
 					}} >
 						{t('model-diagnostics')}
 					</Button> : null }
