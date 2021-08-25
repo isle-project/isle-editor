@@ -428,7 +428,6 @@ class SampleCLT extends Component {
 						}
 						]}
 					}
-					removeButtons
 				/> :
 				<p>{t('draw-two-samples')}</p>
 			}
@@ -492,7 +491,7 @@ class SampleCLT extends Component {
 									<span style={{ float: 'right' }}>
 										<NumberInput
 											legend={t('sample-size')}
-											step={1} min={1} defaultValue={10} max={500}
+											step={1} min={1} defaultValue={10} max={2500}
 											onChange={( n ) => this.setState({ 'n': n })}
 										/>
 										<ButtonGroup>
