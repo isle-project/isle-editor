@@ -21,6 +21,7 @@ import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import usePrevious from '@isle-project/utils/hooks/use-previous';
+import StyleMenu from './style_menu.js';
 import PlotlyIcons from './icons.js';
 import calculateChanges from './calculate_changes.js';
 import './plotly.css';
@@ -52,7 +53,6 @@ const BUTTONS_TO_REMOVE = [
 	'lasso2d',
 	'toggleSpikelines'
 ];
-
 Plotly.setPlotConfig({
 	mapboxAccessToken: ACCESS_TOKEN
 });
@@ -96,6 +96,7 @@ const Wrapper = ( props ) => {
 
 	const [ fullscreen, setFullscreen ] = useState( false );
 	const [ finishedDrawing, setFinishedDrawing ] = useState( false );
+	const [ showStyleMenu, setShowStyleMenu ] = useState( false );
 	const figure = useRef();
 	const plotDataRef = useRef( null );
 	const debouncedChange = useRef();
@@ -115,6 +116,9 @@ const Wrapper = ( props ) => {
 		setLayout( newLayout );
 	}, [ layout, fullscreen, props.layout ] );
 
+	const toggleStyleMenu = useCallback( () => {
+		setShowStyleMenu( !showStyleMenu );
+	}, [ showStyleMenu ] );
 	useEffect( () => {
 		let hasChanged = false;
 		if ( oldPropsLayout ) {
@@ -325,10 +329,21 @@ const Wrapper = ( props ) => {
 					{plot}
 				</Modal.Body>
 				<Modal.Footer>
+					<Button onClick={toggleStyleMenu} >
+						{t('layout')}
+					</Button>
 					<Button onClick={toggleFullscreen} >
 						{t('close')}
 					</Button>
 				</Modal.Footer>
+				{ showStyleMenu ? <StyleMenu
+					t={t}
+					onHide={toggleStyleMenu}
+					layout={layout}
+					layoutUpdate={layoutUpdate}
+					setLayout={setLayout}
+					setLayoutUpdate={setLayoutUpdate}
+				/> : null }
 			</Modal>
 		);
 	}

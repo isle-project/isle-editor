@@ -30,3 +30,26 @@
 .plotly-container {
 	position: relative;
 }
+
+.plotly-style-menu {
+	min-width: 350px;
+	min-height: 400px;
+	background-color: gainsboro;
+	box-shadow: 0 0 10px darkslategray;
+	position: absolute;
+	top: 12px;
+	right: 20%;
+	z-index: 2001;
+}
+
+.plotly-style-menu-header {
+	padding-left: 8px;
+	padding-top: 4px;
+}
+
+.plotly-style-menu-close-button {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: 28px;
+}
