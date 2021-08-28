@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "zmienna grupująca",
 	"IntervalPlot-prop-multipleTestingAdjustment": "kontroluje, czy dostosować poziom istotności w celu kontroli współczynnika fałszywego wykrycia.",
 	"IntervalPlot-prop-orientation": "orientacja `pionowa` lub `pozioma`.",
+	"IntervalPlot-prop-significanceLevel": "poziom istotności",
+	"IntervalPlot-prop-variable": "zmienna(-e) do wyświetlenia",
 	"Joyride-description": "Rozejrzyj się [reakcja-joyride](https://github.com/gilbarbara/react-joyride), aby stworzyć przejścia i wycieczki z przewodnikiem.",
 	"Joyride-prop-parentNode": "węzeł elementu nadrzędnego dla dostosowania z-index",
 	"Joyride-prop-run": "kontroluje, czy przewodnik jest aktywny",

@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "variabilă de grupare",
 	"IntervalPlot-prop-multipleTestingAdjustment": "controlează dacă trebuie ajustat nivelul de semnificație pentru a controla rata de descoperire falsă",
 	"IntervalPlot-prop-orientation": "orientarea `verticală` sau `orizontală`.",
+	"IntervalPlot-prop-significanceLevel": "nivelul de semnificație",
+	"IntervalPlot-prop-variable": "variabila (variabilele) de afișat",
 	"Joyride-description": "Înfășurătoare în jurul [react-joyride](https://github.com/gilbarbara/react-joyride) pentru a crea plimbări și tururi ghidate.",
 	"Joyride-prop-parentNode": "nodul elementului părinte pentru ajustarea indicelui z",
 	"Joyride-prop-run": "controlează dacă ghidul este activ sau nu",

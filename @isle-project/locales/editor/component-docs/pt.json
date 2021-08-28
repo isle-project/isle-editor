@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "variável de agrupamento",
 	"IntervalPlot-prop-multipleTestingAdjustment": "controla se o nível de significância deve ser ajustado para controlar a taxa de falsas descobertas",
 	"IntervalPlot-prop-orientation": "Orientação `vertical` ou `horizontal`.",
+	"IntervalPlot-prop-significanceLevel": "nível de significância",
+	"IntervalPlot-prop-variable": "variável(eis) a ser exibida(s)",
 	"Joyride-description": "Embrulhe [reaja com alegria] (https://github.com/gilbarbara/react-joyride) para criar passeios e visitas guiadas.",
 	"Joyride-prop-parentNode": "nodo do elemento pai para ajuste do índice z",
 	"Joyride-prop-run": "controla se o guia está ativo",

@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "spremenljivka za razvrščanje v skupine",
 	"IntervalPlot-prop-multipleTestingAdjustment": "nadzoruje, ali naj se raven pomembnosti prilagodi za nadzor stopnje napačnega odkritja.",
 	"IntervalPlot-prop-orientation": "`vertikalna` ali `vodoravna` usmerjenost",
+	"IntervalPlot-prop-significanceLevel": "raven pomembnosti",
+	"IntervalPlot-prop-variable": "spremenljivke, ki jih želite prikazati",
 	"Joyride-description": "Ovitek okoli [react-joyride](https://github.com/gilbarbara/react-joyride) za ustvarjanje sprehodov in vodenih ogledov.",
 	"Joyride-prop-parentNode": "vozlišče nadrejenega elementa za prilagoditev z-indeksa",
 	"Joyride-prop-run": "nadzoruje, ali je vodnik aktiven.",

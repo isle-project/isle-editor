@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "csoportosító változó",
 	"IntervalPlot-prop-multipleTestingAdjustment": "szabályozza, hogy a szignifikanciaszintet a hamis felfedezési arány ellenőrzése érdekében állítsák-e be.",
 	"IntervalPlot-prop-orientation": "\"függőleges\" vagy \"vízszintes\" orientáció",
+	"IntervalPlot-prop-significanceLevel": "szignifikancia szint",
+	"IntervalPlot-prop-variable": "megjelenítendő változó(k)",
 	"Joyride-description": "Wrapper a [react-joyride](https://github.com/gilbarbara/react-joyride) köré, hogy sétákat és vezetett túrákat hozzon létre.",
 	"Joyride-prop-parentNode": "a szülő elem csomópontja a z-index beállításához",
 	"Joyride-prop-run": "szabályozza, hogy az útmutató aktív-e",

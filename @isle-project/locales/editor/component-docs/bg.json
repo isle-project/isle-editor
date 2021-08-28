@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "променлива за групиране",
 	"IntervalPlot-prop-multipleTestingAdjustment": "контролира дали да се коригира нивото на значимост, за да се контролира коефициентът на фалшиво откриване.",
 	"IntervalPlot-prop-orientation": "`вертикална` или `хоризонтална` ориентация",
+	"IntervalPlot-prop-significanceLevel": "ниво на значимост",
+	"IntervalPlot-prop-variable": "променлива(и) за показване",
 	"Joyride-description": "Обвивка около [react-joyride](https://github.com/gilbarbara/react-joyride) за създаване на разходки и обиколки с екскурзовод.",
 	"Joyride-prop-parentNode": "възел на родителския елемент за настройка на z-индекса",
 	"Joyride-prop-run": "контролира дали водачът е активен",

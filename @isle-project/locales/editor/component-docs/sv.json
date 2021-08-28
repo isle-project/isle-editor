@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "grupperingsvariabel",
 	"IntervalPlot-prop-multipleTestingAdjustment": "kontrollerar om signifikansnivån ska justeras för att kontrollera andelen falska upptäckter.",
 	"IntervalPlot-prop-orientation": "vertikal eller horisontell orientering",
+	"IntervalPlot-prop-significanceLevel": "signifikansnivå",
+	"IntervalPlot-prop-variable": "Variabel(er) som ska visas.",
 	"Joyride-description": "En omslagare runt [react-joyride](https://github.com/gilbarbara/react-joyride) för att skapa rundvandringar och guidade turer.",
 	"Joyride-prop-parentNode": "noden för det överordnade elementet för justering av z-index",
 	"Joyride-prop-run": "kontrollerar om guiden är aktiv",

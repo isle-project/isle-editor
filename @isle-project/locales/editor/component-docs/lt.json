@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "grupavimo kintamasis",
 	"IntervalPlot-prop-multipleTestingAdjustment": "kontroliuoja, ar reikia koreguoti reikšmingumo lygį, kad būtų kontroliuojamas klaidingo atradimo lygis.",
 	"IntervalPlot-prop-orientation": "`vertikali` arba `horizontali` orientacija",
+	"IntervalPlot-prop-significanceLevel": "reikšmingumo lygis",
+	"IntervalPlot-prop-variable": "rodomas (-i) kintamasis (-ieji)",
 	"Joyride-description": "Aplink [react-joyride](https://github.com/gilbarbara/react-joyride) esantis apvalkalas, skirtas pasivaikščiojimams ir ekskursijoms su gidu kurti.",
 	"Joyride-prop-parentNode": "tėvinio elemento mazgas z indekso koregavimui",
 	"Joyride-prop-run": "kontroliuoja, ar gidas yra aktyvus.",

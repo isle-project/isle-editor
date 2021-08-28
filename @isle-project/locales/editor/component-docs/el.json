@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "μεταβλητή ομαδοποίησης",
 	"IntervalPlot-prop-multipleTestingAdjustment": "ελέγχει αν θα προσαρμοστεί το επίπεδο σημαντικότητας για τον έλεγχο του ποσοστού ψευδούς ανακάλυψης",
 	"IntervalPlot-prop-orientation": "\"Κάθετος\" ή \"Οριζόντιος\" προσανατολισμός",
+	"IntervalPlot-prop-significanceLevel": "επίπεδο σημαντικότητας",
+	"IntervalPlot-prop-variable": "μεταβλητή(ες) για εμφάνιση",
 	"Joyride-description": "Περιτύλιγμα γύρω από το [react-joyride](https://github.com/gilbarbara/react-joyride) για τη δημιουργία περιηγήσεων και ξεναγήσεων.",
 	"Joyride-prop-parentNode": "κόμβος του γονικού στοιχείου για την προσαρμογή του δείκτη z",
 	"Joyride-prop-run": "ελέγχει αν ο οδηγός είναι ενεργός",

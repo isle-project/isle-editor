@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "groeperingsvariabele",
 	"IntervalPlot-prop-multipleTestingAdjustment": "bepaalt of het significantieniveau moet worden aangepast om het percentage valse ontdekkingen te beheersen",
 	"IntervalPlot-prop-orientation": "`verticale` of `horizontale` oriëntatie",
+	"IntervalPlot-prop-significanceLevel": "significantieniveau",
+	"IntervalPlot-prop-variable": "variabele(n) om weer te geven",
 	"Joyride-description": "Wrapper rond [reactie-joyride](https://github.com/gilbarbara/react-joyride) om walkthroughs en rondleidingen te maken.",
 	"Joyride-prop-parentNode": "knooppunt van bovenliggend element voor z-index aanpassing",
 	"Joyride-prop-run": "controleert of de gids actief is",

@@ -411,6 +411,8 @@
 	"IntervalPlot-prop-group": "переменная группировки",
 	"IntervalPlot-prop-multipleTestingAdjustment": "контролирует, нужно ли корректировать уровень значимости для контроля коэффициента ложных обнаружений",
 	"IntervalPlot-prop-orientation": "`вертикальная` или `горизонтальная` ориентация",
+	"IntervalPlot-prop-significanceLevel": "уровень значимости",
+	"IntervalPlot-prop-variable": "переменная(ые) для отображения",
 	"Joyride-description": "Обернитесь вокруг [react-joyride](https://github.com/gilbarbara/react-joyride) для создания прогулок и экскурсий.",
 	"Joyride-prop-parentNode": "узел родительского элемента для настройки z-индекса",
 	"Joyride-prop-run": "контролирует, активен ли проводник",
