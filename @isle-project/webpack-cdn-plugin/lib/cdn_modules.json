@@ -11,7 +11,7 @@
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "20.3.3"
+		"version": "20.4.0"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -26,7 +26,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.2.1"
+		"version": "2.4.1"
 	},
 	{
 		"name": "lodash",
@@ -54,14 +54,14 @@
 		"alias": "react",
 		"var": "React",
 		"path": "umd/react.production.min.js",
-		"version": "17.0.1"
+		"version": "17.0.2"
 	},
 	{
 		"name": "react-dom",
 		"alias": "react-dom",
 		"var": "ReactDOM",
 		"path": "umd/react-dom.production.min.js",
-		"version": "17.0.1"
+		"version": "17.0.2"
 	},
 	{
 		"name": "prop-types",
@@ -89,14 +89,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "35.9.1"
+		"version": "35.11.0"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.1.70",
+		"version": "0.2.2",
 		"defer": true
 	},
 	{
@@ -104,7 +104,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.1.70",
+		"version": "0.2.2",
 		"defer": true
 	},
 	{
