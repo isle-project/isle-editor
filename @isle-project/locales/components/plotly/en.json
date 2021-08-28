@@ -1,6 +1,8 @@
 {
 	"axes": "Axes",
 	"background": "Background",
+	"border-color": "Border Color",
+	"border-width": "Border Width",
 	"change-orientation": "Change Legend Orientation",
 	"close": "Close",
 	"copied-to-clipboard": "Copied to clipboard",

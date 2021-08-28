@@ -1,6 +1,8 @@
 {
 	"axes": "Osi",
 	"background": "Ozadje",
+	"border-color": "Barva meje",
+	"border-width": "Širina meje",
 	"change-orientation": "Sprememba usmerjenosti legende",
 	"close": "Zapri",
 	"copied-to-clipboard": "Kopiranje v odložišče",

@@ -1,6 +1,8 @@
 {
 	"axes": "Akselit",
 	"background": "Tausta",
+	"border-color": "Rajauksen väri",
+	"border-width": "Rajauksen leveys",
 	"change-orientation": "Vaihda selityksen suunta",
 	"close": "Sulje",
 	"copied-to-clipboard": "Kopioitu leikepöydälle",

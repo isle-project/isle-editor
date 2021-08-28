@@ -1,6 +1,8 @@
 {
 	"axes": "Tengelyek",
 	"background": "Háttér",
+	"border-color": "Határ színe",
+	"border-width": "Határ szélessége",
 	"change-orientation": "Legenda orientációjának megváltoztatása",
 	"close": "Zárja be a",
 	"copied-to-clipboard": "Vágólapra másolva",

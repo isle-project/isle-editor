@@ -1,6 +1,8 @@
 {
 	"axes": "Axe",
 	"background": "Fond",
+	"border-color": "Culoare de frontieră",
+	"border-width": "Lățimea marginii",
 	"change-orientation": "Schimbarea orientării legendei",
 	"close": "Închideți",
 	"copied-to-clipboard": "Copiat în clipboard",

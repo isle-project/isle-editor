@@ -1,6 +1,8 @@
 {
 	"axes": "Assi",
 	"background": "Sfondo",
+	"border-color": "Colore del bordo",
+	"border-width": "Larghezza del confine",
 	"change-orientation": "Cambiare l'orientamento della leggenda",
 	"close": "Chiudere",
 	"copied-to-clipboard": "Copiato negli appunti",

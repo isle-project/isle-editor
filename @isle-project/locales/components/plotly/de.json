@@ -1,6 +1,8 @@
 {
 	"axes": "Achsen",
 	"background": "Hintergrund",
+	"border-color": "Farbe der Umrandung",
+	"border-width": "Breite des Randes",
 	"change-orientation": "Ausrichtung der Legende ändern",
 	"close": "Schließen",
 	"copied-to-clipboard": "In die Zwischenablage kopiert",

@@ -1,6 +1,8 @@
 {
 	"axes": "Asis",
 	"background": "Pamatinformācija",
+	"border-color": "Robežu krāsa",
+	"border-width": "Robežu platums",
 	"change-orientation": "Mainīt leģendas orientāciju",
 	"close": "Aizvērt",
 	"copied-to-clipboard": "Kopēts uz starpliktuvi",

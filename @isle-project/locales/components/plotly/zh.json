@@ -1,6 +1,8 @@
 {
 	"axes": "轴线",
 	"background": "背景介绍",
+	"border-color": "边界颜色",
+	"border-width": "边界宽度",
 	"change-orientation": "改变图例方向",
 	"close": "关闭",
 	"copied-to-clipboard": "复制到剪贴板",

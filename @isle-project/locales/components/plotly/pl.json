@@ -1,6 +1,8 @@
 {
 	"axes": "Osie",
 	"background": "Tło",
+	"border-color": "Kolor granicy",
+	"border-width": "Szerokość granicy",
 	"change-orientation": "Zmiana orientacji legendy",
 	"close": "Close",
 	"copied-to-clipboard": "Skopiowane do schowka",

@@ -1,6 +1,8 @@
 {
 	"axes": "Axes",
 	"background": "Contexte",
+	"border-color": "Couleur de la bordure",
+	"border-width": "Largeur de la bordure",
 	"change-orientation": "Changer l'orientation de la légende",
 	"close": "Fermer",
 	"copied-to-clipboard": "Copié dans le presse-papiers",

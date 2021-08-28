@@ -1,6 +1,8 @@
 {
 	"axes": "Teljed",
 	"background": "Taustaks",
+	"border-color": "Piiri värv",
+	"border-width": "Piiri laius",
 	"change-orientation": "Legendi orientatsiooni muutmine",
 	"close": "Sulge",
 	"copied-to-clipboard": "Kopeeritud lõikelauale",

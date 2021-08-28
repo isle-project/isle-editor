@@ -1,6 +1,8 @@
 {
 	"axes": "アックス",
 	"background": "背景",
+	"border-color": "ボーダーカラー",
+	"border-width": "ボーダー幅",
 	"change-orientation": "凡例の方向を変更",
 	"close": "クローズ",
 	"copied-to-clipboard": "クリップボードにコピー",

@@ -1,6 +1,8 @@
 {
 	"axes": "Osy",
 	"background": "Pozadí",
+	"border-color": "Barva hranic",
+	"border-width": "Šířka okraje",
 	"change-orientation": "Změna orientace legendy",
 	"close": "Zavřít",
 	"copied-to-clipboard": "Zkopírováno do schránky",

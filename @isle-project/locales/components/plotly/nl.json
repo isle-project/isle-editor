@@ -1,6 +1,8 @@
 {
 	"axes": "Assen",
 	"background": "Achtergrond",
+	"border-color": "Rand Kleur",
+	"border-width": "Grensbreedte",
 	"change-orientation": "Verander Legenda Oriëntatie",
 	"close": "Sluit",
 	"copied-to-clipboard": "Gekopieerd naar klembord",

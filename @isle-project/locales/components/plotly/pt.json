@@ -1,6 +1,8 @@
 {
 	"axes": "Eixos",
 	"background": "Antecedentes",
+	"border-color": "Cor da fronteira",
+	"border-width": "Largura da fronteira",
 	"change-orientation": "Mudar a orientação da legenda",
 	"close": "Fechar",
 	"copied-to-clipboard": "Copiado para prancheta",

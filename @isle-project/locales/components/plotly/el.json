@@ -1,6 +1,8 @@
 {
 	"axes": "Άξονες",
 	"background": "Ιστορικό",
+	"border-color": "Χρώμα περιγράμματος",
+	"border-width": "Πλάτος συνόρων",
 	"change-orientation": "Αλλαγή Προσανατολισμού Υπόμνημα",
 	"close": "Κλείστε το",
 	"copied-to-clipboard": "Αντιγραφή στο πρόχειρο",

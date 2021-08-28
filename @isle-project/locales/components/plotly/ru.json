@@ -1,6 +1,8 @@
 {
 	"axes": "Оси",
 	"background": "Справочная информация",
+	"border-color": "Цвет границы",
+	"border-width": "Ширина границы",
 	"change-orientation": "Изменить Легенду Ориентация",
 	"close": "Закрыть",
 	"copied-to-clipboard": "Скопировано в буфер обмена",

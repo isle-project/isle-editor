@@ -1,6 +1,8 @@
 {
 	"axes": "Ejes",
 	"background": "Antecedentes",
+	"border-color": "Color de los bordes",
+	"border-width": "Anchura de los bordes",
 	"change-orientation": "Orientación de la leyenda del cambio",
 	"close": "Cerca",
 	"copied-to-clipboard": "Copiado en el portapapeles",

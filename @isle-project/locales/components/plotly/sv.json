@@ -1,6 +1,8 @@
 {
 	"axes": "Axes",
 	"background": "Bakgrund",
+	"border-color": "Färg på gränsen",
+	"border-width": "Bredd på gränsen",
 	"change-orientation": "Ändra legenden orientering",
 	"close": "Stäng",
 	"copied-to-clipboard": "Kopieras till urklipp",

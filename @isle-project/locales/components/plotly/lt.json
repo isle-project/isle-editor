@@ -1,6 +1,8 @@
 {
 	"axes": "Ašys",
 	"background": "Pagrindinė informacija",
+	"border-color": "Pasienio spalva",
+	"border-width": "Ribos plotis",
 	"change-orientation": "Pakeisti legendos orientaciją",
 	"close": "Uždaryti",
 	"copied-to-clipboard": "Nukopijuota į iškarpinę",

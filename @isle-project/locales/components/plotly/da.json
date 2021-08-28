@@ -1,6 +1,8 @@
 {
 	"axes": "Akser",
 	"background": "Baggrund",
+	"border-color": "Grænsefarve",
+	"border-width": "Grænsebredde",
 	"change-orientation": "Ændring af legendeorientering",
 	"close": "Luk",
 	"copied-to-clipboard": "Kopieret til udklipsholderen",

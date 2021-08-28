@@ -1,6 +1,8 @@
 {
 	"axes": "Оси",
 	"background": "Фон",
+	"border-color": "Цвят на границата",
+	"border-width": "Ширина на границата",
 	"change-orientation": "Промяна на ориентацията на легендата",
 	"close": "Затвори",
 	"copied-to-clipboard": "Копиране в клипборда",
