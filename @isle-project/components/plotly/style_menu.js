@@ -156,10 +156,10 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 						</Col>
 					</Form.Group>
 					<Form.Group as={Row} >
-						<Form.Label column sm={6} >
+						<Form.Label column sm={8} >
 							{t('font-size')}
 						</Form.Label>
-						<Col sm={6}>
+						<Col sm={4}>
 							<NumberInput
 								min={10}
 								max={60}
@@ -209,10 +209,10 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 						</Col>
 					</Form.Group>
 					<Form.Group as={Row} >
-						<Form.Label column sm={6} >
+						<Form.Label column sm={8} >
 							{t('border-width')}
 						</Form.Label>
-						<Col sm={6}>
+						<Col sm={4}>
 							<NumberInput
 								min={0}
 								max={30}
