@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.19",
+	"version": "0.50.20",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,17 +11,17 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.19",
-		"@isle-project/locales": "0.50.19",
-		"@isle-project/session": "0.50.19",
-		"@isle-project/utils": "0.50.19"
+		"@isle-project/constants": "0.50.20",
+		"@isle-project/locales": "0.50.20",
+		"@isle-project/session": "0.50.20",
+		"@isle-project/utils": "0.50.20"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.0",
 		"ansi-to-react": "6.1.6",
 		"axios": "^0.21.1",
 		"classnames": "^2.3.1",
-		"codemirror": "^5.62.2",
+		"codemirror": "^5.62.3",
 		"compute-argmax": "^1.0.0",
 		"compute-chebyshev-distance": "^1.0.2",
 		"compute-chunkify": "0.0.0",
@@ -29,7 +29,7 @@
 		"compute-euclidean-distance": "^1.0.0",
 		"compute-hamming": "^1.1.0",
 		"compute-manhattan-distance": "^1.0.1",
-		"csv-stringify": "^5.6.1",
+		"csv-stringify": "^5.6.4",
 		"csvtojson": "^2.0.10",
 		"d3": "5.16.0",
 		"d3-cloud": "1.2.5",
@@ -53,7 +53,7 @@
 		"murmurhash3js": "^3.0.1",
 		"pdfjs-dist": "2.9.359",
 		"pdfmake": "^0.2.2",
-		"plotly.js": "2.3.1",
+		"plotly.js": "2.4.1",
 		"platform": "^1.3.6",
 		"pressure": "^2.1.2",
 		"profanities": "2.14.0",
@@ -72,7 +72,7 @@
 		"prosemirror-tables": "1.1.1",
 		"prosemirror-transform": "^1.3.2",
 		"prosemirror-utils": "^0.9.6",
-		"prosemirror-view": "^1.19.1",
+		"prosemirror-view": "^1.19.3",
 		"qrcode": "^1.4.4",
 		"react": "17.0.2",
 		"react-bootstrap": "1.6.1",
@@ -85,14 +85,14 @@
 		"react-dnd-touch-backend": "^14.1.0",
 		"react-dom": "17.0.2",
 		"react-floater": "^0.7.3",
-		"react-grid-layout": "^1.2.5",
+		"react-grid-layout": "^1.3.0",
 		"react-highlight-words": "^0.17.0",
 		"react-i18next": "^11.11.4",
 		"react-innertext": "^1.1.5",
 		"react-input-range": "^1.2.1",
 		"react-list": "^0.8.16",
 		"react-player": "^2.9.0",
-		"react-joyride": "2.3.1",
+		"react-joyride": "2.2.1",
 		"react-json-tree": "^0.15.0",
 		"react-notification-system": "^0.4.0",
 		"react-plotly.js": "^2.5.1",
@@ -108,6 +108,6 @@
 		"text-miner": "^1.3.0",
 		"uniq": "^1.0.1",
 		"venn.js": "0.2.20",
-		"victory": "35.10.1"
+		"victory": "35.11.0"
 	}
 }
