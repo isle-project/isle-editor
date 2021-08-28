@@ -500,14 +500,6 @@ function bundleLesson( options ) {
 					}
 				},
 				{
-					test: /(sum-series|is-typed-array|node_modules\/ml-)[\s\S]+?\.js$/,
-					loader: 'esbuild-loader',
-					options: {
-						loader: 'jsx',
-						target: 'es2015'
-					}
-				},
-				{
 					test: /\.css$/,
 					use: [
 						MiniCssExtractPlugin.loader,
