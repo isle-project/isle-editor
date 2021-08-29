@@ -151,6 +151,7 @@ import Provider from '@isle-project/components/internal/provider';
 import factor from '@isle-project/utils/factor-variable';
 import date from '@isle-project/utils/date';
 import obsToVar from '@isle-project/utils/obs-to-var';
+import '@isle-project/components/internal/lesson/lesson.css';
 import 'bundler/loading.css';
 `;
 
