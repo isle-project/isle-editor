@@ -10,7 +10,7 @@ Kopsavilkuma statistika.
 
 * __data__ | `object (required)`: vērtību masīvu objekts. Default: `none`.
 * __variables__ | `array<string> (required)`: mainīgais(-ie), attiecībā uz kuru(-iem) aprēķināt statistiku.. Default: `none`.
-* __statistics__ | `array<string>`: statistika(-as), kas jāaprēķina izvēlētajiem mainīgajiem lielumiem (vai nu `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, vai `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: statistika(-as), kas jāaprēķina izvēlētajiem mainīgajiem lielumiem (vai nu `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, vai `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: otrais mainīgais lielums korelācijas statistikai. Default: `none`.
 * __omit__ | `boolean`: kontrolē, vai izlaist trūkstošās vērtības.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: grupēšanas mainīgā(-o) nosaukums. Default: `none`.

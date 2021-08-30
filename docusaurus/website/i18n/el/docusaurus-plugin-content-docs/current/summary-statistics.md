@@ -10,7 +10,7 @@ sidebar_label: Summary Statistics
 
 * __data__ | `object (required)`: αντικείμενο των πινάκων τιμών. Default: `none`.
 * __variables__ | `array<string> (required)`: μεταβλητή(ες) για την οποία θα υπολογιστούν στατιστικά στοιχεία. Default: `none`.
-* __statistics__ | `array<string>`: στατιστικά στοιχεία που πρέπει να υπολογιστούν για τις επιλεγμένες μεταβλητές (είτε `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ή `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: στατιστικά στοιχεία που πρέπει να υπολογιστούν για τις επιλεγμένες μεταβλητές (είτε `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ή `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: δεύτερη μεταβλητή για τη στατιστική συσχέτισης. Default: `none`.
 * __omit__ | `boolean`: ελέγχει αν θα παραλείπονται οι ελλείπουσες τιμές. Default: `false`.
 * __group__ | `array<(string|Factor)>`: όνομα της/των μεταβλητής/ων ομαδοποίησης. Default: `none`.

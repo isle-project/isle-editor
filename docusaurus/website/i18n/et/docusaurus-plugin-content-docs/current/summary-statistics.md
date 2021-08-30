@@ -10,7 +10,7 @@ Kokkuvõtlik statistika.
 
 * __data__ | `object (required)`: väärtuste massiivi objekt. Default: `none`.
 * __variables__ | `array<string> (required)`: muutuja(d), mille kohta statistikat arvutatakse. Default: `none`.
-* __statistics__ | `array<string>`: valitud muutujate jaoks arvutatav(ad) statistika(d) (kas `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, või `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: valitud muutujate jaoks arvutatav(ad) statistika(d) (kas `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, või `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: teine muutuja korrelatsioonistatistika jaoks. Default: `none`.
 * __omit__ | `boolean`: kontrollib, kas puuduvad väärtused jäetakse välja. Default: `false`.
 * __group__ | `array<(string|Factor)>`: rühmitava(te) muutuja(te) nimi. Default: `none`.

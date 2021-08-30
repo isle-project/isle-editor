@@ -10,7 +10,7 @@ Súhrnné štatistiky.
 
 * __data__ | `object (required)`: objekt polí hodnôt. Default: `none`.
 * __variables__ | `array<string> (required)`: premenná(-y), pre ktorú(-é) sa má(-ú) vypočítať štatistika. Default: `none`.
-* __statistics__ | `array<string>`: štatistiky, ktoré sa majú vypočítať pre vybrané premenné (buď `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, alebo `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: štatistiky, ktoré sa majú vypočítať pre vybrané premenné (buď `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, alebo `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: druhá premenná pre korelačnú štatistiku. Default: `none`.
 * __omit__ | `boolean`: kontroluje, či sa majú vynechať chýbajúce hodnoty.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: názov zoskupujúcej premennej (premenných). Default: `none`.

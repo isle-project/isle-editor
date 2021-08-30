@@ -10,7 +10,7 @@ Souhrnné statistiky.
 
 * __data__ | `object (required)`: objekt pole hodnot. Default: `none`.
 * __variables__ | `array<string> (required)`: proměnné, pro které se počítá statistika.. Default: `none`.
-* __statistics__ | `array<string>`: statistika(y), která(é) se vypočítá(í) pro vybrané proměnné (buď `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, nebo `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: statistika(y), která(é) se vypočítá(í) pro vybrané proměnné (buď `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, nebo `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: druhá proměnná pro korelační statistiku. Default: `none`.
 * __omit__ | `boolean`: kontroluje, zda se mají vynechat chybějící hodnoty.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: název seskupující proměnné (proměnných). Default: `none`.

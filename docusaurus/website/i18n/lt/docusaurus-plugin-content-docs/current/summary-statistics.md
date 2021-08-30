@@ -10,7 +10,7 @@ Apibendrinti statistiniai duomenys.
 
 * __data__ | `object (required)`: verčių masyvų objektas. Default: `none`.
 * __variables__ | `array<string> (required)`: kintamasis (-ieji), kurio (-ių) statistinius duomenis reikia apskaičiuoti.. Default: `none`.
-* __statistics__ | `array<string>`: statistiniai duomenys, kuriuos reikia apskaičiuoti pasirinktiems kintamiesiems (arba `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, arba `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: statistiniai duomenys, kuriuos reikia apskaičiuoti pasirinktiems kintamiesiems (arba `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, arba `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: antrasis koreliacijos statistikos kintamasis. Default: `none`.
 * __omit__ | `boolean`: kontroliuoja, ar praleisti trūkstamas reikšmes.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: grupavimo kintamojo (-ių) pavadinimas. Default: `none`.

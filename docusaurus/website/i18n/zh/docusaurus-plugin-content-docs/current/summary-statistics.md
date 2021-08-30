@@ -10,7 +10,7 @@ sidebar_label: Summary Statistics
 
 * __data__ | `object (required)`: 值数组的对象. Default: `none`.
 * __variables__ | `array<string> (required)`: 计算统计数据的变量. Default: `none`.
-* __statistics__ | `array<string>`: 计算所选变量的统计数据（`Mean`，`Median`,`Min`,`Max`,`Range`,`Interquartile Range`,`Standard Deviation`,`Variance`,`Correlation`,`Correlation Matrix`,`Skewness`,`Excess Kurtosis`,`First Quartile`,`Third Quartile`,或`Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: 计算所选变量的统计数据（`Mean`，`Median`,`Min`,`Max`,`Range`,`Interquartile Range`,`Standard Deviation`,`Variance`,`Correlation`,`Correlation Matrix`,`Skewness`,`Excess Kurtosis`,`First Quartile`,`Third Quartile`,或`Quantile`). Default: `none`.
 * __secondVariable__ | `string`: 相关统计学的第二个变量. Default: `none`.
 * __omit__ | `boolean`: 控制是否省略缺失值. Default: `false`.
 * __group__ | `array<(string|Factor)>`: 分组变量的名称. Default: `none`.

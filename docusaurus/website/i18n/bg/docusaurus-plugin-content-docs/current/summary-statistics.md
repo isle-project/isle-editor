@@ -10,7 +10,7 @@ sidebar_label: Summary Statistics
 
 * __data__ | `object (required)`: обект от масиви със стойности. Default: `none`.
 * __variables__ | `array<string> (required)`: променлива(и), за която(ито) да се изчислят статистическите данни. Default: `none`.
-* __statistics__ | `array<string>`: статистически данни, които да се изчислят за избраните променливи (или "Mean", `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, или `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: статистически данни, които да се изчислят за избраните променливи (или "Mean", `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, или `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: втора променлива за корелационната статистика. Default: `none`.
 * __omit__ | `boolean`: контролира дали да се пропускат липсващи стойности.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: име на променливата(ите) за групиране. Default: `none`.

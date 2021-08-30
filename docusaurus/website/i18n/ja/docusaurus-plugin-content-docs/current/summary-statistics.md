@@ -10,7 +10,7 @@ sidebar_label: Summary Statistics
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
 * __variables__ | `array<string> (required)`: 統計値を算出するための変数（複数可. Default: `none`.
-* __statistics__ | `array<string>`: 選択した変数について計算する統計値（`Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, のいずれか `Quantile`）。. Default: `none`.
+* __statistics__ | `array<string> (required)`: 選択した変数について計算する統計値（`Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, のいずれか `Quantile`）。. Default: `none`.
 * __secondVariable__ | `string`: 相関統計のための第2の変数. Default: `none`.
 * __omit__ | `boolean`: 欠損値を省略するかどうかを制御する. Default: `false`.
 * __group__ | `array<(string|Factor)>`: グループ化された変数の名前（複数可. Default: `none`.

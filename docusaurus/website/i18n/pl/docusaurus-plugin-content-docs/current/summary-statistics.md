@@ -10,7 +10,7 @@ Statystyki podsumowujące.
 
 * __data__ | `object (required)`: obiekt tablic wartości. Default: `none`.
 * __variables__ | `array<string> (required)`: zmienna(-e), dla której(-ych) należy obliczyć statystyki. Default: `none`.
-* __statistics__ | `array<string>`: statystyka(-i) do obliczenia dla wybranych zmiennych (albo `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, lub `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: statystyka(-i) do obliczenia dla wybranych zmiennych (albo `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, lub `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: druga zmienna dla statystyki korelacji. Default: `none`.
 * __omit__ | `boolean`: kontroluje, czy pominąć brakujące wartości. Default: `false`.
 * __group__ | `array<(string|Factor)>`: nazwa zmiennej(-ych) grupującej(-ych). Default: `none`.

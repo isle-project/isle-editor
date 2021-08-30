@@ -7555,7 +7555,7 @@
 			},
 			{
 				"name": "statistics",
-				"type": "array<string>",
+				"type": "array<string> (required)",
 				"description": "SummaryStatistics-prop-statistics"
 			},
 			{

@@ -10,7 +10,7 @@ Statistici sumare.
 
 * __data__ | `object (required)`: obiect de matrice de valori. Default: `none`.
 * __variables__ | `array<string> (required)`: variabila (variabilele) pentru care se calculează statisticile. Default: `none`.
-* __statistics__ | `array<string>`: statistica (statisticile) de calculat pentru variabilele selectate (fie `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, sau `Quantile`).. Default: `none`.
+* __statistics__ | `array<string> (required)`: statistica (statisticile) de calculat pentru variabilele selectate (fie `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, sau `Quantile`).. Default: `none`.
 * __secondVariable__ | `string`: a doua variabilă pentru statistica de corelație. Default: `none`.
 * __omit__ | `boolean`: controlează dacă se omit valorile lipsă. Default: `false`.
 * __group__ | `array<(string|Factor)>`: denumirea variabilei (variabilelor) de grupare. Default: `none`.

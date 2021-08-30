@@ -10,7 +10,7 @@ Povzetek statističnih podatkov.
 
 * __data__ | `object (required)`: predmet polja vrednosti. Default: `none`.
 * __variables__ | `array<string> (required)`: spremenljivka(-e), za katero(-e) se izračunajo statistični podatki.. Default: `none`.
-* __statistics__ | `array<string>`: statistika(-e), ki jo(-e) izračunate za izbrane spremenljivke (bodisi `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ali `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: statistika(-e), ki jo(-e) izračunate za izbrane spremenljivke (bodisi `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, ali `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: druga spremenljivka za korelacijsko statistiko. Default: `none`.
 * __omit__ | `boolean`: nadzoruje, ali se manjkajoče vrednosti izpustijo.. Default: `false`.
 * __group__ | `array<(string|Factor)>`: ime spremenljivke(-k) za razvrščanje v skupine. Default: `none`.

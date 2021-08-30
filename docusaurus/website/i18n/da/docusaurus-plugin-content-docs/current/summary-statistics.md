@@ -10,7 +10,7 @@ Sammenfattende statistik.
 
 * __data__ | `object (required)`: objekt af værdi-arrays. Default: `none`.
 * __variables__ | `array<string> (required)`: variabel(er), for hvilken (hvilke) der skal beregnes statistik. Default: `none`.
-* __statistics__ | `array<string>`: statistik(er), der skal beregnes for de valgte variabler (enten `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, eller `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: statistik(er), der skal beregnes for de valgte variabler (enten `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, eller `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: anden variabel for korrelationsstatistik. Default: `none`.
 * __omit__ | `boolean`: kontrollerer, om manglende værdier skal udelades. Default: `false`.
 * __group__ | `array<(string|Factor)>`: navn på grupperingsvariable(r). Default: `none`.

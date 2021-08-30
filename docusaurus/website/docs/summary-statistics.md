@@ -10,7 +10,7 @@ Summary statistics.
 
 * __data__ | `object (required)`: object of value arrays. Default: `none`.
 * __variables__ | `array<string> (required)`: variable(s) for which to calculate statistics. Default: `none`.
-* __statistics__ | `array<string>`: statistics(s) to calculate for the selected variables (either 'Mean', `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, or `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: statistics(s) to calculate for the selected variables (either 'Mean', `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, or `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: second variable for correlation statistic. Default: `none`.
 * __omit__ | `boolean`: controls whether to omit missing values. Default: `false`.
 * __group__ | `array<(string|Factor)>`: name of grouping variable(s). Default: `none`.

@@ -10,7 +10,7 @@ Samenvattende statistieken.
 
 * __data__ | `object (required)`: object van waarde-arrays. Default: `none`.
 * __variables__ | `array<string> (required)`: variabele(n) waarvoor de statistieken moeten worden berekend. Default: `none`.
-* __statistics__ | `array<string>`: te berekenen statistiek(en) voor de geselecteerde variabelen (ofwel `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, of `Quantile`). Default: `none`.
+* __statistics__ | `array<string> (required)`: te berekenen statistiek(en) voor de geselecteerde variabelen (ofwel `Mean`, `Median`, `Min`, `Max`, `Range`, `Interquartile Range`, `Standard Deviation`, `Variance`, `Correlation`, `Correlation Matrix`, `Skewness`, `Excess Kurtosis`, `First Quartile`, `Third Quartile`, of `Quantile`). Default: `none`.
 * __secondVariable__ | `string`: tweede variabele voor correlatiestatistiek. Default: `none`.
 * __omit__ | `boolean`: bepaalt of ontbrekende waarden moeten worden weggelaten. Default: `false`.
 * __group__ | `array<(string|Factor)>`: naam van de groeperingsvariabele(n). Default: `none`.
