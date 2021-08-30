@@ -474,7 +474,7 @@ SummaryStatistics.propTypes = {
 		'Third Quartile',
 		'Quantile',
 		'Five-Number Summary'
-	]) ),
+	]) ).isRequired,
 	secondVariable: PropTypes.string,
 	omit: PropTypes.bool,
 	group: PropTypes.arrayOf( PropTypes.oneOfType([
