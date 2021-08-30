@@ -9,10 +9,10 @@ Un grafic de interval.
 ## Opțiuni
 
 * __data__ | `object (required)`: obiect de matrice de valori. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variabila (variabilele) de afișat. Default: `none`.
 * __group__ | `(string|Factor)`: variabilă de grupare. Default: `none`.
 * __orientation__ | `string`: orientarea `verticală` sau `orizontală`.. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: nivelul de semnificație. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: controlează dacă trebuie ajustat nivelul de semnificație pentru a controla rata de descoperire falsă. Default: `false`.
 
 

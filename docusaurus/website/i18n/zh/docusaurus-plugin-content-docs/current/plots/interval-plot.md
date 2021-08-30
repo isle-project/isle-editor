@@ -9,10 +9,10 @@ sidebar_label: Interval Plot
 ## 选项
 
 * __data__ | `object (required)`: 值数组的对象. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: 要显示的变量. Default: `none`.
 * __group__ | `(string|Factor)`: 分组变量. Default: `none`.
 * __orientation__ | `string`: 垂直 "或 "水平 "方向. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: 显著性水平. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: 控制是否调整显著性水平以控制错误发现率. Default: `false`.
 
 

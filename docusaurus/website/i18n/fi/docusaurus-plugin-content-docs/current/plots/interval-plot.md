@@ -9,10 +9,10 @@ Intervallidiagrammi.
 ## Vaihtoehdot
 
 * __data__ | `object (required)`: arvojoukkojen objekti. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: näytettävät muuttujat. Default: `none`.
 * __group__ | `(string|Factor)`: ryhmittelymuuttuja. Default: `none`.
 * __orientation__ | `string`: "pystysuora" tai "vaakasuora" suuntaus. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: merkitsevyystaso. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: valvoo, säädetäänkö merkitsevyystasoa väärän löydön osuuden hallitsemiseksi.. Default: `false`.
 
 

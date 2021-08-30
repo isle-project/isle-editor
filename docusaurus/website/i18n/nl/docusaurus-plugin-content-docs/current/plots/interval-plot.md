@@ -9,10 +9,10 @@ Een interval plot.
 ## Opties
 
 * __data__ | `object (required)`: object van waarde-arrays. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variabele(n) om weer te geven. Default: `none`.
 * __group__ | `(string|Factor)`: groeperingsvariabele. Default: `none`.
 * __orientation__ | `string`: `verticale` of `horizontale` oriëntatie. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: significantieniveau. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: bepaalt of het significantieniveau moet worden aangepast om het percentage valse ontdekkingen te beheersen. Default: `false`.
 
 

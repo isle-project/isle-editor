@@ -9,10 +9,10 @@ Wykres interwałowy.
 ## Opcje
 
 * __data__ | `object (required)`: obiekt tablic wartości. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: zmienna(-e) do wyświetlenia. Default: `none`.
 * __group__ | `(string|Factor)`: zmienna grupująca. Default: `none`.
 * __orientation__ | `string`: orientacja `pionowa` lub `pozioma`.. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: poziom istotności. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontroluje, czy dostosować poziom istotności w celu kontroli współczynnika fałszywego wykrycia.. Default: `false`.
 
 

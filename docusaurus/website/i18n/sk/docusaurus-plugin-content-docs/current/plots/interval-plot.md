@@ -9,10 +9,10 @@ Intervalový graf.
 ## Možnosti
 
 * __data__ | `object (required)`: objekt polí hodnôt. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: premenné, ktoré sa majú zobraziť. Default: `none`.
 * __group__ | `(string|Factor)`: zoskupovanie premenných. Default: `none`.
 * __orientation__ | `string`: `vertikálna` alebo `horizontálna` orientácia. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: úroveň významnosti. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontroluje, či sa má upraviť úroveň významnosti na kontrolu miery falošného objavenia.. Default: `false`.
 
 

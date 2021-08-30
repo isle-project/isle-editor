@@ -9,10 +9,10 @@ Et intervalplot.
 ## Indstillinger
 
 * __data__ | `object (required)`: objekt af værdi-arrays. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variabel(er), der skal vises. Default: `none`.
 * __group__ | `(string|Factor)`: grupperingsvariabel. Default: `none`.
 * __orientation__ | `string`: `vertikal` eller `horisontal` orientering. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: signifikansniveau. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontrollerer, om signifikansniveauet skal justeres for at kontrollere den falske opdagelsesrate. Default: `false`.
 
 

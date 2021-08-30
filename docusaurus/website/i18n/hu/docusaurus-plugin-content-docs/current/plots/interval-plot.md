@@ -9,10 +9,10 @@ Intervallum diagram.
 ## Opciók
 
 * __data__ | `object (required)`: értéktáblák objektuma. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: megjelenítendő változó(k). Default: `none`.
 * __group__ | `(string|Factor)`: csoportosító változó. Default: `none`.
 * __orientation__ | `string`: "függőleges" vagy "vízszintes" orientáció. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: szignifikancia szint. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: szabályozza, hogy a szignifikanciaszintet a hamis felfedezési arány ellenőrzése érdekében állítsák-e be.. Default: `false`.
 
 

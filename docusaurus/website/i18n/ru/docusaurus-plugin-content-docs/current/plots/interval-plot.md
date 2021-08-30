@@ -9,10 +9,10 @@ sidebar_label: Interval Plot
 ## Варианты
 
 * __data__ | `object (required)`: объект массивов значений. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: переменная(ые) для отображения. Default: `none`.
 * __group__ | `(string|Factor)`: переменная группировки. Default: `none`.
 * __orientation__ | `string`: `вертикальная` или `горизонтальная` ориентация. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: уровень значимости. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: контролирует, нужно ли корректировать уровень значимости для контроля коэффициента ложных обнаружений. Default: `false`.
 
 

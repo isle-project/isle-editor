@@ -1316,6 +1316,7 @@
 	"Table-description": "A basic bootstrap table.",
 	"Table-prop-bordered": "adds borders on all sides of the table and cells",
 	"Table-prop-borderless": "removes all borders on the table and cells, including table header",
+	"Table-prop-clickable": "controls whether or not the table cells are clickable",
 	"Table-prop-hover": "enable a hover state on table rows within a <tbody>",
 	"Table-prop-responsive": "responsive tables allow tables to be scrolled horizontally with ease. Across every breakpoint, use responsive for horizontally scrolling tables. Responsive tables are wrapped automatically in a div. Use responsive=\"sm\", responsive=\"md\", responsive=\"lg\", or responsive=\"xl\" as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally",
 	"Table-prop-size": "make tables more compact by cutting cell padding in half by setting size as `sm`",

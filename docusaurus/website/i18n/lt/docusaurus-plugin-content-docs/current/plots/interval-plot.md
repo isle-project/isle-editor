@@ -9,10 +9,10 @@ Intervalinis sklypas.
 ## Parinktys
 
 * __data__ | `object (required)`: verčių masyvų objektas. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: rodomas (-i) kintamasis (-ieji). Default: `none`.
 * __group__ | `(string|Factor)`: grupavimo kintamasis. Default: `none`.
 * __orientation__ | `string`: `vertikali` arba `horizontali` orientacija. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: reikšmingumo lygis. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontroliuoja, ar reikia koreguoti reikšmingumo lygį, kad būtų kontroliuojamas klaidingo atradimo lygis.. Default: `false`.
 
 

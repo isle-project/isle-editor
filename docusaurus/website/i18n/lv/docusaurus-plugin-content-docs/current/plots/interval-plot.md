@@ -9,10 +9,10 @@ Intervāla diagramma.
 ## Iespējas
 
 * __data__ | `object (required)`: vērtību masīvu objekts. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: mainīgais(-ie), kas jāparāda. Default: `none`.
 * __group__ | `(string|Factor)`: grupēšanas mainīgais. Default: `none`.
 * __orientation__ | `string`: `vertikālā` vai `horizontālā` orientācija. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: nozīmīguma līmenis. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontrolē, vai koriģēt nozīmīguma līmeni, lai kontrolētu viltus atklāšanas koeficientu.. Default: `false`.
 
 

@@ -9,10 +9,10 @@ Uma trama de intervalo.
 ## Opções
 
 * __data__ | `object (required)`: objeto de arrays de valor. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variável(eis) a ser exibida(s). Default: `none`.
 * __group__ | `(string|Factor)`: variável de agrupamento. Default: `none`.
 * __orientation__ | `string`: Orientação `vertical` ou `horizontal`.. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: nível de significância. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: controla se o nível de significância deve ser ajustado para controlar a taxa de falsas descobertas. Default: `false`.
 
 

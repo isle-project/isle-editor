@@ -7641,6 +7641,12 @@
 				"defaultValue": false
 			},
 			{
+				"name": "clickable",
+				"type": "boolean",
+				"description": "Table-prop-clickable",
+				"defaultValue": true
+			},
+			{
 				"name": "hover",
 				"type": "boolean",
 				"description": "Table-prop-hover",

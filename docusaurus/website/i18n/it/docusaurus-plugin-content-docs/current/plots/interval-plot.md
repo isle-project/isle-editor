@@ -9,10 +9,10 @@ Un grafico a intervalli.
 ## Opzioni
 
 * __data__ | `object (required)`: oggetto di array di valori. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variabile(i) da visualizzare. Default: `none`.
 * __group__ | `(string|Factor)`: variabile di raggruppamento. Default: `none`.
 * __orientation__ | `string`: orientamento "verticale" o "orizzontale. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: livello di significatività. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: controlla se regolare il livello di significatività per controllare il tasso di falsa scoperta. Default: `false`.
 
 

@@ -9,10 +9,10 @@ Un diagramme d'intervalle.
 ## Options
 
 * __data__ | `object (required)`: objet de tableaux de valeurs. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: variable(s) à afficher. Default: `none`.
 * __group__ | `(string|Factor)`: variable de regroupement. Default: `none`.
 * __orientation__ | `string`: Orientation "verticale" ou "horizontale".. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: niveau de signification. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: contrôle s'il faut ajuster le niveau de signification pour contrôler le taux de fausse découverte. Default: `false`.
 
 

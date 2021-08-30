@@ -9,10 +9,10 @@ Ein Intervalldiagramm.
 ## Optionen
 
 * __data__ | `object (required)`: Objekt der Wertefelder. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: Variable(n) zur Anzeige. Default: `none`.
 * __group__ | `(string|Factor)`: Gruppierungsvariable. Default: `none`.
 * __orientation__ | `string`: vertikale" oder "horizontale" Ausrichtung. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: Signifikanzniveau. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: steuert, ob das Signifikanzniveau angepasst werden soll, um die Falschentdeckungsrate zu kontrollieren. Default: `false`.
 
 

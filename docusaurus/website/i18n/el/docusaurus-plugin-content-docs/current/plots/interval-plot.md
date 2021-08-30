@@ -9,10 +9,10 @@ sidebar_label: Interval Plot
 ## Επιλογές
 
 * __data__ | `object (required)`: αντικείμενο των πινάκων τιμών. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: μεταβλητή(ες) για εμφάνιση. Default: `none`.
 * __group__ | `(string|Factor)`: μεταβλητή ομαδοποίησης. Default: `none`.
 * __orientation__ | `string`: "Κάθετος" ή "Οριζόντιος" προσανατολισμός. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: επίπεδο σημαντικότητας. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: ελέγχει αν θα προσαρμοστεί το επίπεδο σημαντικότητας για τον έλεγχο του ποσοστού ψευδούς ανακάλυψης. Default: `false`.
 
 

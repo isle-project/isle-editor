@@ -9,10 +9,10 @@ Intervalni diagram.
 ## Možnosti
 
 * __data__ | `object (required)`: predmet polja vrednosti. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: spremenljivke, ki jih želite prikazati. Default: `none`.
 * __group__ | `(string|Factor)`: spremenljivka za razvrščanje v skupine. Default: `none`.
 * __orientation__ | `string`: `vertikalna` ali `vodoravna` usmerjenost. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: raven pomembnosti. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: nadzoruje, ali naj se raven pomembnosti prilagodi za nadzor stopnje napačnega odkritja.. Default: `false`.
 
 

@@ -9,10 +9,10 @@ sidebar_label: Interval Plot
 ## オプション
 
 * __data__ | `object (required)`: 値の配列のオブジェクト. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: 表示する変数（複数可. Default: `none`.
 * __group__ | `(string|Factor)`: グループ化変数. Default: `none`.
 * __orientation__ | `string`: 垂直 "または "水平 "方向. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: 有意水準. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: は、誤検出率を抑制するために有意水準を調整するかどうかを制御します。. Default: `false`.
 
 

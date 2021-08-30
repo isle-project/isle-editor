@@ -9,10 +9,10 @@ En intervalldiagram.
 ## Alternativ
 
 * __data__ | `object (required)`: objekt av värdefält. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: Variabel(er) som ska visas.. Default: `none`.
 * __group__ | `(string|Factor)`: grupperingsvariabel. Default: `none`.
 * __orientation__ | `string`: vertikal eller horisontell orientering. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: signifikansnivå. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontrollerar om signifikansnivån ska justeras för att kontrollera andelen falska upptäckter.. Default: `false`.
 
 

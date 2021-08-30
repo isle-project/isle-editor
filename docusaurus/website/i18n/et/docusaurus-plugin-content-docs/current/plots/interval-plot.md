@@ -9,10 +9,10 @@ Intervalldiagramm.
 ## Valikud
 
 * __data__ | `object (required)`: väärtuste massiivi objekt. Default: `none`.
-* __variable__ | `string (required)`: undefined. Default: `none`.
+* __variable__ | `string (required)`: kuvatav(ad) muutuja(d). Default: `none`.
 * __group__ | `(string|Factor)`: rühmitav muutuja. Default: `none`.
 * __orientation__ | `string`: "vertikaalne" või "horisontaalne" orientatsioon. Default: `'vertical'`.
-* __significanceLevel__ | `number`: undefined. Default: `0.05`.
+* __significanceLevel__ | `number`: olulisuse tase. Default: `0.05`.
 * __multipleTestingAdjustment__ | `boolean`: kontrollib, kas valearusaamise määra kontrollimiseks kohandatakse olulisuse taset.. Default: `false`.
 
 
