@@ -78,7 +78,7 @@ const makeDraggable = ( div ) => {
 				className="data-explorer-draggable-bar"
 				onDragStart={( ev ) => {
 					const div = ev.target.nextSibling;
-					let markup = div.innerHTML;
+					let markup = div.outerHTML;
 					markup = replace( markup, RE_CLEAR_BUTTON, '' );
 					ev.dataTransfer.setData( 'text/plain', markup );
 					ev.dataTransfer.setData( 'text/html', markup );
