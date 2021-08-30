@@ -15,6 +15,7 @@ import InterfaceTourButton from './interface_tour_button.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
 import StickyNotes from './notes.js';
+import './lesson.css';
 
 
 // VARIABLES //
