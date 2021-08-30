@@ -13,12 +13,19 @@
 // MODULES //
 
 import React from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import max from '@stdlib/math/base/special/max';
 import { hideMenu } from './actions';
 import AbstractMenu from './AbstractMenu';
 import { callIfExists, cssClasses, hasOwnProp, store } from './helpers';
 import listener from './globalEventListener';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:contextmenu' );
 
 
 // MAIN //
@@ -80,7 +87,7 @@ class SubMenu extends AbstractMenu {
 
 	componentDidUpdate() {
 		if (!this.isVisibilityChange) return;
-		if (this.props.forceOpen || this.state.visible) {
+		if ( this.props.forceOpen || this.state.visible ) {
 			const wrapper = window.requestAnimationFrame || setTimeout;
 			wrapper(() => {
 				const styles = this.props.rtl ?
@@ -96,7 +103,7 @@ class SubMenu extends AbstractMenu {
 				if (hasOwnProp(styles, 'left')) this.subMenu.style.left = styles.left;
 				if (hasOwnProp(styles, 'bottom')) this.subMenu.style.bottom = styles.bottom;
 				if (hasOwnProp(styles, 'right')) this.subMenu.style.right = styles.right;
-				this.subMenu.classList.add(cssClasses.menuVisible);
+				this.subMenu.classList.add( cssClasses.menuVisible );
 
 				this.registerHandlers();
 				this.setState({ selectedItem: null });
@@ -104,14 +111,14 @@ class SubMenu extends AbstractMenu {
 		} else {
 			const cleanup = () => {
 				this.subMenu.removeEventListener('transitionend', cleanup);
-				this.subMenu.style.removeProperty('bottom');
-				this.subMenu.style.removeProperty('right');
+				this.subMenu.style.removeProperty( 'bottom' );
+				this.subMenu.style.removeProperty( 'right' );
 				this.subMenu.style.top = 0;
 				this.subMenu.style.left = '100%';
 				this.unregisterHandlers();
 			};
-			this.subMenu.addEventListener('transitionend', cleanup);
-			this.subMenu.classList.remove(cssClasses.menuVisible);
+			this.subMenu.addEventListener( 'transitionend', cleanup );
+			this.subMenu.classList.remove( cssClasses.menuVisible );
 		}
 	}
 
@@ -132,18 +139,19 @@ class SubMenu extends AbstractMenu {
 		const rect = this.subMenu.getBoundingClientRect();
 		const position = {};
 
-		if (rect.bottom > innerHeight) {
-			position.bottom = 0;
+		if ( rect.bottom > innerHeight ) {
+			debug( 'Bottom of element is below height of window...' );
+			const bottom = `-${max( rect.height - rect.y, 0 )}px`; // eslint-disable-line i18next/no-literal-string
+			position.bottom = bottom;
 		} else {
+			debug( 'Bottom of element does not extend below window dimensions...' );
 			position.top = 0;
 		}
-
-		if (rect.right < innerWidth) {
+		if ( rect.right < innerWidth ) {
 			position.left = '100%';
 		} else {
 			position.right = '100%';
 		}
-
 		return position;
 	}
 
@@ -163,7 +171,6 @@ class SubMenu extends AbstractMenu {
 		} else {
 			position.right = '100%';
 		}
-
 		return position;
 	}
 
