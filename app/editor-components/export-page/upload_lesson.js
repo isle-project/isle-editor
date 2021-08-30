@@ -282,10 +282,8 @@ class UploadLesson extends Component {
 			offlineAccess: this.state.offlineAccess
 		};
 		const script = resolve( settings.basePath, './app/bundler/index.js' );
-
-		debug( `Fork script at ${script} to bundle lesson...` );
-
 		const settingsPath = join( settings.outputPath, 'lesson_settings.json' );
+		debug( `Fork script at ${script} to bundle lesson with ${settingsPath}...` );
 		writeFileSync( settingsPath, JSON.stringify( settings ) );
 
 		const child = cp.fork( script, [ settingsPath ], options );
