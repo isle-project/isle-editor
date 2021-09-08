@@ -626,7 +626,7 @@ class FullscreenActionDisplay extends Component {
 		const value = generateValueLabel({ value: elem.value, ...this.props.data });
 		let highlighter;
 		if ( this.props.data.type === 'image' ) {
-			highlighter = <Image src={value} width="50%" />;
+			highlighter = <Image src={value} width="auto" height="250px" />;
 		} else {
 			highlighter = isString( value ) ? <Highlighter
 				className="response-visualizer-text"
@@ -860,7 +860,8 @@ class FullscreenActionDisplay extends Component {
 										type={this.props.data.type === 'image' ? 'uniform' : 'variable'}
 										pageSize={50}
 										minSize={10}
-										itemSizeGetter={this.itemSizeGetter}
+										threshold={100}
+										itemSizeGetter={this.props.data.type === 'image' ? null : this.itemSizeGetter}
 									/>
 								</div> :
 								<Card body className="bg-light">
