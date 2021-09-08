@@ -209,7 +209,10 @@ const ImageQuestion = ( props ) => {
 		}
 		return (
 			<TimedButton
-				className="submit-button" variant="primary" size="sm" onClick={handleSubmit}
+				className="submit-button"
+				variant="primary" size="sm"
+				onClick={handleSubmit}
+				disabled={!src || isProcessing}
 			>
 				{ submitted ? t('resubmit') : t('submit') }
 			</TimedButton>
