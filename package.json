@@ -254,7 +254,7 @@
     "redux-thunk": "^2.3.0",
     "resolve-from": "^5.0.0",
     "smooth-scroll-into-view-if-needed": "^1.1.32",
-    "source-map-support": "^0.5.19",
+    "source-map-support": "^0.5.20",
     "speed-measure-webpack-plugin": "^1.5.0",
     "stream-browserify": "^3.0.0",
     "style-loader": "^3.1.0",
