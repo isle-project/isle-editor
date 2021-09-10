@@ -2,12 +2,7 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
-import PopoverContent from 'react-bootstrap/PopoverContent';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
 import isUndefined from '@stdlib/assert/is-undefined';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
