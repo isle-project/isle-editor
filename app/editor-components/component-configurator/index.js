@@ -654,7 +654,7 @@ class ComponentConfigurator extends Component {
 				continue;
 			}
 			let input;
-			const propValue = this.state[ 'prop:'+name ];
+			let propValue = this.state[ 'prop:'+name ];
 			const propType = this.propertyTypes[ name ];
 			const typeMismatch = checkPropType( this.textPropertyValues[ name ], propType );
 			if ( name === 'children' ) {
