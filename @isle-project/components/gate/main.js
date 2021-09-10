@@ -120,8 +120,12 @@ class Gate extends Component {
 		if ( !isUndefined( this.props.banner ) ) {
 			return this.props.banner;
 		}
-		const { user, notUser, enrolled, notEnrolled, owner, notOwner, after, until } = this.props;
+		const { check, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until } = this.props;
 		let banner;
+		if ( check && !this.state.validCheck ) {
+			banner = 'The following content is not available as checked requirements are not satisfied.';
+			return <Alert variant="info">{banner}</Alert>;
+		}
 		if ( after || until ) {
 			if ( after ) {
 				banner = 'The following content will become available after '+after.toLocaleString();
