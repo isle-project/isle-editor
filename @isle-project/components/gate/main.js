@@ -23,7 +23,7 @@ import RoleContext from '@isle-project/session/role_context.js';
 * @property {boolean} notOwner - when set the gated content is **not** displayed to the owner of the course (usually the instructor)
 * @property {Date} until - time until the contents of the gate should remain visible
 * @property {Date} after - time after which the contents of the gate should become visible
-* @property {Node} banner - a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges
+* @property {Node} banner - a custom message which is displayed to visitors for whom the gate's children are not visible instead of the default one
 * @property {boolean} showOwnerInPresentationMode - controls whether to show gate contents in presentation mode when gate is visible for `owner`s
 * @property {boolean} disabled - if a gate is disabled, the banner will be displayed no matter what
 * @property {Function} check - callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive
@@ -123,7 +123,7 @@ class Gate extends Component {
 		const { check, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until } = this.props;
 		let banner;
 		if ( check && !this.state.validCheck ) {
-			banner = 'The following content is not available as checked requirements are not satisfied.';
+			banner = 'The following content is not available as the checked requirements are not satisfied.';
 			return <Alert variant="info">{banner}</Alert>;
 		}
 		if ( after || until ) {
