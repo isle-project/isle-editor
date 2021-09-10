@@ -199,7 +199,7 @@ function generateStatistics({ data, t, statistics, variables, secondVariable, gr
 		let res;
 		let x;
 		let y;
-		const variable = variables[ i ];
+		let variable = variables[ i ];
 		if ( group ) {
 			if ( omit ) {
 				// Case: grouping variable selected, omit missing values
