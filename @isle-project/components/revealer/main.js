@@ -157,7 +157,7 @@ const Revealer = ( props ) => {
 	const header = <h3 className="center" >{message || t('message')}</h3>;
 	debug( 'showChildren: '+showChildren );
 	return (<Fragment>
-		<Gate owner >
+		<Gate owner banner={null} >
 			<Panel className="center revealer-panel" >
 				<Button
 					className="revealer-button"

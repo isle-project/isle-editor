@@ -650,7 +650,7 @@ class Quiz extends Component {
 							{ !this.state.finished ? this.renderConfidenceSurvey() : null }
 							{currentConfig ? this.renderFooterNodes( currentConfig ) : null}
 							<ButtonGroup style={{ float: 'right' }}>
-								<Gate owner>
+								<Gate owner banner={null} >
 										<Button
 											className="quiz-button"
 											variant="secondary"

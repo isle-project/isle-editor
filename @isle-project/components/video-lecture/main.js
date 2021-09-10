@@ -242,7 +242,7 @@ class VideoLecture extends Component {
 						</Alert> : null
 					}
 					{steps}
-					{ this.props.instructorView ? <Gate owner>
+					{ this.props.instructorView ? <Gate owner banner={null} >
 						<Button
 							className="video-lecture-instructor-button"
 							variant="secondary"

@@ -93,7 +93,7 @@ const EditableText = ( props ) => {
 		<div className={`editable-text ${className} ${editing ? 'editing': ''}`} style={style} >
 			<div key={editing} ref={divRef} dangerouslySetInnerHTML={node} contentEditable={editing} >
 			</div>
-			<Gate owner >
+			<Gate owner banner={null} >
 				<ButtonGroup style={{ position: 'absolute', top: 0, right: 0 }} >
 					{ !editing ? <Tooltip tooltip={t('edit-text')} >
 						<Button size="sm" variant="secondary" onClick={startEditing} >

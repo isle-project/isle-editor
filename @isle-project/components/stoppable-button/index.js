@@ -66,7 +66,7 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 				onClick={onClick}
 				disabled={disabled || paused}
 			>{children}</Button>
-			<Gate owner >
+			<Gate owner banner={null} >
 				<Button
 					size={size}
 					variant={paused ? 'warning' : 'secondary'} block fill

@@ -188,7 +188,7 @@
     },
     {
       "name": "Gate",
-      "value": "<Gate banner={${1:null}} ${2:user} ${3:owner} >\n  ${4:}\n</Gate>\n"
+      "value": "<Gate ${2:user} ${3:owner} >\n  ${4:}\n</Gate>\n"
     },
     {
       "name": "LessonSubmit",

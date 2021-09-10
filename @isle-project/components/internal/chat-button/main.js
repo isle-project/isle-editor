@@ -165,7 +165,7 @@ class ChatButton extends Component {
 			</Tooltip>;
 		}
 		return (
-			<Gate user >
+			<Gate user banner={null} >
 				{button}
 			</Gate>
 		);

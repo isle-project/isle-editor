@@ -269,7 +269,7 @@ const Toolbar = () => {
 						<span className="fa fa-lg fa-book toolbar-icon" />
 					</Button>
 				</Tooltip>
-				<Gate user disabled={!session.enableTicketing} >
+				<Gate user disabled={!session.enableTicketing} banner={null} >
 					<Tooltip
 						tooltip={`${ticketing ? close : open} ${t( 'ticketing' )} ${T}`}
 						placement="top" onToggle={Ticketing.preload}
@@ -285,7 +285,7 @@ const Toolbar = () => {
 						</Button>
 					</Tooltip>
 				</Gate>
-				<Gate owner inline showOwnerInPresentationMode >
+				<Gate owner inline showOwnerInPresentationMode banner={null} >
 					<Tooltip
 						tooltip={`${engagementInProgress ? t( 'finish-poll' ) : t( 'polls' )} ${P}`}
 						placement="right"

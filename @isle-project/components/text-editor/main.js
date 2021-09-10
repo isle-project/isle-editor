@@ -630,7 +630,7 @@ class TextEditor extends Component {
 				>
 					{this.renderView()}
 					{ this.props.mode === 'group' ?
-						<Gate owner >
+						<Gate owner banner={null} >
 							<SelectInput
 								placeholder={this.props.t('select-group')}
 								options={this.state.allGroups}
@@ -643,7 +643,7 @@ class TextEditor extends Component {
 								style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
 							/>
 						</Gate> : null }
-					{ this.props.mode === 'individual' ? <Gate owner >
+					{ this.props.mode === 'individual' ? <Gate owner banner={null} >
 							<div onFocus={this.requestTextDocuments} onMouseOver={this.requestTextDocuments} >
 								<SelectInput
 									placeholder={this.props.t('select-document-to-display')}

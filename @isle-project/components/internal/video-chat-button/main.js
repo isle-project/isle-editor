@@ -137,7 +137,7 @@ class VideoChatButton extends Component {
 		}
 		/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 		return (
-			<Gate user >
+			<Gate user banner={null} >
 				{button}
 			</Gate>
 		);

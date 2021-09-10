@@ -2,6 +2,13 @@
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import isUndefined from '@stdlib/assert/is-undefined';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import SessionContext from '@isle-project/session/context.js';
@@ -114,10 +121,78 @@ class Gate extends Component {
 		return this.props.after < session.startTime;
 	}
 
+	renderBanner() {
+		if ( !isUndefined( this.props.banner ) ) {
+			return this.props.banner;
+		}
+		const { user, notUser, enrolled, notEnrolled, owner, notOwner, after, until } = this.props;
+		let banner;
+		if ( after || until ) {
+			if ( after ) {
+				banner = 'The following content will become available after '+after.toLocaleString();
+				if ( until ) {
+					banner += ' and will remain available until '+until.toLocaleString();
+				}
+			} else {
+				const time = until.toLocaleString();
+				banner = 'The following content will be available until '+time;
+			}
+		} else {
+			banner = 'The following content is only available';
+		}
+		let bool = false;
+		if ( user ) {
+			if ( notUser ) {
+				banner = 'The following content is not available';
+				return <Alert variant="info">{banner}</Alert>;
+			}
+			banner += ' to logged-in users';
+			bool = true;
+		} else if ( notUser ) {
+			banner += ' to logged-out users';
+			bool = true;
+		}
+		if ( enrolled ) {
+			if ( notEnrolled ) {
+				banner = 'The following content is not available.';
+				return <Alert variant="info">{banner}</Alert>;
+			}
+			if ( bool ) {
+				banner += ' and';
+			}
+			banner += ' to users enrolled in the course';
+		} else if ( notEnrolled ) {
+			if ( bool ) {
+				banner += ' and';
+			}
+			banner += ' to users not enrolled in the course';
+		}
+		if ( owner ) {
+			if ( notOwner ) {
+				banner = 'The following content is not available.';
+				return <Alert variant="info">{banner}</Alert>;
+			}
+			if ( bool ) {
+				banner += ' and';
+			}
+			banner += ' to the owners of the course';
+		} else if ( notOwner ) {
+			if ( bool ) {
+				banner += ' and';
+			}
+			banner += ' to non-owners of the course';
+		}
+		banner += '.';
+		const alert = <Alert variant="info">
+			{banner}
+		</Alert>;
+		return alert;
+	}
+
 	renderChildren( authenticated ) {
 		return (
 			<Fragment>
-				{!authenticated ? this.props.banner : null}
+				{!authenticated ? this.renderBanner() : null}
 				<div
 					className="gate outer-element"
 					style={{
@@ -148,7 +223,7 @@ class Gate extends Component {
 				) {
 					return this.renderChildren( false );
 				}
-				else if ( !this.isTimeActive() ) {
+				else if ( !this.isTimeActive( isOwner ) ) {
 					return this.renderChildren( false );
 				}
 				if ( user && isUser ) {
@@ -187,7 +262,7 @@ Gate.defaultProps = {
 	notOwner: false,
 	after: null,
 	until: null,
-	banner: null,
+	banner: void 0,
 	disabled: false,
 	showOwnerInPresentationMode: false,
 	check: null

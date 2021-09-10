@@ -142,7 +142,7 @@ class CustomDeck extends Component {
 		}
 		return ( <Fragment>
 			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
-			<Gate owner >
+			<Gate owner banner={null} >
 				<Tooltip tooltip={t('toggle-slide-presenter-mode')} placement="right" >
 					<div
 						tabIndex={0} role="button"

@@ -417,7 +417,7 @@ class ResponseVisualizer extends Component {
 
 	render() {
 		if ( !this.props.id ) {
-			return <Gate owner><span className="title no-id-message">{this.props.t('no-id')}</span></Gate>;
+			return <Gate owner banner={null} ><span className="title no-id-message">{this.props.t('no-id')}</span></Gate>;
 		}
 		const { t } = this.props;
 		const session = this.context;
@@ -442,7 +442,7 @@ class ResponseVisualizer extends Component {
 				id={`${this.props.id}_response_visualizer`}
 				style={{ display: this.props.inline ? 'inline' : 'inherit' }}
 			>
-				<Gate owner>
+				<Gate owner banner={null} >
 				{this.renderFullscreenModal()}
 					<ButtonGroup size="sm" vertical style={{ verticalAlign: 'inherit', ...this.props.style }} >
 						<Tooltip

@@ -1395,7 +1395,7 @@ class DataExplorer extends Component {
 									size="small" onClick={this.resetStorage}
 									style={{ position: 'absolute', top: '80px', zIndex: 2 }}
 								>{this.props.t('clear-data')}</Button> : null }
-								{ !this.props.data ? <Gate owner >
+								{ !this.props.data ? <Gate owner banner={null} >
 									<Button
 										size="small" onClick={this.shareData}
 										style={{ position: 'absolute', top: '80px', left: '140px', zIndex: 2 }}
@@ -1517,7 +1517,7 @@ class DataExplorer extends Component {
 							this.outputPanel = div;
 						}}
 						session={this.context}
-						header={<Gate owner>
+						header={<Gate owner banner={null} >
 							<Modal
 								show={this.state.showStudentPlots}
 								onHide={this.toggleStudentPlots}

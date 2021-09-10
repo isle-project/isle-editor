@@ -549,7 +549,7 @@ class StatusBar extends Component {
 								display: !session.config.hideProgressBar && this.state.showProgressBar ? 'inherit' : 'none'
 							}}
 						>
-							<Gate user>
+							<Gate user banner={null} >
 								{duration}
 								{ !isEmptyObject( session.responseVisualizers ) ?
 									<Tooltip
@@ -587,7 +587,7 @@ class StatusBar extends Component {
 					}
 				</div>
 				<Suspense fallback={null} >
-					<Gate owner>
+					<Gate owner banner={null} >
 						<InstructorView />
 					</Gate>
 				</Suspense>

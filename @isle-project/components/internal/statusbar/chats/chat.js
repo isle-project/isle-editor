@@ -220,7 +220,7 @@ class Chat extends Component {
 										{!msg.anonymous ? msg.user :
 										<Fragment>
 											<span style={{ marginRight: 4 }}>{this.props.t( 'anonymous' )}</span>
-											<Gate owner>
+											<Gate owner banner={null} >
 												<Tooltip tooltip={msg.user} placement="right" >
 													<i className="fas fa-user-secret"></i>
 												</Tooltip>

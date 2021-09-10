@@ -165,7 +165,7 @@ class EngagementBinary extends Component {
 		return (
 			<Fragment>
 				<Draggable dragHandleClassName="card-header" >
-					<Gate owner >
+					<Gate owner banner={null} >
 						<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={this.props.onHide}
 							className="engagement-meter-panel" minimizable trapFocus
 						>
@@ -178,7 +178,7 @@ class EngagementBinary extends Component {
 							</Button>
 						</Panel>
 					</Gate>
-					<Gate user notOwner header={t('poll')} >
+					<Gate user notOwner header={t('poll')} banner={null} >
 						<Panel
 							header={t('poll')}
 							className="engagement-meter-panel"

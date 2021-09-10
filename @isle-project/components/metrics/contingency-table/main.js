@@ -75,7 +75,7 @@ class MetricsContingencyTable extends Component {
 
 	render() {
 		return (
-			<Gate {...this.props}>
+			<Gate banner={null} {...this.props} >
 				<div>
 					<RealTimeMetrics
 						for={[ this.props.row, this.props.col ]}

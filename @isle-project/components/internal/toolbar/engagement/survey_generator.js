@@ -146,7 +146,7 @@ const SurveyGenerator = ({ session, onHide }) => {
 			<label>
 				{ !anonymous ? t( 'survey-not-anonymous' ) : '' }
 			</label>
-			<Gate owner>
+			<Gate owner banner={null} >
 				<Button
 					disabled={disabled}
 					onClick={toggleSurvey}
@@ -157,7 +157,7 @@ const SurveyGenerator = ({ session, onHide }) => {
 			</Gate>
 		</div>;
 	} else {
-		body = <Gate owner banner={<h3>{t( 'survey-not-started' )}</h3>}>
+		body = <Gate owner banner={<h3>{t( 'survey-not-started' )}</h3>} >
 			<FormGroup>
 				<Row>
 					<Col md={3}><FormLabel htmlFor="survey-select-input" >{t( 'type' )}:</FormLabel></Col>
