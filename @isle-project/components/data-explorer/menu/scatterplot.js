@@ -166,6 +166,8 @@ const ScatterplotMenu = ( props ) => {
 							disabled={!regressionLine}
 							onChange={setLineBy}
 						/>
+					</div>
+					<div style={{ width: '100%' }}>
 						<SliderInput
 							legend={t('smoothing-parameter')}
 							disabled={!contains( regressionMethod, 'smooth' )}
