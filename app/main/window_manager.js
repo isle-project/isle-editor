@@ -5,6 +5,7 @@
 // MODULES //
 
 import { BrowserWindow } from 'electron';
+import remoteMain from '@electron/remote/main';
 
 
 // VARIABLES //
@@ -21,7 +22,6 @@ function _createWindow( options ) {
 		webPreferences: {
 			nodeIntegration: true,
 			webviewTag: true,
-			enableRemoteModule: true,
 			worldSafeExecuteJavaScript: true,
 			allowRunningInsecureContent: true,
 			contextIsolation: false
@@ -30,7 +30,7 @@ function _createWindow( options ) {
 	};
 	const window = new BrowserWindow( opts );
 	_windows[ window.id ] = window;
-
+	remoteMain.enable( window.webContents );
 	return window;
 }
 
