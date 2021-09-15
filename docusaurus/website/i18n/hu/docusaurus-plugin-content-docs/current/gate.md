@@ -16,7 +16,7 @@ Egy ISLE komponens, amely lehetővé teszi, hogy gyermekeit csak a fenntartott k
 * __notOwner__ | `boolean`: ha be van állítva, a zárolt tartalom **nem** jelenik meg a kurzus tulajdonosa (általában az oktató) számára.. Default: `false`.
 * __after__ | `Date`: az idő, amely után a kapu tartalmának láthatóvá kell válnia.. Default: `none`.
 * __until__ | `Date`: az idő, amíg a kapu tartalma láthatóvá válik. Default: `none`.
-* __banner__ | `node`: egy üzenet, amely azoknak a látogatóknak jelenik meg, akik számára a kapu gyermekei a jogosultságok hiánya miatt nem láthatók.. Default: `none`.
+* __banner__ | `node`: egy egyéni üzenet, amely az alapértelmezett üzenet helyett megjelenik azoknak a látogatóknak, akik számára a kapu gyermekei nem láthatók.. Default: `none`.
 * __disabled__ | `boolean`: ha egy kapu le van tiltva, a banner megjelenik, függetlenül attól, hogy mi történik.. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: szabályozza, hogy a kapu tartalma megjelenjen-e prezentációs módban, amikor a kapu látható a `tulajdonos` számára.. Default: `false`.
 * __check__ | `function`: callback függvény, amely egy "bólé" értéket ad vissza, amely jelzi, hogy a gate-nek meg kell-e jelenítenie a gyermek komponenseket; a függvényt akkor hívja meg, amikor munkamenet-akciók érkeznek.. Default: `none`.

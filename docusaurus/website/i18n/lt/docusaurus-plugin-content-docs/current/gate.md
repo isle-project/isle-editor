@@ -16,7 +16,7 @@ ISLE komponentas, kuris leidžia rodyti savo antrininkus tik rezervuotai auditor
 * __notOwner__ | `boolean`: nustačius, uždarytas turinys **nebus rodomas kurso savininkui (paprastai dėstytojui).. Default: `false`.
 * __after__ | `Date`: laikas, po kurio turėtų būti matomas vartų turinys.. Default: `none`.
 * __until__ | `Date`: laiką, kol vartų turinys turi likti matomas.. Default: `none`.
-* __banner__ | `node`: pranešimas, kuris rodomas lankytojams, kuriems vartų vaikai nematomi dėl privilegijų neturėjimo.. Default: `none`.
+* __banner__ | `node`: pasirinktinis pranešimas, kuris rodomas lankytojams, kuriems vartų vaikai nėra matomi, o ne numatytasis.. Default: `none`.
 * __disabled__ | `boolean`: jei vartai išjungti, reklaminis skydelis bus rodomas neatsižvelgiant į tai.. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: kontroliuoja, ar rodyti vartų turinį pateikimo režimu, kai vartai matomi `savininkui`.. Default: `false`.
 * __check__ | `function`: grįžtamojo ryšio funkcija, grąžinanti `boolean`, nurodančią, ar vartai turėtų rodyti vaikų komponentus; funkcija iškviečiama kiekvieną kartą, kai gaunami sesijos veiksmai.. Default: `none`.

@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "rādāmā kategoriskā mainīgā nosaukums",
 	"Gate-description": "ISLE komponents, kas ļauj parādīt savus bērnus tikai rezervētai auditorijai.",
 	"Gate-prop-after": "laiks, pēc kura vārtu saturam jākļūst redzamam.",
-	"Gate-prop-banner": "ziņojums, kas tiek parādīts apmeklētājiem, kuriem vārtu bērni nav redzami, jo tiem nav privilēģiju.",
+	"Gate-prop-banner": "pielāgotu ziņojumu, kas tiek rādīts apmeklētājiem, kuriem vārtu bērni nav redzami, nevis noklusējuma ziņojumu.",
 	"Gate-prop-check": "atgriezeniskā zvana funkcija, kas atgriež `boolean`, norādot, vai vārtiem ir jāparāda bērnu komponenti; funkcija tiek izsaukta, kad vienreiz pienāk sesijas darbības.",
 	"Gate-prop-disabled": "ja vārti ir atspējoti, baneris tiks parādīts neatkarīgi no tā, kas notiek.",
 	"Gate-prop-enrolled": "kad iestatīts, saturs ar vārtiem tiek parādīts kursā reģistrētajiem studentiem.",

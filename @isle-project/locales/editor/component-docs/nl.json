@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "naam van de weer te geven categorische variabele",
 	"Gate-description": "Een ISLE-component die het mogelijk maakt om zijn kinderen alleen aan een gereserveerd publiek te tonen.",
 	"Gate-prop-after": "tijd waarna de inhoud van de poort zichtbaar moet worden",
-	"Gate-prop-banner": "een bericht dat wordt getoond aan de bezoekers voor wie de kinderen van de poort niet zichtbaar zijn vanwege het ontbreken van privileges",
+	"Gate-prop-banner": "een aangepast bericht dat wordt getoond aan bezoekers voor wie de kinderen van de poort niet zichtbaar zijn, in plaats van het standaardbericht",
 	"Gate-prop-check": "callback functie die een `boolean` retourneert en aangeeft of het hekje kinderonderdelen moet weergeven; de functie wordt aangeroepen wanneer de sessie-acties aankomen",
 	"Gate-prop-disabled": "als een poort is uitgeschakeld, zal de banner worden weergegeven, wat er ook gebeurt",
 	"Gate-prop-enrolled": "wanneer de gated content wordt weergegeven aan de studenten die zijn ingeschreven in de cursus",

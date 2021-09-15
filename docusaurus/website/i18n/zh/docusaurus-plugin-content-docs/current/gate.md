@@ -16,7 +16,7 @@ sidebar_label: Gate
 * __notOwner__ | `boolean`: 当设置为 "门控内容 "时，**不**显示给课程的所有者（通常是教师）。. Default: `false`.
 * __after__ | `Date`: 闸门时间. Default: `none`.
 * __until__ | `Date`: 闸门时间. Default: `none`.
-* __banner__ | `node`: 向由于没有权限而看不到门的孩子的游客显示的信息。. Default: `none`.
+* __banner__ | `node`: 一个自定义的信息，显示给门的孩子不可见的游客，而不是默认的信息。. Default: `none`.
 * __disabled__ | `boolean`: 如果闸门被禁用，则无论如何都会显示横幅。. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: 控制当闸门对 "所有者 "可见时，是否在显示模式下显示闸门内容。. Default: `false`.
 * __check__ | `function`: 回调函数，返回一个 "boolean"，表示gate是否应该显示子组件；每当session动作到达时，该函数被调用。. Default: `none`.

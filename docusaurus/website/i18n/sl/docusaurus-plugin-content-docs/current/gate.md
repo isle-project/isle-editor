@@ -16,7 +16,7 @@ Komponenta ISLE, ki omogoča prikaz svojih otrok samo rezerviranemu občinstvu.
 * __notOwner__ | `boolean`: ko je nastavljena, se vsebina z ograjami **ne** prikaže lastniku tečaja (običajno inštruktorju).. Default: `false`.
 * __after__ | `Date`: čas, po katerem mora vsebina vrat postati vidna.. Default: `none`.
 * __until__ | `Date`: čas, do katerega mora vsebina vrat ostati vidna.. Default: `none`.
-* __banner__ | `node`: sporočilo, ki se prikaže obiskovalcem, za katere otroci vrat niso vidni zaradi pomanjkanja privilegijev.. Default: `none`.
+* __banner__ | `node`: sporočilo po meri, ki se namesto privzetega prikaže obiskovalcem, za katere otroci vrat niso vidni.. Default: `none`.
 * __disabled__ | `boolean`: če so vrata onemogočena, se banner prikaže ne glede na to.. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: nadzoruje, ali naj se vsebina vrat prikaže v predstavitvenem načinu, ko so vrata vidna za `lastnika`.. Default: `false`.
 * __check__ | `function`: povratna funkcija, ki vrača `boolean`, ki označuje, ali naj vrata prikažejo otroške komponente; funkcija se sproži, kadarkoli pridejo akcije seje. Default: `none`.

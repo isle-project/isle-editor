@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "要显示的分类变量名称",
 	"Gate-description": "一个ISLE组件，允许只向保留的受众显示其子女。",
 	"Gate-prop-after": "闸门时间",
-	"Gate-prop-banner": "向由于没有权限而看不到门的孩子的游客显示的信息。",
+	"Gate-prop-banner": "一个自定义的信息，显示给门的孩子不可见的游客，而不是默认的信息。",
 	"Gate-prop-check": "回调函数，返回一个 \"boolean\"，表示gate是否应该显示子组件；每当session动作到达时，该函数被调用。",
 	"Gate-prop-disabled": "如果闸门被禁用，则无论如何都会显示横幅。",
 	"Gate-prop-enrolled": "当设置时，门控内容将显示给注册该课程的学生。",

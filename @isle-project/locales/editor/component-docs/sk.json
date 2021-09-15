@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "názov kategorickej premennej, ktorá sa má zobraziť",
 	"Gate-description": "Komponent ISLE, ktorý umožňuje zobrazovať svoje deti len vyhradenému publiku.",
 	"Gate-prop-after": "čas, po ktorom by mal byť obsah brány viditeľný",
-	"Gate-prop-banner": "správa, ktorá sa zobrazí návštevníkom, pre ktorých deti brány nie sú viditeľné z dôvodu chýbajúcich oprávnení",
+	"Gate-prop-banner": "vlastná správa, ktorá sa zobrazí návštevníkom, pre ktorých nie sú viditeľné deti brány, namiesto predvolenej správy",
 	"Gate-prop-check": "funkcia spätného volania, ktorá vracia hodnotu `boolean` označujúcu, či má brána zobraziť podriadené komponenty; funkcia sa vyvolá vždy, keď prídu akcie relácie",
 	"Gate-prop-disabled": "ak je brána vypnutá, banner sa zobrazí bez ohľadu na to, čo sa stane.",
 	"Gate-prop-enrolled": "keď je nastavené, že sa študentom zapísaným v kurze zobrazí obsah s bránou.",

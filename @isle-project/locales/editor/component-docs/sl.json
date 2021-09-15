@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "ime kategorične spremenljivke, ki se prikaže",
 	"Gate-description": "Komponenta ISLE, ki omogoča prikaz svojih otrok samo rezerviranemu občinstvu.",
 	"Gate-prop-after": "čas, po katerem mora vsebina vrat postati vidna.",
-	"Gate-prop-banner": "sporočilo, ki se prikaže obiskovalcem, za katere otroci vrat niso vidni zaradi pomanjkanja privilegijev.",
+	"Gate-prop-banner": "sporočilo po meri, ki se namesto privzetega prikaže obiskovalcem, za katere otroci vrat niso vidni.",
 	"Gate-prop-check": "povratna funkcija, ki vrača `boolean`, ki označuje, ali naj vrata prikažejo otroške komponente; funkcija se sproži, kadarkoli pridejo akcije seje",
 	"Gate-prop-disabled": "če so vrata onemogočena, se banner prikaže ne glede na to.",
 	"Gate-prop-enrolled": "ko je nastavljena, se vsebina z ograjami prikaže učencem, vpisanim v tečaj.",

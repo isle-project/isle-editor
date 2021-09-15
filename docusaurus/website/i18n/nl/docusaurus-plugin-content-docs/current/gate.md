@@ -16,7 +16,7 @@ Een ISLE-component die het mogelijk maakt om zijn kinderen alleen aan een gerese
 * __notOwner__ | `boolean`: wanneer de gated content is ingesteld wordt **niet** weergegeven aan de eigenaar van de cursus (meestal de instructeur). Default: `false`.
 * __after__ | `Date`: tijd waarna de inhoud van de poort zichtbaar moet worden. Default: `none`.
 * __until__ | `Date`: tijd tot de inhoud van de poort zichtbaar blijft. Default: `none`.
-* __banner__ | `node`: een bericht dat wordt getoond aan de bezoekers voor wie de kinderen van de poort niet zichtbaar zijn vanwege het ontbreken van privileges. Default: `none`.
+* __banner__ | `node`: een aangepast bericht dat wordt getoond aan bezoekers voor wie de kinderen van de poort niet zichtbaar zijn, in plaats van het standaardbericht. Default: `none`.
 * __disabled__ | `boolean`: als een poort is uitgeschakeld, zal de banner worden weergegeven, wat er ook gebeurt. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: controleert of de inhoud van de poort in de presentatiemodus wordt weergegeven wanneer de poort zichtbaar is voor `eigenaars'. Default: `false`.
 * __check__ | `function`: callback functie die een `boolean` retourneert en aangeeft of het hekje kinderonderdelen moet weergeven; de functie wordt aangeroepen wanneer de sessie-acties aankomen. Default: `none`.

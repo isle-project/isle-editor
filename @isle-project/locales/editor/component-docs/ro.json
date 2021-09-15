@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "numele variabilei categorice care urmează să fie afișată",
 	"Gate-description": "O componentă ISLE care permite afișarea copiilor săi numai pentru publicul rezervat.",
 	"Gate-prop-after": "timpul după care conținutul porții trebuie să devină vizibil",
-	"Gate-prop-banner": "un mesaj care este afișat vizitatorilor pentru care copiii porții nu sunt vizibili din cauza lipsei de privilegii.",
+	"Gate-prop-banner": "un mesaj personalizat care este afișat vizitatorilor pentru care copiii porții nu sunt vizibili, în locul celui implicit",
 	"Gate-prop-check": "funcție de callback care returnează un `boolean` indicând dacă poarta trebuie să afișeze componentele copil; funcția este invocată ori de câte ori sosesc acțiuni de sesiune",
 	"Gate-prop-disabled": "în cazul în care o poartă este dezactivată, bannerul va fi afișat indiferent ce se întâmplă",
 	"Gate-prop-enrolled": "atunci când este setat, conținutul cu porți este afișat studenților înscriși la curs",

@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "a megjelenítendő kategorikus változó neve",
 	"Gate-description": "Egy ISLE komponens, amely lehetővé teszi, hogy gyermekeit csak a fenntartott közönség számára jelenítse meg.",
 	"Gate-prop-after": "az idő, amely után a kapu tartalmának láthatóvá kell válnia.",
-	"Gate-prop-banner": "egy üzenet, amely azoknak a látogatóknak jelenik meg, akik számára a kapu gyermekei a jogosultságok hiánya miatt nem láthatók.",
+	"Gate-prop-banner": "egy egyéni üzenet, amely az alapértelmezett üzenet helyett megjelenik azoknak a látogatóknak, akik számára a kapu gyermekei nem láthatók.",
 	"Gate-prop-check": "callback függvény, amely egy \"bólé\" értéket ad vissza, amely jelzi, hogy a gate-nek meg kell-e jelenítenie a gyermek komponenseket; a függvényt akkor hívja meg, amikor munkamenet-akciók érkeznek.",
 	"Gate-prop-disabled": "ha egy kapu le van tiltva, a banner megjelenik, függetlenül attól, hogy mi történik.",
 	"Gate-prop-enrolled": "ha be van állítva, akkor a zárolt tartalom megjelenik a kurzusra beiratkozott hallgatók számára.",

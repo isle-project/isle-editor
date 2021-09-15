@@ -16,7 +16,7 @@ Komponenta ISLE, která umožňuje zobrazit své potomky pouze vyhrazenému publ
 * __notOwner__ | `boolean`: po nastavení se obsah kurzu **nezobrazuje** vlastníkovi kurzu (obvykle instruktorovi).. Default: `false`.
 * __after__ | `Date`: doba, po které by měl být obsah brány viditelný.. Default: `none`.
 * __until__ | `Date`: doba, po kterou by obsah brány měl zůstat viditelný.. Default: `none`.
-* __banner__ | `node`: zpráva, která se zobrazí návštěvníkům, pro které nejsou děti brány viditelné kvůli chybějícím právům.. Default: `none`.
+* __banner__ | `node`: vlastní zpráva, která se zobrazí návštěvníkům, pro které nejsou děti brány viditelné, místo výchozí zprávy.. Default: `none`.
 * __disabled__ | `boolean`: pokud je brána zakázána, banner se zobrazí bez ohledu na to, co se stane.. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: řídí, zda se má obsah brány zobrazit v režimu prezentace, když je brána viditelná pro `vlastníka`.. Default: `false`.
 * __check__ | `function`: funkce zpětného volání vracející hodnotu `boolean` určující, zda má brána zobrazit podřízené komponenty; funkce je vyvolána vždy, když přijdou akce relace.. Default: `none`.

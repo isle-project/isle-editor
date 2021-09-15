@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "name of categorical variable to be displayed",
 	"Gate-description": "An ISLE component that allows to display its children only to reserved audiences.",
 	"Gate-prop-after": "time after which the contents of the gate should become visible",
-	"Gate-prop-banner": "a message which is displayed to the visitors for whom the gate's children are not visible due to lacking privileges",
+	"Gate-prop-banner": "a custom message which is displayed to visitors for whom the gate's children are not visible instead of the default one",
 	"Gate-prop-check": "callback function returning a `boolean` indicating whether gate should display child components; the function is invoked whenever session actions arrive",
 	"Gate-prop-disabled": "if a gate is disabled, the banner will be displayed no matter what",
 	"Gate-prop-enrolled": "when set the gated content is displayed to the students enrolled in the course",

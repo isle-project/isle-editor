@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "表示するカテゴリ変数名",
 	"Gate-description": "予約された視聴者のみにその子供を表示することができるISLEコンポーネント。",
 	"Gate-prop-after": "門前",
-	"Gate-prop-banner": "欠番",
+	"Gate-prop-banner": "ゲートの子供が表示されていない訪問者に表示されるデフォルトのメッセージではなく、カスタムメッセージを表示します。",
 	"Gate-prop-check": "コールバック関数は、ゲートが子コンポーネントを表示するかどうかを示す `boolean` を返します。",
 	"Gate-prop-disabled": "ゲートが無効化されている場合は、何をしてもバナーが表示されます。",
 	"Gate-prop-enrolled": "設定されている場合、コースに登録されている学生にゲーテッドコンテンツが表示されます。",

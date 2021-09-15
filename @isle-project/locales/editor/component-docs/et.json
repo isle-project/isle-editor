@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "kuvatava kategoorilise muutuja nimi",
 	"Gate-description": "ISLE komponent, mis võimaldab kuvada oma lapsi ainult reserveeritud publikule.",
 	"Gate-prop-after": "aeg, mille möödudes peaks värava sisu muutuma nähtavaks.",
-	"Gate-prop-banner": "sõnum, mis kuvatakse külastajatele, kellele värava lapsed ei ole privileegide puudumise tõttu nähtavad.",
+	"Gate-prop-banner": "kohandatud sõnum, mis kuvatakse külastajatele, kelle jaoks värava lapsed ei ole nähtavad, vaikimisi sõnumi asemel.",
 	"Gate-prop-check": "callback-funktsioon, mis tagastab \"boolean\", mis näitab, kas värav peaks kuvama lapse komponente; funktsioon käivitub iga kord, kui sessiooni toimingud saabuvad.",
 	"Gate-prop-disabled": "kui värav on välja lülitatud, siis kuvatakse bännerit igal juhul.",
 	"Gate-prop-enrolled": "kui on määratud, siis kuvatakse kursusele registreerunud õpilastele piiritletud sisu.",

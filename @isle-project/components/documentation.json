@@ -1168,8 +1168,7 @@
 			{
 				"name": "banner",
 				"type": "node",
-				"description": "Gate-prop-banner",
-				"defaultValue": null
+				"description": "Gate-prop-banner"
 			},
 			{
 				"name": "disabled",

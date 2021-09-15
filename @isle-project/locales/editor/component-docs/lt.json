@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "rodytino kategorinio kintamojo pavadinimas",
 	"Gate-description": "ISLE komponentas, kuris leidžia rodyti savo antrininkus tik rezervuotai auditorijai.",
 	"Gate-prop-after": "laikas, po kurio turėtų būti matomas vartų turinys.",
-	"Gate-prop-banner": "pranešimas, kuris rodomas lankytojams, kuriems vartų vaikai nematomi dėl privilegijų neturėjimo.",
+	"Gate-prop-banner": "pasirinktinis pranešimas, kuris rodomas lankytojams, kuriems vartų vaikai nėra matomi, o ne numatytasis.",
 	"Gate-prop-check": "grįžtamojo ryšio funkcija, grąžinanti `boolean`, nurodančią, ar vartai turėtų rodyti vaikų komponentus; funkcija iškviečiama kiekvieną kartą, kai gaunami sesijos veiksmai.",
 	"Gate-prop-disabled": "jei vartai išjungti, reklaminis skydelis bus rodomas neatsižvelgiant į tai.",
 	"Gate-prop-enrolled": "nustačius, uždaras turinys rodomas į kursą užsiregistravusiems mokiniams.",

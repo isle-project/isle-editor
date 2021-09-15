@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "nome della variabile categorica da visualizzare",
 	"Gate-description": "Un componente ISLE che permette di esporre i propri figli solo a un pubblico riservato.",
 	"Gate-prop-after": "tempo dopo il quale il contenuto del cancello dovrebbe diventare visibile",
-	"Gate-prop-banner": "un messaggio che viene visualizzato ai visitatori per i quali i bambini del cancello non sono visibili a causa della mancanza di privilegi",
+	"Gate-prop-banner": "un messaggio personalizzato che viene mostrato ai visitatori per i quali i figli del cancello non sono visibili, invece di quello predefinito",
 	"Gate-prop-check": "funzione di callback che restituisce un `booleano` che indica se il gate deve visualizzare i componenti figli; la funzione viene invocata ogni volta che arrivano le azioni della sessione",
 	"Gate-prop-disabled": "se un cancello è disattivato, il banner verrà visualizzato a prescindere dal fatto che",
 	"Gate-prop-enrolled": "quando viene impostato il contenuto gated viene visualizzato agli studenti iscritti al corso",

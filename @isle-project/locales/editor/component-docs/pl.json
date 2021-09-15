@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "nazwa zmiennej kategorycznej, która ma zostać wyświetlona",
 	"Gate-description": "Element ISLE, który pozwala na wyświetlanie swoich dzieci tylko zarezerwowanym odbiorcom.",
 	"Gate-prop-after": "czas, po którym zawartość bramy powinna stać się widoczna",
-	"Gate-prop-banner": "komunikat, który jest wyświetlany odwiedzającym, dla których dzieci bramy nie są widoczne z powodu braku przywilejów",
+	"Gate-prop-banner": "niestandardowy komunikat, który jest wyświetlany dla gości, dla których dzieci bramy nie są widoczne, zamiast domyślnego",
 	"Gate-prop-check": "funkcja callback zwracająca `boolean` wskazująca, czy bramka powinna wyświetlać elementy dziecięce; funkcja jest wywoływana za każdym razem, gdy przychodzą akcje sesji",
 	"Gate-prop-disabled": "jeśli brama jest wyłączona, baner będzie wyświetlany niezależnie od tego, co się dzieje",
 	"Gate-prop-enrolled": "gdy ustawiona zawartość bramek jest wyświetlana studentom zapisanym na kurs",

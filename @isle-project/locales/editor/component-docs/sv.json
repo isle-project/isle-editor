@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "namnet på den kategoriska variabel som ska visas",
 	"Gate-description": "En ISLE-komponent som gör det möjligt att visa sina barn endast för reserverade målgrupper.",
 	"Gate-prop-after": "Den tid efter vilken innehållet i porten ska bli synligt.",
-	"Gate-prop-banner": "ett meddelande som visas för de besökare för vilka portens barn inte är synliga på grund av bristande rättigheter.",
+	"Gate-prop-banner": "ett anpassat meddelande som visas för besökare som inte kan se portens barn i stället för standardmeddelandet.",
 	"Gate-prop-check": "callback-funktion som returnerar en \"boolean\" som anger om grinden ska visa underordnade komponenter; funktionen anropas när sessionsåtgärder anländer.",
 	"Gate-prop-disabled": "Om en grind är inaktiverad visas bannern oavsett vad som händer.",
 	"Gate-prop-enrolled": "När det är inställt visas det skyddade innehållet för de studenter som är inskrivna i kursen.",

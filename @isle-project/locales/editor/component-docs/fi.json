@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "näytettävän kategorisen muuttujan nimi",
 	"Gate-description": "ISLE-komponentti, joka sallii sen lasten näyttämisen vain varatuille yleisöille.",
 	"Gate-prop-after": "aika, jonka jälkeen portin sisällön on tultava näkyviin.",
-	"Gate-prop-banner": "viesti, joka näytetään niille kävijöille, jotka eivät näe portin lapsia, koska heillä ei ole oikeuksia.",
+	"Gate-prop-banner": "mukautettu viesti, joka näytetään kävijöille, joille portin lapset eivät ole näkyvissä, oletusviestin sijaan.",
 	"Gate-prop-check": "callback-funktio, joka palauttaa \"boolean\"-arvon, joka osoittaa, pitäisikö portin näyttää lapsikomponentit; funktio kutsutaan aina kun istuntotoimintoja saapuu.",
 	"Gate-prop-disabled": "jos portti on poistettu käytöstä, banneri näytetään riippumatta siitä, mitä tapahtuu.",
 	"Gate-prop-enrolled": "kun se on asetettu, portitettu sisältö näytetään kurssille ilmoittautuneille opiskelijoille.",

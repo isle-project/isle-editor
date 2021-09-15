@@ -16,7 +16,7 @@ O componentă ISLE care permite afișarea copiilor săi numai pentru publicul re
 * __notOwner__ | `boolean`: atunci când este setat, conținutul închis nu este **nu** afișat proprietarului cursului (de obicei, instructorul). Default: `false`.
 * __after__ | `Date`: timpul după care conținutul porții trebuie să devină vizibil. Default: `none`.
 * __until__ | `Date`: timpul până când conținutul porții trebuie să rămână vizibil. Default: `none`.
-* __banner__ | `node`: un mesaj care este afișat vizitatorilor pentru care copiii porții nu sunt vizibili din cauza lipsei de privilegii.. Default: `none`.
+* __banner__ | `node`: un mesaj personalizat care este afișat vizitatorilor pentru care copiii porții nu sunt vizibili, în locul celui implicit. Default: `none`.
 * __disabled__ | `boolean`: în cazul în care o poartă este dezactivată, bannerul va fi afișat indiferent ce se întâmplă. Default: `false`.
 * __showOwnerInPresentationMode__ | `boolean`: controlează dacă se afișează conținutul porții în modul de prezentare atunci când poarta este vizibilă pentru "proprietar".. Default: `false`.
 * __check__ | `function`: funcție de callback care returnează un `boolean` indicând dacă poarta trebuie să afișeze componentele copil; funcția este invocată ori de câte ori sosesc acțiuni de sesiune. Default: `none`.

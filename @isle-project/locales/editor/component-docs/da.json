@@ -303,7 +303,7 @@
 	"FrequencyTable-prop-variable": "navnet på den kategoriske variabel, der skal vises",
 	"Gate-description": "En ISLE-komponent, der gør det muligt kun at vise sine børn til reserveret publikum.",
 	"Gate-prop-after": "den tid, hvorefter indholdet af porten skal blive synligt",
-	"Gate-prop-banner": "en meddelelse, der vises til de besøgende, for hvem portens børn ikke er synlige på grund af manglende rettigheder",
+	"Gate-prop-banner": "en brugerdefineret meddelelse, der vises til besøgende, for hvem portens børn ikke er synlige, i stedet for standardmeddelelsen",
 	"Gate-prop-check": "callback-funktion, der returnerer et \"boolean\", der angiver, om gate skal vise underordnede komponenter; funktionen kaldes, når der ankommer sessionshandlinger",
 	"Gate-prop-disabled": "hvis en gate er deaktiveret, vises banneret uanset hvad",
 	"Gate-prop-enrolled": "når det er indstillet, vises det begrænsede indhold for de studerende, der er tilmeldt kurset",
