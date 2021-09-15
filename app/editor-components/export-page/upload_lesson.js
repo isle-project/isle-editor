@@ -96,7 +96,8 @@ class UploadLesson extends Component {
 							this.state.namespaces.filter( x => x.title === this.props.namespaceName ).length === 0
 						)
 					) {
-						this.props.changeNamespace( this.state.namespaces[ 0 ].title );
+						const lastIdx = this.state.namespaces.length - 1;
+						this.props.changeNamespace( this.state.namespaces[ lastIdx ].title );
 					}
 				});
 			})
