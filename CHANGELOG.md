@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.76.6](https://github.com/isle-project/isle-editor/releases/tag/v0.76.6) (2021-09-15)
+
+This release fixes several bugs and improvements to the <Gate /> component, among others.
+
 ## [v0.76.5](https://github.com/isle-project/isle-editor/releases/tag/v0.76.5) (2021-08-30)
 
 This release comes with various bug fixes and significantly improves the speed of bundling and uploading lessons from the editor. 
