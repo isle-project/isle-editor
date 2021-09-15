@@ -483,7 +483,7 @@ class ComponentConfigurator extends Component {
 			[ 'prop:'+prop ]: newValue
 		}, () => {
 			let { value } = this.state;
-			const RE = new RegExp('([ \\t]*)'+prop+'=({[\\s\\S]*?})( +|\t|\r?\n)(?=[a-zA-Z]+=|\\/>)' );
+			const RE = new RegExp( '([ \\t]*)'+prop+'=({[\\s\\S]*?})( +|\t|\r?\n)(?=[a-zA-Z]+=|\\/?>)' );
 			value = replace( value, RE, '$1'+prop+'={' + newValue + '}$3' );
 			this.setState({ value });
 		});
