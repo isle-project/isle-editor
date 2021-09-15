@@ -1316,6 +1316,7 @@
 	"Table-description": "Podstawowy stół z paskiem startowym.",
 	"Table-prop-bordered": "dodaje obramowania ze wszystkich stron tabeli i komórek",
 	"Table-prop-borderless": "usuwa wszystkie granice na stole i komórki, w tym nagłówek stołu",
+	"Table-prop-clickable": "kontroluje czy komórki tabeli są klikalne czy nie",
 	"Table-prop-hover": "włączyć stan zawiśnięcia w wierszach tabeli w obrębie <tbody>",
 	"Table-prop-responsive": "Tabele responsywne pozwalają na łatwe przewijanie tabel w poziomie. W każdym punkcie przełamania należy używać tabel responsywnych do przewijania poziomego. Tabele responsywne są automatycznie zawijane w podziałkę. Użyj responsive=\"sm\", responsive=\"md\", responsive=\"lg\" lub responsive=\"xl\", aby utworzyć tabele responsywne do określonego punktu przerwania. Od tego punktu przełamania do góry, tabela będzie zachowywać się normalnie i nie będzie przewijać się w poziomie",
 	"Table-prop-size": "sprawiają, że stoły są bardziej kompaktowe, tnąc wyściełanie komórek na pół przez ustawienie wielkości jako `sm`",

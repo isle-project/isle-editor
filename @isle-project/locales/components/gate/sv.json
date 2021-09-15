@@ -1,0 +1,14 @@
+{
+	"and": "och",
+	"available-after": "Följande innehåll kommer att bli tillgängligt efter",
+	"available-until": "Följande innehåll kommer att vara tillgängligt fram till och med",
+	"check-not-satisfied": "Följande innehåll är inte tillgängligt eftersom de kontrollerade kraven inte är uppfyllda.",
+	"content-only-available": "Följande innehåll är endast tillgängligt",
+	"not-available": "Följande innehåll är inte tillgängligt.",
+	"remain-until": "och kommer att vara tillgänglig fram till och med",
+	"to-enrolled": "till användare som är inskrivna i kursen",
+	"to-non-owners": "till personer som inte är ägare till banan",
+	"to-not-enrolled": "till användare som inte är inskrivna i kursen",
+	"to-owners": "till ägarna av banan",
+	"toggle-hidden-content": "Växla dolt innehåll"
+}

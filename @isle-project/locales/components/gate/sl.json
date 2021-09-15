@@ -1,0 +1,14 @@
+{
+	"and": "in .",
+	"available-after": "Naslednja vsebina bo na voljo po",
+	"available-until": "Naslednja vsebina bo na voljo do",
+	"check-not-satisfied": "Naslednja vsebina ni na voljo, ker preverjene zahteve niso izpolnjene.",
+	"content-only-available": "Na voljo je samo naslednja vsebina",
+	"not-available": "Naslednja vsebina ni na voljo.",
+	"remain-until": "in bo na voljo do",
+	"to-enrolled": "uporabnikom, ki so vpisani v tečaj.",
+	"to-non-owners": "za osebe, ki niso lastniki igrišča.",
+	"to-not-enrolled": "uporabnikom, ki niso vpisani v tečaj.",
+	"to-owners": "lastnikom igrišča",
+	"toggle-hidden-content": "Preklopite skrito vsebino"
+}

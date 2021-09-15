@@ -1316,6 +1316,7 @@
 	"Table-description": "En grundlæggende bootstrap-tabel.",
 	"Table-prop-bordered": "tilføjer rammer på alle sider af tabellen og cellerne",
 	"Table-prop-borderless": "fjerner alle rammer på tabellen og cellerne, herunder tabelhovedet",
+	"Table-prop-clickable": "kontrollerer, om tabelcellerne er klikbare eller ej",
 	"Table-prop-hover": "aktivere en hover-tilstand på tabelrækker inden for en <tbody>",
 	"Table-prop-responsive": "responsive tabeller gør det nemt at rulle vandret i tabellerne. Brug responsive tabeller til vandret rulning af tabeller på tværs af alle punkter. Responsive tabeller er automatisk indpakket i en div. Brug responsive=\"sm\", responsive=\"md\", responsive=\"lg\" eller responsive=\"xl\" efter behov for at oprette responsive tabeller op til et bestemt brudpunkt. Fra det pågældende knækpunkt og opefter vil tabellen opføre sig normalt og ikke rulle horisontalt",
 	"Table-prop-size": "gør tabellerne mere kompakte ved at halvere cellens fyldning ved at indstille størrelsen som `sm`",

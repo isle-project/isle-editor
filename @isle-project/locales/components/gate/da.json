@@ -1,0 +1,14 @@
+{
+	"and": "og",
+	"available-after": "Følgende indhold vil blive tilgængeligt efter",
+	"available-until": "Følgende indhold vil være tilgængeligt indtil",
+	"check-not-satisfied": "Følgende indhold er ikke tilgængeligt, da de kontrollerede krav ikke er opfyldt.",
+	"content-only-available": "Følgende indhold er kun tilgængeligt",
+	"not-available": "Følgende indhold er ikke tilgængeligt.",
+	"remain-until": "og vil være tilgængelig indtil",
+	"to-enrolled": "til brugere, der er tilmeldt kurset",
+	"to-non-owners": "til ikke-ejere af banen",
+	"to-not-enrolled": "til brugere, der ikke er tilmeldt kurset",
+	"to-owners": "til ejerne af banen",
+	"toggle-hidden-content": "Skift mellem skjult indhold"
+}

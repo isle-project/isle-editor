@@ -1,0 +1,14 @@
+{
+	"and": "oraz",
+	"available-after": "Następujące treści będą dostępne po",
+	"available-until": "Następujące treści będą dostępne do",
+	"check-not-satisfied": "Poniższe treści są niedostępne, ponieważ nie spełniono sprawdzonych wymagań.",
+	"content-only-available": "Dostępne są tylko następujące treści",
+	"not-available": "Następująca zawartość nie jest dostępna.",
+	"remain-until": "i będzie dostępny do",
+	"to-enrolled": "dla użytkowników zapisanych na kurs",
+	"to-non-owners": "dla osób nie będących właścicielami pola",
+	"to-not-enrolled": "dla użytkowników nie zapisanych na kurs",
+	"to-owners": "do właścicieli pola golfowego",
+	"toggle-hidden-content": "Przełącz ukrytą zawartość"
+}

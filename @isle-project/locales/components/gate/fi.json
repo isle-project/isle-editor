@@ -1,0 +1,14 @@
+{
+	"and": "ja",
+	"available-after": "Seuraava sisältö tulee saataville sen jälkeen, kun",
+	"available-until": "Seuraava sisältö on saatavilla",
+	"check-not-satisfied": "Seuraava sisältö ei ole käytettävissä, koska tarkistetut vaatimukset eivät täyty.",
+	"content-only-available": "Seuraava sisältö on saatavilla vain",
+	"not-available": "Seuraava sisältö ei ole käytettävissä.",
+	"remain-until": "ja se on saatavilla, kunnes",
+	"to-enrolled": "kurssille ilmoittautuneille käyttäjille",
+	"to-non-owners": "muille kuin kentän omistajille",
+	"to-not-enrolled": "käyttäjille, jotka eivät ole ilmoittautuneet kurssille",
+	"to-owners": "kurssin omistajille",
+	"toggle-hidden-content": "Vaihda piilotettu sisältö"
+}

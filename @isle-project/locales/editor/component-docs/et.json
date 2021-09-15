@@ -1316,6 +1316,7 @@
 	"Table-description": "Põhiline bootstrap-tabel.",
 	"Table-prop-bordered": "lisab piirid tabeli ja lahtrite kõikidele külgedele",
 	"Table-prop-borderless": "eemaldab kõik tabeli ja lahtrite piirjooned, sealhulgas tabeli päise.",
+	"Table-prop-clickable": "kontrollib, kas tabeli lahtrid on klõpsatavad või mitte",
 	"Table-prop-hover": "lubada tabeli ridade hõljumise olekule tabeli ridade sees <tbody>",
 	"Table-prop-responsive": "reageerivad tabelid võimaldavad hõlpsasti horisontaalselt kerida tabeleid. Kasutage igas murdepunktis horisontaalselt keritavate tabelite jaoks responsive. Responsive tabelid mähitakse automaatselt div-i. Kasutage responsive=\"sm\", responsive=\"md\", responsive=\"lg\" või responsive=\"xl\" vastavalt vajadusele, et luua reageerivaid tabeleid kuni konkreetse murdepunktini. Alates sellest murdepunktist käitub tabel normaalselt ja ei keri horisontaalselt.",
 	"Table-prop-size": "muuta tabelid kompaktsemaks, vähendades lahtrite polsterduse poole võrra, määrates suuruse `sm`.",

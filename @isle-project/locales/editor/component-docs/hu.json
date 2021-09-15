@@ -1316,6 +1316,7 @@
 	"Table-description": "Egy alapvető bootstrap táblázat.",
 	"Table-prop-bordered": "a táblázat és a cellák minden oldalára keretet ad hozzá",
 	"Table-prop-borderless": "eltávolítja a táblázat és a cellák összes keretét, beleértve a táblázat fejlécét is.",
+	"Table-prop-clickable": "szabályozza, hogy a táblázat cellái kattinthatók-e vagy sem",
 	"Table-prop-hover": "engedélyezi a lebegő állapotot a táblázat sorain belül egy <tbody>",
 	"Table-prop-responsive": "A reszponzív táblázatok lehetővé teszik a táblázatok vízszintes görgetését. Minden törésponton keresztül használjon reszponzívot a vízszintesen görgethető táblázatokhoz. A reszponzív táblázatok automatikusan egy div-be csomagolódnak. A responsive=\"sm\", responsive=\"md\", responsive=\"lg\" vagy responsive=\"xl\" használatával szükség szerint hozhat létre reszponzív táblázatokat egy adott töréspontig. Ettől a törésponttól kezdve a táblázat normálisan viselkedik, és nem gördül vízszintesen.",
 	"Table-prop-size": "a táblázatok kompaktabbá tétele a cellák kitöltésének felére csökkentésével a méret \"sm\" beállításával",

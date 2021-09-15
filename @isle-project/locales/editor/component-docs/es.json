@@ -1316,6 +1316,7 @@
 	"Table-description": "Una tabla básica de bootstrap.",
 	"Table-prop-bordered": "añade bordes en todos los lados de la tabla y celdas",
 	"Table-prop-borderless": "elimina todos los bordes de la tabla y las celdas, incluyendo el encabezado de la tabla",
+	"Table-prop-clickable": "controla si las celdas de la tabla son o no clicables",
 	"Table-prop-hover": "permiten un estado de vuelo en las filas de la mesa dentro de un <cuerpo>",
 	"Table-prop-responsive": "Las tablas de respuesta permiten que las tablas se desplacen horizontalmente con facilidad. A través de cada punto de ruptura, utilice la respuesta para el desplazamiento horizontal de las tablas. Las tablas de respuesta se envuelven automáticamente en un div. Utilice responsivo=\"sm\", responsivo=\"md\", responsivo=\"lg\", o responsivo=\"xl\" según sea necesario para crear tablas responsivas hasta un punto de ruptura determinado. A partir de ese punto de interrupción y hacia arriba, la tabla se comportará normalmente y no se desplazará horizontalmente",
 	"Table-prop-size": "hacer las mesas más compactas cortando el acolchado de la celda a la mitad fijando el tamaño como \"m\"",

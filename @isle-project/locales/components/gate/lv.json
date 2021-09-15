@@ -1,0 +1,14 @@
+{
+	"and": "un",
+	"available-after": "Šāds saturs būs pieejams pēc",
+	"available-until": "Šāds saturs būs pieejams līdz",
+	"check-not-satisfied": "Turpmāk norādītais saturs nav pieejams, jo nav izpildītas pārbaudītās prasības.",
+	"content-only-available": "Ir pieejams tikai šāds saturs",
+	"not-available": "Šāds saturs nav pieejams.",
+	"remain-until": "un būs pieejams līdz",
+	"to-enrolled": "kursā reģistrētajiem lietotājiem",
+	"to-non-owners": "laukuma īpašniekiem, kas nav laukuma īpašnieki.",
+	"to-not-enrolled": "lietotājiem, kas nav reģistrējušies kursā.",
+	"to-owners": "kursa īpašniekiem",
+	"toggle-hidden-content": "Pārslēgt slēpto saturu"
+}

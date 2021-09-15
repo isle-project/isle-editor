@@ -1,0 +1,14 @@
+{
+	"and": "ja",
+	"available-after": "Järgmine sisu muutub kättesaadavaks pärast",
+	"available-until": "Järgmine sisu on kättesaadav kuni",
+	"check-not-satisfied": "Järgmine sisu ei ole kättesaadav, kuna kontrollitud nõuded ei ole täidetud.",
+	"content-only-available": "Järgmine sisu on saadaval ainult",
+	"not-available": "Järgmine sisu ei ole saadaval.",
+	"remain-until": "ja jääb kättesaadavaks kuni",
+	"to-enrolled": "kursusele registreerunud kasutajatele",
+	"to-non-owners": "kursuse mitteomanikele",
+	"to-not-enrolled": "kasutajatele, kes ei ole kursusele registreerunud",
+	"to-owners": "kursuse omanikele",
+	"toggle-hidden-content": "Varjatud sisu lülitamine"
+}

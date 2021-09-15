@@ -1316,6 +1316,7 @@
 	"Table-description": "Základní tabulka bootstrap.",
 	"Table-prop-bordered": "přidá okraje na všechny strany tabulky a buněk.",
 	"Table-prop-borderless": "odstraní všechny okraje tabulky a buněk, včetně záhlaví tabulky.",
+	"Table-prop-clickable": "řídí, zda jsou buňky tabulky klikatelné, nebo ne.",
 	"Table-prop-hover": "povolit stav najetí na řádky tabulky v rámci <tbody>",
 	"Table-prop-responsive": "responzivní tabulky umožňují snadné horizontální posouvání tabulek. Ve všech bodech zlomu používejte responzivní tabulky pro horizontální posouvání. Responzivní tabulky jsou automaticky zabaleny do divu. Pro vytvoření responzivních tabulek až do konkrétního bodu zlomu použijte podle potřeby responsive=\"sm\", responsive=\"md\", responsive=\"lg\" nebo responsive=\"xl\". Od tohoto bodu zlomu se tabulka bude chovat normálně a nebude se horizontálně posouvat.",
 	"Table-prop-size": "zkompaktnění tabulek zkrácením výplně buněk na polovinu nastavením velikosti `sm`.",

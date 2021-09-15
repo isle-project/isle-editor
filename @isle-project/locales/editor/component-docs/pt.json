@@ -1316,6 +1316,7 @@
 	"Table-description": "Uma mesa básica de calçadeira.",
 	"Table-prop-bordered": "acrescenta bordas em todos os lados da mesa e células",
 	"Table-prop-borderless": "remove todas as bordas da mesa e células, incluindo o cabeçalho da mesa",
+	"Table-prop-clickable": "controla se as células da tabela são clicáveis ou não",
 	"Table-prop-hover": "permitir um estado de pairar sobre fileiras de mesa dentro de um <t body>",
 	"Table-prop-responsive": "As mesas responsivas permitem que as mesas sejam roladas horizontalmente com facilidade. Em todos os pontos de parada, utilize mesas com resposta para rolar horizontalmente. As mesas responsivas são automaticamente enroladas em um div. Use responsive=\"sm\", responsive=\"md\", responsive=\"lg\", ou responsive=\"xl\" conforme necessário para criar mesas responsivas até um determinado ponto de parada. A partir desse ponto de parada e para cima, a tabela se comportará normalmente e não se deslocará horizontalmente.",
 	"Table-prop-size": "tornar as mesas mais compactas cortando o estofamento da célula pela metade, definindo o tamanho como `sm`",

@@ -1316,6 +1316,7 @@
 	"Table-description": "Pagrindinė bootstrap lentelė.",
 	"Table-prop-bordered": "iš visų lentelės ir langelių pusių prideda apvadus.",
 	"Table-prop-borderless": "pašalina visus lentelės ir langelių apvadus, įskaitant lentelės antraštę.",
+	"Table-prop-clickable": "kontroliuoja, ar lentelės langelius galima spustelėti, ar ne.",
 	"Table-prop-hover": "įjungti lentelės eilučių, esančių <tbody>",
 	"Table-prop-responsive": "reaguojančios lentelės leidžia lengvai slinkti lenteles horizontaliai. Visuose lūžio taškuose naudokite jautriąsias lenteles horizontaliai slenkančioms lentelėms. Atsparios lentelės automatiškai apvyniojamos į divą. Naudokite responsive=\"sm\", responsive=\"md\", responsive=\"lg\" arba responsive=\"xl\", jei reikia, kad sukurtumėte reaguojančias lenteles iki konkretaus lūžio taško. Nuo šio lūžio taško ir toliau lentelė elgsis įprastai ir neslinks horizontaliai.",
 	"Table-prop-size": "padaryti lenteles kompaktiškesnes, perpus sumažinant langelių užpildą, nustačius dydį `sm`.",

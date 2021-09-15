@@ -1316,6 +1316,7 @@
 	"Table-description": "Perus bootstrap-taulukko.",
 	"Table-prop-bordered": "lisää reunukset taulukon ja solujen kaikille sivuille.",
 	"Table-prop-borderless": "poistaa kaikki taulukon ja solujen rajaukset, mukaan lukien taulukon otsikko.",
+	"Table-prop-clickable": "valvoo, ovatko taulukon solut napsautettavissa vai eivät.",
 	"Table-prop-hover": "ottaa käyttöön hover-tilan taulukon riveillä sisällä olevan <tbody>",
 	"Table-prop-responsive": "responsiiviset taulukot mahdollistavat taulukoiden vierittämisen vaakasuunnassa helposti. Käytä kaikissa taukopisteissä responsiivisia taulukoita vaakasuoraan vieritettäviin taulukoihin. Responsiiviset taulukot kääritään automaattisesti div:iin. Käytä responsive=\"sm\", responsive=\"md\", responsive=\"lg\" tai responsive=\"xl\" tarpeen mukaan luodaksesi responsiivisia taulukoita tiettyyn taitekohtaan asti. Tästä taitekohdasta lähtien taulukko käyttäytyy normaalisti eikä vieritä vaakasuunnassa.",
 	"Table-prop-size": "tehdä taulukoista tiiviimpiä puolittamalla solujen pehmusteet asettamalla kooksi `sm`.",

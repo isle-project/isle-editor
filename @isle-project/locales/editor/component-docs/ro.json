@@ -1316,6 +1316,7 @@
 	"Table-description": "Un tabel bootstrap de bază.",
 	"Table-prop-bordered": "adaugă margini pe toate laturile tabelului și ale celulelor",
 	"Table-prop-borderless": "elimină toate marginile tabelului și ale celulelor, inclusiv antetul tabelului",
+	"Table-prop-clickable": "controlează dacă celulele tabelului pot fi sau nu pot fi accesate prin clic.",
 	"Table-prop-hover": "activați o stare hover pe rândurile tabelului din cadrul unui tabel <tbody>",
 	"Table-prop-responsive": "tabelele responsive permit ca tabelele să fie derulate orizontal cu ușurință. La fiecare punct de întrerupere, utilizați responsive pentru tabelele cu derulare orizontală. Tabelele responsive sunt înfășurate automat într-un div. Utilizați responsive=\"sm\", responsive=\"md\", responsive=\"lg\" sau responsive=\"xl\", după cum este necesar, pentru a crea tabele responsive până la un anumit punct de întrerupere. De la acel punct de întrerupere în sus, tabelul se va comporta normal și nu se va derula pe orizontală.",
 	"Table-prop-size": "face tabelele mai compacte prin înjumătățirea umpluturii celulelor prin setarea dimensiunii ca `sm`.",

@@ -1316,6 +1316,7 @@
 	"Table-description": "Pamata bootstrap tabula.",
 	"Table-prop-bordered": "pievieno robežas visās tabulas un šūnu pusēs.",
 	"Table-prop-borderless": "noņem visas tabulas un šūnu robežas, tostarp tabulas galveni.",
+	"Table-prop-clickable": "kontrolē, vai tabulas šūnas ir vai nav klikšķināmas.",
 	"Table-prop-hover": "iespējot pārneses stāvokli uz tabulas rindām, kas atrodas <tbody>",
 	"Table-prop-responsive": "responsīvās tabulas ļauj viegli ritināt tabulas horizontāli. Visos pārrāvuma punktos horizontāli ritināmām tabulām izmantojiet responsīvās tabulas. Responsīvās tabulas tiek automātiski ietītas divkopā. Izmantojiet responsive=\"sm\", responsive=\"md\", responsive=\"lg\" vai responsive=\"xl\" pēc vajadzības, lai izveidotu responsīvas tabulas līdz noteiktam lauzuma punktam. Sākot no šī pārrāvuma punkta un tālāk, tabula darbosies normāli un netiks ritināta horizontāli.",
 	"Table-prop-size": "padarīt tabulas kompaktākas, samazinot šūnu polsterējumu uz pusi, iestatot izmēru `sm`.",

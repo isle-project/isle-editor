@@ -1316,6 +1316,7 @@
 	"Table-description": "一个基本的引导表。",
 	"Table-prop-bordered": "在表格和单元格的所有边框上添加边框。",
 	"Table-prop-borderless": "删除表格和单元格上的所有边框，包括表头。",
+	"Table-prop-clickable": "控制表格单元格是否可被点击",
 	"Table-prop-hover": "启用<tbody>中表行的悬停状态。",
 	"Table-prop-responsive": "响应式表格允许表格轻松地水平滚动。跨越每一个断点，对水平滚动的表格使用响应式。响应式表格会在div中自动包装。根据需要使用 responsive=\"sm\"、 responsive=\"md\"、 responsive=\"lg \"或 responsive=\"xl \"来创建响应式表格，直至某个特定的断点。从该断点开始，表格将表现正常，不会水平滚动。",
 	"Table-prop-size": "通过将单元格大小设置为`sm`，将单元格间距减半，使表格更加紧凑。",

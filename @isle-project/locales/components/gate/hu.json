@@ -1,0 +1,14 @@
+{
+	"and": "és",
+	"available-after": "A következő tartalmak a következő időpontok után válnak elérhetővé",
+	"available-until": "A következő tartalmak lesznek elérhetők a következő időpontig",
+	"check-not-satisfied": "A következő tartalom nem érhető el, mivel az ellenőrzött követelmények nem teljesülnek.",
+	"content-only-available": "A következő tartalmak csak a következők állnak rendelkezésre",
+	"not-available": "A következő tartalom nem érhető el.",
+	"remain-until": "és a következő időpontig marad elérhető",
+	"to-enrolled": "a tanfolyamra beiratkozott felhasználóknak",
+	"to-non-owners": "a pálya nem tulajdonosai számára",
+	"to-not-enrolled": "a tanfolyamra nem beiratkozott felhasználók számára",
+	"to-owners": "a pálya tulajdonosainak",
+	"toggle-hidden-content": "Rejtett tartalom kapcsolása"
+}

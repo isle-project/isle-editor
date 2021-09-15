@@ -1316,6 +1316,7 @@
 	"Table-description": "Osnovna tabela bootstrap.",
 	"Table-prop-bordered": "doda robove na vseh straneh tabele in celic.",
 	"Table-prop-borderless": "odstrani vse robove tabele in celic, vključno z glavo tabele.",
+	"Table-prop-clickable": "nadzoruje, ali so celice tabele klikljive ali ne.",
 	"Table-prop-hover": "omogočiti stanje podrsavanja na vrsticah tabele znotraj <tbody>",
 	"Table-prop-responsive": "odzivne tabele omogočajo enostavno vodoravno pomikanje tabel. Pri vsaki prelomni točki uporabite odzivne tabele za vodoravno pomikanje tabel. Odzivne tabele se samodejno zavijejo v div. Uporabite responsive=\"sm\", responsive=\"md\", responsive=\"lg\" ali responsive=\"xl\" po potrebi, da ustvarite odzivne tabele do določene prelomne točke. Od te točke preloma naprej se bo tabela obnašala normalno in se ne bo pomikala vodoravno.",
 	"Table-prop-size": "tabele postanejo bolj kompaktne, tako da z nastavitvijo velikosti `sm` prepolovite polnilo celic.",

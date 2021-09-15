@@ -1316,6 +1316,7 @@
 	"Table-description": "Eine einfache Bootstrap-Tabelle.",
 	"Table-prop-bordered": "fügt an allen Seiten der Tabelle und der Zellen Ränder hinzu",
 	"Table-prop-borderless": "entfernt alle Ränder der Tabelle und der Zellen, einschließlich des Tabellenkopfes",
+	"Table-prop-clickable": "steuert, ob die Tabellenzellen anklickbar sind oder nicht",
 	"Table-prop-hover": "einen Hover-Status für Tabellenzeilen innerhalb eines <tbody> aktivieren",
 	"Table-prop-responsive": "Mit responsive tables können Tabellen problemlos horizontal gescrollt werden. Verwenden Sie über jeden Haltepunkt hinweg responsive für horizontal scrollende Tabellen. Responsive-Tabellen werden automatisch in ein div gewickelt. Verwenden Sie je nach Bedarf responsive=\"sm\", responsive=\"md\", responsive=\"lg\" oder responsive=\"xl\", um responsive Tabellen bis zu einem bestimmten Haltepunkt zu erstellen. Ab diesem Haltepunkt verhält sich die Tabelle normal und scrollt nicht mehr horizontal",
 	"Table-prop-size": "Tabellen kompakter machen, indem Sie die Zellenauffüllung halbieren, indem Sie die Größe auf `sm` setzen",

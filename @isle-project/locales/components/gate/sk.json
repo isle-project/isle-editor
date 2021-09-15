@@ -1,0 +1,14 @@
+{
+	"and": "a",
+	"available-after": "Nasledujúci obsah bude k dispozícii po",
+	"available-until": "Nasledujúci obsah bude k dispozícii do",
+	"check-not-satisfied": "Nasledujúci obsah nie je k dispozícii, pretože nie sú splnené skontrolované požiadavky.",
+	"content-only-available": "K dispozícii je len nasledujúci obsah",
+	"not-available": "Nasledujúci obsah nie je k dispozícii.",
+	"remain-until": "a bude k dispozícii až do",
+	"to-enrolled": "používateľom zapísaným do kurzu",
+	"to-non-owners": "pre nevlastníkov ihriska",
+	"to-not-enrolled": "používateľom, ktorí nie sú zapísaní do kurzu",
+	"to-owners": "majiteľom ihriska",
+	"toggle-hidden-content": "Prepínanie skrytého obsahu"
+}

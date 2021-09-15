@@ -1316,6 +1316,7 @@
 	"Table-description": "En grundläggande bootstrap-tabell.",
 	"Table-prop-bordered": "lägger till ramar på alla sidor av tabellen och cellerna",
 	"Table-prop-borderless": "tar bort alla ramar på tabellen och cellerna, inklusive tabellens rubrik.",
+	"Table-prop-clickable": "kontrollerar om tabellcellerna är klickbara eller inte",
 	"Table-prop-hover": "aktivera en hover-status på tabellrader inom en <tbody>",
 	"Table-prop-responsive": "Med responsiva tabeller kan tabeller enkelt rullas horisontellt. Använd responsivt för horisontellt rullande tabeller vid varje brytpunkt. Responsiva tabeller omsluts automatiskt av en div. Använd responsive=\"sm\", responsive=\"md\", responsive=\"lg\" eller responsive=\"xl\" vid behov för att skapa responsiva tabeller fram till en viss brytpunkt. Från den brytpunkten och uppåt kommer tabellen att bete sig normalt och inte rulla horisontellt.",
 	"Table-prop-size": "göra tabellerna mer kompakta genom att halvera cellutfyllnaden genom att ställa in storlek som `sm`.",

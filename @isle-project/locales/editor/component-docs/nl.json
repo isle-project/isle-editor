@@ -1316,6 +1316,7 @@
 	"Table-description": "Een basis bootstrap tafel.",
 	"Table-prop-bordered": "voegt grenzen toe aan alle zijden van de tafel en de cellen",
 	"Table-prop-borderless": "verwijdert alle randen van de tafel en de cellen, inclusief de koptekst van de tafel",
+	"Table-prop-clickable": "bepaalt of de cellen in de tabel al dan niet aanklikbaar zijn",
 	"Table-prop-hover": "een zweeftoestand op tafelrijen binnen een <body> mogelijk maken",
 	"Table-prop-responsive": "De responsive tables maken het mogelijk om gemakkelijk horizontaal te scrollen. Gebruik bij elk breekpunt responsive voor horizontaal scrollen van tafels. Reactieve tafels worden automatisch in een div gewikkeld. Gebruik responsive=\"sm\", responsive=\"md\", responsive=\"lg\", of responsive=\"xl\" als dat nodig is om responsive-tabellen tot een bepaald breekpunt te maken. Vanaf dat breekpunt en hoger zal de tabel zich normaal gedragen en niet horizontaal scrollen.",
 	"Table-prop-size": "maak de tafels compacter door de celvulling doormidden te snijden door de grootte als `sm` in te stellen",

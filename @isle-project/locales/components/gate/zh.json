@@ -1,0 +1,14 @@
+{
+	"and": "和",
+	"available-after": "以下内容将在",
+	"available-until": "以下内容将持续到",
+	"check-not-satisfied": "以下内容因未满足检查要求而无法使用。",
+	"content-only-available": "以下内容仅适用于",
+	"not-available": "以下内容不可用。",
+	"remain-until": "并将继续提供，直到",
+	"to-enrolled": "对报名参加该课程的用户",
+	"to-non-owners": "对非业主的课程",
+	"to-not-enrolled": "给未参加课程的用户",
+	"to-owners": "对课程的所有者",
+	"toggle-hidden-content": "切换隐藏的内容"
+}

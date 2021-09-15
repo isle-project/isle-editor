@@ -1316,6 +1316,7 @@
 	"Table-description": "Une table de bootstrap de base.",
 	"Table-prop-bordered": "ajoute des bordures de tous les côtés du tableau et des cellules",
 	"Table-prop-borderless": "supprime toutes les bordures du tableau et des cellules, y compris l'en-tête du tableau",
+	"Table-prop-clickable": "contrôle si les cellules du tableau sont cliquables ou non",
 	"Table-prop-hover": "activer un état de survol sur les lignes du tableau dans un <corps>",
 	"Table-prop-responsive": "Les tables réactives permettent de faire défiler les tableaux horizontalement avec facilité. À chaque point d'arrêt, utilisez les tableaux réactifs pour faire défiler les tableaux horizontalement. Les tableaux réactifs sont automatiquement enveloppés dans une div. Utilisez responsive=\"sm\", responsive=\"md\", responsive=\"lg\", ou responsive=\"xl\" selon vos besoins pour créer des tableaux réactifs jusqu'à un point d'arrêt particulier. À partir de ce point d'arrêt, le tableau se comportera normalement et ne défilera pas horizontalement",
 	"Table-prop-size": "rendre les tableaux plus compacts en réduisant de moitié le rembourrage des cellules en fixant la taille comme \"m\"",

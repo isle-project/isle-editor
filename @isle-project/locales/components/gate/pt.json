@@ -1,0 +1,14 @@
+{
+	"and": "e",
+	"available-after": "O seguinte conteúdo ficará disponível após",
+	"available-until": "O seguinte conteúdo estará disponível até",
+	"check-not-satisfied": "O conteúdo a seguir não está disponível, pois os requisitos verificados não são satisfeitos.",
+	"content-only-available": "O seguinte conteúdo está disponível apenas",
+	"not-available": "O seguinte conteúdo não está disponível.",
+	"remain-until": "e permanecerá disponível até",
+	"to-enrolled": "aos usuários inscritos no curso",
+	"to-non-owners": "para não-proprietários do curso",
+	"to-not-enrolled": "aos usuários não inscritos no curso",
+	"to-owners": "para os proprietários do curso",
+	"toggle-hidden-content": "Alternar o conteúdo oculto"
+}

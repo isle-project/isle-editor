@@ -1,0 +1,14 @@
+{
+	"and": "en",
+	"available-after": "De volgende inhoud zal beschikbaar komen na",
+	"available-until": "De volgende inhoud zal beschikbaar zijn tot",
+	"check-not-satisfied": "De volgende inhoud is niet beschikbaar omdat niet aan de gecontroleerde vereisten is voldaan.",
+	"content-only-available": "De volgende inhoud is alleen beschikbaar",
+	"not-available": "De volgende inhoud is niet beschikbaar.",
+	"remain-until": "en zal beschikbaar blijven tot",
+	"to-enrolled": "aan gebruikers die ingeschreven zijn in de cursus",
+	"to-non-owners": "aan niet-eigenaars van de baan",
+	"to-not-enrolled": "aan gebruikers die niet ingeschreven zijn in de cursus",
+	"to-owners": "aan de eigenaars van het parcours",
+	"toggle-hidden-content": "Schakel verborgen inhoud"
+}

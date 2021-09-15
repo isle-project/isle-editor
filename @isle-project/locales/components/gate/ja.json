@@ -1,0 +1,14 @@
+{
+	"and": "そして",
+	"available-after": "以下のコンテンツは、以下の後に利用可能になります。",
+	"available-until": "までの間、以下のコンテンツを提供します。",
+	"check-not-satisfied": "以下のコンテンツは、チェック済みの要件を満たしていないため利用できません。",
+	"content-only-available": "以下のコンテンツのみです。",
+	"not-available": "以下のコンテンツは利用できません。",
+	"remain-until": "までご利用いただけます。",
+	"to-enrolled": "コースに参加しているユーザーに",
+	"to-non-owners": "コースの所有者以外の方へ",
+	"to-not-enrolled": "コースに参加していないユーザーに",
+	"to-owners": "コースのオーナーに",
+	"toggle-hidden-content": "非表示のコンテンツを切り替える"
+}

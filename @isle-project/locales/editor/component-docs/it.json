@@ -1316,6 +1316,7 @@
 	"Table-description": "Una tabella di base di bootstrap.",
 	"Table-prop-bordered": "aggiunge bordi su tutti i lati della tabella e delle celle",
 	"Table-prop-borderless": "rimuove tutti i bordi della tabella e delle celle, compresa l'intestazione della tabella",
+	"Table-prop-clickable": "controlla se le celle della tabella sono cliccabili o meno",
 	"Table-prop-hover": "abilitare uno stato di hover su righe di tabella all'interno di un <tbody>",
 	"Table-prop-responsive": "Le tabelle reattive consentono di scorrere le tabelle in orizzontale con facilità. In ogni punto di interruzione, utilizzare il responsive per le tabelle a scorrimento orizzontale. Le tabelle responsive sono avvolte automaticamente in un div. Usare responsive=\"sm\", responsive=\"md\", responsive=\"lg\", o responsive=\"xl\" come necessario per creare tabelle di risposta fino ad un particolare punto di interruzione. Da quel punto di interruzione in su, la tabella si comporterà normalmente e non scorrerà orizzontalmente",
 	"Table-prop-size": "rendere i tavoli più compatti tagliando a metà l'imbottitura delle celle impostando le dimensioni come `sm`",

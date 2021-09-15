@@ -1,0 +1,14 @@
+{
+	"and": "și",
+	"available-after": "Următorul conținut va fi disponibil după",
+	"available-until": "Următorul conținut va fi disponibil până la",
+	"check-not-satisfied": "Următorul conținut nu este disponibil deoarece nu sunt îndeplinite cerințele verificate.",
+	"content-only-available": "Următorul conținut este disponibil doar pentru",
+	"not-available": "Următorul conținut nu este disponibil.",
+	"remain-until": "și vor rămâne disponibile până la",
+	"to-enrolled": "către utilizatorii înscriși la curs",
+	"to-non-owners": "pentru cei care nu sunt proprietari ai terenului",
+	"to-not-enrolled": "pentru utilizatorii care nu sunt înscriși la curs",
+	"to-owners": "proprietarilor de teren",
+	"toggle-hidden-content": "Comutați conținutul ascuns"
+}

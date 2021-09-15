@@ -1,0 +1,14 @@
+{
+	"and": "ir",
+	"available-after": "Šis turinys bus prieinamas po to, kai",
+	"available-until": "Šis turinys bus prieinamas iki",
+	"check-not-satisfied": "Toliau pateikiamas turinys neprieinamas, nes neįvykdyti patikrinti reikalavimai.",
+	"content-only-available": "Galimas tik toks turinys",
+	"not-available": "Šis turinys nėra prieinamas.",
+	"remain-until": "ir bus prieinamas iki",
+	"to-enrolled": "į kursą užsiregistravusiems naudotojams.",
+	"to-non-owners": "ne aikštyno savininkams",
+	"to-not-enrolled": "į kursą neįrašytiems naudotojams.",
+	"to-owners": "aikštyno savininkams",
+	"toggle-hidden-content": "Perjungti paslėptą turinį"
+}
