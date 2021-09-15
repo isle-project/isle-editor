@@ -122,6 +122,7 @@ class UploadLesson extends Component {
 		const target = event.target;
 		const value = target.value;
 		debug( 'The selected namespace is: ' + value );
+		electronStore.set( 'namespaceName', value );
 		this.props.changeNamespace( value );
 	}
 

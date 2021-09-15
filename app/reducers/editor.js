@@ -54,7 +54,7 @@ const initialState = {
 	fileName,
 	currentRole: 'user',
 	currentMode: 'offline',
-	namespaceName: null,
+	namespaceName: electronStore.get( 'namespaceName' ) || null,
 	splitPos: parseFloat( electronStore.get( 'splitPos' ) ) || 0.5,
 	horizontalSplit: 0,
 	error: null,
