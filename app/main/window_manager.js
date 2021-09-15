@@ -5,7 +5,7 @@
 // MODULES //
 
 import { BrowserWindow } from 'electron';
-import remoteMain from '@electron/remote/main';
+import { enable } from '@electron/remote/main';
 
 
 // VARIABLES //
@@ -30,7 +30,7 @@ function _createWindow( options ) {
 	};
 	const window = new BrowserWindow( opts );
 	_windows[ window.id ] = window;
-	remoteMain.enable( window.webContents );
+	enable( window.webContents );
 	return window;
 }
 
