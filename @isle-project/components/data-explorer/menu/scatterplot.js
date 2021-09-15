@@ -171,7 +171,7 @@ const ScatterplotMenu = ( props ) => {
 					<div style={{ width: '100%' }}>
 						<SliderInput
 							legend={t('smoothing-parameter')}
-							disabled={!contains( regressionMethod, 'smooth' )}
+							disabled={!contains( regressionMethod, 'smooth' ) || !regressionLine}
 							min={0.01}
 							max={1}
 							step={0.01}
