@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.76.6-alpha.0",
+  "version": "0.76.6",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -1593,6 +1593,7 @@
       "!node_modules/sane/node_modules/micromatch/**/*",
       "!node_modules/jest-util/node_modules/ansi-styles/**/*",
       "!node_modules/jest-util/node_modules/supports-color/**/*",
+      "!node_modules/jest-util/node_modules/ci-info/**/*",
       "!node_modules/@jest/types/node_modules/color-convert/**/*",
       "!node_modules/@jest/types/node_modules/has-flag/**/*",
       "!node_modules/@istanbuljs/load-nyc-config/node_modules/argparse/**/*",
