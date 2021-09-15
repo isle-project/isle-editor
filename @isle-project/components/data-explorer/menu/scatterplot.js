@@ -167,6 +167,7 @@ const ScatterplotMenu = ( props ) => {
 							onChange={setLineBy}
 						/>
 					</div>
+					<div style={{ clear: 'both' }}></div>
 					<div style={{ width: '100%' }}>
 						<SliderInput
 							legend={t('smoothing-parameter')}
