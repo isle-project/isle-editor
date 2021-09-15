@@ -3,6 +3,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import { withTranslation } from 'react-i18next';
 import isUndefined from '@stdlib/assert/is-undefined';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
@@ -35,7 +37,8 @@ class Gate extends Component {
 		this.state = {
 			isEnrolled: false,
 			isOwner: false,
-			validCheck: props.check ? props.check( context ) : true
+			validCheck: props.check ? props.check( context ) : true,
+			bypassTimeCheck: false
 		};
 	}
 
@@ -120,29 +123,30 @@ class Gate extends Component {
 		if ( !isUndefined( this.props.banner ) ) {
 			return this.props.banner;
 		}
-		const { check, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until } = this.props;
+		const { check, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until, t } = this.props;
 		let banner;
 		if ( check && !this.state.validCheck ) {
-			banner = 'The following content is not available as the checked requirements are not satisfied.';
+			banner = t('check-not-satisfied');
 			return <Alert variant="info">{banner}</Alert>;
 		}
 		if ( after || until ) {
 			if ( after ) {
-				banner = 'The following content will become available after '+after.toLocaleString();
+				banner = t('available-after') + ' ' + after.toLocaleString();
 				if ( until ) {
-					banner += ' and will remain available until '+until.toLocaleString();
+					banner += ' ';
+					banner += t('remain-until') + ' ' +until.toLocaleString();
 				}
 			} else {
 				const time = until.toLocaleString();
-				banner = 'The following content will be available until '+time;
+				banner = t('available-until') + ' ' + time;
 			}
 		} else {
-			banner = 'The following content is only available';
+			banner = t('content-only-available');
 		}
 		let bool = false;
 		if ( user ) {
 			if ( notUser ) {
-				banner = 'The following content is not available';
+				banner = t('not-available');
 				return <Alert variant="info">{banner}</Alert>;
 			}
 			banner += ' to logged-in users';
@@ -153,33 +157,41 @@ class Gate extends Component {
 		}
 		if ( enrolled ) {
 			if ( notEnrolled ) {
-				banner = 'The following content is not available.';
+				banner = t('not-available');
 				return <Alert variant="info">{banner}</Alert>;
 			}
 			if ( bool ) {
-				banner += ' and';
+				banner += ' ';
+				banner += t('and');
 			}
-			banner += ' to users enrolled in the course';
+			banner += ' ';
+			banner += t('to-enrolled');
 		} else if ( notEnrolled ) {
 			if ( bool ) {
-				banner += ' and';
+				banner += ' ';
+				banner += t('and');
 			}
-			banner += ' to users not enrolled in the course';
+			banner += ' ';
+			banner += t('to-not-enrolled');
 		}
 		if ( owner ) {
 			if ( notOwner ) {
-				banner = 'The following content is not available.';
+				banner = t('not-available');
 				return <Alert variant="info">{banner}</Alert>;
 			}
 			if ( bool ) {
-				banner += ' and';
+				banner += ' ';
+				banner += t('and');
 			}
-			banner += ' to the owners of the course';
+			banner += ' ';
+			banner += t('to-owners');
 		} else if ( notOwner ) {
 			if ( bool ) {
-				banner += ' and';
+				banner += ' ';
+				banner += t('and');
 			}
-			banner += ' to non-owners of the course';
+			banner += ' ';
+			banner += t('to-non-owners');
 		}
 		banner += '.';
 		const alert = <Alert variant="info">
@@ -188,14 +200,26 @@ class Gate extends Component {
 		return alert;
 	}
 
-	renderChildren( authenticated ) {
+	renderShowButton() {
+		return ( <Button variant="secondary" size="small" onClick={() => {
+			this.setState({
+				bypassTimeCheck: !this.state.bypassTimeCheck
+			});
+		}} style={{ float: 'right' }} >
+			<i className="fas fa-clock"></i> {this.props.t('toggle-hidden-content')}
+		</Button> );
+	}
+
+	renderChildren( authenticated, isOwner ) {
+		const timeActive = authenticated && this.isTimeActive();
 		return (
 			<Fragment>
-				{!authenticated ? this.renderBanner() : null}
+				{!authenticated || !timeActive ? this.renderBanner() : null}
+				{isOwner && !timeActive ? this.renderShowButton() : null}
 				<div
 					className="gate outer-element"
 					style={{
-						display: authenticated ? 'inline' : 'none'
+						display: authenticated && ( timeActive || this.state.bypassTimeCheck ) ? 'inline' : 'none'
 					}}
 				>
 					{this.props.children}
@@ -222,9 +246,6 @@ class Gate extends Component {
 				) {
 					return this.renderChildren( false );
 				}
-				else if ( !this.isTimeActive( isOwner ) ) {
-					return this.renderChildren( false );
-				}
 				if ( user && isUser ) {
 					authenticated = true;
 				}
@@ -243,7 +264,7 @@ class Gate extends Component {
 				else if ( !user && !owner && !enrolled ) {
 					authenticated = true;
 				}
-				return this.renderChildren( authenticated );
+				return this.renderChildren( authenticated, isOwner );
 			}}
 		</RoleContext.Consumer> );
 	}
@@ -287,4 +308,4 @@ Gate.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Gate;
+export default withTranslation( 'gate' )( Gate );
