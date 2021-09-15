@@ -170,7 +170,7 @@
     "form-data": "^4.0.0",
     "fs-extra": "8.1.0",
     "history": "4.10.1",
-    "html-to-image": "^1.7.0",
+    "html-to-image": "^1.8.5",
     "html-to-pdfmake": "^2.3.4",
     "html-webpack-plugin": "5.3.2",
     "i18next": "^20.6.1",
