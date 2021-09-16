@@ -16,7 +16,7 @@ jobs:
     - name: Generate Changelog
       uses: heinrichreimer/action-github-changelog-generator@v2.1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_TOKEN }}
         sinceTag: v0.57.0
         author: false
         issue: true,
