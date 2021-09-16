@@ -123,7 +123,7 @@ class Gate extends Component {
 		if ( !isUndefined( this.props.banner ) ) {
 			return this.props.banner;
 		}
-		const { check, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until, t } = this.props;
+		const { check, disabled, user, notUser, enrolled, notEnrolled, owner, notOwner, after, until, t } = this.props;
 		let banner;
 		if ( check && !this.state.validCheck ) {
 			banner = t('check-not-satisfied');
@@ -140,6 +140,9 @@ class Gate extends Component {
 				const time = until.toLocaleString();
 				banner = t('available-until') + ' ' + time;
 			}
+		} else if ( disabled ) {
+			banner = t('not-available');
+			return <Alert variant="info">{banner}</Alert>;
 		} else {
 			banner = t('content-only-available');
 		}
@@ -166,6 +169,7 @@ class Gate extends Component {
 			}
 			banner += ' ';
 			banner += t('to-enrolled');
+			bool = true;
 		} else if ( notEnrolled ) {
 			if ( bool ) {
 				banner += ' ';
@@ -173,6 +177,7 @@ class Gate extends Component {
 			}
 			banner += ' ';
 			banner += t('to-not-enrolled');
+			bool = true;
 		}
 		if ( owner ) {
 			if ( notOwner ) {
