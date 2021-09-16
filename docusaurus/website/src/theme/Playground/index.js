@@ -18,7 +18,7 @@ import clsx from 'clsx';
 import replace from '@stdlib/string/replace';
 import markdownToHTML from 'app/utils/markdown-to-html';
 import styles from './styles.module.css';
-import './load_datasets.js';
+import './load_globals.js';
 
 
 // FUNCTIONS //
