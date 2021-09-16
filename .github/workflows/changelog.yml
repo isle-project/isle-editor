@@ -20,8 +20,8 @@ jobs:
         sinceTag: v0.57.0
         author: false
         httpCache: true
-        issue: true,
-        issuesWoLabels: false,
+        issues: true
+        issuesWoLabels: false
         pullRequests: false
         excludeTagsRegex: ".*-[a-z]*\\.?\\d+"
         stripGeneratorNotice: true
