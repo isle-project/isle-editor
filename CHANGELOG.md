@@ -4,10 +4,15 @@
 
 This release fixes several bugs and improvements to the `<Gate />` component, among others.
 
+
 **Implemented enhancements:**
 
 - Default banners for \<Gate /\> [\#2389](https://github.com/isle-project/isle-editor/issues/2389)
 - upload lesson -\> select course should default to most recent course uploaded to [\#2378](https://github.com/isle-project/isle-editor/issues/2378)
+
+## [v0.76.6-alpha.0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.6-alpha.0) (2021-09-15)
+
+## [v0.76.6-0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.6-0) (2021-09-15)
 
 **Fixed bugs:**
 
@@ -29,6 +34,14 @@ This release comes with various bug fixes and significantly improves the speed o
 - \[Bug\]: at browser resolution over 100% some editor menus get cut-off  [\#2322](https://github.com/isle-project/isle-editor/issues/2322)
 - \[Bug\]: No histogram in model diagnostics for single linear regression with a "group-by" variable [\#2296](https://github.com/isle-project/isle-editor/issues/2296)
 - \[Bug\]: transform -\> combine categories, can't select new names [\#2277](https://github.com/isle-project/isle-editor/issues/2277)
+
+## [v0.76.5-alpha.0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.5-alpha.0) (2021-08-05)
+
+## [v0.76.5-next.0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.5-next.0) (2021-08-05)
+
+## [v0.76.5-0](https://github.com/isle-project/isle-editor/releases/tag/v0.76.5-0) (2021-08-05)
+
+## [v0.76.4](https://github.com/isle-project/isle-editor/releases/tag/v0.76.4) (2021-08-04)
 
 ## [v0.76.3](https://github.com/isle-project/isle-editor/releases/tag/v0.76.3) (2021-08-04)
 
@@ -112,9 +125,6 @@ This patch release comes with the following improvements:
 -   Fixes various property types and property descriptions
 
 ## [v0.75.5](https://github.com/isle-project/isle-editor/releases/tag/v0.75.5) (2021-05-07)
-
-This update comes with several bug fixes, including updates to the `<Map />` component; it also introduces a new editable text component, which renders text that be changed on the fly by instructors.
-It also comes with a patch that fixes restoring original data from restricted data sets when using a shared custom data explorer.
 
 ## [v0.75.3](https://github.com/isle-project/isle-editor/releases/tag/v0.75.3) (2021-04-09)
 
