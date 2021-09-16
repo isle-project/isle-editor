@@ -19,10 +19,10 @@ jobs:
         token: ${{ secrets.GH_TOKEN }}
         sinceTag: v0.57.0
         author: false
+        httpCache: true
         issue: true,
         issuesWoLabels: false,
         pullRequests: false
-        excludeTags: v0.60.0,v0.61.1,v0.65.0,v0.65.1,v0.74.1,v0.74.2,v0.75.4,v0.75.6
         excludeTagsRegex: ".*-[a-z]*\\.?\\d+"
         stripGeneratorNotice: true
         releaseUrl: https://github.com/isle-project/isle-editor/releases/tag/%s
