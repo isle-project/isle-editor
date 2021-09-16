@@ -89,7 +89,11 @@ class MultipleChoiceQuestion extends Component {
 		};
 		if ( props.displaySolution ) {
 			this.state.submitted = true;
-			this.state.active = this.props.solution;
+			this.state.active = isArray( this.props.solution ) ?
+				new Array( this.props.solution.length )
+					.fill( false )
+					.map( ( x, idx ) => contains( this.props.solution, idx ) ) :
+				this.props.solution;
 		}
 		else if ( isArray( value ) || isNumber( value ) ) {
 			this.state.active = value;
@@ -180,6 +184,9 @@ class MultipleChoiceQuestion extends Component {
 	}
 
 	sendSubmitNotification = ( isSolved, nCorrectAnswers, nActiveAnswers ) => {
+		if ( this.props.displaySolution ) {
+			return;
+		}
 		const session = this.context;
 		const { solution } = this.props;
 		const hasSolution = !isNull( solution );
