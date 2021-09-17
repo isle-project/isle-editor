@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import logger from 'debug';
 import isArray from '@stdlib/assert/is-array';
+import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isObject from '@stdlib/assert/is-object';
@@ -96,7 +97,9 @@ const SelectInput = ( props ) => {
 	}, [ bind, value ]);
 	useEffect( () => {
 		debug( 'Default value has changed...' );
-		if ( defaultValue ) {
+		if ( isUndefinedOrNull( defaultValue ) ) {
+			setValue( null );
+		} else {
 			setValue(
 				multi ?
 				transformMultiValue( defaultValue ) :
