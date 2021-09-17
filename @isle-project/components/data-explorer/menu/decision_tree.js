@@ -17,8 +17,8 @@ import QuestionButton from '../question_button.js';
 
 const DecisionTreeMenu = ( props ) => {
 	const { categorical, quantitative, t } = props;
-	const [ y, setY ] = useState( 0 );
-	const [ x, setX ] = useState( 0 );
+	const [ y, setY ] = useState( null );
+	const [ x, setX ] = useState( null );
 	const [ type, setType ] = useState( 'Classification' );
 	const [ impurityMeasure, setImpurityMeasure ] = useState( 'gini' );
 	const [ scoreThreshold, setScoreThreshold ] = useState( 0.0075 );
@@ -54,7 +54,7 @@ const DecisionTreeMenu = ( props ) => {
 					onChange={( newType ) => {
 						if ( newType !== type ) {
 							setType( newType );
-							setY( type === 'Classification' ? categorical[ 0 ] : quantitative[ 0 ] );
+							setY( newType === 'Classification' ? categorical[ 0 ] : quantitative[ 0 ] );
 						}
 					}}
 				/>
