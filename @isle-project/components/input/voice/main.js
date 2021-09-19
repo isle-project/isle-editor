@@ -21,7 +21,7 @@ const debug = logger( 'isle:voice-input' );
 
 function getSpeechRecognition() {
 	try {
-		const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition; //eslint-disable-line
+		const SpeechRecognition = global.SpeechRecognition || global.webkitSpeechRecognition; //eslint-disable-line
 		if ( SpeechRecognition ) {
 			return true;
 		}
@@ -32,7 +32,7 @@ function getSpeechRecognition() {
 }
 
 function createGrammarList( grammars ) {
-	const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList; //eslint-disable-line
+	const SpeechGrammarList = global.SpeechGrammarList || global.webkitSpeechGrammarList; //eslint-disable-line
 	const grammarList = new SpeechGrammarList();
 	for ( let i = 0; i < grammars.length; i++ ) {
 		const { src, weight } = grammars[ i ];
