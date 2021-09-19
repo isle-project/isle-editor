@@ -15,18 +15,22 @@ import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import VOICE_COMMANDS from './voice_commands.json';
-import './ebml.js';
 import './recorder.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:recorder' );
+const script = document.createElement( 'script' );
+script.src = 'https://www.webrtc-experiment.com/EBML.js';
+script.type = 'text/javascript';
+document.getElementsByTagName( 'head' )[ 0 ].appendChild( script );
 
 
 // FUNCTIONS //
 
 const isMimeTypeSupported = ( _mimeType ) => {
+	const MediaRecorder = global.MediaRecorder;
 	if ( typeof MediaRecorder.isTypeSupported !== 'function' ) {
 		return true;
 	}
@@ -72,7 +76,7 @@ function getVideoConfig({ bitsPerSecond, screen }) {
 }
 
 function keepStreamActive(stream) {
-	const video = document.createElement('video');
+	const video = document.createElement( 'video' );
 	video.muted = true;
 	video.srcObject = stream;
 	video.style.display = 'none';
@@ -176,12 +180,14 @@ class Recorder extends Component {
 			const msg = this.props.t( 'failed-to-capture-screen', { msg: error.message });
 			this.handleError( msg );
 		};
+		const navigator = global.navigator;
 		navigator.mediaDevices.getDisplayMedia( screenConstraints )
 			.then( onSuccess )
 			.catch( onError );
 	}
 
 	captureCamera( cb, captureAudio ) {
+		const navigator = global.navigator;
 		navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: true })
 			.then( cb )
 			.catch( ( error ) => {
@@ -191,6 +197,7 @@ class Recorder extends Component {
 	}
 
 	captureAudio( cb ) {
+		const navigator = global.navigator;
 		navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 			.then( cb )
 			.catch( ( error ) => {
