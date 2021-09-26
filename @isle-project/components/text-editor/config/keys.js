@@ -54,7 +54,7 @@ const keys = {
 	'Mod-Enter': chainCommands( exitCode, insertBreak ),
 	'Mod-i': toggleMark( schema.marks.em ),
 	'Mod-u': toggleMark( schema.marks.underline ),
-	'Mod-c': toggleMark( schema.marks.code ),
+	'Mod-m': toggleMark( schema.marks.code ),
 	'Mod-l': toggleMark( schema.marks.subscript ),
 	'Mod-s': toggleMark( schema.marks.strikethrough ),
 	'Mod-p': toggleMark( schema.marks.superscript ),

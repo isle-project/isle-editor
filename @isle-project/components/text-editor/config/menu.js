@@ -146,7 +146,7 @@ export const extraMarks = [
 		enable: isEnabled,
 		active: markActive( schema.marks.code ),
 		run: toggleMark( schema.marks.code ),
-		hotkey: 'Ctrl+C'
+		hotkey: 'Ctrl+M'
 	},
 	{
 		title: 'subscript',
