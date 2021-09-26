@@ -12,7 +12,7 @@ import configureMenu from './app/main/configure_menu.js';
 import createWindow from './app/main/create_window.js';
 import window from './app/main/window_manager.js';
 import addRecentFilesMenu from './app/main/add_recent_files_menu.js';
-import { enable } from '@electron/remote/main';
+import { enable, initialize } from '@electron/remote/main';
 
 
 // VARIABLES //
@@ -27,6 +27,9 @@ const mainConfig = new Store( 'isle-main' );
 */
 function onReady() {
 	console.log( 'Application is ready... (time: '+performance.now()+')' ); // eslint-disable-line no-console
+
+	// Initialize the remote module:
+	initialize();
 
 	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
 	const splash = new BrowserWindow({
