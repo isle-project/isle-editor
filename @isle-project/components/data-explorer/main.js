@@ -47,6 +47,7 @@ import DataTable from '@isle-project/components/data-table';
 const ToolboxButton = lazy( () => import( /* webpackChunkName: "Toolbox" */ './toolbox.js' ) );
 import SessionContext from '@isle-project/session/context.js';
 import subtract from '@isle-project/utils/subtract';
+import factor from '@isle-project/utils/factor-variable';
 import OutputPanel from './output_panel.js';
 import History from './history';
 import recreateOutput from './history/recreate_output.js';
@@ -424,7 +425,8 @@ class DataExplorer extends Component {
 					if ( !hasProp( this.props.data, name ) ) {
 						const rawData = state.data[ variable ];
 						const values = retrieveBinnedValues( rawData, categories, breaks );
-						state = this.transformVariable( name, values, state );
+						const orderedName = factor( name, categories );
+						state = this.transformVariable( orderedName, values, state );
 					}
 				}
 				break;
