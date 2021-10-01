@@ -7,6 +7,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import { i18n } from '@isle-project/locales';
 import startcase from '@stdlib/string/startcase';
+import capitalize from '@stdlib/string/capitalize';
 import objectKeys from '@stdlib/utils/keys';
 import Plotly from '@isle-project/components/plotly';
 import by from '@isle-project/utils/by';
@@ -30,7 +31,7 @@ const PURPLE_SCALE = [
 
 // FUNCTIONS //
 
-export function generateMapConfig({ data, longitude, latitude, locations, locationmode, variable, scope, showLand }) {
+export function generateMapConfig({ data, longitude, latitude, locations, locationmode, variable, scope, showLand, aggregation }) {
 	let traces = [];
 	let lon;
 	let lat;
@@ -38,7 +39,21 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 	if ( longitude && latitude ) {
 		if ( variable ) {
 			const groups = data[ longitude ].map( ( x, i ) => `${x}/${data[ latitude ][ i ]}` );
-			const aggregated = by( data[ variable ], groups, statistic( 'Sum' ) );
+			let func;
+			switch ( aggregation ) {
+				case 'first':
+					func = x => x[ 0 ];
+					break;
+				case 'last':
+					func = x => x[ x.length - 1 ];
+					break;
+				case 'count':
+					func = x => x.length;
+					break;
+				default:
+					func = statistic( capitalize( aggregation ) );
+			}
+			const aggregated = by( data[ variable ], groups, func );
 			const keys = objectKeys( aggregated );
 			lon = new Array( keys.length );
 			lat = new Array( keys.length );
@@ -117,7 +132,7 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 				groups: loc,
 				aggregations: [
 					{
-						target: 'z', func: 'sum', enabled: true
+						target: 'z', func: aggregation, enabled: true
 					}
 				]
 			}]
@@ -158,11 +173,11 @@ export function generateMapConfig({ data, longitude, latitude, locations, locati
 
 // MAIN //
 
-function Map({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, id, action, onShare }) {
+function Map({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, id, action, onShare, aggregation }) {
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
-	const config = generateMapConfig({ data, locationmode, longitude, latitude, locations, variable, scope, showLand });
+	const config = generateMapConfig({ data, locationmode, longitude, latitude, locations, variable, scope, showLand, aggregation });
 	return (
 		<Plotly
 			editable id={id} fit draggable
@@ -182,7 +197,8 @@ Map.defaultProps = {
 	locations: null,
 	longitude: null,
 	latitude: null,
-	locationmode: 'country names'
+	locationmode: 'country names',
+	aggregation: 'sum'
 };
 
 Map.propTypes = {
@@ -204,7 +220,18 @@ Map.propTypes = {
 	]),
 	longitude: PropTypes.string,
 	latitude: PropTypes.string,
-	showLand: PropTypes.bool
+	showLand: PropTypes.bool,
+	aggregation: PropTypes.oneOf([
+		'avg',
+		'sum',
+		'min',
+		'max',
+		'mode',
+		'median',
+		'count',
+		'first',
+		'last'
+	])
 };
 
 
@@ -220,5 +247,6 @@ Map.propTypes = {
 * @property {string} longitude - name of variable in `data` holding longitude values
 * @property {string} latitude - name of variable in `data` holding latitude values
 * @property {boolean} showLand - whether to show geographic features on map
+* @property {string} aggregation - string indicating how to aggregate values for each location
 */
 export default withPropCheck( Map );
