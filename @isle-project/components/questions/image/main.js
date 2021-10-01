@@ -63,7 +63,7 @@ const ImageQuestion = ( props ) => {
 
 	const [ submitted, setSubmitted ] = useState( false );
 	const currentUserActions = session.currentUserActions;
-	const lastSrc = getLastAction( currentUserActions, id, IMAGE_QUESTION_SUBMISSION );
+	const lastSrc = getLastAction( currentUserActions, id.current, IMAGE_QUESTION_SUBMISSION );
 	const [ src, setSrc ] = useState( lastSrc );
 	const [ exhaustedHints, setExhaustedHints ] = useState( props.hints.length === 0 );
 	const [ displaySolution, setDisplaySolution ] = useState( false );
@@ -72,8 +72,6 @@ const ImageQuestion = ( props ) => {
 	const setToLastAction = useCallback( () => {
 		debug( `Set submission to last action for question ${id.current} if available...` );
 		const actions = session.currentUserActions;
-
-		debug( `User has ${actions.length} actions for this question...` );
 		const value = getLastAction( actions, id.current, IMAGE_QUESTION_SUBMISSION );
 		if ( value && value !== src ) {
 			setSrc( value );
