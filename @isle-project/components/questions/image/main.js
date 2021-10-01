@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useContext, useRef, useState } from 'react';
+import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
@@ -22,7 +22,9 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
+import getLastAction from '@isle-project/utils/get-last-action';
 import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image_question.css';
 
@@ -60,10 +62,35 @@ const ImageQuestion = ( props ) => {
 	const fileUpload = useRef( null );
 
 	const [ submitted, setSubmitted ] = useState( false );
-	const [ src, setSrc ] = useState( null );
+	const currentUserActions = session.currentUserActions;
+	const lastSrc = getLastAction( currentUserActions, id, IMAGE_QUESTION_SUBMISSION );
+	const [ src, setSrc ] = useState( lastSrc );
 	const [ exhaustedHints, setExhaustedHints ] = useState( props.hints.length === 0 );
 	const [ displaySolution, setDisplaySolution ] = useState( false );
 	const [ isProcessing, setIsProcessing ] = useState( false );
+
+	const setToLastAction = useCallback( () => {
+		debug( `Set submission to last action for question ${id.current} if available...` );
+		const actions = session.currentUserActions;
+
+		debug( `User has ${actions.length} actions for this question...` );
+		const value = getLastAction( actions, id.current, IMAGE_QUESTION_SUBMISSION );
+		if ( value && value !== src ) {
+			setSrc( value );
+			setSubmitted( true );
+		}
+	}, [ session, src ] );
+
+	useEffect( () => {
+		const unsubscribe = session.subscribe( ( type ) => {
+			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
+				setToLastAction();
+			}
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, [ session, setToLastAction ] );
 
 	const onFileRead = useCallback( ( event ) => {
 		setSrc( event.target.result );
@@ -236,7 +263,7 @@ const ImageQuestion = ( props ) => {
 					width="50%" height="auto"
 				/>
 			}
-		</div>:
+		</div> :
 		<Fragment>
 			<div
 				className="image-question-dropzone"
