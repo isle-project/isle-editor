@@ -30,6 +30,17 @@ const LOCATION_MODES = [
 	'USA-states',
 	'country names'
 ];
+const AGGREGATION_MODES = [
+	'avg',
+	'sum',
+	'min',
+	'max',
+	'mode',
+	'median',
+	'count',
+	'first',
+	'last'
+];
 
 
 // MAIN //
@@ -43,6 +54,7 @@ const MapMenu = ( props ) => {
 	const [ locations, setLocations ] = useState( null );
 	const [ scope, setScope ] = useState( 'world' );
 	const [ showLand, setShowLand ] = useState( false );
+	const [ aggregation, setAggregation ] = useState( 'sum' );
 	const generateMap = () => {
 		const plotId = randomstring( 6 );
 		const action = {
@@ -68,6 +80,7 @@ const MapMenu = ( props ) => {
 			longitude={longitude} latitude={latitude} locationmode={locationmode}
 			scope={scope} showLand={showLand}
 			id={plotId} action={action} onShare={onShare}
+			aggregation={aggregation}
 		/>;
 		props.logAction( DATA_EXPLORER_MAP, action );
 		props.onCreated( output );
@@ -159,6 +172,13 @@ const MapMenu = ( props ) => {
 					options={variables}
 					clearable
 					onChange={setVariable}
+				/>
+				<SelectInput
+					legend={t('aggregation-mode')}
+					defaultValue={aggregation}
+					options={AGGREGATION_MODES}
+					onChange={setAggregation}
+					disabled={!variable}
 				/>
 				<Button
 					variant="primary" block onClick={generateMap}
