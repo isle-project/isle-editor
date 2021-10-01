@@ -18,7 +18,9 @@ import Text from '@isle-project/components/text';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from '@isle-project/constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import getLastAction from '@isle-project/utils/get-last-action';
 import createColorScale from './create_color_scale.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
@@ -64,9 +66,42 @@ const MatchListQuestion = ( props ) => {
 	const [ leftSelected, setLeftSelected ] = useState( null );
 	const [ rightSelected, setRightSelected ] = useState( null );
 	const [ colorScale, setColorScale ] = useState( props.colorScale ? props.colorScale : createColorScale( 2 * elements.length ) );
-	const [ answers, setAnswers ] = useState([]);
+
+	const currentUserActions = session.currentUserActions;
+	const lastAnswer = getLastAction( currentUserActions, id.current, MATCH_LIST_SUBMISSION );
+	const [ answers, setAnswers ] = useState( lastAnswer || [] );
 	const [ userAnswers, setUserAnswers ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
+
+	const setToLastAction = useCallback( () => {
+		debug( `Set submission to last action for question ${id.current} if available...` );
+		const actions = session.currentUserActions;
+		const value = getLastAction( actions, id.current, MATCH_LIST_SUBMISSION );
+		if ( value ) {
+			const elements = JSON.parse( value );
+			setAnswers( elements.map( ( q, i ) => {
+				if ( !q.a || !q.b ) {
+					return q;
+				}
+				return {
+					...q,
+					color: colorScale[ i ]
+				};
+			}) );
+			setSubmitted( true );
+		}
+	}, [ session, colorScale ] );
+
+	useEffect( () => {
+		const unsubscribe = session.subscribe( ( type ) => {
+			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
+				setToLastAction();
+			}
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, [ session, setToLastAction ] );
 
 	useEffect( () => {
 		if ( leftSelected && rightSelected ) {
