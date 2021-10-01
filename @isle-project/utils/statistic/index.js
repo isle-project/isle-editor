@@ -48,6 +48,7 @@ function statistic( statName ) {
 		};
 		break;
 	case 'Mean':
+	case 'Avg':
 		fun = mean;
 		break;
 	case 'Median':
