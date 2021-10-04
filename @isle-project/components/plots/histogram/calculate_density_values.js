@@ -1,5 +1,6 @@
 // MODULES //
 
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import linspace from '@stdlib/array/linspace';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
@@ -21,10 +22,11 @@ import kernelSmoothDensity from '@isle-project/utils/kernel-smooth-density';
 * @private
 * @param {Array} values - input values
 * @param {string} densityType - `Data-driven`, `Uniform`, `Exponential`, or `Normal`
-* @param {number} bandwidthAdjust - bandwidth multiplier applied to rule-of-thumb bandwidth value
+* @param {Array<number>} [densityParams=[]] - parameters for the chosen density distribution
+* @param {number} [bandwidthAdjust=1.0] - bandwidth multiplier applied to rule-of-thumb bandwidth value
 * @returns {Array} two-element nested array of `x` and `y` values
 */
-function calculateDensityValues( values, densityType, bandwidthAdjust = 1 ) {
+function calculateDensityValues( values, densityType, densityParams = [], bandwidthAdjust = 1 ) {
 	/* eslint-disable no-case-declarations */
 	const minVal = min( values );
 	const maxVal = max( values );
@@ -42,15 +44,17 @@ function calculateDensityValues( values, densityType, bandwidthAdjust = 1 ) {
 		y = x.map( x => kde( x ) );
 		break;
 	case 'Uniform':
-		y = x.map( x => dunif( x, minVal, maxVal ) );
+		const a = isNumber( densityParams[ 0 ] ) ? densityParams[ 0 ] : minVal;
+		const b = isNumber( densityParams[ 1 ] ) ? densityParams[ 1 ] : maxVal;
+		y = x.map( x => dunif( x, a, b ) );
 		break;
 	case 'Exponential':
-		const lambda = 1.0 / mean( values );
+		const lambda = isNumber( densityParams[ 0 ] ) ? densityParams[ 0 ] : 1.0 / mean( values );
 		y = x.map( x => dexp( x, lambda ) );
 		break;
 	case 'Normal':
-		const avg = mean( values );
-		const sd = stdev( values );
+		const avg = isNumber( densityParams[ 0 ] ) ? densityParams[ 0 ] : mean( values );
+		const sd = isNumber( densityParams[ 1 ] ) ? densityParams[ 1 ] : stdev( values );
 		y = x.map( x => gaussian( x, avg, sd ) );
 		break;
 	}
