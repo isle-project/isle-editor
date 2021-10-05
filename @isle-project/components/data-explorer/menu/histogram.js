@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -24,6 +24,41 @@ const DEFAULT_XBINS = {
 	size: 100,
 	end: null
 };
+const DISTRIBUTION_PARAMS = {
+	'Exponential': [
+		{
+			'name': 'lambda',
+			'description': 'rate',
+			'min': 0,
+			'step': 'any'
+		}
+	],
+	'Normal': [
+		{
+			'name': 'mu',
+			'description': 'mean',
+			'step': 'any'
+		},
+		{
+			'name': 'sigma',
+			'description': 'standard-deviation',
+			'min': 0,
+			'step': 'any'
+		}
+	],
+	'Uniform': [
+		{
+			'name': 'a',
+			'description': 'minimum',
+			'step': 'any'
+		},
+		{
+			'name': 'b',
+			'description': 'maximum',
+			'step': 'any'
+		}
+	]
+};
 
 
 // MAIN //
@@ -31,6 +66,8 @@ const DEFAULT_XBINS = {
 const HistogramMenu = ( props ) => {
 	const [ displayDensity, setDisplayDensity ] = useState( false );
 	const [ densityType, setDensityType ] = useState( null );
+	const [ densityParams, setDensityParams ] = useState( [ 0.0, 1.0 ] );
+	const [ specifyParams, setSpecifyParams ] = useState( false );
 	const [ bandwidthAdjust, setBandwidthAdjust ] = useState( 1 );
 	const [ sameXRange, setSameXRange ] = useState( false );
 	const [ sameYRange, setSameYRange ] = useState( false );
@@ -70,11 +107,15 @@ const HistogramMenu = ( props ) => {
 		if ( densityType === 'Data-driven' ) {
 			state.bandwidthAdjust = bandwidthAdjust;
 		}
+		else if ( densityType && specifyParams ) {
+			// Case: densityType is not null but not 'Data-driven' (i.e., a parametric distribution)
+			state.densityParams = densityParams;
+		}
 		const action = { ...state, plotId };
 		const onShare = () => {
 			props.session.addNotification({
-				title: props.t('plot-shared'),
-				message: props.t('plot-shared-message'),
+				title: t('plot-shared'),
+				message: t('plot-shared-message'),
 				level: 'success',
 				position: 'tr'
 			});
@@ -84,6 +125,46 @@ const HistogramMenu = ( props ) => {
 		props.logAction( DATA_EXPLORER_HISTOGRAM, action );
 		props.onCreated( output );
 	};
+	let densityControls;
+	if ( densityType === 'Data-driven' ) {
+		densityControls = <NumberInput
+			legend={t('bandwidth-adjustment')}
+			defaultValue={bandwidthAdjust}
+			min={0} step={0.1}
+			onChange={setBandwidthAdjust}
+		/>;
+	}
+	else if ( densityType ) {
+		let inputs;
+		if ( specifyParams ) {
+			inputs = DISTRIBUTION_PARAMS[ densityType ].map( ( x, idx ) => {
+				return ( <NumberInput
+					key={idx}
+					legend={t( x.name )}
+					description={t( x.description )}
+					value={densityParams[ idx ]}
+					onChange={( value ) => {
+						const newParams = densityParams.slice();
+						newParams[ idx ] = value;
+						setDensityParams( newParams );
+					}}
+					max={x.max}
+					min={x.min}
+					step={x.step}
+					tooltipPlacement="bottom"
+				/> );
+			});
+		}
+		densityControls = <Fragment>
+			<CheckboxInput
+				legend={t('specify-parameters')}
+				tooltip={t('specify-parameters-tooltip')}
+				defaultValue={specifyParams}
+				onChange={setSpecifyParams}
+			/>
+			{inputs}
+		</Fragment>;
+	}
 	return (
 		<Card>
 			<Card.Header as="h4">
@@ -241,14 +322,7 @@ const HistogramMenu = ( props ) => {
 							menuPlacement="top"
 							onChange={setDensityType}
 						/>
-						{densityType === 'Data-driven' ?
-							<NumberInput
-								legend={t('bandwidth-adjustment')}
-								defaultValue={bandwidthAdjust}
-								min={0} step={0.1}
-								onChange={setBandwidthAdjust}
-							/> : null
-						}
+						{densityControls}
 					</div> : null }
 				<Button variant="primary" block onClick={generateHistogram}>
 					{t('generate')}

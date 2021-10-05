@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
+import Collapse from '@isle-project/components/collapse';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import SliderInput from '@isle-project/components/input/slider';
@@ -30,6 +31,8 @@ const ScatterplotMenu = ( props ) => {
 	const [ regressionMethod, setRegressionMethod ] = useState([ 'linear' ]);
 	const [ lineBy, setLineBy ] = useState( null );
 	const [ smoothSpan, setSmoothSpan ] = useState( 0.66 );
+	const [ jitterX, setJitterX ] = useState( false );
+	const [ jitterY, setJitterY ] = useState( false );
 
 	const generateScatterplot = () => {
 		const plotId = randomstring( 6 );
@@ -69,7 +72,7 @@ const ScatterplotMenu = ( props ) => {
 			data={props.data}
 			xval={xval} yval={yval} color={color} type={type} size={size} text={text}
 			regressionLine={regressionLine} regressionMethod={regressionMethod}
-			lineBy={lineBy} smoothSpan={smoothSpan}
+			lineBy={lineBy} smoothSpan={smoothSpan} jitterX={jitterX} jitterY={jitterY}
 			id={plotId}
 			action={action}
 			onSelected={props.onSelected}
@@ -181,6 +184,24 @@ const ScatterplotMenu = ( props ) => {
 					</div>
 				</div>
 				<div style={{ clear: 'both' }}></div>
+				<Collapse header={t('more')} headerStyle={{ fontSize: '1rem' }} >
+					<CheckboxInput
+						inline
+						legend={t('jitter-x-axis')}
+						defaultValue={jitterX}
+						onChange={() => {
+							setJitterX( !jitterX );
+						}}
+					/>
+					<CheckboxInput
+						inline
+						legend={t('jitter-y-axis')}
+						defaultValue={jitterY}
+						onChange={() => {
+							setJitterY( !jitterY );
+						}}
+					/>
+				</Collapse>
 				<Button variant="primary" block onClick={generateScatterplot}>
 					{t('generate')}
 				</Button>
