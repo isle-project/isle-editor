@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.76.8](https://github.com/isle-project/isle-editor/releases/tag/v0.76.8) (2021-10-05)
+
+This patch fixes an issue in the component wizard of the editor.
+
+**Fixed bugs:**
+
+- \[Bug\]: "ComponentDocs" printed multiple times in descriptions, in Component Wizards [\#2446](https://github.com/isle-project/isle-editor/issues/2446)
+
 ## [v0.76.7](https://github.com/isle-project/isle-editor/releases/tag/v0.76.7) (2021-10-05)
 
 This release fixes several bugs and comes with new features for the data explorer component. It also resolves issues for some users on older machines who ran into problems when trying to connect to a certain ISLE server.
