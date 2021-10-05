@@ -247,6 +247,6 @@ Map.propTypes = {
 * @property {string} longitude - name of variable in `data` holding longitude values
 * @property {string} latitude - name of variable in `data` holding latitude values
 * @property {boolean} showLand - whether to show geographic features on map
-* @property {string} aggregation - string indicating how to aggregate values for each location
+* @property {string} aggregation - string indicating how to aggregate values for each location (either `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, or `last`)
 */
 export default withPropCheck( Map );

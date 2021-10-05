@@ -4657,6 +4657,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "densityParams",
+				"type": "array<number>",
+				"description": "Histogram-prop-densityParams",
+				"defaultValue": []
+			},
+			{
 				"name": "bandwidthAdjust",
 				"type": "number",
 				"description": "Histogram-prop-bandwidthAdjust",
@@ -4815,6 +4821,12 @@
 				"type": "boolean",
 				"description": "Map-prop-showLand",
 				"defaultValue": false
+			},
+			{
+				"name": "aggregation",
+				"type": "string",
+				"description": "Map-prop-aggregation",
+				"defaultValue": "sum"
 			}
 		],
 		"description": "Map-description"
@@ -4997,6 +5009,18 @@
 				"type": "number",
 				"description": "ScatterPlot-prop-smoothSpan",
 				"defaultValue": 0.66
+			},
+			{
+				"name": "jitterX",
+				"type": "boolean",
+				"description": "ScatterPlot-prop-jitterX",
+				"defaultValue": false
+			},
+			{
+				"name": "jitterY",
+				"type": "boolean",
+				"description": "ScatterPlot-prop-jitterY",
+				"defaultValue": false
 			}
 		],
 		"description": "ScatterPlot-description"
