@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.76.7](https://github.com/isle-project/isle-editor/releases/tag/v0.76.7) (2021-10-05)
+
+This release fixes several bugs and comes with new features for the data explorer component. It also resolves issues for some users on older machines who ran into problems when trying to connect to a certain ISLE server.
+
+
+
+**Implemented enhancements:**
+
+- Jitter data points in scatterplot [\#2444](https://github.com/isle-project/isle-editor/issues/2444)
+- Control the parameters for density line overlaid on histogram [\#2405](https://github.com/isle-project/isle-editor/issues/2405)
+
+**Fixed bugs:**
+
+- \[Bug\]: in report, highlight text -\> ctrl+c doesn't copy, it changes to \(code?\) font [\#2406](https://github.com/isle-project/isle-editor/issues/2406)
+
 ## [v0.76.6](https://github.com/isle-project/isle-editor/releases/tag/v0.76.6) (2021-09-15)
 
 This release fixes several bugs and improvements to the `<Gate />` component, among others.
@@ -408,6 +423,8 @@ This release contains improvements of the preview rendering performance, fixes w
 - Unable to generate plots for filtered data frame [\#1292](https://github.com/isle-project/isle-editor/issues/1292)
 
 ## [v0.65.2](https://github.com/isle-project/isle-editor/releases/tag/v0.65.2) (2020-09-03)
+
+## [v0.65.1](https://github.com/isle-project/isle-editor/releases/tag/v0.65.1) (2020-09-03)
 
 ## [v0.64.0](https://github.com/isle-project/isle-editor/releases/tag/v0.64.0) (2020-09-01)
 
