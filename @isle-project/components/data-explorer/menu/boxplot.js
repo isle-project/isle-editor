@@ -28,7 +28,7 @@ const BoxplotMenu = ({ data, variables, groupingVariables, t, session, logAction
 		const groupValues = ( group || [] ).map( e => e.value );
 		const plotId = randomstring( 6 );
 		const action = {
-			variables: selectedVariables,
+			variable: selectedVariables,
 			group: groupValues,
 			plotId
 		};
