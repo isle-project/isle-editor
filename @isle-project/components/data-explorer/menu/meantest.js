@@ -64,7 +64,7 @@ const MeanTestMenu = ( props ) => {
 				/>
 				{ type === 'Z Test' ?
 					<NumberInput
-						legend={t('Standard Deviation')}
+						legend={t('standard-deviation')}
 						defaultValue={stdev}
 						step="any"
 						min={0}
