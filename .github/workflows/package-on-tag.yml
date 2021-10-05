@@ -3,6 +3,7 @@ name: Package upon Release
 on:
   push:
     tags: v[0-9]+.[0-9]+.[0-9]+
+  workflow_dispatch:
 
 jobs:
   package_on_mac:
