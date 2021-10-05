@@ -208,8 +208,7 @@ class ComponentConfigurator extends Component {
 		value = removePlaceholderMarkup( value );
 		for ( let i = 0; i < docProps.length; i++ ) {
 			const p = docProps[ i ];
-			const { name, type, defaultValue, description } = p;
-			docProps[ i ].description = props.t( 'ComponentDocs:'+description );
+			const { name, type, defaultValue } = p;
 			propValues[ 'prop:'+name ] = defaultValue;
 			propertyTypes[ p.name ] = extractType( type, defaultValue );
 			const RE_KEY_AROUND_WHITESPACE = new RegExp( `\\s+${name}\\s*=` );
@@ -633,7 +632,7 @@ class ComponentConfigurator extends Component {
 		for ( let i = 0; i < props.length; i++ ) {
 			const prop = props[ i ] || {};
 			const { name, description, type } = prop;
-			prop.description = this.props.t( 'ComponentDocs:'+description );
+			const descrText = name !== 'children' && name !== 'id' ? this.props.t( 'ComponentDocs:'+description ) : description;
 			const isActive = this.state.propActive[ name ];
 			const isRequired = this.isRequired[ name ];
 			if (
@@ -648,7 +647,7 @@ class ComponentConfigurator extends Component {
 			if (
 				searchValue &&
 				!contains( lowercase( name || '' ), searchValue ) &&
-				!contains( lowercase( description || '' ), searchValue ) &&
+				!contains( lowercase( descrText || '' ), searchValue ) &&
 				!contains( type, searchValue )
 			) {
 				continue;
@@ -671,7 +670,7 @@ class ComponentConfigurator extends Component {
 						input = <NumberInput value={propValue} step="any" onChange={this.replaceNumberOrBooleanFactory(name)} />;
 						break;
 					case 'string': {
-						const options = extractOptionsFromDescription( description );
+						const options = extractOptionsFromDescription( descrText );
 						if ( options ) {
 							input = <SelectInput
 								options={options}
@@ -759,7 +758,7 @@ class ComponentConfigurator extends Component {
 					}
 				</td>
 				<td>
-					{description}
+					{descrText}
 					{typeMismatch ? <b>{typeMismatch}</b>: null}
 				</td>
 				<td style={{ position: 'relative' }} >
