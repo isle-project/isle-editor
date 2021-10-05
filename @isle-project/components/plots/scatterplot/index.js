@@ -22,6 +22,7 @@ import calculateCoefficients from '@isle-project/utils/linear-regression/calcula
 import { CAT20 } from '@isle-project/constants/colors';
 import { Factor } from '@isle-project/utils/factor-variable';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import jitterPoints from './jitter_points.js';
 import minmax from './minmax.js';
 
 
@@ -73,7 +74,7 @@ function scale( arr, a, b ) {
 	return out;
 }
 
-export function generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan }) {
+export function generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, jitterX, jitterY }) {
 	let textValues;
 	let nColors;
 	let traces;
@@ -104,7 +105,12 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 	}
 	x = data[ xval ];
 	y = data[ yval ];
-
+	if ( jitterX ) {
+		x = jitterPoints( x );
+	}
+	if ( jitterY ) {
+		y = jitterPoints( y );
+	}
 	if ( color && type ) {
 		const uniqueColors = colors.slice();
 		unique( uniqueColors );
@@ -380,13 +386,13 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 
 // MAIN //
 
-function ScatterPlot({ id, data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, action, onShare, onSelected }) {
+function ScatterPlot({ id, data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, jitterX, jitterY, action, onShare, onSelected }) {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan });
-	}, [ color, data, lineBy, regressionLine, regressionMethod, size, smoothSpan, text, type, xval, yval ] );
+		return generateScatterplotConfig({ data, xval, yval, text, color, type, size, regressionLine, regressionMethod, lineBy, smoothSpan, jitterX, jitterY });
+	}, [ color, data, lineBy, regressionLine, regressionMethod, size, smoothSpan, text, type, xval, yval, jitterX, jitterY ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
@@ -420,7 +426,9 @@ ScatterPlot.defaultProps = {
 	lineBy: null,
 	regressionLine: false,
 	regressionMethod: [ 'linear' ],
-	smoothSpan: 0.66
+	smoothSpan: 0.66,
+	jitterX: false,
+	jitterY: false
 };
 
 ScatterPlot.propTypes = {
@@ -446,7 +454,9 @@ ScatterPlot.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]),
-	smoothSpan: PropTypes.number
+	smoothSpan: PropTypes.number,
+	jitterX: PropTypes.bool,
+	jitterY: PropTypes.bool
 };
 
 
@@ -466,5 +476,7 @@ ScatterPlot.propTypes = {
 * @property {Array<string>} regressionMethod - `linear` and/or `smooth` to display linear regression and smoothed LOWESS regression line
 * @property {number} smoothSpan - smoothing span parameter for `smooth` regression line
 * @property {(string|Factor)} lineBy - display separate regression line for each category of specified categorical variable
+* @property {boolean} jitterX - controls whether to jitter points on the x-axis
+* @property {boolean} jitterY - controls whether to jitter points on the y-axis
 */
 export default withPropCheck( ScatterPlot );
