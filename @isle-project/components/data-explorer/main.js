@@ -369,7 +369,7 @@ class DataExplorer extends Component {
 		}
 	}
 
-	restoreOutputs = ( actions ) => {
+	restoreOutputs = ( state, actions ) => {
 		debug( 'Restore elements in output pane...' );
 		const candidates = [];
 		const skip = [];
@@ -387,9 +387,9 @@ class DataExplorer extends Component {
 		const outputProps = {
 			logAction: this.logAction,
 			session: this.context,
-			data: this.state.data,
-			quantitative: this.state.quantitative,
-			categorical: this.state.categorical
+			data: state.data,
+			quantitative: state.quantitative,
+			categorical: state.categorical
 		};
 		for ( let i = candidates.length - 1; i >= 0; i-- ) {
 			const idx = candidates.length - 1 - i;
@@ -398,7 +398,7 @@ class DataExplorer extends Component {
 			}
 			const node = recreateOutput( candidates[ i ], outputProps );
 			if ( node ) {
-				const element = createOutputElement( node, output.length, this.clearOutput, this.state.subsetFilters, this.onFilters, this.props.t );
+				const element = createOutputElement( node, output.length, this.clearOutput, state.subsetFilters, this.onFilters, this.props.t );
 				output.push( element );
 			}
 		}
@@ -447,9 +447,9 @@ class DataExplorer extends Component {
 			}
 		}
 		state.data = copy( state.data, 1 );
-		this.setState( state, () => {
-			this.restoreOutputs( actions );
-		});
+		setTimeout( () => {
+			this.restoreOutputs( state, actions );
+		}, 1500 );
 	}
 
 	resetStorage = () => {
@@ -1581,7 +1581,9 @@ class DataExplorer extends Component {
 								type: DATA_EXPLORER_CLEAR_OUTPUT_PANE,
 								value: null
 							}, 'owners' );
-							this.setState({ output: []});
+							this.setState({
+								output: []
+							});
 						}}
 						reportMode={this.props.reportMode}
 						t={this.props.t}
