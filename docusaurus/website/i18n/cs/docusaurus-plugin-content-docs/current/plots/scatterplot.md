@@ -21,6 +21,8 @@ Graf rozptylu.
 ]`.
 * __lineBy__ | `(string|Factor)`: zobrazit samostatnou regresní přímku pro každou kategorii zadané kategoriální proměnné.. Default: `none`.
 * __smoothSpan__ | `number`: parametr rozpětí vyhlazení pro `hladkou` regresní přímku. Default: `0.66`.
+* __jitterX__ | `boolean`: řídí, zda se mají body na ose x rozkmitat.. Default: `false`.
+* __jitterY__ | `boolean`: řídí, zda se mají body na ose y rozkmitat.. Default: `false`.
 
 
 ## Příklady

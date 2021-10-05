@@ -21,6 +21,8 @@ Berechnet den minimalen und maximalen Wert eines Arrays.
 ]`.
 * __lineBy__ | `(string|Factor)`: separate Regressionslinie für jede Kategorie der angegebenen kategorialen Variable anzeigen. Default: `none`.
 * __smoothSpan__ | `number`: Glättungsspannenparameter für `glatte` Regressionslinie. Default: `0.66`.
+* __jitterX__ | `boolean`: steuert, ob Punkte auf der x-Achse verwackelt werden sollen. Default: `false`.
+* __jitterY__ | `boolean`: steuert, ob die Punkte auf der y-Achse verwackelt werden sollen. Default: `false`.
 
 
 ## Beispiele

@@ -15,6 +15,7 @@ Un mapa geográfico que puede ser suministrado con nombres de lugares o valores 
 * __longitude__ | `string`: nombre de la variable en "datos" que contiene valores de longitud. Default: `none`.
 * __latitude__ | `string`: nombre de la variable en "datos" que contiene valores de latitud. Default: `none`.
 * __showLand__ | `boolean`: si mostrar los rasgos geográficos en el mapa. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Ejemplos

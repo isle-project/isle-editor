@@ -15,6 +15,7 @@ Ett histogram.
 * __groupMode__ | `string`: Om grupperade histogram ska läggas över varandra (`Overlay`) eller i separata diagram bredvid varandra (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: Kontrollerar om täthetsvärden ska visas i stället för antal på y-axeln.. Default: `false`.
 * __densityType__ | `string`: När man visar tätheter kan man antingen lägga över en parametrisk fördelning (`Normal`, `Uniform` eller `Exponential`) eller en icke-parametrisk kärndensitetsuppskattning (`Data-driven`).. Default: `none`.
+* __densityParams__ | `array<number>`: Fördelningsparametrar för densiteten när en parametrisk fördelning används ([mu, sigma] för en normalfördelning, [a, b] för en jämnfördelning, [lambda] för en exponentialfördelning).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: Manuell justering av bandbredden för kärndensiteten (gäller endast när `densityType` är satt till `Data-driven`).. Default: `1`.
 * __binStrategy__ | `string`: binningstrategi (`Automatisk`, `Välj antal binningar`, eller `Sätt binbredd`).. Default: `'Automatic'`.
 * __nBins__ | `number`: anpassat antal fack. Default: `none`.

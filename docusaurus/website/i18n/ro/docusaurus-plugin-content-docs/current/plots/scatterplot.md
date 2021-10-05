@@ -21,6 +21,8 @@ Un grafic de dispersie.
 ]`.
 * __lineBy__ | `(string|Factor)`: afișarea unei linii de regresie separate pentru fiecare categorie a variabilei categorice specificate. Default: `none`.
 * __smoothSpan__ | `number`: parametru de netezire pentru linia de regresie `lină`.. Default: `0.66`.
+* __jitterX__ | `boolean`: controlează dacă punctele de pe axa x trebuie să se modifice sau nu.. Default: `false`.
+* __jitterY__ | `boolean`: controlează dacă punctele de pe axa y trebuie sau nu să fie afectate.. Default: `false`.
 
 
 ## Exemple

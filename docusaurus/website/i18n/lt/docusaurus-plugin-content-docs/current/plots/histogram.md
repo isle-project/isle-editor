@@ -15,6 +15,7 @@ Histograma.
 * __groupMode__ | `string`: ar sugrupuotas histogramas dengti vieną ant kitos (`Overlay`), ar atskirose diagramose šalia viena kitos (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontroliuoja, ar y ašyje rodyti tankio vertes, o ne skaičių.. Default: `false`.
 * __densityType__ | `string`: rodant tankį, galima uždengti parametrinį pasiskirstymą (`Normalusis`, `Vienodasis` arba `Eksponentinis`) arba neparametrinį branduolio tankio įvertį (`Data-driven`).. Default: `none`.
+* __densityParams__ | `array<number>`: tankio pasiskirstymo parametrai, kai naudojamas parametrinis pasiskirstymas ([mu, sigma] normaliajam pasiskirstymui, [a, b] tolygiam pasiskirstymui, [lambda] eksponentiniam pasiskirstymui).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: rankinis branduolio tankio juostos pločio reguliavimas (taikoma tik tada, kai `densityType` nustatyta į `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: binavimo strategija (`Automatinė`, `Pasirinkite # bins` arba `Nustatykite bins plotį`). Default: `'Automatic'`.
 * __nBins__ | `number`: pasirinktinis talpyklų skaičius. Default: `none`.

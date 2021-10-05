@@ -15,6 +15,7 @@ O histogramă.
 * __groupMode__ | `string`: dacă se suprapun histogramele grupate unul peste altul (`Overlay`) sau în diagrame separate unul lângă altul (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controlează dacă se afișează valorile densității în loc de numere pe axa y.. Default: `false`.
 * __densityType__ | `string`: atunci când se afișează densități, se poate suprapune fie o distribuție parametrică (`Normal`, `Uniform` sau `Exponențială`), fie o estimare neparametrică a densității kernel (`Data-driven`).. Default: `none`.
+* __densityParams__ | `array<number>`: parametrii de distribuție pentru densitate atunci când se utilizează o distribuție parametrică ([mu, sigma] pentru o distribuție normală, [a, b] pentru o distribuție uniformă, [lambda] pentru o distribuție exponențială).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: ajustarea manuală a lățimii de bandă a densității nucleului (aplicabilă numai atunci când `densityType` este setat la `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: strategia de binning (`Automatic`, `Select # of bins`, sau `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: număr personalizat de compartimente. Default: `none`.

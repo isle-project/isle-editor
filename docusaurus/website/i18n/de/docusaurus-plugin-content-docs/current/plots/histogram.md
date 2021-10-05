@@ -15,6 +15,7 @@ Ein Histogramm.
 * __groupMode__ | `string`: ob gruppierte Histogramme übereinander (`Overlay`) oder in separaten Plots nebeneinander (`Facets`) liegen sollen. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: steuert, ob Dichtewerte anstelle von Zählwerten auf der y-Achse angezeigt werden sollen. Default: `false`.
 * __densityType__ | `string`: bei der Darstellung von Dichten kann entweder eine parametrische Verteilung (`Normal`, `Uniform` oder `Exponential`) oder eine nicht-parametrische Kernel-Dichte-Schätzung (`Daten-gesteuert`) überlagert werden. Default: `none`.
+* __densityParams__ | `array<number>`: Verteilungsparameter für die Dichte, wenn eine parametrische Verteilung verwendet wird ([mu, sigma] für eine Normalverteilung, [a, b] für eine Gleichverteilung, [lambda] für eine Exponentialverteilung). Default: `[]`.
 * __bandwidthAdjust__ | `number`: manuelle Anpassung der Bandbreite der Kernel-Dichte (nur anwendbar, wenn `densityType` auf `Data-driven` gesetzt ist). Default: `1`.
 * __binStrategy__ | `string`: Binning-Strategie (`Automatisch`, `Anzahl der Bins wählen` oder `Bin-Breite einstellen`). Default: `'Automatic'`.
 * __nBins__ | `number`: Benutzerdefinierte Anzahl von Fächern. Default: `none`.

@@ -15,6 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: 経度値を保持する`data`内の変数名. Default: `none`.
 * __latitude__ | `string`: 緯度値を保持する`data`内の変数名. Default: `none`.
 * __showLand__ | `boolean`: 地図上に地理的特徴を表示するかどうか. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## 例としては、以下のようなものがあります。

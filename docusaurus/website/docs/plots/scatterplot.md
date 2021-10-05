@@ -21,6 +21,8 @@ A scatter plot.
 ]`.
 * __lineBy__ | `(string|Factor)`: display separate regression line for each category of specified categorical variable. Default: `none`.
 * __smoothSpan__ | `number`: smoothing span parameter for `smooth` regression line. Default: `0.66`.
+* __jitterX__ | `boolean`: controls whether to jitter points on the x-axis. Default: `false`.
+* __jitterY__ | `boolean`: controls whether to jitter points on the y-axis. Default: `false`.
 
 
 ## Examples

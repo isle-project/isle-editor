@@ -21,6 +21,8 @@ Hajutuste graafik.
 ]`.
 * __lineBy__ | `(string|Factor)`: kuvada eraldi regressioonijooned iga määratud kategoorilise muutuja kategooria kohta. Default: `none`.
 * __smoothSpan__ | `number`: silumisvahemiku parameeter "sileda" regressioonijoone jaoks. Default: `0.66`.
+* __jitterX__ | `boolean`: kontrollib, kas x-telje punkte jitteritakse.. Default: `false`.
+* __jitterY__ | `boolean`: kontrollib, kas y-telje punkte jitteritakse.. Default: `false`.
 
 
 ## Näited

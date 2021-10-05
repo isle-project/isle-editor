@@ -15,6 +15,7 @@ Eine geografische Karte, die entweder mit Ortsnamen oder mit Längen-/Breitengra
 * __longitude__ | `string`: Name der Variablen in `data`, die die Längengradwerte enthält. Default: `none`.
 * __latitude__ | `string`: Name der Variablen in `data`, die die Breitengradwerte enthält. Default: `none`.
 * __showLand__ | `boolean`: ob geografische Merkmale auf der Karte angezeigt werden sollen. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Beispiele

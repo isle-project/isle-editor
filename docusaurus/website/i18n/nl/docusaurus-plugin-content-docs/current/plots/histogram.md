@@ -15,6 +15,7 @@ Een histogram.
 * __groupMode__ | `string`: of gegroepeerde histogrammen over elkaar heen moeten worden gelegd (`Overlay`) of in afzonderlijke percelen naast elkaar (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controleert of dichtheidswaarden worden weergegeven in plaats van tellingen op de y-as. Default: `false`.
 * __densityType__ | `string`: bij het weergeven van dichtheden kan men ofwel een parametrische verdeling (`Normaal`, `Uniform` of `Exponentieel`) of een niet-parametrische kerneldichtheidsschatting (`Datagedreven`) over elkaar heen leggen. Default: `none`.
+* __densityParams__ | `array<number>`: verdelingsparameters voor de dichtheid wanneer een parametrische verdeling wordt gebruikt ([mu, sigma] voor een normale verdeling, [a, b] voor een eenvormige verdeling, [lambda] voor een exponentiële verdeling). Default: `[]`.
 * __bandwidthAdjust__ | `number`: handmatige aanpassing van de bandbreedte van de kernel dichtheid (alleen van toepassing wanneer `densityType` is ingesteld op `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: binning strategie (`Automatisch`, `Selecteer # van bakken`, of `Set bin breedte`). Default: `'Automatic'`.
 * __nBins__ | `number`: aangepast aantal bakken. Default: `none`.

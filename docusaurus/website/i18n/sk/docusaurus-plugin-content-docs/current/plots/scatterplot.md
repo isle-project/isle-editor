@@ -21,6 +21,8 @@ Graf rozptylu.
 ]`.
 * __lineBy__ | `(string|Factor)`: zobrazenie samostatnej regresnej priamky pre každú kategóriu zadanej kategorickej premennej. Default: `none`.
 * __smoothSpan__ | `number`: parameter vyhladzovacieho rozpätia pre regresnú priamku `smooth`. Default: `0.66`.
+* __jitterX__ | `boolean`: kontroluje, či sa majú body na osi x rozkolísať.. Default: `false`.
+* __jitterY__ | `boolean`: kontroluje, či sa majú body na osi y roztriasť.. Default: `false`.
 
 
 ## Príklady

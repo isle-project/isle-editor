@@ -15,6 +15,7 @@ Geografická mapa, do které lze zadat buď názvy míst, nebo hodnoty zeměpisn
 * __longitude__ | `string`: název proměnné v `data`, která obsahuje hodnoty zeměpisné délky. Default: `none`.
 * __latitude__ | `string`: název proměnné v `data`, která obsahuje hodnoty zeměpisné šířky. Default: `none`.
 * __showLand__ | `boolean`: zda zobrazovat geografické prvky na mapě. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Příklady

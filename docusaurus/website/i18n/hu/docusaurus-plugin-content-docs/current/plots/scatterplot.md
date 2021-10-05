@@ -21,6 +21,8 @@ Egy szórásdiagram.
 ]`.
 * __lineBy__ | `(string|Factor)`: külön regressziós egyenes megjelenítése a megadott kategorikus változó minden egyes kategóriájára vonatkozóan. Default: `none`.
 * __smoothSpan__ | `number`: simítási tartomány paramétere a "sima" regressziós egyeneshez. Default: `0.66`.
+* __jitterX__ | `boolean`: szabályozza, hogy az x-tengelyen lévő pontok jittereljenek-e.. Default: `false`.
+* __jitterY__ | `boolean`: szabályozza, hogy az y-tengelyen lévő pontok jittereljenek-e.. Default: `false`.
 
 
 ## Példák

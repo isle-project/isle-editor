@@ -15,6 +15,7 @@ Histogram.
 * __groupMode__ | `string`: zda překrýt seskupené histogramy nad sebou (`Overlay`) nebo v samostatných grafech vedle sebe (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: určuje, zda se mají na ose y zobrazovat hodnoty hustoty místo počtů.. Default: `false`.
 * __densityType__ | `string`: při zobrazování hustot lze překrýt buď parametrické rozdělení (`Normální`, `Jednotné` nebo `Exponenciální`), nebo neparametrický jádrový odhad hustoty (`Data-driven`).. Default: `none`.
+* __densityParams__ | `array<number>`: parametry rozdělení pro hustotu při použití parametrického rozdělení ([mu, sigma] pro normální rozdělení, [a, b] pro rovnoměrné rozdělení, [lambda] pro exponenciální rozdělení).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: ruční nastavení šířky pásma hustoty jádra (platí pouze při nastavení `densityType` na `Data-driven`).. Default: `1`.
 * __binStrategy__ | `string`: strategie binování (`Automatické`, `Výběr # binů` nebo `Nastavení šířky binů`).. Default: `'Automatic'`.
 * __nBins__ | `number`: vlastní počet košů. Default: `none`.

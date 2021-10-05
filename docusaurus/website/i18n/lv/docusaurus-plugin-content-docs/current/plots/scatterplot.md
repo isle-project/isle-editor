@@ -21,6 +21,8 @@ Izkliedes diagramma.
 ]`.
 * __lineBy__ | `(string|Factor)`: parādīt atsevišķu regresijas līniju katrai norādītā kategoriskā mainīgā kategorijai.. Default: `none`.
 * __smoothSpan__ | `number`: izlīdzināšanas diapazona parametrs `smooth` regresijas līnijai. Default: `0.66`.
+* __jitterX__ | `boolean`: kontrolē, vai jitter punkti uz x ass. Default: `false`.
+* __jitterY__ | `boolean`: kontrolē, vai jitter punkti uz y ass. Default: `false`.
 
 
 ## Piemēri

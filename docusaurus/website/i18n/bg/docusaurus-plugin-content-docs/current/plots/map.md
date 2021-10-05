@@ -15,6 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: име на променливата в `data`, която съдържа стойности за географската дължина. Default: `none`.
 * __latitude__ | `string`: име на променливата в `data`, която съдържа стойностите на географската ширина. Default: `none`.
 * __showLand__ | `boolean`: дали да показвате географски характеристики на картата. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Примери

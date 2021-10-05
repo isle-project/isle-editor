@@ -21,6 +21,8 @@ sidebar_label: Scatter Plot
 ]`.
 * __lineBy__ | `(string|Factor)`: показване на отделна регресионна линия за всяка категория на определена категорична променлива. Default: `none`.
 * __smoothSpan__ | `number`: параметър за изглаждане на диапазона за регресионната линия `smooth`. Default: `0.66`.
+* __jitterX__ | `boolean`: контролира дали да се разклащат точките по оста x. Default: `false`.
+* __jitterY__ | `boolean`: контролира дали да се разклащат точките по оста y. Default: `false`.
 
 
 ## Примери

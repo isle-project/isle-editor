@@ -21,6 +21,8 @@ En spridningsdiagram.
 ]`.
 * __lineBy__ | `(string|Factor)`: visa en separat regressionslinje för varje kategori av en angiven kategorisk variabel. Default: `none`.
 * __smoothSpan__ | `number`: parameter för utjämning av spännvidd för en "slät" regressionslinje.. Default: `0.66`.
+* __jitterX__ | `boolean`: kontrollerar om punkterna på x-axeln ska jittera. Default: `false`.
+* __jitterY__ | `boolean`: kontrollerar om punkterna på y-axeln ska jittera. Default: `false`.
 
 
 ## Exempel

@@ -21,6 +21,8 @@ Calcula el valor mínimo y máximo de un conjunto.
 ]`.
 * __lineBy__ | `(string|Factor)`: mostrar una línea de regresión separada para cada categoría de variable categórica especificada. Default: `none`.
 * __smoothSpan__ | `number`: parámetro de suavizado de la línea de regresión "suave". Default: `0.66`.
+* __jitterX__ | `boolean`: controla si los puntos en el eje x se desplazan o no. Default: `false`.
+* __jitterY__ | `boolean`: controla si los puntos en el eje Y se desplazan o no. Default: `false`.
 
 
 ## Ejemplos

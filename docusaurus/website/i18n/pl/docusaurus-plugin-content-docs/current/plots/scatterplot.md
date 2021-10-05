@@ -21,6 +21,8 @@ Oblicza minimalną i maksymalną wartość tablicy.
 ]`.
 * __lineBy__ | `(string|Factor)`: wyświetlać oddzielną linię regresji dla każdej kategorii określonej zmiennej kategorycznej. Default: `none`.
 * __smoothSpan__ | `number`: parametr rozpiętości wygładzania dla linii regresji `gładkiej`. Default: `0.66`.
+* __jitterX__ | `boolean`: kontroluje, czy punkty na osi x mają być poddawane jitterowi. Default: `false`.
+* __jitterY__ | `boolean`: kontroluje czy punkty na osi y mają być jitterowane. Default: `false`.
 
 
 ## Przykłady

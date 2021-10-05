@@ -21,6 +21,8 @@ Compromete o valor mínimo e máximo de uma matriz.
 ]`.
 * __lineBy__ | `(string|Factor)`: exibir linha de regressão separada para cada categoria de variável categórica especificada. Default: `none`.
 * __smoothSpan__ | `number`: parâmetro de suavização do vão para a linha de regressão "lisa. Default: `0.66`.
+* __jitterX__ | `boolean`: controla se a agitação aponta para o eixo x. Default: `false`.
+* __jitterY__ | `boolean`: controla se a agitação aponta para o eixo y. Default: `false`.
 
 
 ## Exemplos

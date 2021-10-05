@@ -21,6 +21,8 @@ sidebar_label: Scatter Plot
 ]`.
 * __lineBy__ | `(string|Factor)`: 指定されたカテゴリ変数のカテゴリごとに個別の回帰線を表示する. Default: `none`.
 * __smoothSpan__ | `number`: スムーズ回帰線の平滑化スパンパラメータ. Default: `0.66`.
+* __jitterX__ | `boolean`: X軸上の点をジッターするかどうかを制御する. Default: `false`.
+* __jitterY__ | `boolean`: Y軸上の点をジッターするかどうかを制御する. Default: `false`.
 
 
 ## 例としては、以下のようなものがあります。

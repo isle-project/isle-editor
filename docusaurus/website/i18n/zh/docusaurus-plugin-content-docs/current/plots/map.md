@@ -15,6 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: `data`中存放经度值的变量名称。. Default: `none`.
 * __latitude__ | `string`: `data`中存放纬度值的变量名称。. Default: `none`.
 * __showLand__ | `boolean`: 是否在地图上显示地理特征. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## 例子

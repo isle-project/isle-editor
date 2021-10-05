@@ -15,6 +15,7 @@ Une carte géographique qui peut être fournie soit par des noms de lieux, soit 
 * __longitude__ | `string`: nom de la variable dans "data" contenant les valeurs de longitude. Default: `none`.
 * __latitude__ | `string`: nom de la variable dans "data" contenant les valeurs de latitude. Default: `none`.
 * __showLand__ | `boolean`: si les caractéristiques géographiques doivent être indiquées sur la carte. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Exemples

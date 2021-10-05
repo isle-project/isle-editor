@@ -21,6 +21,8 @@ Sklaidos diagrama.
 ]`.
 * __lineBy__ | `(string|Factor)`: rodyti atskirą regresijos liniją kiekvienai nurodyto kategorinio kintamojo kategorijai.. Default: `none`.
 * __smoothSpan__ | `number`: išlyginamojo intervalo parametras `smooth` regresijos linijai. Default: `0.66`.
+* __jitterX__ | `boolean`: kontroliuoja, ar x ašies taškai turi būti drebinami.. Default: `false`.
+* __jitterY__ | `boolean`: kontroliuoja, ar reikia drebinti y ašies taškus.. Default: `false`.
 
 
 ## Pavyzdžiai

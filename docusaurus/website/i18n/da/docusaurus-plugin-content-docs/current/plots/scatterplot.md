@@ -21,6 +21,8 @@ Et spredningsdiagram.
 ]`.
 * __lineBy__ | `(string|Factor)`: vise separat regressionslinje for hver kategori af en angivet kategorisk variabel. Default: `none`.
 * __smoothSpan__ | `number`: parameter for udjævning af spændvidde for `glat` regressionslinje. Default: `0.66`.
+* __jitterX__ | `boolean`: styrer, om punkterne på x-aksen skal jittere. Default: `false`.
+* __jitterY__ | `boolean`: styrer, om punkterne på y-aksen skal jittere. Default: `false`.
 
 
 ## Eksempler

@@ -21,6 +21,8 @@ Berekent de minimale en maximale waarde van een array.
 ]`.
 * __lineBy__ | `(string|Factor)`: een aparte regressielijn weergeven voor elke categorie van de gespecificeerde categorische variabele. Default: `none`.
 * __smoothSpan__ | `number`: afvlakkingsspanningsparameter voor `vloeiende` regressielijn. Default: `0.66`.
+* __jitterX__ | `boolean`: bepaalt of punten op de x-as jitter moeten krijgen. Default: `false`.
+* __jitterY__ | `boolean`: bepaalt of punten op de y-as jitter moeten krijgen. Default: `false`.
 
 
 ## Voorbeelden

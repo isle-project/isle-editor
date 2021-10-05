@@ -21,6 +21,8 @@ Hajontakuvio.
 ]`.
 * __lineBy__ | `(string|Factor)`: näyttää erillisen regressiosuoran kullekin määritetyn kategorisen muuttujan luokalle.. Default: `none`.
 * __smoothSpan__ | `number`: smoothing span -parametri "sileää" regressiosuoraa varten. Default: `0.66`.
+* __jitterX__ | `boolean`: ohjaa, jitteröidäänkö x-akselin pisteitä.. Default: `false`.
+* __jitterY__ | `boolean`: ohjaa, jitteröidäänkö y-akselin pisteitä.. Default: `false`.
 
 
 ## Esimerkkejä

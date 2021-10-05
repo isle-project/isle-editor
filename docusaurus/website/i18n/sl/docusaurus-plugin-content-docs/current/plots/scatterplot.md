@@ -21,6 +21,8 @@ Diagram razpršitve.
 ]`.
 * __lineBy__ | `(string|Factor)`: prikaz ločene regresijske črte za vsako kategorijo določene kategorične spremenljivke. Default: `none`.
 * __smoothSpan__ | `number`: parameter razpona glajenja za `gladko´ regresijsko linijo. Default: `0.66`.
+* __jitterX__ | `boolean`: nadzira, ali naj se točke na osi x tresejo.. Default: `false`.
+* __jitterY__ | `boolean`: nadzira, ali naj se točke na osi y tresejo.. Default: `false`.
 
 
 ## Primeri

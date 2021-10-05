@@ -21,6 +21,8 @@ Calcola il valore minimo e massimo di una matrice.
 ]`.
 * __lineBy__ | `(string|Factor)`: visualizzare la linea di regressione separata per ogni categoria di variabile categoriale specificata. Default: `none`.
 * __smoothSpan__ | `number`: parametro dello span di lisciatura per la linea di regressione "liscio". Default: `0.66`.
+* __jitterX__ | `boolean`: controlla se i punti di jitter sull'asse x. Default: `false`.
+* __jitterY__ | `boolean`: controlla se i punti di jitter sull'asse y. Default: `false`.
 
 
 ## Esempi

@@ -21,6 +21,8 @@ sidebar_label: Scatter Plot
 ]`.
 * __lineBy__ | `(string|Factor)`: 为每一类指定的分类变量显示单独的回归线。. Default: `none`.
 * __smoothSpan__ | `number`: 平滑回归线的平滑跨度参数. Default: `0.66`.
+* __jitterX__ | `boolean`: 控制是否对X轴上的点进行抖动. Default: `false`.
+* __jitterY__ | `boolean`: 控制是否对Y轴上的点进行抖动. Default: `false`.
 
 
 ## 例子

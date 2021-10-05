@@ -15,6 +15,7 @@ Egy hisztogram.
 * __groupMode__ | `string`: hogy a csoportosított hisztogramokat egymásra helyezzük-e (`Overlay`) vagy különálló ábrákon egymás mellett (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: szabályozza, hogy az y-tengelyen a sűrűségértékek jelenjenek-e meg a számlálás helyett.. Default: `false`.
 * __densityType__ | `string`: a sűrűségek megjelenítésekor vagy egy parametrikus eloszlást (`Normális`, `Egyenletes` vagy `Exponenciális`) vagy egy nem parametrikus kernel sűrűségbecslést (`Adatvezérelt`) lehet ráteríteni.. Default: `none`.
+* __densityParams__ | `array<number>`: eloszlás paraméterei a sűrűséghez, ha parametrikus eloszlást használunk ([mu, sigma] normális eloszlás esetén, [a, b] egyenletes eloszlás esetén, [lambda] exponenciális eloszlás esetén).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: a kernel sűrűség sávszélességének kézi beállítása (csak akkor alkalmazható, ha a "densityType" értéke "Data-driven"). Default: `1`.
 * __binStrategy__ | `string`: binning stratégia (`Automatic`, `Select # of bins`, vagy `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: tárolók egyéni száma. Default: `none`.

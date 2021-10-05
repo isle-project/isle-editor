@@ -21,6 +21,8 @@ Calcule la valeur minimale et maximale d'un tableau.
 ]`.
 * __lineBy__ | `(string|Factor)`: afficher une ligne de régression séparée pour chaque catégorie de variable catégorielle spécifiée. Default: `none`.
 * __smoothSpan__ | `number`: paramètre de lissage de la ligne de régression "lisse. Default: `0.66`.
+* __jitterX__ | `boolean`: contrôle si les points sur l'axe des x doivent être gigueurs.. Default: `false`.
+* __jitterY__ | `boolean`: contrôle si les points sur l'axe des y sont gigueurs ou non. Default: `false`.
 
 
 ## Exemples

@@ -15,6 +15,7 @@ Et geografisk kort, som enten kan leveres med stednavne eller længde-/breddegra
 * __longitude__ | `string`: navnet på den variabel i `data`, der indeholder længdegradværdier. Default: `none`.
 * __latitude__ | `string`: navnet på den variabel i `data`, der indeholder breddegradværdier. Default: `none`.
 * __showLand__ | `boolean`: om der skal vises geografiske elementer på kortet. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Eksempler

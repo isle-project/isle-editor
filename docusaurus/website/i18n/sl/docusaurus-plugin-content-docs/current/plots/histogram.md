@@ -15,6 +15,7 @@ Histogram.
 * __groupMode__ | `string`: ali naj se združeni histogrami prekrijejo drug na drugega (`Overlay`) ali v ločenih ploskvah drug ob drugem (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: nadzoruje, ali naj se na osi y namesto števila prikažejo vrednosti gostote.. Default: `false`.
 * __densityType__ | `string`: pri prikazu gostot lahko prekrijemo parametrično porazdelitev (`Normalna`, `enakomerna` ali `eksponencialna`) ali neparametrično oceno gostote jedra (`Data-driven`).. Default: `none`.
+* __densityParams__ | `array<number>`: parametri porazdelitve za gostoto, kadar se uporablja parametrična porazdelitev ([mu, sigma] za normalno porazdelitev, [a, b] za enakomerno porazdelitev, [lambda] za eksponentno porazdelitev). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ročno prilagajanje pasovne širine gostote jedra (velja samo, če je `densityType` nastavljeno na `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: strategija biniranja (`Avtomatsko`, `Izberite # binov` ali `Nastavite širino binov`). Default: `'Automatic'`.
 * __nBins__ | `number`: število košaric po meri. Default: `none`.

@@ -15,6 +15,7 @@ Geograafiline kaart, millele saab esitada kas asukoha nimed või pikkus- ja laiu
 * __longitude__ | `string`: pikkuskraadide väärtusi sisaldava muutuja "data" nimi. Default: `none`.
 * __latitude__ | `string`: muutuja "data" nimi, mis sisaldab laiuskraadide väärtusi.. Default: `none`.
 * __showLand__ | `boolean`: kas näidata kaardil geograafilisi tunnuseid. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Näited

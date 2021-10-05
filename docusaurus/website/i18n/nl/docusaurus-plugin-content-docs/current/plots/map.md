@@ -15,6 +15,7 @@ Een geografische kaart die kan worden geleverd met plaatsnamen of met lengte- en
 * __longitude__ | `string`: naam van de variabele in `data` die de lengtegraad heeft. Default: `none`.
 * __latitude__ | `string`: naam van de variabele in `data` met breedtegraadwaarden. Default: `none`.
 * __showLand__ | `boolean`: of de geografische kenmerken op de kaart moeten worden weergegeven. Default: `false`.
+* __aggregation__ | `string`: undefined. Default: `'sum'`.
 
 
 ## Voorbeelden

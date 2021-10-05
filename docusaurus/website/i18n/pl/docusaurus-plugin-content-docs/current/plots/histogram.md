@@ -15,6 +15,7 @@ Histogram.
 * __groupMode__ | `string`: czy nakładać na siebie zgrupowane histogramy (`Overlay`), czy też w oddzielnych działkach obok siebie (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontroluje, czy wartości gęstości mają być wyświetlane zamiast zliczane na osi y. Default: `false`.
 * __densityType__ | `string`: przy wyświetlaniu gęstości można albo nałożyć rozkład parametryczny (`Normalny`, `Uniformalny` lub `Exponential`), albo nieparametryczną ocenę gęstości jądra (`Data-driven`). Default: `none`.
+* __densityParams__ | `array<number>`: parametry rozkładu dla gęstości, gdy używany jest rozkład parametryczny ([mu, sigma] dla rozkładu normalnego, [a, b] dla rozkładu jednostajnego, [lambda] dla rozkładu wykładniczego). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ręczne dostosowanie szerokości pasma gęstości jądra (dotyczy tylko gdy `densityType` jest ustawione na `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: Strategia kosza (`Automatyczna`, `Wybieranie # koszy`, lub `Ustawianie szerokości kosza`). Default: `'Automatic'`.
 * __nBins__ | `number`: niestandardowa liczba pojemników. Default: `none`.
