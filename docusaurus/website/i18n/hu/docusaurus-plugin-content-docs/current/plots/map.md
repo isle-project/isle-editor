@@ -15,7 +15,7 @@ Földrajzi térkép, amelyhez megadható helynevek vagy hosszúsági és széles
 * __longitude__ | `string`: a földrajzi hosszúság értékeit tartalmazó változó neve a "data"-ban. Default: `none`.
 * __latitude__ | `string`: a szélességi értékeket tartalmazó változó neve a "data"-ban. Default: `none`.
 * __showLand__ | `boolean`: a földrajzi jellemzők megjelenítése a térképen. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: karakterlánc, amely jelzi, hogy az egyes helyekre vonatkozó értékeket hogyan kell összesíteni (vagy `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, vagy `last`).. Default: `'sum'`.
 
 
 ## Példák

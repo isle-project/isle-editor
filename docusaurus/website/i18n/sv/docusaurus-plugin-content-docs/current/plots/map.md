@@ -15,7 +15,7 @@ En geografisk karta som antingen kan levereras med platsnamn eller värden för 
 * __longitude__ | `string`: Namnet på variabeln i `data` som innehåller longitudvärden.. Default: `none`.
 * __latitude__ | `string`: namnet på den variabel i `data` som innehåller latitudvärden. Default: `none`.
 * __showLand__ | `boolean`: om geografiska funktioner ska visas på kartan. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: Sträng som anger hur värdena ska aggregeras för varje plats (antingen `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` eller `last`).. Default: `'sum'`.
 
 
 ## Exempel

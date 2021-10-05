@@ -15,7 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: имя переменной в `данных`, содержащей значения долготы. Default: `none`.
 * __latitude__ | `string`: имя переменной в `данных`, удерживающей значения широты. Default: `none`.
 * __showLand__ | `boolean`: показывать ли географические особенности на карте. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: строка, указывающая способ агрегирования значений для каждого места (либо `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, либо `last`). Default: `'sum'`.
 
 
 ## Примеры

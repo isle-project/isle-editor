@@ -15,7 +15,7 @@ O hartă geografică pe care pot fi furnizate fie nume de locații, fie valori d
 * __longitude__ | `string`: numele variabilei din `data` care conține valorile longitudinii. Default: `none`.
 * __latitude__ | `string`: numele variabilei din `data` care conține valorile latitudinii. Default: `none`.
 * __showLand__ | `boolean`: dacă să se afișeze caracteristicile geografice pe hartă. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: șir de caractere care indică modul de agregare a valorilor pentru fiecare locație (fie `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` sau `last`). Default: `'sum'`.
 
 
 ## Exemple

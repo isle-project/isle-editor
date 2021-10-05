@@ -15,7 +15,7 @@ Geografski zemljevid, ki mu lahko posredujete imena lokacij ali vrednosti zemlje
 * __longitude__ | `string`: ime spremenljivke v datoteki `data`, ki vsebuje vrednosti zemljepisne dolžine. Default: `none`.
 * __latitude__ | `string`: ime spremenljivke v `data`, ki vsebuje vrednosti zemljepisne širine. Default: `none`.
 * __showLand__ | `boolean`: ali naj se na zemljevidu prikažejo geografske značilnosti.. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: niz, ki označuje način združevanja vrednosti za vsako lokacijo (bodisi `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` ali `last`). Default: `'sum'`.
 
 
 ## Primeri

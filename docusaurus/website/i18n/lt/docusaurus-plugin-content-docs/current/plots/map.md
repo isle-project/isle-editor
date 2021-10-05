@@ -15,7 +15,7 @@ Geografinis žemėlapis, kuriam galima pateikti vietovių pavadinimus arba ilgum
 * __longitude__ | `string`: `data` kintamojo, kuriame laikomos ilgumos vertės, pavadinimas. Default: `none`.
 * __latitude__ | `string`: `data` kintamojo, kuriame laikomos platumos vertės, pavadinimas. Default: `none`.
 * __showLand__ | `boolean`: ar žemėlapyje rodyti geografines funkcijas.. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: eilutė, nurodanti, kaip apibendrinti kiekvienos vietos reikšmes (`sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` arba `last`).. Default: `'sum'`.
 
 
 ## Pavyzdžiai

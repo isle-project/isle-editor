@@ -15,7 +15,7 @@ Geografická mapa, do ktorej možno zadať buď názvy lokalít, alebo hodnoty z
 * __longitude__ | `string`: názov premennej v `data`, ktorá obsahuje hodnoty zemepisnej dĺžky. Default: `none`.
 * __latitude__ | `string`: názov premennej v `data`, ktorá obsahuje hodnoty zemepisnej šírky. Default: `none`.
 * __showLand__ | `boolean`: či sa majú na mape zobrazovať geografické prvky. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: reťazec označujúci spôsob agregácie hodnôt pre každé miesto (buď `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, alebo `last`). Default: `'sum'`.
 
 
 ## Príklady

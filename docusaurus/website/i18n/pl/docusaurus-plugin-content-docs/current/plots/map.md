@@ -15,7 +15,7 @@ Mapa geograficzna, którą mogą być podane nazwy lokalizacji lub wartości dł
 * __longitude__ | `string`: nazwa zmiennej w `danych` posiadających wartości długości geograficznej. Default: `none`.
 * __latitude__ | `string`: nazwa zmiennej w `danych` posiadających wartości szerokości geograficznej. Default: `none`.
 * __showLand__ | `boolean`: czy pokazać cechy geograficzne na mapie. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: łańcuch wskazujący jak agregować wartości dla każdej lokalizacji (albo `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, lub `last`). Default: `'sum'`.
 
 
 ## Przykłady

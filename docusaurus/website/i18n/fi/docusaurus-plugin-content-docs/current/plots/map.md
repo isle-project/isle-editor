@@ -15,7 +15,7 @@ Maantieteellinen kartta, jolle voidaan antaa joko sijainnin nimi tai pituus- ja 
 * __longitude__ | `string`: pituusarvoja sisältävän muuttujan nimi `data`:ssa. Default: `none`.
 * __latitude__ | `string`: muuttujan nimi `data`:ssa, joka sisältää leveyspiirin arvot.. Default: `none`.
 * __showLand__ | `boolean`: näytetäänkö kartalla maantieteelliset piirteet. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: merkkijono, joka osoittaa, miten kunkin sijainnin arvot aggregoidaan (joko `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` tai `last`).. Default: `'sum'`.
 
 
 ## Esimerkkejä

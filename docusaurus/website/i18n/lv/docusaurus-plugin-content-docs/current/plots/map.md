@@ -15,7 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: `data` mainīgā lieluma, kas satur ģeogrāfiskā garuma vērtības, nosaukums. Default: `none`.
 * __latitude__ | `string`: `data` mainīgā, kurā ir platuma vērtības, nosaukums. Default: `none`.
 * __showLand__ | `boolean`: vai kartē attēlot ģeogrāfiskos elementus. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: virkne, kas norāda, kā apkopot vērtības katrai atrašanās vietai (`summa`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first` vai `last`).. Default: `'sum'`.
 
 
 ## Piemēri

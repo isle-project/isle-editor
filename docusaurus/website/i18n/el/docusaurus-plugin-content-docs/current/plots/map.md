@@ -15,7 +15,7 @@ sidebar_label: Map
 * __longitude__ | `string`: Όνομα της μεταβλητής στα "δεδομένα" που περιέχει τις τιμές του γεωγραφικού μήκους. Default: `none`.
 * __latitude__ | `string`: Όνομα της μεταβλητής στα "δεδομένα" που περιέχει τις τιμές του γεωγραφικού πλάτους. Default: `none`.
 * __showLand__ | `boolean`: αν θα εμφανίζονται γεωγραφικά χαρακτηριστικά στο χάρτη. Default: `false`.
-* __aggregation__ | `string`: undefined. Default: `'sum'`.
+* __aggregation__ | `string`: συμβολοσειρά που υποδεικνύει τον τρόπο συγκέντρωσης των τιμών για κάθε τοποθεσία (είτε `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, ή `last`). Default: `'sum'`.
 
 
 ## Παραδείγματα

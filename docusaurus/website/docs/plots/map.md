@@ -15,7 +15,7 @@ A geographic map which can be either supplied location names or longitude/latitu
 * __longitude__ | `string`: name of variable in `data` holding longitude values. Default: `none`.
 * __latitude__ | `string`: name of variable in `data` holding latitude values. Default: `none`.
 * __showLand__ | `boolean`: whether to show geographic features on map. Default: `false`.
-* __aggregation__ | `string`: string indicating how to aggregate values for each location. Default: `'sum'`.
+* __aggregation__ | `string`: string indicating how to aggregate values for each location (either `sum`, `avg`, `min`, `max`, `mode`, `median`, `count`, `first`, or `last`). Default: `'sum'`.
 
 
 ## Examples
