@@ -41,6 +41,7 @@ const OPTS = {
 };
 const debug = logger( 'isle-editor:preview' );
 const RE_LINES = /\r?\n/g;
+const RE_PREAMBLE = /<!--([\S\s]*?)-->/g;
 
 
 // FUNCTIONS //
@@ -219,7 +220,7 @@ class Preview extends Component {
 		});
 
 		// Replace comments with empty lines:
-		code = code.replace( /<!--([\S\s]*?)-->/g, ( _, p1 ) => {
+		code = code.replace( RE_PREAMBLE, ( _, p1 ) => {
 			return repeat( '\n', ( p1.match( RE_LINES ) || '' ).length );
 		});
 
