@@ -23,7 +23,7 @@ function _createWindow( options ) {
 			nodeIntegration: true,
 			webviewTag: true,
 			worldSafeExecuteJavaScript: true,
-			allowRunningInsecureContent: true,
+			allowRunningInsecureContent: false,
 			contextIsolation: false
 		},
 		...options
