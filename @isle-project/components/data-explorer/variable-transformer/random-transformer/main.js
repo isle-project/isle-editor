@@ -14,19 +14,19 @@ import FormText from 'react-bootstrap/FormText';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import contains from '@stdlib/assert/contains';
-import random from '@stdlib/random/base';
 import objectKeys from '@stdlib/utils/keys';
 import capitalize from '@stdlib/string/capitalize';
+import minstd from '@stdlib/random/base/minstd-shuffle';
 import NumberInput from '@isle-project/components/input/number';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import SelectInput from '@isle-project/components/input/select';
 import { DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
+import drawRandomVariates from './draw_random_variates.js';
 
 
 // VARIABLES //
 
-const RE_NAME_RANGE = /^([^0-9]+)(\d+):\1(\d+)$/;
 const FOCUS_TRAP_OPTIONS = {
 	clickOutsideDeactivates: true
 };
@@ -323,50 +323,18 @@ const BODY_STYLE = {
 const RandomTransformer = ( props ) => {
 	const [ name, setName ] = useState( null );
 	const [ distribution, setDistribution ] = useState( DISTRIBUTIONS[ 13 ] );
-	const [ params, setParams ] = useState( [ 1, 1, 1 ] );
+	const [ params, setParams ] = useState( [ 1, 1 ] );
 	const [ asCategorical, setAsCategorical ] = useState( false );
 	const keys = objectKeys( props.data );
 	const [ nObs, setNObs ] = useState( props.data[ keys[ 0 ] ].length );
 	const { t } = useTranslation( 'learn/distribution' );
 	const createVariable = useCallback( () => {
+		const seed = minstd();
 		props.logAction( DATA_EXPLORER_RANDOM_TRANSFORMER, {
-			distribution, name
+			distribution, name, params, asCategorical, nObs, seed
 		});
-		const match = RE_NAME_RANGE.exec( name );
-		if ( match && match.length === 4 ) {
-			const prefix = match[ 1 ];
-			const start = parseInt( match[ 2 ], 10 );
-			const end = parseInt( match[ 3 ], 10 );
-			const names = [];
-			const values = [];
-			if ( asCategorical ) {
-				for ( let i = start; i <= end; i++ ) {
-					const x = new Array( nObs );
-					for ( let j = 0; j < nObs; j++ ) {
-						x[ j ] = String( random[ distribution ].apply( null, params ) );
-					}
-					values.push( x );
-					names.push( `${prefix}${i}` );
-				}
-			} else {
-				for ( let i = start; i <= end; i++ ) {
-					const x = new Array( nObs );
-					for ( let j = 0; j < nObs; j++ ) {
-						x[ j ] = random[ distribution ].apply( null, params );
-					}
-					values.push( x );
-					names.push( `${prefix}${i}` );
-				}
-			}
-			props.onGenerate( names, values );
-		}
-		else {
-			const values = new Array( nObs );
-			for ( let i = 0; i < nObs; i++ ) {
-				values[ i ] = random[ distribution ].apply( null, params );
-			}
-			props.onGenerate( name, values );
-		}
+		const out = drawRandomVariates({ name, distribution, params, nObs, seed });
+		props.onGenerate( out[ 0 ], out[ 1 ] );
 		props.onHide();
 	}, [ asCategorical, distribution, name, nObs, params, props ] );
 
@@ -397,7 +365,10 @@ const RandomTransformer = ( props ) => {
 						value={distribution}
 						legend={t('select-distribution')}
 						options={DISTRIBUTIONS}
-						onChange={setDistribution}
+						onChange={( value ) => {
+							setDistribution( value );
+							setParams( new Array( DISTRIBUTION_PARAMS[ value ].length ).fill( 1 ) );
+						}}
 						components={SELECT_COMPONENTS}
 					/>
 				</Row>

@@ -56,9 +56,10 @@ import FilterList from './filter_list.js';
 import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
+import drawRandomVariates from './variable-transformer/random-transformer/draw_random_variates.js';
 import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
-	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT,
-	DATA_EXPLORER_DELETE_VARIABLE, DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
+	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE,
+	DATA_EXPLORER_VARIABLE_TRANSFORMER, DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './data_explorer.css';
@@ -440,6 +441,22 @@ class DataExplorer extends Component {
 			break;
 			case DATA_EXPLORER_DELETE_VARIABLE:
 				state = this.deleteVariable( action.value, state );
+			break;
+			case DATA_EXPLORER_RANDOM_TRANSFORMER: {
+				const { name, distribution, params, asCategorical, nObs, seed } = action.value;
+				debug( `Should add random variable ${name}` );
+				const out = drawRandomVariates({ name, distribution, params, asCategorical, nObs, seed });
+				if ( isArray( out[ 0 ] ) ) {
+					for ( let i = 0; i < out[ 0 ].length; i++ ) {
+						if ( !hasProp( this.props.data, out[ 0 ][ i ] ) ) {
+							state = this.transformVariable( out[ 0 ][ i ], out[ 1 ][ i ], state );
+						}
+					}
+				}
+				else if ( !hasProp( this.props.data, name ) ) {
+					state = this.transformVariable( out[ 0 ], out[ 1 ], state );
+				}
+			}
 			break;
 		}
 		return state;

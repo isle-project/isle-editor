@@ -19,7 +19,8 @@ import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPrimitive from '@stdlib/assert/is-primitive';
 import {
 	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE,
-	DATA_EXPLORER_VARIABLE_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER, DATA_EXPLORER_BIN_TRANSFORMER
+	DATA_EXPLORER_VARIABLE_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER, DATA_EXPLORER_BIN_TRANSFORMER,
+	DATA_EXPLORER_RANDOM_TRANSFORMER
 } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
@@ -104,7 +105,8 @@ const HistoryPanel = ( props ) => {
 			elem.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
 			elem.type === DATA_EXPLORER_CAT_TRANSFORMER ||
 			elem.type === DATA_EXPLORER_BIN_TRANSFORMER ||
-			elem.type === DATA_EXPLORER_DELETE_VARIABLE
+			elem.type === DATA_EXPLORER_DELETE_VARIABLE ||
+			elem.type === DATA_EXPLORER_RANDOM_TRANSFORMER
 		) {
 			return () => {
 				props.onTransformation( elem );
