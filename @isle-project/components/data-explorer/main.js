@@ -403,7 +403,8 @@ class DataExplorer extends Component {
 			}
 		}
 		debug( `Restored ${output.length} elements.` );
-		this.setState({ output });
+		state.output = output;
+		this.setState( state );
 	}
 
 	restoreTransformations = ( actions ) => {
