@@ -110,6 +110,7 @@ const HistoryPanel = ( props ) => {
 		) {
 			return () => {
 				props.onTransformation( elem );
+				props.logAction( elem.type, elem.value );
 			};
 		}
 		return () => {
