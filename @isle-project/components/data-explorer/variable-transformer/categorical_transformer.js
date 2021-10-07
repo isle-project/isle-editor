@@ -315,7 +315,7 @@ class CategoricalTransformer extends Component {
 						onHide={this.props.onHide}
 						show={this.props.show}
 						header={t('categorical-transformer-header')}
-						footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 2}>
+						footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 1}>
 							{t('create-new-variable')}
 						</Button>}
 						bodyStyle={{

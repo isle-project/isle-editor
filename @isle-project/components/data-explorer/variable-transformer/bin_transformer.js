@@ -132,7 +132,7 @@ const BinningTransformer = ( props ) => {
 		categories: null,
 		customNames: null
 	});
-	const invalidName = name.length < 2;
+	const invalidName = name.length < 1;
 	const makeNewVar = () => {
 		const { variable, categories, breakpoints } = state;
 		const rawData = props.data[ variable ];

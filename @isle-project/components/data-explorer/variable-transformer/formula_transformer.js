@@ -200,7 +200,7 @@ class FormulaTransformer extends Component {
 						show={this.props.show}
 						onHide={this.props.onHide}
 						header={this.props.t('formula-transformer-header')}
-						footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 2} >{this.props.t('create-new-variable')}</Button>}
+						footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 1} >{this.props.t('create-new-variable')}</Button>}
 						role="button" tabIndex={0}
 						bodyStyle={{
 							maxHeight: 'calc(100vh - 200px)',
