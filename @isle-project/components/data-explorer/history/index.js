@@ -17,7 +17,10 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isPrimitive from '@stdlib/assert/is-primitive';
-import { DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE } from '@isle-project/constants/actions.js';
+import {
+	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE,
+	DATA_EXPLORER_VARIABLE_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER, DATA_EXPLORER_BIN_TRANSFORMER
+} from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
 import SessionContext from '@isle-project/session/context.js';
@@ -97,6 +100,16 @@ const HistoryPanel = ( props ) => {
 	}
 	const handleRecreationFactory = ( idx ) => {
 		const elem = filtered[ idx ];
+		if (
+			elem.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
+			elem.type === DATA_EXPLORER_CAT_TRANSFORMER ||
+			elem.type === DATA_EXPLORER_BIN_TRANSFORMER ||
+			elem.type === DATA_EXPLORER_DELETE_VARIABLE
+		) {
+			return () => {
+				props.onTransformation( elem );
+			};
+		}
 		return () => {
 			const output = recreateOutput( elem, props );
 			props.onCreated( output );
@@ -244,12 +257,14 @@ const HistoryPanel = ( props ) => {
 
 HistoryPanel.propTypes = {
 	actions: PropTypes.array,
-	instructorFeedback: PropTypes.bool
+	instructorFeedback: PropTypes.bool,
+	onTransformation: PropTypes.func
 };
 
 HistoryPanel.defaultProps = {
 	actions: [],
-	instructorFeedback: false
+	instructorFeedback: false,
+	onTransformation() {}
 };
 
 

@@ -407,45 +407,50 @@ class DataExplorer extends Component {
 		this.setState( state );
 	}
 
+	applyTransformation = ( state, action ) => {
+		switch ( action.type ) {
+			case DATA_EXPLORER_VARIABLE_TRANSFORMER:
+				debug( `Should add transformed variable ${action.value.name}` );
+				if ( !hasProp( this.props.data, action.value.name ) ) {
+					const values = valuesFromFormula( action.value.code, state.data );
+					state = this.transformVariable( action.value.name, values, state );
+				}
+			break;
+			case DATA_EXPLORER_BIN_TRANSFORMER: {
+				const { name, variable, breaks, categories } = action.value;
+				debug( `Should add binned variable ${name}` );
+				if ( !hasProp( this.props.data, name ) ) {
+					const rawData = state.data[ variable ];
+					const values = retrieveBinnedValues( rawData, categories, breaks );
+					const orderedName = factor( name, categories );
+					state = this.transformVariable( orderedName, values, state );
+				}
+			}
+			break;
+			case DATA_EXPLORER_CAT_TRANSFORMER: {
+				const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
+				debug( `Should add recoded variable ${name}` );
+				if ( !hasProp( this.props.data, name ) ) {
+					if ( state.data[ firstVar ]) {
+						const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
+						state = this.transformVariable( name, values, state );
+					}
+				}
+			}
+			break;
+			case DATA_EXPLORER_DELETE_VARIABLE:
+				state = this.deleteVariable( action.value, state );
+			break;
+		}
+		return state;
+	}
+
 	restoreTransformations = ( actions ) => {
 		let state = this.state;
 		debug( 'Restoring transformations...' );
 		for ( let i = actions.length - 1; i >= 0; i-- ) {
 			const action = actions[ i ];
-			switch ( action.type ) {
-				case DATA_EXPLORER_VARIABLE_TRANSFORMER:
-					debug( `Should add transformed variable ${action.value.name}` );
-					if ( !hasProp( this.props.data, action.value.name ) ) {
-						const values = valuesFromFormula( action.value.code, state.data );
-						state = this.transformVariable( action.value.name, values, state );
-					}
-				break;
-				case DATA_EXPLORER_BIN_TRANSFORMER: {
-					const { name, variable, breaks, categories } = action.value;
-					debug( `Should add binned variable ${name}` );
-					if ( !hasProp( this.props.data, name ) ) {
-						const rawData = state.data[ variable ];
-						const values = retrieveBinnedValues( rawData, categories, breaks );
-						const orderedName = factor( name, categories );
-						state = this.transformVariable( orderedName, values, state );
-					}
-				}
-				break;
-				case DATA_EXPLORER_CAT_TRANSFORMER: {
-					const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
-					debug( `Should add recoded variable ${name}` );
-					if ( !hasProp( this.props.data, name ) ) {
-						if ( state.data[ firstVar ]) {
-							const values = recodeCategorical( firstVar, secondVar, nameMappings, state.data, castNumeric );
-							state = this.transformVariable( name, values, state );
-						}
-					}
-				}
-				break;
-				case DATA_EXPLORER_DELETE_VARIABLE:
-					state = this.deleteVariable( action.value, state );
-				break;
-			}
+			state = this.applyTransformation( state, action );
 		}
 		state.data = copy( state.data, 1 );
 		setTimeout( () => {
@@ -1487,6 +1492,18 @@ class DataExplorer extends Component {
 								explorerID={this.id}
 								actions={this.context.currentUserActions[ this.id ]}
 								onCreated={this.addToOutputs}
+								onTransformation={( action ) => {
+									const state = this.applyTransformation( this.state, action );
+									session.addNotification({
+										title: this.props.t( 'variable-created' ),
+										message: this.props.t( 'variable-created-msg', {
+											name: action.value.name
+										}),
+										level: 'success',
+										position: 'tr'
+									});
+									this.setState( state );
+								}}
 								logAction={this.logAction}
 								session={this.context}
 								data={this.state.data}
