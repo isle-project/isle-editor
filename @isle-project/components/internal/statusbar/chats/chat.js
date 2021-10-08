@@ -14,7 +14,6 @@ import PopoverContent from 'react-bootstrap/PopoverContent';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
 import Draggable from '@isle-project/components/draggable';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import Tooltip from '@isle-project/components/tooltip';
 import Gate from '@isle-project/components/gate';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
@@ -26,7 +25,6 @@ import EditorView from '@isle-project/components/text-editor/view.js';
 import { marks, wraps, insert } from '@isle-project/components/text-editor/config/menu.js';
 import '@isle-project/components/text-editor/editor.css';
 import renderTime from '@isle-project/utils/render-time';
-import VOICE_COMMANDS from './voice_commands.json';
 import './chat.css';
 
 
@@ -275,9 +273,6 @@ class Chat extends Component {
 					onClick={this.sendAnonymousChatMessage}
 					style={{ float: 'left', marginLeft: '4px' }}
 				>{this.props.t( 'send-anonymously' )}</Button> : null}
-				<VoiceControl id={this.props.chat.name} reference={this}
-					commands={VOICE_COMMANDS}
-				/>
 			</div>
 		);
 	}

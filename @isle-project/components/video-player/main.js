@@ -10,21 +10,19 @@ import Button from 'react-bootstrap/Button';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
 import generateUID from '@isle-project/utils/uid';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import isHidden from '@isle-project/utils/is-hidden';
 import isElectron from '@isle-project/utils/is-electron';
 import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import VOICE_COMMANDS from './voice_commands.json';
 
 
 // VARIABLES //
 
 const uid = generateUID( 'video-player' );
 const debug = logger( 'isle:video-player' );
-const OMITTED_PROPS = [ 'center', 'startTime', 'voiceID', 't', 'tReady' ];
+const OMITTED_PROPS = [ 'center', 'startTime', 't', 'tReady' ];
 
 
 // FUNCTIONS //
@@ -56,7 +54,6 @@ function respondToVisibility( element, callback ) {
 * @property {(string|number)} height - height of the player
 * @property {(string|number)} width - width of the player
 * @property {boolean} loop - controls whether to start the video anew after it was played
-* @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onEnded - callback invoked once the video ends
 * @property {Function} onPause - callback invoked when the video pauses
@@ -259,7 +256,6 @@ class Video extends Component {
 				props.playing = false;
 			}
 			player = <Fragment>
-				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				{ this.state.encounteredError ?
 					this.renderError() :
 					<ReactPlayer
@@ -315,7 +311,6 @@ Video.propTypes = {
 		PropTypes.number
 	]),
 	loop: PropTypes.bool,
-	voiceID: PropTypes.string,
 	startTime: PropTypes.number,
 	style: PropTypes.object,
 	onEnded: PropTypes.func,
@@ -334,7 +329,6 @@ Video.defaultProps = {
 	height: 360,
 	width: 640,
 	loop: false,
-	voiceID: null,
 	startTime: null,
 	style: {},
 	onEnded() {},

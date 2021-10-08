@@ -45,10 +45,8 @@ import base64toBlob from '@isle-project/utils/base64-to-blob';
 import Joyride from '@isle-project/components/joyride';
 import Gate from '@isle-project/components/gate';
 import KeyControls from '@isle-project/components/key-controls';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import randomstring from '@isle-project/utils/randomstring/ascii';
 import SessionContext from '@isle-project/session/context.js';
-import VOICE_COMMANDS from './voice_commands.json';
 import curve from './curve.js';
 import TooltipButton from './tooltip_button.js';
 import InputButtons from './input_buttons.js';
@@ -194,7 +192,6 @@ const Overlays = ( props ) => {
 * @property {boolean} showTutorial - show tutorial for the sketchpad on startup
 * @property {boolean} transmitOwner - whether owner actions should be transmitted to other users in real-time
 * @property {boolean} groupMode - controls whether all user's actions are transmitted to everyone else
-* @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever a new line element is drawn
 */
@@ -2774,7 +2771,6 @@ class Sketchpad extends Component {
 						{this.renderTransmitButtons()}
 						{this.renderSaveButtons()}
 						{!this.context.presentationMode ? <TooltipButton tooltip={this.state.showTutorial ? this.props.t('stop-tutorial') : this.props.t('start-tutorial')} onClick={this.toggleTutorial} glyph="question" size="sm" /> : null}
-						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{this.renderFeedbackButtons()}
 					<Overlays
@@ -2916,7 +2912,6 @@ Sketchpad.defaultProps = {
 	dynamicallyHideButtons: false,
 	transmitOwner: true,
 	groupMode: false,
-	voiceID: null,
 	style: {},
 	onChange() {}
 };
@@ -2945,7 +2940,6 @@ Sketchpad.propTypes = {
 	dynamicallyHideButtons: PropTypes.bool,
 	transmitOwner: PropTypes.bool,
 	groupMode: PropTypes.bool,
-	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func
 };

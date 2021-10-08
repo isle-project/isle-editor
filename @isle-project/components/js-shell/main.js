@@ -20,9 +20,7 @@ import CodeMirror from 'codemirror';
 import scrollTo from '@isle-project/utils/scroll-to';
 import generateUID from '@isle-project/utils/uid';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
-import VOICE_COMMANDS from './voice_commands.json';
 import CONSOLE_STYLES from './console_styles.json';
 import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
 import 'codemirror/mode/javascript/javascript.js';
@@ -122,7 +120,6 @@ function makeLog( e, i ) {
 * @property {boolean} disabled - controls whether to disable all user inputs and make the code block static
 * @property {number} lines - number of lines to display
 * @property {Object} vars - scope object with variables that should be made available to evaluated `code`
-* @property {string} voiceID - voice control identifier
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onChange - callback invoked whenever the text field input changes
@@ -387,7 +384,6 @@ class JSShell extends Component {
 					</span> :
 					null
 			}
-			<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 		</ButtonToolbar>;
 		const style = {
 			lineHeight: '1.2em',
@@ -446,7 +442,6 @@ JSShell.defaultProps = {
 	className: '',
 	style: {},
 	vars: null,
-	voiceID: null,
 	onChange() {},
 	onEvaluate() {}
 };
@@ -466,8 +461,7 @@ JSShell.propTypes = {
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	onEvaluate: PropTypes.func,
-	vars: PropTypes.object,
-	voiceID: PropTypes.string
+	vars: PropTypes.object
 };
 
 JSShell.contextType = SessionContext;

@@ -18,7 +18,6 @@ import TimedButton from '@isle-project/components/timed-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import SolutionButton from '@isle-project/components/solution-button';
 import HintButton from '@isle-project/components/hint-button';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
@@ -28,7 +27,6 @@ import beforeUnload from '@isle-project/utils/before-unload';
 import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import VOICE_COMMANDS from './voice_commands.json';
 import './free-text-question.css';
 
 
@@ -58,7 +56,6 @@ const debug = logger( 'isle:free-text-question' );
 * @property {string} resubmissionMsg - notification displayed for all submissions after the first one
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
 * @property {number} maxlength - maximum allowed number of characters
-* @property {string} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
@@ -290,9 +287,6 @@ class FreeTextQuestion extends Component {
 				style={this.props.style} fullscreen
 				bodyStyle={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}
 			>
-				<VoiceControl id={this.props.voiceID} reference={this}
-					commands={VOICE_COMMANDS}
-				/>
 				{ this.props.question ? <div className="title">{this.props.question}</div> : null }
 				<FormGroup>
 					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? this.props.t('solution') : this.props.t('your-answer') }</label>
@@ -383,7 +377,6 @@ FreeTextQuestion.defaultProps = {
 	resubmissionMsg: 'You have successfully re-submitted your answer.',
 	provideFeedback: true,
 	maxlength: 2500,
-	voiceID: null,
 	until: null,
 	points: 10,
 	className: '',
@@ -416,7 +409,6 @@ FreeTextQuestion.propTypes = {
 	resubmissionMsg: PropTypes.string,
 	provideFeedback: PropTypes.bool,
 	maxlength: PropTypes.number,
-	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
 	points: PropTypes.number,
 	className: PropTypes.string,

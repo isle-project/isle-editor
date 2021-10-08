@@ -11,10 +11,8 @@ import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import RecordRTC, { StereoAudioRecorder, MediaStreamRecorder, getSeekableBlob } from 'recordrtc';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import VOICE_COMMANDS from './voice_commands.json';
 import './recorder.css';
 
 
@@ -96,7 +94,6 @@ function keepStreamActive(stream) {
 * @property {boolean} downloadable - indicates whether users should be able to download the recording
 * @property {boolean} uploadable - indicates whether users should be able to upload the recording to the server
 * @property {number} bitsPerSecond - bits per second
-* @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 */
 class Recorder extends Component {
@@ -508,7 +505,6 @@ class Recorder extends Component {
 						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">{this.props.t('screen')}</ToggleButton>
 						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">{this.props.t('cam')}</ToggleButton>
 						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">{this.props.t('audio')}</ToggleButton>
-						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</ToggleButtonGroup> : null
 				}
 				{ this.state.finished ? this.renderAudioVideo() : null }
@@ -544,7 +540,6 @@ Recorder.propTypes = {
 	downloadable: PropTypes.bool,
 	uploadable: PropTypes.bool,
 	bitsPerSecond: PropTypes.number,
-	voiceID: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -556,7 +551,6 @@ Recorder.defaultProps = {
 	downloadable: false,
 	screen: false,
 	uploadable: false,
-	voiceID: null,
 	style: {}
 };
 

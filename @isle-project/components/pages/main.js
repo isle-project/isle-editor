@@ -11,14 +11,12 @@ import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import generateUID from '@isle-project/utils/uid';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import isElectron from '@isle-project/utils/is-electron';
 import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from '@isle-project/constants/actions.js';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import VOICE_COMMANDS from './voice_commands.json';
 import ordinal from './ordinal.js';
 import './pages.css';
 
@@ -39,7 +37,6 @@ const uid = generateUID( 'pages' );
 * @property {number} activePage - active page
 * @property {string} pagination - whether to show the pagination either on the `top`, `bottom`, or `both`
 * @property {boolean} disabled - controls whether the navigation bar is active or not
-* @property {strings} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 * @property {Function} onSelect - Function invoked when active change is changed. Receives the new active page index as a sole parameter
 */
@@ -250,7 +247,6 @@ class Pages extends Component {
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }
-				<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 				{ this.props.pagination !== 'bottom' ? pagination : null }
 				<div className="page-children-wrapper"
 					ref={( div ) => {
@@ -301,7 +297,6 @@ Pages.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
-	voiceID: PropTypes.string,
 	style: PropTypes.object,
 	onSelect: PropTypes.func
 };
@@ -313,7 +308,6 @@ Pages.defaultProps = {
 	pagination: 'top',
 	size: 'default',
 	height: null,
-	voiceID: null,
 	style: {},
 	onSelect() {}
 };

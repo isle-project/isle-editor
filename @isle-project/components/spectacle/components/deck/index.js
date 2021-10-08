@@ -6,13 +6,11 @@ import { withTranslation } from 'react-i18next';
 import replace from '@stdlib/string/replace';
 import contains from '@stdlib/assert/contains';
 import Tooltip from '@isle-project/components/tooltip';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import Gate from '@isle-project/components/gate';
 import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
-import VOICE_COMMANDS from './voice_commands.json';
 import Deck from './deck.js';
 import './deck.css';
 
@@ -141,7 +139,6 @@ class CustomDeck extends Component {
 			});
 		}
 		return ( <Fragment>
-			<VoiceControl commands={VOICE_COMMANDS} hide reference={this} id="slide" />
 			<Gate owner banner={null} >
 				<Tooltip tooltip={t('toggle-slide-presenter-mode')} placement="right" >
 					<div

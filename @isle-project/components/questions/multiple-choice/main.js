@@ -16,7 +16,6 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
 import FeedbackButtons from '@isle-project/components/feedback';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import toNumber from '@isle-project/utils/to-number';
@@ -25,7 +24,6 @@ import getLastAction from '@isle-project/utils/get-last-action';
 import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION } from '@isle-project/constants/actions.js';
 import { FOCUS_ELEMENT, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import VOICE_COMMANDS from './voice_commands.json';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
 import AnswerOption from './answer_option';
@@ -66,7 +64,6 @@ const hasExplanations = ( answers ) => {
 * @property {string} provideFeedback - either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications
 * @property {boolean} displaySolution - controls whether the solution is displayed upfront
-* @property {strings} voiceID - voice control identifier
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
@@ -533,7 +530,6 @@ class MultipleChoiceQuestion extends Component {
 								<ChatButton size="small" for={this.id} />
 							</div> : null
 						}
-						<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					</div>
 					{ this.id ? <div style={{ marginTop: '6px' }}>
 						<ResponseVisualizer
@@ -573,7 +569,6 @@ MultipleChoiceQuestion.defaultProps = {
 	chat: false,
 	provideFeedback: 'incremental',
 	disableSubmitNotification: false,
-	voiceID: null,
 	until: null,
 	points: 10,
 	style: {},
@@ -601,7 +596,6 @@ MultipleChoiceQuestion.propTypes = {
 	provideFeedback: PropTypes.oneOf([ 'none', 'incremental', 'full' ]),
 	disableSubmitNotification: PropTypes.bool,
 	displaySolution: PropTypes.bool,
-	voiceID: PropTypes.string,
 	until: PropTypes.instanceOf( Date ),
 	points: PropTypes.number,
 	style: PropTypes.object,

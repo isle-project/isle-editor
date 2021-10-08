@@ -5,19 +5,11 @@ import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import logger from 'debug';
 import ltrim from '@stdlib/string/left-trim';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:text' );
-const VOICE_COMMANDS = [
-	{
-		command: 'textToSpeech',
-		trigger: 'text to speech',
-		description: 'Read out the text'
-	}
-];
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -35,7 +27,6 @@ const md = markdownit({
 * @property {boolean} inline - controls whether to render the Markdown as inline text
 * @property {string} className - class names
 * @property {Object} style - CSS inline styles
-* @property {string} voiceID - voice control identifier
 */
 class Text extends Component {
 	constructor( props ) {
@@ -78,7 +69,6 @@ class Text extends Component {
 			/* eslint-disable react/no-danger */
 			return (
 				<div className={this.props.className} style={this.props.style} >
-					<VoiceControl reference={this} id={this.props.voiceID} commands={VOICE_COMMANDS} />
 					<div dangerouslySetInnerHTML={node}></div>
 				</div>
 			);
@@ -106,16 +96,14 @@ Text.defaultProps = {
 	raw: '',
 	className: '',
 	inline: false,
-	style: {},
-	voiceID: null
+	style: {}
 };
 
 Text.propTypes = {
 	raw: PropTypes.string,
 	className: PropTypes.string,
 	inline: PropTypes.bool,
-	style: PropTypes.object,
-	voiceID: PropTypes.string
+	style: PropTypes.object
 };
 
 

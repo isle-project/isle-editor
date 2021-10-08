@@ -6,7 +6,6 @@ import logger from 'debug';
 import axios from 'axios';
 import { withTranslation } from 'react-i18next';
 import round from '@stdlib/math/base/special/round';
-import VoiceControl from '@isle-project/components/internal/voice-control';
 import SessionContext from '@isle-project/session/context.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import Description from './description.js';
@@ -17,19 +16,6 @@ import './weather.css';
 // VARIABLES //
 
 const debug = logger( 'isle:weather' );
-const VOICE_COMMANDS = [
-	{
-		command: 'trigger',
-		trigger: [ 'in' ],
-		description: 'Location name',
-		text: true
-	},
-	{
-		command: 'reset',
-		trigger: [ 'close' ],
-		description: 'Close weather modal window'
-	}
-];
 const DEGREES = '°';
 const MSEC = 'm/sec';
 const Temperature = ({ main, weather }) => {
@@ -85,7 +71,6 @@ const Details = ({ main, wind, t }) => {
 * A component for displaying the current weather at a designated location.
 *
 * @property {string} location - location name
-* @property {string} voiceID - voice control identifier
 * @property {Object} style - CSS inline styles
 */
 class Weather extends Component {
@@ -98,18 +83,6 @@ class Weather extends Component {
 
 	componentDidMount() {
 		this.getData( this.props.location );
-		if ( this.props.voiceID ) {
-			this.register();
-		}
-	}
-
-	register = () => {
-		const session = this.context;
-		session.speechInterface.register({
-			name: this.props.voiceID,
-			ref: this,
-			commands: VOICE_COMMANDS
-		});
 	}
 
 	reset = () => {
@@ -158,14 +131,6 @@ class Weather extends Component {
 	}
 
 	render() {
-		let voice = null;
-		if ( this.props.voiceID ) {
-			voice = <VoiceControl
-				id={this.props.voiceID}
-				reference={this}
-				commands={VOICE_COMMANDS}
-			/>;
-		}
 		const data = this.state.data;
 		if ( !data ) {
 			return (
@@ -178,7 +143,6 @@ class Weather extends Component {
 		}
 		return (
 			<div className="weather" style={this.props.style} >
-				{voice}
 				<Location name={data.name} sys={data.sys} />
 				<Description weather={data.weather[ 0 ]} />
 				<Temperature main={data.main} weather={data.weather[ 0 ]} />
@@ -194,13 +158,11 @@ class Weather extends Component {
 
 Weather.propTypes = {
 	location: PropTypes.string,
-	voiceID: PropTypes.string,
 	style: PropTypes.object
 };
 
 Weather.defaultProps = {
 	location: null,
-	voiceID: null,
 	style: {}
 };
 
