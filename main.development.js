@@ -136,8 +136,6 @@ function onReady() {
 
 // MAIN //
 
-app.allowRendererProcessReuse = false; // for node-pty for now until https://github.com/microsoft/node-pty/issues/405 is resolved (see also: https://github.com/electron/electron/issues/18397)
-
 /**
 * This method will be called when Electron has finished initialization and is ready to create browser windows.
 */
