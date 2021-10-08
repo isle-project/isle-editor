@@ -71,7 +71,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                           One-Sample
                         </div>
                         <div
-                          className=" css-7pwich-Input"
+                          className=" css-14dclt2-Input"
                           data-value=""
                         >
                           <input
