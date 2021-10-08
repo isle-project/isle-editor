@@ -27,9 +27,6 @@ updates:
     versions:
     - 21.0.0
     - 22.0.0
-  - dependency-name: node-pty
-    versions:
-    - 0.10.1
   - dependency-name: electron-store
     versions:
     - 8.0.0

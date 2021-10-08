@@ -26,7 +26,6 @@ const EXTERNALS = [
 	'minimist',
 	'ml-pca',
 	'murmurhash3js',
-	'node-pty',
 	'node-libs-browser',
 	'pdfjs-dist',
 	'profanities',

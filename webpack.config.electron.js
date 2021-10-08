@@ -44,7 +44,6 @@ const config = smp.wrap({
 
 	externals: [
 		'font-awesome',
-		'node-pty',
 		'source-map-support',
 		'webpack',
 		'react',
