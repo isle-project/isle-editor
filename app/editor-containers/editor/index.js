@@ -35,9 +35,6 @@ const NUM_WRAPPER_LINES = 8;
 const STYLE_TRANSFORM = {
 	transform: 'translateZ(0)' // applied so that the panel acts as viewport for the fixed position statusbar (https://www.w3.org/TR/css-transforms-1/#containing-block-for-all-descendants)
 };
-const RESIZER_STYLE = {
-	zIndex: 10
-};
 
 
 // FUNCTIONS //
