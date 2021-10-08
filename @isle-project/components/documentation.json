@@ -2465,12 +2465,6 @@
 				"type": "object",
 				"description": "JSShell-prop-vars",
 				"defaultValue": null
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "JSShell-prop-voiceID",
-				"defaultValue": null
 			}
 		],
 		"description": "JSShell-description"
@@ -4179,12 +4173,6 @@
 				"defaultValue": null
 			},
 			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "Pages-prop-voiceID",
-				"defaultValue": null
-			},
-			{
 				"name": "style",
 				"type": "object",
 				"description": "Pages-prop-style",
@@ -5360,12 +5348,6 @@
 				"defaultValue": 2500
 			},
 			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "FreeTextQuestion-prop-voiceID",
-				"defaultValue": null
-			},
-			{
 				"name": "until",
 				"type": "Date",
 				"description": "FreeTextQuestion-prop-until",
@@ -5711,12 +5693,6 @@
 				"type": "boolean",
 				"description": "MultipleChoiceQuestion-prop-displaySolution",
 				"defaultValue": false
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "MultipleChoiceQuestion-prop-voiceID",
-				"defaultValue": null
 			},
 			{
 				"name": "until",
@@ -6726,12 +6702,6 @@
 				"defaultValue": 1280000
 			},
 			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "Recorder-prop-voiceID",
-				"defaultValue": null
-			},
-			{
 				"name": "style",
 				"type": "object",
 				"description": "Recorder-prop-style",
@@ -7084,12 +7054,6 @@
 				"type": "boolean",
 				"description": "Sketchpad-prop-groupMode",
 				"defaultValue": false
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "Sketchpad-prop-voiceID",
-				"defaultValue": null
 			},
 			{
 				"name": "style",
@@ -8259,12 +8223,6 @@
 				"type": "object",
 				"description": "Text-prop-style",
 				"defaultValue": {}
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "Text-prop-voiceID",
-				"defaultValue": null
 			}
 		],
 		"description": "Text-description"
@@ -8690,12 +8648,6 @@
 				"defaultValue": false
 			},
 			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "VideoPlayer-prop-voiceID",
-				"defaultValue": null
-			},
-			{
 				"name": "startTime",
 				"type": "number",
 				"description": "VideoPlayer-prop-startTime",
@@ -8746,12 +8698,6 @@
 				"name": "location",
 				"type": "string",
 				"description": "Weather-prop-location",
-				"defaultValue": null
-			},
-			{
-				"name": "voiceID",
-				"type": "string",
-				"description": "Weather-prop-voiceID",
 				"defaultValue": null
 			},
 			{
