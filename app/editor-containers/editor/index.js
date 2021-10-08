@@ -16,7 +16,6 @@ import { convertMarkdown, changeAutoUpdate, changeMode, changeView,
 	toggleConfigurator, toggleLineButtons, toggleScrolling, toggleToolbar,
 	updateDownloading, updatePreamble, encounteredError, resetError, saveLintErrors,
 	saveSpellingErrors, changeSplitPos, changeHorizontalSplit } from 'actions';
-const TerminalGrid = Loadable( () => import( 'editor-components/terminal-grid' ) );
 const Header = Loadable( () => import( 'editor-components/header' ) );
 const Preview = Loadable( () => import( 'editor-components/preview' ) );
 const Editor = Loadable( () => import( 'editor-components/editor' ) );
@@ -122,19 +121,6 @@ class App extends Component {
 		} else {
 			this.debouncedChange = debounce( this.handleCodeChange, this.props.renderInterval );
 			this.debouncedChange( value );
-		}
-	}
-
-	handleHorizontalSplitChange = ( size ) => {
-		this.props.changeHorizontalSplit( size );
-	};
-
-	handleHorizontalSplit = ( size ) => {
-		if ( this.debouncedHorizonalSplit ) {
-			this.debouncedHorizonalSplit( size );
-		} else {
-			this.debouncedHorizonalSplit = debounce( this.handleHorizontalSplitChange, 250 );
-			this.debouncedHorizonalSplit( size );
 		}
 	}
 
@@ -294,75 +280,54 @@ class App extends Component {
 					null
 				}
 				<SplitPane
-					split="horizontal"
-					style={{
-						marginTop: hideToolbar ? 0 : 88
-					}}
-					pane1Style={{
-						background: 'white',
-						zIndex: 2
-					}}
-					resizerStyle={RESIZER_STYLE}
-					onChange={this.handleHorizontalSplit}
-					minSize={0}
-					maxSize={window.innerHeight}
+					className="splitpane"
+					split="vertical"
+					primary="second"
+					size={this.props.splitPos * this.state.innerWidth}
+					onChange={this.handleVerticalSplit}
+					maxSize={-300}
+					minSize={300}
 				>
-					<TerminalGrid
-						height={this.props.horizontalSplit}
-						width={this.state.innerWidth}
-						filePath={filePath}
-						fontSize={this.props.fontSize}
-					/>
-					<SplitPane
-						className="splitpane"
-						split="vertical"
-						primary="second"
-						size={this.props.splitPos * this.state.innerWidth}
-						onChange={this.handleVerticalSplit}
-						maxSize={-300}
-						minSize={300}
+					<SplitPanel style={{ overflow: 'none' }} >
+						<Editor
+							ref={( elem ) => { this.editor = elem; }}
+							value={markdown}
+							onChange={this.onChange}
+							filePath={filePath}
+							name="monaco_editor"
+							fontSize={this.props.fontSize}
+							elementRange={this.props.elementRange}
+							preamble={preamble}
+							author={this.props.author}
+							currentRole={currentRole}
+							currentMode={currentMode}
+							splitPos={this.props.splitPos}
+							lintErrors={this.props.lintErrors}
+							spellingErrors={this.props.spellingErrors}
+							setConfiguratorComponent={this.props.setConfiguratorComponent}
+							insertion={this.props.insertion}
+							clearInsertion={this.props.clearInsertion}
+							elementRangeAction={this.props.elementRangeAction}
+							elementRangeVersion={this.props.elementRangeVersion}
+							toggleConfigurator={this.props.toggleConfigurator}
+							triggerUpdate={this.props.incrementDocumentVersion}
+							height={window.innerHeight - this.props.horizontalSplit - ( hideToolbar ? 2 : 90 )}
+							showQuickSuggestions={this.props.showQuickSuggestions}
+							showMiniMap={this.props.showMiniMap}
+						/>
+					</SplitPanel>
+					<SplitPanel
+						ref={( elem ) => { this.preview = elem; }}
+						style={STYLE_TRANSFORM}
 					>
-						<SplitPanel style={{ overflow: 'none' }} >
-							<Editor
-								ref={( elem ) => { this.editor = elem; }}
-								value={markdown}
-								onChange={this.onChange}
-								filePath={filePath}
-								name="monaco_editor"
-								fontSize={this.props.fontSize}
-								elementRange={this.props.elementRange}
-								preamble={preamble}
-								author={this.props.author}
-								currentRole={currentRole}
-								currentMode={currentMode}
-								splitPos={this.props.splitPos}
-								lintErrors={this.props.lintErrors}
-								spellingErrors={this.props.spellingErrors}
-								setConfiguratorComponent={this.props.setConfiguratorComponent}
-								insertion={this.props.insertion}
-								clearInsertion={this.props.clearInsertion}
-								elementRangeAction={this.props.elementRangeAction}
-								elementRangeVersion={this.props.elementRangeVersion}
-								toggleConfigurator={this.props.toggleConfigurator}
-								triggerUpdate={this.props.incrementDocumentVersion}
-								height={window.innerHeight - this.props.horizontalSplit - ( hideToolbar ? 2 : 90 )}
-								showQuickSuggestions={this.props.showQuickSuggestions}
-								showMiniMap={this.props.showMiniMap}
-							/>
-						</SplitPanel>
-						<SplitPanel
-							ref={( elem ) => { this.preview = elem; }}
-							style={STYLE_TRANSFORM}
-						>
-							{ error ?
-								<ErrorMessage
-									msg={error.message} code={markdown}
-									resetError={this.resetError}
-								/> :
-								preview
-							}
-						</SplitPanel>
-					</SplitPane>
+						{ error ?
+							<ErrorMessage
+								msg={error.message} code={markdown}
+								resetError={this.resetError}
+							/> :
+							preview
+						}
+					</SplitPanel>
 				</SplitPane>
 				{ this.props.configuratorIsOpened ? <ComponentConfigurator
 					show={this.props.configuratorIsOpened}
