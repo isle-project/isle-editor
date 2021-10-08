@@ -16,7 +16,6 @@ Komponentti mediatiedostojen ja sisällön toistamiseen YouTubesta, SoundCloudis
 * __height__ | `(string|number)`: pelaajan korkeus. Default: `360`.
 * __width__ | `(string|number)`: soittimen leveys. Default: `640`.
 * __loop__ | `boolean`: valvoo, aloitetaanko video uudelleen sen jälkeen, kun se on toistettu.. Default: `false`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __startTime__ | `number`: sekuntien määrä, josta video aloitetaan, tai murto-osa, jos arvo on 0 ja 1 välillä.. Default: `none`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onEnded__ | `function`: callback, joka käynnistyy videon päätyttyä. Default: `onEnded() {}`.

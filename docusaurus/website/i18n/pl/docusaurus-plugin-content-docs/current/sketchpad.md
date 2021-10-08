@@ -31,7 +31,6 @@ Szkicownik do robienia notatek na slajdach wykładowych lub pustych stronach.
 * __dynamicallyHideButtons__ | `boolean`: kontroluje, czy należy zacząć ukrywać przyciski, gdy szerokość paska narzędzi nie jest wystarczająca (w przeciwnym razie zostanie uruchomiona nowa linia). Default: `false`.
 * __transmitOwner__ | `boolean`: czy działania właściciela powinny być przekazywane innym użytkownikom w czasie rzeczywistym. Default: `true`.
 * __groupMode__ | `boolean`: kontroluje, czy wszystkie działania użytkownika są przekazywane innym osobom. Default: `false`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onChange__ | `function`: wywołanie zwrotne za każdym razem, gdy rysowany jest nowy element linii. Default: `onChange() {}`.
 

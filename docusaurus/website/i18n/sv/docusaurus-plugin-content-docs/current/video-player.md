@@ -16,7 +16,6 @@ En komponent för att spela upp mediefiler och innehåll från YouTube, SoundClo
 * __height__ | `(string|number)`: spelarens höjd. Default: `360`.
 * __width__ | `(string|number)`: spelarens bredd. Default: `640`.
 * __loop__ | `boolean`: kontrollerar om videon ska startas på nytt efter att den har spelats upp. Default: `false`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __startTime__ | `number`: Antal sekunder som videon ska börja, eller bråkdel om värdet är mellan 0 och 1.. Default: `none`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onEnded__ | `function`: callback som aktiveras när videon slutar. Default: `onEnded() {}`.

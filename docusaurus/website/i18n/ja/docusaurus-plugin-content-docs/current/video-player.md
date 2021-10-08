@@ -16,7 +16,6 @@ YouTube、SoundCloud、Vimeoのメディアファイルやコンテンツを再�
 * __height__ | `(string|number)`: 選手の身長. Default: `360`.
 * __width__ | `(string|number)`: プレーヤーの幅. Default: `640`.
 * __loop__ | `boolean`: 動画を再生した後に新たに動画を開始するかどうかを制御します。. Default: `false`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __startTime__ | `number`: 動画を開始する秒数、0 から 1 の間の値の場合は端数。. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onEnded__ | `function`: コールバック. Default: `onEnded() {}`.

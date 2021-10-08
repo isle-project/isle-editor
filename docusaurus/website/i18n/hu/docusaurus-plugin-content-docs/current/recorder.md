@@ -15,7 +15,6 @@ ISLE komponens hang, képernyő és videó rögzítésére.
 * __downloadable__ | `boolean`: jelzi, hogy a felhasználók letölthetik-e a felvételt.. Default: `false`.
 * __uploadable__ | `boolean`: jelzi, hogy a felhasználóknak fel kell-e tölteniük a felvételt a szerverre.. Default: `false`.
 * __bitsPerSecond__ | `number`: bit per másodperc. Default: `1280000`.
-* __voiceID__ | `string`: hangvezérlés azonosítója. Default: `none`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 
 

@@ -9,7 +9,6 @@ Komponentti, joka näyttää nykyisen sään tietyssä paikassa.
 ## Vaihtoehdot
 
 * __location__ | `string`: sijainnin nimi. Default: `none`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 
 

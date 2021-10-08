@@ -19,7 +19,6 @@ ISLE komponents, kas atveido jautājumu ar vairākiem atbilžu variantiem. Tā a
 * __provideFeedback__ | `string`: vai nu `pilns`, `papildus`, `inkrementāls`, vai `neviens`. Ja `pilna`, pēc tam, kad skolēni ir iesnieguši savas atbildes, tiek parādīta atgriezeniskā saite, ieskaitot pareizo atbildi; ja `pilnīga`, atgriezeniskā saite tiek parādīta tikai par izvēlēto atbildi; ja `viena`, atgriezeniskā saite netiek atgriezta.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrolē, vai atspējot iesniegšanas paziņojumus.. Default: `false`.
 * __displaySolution__ | `boolean`: kontrolē, vai risinājums tiek parādīts priekšā.. Default: `false`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __until__ | `Date`: laiks, līdz skolēniem jāļauj iesniegt atbildes. Default: `none`.
 * __points__ | `number`: maksimālais punktu skaits, ko piešķir klasifikācijā. Default: `10`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.

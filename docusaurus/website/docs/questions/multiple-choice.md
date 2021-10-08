@@ -19,7 +19,6 @@ An ISLE component that renders a multiple choice question. It supports the case 
 * __provideFeedback__ | `string`: either `full`, `incremental`, or `none`. If `full`, feedback including the correct answer is displayed after learners submit their answers; if `incremental`, feedback is only displayed for the selected answer; if `none`, no feedback is returned. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controls whether to disable submission notifications. Default: `false`.
 * __displaySolution__ | `boolean`: controls whether the solution is displayed upfront. Default: `false`.
-* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
 * __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

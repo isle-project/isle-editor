@@ -9,7 +9,6 @@ Eine Komponente zur Anzeige des aktuellen Wetters an einem bestimmten Ort.
 ## Optionen
 
 * __location__ | `string`: Standortname. Default: `none`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 
 

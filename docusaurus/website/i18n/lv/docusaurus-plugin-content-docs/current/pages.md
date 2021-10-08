@@ -14,7 +14,6 @@ ISLE lapu kārtošanas komponents, kas ļauj lietotājam soli pa solim pāriet l
 * __pagination__ | `string`: vai lappušu numerācija tiks parādīta `top`, `bottom` vai `bottom`.. Default: `'top'`.
 * __size__ | `string`: Lapošanas pogas lielums (vai nu `default`, `lg`, vai `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: konteinera maksimālais augstums. Ja iegultā lapa ir augstāka, tiek pievienota vertikālā ritināšanas josla.. Default: `none`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onSelect__ | `function`: Funkcija, kas tiek izsaukta, kad tiek mainīta aktīvā maiņa. Kā vienīgo parametru saņem jauno aktīvās lapas indeksu.. Default: `onSelect() {}`.
 

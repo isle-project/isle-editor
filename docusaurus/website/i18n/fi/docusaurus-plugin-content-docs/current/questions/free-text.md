@@ -23,7 +23,6 @@ ISLE-komponentti kysymyksille, joihin oppilaiden olisi vastattava vapaan tekstin
 * __resubmissionMsg__ | `string`: ilmoitus, joka näytetään kaikista ensimmäisen lähetyksen jälkeisistä lähetyksistä.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: ilmoittaa, näytetäänkö palaute, joka sisältää oikean vastauksen, sen jälkeen, kun oppijat ovat lähettäneet vastauksensa.. Default: `true`.
 * __maxlength__ | `number`: suurin sallittu merkkien määrä. Default: `2500`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __until__ | `Date`: aika, jonka kuluessa opiskelijoiden olisi annettava antaa vastauksensa. Default: `none`.
 * __points__ | `number`: luokittelussa annettavien pisteiden enimmäismäärä. Default: `10`.
 * __className__ | `string`: luokan nimi. Default: `''`.

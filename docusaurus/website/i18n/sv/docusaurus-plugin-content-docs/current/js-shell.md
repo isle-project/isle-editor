@@ -21,7 +21,6 @@ Ett interaktivt Javascript-skal som kan användas för att utföra Javascript-ko
 * __onChange__ | `function`: callback som aktiveras när inmatningen i textfältet ändras. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback som aktiveras när knappen "Utvärdera" klickas.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: objekt med variabler som ska göras tillgängliga för utvärderad `code`.. Default: `none`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 
 
 ## Exempel

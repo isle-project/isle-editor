@@ -15,7 +15,6 @@ sidebar_label: Recorder
 * __downloadable__ | `boolean`: посочва дали потребителите трябва да могат да изтеглят записа.. Default: `false`.
 * __uploadable__ | `boolean`: посочва дали потребителите трябва да могат да качват записа на сървъра.. Default: `false`.
 * __bitsPerSecond__ | `number`: битове в секунда. Default: `1280000`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 
 

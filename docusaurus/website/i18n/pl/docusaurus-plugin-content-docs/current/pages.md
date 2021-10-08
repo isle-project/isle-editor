@@ -14,7 +14,6 @@ Komponent paginacyjny ISLE, który pozwala użytkownikowi na przejście przez se
 * __pagination__ | `string`: czy pokazywać paginację albo na `top`, `bottom`, albo na `both`. Default: `'top'`.
 * __size__ | `string`: rozmiar przycisków paginacji (albo `default`, `lg`, albo `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: maksymalna wysokość kontenera. Jeśli osadzona strona jest wyższa, dodawany jest pionowy pasek przewijania. Default: `none`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onSelect__ | `function`: Funkcja wywoływana po zmianie aktywnej zmiany. Otrzymuje nowy aktywny indeks strony jako jedyny parametr. Default: `onSelect() {}`.
 

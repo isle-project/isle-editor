@@ -15,7 +15,6 @@ sidebar_label: Recorder
 * __downloadable__ | `boolean`: は、ユーザーが録画をダウンロードできるかどうかを示します。. Default: `false`.
 * __uploadable__ | `boolean`: は、ユーザーが録画をサーバーにアップロードできるかどうかを示します。. Default: `false`.
 * __bitsPerSecond__ | `number`: ビット毎秒. Default: `1280000`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 

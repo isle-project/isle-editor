@@ -12,7 +12,6 @@ sidebar_label: Text
 * __className__ | `string`: 班名. Default: `''`.
 * __inline__ | `boolean`: 控制是否将Markdown渲染为内联文本。. Default: `false`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 
 
 ## 例子

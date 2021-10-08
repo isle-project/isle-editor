@@ -9,7 +9,6 @@ O componentă pentru afișarea vremii curente într-o locație desemnată.
 ## Opțiuni
 
 * __location__ | `string`: numele locației. Default: `none`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 
 

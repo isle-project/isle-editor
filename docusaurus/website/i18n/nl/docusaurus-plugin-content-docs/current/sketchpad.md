@@ -31,7 +31,6 @@ Een schetsblok voor het maken van aantekeningen op collegeplaten of lege pagina'
 * __dynamicallyHideButtons__ | `boolean`: bepaalt of de knoppen moeten worden verborgen als de breedte van de werkbalk niet voldoende is (anders wordt er een nieuwe regel gestart). Default: `false`.
 * __transmitOwner__ | `boolean`: de vraag of de acties van de eigenaar in real time naar andere gebruikers moeten worden doorgestuurd. Default: `true`.
 * __groupMode__ | `boolean`: controleert of alle handelingen van de gebruiker aan iedereen worden doorgegeven. Default: `false`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onChange__ | `function`: callback aangeroepen wanneer een nieuw lijnelement wordt getekend. Default: `onChange() {}`.
 

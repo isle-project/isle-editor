@@ -19,7 +19,6 @@ ISLE komponent, mis esitab valikvastustega küsimuse. See toetab juhtumeid, kus 
 * __provideFeedback__ | `string`: kas "täielik", "täiendav" või "ei ole". Kui `täielik`, kuvatakse tagasiside koos õige vastusega pärast seda, kui õppijad on oma vastused esitanud; kui `täielik`, kuvatakse tagasiside ainult valitud vastuse kohta; kui `ei ole`, tagasisidet ei tagastata.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrollib, kas keelata esitamisteated. Default: `false`.
 * __displaySolution__ | `boolean`: kontrollib, kas lahendus kuvatakse ettepoole. Default: `false`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __until__ | `Date`: aega, kuni õpilastel peaks olema lubatud vastuseid esitada. Default: `none`.
 * __points__ | `number`: hindamisel antavate punktide maksimaalne arv. Default: `10`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.

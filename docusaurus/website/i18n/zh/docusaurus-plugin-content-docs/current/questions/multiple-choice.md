@@ -19,7 +19,6 @@ sidebar_label: Multiple Choice Question
 * __provideFeedback__ | `string`: "full"、"incremental "或 "none"。如果 "完整"，则在学习者提交答案后显示包括正确答案在内的反馈；如果 "递增"，则只显示选定答案的反馈；如果 "无"，则不返回任何反馈。. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: 控制是否禁用提交通知. Default: `false`.
 * __displaySolution__ | `boolean`: 控制是否在前面显示解决方案. Default: `false`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __until__ | `Date`: 允许学生提交答案的时间. Default: `none`.
 * __points__ | `number`: 最高分. Default: `10`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.

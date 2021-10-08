@@ -23,7 +23,6 @@ Komponenta ISLE za vprašanja, pri katerih morajo učenci odgovarjati v obliki p
 * __resubmissionMsg__ | `string`: obvestilo, ki se prikaže za vse predložitve po prvi.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: označuje, ali naj se po tem, ko učenci pošljejo svoje odgovore, prikaže povratna informacija, vključno s pravilnim odgovorom.. Default: `true`.
 * __maxlength__ | `number`: največje dovoljeno število znakov. Default: `2500`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __until__ | `Date`: čas, do katerega lahko učenci oddajo odgovore.. Default: `none`.
 * __points__ | `number`: največje število točk, ki se dodelijo pri razvrščanju. Default: `10`.
 * __className__ | `string`: ime razreda. Default: `''`.

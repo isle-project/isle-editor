@@ -14,7 +14,6 @@ Un composant de pagination ISLE qui permet à l'utilisateur de se déplacer dans
 * __pagination__ | `string`: s'il faut indiquer la pagination soit sur le `top`, soit sur le `bottom`, soit sur les `both`. Default: `'top'`.
 * __size__ | `string`: la taille des boutons de pagination (soit `default`, `lg` ou `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: la hauteur maximale du conteneur. Si une page intégrée est plus haute, une barre de défilement verticale est ajoutée. Default: `none`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onSelect__ | `function`: Fonction invoquée lorsque le changement actif est modifié. Reçoit le nouvel index de la page active comme seul paramètre. Default: `onSelect() {}`.
 

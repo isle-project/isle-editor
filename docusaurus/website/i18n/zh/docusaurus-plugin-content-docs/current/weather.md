@@ -9,7 +9,6 @@ sidebar_label: Weather
 ## 选项
 
 * __location__ | `string`: 地名. Default: `none`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 

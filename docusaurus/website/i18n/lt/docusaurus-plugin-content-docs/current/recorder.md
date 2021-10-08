@@ -15,7 +15,6 @@ ISLE komponentas, skirtas garso, ekrano ir vaizdo įrašymui.
 * __downloadable__ | `boolean`: nurodo, ar naudotojai turėtų galėti atsisiųsti įrašą.. Default: `false`.
 * __uploadable__ | `boolean`: nurodo, ar naudotojai turėtų galėti įkelti įrašą į serverį.. Default: `false`.
 * __bitsPerSecond__ | `number`: bitų per sekundę. Default: `1280000`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 
 

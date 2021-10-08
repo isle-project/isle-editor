@@ -19,7 +19,6 @@ En ISLE-komponent som visar en flervalsfråga. Den stöder fall där eleven mås
 * __provideFeedback__ | `string`: antingen `full`, `incremental` eller `none`. Om `full`, visas återkoppling inklusive det korrekta svaret efter att eleverna skickat in sina svar; om `incremental`, visas återkoppling endast för det valda svaret; om `none`, returneras ingen återkoppling.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrollerar om anmälningar om inlämning ska inaktiveras. Default: `false`.
 * __displaySolution__ | `boolean`: styr om lösningen ska visas i förväg. Default: `false`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __until__ | `Date`: tid fram till dess att eleverna ska få lämna in sina svar. Default: `none`.
 * __points__ | `number`: Maximalt antal poäng som tilldelas vid betygsättning.. Default: `10`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.

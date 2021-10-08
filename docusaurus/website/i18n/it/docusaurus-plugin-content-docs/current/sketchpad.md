@@ -31,7 +31,6 @@ Un blocco da disegno per prendere appunti sulle diapositive delle lezioni o sull
 * __dynamicallyHideButtons__ | `boolean`: controlla se iniziare a nascondere i pulsanti quando la larghezza della barra degli strumenti non è sufficiente (altrimenti verrà avviata una nuova linea). Default: `false`.
 * __transmitOwner__ | `boolean`: se le azioni del proprietario debbano essere trasmesse ad altri utenti in tempo reale. Default: `true`.
 * __groupMode__ | `boolean`: controlla se tutte le azioni dell'utente vengono trasmesse a tutti gli altri. Default: `false`.
-* __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onChange__ | `function`: richiamata ogni volta che viene disegnato un nuovo elemento di linea. Default: `onChange() {}`.
 

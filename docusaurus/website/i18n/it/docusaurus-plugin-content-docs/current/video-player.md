@@ -16,7 +16,6 @@ Un componente per la riproduzione di file e contenuti multimediali da YouTube, S
 * __height__ | `(string|number)`: altezza del giocatore. Default: `360`.
 * __width__ | `(string|number)`: larghezza del giocatore. Default: `640`.
 * __loop__ | `boolean`: controlla se avviare nuovamente il video dopo che è stato riprodotto. Default: `false`.
-* __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 * __startTime__ | `number`: numero di secondi a cui avviare il video, o frazione se il valore è compreso tra 0 e 1. Default: `none`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onEnded__ | `function`: richiamata una volta terminato il video. Default: `onEnded() {}`.

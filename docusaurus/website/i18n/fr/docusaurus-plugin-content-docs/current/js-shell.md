@@ -21,7 +21,6 @@ Un shell Javascript interactif qui peut être utilisé pour exécuter des comman
 * __onChange__ | `function`: rappel invoqué à chaque modification de la saisie du champ de texte. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: rappel invoqué à chaque fois que le bouton "Évaluer" est cliqué. Default: `onEvaluate() {}`.
 * __vars__ | `object`: objet scope avec des variables qui devraient être mises à la disposition du "code" évalué. Default: `none`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 
 
 ## Exemples

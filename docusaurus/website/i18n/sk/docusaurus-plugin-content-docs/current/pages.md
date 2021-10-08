@@ -14,7 +14,6 @@ Komponent stránkovania ISLE, ktorý umožňuje používateľovi prechádzať po
 * __pagination__ | `string`: či sa má stránkovanie zobrazovať buď na `top`, `bottom` alebo `both`.. Default: `'top'`.
 * __size__ | `string`: veľkosť tlačidiel stránkovania (buď `default`, `lg`, alebo `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: maximálna výška kontajnera. Ak je vložená stránka vyššia, pridá sa vertikálny posuvník. Default: `none`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 * __onSelect__ | `function`: Funkcia vyvolaná pri zmene aktívnej zmeny. Ako jediný parameter prijíma nový index aktívnej stránky. Default: `onSelect() {}`.
 

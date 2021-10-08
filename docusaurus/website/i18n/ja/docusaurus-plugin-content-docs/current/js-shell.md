@@ -21,7 +21,6 @@ JavaScript コマンドを実行するために使用できるインタラクテ
 * __onChange__ | `function`: テキストフィールドの入力が変更されるたびに呼び出されるコールバック. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: コールバックは `Evaluate` ボタンがクリックされるたびに呼び出されます。. Default: `onEvaluate() {}`.
 * __vars__ | `object`: 評価された `code` が利用できるようにすべき変数を持つスコープオブジェクト. Default: `none`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 
 
 ## 例としては、以下のようなものがあります。

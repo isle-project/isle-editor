@@ -21,7 +21,6 @@ sidebar_label: JavaScript Shell
 * __onChange__ | `function`: callback που καλείται κάθε φορά που αλλάζει η είσοδος του πεδίου κειμένου. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback που καλείται κάθε φορά που γίνεται κλικ στο κουμπί "Αξιολόγηση".. Default: `onEvaluate() {}`.
 * __vars__ | `object`: αντικείμενο εμβέλειας με μεταβλητές που θα πρέπει να είναι διαθέσιμες για την αξιολόγηση του "κώδικα. Default: `none`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 
 
 ## Παραδείγματα

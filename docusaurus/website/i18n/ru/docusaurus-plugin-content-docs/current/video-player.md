@@ -16,7 +16,6 @@ sidebar_label: Video Player
 * __height__ | `(string|number)`: рост игрока. Default: `360`.
 * __width__ | `(string|number)`: ширина игрока. Default: `640`.
 * __loop__ | `boolean`: контролирует, начинать ли видео заново после того, как оно было воспроизведено. Default: `false`.
-* __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 * __startTime__ | `number`: количество секунд, в течение которых будет запущено видео, или дробь, если значение от 0 до 1. Default: `none`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onEnded__ | `function`: обратный вызов по окончании видео. Default: `onEnded() {}`.

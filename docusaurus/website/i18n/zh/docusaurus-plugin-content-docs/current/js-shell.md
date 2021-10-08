@@ -21,7 +21,6 @@ sidebar_label: JavaScript Shell
 * __onChange__ | `function`: 每当文本字段输入发生变化时，就会调用回调。. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: 每当点击 "评价 "按钮时，就会调用回调。. Default: `onEvaluate() {}`.
 * __vars__ | `object`: 作用域对象，其中包含应提供给被评估的`code`的变量。. Default: `none`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 
 
 ## 例子

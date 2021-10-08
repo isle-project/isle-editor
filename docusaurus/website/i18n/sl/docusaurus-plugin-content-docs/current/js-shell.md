@@ -21,7 +21,6 @@ Interaktivna lupina Javascript, ki jo lahko uporabite za izvajanje ukazov JavaSc
 * __onChange__ | `function`: povratni klic, ki se sproži ob vsaki spremembi vnosa v besedilno polje.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: povratni klic, ki se sproži, ko je kliknjen gumb `Vrednotenje`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: predmet scope s spremenljivkami, ki naj bi bile na voljo ovrednotenemu `code`. Default: `none`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 
 
 ## Primeri

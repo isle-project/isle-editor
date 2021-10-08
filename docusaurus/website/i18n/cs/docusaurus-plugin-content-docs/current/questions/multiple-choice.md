@@ -19,7 +19,6 @@ Komponenta ISLE, která vykresluje otázku s výběrem odpovědi. Podporuje př�
 * __provideFeedback__ | `string`: buď `plný`, `inkrementální`, nebo `žádný`. Pokud `full`, zobrazí se po odeslání odpovědi zpětná vazba včetně správné odpovědi; pokud `incremental`, zobrazí se zpětná vazba pouze pro vybranou odpověď; pokud `none`, nezobrazí se žádná zpětná vazba.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontroluje, zda se mají vypnout oznámení o odeslání. Default: `false`.
 * __displaySolution__ | `boolean`: řídí, zda se řešení zobrazí předem.. Default: `false`.
-* __voiceID__ | `string`: identifikátor hlasového ovládání. Default: `none`.
 * __until__ | `Date`: čas, do kdy by studenti měli mít možnost odevzdat odpovědi. Default: `none`.
 * __points__ | `number`: maximální počet bodů udělených při klasifikaci. Default: `10`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.

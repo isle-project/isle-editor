@@ -21,7 +21,6 @@ En interaktiv Javascript-shell, der kan bruges til at udføre JavaScript-kommand
 * __onChange__ | `function`: callback, der påkaldes, når input i tekstfeltet ændres. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback, der påkaldes, når der klikkes på knappen `Evaluér`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope-objekt med variabler, der skal stilles til rådighed for evalueret `code`.. Default: `none`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 
 
 ## Eksempler

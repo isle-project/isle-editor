@@ -31,7 +31,6 @@ Piirustuslehtiö luentokalvoille tai tyhjille sivuille tehtäviin muistiinpanoih
 * __dynamicallyHideButtons__ | `boolean`: ohjaa, aloitetaanko painikkeiden piilottaminen, kun työkalurivin leveys ei riitä (muuten aloitetaan uusi rivi).. Default: `false`.
 * __transmitOwner__ | `boolean`: välitetäänkö omistajan toimet muille käyttäjille reaaliaikaisesti.. Default: `true`.
 * __groupMode__ | `boolean`: valvoo, välitetäänkö kaikki käyttäjän toimet kaikille muille.. Default: `false`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onChange__ | `function`: callback, joka käynnistyy aina kun uusi viivaelementti piirretään.. Default: `onChange() {}`.
 

@@ -31,7 +31,6 @@ sidebar_label: Sketchpad
 * __dynamicallyHideButtons__ | `boolean`: ελέγχει αν θα αρχίσει η απόκρυψη των κουμπιών όταν το πλάτος της γραμμής εργαλείων δεν επαρκεί (διαφορετικά θα ξεκινήσει μια νέα γραμμή). Default: `false`.
 * __transmitOwner__ | `boolean`: αν οι ενέργειες του ιδιοκτήτη θα πρέπει να διαβιβάζονται σε άλλους χρήστες σε πραγματικό χρόνο. Default: `true`.
 * __groupMode__ | `boolean`: ελέγχει αν οι ενέργειες όλων των χρηστών μεταδίδονται σε όλους τους άλλους. Default: `false`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 * __onChange__ | `function`: callback που καλείται κάθε φορά που σχεδιάζεται ένα νέο στοιχείο γραμμής. Default: `onChange() {}`.
 

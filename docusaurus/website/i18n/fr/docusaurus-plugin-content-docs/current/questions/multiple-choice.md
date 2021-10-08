@@ -19,7 +19,6 @@ Un composant ISLE qui rend une question à choix multiple. Il permet à l'appren
 * __provideFeedback__ | `string`: soit "complète", "incrémentielle" ou "aucune". Si "complet", le feedback incluant la bonne réponse est affiché après que les apprenants aient soumis leurs réponses ; si "incrémentiel", le feedback n'est affiché que pour la réponse sélectionnée ; si "aucun", aucun feedback n'est renvoyé. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: contrôle s'il faut désactiver les notifications de soumission. Default: `false`.
 * __displaySolution__ | `boolean`: contrôle si la solution est affichée au préalable. Default: `false`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __until__ | `Date`: le temps nécessaire pour permettre aux étudiants de soumettre des réponses. Default: `none`.
 * __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.

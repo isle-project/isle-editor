@@ -21,7 +21,6 @@ Interaktyvioji "Javascript" programinė įranga, kurią galima naudoti "JavaScri
 * __onChange__ | `function`: atgalinis skambutis, inicijuojamas, kai pasikeičia teksto lauko įvestis.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: atgalinis skambutis, inicijuojamas, kai paspaudžiamas mygtukas `Vertinti`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: aprėpties objektas su kintamaisiais, kurie turėtų būti prieinami įvertintam `kodui`.. Default: `none`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 
 
 ## Pavyzdžiai

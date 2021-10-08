@@ -16,7 +16,6 @@ Komponents, kas paredzēts multivides failu un satura atskaņošanai no pakalpoj
 * __height__ | `(string|number)`: spēlētāja augstums. Default: `360`.
 * __width__ | `(string|number)`: atskaņotāja platums. Default: `640`.
 * __loop__ | `boolean`: kontrolē, vai pēc video atskaņošanas to sākt no jauna.. Default: `false`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __startTime__ | `number`: sekunžu skaits, no kura sākt video, vai daļa, ja vērtība ir no 0 līdz 1.. Default: `none`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onEnded__ | `function`: atsauces zvans, kas tiek izsaukts, kad video beidzas. Default: `onEnded() {}`.

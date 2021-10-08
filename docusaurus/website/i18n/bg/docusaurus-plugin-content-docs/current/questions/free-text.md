@@ -23,7 +23,6 @@ sidebar_label: Free Text Question
 * __resubmissionMsg__ | `string`: известие, показвано за всички заявки след първата.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: посочва дали да се показва обратна връзка, включваща правилния отговор, след като обучаемите изпратят отговорите си.. Default: `true`.
 * __maxlength__ | `number`: максимален допустим брой символи. Default: `2500`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 * __until__ | `Date`: времето, до което учениците трябва да могат да подават отговори. Default: `none`.
 * __points__ | `number`: максимален брой точки, присъждани при класирането. Default: `10`.
 * __className__ | `string`: име на класа. Default: `''`.

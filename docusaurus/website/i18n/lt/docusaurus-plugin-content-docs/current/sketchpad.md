@@ -31,7 +31,6 @@ Piešimo bloknotas, skirtas užsirašyti paskaitų skaidres ar tuščius puslapi
 * __dynamicallyHideButtons__ | `boolean`: kontroliuoja, ar pradėti slėpti mygtukus, kai įrankių juostos plotis nepakankamas (priešingu atveju bus pradėta kurti nauja eilutė).. Default: `false`.
 * __transmitOwner__ | `boolean`: ar savininko veiksmai turėtų būti perduodami kitiems naudotojams realiuoju laiku.. Default: `true`.
 * __groupMode__ | `boolean`: kontroliuoja, ar visi naudotojo veiksmai perduodami visiems kitiems.. Default: `false`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 * __onChange__ | `function`: atgalinis iškvietimas, inicijuojamas kiekvieną kartą, kai nubrėžiamas naujas linijos elementas.. Default: `onChange() {}`.
 

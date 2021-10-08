@@ -21,7 +21,6 @@ Eine interaktive Javascript-Shell, die zum Ausführen von Javascript-Befehlen ve
 * __onChange__ | `function`: Callback, der bei jeder Änderung der Textfeldeingabe aufgerufen wird. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: Callback, der immer dann aufgerufen wird, wenn die Schaltfläche `Evaluate` angeklickt wird. Default: `onEvaluate() {}`.
 * __vars__ | `object`: Scope-Objekt mit Variablen, die dem ausgewerteten `Code` zur Verfügung gestellt werden sollen. Default: `none`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 
 
 ## Beispiele

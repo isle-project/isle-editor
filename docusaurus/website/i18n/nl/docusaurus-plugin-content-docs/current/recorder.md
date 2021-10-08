@@ -15,7 +15,6 @@ Een ISLE-component voor het opnemen van audio, scherm en video.
 * __downloadable__ | `boolean`: geeft aan of gebruikers in staat moeten zijn om de opname te downloaden. Default: `false`.
 * __uploadable__ | `boolean`: geeft aan of gebruikers in staat moeten zijn om de opname te uploaden naar de server. Default: `false`.
 * __bitsPerSecond__ | `number`: bits per seconde. Default: `1280000`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 

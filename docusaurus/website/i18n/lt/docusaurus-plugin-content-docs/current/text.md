@@ -12,7 +12,6 @@ Teksto komponentas, kuris leidžia atvaizduoti neapdorotą tekstą kaip "Markdow
 * __className__ | `string`: klasių pavadinimai. Default: `''`.
 * __inline__ | `boolean`: kontroliuoja, ar Markdown atvaizduoti kaip įterptinį tekstą.. Default: `false`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 
 
 ## Pavyzdžiai

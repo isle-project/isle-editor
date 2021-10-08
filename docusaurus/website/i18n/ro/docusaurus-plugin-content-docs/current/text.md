@@ -12,7 +12,6 @@ Componenta Text, care permite redarea textului brut ca Markdown și permite cont
 * __className__ | `string`: nume de clase. Default: `''`.
 * __inline__ | `boolean`: controlează dacă se redă Markdown ca text în linie. Default: `false`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 
 
 ## Exemple

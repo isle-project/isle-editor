@@ -16,7 +16,6 @@ Komponenta pro přehrávání mediálních souborů a obsahu z YouTube, SoundClo
 * __height__ | `(string|number)`: výška hráče. Default: `360`.
 * __width__ | `(string|number)`: šířka přehrávače. Default: `640`.
 * __loop__ | `boolean`: ovládá, zda se má video po přehrání spustit znovu.. Default: `false`.
-* __voiceID__ | `string`: identifikátor hlasového ovládání. Default: `none`.
 * __startTime__ | `number`: počet sekund, od kterých se má video spustit, nebo zlomek, pokud je hodnota mezi 0 a 1.. Default: `none`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
 * __onEnded__ | `function`: zpětné volání vyvolané po skončení videa. Default: `onEnded() {}`.

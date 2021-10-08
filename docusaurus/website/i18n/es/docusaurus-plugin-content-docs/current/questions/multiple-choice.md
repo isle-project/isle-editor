@@ -19,7 +19,6 @@ Un componente de ISLE que hace una pregunta de opción múltiple. Apoya el caso 
 * __provideFeedback__ | `string`: ya sea "completo", "encrementado", o "ninguno". Si es "completa", la retroalimentación incluyendo la respuesta correcta se muestra después de que los estudiantes envían sus respuestas; si es "incremental", la retroalimentación sólo se muestra para la respuesta seleccionada; si es "ninguna", no se devuelve ninguna retroalimentación. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controla si se desactivan las notificaciones de presentación. Default: `false`.
 * __displaySolution__ | `boolean`: controla si la solución se muestra por adelantado. Default: `false`.
-* __voiceID__ | `string`: identificador de control de voz. Default: `none`.
 * __until__ | `Date`: tiempo hasta que los estudiantes puedan presentar sus respuestas. Default: `none`.
 * __points__ | `number`: número máximo de puntos otorgados en la calificación. Default: `10`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.

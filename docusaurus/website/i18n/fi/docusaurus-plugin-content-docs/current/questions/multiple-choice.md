@@ -19,7 +19,6 @@ ISLE-komponentti, joka renderöi monivalintakysymyksen. Se tukee tapauksia, jois
 * __provideFeedback__ | `string`: joko "full", "incremental" tai "noone". Jos `full`, palaute, joka sisältää oikean vastauksen, näytetään sen jälkeen, kun oppijat ovat lähettäneet vastauksensa; jos `incremental`, palaute näytetään vain valitusta vastauksesta; jos `none`, palautetta ei palauteta.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: valvoo, poistetaanko lähetysilmoitukset käytöstä. Default: `false`.
 * __displaySolution__ | `boolean`: ohjaa, näytetäänkö ratkaisu etukäteen. Default: `false`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __until__ | `Date`: aika, jonka kuluessa opiskelijoiden olisi annettava antaa vastauksensa. Default: `none`.
 * __points__ | `number`: luokittelussa annettavien pisteiden enimmäismäärä. Default: `10`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.

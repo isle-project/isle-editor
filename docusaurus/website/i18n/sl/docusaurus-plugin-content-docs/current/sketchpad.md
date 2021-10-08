@@ -31,7 +31,6 @@ Risalna skica za zapisovanje diapozitivov na predavanjih ali praznih straneh.
 * __dynamicallyHideButtons__ | `boolean`: nadzoruje, ali se gumbi začnejo skrivati, če širina orodne vrstice ni zadostna (v nasprotnem primeru se začne nova vrstica).. Default: `false`.
 * __transmitOwner__ | `boolean`: ali naj se dejanja lastnika posredujejo drugim uporabnikom v realnem času.. Default: `true`.
 * __groupMode__ | `boolean`: nadzoruje, ali se vsa uporabnikova dejanja posredujejo vsem drugim.. Default: `false`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onChange__ | `function`: povratni klic, ki se sproži, ko je narisan nov element črte.. Default: `onChange() {}`.
 

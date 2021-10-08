@@ -31,7 +31,6 @@ Un bloc de dibujo para tomar notas de las diapositivas de la conferencia o de la
 * __dynamicallyHideButtons__ | `boolean`: controla si se debe empezar a ocultar los botones cuando el ancho de la barra de herramientas no es suficiente (de lo contrario, se iniciará una nueva línea). Default: `false`.
 * __transmitOwner__ | `boolean`: si las acciones de los propietarios deben ser transmitidas a otros usuarios en tiempo real. Default: `true`.
 * __groupMode__ | `boolean`: controla si todas las acciones del usuario se transmiten a todos los demás. Default: `false`.
-* __voiceID__ | `string`: identificador de control de voz. Default: `none`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __onChange__ | `function`: llamada de retorno cada vez que se dibuja un nuevo elemento de línea. Default: `onChange() {}`.
 

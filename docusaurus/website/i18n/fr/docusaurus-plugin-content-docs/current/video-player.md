@@ -16,7 +16,6 @@ Un composant permettant de lire des fichiers et du contenu multimédia de YouTub
 * __height__ | `(string|number)`: la hauteur du joueur. Default: `360`.
 * __width__ | `(string|number)`: largeur du joueur. Default: `640`.
 * __loop__ | `boolean`: contrôle si la vidéo doit être relancée après sa diffusion. Default: `false`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __startTime__ | `number`: le nombre de secondes auxquelles il faut démarrer la vidéo, ou une fraction si la valeur est comprise entre 0 et 1. Default: `none`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onEnded__ | `function`: rappel invoqué une fois la vidéo terminée. Default: `onEnded() {}`.

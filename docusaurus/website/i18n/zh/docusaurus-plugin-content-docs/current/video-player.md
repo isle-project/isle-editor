@@ -16,7 +16,6 @@ sidebar_label: Video Player
 * __height__ | `(string|number)`: 球员身高. Default: `360`.
 * __width__ | `(string|number)`: 球员宽度. Default: `640`.
 * __loop__ | `boolean`: 控制是否在视频播放完毕后重新开始播放。. Default: `false`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __startTime__ | `number`: 视频开始的秒数，如果值在0和1之间，则为分数。. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onEnded__ | `function`: 视频结束后调用回调. Default: `onEnded() {}`.

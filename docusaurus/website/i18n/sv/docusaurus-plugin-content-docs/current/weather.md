@@ -9,7 +9,6 @@ En komponent för att visa det aktuella vädret på en bestämd plats.
 ## Alternativ
 
 * __location__ | `string`: platsens namn. Default: `none`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 
 

@@ -12,7 +12,6 @@ sidebar_label: Text
 * __className__ | `string`: имена на класове. Default: `''`.
 * __inline__ | `boolean`: контролира дали Markdown да се визуализира като вграден текст. Default: `false`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 
 
 ## Примери

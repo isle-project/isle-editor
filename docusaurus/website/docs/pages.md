@@ -14,7 +14,6 @@ An ISLE pagination component that allows the user to step through a sequence of 
 * __pagination__ | `string`: whether to show the pagination either on the `top`, `bottom`, or `both`. Default: `'top'`.
 * __size__ | `string`: size of the pagination buttons (either `default`, `lg`, or `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: the maximum height of the container. If an embedded page is taller, a vertical scrollbar is added. Default: `none`.
-* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onSelect__ | `function`: Function invoked when active change is changed. Receives the new active page index as a sole parameter. Default: `onSelect() {}`.
 

@@ -9,7 +9,6 @@ Um componente para exibir o tempo atual em um local designado.
 ## Opções
 
 * __location__ | `string`: nome do local. Default: `none`.
-* __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 
 

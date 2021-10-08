@@ -31,7 +31,6 @@ Un carnet de croquis pour la prise de notes sur les diapositives des conférence
 * __dynamicallyHideButtons__ | `boolean`: contrôle si les boutons doivent être masqués lorsque la largeur de la barre d'outils n'est pas suffisante (sinon, une nouvelle ligne sera lancée). Default: `false`.
 * __transmitOwner__ | `boolean`: si les actions du propriétaire doivent être transmises aux autres utilisateurs en temps réel. Default: `true`.
 * __groupMode__ | `boolean`: contrôle si toutes les actions de l'utilisateur sont transmises à tous les autres. Default: `false`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onChange__ | `function`: rappel invoqué à chaque fois qu'un nouvel élément de ligne est tracé. Default: `onChange() {}`.
 

@@ -12,7 +12,6 @@ Textkomponent, som gör det möjligt att visa rå text som Markdown och möjligg
 * __className__ | `string`: namn på klasser. Default: `''`.
 * __inline__ | `boolean`: kontrollerar om Markdown ska återges som inline-text eller inte. Default: `false`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 
 
 ## Exempel

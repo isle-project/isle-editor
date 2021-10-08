@@ -14,7 +14,6 @@ sidebar_label: Pages
 * __pagination__ | `string`: 是否在 "顶部"、"底部 "或 "两者 "显示分页。. Default: `'top'`.
 * __size__ | `string`: 分页按钮的大小（可以是 "default"、"lg "或 "sm"）。. Default: `'default'`.
 * __height__ | `(number|string)`: 容器的最大高度。如果嵌入式页面较高，则会添加一个垂直滚动条。. Default: `none`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onSelect__ | `function`: 主动变更时调用的函数。接收新的活动页面索引作为唯一参数。. Default: `onSelect() {}`.
 

@@ -16,7 +16,6 @@ Komponent na prehrávanie mediálnych súborov a obsahu zo služieb YouTube, Sou
 * __height__ | `(string|number)`: výška hráča. Default: `360`.
 * __width__ | `(string|number)`: šírka hráča. Default: `640`.
 * __loop__ | `boolean`: ovláda, či sa má video po prehrávaní spustiť odznova.. Default: `false`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 * __startTime__ | `number`: počet sekúnd, od ktorých sa má video spustiť, alebo zlomok, ak je hodnota medzi 0 a 1. Default: `none`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 * __onEnded__ | `function`: spätné volanie vyvolané po skončení videa. Default: `onEnded() {}`.

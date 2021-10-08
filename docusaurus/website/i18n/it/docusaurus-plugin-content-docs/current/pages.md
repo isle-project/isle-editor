@@ -14,7 +14,6 @@ Un componente di paginazione ISLE che permette all'utente di scorrere una sequen
 * __pagination__ | `string`: se mostrare la paginazione sia sul "sopra", "sotto" o "entrambi". Default: `'top'`.
 * __size__ | `string`: dimensione dei pulsanti di paginazione (sia `default`, `lg`, o `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: l'altezza massima del contenitore. Se una pagina incorporata è più alta, viene aggiunta una barra di scorrimento verticale. Default: `none`.
-* __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onSelect__ | `function`: Funzione invocata in caso di modifica della modifica attiva. Riceve il nuovo indice di pagina attivo come unico parametro. Default: `onSelect() {}`.
 

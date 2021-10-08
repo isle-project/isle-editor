@@ -31,7 +31,6 @@ Ein Zeichnungsskizzenblock für Notizen auf Vorlesungsfolien oder leeren Seiten.
 * __dynamicallyHideButtons__ | `boolean`: steuert, ob Schaltflächen ausgeblendet werden sollen, wenn die Breite der Symbolleiste nicht ausreicht (andernfalls wird eine neue Zeile begonnen). Default: `false`.
 * __transmitOwner__ | `boolean`: ob Besitzeraktionen in Echtzeit an andere Benutzer übertragen werden sollen. Default: `true`.
 * __groupMode__ | `boolean`: steuert, ob alle Aktionen des Benutzers an alle anderen übertragen werden. Default: `false`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onChange__ | `function`: Callback, der immer dann aufgerufen wird, wenn ein neues Linienelement gezeichnet wird. Default: `onChange() {}`.
 

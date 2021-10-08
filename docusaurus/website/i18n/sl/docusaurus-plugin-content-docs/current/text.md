@@ -12,7 +12,6 @@ Besedilna komponenta, ki omogoča upodabljanje surovega besedila v obliki Markdo
 * __className__ | `string`: imena razredov. Default: `''`.
 * __inline__ | `boolean`: nadzira, ali naj se Markdown prikaže kot besedilo v vrstici.. Default: `false`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 
 
 ## Primeri

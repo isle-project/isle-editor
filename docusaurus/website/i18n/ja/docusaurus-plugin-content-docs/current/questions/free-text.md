@@ -23,7 +23,6 @@ sidebar_label: Free Text Question
 * __resubmissionMsg__ | `string`: 以後の投稿通知. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: は、学習者が解答を提出した後に、正解を含むフィードバックを表示するかどうかを指定します。. Default: `true`.
 * __maxlength__ | `number`: 最大許容文字数. Default: `2500`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __until__ | `Date`: 学生が回答を提出するまでの時間. Default: `none`.
 * __points__ | `number`: 採点点数. Default: `10`.
 * __className__ | `string`: クラス名. Default: `''`.

@@ -31,7 +31,6 @@ Zīmēšanas blociņš piezīmju pierakstam uz lekciju slaidiem vai tukšām lap
 * __dynamicallyHideButtons__ | `boolean`: kontrolē, vai sākt slēpt pogas, ja rīkjoslas platums nav pietiekams (pretējā gadījumā tiks sākta jauna rinda).. Default: `false`.
 * __transmitOwner__ | `boolean`: vai īpašnieka darbības jāpārraida citiem lietotājiem reāllaikā.. Default: `true`.
 * __groupMode__ | `boolean`: kontrolē, vai visas lietotāja darbības tiek pārsūtītas visiem pārējiem.. Default: `false`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onChange__ | `function`: atsauces zvans, kas tiek izsaukts ikreiz, kad tiek zīmēts jauns līnijas elements.. Default: `onChange() {}`.
 

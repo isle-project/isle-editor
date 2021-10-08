@@ -14,7 +14,6 @@ ISLE-sivukomponentti, jonka avulla käyttäjä voi siirtyä sivusarjan läpi.
 * __pagination__ | `string`: näytetäänkö sivunumerointi joko `top`, `bottom` vai `both`.. Default: `'top'`.
 * __size__ | `string`: sivunumeropainikkeiden koko (joko `default`, `lg` tai `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: säiliön enimmäiskorkeus. Jos upotettu sivu on korkeampi, lisätään pystysuora vierityspalkki.. Default: `none`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onSelect__ | `function`: Toiminto, jota kutsutaan, kun aktiivinen muutos on muutettu. Vastaanottaa ainoana parametrina uuden aktiivisen sivun indeksin.. Default: `onSelect() {}`.
 

@@ -14,7 +14,6 @@ Egy ISLE lapozási komponens, amely lehetővé teszi a felhasználó számára, 
 * __pagination__ | `string`: hogy a lapozás a `top`, `bottom` vagy `both` oldalon jelenjen meg.. Default: `'top'`.
 * __size__ | `string`: a lapozási gombok mérete (vagy `default`, `lg`, vagy `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: a tartály maximális magassága. Ha egy beágyazott oldal magasabb, a rendszer függőleges görgetősávot ad hozzá.. Default: `none`.
-* __voiceID__ | `string`: hangvezérlés azonosító. Default: `none`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onSelect__ | `function`: Funkció, amelyet az aktív változás megváltoztatásakor hívnak meg. Egyetlen paraméterként az új aktív oldal indexét kapja.. Default: `onSelect() {}`.
 

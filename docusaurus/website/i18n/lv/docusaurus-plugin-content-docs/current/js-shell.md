@@ -21,7 +21,6 @@ Interaktīvs Javascript apvalks, ko var izmantot JavaScript komandu izpildei. Ap
 * __onChange__ | `function`: atsauces zvans, kas tiek izsaukts ikreiz, kad mainās teksta lauka ievade.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: atgriezeniskais zvans, kas tiek izsaukts, kad tiek nospiesta poga `Izvērtēt`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope objekts ar mainīgajiem, kas jādara pieejami novērtētajam `code`.. Default: `none`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 
 
 ## Piemēri

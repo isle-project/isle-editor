@@ -15,7 +15,6 @@ O componentă ISLE pentru înregistrarea audio, a ecranului și video.
 * __downloadable__ | `boolean`: indică dacă utilizatorii ar trebui să poată descărca înregistrarea. Default: `false`.
 * __uploadable__ | `boolean`: indică dacă utilizatorii ar trebui să poată încărca înregistrarea pe server. Default: `false`.
 * __bitsPerSecond__ | `number`: biți pe secundă. Default: `1280000`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 
 

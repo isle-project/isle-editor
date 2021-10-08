@@ -15,7 +15,6 @@ Komponenta ISLE za snemanje zvoka, zaslona in videoposnetkov.
 * __downloadable__ | `boolean`: označuje, ali naj imajo uporabniki možnost prenosa posnetka.. Default: `false`.
 * __uploadable__ | `boolean`: označuje, ali lahko uporabniki posnetek prenesejo na strežnik.. Default: `false`.
 * __bitsPerSecond__ | `number`: bitov na sekundo. Default: `1280000`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 
 

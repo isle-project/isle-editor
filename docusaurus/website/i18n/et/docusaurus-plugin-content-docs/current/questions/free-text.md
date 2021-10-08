@@ -23,7 +23,6 @@ ISLE-komponent küsimuste jaoks, millele õpilased peaksid vastama vaba tekstina
 * __resubmissionMsg__ | `string`: teatis, mis kuvatakse kõigi pärast esimest esitatud taotluste puhul. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: näitab, kas pärast õppijate vastuste esitamist tuleb kuvada tagasisidet, mis sisaldab õiget vastust.. Default: `true`.
 * __maxlength__ | `number`: maksimaalne lubatud tähemärkide arv. Default: `2500`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __until__ | `Date`: aega, kuni õpilastel peaks olema lubatud vastuseid esitada. Default: `none`.
 * __points__ | `number`: hindamisel antavate punktide maksimaalne arv. Default: `10`.
 * __className__ | `string`: klassi nimi. Default: `''`.

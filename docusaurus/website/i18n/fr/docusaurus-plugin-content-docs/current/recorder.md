@@ -15,7 +15,6 @@ Un composant ISLE pour l'enregistrement audio, écran et vidéo.
 * __downloadable__ | `boolean`: indique si les utilisateurs doivent pouvoir télécharger l'enregistrement. Default: `false`.
 * __uploadable__ | `boolean`: indique si les utilisateurs doivent pouvoir télécharger l'enregistrement sur le serveur. Default: `false`.
 * __bitsPerSecond__ | `number`: bits par seconde. Default: `1280000`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 
 

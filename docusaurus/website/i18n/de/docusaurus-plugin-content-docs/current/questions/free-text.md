@@ -23,7 +23,6 @@ Eine ISLE-Komponente für Fragen, bei denen die Antworten der Schüler in Form v
 * __resubmissionMsg__ | `string`: Benachrichtigung für alle Übertragungen nach der ersten angezeigt. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: gibt an, ob ein Feedback einschließlich der richtigen Antwort angezeigt werden soll, nachdem die Lerner ihre Antworten abgeschickt haben. Default: `true`.
 * __maxlength__ | `number`: maximal zulässige Anzahl von Zeichen. Default: `2500`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __until__ | `Date`: Zeit, bis die Studenten ihre Antworten einreichen dürfen. Default: `none`.
 * __points__ | `number`: maximale Anzahl von Punkten, die bei der Benotung vergeben werden. Default: `10`.
 * __className__ | `string`: Klassenname. Default: `''`.

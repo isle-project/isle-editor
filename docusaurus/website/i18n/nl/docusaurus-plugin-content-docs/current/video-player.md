@@ -16,7 +16,6 @@ Een component voor het afspelen van mediabestanden en content van YouTube, Sound
 * __height__ | `(string|number)`: hoogte van de speler. Default: `360`.
 * __width__ | `(string|number)`: breedte van de speler. Default: `640`.
 * __loop__ | `boolean`: regelt of de video opnieuw wordt gestart nadat deze is afgespeeld. Default: `false`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __startTime__ | `number`: aantal seconden om de video te starten, of breuk als de waarde tussen 0 en 1 ligt. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onEnded__ | `function`: terugbellen na afloop van de video. Default: `onEnded() {}`.

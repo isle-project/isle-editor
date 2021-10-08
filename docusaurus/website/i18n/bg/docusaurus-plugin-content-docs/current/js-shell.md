@@ -21,7 +21,6 @@ sidebar_label: JavaScript Shell
 * __onChange__ | `function`: обратна връзка, задействана при всяка промяна на входа на текстовото поле. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: обратна връзка, която се задейства при натискане на бутона `Evaluate`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: обект от обхвата с променливи, които трябва да бъдат достъпни за оценявания `code`. Default: `none`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 
 
 ## Примери

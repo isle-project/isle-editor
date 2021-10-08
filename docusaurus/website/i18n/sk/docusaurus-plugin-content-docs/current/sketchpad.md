@@ -31,7 +31,6 @@ Skicár na kreslenie poznámok na diapozitívy prednášok alebo prázdne strany
 * __dynamicallyHideButtons__ | `boolean`: ovláda, či sa majú začať skrývať tlačidlá, keď šírka panela nástrojov nie je dostatočná (inak sa začne nový riadok). Default: `false`.
 * __transmitOwner__ | `boolean`: či sa majú akcie vlastníka prenášať ostatným používateľom v reálnom čase.. Default: `true`.
 * __groupMode__ | `boolean`: kontroluje, či sa všetky akcie používateľa prenášajú všetkým ostatným.. Default: `false`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 * __onChange__ | `function`: spätné volanie vyvolané vždy, keď sa nakreslí nový prvok riadku. Default: `onChange() {}`.
 

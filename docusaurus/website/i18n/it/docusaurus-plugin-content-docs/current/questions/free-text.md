@@ -23,7 +23,6 @@ Un componente ISLE per le domande a cui gli studenti devono rispondere sotto for
 * __resubmissionMsg__ | `string`: notifica visualizzata per tutti gli invii dopo il primo. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: indica se il feedback, inclusa la risposta corretta, deve essere visualizzato dopo che gli studenti hanno inviato le loro risposte. Default: `true`.
 * __maxlength__ | `number`: numero massimo consentito di caratteri. Default: `2500`.
-* __voiceID__ | `string`: identificatore di controllo vocale. Default: `none`.
 * __until__ | `Date`: il tempo necessario per consentire agli studenti di presentare le risposte. Default: `none`.
 * __points__ | `number`: numero massimo di punti assegnati in classifica. Default: `10`.
 * __className__ | `string`: nome della classe. Default: `''`.

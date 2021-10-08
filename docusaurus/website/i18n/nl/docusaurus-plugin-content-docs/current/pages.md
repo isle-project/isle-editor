@@ -14,7 +14,6 @@ Een ISLE-paginatiecomponent die de gebruiker in staat stelt om door een reeks pa
 * __pagination__ | `string`: om de paginering te laten zien op de `top`, `bottom` of `both'. Default: `'top'`.
 * __size__ | `string`: grootte van de pagineerknoppen (ofwel `default`, `lg`, of `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: de maximale hoogte van de container. Als een ingesloten pagina hoger is, wordt een verticale schuifbalk toegevoegd. Default: `none`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onSelect__ | `function`: Functie die wordt aangeroepen wanneer de actieve wijziging wordt gewijzigd. Ontvangt de nieuwe actieve pagina-index als enige parameter. Default: `onSelect() {}`.
 

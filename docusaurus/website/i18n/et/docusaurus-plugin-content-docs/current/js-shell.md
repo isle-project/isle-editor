@@ -21,7 +21,6 @@ Interaktiivne Javascript-koorik, mida saab kasutada JavaScripti käskude täitmi
 * __onChange__ | `function`: callback, mida kutsutakse esile iga kord, kui tekstivälja sisend muutub. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback, mis käivitub iga kord, kui nupule `Evaluate` vajutatakse.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope objekt muutujatega, mis tuleks teha kättesaadavaks hinnatud `koodile`.. Default: `none`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 
 
 ## Näited

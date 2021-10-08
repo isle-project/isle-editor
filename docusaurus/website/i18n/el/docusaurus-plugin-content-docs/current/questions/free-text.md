@@ -23,7 +23,6 @@ sidebar_label: Free Text Question
 * __resubmissionMsg__ | `string`: ειδοποίηση που εμφανίζεται για όλες τις υποβολές μετά την πρώτη. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: υποδεικνύει αν θα πρέπει να εμφανίζεται ανατροφοδότηση που θα περιλαμβάνει τη σωστή απάντηση μετά την υποβολή των απαντήσεων από τους μαθητές. Default: `true`.
 * __maxlength__ | `number`: μέγιστος επιτρεπόμενος αριθμός χαρακτήρων. Default: `2500`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __until__ | `Date`: χρόνος μέχρι να επιτραπεί στους μαθητές να υποβάλουν απαντήσεις. Default: `none`.
 * __points__ | `number`: μέγιστος αριθμός μορίων που χορηγούνται κατά τη βαθμολόγηση. Default: `10`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.

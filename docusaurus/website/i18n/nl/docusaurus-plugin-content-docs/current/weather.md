@@ -9,7 +9,6 @@ Een component voor het weergeven van het actuele weer op een aangewezen locatie.
 ## Opties
 
 * __location__ | `string`: locatienaam. Default: `none`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 
 

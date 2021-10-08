@@ -31,7 +31,6 @@ sidebar_label: Sketchpad
 * __dynamicallyHideButtons__ | `boolean`: ツールバーの幅が十分でない場合にボタンの非表示を開始するかどうかを制御します (そうでない場合は改行を開始します)。. Default: `false`.
 * __transmitOwner__ | `boolean`: オーナーのアクションを他のユーザーにリアルタイムで送信するかどうか. Default: `true`.
 * __groupMode__ | `boolean`: は、すべてのユーザのアクションが他のすべてのユーザに送信されるかどうかを制御します。. Default: `false`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onChange__ | `function`: 新しい線要素が描画されるたびに呼び出されるコールバック. Default: `onChange() {}`.
 

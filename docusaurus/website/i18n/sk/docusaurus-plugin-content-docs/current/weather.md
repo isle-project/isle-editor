@@ -9,7 +9,6 @@ Komponent na zobrazenie aktuálneho počasia na určenom mieste.
 ## Možnosti
 
 * __location__ | `string`: názov lokality. Default: `none`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 
 

@@ -19,7 +19,6 @@ Eine ISLE-Komponente, die eine Multiple-Choice-Frage wiedergibt. Sie unterstütz
 * __provideFeedback__ | `string`: entweder `voll`, `inkrementell` oder `keine`. Wenn `full`, wird Feedback einschließlich der richtigen Antwort angezeigt, nachdem die Teilnehmer ihre Antworten abgeschickt haben; wenn `incremental`, wird Feedback nur für die ausgewählte Antwort angezeigt; wenn `none`, wird kein Feedback zurückgegeben. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: steuert, ob Übermittlungsbenachrichtigungen deaktiviert werden sollen. Default: `false`.
 * __displaySolution__ | `boolean`: steuert, ob die Lösung im Vorfeld angezeigt wird. Default: `false`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __until__ | `Date`: Zeit, bis die Studenten ihre Antworten einreichen dürfen. Default: `none`.
 * __points__ | `number`: maximale Anzahl von Punkten, die bei der Benotung vergeben werden. Default: `10`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.

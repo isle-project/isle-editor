@@ -12,7 +12,6 @@ Teksti-komponentti, joka mahdollistaa raakatekstin renderöinnin Markdown-muotoo
 * __className__ | `string`: luokkien nimet. Default: `''`.
 * __inline__ | `boolean`: valvoo, näytetäänkö Markdown tekstinä rivissä.. Default: `false`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 
 
 ## Esimerkkejä

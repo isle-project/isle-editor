@@ -16,7 +16,6 @@ Komponent do odtwarzania plików multimedialnych i treści z serwisów YouTube, 
 * __height__ | `(string|number)`: wysokość zawodnika. Default: `360`.
 * __width__ | `(string|number)`: szerokość zawodnika. Default: `640`.
 * __loop__ | `boolean`: kontroluje, czy po odtworzeniu wideo ma być ono uruchamiane od nowa. Default: `false`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __startTime__ | `number`: liczba sekund, po których można rozpocząć odtwarzanie wideo lub ułamek, jeśli wartość mieści się w przedziale od 0 do 1. Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onEnded__ | `function`: wywołanie zwrotne po zakończeniu wideo. Default: `onEnded() {}`.

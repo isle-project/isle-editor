@@ -12,7 +12,6 @@ sidebar_label: Text
 * __className__ | `string`: ονόματα κλάσεων. Default: `''`.
 * __inline__ | `boolean`: ελέγχει αν το Markdown θα αποδίδεται ως κείμενο εντός γραμμής. Default: `false`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 
 
 ## Παραδείγματα

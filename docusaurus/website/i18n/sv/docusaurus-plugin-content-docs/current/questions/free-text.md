@@ -23,7 +23,6 @@ En ISLE-komponent för frågor där elevernas svar ska lämnas i form av fritext
 * __resubmissionMsg__ | `string`: Meddelande som visas för alla inlämningar efter den första.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: anger om återkoppling, inklusive det rätta svaret, ska visas efter att eleverna skickat in sina svar.. Default: `true`.
 * __maxlength__ | `number`: högsta tillåtna antal tecken. Default: `2500`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __until__ | `Date`: tid fram till dess att eleverna ska få lämna in sina svar. Default: `none`.
 * __points__ | `number`: Maximalt antal poäng som tilldelas vid betygsättning.. Default: `10`.
 * __className__ | `string`: klassens namn. Default: `''`.

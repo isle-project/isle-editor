@@ -14,7 +14,6 @@ Komponenta za paginacijo ISLE, ki uporabniku omogoča, da se pomika po zaporedju
 * __pagination__ | `string`: ali naj se paginacija prikaže na `top`, `bottom` ali `both`. Default: `'top'`.
 * __size__ | `string`: velikost gumbov za paginacijo (bodisi `default`, `lg` ali `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: največjo višino posode. Če je vstavljena stran višja, se doda navpična drsna vrstica. Default: `none`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onSelect__ | `function`: Funkcija, ki se sproži ob spremembi aktivne spremembe. Kot edini parameter prejme novi indeks aktivne strani. Default: `onSelect() {}`.
 

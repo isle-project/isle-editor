@@ -12,7 +12,6 @@ Tekstcomponent, die het mogelijk maakt om ruwe tekst weer te geven als Markdown 
 * __className__ | `string`: klassennamen. Default: `''`.
 * __inline__ | `boolean`: controleert of de Markdown als inline tekst moet worden weergegeven. Default: `false`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 
 
 ## Voorbeelden

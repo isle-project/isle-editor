@@ -12,7 +12,6 @@ Teksta komponente, kas ļauj atveidot neapstrādātu tekstu kā Markdown un nodr
 * __className__ | `string`: klašu nosaukumi. Default: `''`.
 * __inline__ | `boolean`: kontrolē, vai Markdown atveidot kā ievietoto tekstu.. Default: `false`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 
 
 ## Piemēri

@@ -12,7 +12,6 @@ Text komponens, amely lehetővé teszi a nyers szöveg Markdownként való megje
 * __className__ | `string`: osztálynevek. Default: `''`.
 * __inline__ | `boolean`: szabályozza, hogy a Markdown-t soron belüli szövegként jelenítse-e meg. Default: `false`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
-* __voiceID__ | `string`: hangvezérlés azonosítója. Default: `none`.
 
 
 ## Példák

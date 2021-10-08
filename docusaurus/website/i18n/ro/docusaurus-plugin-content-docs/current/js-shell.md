@@ -21,7 +21,6 @@ Un shell Javascript interactiv care poate fi utilizat pentru a executa comenzi J
 * __onChange__ | `function`: callback invocat ori de câte ori se modifică datele introduse în câmpul de text. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback invocat ori de câte ori se face clic pe butonul `Evaluate`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: obiect de domeniu de aplicare cu variabile care trebuie să fie puse la dispoziție pentru `code` evaluat. Default: `none`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 
 
 ## Exemple

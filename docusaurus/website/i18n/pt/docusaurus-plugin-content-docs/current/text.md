@@ -12,7 +12,6 @@ Componente de texto, que permite a renderização de texto bruto como Markdown e
 * __className__ | `string`: nomes de classes. Default: `''`.
 * __inline__ | `boolean`: controla se o Markdown deve ser renderizado como texto em linha. Default: `false`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
-* __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 
 
 ## Exemplos

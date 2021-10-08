@@ -9,7 +9,6 @@ Komponent, mis näitab praegust ilma määratud asukohas.
 ## Valikud
 
 * __location__ | `string`: asukoha nimi. Default: `none`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 
 

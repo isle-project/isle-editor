@@ -23,7 +23,6 @@ Un volet ISLE pour les questions dont les réponses des étudiants doivent être
 * __resubmissionMsg__ | `string`: notification affichée pour toutes les soumissions après la première. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: indique si un retour d'information comprenant la bonne réponse doit être affiché après que les apprenants aient soumis leurs réponses. Default: `true`.
 * __maxlength__ | `number`: nombre maximum de caractères autorisés. Default: `2500`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 * __until__ | `Date`: le temps nécessaire pour permettre aux étudiants de soumettre des réponses. Default: `none`.
 * __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.
 * __className__ | `string`: nom de la classe. Default: `''`.

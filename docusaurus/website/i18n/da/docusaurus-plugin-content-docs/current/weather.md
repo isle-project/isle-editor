@@ -9,7 +9,6 @@ En komponent til visning af det aktuelle vejr på et bestemt sted.
 ## Indstillinger
 
 * __location__ | `string`: stedets navn. Default: `none`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 
 

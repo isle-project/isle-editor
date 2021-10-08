@@ -21,7 +21,6 @@ Interaktívny Javascript shell, ktorý možno použiť na vykonávanie príkazov
 * __onChange__ | `function`: spätné volanie vyvolané vždy, keď sa zmení vstup do textového poľa. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: spätné volanie vyvolané vždy po kliknutí na tlačidlo `Vyhodnotiť`. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope objekt s premennými, ktoré by mali byť k dispozícii vyhodnocovanému `code`. Default: `none`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 
 
 ## Príklady

@@ -21,7 +21,6 @@ Interaktivní shell pro Javascript, který lze použít ke spouštění příkaz
 * __onChange__ | `function`: zpětné volání vyvolané vždy, když se změní vstupní textové pole.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: zpětné volání vyvolané vždy, když je kliknuto na tlačítko `Vyhodnotit`.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope objekt s proměnnými, které mají být k dispozici vyhodnocovanému `code`. Default: `none`.
-* __voiceID__ | `string`: identifikátor hlasového ovládání. Default: `none`.
 
 
 ## Příklady

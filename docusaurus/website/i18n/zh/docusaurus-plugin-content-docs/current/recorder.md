@@ -15,7 +15,6 @@ sidebar_label: Recorder
 * __downloadable__ | `boolean`: 表示用户是否应该能够下载该录音。. Default: `false`.
 * __uploadable__ | `boolean`: 表示用户是否可以将录音上传至服务器。. Default: `false`.
 * __bitsPerSecond__ | `number`: 位/秒. Default: `1280000`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 
 

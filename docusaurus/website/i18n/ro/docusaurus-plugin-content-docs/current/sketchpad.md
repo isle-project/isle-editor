@@ -31,7 +31,6 @@ Un caiet de desen pentru a lua notițe pe slide-urile de curs sau pe paginile go
 * __dynamicallyHideButtons__ | `boolean`: controlează dacă trebuie să înceapă ascunderea butoanelor atunci când lățimea barei de instrumente nu este suficientă (în caz contrar, va fi inițiată o nouă linie). Default: `false`.
 * __transmitOwner__ | `boolean`: dacă acțiunile proprietarului trebuie transmise în timp real altor utilizatori. Default: `true`.
 * __groupMode__ | `boolean`: controlează dacă toate acțiunile utilizatorului sunt transmise tuturor celorlalți. Default: `false`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onChange__ | `function`: callback invocat ori de câte ori este desenat un nou element de linie. Default: `onChange() {}`.
 

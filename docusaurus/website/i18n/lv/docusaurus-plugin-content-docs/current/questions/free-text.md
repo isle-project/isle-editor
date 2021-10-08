@@ -23,7 +23,6 @@ ISLE komponents jautājumiem, uz kuriem skolēniem atbildes jāsniedz brīvā te
 * __resubmissionMsg__ | `string`: paziņojums tiek parādīts par visiem iesniegumiem pēc pirmā iesnieguma.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: norāda, vai pēc tam, kad izglītojamie ir iesnieguši atbildes, ir jānorāda atgriezeniskā saite, tostarp pareizā atbilde.. Default: `true`.
 * __maxlength__ | `number`: maksimālais atļautais rakstzīmju skaits. Default: `2500`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __until__ | `Date`: laiks, līdz skolēniem jāļauj iesniegt atbildes. Default: `none`.
 * __points__ | `number`: maksimālais punktu skaits, ko piešķir klasifikācijā. Default: `10`.
 * __className__ | `string`: klases nosaukums. Default: `''`.

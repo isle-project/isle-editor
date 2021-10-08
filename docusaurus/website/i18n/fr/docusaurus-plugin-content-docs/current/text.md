@@ -12,7 +12,6 @@ Composant texte, qui permet de rendre le texte brut sous forme de Markdown et pe
 * __className__ | `string`: noms de classe. Default: `''`.
 * __inline__ | `boolean`: contrôle si la démarque doit être rendue sous forme de texte en ligne. Default: `false`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
-* __voiceID__ | `string`: identificateur de contrôle vocal. Default: `none`.
 
 
 ## Exemples

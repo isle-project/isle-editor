@@ -12,7 +12,6 @@ Text-Komponente, die das Rendern von Rohtext als Markdown erlaubt und die Sprach
 * __className__ | `string`: Klassennamen. Default: `''`.
 * __inline__ | `boolean`: steuert, ob das Markdown als Inline-Text gerendert werden soll. Default: `false`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 
 
 ## Beispiele

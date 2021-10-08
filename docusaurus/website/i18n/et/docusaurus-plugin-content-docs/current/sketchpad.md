@@ -31,7 +31,6 @@ Joonistusplaat märkmete tegemiseks loengu slaididele või tühjadele lehekülge
 * __dynamicallyHideButtons__ | `boolean`: kontrollib, kas nuppe hakatakse varjama, kui tööriistariba laius ei ole piisav (vastasel juhul alustatakse uut rida).. Default: `false`.
 * __transmitOwner__ | `boolean`: kas omaniku tegevused tuleks edastada teistele kasutajatele reaalajas. Default: `true`.
 * __groupMode__ | `boolean`: kontrollib, kas kõik kasutaja tegevused edastatakse kõigile teistele.. Default: `false`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onChange__ | `function`: callback, mida kutsutakse esile iga kord, kui joonistatakse uus joonelement. Default: `onChange() {}`.
 

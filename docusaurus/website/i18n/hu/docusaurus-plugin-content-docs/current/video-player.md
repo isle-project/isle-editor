@@ -16,7 +16,6 @@ A YouTube, SoundCloud és Vimeo médiafájlok és tartalmak lejátszására szol
 * __height__ | `(string|number)`: a játékos magassága. Default: `360`.
 * __width__ | `(string|number)`: a játékos szélessége. Default: `640`.
 * __loop__ | `boolean`: szabályozza, hogy a lejátszás után újrainduljon-e a videó. Default: `false`.
-* __voiceID__ | `string`: hangvezérlés azonosító. Default: `none`.
 * __startTime__ | `number`: a másodpercek száma, amelynél a videó elindul, vagy tört része, ha az érték 0 és 1 között van.. Default: `none`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onEnded__ | `function`: callback, amely a videó befejezése után hívódik. Default: `onEnded() {}`.

@@ -19,7 +19,6 @@ sidebar_label: Multiple Choice Question
 * __provideFeedback__ | `string`: full`, `incremental`, `none` のいずれかを指定します。full` の場合、学習者が解答を提出した後に正解を含むフィードバックが表示され、`incremental` の場合、選択した解答に対してのみフィードバックが表示され、`none` の場合、フィードバックは返されません。. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: 投稿通知を無効にするかどうかを制御します。. Default: `false`.
 * __displaySolution__ | `boolean`: はソリューションを前面に表示するかどうかを制御します。. Default: `false`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __until__ | `Date`: 学生が回答を提出するまでの時間. Default: `none`.
 * __points__ | `number`: 採点点数. Default: `10`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.

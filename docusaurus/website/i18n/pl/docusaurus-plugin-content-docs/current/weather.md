@@ -9,7 +9,6 @@ Komponent do wyświetlania aktualnej pogody w wyznaczonym miejscu.
 ## Opcje
 
 * __location__ | `string`: nazwa lokalizacji. Default: `none`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 
 

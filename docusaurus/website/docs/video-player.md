@@ -16,7 +16,6 @@ A component for playing media files and content from YouTube, SoundCloud, and Vi
 * __height__ | `(string|number)`: height of the player. Default: `360`.
 * __width__ | `(string|number)`: width of the player. Default: `640`.
 * __loop__ | `boolean`: controls whether to start the video anew after it was played. Default: `false`.
-* __voiceID__ | `string`: voice control identifier. Default: `none`.
 * __startTime__ | `number`: number of seconds at which to start the video, or fraction if value is between 0 and 1. Default: `none`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onEnded__ | `function`: callback invoked once the video ends. Default: `onEnded() {}`.

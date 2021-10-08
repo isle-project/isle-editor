@@ -12,7 +12,6 @@ Text component, which allows rendering of raw text as Markdown and enables voice
 * __className__ | `string`: class names. Default: `''`.
 * __inline__ | `boolean`: controls whether to render the Markdown as inline text. Default: `false`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __voiceID__ | `string`: voice control identifier. Default: `none`.
 
 
 ## Examples

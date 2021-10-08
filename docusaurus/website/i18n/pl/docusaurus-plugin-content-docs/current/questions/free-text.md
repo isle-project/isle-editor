@@ -23,7 +23,6 @@ Komponent ISLE dla pytań, na które odpowiedzi uczniów powinny być dostarczon
 * __resubmissionMsg__ | `string`: powiadomienie wyświetlane dla wszystkich zgłoszeń po pierwszym. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: wskazuje, czy informacja zwrotna zawierająca poprawną odpowiedź powinna być wyświetlana po udzieleniu odpowiedzi przez uczących się. Default: `true`.
 * __maxlength__ | `number`: maksymalna dozwolona liczba znaków. Default: `2500`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __until__ | `Date`: czas, w którym studenci powinni mieć możliwość udzielenia odpowiedzi. Default: `none`.
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w poszczególnych klasach. Default: `10`.
 * __className__ | `string`: nazwa klasy. Default: `''`.

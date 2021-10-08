@@ -12,7 +12,6 @@ Textová zložka, ktorá umožňuje vykresľovanie surového textu ako Markdown 
 * __className__ | `string`: názvy tried. Default: `''`.
 * __inline__ | `boolean`: kontroluje, či sa má Markdown vykresliť ako riadkový text. Default: `false`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 
 
 ## Príklady

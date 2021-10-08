@@ -19,7 +19,6 @@ Składnik ISLE, który stawia pytanie wielokrotnego wyboru. Wspiera on przypadek
 * __provideFeedback__ | `string`: albo `pełne`, `skoroczne`, albo `żadne`. Jeśli `pełne`, informacja zwrotna zawierająca poprawną odpowiedź jest wyświetlana po udzieleniu odpowiedzi przez uczącego się; jeśli `inkrementalna`, informacja zwrotna jest wyświetlana tylko dla wybranej odpowiedzi; jeśli `nie`, informacja zwrotna nie jest zwracana. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrola, czy należy wyłączyć powiadomienia o złożeniu wniosku. Default: `false`.
 * __displaySolution__ | `boolean`: kontroluje, czy rozwiązanie jest wyświetlane z góry. Default: `false`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 * __until__ | `Date`: czas, w którym studenci powinni mieć możliwość udzielenia odpowiedzi. Default: `none`.
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w poszczególnych klasach. Default: `10`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.

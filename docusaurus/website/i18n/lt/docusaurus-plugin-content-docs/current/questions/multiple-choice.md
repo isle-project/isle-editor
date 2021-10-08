@@ -19,7 +19,6 @@ ISLE komponentas, kuris atvaizduoja daugkartinio pasirinkimo klausimą. Jis pala
 * __provideFeedback__ | `string`: arba `pilnas`, arba `inkrementinis`, arba `vienas`. Jei `full`, mokiniams pateikus atsakymus rodomas grįžtamasis ryšys, įskaitant teisingą atsakymą; jei `incremental`, rodomas tik pasirinkto atsakymo grįžtamasis ryšys; jei `none`, grįžtamasis ryšys negrąžinamas.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontroliuoja, ar išjungti pranešimus apie pateikimą.. Default: `false`.
 * __displaySolution__ | `boolean`: kontroliuoja, ar sprendimas rodomas iš anksto.. Default: `false`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __until__ | `Date`: laikas, per kurį mokiniams turėtų būti leista pateikti atsakymus.. Default: `none`.
 * __points__ | `number`: maksimalus balų skaičius, suteikiamas vertinant. Default: `10`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.

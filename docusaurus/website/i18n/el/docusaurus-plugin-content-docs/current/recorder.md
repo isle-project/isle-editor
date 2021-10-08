@@ -15,7 +15,6 @@ sidebar_label: Recorder
 * __downloadable__ | `boolean`: υποδεικνύει αν οι χρήστες θα πρέπει να μπορούν να κατεβάζουν την εγγραφή. Default: `false`.
 * __uploadable__ | `boolean`: υποδεικνύει αν οι χρήστες θα πρέπει να μπορούν να μεταφορτώνουν την εγγραφή στον διακομιστή. Default: `false`.
 * __bitsPerSecond__ | `number`: bits ανά δευτερόλεπτο. Default: `1280000`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 
 

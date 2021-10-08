@@ -16,7 +16,6 @@ Um componente para reproduzir arquivos de mídia e conteúdo do YouTube, SoundCl
 * __height__ | `(string|number)`: altura do jogador. Default: `360`.
 * __width__ | `(string|number)`: largura do jogador. Default: `640`.
 * __loop__ | `boolean`: controla se o vídeo deve ser reiniciado após a sua reprodução. Default: `false`.
-* __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 * __startTime__ | `number`: número de segundos para iniciar o vídeo, ou fração se o valor estiver entre 0 e 1. Default: `none`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 * __onEnded__ | `function`: chamada de retorno invocada quando o vídeo termina. Default: `onEnded() {}`.

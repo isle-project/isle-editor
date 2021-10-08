@@ -21,7 +21,6 @@ sidebar_label: JavaScript Shell
 * __onChange__ | `function`: обратный вызов при изменении ввода текстового поля. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: вызов обратного вызова всякий раз, когда нажимается кнопка `Evaluate`. Default: `onEvaluate() {}`.
 * __vars__ | `object`: объект-область с переменными, которые должны быть доступны для оценки `кода`. Default: `none`.
-* __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 
 
 ## Примеры

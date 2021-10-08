@@ -9,7 +9,6 @@ Sastāvdaļa, kas paredzēta, lai parādītu pašreizējos laikapstākļus notei
 ## Iespējas
 
 * __location__ | `string`: atrašanās vietas nosaukums. Default: `none`.
-* __voiceID__ | `string`: balss vadības identifikators. Default: `none`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 
 

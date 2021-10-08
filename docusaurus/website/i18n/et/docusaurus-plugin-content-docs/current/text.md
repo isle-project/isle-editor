@@ -12,7 +12,6 @@ Tekstikomponent, mis võimaldab toorteksti esitamist Markdownina ja võimaldab h
 * __className__ | `string`: klassi nimed. Default: `''`.
 * __inline__ | `boolean`: kontrollib, kas Markdown'i renderdamine toimub realtekstina.. Default: `false`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 
 
 ## Näited

@@ -21,7 +21,6 @@ Um shell Javascript interativo que pode ser usado para executar comandos JavaScr
 * __onChange__ | `function`: chamada de retorno invocada sempre que a entrada do campo de texto muda. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: chamada de retorno invocada sempre que o botão "Avaliar" é clicado. Default: `onEvaluate() {}`.
 * __vars__ | `object`: objeto de escopo com variáveis que devem ser disponibilizadas para avaliar o `código`. Default: `none`.
-* __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 
 
 ## Exemplos

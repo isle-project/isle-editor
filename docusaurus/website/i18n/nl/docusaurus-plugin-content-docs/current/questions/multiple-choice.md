@@ -19,7 +19,6 @@ Een ISLE-component die een meerkeuzevraag maakt. Het ondersteunt het geval waari
 * __provideFeedback__ | `string`: ofwel `volledig`, `incrementeel`, of `één`. Als `volledig`, wordt de feedback inclusief het juiste antwoord weergegeven nadat de leerlingen hun antwoorden hebben ingediend; als `incrementeel`, wordt de feedback alleen voor het geselecteerde antwoord weergegeven; als `geen`, wordt er geen feedback teruggegeven. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controleert of de aanmeldingskennisgevingen moeten worden uitgeschakeld. Default: `false`.
 * __displaySolution__ | `boolean`: controleert of de oplossing van tevoren wordt weergegeven. Default: `false`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __until__ | `Date`: tijd tot de studenten de gelegenheid krijgen om antwoorden in te dienen. Default: `none`.
 * __points__ | `number`: maximumaantal punten voor de indeling in klassen. Default: `10`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.

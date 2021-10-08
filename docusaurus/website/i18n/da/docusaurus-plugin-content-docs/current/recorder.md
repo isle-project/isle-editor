@@ -15,7 +15,6 @@ En ISLE-komponent til optagelse af lyd, skærm og video.
 * __downloadable__ | `boolean`: angiver, om brugerne skal have mulighed for at downloade optagelsen. Default: `false`.
 * __uploadable__ | `boolean`: angiver, om brugerne skal kunne uploade optagelsen til serveren. Default: `false`.
 * __bitsPerSecond__ | `number`: bit pr. sekund. Default: `1280000`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 
 

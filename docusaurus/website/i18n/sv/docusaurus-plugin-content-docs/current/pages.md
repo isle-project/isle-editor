@@ -14,7 +14,6 @@ En ISLE-komponent för sidindelning som gör det möjligt för användaren att g
 * __pagination__ | `string`: om sidindelningen ska visas antingen på `top`, `bottom` eller `both`.. Default: `'top'`.
 * __size__ | `string`: Storlek på pagineringsknapparna (antingen `default`, `lg` eller `sm`).. Default: `'default'`.
 * __height__ | `(number|string)`: behållarens maximala höjd. Om en inbäddad sida är högre läggs ett vertikalt rullningsfält till.. Default: `none`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onSelect__ | `function`: Funktion som aktiveras när den aktiva ändringen ändras. Tar emot det nya aktiva sidindexet som enda parameter.. Default: `onSelect() {}`.
 

@@ -16,7 +16,6 @@ Komponenta za predvajanje medijskih datotek in vsebine iz storitev YouTube, Soun
 * __height__ | `(string|number)`: višina igralca. Default: `360`.
 * __width__ | `(string|number)`: širina predvajalnika. Default: `640`.
 * __loop__ | `boolean`: nadzira, ali naj se videoposnetek po predvajanju začne znova.. Default: `false`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __startTime__ | `number`: število sekund, pri katerih se začne videoposnetek, ali delež, če je vrednost med 0 in 1. Default: `none`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onEnded__ | `function`: povratni klic, ki se sproži, ko se videoposnetek konča.. Default: `onEnded() {}`.

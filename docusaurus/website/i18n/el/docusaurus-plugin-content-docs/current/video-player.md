@@ -16,7 +16,6 @@ sidebar_label: Video Player
 * __height__ | `(string|number)`: ύψος του παίκτη. Default: `360`.
 * __width__ | `(string|number)`: πλάτος του παίκτη. Default: `640`.
 * __loop__ | `boolean`: ελέγχει αν θα ξεκινήσει εκ νέου το βίντεο μετά την αναπαραγωγή του. Default: `false`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __startTime__ | `number`: αριθμός των δευτερολέπτων στα οποία θα ξεκινήσει το βίντεο, ή κλάσμα εάν η τιμή είναι μεταξύ 0 και 1. Default: `none`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 * __onEnded__ | `function`: callback που καλείται μόλις τελειώσει το βίντεο. Default: `onEnded() {}`.

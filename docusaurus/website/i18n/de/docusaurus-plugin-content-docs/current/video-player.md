@@ -16,7 +16,6 @@ Eine Komponente zur Wiedergabe von Mediendateien und Inhalten von YouTube, Sound
 * __height__ | `(string|number)`: Höhe des Players. Default: `360`.
 * __width__ | `(string|number)`: Breite des Players. Default: `640`.
 * __loop__ | `boolean`: steuert, ob das Video nach dem Abspielen neu gestartet werden soll. Default: `false`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __startTime__ | `number`: Anzahl der Sekunden, bei denen das Video gestartet werden soll, oder Bruchteil, wenn der Wert zwischen 0 und 1 liegt. Default: `none`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onEnded__ | `function`: Callback, der aufgerufen wird, sobald das Video endet. Default: `onEnded() {}`.

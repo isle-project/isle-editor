@@ -21,7 +21,6 @@ Vuorovaikutteinen Javascript-komentotulkki, jota voidaan käyttää JavaScript-k
 * __onChange__ | `function`: callback, joka käynnistyy aina kun tekstikentän syöttö muuttuu.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: callback, joka käynnistyy aina kun `Evaluate`-painiketta napsautetaan.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope-olio, jossa on muuttujia, jotka on asetettava arvioitavan `code`:n saataville.. Default: `none`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 
 
 ## Esimerkkejä

@@ -19,7 +19,6 @@ Egy ISLE komponens, amely egy feleletválasztós kérdést jelenít meg. Támoga
 * __provideFeedback__ | `string`: vagy "teljes", "inkrementális", vagy "nincs". Ha "teljes", akkor a helyes választ tartalmazó visszajelzés jelenik meg, miután a tanulók elküldték a válaszukat; ha "inkrementális", akkor csak a kiválasztott válaszra vonatkozóan jelenik meg visszajelzés; ha "nincs", akkor nem kap visszajelzést.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: szabályozza a benyújtási értesítések letiltását. Default: `false`.
 * __displaySolution__ | `boolean`: szabályozza, hogy a megoldás előre megjelenjen-e. Default: `false`.
-* __voiceID__ | `string`: hangvezérlés azonosító. Default: `none`.
 * __until__ | `Date`: a tanulóknak a válaszok benyújtásáig rendelkezésre álló idő. Default: `none`.
 * __points__ | `number`: az osztályozás során adható maximális pontszám. Default: `10`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.

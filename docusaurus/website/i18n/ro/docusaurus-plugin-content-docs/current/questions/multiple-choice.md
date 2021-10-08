@@ -19,7 +19,6 @@ O componentă ISLE care redă o întrebare cu alegere multiplă. Sprijină cazul
 * __provideFeedback__ | `string`: fie `full`, `incremental`, fie `none`. Dacă este `full`, feedback-ul, inclusiv răspunsul corect, este afișat după ce cursanții își trimit răspunsurile; dacă este `incremental`, feedback-ul este afișat numai pentru răspunsul selectat; dacă este `none`, nu este returnat niciun feedback.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: controlează dacă se dezactivează sau nu notificările de trimitere. Default: `false`.
 * __displaySolution__ | `boolean`: controlează dacă soluția este afișată în față. Default: `false`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __until__ | `Date`: timpul până la care elevii ar trebui să fie lăsați să trimită răspunsurile. Default: `none`.
 * __points__ | `number`: numărul maxim de puncte acordate în cadrul clasificării. Default: `10`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.

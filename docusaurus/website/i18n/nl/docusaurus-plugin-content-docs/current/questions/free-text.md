@@ -23,7 +23,6 @@ Een ISLE component voor vragen waarbij de antwoorden van studenten in de vorm va
 * __resubmissionMsg__ | `string`: kennisgeving weergegeven voor alle inzendingen na de eerste. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: geeft aan of de feedback, inclusief het juiste antwoord, moet worden weergegeven nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.
 * __maxlength__ | `number`: maximaal toegestaan aantal tekens. Default: `2500`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 * __until__ | `Date`: tijd tot de studenten de gelegenheid krijgen om antwoorden in te dienen. Default: `none`.
 * __points__ | `number`: maximumaantal punten voor de indeling in klassen. Default: `10`.
 * __className__ | `string`: klassennaam. Default: `''`.

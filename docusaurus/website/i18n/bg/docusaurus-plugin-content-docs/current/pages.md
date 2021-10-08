@@ -14,7 +14,6 @@ sidebar_label: Pages
 * __pagination__ | `string`: дали да се показва странирането в `top`, `bottom` или `both`. Default: `'top'`.
 * __size__ | `string`: размер на бутоните за страниране (или `default`, `lg`, или `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: максималната височина на контейнера. Ако вградената страница е по-висока, се добавя вертикална лента за превъртане. Default: `none`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 * __onSelect__ | `function`: Функция, която се извиква при промяна на активната промяна. Получава новия индекс на активната страница като единствен параметър. Default: `onSelect() {}`.
 

@@ -31,7 +31,6 @@ Rajzoló vázlatfüzet az előadás diáira vagy üres oldalakra történő jegy
 * __dynamicallyHideButtons__ | `boolean`: szabályozza, hogy a gombok elrejtése elkezdődjön-e, ha az eszköztár szélessége nem elegendő (ellenkező esetben egy új sor fog indulni).. Default: `false`.
 * __transmitOwner__ | `boolean`: hogy a tulajdonos műveleteit valós időben továbbítsák-e a többi felhasználónak. Default: `true`.
 * __groupMode__ | `boolean`: szabályozza, hogy a felhasználó minden műveletét mindenki másnak is továbbítsa-e. Default: `false`.
-* __voiceID__ | `string`: hangvezérlés azonosító. Default: `none`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onChange__ | `function`: callback, amely minden új vonalelem rajzolásakor meghívásra kerül. Default: `onChange() {}`.
 

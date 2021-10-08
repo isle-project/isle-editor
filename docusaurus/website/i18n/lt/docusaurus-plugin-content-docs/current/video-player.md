@@ -16,7 +16,6 @@ Komponentas, skirtas medijos failams ir turiniui iš "YouTube", "SoundCloud" ir 
 * __height__ | `(string|number)`: žaidėjo aukštis. Default: `360`.
 * __width__ | `(string|number)`: žaidėjo plotis. Default: `640`.
 * __loop__ | `boolean`: kontroliuoja, ar paleisti vaizdo įrašą iš naujo po to, kai jis buvo paleistas.. Default: `false`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __startTime__ | `number`: sekundžių skaičius, nuo kurio pradedamas vaizdo įrašas, arba trupmena, jei reikšmė yra nuo 0 iki 1.. Default: `none`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 * __onEnded__ | `function`: atgalinis skambutis, iškviečiamas pasibaigus vaizdo įrašui. Default: `onEnded() {}`.

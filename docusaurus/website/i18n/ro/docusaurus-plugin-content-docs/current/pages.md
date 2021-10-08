@@ -14,7 +14,6 @@ O componentă de paginare ISLE care permite utilizatorului să parcurgă o secve
 * __pagination__ | `string`: dacă se va afișa paginarea fie în `top`, `bottom`, sau `both`.. Default: `'top'`.
 * __size__ | `string`: dimensiunea butoanelor de paginare (fie `default`, `lg`, sau `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: înălțimea maximă a containerului. Dacă o pagină încorporată este mai înaltă, se adaugă o bară de defilare verticală.. Default: `none`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onSelect__ | `function`: Funcție invocată atunci când se modifică modificarea activă. Primește noul index al paginii active ca unic parametru.. Default: `onSelect() {}`.
 

@@ -31,7 +31,6 @@ Ett skissblock för anteckningar på föreläsningsbilder eller tomma sidor.
 * __dynamicallyHideButtons__ | `boolean`: kontrollerar om knapparna ska börja döljas när verktygsfältets bredd inte är tillräcklig (annars startas en ny rad).. Default: `false`.
 * __transmitOwner__ | `boolean`: Om ägarens åtgärder ska överföras till andra användare i realtid.. Default: `true`.
 * __groupMode__ | `boolean`: kontrollerar om alla användares åtgärder överförs till alla andra. Default: `false`.
-* __voiceID__ | `string`: identifiering av röststyrning. Default: `none`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onChange__ | `function`: callback som aktiveras när ett nytt linjeelement ritas.. Default: `onChange() {}`.
 

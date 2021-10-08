@@ -19,7 +19,6 @@ En ISLE-komponent, der gengiver et multiple choice-spørgsmål. Den understøtte
 * __provideFeedback__ | `string`: enten `full`, `incremental` eller `none`. Hvis `full`, vises feedback, herunder det korrekte svar, efter at eleverne har indsendt deres svar; hvis `incremental`, vises kun feedback for det valgte svar; hvis `none`, returneres der ingen feedback.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: kontrollerer, om meddelelser om indsendelse skal deaktiveres. Default: `false`.
 * __displaySolution__ | `boolean`: styrer, om løsningen skal vises på forhånd. Default: `false`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __until__ | `Date`: den tid, der skal gå, før de studerende kan afgive svar. Default: `none`.
 * __points__ | `number`: det maksimale antal point, der kan tildeles ved bedømmelsen. Default: `10`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.

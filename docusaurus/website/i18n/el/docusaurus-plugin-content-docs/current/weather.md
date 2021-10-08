@@ -9,7 +9,6 @@ sidebar_label: Weather
 ## Επιλογές
 
 * __location__ | `string`: όνομα τοποθεσίας. Default: `none`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 
 

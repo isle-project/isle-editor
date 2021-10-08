@@ -21,7 +21,6 @@ Een interactieve Javascript-shell die gebruikt kan worden om JavaScript-commando
 * __onChange__ | `function`: terugbellen wordt aangeroepen wanneer de invoer van het tekstveld verandert. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: terugbellen wordt aangeroepen wanneer op de `Evaluate`-knop wordt geklikt. Default: `onEvaluate() {}`.
 * __vars__ | `object`: Scope-object met variabelen die beschikbaar moeten worden gesteld aan de geëvalueerde `code`. Default: `none`.
-* __voiceID__ | `string`: stembesturingsidentificatie. Default: `none`.
 
 
 ## Voorbeelden

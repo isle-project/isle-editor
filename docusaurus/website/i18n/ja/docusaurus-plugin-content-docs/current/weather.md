@@ -9,7 +9,6 @@ sidebar_label: Weather
 ## オプション
 
 * __location__ | `string`: 地名. Default: `none`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 
 

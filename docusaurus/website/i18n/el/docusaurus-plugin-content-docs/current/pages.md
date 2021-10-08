@@ -14,7 +14,6 @@ sidebar_label: Pages
 * __pagination__ | `string`: αν θα εμφανίζεται η σελιδοποίηση είτε στην `top`, είτε στο `bottom`, είτε `both`.. Default: `'top'`.
 * __size__ | `string`: μέγεθος των κουμπιών σελιδοποίησης (είτε `default`, `lg`, ή `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: το μέγιστο ύψος του δοχείου. Εάν μια ενσωματωμένη σελίδα είναι ψηλότερη, προστίθεται μια κατακόρυφη γραμμή κύλισης.. Default: `none`.
-* __voiceID__ | `string`: αναγνωριστικό φωνητικού ελέγχου. Default: `none`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 * __onSelect__ | `function`: Λειτουργία που καλείται όταν αλλάζει η ενεργή αλλαγή. Λαμβάνει το νέο ενεργό δείκτη σελίδας ως μοναδική παράμετρο.. Default: `onSelect() {}`.
 

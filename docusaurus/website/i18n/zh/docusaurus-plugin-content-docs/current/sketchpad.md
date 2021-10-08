@@ -31,7 +31,6 @@ sidebar_label: Sketchpad
 * __dynamicallyHideButtons__ | `boolean`: 控制是否在工具栏宽度不够时开始隐藏按钮（否则将开始新的一行）。. Default: `false`.
 * __transmitOwner__ | `boolean`: 业主的行为是否应该实时传送给其他用户？. Default: `true`.
 * __groupMode__ | `boolean`: 控制是否将用户的所有行为传送给其他所有人. Default: `false`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onChange__ | `function`: 每当有新的线条元素被绘制时，就会调用回调。. Default: `onChange() {}`.
 

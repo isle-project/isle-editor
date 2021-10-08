@@ -23,7 +23,6 @@ ISLE komponentas, skirtas klausimams, į kuriuos mokiniai turėtų atsakyti lais
 * __resubmissionMsg__ | `string`: pranešimas rodomas apie visas po pirmojo pateikimo pateiktas paraiškas.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: nurodo, ar mokiniams pateikus atsakymus turėtų būti rodomas grįžtamasis ryšys, įskaitant teisingą atsakymą.. Default: `true`.
 * __maxlength__ | `number`: didžiausias leistinas simbolių skaičius. Default: `2500`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __until__ | `Date`: laikas, per kurį mokiniams turėtų būti leista pateikti atsakymus.. Default: `none`.
 * __points__ | `number`: maksimalus balų skaičius, suteikiamas vertinant. Default: `10`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.

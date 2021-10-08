@@ -12,7 +12,6 @@ Komponent tekstowy, który pozwala na renderowanie surowego tekstu jako Markdown
 * __className__ | `string`: nazwy klas. Default: `''`.
 * __inline__ | `boolean`: kontroluje, czy Markdown ma być renderowany jako tekst inline. Default: `false`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
-* __voiceID__ | `string`: identyfikator kontroli głosowej. Default: `none`.
 
 
 ## Przykłady

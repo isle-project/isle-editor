@@ -9,7 +9,6 @@ sidebar_label: Weather
 ## Опции
 
 * __location__ | `string`: име на местоположението. Default: `none`.
-* __voiceID__ | `string`: идентификатор за гласово управление. Default: `none`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 
 

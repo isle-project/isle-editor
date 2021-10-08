@@ -15,7 +15,6 @@ ISLE-komponentti äänen, näytön ja videon tallentamiseen.
 * __downloadable__ | `boolean`: ilmoittaa, pitäisikö käyttäjien pystyä lataamaan tallenne.. Default: `false`.
 * __uploadable__ | `boolean`: ilmoittaa, voivatko käyttäjät ladata tallenteen palvelimelle.. Default: `false`.
 * __bitsPerSecond__ | `number`: bittiä sekunnissa. Default: `1280000`.
-* __voiceID__ | `string`: ääniohjauksen tunniste. Default: `none`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 
 

@@ -23,7 +23,6 @@ Složka ISLE pro otázky, na které by studenti měli odpovídat formou volného
 * __resubmissionMsg__ | `string`: oznámení se zobrazí u všech podání po prvním podání.. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: určuje, zda se má po odeslání odpovědi zobrazit zpětná vazba včetně správné odpovědi.. Default: `true`.
 * __maxlength__ | `number`: maximální povolený počet znaků. Default: `2500`.
-* __voiceID__ | `string`: identifikátor hlasového ovládání. Default: `none`.
 * __until__ | `Date`: čas, do kdy by studenti měli mít možnost odevzdat odpovědi. Default: `none`.
 * __points__ | `number`: maximální počet bodů udělených při klasifikaci. Default: `10`.
 * __className__ | `string`: název třídy. Default: `''`.

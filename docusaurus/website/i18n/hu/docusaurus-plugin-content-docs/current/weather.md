@@ -9,7 +9,6 @@ Az aktuális időjárás megjelenítésére szolgáló komponens egy kijelölt h
 ## Opciók
 
 * __location__ | `string`: hely neve. Default: `none`.
-* __voiceID__ | `string`: hangvezérlés azonosítója. Default: `none`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 
 

@@ -12,7 +12,6 @@ sidebar_label: Text
 * __className__ | `string`: クラス名. Default: `''`.
 * __inline__ | `boolean`: Markdownをインラインテキストとしてレンダリングするかどうかを制御します。. Default: `false`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
-* __voiceID__ | `string`: 音声制御識別子. Default: `none`.
 
 
 ## 例としては、以下のようなものがあります。

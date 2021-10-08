@@ -9,7 +9,6 @@ Komponenta za prikaz trenutnega vremena na določeni lokaciji.
 ## Možnosti
 
 * __location__ | `string`: ime lokacije. Default: `none`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 
 

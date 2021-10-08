@@ -12,7 +12,6 @@ Componente de texto, que permite la representación de texto en bruto como Markd
 * __className__ | `string`: nombres de clase. Default: `''`.
 * __inline__ | `boolean`: controla si se debe hacer la marcación como texto en línea. Default: `false`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
-* __voiceID__ | `string`: identificador de control de voz. Default: `none`.
 
 
 ## Ejemplos

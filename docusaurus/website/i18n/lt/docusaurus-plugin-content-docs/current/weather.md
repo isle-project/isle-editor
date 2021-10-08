@@ -9,7 +9,6 @@ Komponentas, skirtas rodyti dabartinius orus nurodytoje vietoje.
 ## Parinktys
 
 * __location__ | `string`: vietovės pavadinimas. Default: `none`.
-* __voiceID__ | `string`: valdymo balsu identifikatorius. Default: `none`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 
 

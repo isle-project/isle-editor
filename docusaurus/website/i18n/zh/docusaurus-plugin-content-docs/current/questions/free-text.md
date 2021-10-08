@@ -23,7 +23,6 @@ sidebar_label: Free Text Question
 * __resubmissionMsg__ | `string`: 第一次提交后，所有提交的通知都会显示. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: 表示是否应该在学习者提交答案后显示包括正确答案在内的反馈信息。. Default: `true`.
 * __maxlength__ | `number`: 最大允许字符数. Default: `2500`.
-* __voiceID__ | `string`: 声控识别器. Default: `none`.
 * __until__ | `Date`: 允许学生提交答案的时间. Default: `none`.
 * __points__ | `number`: 最高分. Default: `10`.
 * __className__ | `string`: 班名. Default: `''`.

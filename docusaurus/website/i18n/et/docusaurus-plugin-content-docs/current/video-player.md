@@ -16,7 +16,6 @@ Komponent meediafailide ja YouTube'i, SoundCloudi ja Vimeo sisu esitamiseks.
 * __height__ | `(string|number)`: mängija kõrgus. Default: `360`.
 * __width__ | `(string|number)`: mängija laius. Default: `640`.
 * __loop__ | `boolean`: kontrollib, kas video käivitatakse uuesti pärast selle esitamist.. Default: `false`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __startTime__ | `number`: sekundite arv, millest video käivitatakse, või murdosa, kui väärtus jääb vahemikku 0-1. Default: `none`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onEnded__ | `function`: callback, mis kutsutakse üles pärast video lõppu. Default: `onEnded() {}`.

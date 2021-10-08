@@ -19,7 +19,6 @@ Komponenta ISLE, ki prikazuje vprašanje z več možnostmi izbire. Podpira prime
 * __provideFeedback__ | `string`: bodisi `popolno`, `inkrementalno` ali `nikoli`. Če je `popolno`, se povratne informacije, vključno s pravilnim odgovorom, prikažejo, ko učenci oddajo svoje odgovore; če je `inkrementalno`, se povratne informacije prikažejo samo za izbrani odgovor; če je `nikoli`, se povratne informacije ne vrnejo.. Default: `'incremental'`.
 * __disableSubmitNotification__ | `boolean`: nadzoruje, ali onemogočiti obvestila o predložitvi.. Default: `false`.
 * __displaySolution__ | `boolean`: nadzoruje, ali se rešitev prikaže vnaprej.. Default: `false`.
-* __voiceID__ | `string`: identifikator glasovnega upravljanja. Default: `none`.
 * __until__ | `Date`: čas, do katerega lahko učenci oddajo odgovore.. Default: `none`.
 * __points__ | `number`: največje število točk, ki se dodelijo pri razvrščanju. Default: `10`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.

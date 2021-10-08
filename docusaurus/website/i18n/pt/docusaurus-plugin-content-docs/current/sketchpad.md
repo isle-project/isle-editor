@@ -31,7 +31,6 @@ Um bloco de esboços para anotações em slides de palestras ou páginas vazias.
 * __dynamicallyHideButtons__ | `boolean`: controla se deve começar a esconder botões quando a largura da barra de ferramentas não é suficiente (caso contrário, uma nova linha será iniciada). Default: `false`.
 * __transmitOwner__ | `boolean`: se as ações do proprietário devem ser transmitidas a outros usuários em tempo real. Default: `true`.
 * __groupMode__ | `boolean`: controla se todas as ações do usuário são transmitidas a todos os outros. Default: `false`.
-* __voiceID__ | `string`: identificador de controle de voz. Default: `none`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 * __onChange__ | `function`: chamada de retorno invocada sempre que um novo elemento de linha é desenhado. Default: `onChange() {}`.
 

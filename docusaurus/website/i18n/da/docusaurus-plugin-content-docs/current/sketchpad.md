@@ -31,7 +31,6 @@ En skitseblok til at tage noter på lysbilleder eller tomme sider.
 * __dynamicallyHideButtons__ | `boolean`: styrer, om knapperne skal begynde at blive skjult, når værktøjslinjen ikke er tilstrækkelig bred (ellers startes en ny linje). Default: `false`.
 * __transmitOwner__ | `boolean`: om ejerens handlinger skal overføres til andre brugere i realtid. Default: `true`.
 * __groupMode__ | `boolean`: styrer, om alle brugerens handlinger overføres til alle andre. Default: `false`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onChange__ | `function`: callback, der påkaldes, når der tegnes et nyt linjeelement. Default: `onChange() {}`.
 

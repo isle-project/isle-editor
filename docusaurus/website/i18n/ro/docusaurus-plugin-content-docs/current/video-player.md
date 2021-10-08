@@ -16,7 +16,6 @@ O componentă pentru redarea fișierelor media și a conținutului de pe YouTube
 * __height__ | `(string|number)`: înălțimea jucătorului. Default: `360`.
 * __width__ | `(string|number)`: lățimea jucătorului. Default: `640`.
 * __loop__ | `boolean`: controlează dacă videoclipul trebuie să înceapă din nou după ce a fost redat. Default: `false`.
-* __voiceID__ | `string`: identificatorul de control vocal. Default: `none`.
 * __startTime__ | `number`: numărul de secunde la care se începe înregistrarea video sau fracțiune dacă valoarea este cuprinsă între 0 și 1. Default: `none`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onEnded__ | `function`: callback invocat odată ce videoclipul se termină. Default: `onEnded() {}`.

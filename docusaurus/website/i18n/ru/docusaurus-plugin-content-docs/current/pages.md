@@ -14,7 +14,6 @@ sidebar_label: Pages
 * __pagination__ | `string`: показывать ли пагинацию на `top`, `bottom`, или на `both`. Default: `'top'`.
 * __size__ | `string`: размер кнопок нумерации страниц (либо `default`, либо `lg`, либо `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: максимальная высота контейнера. Если встроенная страница выше, добавляется вертикальная полоса прокрутки. Default: `none`.
-* __voiceID__ | `string`: идентификатор голосового управления. Default: `none`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onSelect__ | `function`: Функция вызывается при изменении активного изменения. Получает новый индекс активной страницы в качестве единственного параметра. Default: `onSelect() {}`.
 

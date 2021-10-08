@@ -12,7 +12,6 @@ Textová komponenta, která umožňuje vykreslování surového textu jako Markd
 * __className__ | `string`: názvy tříd. Default: `''`.
 * __inline__ | `boolean`: řídí, zda se má Markdown vykreslovat jako inline text.. Default: `false`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
-* __voiceID__ | `string`: identifikátor hlasového ovládání. Default: `none`.
 
 
 ## Příklady

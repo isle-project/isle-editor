@@ -23,7 +23,6 @@ Egy ISLE-komponens olyan kérdésekhez, amelyekre a tanulóknak szabad szöveges
 * __resubmissionMsg__ | `string`: az első beadványt követő összes beadványra megjelenő értesítés. Default: `'You have successfully re-submitted your answer.'`.
 * __provideFeedback__ | `boolean`: jelzi, hogy a helyes választ tartalmazó visszajelzés megjelenjen-e, miután a tanulók elküldték a válaszaikat. Default: `true`.
 * __maxlength__ | `number`: maximálisan megengedett karakterek száma. Default: `2500`.
-* __voiceID__ | `string`: hangvezérlés azonosító. Default: `none`.
 * __until__ | `Date`: a tanulóknak a válaszok benyújtásáig rendelkezésre álló idő. Default: `none`.
 * __points__ | `number`: az osztályozás során adható maximális pontszám. Default: `10`.
 * __className__ | `string`: osztály neve. Default: `''`.

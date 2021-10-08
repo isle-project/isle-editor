@@ -14,7 +14,6 @@ ISLE lehekülgede liigendamise komponent, mis võimaldab kasutajal liikuda lehek
 * __pagination__ | `string`: kas kuvada lehekülgede kaupa kas `top`, `bottom` või `both`.. Default: `'top'`.
 * __size__ | `string`: leheküljenuppude suurus (kas `default`, `lg` või `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: konteineri maksimaalne kõrgus. Kui varjatud lehekülg on kõrgem, lisatakse vertikaalne kerimisriba.. Default: `none`.
-* __voiceID__ | `string`: hääljuhtimise identifikaator. Default: `none`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onSelect__ | `function`: Funktsioon, mida kutsutakse üles, kui aktiivne muutus on muutunud. Saab ainsa parameetrina uue aktiivse lehekülje indeksi.. Default: `onSelect() {}`.
 

@@ -15,7 +15,6 @@ Komponent ISLE na nahrávanie zvuku, obrazovky a videa.
 * __downloadable__ | `boolean`: označuje, či by používatelia mali mať možnosť stiahnuť záznam.. Default: `false`.
 * __uploadable__ | `boolean`: označuje, či by používatelia mali mať možnosť nahrať záznam na server.. Default: `false`.
 * __bitsPerSecond__ | `number`: bitov za sekundu. Default: `1280000`.
-* __voiceID__ | `string`: identifikátor hlasového ovládania. Default: `none`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 
 

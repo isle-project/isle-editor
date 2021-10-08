@@ -14,7 +14,6 @@ Eine ISLE-Paginierungskomponente, die es dem Benutzer ermöglicht, durch eine Fo
 * __pagination__ | `string`: ob die Paginierung entweder `top`, `bottom` oder `both` angezeigt werden soll. Default: `'top'`.
 * __size__ | `string`: Größe der Paginierungsschaltflächen (entweder `default`, `lg`, oder `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: die maximale Höhe des Containers. Wenn eine eingebettete Seite höher ist, wird eine vertikale Bildlaufleiste hinzugefügt. Default: `none`.
-* __voiceID__ | `string`: Kennung der Sprachsteuerung. Default: `none`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onSelect__ | `function`: Funktion, die aufgerufen wird, wenn der aktive Wechsel geändert wird. Erhält den neuen aktiven Seitenindex als einzigen Parameter. Default: `onSelect() {}`.
 

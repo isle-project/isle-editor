@@ -14,7 +14,6 @@ En ISLE-pagineringskomponent, der gør det muligt for brugeren at gå gennem en 
 * __pagination__ | `string`: om paginering skal vises enten `top`, `bottom` eller `both` dele. Default: `'top'`.
 * __size__ | `string`: størrelsen af pagineringsknapperne (enten `default`, `lg` eller `sm`). Default: `'default'`.
 * __height__ | `(number|string)`: beholderens maksimale højde. Hvis en indlejret side er højere, tilføjes en lodret rullebjælke. Default: `none`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onSelect__ | `function`: Funktion, der påkaldes, når den aktive ændring ændres. Modtager det nye aktive sideindeks som eneste parameter. Default: `onSelect() {}`.
 

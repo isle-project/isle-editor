@@ -21,7 +21,6 @@ Egy interaktív Javascript shell, amely JavaScript parancsok végrehajtására h
 * __onChange__ | `function`: visszahívás, amely a szövegmező bemenetének megváltozásakor hívódik elő.. Default: `onChange() {}`.
 * __onEvaluate__ | `function`: visszahívás, amelyet az "Értékelés" gombra kattintáskor hívnak elő.. Default: `onEvaluate() {}`.
 * __vars__ | `object`: scope objektum változókkal, amelyeket elérhetővé kell tenni a kiértékelt `code` számára.. Default: `none`.
-* __voiceID__ | `string`: hangvezérlés azonosítója. Default: `none`.
 
 
 ## Példák

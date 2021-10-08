@@ -16,7 +16,6 @@ En komponent til afspilning af mediefiler og indhold fra YouTube, SoundCloud og 
 * __height__ | `(string|number)`: spillerens højde. Default: `360`.
 * __width__ | `(string|number)`: spillerens bredde. Default: `640`.
 * __loop__ | `boolean`: styrer, om videoen skal starte forfra, efter at den er blevet afspillet. Default: `false`.
-* __voiceID__ | `string`: identifikator for stemmestyring. Default: `none`.
 * __startTime__ | `number`: antal sekunder, hvor videoen skal starte, eller en brøkdel, hvis værdien er mellem 0 og 1. Default: `none`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onEnded__ | `function`: callback, der påkaldes, når videoen slutter. Default: `onEnded() {}`.
