@@ -307,7 +307,7 @@
     "localforage": "^1.10.0",
     "moment": "2.29.1",
     "monaco-editor": "0.29.0",
-    "monaco-editor-webpack-plugin": "4.2.0",
+    "monaco-editor-webpack-plugin": "5.0.0",
     "pdfjs-dist": "2.9.359",
     "pdfmake": "^0.2.2",
     "plotly.js": "2.5.1",
