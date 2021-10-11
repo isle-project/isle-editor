@@ -81,10 +81,6 @@
       "properties": "never"
     }],
     "id-match": 0,
-    "import/no-unresolved": [ 2, {
-      "ignore": [ "electron", "loader" ],
-      "commonjs": true
-    }],
     "indent": [ 0, "tab" ],
     "key-spacing": [ 2, {
       "beforeColon": false,
@@ -518,7 +514,6 @@
   ],
   "plugins": [
     "@babel",
-    "import",
     "react",
     "jest",
     "jsx-a11y",
@@ -530,17 +525,6 @@
   "settings": {
     "react": {
       "version": "16"
-    },
-    "import/external-module-folders": [ "node_modules" ],
-    "import/core-modules": [ "electron", "@stdlib" ],
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": [
-          ".",
-          "app",
-          "node_modules"
-        ]
-      }
     }
   },
   "overrides": [
