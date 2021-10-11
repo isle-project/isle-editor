@@ -161,7 +161,7 @@
     "electron-window-state": "^5.0.3",
     "element-resize-event": "^3.0.6",
     "esbuild": "^0.13.3",
-    "esbuild-loader": "^2.15.1",
+    "esbuild-loader": "^2.16.0",
     "eslint": "^7.28.0",
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
