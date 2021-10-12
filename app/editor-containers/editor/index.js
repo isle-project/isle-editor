@@ -79,8 +79,8 @@ class App extends Component {
 		eslintOpts = eslintOpts.default;
 
 		const eslint = await import( 'eslint' );
-		const { CLIEngine } = eslint;
-		this.cliEngine = new CLIEngine( eslintOpts, this.props.fileName );
+		const { ESLint } = eslint;
+		this.linter = new ESLint( eslintOpts );
 
 		const jsYAML = await import( 'js-yaml' );
 		yaml = jsYAML.default;
@@ -175,10 +175,14 @@ class App extends Component {
 		}
 	}
 
-	lintCode = ( code ) => {
-		if ( this.cliEngine ) {
-			const { results } = this.cliEngine.executeOnText( code, this.props.fileName );
-			let errs = results[ 0 ].messages;
+	lintCode = async ( code ) => {
+		if ( this.linter ) {
+			const lintOps = {};
+			if ( this.props.filePath ) {
+				lintOps.filePath = this.props.filePath;
+			}
+			const out = await this.linter.lintText( code, lintOps );
+			let errs = out[ 0 ].messages;
 			errs = errs.map( mapErrors );
 			this.props.saveLintErrors( errs );
 		}

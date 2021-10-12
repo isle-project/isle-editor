@@ -112,6 +112,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.8",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@loadable/component": "^5.15.0",
     "@nosferatu500/react-sortable-tree": "^3.0.5",
@@ -134,7 +135,6 @@
     "archiver": "^5.3.0",
     "autobind-decorator": "^2.4.0",
     "axios": "^0.22.0",
-    "babel-eslint": "^10.1.0",
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
     "codemirror": "^5.63.1",

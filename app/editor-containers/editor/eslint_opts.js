@@ -14,7 +14,7 @@ const basePath = IS_PACKAGED ? process.resourcesPath : '.';
 
 const eslintOpts = {
 	baseConfig: {
-		parser: 'babel-eslint',
+		parser: '@babel/eslint-parser',
 		env: {
 			es6: true,
 			browser: true,
