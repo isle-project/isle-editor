@@ -35,7 +35,7 @@ const ErrorCard = ({ error, server, t }) => {
 			<Card.Body>
 			{t('error-encountered-message')}
 			<b>{server}</b>: <br />
-			<code>{error.message}</code>
+			<code>{error.response ? error.response.data : error.message}</code>
 			</Card.Body>
 		</Card>
 	);
@@ -85,24 +85,10 @@ class SettingsLogin extends Component {
 				email: trim( this.state.email )
 			});
 			const body = res.data;
-			try {
-				if (
-					body === 'Password is not correct.' ||
-					body === 'No user with the given email address found.'
-				) {
-					return this.setState({
-						encounteredError: new Error( body )
-					});
-				}
-				electronStore.set( 'token', body.token );
-				this.setState({
-					encounteredError: null
-				});
-			} catch ( error ) {
-				this.setState({
-					encounteredError: new Error( this.props.t( 'login-failed' ) )
-				});
-			}
+			electronStore.set( 'token', body.token );
+			this.setState({
+				encounteredError: null
+			});
 		} catch ( err ) {
 			this.setState({
 				encounteredError: err
@@ -172,7 +158,7 @@ class SettingsLogin extends Component {
 			});
 		} catch ( err ) {
 			this.setState({
-				encounteredError: err.message
+				encounteredError: err
 			});
 		}
 	};
