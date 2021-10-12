@@ -525,6 +525,17 @@
   "settings": {
     "react": {
       "version": "16"
+    },
+    "import/external-module-folders": [ "node_modules" ],
+    "import/core-modules": [ "electron", "@stdlib" ],
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          ".",
+          "app",
+          "node_modules"
+        ]
+      }
     }
   },
   "overrides": [
