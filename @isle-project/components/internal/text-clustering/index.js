@@ -38,7 +38,7 @@ class TextClustering extends Component {
 	}
 
 	clusterDocuments = () => {
-		const blob = new Blob([ 'importScripts("https://cdn.jsdelivr.net/npm/@isle-project/dll/dll.text_clustering_worker.js");' ], { type: 'application/javascript' });
+		const blob = new Blob([ 'importScripts("https://cdn.jsdelivr.net/npm/@isle-project/workers/text_clustering_worker.js");' ], { type: 'application/javascript' });
 		const blobUrl = URL.createObjectURL( blob );
 		this.worker = new Worker( blobUrl );
 		this.worker.onmessage = ( event ) => {

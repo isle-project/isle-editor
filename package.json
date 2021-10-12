@@ -55,7 +55,7 @@
   "scripts": {
     "analyze": "source-map-explorer dist/renderer.prod.js dist/renderer.prod.js.map",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
-    "build-dll": "cross-env node ./scripts/bump_dll_version.js && node ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.dll.js --progress --color",
+    "build-dll": "cross-env node ./scripts/bump_dll_version.js && node ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.dll.js --progress --color && node ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.workers.js",
     "build-main": "cross-env NODE_ENV=production node --max_old_space_size=16384 ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.electron.js --progress --color",
     "build-renderer": "cross-env NODE_ENV=production node --max_old_space_size=16384 ./node_modules/webpack/bin/webpack --mode=production --config webpack.config.production.js --progress --color",
     "clean": "rm -rf node_modules",

@@ -1,0 +1,12 @@
+{
+	"name": "@isle-project/workers",
+	"version": "0.50.33",
+	"description": "ISLE worker scripts.",
+	"author": {
+		"name": "Philipp Burckhardt",
+		"email": "pburckhardt@outlook.com",
+		"url": "https://github.com/planeshifter"
+	},
+	"license": "AGPL-3.0-only",
+	"dependencies": {}
+}
