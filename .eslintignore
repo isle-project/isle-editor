@@ -1,4 +1,5 @@
 /main.js
 /*.main.js
 @isle-project/dll
+@isle-project/workers/*.js
 release
