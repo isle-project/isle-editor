@@ -144,7 +144,6 @@ import { extname } from 'path';
 import url from 'url';
 import * as serviceWorker from 'bundler/service_worker.js';
 import { UpdateNotification } from 'bundler/service_worker.js';
-import TextClustering from '@isle-project/components/internal/text-clustering';
 import Lesson from '@isle-project/components/internal/lesson';
 import ErrorBoundary from '@isle-project/components/internal/error-boundary';
 import Provider from '@isle-project/components/internal/provider';
@@ -164,7 +163,6 @@ const getComponents = ( arr ) => {
 
 const getLessonComponent = ( lessonContent, className, loaderTimeout = 2500, offlineAccess = false ) => `
 global.session = new Session( preamble );
-global.TextClustering = TextClustering;
 
 const asyncOps = [];
 const extensions = [];
@@ -505,13 +503,6 @@ function bundleLesson( options ) {
 						MiniCssExtractPlugin.loader,
 						'css-loader'
 					]
-				},
-				{
-					test: /\.worker\.js$/,
-					exclude: /node_modules/, // do not touch the worker scripts of `pdf.js`
-					use: {
-						loader: 'worker-loader'
-					}
 				},
 				{
 					test: /\.svg$/i,
