@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import Worker from 'worker-loader!./worker.js';
 import ClusterModal from './cluster_modal.js';
 import './text_clustering.css';
 
@@ -39,7 +38,9 @@ class TextClustering extends Component {
 	}
 
 	clusterDocuments = () => {
-		this.worker = new Worker();
+		const blob = new Blob([ 'importScripts("https://cdn.jsdelivr.net/npm/@isle-project/dll/dll.text_clustering_worker.js");' ], { type: 'application/javascript' });
+		const blobUrl = URL.createObjectURL( blob );
+		this.worker = new Worker( blobUrl );
 		this.worker.onmessage = ( event ) => {
 			const data = event.data;
 			switch ( data.type ) {
