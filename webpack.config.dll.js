@@ -228,7 +228,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.27/',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.33/',
 		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {
@@ -275,8 +275,7 @@ const config = {
 		'socket.io-client': 'io',
 		'js-yaml': 'jsyaml',
 		'markdown-it': 'markdownit',
-		'lodash': '_',
-		'@isle-project/components/internal/text-clustering': 'TextClustering'
+		'lodash': '_'
 	}
 };
 

@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.27",
+	"version": "0.50.33",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,10 +11,10 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.27",
-		"@isle-project/locales": "0.50.27",
-		"@isle-project/session": "0.50.27",
-		"@isle-project/utils": "0.50.27"
+		"@isle-project/constants": "0.50.33",
+		"@isle-project/locales": "0.50.33",
+		"@isle-project/session": "0.50.33",
+		"@isle-project/utils": "0.50.33"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.0",
@@ -37,9 +37,9 @@
 		"dompurify": "^2.3.3",
 		"focus-trap-react": "^8.8.1",
 		"history": "4.10.1",
-		"html-to-image": "^1.8.5",
+		"html-to-image": "^1.9.0",
 		"html-to-pdfmake": "^2.3.4",
-		"i18next": "^21.2.4",
+		"i18next": "^21.2.6",
 		"i18next-browser-languagedetector": "^6.1.2",
 		"ieee754": "^1.2.1",
 		"js-yaml": "4.1.0",
@@ -98,7 +98,7 @@
 		"react-plotly.js": "^2.5.1",
 		"react-portal": "^4.2.1",
 		"react-rnd": "10.3.5",
-		"react-select": "5.0.0",
+		"react-select": "5.1.0",
 		"react-slick": "0.28.1",
 		"react-table": "6.11.5",
 		"react-transition-group": "^4.4.2",

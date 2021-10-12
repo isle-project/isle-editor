@@ -17,7 +17,7 @@ const mainPkgJson = require( './../package.json' );
 const RE_VERSION = /([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/g;
 const RE_DLL_FILE = /(\.js|\.js\.LICENSE\.txt|\.css)$/;
 const SEMVER = [ 'major', 'minor', 'patch' ];
-const FOLDERS = [ 'components', 'constants', 'dll', 'locales', 'session', 'utils', 'webpack-cdn-plugin' ];
+const FOLDERS = [ 'components', 'constants', 'dll', 'locales', 'session', 'utils', 'webpack-cdn-plugin', 'workers' ];
 let newVersion;
 let oldVersion;
 let type = ENV.VERSION;
