@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.76.9](https://github.com/isle-project/isle-editor/releases/tag/v0.76.9) (2021-10-12)
+
+This patch release solves a bug that caused variable transformations to not be restored inside of a data explorer upon reloading a lesson. As a feature improvement, variable transformations and the like can now be restored from the "History" tab of the data explorer. Finally, the release improves error messages for failed login attempts when connecting the editor to an ISLE server instance. 
+
 ## [v0.76.8](https://github.com/isle-project/isle-editor/releases/tag/v0.76.8) (2021-10-05)
 
 This patch fixes an issue in the component wizard of the editor.
