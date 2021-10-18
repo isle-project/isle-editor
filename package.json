@@ -188,7 +188,7 @@
     "ml-pca": "4.0.2",
     "ml-regression-multivariate-linear": "^2.0.3",
     "murmurhash3js": "^3.0.1",
-    "node": "16.10.0",
+    "node": "16.11.1",
     "node-bin-setup": "^1.0.6",
     "node-libs-browser": "^2.2.1",
     "npm": "8.0.0",
