@@ -301,7 +301,7 @@
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^27.3.0",
     "jest-canvas-mock": "^2.3.1",
-    "jest-cli": "^27.3.0",
+    "jest-cli": "^27.3.1",
     "js-yaml": "4.1.0",
     "localforage": "^1.10.0",
     "moment": "2.29.1",
