@@ -181,7 +181,7 @@
     "lodash.debounce": "^4.0.8",
     "magic-string": "^0.25.7",
     "markdown-it": "^12.2.0",
-    "mini-css-extract-plugin": "^2.3.0",
+    "mini-css-extract-plugin": "^2.4.3",
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
     "ml-matrix": "^6.8.0",
