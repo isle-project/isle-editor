@@ -1,6 +1,9 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
+import fs from 'fs';
+import { join } from 'path';
+import os from 'os';
 import { withTranslation, Trans } from 'react-i18next';
 import axios from 'axios';
 import logger from 'debug';
@@ -12,6 +15,8 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormText from 'react-bootstrap/FormText';
 import Card from 'react-bootstrap/Card';
 import FormLabel from 'react-bootstrap/FormLabel';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import startsWith from '@stdlib/string/starts-with';
 import trim from '@stdlib/string/trim';
 import electronStore from 'store/electron.js';
@@ -52,7 +57,8 @@ class SettingsLogin extends Component {
 			server: electronStore.get('server') || '',
 			email: electronStore.get('email') || '',
 			password: electronStore.get('password') || '',
-			encounteredError: null
+			encounteredError: null,
+			loginMethod: 'credentials'
 		};
 	}
 
@@ -66,35 +72,65 @@ class SettingsLogin extends Component {
 			// Update server, email, or password in store:
 			electronStore.set( name, value );
 		});
-	};
+	}
 
 	unlink = () => {
 		electronStore.delete( 'token' );
 		this.forceUpdate();
-	};
+	}
 
 	unlinkGitHub = () => {
 		electronStore.delete( 'githubAccessToken' );
 		this.forceUpdate();
-	};
+	}
 
 	connectToServer = async () => {
 		try {
-			const res = await axios.post( this.state.server + '/login', {
-				password: this.state.password,
-				email: trim( this.state.email )
-			});
-			const body = res.data;
-			electronStore.set( 'token', body.token );
-			this.setState({
-				encounteredError: null
-			});
+			if ( this.state.loginMethod === 'credentials' ) {
+				const res = await axios.post( this.state.server + '/login', {
+					password: this.state.password,
+					email: trim( this.state.email )
+				});
+				const body = res.data;
+				electronStore.set( 'token', body.token );
+				this.setState({
+					encounteredError: null
+				});
+			}
+			else {
+				const res = await axios.get( this.state.server + '/saml/login', {
+					password: this.state.password,
+					email: trim( this.state.email )
+				});
+				const body = res.data;
+				const filePath = join( os.tmpdir(), 'saml_login.html' );
+				fs.writeFileSync( filePath, body );
+				const authWindow = new BrowserWindow({
+					width: 800,
+					height: 600,
+					show: true
+				});
+				authWindow.removeMenu();
+				authWindow.loadFile( filePath );
+
+				authWindow.webContents.on( 'will-redirect', async ( event, url ) => {
+					event.preventDefault();
+					if ( !url.includes( 'okta' ) ) {
+						authWindow.destroy();
+						const res = await axios.get( this.state.server + '/saml/session' );
+						electronStore.set( 'token', res.data.token );
+						this.setState({
+							encounteredError: null
+						});
+					}
+				});
+			}
 		} catch ( err ) {
 			this.setState({
 				encounteredError: err
 			});
 		}
-	};
+	}
 
 	connectToGitHub = async () => {
 		const authWindow = new BrowserWindow({
@@ -136,7 +172,7 @@ class SettingsLogin extends Component {
 				authWindow.destroy();
 			}
 		});
-	};
+	}
 
 	getGitHubToken = async ( code ) => {
 		try {
@@ -161,13 +197,19 @@ class SettingsLogin extends Component {
 				encounteredError: err
 			});
 		}
-	};
+	}
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
 			this.connectToServer( event );
 		}
-	};
+	}
+
+	setLoginMethod = ( method ) => {
+		this.setState({
+			loginMethod: method
+		});
+	}
 
 	render() {
 		const { t } = this.props;
@@ -206,36 +248,54 @@ class SettingsLogin extends Component {
 								</Trans>
 							</FormControl.Feedback>
 						</FormGroup>
-						<FormGroup>
-							<FormLabel>{t('email')}</FormLabel>
-							<FormControl
-								name="email"
-								type="text"
-								placeholder={t('email-placeholder')}
-								onChange={this.handleInputChange}
-								value={email}
-								onKeyPress={this.handleKeyPress}
-							/>
-							<FormText>
-							{t('form-control-connect-with-isle-account')}
-							<a tabIndex="-1" href={ISLE_EXAMPLE_SERVER} >
-								{ISLE_EXAMPLE_SERVER}
-							</a>
-							.
-							</FormText>
-						</FormGroup>
-						<FormGroup>
-							<FormLabel>{t('password')}</FormLabel>
-							<FormControl
-								name="password"
-								type="password"
-								placeholder={t('enter-password')}
-								onChange={this.handleInputChange}
-								value={password}
-								onKeyPress={this.handleKeyPress}
-							/>
-							<FormText>{t('enter-password-isle-account')}</FormText>
-						</FormGroup>
+						<ToggleButtonGroup
+							name="loginMethod"
+							onChange={this.setLoginMethod}
+							type="radio"
+							size="small"
+							value={this.state.loginMethod}
+							style={{ paddingBottom: '1rem', paddingTop: '1rem' }}
+						>
+							<ToggleButton value="credentials" variant="outline-secondary" >
+								{t('login-with-credentials')}
+							</ToggleButton>
+							<ToggleButton value="sso" variant="outline-secondary" >
+								{t('login-with-sso')}
+							</ToggleButton>
+						</ToggleButtonGroup>
+						{this.state.loginMethod === 'credentials' ?
+							<Fragment>
+								<FormGroup>
+									<FormLabel>{t('email')}</FormLabel>
+									<FormControl
+										name="email"
+										type="text"
+										placeholder={t('email-placeholder')}
+										onChange={this.handleInputChange}
+										value={email}
+										onKeyPress={this.handleKeyPress}
+									/>
+									<FormText>
+									{t('form-control-connect-with-isle-account')}
+									<a tabIndex="-1" href={ISLE_EXAMPLE_SERVER} >
+										{ISLE_EXAMPLE_SERVER}
+									</a>
+									.
+									</FormText>
+								</FormGroup>
+								<FormGroup>
+									<FormLabel>{t('password')}</FormLabel>
+									<FormControl
+										name="password"
+										type="password"
+										placeholder={t('enter-password')}
+										onChange={this.handleInputChange}
+										value={password}
+										onKeyPress={this.handleKeyPress}
+									/>
+									<FormText>{t('enter-password-isle-account')}</FormText>
+								</FormGroup>
+							</Fragment> : null }
 						<Button
 							variant="primary"
 							size="sm"
@@ -245,6 +305,7 @@ class SettingsLogin extends Component {
 						>
 							{t('connect')}
 						</Button>
+						<hr />
 						<ErrorCard server={server} error={encounteredError} t={t} />
 						</Form>
 					) : (
