@@ -639,7 +639,7 @@ class DataTable extends Component {
 					});
 				}
 				const blob = new Blob([ output ], {
-					type: 'text/plain'
+					type: 'text/csv;charset=utf-8;'
 				});
 				const dataInfo = this.props.dataInfo;
 				let name;

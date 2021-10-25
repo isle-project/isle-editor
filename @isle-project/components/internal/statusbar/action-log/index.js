@@ -308,7 +308,7 @@ class ActionLog extends Component {
 				});
 			}
 			const blob = new Blob([ output ], {
-				type: 'text/plain'
+				type: 'text/csv;charset=utf-8;'
 			});
 			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`; // eslint-disable-line i18next/no-literal-string
 			saveAs( blob, name );
