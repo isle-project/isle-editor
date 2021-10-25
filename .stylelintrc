@@ -1,10 +1,12 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
+    "alpha-value-notation": null,
     "block-closing-brace-empty-line-before": "never",
     "block-no-empty": true,
     "color-hex-case": null,
     "color-hex-length": null,
+    "color-function-notation": null,
     "color-no-invalid-hex": true,
     "comment-empty-line-before": [ "always", {
       "ignore": ["stylelint-commands", "after-comment"]
@@ -22,6 +24,7 @@
       "except": ["first-nested"],
       "ignore": ["after-comment"]
     } ],
+    "selector-class-pattern": null,
     "selector-max-empty-lines": 1,
     "value-keyword-case": null
   }
