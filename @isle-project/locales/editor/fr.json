@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "AVERTISSEMENT : la désactivation de cette option augmentera massivement le temps de chargement et la taille des paquets",
 	"load-isle-file-in-new-window": "Charger le fichier ISLE dans une nouvelle fenêtre",
 	"login-failed": "Impossible de se connecter au serveur. Veuillez vérifier l'adresse et le port.",
+	"login-with-credentials": "Connexion avec les informations d'identification",
+	"login-with-sso": "Connexion avec SSO",
 	"mac": "Mac",
 	"male": "homme",
 	"margin": "Marge",

@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "ĮSPĖJIMAS: išjungus šią parinktį gerokai pailgės įkėlimo laikas ir paketų dydžiai",
 	"load-isle-file-in-new-window": "ISLE failo įkėlimas į naują langą",
 	"login-failed": "Nepavyko prisijungti prie serverio. Patikrinkite adresą ir prievadą.",
+	"login-with-credentials": "Prisijungimas su įgaliojimais",
+	"login-with-sso": "Prisijungimas naudojant SSO",
 	"mac": "Mac",
 	"male": "vyriškos lyties",
 	"margin": "Marža",

@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "FIGYELMEZTETÉS: Az opció kikapcsolása jelentősen megnöveli a feltöltési időt és a csomagok méretét.",
 	"load-isle-file-in-new-window": "ISLE fájl betöltése új ablakban",
 	"login-failed": "Nem tudott bejelentkezni a szerverre. Kérjük, ellenőrizze a címet és a portot.",
+	"login-with-credentials": "Bejelentkezés hitelesítő adatokkal",
+	"login-with-sso": "Bejelentkezés SSO-val",
 	"mac": "Mac",
 	"male": "férfi",
 	"margin": "Margin",

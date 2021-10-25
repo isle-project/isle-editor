@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "WAARSCHUWING: Het uitschakelen van deze optie zal de uploadtijd en de omvang van de bundels enorm doen toenemen.",
 	"load-isle-file-in-new-window": "ISLE-bestand in nieuw venster laden",
 	"login-failed": "Kon niet inloggen op de server. Controleer het adres en de poort.",
+	"login-with-credentials": "Inloggen met aanmeldingsgegevens",
+	"login-with-sso": "Inloggen met SSO",
 	"mac": "Mac",
 	"male": "mannetje",
 	"margin": "Marge",

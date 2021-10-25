@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "OSTRZEŻENIE: Wyłączenie tej opcji znacznie wydłuży czas wysyłania i zwiększy rozmiary pakietów.",
 	"load-isle-file-in-new-window": "Załaduj plik ISLE w nowym oknie",
 	"login-failed": "Nie mogłem się zalogować na serwer. Proszę sprawdzić adres i port.",
+	"login-with-credentials": "Logowanie z danymi uwierzytelniającymi",
+	"login-with-sso": "Logowanie za pomocą SSO",
 	"mac": "Mac",
 	"male": "mężczyzna",
 	"margin": "Margines",

@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "警告：このオプションを無効にすると、アップロード時間とバンドルサイズが大幅に増加します。",
 	"load-isle-file-in-new-window": "新しいウィンドウでISLEファイルを読み込む",
 	"login-failed": "サーバーにログインできませんでした。アドレスとポートをご確認ください。",
+	"login-with-credentials": "認証情報でのログイン",
+	"login-with-sso": "SSOでのログイン",
 	"mac": "マック",
 	"male": "おとこ",
 	"margin": "マージン",

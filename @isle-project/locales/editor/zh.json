@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "警告：禁用此选项将大大增加上传时间和捆绑包的大小。",
 	"load-isle-file-in-new-window": "在新窗口中加载ISLE文件",
 	"login-failed": "无法登录服务器。请检查地址和端口。",
+	"login-with-credentials": "使用凭证登录",
+	"login-with-sso": "用SSO登录",
 	"mac": "麦金塔",
 	"male": "雄性",
 	"margin": "保证金",

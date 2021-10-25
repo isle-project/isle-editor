@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "UPOZORNĚNÍ: Vypnutím této možnosti se výrazně prodlouží doba nahrávání a velikost balíčků.",
 	"load-isle-file-in-new-window": "Načtení souboru ISLE v novém okně",
 	"login-failed": "Nelze se přihlásit k serveru. Zkontrolujte prosím adresu a port.",
+	"login-with-credentials": "Přihlášení pomocí pověření",
+	"login-with-sso": "Přihlášení pomocí SSO",
 	"mac": "Mac",
 	"male": "muži",
 	"margin": "Marže",

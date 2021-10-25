@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "WARNUNG: Das Deaktivieren dieser Option erhöht die Upload-Zeit und die Größe der Pakete massiv",
 	"load-isle-file-in-new-window": "ISLE-Datei in neuem Fenster laden",
 	"login-failed": "Konnte sich nicht am Server anmelden. Bitte überprüfen Sie die Adresse und den Port.",
+	"login-with-credentials": "Anmeldung mit Anmeldedaten",
+	"login-with-sso": "Anmeldung mit SSO",
 	"mac": "Mac",
 	"male": "männlich",
 	"margin": "Marge",

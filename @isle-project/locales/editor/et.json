@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "HOIATUS: Selle suvandi välja lülitamine suurendab oluliselt üleslaadimise aega ja pakettide suurust.",
 	"load-isle-file-in-new-window": "ISLE faili laadimine uues aknas",
 	"login-failed": "Ei saanud serverisse sisse logida. Palun kontrollige aadressi ja porti.",
+	"login-with-credentials": "Sisselogimine koos volitustega",
+	"login-with-sso": "Sisselogimine SSO-ga",
 	"mac": "Mac",
 	"male": "mees",
 	"margin": "Marginaal",

@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "ATTENZIONE: la disattivazione di questa opzione aumenterà notevolmente il tempo di caricamento e le dimensioni del bundle",
 	"load-isle-file-in-new-window": "Caricare il file ISLE nella nuova finestra",
 	"login-failed": "Non è stato possibile effettuare il login al server. Si prega di controllare l'indirizzo e la porta.",
+	"login-with-credentials": "Accesso con credenziali",
+	"login-with-sso": "Accesso con SSO",
 	"mac": "Mac",
 	"male": "maschio",
 	"margin": "Margine",

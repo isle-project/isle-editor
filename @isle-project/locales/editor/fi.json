@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "VAROITUS: Tämän vaihtoehdon poistaminen käytöstä lisää huomattavasti latausaikaa ja nippujen kokoa.",
 	"load-isle-file-in-new-window": "Lataa ISLE-tiedosto uuteen ikkunaan",
 	"login-failed": "Palvelimelle ei voitu kirjautua. Tarkista osoite ja portti.",
+	"login-with-credentials": "Kirjautuminen tunnuksilla",
+	"login-with-sso": "Sisäänkirjautuminen SSO:lla",
 	"mac": "Mac",
 	"male": "mies",
 	"margin": "Marginaali",

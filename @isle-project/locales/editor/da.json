@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "ADVARSEL: Hvis du deaktiverer denne indstilling, vil uploadtiden og størrelsen af pakker stige voldsomt",
 	"load-isle-file-in-new-window": "Indlæs ISLE-fil i nyt vindue",
 	"login-failed": "Kunne ikke logge ind på serveren. Kontroller venligst adresse og port.",
+	"login-with-credentials": "Login med legitimationsoplysninger",
+	"login-with-sso": "Login med SSO",
 	"mac": "Mac",
 	"male": "mandlige",
 	"margin": "Margin",

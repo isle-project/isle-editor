@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "AVERTISMENT: Dezactivarea acestei opțiuni va crește masiv timpul de încărcare și dimensiunile pachetelor.",
 	"load-isle-file-in-new-window": "Încărcați fișierul ISLE într-o fereastră nouă",
 	"login-failed": "Nu s-a putut conecta la server. Vă rugăm să verificați adresa și portul.",
+	"login-with-credentials": "Autentificare cu credențiale",
+	"login-with-sso": "Autentificare cu SSO",
 	"mac": "Mac",
 	"male": "masculin",
 	"margin": "Marjă",

@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "VARNING: Om du inaktiverar det här alternativet ökar uppladdningstiden och storleken på paketen kraftigt.",
 	"load-isle-file-in-new-window": "Ladda ISLE-filen i ett nytt fönster",
 	"login-failed": "Kunde inte logga in på servern. Kontrollera adress och port.",
+	"login-with-credentials": "Logga in med autentiseringsuppgifter",
+	"login-with-sso": "Logga in med SSO",
 	"mac": "Mac",
 	"male": "manlig",
 	"margin": "Marginal",

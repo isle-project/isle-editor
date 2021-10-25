@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "OPOZORILO: Če to možnost onemogočite, se bo močno podaljšal čas prenosa in velikost svežnjev.",
 	"load-isle-file-in-new-window": "Nalaganje datoteke ISLE v novem oknu",
 	"login-failed": "Ni se mogel prijaviti v strežnik. Preverite naslov in vrata.",
+	"login-with-credentials": "Prijava s poverilnicami",
+	"login-with-sso": "Prijava s SSO",
 	"mac": "Mac",
 	"male": "moški",
 	"margin": "Margin",

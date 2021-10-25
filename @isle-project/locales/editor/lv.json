@@ -220,6 +220,8 @@
 	"load-from-cdn-tooltip": "BRĪDINĀJUMS: šīs opcijas atspējošana ievērojami palielinās augšupielādes laiku un pakešu izmērus.",
 	"load-isle-file-in-new-window": "ISLE faila ielāde jaunā logā",
 	"login-failed": "Nevarēja pieslēgties serverim. Lūdzu, pārbaudiet adresi un portu.",
+	"login-with-credentials": "Pieteikšanās ar pilnvarām",
+	"login-with-sso": "Pieteikšanās ar SSO",
 	"mac": "Mac",
 	"male": "vīriešu dzimuma",
 	"margin": "Rezerve",
