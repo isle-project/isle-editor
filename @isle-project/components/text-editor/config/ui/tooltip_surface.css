@@ -50,7 +50,7 @@
 
 .editor-tooltip-view::after {
 	background-color: #393939;
-	content: '';
+	content: "";
 	height: 8px;
 	left: var(--editor-pop-up-anchor-offset-left);
 	margin-left: -6px;

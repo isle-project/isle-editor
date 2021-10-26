@@ -7,7 +7,7 @@
 	height: 100%;
 	color: #526c96;
 	overflow: hidden;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	z-index: 9999;
 }
 
@@ -30,7 +30,7 @@
 	text-align: center;
 	font-size: calc(55px + 2.85vw);
 	font-weight: 400;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	text-shadow: 1px 1px 4px silver;
 	animation: anim-fade-in 1.3s forwards, anim-scale-up 2s forwards;
 }
@@ -47,7 +47,7 @@
 
 #loading-objectives-title {
 	font-size: calc(22px + 0.75vw);
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 }
 
 #loading-objectives {
@@ -79,7 +79,7 @@
 
 #loading-bar::after {
 	position: absolute;
-	content: ' ';
+	content: " ";
 	right: 0;
 	bottom: 0;
 	width: 100%;
@@ -100,7 +100,7 @@
 	width: 300px;
 	height: auto;
 	font-size: calc(16px + 0.83vw);
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	font-weight: 400;
 	text-shadow: 1px 1px 2px silver;
 	animation: focus-in 1.2s, anim-fade-in 1.2s;
@@ -116,7 +116,7 @@
 }
 
 #loading-title {
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans", sans-serif;
 	color: #2e4468;
 	font-size: 40px;
 	font-weight: bold;
@@ -141,7 +141,7 @@
 	top: 50%;
 	position: absolute;
 	text-shadow: 1px 1px 4px #2f4f4f;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	font-size: 5rem;
 	color: silver;
 }

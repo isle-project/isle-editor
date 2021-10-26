@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
 
 .sticky-note {
 	transition: all 0.3s;
@@ -45,7 +45,7 @@
 	position: absolute;
 	top: 10px;
 	padding-left: 10px;
-	font-family: 'Indie Flower', cursive;
+	font-family: "Indie Flower", cursive;
 	font-size: 1.4em;
 	font-weight: 800;
 }
@@ -76,7 +76,7 @@
 	top: 40px;
 	padding: 10px;
 	padding-left: 15px;
-	font-family: 'Indie Flower', cursive;
+	font-family: "Indie Flower", cursive;
 	font-size: 1em;
 	height: calc(100% - 65px);
 	width: 100%;
@@ -120,7 +120,7 @@
 	font-size: 26px;
 	margin-left: 6px;
 	z-index: 2;
-	font-family: Open Sans;
+	font-family: "Open Sans";
 }
 
 .sticky-note-remove-button:hover {

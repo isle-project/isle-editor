@@ -79,7 +79,7 @@
 	animation: editor_animation_blink normal 800ms infinite ease-in-out;
 	background-color: #cdcdcd;
 	bottom: 0;
-	content: '';
+	content: "";
 	cursor: wait;
 	left: 0;
 	position: absolute;
@@ -92,7 +92,7 @@
 	background-color: #fff;
 	outline: solid 1px #cdcdcd;
 	bottom: 0;
-	content: '';
+	content: "";
 	left: 0;
 	position: absolute;
 	right: 0;
@@ -115,7 +115,7 @@
 	/* simulated selection highlight */
 	background-color: rgba(152, 204, 253, 0.8);
 	bottom: 0;
-	content: '';
+	content: "";
 	left: 0;
 	position: absolute;
 	right: 0;

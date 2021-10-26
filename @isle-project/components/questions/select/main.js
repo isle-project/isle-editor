@@ -20,7 +20,7 @@ import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import { SELECT_QUESTION_SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import './select-question.css';
+import './select_question.css';
 
 
 // VARIABLES //

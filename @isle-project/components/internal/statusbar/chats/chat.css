@@ -1,7 +1,7 @@
 .chat-outer-div {
 	top: 0;
 	font-size: 13px;
-	font-family: Open Sans;
+	font-family: "Open Sans";
 	box-shadow: 2px 2px 10px darkslategrey;
 	background-color: #6c757d;
 }
@@ -67,7 +67,7 @@
 
 .chat-message {
 	white-space: pre-wrap;
-	font-family: Open Sans;
+	font-family: "Open Sans";
 	font-size: 1.1em;
 	display: flex;
 }

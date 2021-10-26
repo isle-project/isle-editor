@@ -165,7 +165,7 @@
 	background-color: rgba(152, 204, 253, 0.8);
 	border: solid 1px #fff;
 	box-sizing: border-box;
-	content: '';
+	content: "";
 	height: 10px;
 	left: 5px;
 	position: absolute;
@@ -175,7 +175,7 @@
 
 .editor-image-resize-box-control::before {
 	bottom: -10px;
-	content: '';
+	content: "";
 	left: -10px;
 	position: absolute;
 	right: -10px;

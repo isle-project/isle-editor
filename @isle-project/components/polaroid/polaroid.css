@@ -1,5 +1,5 @@
 .polaroid {
-	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_PolaroidFrame.png);
+	background-image: url("https://isle.heinz.cmu.edu/Summertime_lp_PolaroidFrame.png");
 	background-size: 100% auto;
 	transform: rotate(1.7deg);
 	z-index: 10;
@@ -45,7 +45,7 @@
 	width: 64px;
 	height: 64px;
 	background-size: 100% 100%;
-	background-image: url(https://isle.heinz.cmu.edu/Summertime_Pin-PNG-Picture.png);
+	background-image: url("https://isle.heinz.cmu.edu/Summertime_Pin-PNG-Picture.png");
 }
 
 .polaroid-stain {
@@ -55,7 +55,7 @@
 	opacity: 0.5;
 	width: 120px;
 	height: 120px;
-	background-image: url(https://isle.heinz.cmu.edu/Summertime_lp_kaffee3.png);
+	background-image: url("https://isle.heinz.cmu.edu/Summertime_lp_kaffee3.png");
 	background-size: 100% auto;
 	z-index: 5;
 	filter: saturate(20%);

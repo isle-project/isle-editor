@@ -26,7 +26,7 @@ import getLastAction from '@isle-project/utils/get-last-action';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import './number-question.css';
+import './number_question.css';
 
 
 // VARIABLES //

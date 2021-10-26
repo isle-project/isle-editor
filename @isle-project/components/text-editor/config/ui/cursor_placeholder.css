@@ -33,7 +33,7 @@
 .editor-cursor-placeholder::after {
 	background-color: rgba(152, 204, 253, 0.8);
 	bottom: 0;
-	content: '';
+	content: "";
 	height: 1.2em;
 	left: -1px;
 	position: absolute;

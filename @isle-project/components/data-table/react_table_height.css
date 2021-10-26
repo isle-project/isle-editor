@@ -23,7 +23,7 @@
 
 .Lesson .rt-thead.-header {
 	font-size: 18px;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 }
 
 .Lesson .rt-thead::-webkit-scrollbar {

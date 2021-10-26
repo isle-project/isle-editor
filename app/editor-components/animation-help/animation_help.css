@@ -8,12 +8,12 @@
 }
 
 .animation-helper h1 {
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	font-weight: 800;
 }
 
 .animation-helper .menu-item {
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	float: left;
 	margin-right: 8px;
 	font-size: 20px;
@@ -31,7 +31,7 @@
 .animation-helper .menu-item::before {
 	content: "|";
 	color: red;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	margin-right: 3px;
 	font-size: 20px;
 	font-weight: 600;

@@ -107,7 +107,7 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 /* We will use ::before and ::after to draw the connectors */
 .decision-tree li::before,
 .decision-tree li::after {
-	content: '';
+	content: "";
 	position: absolute;
 	top: 0;
 	right: 50%;
@@ -156,7 +156,7 @@ Some other advices about displaying trees: http://stackoverflow.com/questions/16
 
 /* Time to add downward connectors from parents */
 .decision-tree ul ul::before {
-	content: '';
+	content: "";
 	position: absolute;
 	top: 0;
 	left: 50%;

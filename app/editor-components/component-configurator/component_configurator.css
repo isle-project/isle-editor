@@ -63,14 +63,14 @@
 	position: fixed;
 	z-index: 10000;
 	background-color: gainsboro;
-	font-family: Open Sans;
+	font-family: "Open Sans";
 	box-shadow: 0 0 3px black;
 }
 
 .configurator-date-time-picker-header {
 	padding-left: 4px;
 	font-weight: 600;
-	font-family: Open Sans Condensed;
+	font-family: "Open Sans Condensed";
 	font-variant: all-small-caps;
 }
 

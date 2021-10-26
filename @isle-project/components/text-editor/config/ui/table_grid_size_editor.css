@@ -38,7 +38,7 @@
 .editor-table-grid-size-editor-body::after {
 	background: rgba(0, 0, 0, 0);
 	bottom: -50px;
-	content: '';
+	content: "";
 	left: 0;
 	position: absolute;
 	right: -50px;
