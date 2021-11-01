@@ -112,7 +112,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
-    "@babel/eslint-parser": "^7.15.8",
+    "@babel/eslint-parser": "^7.16.0",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@loadable/component": "^5.15.0",
     "@nosferatu500/react-sortable-tree": "^3.0.6",
