@@ -1,4 +1,4 @@
-# *ISLE Editor* [![LICENSE][license-image]][license-url] [![DOI][doi-image]][doi-url]
+# *ISLE Editor* [![LICENSE][license-image]][license-url]
 
 <div class="image" align="center">
     <img width="250" height="auto" src="https://raw.githubusercontent.com/isle-project/www/master/images/isle_icon_transparent.png" alt="ISLE logo">
@@ -6,11 +6,6 @@
 </div>
 
 ---
-
-#### Dependencies
-
-[![Dependencies][dependencies-image]][dependencies-url] 
-[![DevDependencies][dev-dependencies-image]][dev-dependencies-url]
 
 #### Tests
 
@@ -166,17 +161,8 @@ The following icons are used under a Creative Commons CCBY license.
 [license-image]: https://img.shields.io/badge/license-Apache2-blue.svg
 [license-url]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 
-[dependencies-image]: https://img.shields.io/david/isle-project/isle-editor.svg
-[dependencies-url]: https://david-dm.org/isle-project/isle-editor/master
-
-[dev-dependencies-image]: https://img.shields.io/david/dev/isle-project/isle-editor.svg
-[dev-dependencies-url]: https://david-dm.org/isle-project/isle-editor/master?type=dev
-
 [actions-image]: https://github.com/isle-project/isle-editor/workflows/Electron/badge.svg
 [actions-url]: https://github.com/isle-project/isle-editor/actions
-
-[doi-image]: https://zenodo.org/badge/61614893.svg
-[doi-url]: https://zenodo.org/badge/latestdoi/61614893
 
 [codecov-image]: https://codecov.io/gh/isle-project/isle-editor/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/isle-project/isle-editor
