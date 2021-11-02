@@ -1131,7 +1131,7 @@ class Editor extends Component {
 			actions,
 			dispose(){}
 		};
-	}
+	};
 
 	checkRequires = ( names, preamble ) => {
 		for ( let i = 0; i < names.length; i++ ) {
@@ -1144,7 +1144,7 @@ class Editor extends Component {
 				}
 			}
 		}
-	}
+	};
 
 	readTypeDefinition = ( path ) => {
 		if ( this.state.sourceFiles[ path ] ) {
@@ -1165,7 +1165,7 @@ class Editor extends Component {
 				sourceFiles
 			});
 		});
-	}
+	};
 
 	updateDimensions = () => {
 		debug( 'Window was resized...' );
@@ -1174,7 +1174,7 @@ class Editor extends Component {
 			height: this.props.height - 26
 		});
 		this.forceUpdate(); // Ensure Monaco editor is resized...
-	}
+	};
 
 	handleChange = ( newValue, event ) => {
 		if ( this.hasHighlight ) {
@@ -1193,18 +1193,18 @@ class Editor extends Component {
 		this.setState({
 			value: newValue
 		});
-	}
+	};
 
 	toggleComponentConfigurator = ( data ) => {
 		this.props.setConfiguratorComponent({
 			component: data
 		});
 		this.props.toggleConfigurator( true );
-	}
+	};
 
 	removeDecorations = () => {
 		this.decorations = this.editor.deltaDecorations( this.decorations, [] );
-	}
+	};
 
 	handleContextMenuClick = ( customClick, data ) => {
 		debug( `Handle click to open context menu... (custom click: ${customClick})` );
@@ -1225,7 +1225,7 @@ class Editor extends Component {
 			debug( 'Open component configuration modal window...' );
 			this.toggleComponentConfigurator( data );
 		}
-	}
+	};
 
 	translateSelection = async ( language ) => {
 		if ( !this.state.hasSelection ) {
@@ -1257,7 +1257,7 @@ class Editor extends Component {
 			editorDiv.style.opacity = 1.0;
 			vex.dialog.alert( this.props.t('translation-failed', { msg: err.message }) );
 		}
-	}
+	};
 
 	translateLesson = async ( language ) => {
 		const editorDiv = document.getElementsByClassName( 'monaco-editor' )[ 0 ];
@@ -1283,7 +1283,7 @@ class Editor extends Component {
 			editorDiv.style.opacity = 1.0;
 			vex.dialog.alert( this.props.t('translation-failed', { msg: err.message }) );
 		}
-	}
+	};
 
 	insertSketchpadAtPos = (
 		file,
@@ -1313,7 +1313,7 @@ class Editor extends Component {
 			}
 			this.editor.pushUndoStop();
 		}
-	}
+	};
 
 	insertImgAtPos = (
 		file,
@@ -1343,7 +1343,7 @@ class Editor extends Component {
 			}
 			this.editor.pushUndoStop();
 		}
-	}
+	};
 
 	insertVideoAtPos = (
 		file,
@@ -1373,7 +1373,7 @@ class Editor extends Component {
 			}
 			this.editor.pushUndoStop();
 		}
-	}
+	};
 
 	insertTextAtPos = (
 		text,
@@ -1389,7 +1389,7 @@ class Editor extends Component {
 			this.editor.executeEdits( 'insert', [{ range, text, forceMoveMarkers: true }] );
 		}
 		this.editor.pushUndoStop();
-	}
+	};
 
 	handleDrop = ( e, target ) => {
 		let text = e.dataTransfer.getData( 'text' );
@@ -1489,7 +1489,7 @@ class Editor extends Component {
 			match = content.match( RE_TAG_START );
 		}
 		return { match, content };
-	}
+	};
 
 	triggerStylerViaGlyph = () => {
 		const model = this.editor.getModel();
@@ -1502,7 +1502,7 @@ class Editor extends Component {
 		this.setState({
 			componentStylerProps
 		});
-	}
+	};
 
 	triggerConfiguratorViaGlyph = () => {
 		const { match, content } = this.extractComponentFromSelection();
@@ -1512,7 +1512,7 @@ class Editor extends Component {
 				value: content
 			});
 		}
-	}
+	};
 
 	onEditorMount = ( editor, monaco ) => {
 		this.editor = editor;
@@ -1530,7 +1530,7 @@ class Editor extends Component {
 			}
 		});
 		this.forceUpdate();
-	}
+	};
 
 	collectContext = () => {
 		const { lineNumber, column } = this.editor.getPosition();
@@ -1546,7 +1546,7 @@ class Editor extends Component {
 			}
 		]);
 		return { context: 'editor' };
-	}
+	};
 
 	handleStylerChange = ( text, elementRange ) => {
 		const op = {
@@ -1566,7 +1566,7 @@ class Editor extends Component {
 				componentValue: text
 			}
 		});
-	}
+	};
 
 	handleStylerHide = () => {
 		this.setState({
@@ -1574,7 +1574,7 @@ class Editor extends Component {
 				show: false
 			}
 		});
-	}
+	};
 
 	render() {
 		debug( 'Re-rendering monaco editor...' );

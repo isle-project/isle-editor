@@ -116,7 +116,7 @@ class UploadLesson extends Component {
 			lessonName,
 			invalidLessonName: contains( lessonName, ' ' )
 		});
-	}
+	};
 
 	handleSelectChange = ( event ) => {
 		debug( 'Change the selected namespace...' );
@@ -125,19 +125,19 @@ class UploadLesson extends Component {
 		debug( 'The selected namespace is: ' + value );
 		electronStore.set( 'namespaceName', value );
 		this.props.changeNamespace( value );
-	}
+	};
 
 	closeResponseModal = () => {
 		this.setState({
 			showResponseModal: false
 		});
-	}
+	};
 
 	closeConfirmModal = () => {
 		this.setState({
 			showConfirmModal: false
 		});
-	}
+	};
 
 	zipLesson = ( outputPath, outputDir, clbk ) => {
 		let output = createWriteStream( join( outputPath, outputDir+'.zip' ) );
@@ -234,7 +234,7 @@ class UploadLesson extends Component {
 				dirname: randomstring( 16, 65, 90 )
 			});
 		});
-	}
+	};
 
 	checkLesson = () => {
 		const form = {
@@ -257,7 +257,7 @@ class UploadLesson extends Component {
 			.catch( error => {
 				return this.setState({ error });
 			});
-	}
+	};
 
 	publishLesson = () => {
 		this.setState({
@@ -309,7 +309,7 @@ class UploadLesson extends Component {
 				dirname: randomstring( 16, 65, 90 )
 			});
 		});
-	}
+	};
 
 	renderResponseModal = () => {
 		const { t } = this.props;
@@ -326,7 +326,7 @@ class UploadLesson extends Component {
 				</Modal.Footer>
 			</Modal>
 		);
-	}
+	};
 
 	renderConfirmModal = () => {
 		if ( !this.state.showConfirmModal ) {
@@ -371,7 +371,7 @@ class UploadLesson extends Component {
 				/>
 			</Modal>
 		);
-	}
+	};
 
 	renderProgress() {
 		const { error, spinning } = this.state;
@@ -397,7 +397,7 @@ class UploadLesson extends Component {
 		) {
 			this.checkLesson( event );
 		}
-	}
+	};
 
 	renderUploadPanel = () => {
 		let formGroups;
@@ -582,7 +582,7 @@ class UploadLesson extends Component {
 				</Card.Body>
 			</Card>
 		);
-	}
+	};
 
 	render() {
 		return (

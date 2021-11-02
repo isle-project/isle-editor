@@ -18,7 +18,7 @@ class MonacoDragNDropProvider {
 			this.onDropHandler( e, this.dragTarget, this.editor );
 		}
 		this.removeMouseDownWidget();
-	}
+	};
 
 	onDragOver = ( e ) => {
 		const ins = this.editor;
@@ -26,7 +26,7 @@ class MonacoDragNDropProvider {
 			this.displayMouseDropPosition( ins, ins.getTargetAtClientPoint( e.clientX, e.clientY ) );
 		}
 		e.preventDefault();
-	}
+	};
 
 	removeMouseDownWidget = () => {
 		const instance = this.editor;
@@ -34,13 +34,13 @@ class MonacoDragNDropProvider {
 			instance.removeContentWidget( this.mouseDropWidget );
 			this.mouseDropWidget = null;
 		}
-	}
+	};
 
 	props = {
 		onDragOver: this.onDragOver,
 		onDropCapture: this.onDrop,
 		onDragLeaveCapture: this.removeMouseDownWidget
-	}
+	};
 
 	buildMouseDropWidget = () => {
 		if ( !this.domNode ) {
@@ -59,7 +59,7 @@ class MonacoDragNDropProvider {
 				preference: [ ContentWidgetPositionPreference.EXACT, ContentWidgetPositionPreference.EXACT]
 			})
 		};
-	}
+	};
 
 	displayMouseDropPosition = ( instance, target ) => {
 		this.dragTarget = target;
@@ -69,7 +69,7 @@ class MonacoDragNDropProvider {
 			this.mouseDropWidget = this.buildMouseDropWidget();
 			instance.addContentWidget( this.mouseDropWidget );
 		}
-	}
+	};
 }
 
 

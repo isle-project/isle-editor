@@ -58,12 +58,12 @@ class ExportLesson extends Component {
 	openFolder = () => {
 		const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
 		shell.showItemInFolder( fullPath );
-	}
+	};
 
 	openLesson = () => {
 		const fullPath = path.join( this.state.outputPath, this.state.outputDir, 'index.html' );
 		shell.openPath( fullPath );
-	}
+	};
 
 	handleFileInputClick = () => {
 		dialog.showOpenDialog({
@@ -77,7 +77,7 @@ class ExportLesson extends Component {
 					error
 				});
 			});
-	}
+	};
 
 	handleInputChange = ( event ) => {
 		const target = event.target;
@@ -88,7 +88,7 @@ class ExportLesson extends Component {
 		this.setState({
 			[ name ]: value
 		});
-	}
+	};
 
 	generateApp = () => {
 		const { outputPath, outputDir, minify, writeStats, loadFromCDN } = this.state;
@@ -138,7 +138,7 @@ class ExportLesson extends Component {
 				});
 			});
 		}
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if (
@@ -148,7 +148,7 @@ class ExportLesson extends Component {
 		) {
 			this.generateApp( event );
 		}
-	}
+	};
 
 	renderFinished = () => {
 		const { t } = this.props;
@@ -184,7 +184,7 @@ class ExportLesson extends Component {
 			<Spinner width={128} height={64} running={this.state.spinning} />
 			{card}
 		</Fragment> );
-	}
+	};
 
 	renderAlreadyExists = () => {
 		if ( !this.state.alreadyExists ) {
@@ -198,25 +198,25 @@ class ExportLesson extends Component {
 				<p>{this.props.t('directory-already-exists-msg')}</p>
 			</Card.Body>
 		</Card> );
-	}
+	};
 
 	handleMinifyChange = ( value ) => {
 		this.setState({
 			minify: value
 		});
-	}
+	};
 
 	handleWriteStatsChange = ( value ) => {
 		this.setState({
 			writeStats: value
 		});
-	}
+	};
 
 	handleCDNChange = ( value ) => {
 		this.setState({
 			loadFromCDN: value
 		});
-	}
+	};
 
 	handleOutputDirChange = ( event ) => {
 		this.setState({
@@ -224,7 +224,7 @@ class ExportLesson extends Component {
 			finished: false,
 			alreadyExists: false
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

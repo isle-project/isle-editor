@@ -72,17 +72,17 @@ class SettingsLogin extends Component {
 			// Update server, email, or password in store:
 			electronStore.set( name, value );
 		});
-	}
+	};
 
 	unlink = () => {
 		electronStore.delete( 'token' );
 		this.forceUpdate();
-	}
+	};
 
 	unlinkGitHub = () => {
 		electronStore.delete( 'githubAccessToken' );
 		this.forceUpdate();
-	}
+	};
 
 	connectToServer = async () => {
 		try {
@@ -130,7 +130,7 @@ class SettingsLogin extends Component {
 				encounteredError: err
 			});
 		}
-	}
+	};
 
 	connectToGitHub = async () => {
 		const authWindow = new BrowserWindow({
@@ -172,7 +172,7 @@ class SettingsLogin extends Component {
 				authWindow.destroy();
 			}
 		});
-	}
+	};
 
 	getGitHubToken = async ( code ) => {
 		try {
@@ -197,19 +197,19 @@ class SettingsLogin extends Component {
 				encounteredError: err
 			});
 		}
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
 			this.connectToServer( event );
 		}
-	}
+	};
 
 	setLoginMethod = ( method ) => {
 		this.setState({
 			loginMethod: method
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

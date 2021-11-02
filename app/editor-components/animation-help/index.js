@@ -82,7 +82,7 @@ class AnimationHelp extends Component {
 		this.setState({
 			code: value
 		});
-	}
+	};
 
 	getCommand( ndx ) {
 		const item = commands[ndx];
@@ -183,7 +183,7 @@ class AnimationHelp extends Component {
 		this.setState({
 			explanation: page
 		});
-	}
+	};
 
 	renderMenu() {
 		const { t } = this.props;

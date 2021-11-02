@@ -54,7 +54,7 @@ class EditorContextMenu extends Component {
 			return true;
 		}
 		return false;
-	}
+	};
 
 	createMenuEntries = ( arr, title, ...otherMenuEntries ) => {
 		const out = [];
@@ -91,7 +91,7 @@ class EditorContextMenu extends Component {
 			</div> );
 		}
 		return otherMenuEntries;
-	}
+	};
 
 	renderMenuItem = ( obj ) => {
 		const description = COMPONENT_DOCS[ obj.name ] ? this.props.t( 'ComponentDocs:'+COMPONENT_DOCS[ obj.name ].description ) : '';
@@ -114,7 +114,7 @@ class EditorContextMenu extends Component {
 				style={BUTTON_STYLE}
 			/>
 		</MenuItem> );
-	}
+	};
 
 	handleHide = () => {
 		this.setState({
@@ -122,15 +122,15 @@ class EditorContextMenu extends Component {
 			visible: false
 		});
 		this.props.onHide();
-	}
+	};
 
 	handleContextMenuClick = ( event, data ) => {
 		this.props.onContextMenuClick( event.target.nodeName === 'BUTTON', data );
-	}
+	};
 
 	handleTranslateSelectionClick = ( _, data ) => {
 		this.props.onTranslateSelection( data.language );
-	}
+	};
 
 	handleSearchValueChange = ( event ) => {
 		event.stopPropagation();
@@ -139,7 +139,7 @@ class EditorContextMenu extends Component {
 		}, () => {
 			this.buildMenu( true );
 		});
-	}
+	};
 
 	clearSearchValue = () => {
 		this.setState({
@@ -147,7 +147,7 @@ class EditorContextMenu extends Component {
 		}, () => {
 			this.buildMenu( true );
 		});
-	}
+	};
 
 	buildMenu = ( forceUpdate ) => {
 		if ( this.state.menuContent && !forceUpdate ) {
@@ -237,7 +237,7 @@ class EditorContextMenu extends Component {
 			menuContent,
 			visible: true
 		});
-	}
+	};
 
 	render() {
 		return (

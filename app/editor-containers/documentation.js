@@ -46,7 +46,7 @@ class Documentation extends Component {
 			width: window.innerWidth,
 			height: window.innerHeight
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

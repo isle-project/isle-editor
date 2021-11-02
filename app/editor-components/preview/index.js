@@ -199,7 +199,7 @@ class Preview extends Component {
 		} catch ( err ) {
 			return this.props.encounteredError( err );
 		}
-	}
+	};
 
 	renderPreview = () => {
 		debug( 'Should render the lesson...' );
@@ -294,7 +294,7 @@ class Preview extends Component {
 				return null;
 			}
 		}
-	}
+	};
 
 	render() {
 		debug( 'Rendering preview...' );

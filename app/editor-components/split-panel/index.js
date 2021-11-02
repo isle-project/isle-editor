@@ -45,7 +45,7 @@ class SplitPanel extends Component {
 		} else {
 			this.ignoreScrollEvents = false;
 		}
-	}
+	};
 
 	setScrollTop = ( percentage ) => {
 		const scrollHeight = this.scrollHeight;
@@ -57,7 +57,7 @@ class SplitPanel extends Component {
 		setTimeout( () => {
 			this.ignoreScrollEvents = false;
 		}, 20 );
-	}
+	};
 
 	render() {
 		return (

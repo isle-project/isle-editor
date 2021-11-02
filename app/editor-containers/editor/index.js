@@ -94,7 +94,7 @@ class App extends Component {
 		this.setState({
 			innerWidth: window.innerWidth
 		});
-	}
+	};
 
 	handleCodeChange = ( value ) => {
 		debug( 'Should handle change...' );
@@ -119,7 +119,7 @@ class App extends Component {
 			this.debouncedChange = debounce( this.handleCodeChange, this.props.renderInterval );
 			this.debouncedChange( value );
 		}
-	}
+	};
 
 	handleVerticalSplit = ( size ) => {
 		size /= this.state.innerWidth;
@@ -130,7 +130,7 @@ class App extends Component {
 			this.debouncedSplitUpdate( size );
 		}
 		this.props.changeSplitPos( size );
-	}
+	};
 
 	handlePreambleChange = ( text ) => {
 		let preamble = text.match( RE_PREAMBLE );
@@ -162,7 +162,7 @@ class App extends Component {
 			const err = new PreambleError( 'File is missing a preamble.' );
 			this.props.encounteredError( err );
 		}
-	}
+	};
 
 	spellcheckCode = async ( code ) => {
 		const language = this.props.preamble.language || 'en-US';
@@ -173,7 +173,7 @@ class App extends Component {
 		if ( errs ) {
 			this.props.saveSpellingErrors( errs );
 		}
-	}
+	};
 
 	lintCode = async ( code ) => {
 		if ( this.linter ) {
@@ -186,7 +186,7 @@ class App extends Component {
 			errs = errs.map( mapErrors );
 			this.props.saveLintErrors( errs );
 		}
-	}
+	};
 
 	resetError = () => {
 		if (
@@ -196,11 +196,11 @@ class App extends Component {
 		) {
 			this.props.resetError();
 		}
-	}
+	};
 
 	hideConfigurator = () => {
 		this.props.toggleConfigurator( false );
-	}
+	};
 
 	handlePreviewButtonClick = () => {
 		let splitPos;
@@ -210,12 +210,12 @@ class App extends Component {
 			splitPos = 1;
 		}
 		this.props.changeSplitPos( splitPos );
-	}
+	};
 
 	handleConfiguratorInsert = ( text ) => {
 		this.props.pasteInsertion({ text });
 		this.props.toggleConfigurator( false );
-	}
+	};
 
 	render() {
 		let {

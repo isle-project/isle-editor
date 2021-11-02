@@ -84,7 +84,7 @@ class Playground extends PureComponent {
 				value
 			});
 		}
-	}
+	};
 
 	transformCode = ( code ) => {
 		const session = this.context;
@@ -113,7 +113,7 @@ class Playground extends PureComponent {
 				>${code}</Lesson>
 			</Provider>
 		</I18nextProvider>`;
-	}
+	};
 
 	render() {
 		const scope = {

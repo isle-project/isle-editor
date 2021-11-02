@@ -86,6 +86,21 @@ const PLAYGROUND_STYLE = {
 
 // FUNCTIONS //
 
+function handleCodeTransform( code ) {
+	PropTypes.resetWarningCache();
+	try {
+		code = replace( code, RE_BEFORE_TAG, '' );
+		let out = markdownToHTML( code );
+		out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
+			const raw = replace( p1, '\\', '\\\\' );
+			return `String.raw({ raw: \`${raw}\` })`; // eslint-disable-line i18next/no-literal-string
+		});
+		return out;
+	} catch ( err ) {
+		return err;
+	}
+}
+
 function extractType( type, defaultValue ) {
 	type = replace( type, ' (required)', '' );
 	switch ( type ) {
@@ -263,7 +278,7 @@ class ComponentConfigurator extends Component {
 
 	clickHide = () => {
 		this.props.onHide();
-	}
+	};
 
 	handleChange = ( newValue ) => {
 		this.setState({
@@ -348,11 +363,11 @@ class ComponentConfigurator extends Component {
 				}
 			}
 		});
-	}
+	};
 
 	handleMouseOut = () => {
 		this.calculateValuesFromText();
-	}
+	};
 
 	handleClick = () => {
 		let value = this.state.value;
@@ -365,13 +380,13 @@ class ComponentConfigurator extends Component {
 			}
 			this.props.onInsert( value );
 		}
-	}
+	};
 
 	handleReset = () => {
 		this.setState({
 			value: removePlaceholderMarkup( this.props.component.value )
 		}, this.calculateValuesFromText );
-	}
+	};
 
 	replaceChildrenFactory = () => {
 		let oldValue;
@@ -394,7 +409,7 @@ class ComponentConfigurator extends Component {
 				debouncedValueUpdate( newValue );
 			});
 		};
-	}
+	};
 
 	replaceStringFactory = ( key ) => {
 		let RE_FULL_KEY;
@@ -422,7 +437,7 @@ class ComponentConfigurator extends Component {
 				debouncedValueUpdate( newValue );
 			});
 		};
-	}
+	};
 
 	handleJSONChangeFactory = ( key ) => {
 		let RE_FULL_KEY;
@@ -440,7 +455,7 @@ class ComponentConfigurator extends Component {
 				[ 'prop:'+key ]: updated_src
 			});
 		};
-	}
+	};
 
 	replaceObjectFactory = ( key ) => {
 		let RE_FULL_KEY;
@@ -459,7 +474,7 @@ class ComponentConfigurator extends Component {
 				this.setState({ value });
 			});
 		};
-	}
+	};
 
 	replaceStyle = ( newValue ) => {
 		this.textPropertyValues[ 'style' ] = null;
@@ -474,7 +489,7 @@ class ComponentConfigurator extends Component {
 			}
 			this.setState({ value });
 		});
-	}
+	};
 
 	replaceDate = ( prop, newValue ) => {
 		this.textPropertyValues[ prop ] = null;
@@ -486,7 +501,7 @@ class ComponentConfigurator extends Component {
 			value = replace( value, RE, '$1'+prop+'={' + newValue + '}$3' );
 			this.setState({ value });
 		});
-	}
+	};
 
 	handleClassTransform = ( className ) => {
 		let { value } = this.state;
@@ -502,7 +517,7 @@ class ComponentConfigurator extends Component {
 		}, () => {
 			this.insertAttribute( 'className' );
 		});
-	}
+	};
 
 	replaceNumberOrBooleanFactory = ( key ) => {
 		const RE_FULL_KEY = new RegExp( '([ \t]*)' + key + '=([\\s\\S]*?)( +|\t|\r?\n)', 'i' );
@@ -514,7 +529,7 @@ class ComponentConfigurator extends Component {
 				[ 'prop:'+key ]: newValue
 			});
 		};
-	}
+	};
 
 	insertAttribute = ( key ) => {
 		const newPropActive = { ...this.state.propActive };
@@ -547,13 +562,13 @@ class ComponentConfigurator extends Component {
 			propActive: newPropActive,
 			[ 'prop:'+key ]: defaultValue
 		});
-	}
+	};
 
 	toggleStyler = () => {
 		this.setState({
 			showStyler: !this.state.showStyler
 		});
-	}
+	};
 
 	showDateTimePickerFactory = ( prop ) => {
 		return () => {
@@ -561,20 +576,20 @@ class ComponentConfigurator extends Component {
 				dateTimePicker: prop
 			});
 		};
-	}
+	};
 
 	hideDateTimePicker = () => {
 		this.setState({
 			dateTimePicker: null
 		});
-	}
+	};
 
 	toggleTutorial = () => {
 		addResources( 'Tutorial' );
 		this.setState({
 			showTutorial: !this.state.showTutorial
 		});
-	}
+	};
 
 	checkboxClickFactory = ( key ) => {
 		let RE_FULL_KEY;
@@ -603,22 +618,7 @@ class ComponentConfigurator extends Component {
 				});
 			}
 		};
-	}
-
-	handleCodeTransform = ( code ) => {
-		PropTypes.resetWarningCache();
-		try {
-			code = replace( code, RE_BEFORE_TAG, '' );
-			let out = markdownToHTML( code );
-			out = replace( out, /String.raw`([^`]+)`/g, ( m, p1 ) => {
-				const raw = replace( p1, '\\', '\\\\' );
-				return `String.raw({ raw: \`${raw}\` })`; // eslint-disable-line i18next/no-literal-string
-			});
-			return out;
-		} catch ( err ) {
-			return err;
-		}
-	}
+	};
 
 	renderPropertyControls() {
 		debug( 'Rendering property controls...' );
@@ -898,7 +898,7 @@ class ComponentConfigurator extends Component {
 											onMouseOut: this.handleMouseOut
 										}}
 										style={PLAYGROUND_STYLE}
-										transformCode={this.handleCodeTransform}
+										transformCode={handleCodeTransform}
 									/>
 								</Provider>
 							}
