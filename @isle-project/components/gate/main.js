@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { withTranslation } from 'react-i18next';
 import isUndefined from '@stdlib/assert/is-undefined';
+import isNull from '@stdlib/assert/is-null';
 import { RECEIVED_USER_RIGHTS, LOGGED_IN, LOGGED_OUT } from '@isle-project/constants/events.js';
 import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import SessionContext from '@isle-project/session/context.js';
@@ -206,6 +207,9 @@ class Gate extends Component {
 	}
 
 	renderShowButton() {
+		if ( isNull( this.props.banner ) ) {
+			return null;
+		}
 		return ( <Button variant="secondary" size="small" onClick={() => {
 			this.setState({
 				bypassTimeCheck: !this.state.bypassTimeCheck
