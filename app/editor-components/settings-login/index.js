@@ -58,8 +58,13 @@ class SettingsLogin extends Component {
 			email: electronStore.get('email') || '',
 			password: electronStore.get('password') || '',
 			encounteredError: null,
-			loginMethod: 'credentials'
+			loginMethod: 'SignIn',
+			loginType: 'Both'
 		};
+	}
+
+	componentDidMount() {
+		this.checkLoginTypes();
 	}
 
 	handleInputChange = ( event ) => {
@@ -84,9 +89,25 @@ class SettingsLogin extends Component {
 		this.forceUpdate();
 	};
 
+	checkLoginTypes = async () => {
+		try {
+			const response = await axios.get( this.state.server + '/saml-xmw/login-type' );
+			this.setState({
+				loginType: response.data,
+				loginMethod: response.data !== 'Both' ? response.data : this.state.loginMethod
+			});
+		} catch ( err ) {
+			debug( 'Error checking login types: %o', err );
+			this.setState({
+				loginType: 'SignIn',
+				loginMethod: 'SignIn'
+			});
+		}
+	};
+
 	connectToServer = async () => {
 		try {
-			if ( this.state.loginMethod === 'credentials' ) {
+			if ( this.state.loginMethod === 'SignIn' ) {
 				const res = await axios.post( this.state.server + '/login', {
 					password: this.state.password,
 					email: trim( this.state.email )
@@ -98,7 +119,7 @@ class SettingsLogin extends Component {
 				});
 			}
 			else {
-				const res = await axios.get( this.state.server + '/saml/login', {
+				const res = await axios.get( this.state.server + '/saml-xmw/login', {
 					password: this.state.password,
 					email: trim( this.state.email )
 				});
@@ -117,7 +138,7 @@ class SettingsLogin extends Component {
 					event.preventDefault();
 					if ( !url.includes( 'okta' ) ) {
 						authWindow.destroy();
-						const res = await axios.get( this.state.server + '/saml/session' );
+						const res = await axios.get( this.state.server + '/saml-xmw/session' );
 						electronStore.set( 'token', res.data.token );
 						this.setState({
 							encounteredError: null
@@ -232,6 +253,7 @@ class SettingsLogin extends Component {
 								type="text"
 								placeholder={t('form-control-server')}
 								onChange={this.handleInputChange}
+								onBlur={this.checkLoginTypes}
 								value={server}
 								onKeyPress={this.handleKeyPress}
 								isInvalid={invalidServer}
@@ -256,14 +278,14 @@ class SettingsLogin extends Component {
 							value={this.state.loginMethod}
 							style={{ paddingBottom: '1rem', paddingTop: '1rem' }}
 						>
-							<ToggleButton value="credentials" variant="outline-secondary" >
+							<ToggleButton value="SignIn" variant="outline-secondary" disabled={this.state.loginType === 'SSO'} >
 								{t('login-with-credentials')}
 							</ToggleButton>
-							<ToggleButton value="sso" variant="outline-secondary" >
+							<ToggleButton value="sso" variant="outline-secondary" disabled={this.state.loginType === 'SignIn'} >
 								{t('login-with-sso')}
 							</ToggleButton>
 						</ToggleButtonGroup>
-						{this.state.loginMethod === 'credentials' ?
+						{this.state.loginMethod === 'SignIn' ?
 							<Fragment>
 								<FormGroup>
 									<FormLabel>{t('email')}</FormLabel>
