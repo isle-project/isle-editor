@@ -67,7 +67,7 @@ class AnnotationEditor extends React.PureComponent {
 
 	_apply = () => {
 		this.props.close( this.state.annotation );
-	}
+	};
 
 	render() {
 		const { annotation } = this.state;
