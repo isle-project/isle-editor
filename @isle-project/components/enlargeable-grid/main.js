@@ -132,7 +132,7 @@ class EnlargeableGrid extends Component {
 			});
 		};
 		return enlargeDiv;
-	}
+	};
 
 	render() {
 		return (

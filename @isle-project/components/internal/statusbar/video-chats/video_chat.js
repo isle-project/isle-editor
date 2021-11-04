@@ -116,7 +116,7 @@ class VideoChat extends Component {
 			this.api.executeCommand( 'hangup' );
 		}
 		session.leaveVideoChat( this.props.roomName );
-	}
+	};
 
 	handleCompress = ( event ) => {
 		this.setState({
@@ -131,11 +131,11 @@ class VideoChat extends Component {
 				});
 			}
 		});
-	}
+	};
 
 	stopScreenSharing = ( event ) => {
 		this.api.executeCommand( 'toggleShareScreen' );
-	}
+	};
 
 	render() {
 		let style;

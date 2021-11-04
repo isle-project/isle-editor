@@ -54,7 +54,7 @@ class LessonContextMenu extends Component {
 				this.forceUpdate();
 			}, 150 );
 		}
-	}
+	};
 
 	highlightText = ( event ) => {
 		debug( 'Highlight the selected text...' );
@@ -65,7 +65,7 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'yellow' );
 		document.designMode = 'off';
-	}
+	};
 
 	removeHighlight = ( event ) => {
 		debug( 'Highlight the selected text...' );
@@ -76,12 +76,12 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'inherit' );
 		document.designMode = 'off';
-	}
+	};
 
 	copyToClipboard = ( event ) => {
 		debug( 'Copying selection to clipboard... ' );
 		navigator.clipboard.writeText( this.state.lastText );
-	}
+	};
 
 	textToSpeech = () => {
 		const str = this.state.lastText;
@@ -98,35 +98,35 @@ class LessonContextMenu extends Component {
 		const ssu = new SpeechSynthesisUtterance( str );
 		ssu.lang = session.config.language || 'en-US';
 		window.speechSynthesis.speak( ssu );
-	}
+	};
 
 	handleShow = () => {
 		debug( 'Context menu has been opened...' );
 		this.setState({ contextMenuIsOpen: true });
-	}
+	};
 
 	handleHide = () => {
 		debug( 'Context menu has been closed...' );
 		this.setState({ contextMenuIsOpen: false });
-	}
+	};
 
 	handleStudentNoteAddition = ( event ) => {
 		const xPercent = event.pageX / window.innerWidth;
 		const yPercent = event.pageY / window.innerHeight;
 		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'public' });
-	}
+	};
 
 	handlePersonalNoteAddition = ( event ) => {
 		const xPercent = event.pageX / window.innerWidth;
 		const yPercent = event.pageY / window.innerHeight;
 		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'private' });
-	}
+	};
 
 	handleInstructorNoteAddition = ( event ) => {
 		const xPercent = event.pageX / window.innerWidth;
 		const yPercent = event.pageY / window.innerHeight;
 		this.props.addNote({ left: xPercent, top: yPercent, visibility: 'instructor' });
-	}
+	};
 
 	render() {
 		const menuItems = [];

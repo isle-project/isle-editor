@@ -51,7 +51,7 @@ class Presenter extends Component {
 			this.props.slideReference,
 			index
 		);
-	}
+	};
 
 	_renderCurrentSlideDuration = () => {
 		const { slideIndex } = this.props;
@@ -67,7 +67,7 @@ class Presenter extends Component {
 			/> );
 		}
 		return null;
-	}
+	};
 
 	_renderMainSlide = () => {
 		const { slideIndex, hash, lastSlideIndex } = this.props;
@@ -88,7 +88,7 @@ class Presenter extends Component {
 			presenter: true,
 			presenterStyle
 		});
-	}
+	};
 
 	_renderNextSlide = () => {
 		const { slideIndex, lastSlideIndex } = this.props;
@@ -114,7 +114,7 @@ class Presenter extends Component {
 		) : (
 			<p className="spectacle-end-header">{this.props.t('end')}</p>
 		);
-	}
+	};
 
 	_renderNotes = () => {
 		let notes;
@@ -133,7 +133,7 @@ class Presenter extends Component {
 			return <div dangerouslySetInnerHTML={{ __html: notes }} />;
 		}
 		return <div>{notes}</div>;
-	}
+	};
 
 	render() {
 		const { t } = this.props;

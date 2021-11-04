@@ -31,17 +31,17 @@ class SaveModal extends Component {
 
 	clickHide = () => {
 		this.props.onHide();
-	}
+	};
 
 	handlePDFExport = () => {
 		this.props.saveAsPDF();
 		this.props.onHide();
-	}
+	};
 
 	handlePNGExport = () => {
 		this.props.saveAsPNG();
 		this.props.onHide();
-	}
+	};
 
 	render() {
 		const session = this.props.session;

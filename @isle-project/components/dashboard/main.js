@@ -103,7 +103,7 @@ class Dashboard extends Component {
 			this._counter += 1;
 		}
 		return this._counter;
-	}
+	};
 
 	handleFieldChange = ( fieldId, value ) => {
 		debug( `Setting ${fieldId} to ${value}` );
@@ -114,7 +114,7 @@ class Dashboard extends Component {
 				this.handleClick();
 			}
 		});
-	}
+	};
 
 	registerChildren = ( children, level ) => {
 		if ( !children ) {
@@ -159,7 +159,7 @@ class Dashboard extends Component {
 				return child;
 			}
 		);
-	}
+	};
 
 	render() {
 		this._counter = void 0;

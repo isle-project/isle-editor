@@ -90,7 +90,7 @@ class HistoryView extends Component {
 				}
 			});
 		}
-	}
+	};
 
 	addStep = () => {
 		if ( !this.state.running ) {
@@ -146,7 +146,7 @@ class HistoryView extends Component {
 				this.timeoutID = setTimeout( this.addStep, this.state.interval );
 			}
 		});
-	}
+	};
 
 	fastForward = () => {
 		if ( this.state.running ) {
@@ -187,7 +187,7 @@ class HistoryView extends Component {
 			invertedSteps,
 			running: false
 		});
-	}
+	};
 
 	subtractStep = () => {
 		if ( !this.state.running ) {
@@ -234,7 +234,7 @@ class HistoryView extends Component {
 				this.timeoutID = setTimeout( this.subtractStep, this.state.interval );
 			}
 		});
-	}
+	};
 
 	reset = ( event, clbk = noop ) => {
 		if ( this.timeoutID ) {
@@ -260,30 +260,30 @@ class HistoryView extends Component {
 			nWords: 0,
 			running: false
 		}, clbk );
-	}
+	};
 
 	playBackward = () => {
 		this.setState({
 			running: true
 		}, this.subtractStep );
-	}
+	};
 
 	playForward = () => {
 		this.setState({
 			running: true
 		}, this.addStep );
-	}
+	};
 
 	stop = () => {
 		this.setState({ running: false });
 		if ( this.timeoutID ) {
 			clearTimeout( this.timeoutID );
 		}
-	}
+	};
 
 	handleRestore = () => {
 		this.props.onRestore( this.state.editorState.doc.content );
-	}
+	};
 
 	render() {
 		const { document, counter } = this.state;

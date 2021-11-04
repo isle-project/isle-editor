@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 class DeletePageModal extends Component {
 	clickHide = () => {
 		this.props.onHide();
-	}
+	};
 
 	handleClick = () => {
 		this.props.onSubmit();
 		this.props.onHide();
-	}
+	};
 
 	render() {
 		return ( <Modal

@@ -153,7 +153,7 @@ class SubMenu extends AbstractMenu {
 			position.right = '100%';
 		}
 		return position;
-	}
+	};
 
 	getRTLMenuPosition = () => {
 		const { innerHeight } = window;
@@ -172,12 +172,12 @@ class SubMenu extends AbstractMenu {
 			position.right = '100%';
 		}
 		return position;
-	}
+	};
 
 	hideMenu = (e) => {
 		e.preventDefault();
 		this.hideSubMenu(e);
-	}
+	};
 
 	hideSubMenu = (e) => {
 		// Avoid closing sub-menus of a different menu tree:
@@ -207,7 +207,7 @@ class SubMenu extends AbstractMenu {
 		if (!this.props.onClick || this.props.preventCloseOnClick) return;
 
 		hideMenu();
-	}
+	};
 
 	handleMouseEnter = () => {
 		if (this.closetimer) clearTimeout(this.closetimer);
@@ -218,7 +218,7 @@ class SubMenu extends AbstractMenu {
 			visible: true,
 			selectedItem: null
 		}), this.props.hoverDelay);
-	}
+	};
 
 	handleMouseLeave = () => {
 		if (this.opentimer) clearTimeout(this.opentimer);
@@ -229,27 +229,27 @@ class SubMenu extends AbstractMenu {
 			visible: false,
 			selectedItem: null
 		}), this.props.hoverDelay);
-	}
+	};
 
 	menuRef = (c) => {
 		this.menu = c;
-	}
+	};
 
 	subMenuRef = (c) => {
 		this.subMenu = c;
-	}
+	};
 
 	registerHandlers = () => {
 		document.removeEventListener('keydown', this.props.parentKeyNavigationHandler);
 		document.addEventListener('keydown', this.handleKeyNavigation);
-	}
+	};
 
 	unregisterHandlers = (dismounting) => {
 		document.removeEventListener('keydown', this.handleKeyNavigation);
 		if (!dismounting) {
 			document.addEventListener('keydown', this.props.parentKeyNavigationHandler);
 		}
-	}
+	};
 
 	render() {
 		const { children, attributes, disabled, title, selected } = this.props;

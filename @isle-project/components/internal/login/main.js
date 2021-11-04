@@ -64,7 +64,7 @@ class Login extends Component {
 		this.setState({
 			[ name ]: value
 		});
-	}
+	};
 
 	handleForgotPassword = ( event ) => {
 		event.preventDefault();
@@ -78,7 +78,7 @@ class Login extends Component {
 			const session = this.context;
 			session.forgotPassword( this.state.email );
 		}
-	}
+	};
 
 	hideAfterDelay = () => {
 		setTimeout( () => {
@@ -86,14 +86,14 @@ class Login extends Component {
 				showInputOverlay: false
 			});
 		}, 2000 );
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		event.stopPropagation();
 		if ( event.charCode === 13 ) {
 			this.handleSubmit( event );
 		}
-	}
+	};
 
 	handleSubmit = ( event ) => {
 		event.preventDefault();
@@ -147,7 +147,7 @@ class Login extends Component {
 				}
 			});
 		}
-	}
+	};
 
 	render() {
 		return (

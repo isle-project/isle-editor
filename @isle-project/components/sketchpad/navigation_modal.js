@@ -26,13 +26,13 @@ class NavigationModal extends Component {
 		this.setState({
 			active: Number( page )
 		});
-	}
+	};
 
 	hoverOff = () => {
 		this.setState({
 			active: null
 		});
-	}
+	};
 
 	render() {
 		let dialogClassName;

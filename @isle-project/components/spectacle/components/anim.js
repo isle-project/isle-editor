@@ -99,7 +99,7 @@ class Anim extends Component {
 				activeAnimation: nextAnimation
 			});
 		}
-	}
+	};
 
 	getAnimationStatus = () => {
 		const fragments = this.context.fragments;
@@ -118,7 +118,7 @@ class Anim extends Component {
 			return fragments[slide][key].animations;
 		}
 		return null;
-	}
+	};
 
 	render() {
 		const {

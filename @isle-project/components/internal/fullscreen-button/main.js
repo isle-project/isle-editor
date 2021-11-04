@@ -25,7 +25,7 @@ class FullscreenButton extends Component {
 		this.setState({
 			fullscreen: !this.state.fullscreen
 		});
-	}
+	};
 
 	render() {
 		return (

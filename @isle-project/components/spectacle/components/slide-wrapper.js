@@ -52,11 +52,11 @@ class SlideWrapper extends React.PureComponent {
 
 	componentWillEnter = ( callback ) => {
 		this.setState({ transitioning: false, reverse: false, z: 1 });
-	}
+	};
 
 	componentWillLeave = ( callback ) => {
 		this.setState({ transitioning: true, reverse: true, z: '' });
-	}
+	};
 
 	transitionDirection = () => {
 		const { slideIndex, lastSlideIndex } = this.props;
@@ -64,7 +64,7 @@ class SlideWrapper extends React.PureComponent {
 		return this.state.reverse ?
 			slideIndex > routeSlideIndex :
 			slideIndex > lastSlideIndex;
-	}
+	};
 
 	getTransitionKeys = () => {
 		const {
@@ -81,7 +81,7 @@ class SlideWrapper extends React.PureComponent {
 			return transitionIn;
 		}
 		return transition;
-	}
+	};
 
 	// eslint-disable-next-line
 	getTransitionStyles = () => {
@@ -118,7 +118,7 @@ class SlideWrapper extends React.PureComponent {
 		}, {});
 		const out = { ...styles, transform: transformValue, ...functionStyles };
 		return out;
-	}
+	};
 
 	getRouteSlideIndex = () => {
 		const { slideReference } = this.props;
@@ -127,7 +127,7 @@ class SlideWrapper extends React.PureComponent {
 			return slide === String(reference.id);
 		});
 		return Math.max(0, slideIndex);
-	}
+	};
 
 	render() {
 		const { children, transitionDuration } = this.props;

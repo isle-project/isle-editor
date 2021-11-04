@@ -114,7 +114,7 @@ class UserList extends Component {
 				elem.scrollIntoView();
 			}
 		}
-	}
+	};
 
 	handleClickFactory = ( email ) => {
 		return () => {
@@ -129,14 +129,14 @@ class UserList extends Component {
 				selected: email
 			});
 		};
-	}
+	};
 
 	thumbnailClickFactory = ( email ) => {
 		return ( event ) => {
 			event.stopPropagation();
 			this.props.onThumbnailClick( email );
 		};
-	}
+	};
 
 	filter = ( evt ) => {
 		debug( 'Clicked on progressbar...' );
@@ -150,7 +150,7 @@ class UserList extends Component {
 		this.setState({
 			filter: newFilter
 		});
-	}
+	};
 
 	chatInviteFactory = ( chatName, email ) => {
 		const session = this.props.session;
@@ -165,7 +165,7 @@ class UserList extends Component {
 				session.closeChatForAll( chatName );
 			}
 		};
-	}
+	};
 
 	videoChatInviteFactory = ( data, email ) => {
 		const session = this.props.session;
@@ -175,7 +175,7 @@ class UserList extends Component {
 				session.inviteToVideo( data, email );
 			}
 		};
-	}
+	};
 
 	render() {
 		const session = this.props.session;

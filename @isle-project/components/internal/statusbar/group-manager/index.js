@@ -301,12 +301,12 @@ class GroupManager extends Component {
 			matching: this.state.matching
 		});
 		session.createGroups( groups );
-	}
+	};
 
 	reuseLastGroups = () => {
 		const session = this.context;
 		session.createGroups( this.state.lastGroups );
-	}
+	};
 
 	updateGroups = () => {
 		const session = this.context;
@@ -340,7 +340,7 @@ class GroupManager extends Component {
 			toAdd: [],
 			toRemove: []
 		});
-	}
+	};
 
 	handleGroupDeletion = () => {
 		const session = this.context;
@@ -353,7 +353,7 @@ class GroupManager extends Component {
 		this.setState({
 			showCloseModal: false
 		});
-	}
+	};
 
 	sendMessageToAll = () => {
 		let text = this.editorView.markdown;
@@ -370,13 +370,13 @@ class GroupManager extends Component {
 			message: '',
 			docId: this.state.docId + 1
 		});
-	}
+	};
 
 	toggleCloseConfirm = () => {
 		this.setState({
 			showCloseModal: !this.state.showCloseModal
 		});
-	}
+	};
 
 	renderModeOptions() {
 		const input = <SelectInput

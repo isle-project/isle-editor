@@ -73,7 +73,7 @@ class InstructorView extends Component {
 		this.setState({
 			hidden: !this.state.hidden
 		});
-	}
+	};
 
 	toggleBar = () => {
 		if ( this.state.hidden ) {
@@ -85,19 +85,19 @@ class InstructorView extends Component {
 			setTimeout( this.toggleHidden, 400 );
 			this.handler.style.opacity = 0.7;
 		}
-	}
+	};
 
 	onMouseOver = () => {
 		if ( this.state.hidden ) {
 			this.handler.style.opacity = 1.0;
 		}
-	}
+	};
 
 	onMouseOut = () => {
 		if ( this.state.hidden ) {
 			this.handler.style.opacity = 0.7;
 		}
-	}
+	};
 
 	renderTabs = () => {
 		const { t } = this.props;

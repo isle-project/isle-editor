@@ -93,7 +93,7 @@ class ChatButton extends Component {
 		this.setState({
 			showAnimation: false
 		});
-	}
+	};
 
 	handleClick = ( event ) => {
 		debug( 'Handle click to join chat...' );
@@ -111,7 +111,7 @@ class ChatButton extends Component {
 				session.leaveChat( this.props.for );
 			}
 		});
-	}
+	};
 
 	render() {
 		const nMessages = this.state.nMessages;

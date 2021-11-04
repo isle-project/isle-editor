@@ -248,7 +248,7 @@ class FullscreenActionDisplay extends Component {
 				clusters: []
 			});
 		}
-	}
+	};
 
 	itemSizeGetter = ( index ) => {
 		let lines = 2.0 * LINE_HEIGHT;
@@ -270,7 +270,7 @@ class FullscreenActionDisplay extends Component {
 		lines += noLines * TEXT_LINE_HEIGHT;
 		debug( `Element at position ${index} is estimated to have ${noLines} lines.` );
 		return lines;
-	}
+	};
 
 	showModalFactory = ( elem ) => {
 		return () => {
@@ -280,13 +280,13 @@ class FullscreenActionDisplay extends Component {
 				showModal: true
 			});
 		};
-	}
+	};
 
 	hideModal = () => {
 		this.setState({
 			showModal: false
 		});
-	}
+	};
 
 	getActions = () => {
 		let actions;
@@ -317,7 +317,7 @@ class FullscreenActionDisplay extends Component {
 			actions = this.props.actions;
 		}
 		return actions;
-	}
+	};
 
 	renderWordCloud() {
 		debug( 'Rendering word cloud...' );
@@ -592,7 +592,7 @@ class FullscreenActionDisplay extends Component {
 
 	renderNestedTable = () => {
 		return null;
-	}
+	};
 
 	chatInviteFactory = ( chatName, email ) => {
 		const session = this.context;
@@ -607,7 +607,7 @@ class FullscreenActionDisplay extends Component {
 				session.closeChatForAll( chatName );
 			}
 		};
-	}
+	};
 
 	videoChatInviteFactory = ( data, email ) => {
 		const session = this.context;
@@ -617,7 +617,7 @@ class FullscreenActionDisplay extends Component {
 				session.inviteToVideo( data, email );
 			}
 		};
-	}
+	};
 
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
@@ -709,7 +709,7 @@ class FullscreenActionDisplay extends Component {
 			}
 			</ButtonGroup>
 		</ListGroupItem> );
-	}
+	};
 
 	renderRangePlot = () => {
 		const halfWidth = [];
@@ -754,7 +754,7 @@ class FullscreenActionDisplay extends Component {
 				}}
 			/>
 		</div> );
-	}
+	};
 
 	renderPlot() {
 		let plot;

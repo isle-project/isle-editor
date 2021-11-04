@@ -84,7 +84,7 @@ class TextClustering extends Component {
 		this.setState({
 			isClustering: true
 		});
-	}
+	};
 
 	handleClusterCountChange = ( event ) => {
 		const modelIndex = parseInt( event.target.value, 10 );
@@ -94,7 +94,7 @@ class TextClustering extends Component {
 				modelIndex
 			});
 		}
-	}
+	};
 
 	changeClusterCount = ( modelIndex ) => {
 		if ( this.worker ) {
@@ -107,13 +107,13 @@ class TextClustering extends Component {
 				value: modelIndex
 			});
 		}
-	}
+	};
 
 	toggleClusterModal = () => {
 		this.setState({
 			showClusterModal: !this.state.showClusterModal
 		});
-	}
+	};
 
 	render() {
 		return (

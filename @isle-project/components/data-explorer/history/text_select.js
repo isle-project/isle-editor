@@ -50,11 +50,11 @@ class TextSelect extends Component {
 		this.setState({
 			value
 		});
-	}
+	};
 
 	handleSubmission = () => {
 		this.props.onSubmit( this.state.value );
-	}
+	};
 
 	render() {
 		return (

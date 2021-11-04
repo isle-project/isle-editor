@@ -26,7 +26,7 @@ class Search extends Component {
 			search: event.target.value
 		});
 		this.props.onClick( event.target.value );
-	}
+	};
 
 	render() {
 		return (

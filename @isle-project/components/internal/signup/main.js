@@ -78,7 +78,7 @@ class Signup extends Component {
 		if ( event.charCode === 13 ) {
 			this.handleSubmit( event );
 		}
-	}
+	};
 
 	handleInputChange = ( event ) => {
 		event.stopPropagation();
@@ -89,7 +89,7 @@ class Signup extends Component {
 		this.setState({
 			[ name ]: value
 		});
-	}
+	};
 
 	getEmailValidationState = () => {
 		const { email } = this.state;
@@ -97,7 +97,7 @@ class Signup extends Component {
 			return 'success';
 		}
 		return 'warning';
-	}
+	};
 
 	getNameValidationState = () => {
 		const { name } = this.state;
@@ -105,7 +105,7 @@ class Signup extends Component {
 			return 'success';
 		}
 		return 'warning';
-	}
+	};
 
 	getPasswordValidationState = () => {
 		const { password, passwordRepeat } = this.state;
@@ -116,7 +116,7 @@ class Signup extends Component {
 			return 'error';
 		}
 		return 'success';
-	}
+	};
 
 	render() {
 		const invalidEmail = this.state.email && this.getEmailValidationState() !== 'success';

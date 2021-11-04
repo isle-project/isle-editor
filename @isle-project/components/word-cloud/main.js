@@ -279,7 +279,7 @@ class Wrapper extends Component {
 			return 50.0;
 		}
 		return ( word.value - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0;
-	}
+	};
 
 	addWordCloud() {
 		const fontSizeMapper = this.props.fontSizeMapper || this.fontSizeMapper;
@@ -334,7 +334,7 @@ class Wrapper extends Component {
 			.start();
 	}
 
-	updateWordCloud( ){
+	updateWordCloud() {
 		const wordCounts = this.state.wordCounts;
 		this.cloudLayout
 			.stop()
@@ -358,7 +358,7 @@ class Wrapper extends Component {
 		function save( dataBlob ) {
 			saveAs( dataBlob, name );
 		}
-	}
+	};
 
 	render() {
 		return ( <div style={{ width: this.props.width, position: 'relative', ...this.props.style }} >

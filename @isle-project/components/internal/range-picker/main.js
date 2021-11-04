@@ -98,7 +98,7 @@ class RangePicker extends Component {
 			};
 			return ret;
 		}
-	}
+	};
 
 	updatePeriod = ( from, to, active ) => {
 		this.setState({
@@ -107,7 +107,7 @@ class RangePicker extends Component {
 		}, () => {
 			this.props.onChange( this.state.period );
 		});
-	}
+	};
 
 	handleDatesChange = ({ startDate, endDate }) => {
 		if ( startDate === endDate ) {
@@ -123,11 +123,11 @@ class RangePicker extends Component {
 		}, () => {
 			this.props.onChange( this.state.period );
 		});
-	}
+	};
 
 	handleFocusChange = ( focusedInput ) => {
 		this.setState({ focusedInput });
-	}
+	};
 
 	render() {
 		return (

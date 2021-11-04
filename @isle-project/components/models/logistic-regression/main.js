@@ -147,7 +147,7 @@ class LogisticRegression extends Component {
 			return { yhat, probs, residuals };
 		};
 		this.props.onPredict( predict, COUNTER );
-	}
+	};
 
 	render() {
 		const { result } = this.state;

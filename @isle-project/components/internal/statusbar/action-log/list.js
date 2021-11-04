@@ -50,7 +50,6 @@ class ActionList extends Component {
 		return null;
 	}
 
-
 	clickFactory = ( type, value ) => {
 		const onClick = () => {
 			const newFilter = this.props.filter ? copy( this.props.filter ) : {};
@@ -60,7 +59,7 @@ class ActionList extends Component {
 			this.props.onFilterChange( newFilter, newFilters );
 		};
 		return onClick;
-	}
+	};
 
 	itemSizeGetter = ( index ) => {
 		let lines = 2 * LINE_HEIGHT;
@@ -72,7 +71,7 @@ class ActionList extends Component {
 		lines += noLines * TEXT_LINE_HEIGHT;
 		lines += LINE_HEIGHT; // first "Value" line
 		return lines;
-	}
+	};
 
 	openDeleteModal = ( id ) => {
 		debug( 'Open delete modal for action with id '+id );
@@ -80,14 +79,14 @@ class ActionList extends Component {
 			showDeleteModal: !this.state.showDeleteModal,
 			deleteModelActionID: id
 		});
-	}
+	};
 
 	closeDeleteModal = () => {
 		debug( 'Close delete modal...' );
 		this.setState({
 			showDeleteModal: false
 		});
-	}
+	};
 
 	deleteAction = () => {
 		const id = this.state.deleteModelActionID;
@@ -100,7 +99,7 @@ class ActionList extends Component {
 			}
 			this.closeDeleteModal();
 		});
-	}
+	};
 
 	renderItem = ( index, key ) => {
 		debug( `Render ${index}th item` );
@@ -132,7 +131,7 @@ class ActionList extends Component {
 				userHash={this.props.userHash}
 			/>
 		);
-	}
+	};
 
 	render() {
 		const { height } = this.props;

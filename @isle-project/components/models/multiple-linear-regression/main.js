@@ -283,7 +283,7 @@ class MultipleLinearRegression extends Component {
 			meta={{ type: 'regression residuals vs. fitted', x, y, intercept }}
 		/>;
 		this.props.onDiagnostics([ qqPlot, hist, residualPlot ]);
-	}
+	};
 
 	handlePredict = () => {
 		const { quantitative, intercept } = this.props;
@@ -295,7 +295,7 @@ class MultipleLinearRegression extends Component {
 			return { fitted, residuals };
 		};
 		this.props.onPredict( predict, COUNTER );
-	}
+	};
 
 	render() {
 		const { y, predictors, nobs, result, adjRSquared, p, fScore, rSquared } = this.state;

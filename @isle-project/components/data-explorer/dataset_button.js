@@ -24,7 +24,7 @@ class DatasetButton extends Component {
 		this.setState({
 			show: !this.state.show
 		}, clbk );
-	}
+	};
 
 	render() {
 		return (

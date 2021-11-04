@@ -40,21 +40,21 @@ class ContextMenuTrigger extends Component {
 			);
 		}
 		callIfExists(this.props.attributes.onMouseDown, event);
-	}
+	};
 
 	handleMouseUp = (event) => {
 		if (event.button === 0) {
 			clearTimeout(this.mouseDownTimeoutId);
 		}
 		callIfExists(this.props.attributes.onMouseUp, event);
-	}
+	};
 
 	handleMouseOut = (event) => {
 		if (event.button === 0) {
 			clearTimeout(this.mouseDownTimeoutId);
 		}
 		callIfExists(this.props.attributes.onMouseOut, event);
-	}
+	};
 
 	handleTouchstart = (event) => {
 		this.touchHandled = false;
@@ -72,7 +72,7 @@ class ContextMenuTrigger extends Component {
 			);
 		}
 		callIfExists(this.props.attributes.onTouchStart, event);
-	}
+	};
 
 	handleTouchEnd = (event) => {
 		if (this.touchHandled) {
@@ -80,14 +80,14 @@ class ContextMenuTrigger extends Component {
 		}
 		clearTimeout(this.touchstartTimeoutId);
 		callIfExists(this.props.attributes.onTouchEnd, event);
-	}
+	};
 
 	handleContextMenu = (event) => {
 		if (event.button === this.props.mouseButton) {
 			this.handleContextClick(event);
 		}
 		callIfExists(this.props.attributes.onContextMenu, event);
-	}
+	};
 
 	handleMouseClick = ( event ) => {
 		if ( event.button === this.props.mouseButton ) {
@@ -96,7 +96,7 @@ class ContextMenuTrigger extends Component {
 			hideMenu();
 		}
 		callIfExists( this.props.attributes.onClick, event );
-	}
+	};
 
 	handleContextClick = (event) => {
 		if (this.props.disable) return;
@@ -141,11 +141,11 @@ class ContextMenuTrigger extends Component {
 			});
 			showMenu(showMenuConfig);
 		}
-	}
+	};
 
 	elemRef = (c) => {
 		this.elem = c;
-	}
+	};
 
 	render() {
 		const { renderTag, attributes, children } = this.props;

@@ -140,7 +140,7 @@ class FreeTextQuestion extends Component {
 		this.setState({
 			value: this.state.value + ' ' + text
 		});
-	}
+	};
 
 	sendSubmitNotification = () => {
 		const session = this.context;
@@ -163,7 +163,7 @@ class FreeTextQuestion extends Component {
 				level: 'success'
 			});
 		}
-	}
+	};
 
 	submitHandler = ( event ) => {
 		const session = this.context;
@@ -202,7 +202,7 @@ class FreeTextQuestion extends Component {
 				value: this.props.solution
 			});
 		}
-	}
+	};
 
 	setToLastAction() {
 		const session = this.context;
@@ -229,7 +229,7 @@ class FreeTextQuestion extends Component {
 			type: FREE_TEXT_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	}
+	};
 
 	renderSubmitButton() {
 		const session = this.context;

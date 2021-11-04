@@ -38,17 +38,17 @@ class FilterInputRange extends Component {
 		this.setState({
 			showRangeInput: true
 		});
-	}
+	};
 
 	hideRangeInput = () => {
 		this.setState({
 			showRangeInput: false
 		});
-	}
+	};
 
 	handleBlur = () => {
 		this.props.onChange( this.state.currentValue );
-	}
+	};
 
 	render() {
 		const { currentValue } = this.state;

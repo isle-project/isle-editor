@@ -63,7 +63,7 @@ class Collapse extends Component {
 		} else {
 			this.props.onClick( this.props.visible );
 		}
-	}
+	};
 
 	renderHeader() {
 		if ( this.props.headerClassName !== null ) {

@@ -37,38 +37,38 @@ class InputButtons extends Component {
 		this.setState({
 			showColorPicker: !this.state.showColorPicker
 		});
-	}
+	};
 
 	toggleDrawingMode = () => {
 		this.props.onModeChange( this.props.mode === 'drawing' ? 'none' : 'drawing' );
-	}
+	};
 
 	toggleDragMode = () => {
 		this.props.onModeChange( this.props.mode === 'drag' ? 'none' : 'drag' );
-	}
+	};
 
 	toggleDeleteMode = () => {
 		this.props.onModeChange( this.props.mode === 'delete' ? 'none' : 'delete' );
-	}
+	};
 
 	togglePointerMode = () => {
 		this.props.onModeChange( this.props.mode === 'pointer' ? 'none' : 'pointer' );
-	}
+	};
 
 	toggleZoomMode = () => {
 		this.props.onModeChange( this.props.mode === 'zoom' ? 'none' : 'zoom' );
-	}
+	};
 
 	toggleTextMode = () => {
 		this.props.onModeChange( this.props.mode === 'text' ? 'none' : 'text' );
-	}
+	};
 
 	handleColorChange = ( color ) => {
 		this.props.onColorChange( color.hex );
 		this.setState({
 			showColorPicker: !this.state.showColorPicker
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

@@ -17,6 +17,13 @@ import { MEMBER_ACTION, VOICE_TEXT, VOICE_TEXT_SEGMENT } from '@isle-project/con
 const debug = logger( 'isle:statusbar:voice-control' );
 
 
+// FUNCTIONS //
+
+function stopPropagation( event ) {
+	event.stopPropagation();
+}
+
+
 // MAIN //
 
 class VoiceControl extends Component {
@@ -77,7 +84,7 @@ class VoiceControl extends Component {
 			value: recordedText,
 			noSave: true
 		}, 'members' );
-	}
+	};
 
 	handleVoiceInput = ( text ) => {
 		debug( 'Received voice input: ' + text );
@@ -93,12 +100,12 @@ class VoiceControl extends Component {
 			value: recordedText,
 			noSave: true
 		}, 'members' );
-	}
+	};
 
 	handleStartRecording = () => {
 		const session = this.props.session;
 		session.setVoiceRecordingStatus( true );
-	}
+	};
 
 	handleStopRecording = () => {
 		this.setState({
@@ -106,7 +113,7 @@ class VoiceControl extends Component {
 		}, this.renderRecordedText );
 		const session = this.props.session;
 		session.setVoiceRecordingStatus( false );
-	}
+	};
 
 	toggleTranscriptEditor = ( event ) => {
 		if ( event ) {
@@ -115,11 +122,7 @@ class VoiceControl extends Component {
 		this.setState({
 			showTranscriptEditor: !this.state.showTranscriptEditor
 		});
-	}
-
-	handleVoiceInputChange = ( event ) => {
-		event.stopPropagation();
-	}
+	};
 
 	renderRecordedText = () => {
 		if ( this.state.recordedText ) {
@@ -127,7 +130,7 @@ class VoiceControl extends Component {
 		} else {
 			this.displayedText.innerHTML = '';
 		}
-	}
+	};
 
 	render() {
 		const session = this.props.session;
@@ -154,7 +157,7 @@ class VoiceControl extends Component {
 				>
 					<VoiceInput
 						id="statusbar-voice"
-						onClick={this.handleVoiceInputChange}
+						onClick={stopPropagation}
 						mode="microphone" width={18} height={18}
 						stopTooltip={`${this.props.t( 'disable-voice' )} (F9)`}
 						startTooltip={`${this.props.t( 'enable-voice' )} (F9)`}

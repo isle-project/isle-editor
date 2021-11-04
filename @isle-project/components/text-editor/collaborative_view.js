@@ -167,7 +167,7 @@ class ProseMirrorCollaborative extends Component {
 			Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
 			parser( this.props.defaultValue );
 		this.dispatch({ type: 'transaction', transaction: state.tr.replaceWith( selection.from, selection.to, doc ) });
-	}
+	};
 
 	// All state changes go through this:
 	dispatch( action ) {
@@ -298,7 +298,7 @@ class ProseMirrorCollaborative extends Component {
 			comment: comments || []
 		};
 		this.props.session.sendCollaborativeEvents( this.props.id, json );
-	}
+	};
 
 	handleSendResponse( data ) {
 		debug( 'Handle send response...' );
@@ -431,7 +431,7 @@ class ProseMirrorCollaborative extends Component {
 		this.nChars = nChars;
 		this.props.onEditorState( editorState );
 		this.forceUpdate();
-	}
+	};
 
 	dispatchTransaction = ( transaction ) => {
 		this.dispatch({

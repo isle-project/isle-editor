@@ -529,7 +529,7 @@ class DataTable extends Component {
 				}}
 			/>
 		);
-	}
+	};
 
 	renderCheckboxRemovable = ( cellInfo ) => {
 		return (
@@ -545,7 +545,7 @@ class DataTable extends Component {
 				}}
 			/>
 		);
-	}
+	};
 
 	handleFilterChange = ( filtered, column ) => {
 		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
@@ -561,7 +561,7 @@ class DataTable extends Component {
 		}, () => {
 			this.props.onFilteredChange( this.state.filtered.filter( x => !isNull( x.value ) ) );
 		});
-	}
+	};
 
 	handleSortedChange = ( sorted, column ) => {
 		const session = this.context;
@@ -573,13 +573,13 @@ class DataTable extends Component {
 		this.setState({
 			sorted
 		});
-	}
+	};
 
 	showDescriptions = () => {
 		this.setState({
 			showVarModal: true
 		});
-	}
+	};
 
 	reset = () => {
 		const session = this.context;
@@ -594,20 +594,20 @@ class DataTable extends Component {
 		}, () => {
 			this.props.onFilteredChange( this.state.filtered );
 		});
-	}
+	};
 
 	showInfo = () => {
 		debug( 'Show dataset information...' );
 		this.setState({
 			showInfo: true
 		});
-	}
+	};
 
 	toggleSaveModal = () => {
 		this.setState({
 			showSaveModal: !this.state.showSaveModal
 		});
-	}
+	};
 
 	saveJSON = () => {
 		const blob = new Blob([ JSON.stringify( this.state.data ) ], {
@@ -621,7 +621,7 @@ class DataTable extends Component {
 			name = dataInfo.name;
 		}
 		saveAs( blob, name );
-	}
+	};
 
 	saveCSV = () => {
 		const session = this.context;
@@ -651,27 +651,27 @@ class DataTable extends Component {
 				saveAs( blob, name );
 			});
 		});
-	}
+	};
 
 	handleSaveCSV = () => {
 		this.saveCSV();
 		this.toggleSaveModal();
-	}
+	};
 
 	handleSaveJSON = () => {
 		this.saveJSON();
 		this.toggleSaveModal();
-	}
+	};
 
 	hideVarModal = () =>{
 		this.setState({ showVarModal: false });
-	}
+	};
 
 	hideInfoModal = () => {
 		this.setState({
 			showInfo: false
 		});
-	}
+	};
 
 	handleTableProps = () => {
 		return {
@@ -682,7 +682,7 @@ class DataTable extends Component {
 				}
 			}
 		};
-	}
+	};
 
 	handleTrProps = ( state, rowInfo, column, table ) => {
 		let out;
@@ -696,7 +696,7 @@ class DataTable extends Component {
 		}
 		out.style.width = 'max-content !important';
 		return out;
-	}
+	};
 
 	render() {
 		debug( 'Rendering component' );

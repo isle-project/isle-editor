@@ -62,11 +62,11 @@ export default function connectToMenu(menuId) {
 					}
 				}
 				this.setState({ trigger: filteredData });
-			}
+			};
 
 			handleHide = () => {
 				this.setState({ trigger: null });
-			}
+			};
 
 			render() {
 				return <Child {...this.props} id={menuId} trigger={this.state.trigger} />;

@@ -88,7 +88,7 @@ class MultipleChoiceMatrix extends Component {
 			});
 			this.props.onChange( active );
 		}
-	}
+	};
 
 	handleRadioClick = ( evt ) => {
 		if ( uppercase( evt.target.tagName ) === 'INPUT' ) {
@@ -102,7 +102,7 @@ class MultipleChoiceMatrix extends Component {
 			});
 			this.props.onChange( active );
 		}
-	}
+	};
 
 	sendSubmitNotification = () => {
 		const session = this.context;
@@ -119,7 +119,7 @@ class MultipleChoiceMatrix extends Component {
 				level: 'success'
 			});
 		}
-	}
+	};
 
 	handleSubmit = () => {
 		const session = this.context;
@@ -138,11 +138,12 @@ class MultipleChoiceMatrix extends Component {
 			submitted: true
 		});
 		this.props.onSubmit( this.state.active );
-	}
+	};
 
 	toggleSolution = () => {
-
-	}
+		console.log( 'TODO: Toggle solution:' );
+		console.log( this.props.solution );
+	};
 
 	renderAnswerButtons( row ) {
 		const len = this.props.answers.length;

@@ -89,7 +89,7 @@ class Weather extends Component {
 		this.setState({
 			data: null
 		});
-	}
+	};
 
 	trigger = ( text, callback ) => {
 		debug( 'Trigger weather retrieval...' );
@@ -106,7 +106,7 @@ class Weather extends Component {
 			debug( 'Get weather info for location: '+ location );
 			this.getData( location );
 		}
-	}
+	};
 
 	getData = ( location ) => {
 		const session = this.context;
@@ -119,7 +119,7 @@ class Weather extends Component {
 					debug( 'Encountered an error: '+err.message );
 				});
 		}
-	}
+	};
 
 	setWeatherData = ( data ) => {
 		if ( this.callback ) {
@@ -128,7 +128,7 @@ class Weather extends Component {
 		this.setState({
 			data: data
 		});
-	}
+	};
 
 	render() {
 		const data = this.state.data;

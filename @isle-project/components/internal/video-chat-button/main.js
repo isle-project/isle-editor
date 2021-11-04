@@ -77,7 +77,7 @@ class VideoChatButton extends Component {
 				session.leaveVideoChat( this.props.for );
 			}
 		});
-	}
+	};
 
 	render() {
 		const session = this.context;

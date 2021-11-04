@@ -383,7 +383,7 @@ class Session {
 			// Log session data to database in regular interval:
 			this.logSessionInterval = setInterval( this.interval, LOG_SESSION_INTERVAL );
 		}
-	}
+	};
 
 	/**
 	* Invoked when the browser fires `online` event.
@@ -391,7 +391,7 @@ class Session {
 	onlineListener = () => {
 		debug( 'Browser switched to being online...' );
 		this.startPingServer();
-	}
+	};
 
 	/**
 	* Invoked when the browser fires `offline` event.
@@ -404,7 +404,7 @@ class Session {
 			this.socket = null;
 		}
 		this.update( DISCONNECTED_FROM_SERVER );
-	}
+	};
 
 	/**
 	* Invoked when the content of the document tab becomes visible or has been hidden.
@@ -419,7 +419,7 @@ class Session {
 			updateTime = new Date().getTime();
 			this.logSessionInterval = setInterval( this.logSession, LOG_SESSION_INTERVAL );
 		}
-	}
+	};
 
 	/**
 	* Invoked when a user has focused on a new element.
@@ -443,7 +443,7 @@ class Session {
 			id: id,
 			noSave: true
 		}, 'owners' );
-	}
+	};
 
 	/**
 	* Invoked when a user ceased to focus on an element.
@@ -456,7 +456,7 @@ class Session {
 			value: this.user.email,
 			noSave: true
 		}, 'owners' );
-	}
+	};
 
 	/**
 	* Logs session object to database if logged-in.
@@ -468,7 +468,7 @@ class Session {
 		if ( !this.anonymous && this.live ) {
 			this.updateDatabase();
 		}
-	}
+	};
 
 	/**
 	* Registers a listener by pushing it to the array of listeners and returns a function to unsubscribe the listener.
@@ -481,7 +481,7 @@ class Session {
 		return () => {
 			LISTENERS = LISTENERS.filter( l => l !== listener );
 		};
-	}
+	};
 
 	/**
 	* Pings the server and starts retrieving lesson info if server is live.
@@ -522,7 +522,7 @@ class Session {
 				this.server = this.config.server;
 			}
 		});
-	}
+	};
 
 	/**
 	* Pings the server in a regular interval when lesson is deployed.
@@ -532,7 +532,7 @@ class Session {
 	startPingServer = () => {
 		this.pingServer();
 		this.pingInterval = setInterval( this.pingServer, 10000 );
-	}
+	};
 
 	/**
 	* Stops pinging the server once socket connection is established.
@@ -542,7 +542,7 @@ class Session {
 	stopPingServer = () => {
 		debug( 'Should clear the interval pinging the server' );
 		clearInterval( this.pingInterval );
-	}
+	};
 
 	/**
 	* Executes R code via OpenCPU.
@@ -593,7 +593,7 @@ class Session {
 				onError( error.response.data.replace( ERR_REGEX, '' ) );
 			}
 		});
-	}
+	};
 
 	/**
 	* Retrieves help page for R help command, e.g. `help(mean)`.
@@ -625,7 +625,7 @@ class Session {
 			});
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	/**
 	* Retrieves help page for the specified function.
@@ -642,7 +642,7 @@ class Session {
 				clbk( null, res, res.data );
 			})
 			.catch( err => clbk( err ) );
-	}
+	};
 
 	/**
 	* Generates R plot via OpenCPU.
@@ -680,7 +680,7 @@ class Session {
 				});
 			})
 			.catch( error => clbk( error ) );
-	}
+	};
 
 	/**
 	* Retrieves and stores Jitsi Meet token for the current user and namespace.
@@ -699,7 +699,7 @@ class Session {
 			JITSI = null;
 			debug( 'Encountered an error '+err.message );
 		});
-	}
+	};
 
 	/**
 	* Send data packet to specified group of users or a single user.
@@ -720,7 +720,7 @@ class Session {
 			data.name = 'anonymous';
 			this.saveAction( data );
 		}
-	}
+	};
 
 	/**
 	* Retrieves information from server on whether user is enrolled or owner of the course of the lesson. Pulls down logged actions in case user is an owner.
@@ -768,7 +768,7 @@ class Session {
 				debug( 'Encountered an error '+err.message );
 			});
 		}
-	}
+	};
 
 	/**
 	* Sets the userRights variable to null.
@@ -776,7 +776,7 @@ class Session {
 	removeUserRights = () => {
 		userRights = null;
 		this.userRightsQuestionPosed = false;
-	}
+	};
 
 	/**
 	* Checks whether user is enrolled in the course.
@@ -788,7 +788,7 @@ class Session {
 			return false;
 		}
 		return userRights.enrolled;
-	}
+	};
 
 	/**
 	* Checks whether user is an owner of the course.
@@ -800,7 +800,7 @@ class Session {
 			return false;
 		}
 		return userRights.owner;
-	}
+	};
 
 	/**
 	* Checks whether the lesson is active.
@@ -809,7 +809,7 @@ class Session {
 	*/
 	isActive = () => {
 		return PRIVATE_VARS[ 'active' ];
-	}
+	};
 
 	/**
 	* Joins the specified chat in case of an existing socket connection.
@@ -1034,7 +1034,7 @@ class Session {
 			}
 		}
 		this.update( REMOVED_CHAT, name );
-	}
+	};
 
 	/**
 	* Leaves chat with the given name and removes it from the current list of chats.
@@ -1100,7 +1100,7 @@ class Session {
 			this.closeChatForAll( ALL_GROUPS[ i ].name );
 		}
 		this.socket.emit( 'delete_groups' );
-	}
+	};
 
 	/**
 	* Saves sketchpad data (lines, annotations, etc.) on the server.
@@ -1230,7 +1230,7 @@ class Session {
 					position: 'tl'
 				});
 			});
-	}
+	};
 
 	/**
 	* Updates a sticky note.
@@ -1255,7 +1255,7 @@ class Session {
 				}
 			})
 			.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	/**
 	* Deletes a sticky note.
@@ -1287,7 +1287,7 @@ class Session {
 				}
 			})
 			.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	/**
 	* Retrieves text document identifiers for the lesson.
@@ -1314,7 +1314,7 @@ class Session {
 					position: 'tl'
 				});
 			});
-	}
+	};
 
 	/**
 	* Retrieves contents and history of a text document.
@@ -1330,7 +1330,7 @@ class Session {
 		return axios.get( url ).catch( error =>
 			debug( 'Encountered an error: '+error.message )
 		);
-	}
+	};
 
 	updateMetadata = ( type, key, value ) => {
 		if ( !this.isOwner() ) {
@@ -1364,7 +1364,7 @@ class Session {
 					position: 'tl'
 				});
 			});
-	}
+	};
 
 	/**
 	* Establishes socket connection with other users.
@@ -1621,7 +1621,7 @@ class Session {
 					position: 'tl'
 				});
 			});
-	}
+	};
 
 	/**
 	* Retrieves all actions by users for the current lesson for course owners.
@@ -1644,7 +1644,7 @@ class Session {
 			this.getCohorts();
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	/**
 	* Retrieves cohort information for course owners.
@@ -1658,7 +1658,7 @@ class Session {
 			this.update( RETRIEVED_COHORTS, this.cohorts );
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	selectCohort = ( title ) => {
 		if (
@@ -1681,7 +1681,7 @@ class Session {
 		this.selectedCohort = cohort;
 		this.activeCohortMembers = activeCohortMembers;
 		this.update( SELECTED_COHORT, this.selectedCohort );
-	}
+	};
 
 	/**
 	* Retrieves all actions by the current user for the active lesson.
@@ -1698,7 +1698,7 @@ class Session {
 			this.update( RETRIEVED_CURRENT_USER_ACTIONS, this.currentUserActions );
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
-	}
+	};
 
 	/**
 	* Sends action to listening components and saves it to array of socket actions, if not silenced.
@@ -1723,7 +1723,7 @@ class Session {
 			delete this.userFocuses[ action.email ];
 		}
 		this.update( MEMBER_ACTION, action );
-	}
+	};
 
 	/**
 	* Update all lesson components that have subscribed to session updates.
@@ -1868,7 +1868,7 @@ class Session {
 			}
 			clbk( err );
 		});
-	}
+	};
 
 	/**
 	* Sends a "Reset Password" link to the supplied email address.
@@ -1931,7 +1931,7 @@ class Session {
 				debug( 'Encountered an error: '+err.message );
 			});
 		}
-	}
+	};
 
 	/**
 	* Retrieves data from database.
@@ -1986,7 +1986,7 @@ class Session {
 		.catch( ( err ) => {
 			debug( 'Encountered an error: '+err.message );
 		});
-	}
+	};
 
 	/**
 	* Retrieves the value of a session variable.
@@ -2116,7 +2116,7 @@ class Session {
 				position: 'tl'
 			});
 		});
-	}
+	};
 
 	appendGradeMessage = ( email, componentID, text ) => {
 		const message = {
@@ -2147,7 +2147,7 @@ class Session {
 				position: 'tl'
 			});
 		});
-	}
+	};
 
 	getLessonGrades = () => {
 		const ids = this.responseVisualizerIds;
@@ -2173,7 +2173,7 @@ class Session {
 			.catch( err => {
 				debug( 'Encountered an error: '+err.message );
 			});
-	}
+	};
 
 	getLessonGradeMessages = () => {
 		axios.get( this.server+'/get_lesson_grade_messages?' + qs.stringify({
@@ -2186,7 +2186,7 @@ class Session {
 			.catch( err => {
 				debug( 'Encountered an error: '+err.message );
 			});
-	}
+	};
 
 	/**
 	* Updates the user's score based on his latest action.
@@ -2431,7 +2431,7 @@ class Session {
 				clbk( err );
 			});
 		}
-	}
+	};
 
 	/**
 	* Uploads a file.
@@ -2493,7 +2493,7 @@ class Session {
 			}
 		};
 		xhr.send( formData );
-	}
+	};
 
 	createTicket({ title, description, component, platform, files = []}) {
 		if ( files.length === 0 ) {
@@ -2540,7 +2540,7 @@ class Session {
 		axios.post( this.server + '/send_mail', mailOptions ).catch( error =>
 			debug( 'Encountered an error: '+error.message )
 		);
-	}
+	};
 
 	/**
 	* Get the OpenCPU server address.

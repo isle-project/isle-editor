@@ -60,7 +60,7 @@ class Spinner extends Component {
 			context.restore();
 		};
 		this.activeSpinner = window.setInterval( draw, 50 );
-	}
+	};
 
 	render() {
 		return (

@@ -77,14 +77,14 @@ class VideoLecture extends Component {
 		this.setState({
 			active: this.state.active + 1
 		});
-	}
+	};
 
 	decrementStep = () => {
 		debug( 'Go back one step from '+this.state.active );
 		this.setState({
 			active: this.state.active - 1
 		});
-	}
+	};
 
 	markCompleted = ( result ) => {
 		debug( 'Handle question submission...' );
@@ -93,13 +93,13 @@ class VideoLecture extends Component {
 		this.setState({
 			waitForAnswer
 		});
-	}
+	};
 
 	toggleInstructorView =() => {
 		this.setState({
 			showInstructorView: !this.state.showInstructorView
 		});
-	}
+	};
 
 	renderStep( page ) {
 		const elem = this.props.steps[ page ];

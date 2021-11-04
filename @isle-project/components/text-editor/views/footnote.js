@@ -113,7 +113,7 @@ class FootnoteView {
 				this.outerView.dispatch( outerTr );
 			}
 		}
-	}
+	};
 
 	update( node ) {
 		if ( !node.sameMarkup( this.node ) ) {

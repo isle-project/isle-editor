@@ -115,7 +115,7 @@ class ContextMenu extends AbstractMenu {
 		if (!this.props.preventHideOnContextMenu) document.addEventListener('contextmenu', this.handleHide);
 		document.addEventListener('keydown', this.handleKeyNavigation);
 		if (!this.props.preventHideOnResize) window.addEventListener('resize', this.handleHide);
-	}
+	};
 
 	unregisterHandlers = () => {
 		document.removeEventListener('mousedown', this.handleOutsideClick);
@@ -124,7 +124,7 @@ class ContextMenu extends AbstractMenu {
 		document.removeEventListener('contextmenu', this.handleHide);
 		document.removeEventListener('keydown', this.handleKeyNavigation);
 		window.removeEventListener('resize', this.handleHide);
-	}
+	};
 
 	handleShow = (e) => {
 		if (e.detail.id !== this.props.id || this.state.isVisible) return;
@@ -134,7 +134,7 @@ class ContextMenu extends AbstractMenu {
 		this.setState({ isVisible: true, x, y });
 		this.registerHandlers();
 		callIfExists(this.props.onShow, e);
-	}
+	};
 
 	handleHide = (e) => {
 		if (this.state.isVisible && (!e.detail || !e.detail.id || e.detail.id === this.props.id)) {
@@ -142,11 +142,11 @@ class ContextMenu extends AbstractMenu {
 			this.setState({ isVisible: false, selectedItem: null, forceSubMenuOpen: false });
 			callIfExists(this.props.onHide, e);
 		}
-	}
+	};
 
 	handleOutsideClick = (e) => {
 		if (!this.menu.contains(e.target)) hideMenu();
-	}
+	};
 
 	handleMouseLeave = (event) => {
 		event.preventDefault();
@@ -159,18 +159,18 @@ class ContextMenu extends AbstractMenu {
 		);
 
 		if (this.props.hideOnLeave) hideMenu();
-	}
+	};
 
 	handleContextMenu = (e) => {
 		e.preventDefault();
 		this.handleHide(e);
-	}
+	};
 
-	hideMenu = (e) => {
+	hideMenu = ( e ) => {
 		if ( e.keyCode === 27 || e.keyCode === 13 ) { // ECS or enter
 			hideMenu();
 		}
-	}
+	};
 
 	getMenuPosition = (x = 0, y = 0) => {
 		let menuStyles = {
@@ -200,7 +200,7 @@ class ContextMenu extends AbstractMenu {
 		}
 
 		return menuStyles;
-	}
+	};
 
 	getRTLMenuPosition = (x = 0, y = 0) => {
 		let menuStyles = {
@@ -237,7 +237,7 @@ class ContextMenu extends AbstractMenu {
 
 	menuRef = ( c ) => {
 		this.menu = c;
-	}
+	};
 
 	render() {
 		const { children, className, style } = this.props;

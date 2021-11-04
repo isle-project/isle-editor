@@ -80,7 +80,7 @@ class FeedbackModal extends Component {
 			this.props.gotoPage( selected.pointIndex );
 			this.props.onHide();
 		}
-	}
+	};
 
 	render() {
 		return ( <Modal

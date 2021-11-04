@@ -13,6 +13,66 @@ import './seal.css';
 const DIFF = 4;
 
 
+// FUNCTIONS //
+
+function curvedText( txt, size, arc, offset ) {
+	txt = txt.split( '' );
+	const deg = arc / (txt.length-1);
+	let origin = 184 - (arc/2)*-1;
+	origin -= offset;
+	const lines = [];
+
+	const radius = size/2;
+	txt.forEach( ( ea, idx ) => {
+		const sin = sinDegrees( origin );
+		const cos = cosDegrees( origin );
+		const left = ( radius * sin ) + radius + DIFF;
+		const top = ( radius * cos ) + radius;
+
+		let rotation = origin*-1 - 180;
+		rotation = 'rotate(' + rotation + 'deg)';
+		const style = {
+			position: 'absolute',
+			left: left,
+			top: top,
+			transformOrigin: '0% 0%',
+			transform: rotation
+		};
+		lines.push( <p key={idx} style={style}>{ea}</p> );
+		origin -= deg;
+	});
+	return lines;
+}
+
+function curvedInvertedText( txt, size, arc, offset ) {
+	txt = txt.split('');
+	const deg = arc / (txt.length-1);
+	let origin = 0 - (arc/2);
+	const lines = [];
+	const radius = size/2;
+
+	txt.forEach( ( ea, idx ) => {
+		const sin = sinDegrees( origin );
+		const cos = cosDegrees( origin );
+		const left = ( radius * sin ) + radius + DIFF;
+		const top = ( radius * cos ) + radius;
+
+		let rotation = origin*-1;
+		rotation = 'rotate(' + rotation + 'deg)';
+		const style = {
+			position: 'absolute',
+			left: left,
+			top: top,
+			transformOrigin: '50% 50%',
+			transform: rotation
+		};
+		lines.push( <p key={idx} style={style}>{ea}</p> );
+		origin += deg;
+	});
+	return lines;
+}
+
+
 // MAIN //
 
 /**
@@ -39,76 +99,19 @@ class Seal extends Component {
 		};
 	}
 
-	curvedText = ( txt, size, arc, offset ) => {
-		txt = txt.split( '' );
-		const deg = arc / (txt.length-1);
-		let origin = 184 - (arc/2)*-1;
-		origin -= offset;
-		const lines = [];
-
-		const radius = size/2;
-		txt.forEach( ( ea, idx ) => {
-			const sin = sinDegrees( origin );
-			const cos = cosDegrees( origin );
-			const left = ( radius * sin ) + radius + DIFF;
-			const top = ( radius * cos ) + radius;
-
-			let rotation = origin*-1 - 180;
-			rotation = 'rotate(' + rotation + 'deg)';
-			const style = {
-				position: 'absolute',
-				left: left,
-				top: top,
-				transformOrigin: '0% 0%',
-				transform: rotation
-			};
-			lines.push( <p key={idx} style={style}>{ea}</p> );
-			origin -= deg;
-		});
-		return lines;
-	}
-
-	curvedInvertedText = ( txt, size, arc, offset ) => {
-		txt = txt.split('');
-		const deg = arc / (txt.length-1);
-		let origin = 0 - (arc/2);
-		const lines = [];
-		const radius = size/2;
-
-		txt.forEach( ( ea, idx ) => {
-			const sin = sinDegrees( origin );
-			const cos = cosDegrees( origin );
-			const left = ( radius * sin ) + radius + DIFF;
-			const top = ( radius * cos ) + radius;
-
-			let rotation = origin*-1;
-			rotation = 'rotate(' + rotation + 'deg)';
-			const style = {
-				position: 'absolute',
-				left: left,
-				top: top,
-				transformOrigin: '50% 50%',
-				transform: rotation
-			};
-			lines.push( <p key={idx} style={style}>{ea}</p> );
-			origin += deg;
-		});
-		return lines;
-	}
-
 	getUpperLine = () => {
-		const curvedText = this.curvedText( this.props.upper, 195, this.props.upperArc, 0 );
+		const txt = curvedText( this.props.upper, 195, this.props.upperArc, 0 );
 		return (
-			<div>{curvedText}</div>
+			<div>{txt}</div>
 		);
-	}
+	};
 
 	getLowerLine = () => {
-		const curvedText = this.curvedInvertedText( this.props.lower, 180, this.props.lowerArc, 0 );
+		const txt = curvedInvertedText( this.props.lower, 180, this.props.lowerArc, 0 );
 		return (
-			<div>{curvedText}</div>
+			<div>{txt}</div>
 		);
-	}
+	};
 
 	getStyle() {
 		const style = this.props.style || {};
@@ -155,7 +158,7 @@ class Seal extends Component {
 				exit: true
 			});
 		}
-	}
+	};
 
 	render() {
 		const style = this.getStyle();

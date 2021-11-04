@@ -100,7 +100,7 @@ class ResponseVisualizers extends Component {
 			event.stopPropagation();
 			this.props.onThumbnailClick( id );
 		};
-	}
+	};
 
 	highlightFactory = ( id ) => {
 		return () => {
@@ -137,7 +137,7 @@ class ResponseVisualizers extends Component {
 				selected: id
 			});
 		};
-	}
+	};
 
 	render() {
 		debug( 'Render response visualizer statistics...' );

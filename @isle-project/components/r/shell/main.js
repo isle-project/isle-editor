@@ -391,7 +391,7 @@ class RShell extends Component {
 
 	handleResetClick = () => {
 		this.editor.setValue( this.props.code, 1 );
-	}
+	};
 
 	logHint = ( idx ) => {
 		const session = this.context;
@@ -400,11 +400,11 @@ class RShell extends Component {
 			type: RSHELL_OPEN_HINT,
 			value: idx
 		});
-	}
+	};
 
 	hideHelp = () => {
 		this.setState({ help: '' });
-	}
+	};
 
 	renderHelpModal() {
 		const { t } = this.props;

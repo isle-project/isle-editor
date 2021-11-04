@@ -28,7 +28,7 @@ class ErrorBoundary extends Component {
 		this.setState({
 			error: null
 		});
-	}
+	};
 
 	render() {
 		if ( this.state.error ) {

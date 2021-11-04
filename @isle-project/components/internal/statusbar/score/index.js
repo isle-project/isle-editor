@@ -13,6 +13,13 @@ import './score.css';
 const debug = logger( 'isle:statusbar-score' );
 
 
+// FUNCTIONS //
+
+function stopPropagation( event ) {
+	event.stopPropagation();
+}
+
+
 // MAIN //
 
 class Score extends Component {
@@ -41,10 +48,6 @@ class Score extends Component {
 	componentWillUnmount() {
 		debug( 'Component will unmount...' );
 		this.unsubscribe();
-	}
-
-	handleClick = ( event ) => {
-		event.stopPropagation();
 	}
 
 	addScore( addition ) {
@@ -93,7 +96,7 @@ class Score extends Component {
 								}
 							}
 						}}
-						onClick={this.handleClick} onKeyPress={this.handleClick}
+						onClick={stopPropagation} onKeyPress={stopPropagation}
 						tabIndex={0}
 					>
 						{this.state.score}

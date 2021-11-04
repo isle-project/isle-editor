@@ -50,7 +50,7 @@ class BeaconTooltip extends Component {
 	handleChange = ( action, props ) => {
 		debug( 'Received action: '+action );
 		this.props.onChange( action, props );
-	}
+	};
 
 	render() {
 		if ( !this.state.show ) {

@@ -42,7 +42,7 @@ class Clock extends Component {
 		else {
 			this.updateDate();
 		}
-	}
+	};
 
 	updateDuration = () => {
 		const date = new Date().getTime() - this.state.startTime;
@@ -55,7 +55,7 @@ class Clock extends Component {
 		this.setState({
 			time: currentTime
 		});
-	}
+	};
 
 	updateDate = () => {
 		let currentTime;
@@ -91,7 +91,7 @@ class Clock extends Component {
 				time: currentTime
 			});
 		}
-	}
+	};
 
 	render() {
 		const styles = {

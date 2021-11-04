@@ -205,7 +205,7 @@ class JSShell extends Component {
 		this.setState({
 			log: []
 		});
-	}
+	};
 
 	handleSolutionClick = () => {
 		const val = this.editor.getValue();
@@ -236,7 +236,7 @@ class JSShell extends Component {
 			});
 			this.editor.setValue( this.state.lastSolution || solutionUnescaped, 1 );
 		}
-	}
+	};
 
 	handleEvaluationClick = () => {
 		let currentCode = this.editor.getValue();
@@ -267,7 +267,7 @@ class JSShell extends Component {
 			});
 		}
 		this.props.onEvaluate( currentCode );
-	}
+	};
 
 	innerConsole = () => {
 		global.print = {
@@ -277,7 +277,7 @@ class JSShell extends Component {
 			'log': this.printFactory( 'log' ),
 			'debug': this.printFactory( 'debug' )
 		};
-	}
+	};
 
 	printFactory = ( type ) => {
 		const self = this;
@@ -314,7 +314,7 @@ class JSShell extends Component {
 				log
 			});
 		}
-	}
+	};
 
 	logHint = ( idx ) => {
 		const session = this.context;
@@ -323,7 +323,7 @@ class JSShell extends Component {
 			type: JSSHELL_OPEN_HINT,
 			value: idx
 		});
-	}
+	};
 
 	showHints() {
 		return (

@@ -86,7 +86,7 @@ class Deck extends Component {
 		this.setState({
 			fragments
 		});
-	}
+	};
 
 	updateFragment = ( action ) => {
 		const { fragment } = action;
@@ -97,7 +97,7 @@ class Deck extends Component {
 		this.setState({
 			fragments
 		});
-	}
+	};
 
 	updateRoute = ( action ) => {
 		const { location, slideCount } = action;
@@ -120,13 +120,13 @@ class Deck extends Component {
 				previousSlide: this.state.route.slide || slide
 			}
 		});
-	}
+	};
 
 	updateNotes = ( newNotes, slide = null ) => {
 		const notes = { ...this.state.notes };
 		notes[ slide || this.state.route.slide ] = newNotes;
 		this.setState({ notes });
-	}
+	};
 
 	handleStateChange = nextState => {
 		const prevState = this.state.slideState;
@@ -135,7 +135,7 @@ class Deck extends Component {
 			onStateChange( prevState, nextState );
 			this.setState({ slideState: nextState });
 		}
-	}
+	};
 
 	render() {
 		return (

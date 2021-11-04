@@ -667,7 +667,7 @@ class Sketchpad extends Component {
 		if ( page > 0 ) {
 			this.gotoPage( page );
 		}
-	}
+	};
 
 	handleResize = () => {
 		this.setState({
@@ -676,7 +676,7 @@ class Sketchpad extends Component {
 		}, () => {
 			this.debouncedRedraw();
 		});
-	}
+	};
 
 	retrieveData = ( data ) => {
 		debug( 'Retrieved data from previous session...' );
@@ -727,13 +727,13 @@ class Sketchpad extends Component {
 				this.debouncedRedraw();
 			});
 		}
-	}
+	};
 
 	toggleGroupMode = () => {
 		this.setState({
 			groupMode: !this.state.groupMode
 		});
-	}
+	};
 
 	hidePointer = () => {
 		const action = {
@@ -745,7 +745,7 @@ class Sketchpad extends Component {
 		const session = this.context;
 		session.log( action, 'members' );
 		this.pointer.style.opacity = 0;
-	}
+	};
 
 	hideZoom = () => {
 		const action = {
@@ -757,7 +757,7 @@ class Sketchpad extends Component {
 		const session = this.context;
 		session.log( action, 'members' );
 		this.zoom.style.display = 'none';
-	}
+	};
 
 	preventDefaultTouch = ( e ) => {
 		if (
@@ -767,13 +767,13 @@ class Sketchpad extends Component {
 		) {
 			e.preventDefault();
 		}
-	}
+	};
 
 	handleVisibilityChange = () => {
 		if ( !document.hidden ) {
 			this.debouncedRedraw();
 		}
-	}
+	};
 
 	renderBackground = ( pageNumber ) => {
 		/* eslint-disable i18next/no-literal-string */
@@ -873,7 +873,7 @@ class Sketchpad extends Component {
 		// Return promise that immediately resolves as no background needs to be drawn:
 		return Promise.resolve();
 		/* eslint-enable i18next/no-literal-string */
-	}
+	};
 
 	redraw = () => {
 		const currentPage = this.state.currentPage;
@@ -899,7 +899,7 @@ class Sketchpad extends Component {
 			.catch( ( err ) => {
 				this.renderingTask = null;
 			});
-	}
+	};
 
 	onlyRedrawElements = () => {
 		if ( this.backgroundData ) {
@@ -922,7 +922,7 @@ class Sketchpad extends Component {
 		for ( let i = 0; i < elems.length - nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
-	}
+	};
 
 	redrawWhenDragging = () => {
 		if ( !this.canvasBuffer ) {
@@ -978,7 +978,7 @@ class Sketchpad extends Component {
 		ctx.stroke();
 		ctx.closePath();
 		ctx.setLineDash( [] );
-	}
+	};
 
 	drawPage = ( idx ) => {
 		const ctx = this.ctx;
@@ -998,7 +998,7 @@ class Sketchpad extends Component {
 		for ( let i = 0; i < elems.length - nUndos; i++ ) {
 			this.drawElement( elems[ i ] );
 		}
-	}
+	};
 
 	mousePosition = ( evt ) => {
 		let clientX = evt.clientX;
@@ -1015,7 +1015,7 @@ class Sketchpad extends Component {
 			x: clientX - rect.left,
 			y: clientY - rect.top
 		};
-	}
+	};
 
 	clearPage = ( selectedPage ) => {
 		if ( isAlreadyInserted( selectedPage, this.state.insertedPages ) ) {
@@ -1047,7 +1047,7 @@ class Sketchpad extends Component {
 			this.elements[ selectedPage ] = [];
 			this.debouncedRedraw();
 		}
-	}
+	};
 
 	clear = () => {
 		const currentPage = this.state.currentPage;
@@ -1069,7 +1069,7 @@ class Sketchpad extends Component {
 		} else {
 			session.log( logAction, 'owners' );
 		}
-	}
+	};
 
 	clearAll = ( silent = false ) => {
 		const session = this.context;
@@ -1119,7 +1119,7 @@ class Sketchpad extends Component {
 				session.log( logAction, 'owners' );
 			}
 		}
-	}
+	};
 
 	undo = () => {
 		const currentPage = this.state.currentPage;
@@ -1159,7 +1159,7 @@ class Sketchpad extends Component {
 					this.drawElement( sharedElems[ i ] );
 				}
 			});
-	}
+	};
 
 	redo = () => {
 		const currentPage = this.state.currentPage;
@@ -1191,7 +1191,7 @@ class Sketchpad extends Component {
 				this.hasChangedSinceLastSave = true;
 			}
 		}
-	}
+	};
 
 	drawElement = ( elem ) => {
 		if ( elem ) {
@@ -1205,7 +1205,7 @@ class Sketchpad extends Component {
 				this.drawCurve( elem );
 			}
 		}
-	}
+	};
 
 	drawLine = ({ startX, startY, endX, endY, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
@@ -1221,7 +1221,7 @@ class Sketchpad extends Component {
 			ctx.stroke();
 			ctx.closePath();
 		}
-	}
+	};
 
 	drawCurve = ({ points, color, lineWidth, selected }) => {
 		const ctx = this.ctx;
@@ -1245,7 +1245,7 @@ class Sketchpad extends Component {
 				ctx.closePath();
 			}
 		}
-	}
+	};
 
 	drawStart = ( event ) => {
 		event.stopPropagation();
@@ -1283,7 +1283,7 @@ class Sketchpad extends Component {
 		} else if ( IS_TOUCH_DEVICE ) {
 			this.handleClick( event );
 		}
-	}
+	};
 
 	drawEnd = ( event ) => {
 		event.stopPropagation();
@@ -1397,7 +1397,7 @@ class Sketchpad extends Component {
 			this.redrawWhenDragging();
 		}
 		this.isMouseDown = false;
-	}
+	};
 
 	draw = ( evt ) => {
 		evt.stopPropagation();
@@ -1486,13 +1486,13 @@ class Sketchpad extends Component {
 			this.x = x;
 			this.y = y;
 		}
-	}
+	};
 
 	toggleTransmit = () => {
 		this.setState({
 			transmitOwner: !this.state.transmitOwner
 		});
-	}
+	};
 
 	deselectElements() {
 		// Deselect elements when clicked outside selection path:
@@ -1555,7 +1555,7 @@ class Sketchpad extends Component {
 				});
 			});
 		});
-	}
+	};
 
 	saveAsPNG = () => {
 		const current = this.state.currentPage;
@@ -1569,7 +1569,7 @@ class Sketchpad extends Component {
 		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
-	}
+	};
 
 	preparePDF = ( clbk = noop ) => {
 		debug( 'Assembling PDF document object...' );
@@ -1617,11 +1617,11 @@ class Sketchpad extends Component {
 
 		// Start rendering pages one by one:
 		iter();
-	}
+	};
 
 	toggleSaveModal = () => {
 		this.setState({ showSaveModal: !this.state.showSaveModal });
-	}
+	};
 
 	saveAsPDF = () => {
 		this.setState({
@@ -1637,7 +1637,7 @@ class Sketchpad extends Component {
 				});
 			});
 		});
-	}
+	};
 
 	insertPage = ( idx, from ) => {
 		if ( this.state.mode === 'text' ) {
@@ -1676,7 +1676,7 @@ class Sketchpad extends Component {
 				}, session.isOwner() ? 'members' : session.user.email );
 			}
 		});
-	}
+	};
 
 	insertTextFromInput = () => {
 		const x = parseInt( this.textInput.style.left, 10 ) - this.leftMargin;
@@ -1712,14 +1712,14 @@ class Sketchpad extends Component {
 		text.shouldLog = false;
 		elems.push( text );
 		this.props.onChange( elems );
-	}
+	};
 
 	handleEnter = ( event ) => {
 		debug( 'Check if user hit ENTER...' );
 		if ( event.keyCode === 13 ) {
 			this.insertTextFromInput();
 		}
-	}
+	};
 
 	drawText = ({ x, y, value, color, drawID, user, fontSize, fontFamily, selected, shouldLog = true }) => {
 		const ctx = this.ctx;
@@ -1755,7 +1755,7 @@ class Sketchpad extends Component {
 				session.log( logAction );
 			}
 		}
-	}
+	};
 
 	handleClick = ( event ) => {
 		debug( 'Handle click event...' );
@@ -1774,7 +1774,7 @@ class Sketchpad extends Component {
 			debug( 'Checking whether a shape has been selected...' );
 			this.checkDeletion( event );
 		}
-	}
+	};
 
 	checkDeletion = ( event ) => {
 		const { x, y } = this.mousePosition( event );
@@ -1838,7 +1838,7 @@ class Sketchpad extends Component {
 				session.log( action, 'owners' );
 			}
 		}
-	}
+	};
 
 	deleteElement = ( id, foundPos ) => {
 		let deleteStart;
@@ -1869,7 +1869,7 @@ class Sketchpad extends Component {
 			this.nUndos[ this.state.currentPage ] = nUndos + deleted.length;
 			this.onlyRedrawElements();
 		}
-	}
+	};
 
 	firstPage = () => {
 		if ( this.state.currentPage === 0 ) {
@@ -1892,7 +1892,7 @@ class Sketchpad extends Component {
 				value: this.state.currentPage
 			});
 		});
-	}
+	};
 
 	lastPage = () => {
 		if ( this.state.currentPage === this.state.noPages - 1 ) {
@@ -1915,7 +1915,7 @@ class Sketchpad extends Component {
 				value: this.state.currentPage
 			});
 		});
-	}
+	};
 
 	readURL = () => {
 		const hash = window.location.hash;
@@ -1926,7 +1926,7 @@ class Sketchpad extends Component {
 			return max( Number( match[ 1 ] ) - 1, 0 );
 		}
 		return 0;
-	}
+	};
 
 	updateURL = ( pageNo ) => {
 		const hash = String( window.location.hash );
@@ -1942,7 +1942,7 @@ class Sketchpad extends Component {
 				window.location.hash += `&${id}=${pageNo+1}`;
 			}
 		}
-	}
+	};
 
 	nextPage = () => {
 		if ( this.state.currentPage < this.state.noPages-1 ) {
@@ -1972,7 +1972,7 @@ class Sketchpad extends Component {
 				});
 			});
 		}
-	}
+	};
 
 	previousPage = () => {
 		if ( this.state.currentPage > 0 ) {
@@ -2001,7 +2001,7 @@ class Sketchpad extends Component {
 				});
 			});
 		}
-	}
+	};
 
 	gotoPage = ( idx, shouldLog = true ) => {
 		debug( `Should go to page ${idx}...` );
@@ -2041,7 +2041,7 @@ class Sketchpad extends Component {
 				showNavigationModal: false
 			});
 		}
-	}
+	};
 
 	loadPDF = () => {
 		const input = document.createElement( 'input' );
@@ -2049,7 +2049,7 @@ class Sketchpad extends Component {
 		input.accept = '.pdf';
 		input.addEventListener( 'change', this.handlePDFUpload, false );
 		input.click();
-	}
+	};
 
 	handlePDFUpload = ( evt ) => {
 		const session = this.context;
@@ -2065,7 +2065,7 @@ class Sketchpad extends Component {
 				this.initializePDF();
 			}
 		});
-	}
+	};
 
 	initializePDF = () => {
 		debug( `Initialize PDF document at ${this.props.pdf}...` );
@@ -2092,7 +2092,7 @@ class Sketchpad extends Component {
 					debug( `Encountered an error in 'initializePDF': ${err.message}` );
 				});
 		});
-	}
+	};
 
 	processPDF = ( pdf, clbk = noop ) => {
 		debug( 'PDF loaded...' );
@@ -2309,13 +2309,13 @@ class Sketchpad extends Component {
 		this.setState({
 			showResetModal: !this.state.showResetModal
 		});
-	}
+	};
 
 	toggleTutorial = () => {
 		this.setState({
 			showTutorial: !this.state.showTutorial
 		});
-	}
+	};
 
 	renderRemoveButtons() {
 		if (
@@ -2382,7 +2382,7 @@ class Sketchpad extends Component {
 		this.setState({
 			swiping: !this.state.swiping
 		});
-	}
+	};
 
 	movePointerStart = ( event ) => {
 		event.stopPropagation();
@@ -2391,7 +2391,7 @@ class Sketchpad extends Component {
 			this.swipeStartX = event.touches[ 0 ].screenX;
 			this.swipeStartY = event.touches[ 0 ].screenY;
 		}
-	}
+	};
 
 	movePointerEnd = ( event ) => {
 		// Mouse is not clicked anymore...
@@ -2412,7 +2412,7 @@ class Sketchpad extends Component {
 		}
 		this.hideZoom();
 		this.hidePointer();
-	}
+	};
 
 	movePointer = ( event ) => {
 		event.stopPropagation();
@@ -2471,7 +2471,7 @@ class Sketchpad extends Component {
 			noSave: true
 		};
 		session.log( action, 'members' );
-	}
+	};
 
 	renderTransmitButtons() {
 		if ( this.state.hideTransmitButtons || this.state.canvasWidth < 650 ) {
@@ -2559,7 +2559,7 @@ class Sketchpad extends Component {
 			}
 		}
 		return out;
-	}
+	};
 
 	toOriginalPage = ( idx ) => {
 		const addedPages = this.state.insertedPages;
@@ -2575,7 +2575,7 @@ class Sketchpad extends Component {
 		}
 		debug( `Page with index ${idx} corresponds to original page number ${out}...` );
 		return out;
-	}
+	};
 
 	verticalScroll( diffY ) {
 		if (

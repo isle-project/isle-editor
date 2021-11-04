@@ -175,13 +175,13 @@ export class Manager extends Component {
 				});
 			});
 		}
-	}
+	};
 
 	_detachEvents = () => {
 		window.removeEventListener( 'storage', this._goToSlide );
 		window.removeEventListener( 'keydown', this._handleKeyPress );
 		window.removeEventListener( 'resize', this._handleScreenChange );
-	}
+	};
 
 	_createNextSlideTimeout = () => {
 		const slideIndex = this._getSlideIndex();
@@ -194,18 +194,18 @@ export class Manager extends Component {
 			this._nextSlide();
 			this._createNextSlideTimeout();
 		}, duration );
-	}
+	};
 
 	_startAutoplay = () => {
 		clearTimeout( this.autoplayTimeout );
 		this.setState({ autoplaying: true });
 		this._createNextSlideTimeout();
-	}
+	};
 
 	_stopAutoplay = () => {
 		this.setState({ autoplaying: false });
 		clearTimeout(this.autoplayTimeout);
-	}
+	};
 
 	_toggleAutoplaying = () => {
 		if (this.state.autoplaying) {
@@ -213,7 +213,7 @@ export class Manager extends Component {
 		} else {
 			this._startAutoplay();
 		}
-	}
+	};
 
 	_handleEvent = (e) => {
 		// eslint-disable-line complexity
@@ -264,7 +264,7 @@ export class Manager extends Component {
 		) {
 			toggleFullscreen();
 		}
-	}
+	};
 
 	_handleKeyPress = ( e ) => {
 		const event = window.event ? window.event : e;
@@ -277,20 +277,20 @@ export class Manager extends Component {
 			return;
 		}
 		this._handleEvent( e );
-	}
+	};
 
 	_handleScreenChange = () => {
 		this.setState({
 			fullscreen: window.innerHeight === screen.height,
 			mobile: window.innerWidth < this.props.contentWidth
 		});
-	}
+	};
 
 	_toggleOverviewMode = () => {
 		const suffix =
 			this.context.route.params.indexOf( 'overview' ) !== -1 ? '' : '?overview';
 		this.context.history.replace( `/${this.context.route.slide}${suffix}` );
-	}
+	};
 
 	_togglePresenterMode = () => {
 		const presenting = this.context.route.params.indexOf( 'presenter' ) !== -1;
@@ -311,7 +311,7 @@ export class Manager extends Component {
 		} else if ( this.presentationConnection ) {
 			this.presentationConnection.terminate();
 		}
-	}
+	};
 
 	_getSuffix = () => {
 		if ( this.context.route.params.indexOf( 'presenter') !== -1 ) {
@@ -320,7 +320,7 @@ export class Manager extends Component {
 			return '?overview';
 		}
 		return '';
-	}
+	};
 
 	_goToSlide = ( e ) => {
 		let data = null;
@@ -363,11 +363,11 @@ export class Manager extends Component {
 			}
 			this.context.history.replace( `/${slide}${this._getSuffix()}` );
 		}
-	}
+	};
 
 	_resetViewedIndexes = () => {
 		this.viewedIndexes = new Set();
-	}
+	};
 
 	_prevSlide = () => {
 		const slideIndex = this._getSlideIndex();
@@ -404,7 +404,7 @@ export class Manager extends Component {
 				this.presentationConnection.send( msgData );
 			}
 		}
-	}
+	};
 
 	_nextUnviewedIndex = () => {
 		const sortedIndexes = Array.from( this.viewedIndexes ).sort((a, b) => a - b);
@@ -412,7 +412,7 @@ export class Manager extends Component {
 			( sortedIndexes[sortedIndexes.length - 1] || 0 ) + 1,
 			this.state.slideReference.length - 1
 		);
-	}
+	};
 
 	_getOffset = ( slideIndex ) => {
 		const { goTo } = this.state.slideReference[ slideIndex ];
@@ -427,7 +427,7 @@ export class Manager extends Component {
 			return goToIndex() - slideIndex;
 		}
 		return nextUnviewedIndex - slideIndex;
-	}
+	};
 
 	_nextSlide = () => {
 		const slideIndex = this._getSlideIndex();
@@ -478,7 +478,7 @@ export class Manager extends Component {
 				this.presentationConnection.send( msgData );
 			}
 		}
-	}
+	};
 
 	_getHash = ( slideIndex ) => {
 		const reference = this.state.slideReference[ slideIndex ];
@@ -486,11 +486,11 @@ export class Manager extends Component {
 			return 0;
 		}
 		return reference.id;
-	}
+	};
 
 	_updateFragment = ( fragData ) => {
 		return this.context.updateFragment( fragData );
-	}
+	};
 
 	_checkFragments = ( slide, forward ) => {
 		const fragments = this.context.fragments;
@@ -548,7 +548,7 @@ export class Manager extends Component {
 			return true;
 		}
 		return true;
-	}
+	};
 
 	_getTouchEvents = () => {
 		if ( this.props.disableTouchControls ) {
@@ -592,7 +592,7 @@ export class Manager extends Component {
 				self._handleSwipe(e);
 			}
 		};
-	}
+	};
 
 	preventPropagation = ( e ) => {
 		if ( this.clickSafe === true ) {
@@ -600,7 +600,7 @@ export class Manager extends Component {
 			e.stopPropagation();
 			e.nativeEvent.stopPropagation();
 		}
-	}
+	};
 
 	_handleSwipe = () => {
 		if (
@@ -619,7 +619,7 @@ export class Manager extends Component {
 			}
 		}
 		this.touchObject = {};
-	}
+	};
 
 	_getSlideIndex = () => {
 		let index = parseInt( this.context.route.slide, 10 );
@@ -630,7 +630,7 @@ export class Manager extends Component {
 			index = foundIndex >= 0 ? foundIndex : 0;
 		}
 		return index;
-	}
+	};
 
 	_getSlideByIndex = ( index ) => {
 		return getSlideByIndex(
@@ -638,7 +638,7 @@ export class Manager extends Component {
 			this.state.slideReference,
 			index
 		);
-	}
+	};
 
 	_renderSlide = () => {
 		const slideIndex = this._getSlideIndex();
@@ -663,7 +663,7 @@ export class Manager extends Component {
 				{cloneElement(slide, { ...slide.props, ...targetProps })}
 			</SlideWrapper>
 		);
-	}
+	};
 
 	_getProgressStyles = () => {
 		const slideIndex = this._getSlideIndex();
@@ -673,7 +673,7 @@ export class Manager extends Component {
 			return slide.props.progressColor;
 		}
 		return null;
-	}
+	};
 
 	_getControlStyles = () => {
 		const slideIndex = this._getSlideIndex();
@@ -682,7 +682,7 @@ export class Manager extends Component {
 			return slide.props.controlColor;
 		}
 		return null;
-	}
+	};
 
 	render() {
 		if ( this.context.route.slide === null ) {

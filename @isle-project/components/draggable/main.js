@@ -66,15 +66,15 @@ class Draggable extends Component {
 	handleStop = ( event, data ) => {
 		onDraggableStop( event );
 		this.props.onStop( event, data );
-	}
+	};
 
 	handleEscape = ( event ) => {
 		this.props.onEscape( event );
-	}
+	};
 
 	updateSize = ({ width, height }) => {
 		this.container.updateSize({ width, height });
-	}
+	};
 
 	render() {
 		const dndProps = omit( this.props, [ 'onStop', 'onEscape' ] );

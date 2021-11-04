@@ -145,7 +145,7 @@ class ActionLog extends Component {
 		this.setState({
 			listHeight: max( window.innerHeight * 0.85 - 320, 0 )
 		});
-	}
+	};
 
 	handleEmailFilterClick = ( event ) => {
 		event.stopPropagation();
@@ -164,7 +164,7 @@ class ActionLog extends Component {
 			filter: newFilter,
 			filters: newFilters
 		});
-	}
+	};
 
 	handleIDFilterClick = ( event ) => {
 		event.stopPropagation();
@@ -184,7 +184,7 @@ class ActionLog extends Component {
 			filter: newFilter,
 			filters: newFilters
 		});
-	}
+	};
 
 	buildActionsArray() {
 		let { from, to } = this.state.period;
@@ -261,7 +261,7 @@ class ActionLog extends Component {
 		this.setState({
 			anonymized: !this.state.anonymized
 		});
-	}
+	};
 
 	prepareActionsForExport = () => {
 		const len = this.state.actions.length;
@@ -281,7 +281,7 @@ class ActionLog extends Component {
 			actions = this.state.actions;
 		}
 		return actions;
-	}
+	};
 
 	saveJSON = () => {
 		const session = this.context;
@@ -291,7 +291,7 @@ class ActionLog extends Component {
 		});
 		const name = `actions_${session.namespaceName}_${session.lessonName}.json`; // eslint-disable-line i18next/no-literal-string
 		saveAs( blob, name );
-	}
+	};
 
 	saveCSV = () => {
 		const session = this.context;
@@ -313,7 +313,7 @@ class ActionLog extends Component {
 			const name = `actions_${session.namespaceName}_${session.lessonName}.csv`; // eslint-disable-line i18next/no-literal-string
 			saveAs( blob, name );
 		});
-	}
+	};
 
 	render() {
 		const session = this.context;

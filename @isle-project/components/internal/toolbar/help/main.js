@@ -58,7 +58,7 @@ class HelpPage extends Component {
 
 		// eslint-disable-next-line i18next/no-literal-string
 		pdfMake.createPdf( doc ).download( `ISLE_${session.lessonName}_Documentation.pdf` );
-	}
+	};
 
 	handleTabSelect = ( target ) => {
 		const session = this.props.session;
@@ -68,7 +68,7 @@ class HelpPage extends Component {
 			value: target
 		};
 		session.log( action );
-	}
+	};
 
 	render() {
 		const session = this.props.session;

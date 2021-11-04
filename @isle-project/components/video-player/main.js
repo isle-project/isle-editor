@@ -110,7 +110,7 @@ class Video extends Component {
 			value: this.state.progress.playedSeconds
 		});
 		this.props.onStart();
-	}
+	};
 
 	handlePlay = () => {
 		const session = this.context;
@@ -120,7 +120,7 @@ class Video extends Component {
 			value: this.state.progress.playedSeconds
 		});
 		this.props.onPlay();
-	}
+	};
 
 	handlePause = () => {
 		const session = this.context;
@@ -130,7 +130,7 @@ class Video extends Component {
 			value: this.state.progress.playedSeconds
 		});
 		this.props.onPause();
-	}
+	};
 
 	handleSeek = ( seconds ) => {
 		const session = this.context;
@@ -140,7 +140,7 @@ class Video extends Component {
 			value: seconds
 		});
 		this.props.onSeek( seconds );
-	}
+	};
 
 	handleReady = ( player ) => {
 		this.player = player;
@@ -150,7 +150,7 @@ class Video extends Component {
 			// Skip ahead to chosen start time:
 			internalPlayer.seekTo( this.props.startTime );
 		}
-	}
+	};
 
 	handleEnded = () => {
 		const session = this.context;
@@ -160,7 +160,7 @@ class Video extends Component {
 			value: this.state.progress.playedSeconds
 		});
 		this.props.onEnded();
-	}
+	};
 
 	handleError = ( errorCode ) => {
 		debug( 'Encountered an error: '+errorCode );
@@ -176,28 +176,28 @@ class Video extends Component {
 		this.setState({
 			encounteredError
 		});
-	}
+	};
 
 	handleProgress = ( progress ) => {
 		this.setState({
 			progress: progress
 		});
-	}
+	};
 
 	pausePlayer = () => {
 		const player = this.player.getInternalPlayer();
 		player.pauseVideo();
-	}
+	};
 
 	startPlayer = () => {
 		const player = this.player.getInternalPlayer();
 		player.playVideo();
-	}
+	};
 
 	stopPlayer = () => {
 		const player = this.player.getInternalPlayer();
 		player.stopVideo();
-	}
+	};
 
 	renderError() {
 		if ( !this.state.encounteredError ) {

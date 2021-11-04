@@ -19,12 +19,13 @@ class ColumnTitle extends Component {
 		this.setState({
 			showTooltip: true
 		});
-	}
+	};
+
 	hideTooltip = () => {
 		this.setState({
 			showTooltip: false
 		});
-	}
+	};
 
 	render() {
 		return (

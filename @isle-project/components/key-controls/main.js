@@ -68,7 +68,7 @@ class KeyControls extends Component {
 		} else {
 			document.addEventListener( 'keydown', this.triggerDocEvent );
 		}
-	}
+	};
 
 	removeListeners = ( container ) => {
 		const keys = objectKeys( this.props.actions );
@@ -87,7 +87,7 @@ class KeyControls extends Component {
 			}
 		}
 		document.removeEventListener( 'keydown', this.triggerDocEvent );
-	}
+	};
 
 	triggerEvent = ( event ) => {
 		let keyName = event.key;
@@ -122,7 +122,7 @@ class KeyControls extends Component {
 			event.stopPropagation();
 			fn( event );
 		}
-	}
+	};
 
 	triggerDocEvent = ( event ) => {
 		let keyName = event.key;
@@ -158,7 +158,7 @@ class KeyControls extends Component {
 			event.stopPropagation();
 			fn( event );
 		}
-	}
+	};
 
 	render() {
 		return null;

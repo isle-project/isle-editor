@@ -85,7 +85,7 @@ class StickyNote extends Component {
 		if ( this.props.onClick ) {
 			this.props.onClick( this.props.id );
 		}
-	}
+	};
 
 	remove = ( evt ) => {
 		evt.stopPropagation();
@@ -101,14 +101,14 @@ class StickyNote extends Component {
 			});
 		}
 		this.props.onDelete();
-	}
+	};
 
 	minimize = ( event ) => {
 		event.stopPropagation();
 		this.setState({
 			minimized: true
 		});
-	}
+	};
 
 	// If a transform is set, this functions sets the scale manually:
 	checkTransforms() {
@@ -171,7 +171,7 @@ class StickyNote extends Component {
 		}, () => {
 			this.titleInputRef.current.focus();
 		});
-	}
+	};
 
 	editBody = () => {
 		this.setState({
@@ -179,7 +179,7 @@ class StickyNote extends Component {
 		}, () => {
 			this.textareaRef.current.focus();
 		});
-	}
+	};
 
 	showTitle = () => {
 		return (
@@ -187,7 +187,7 @@ class StickyNote extends Component {
 				{this.state.title}
 			</div>
 		);
-	}
+	};
 
 	checkTitle = ( event ) => {
 		if ( event.keyCode === 13 ) {
@@ -206,7 +206,7 @@ class StickyNote extends Component {
 				editTitle: false
 			});
 		}
-	}
+	};
 
 	handleTitleBlur = () => {
 		if ( this.props.id ) {
@@ -221,17 +221,17 @@ class StickyNote extends Component {
 		this.setState({
 			editTitle: false
 		});
-	}
+	};
 
 	handleTitleChange = ( event ) => {
 		this.setState({
 			title: event.target.value
 		});
-	}
+	};
 
 	handleDrag = () => {
 		this.isDragging = true;
-	}
+	};
 
 	handleDragStop = ( event, data ) => {
 		debug( 'Stopped dragging...' );
@@ -250,14 +250,14 @@ class StickyNote extends Component {
 			});
 		}
 		this.props.onMove({ left: data.lastX / window.innerWidth, top: data.lastY / window.innerHeight });
-	}
+	};
 
 	handleResizeStop = ( e, direction, ref ) => {
 		this.props.onResize({
 			width: pixelsToNumber( ref.style.width ),
 			height: pixelsToNumber( ref.style.height )
 		});
-	}
+	};
 
 	showEditableTitle = () => {
 		return (
@@ -274,7 +274,7 @@ class StickyNote extends Component {
 				/>
 			</div>
 		);
-	}
+	};
 
 	showBody = () => {
 		return (
@@ -286,7 +286,7 @@ class StickyNote extends Component {
 				{this.state.body}
 			</div>
 		);
-	}
+	};
 
 	submitBody = () => {
 		const body = this.textareaRef.current.value;
@@ -303,7 +303,7 @@ class StickyNote extends Component {
 			body,
 			editBody: false
 		});
-	}
+	};
 
 	showEditableBody = () => {
 		return (
@@ -312,7 +312,7 @@ class StickyNote extends Component {
 				<input onClick={this.submitBody} type="submit" value={this.props.t('save')} />
 			</div>
 		);
-	}
+	};
 
 	showEditableContent = () => {
 		return (
@@ -324,7 +324,7 @@ class StickyNote extends Component {
 				</div> : null }
 			</div>
 		);
-	}
+	};
 
 	removeButton = () => {
 		return (
@@ -338,7 +338,7 @@ class StickyNote extends Component {
 				<i className="fas fa-times"></i>
 			</div>
 		);
-	}
+	};
 
 	render() {
 		const style = this.checkTransforms();

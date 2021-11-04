@@ -196,19 +196,19 @@ class StatusBar extends Component {
 		this.setState({
 			visibleSignup: false
 		});
-	}
+	};
 
 	closeLogin = () => {
 		this.setState({
 			visibleLogin: false
 		});
-	}
+	};
 
 	closeLogout = () => {
 		this.setState({
 			visibleLogout: false
 		});
-	}
+	};
 
 	toggleBarVisibility = ( event ) => {
 		if ( event ) {
@@ -222,7 +222,7 @@ class StatusBar extends Component {
 				showStatusBar: !this.state.showStatusBar
 			});
 		}
-	}
+	};
 
 	toggleGroupManager = ( event ) => {
 		if ( event ) {
@@ -231,7 +231,7 @@ class StatusBar extends Component {
 		this.setState({
 			showGroupManager: !this.state.showGroupManager
 		});
-	}
+	};
 
 	toggleBlackScreen = ( event ) => {
 		if ( event ) {
@@ -259,7 +259,7 @@ class StatusBar extends Component {
 				value: false
 			}, 'members' );
 		}
-	}
+	};
 
 	toggleBar = () => {
 		if ( this.state.hidden ) {
@@ -271,54 +271,54 @@ class StatusBar extends Component {
 			this.statusbar.style.opacity = 0.95;
 			this.setState({ hidden: true });
 		}
-	}
+	};
 
 	onMouseOver = () => {
 		if ( this.state.hidden ) {
 			this.statusbar.style.opacity = 1.0;
 		}
-	}
+	};
 
 	onMouseOut = () => {
 		if ( this.state.hidden ) {
 			this.statusbar.style.opacity = 0.95;
 		}
-	}
+	};
 
 	login = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleLogin: true
 		});
-	}
+	};
 
 	signup = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleSignup: true
 		});
-	}
+	};
 
 	logout = ( e ) => {
 		e.stopPropagation();
 		this.setState({
 			visibleLogout: true
 		});
-	}
+	};
 
 	handleLogout = () => {
 		const session = this.context;
 		session.logout();
 		this.closeLogout();
-	}
+	};
 
 	handleBarClick = ( event ) => {
 		this.toggleBar();
-	}
+	};
 
 	handleBarKeyPress = () => {
 		this.toggleBar();
-	}
+	};
 
 	toggleProgress = () => {
 		const session = this.context;
@@ -343,7 +343,7 @@ class StatusBar extends Component {
 				this.progressTimeout = null;
 			}, 12000 );
 		}
-	}
+	};
 
 	jumpToUnfinished = ( event ) => {
 		debug( 'Jump to next unfinished question...' );
@@ -380,13 +380,13 @@ class StatusBar extends Component {
 				}
 			}
 		}
-	}
+	};
 
 	preventPropagationForUsers = ( evt ) => {
 		if ( !this.context.anonymous ) {
 			evt.stopPropagation();
 		}
-	}
+	};
 
 	renderUpperBar() {
 		if ( this.state.hidden ) {

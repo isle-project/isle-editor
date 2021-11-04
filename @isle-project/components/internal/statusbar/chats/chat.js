@@ -86,7 +86,7 @@ class Chat extends Component {
 			const session = this.context;
 			session.markChatMessagesAsRead( this.props.chat.name );
 		}
-	}
+	};
 
 	sendMessage = ( event, anonymously = false ) => {
 		let text = this.editorView.markdown;
@@ -102,11 +102,11 @@ class Chat extends Component {
 			defaultValue: '',
 			docId: this.state.docId + 1
 		});
-	}
+	};
 
 	sendAnonymousChatMessage = ( event ) => {
 		this.sendMessage( event, true );
-	}
+	};
 
 	handleEditorStateChange = () => {
 		if ( this.state.hasNews ) {
@@ -114,31 +114,31 @@ class Chat extends Component {
 				hasNews: false
 			});
 		}
-	}
+	};
 
 	insertText = ( text ) => {
 		text = this.editorView.markdown + ' ' + text;
 		this.setState({
 			defaultValue: text
 		});
-	}
+	};
 
 	closeChat = () => {
 		const session = this.context;
 		session.leaveChat( this.props.chat.name );
-	}
+	};
 
 	onMouseOver = () => {
 		if ( !this.state.opened ) {
 			this.chat.style.opacity = this.state.opened ? 0.7 : 1.0;
 		}
-	}
+	};
 
 	onMouseOut = () => {
 		if ( !this.state.opened ) {
 			this.chat.style.opacity = this.state.opened ? 1.0 : 0.7;
 		}
-	}
+	};
 
 	toggleMaximize = () => {
 		const newState = {
@@ -148,14 +148,14 @@ class Chat extends Component {
 			newState.opened = true;
 		}
 		this.setState( newState );
-	}
+	};
 
 	toggleChat = () => {
 		this.setState({
 			opened: !this.state.opened,
 			hasNews: false
 		});
-	}
+	};
 
 	renderMembers() {
 		const { chat } = this.props;

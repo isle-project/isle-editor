@@ -79,18 +79,18 @@ class AbstractMenu extends Component {
 			default:
 				// do nothing
 		}
-	}
+	};
 
 	handleForceClose = () => {
 		this.setState({ forceSubMenuOpen: false });
-	}
+	};
 
 	tryToOpenSubMenu = (e) => {
 		if (this.state.selectedItem && this.state.selectedItem.type === this.getSubMenuType()) {
 			e.preventDefault();
 			this.setState({ forceSubMenuOpen: true });
 		}
-	}
+	};
 
 	selectChildren = (forward) => {
 		const { selectedItem } = this.state;
@@ -156,17 +156,17 @@ class AbstractMenu extends Component {
 				forceSubMenuOpen: false
 			});
 		}
-	}
+	};
 
 	onChildMouseMove = (child) => {
 		if (this.state.selectedItem !== child) {
 			this.setState({ selectedItem: child, forceSubMenuOpen: false });
 		}
-	}
+	};
 
 	onChildMouseLeave = () => {
 		this.setState({ selectedItem: null, forceSubMenuOpen: false });
-	}
+	};
 
 	renderChildren = children => React.Children.map(children, (child) => {
 		const props = {};

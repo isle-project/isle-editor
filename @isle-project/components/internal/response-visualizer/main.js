@@ -189,7 +189,7 @@ class ResponseVisualizer extends Component {
 			newState.period = null;
 		}
 		this.setState( newState );
-	}
+	};
 
 	toggleExtended = () => {
 		this.setState({
@@ -202,18 +202,18 @@ class ResponseVisualizer extends Component {
 				value: this.state.showExtended
 			});
 		});
-	}
+	};
 
 	onPeriodChange = ( newPeriod ) => {
 		this.setState({
 			period: newPeriod
 		}, this.addSessionActions );
-	}
+	};
 
 	onCohortChange = ( event ) => {
 		debug( 'Change the selected cohort...' );
 		this.context.selectCohort( event.target.value );
-	}
+	};
 
 	pushSessionAction = ( action ) => {
 		action = extractValue( action );
@@ -241,7 +241,7 @@ class ResponseVisualizer extends Component {
 			}
 		}
 		this.setState( newState );
-	}
+	};
 
 	addSessionActions = () => {
 		const session = this.context;
@@ -300,14 +300,14 @@ class ResponseVisualizer extends Component {
 		this.setState( newState, () => {
 			session.update( UPDATED_VISUALIZER, this.props.id );
 		});
-	}
+	};
 
 	closeDeleteModal = () => {
 		this.setState({
 			showDeleteModal: false,
 			selectedAction: null
 		});
-	}
+	};
 
 	deleteFactory = ( idx ) => {
 		return () => {
@@ -317,7 +317,7 @@ class ResponseVisualizer extends Component {
 				showDeleteModal: true
 			});
 		};
-	}
+	};
 
 	deleteSelectedAction = () => {
 		const session = this.context;
@@ -327,7 +327,7 @@ class ResponseVisualizer extends Component {
 			}
 			this.closeDeleteModal();
 		});
-	}
+	};
 
 	renderTooltip() {
 		const session = this.context;

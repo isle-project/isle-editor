@@ -31,7 +31,7 @@ class SketchpadContextMenu extends Component {
 			e.clipboardData.setData( 'text/plain ', img );
 			e.preventDefault();
 		}
-	}
+	};
 
 	render() {
 		return (

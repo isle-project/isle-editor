@@ -39,7 +39,7 @@ class CustomFilter extends Component {
 			type: null,
 			value: ''
 		});
-	}
+	};
 
 	render() {
 		const { style, t } = this.props;

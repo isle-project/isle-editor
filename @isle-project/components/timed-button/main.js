@@ -59,7 +59,7 @@ class TimedButton extends Component {
 				width: width
 			});
 		}
-	}
+	};
 
 	start() {
 		this.setState({
@@ -97,7 +97,7 @@ class TimedButton extends Component {
 			});
 			this.start();
 		}
-	}
+	};
 
 	render() {
 		const disabled = this.props.disabled || !this.state.waiting;

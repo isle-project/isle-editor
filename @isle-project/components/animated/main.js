@@ -160,7 +160,7 @@ class Animated extends Component {
 			default:
 				break;
 		}
-	}
+	};
 
 	readStyles = () => {
 		const actual = this.state.actualStyle;
@@ -182,7 +182,7 @@ class Animated extends Component {
 			over: newOver,
 			out: newOut
 		});
-	}
+	};
 
 	mouseOver = () => {
 		if ( this.state.over ) {
@@ -190,7 +190,7 @@ class Animated extends Component {
 				actualStyle: this.state.over
 			});
 		}
-	}
+	};
 
 	mouseOut = () => {
 		if ( this.state.out ) {
@@ -198,7 +198,7 @@ class Animated extends Component {
 				actualStyle: this.state.out
 			});
 		}
-	}
+	};
 
 	render() {
 		return (

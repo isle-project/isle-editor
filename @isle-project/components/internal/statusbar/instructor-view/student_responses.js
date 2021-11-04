@@ -162,7 +162,7 @@ class StudentResponses extends Component {
 				selected: id
 			});
 		};
-	}
+	};
 
 	handleRadioChange = async () => {
 		const session = this.props.session;
@@ -172,7 +172,7 @@ class StudentResponses extends Component {
 		this.setState({
 			anonymized: !this.state.anonymized
 		});
-	}
+	};
 
 	prepareQuestionsForExport = () => {
 		let out = [];
@@ -204,7 +204,7 @@ class StudentResponses extends Component {
 			out = out.concat( arr );
 		}
 		return out;
-	}
+	};
 
 	saveJSON = () => {
 		const session = this.props.session;
@@ -214,7 +214,7 @@ class StudentResponses extends Component {
 		});
 		const name = `questions_${session.namespaceName}_${session.lessonName}.json`; // eslint-disable-line i18next/no-literal-string
 		saveAs( blob, name );
-	}
+	};
 
 	saveCSV = () => {
 		const session = this.props.session;
@@ -236,7 +236,7 @@ class StudentResponses extends Component {
 			const name = `questions_${session.namespaceName}_${session.lessonName}.csv`; // eslint-disable-line i18next/no-literal-string
 			saveAs( blob, name );
 		});
-	}
+	};
 
 	assembleUserList = () => {
 		const session = this.props.session;
@@ -294,7 +294,7 @@ class StudentResponses extends Component {
 			}
 		}
 		return users;
-	}
+	};
 
 	assembleGrades = ( option ) => {
 		const session = this.props.session;
@@ -316,7 +316,7 @@ class StudentResponses extends Component {
 			grades[ id ] = numPoints;
 		}
 		return grades;
-	}
+	};
 
 	handleFeedbackFactory = ( id ) => {
 		return () => {
@@ -332,7 +332,7 @@ class StudentResponses extends Component {
 				feedbackText: ''
 			});
 		};
-	}
+	};
 
 	handleFeedbackSubmission = () => {
 		const session = this.props.session;
@@ -340,7 +340,7 @@ class StudentResponses extends Component {
 		this.setState({
 			feedbackText: ''
 		});
-	}
+	};
 
 	renderFeedbackMessages = () => {
 		const session = this.props.session;
@@ -378,7 +378,7 @@ class StudentResponses extends Component {
 			);
 		}
 		return <p>{this.props.t('no-feedback-yet')}</p>;
-	}
+	};
 
 	renderOverlay() {
 		if ( !this.state.showFeedbackEditor || !this.state.leftUser ) {
