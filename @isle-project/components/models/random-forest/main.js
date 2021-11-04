@@ -114,7 +114,7 @@ class RandomForest extends Component {
 
 	handlePredict = () => {
 		this.props.onPredict( this.state.forest, COUNTER );
-	}
+	};
 
 	render() {
 		const { forest } = this.state;

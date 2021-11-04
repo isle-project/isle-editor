@@ -99,13 +99,13 @@ class DiscreteDistribution extends Component {
 			lowerProb,
 			rangeProb
 		});
-	}
+	};
 
 	handlePopover = ( status ) => {
 		this.setState({
 			disableTabs: status
 		});
-	}
+	};
 
 	renderGrid() {
 		const { t } = this.props;

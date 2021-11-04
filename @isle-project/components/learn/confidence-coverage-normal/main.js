@@ -94,7 +94,7 @@ class ConfidenceCoverageNormal extends Component {
 			mu: mu,
 			errorBars: errorBars
 		});
-	}
+	};
 
 	renderChart() {
 		const { errorBars } = this.state;

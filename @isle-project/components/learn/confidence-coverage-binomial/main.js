@@ -89,7 +89,7 @@ class ConfidenceCoverageBinomial extends Component {
 			p: p,
 			errorBars: errorBars
 		});
-	}
+	};
 
 	renderChart() {
 		const { errorBars } = this.state;

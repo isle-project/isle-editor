@@ -188,7 +188,7 @@ class ContinuousDistributions extends Component {
 				this.handlePDFChange( newCode );
 			});
 		};
-	}
+	};
 
 	insertFuncFactory = ( funcName ) => {
 		return () => {
@@ -201,7 +201,7 @@ class ContinuousDistributions extends Component {
 				selection: this.state.selection + replacement.length - 1
 			});
 		};
-	}
+	};
 
 	handlePDFChange = ( code ) => {
 		if ( isEmptyString( code ) ) {
@@ -228,7 +228,7 @@ class ContinuousDistributions extends Component {
 		this.setState({
 			code, ...out, encounteredError: null
 		});
-	}
+	};
 
 	setUpperDomain = ( upper ) => {
 		const { code, lowerX, xval, lowerRange, upperRange } = this.state;
@@ -254,7 +254,7 @@ class ContinuousDistributions extends Component {
 		this.setState({
 			upperX: upper, ...out, encounteredError: null
 		});
-	}
+	};
 
 	setLowerDomain = ( lower ) => {
 		const { code, upperX, xval, lowerRange, upperRange } = this.state;
@@ -280,13 +280,13 @@ class ContinuousDistributions extends Component {
 		this.setState({
 			lowerX: lower, ...out, encounteredError: null
 		});
-	}
+	};
 
 	handlePopover = ( status ) => {
 		this.setState({
 			disableTabs: status
 		});
-	}
+	};
 
 	renderEquation() {
 		/* eslint-disable i18next/no-literal-string */

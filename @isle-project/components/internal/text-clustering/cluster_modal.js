@@ -85,7 +85,7 @@ class ClusterModal extends Component {
 			});
 			this.props.changeClusterCount( modelIndex );
 		}
-	}
+	};
 
 	render() {
 		let docDisplay;

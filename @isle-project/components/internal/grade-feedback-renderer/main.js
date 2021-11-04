@@ -101,7 +101,7 @@ class GradeFeedbackRenderer extends Component {
 		this.setState({
 			showMessages: !this.state.showMessages
 		});
-	}
+	};
 
 	render() {
 		const session = this.context;

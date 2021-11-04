@@ -71,7 +71,7 @@ class Controller extends Component {
 			location,
 			slideCount
 		});
-	}
+	};
 
 	render() {
 		const styles = theme;

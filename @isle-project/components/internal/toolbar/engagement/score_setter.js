@@ -25,7 +25,7 @@ class ScoreSetter extends Component {
 		this.setState({
 			controlledPosition: { x, y }
 		});
-	}
+	};
 
 	onControlledDragStop = ( e, position ) => {
 		const { x, y } = position;
@@ -33,11 +33,11 @@ class ScoreSetter extends Component {
 			controlledPosition: { x, y },
 			progress: ( ( x + 100 ) / 200 ) * 100
 		});
-	}
+	};
 
 	handleSubmit = () => {
 		this.props.onSubmit( this.state.progress );
-	}
+	};
 
 	render() {
 		return (

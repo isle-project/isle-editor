@@ -86,13 +86,13 @@ class VoiceControl extends Component {
 		this.setState({
 			active: false
 		});
-	}
+	};
 
 	setActive = () => {
 		this.setState({
 			active: true
 		});
-	}
+	};
 
 	handleClick = () => {
 		if ( this.state.active ) {
@@ -101,7 +101,7 @@ class VoiceControl extends Component {
 			const session = this.context;
 			session.speechInterface.setActive( this.props.id );
 		}
-	}
+	};
 
 	render() {
 		if ( !this.props.id || this.props.hide || !this.state.show ) {

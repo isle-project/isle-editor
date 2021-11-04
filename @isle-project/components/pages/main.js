@@ -69,7 +69,7 @@ class Pages extends Component {
 				value: value
 			});
 		}
-	}
+	};
 
 	firstPage = () => {
 		this.props.onSelect( 1 );
@@ -80,7 +80,7 @@ class Pages extends Component {
 		this.setState({
 			activePage: 1
 		});
-	}
+	};
 
 	nextPage = () => {
 		const nPages = this.props.children.length || 1;
@@ -95,7 +95,7 @@ class Pages extends Component {
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
-	}
+	};
 
 	prevPage = () => {
 		if ( this.state.activePage === 1 ) {
@@ -109,7 +109,7 @@ class Pages extends Component {
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
-	}
+	};
 
 	lastPage = () => {
 		this.props.onSelect( this.props.children.length );
@@ -120,7 +120,7 @@ class Pages extends Component {
 		this.setState({
 			activePage: this.props.children.length
 		});
-	}
+	};
 
 	jumpTo = ( page ) => {
 		const nPages = this.props.children.length || 1;
@@ -135,7 +135,7 @@ class Pages extends Component {
 		this.setState({
 			activePage: page
 		});
-	}
+	};
 
 	render() {
 		if ( !this.props.children ) {

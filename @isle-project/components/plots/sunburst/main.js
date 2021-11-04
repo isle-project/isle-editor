@@ -89,7 +89,7 @@ class Sunburst extends Component {
 		trail.append( 'svg:text' )
 			.attr( 'id', `${this.id}_endlabel` )
 			.style( 'fill', '#000' );
-	}
+	};
 
 	initialize() {
 		const { width, height } = this.props;
@@ -159,7 +159,7 @@ class Sunburst extends Component {
 
 		// Get total size of the tree = value of root node from partition.
 		this.totalSize = path.datum().value;
-	}
+	};
 
 	mouseleave = ( d ) => {
 		debug( 'Restore everything to full opacity when moving off the visualization...' );
@@ -173,7 +173,7 @@ class Sunburst extends Component {
 			.style( 'opacity', 1 );
 
 		d3.select( this.explanation ).style( 'visibility', 'hidden' );
-	}
+	};
 
 	// Fade all but the current sequence, and show it in the breadcrumb trail.
 	mouseover = ( d ) => {
@@ -199,8 +199,7 @@ class Sunburst extends Component {
 		this.vis.selectAll( 'path' )
 			.filter( node => sequenceArray.indexOf( node ) >= 0 )
 			.style( 'opacity', 1 );
-	}
-
+	};
 
 	// Update the breadcrumb trail to show the current sequence and percentage.
 	updateBreadcrumbs = ( nodeArray, percentageString ) => {
@@ -242,7 +241,7 @@ class Sunburst extends Component {
 
 		// Make the breadcrumb trail visible, if it's hidden.
 		d3.select( `#${this.id}_trail` ).style( 'visibility', '' );
-	}
+	};
 
 	// Generate a string that describes the points of a breadcrumb polygon.
 	breadcrumbPoints = ( d, i ) => {
@@ -257,7 +256,7 @@ class Sunburst extends Component {
 			points.push( b.t + ',' + (b.h / 2) );
 		}
 		return points.join( ' ' );
-	}
+	};
 
 	render() {
 		return ( <div className="sunburst" style={{ width: this.props.width, ...this.props.style }} >

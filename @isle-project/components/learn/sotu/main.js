@@ -81,7 +81,7 @@ class SOTU extends Component {
 			timeseries,
 			vennWords: state.words
 		});
-	}
+	};
 
 	render() {
 		const { vennWords, timeseries, tdm } = this.state;

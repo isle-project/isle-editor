@@ -57,7 +57,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB: pA,
 			independent: true
 		});
-	}
+	};
 
 	changeProbB = ( pB ) => {
 		const pA = this.state.pA;
@@ -71,7 +71,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB: pA,
 			independent: true
 		});
-	}
+	};
 
 	changeProbAB = ( value ) => {
 		const pAnotB = this.state.pA - value;
@@ -87,7 +87,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB,
 			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
-	}
+	};
 
 	changeProbAnotB = ( value ) => {
 		const pAB = this.state.pA - value;
@@ -103,7 +103,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB,
 			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
-	}
+	};
 
 	changeProbNotAB = ( value ) => {
 		let pnotAnotB = ( 1-this.state.pA ) - value;
@@ -119,7 +119,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB,
 			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
-	}
+	};
 
 	changeProbNotAnotB = ( value ) => {
 		const pnotAB = ( 1-this.state.pA ) - value;
@@ -135,7 +135,7 @@ class ConditionalProbability extends Component {
 			pAgivenNotB,
 			independent: pAgivenB === pAgivenNotB && pAgivenB === this.state.pA
 		});
-	}
+	};
 
 	changeProbAgivenB = ( value ) => {
 		const pAgivenB = value;
@@ -149,7 +149,7 @@ class ConditionalProbability extends Component {
 		this.setState({
 			pAgivenB, pAB, pAnotB, pnotAB, pnotAnotB, pAgivenNotB, independent
 		});
-	}
+	};
 
 	changeProbAgivenNotB = ( value ) => {
 		const pAgivenNotB = value;
@@ -164,7 +164,7 @@ class ConditionalProbability extends Component {
 		this.setState({
 			pAgivenNotB, pAB, pAnotB, pnotAB, pnotAnotB, pAgivenB, independent
 		});
-	}
+	};
 
 	renderTable() {
 		const { A, B, pA, pB, pAB, pAnotB } = this.state;

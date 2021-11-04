@@ -132,7 +132,7 @@ class EngagementBinary extends Component {
 		this.setState({
 			showResponses: !this.state.showResponses
 		});
-	}
+	};
 
 	render() {
 		let leftButton;

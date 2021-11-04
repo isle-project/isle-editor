@@ -2128,7 +2128,7 @@ class Sketchpad extends Component {
 				debug( error );
 				clbk( error );
 			});
-	}
+	};
 
 	save = () => {
 		if ( !this.hasChangedSinceLastSave ) {
@@ -2152,14 +2152,14 @@ class Sketchpad extends Component {
 		}
 		debug( 'Saving data on server...' );
 		return session.saveSketchpadData( this.id, data );
-	}
+	};
 
 	closeResponseModal = () => {
 		this.setState({
 			showUploadModal: false,
 			modalMessage: null
 		});
-	}
+	};
 
 	renderProgressModal() {
 		if ( !this.state.isExporting ) {
@@ -2203,7 +2203,7 @@ class Sketchpad extends Component {
 		this.setState({
 			showNavigationModal: !this.state.showNavigationModal
 		});
-	}
+	};
 
 	renderPagination() {
 		if ( this.state.hideNavigationButtons ) {
@@ -2303,7 +2303,7 @@ class Sketchpad extends Component {
 		this.setState({
 			showDeletePageModal: !this.state.showDeletePageModal
 		});
-	}
+	};
 
 	toggleResetModal = () => {
 		this.setState({

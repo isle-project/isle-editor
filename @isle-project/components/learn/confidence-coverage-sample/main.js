@@ -146,7 +146,7 @@ class ConfidenceCoverageSample extends Component {
 		else if ( this.state.type === 'binary' ) {
 			this.drawBinary( numSamples );
 		}
-	}
+	};
 
 	drawQuantitative = ( numSamples ) => {
 		let { nTrapped, nLower, nHigher } = this.state;
@@ -184,7 +184,7 @@ class ConfidenceCoverageSample extends Component {
 			nHigher,
 			errorBars
 		});
-	}
+	};
 
 	drawBinary = ( numSamples ) => {
 		let { nTrapped, nLower, nHigher } = this.state;
@@ -220,7 +220,7 @@ class ConfidenceCoverageSample extends Component {
 			nHigher,
 			errorBars
 		});
-	}
+	};
 
 	onSelectVariable = ( variable ) => {
 		let values = this.props.data[ variable ];
@@ -259,7 +259,7 @@ class ConfidenceCoverageSample extends Component {
 			type,
 			trueMean
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

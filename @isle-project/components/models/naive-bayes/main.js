@@ -166,7 +166,7 @@ class NaiveBayes extends Component {
 			return { fitted, classProbs };
 		};
 		this.props.onPredict( predict, COUNTER );
-	}
+	};
 
 	render() {
 		const { result, predictors } = this.state;

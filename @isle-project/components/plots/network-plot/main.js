@@ -27,6 +27,11 @@ function getOptions( propOps ) {
 	};
 }
 
+function dragged( d ) {
+	d.fx = d3.event.x;
+	d.fy = d3.event.y;
+}
+
 
 // MAIN //
 
@@ -81,7 +86,7 @@ class NetworkPlot extends Component {
 			.attr( 'r', 5 )
 			.call( d3.drag()
 				.on( 'start', this.dragstarted )
-				.on( 'drag', this.dragged )
+				.on( 'drag', dragged )
 				.on( 'end', this.dragended )
 			);
 
@@ -155,7 +160,7 @@ class NetworkPlot extends Component {
 				.duration( 500 )
 				.style( 'opacity', 0 );
 		});
-	}
+	};
 
 	initialize( chart, data, opts ) {
 		this.simulation = d3.forceSimulation()
@@ -178,12 +183,7 @@ class NetworkPlot extends Component {
 		}
 		d.fx = d.x;
 		d.fy = d.y;
-	}
-
-	dragged = ( d ) => {
-		d.fx = d3.event.x;
-		d.fy = d3.event.y;
-	}
+	};
 
 	dragended = ( d ) => {
 		if ( !d3.event.active ) {
@@ -191,7 +191,7 @@ class NetworkPlot extends Component {
 		}
 		d.fx = null;
 		d.fy = null;
-	}
+	};
 
 	update( chart, data, opts ) {
 		chart.selectAll( '.links' ).remove();

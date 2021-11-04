@@ -344,6 +344,7 @@ class TextEditor extends Component {
 		}
 	}
 
+	/* eslint-disable-next-line class-methods-use-this */
 	recordedText = ( text ) => {
 		text += ' ';
 		document.execCommand( 'insertText', false, text );

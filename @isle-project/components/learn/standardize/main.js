@@ -63,7 +63,7 @@ class Standardize extends Component {
 			standardizedLines: [],
 			eqn2: ''
 		});
-	}
+	};
 
 	onStandardize = ( x ) => {
 		let newMarked = this.state.marked.slice();
@@ -101,7 +101,7 @@ class Standardize extends Component {
 			unstandardizedLines,
 			standardizedLines
 		});
-	}
+	};
 
 	generateState( mean, sd ) {
 		const eqn = `Z = \\frac{X-${roundn( mean, -2 )}}{${roundn( sd, -2 )}}`;

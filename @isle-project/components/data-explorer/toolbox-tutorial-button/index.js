@@ -35,7 +35,7 @@ class Tutorial extends Component {
 				this.props.onTutorialCompletion();
 			}
 		});
-	}
+	};
 
 	render() {
 		const tooltip = this.props.t( this.state.running ? 'close-tutorial' : 'show-tutorial' );

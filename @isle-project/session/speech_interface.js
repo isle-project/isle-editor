@@ -149,6 +149,13 @@ function processSingleRegExp( ref, command, text ) {
 	return false;
 }
 
+function sendNotUnderstoodMsg() {
+	const resp = 'Sorry, I didn\'t get that.';
+	const ssu = new SpeechSynthesisUtterance( resp );
+	ssu.lang = 'en-US';
+	window.speechSynthesis.speak( ssu );
+}
+
 
 // MAIN //
 
@@ -259,15 +266,8 @@ class SpeechInterface {
 			}
 		}
 		else {
-			this.sendNotUnderstoodMsg();
+			sendNotUnderstoodMsg();
 		}
-	}
-
-	sendNotUnderstoodMsg = () => {
-		const resp = 'Sorry, I didn\'t get that.';
-		const ssu = new SpeechSynthesisUtterance( resp );
-		ssu.lang = 'en-US';
-		window.speechSynthesis.speak( ssu );
 	}
 
 	setActive = ( name, onEnd ) => {
@@ -298,7 +298,7 @@ class SpeechInterface {
 			ssu.onend = onEnd;
 			window.speechSynthesis.speak( ssu );
 		}
-	}
+	};
 
 	/**
 	* Checks whether the text contains a valid name.

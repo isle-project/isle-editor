@@ -23,7 +23,7 @@ class FullscreenButton extends Component {
 		this.setState({
 			fullscreen: !this.state.fullscreen
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

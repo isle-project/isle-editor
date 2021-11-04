@@ -24,6 +24,8 @@
 * SOFTWARE.
 */
 
+/* eslint-disable class-methods-use-this */
+
 // MODULES //
 
 import React from 'react';
@@ -76,7 +78,7 @@ class ImageSourceCommand extends UICommand {
 
 	enable = ( state, view ) => {
 		return this.__isEnabled(state, view);
-	}
+	};
 
 	waitForUserInput = (
 		state,
@@ -125,7 +127,7 @@ class ImageSourceCommand extends UICommand {
 			}
 		}
 		return false;
-	}
+	};
 
 	__isEnabled = ( state, view ) => {
 		const tr = state;
@@ -134,7 +136,7 @@ class ImageSourceCommand extends UICommand {
 			return selection.from === selection.to;
 		}
 		return false;
-	}
+	};
 }
 
 

@@ -45,7 +45,7 @@ class Chats extends Component {
 			statusbarWidth,
 			side
 		});
-	}
+	};
 
 	getChatPosition( idx ) {
 		const session = this.context;

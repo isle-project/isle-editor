@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+
 // MODULES //
 
 import { TextSelection } from 'prosemirror-state';
@@ -35,7 +37,7 @@ class TableInsertCommand extends UICommand {
 			return selection.from === selection.to;
 		}
 		return false;
-	}
+	};
 
 	waitForUserInput = (
 		state,
@@ -63,7 +65,7 @@ class TableInsertCommand extends UICommand {
 				}
 			});
 		});
-	}
+	};
 
 	executeWithUserInput = (
 		state,
@@ -93,7 +95,7 @@ class TableInsertCommand extends UICommand {
 			}
 		}
 		return false;
-	}
+	};
 }
 
 

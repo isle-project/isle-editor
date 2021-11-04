@@ -135,7 +135,7 @@ class LearnStatisticalModels extends Component {
 		this.setState({
 			activePage: selectedKey
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;

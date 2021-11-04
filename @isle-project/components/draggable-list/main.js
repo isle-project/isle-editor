@@ -54,7 +54,7 @@ class DraggableList extends Component {
 		}, () => {
 			this.props.onChange( this.state.cards );
 		});
-	}
+	};
 
 	render() {
 		const { cards } = this.state;

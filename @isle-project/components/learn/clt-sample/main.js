@@ -219,7 +219,7 @@ class SampleCLT extends Component {
 			});
 		};
 		return enlargePlot;
-	}
+	};
 
 	drawSamples( times ) {
 		debug( 'Drawing '+times+' samples...' );
@@ -343,21 +343,21 @@ class SampleCLT extends Component {
 			percentile: quantile( values, this.state.p ),
 			samplePercentile: null
 		});
-	}
+	};
 
 	onSamplePercentileChange = ( phat ) => {
 		this.setState({
 			samplePercentile: quantile( this.state.xbars, phat ),
 			phat
 		});
-	}
+	};
 
 	onPercentileChange = ( p ) => {
 		this.setState({
 			percentile: quantile( this.state.values, p ),
 			p
 		});
-	}
+	};
 
 	onXbarChange = ( value ) => {
 		let leftXbarProb = 0;
@@ -374,7 +374,7 @@ class SampleCLT extends Component {
 			rightXbarProb,
 			cutoff: value
 		});
-	}
+	};
 
 	onXChange = ( value ) => {
 		let leftProb = 0;
@@ -391,7 +391,7 @@ class SampleCLT extends Component {
 			rightProb,
 			cutoffPop: value
 		});
-	}
+	};
 
 	renderMeanHistogram() {
 		const { t } = this.props;

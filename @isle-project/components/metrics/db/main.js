@@ -35,7 +35,7 @@ class Metrics extends Component {
 		session.retrieveData({
 			componentID: this.props.for
 		}, this.props.onData );
-	}
+	};
 
 	start = () => {
 		if ( this.props.interval ) {
@@ -43,13 +43,13 @@ class Metrics extends Component {
 		} else {
 			this.getData();
 		}
-	}
+	};
 
 	stop = () => {
 		if ( this.runner ) {
 			clearInterval( this.runner );
 		}
-	}
+	};
 
 	render() {
 		return (

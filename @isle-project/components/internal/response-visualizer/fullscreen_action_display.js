@@ -590,6 +590,7 @@ class FullscreenActionDisplay extends Component {
 		);
 	}
 
+	/* eslint-disable-next-line class-methods-use-this */
 	renderNestedTable = () => {
 		return null;
 	};

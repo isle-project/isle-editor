@@ -150,7 +150,7 @@ class LassoRegression extends Component {
 			return { fitted, residuals };
 		};
 		this.props.onPredict( predict, COUNTER );
-	}
+	};
 
 	render() {
 		const { y, intercept, lambda, onPredict, t } = this.props;

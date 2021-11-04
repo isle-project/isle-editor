@@ -35,7 +35,7 @@ class ImagePixelPicker extends Component {
 			this.data[ i + 2 ] = 255 - this.data[ i + 2 ]; // blue
 		}
 		this.ctx.putImageData( this.imageData, 0, 0 );
-	}
+	};
 
 	grayscale = () => {
 		for ( let i = 0; i < this.data.length; i += 4 ) {
@@ -48,7 +48,7 @@ class ImagePixelPicker extends Component {
 		this.setState({
 			clickedGrayscale: true
 		});
-	}
+	};
 
 	drawImage = ( name ) => {
 		const image = new Image();
@@ -88,7 +88,7 @@ class ImagePixelPicker extends Component {
 			selectedData: true,
 			clickedGrayscale: false
 		});
-	}
+	};
 
 	handleMouseMove = ( event ) => {
 		const x = event.layerX;
@@ -107,7 +107,7 @@ class ImagePixelPicker extends Component {
 			0, 0,
 			200, 200
 		);
-	}
+	};
 
 	render() {
 		return (

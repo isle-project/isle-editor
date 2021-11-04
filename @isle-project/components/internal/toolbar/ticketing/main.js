@@ -46,19 +46,19 @@ class Ticketing extends Component {
 		this.setState({
 			title: event.target.value
 		});
-	}
+	};
 
 	handleDescriptionChange = ( text ) => {
 		this.setState({
 			description: text
 		});
-	}
+	};
 
 	handleComponentChange = ( component ) => {
 		this.setState({
 			component
 		});
-	}
+	};
 
 	attachFile = () => {
 		const { session, t } = this.props;
@@ -80,7 +80,7 @@ class Ticketing extends Component {
 			});
 		};
 		input.click();
-	}
+	};
 
 	handleSubmit = () => {
 		debug( 'Create ticket...' );
@@ -113,7 +113,7 @@ class Ticketing extends Component {
 				position: 'tc'
 			});
 		});
-	}
+	};
 
 	removeFileFactory = ( idx ) => {
 		return () => {
@@ -123,7 +123,7 @@ class Ticketing extends Component {
 				files: newFiles
 			});
 		};
-	}
+	};
 
 	renderAttachments() {
 		if ( this.state.files.length === 0 ) {

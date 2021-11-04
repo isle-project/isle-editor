@@ -121,7 +121,7 @@ class DiscreteCLT extends Component {
 			});
 		};
 		return enlargePlot;
-	}
+	};
 
 	generateSamples( times ) {
 		const barplots = this.state.barplots.slice();
@@ -196,7 +196,7 @@ class DiscreteCLT extends Component {
 		this.setState({
 			showDataDistributions: !this.state.showDataDistributions
 		});
-	}
+	};
 
 	renderDistSelectionPanel() {
 		const { t } = this.props;

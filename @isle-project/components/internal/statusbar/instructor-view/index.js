@@ -168,7 +168,7 @@ class InstructorView extends Component {
 				</div>
 			</FocusTrap>
 		);
-	}
+	};
 
 	renderHandler() {
 		const { t } = this.props;

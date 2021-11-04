@@ -46,7 +46,7 @@ class VictoryWrapper extends Component {
 		function save( dataBlob, filesize ) {
 			saveAs( dataBlob, name );
 		}
-	}
+	};
 
 	render() {
 		return ( <div ref={( div ) => {

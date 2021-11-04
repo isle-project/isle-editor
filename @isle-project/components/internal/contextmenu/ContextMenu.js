@@ -166,6 +166,7 @@ class ContextMenu extends AbstractMenu {
 		this.handleHide(e);
 	};
 
+	/* eslint-disable-next-line class-methods-use-this */
 	hideMenu = ( e ) => {
 		if ( e.keyCode === 27 || e.keyCode === 13 ) { // ECS or enter
 			hideMenu();
@@ -233,7 +234,7 @@ class ContextMenu extends AbstractMenu {
 		}
 
 		return menuStyles;
-	}
+	};
 
 	menuRef = ( c ) => {
 		this.menu = c;

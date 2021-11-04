@@ -1191,7 +1191,7 @@ class DataExplorer extends Component {
 				filters: newFilters
 			});
 		}
-	}
+	};
 
 	onBarchartSelection = ( name, selected ) => {
 		const newFilters = this.state.filters.filter(

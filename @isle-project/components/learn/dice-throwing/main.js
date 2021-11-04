@@ -48,7 +48,7 @@ class DiceThrowing extends Component {
 			draw: null,
 			nThrows: 0
 		});
-	}
+	};
 
 	throwDice = ( nTimes ) => {
 		const elems = incrspace( 1, this.state.sides.length+1, 1 );
@@ -65,7 +65,7 @@ class DiceThrowing extends Component {
 			tally,
 			nThrows: this.state.nThrows + nTimes
 		});
-	}
+	};
 
 	renderGrid() {
 		return (

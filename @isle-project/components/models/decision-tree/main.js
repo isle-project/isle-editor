@@ -109,7 +109,7 @@ class DecisionTree extends Component {
 
 	handlePredict = () => {
 		this.props.onPredict( this.state.tree, COUNTER );
-	}
+	};
 
 	render() {
 		const { tree } = this.state;
