@@ -59,7 +59,7 @@ class HypergeometricProbs extends Component {
 			};
 		}
 		this.setState({ data, N });
-	}
+	};
 
 	handleSuccessesChange = ( K ) => {
 		const x = incrspace( 0, this.state.n+1, 1 );
@@ -71,7 +71,7 @@ class HypergeometricProbs extends Component {
 			};
 		}
 		this.setState({ data, K });
-	}
+	};
 
 	handleDrawsChange = ( n ) => {
 		const x = incrspace( 0, n+1, 1 );
@@ -83,15 +83,15 @@ class HypergeometricProbs extends Component {
 			};
 		}
 		this.setState({ data, n });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type) {
 		return (

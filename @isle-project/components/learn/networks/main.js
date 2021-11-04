@@ -85,7 +85,7 @@ class Networks extends Component {
 		newState.tally = tally;
 		newState.transitivities = transitivities;
 		this.setState( newState );
-	}
+	};
 
 	renderTallyPlot() {
 		if ( !this.props.showEdgeChart ) {

@@ -143,13 +143,13 @@ class Recorder extends Component {
 		this.setState({
 			hidden: true
 		});
-	}
+	};
 
 	show = () => {
 		this.setState({
 			hidden: false
 		});
-	}
+	};
 
 	handleError( msg ) {
 		const session = this.context;
@@ -220,18 +220,18 @@ class Recorder extends Component {
 		this.setState({
 			selectedSources: e
 		});
-	}
+	};
 
 	storeFile = () => {
 		this.recorder.save( 'recoding.webm' );
-	}
+	};
 
 	clearFile = () => {
 		this.recorder.clearRecordedData();
 		this.setState({
 			finished: false
 		});
-	}
+	};
 
 	uploadFile = () => {
 		const session = this.context;
@@ -278,7 +278,7 @@ class Recorder extends Component {
 				}
 			});
 		});
-	}
+	};
 
 	handleClick = () => {
 		if ( this.state.recording ) {
@@ -286,7 +286,7 @@ class Recorder extends Component {
 		} else {
 			this.startRecording();
 		}
-	}
+	};
 
 	startRecording() {
 		this.setState({
@@ -339,7 +339,7 @@ class Recorder extends Component {
 			}
 		}
 		return sources;
-	}
+	};
 
 	setupRecorder( clbk = () => {} ) {
 		debug( 'Setting up the recorder...' );

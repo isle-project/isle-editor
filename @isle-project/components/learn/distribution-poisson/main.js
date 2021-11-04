@@ -68,15 +68,15 @@ class PoissonDistribution extends Component {
 		this.setState({
 			data, rate
 		});
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { t } = this.props;

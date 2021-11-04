@@ -120,7 +120,7 @@ class MeanVSMedian extends Component {
 			});
 			this.setState({ showLognormalMedian: true });
 		}
-	}
+	};
 
 	meanEvaluation = ( evt ) => {
 		evt.stopPropagation();
@@ -149,7 +149,7 @@ class MeanVSMedian extends Component {
 			});
 			this.setState({ showLognormalMean: true });
 		}
-	}
+	};
 
 	generateData = () => {
 		let mu = this.rand() * 1.0 - 0.5;
@@ -173,7 +173,7 @@ class MeanVSMedian extends Component {
 			showLognormalMean: false,
 			showLognormalMedian: false
 		});
-	}
+	};
 
 	renderMeanPanel() {
 		const { t } = this.props;

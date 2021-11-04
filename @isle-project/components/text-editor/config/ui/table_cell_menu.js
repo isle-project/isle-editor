@@ -21,14 +21,14 @@ class TableCellMenu extends React.PureComponent {
 				e.nativeEvent
 			);
 		}
-	}
+	};
 
 	createDropdownButtons = ( item, itemKey ) => (
 		<DropdownItem
 			key={`dropdown-item-${itemKey}`}
 			onMouseDown={this.onMenuMouseDown(item)}
 		>{i18n.t( `text-editor:${item.content}` )}</DropdownItem>
-	)
+	);
 
 	render() {
 		return (

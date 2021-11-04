@@ -57,19 +57,19 @@ class BetaProbs extends Component {
 
 	handleAlphaChange = ( alpha ) => {
 		this.setState({ alpha });
-	}
+	};
 
 	handleBetaChange = ( beta ) => {
 		this.setState({ beta });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { alpha, beta, x0, x1 } = this.state;

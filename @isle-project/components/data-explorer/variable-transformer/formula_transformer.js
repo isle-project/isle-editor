@@ -122,25 +122,25 @@ class FormulaTransformer extends Component {
 			});
 		}
 		this.props.onHide();
-	}
+	};
 
 	handleNameChange = ( event ) => {
 		this.setState({
 			name: event.target.value
 		});
-	}
+	};
 
 	handleCodeChange = ( value ) => {
 		this.setState({
 			code: value
 		});
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 && this.state.name.length >= 2 ) {
 			this.handleGenerate();
 		}
-	}
+	};
 
 	insertVarFactory = ( name ) => {
 		return () => {
@@ -158,7 +158,7 @@ class FormulaTransformer extends Component {
 				selection: this.state.selection + replacement.length
 			});
 		};
-	}
+	};
 
 	insertLiteralFactory = ( operator ) => {
 		return () => {
@@ -171,7 +171,7 @@ class FormulaTransformer extends Component {
 				selection: this.state.selection + replacement.length
 			});
 		};
-	}
+	};
 
 	insertFuncFactory = ( funcName ) => {
 		return () => {
@@ -184,7 +184,7 @@ class FormulaTransformer extends Component {
 				selection: this.state.selection + replacement.length - 1
 			});
 		};
-	}
+	};
 
 	render() {
 		const { t } = this.props;

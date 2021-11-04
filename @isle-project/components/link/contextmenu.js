@@ -22,7 +22,7 @@ class LinkContextMenu extends Component {
 	copyToClipboard = ( event ) => {
 		debug( 'Copying selection to clipboard... ' );
 		navigator.clipboard.writeText( this.props.url );
-	}
+	};
 
 	textToSpeech = () => {
 		const str = this.props.url;
@@ -30,7 +30,7 @@ class LinkContextMenu extends Component {
 		const ssu = new SpeechSynthesisUtterance( str );
 		ssu.lang = session.config.language || 'en-US';
 		window.speechSynthesis.speak( ssu );
-	}
+	};
 
 	openInTab = () => {
 		const url = this.props.url;
@@ -42,7 +42,7 @@ class LinkContextMenu extends Component {
 			type: OPEN_LINK,
 			value: 'tab'
 		});
-	}
+	};
 
 	openInWindow = () => {
 		const url = this.props.url;
@@ -54,7 +54,7 @@ class LinkContextMenu extends Component {
 			type: OPEN_LINK,
 			value: 'window'
 		});
-	}
+	};
 
 	render() {
 		let menuItems = [

@@ -72,7 +72,7 @@ class RandomForestMenu extends Component {
 			y, x, type, nTrees, nTry
 		});
 		this.props.onCreated( output );
-	}
+	};
 
 	render() {
 		const { categorical, quantitative, t } = this.props;

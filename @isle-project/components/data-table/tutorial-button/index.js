@@ -29,7 +29,7 @@ class Tutorial extends Component {
 		this.setState({
 			running: !this.state.running
 		});
-	}
+	};
 
 	render() {
 		return (

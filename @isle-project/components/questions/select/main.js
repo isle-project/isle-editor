@@ -76,7 +76,7 @@ class SelectQuestion extends Component {
 		}, () => {
 			this.props.onChange( value );
 		});
-	}
+	};
 
 	handleSubmit = () => {
 		const session = this.context;
@@ -118,7 +118,7 @@ class SelectQuestion extends Component {
 			answerState,
 			submitted: true
 		});
-	}
+	};
 
 	/*
 	* React component render method.

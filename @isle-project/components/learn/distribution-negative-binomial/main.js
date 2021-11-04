@@ -78,7 +78,7 @@ class NegativeBinomial extends Component {
 		this.setState({
 			r, data, max
 		});
-	}
+	};
 
 	handleProbChange = ( p ) => {
 		const minValue = this.props.countTrials ? this.state.r : 0;
@@ -94,15 +94,15 @@ class NegativeBinomial extends Component {
 		this.setState({
 			p, data, max
 		});
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { t } = this.props;

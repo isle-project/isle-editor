@@ -138,7 +138,7 @@ class ProportionTest extends Component {
 			n, n2, p0, phat, phat2, pStat, areaData, areaData2, pdfData, probFormula, stderr
 		};
 		this.setState( newState );
-	}
+	};
 
 	onDirectionChange = ( pos ) => {
 		let areaData;
@@ -175,7 +175,7 @@ class ProportionTest extends Component {
 			areaData,
 			areaData2
 		});
-	}
+	};
 
 	renderParametersPanel() {
 		const { p0, samples } = this.state;

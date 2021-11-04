@@ -48,15 +48,15 @@ class ExponentialProbs extends Component {
 
 	handleRateChange = ( rate ) => {
 		this.setState({ rate });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { rate, x0, x1 } = this.state;

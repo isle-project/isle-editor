@@ -24,6 +24,8 @@
 * SOFTWARE.
 */
 
+/* eslint-disable class-methods-use-this */
+
 // MODULES //
 
 import { Transform } from 'prosemirror-transform';

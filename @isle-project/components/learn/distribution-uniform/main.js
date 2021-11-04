@@ -56,19 +56,19 @@ class UniformProbs extends Component {
 
 	handleMinChange = ( min ) => {
 		this.setState({ min });
-	}
+	};
 
 	handleMaxChange = ( max ) => {
 		this.setState({ max });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { min, max, x0, x1 } = this.state;

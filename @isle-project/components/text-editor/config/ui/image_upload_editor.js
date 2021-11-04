@@ -67,14 +67,14 @@ class ImageUploadEditor extends React.PureComponent {
 		if ( file && typeof file === 'object' ) {
 			this._upload( file );
 		}
-	}
+	};
 
 	_onSuccess = ( image ) => {
 		if ( this._unmounted ) {
 			return;
 		}
 		this.props.close( image );
-	}
+	};
 
 	_onError = ( error ) => {
 		if ( this._unmounted ) {
@@ -85,7 +85,7 @@ class ImageUploadEditor extends React.PureComponent {
 			id: uid(),
 			pending: false
 		});
-	}
+	};
 
 	_upload = ( file ) => {
 		this.setState({ pending: true, error: null });
@@ -115,11 +115,11 @@ class ImageUploadEditor extends React.PureComponent {
 					this._onError( ex );
 				});
 		}
-	}
+	};
 
 	_cancel = () => {
 		this.props.close();
-	}
+	};
 
 	render() {
 		const { id, error, pending } = this.state;

@@ -96,7 +96,7 @@ class NormalProbs extends Component {
 		} else {
 			this.setState({ mean });
 		}
-	}
+	};
 
 	handleSDChange = ( sd ) => {
 		const s3 = 3*sd;
@@ -115,15 +115,15 @@ class NormalProbs extends Component {
 		} else {
 			this.setState({ sd });
 		}
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { t } = this.props;

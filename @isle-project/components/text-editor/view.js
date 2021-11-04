@@ -119,7 +119,7 @@ class ProseMirror extends Component {
 			});
 		}
 		this.props.onMount( this.editorDiv );
-	}
+	};
 
 	onEditorState = ( editorState ) => {
 		let nChars = 0;
@@ -136,7 +136,7 @@ class ProseMirror extends Component {
 		}
 		this.props.onEditorState( editorState );
 		this.setState({ editorState, nWords, nChars });
-	}
+	};
 
 	dispatchTransaction = ( tx ) => {
 		let editorState = this.state.editorState.apply( tx );
@@ -149,7 +149,7 @@ class ProseMirror extends Component {
 				apply( fix.setMeta( 'addToHistory', false ) );
 		}
 		this.onEditorState( editorState );
-	}
+	};
 
 	get markdown() {
 		return defaultMarkdownSerializer.serialize( this.state.editorState.doc );
@@ -166,7 +166,7 @@ class ProseMirror extends Component {
 		if ( this.state.editorState ) {
 			localStorage.setItem( this.props.id, JSON.stringify( this.state.editorState.doc.toJSON() ) );
 		}
-	}
+	};
 
 	render() {
 		return ( <Fragment>

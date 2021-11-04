@@ -169,7 +169,7 @@ class LessonSubmit extends Component {
 			}
 		}
 		pdfMake.createPdf( doc ).download( 'responses.pdf' );
-	}
+	};
 
 	addAction = ( action, doc, dataType, visualizer ) => {
 		if ( dataType === 'image' ) {
@@ -200,7 +200,7 @@ class LessonSubmit extends Component {
 				text: action.value
 			});
 		}
-	}
+	};
 
 	closeUserModal = () => {
 		this.setState({
@@ -208,7 +208,7 @@ class LessonSubmit extends Component {
 			visibleLogin: false,
 			visibleSignup: false
 		});
-	}
+	};
 
 	login = ( e ) => {
 		e.stopPropagation();
@@ -216,7 +216,7 @@ class LessonSubmit extends Component {
 			visibleLogin: true,
 			visibleSignup: false
 		});
-	}
+	};
 
 	signup = ( e ) => {
 		e.stopPropagation();
@@ -224,25 +224,25 @@ class LessonSubmit extends Component {
 			visibleSignup: true,
 			visibleLogin: false
 		});
-	}
+	};
 
 	closeSignup = () => {
 		this.setState({
 			visibleSignup: false,
 			showUserModal: false
 		});
-	}
+	};
 
 	closeLogin = () => {
 		this.setState({
 			visibleLogin: false,
 			showUserModal: false
 		});
-	}
+	};
 
 	handleLatestChange = () => {
 		this.setState({ onlyLatest: !this.state.onlyLatest });
-	}
+	};
 
 	finalizeSession = () => {
 		debug( 'Finalizing session...' );
@@ -302,7 +302,7 @@ class LessonSubmit extends Component {
 			disabled: true
 		});
 		window.removeEventListener( 'beforeunload', beforeUnload );
-	}
+	};
 
 	handleClick = () => {
 		this.props.onClick();
@@ -313,7 +313,7 @@ class LessonSubmit extends Component {
 			});
 		}
 		this.finalizeSession();
-	}
+	};
 
 	render() {
 		const session = this.context;

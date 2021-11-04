@@ -183,7 +183,7 @@ class Quiz extends Component {
 		this.setState({
 			showFinishModal: !this.state.showFinishModal
 		});
-	}
+	};
 
 	handleFinishClick = () => {
 		this.setState({
@@ -191,7 +191,7 @@ class Quiz extends Component {
 		}, () => {
 			this.handleNextClick();
 		});
-	}
+	};
 
 	handleNextClick = () => {
 		// Submit all questions on the current page:
@@ -244,14 +244,14 @@ class Quiz extends Component {
 		newState.answerSelected = false;
 		newState.counter = counter;
 		this.setState( newState);
-	}
+	};
 
 	markSelected = () => {
 		debug( 'Mark answer as selected...' );
 		this.setState({
 			answerSelected: true
 		});
-	}
+	};
 
 	handleSubmission = ( val ) => {
 		const elem = this.state.questions[ this.state.current ];
@@ -327,7 +327,7 @@ class Quiz extends Component {
 			answered: true,
 			answers: answers
 		});
-	}
+	};
 
 	downloadResponsesFactory( answers ) {
 		return () => {
@@ -498,13 +498,13 @@ class Quiz extends Component {
 			selectedConfidence: confidence,
 			confidences: confidences
 		});
-	}
+	};
 
 	toggleInstructorView =() => {
 		this.setState({
 			showInstructorView: !this.state.showInstructorView
 		});
-	}
+	};
 
 	renderConfidenceSurvey() {
 		if ( !this.props.confidence ) {

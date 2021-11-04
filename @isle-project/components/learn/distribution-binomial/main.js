@@ -65,7 +65,7 @@ class BinomialProps extends Component {
 			};
 		}
 		this.setState({ data, n });
-	}
+	};
 
 	handlePropChange = ( p ) => {
 		const x = incrspace( 0, this.state.n+1, 1 );
@@ -77,17 +77,17 @@ class BinomialProps extends Component {
 			};
 		}
 		this.setState({ data, p });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
-	renderInputs( type) {
+	renderInputs( type ) {
 		const { t } = this.props;
 		return (
 			<Fragment>

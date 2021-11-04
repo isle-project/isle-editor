@@ -77,7 +77,7 @@ class LogisticRegressionMenu extends Component {
 			y, x, intercept
 		});
 		this.props.onCreated( output );
-	}
+	};
 
 	render() {
 		const { categorical, quantitative, data, t } = this.props;

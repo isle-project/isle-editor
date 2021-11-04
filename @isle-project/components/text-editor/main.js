@@ -347,7 +347,7 @@ class TextEditor extends Component {
 	recordedText = ( text ) => {
 		text += ' ';
 		document.execCommand( 'insertText', false, text );
-	}
+	};
 
 	handleFileSelect = ( evt ) => {
 		debug( 'Opening file...' );
@@ -367,35 +367,35 @@ class TextEditor extends Component {
 			debug( 'Encountered an error...' );
 		};
 		reader.readAsText( files[ 0 ] );
-	}
+	};
 
 	toggleSubmitModal = ( event, clbk = noop ) => {
 		this.setState({
 			showSubmitModal: !this.state.showSubmitModal
 		}, clbk );
-	}
+	};
 
 	toggleGuides = () => {
 		this.setState({
 			showGuides: !this.state.showGuides
 		});
-	}
+	};
 
 	toggleResetModal = ( event, clbk = noop ) => {
 		this.setState({
 			showResetModal: !this.state.showResetModal
 		}, clbk );
-	}
+	};
 
 	togglePDFModal = ( clbk = noop ) => {
 		this.setState({
 			showPDFModal: !this.state.showPDFModal
 		}, clbk );
-	}
+	};
 
 	toggleHistory = () => {
 		this.setState({ showHistory: !this.state.showHistory });
-	}
+	};
 
 	submitReport = async ( additionalRecipientObj = null, message = null ) => {
 		const session = this.context;
@@ -500,7 +500,7 @@ class TextEditor extends Component {
 				value: tmp.innerText
 			});
 		});
-	}
+	};
 
 	resetEditor = () => {
 		this.setState({
@@ -526,7 +526,7 @@ class TextEditor extends Component {
 			level: 'success',
 			position: 'tr'
 		});
-	}
+	};
 
 	generateDocumentId() {
 		if ( this.props.mode === 'group' ) {
@@ -614,7 +614,7 @@ class TextEditor extends Component {
 			this.getTextEditorDocuments = debounce( session.getTextEditorDocuments, 1000 );
 		}
 		this.getTextEditorDocuments();
-	}
+	};
 
 	render() {
 		const session = this.context;

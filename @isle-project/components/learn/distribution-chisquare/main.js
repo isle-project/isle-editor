@@ -47,15 +47,15 @@ class ChisquareProbs extends Component {
 
 	handleDFChange = ( df ) => {
 		this.setState({ df });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { df, x0, x1 } = this.state;

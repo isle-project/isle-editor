@@ -129,7 +129,7 @@ class CategoricalTransformer extends Component {
 			nameMappings,
 			onlyNumbers
 		});
-	}
+	};
 
 	handleSecondVariableChange = ( secondVar ) => {
 		if ( !secondVar ) {
@@ -165,13 +165,13 @@ class CategoricalTransformer extends Component {
 			nameMappings,
 			onlyNumbers
 		});
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 && this.state.generatedName.length >= 2 ) {
 			this.makeNewVar();
 		}
-	}
+	};
 
 	renderTable() {
 		if ( this.state.firstVar && this.state.secondVar ) {
@@ -193,9 +193,9 @@ class CategoricalTransformer extends Component {
 				onlyNumbers
 			});
 		};
-	}
+	};
 
-	changeContigencyFactory = ( rowLabel, colLabel ) => {
+	changeContingencyFactory = ( rowLabel, colLabel ) => {
 		return ( event ) => {
 			const nameMappings = copy( this.state.nameMappings );
 			nameMappings[ escapeDots( colLabel ) + '-' + escapeDots( rowLabel ) ] = event.target.value;
@@ -203,13 +203,13 @@ class CategoricalTransformer extends Component {
 				nameMappings
 			});
 		};
-	}
+	};
 
 	handleGeneratedNameChange = ( event ) => {
 		this.setState({
 			generatedName: event.target.value
 		});
-	}
+	};
 
 	makeNewVar = () => {
 		debug( 'Generating new categorical variable...' );
@@ -224,7 +224,7 @@ class CategoricalTransformer extends Component {
 			castNumeric: castNumeric
 		});
 		this.props.onHide();
-	}
+	};
 
 	renderFrequencyTable = () => {
 		const variable = this.state.firstVar;
@@ -265,7 +265,7 @@ class CategoricalTransformer extends Component {
 				</tbody>
 			</Table>
 		);
-	}
+	};
 
 	renderContingencyTable = () => {
 		const rowVar = this.state.secondVar;
@@ -294,7 +294,7 @@ class CategoricalTransformer extends Component {
 								<input
 									className="transformer-table-input"
 									type="text" defaultValue={`${col}-${row}`}
-									onChange={this.changeContigencyFactory( row, col )}
+									onChange={this.changeContingencyFactory( row, col )}
 								/>
 							</td> );
 						})}
@@ -302,7 +302,7 @@ class CategoricalTransformer extends Component {
 				})}
 			</Table>
 		);
-	}
+	};
 
 	render() {
 		const { t } = this.props;

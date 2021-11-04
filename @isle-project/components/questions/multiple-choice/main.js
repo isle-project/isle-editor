@@ -168,7 +168,7 @@ class MultipleChoiceQuestion extends Component {
 			type: MULTIPLE_CHOICE_OPEN_HINT,
 			value: idx
 		});
-	}
+	};
 
 	selectAnswer( no ) {
 		debug( `Parse input: ${no}` );
@@ -226,7 +226,7 @@ class MultipleChoiceQuestion extends Component {
 			message: msg,
 			level
 		});
-	}
+	};
 
 	submitQuestion = () => {
 		const sol = this.props.solution;
@@ -304,7 +304,7 @@ class MultipleChoiceQuestion extends Component {
 			});
 		}
 		this.props.onSubmit( this.state.active );
-	}
+	};
 
 	checkDisabledStatus = () => {
 		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
@@ -334,7 +334,7 @@ class MultipleChoiceQuestion extends Component {
 			}
 		}
 		return false;
-	}
+	};
 
 	triggerFocusEvent = () => {
 		const session = this.context;
@@ -344,7 +344,7 @@ class MultipleChoiceQuestion extends Component {
 			id: this.id,
 			noSave: true
 		}, 'owners' );
-	}
+	};
 
 	renderAnswerOptionsMultiple = ( key, id ) => {
 		if ( this.props.provideFeedback === 'none' || isNull( this.props.solution ) ) {
@@ -404,7 +404,7 @@ class MultipleChoiceQuestion extends Component {
 			<AnswerOptionIncrFeedback
 				{...props}
 			/>;
-	}
+	};
 
 	renderAnswerOptionsSingle = ( key, id ) => {
 		if ( this.props.provideFeedback === 'none' || isNull( this.props.solution ) ) {
@@ -459,7 +459,7 @@ class MultipleChoiceQuestion extends Component {
 			<AnswerOptionIncrFeedback
 				{...props}
 			/>;
-	}
+	};
 
 	renderSubmitButton() {
 		const session = this.context;

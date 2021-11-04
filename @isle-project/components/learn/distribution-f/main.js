@@ -62,19 +62,19 @@ class FProbs extends Component {
 
 	handleAlphaChange = ( d1 ) => {
 		this.setState({ d1 });
-	}
+	};
 
 	handleBetaChange = ( d2 ) => {
 		this.setState({ d2 });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	renderInputs( type ) {
 		const { d1, d2, x0, x1 } = this.state;

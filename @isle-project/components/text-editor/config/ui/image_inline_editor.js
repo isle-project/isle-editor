@@ -60,7 +60,7 @@ class ImageInlineEditor extends React.PureComponent {
 		this.props.onSelect({
 			align: align
 		});
-	}
+	};
 
 	render() {
 		const align = this.props.value ? this.props.value.align : null;

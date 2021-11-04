@@ -122,7 +122,7 @@ export default class SelectionObserver {
 		if ( callback ) {
 			return callback( this.takeRecords(), this );
 		}
-	}
+	};
 
 	_check = () => {
 		let changed = false;
@@ -148,5 +148,5 @@ export default class SelectionObserver {
 		if ( changed && callback ) {
 			return callback( this.takeRecords(), this );
 		}
-	}
+	};
 }

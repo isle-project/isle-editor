@@ -214,7 +214,7 @@ class ContinuousCLT extends Component {
 			activeDistribution: Number( key ),
 			distFormula: formula
 		});
-	}
+	};
 
 	clear() {
 		this.setState({
@@ -283,7 +283,7 @@ class ContinuousCLT extends Component {
 			});
 		};
 		return enlargePlot;
-	}
+	};
 
 	generateSamples = ( times ) => {
 		const histogram = this.state.histogram.slice();
@@ -363,7 +363,7 @@ class ContinuousCLT extends Component {
 			densityX,
 			densityY
 		});
-	}
+	};
 
 	renderDistSelectionPanel() {
 		const { t } = this.props;

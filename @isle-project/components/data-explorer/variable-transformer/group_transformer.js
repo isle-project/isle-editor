@@ -47,7 +47,7 @@ class GroupTransformer extends Component {
 		this.setState({
 			generatedName: event.target.value
 		});
-	}
+	};
 
 	handleGroupNumberChange = ( nGroups ) => {
 		const groupProbs = new Array( nGroups ).fill( 1/nGroups );
@@ -60,7 +60,7 @@ class GroupTransformer extends Component {
 			labels,
 			nGroups
 		});
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
@@ -73,7 +73,7 @@ class GroupTransformer extends Component {
 				this.makeNewVar();
 			}
 		}
-	}
+	};
 
 	makeNewVar = () => {
 		debug( 'Generating new categorical variable...' );
@@ -92,7 +92,7 @@ class GroupTransformer extends Component {
 			groupProbs: this.state.groupProbs
 		});
 		this.props.onHide();
-	}
+	};
 
 	renderTable() {
 		const elems = new Array( this.state.nGroups );

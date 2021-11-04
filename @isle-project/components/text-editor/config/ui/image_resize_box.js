@@ -199,7 +199,7 @@ class ImageResizeBoxControl extends React.PureComponent {
 		e.stopPropagation();
 		this._end();
 		this._start(e);
-	}
+	};
 
 	_onMouseMove = (e) => {
 		e.preventDefault();
@@ -207,7 +207,7 @@ class ImageResizeBoxControl extends React.PureComponent {
 		this._x2 = e.clientX;
 		this._y2 = e.clientY;
 		this._rafID = requestAnimationFrame(this._syncSize);
-	}
+	};
 
 	_onMouseUp = (e) => {
 		e.preventDefault();

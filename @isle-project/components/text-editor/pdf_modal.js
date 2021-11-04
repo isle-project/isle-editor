@@ -49,7 +49,7 @@ class SaveModal extends Component {
 				openPDF: !this.state.openPDF
 			});
 		}
-	}
+	};
 
 	savePDF = () => {
 		const config = {};
@@ -71,12 +71,12 @@ class SaveModal extends Component {
 		config.pageSize = pageDims;
 		config.pageOrientation = this.state.pageOrientation;
 		this.props.exportPDF( config );
-	}
+	};
 
 	clickHide = () => {
 		this.setState( DEFAULT_STATE );
 		this.props.onHide();
-	}
+	};
 
 	render() {
 		return ( <Modal

@@ -154,7 +154,7 @@ class SummaryStatisticsMenu extends Component {
 				options: shape
 			}
 		];
-	}
+	};
 
 	generateStatistics = () => {
 		const statistics = this.state.selectedStats.map( x => x.value );
@@ -191,7 +191,7 @@ class SummaryStatisticsMenu extends Component {
 			quantiles={quantiles}
 		/>;
 		this.props.onCreated( elem );
-	}
+	};
 
 	render() {
 		let {

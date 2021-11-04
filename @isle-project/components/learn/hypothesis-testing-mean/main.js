@@ -163,7 +163,7 @@ class MeanTest extends Component {
 			areaData2,
 			probFormula
 		});
-	}
+	};
 
 	onDirectionChange = ( pos ) => {
 		let areaData;
@@ -220,7 +220,7 @@ class MeanTest extends Component {
 			areaData,
 			areaData2
 		});
-	}
+	};
 
 	renderParametersPanel() {
 		const { t } = this.props;

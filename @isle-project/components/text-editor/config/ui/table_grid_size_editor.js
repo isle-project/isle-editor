@@ -106,7 +106,7 @@ class TableGridSizeEditor extends React.PureComponent {
 
 	_onRef = ( ref ) => {
 		this._ref = ref;
-	}
+	};
 
 	_onMouseEnter = ( e ) => {
 		const node = e.currentTarget;
@@ -145,7 +145,7 @@ class TableGridSizeEditor extends React.PureComponent {
 			}
 			this._rafID = requestAnimationFrame(this._updateGridSize);
 		}
-	}
+	};
 
 	_updateGridSize = () => {
 		this._rafID = 0;
@@ -159,12 +159,12 @@ class TableGridSizeEditor extends React.PureComponent {
 		if ( rows !== rr || cols !== cc ) {
 			this.setState({ rows: rr, cols: cc });
 		}
-	}
+	};
 
 	_onMouseDown = ( e ) => {
 		e.preventDefault();
 		this.props.close( this.state );
-	}
+	};
 
 	render() {
 		const { rows, cols } = this.state;

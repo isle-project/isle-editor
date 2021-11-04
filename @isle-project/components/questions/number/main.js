@@ -176,7 +176,7 @@ class NumberQuestion extends Component {
 		debug( 'Handle change of input field...' );
 		this.setState({ value: newValue });
 		this.props.onChange( newValue );
-	}
+	};
 
 	handleKeyPress = ( event ) => {
 		if ( event.charCode === 13 ) {
@@ -187,7 +187,7 @@ class NumberQuestion extends Component {
 			}
 			setTimeout( this.submitHandler, 50 );
 		}
-	}
+	};
 
 	sendSubmitNotification = ( correct ) => {
 		const session = this.context;
@@ -230,7 +230,7 @@ class NumberQuestion extends Component {
 				level: 'info'
 			});
 		}
-	}
+	};
 
 	submitHandler = () => {
 		const session = this.context;
@@ -266,7 +266,7 @@ class NumberQuestion extends Component {
 			type: NUMBER_QUESTION_SUBMISSION,
 			value: this.state.value
 		});
-	}
+	};
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
@@ -276,7 +276,7 @@ class NumberQuestion extends Component {
 			type: NUMBER_QUESTION_OPEN_HINT,
 			value: idx
 		});
-	}
+	};
 
 	renderSubmitButton() {
 		const session = this.context;

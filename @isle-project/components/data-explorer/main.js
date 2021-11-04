@@ -406,7 +406,7 @@ class DataExplorer extends Component {
 		debug( `Restored ${output.length} elements.` );
 		state.output = output;
 		this.setState( state );
-	}
+	};
 
 	applyTransformation = ( state, action ) => {
 		switch ( action.type ) {
@@ -460,7 +460,7 @@ class DataExplorer extends Component {
 			break;
 		}
 		return state;
-	}
+	};
 
 	restoreTransformations = ( actions ) => {
 		let state = this.state;
@@ -473,7 +473,7 @@ class DataExplorer extends Component {
 		setTimeout( () => {
 			this.restoreOutputs( state, actions );
 		}, 1500 );
-	}
+	};
 
 	resetStorage = () => {
 		const session = this.context;
@@ -484,7 +484,7 @@ class DataExplorer extends Component {
 			quantitative: [],
 			ready: false
 		});
-	}
+	};
 
 	shareData = () => {
 		const session = this.context;
@@ -514,7 +514,7 @@ class DataExplorer extends Component {
 				showNotification: false
 			});
 		}
-	}
+	};
 
 	/**
 	* Display gallery of recently created plots by the students.
@@ -523,7 +523,7 @@ class DataExplorer extends Component {
 		this.setState({
 			showStudentPlots: !this.state.showStudentPlots
 		});
-	}
+	};
 
 	/**
 	* Remove output element at the specified index.
@@ -540,7 +540,7 @@ class DataExplorer extends Component {
 		this.setState({
 			output: newOutputs
 		});
-	}
+	};
 
 	/**
 	* Remove all currently saved student plots.
@@ -549,7 +549,7 @@ class DataExplorer extends Component {
 		this.setState({
 			studentPlots: []
 		});
-	}
+	};
 
 	/**
 	* Stores all plot actions in the internal state.
@@ -621,13 +621,13 @@ class DataExplorer extends Component {
 				studentPlots: newStudentPlots
 			});
 		}
-	}
+	};
 
 	onFilters = ( newFilters ) => {
 		this.setState({
 			filters: newFilters
 		}, this.onFilterCreate );
-	}
+	};
 
 	/**
 	* Adds the supplied element to the array of outputs.
@@ -646,7 +646,7 @@ class DataExplorer extends Component {
 		this.setState({
 			output: newOutput
 		});
-	}
+	};
 
 	transformVariable = ( name, values, varState ) => {
 		let newQuantitative;
@@ -693,7 +693,7 @@ class DataExplorer extends Component {
 			groupVars: groupVars
 		};
 		return newVarState;
-	}
+	};
 
 	onGenerateTransformedVariable = ( name, values ) => {
 		const session = this.context;
@@ -729,7 +729,7 @@ class DataExplorer extends Component {
 			position: 'tr'
 		});
 		this.setState({ ...this.transformVariable( name, values ) });
-	}
+	};
 
 	onColumnDelete = ( variable ) => {
 		debug( 'Should remove variable with name '+variable );
@@ -746,7 +746,7 @@ class DataExplorer extends Component {
 		const varState = this.deleteVariable( variable );
 		varState.data = copy( varState.data, 1 );
 		this.setState( varState );
-	}
+	};
 
 	onColumnNameChange = ( oldName, newName ) => {
 		const state = this.state;
@@ -769,7 +769,7 @@ class DataExplorer extends Component {
 			categorical: newCategorical,
 			groupVars: newGroupVars
 		});
-	}
+	};
 
 	onColumnDrag = ( vars ) => {
 		const state = this.state;
@@ -794,7 +794,7 @@ class DataExplorer extends Component {
 			categorical: newCategorical,
 			groupVars: newGroupVars
 		});
-	}
+	};
 
 	deleteVariable = ( variable, varState ) => {
 		let state = varState || this.state;
@@ -816,7 +816,7 @@ class DataExplorer extends Component {
 			groupVars: newGroupVars,
 			filters
 		};
-	}
+	};
 
 	onFileUpload = ( err, output ) => {
 		const session = this.context;
@@ -854,7 +854,7 @@ class DataExplorer extends Component {
 				});
 			});
 		}
-	}
+	};
 
 	onFilterCreate = () => {
 		const newData = this.filterCreate( this.state.data );
@@ -864,7 +864,7 @@ class DataExplorer extends Component {
 			subsetFilters: this.state.filters
 		};
 		this.setState( newState );
-	}
+	};
 
 	filterCreate = ( data ) => {
 		let indices = new Set();
@@ -912,7 +912,7 @@ class DataExplorer extends Component {
 		}
 		newData[ 'id' ] = ids;
 		return newData;
-	}
+	};
 
 	onFilterAdd = () => {
 		const data = this.restoreData();
@@ -923,7 +923,7 @@ class DataExplorer extends Component {
 			subsetFilters: this.state.filters
 		};
 		this.setState( newState );
-	}
+	};
 
 	restoreData = () => {
 		const newVars = objectKeys( this.state.data );
@@ -971,7 +971,7 @@ class DataExplorer extends Component {
 			}
 		}
 		return data;
-	}
+	};
 
 	onPredict = {
 		'decision-tree': ( tree, counter ) => {
@@ -1140,7 +1140,7 @@ class DataExplorer extends Component {
 				data: newData
 			});
 		}
-	}
+	};
 
 	onRestoreData = () => {
 		const data = this.restoreData();
@@ -1149,7 +1149,7 @@ class DataExplorer extends Component {
 			subsetFilters: null,
 			filters: []
 		});
-	}
+	};
 
 	on2dSelection = ( names, selected ) => {
 		const newFilters = this.state.filters.filter(
@@ -1172,7 +1172,7 @@ class DataExplorer extends Component {
 		this.setState({
 			filters: newFilters
 		});
-	}
+	};
 
 	onQQPlotSelection = ( name, selected ) => {
 		if ( selected.range && selected.range.y ) {
@@ -1204,7 +1204,7 @@ class DataExplorer extends Component {
 		this.setState({
 			filters: newFilters
 		});
-	}
+	};
 
 	onHistogramSelection = ( name, selected ) => {
 		if ( selected.points && selected.points[ 0 ] ) {
@@ -1226,7 +1226,7 @@ class DataExplorer extends Component {
 				filters: newFilters
 			});
 		}
-	}
+	};
 
 	render() {
 		debug( 'Render component...' );

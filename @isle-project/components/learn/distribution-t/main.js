@@ -42,19 +42,19 @@ class TProbs extends Component {
 
 	handleDFChange = ( df ) => {
 		this.setState({ df });
-	}
+	};
 
 	handleLowerChange = ( x0 ) => {
 		this.setState({ x0 });
-	}
+	};
 
 	handleUpperChange = ( x1 ) => {
 		this.setState({ x1 });
-	}
+	};
 
 	handlePropChange = ( p ) => {
 		this.setState({ p });
-	}
+	};
 
 	renderInputs( type ) {
 		const { df, x0, x1, p } = this.state;

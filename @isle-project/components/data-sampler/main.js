@@ -66,7 +66,7 @@ class DataSampler extends Component {
 		this.setState({
 			sampleSize: val
 		});
-	}
+	};
 
 	drawSample = () => {
 		const indices = incrspace( 0, this.state.nobs, 1 );
@@ -100,7 +100,7 @@ class DataSampler extends Component {
 				{fun( sampleData )}
 			</div>
 		});
-	}
+	};
 
 	render() {
 		return (

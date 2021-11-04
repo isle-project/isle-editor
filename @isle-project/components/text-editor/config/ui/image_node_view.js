@@ -256,7 +256,7 @@ class ImageViewBody extends React.PureComponent {
 				complete: !!this._body
 			}
 		});
-	}
+	};
 
 	render() {
 		const { originalSize, maxSize } = this.state;

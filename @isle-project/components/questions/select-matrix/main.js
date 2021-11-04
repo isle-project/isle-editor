@@ -107,7 +107,7 @@ class SelectQuestionMatrix extends Component {
 				answers
 			});
 		};
-	}
+	};
 
 	handleSubmit = () => {
 		const session = this.context;
@@ -172,7 +172,7 @@ class SelectQuestionMatrix extends Component {
 				numbSubmissions >= this.props.nTries || correct
 			) && this.props.provideFeedback !== 'none' && hasSolution
 		});
-	}
+	};
 
 	renderSelectInput( row, i ) {
 		const label = row + ':' + i;

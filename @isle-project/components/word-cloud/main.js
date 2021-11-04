@@ -117,7 +117,11 @@ function guessEquality( x, y ) {
  */
 function createBagOfWords({ texts, stopwords, minCount, customStopwords }) {
 	if ( !isArray( texts ) || texts.length === 0 ) {
-		return { min: PINF, max: NINF, wordCounts: [] };
+		return {
+			min: PINF,
+			max: NINF,
+			wordCounts: []
+		};
 	}
 	stopwords = stopwords.concat( customStopwords );
 	let tokens = [];

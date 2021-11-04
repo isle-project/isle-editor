@@ -146,7 +146,7 @@ class WordVennDiagram extends Component {
 		this.setState({
 			tooltip
 		});
-	}
+	};
 
 	calculateWordFrequency = ( i ) => {
 		const { indices, minCount, tdm, words } = this.state;
@@ -164,7 +164,7 @@ class WordVennDiagram extends Component {
 			}
 		}
 		return { sets: [ word ], size: freq, docIndices: docIndices };
-	}
+	};
 
 	calculateJointAB( i, j ) {
 		const { indices, minCount, tdm, words } = this.state;
@@ -211,7 +211,7 @@ class WordVennDiagram extends Component {
 				minCount: new Array( i+1 ).fill( 1 )
 			});
 		};
-	}
+	};
 
 	updatePlot = () => {
 		const newFreqs = [];
@@ -238,7 +238,7 @@ class WordVennDiagram extends Component {
 			this.drawPlot();
 			this.props.onClick( this.state );
 		});
-	}
+	};
 
 	render() {
 		const { t } = this.props;
