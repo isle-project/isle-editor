@@ -44,6 +44,50 @@ const NOTIFICATION_STYLE = {
 };
 
 
+// FUNCTIONS //
+
+/**
+* Creates a document fragment from a string of HTML.
+*
+* @private
+* @param {string} selector - CSS selector
+*/
+function queryCheck( s ) {
+	document.createDocumentFragment().querySelector( s );
+}
+
+/**
+* Tests if a value is a valid CSS selector.
+*
+* @private
+* @param {string} selector - CSS selector
+* @returns {boolean} - true if the selector is valid, false otherwise
+*/
+function isSelectorValid( selector ) {
+	try {
+		queryCheck( selector );
+	} catch {
+		return false;
+	}
+	return true;
+}
+
+/**
+* Scrolls to the element corresponding to the location hash.
+*
+* @private
+*/
+function scrollToAnchor() {
+	const anchor = window.location.hash;
+	if ( isSelectorValid( anchor ) ) {
+		const domElement = document.querySelector( anchor );
+		if ( domElement ) {
+			domElement.scrollIntoView();
+		}
+	}
+}
+
+
 // MAIN //
 
 /**
@@ -71,6 +115,13 @@ class Lesson extends Component {
 				});
 			}
 		});
+		scrollToAnchor();
+		window.addEventListener( 'hashchange', scrollToAnchor );
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+		window.removeEventListener( 'hashchange', scrollToAnchor );
 	}
 
 	addNote = ({ left, top, visibility, noteID }) => {
@@ -91,7 +142,7 @@ class Lesson extends Component {
 				}
 			});
 		}
-	}
+	};
 
 	render() {
 		if ( !this.state.visible ) {
