@@ -8,6 +8,15 @@ import Button from 'react-bootstrap/Button';
 
 // MAIN //
 
+/**
+ * A React component which displays a modal dialog prompting the user to confirm a deletion.
+ *
+ * @param {Object} props - component properties
+ * @param {boolean} props.show - boolean indicating whether the modal is visible
+ * @param {Function} props.onClose - callback invoked upon closing the modal
+ * @param {Function} props.onDelete - callback invoked upon deleting the item
+ * @returns {ReactElement} modal dialog
+ */
 const DeleteModal = ( props ) => {
 	return ( <Modal
 		show={props.show}

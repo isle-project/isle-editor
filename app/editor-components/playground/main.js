@@ -77,6 +77,12 @@ class Playground extends PureComponent {
 		}
 	}
 
+	/**
+	* Handles the change event for the code input field.
+	*
+	* @param {string} value - the value of the input field
+	* @returns {void}
+	*/
 	handleChange = ( value ) => {
 		this.props.onChange( value );
 		if ( !this.props.code ) {
@@ -86,6 +92,12 @@ class Playground extends PureComponent {
 		}
 	};
 
+	/**
+	* Transform the code to be rendered in the preview of the playground by adding the appropriate context providers.
+	*
+	* @param {string} code - code to be transformed
+	* @returns {string} transformed code
+	*/
 	transformCode = ( code ) => {
 		const session = this.context;
 		if ( this.props.transformCode ) {

@@ -300,7 +300,7 @@ class ExportLesson extends Component {
 }
 
 
-// TYPES //
+// PROPERTIES //
 
 ExportLesson.defaultProps = {
 	content: '',

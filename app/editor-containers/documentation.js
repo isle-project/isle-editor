@@ -9,6 +9,12 @@ import HeaderUpperBar from 'editor-components/header-upper-bar';
 
 // FUNCTIONS //
 
+/**
+* Opens the given URL in the default browser.
+*
+* @private
+* @param {string} url - the URL to open
+*/
 const openBrowser = ( url ) => {
 	exec( 'xdg-open ' + url );
 };

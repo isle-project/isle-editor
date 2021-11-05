@@ -1,5 +1,11 @@
 // MAIN //
 
+/**
+ * Returns a string representing the ordinal of a number.
+ *
+ * @param {number} x - number
+ * @returns {string} ordinal
+ */
 const ordinal = ( x ) => {
 	const cent = x % 100;
 	let out;

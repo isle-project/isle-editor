@@ -16,6 +16,15 @@ export class PreambleError extends Error {
 
 // MAIN //
 
+/**
+* Validates a preamble.
+*
+* @param {Object} preamble - preamble object
+* @param {Object} [preamble.require] - preamble requires
+* @param {Object} [preamble.state] - lesson state object
+* @param {Object} [preamble.references] - references object
+* @returns {(Error|null)} error or null
+*/
 function validatePreamble( preamble ) {
 	if ( !isObject( preamble ) ) {
 		return new PreambleError( i18n.t('valid-and-nonempty-preamble') );

@@ -10,6 +10,15 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 
 // MAIN //
 
+/**
+* A button component for displaying a solution.
+*
+* @property {Object} props - component properties
+* @param {boolean} props.disabled - whether or not the solution button is disabled
+* @param {boolean} [props.hasHints=true] - whether or not the solution button has hints
+* @param {Function} props.onClick - a function to call when the solution button is clicked
+* @returns {React.Element} solution button
+*/
 const SolutionButton = ({ disabled, hasHints, onClick, t }) => {
 	const [ showSolution, setShowSolution ] = useState( false );
 	const tooltip = (

@@ -9,6 +9,19 @@ import Button from 'react-bootstrap/Button';
 
 // MAIN //
 
+/**
+* A search bar that is used to search for a specific string.
+*
+* @property {Object} props - component properties
+* @property {string} [props.value] - search string
+* @property {string} [props.placeholder] - placeholder text
+* @property {string} [props.buttonSize] - size of the search button (one of 'sm' or 'lg')
+* @property {Function} [props.onChange] - callback invoked upon change of the search string
+* @property {Function} [props.onClear] - callback invoked upon clicking the clear button
+* @property {string} [props.className] - class name
+* @property {Object} [props.style] - CSS inline styles
+* @returns {ReactElement} React component
+*/
 const SearchBar = ( props ) => {
 	return (
 		<FormGroup className={props.className} style={props.style} >

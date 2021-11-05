@@ -16,6 +16,20 @@ const _windows = {};
 
 // FUNCTIONS //
 
+/**
+* Creates a new browser window.
+*
+* @private
+* @param {Object} options - options for the new window
+* @param {boolean} [options.show=false] - whether to show the window
+* @param {Object} [options.webPreferences] - options for the new window's web preferences
+* @param {boolean} [options.webPreferences.nodeIntegration=true] - whether to enable Node.js integration in the new window
+* @param {boolean} [options.webPreferences.webviewTag=true] - whether to enable the `<webview>` tag in the new window
+* @param {boolean} [options.webPreferences.worldSafeExecuteJavaScript=true] - whether to enable world safe execute JavaScript in the new window
+* @param {boolean} [options.webPreferences.allowRunningInsecureContent=false] - whether to allow running insecure content in the new window
+* @param {boolean} [options.webPreferences.contextIsolation=false] - whether to enable context isolation in the new window
+* @returns {BrowserWindow} the new window
+*/
 function _createWindow( options ) {
 	const opts = {
 		show: false,
