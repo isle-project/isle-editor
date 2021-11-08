@@ -73,7 +73,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
                         select-placeholder
                       </div>
                       <div
-                        className=" css-14dclt2-Input"
+                        className=" css-6j8wv5-Input"
                         data-value=""
                       >
                         <input
