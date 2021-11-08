@@ -74,6 +74,9 @@ const IntervalPlotMenu = ({ data, variables, groupingVariables, t, session, logA
 					legend={t('significance-level')}
 					defaultValue={0.05}
 					onChange={setSignificanceLevel}
+					min={0.0}
+					max={1.0}
+					step="any"
 				/>
 				<Button
 					variant="primary" block onClick={generateIntervalPlot}
