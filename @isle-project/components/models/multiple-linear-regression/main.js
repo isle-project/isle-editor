@@ -122,9 +122,10 @@ function designMatrixMissing( x, y, data, quantitative, intercept ) {
 				}
 			}
 		}
-		if ( !missing ) {
+		const yval = data[ y ][ i ];
+		if ( !missing && isNonMissingNumber( yval ) ) {
 			matrix.push( row );
-			yvalues.push( [ data[ y ][ i ] ] );
+			yvalues.push( [ yval ] );
 		}
 	}
 	const nobs = yvalues.length;
