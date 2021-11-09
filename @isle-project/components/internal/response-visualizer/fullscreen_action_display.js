@@ -150,9 +150,9 @@ const generateValueLabel = ({ value, type, levels, rows, cols }) => {
 			for ( let j = 0; j < cols.length; j++ ) {
 				const rv = rows[ i ];
 				const cv = cols[ j ];
-				str += isString( rv ) && !isEmptyString( rv ) ? rv : i;
+				str += ( isString( rv ) && !isEmptyString( rv ) ) ? rv : i;
 				str += '-';
-				str += isString( cv ) && !isEmptyString( cv ) ? cv : j;
+				str += ( isString( cv ) && !isEmptyString( cv ) ) ? cv : j;
 				str += ': ';
 				str += ( value ? value[ i+':'+j ] : 'NA' ) + '; ';
 			}
