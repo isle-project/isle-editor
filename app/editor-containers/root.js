@@ -9,11 +9,6 @@ const Settings = lazy( () => import( 'editor-containers/settings' ) );
 const Export = lazy( () => import( 'editor-containers/export.js' ) );
 
 
-// VARIABLES //
-
-const PATH_REGEX = /\/[0-9]*$/;
-
-
 // MAIN //
 
 class Root extends Component {
@@ -22,15 +17,9 @@ class Root extends Component {
 		return (
 			<Provider store={store} >
 				<Suspense fallback={<div className="welcome-screen" />}>
-					<Router history={history}>
+					<Router history={history} >
 						<div className="App">
-							<Route exact path="/" children={( match ) => {
-								// Account for routes of spectacle slides...
-								if ( PATH_REGEX.test( match.location.pathname ) ) {
-									return <Editor />;
-								}
-								return null;
-							}} />
+							<Route exact path="/" component={Editor} />
 							<Route path="/docs" component={Documentation} />
 							<Route path="/settings" component={Settings} />
 							<Route path="/export" component={Export} />
