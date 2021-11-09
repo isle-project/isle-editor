@@ -116,6 +116,54 @@ function checkVariables( data, variables ) {
 	return true;
 }
 
+function filterCreate( data, filters ) {
+	let indices = new Set();
+	for ( let i = 0; i < filters.length; i++ ) {
+		const filter = filters[ i ];
+		const col = data[ filter.id ];
+		if (
+			hasProp( filter.value, 'min') && hasProp( filter.value, 'max' )
+		) {
+			// Case: We have a filter for a quantitative variable, which has a min and max value
+			for ( let z = 0; z < col.length; z++ ) {
+				if ( !( col[ z ] >= filter.value.min && col[ z ] <= filter.value.max ) ) {
+					indices.add( z );
+				}
+			}
+		} else {
+			// Case: We have a categorical variable
+			for ( let z = 0; z < col.length; z++ ) {
+				if ( !contains( filter.value, String( col[ z ] ) ) ) {
+					indices.add( z );
+				}
+			}
+		}
+	}
+	const vars = objectKeys( data );
+	const newData = {};
+	const nOriginal = data[ vars[0] ].length;
+	for ( let c = 0; c < vars.length; c++ ) {
+		const varName = vars[ c ];
+		newData[ varName ] = [];
+	}
+	const ids = [];
+	for ( let j = 0; j < nOriginal; j++ ) {
+		if ( !indices.has( j ) ) {
+			for ( let colInd = 0; colInd < vars.length; colInd++ ) {
+				let varName = vars[ colInd ];
+				newData[ varName ].push( data[ varName ][ j ] );
+			}
+			if ( data[ 'id' ] ) {
+				ids.push( data[ 'id' ][ j ] );
+			} else {
+				ids.push( j+1 );
+			}
+		}
+	}
+	newData[ 'id' ] = ids;
+	return newData;
+}
+
 
 // MAIN //
 
@@ -397,9 +445,14 @@ class DataExplorer extends Component {
 			if ( contains( skip, idx ) ) {
 				continue;
 			}
-			const node = recreateOutput( candidates[ i ], outputProps );
+			const action = candidates[ i ];
+			const filters = action.value.filters;
+			if ( filters ) {
+				outputProps.data = filterCreate( state.data, filters );
+			}
+			const node = recreateOutput( action, outputProps );
 			if ( node ) {
-				const element = createOutputElement( node, output.length, this.clearOutput, state.subsetFilters, this.onFilters, this.props.t );
+				const element = createOutputElement( node, output.length, this.clearOutput, filters || state.subsetFilters, this.onFilters, this.props.t );
 				output.push( element );
 			}
 		}
@@ -857,7 +910,7 @@ class DataExplorer extends Component {
 	};
 
 	onFilterCreate = () => {
-		const newData = this.filterCreate( this.state.data );
+		const newData = filterCreate( this.state.data, this.state.filters );
 		const newState = {
 			data: newData,
 			oldData: this.state.data,
@@ -866,57 +919,9 @@ class DataExplorer extends Component {
 		this.setState( newState );
 	};
 
-	filterCreate = ( data ) => {
-		let indices = new Set();
-		for ( let i = 0; i < this.state.filters.length; i++ ) {
-			const filter = this.state.filters[ i ];
-			const col = data[ filter.id ];
-			if (
-				hasProp( filter.value, 'min') && hasProp( filter.value, 'max' )
-			) {
-				// Case: We have a filter for a quantitative variable, which has a min and max value
-				for ( let z = 0; z < col.length; z++ ) {
-					if ( !( col[ z ] >= filter.value.min && col[ z ] <= filter.value.max ) ) {
-						indices.add( z );
-					}
-				}
-			} else {
-				// Case: We have a categorical variable
-				for ( let z = 0; z < col.length; z++ ) {
-					if ( !contains( filter.value, String( col[ z ] ) ) ) {
-						indices.add( z );
-					}
-				}
-			}
-		}
-		const vars = objectKeys( data );
-		const newData = {};
-		const nOriginal = data[ vars[0] ].length;
-		for ( let c = 0; c < vars.length; c++ ) {
-			const varName = vars[ c ];
-			newData[ varName ] = [];
-		}
-		const ids = [];
-		for ( let j = 0; j < nOriginal; j++ ) {
-			if ( !indices.has( j ) ) {
-				for ( let colInd = 0; colInd < vars.length; colInd++ ) {
-					let varName = vars[ colInd ];
-					newData[ varName ].push( data[ varName ][ j ] );
-				}
-				if ( data[ 'id' ] ) {
-					ids.push( data[ 'id' ][ j ] );
-				} else {
-					ids.push( j+1 );
-				}
-			}
-		}
-		newData[ 'id' ] = ids;
-		return newData;
-	};
-
 	onFilterAdd = () => {
 		const data = this.restoreData();
-		const newData = this.filterCreate( data );
+		const newData = filterCreate( data, this.state.filters );
 		const newState = {
 			data: newData,
 			oldData: data,
