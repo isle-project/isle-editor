@@ -2,7 +2,7 @@
 
 import React, { Component, lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 const Editor = lazy( () => import( 'editor-containers/editor' ) );
 const Documentation = lazy( () => import( 'editor-containers/documentation.js' ) );
 const Settings = lazy( () => import( 'editor-containers/settings' ) );
@@ -13,20 +13,22 @@ const Export = lazy( () => import( 'editor-containers/export.js' ) );
 
 class Root extends Component {
 	render() {
-		const { store, history } = this.props;
+		const { store } = this.props;
 		return (
-			<Provider store={store} >
-				<Suspense fallback={<div className="welcome-screen" />}>
-					<Router history={history} >
+			<HashRouter>
+				<Provider store={store} >
+					<Suspense fallback={<div className="welcome-screen" />}>
 						<div className="App">
-							<Route exact path="/" component={Editor} />
-							<Route path="/docs" component={Documentation} />
-							<Route path="/settings" component={Settings} />
-							<Route path="/export" component={Export} />
+							<Routes>
+								<Route path="/docs" element={<Documentation />} />
+								<Route path="/settings" element={<Settings />} />
+								<Route path="/export" element={<Export />} />
+								<Route path="/" element={<Editor />} />
+							</Routes>
 						</div>
-					</Router>
-				</Suspense>
-			</Provider>
+					</Suspense>
+				</Provider>
+			</HashRouter>
 		);
 	}
 }
