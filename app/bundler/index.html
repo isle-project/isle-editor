@@ -14,7 +14,7 @@
 		<title><%= meta.title %></title>
 		<link rel="shortcut icon" href="favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" >
-		<link rel="manifest" href="manifest.json" >
+		<link rel="manifest" href="manifest.json" crossorigin="use-credentials" >
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans+Condensed:300,300i,700|Open+Sans:400,400i,700,800" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/3a7c01b4b9.js" crossorigin="anonymous"></script>
@@ -67,9 +67,9 @@
 			window._crypto = {};
 		</script>
 		<% if ( loadFromCDN ) { %>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.33/dll.locales.js" charset="utf-8"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.33/dll.session.js" charset="utf-8"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.33/dll.components.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.34/dll.locales.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.34/dll.session.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.34/dll.components.js" charset="utf-8"></script>
 		<% } %>
 	</body>
 </html>
