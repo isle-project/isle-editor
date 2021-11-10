@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import Loadable from '@isle-project/components/internal/loadable';
 const SketchPicker = Loadable( () => import( 'react-color/lib/components/sketch/Sketch' ) );
 const CompactPicker = Loadable( () => import( 'react-color/lib/components/compact/Compact' ) );
@@ -16,7 +16,7 @@ import { withPropCheck } from '@isle-project/utils/prop-check';
 
 // FUNCTIONS //
 
-const ButtonColorPicker = ( props ) => {
+const ButtonColorPicker = ( pickerProps ) => {
 	const [ show, setShow ] = useState( false );
 	const target = useRef( null );
 	const handleClick = useCallback( () => {
@@ -25,15 +25,17 @@ const ButtonColorPicker = ( props ) => {
 	return (
 		<Fragment>
 			<Button ref={target} size="sm" style={{
-				backgroundColor: props.color, width: 38, height: 38
+				backgroundColor: pickerProps.color, width: 38, height: 38
 			}} onClick={handleClick} >
 			</Button>
-			{ show ? <Overlay target={target.current} show={show} placement="bottom-end" >
-				<Popover id={`${props.variant}-popover`} style={{ zIndex: 1051 }}>
-					<PopoverContent>
-						<SketchPicker {...props} />
-					</PopoverContent>
+			{ show ? <Overlay target={target.current} show={show} placement="right" >
+			{({ placement, arrowProps, show: _show, popper, ...props }) => (
+				<Popover {...props} id={`${props.variant}-popover`} style={{ zIndex: 1051, ...props.style }} >
+					<PopoverBody>
+						<SketchPicker {...pickerProps} />
+					</PopoverBody>
 				</Popover>
+			)}
 			</Overlay> : null }
 		</Fragment>
 	);
@@ -45,7 +47,7 @@ const ButtonColorPicker = ( props ) => {
 /**
 * A wrapper for the [react-color](https://casesandberg.github.io/react-color/) color picker.
 *
-* @property {string} variant - color picker variant (either `Compact`, `Sketch`, `Material`, or `Block`)
+* @property {string} variant - color picker variant (either `Compact`, `Sketch`, `Material`, `Button`, or `Block`)
 * @property {(string|Object)} color - `string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one
 * @property {boolean} disableAlpha - controls whether to remove alpha slider and options
 * @property {Array<string>} presetColors - HeX `strings` specifying the default colors at the bottom of the colorpicker

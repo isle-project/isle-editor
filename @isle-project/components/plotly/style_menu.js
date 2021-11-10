@@ -130,7 +130,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 				headerStyle={HEADER_STYLE}
 				onChange={setActive}
 			>
-				<div>
+				<div className="d-grid gap-2" >
 					<Form.Group as={Row} >
 						<Form.Label column sm={8} >
 							{t('background')}
@@ -183,7 +183,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 						</Col>
 					</Form.Group>
 				</div>
-				<div>
+				<div className="d-grid gap-2" >
 					<Form.Group as={Row} >
 						<Form.Label column sm={8} >
 							{t('background')}

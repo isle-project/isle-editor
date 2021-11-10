@@ -38,6 +38,7 @@ const LassoRegressionMenu = ( props ) => {
 			</span>}
 			autoStart={false}
 			onGenerate={compute}
+			bodyClassName="d-grid gap-3"
 		>
 			<SelectInput
 				legend={t('outcome-y')}

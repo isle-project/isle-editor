@@ -182,7 +182,7 @@ class ResponseVisualizers extends Component {
 					timeBadgeVariant = 'info';
 				}
 			} else {
-				timeBadgeVariant = 'light';
+				timeBadgeVariant = 'secondary';
 			}
 			let infoRateLabel;
 			if ( session.selectedCohort ) {
@@ -204,19 +204,19 @@ class ResponseVisualizers extends Component {
 						<label style={{ margin: 0 }}>{id}</label>
 					</Tooltip>
 					<Tooltip placement="left" tooltip={t( 'open-actions' )} >
-						<Badge variant="light" style={{ float: 'right', margin: '2px' }} onClick={this.thumbnailClickFactory( id )}>
+						<Badge bg="secondary" style={{ float: 'right', margin: '2px' }} onClick={this.thumbnailClickFactory( id )}>
 							{t( 'open' )}
 						</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip={t( 'num-cohort-actions', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
-						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
+						<Badge bg="secondary" style={{ float: 'right', margin: '2px' }}>{`n: ${nActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip={t( 'num-students-answered', { cohort: session.selectedCohort ? session.selectedCohort.title: 'all cohorts' })} >
-						<Badge variant="light" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
+						<Badge bg="secondary" style={{ float: 'right', margin: '2px' }}>{`s: ${nUniqueActions}`}</Badge>
 					</Tooltip>
 					<Tooltip placement="left" tooltip={t( 'elapsed-time' )}>
 						<Badge
-							variant={timeBadgeVariant}
+							bg={timeBadgeVariant}
 							style={{ float: 'right', margin: '2px' }}
 						>{time}</Badge>
 					</Tooltip>

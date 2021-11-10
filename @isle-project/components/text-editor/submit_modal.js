@@ -31,7 +31,9 @@ class SubmitModal extends Component {
 				{this.props.t('submit-report-msg')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="success" onClick={this.handleSubmission} block>{this.props.t('submit')}</Button>
+				<div className="d-grid" >
+					<Button variant="success" onClick={this.handleSubmission} >{this.props.t('submit')}</Button>
+				</div>
 			</Modal.Footer>
 		</Modal> );
 	}

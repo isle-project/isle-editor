@@ -341,7 +341,7 @@ class NumberQuestion extends Component {
 						solutionPresent &&
 						provideFeedback &&
 						( this.state.correct || this.state.numSubmissions >= nTries ) ?
-						<Badge variant={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+						<Badge bg={this.state.correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
 							{`${t('solution')}:   `}
 							{isArray( solution ) ?
 								formatArraySolution( solution, t ) :

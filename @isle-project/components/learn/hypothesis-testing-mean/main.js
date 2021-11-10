@@ -227,7 +227,7 @@ class MeanTest extends Component {
 		const { mu0, xbar, xbar2, sigma, sigma2, n, n2, samples, selectedTest } = this.state;
 		const statChar = selectedTest === 'Z-Test' ? 'z' : 't';
 		const firstSampleParams = <div>
-			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
+			{ samples === 'Two-Sample' ? <Badge bg="secondary">First Sample</Badge> : null }
 			<NumberInput
 				legend={t('sample-mean')}
 				defaultValue={xbar}
@@ -262,7 +262,7 @@ class MeanTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			{ samples === 'Two-Sample' ? <Badge variant="secondary">{t('second-sample')}</Badge> : null }
+			{ samples === 'Two-Sample' ? <Badge bg="secondary">{t('second-sample')}</Badge> : null }
 			<NumberInput
 				legend={t('sample-mean')}
 				defaultValue={xbar2}

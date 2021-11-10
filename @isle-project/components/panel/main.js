@@ -59,9 +59,11 @@ const Header = ({ children, headerTag, hideTooltip, onHide, minimizable, minimiz
 * @property {Function} onHide - callback invoked when the close button is clicked
 * @property {Object} style - CSS inline styles for container
 * @property {Object} bodyStyle - CSS inline styles for body
+* @property {string} bodyClassName - CSS class name for body
 * @property {Object} footerStyle - CSS inline styles for footer
+* @property {string} footerClassName - CSS class name for footer
 */
-const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, defaultMinimized, fullscreen, hideTooltip, onHide, style, bodyStyle, footerStyle, children, tReady, ...rest }) => {
+const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, defaultMinimized, fullscreen, hideTooltip, onHide, style, bodyStyle, bodyClassName, footerStyle, footerClassName, children, tReady, ...rest }) => {
 	const [ minimized, setMinimized ] = useState( minimizable ? defaultMinimized : false );
 	const cardRef = useRef( null );
 	const card = <Card
@@ -93,7 +95,7 @@ const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, d
 		<Card.Body style={{
 			...bodyStyle,
 			display: minimized ? 'none' : null
-		}} >
+		}} className={bodyClassName} >
 			{children}
 		</Card.Body>
 		{footer ? <Card.Footer
@@ -101,6 +103,7 @@ const Panel = ({ className, header, headerTag, footer, trapFocus, minimizable, d
 				...footerStyle,
 				display: minimized ? 'none' : null
 			}}
+			className={footerClassName}
 		>{footer}</Card.Footer> : null}
 	</Card>;
 	if ( trapFocus ) {
@@ -137,6 +140,8 @@ Panel.propTypes = {
 	trapFocus: PropTypes.bool,
 	bodyStyle: PropTypes.object,
 	footerStyle: PropTypes.object,
+	bodyClassName: PropTypes.string,
+	footerClassName: PropTypes.string,
 	style: PropTypes.object,
 	onHide: PropTypes.func
 };
@@ -153,6 +158,8 @@ Panel.defaultProps = {
 	trapFocus: false,
 	bodyStyle: {},
 	footerStyle: {},
+	bodyClassName: '',
+	footerClassName: '',
 	style: {},
 	onHide: null
 };

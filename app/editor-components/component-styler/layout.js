@@ -252,6 +252,7 @@ const BackgroundPicker = ( props ) => {
 						value={type}
 					>
 						<ToggleButton
+							id="toggle-background-image"
 							variant="outline-secondary"
 							value="image"
 							title={props.t('image')}
@@ -259,6 +260,7 @@ const BackgroundPicker = ( props ) => {
 							<i className="far fa-image fa-lg"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-background-linear-gradient"
 							variant="outline-secondary"
 							value="linear-gradient"
 							title={props.t('linear-gradient')}
@@ -266,6 +268,7 @@ const BackgroundPicker = ( props ) => {
 							<div className="component-styler-box linear-gradient-box" ></div>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-background-radial-gradient"
 							variant="outline-secondary"
 							value="radial-gradient"
 							title={props.t('radial-gradient')}

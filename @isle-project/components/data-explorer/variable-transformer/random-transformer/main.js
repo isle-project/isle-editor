@@ -359,6 +359,7 @@ const RandomTransformer = ( props ) => {
 				</Button>}
 				role="button" tabIndex={0}
 				bodyStyle={BODY_STYLE}
+				bodyClassName="d-grid gap-3"
 			>
 				<Row>
 					<SelectInput
@@ -415,12 +416,14 @@ const RandomTransformer = ( props ) => {
 						style={{ padding: 6 }}
 					>
 						<ToggleButton
+							id="data-explorer-transform-toggle-quantitative"
 							variant="outline-secondary"
 							value={false}
 						>
 							{t('data-explorer:treat-as-quantitative')}
 						</ToggleButton>
 						<ToggleButton
+							id="data-explorer-transform-toggle-categorical"
 							variant="outline-secondary"
 							value={true}
 						>

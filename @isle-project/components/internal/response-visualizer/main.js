@@ -380,11 +380,11 @@ class ResponseVisualizer extends Component {
 		</table>;
 
 		tooltip = <Popover title={tooltip} style={{ fontSize: 12, textAlign: 'left', maxWidth: 1200 }} >
-			<Popover.Content>
+			<Popover.Body>
 				{table}
 				<p>{this.props.t('users-in-focus')}</p>
 				<p style={{ wordWrap: 'break-word' }} >{focusUsers.join( ', ')}</p>
-			</Popover.Content>
+			</Popover.Body>
 		</Popover>;
 		return tooltip;
 	}
@@ -459,7 +459,7 @@ class ResponseVisualizer extends Component {
 								id={`${this.props.id}_answers_button`}
 							>
 								<span style={{ marginRight: '5px', pointerEvents: 'none' }} >{buttonLabel}</span>
-								<Badge variant="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
+								<Badge bg="dark" style={{ fontSize: '10px', pointerEvents: 'none' }}>{this.state.nActions}</Badge>
 							</Button>
 						</Tooltip>
 						<OverlayTrigger

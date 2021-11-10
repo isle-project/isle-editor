@@ -168,9 +168,7 @@ class LogisticRegression extends Component {
 						</Button>
 					</Tooltip>
 					<InputGroup size="sm" >
-						<InputGroup.Prepend>
-							<InputGroup.Text>{t('threshold')}:</InputGroup.Text>
-						</InputGroup.Prepend>
+						<InputGroup.Text>{t('threshold')}:</InputGroup.Text>
 						<FormControl
 							type="number"
 							min={0}

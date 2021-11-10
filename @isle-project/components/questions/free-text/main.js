@@ -288,7 +288,7 @@ class FreeTextQuestion extends Component {
 				bodyStyle={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}
 			>
 				{ this.props.question ? <div className="title">{this.props.question}</div> : null }
-				<FormGroup>
+				<FormGroup style={{ paddingBottom: 12 }} >
 					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? this.props.t('solution') : this.props.t('your-answer') }</label>
 					{!this.state.solutionDisplayed ?
 						<FormControl
@@ -310,7 +310,7 @@ class FreeTextQuestion extends Component {
 							{this.state.value}
 						</div>
 					}
-					</FormGroup>
+				</FormGroup>
 				<ResponseVisualizer
 					buttonLabel={this.props.t('answers')} id={this.id}
 					info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}

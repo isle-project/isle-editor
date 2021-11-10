@@ -31,9 +31,11 @@ class DeletePageModal extends Component {
 				{this.props.t('clear-page-modal-body')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="danger" onClick={this.handleClick} block>
-					{this.props.t('clear')}
-				</Button>
+				<div className="d-grid" >
+					<Button variant="danger" onClick={this.handleClick} >
+						{this.props.t('clear')}
+					</Button>
+				</div>
 			</Modal.Footer>
 		</Modal> );
 	}

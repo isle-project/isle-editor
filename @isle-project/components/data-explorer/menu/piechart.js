@@ -63,7 +63,7 @@ const PieChartMenu = ( props ) => {
 				{t('Pie Chart')}
 				<QuestionButton title={t('Pie Chart')} content={t('Pie Chart-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('pie-sizes-represent')}
 					defaultValue={mode}
@@ -92,7 +92,7 @@ const PieChartMenu = ( props ) => {
 					onChange={setGroup}
 				/>
 				<Button
-					variant="primary" block
+					variant="primary"
 					onClick={handleGenerate}
 				>{t('generate')}</Button>
 			</Card.Body>

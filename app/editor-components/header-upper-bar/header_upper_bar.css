@@ -15,39 +15,21 @@
 	font-weight: normal;
 }
 
+#header-upper-bar a {
+	text-decoration: none;
+	color: silver;
+	cursor: pointer;
+	font-size: 18px;
+	margin-right: 15px;
+}
+
+#header-upper-bar a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
 #link-back-to-editor {
-	color: silver;
-	font-size: 18px;
 	font-weight: 800;
-	margin-right: 15px;
-	cursor: pointer;
-}
-
-#link-export {
-	color: silver;
-	font-size: 18px;
-	margin-right: 15px;
-	cursor: pointer;
-}
-
-#link-settings {
-	color: silver;
-	font-size: 18px;
-	margin-right: 15px;
-	cursor: pointer;
-}
-
-#link-dashboard {
-	color: silver;
-	font-size: 18px;
-	margin-right: 15px;
-	cursor: pointer;
-}
-
-#link-docs {
-	color: silver;
-	font-size: 18px;
-	cursor: pointer;
 }
 
 #update-indicator-badge {

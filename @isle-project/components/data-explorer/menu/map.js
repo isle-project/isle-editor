@@ -180,12 +180,14 @@ const MapMenu = ( props ) => {
 					onChange={setAggregation}
 					disabled={!variable}
 				/>
-				<Button
-					variant="primary" block onClick={generateMap}
-					disabled={( !longitude || !latitude ) && ( !locations || !variable )}
-				>
-					{t('calculate')}
-				</Button>
+				<div className="d-grid" >
+					<Button
+						variant="primary" onClick={generateMap}
+						disabled={( !longitude || !latitude ) && ( !locations || !variable )}
+					>
+						{t('calculate')}
+					</Button>
+				</div>
 			</Card.Body>
 		</Card>
 	);

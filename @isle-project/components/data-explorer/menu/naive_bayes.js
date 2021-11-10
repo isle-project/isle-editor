@@ -42,7 +42,7 @@ const NaiveBayesMenu = ( props ) => {
 				{t('Naive Bayes')}
 				<QuestionButton title={t('Naive Bayes')} content={t('Naive Bayes-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('outcome-y')}
 					options={categorical}
@@ -60,7 +60,7 @@ const NaiveBayesMenu = ( props ) => {
 					defaultValue={false}
 					onChange={setOmitMissing}
 				/>
-				<Button disabled={!x || x.length === 0} variant="primary" block onClick={compute} >
+				<Button disabled={!x || x.length === 0} variant="primary" onClick={compute} >
 					{t('calculate')}
 				</Button>
 			</Card.Body>

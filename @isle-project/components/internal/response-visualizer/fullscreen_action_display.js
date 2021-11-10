@@ -370,7 +370,6 @@ class FullscreenActionDisplay extends Component {
 						this.setState({ removeQuestionWords: value });
 					}}
 					style={{
-						left: '5px',
 						bottom: '85px',
 						position: 'absolute'
 					}}
@@ -877,7 +876,7 @@ class FullscreenActionDisplay extends Component {
 				</Modal.Body>
 				<Modal.Footer>
 					<h4>
-						<Badge variant="secondary">
+						<Badge bg="secondary">
 							{this.props.t( 'num-actions', { label: uncapitalize( this.props.actionLabel ), n: this.state.filtered.length })}
 						</Badge>
 					</h4>

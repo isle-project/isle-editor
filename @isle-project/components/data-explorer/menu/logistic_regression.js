@@ -138,9 +138,11 @@ class LogisticRegressionMenu extends Component {
 						defaultValue={false}
 						onChange={( omitMissing ) => this.setState({ omitMissing })}
 					/>
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
-						{t('calculate')}
-					</Button>
+					<div className="d-grid" >
+						<Button disabled={!x || x.length === 0} variant="primary" onClick={this.compute}>
+							{t('calculate')}
+						</Button>
+					</div>
 				</Card.Body>
 			</Card>
 		);

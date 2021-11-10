@@ -174,6 +174,7 @@ const Size = ({ active, style, onChange, t }) => {
 						value={style.overflow}
 					>
 						<ToggleButton
+							id="overflow-toggle-visible"
 							variant="outline-secondary"
 							value="visible"
 							title={t('visible')}
@@ -181,6 +182,7 @@ const Size = ({ active, style, onChange, t }) => {
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-toggle-hidden"
 							variant="outline-secondary"
 							value="hidden"
 							title={t('hidden')}
@@ -188,6 +190,7 @@ const Size = ({ active, style, onChange, t }) => {
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-toggle-scroll"
 							variant="outline-secondary"
 							value="scroll"
 							title={t('scroll')}
@@ -195,6 +198,7 @@ const Size = ({ active, style, onChange, t }) => {
 							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-toggle-auto"
 							variant="outline-secondary"
 							value="auto"
 							title={t('auto')}
@@ -219,24 +223,28 @@ const Size = ({ active, style, onChange, t }) => {
 						value={style.overflowX}
 					>
 						<ToggleButton
+							id="overflow-x-toggle-visible"
 							variant="outline-secondary"
 							value="visible"
 						>
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-x-toggle-hidden"
 							variant="outline-secondary"
 							value="hidden"
 						>
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-x-toggle-scroll"
 							variant="outline-secondary"
 							value="scroll"
 						>
 							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-x-toggle-auto"
 							variant="outline-secondary"
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}
@@ -260,24 +268,28 @@ const Size = ({ active, style, onChange, t }) => {
 						value={style.overflowY}
 					>
 						<ToggleButton
+							id="overflow-y-toggle-visible"
 							variant="outline-secondary"
 							value="visible"
 						>
 							<i className="far fa-eye"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-y-toggle-hidden"
 							variant="outline-secondary"
 							value="hidden"
 						>
 							<i className="fas fa-eye-slash"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-y-toggle-scroll"
 							variant="outline-secondary"
 							value="scroll"
 						>
 							<i className="fas fa-align-justify"></i> &#8613;
 						</ToggleButton>
 						<ToggleButton
+							id="overflow-y-toggle-auto"
 							variant="outline-secondary"
 							value="auto"
 							style={{ fontVariant: 'small-caps', fontWeight: 700 }}

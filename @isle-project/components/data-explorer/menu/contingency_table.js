@@ -80,7 +80,7 @@ class ContingencyTableMenu extends Component {
 					{t('Contingency Table')}
 					<QuestionButton title={t('Contingency Table')} content={t('Contingency Table-description')} />
 				</Card.Header>
-				<Card.Body>
+				<Card.Body className="d-grid gap-3" >
 					<SelectInput
 						legend={t('row-variable')}
 						defaultValue={this.state.rowVar}
@@ -147,7 +147,7 @@ class ContingencyTableMenu extends Component {
 						/>
 						{t('decimal-places')}
 					</p> : null }
-					<Button variant="primary" block onClick={this.generateContingencyTable.bind( this )}>
+					<Button variant="primary" onClick={this.generateContingencyTable.bind( this )}>
 						{t('generate')}
 					</Button>
 				</Card.Body>

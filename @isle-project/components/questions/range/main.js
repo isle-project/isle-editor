@@ -212,7 +212,7 @@ const RangeQuestion = ( props ) => {
 						onKeyPress={handleKeyPress}
 					/>
 					{ submitted && solutionPresent && provideFeedback ?
-						<Badge variant={correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+						<Badge bg={correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
 							{`${t('solution')}:   `}
 							{solution[0]}, {solution[1]}
 						</Badge> :

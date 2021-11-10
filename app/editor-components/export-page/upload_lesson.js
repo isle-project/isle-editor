@@ -436,7 +436,7 @@ class UploadLesson extends Component {
 						{t('lesson-name-invalid')}
 					</FormControl.Feedback>
 				</FormGroup>
-				<FormGroup>
+				<FormGroup style={{ paddingTop: 20, paddingBottom: 10 }} >
 					<FormLabel>{t('release-to-students')}</FormLabel>
 					<ToggleButtonGroup
 						name="Released"
@@ -451,6 +451,7 @@ class UploadLesson extends Component {
 						style={{ float: 'right' }}
 					>
 						<ToggleButton
+							id="toggle-active"
 							variant="outline-secondary"
 							value={true}
 							style={{
@@ -461,6 +462,7 @@ class UploadLesson extends Component {
 							{t('active')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-inactive"
 							variant="outline-secondary"
 							value={false}
 							style={{
@@ -472,7 +474,7 @@ class UploadLesson extends Component {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</FormGroup>
-				<FormGroup>
+				<FormGroup style={{ paddingTop: 10, paddingBottom: 10 }} >
 					<FormLabel>{t('show-in-gallery')}</FormLabel>
 					<ToggleButtonGroup
 						name="Visibility"
@@ -487,6 +489,7 @@ class UploadLesson extends Component {
 						style={{ float: 'right' }}
 					>
 						<ToggleButton
+							id="gallery-toggle-public"
 							variant="outline-secondary"
 							value={true}
 							style={{
@@ -497,6 +500,7 @@ class UploadLesson extends Component {
 							{t('public')}
 						</ToggleButton>
 						<ToggleButton
+							id="gallery-toggle-private"
 							variant="outline-secondary"
 							value={false}
 							style={{
@@ -565,13 +569,14 @@ class UploadLesson extends Component {
 					{ this.state.token ?
 						<Fragment>
 							{formGroups}
-							<Button
-								variant="success"
-								size="sm"
-								block
-								onClick={this.checkLesson}
-								disabled={this.state.spinning || !this.state.token || !this.state.lessonName || this.state.invalidLessonName}
-							>{t('upload')}</Button>
+							<div className="d-grid" >
+								<Button
+									variant="success"
+									size="sm"
+									onClick={this.checkLesson}
+									disabled={this.state.spinning || !this.state.token || !this.state.lessonName || this.state.invalidLessonName}
+								>{t('upload')}</Button>
+							</div>
 							<br />
 							{this.renderProgress()}
 						</Fragment>:

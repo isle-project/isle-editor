@@ -91,7 +91,7 @@ const EditorFooter = ( props ) => {
 					onClick={handleLinting}
 					disabled={props.nErrors === 0}
 				>
-					{t('linting-and-spelling')}: <Badge variant="secondary">{props.nErrors}</Badge>
+					{t('linting-and-spelling')}: <Badge bg="secondary">{props.nErrors}</Badge>
 				</Button>
 			</Tooltip>
 			<Tooltip tooltip={t('tutorial')} placement="top" >

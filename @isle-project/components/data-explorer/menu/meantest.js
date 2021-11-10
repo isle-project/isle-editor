@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
@@ -49,7 +47,7 @@ const MeanTestMenu = ( props ) => {
 				{t('One-Sample Mean Test')}
 				<QuestionButton title={t('One-Sample Mean Test')} content={t('One-Sample Mean Test-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('type-of-test')}
 					defaultValue={type}
@@ -74,27 +72,21 @@ const MeanTestMenu = ( props ) => {
 						}}
 					/> : null
 				}
-				<Row>
-					<Col>
-						<NumberInput
-							legend={<span><TeX raw="H_0" /> mean value (<TeX raw="\mu_0" />)</span>}
-							defaultValue={mu0}
-							step="any"
-							onChange={setMu0}
-						/>
-					</Col>
-					<Col>
-						<NumberInput
-							legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
-							defaultValue={alpha}
-							min={0.0}
-							max={1.0}
-							tooltipPlacement="left"
-							step="any"
-							onChange={setAlpha}
-						/>
-					</Col>
-				</Row>
+				<NumberInput
+					legend={<span><TeX raw="H_0" /> mean value (<TeX raw="\mu_0" />)</span>}
+					defaultValue={mu0}
+					step="any"
+					onChange={setMu0}
+				/>
+				<NumberInput
+					legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}
+					defaultValue={alpha}
+					min={0.0}
+					max={1.0}
+					tooltipPlacement="left"
+					step="any"
+					onChange={setAlpha}
+				/>
 				<SelectInput
 					legend={t('direction')}
 					defaultValue={direction}
@@ -103,7 +95,7 @@ const MeanTestMenu = ( props ) => {
 					menuPlacement="top"
 				/>
 				<Button
-					variant="primary" block onClick={calculateMeanTest}
+					variant="primary" onClick={calculateMeanTest}
 					disabled={!variable}
 				>
 					{t('calculate')}

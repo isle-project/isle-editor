@@ -140,7 +140,7 @@ class InstructorView extends Component {
 								activeTab={this.state.activeTab}
 							/>
 						</Tab> : null }
-							<Tab eventKey="active_users" title={<span>{t( 'active-users' )}<Badge variant="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
+							<Tab eventKey="active_users" title={<span>{t( 'active-users' )}<Badge bg="secondary" style={{ marginLeft: 6 }} >{session.userList.length}</Badge></span>}>
 							<UserList
 								session={session}
 								onThumbnailClick={( email ) => {

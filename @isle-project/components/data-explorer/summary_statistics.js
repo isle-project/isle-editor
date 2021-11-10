@@ -10,7 +10,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import SelectInput from '@isle-project/components/input/select';
 import selectStyles from '@isle-project/components/input/select/styles';
 import Tooltip from '@isle-project/components/tooltip';
@@ -30,7 +30,7 @@ const DESCRIPTION = <span>Compute various statistics of interest, i.e. summary m
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 const Option = props => {
 	const popover = <Popover id={`${props.data.label}-popover`}>
-		<PopoverContent>{STAT_DESCRIPTIONS[ i18n.language ][ props.data.label]}</PopoverContent>
+		<PopoverBody>{STAT_DESCRIPTIONS[ i18n.language ][ props.data.label]}</PopoverBody>
 	</Popover>;
 	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
@@ -206,7 +206,7 @@ class SummaryStatisticsMenu extends Component {
 					{t('summary-statistics')}
 					<QuestionButton title={t('summary-statistics')} content={DESCRIPTION} />
 				</Card.Header>
-				<Card.Body>
+				<Card.Body className="d-grid gap-3" >
 					<FormGroup controlId="statistics-form-select">
 						<Tooltip
 							tooltip={t('statistics-tooltip')}
@@ -393,7 +393,7 @@ class SummaryStatisticsMenu extends Component {
 						}}
 					/>
 					<Button
-						variant="primary" block
+						variant="primary"
 						onClick={this.generateStatistics}
 						disabled={!selectedStats || this.state.variables.length === 0}
 					>{t('calculate')}</Button>

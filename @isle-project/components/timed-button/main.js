@@ -116,19 +116,20 @@ class TimedButton extends Component {
 						<div style={barStyle} className="timed-button-bar-overlay" />
 					</div>
 				</div> : null }
-				<Button
-					className={this.props.className}
-					size={this.props.size}
-					block={this.props.block}
-					type={this.props.type}
-					ref={this.refDimensions}
-					disabled={disabled}
-					onClick={this.trigger}
-					variant={this.props.variant}
-					style={this.props.style}
-				>
-					{this.props.children}
-				</Button>
+				<div className={this.props.block ? 'd-grid' : ''} >
+					<Button
+						className={this.props.className}
+						size={this.props.size}
+						type={this.props.type}
+						ref={this.refDimensions}
+						disabled={disabled}
+						onClick={this.trigger}
+						variant={this.props.variant}
+						style={this.props.style}
+					>
+						{this.props.children}
+					</Button>
+				</div>
 			</div>
 		);
 	}

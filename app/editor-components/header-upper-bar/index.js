@@ -60,7 +60,7 @@ const HeaderUpperBar = ({ backToEditor, title, updateDownloading, updateDownload
 		<div>
 			{ updateStatus ? <Fragment>
 				<Tooltip tooltip={updateTooltip} >
-					<Badge variant="success" id="update-indicator-badge" >
+					<Badge bg="success" id="update-indicator-badge" >
 						{updateMsg}
 						<Button
 							id="update-download-button" variant="secondary"

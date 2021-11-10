@@ -502,9 +502,9 @@ class Recorder extends Component {
 						value={this.state.selectedSources}
 						onChange={this.handleSourceChange}
 					>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">{this.props.t('screen')}</ToggleButton>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">{this.props.t('cam')}</ToggleButton>
-						<ToggleButton variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">{this.props.t('audio')}</ToggleButton>
+						<ToggleButton id="recorder-toggle-screen" variant="light" className="recorder-togglebutton" disabled={!this.props.screen || this.state.recording} value="screen">{this.props.t('screen')}</ToggleButton>
+						<ToggleButton id="recorder-toggle-camera" variant="light" className="recorder-togglebutton" disabled={!this.props.camera || this.state.recording} value="camera">{this.props.t('cam')}</ToggleButton>
+						<ToggleButton id="recorder-toggle-audio" variant="light" className="recorder-togglebutton" disabled={!this.props.audio || this.state.recording} value="audio">{this.props.t('audio')}</ToggleButton>
 					</ToggleButtonGroup> : null
 				}
 				{ this.state.finished ? this.renderAudioVideo() : null }

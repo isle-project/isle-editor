@@ -44,10 +44,10 @@ class KeyboardHelp extends Component {
 									{t('cut-line')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >X</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >X</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >X</Badge>
+									<Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >X</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -55,10 +55,10 @@ class KeyboardHelp extends Component {
 									{t('copy-line')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >C</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >C</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >C</Badge>
+									<Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >C</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -66,10 +66,10 @@ class KeyboardHelp extends Component {
 									{t('delete-line')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >K</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >K</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⇧</Badge> + <Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >K</Badge>
+									<Badge bg="secondary" >⇧</Badge> + <Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >K</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -77,10 +77,10 @@ class KeyboardHelp extends Component {
 									{t('scroll-line')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >↑</Badge> / <Badge variant="secondary" >↓</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >↑</Badge> / <Badge bg="secondary" >↓</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌃PgUp</Badge> / <Badge variant="secondary" >⌃PgDn</Badge>
+									<Badge bg="secondary" >⌃PgUp</Badge> / <Badge bg="secondary" >⌃PgDn</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -88,10 +88,10 @@ class KeyboardHelp extends Component {
 									{t('go-beginning-line')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Home</Badge> / <Badge variant="secondary" >End</Badge>
+									<Badge bg="secondary" >Home</Badge> / <Badge bg="secondary" >End</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >Home</Badge> / <Badge variant="secondary" >End</Badge>
+									<Badge bg="secondary" >Home</Badge> / <Badge bg="secondary" >End</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -99,10 +99,10 @@ class KeyboardHelp extends Component {
 									{t('go-beginning-file')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Home</Badge> / <Badge variant="secondary" >End</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >Home</Badge> / <Badge bg="secondary" >End</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘ ↑</Badge> / <Badge variant="secondary" >⌘ ↓</Badge>
+									<Badge bg="secondary" >⌘ ↑</Badge> / <Badge bg="secondary" >⌘ ↓</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -110,10 +110,10 @@ class KeyboardHelp extends Component {
 									{t('fold-region')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >[</Badge> / <Badge variant="secondary" >]</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >[</Badge> / <Badge bg="secondary" >]</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >[</Badge> / <Badge variant="secondary" >]</Badge>
+									<Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >[</Badge> / <Badge bg="secondary" >]</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -121,10 +121,10 @@ class KeyboardHelp extends Component {
 									{t('fold-all-regions')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl+K</Badge> <Badge variant="secondary" >Ctrl+0</Badge> / <Badge variant="secondary" >Ctrl+K</Badge> <Badge variant="secondary" >Ctrl+J</Badge>
+									<Badge bg="secondary" >Ctrl+K</Badge> <Badge bg="secondary" >Ctrl+0</Badge> / <Badge bg="secondary" >Ctrl+K</Badge> <Badge bg="secondary" >Ctrl+J</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘K ⌘0</Badge> / <Badge variant="secondary" >⌘K ⌘J</Badge>
+									<Badge bg="secondary" >⌘K ⌘0</Badge> / <Badge bg="secondary" >⌘K ⌘J</Badge>
 								</td>
 							</tr>
 						</tbody>
@@ -145,10 +145,10 @@ class KeyboardHelp extends Component {
 									{t('find')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >F</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >F</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >F</Badge>
+									<Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >F</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -156,10 +156,10 @@ class KeyboardHelp extends Component {
 									{t('replace')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >H</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >H</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >F</Badge>
+									<Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >F</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -167,10 +167,10 @@ class KeyboardHelp extends Component {
 									{t('select-all')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >Enter</Badge>
+									<Badge bg="secondary" >Alt</Badge> + <Badge bg="secondary" >Enter</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >Enter</Badge>
+									<Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >Enter</Badge>
 								</td>
 							</tr>
 						</tbody>
@@ -191,10 +191,10 @@ class KeyboardHelp extends Component {
 									{t('insert-cursor')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >click</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >click</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >click</Badge>
+									<Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >click</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -202,10 +202,10 @@ class KeyboardHelp extends Component {
 									{t('insert-cursor-above')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >↑</Badge>
+									<Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >Alt</Badge> + <Badge bg="secondary" >↑</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >↑</Badge>
+									<Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >↑</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -213,10 +213,10 @@ class KeyboardHelp extends Component {
 									{t('insert-cursor-below')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >↓</Badge>
+									<Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >Alt</Badge> + <Badge bg="secondary" >↓</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >↓</Badge>
+									<Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >↓</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -224,10 +224,10 @@ class KeyboardHelp extends Component {
 									{t('undo-last-cursor')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Ctrl</Badge> + <Badge variant="secondary" >U</Badge>
+									<Badge bg="secondary" >Ctrl</Badge> + <Badge bg="secondary" >U</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⌘</Badge> + <Badge variant="secondary" >U</Badge>
+									<Badge bg="secondary" >⌘</Badge> + <Badge bg="secondary" >U</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -235,10 +235,10 @@ class KeyboardHelp extends Component {
 									{t('insert-cursor-eol')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >I</Badge>
+									<Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >Alt</Badge> + <Badge bg="secondary" >I</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⇧</Badge> + <Badge variant="secondary" >⌥</Badge> + <Badge variant="secondary" >I</Badge>
+									<Badge bg="secondary" >⇧</Badge> + <Badge bg="secondary" >⌥</Badge> + <Badge bg="secondary" >I</Badge>
 								</td>
 							</tr>
 						</tbody>
@@ -259,10 +259,10 @@ class KeyboardHelp extends Component {
 									{t('command-panel')}
 								</td>
 								<td>
-									<Badge variant="secondary" >F1</Badge>
+									<Badge bg="secondary" >F1</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⇧⌘P</Badge> / <Badge variant="secondary" >F1</Badge>
+									<Badge bg="secondary" >⇧⌘P</Badge> / <Badge bg="secondary" >F1</Badge>
 								</td>
 							</tr>
 							<tr>
@@ -270,10 +270,10 @@ class KeyboardHelp extends Component {
 									{t('accessibility-help')}
 								</td>
 								<td>
-									<Badge variant="secondary" >Shift</Badge> + <Badge variant="secondary" >Alt</Badge> + <Badge variant="secondary" >F1</Badge>
+									<Badge bg="secondary" >Shift</Badge> + <Badge bg="secondary" >Alt</Badge> + <Badge bg="secondary" >F1</Badge>
 								</td>
 								<td>
-									<Badge variant="secondary" >⇧⌘P</Badge> / <Badge variant="secondary" >F1</Badge>
+									<Badge bg="secondary" >⇧⌘P</Badge> / <Badge bg="secondary" >F1</Badge>
 								</td>
 							</tr>
 						</tbody>

@@ -105,9 +105,11 @@ const FlippableCard = ( props ) => {
 		}
 	};
 	const button = props.button ?
-		<Button onClick={!props.disabled ? handleToggle : noop} block >
-			{props.button}
-		</Button> : null;
+		<div className="d-grid" >
+			<Button onClick={!props.disabled ? handleToggle : noop} >
+				{props.button}
+			</Button>
+		</div>: null;
 	const handleClick = !button && !props.disabled ? handleToggle : noop;
 	const out = <div
 		id={props.id} role="button" tabIndex={0}

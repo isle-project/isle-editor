@@ -54,7 +54,7 @@ const BoxplotMenu = ({ data, variables, groupingVariables, t, session, logAction
 				{t('Box Plot')}
 				<QuestionButton title={t('Box Plot')} content={t('Box Plot-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('variable-s')}
 					multi
@@ -99,7 +99,7 @@ const BoxplotMenu = ({ data, variables, groupingVariables, t, session, logAction
 					onChange={setOverlayPoints}
 				/>
 				<Button
-					variant="primary" block onClick={generateBoxplot}
+					variant="primary" onClick={generateBoxplot}
 					disabled={!selectedVariables || selectedVariables.length === 0}
 				>
 					{t('generate')}

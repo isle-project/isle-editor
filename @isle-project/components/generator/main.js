@@ -48,7 +48,9 @@ const Generator = ({ id, autoStart, buttonLabel, onGenerate }) => {
 	return (
 		<Panel>
 			{element}
-			<Button block onClick={handleClick}>{buttonLabel}</Button>
+			<div className="d-grid" >
+				<Button onClick={handleClick}>{buttonLabel}</Button>
+			</div>
 		</Panel>
 	);
 };

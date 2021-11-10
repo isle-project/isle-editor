@@ -278,10 +278,10 @@ class SettingsLogin extends Component {
 							value={this.state.loginMethod}
 							style={{ paddingBottom: '1rem', paddingTop: '1rem' }}
 						>
-							<ToggleButton value="SignIn" variant="outline-secondary" disabled={this.state.loginType === 'SSO'} >
+							<ToggleButton id="login-signin" value="SignIn" variant="outline-secondary" disabled={this.state.loginType === 'SSO'} >
 								{t('login-with-credentials')}
 							</ToggleButton>
-							<ToggleButton value="sso" variant="outline-secondary" disabled={this.state.loginType === 'SignIn'} >
+							<ToggleButton id="login-sso" value="sso" variant="outline-secondary" disabled={this.state.loginType === 'SignIn'} >
 								{t('login-with-sso')}
 							</ToggleButton>
 						</ToggleButtonGroup>
@@ -318,15 +318,16 @@ class SettingsLogin extends Component {
 									<FormText>{t('enter-password-isle-account')}</FormText>
 								</FormGroup>
 							</Fragment> : null }
-						<Button
-							variant="primary"
-							size="sm"
-							block
-							onClick={this.connectToServer}
-							disabled={!inputsAreEntered || invalidServer}
-						>
-							{t('connect')}
-						</Button>
+						<div className="d-grid" >
+							<Button
+								variant="primary"
+								size="sm"
+								onClick={this.connectToServer}
+								disabled={!inputsAreEntered || invalidServer}
+							>
+								{t('connect')}
+							</Button>
+						</div>
 						<hr />
 						<ErrorCard server={server} error={encounteredError} t={t} />
 						</Form>

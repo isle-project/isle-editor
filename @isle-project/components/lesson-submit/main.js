@@ -326,15 +326,16 @@ class LessonSubmit extends Component {
 				fontFamily: 'Arial',
 				...this.props.style
 			}}>
-				<Button
-					disabled={disabled}
-					variant="primary"
-					size="large"
-					onClick={this.handleClick}
-					block
-				>
-					{this.props.label ? this.props.label : this.props.t('finish-lesson')}
-				</Button>
+				<div className="d-grid gap-2">
+					<Button
+						disabled={disabled}
+						variant="primary"
+						size="large"
+						onClick={this.handleClick}
+					>
+						{this.props.label ? this.props.label : this.props.t('finish-lesson')}
+					</Button>
+				</div>
 				<Modal show={this.state.showUserModal} onHide={this.closeUserModal}>
 					<Modal.Header closeButton>
 						<Modal.Title>{this.props.t('authentication')}</Modal.Title>

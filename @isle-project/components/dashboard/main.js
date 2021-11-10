@@ -41,6 +41,7 @@ const uid = generateUID( 'dashboard' );
 * @property {string} label - button label
 * @property {number} maxWidth - maximum width of dashboard
 * @property {string} className - class name
+* @property {string} bodyClassName - class name for the card body
 * @property {Object} style - CSS inline styles
 * @property {Function} onGenerate - function invoked when the button is clicked or one of the dashboard input values changes (if `autoUpdate` is set to `true`). The function is called with the values of the input fields, in the order in which they are placed in the dashboard
 */
@@ -178,16 +179,14 @@ class Dashboard extends Component {
 					</Card.Header>:
 					null
 				}
-				<Card.Body>
+				<Card.Body className={this.props.bodyClassName} >
 					<p>{this.props.description}</p>
 					{this._children}
 					{ !this.props.autoUpdate ?
 						<Button
 							variant="primary"
-							className="dashboard-button"
 							disabled={this.props.disabled}
 							onClick={this.handleClick}
-							block
 						>{this.props.label || this.props.t('generate')}</Button> :
 						<span />
 					}
@@ -208,6 +207,7 @@ Dashboard.defaultProps = {
 	label: null,
 	maxWidth: 600,
 	className: '',
+	bodyClassName: 'd-grid gap-3',
 	style: {},
 	onGenerate() {},
 	title: ''
@@ -224,6 +224,7 @@ Dashboard.propTypes = {
 	label: PropTypes.string,
 	maxWidth: PropTypes.number,
 	className: PropTypes.string,
+	bodyClassName: PropTypes.string,
 	style: PropTypes.object,
 	onGenerate: PropTypes.func,
 	title: PropTypes.oneOfType([

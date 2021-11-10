@@ -87,7 +87,7 @@ const ScatterplotMenu = ( props ) => {
 				{t('Scatterplot')}
 				<QuestionButton title={t('Scatterplot')} content={t('Scatterplot-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<div style={{ width: '100%' }}>
 					<SelectInput
 						legend={t('x-axis')}
@@ -202,7 +202,7 @@ const ScatterplotMenu = ( props ) => {
 						}}
 					/>
 				</Collapse>
-				<Button variant="primary" block onClick={generateScatterplot}>
+				<Button variant="primary" onClick={generateScatterplot}>
 					{t('generate')}
 				</Button>
 			</Card.Body>

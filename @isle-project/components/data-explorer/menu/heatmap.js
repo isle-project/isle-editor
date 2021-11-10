@@ -59,7 +59,7 @@ const HeatMapMenu = ( props ) => {
 				{t('Heat Map')}
 				<QuestionButton title={t('Heat Map')} content={t('Heat Map-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<Row>
 					<Col><SelectInput
 						legend={t('x-axis-variable')}
@@ -156,7 +156,7 @@ const HeatMapMenu = ( props ) => {
 						/>
 					</Col>
 				</Row>
-				<Button variant="primary" block onClick={generateHeatmap}>
+				<Button variant="primary" onClick={generateHeatmap}>
 					{t('generate')}
 				</Button>
 			</Card.Body>

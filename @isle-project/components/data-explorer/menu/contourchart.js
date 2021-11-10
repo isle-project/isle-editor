@@ -62,7 +62,7 @@ const ContourChartMenu = ( props ) => {
 				{t('Contour Chart')}
 				<QuestionButton title={t('Contour Chart')} content={t('Contour Chart-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<Row>
 					<Col>
 						<SelectInput
@@ -121,7 +121,7 @@ const ContourChartMenu = ( props ) => {
 						/>
 					</Col>
 				</Row>
-				<Button variant="primary" block onClick={generateContourChart}>
+				<Button variant="primary" onClick={generateContourChart}>
 					{t('generate')}
 				</Button>
 			</Card.Body>

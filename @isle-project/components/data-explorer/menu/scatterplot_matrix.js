@@ -49,7 +49,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 			<Card.Header as="h4" >
 				{t('Scatterplot Matrix')}<QuestionButton title={t('Scatterplot Matrix')} content={t('Scatterplot Matrix-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('variables')}
 					options={props.variables}
@@ -63,7 +63,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 					onChange={setColor}
 				/>
 				<Button
-					variant="primary" block
+					variant="primary"
 					onClick={generate}
 					disabled={!variables || variables.length < 2}
 				>

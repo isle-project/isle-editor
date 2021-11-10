@@ -360,12 +360,14 @@ class FormulaTransformer extends Component {
 								style={{ padding: 6 }}
 							>
 								<ToggleButton
+									id="data-explorer-transform-toggle-quantitative"
 									variant="outline-secondary"
 									value={false}
 								>
 									{t('treat-as-quantitative')}
 								</ToggleButton>
 								<ToggleButton
+									id="data-explorer-transform-toggle-categorical"
 									variant="outline-secondary"
 									value={true}
 								>

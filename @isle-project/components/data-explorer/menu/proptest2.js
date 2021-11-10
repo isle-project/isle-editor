@@ -89,7 +89,7 @@ const PropTest2Menu = ( props ) => {
 				{t('Two-Sample Proportion Test')}
 				<QuestionButton title={t('Two-Sample Proportion Test')} content={t('Two-Sample Proportion Test-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<Row>
 					<Col md={6}>
 						<SelectInput
@@ -165,7 +165,7 @@ const PropTest2Menu = ( props ) => {
 					onChange={setAlpha}
 				/>
 				<Button
-					variant="primary" block
+					variant="primary"
 					onClick={calculateTwoSamplePropTest}
 					disabled={!var2 && !group}
 				>

@@ -116,7 +116,7 @@ class GradeFeedbackRenderer extends Component {
 		const hasMessages = gradeMessages && gradeMessages[ this.props.for ];
 		return (
 			<Fragment>
-				<Badge variant="success" style={{ fontSize: '1em' }} >
+				<Badge bg="success" style={{ fontSize: '1em' }} >
 					{this.props.t('your-points')}: {grades[ this.props.for ]} / {this.props.points}
 				</Badge>
 				{hasMessages ? <Tooltip tooltip={this.props.t('display-instructor-feedback')} >
