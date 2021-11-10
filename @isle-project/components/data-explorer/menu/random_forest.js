@@ -139,7 +139,7 @@ class RandomForestMenu extends Component {
 							min={0} max={1} step={0.001}
 							defaultValue={this.state.scoreThreshold} onChange={( scoreThreshold ) => this.setState({ scoreThreshold })}
 						/>
-						<NumberInput legend={t('maximum-tre-depth')}
+						<NumberInput legend={t('maximum-tree-depth')}
 							min={1} max={50}
 							defaultValue={this.state.maxTreeDepth} onChange={( maxTreeDepth ) => this.setState({ maxTreeDepth })}
 						/>
