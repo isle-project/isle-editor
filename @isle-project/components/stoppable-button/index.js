@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useState, Fragment } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';

@@ -8,7 +8,6 @@ import isPlainObject from '@stdlib/assert/is-plain-object';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Gate from '@isle-project/components/gate';
 import KeyControls from '@isle-project/components/key-controls';
 import VideoPlayer from '@isle-project/components/video-player';
