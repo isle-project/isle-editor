@@ -11,7 +11,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 */
 class Placeholder extends Component {
 	render() {
-		console.log( this.props );
 		return <OverlayTrigger {...this.props} >{this.props.children}</OverlayTrigger>;
 	}
 }
