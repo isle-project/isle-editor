@@ -4,21 +4,21 @@
 		"alias": "axios",
 		"var": "axios",
 		"path": "axios.min.js",
-		"version": "0.21.1"
+		"version": "0.24.0"
 	},
 	{
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "20.4.0"
+		"version": "21.4.2"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
 		"alias": "pdf.js",
 		"var": "pdfjsLib",
 		"path": "pdf.min.js",
-		"version": "2.9.359",
+		"version": "2.11.338",
 		"defer": true
 	},
 	{
@@ -26,7 +26,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.4.1"
+		"version": "2.6.2"
 	},
 	{
 		"name": "lodash",
@@ -82,14 +82,14 @@
 		"alias": "markdown-it",
 		"var": "markdownit",
 		"path": "markdown-it.min.js",
-		"version": "12.1.0"
+		"version": "12.2.0"
 	},
 	{
 		"name": "victory",
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "35.11.0"
+		"version": "36.2.0"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
@@ -104,7 +104,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.2.2",
+		"version": "0.2.4",
 		"defer": true
 	},
 	{
@@ -112,7 +112,7 @@
 		"alias": "localforage",
 		"var": "localforage",
 		"path": "localforage.min.js",
-		"version": "1.9.0"
+		"version": "1.10.0"
 	},
 	{
 		"name": "react-player",
@@ -128,7 +128,7 @@
 		"var": "ReactDraggable",
 		"path": "build/web/react-draggable.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.4.3"
+		"version": "4.4.4"
 	},
 	{
 		"name": "socket.io-client",
@@ -136,7 +136,7 @@
 		"var": "io",
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.1.3"
+		"version": "4.3.2"
 	},
 	{
 		"name": "react-list",
