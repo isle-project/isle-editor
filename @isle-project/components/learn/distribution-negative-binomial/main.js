@@ -272,7 +272,7 @@ class NegativeBinomial extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'smaller' )}
 										<TeX raw={`P(X \\le ${roundn( x0, -4 )} ) = ${roundn( pnbinom( x0 - minValue, r, p ), -4 )}`} displayMode tag="" />
 									</Panel>
@@ -344,7 +344,7 @@ class NegativeBinomial extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'greater' )}
 										<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pnbinom( x0 - minValue, r, p ), -4 )}`} displayMode tag="" />
 									</Panel>
@@ -416,7 +416,7 @@ class NegativeBinomial extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pnbinom( x1 - minValue, r, p ) - pnbinom( x0 - minValue - 1, r, p ), -4 )}`} displayMode tag="" /> :

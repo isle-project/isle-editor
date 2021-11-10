@@ -109,7 +109,7 @@ class TProbs extends Component {
 			<Container>
 				<Row>
 					<Col md={4} >
-						<Panel>
+						<Panel bodyClassName="d-grid gap-1" >
 							{this.renderInputs( 'quantile' )}
 							<TeX raw={`F^{-1}(p) = ${roundn( quantile, -4 )}`} />
 						</Panel>
@@ -171,7 +171,7 @@ class TProbs extends Component {
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'smaller' )}
 									<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pt( x0, df ), -4 )}`} displayMode tag="" />
 								</Panel>
@@ -238,7 +238,7 @@ class TProbs extends Component {
 										style={{
 											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
 										}}
-									/>
+									/>``
 									<VictoryLine
 										data={[
 											{ x: 0, y: pt( x0, df ) },
@@ -255,7 +255,7 @@ class TProbs extends Component {
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'greater' )}
 									<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1.0 - pt( x0, df ), -4 )}`} displayMode tag="" />
 								</Panel>
@@ -348,7 +348,7 @@ class TProbs extends Component {
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'range' )}
 									{ x1 >= x0 ?
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pt( x1, df ) - pt( x0, df ), -4 )}`} displayMode tag="" /> :

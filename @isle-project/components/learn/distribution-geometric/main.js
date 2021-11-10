@@ -231,7 +231,7 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'smaller' )}
 										<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pgeom( x0 - minValue, p ), -4 )}`} />
 									</Panel>
@@ -308,7 +308,7 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'greater' )}
 										<TeX raw={`P(X > ${roundn( x0, -4 )}) = ${roundn( 1-pgeom( x0 - minValue, p ), -4 )}`} />
 									</Panel>
@@ -383,7 +383,7 @@ class GeometricDistribution extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'range' )}
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pgeom( x1 - minValue, p ) - pgeom( x0 - minValue - 1, p ), -4 )}`} />
 									</Panel>

@@ -244,7 +244,7 @@ class BinomialProps extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'smaller' )}
 										<TeX raw={`P(X \\le${roundn( x0, -4 )}) = ${roundn( pbinom( x0, n, p ), -4 )}`} displayMode tag="" />
 									</Panel>
@@ -316,7 +316,7 @@ class BinomialProps extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'greater' )}
 										<TeX raw={`P(X >${roundn( x0, -4 )}) = ${roundn( 1.0 - pbinom( x0, n, p ), -4 )}`} displayMode tag="" />
 									</Panel>
@@ -388,7 +388,7 @@ class BinomialProps extends Component {
 						<Container>
 							<Row>
 								<Col md={4} >
-									<Panel>
+									<Panel bodyClassName="d-grid gap-1" >
 										{this.renderInputs( 'range' )}
 										{ x1 >= x0 ?
 											<TeX raw={`P(${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )}) = ${roundn( pbinom( x1, n, p ) - pbinom( x0 - 1, n, p ), -4 )}`} displayMode tag="" /> :

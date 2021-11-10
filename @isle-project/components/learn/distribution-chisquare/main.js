@@ -104,7 +104,7 @@ class ChisquareProbs extends Component {
 					<Tab eventKey={1} title={<TeX raw="P(X \le x_0)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'smaller' )}
 									<TeX raw={`P(X \\le ${roundn( x0, -4 )}) = ${roundn( pchisq( x0, df ), -4 )}`} displayMode />
 								</Panel>
@@ -188,7 +188,7 @@ class ChisquareProbs extends Component {
 					<Tab eventKey={2} title={<TeX raw="P(X > x_0)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'greater' )}
 									<TeX raw={`P(X > ${roundn( x0, -4 )} ) = ${roundn( 1-pchisq( x0, df ), -4 )}`} displayMode />
 								</Panel>
@@ -281,7 +281,7 @@ class ChisquareProbs extends Component {
 					<Tab eventKey={3} title={<TeX raw="P( x_0 \le X \le x_1)" />}>
 						<Container><Row>
 							<Col>
-								<Panel>
+								<Panel bodyClassName="d-grid gap-1" >
 									{this.renderInputs( 'range' )}
 									{ x1 >= x0 ?
 										<TeX raw={`P( ${roundn( x0, -4 )} \\le X \\le ${roundn( x1, -4 )} ) = ${roundn( pchisq( x1, df ) - pchisq( x0, df ), -4 )}`} displayMode /> :
