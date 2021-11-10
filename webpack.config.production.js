@@ -2,6 +2,7 @@
 
 const webpack = require( 'webpack' );
 const path = require( 'path' );
+const esbuild = require( 'esbuild' );
 const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 const baseConfig = require( './webpack.config.base' );
@@ -37,7 +38,8 @@ const config = {
 		minimize: true,
 		minimizer: [
 			new ESBuildMinifyPlugin({
-				target: 'es2015'
+				target: 'es2015',
+				implementation: esbuild
 			})
 		]
 	},
@@ -53,7 +55,8 @@ const config = {
 						loader: 'esbuild-loader',
 						options: {
 							loader: 'jsx',
-							target: 'es2015'
+							target: 'es2015',
+							implementation: esbuild
 						}
 					}
 				],
