@@ -65,7 +65,7 @@ class Controller extends Component {
 		this.unlisten();
 	}
 
-	_updateRoute = ( location ) => {
+	_updateRoute = ({ location }) => {
 		const slideCount = countSlides( this.props.children.props.children );
 		this.props.updateRoute({
 			location,
