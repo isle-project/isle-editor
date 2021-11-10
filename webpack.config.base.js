@@ -66,7 +66,8 @@ const config = {
 					loader: 'esbuild-loader',
 					options: {
 						loader: 'jsx',
-						target: 'es2015'
+						target: 'es2015',
+						legalComments: 'none'
 					}
 				}
 			],
