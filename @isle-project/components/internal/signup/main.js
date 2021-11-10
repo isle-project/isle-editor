@@ -12,8 +12,8 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import pick from '@stdlib/utils/pick';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
@@ -227,8 +227,8 @@ class Signup extends Component {
 						containerPadding={20}
 					>
 						<Popover id="popover-contained" >
-							<PopoverTitle>{this.props.t( 'inputs-invalid' )}</PopoverTitle>
-							<PopoverContent>{this.props.t( 'inputs-invalid-content' )}</PopoverContent>
+							<PopoverHeader>{this.props.t( 'inputs-invalid' )}</PopoverHeader>
+							<PopoverBody>{this.props.t( 'inputs-invalid-content' )}</PopoverBody>
 						</Popover>
 					</Overlay>
 				</Modal.Body>

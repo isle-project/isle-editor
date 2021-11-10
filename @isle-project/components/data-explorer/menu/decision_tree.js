@@ -46,7 +46,7 @@ const DecisionTreeMenu = ( props ) => {
 				{t('Decision Tree')}
 				<QuestionButton title={t('Decision Tree')} content={t('Decision Tree-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('type')}
 					options={[ 'Classification', 'Regression' ]}
@@ -92,7 +92,7 @@ const DecisionTreeMenu = ( props ) => {
 						onChange={setMinItemsCount}
 					/>
 				</Collapse>
-				<Button disabled={!x || x.length === 0} variant="primary" block onClick={compute} >
+				<Button disabled={!x || x.length === 0} variant="primary" onClick={compute} >
 					{t('calculate')}
 				</Button>
 			</Card.Body>

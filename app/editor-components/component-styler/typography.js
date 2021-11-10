@@ -136,24 +136,28 @@ const Typography = ({ active, style, onChange, t }) => {
 						value={style.textAlign || 'left'}
 					>
 						<ToggleButton
+							id="toggle-text-align-left"
 							variant="outline-secondary"
 							value="left"
 						>
 							<i className="fas fa-align-left"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-align-center"
 							variant="outline-secondary"
 							value="center"
 						>
 							<i className="fas fa-align-center"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-align-right"
 							variant="outline-secondary"
 							value="right"
 						>
 							<i className="fas fa-align-right"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-align-justify"
 							variant="outline-secondary"
 							value="justify"
 						>
@@ -176,12 +180,14 @@ const Typography = ({ active, style, onChange, t }) => {
 						style={{ marginRight: 6 }}
 					>
 						<ToggleButton
+							id="toggle-font-style-regular"
 							variant="outline-secondary"
 							value="regular"
 						>
 							<i className="fas fa-font"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-font-style-italic"
 							variant="outline-secondary"
 							value="italic"
 						>
@@ -196,24 +202,28 @@ const Typography = ({ active, style, onChange, t }) => {
 						value={style.textDecoration}
 					>
 						<ToggleButton
+							id="toggle-text-decoration-none"
 							variant="outline-secondary"
 							value="none"
 						>
 							<i className="fas fa-times"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-decoration-underline"
 							variant="outline-secondary"
 							value="line-through"
 						>
 							<i className="fas fa-strikethrough"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-decoration-overline"
 							variant="outline-secondary"
 							value="underline"
 						>
 							<i className="fas fa-underline"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-text-decoration-line-through"
 							variant="outline-secondary"
 							value="overline"
 						>

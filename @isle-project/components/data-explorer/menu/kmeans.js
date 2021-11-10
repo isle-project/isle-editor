@@ -52,6 +52,7 @@ const KMeansMenu = ( props ) => {
 			</span>}
 			autoStart={false}
 			onGenerate={compute}
+			bodyClassName="d-grid gap-3"
 		>
 			<SelectInput
 				legend={t('variables')} multi

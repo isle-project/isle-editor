@@ -378,6 +378,7 @@ class ActionLog extends Component {
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
+							id="toggle-original-actions"
 							size="sm"
 							variant="light"
 							value={false}
@@ -387,6 +388,7 @@ class ActionLog extends Component {
 							}}
 						>{this.props.t( 'original' )}</ToggleButton>
 						<ToggleButton
+							id="toggle-anonymized-actions"
 							size="sm"
 							variant="light"
 							value={true}
@@ -405,6 +407,7 @@ class ActionLog extends Component {
 						style={{ marginRight: '5px' }}
 					>
 						<ToggleButton
+							id="toggle-instructor-actions"
 							size="sm"
 							variant="light"
 							value="owners"
@@ -414,6 +417,7 @@ class ActionLog extends Component {
 							}}
 						>{this.props.t( 'instructors' )}</ToggleButton>
 						<ToggleButton
+							id="toggle-student-actions"
 							size="sm"
 							variant="light"
 							value="students"
@@ -423,6 +427,7 @@ class ActionLog extends Component {
 							}}
 						>{this.props.t( 'students' )}</ToggleButton>
 						<ToggleButton
+							id="toggle-guest-actions"
 							size="sm"
 							variant="light"
 							value="guests"

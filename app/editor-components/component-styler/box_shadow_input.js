@@ -95,12 +95,14 @@ const BoxShadowInput = ({ style, onChange, t }) => {
 						value={state.inset}
 					>
 						<ToggleButton
+							id="toggle-shadow-outside"
 							variant="outline-secondary"
 							value={false}
 						>
 							{t('outside')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-shadow-inside"
 							variant="outline-secondary"
 							value={true}
 						>

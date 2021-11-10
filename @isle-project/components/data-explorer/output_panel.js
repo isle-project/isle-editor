@@ -45,9 +45,11 @@ class OutputPanel extends Component {
 				>
 					{output}
 				</div>
-				<Button size="sm" variant="outline-danger" block onClick={this.props.clearOutput}>
-					{t('clear-all')}
-				</Button>
+				<div className="d-grid" >
+					<Button size="sm" variant="outline-danger" onClick={this.props.clearOutput}>
+						{t('clear-all')}
+					</Button>
+				</div>
 			</Fragment>
 		);
 	}

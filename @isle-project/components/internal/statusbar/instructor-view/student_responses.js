@@ -494,7 +494,7 @@ class StudentResponses extends Component {
 							<div style={{ width: '80%' }}>{id}</div>
 							{ leftUser ? <button className="student-responses-note-button" onClick={this.handleFeedbackFactory( id )} >
 								<i className="student-responses-note-icon far fa-sticky-note"></i>
-								<Badge className="student-responses-note-badge" pill variant="secondary" >
+								<Badge className="student-responses-note-badge" pill bg="secondary" >
 									{lessonGradeMessages[ leftUser.email ] ? ( lessonGradeMessages[ leftUser.email ][ id ] || [] ).length : 0}
 								</Badge>
 							</button> : null }
@@ -599,7 +599,7 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
-					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" style={{ float: 'right' }}>
+					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge bg="secondary" style={{ float: 'right' }}>
 						{session.lessonGrades[ email ]._sumPoints} / {session.metadata.grades.maxPoints}
 					</Badge> : null}
 				</components.Option>
@@ -625,7 +625,7 @@ class StudentResponses extends Component {
 					<Tooltip tooltip={email} placement="top" >
 						<span style={{ paddingLeft: 6 }} >{name}</span>
 					</Tooltip>
-					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge variant="secondary" style={{ marginLeft: 6 }} >
+					{session.lessonGrades && session.lessonGrades[ email ] ? <Badge bg="secondary" style={{ marginLeft: 6 }} >
 						{session.lessonGrades[ email ]._sumPoints} / {session.metadata.grades.maxPoints}
 					</Badge> : null}
 				</components.SingleValue>
@@ -670,7 +670,7 @@ class StudentResponses extends Component {
 				<Col>
 					{ this.state.leftUser ?
 						<Fragment>
-							<Badge variant="secondary" style={{ verticalAlign: 'sub' }}>
+							<Badge bg="secondary" style={{ verticalAlign: 'sub' }}>
 								{this.props.t('maximum-points')}: {session.metadata.grades.maxPoints}
 							</Badge>
 							<Button
@@ -700,6 +700,7 @@ class StudentResponses extends Component {
 				style={{ marginRight: '5px' }}
 			>
 				<ToggleButton
+					id="toggle-responses-original"
 					size="sm"
 					variant="light"
 					value={false}
@@ -709,6 +710,7 @@ class StudentResponses extends Component {
 					}}
 				>{this.props.t( 'original' )}</ToggleButton>
 				<ToggleButton
+					id="toggle-responses-anonymized"
 					size="sm"
 					variant="light"
 					value={true}

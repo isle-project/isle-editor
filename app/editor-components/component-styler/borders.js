@@ -139,6 +139,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 						value={state.style}
 					>
 						<ToggleButton
+							id="border-style-toggle-none"
 							variant="outline-secondary"
 							value="none"
 							title={t('none')}
@@ -146,6 +147,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 							<i className="fas fa-times"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="border-style-toggle-solid"
 							variant="outline-secondary"
 							value="solid"
 							title={t('solid')}
@@ -154,6 +156,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 							<span className="component-styler-unicode-solid">&#9135;</span>
 						</ToggleButton>
 						<ToggleButton
+							id="border-style-toggle-dotted"
 							variant="outline-secondary"
 							value="dotted"
 							title={t('dotted')}
@@ -161,6 +164,7 @@ const BorderInputs = ({ activeBorder, style, onChange, t }) => {
 							<i className="fas fa-ellipsis-h"></i>
 						</ToggleButton>
 						<ToggleButton
+							id="border-style-toggle-dashed"
 							variant="outline-secondary"
 							value="dashed"
 							title={t('dashed')}

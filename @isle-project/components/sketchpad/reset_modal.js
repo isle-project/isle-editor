@@ -31,7 +31,11 @@ class ResetModal extends Component {
 				{this.props.t('reset-modal-body')}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="danger" onClick={this.handleClick} block>{this.props.t('reset')}</Button>
+				<div className="d-grid" >
+					<Button variant="danger" onClick={this.handleClick} >
+						{this.props.t('reset')}
+					</Button>
+				</div>
 			</Modal.Footer>
 		</Modal> );
 	}

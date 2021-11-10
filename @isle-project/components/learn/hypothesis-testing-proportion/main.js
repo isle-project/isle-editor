@@ -181,7 +181,7 @@ class ProportionTest extends Component {
 		const { p0, samples } = this.state;
 		const { t } = this.props;
 		const firstSampleParams = <div>
-			{ samples === 'Two-Sample' ? <Badge variant="secondary">First Sample</Badge> : null }
+			{ samples === 'Two-Sample' ? <Badge bg="secondary">First Sample</Badge> : null }
 			<NumberInput
 				legend={t('sample-proportion')}
 				defaultValue={this.state.phat}
@@ -207,7 +207,7 @@ class ProportionTest extends Component {
 			/>
 		</div>;
 		const secondSampleParams = <div>
-			{ samples === 'Two-Sample' ? <Badge variant="secondary">Second Sample</Badge> : null }
+			{ samples === 'Two-Sample' ? <Badge bg="secondary">Second Sample</Badge> : null }
 			<NumberInput
 				legend={t('sample-proportion')}
 				defaultValue={this.state.phat2}

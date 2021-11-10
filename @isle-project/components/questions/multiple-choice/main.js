@@ -484,13 +484,14 @@ class MultipleChoiceQuestion extends Component {
 			submitLabel = this.props.t('submit');
 		}
 		return (
-			<Button
-				className="submit-button"
-				size="small"
-				onClick={this.submitQuestion}
-				disabled={this.checkDisabledStatus()}
-				block
-			>{submitLabel}</Button>
+			<div className="d-grid" >
+				<Button
+					className="submit-button"
+					size="small"
+					onClick={this.submitQuestion}
+					disabled={this.checkDisabledStatus()}
+				>{submitLabel}</Button>
+			</div>
 		);
 	}
 

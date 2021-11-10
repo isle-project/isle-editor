@@ -75,7 +75,6 @@ const HierarchicalClusteringMenu = ( props ) => {
 					<NumberInput
 						legend={t('number-of-clusters')}
 						min={1}
-						inline
 						defaultValue={3}
 					/>
 				</Col>

@@ -295,7 +295,7 @@ const ImageQuestion = ( props ) => {
 	}
 	return (
 		<Card id={id.current} className={`image-question ${props.className}`} style={props.style} >
-			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
+			<Card.Body className="d-grid gap-2" style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<Spinner running={isProcessing} width={256} height={128} />
 				{content}

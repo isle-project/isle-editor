@@ -10,8 +10,8 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
@@ -142,8 +142,8 @@ const HistoryPanel = ( props ) => {
 			}
 		}
 		const popover = <Popover id={`history-note-popover-${index}`} style={{ width: 250 }} >
-			<PopoverTitle>{props.t('leave-note')}</PopoverTitle>
-			<PopoverContent>
+			<PopoverHeader>{props.t('leave-note')}</PopoverHeader>
+			<PopoverBody>
 				<TextSelect options={[
 					'Did you consider any confounding variables?',
 					'You should check model diagnostics'
@@ -156,7 +156,7 @@ const HistoryPanel = ( props ) => {
 					}
 					setNotes( newNotes );
 				}} t={props.t} />
-			</PopoverContent>
+			</PopoverBody>
 		</Popover>;
 		return ( <ListGroupItem>
 			<div className="actionNote">
@@ -235,12 +235,14 @@ const HistoryPanel = ( props ) => {
 					style={{ padding: 6 }}
 				>
 					<ToggleButton
+						id="data-explorer-action-toggle-own"
 						variant="outline-secondary"
 						value="own"
 					>
 						{props.t('own-actions')}
 					</ToggleButton>
 					<ToggleButton
+						id="data-explorer-action-toggle-others"
 						variant="outline-secondary"
 						value="others"
 					>

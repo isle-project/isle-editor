@@ -5,6 +5,13 @@
 	margin-right: 20px;
 }
 
+.text-editor-jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+}
+
 .editorview-wrapper {
 	border-left: 1px solid rgba(92, 92, 92, 0.6);
 	border-right: 1px solid rgba(92, 92, 92, 0.6);

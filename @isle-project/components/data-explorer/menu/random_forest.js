@@ -85,7 +85,7 @@ class RandomForestMenu extends Component {
 					{t('Random Forest')}
 					<QuestionButton title={t('Random Forest')} content={DESCRIPTION} />
 				</Card.Header>
-				<Card.Body>
+				<Card.Body className="d-grid gap-3" >
 					<SelectInput
 						legend={t('type')}
 						options={[ 'Classification' ]}
@@ -155,7 +155,7 @@ class RandomForestMenu extends Component {
 						options={[ 'gini', 'entropy' ]}
 						onChange={( impurityMeasure ) => this.setState({ impurityMeasure })}
 					/> : null }
-					<Button disabled={!x || x.length === 0} variant="primary" block onClick={this.compute}>
+					<Button disabled={!x || x.length === 0} variant="primary" onClick={this.compute}>
 						{t('calculate')}
 					</Button>
 				</Card.Body>

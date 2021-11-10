@@ -138,18 +138,21 @@ const Position = ({ active, style, onChange, t }) => {
 						value={style.float || 'none'}
 					>
 						<ToggleButton
+							id="toggle-float-none"
 							variant="outline-secondary"
 							value="none"
 						>
 							{t('none')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-float-left"
 							variant="outline-secondary"
 							value="left"
 						>
 							{t('left')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-float-right"
 							variant="outline-secondary"
 							value="right"
 						>
@@ -171,24 +174,28 @@ const Position = ({ active, style, onChange, t }) => {
 						value={style.clear || 'none'}
 					>
 						<ToggleButton
+							id="toggle-clear-none"
 							variant="outline-secondary"
 							value="none"
 						>
 							{t('none')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-clear-left"
 							variant="outline-secondary"
 							value="left"
 						>
 							{t('left')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-clear-right"
 							variant="outline-secondary"
 							value="right"
 						>
 							{t('right')}
 						</ToggleButton>
 						<ToggleButton
+							id="toggle-clear-both"
 							variant="outline-secondary"
 							value="both"
 						>

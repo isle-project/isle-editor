@@ -14,8 +14,8 @@ import { ContextMenuTrigger } from '@isle-project/components/internal/contextmen
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import PopoverContent from 'react-bootstrap/PopoverContent';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
+import PopoverBody from 'react-bootstrap/PopoverBody';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -2484,15 +2484,15 @@ class Sketchpad extends Component {
 				return { value: user.name, label: user.name };
 			});
 		const popover = <Popover id="popover-positioned-right" >
-			<PopoverTitle>{this.props.t('remote-control-by')}</PopoverTitle>
-			<PopoverContent>
+			<PopoverHeader>{this.props.t('remote-control-by')}</PopoverHeader>
+			<PopoverBody>
 				<Select isClearable inline options={users} onChange={( newValue ) => {
 					this.setState({
 						receiveFrom: newValue
 					});
 				}} />
 				<Checkbox defaultValue={this.state.groupMode} onChange={this.toggleGroupMode} legend={this.props.t('group-mode')} />
-			</PopoverContent>
+			</PopoverBody>
 		</Popover>;
 		let toggleFillButton;
 		if ( this.props.pdf ) {

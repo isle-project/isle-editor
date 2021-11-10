@@ -65,7 +65,7 @@ const LinePlotMenu = ( props ) => {
 				{t('Line Plot')}
 				<QuestionButton title={t('Line Plot')} content={t('Line Plot-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<FormGroup controlId="lineplot-form-select">
 					<FormLabel>{t('x-axis')}</FormLabel>
 					<Select
@@ -111,9 +111,11 @@ const LinePlotMenu = ( props ) => {
 					defaultValue={showPoints}
 					onChange={setShowPoints}
 				/>
-				<Button variant="primary" block onClick={generateLinePlot}>
-					{t('generate')}
-				</Button>
+				<div className="d-grid" >
+					<Button variant="primary" onClick={generateLinePlot}>
+						{t('generate')}
+					</Button>
+				</div>
 			</Card.Body>
 		</Card>
 	);

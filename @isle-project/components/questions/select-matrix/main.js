@@ -225,7 +225,7 @@ class SelectQuestionMatrix extends Component {
 		return ( <Fragment>
 			{cellLabel ? <span className="select-question-matrix-cell-label" >{cellLabel}</span> : null }{select}
 			{displayFeedback ?
-				<Badge variant={valueColor === 'green' ? 'success' : 'danger'}>
+				<Badge bg={valueColor === 'green' ? 'success' : 'danger'}>
 					{badgeLabel}
 					{this.state.completed ? this.props.options[ label ][ this.props.solution[ label ] ] : null}
 				</Badge> : null}

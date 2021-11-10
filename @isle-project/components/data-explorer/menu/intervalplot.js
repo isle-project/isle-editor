@@ -49,7 +49,7 @@ const IntervalPlotMenu = ({ data, variables, groupingVariables, t, session, logA
 				{t('Interval Plot')}
 				<QuestionButton title={t('Interval Plot')} content={t('Interval Plot-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('variable')}
 					defaultValue={selectedVariable}
@@ -79,7 +79,7 @@ const IntervalPlotMenu = ({ data, variables, groupingVariables, t, session, logA
 					step="any"
 				/>
 				<Button
-					variant="primary" block onClick={generateIntervalPlot}
+					variant="primary" onClick={generateIntervalPlot}
 					disabled={!selectedVariable || !group}
 				>
 					{t('generate')}

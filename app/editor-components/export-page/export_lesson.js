@@ -276,20 +276,19 @@ class ExportLesson extends Component {
 							variant="primary"
 							onClick={this.handleFileInputClick}
 						>{t('select-output')}</Button>
-						<InputGroup.Append>
-							<InputGroup.Text>{t('path')}: {this.state.outputPath}</InputGroup.Text>
-						</InputGroup.Append>
+						<InputGroup.Text>{t('path')}: {this.state.outputPath}</InputGroup.Text>
 					</InputGroup>
-					<Button
-						variant="success"
-						size="small"
-						onClick={this.generateApp}
-						block
-						style={{
-							marginTop: '15px'
-						}}
-						disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || ( this.state.finished && !this.state.error )}
-					>{t('generate-lesson')}</Button>
+					<div className="d-grid" >
+						<Button
+							variant="success"
+							size="small"
+							onClick={this.generateApp}
+							style={{
+								marginTop: '15px'
+							}}
+							disabled={this.state.spinning || !this.state.outputPath || !this.state.outputDir || ( this.state.finished && !this.state.error )}
+						>{t('generate-lesson')}</Button>
+					</div>
 					<br />
 					{this.renderFinished()}
 					{this.renderAlreadyExists()}

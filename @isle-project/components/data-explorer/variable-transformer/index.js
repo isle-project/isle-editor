@@ -104,54 +104,41 @@ const Transformer = ( props ) => {
 	}
 	return (
 		<Fragment>
-			<div className="well" style={{ padding: 15, margin: 15 }} >
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={toggleFormulaModal}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						{t('interactions-functions')}
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={toggleBinModal}
-						disabled={!quantitative || quantitative.length === 0}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						{t('bin-quantitative')}
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={toggleCategoricalModal}
-						disabled={!categorical || categorical.length === 0}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						{t('rename-or-combine')}
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
-					<Button
-						onClick={toggleGroupModal}
-						variant="primary"
-						block
-						style={{ fontSize: '1.2em' }}
-					>
-						{t('create-groups')}
-					</Button>
-				</div>
-				<div style={{ padding: 12 }} >
+			<div className="well d-grid gap-3" style={{ padding: 15, margin: 15 }} >
+				<Button
+					onClick={toggleFormulaModal}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('interactions-functions')}
+				</Button>
+				<Button
+					onClick={toggleBinModal}
+					disabled={!quantitative || quantitative.length === 0}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('bin-quantitative')}
+				</Button>
+				<Button
+					onClick={toggleCategoricalModal}
+					disabled={!categorical || categorical.length === 0}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('rename-or-combine')}
+				</Button>
+				<Button
+					onClick={toggleGroupModal}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('create-groups')}
+				</Button>
+				<div className="d-grid" >
 					<Button
 						onClick={toggleRandomModal}
 						variant="primary"
-						block
 						style={{ fontSize: '1.2em' }}
 					>
 						{t('generate-random-data')}

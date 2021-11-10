@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Step } from 'prosemirror-transform';
 import { EditorView } from 'prosemirror-view';
@@ -295,7 +294,7 @@ class HistoryView extends Component {
 				ref={this._createEditorView}
 			/>;
 		} else {
-			editorDiv = <Jumbotron>{t('history-only-available-for-users')}</Jumbotron>;
+			editorDiv = <div className="text-editor-jumbotron" >{t('history-only-available-for-users')}</div>;
 		}
 		return (
 			<Fragment>

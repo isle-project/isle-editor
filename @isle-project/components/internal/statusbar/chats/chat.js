@@ -9,8 +9,8 @@ import replace from '@stdlib/string/replace';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Popover from 'react-bootstrap/Popover';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import Button from 'react-bootstrap/Button';
 import noop from '@stdlib/utils/noop';
 import Draggable from '@isle-project/components/draggable';
@@ -160,14 +160,14 @@ class Chat extends Component {
 	renderMembers() {
 		const { chat } = this.props;
 		const userlistPopover = <Popover id="userlistPopover" >
-			<PopoverTitle>{this.props.t( 'chat-members', { name: chat.name })}</PopoverTitle>
-			<PopoverContent>
+			<PopoverHeader>{this.props.t( 'chat-members', { name: chat.name })}</PopoverHeader>
+			<PopoverBody>
 				<ListGroup>
 					{chat.members.map( ( member, idx ) => {
 						return <ListGroupItem style={{ padding: '3px 3px' }} key={idx}>{member.name}</ListGroupItem>;
 					})}
 				</ListGroup>
-			</PopoverContent>
+			</PopoverBody>
 		</Popover>;
 		return ( <OverlayTrigger trigger={[ 'hover', 'focus' ]} placement="bottom" overlay={userlistPopover}>
 			<div

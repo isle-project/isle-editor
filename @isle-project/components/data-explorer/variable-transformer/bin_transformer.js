@@ -447,6 +447,7 @@ const BinningTransformer = ( props ) => {
 						overflowY: 'auto',
 						position: 'relative'
 					}}
+					bodyClassName="d-grid gap-3"
 					role="button" tabIndex={0}
 				>
 					{renderBody()}

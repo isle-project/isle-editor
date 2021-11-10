@@ -27,6 +27,7 @@ const AnovaMenu = ({ quantitative, categorical, t, data, showDecision, logAction
 				const output = <Anova data={data} variable={variable} group={group} showDecision={showDecision} />;
 				onCreated( output );
 			}}
+			bodyClassName="d-grid gap-3"
 		>
 			<SelectInput
 				legend={t('variable')}

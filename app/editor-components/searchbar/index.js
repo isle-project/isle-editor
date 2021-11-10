@@ -26,11 +26,9 @@ const SearchBar = ( props ) => {
 	return (
 		<FormGroup className={props.className} style={props.style} >
 			<InputGroup>
-				<InputGroup.Prepend>
-					<Button size={props.buttonSize} aria-label="search-field-icon" disabled variant="outline-secondary" style={{ cursor: 'auto' }}>
-						<i className="fa fa-search"></i>
-					</Button>
-				</InputGroup.Prepend>
+				<Button size={props.buttonSize} aria-label="search-field-icon" disabled variant="outline-secondary" style={{ cursor: 'auto' }}>
+					<i className="fa fa-search"></i>
+				</Button>
 				<FormControl
 					className="editor-searchbar"
 					type="text"
@@ -39,7 +37,7 @@ const SearchBar = ( props ) => {
 					onChange={props.onChange}
 					aria-label="search-field"
 				/>
-				{props.onClear ? <InputGroup.Append>
+				{props.onClear ?
 					<Button
 						size={props.buttonSize}
 						aria-label="search-field-icon"
@@ -47,8 +45,7 @@ const SearchBar = ( props ) => {
 						onClick={props.onClear}
 					>
 						<i className="fas fa-times"></i>
-					</Button>
-				</InputGroup.Append> : null}
+					</Button> : null}
 			</InputGroup>
 		</FormGroup>
 	);

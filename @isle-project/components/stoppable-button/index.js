@@ -57,19 +57,18 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 		return <Alert variant="danger">{t('supply-component-id')}</Alert>;
 	}
 	return (
-		<Fragment>
+		<div className="d-grid gap-2" >
 			<Button
 				className="stoppable-button"
 				size={size}
 				variant={variant}
-				block fill
 				onClick={onClick}
 				disabled={disabled || paused}
 			>{children}</Button>
 			<Gate owner banner={null} >
 				<Button
 					size={size}
-					variant={paused ? 'warning' : 'secondary'} block fill
+					variant={paused ? 'warning' : 'secondary'}
 					onClick={togglePaused}
 				>
 					{paused ?
@@ -82,7 +81,7 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 					}
 				</Button>
 			</Gate>
-		</Fragment>
+		</div>
 	);
 };
 

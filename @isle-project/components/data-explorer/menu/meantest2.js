@@ -70,7 +70,7 @@ const MeanTest2Menu = ( props ) => {
 				{t('Two-Sample Mean Test')}
 				<QuestionButton title={t('Two-Sample Mean Test')} content={t('Two-Sample Mean Test-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('type-of-test')}
 					defaultValue={type}
@@ -164,7 +164,7 @@ const MeanTest2Menu = ( props ) => {
 					menuPlacement="top"
 				/>
 				<Button
-					variant="primary" block
+					variant="primary"
 					onClick={calculateTwoSampleZTest}
 					disabled={(!group && !y) || !x}
 				>

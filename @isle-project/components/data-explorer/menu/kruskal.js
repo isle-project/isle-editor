@@ -30,6 +30,7 @@ const KruskalMenu = ( props ) => {
 			</span>}
 			label={t('calculate')}
 			onGenerate={calculateTest}
+			bodyClassName="d-grid gap-3"
 		>
 			<SelectInput
 				legend={t('variable')}

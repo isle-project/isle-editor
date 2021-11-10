@@ -67,16 +67,14 @@ const UnitInput = ({ style, property, label, labelWidth, colWidth, onChange }) =
 						value={value}
 						onChange={handleValueChange}
 					/>
-					<InputGroup.Append>
-						<Form.Control
-							value={unit}
-							as="select"
-							style={{ padding: 3, background: 'silver' }}
-							onChange={handleUnitChange}
-						>
-							{UNIT_TYPES.map( ( x, idx ) => <option key={idx}>{x}</option>)}
-						</Form.Control>
-					</InputGroup.Append>
+					<Form.Control
+						value={unit}
+						as="select"
+						style={{ padding: 3, background: 'silver' }}
+						onChange={handleUnitChange}
+					>
+						{UNIT_TYPES.map( ( x, idx ) => <option key={idx}>{x}</option>)}
+					</Form.Control>
 				</InputGroup>
 			</Col>
 		</Fragment>

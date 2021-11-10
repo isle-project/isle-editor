@@ -61,23 +61,25 @@ class SaveModal extends Component {
 				<Modal.Title as="h4">{t('download')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				{ this.props.pdf ? <Button className="sketchpad-download-link-btn" size="large" variant="secondary" block onClick={this.clickHide} >
-					<a className="unstyled-link sketchpad-download-link" href={this.props.pdf} download >
-						{t('download-original')}
-					</a>
-				</Button> : null }
-				{ this.state.ownerFile ? <Button size="large" variant="secondary" block onClick={this.clickHide}>
-					<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
-						{t('download-instructor-annotations')}<br />
-						<small>({t('last-updated')}: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} {t('by')} {ownerName})</small>
-					</a>
-				</Button> : null }
-				<Button variant="secondary" size="large" onClick={this.handlePDFExport} block >
-					{t('export-pdf')}
-				</Button>
-				<Button variant="secondary" size="large" onClick={this.handlePNGExport} block >
-					{t('export-png')}
-				</Button>
+				<div className="d-grid gap-2" >
+					{ this.props.pdf ? <Button className="sketchpad-download-link-btn" size="large" variant="secondary" onClick={this.clickHide} >
+						<a className="unstyled-link sketchpad-download-link" href={this.props.pdf} download >
+							{t('download-original')}
+						</a>
+					</Button> : null }
+					{ this.state.ownerFile ? <Button size="large" variant="secondary" onClick={this.clickHide}>
+						<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
+							{t('download-instructor-annotations')}<br />
+							<small>({t('last-updated')}: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} {t('by')} {ownerName})</small>
+						</a>
+					</Button> : null }
+					<Button variant="secondary" size="large" onClick={this.handlePDFExport} >
+						{t('export-pdf')}
+					</Button>
+					<Button variant="secondary" size="large" onClick={this.handlePNGExport} >
+						{t('export-png')}
+					</Button>
+				</div>
 			</Modal.Body>
 		</Modal> );
 	}

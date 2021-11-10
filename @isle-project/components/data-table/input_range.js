@@ -85,6 +85,7 @@ class FilterInputRange extends Component {
 					<Overlay
 						show={this.state.showRangeInput}
 						target={this.inputRange}
+						placement="right"
 					>
 						{({ placement, scheduleUpdate, arrowProps, outOfBoundaries, show, ...props }) => {
 							return (

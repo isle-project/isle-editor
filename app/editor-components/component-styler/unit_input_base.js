@@ -81,16 +81,14 @@ const UnitInputBase = ({ defaultValue, colWidth, label, labelWidth, onChange, au
 							onChange={handleValueChange}
 						/>
 					}
-					<InputGroup.Append>
-						<Form.Control
-							as="select"
-							style={{ padding: 3, background: 'silver' }}
-							value={unit}
-							onChange={handleUnitChange}
-						>
-							{OPTIONS.map( ( x, idx ) => <option key={idx}>{x}</option>)}
-						</Form.Control>
-					</InputGroup.Append>
+					<Form.Control
+						as="select"
+						style={{ padding: 3, background: 'silver' }}
+						value={unit}
+						onChange={handleUnitChange}
+					>
+						{OPTIONS.map( ( x, idx ) => <option key={idx}>{x}</option>)}
+					</Form.Control>
 				</InputGroup>
 			</Col>
 		</Fragment>

@@ -228,7 +228,7 @@ class VideoLecture extends Component {
 					{ this.state.active >= this.props.steps.length && !this.state.showInstructorView ?
 						<Alert variant="success" className="video-lecture-end-alert" >
 							<h1>{t('reached-end')}</h1>
-							<ButtonGroup block>
+							<div className="d-grid gap-2" >
 								<Button
 									variant="secondary"
 									size="lg"
@@ -238,19 +238,20 @@ class VideoLecture extends Component {
 									variant="secondary"
 									size="lg"
 								>{t('close-and-to-dashboard')}</Button></a> : null}
-							</ButtonGroup>
+							</div>
 						</Alert> : null
 					}
 					{steps}
 					{ this.props.instructorView ? <Gate owner banner={null} >
-						<Button
-							className="video-lecture-instructor-button"
-							variant="secondary"
-							onClick={this.toggleInstructorView}
-							block
-						>
-							{ this.state.showInstructorView ? t('close-instructor-view') : t('open-instructor-view') }
-						</Button>
+						<div className="d-grid gap-2" >
+							<Button
+								className="video-lecture-instructor-button"
+								variant="secondary"
+								onClick={this.toggleInstructorView}
+							>
+								{ this.state.showInstructorView ? t('close-instructor-view') : t('open-instructor-view') }
+							</Button>
+						</div>
 					</Gate> : null }
 				</div>
 				<KeyControls

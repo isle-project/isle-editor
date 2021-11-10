@@ -13,8 +13,8 @@ import Form from 'react-bootstrap/Form';
 import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
 import Popover from 'react-bootstrap/Popover';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import SessionContext from '@isle-project/session/context.js';
 import './login.css';
 
@@ -220,8 +220,8 @@ class Login extends Component {
 					containerPadding={20}
 				>
 					<Popover id="popover-contained">
-						<PopoverTitle>{this.props.t( 'invalid' )}</PopoverTitle>
-						<PopoverContent>{this.state.invalidInputMessage}</PopoverContent>
+						<PopoverHeader>{this.props.t( 'invalid' )}</PopoverHeader>
+						<PopoverBody>{this.state.invalidInputMessage}</PopoverBody>
 					</Popover>
 				</Overlay>
 			</Modal>

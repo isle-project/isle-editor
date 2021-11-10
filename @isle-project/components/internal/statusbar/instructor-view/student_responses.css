@@ -26,6 +26,7 @@
 .student-responses-row .col {
 	padding-left: 8px;
 	padding-right: 8px;
+	position: relative;
 }
 
 .student-responses-first-col {

@@ -45,7 +45,7 @@ const FrequencyTableMenu = ( props ) => {
 				{t('Frequency Table')}
 				<QuestionButton title={t('Frequency Table')} content={t('Frequency Table-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('variable')}
 					defaultValue={variable}
@@ -93,7 +93,6 @@ const FrequencyTableMenu = ( props ) => {
 				</p> : null }
 				<Button
 					variant="primary"
-					block
 					onClick={generateFrequencyTable}
 					disabled={!calculateCounts && !calculateRelative}
 				>

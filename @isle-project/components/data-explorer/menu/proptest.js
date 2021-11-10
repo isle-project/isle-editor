@@ -40,7 +40,7 @@ const PropTestMenu = ( props ) => {
 				{t('One-Sample Proportion Test')}
 				<QuestionButton title={t('One-Sample Proportion Test')} content={t('One-Sample Proportion Test-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('variable')}
 					defaultValue={variable}
@@ -81,13 +81,15 @@ const PropTestMenu = ( props ) => {
 					step="any"
 					onChange={setAlpha}
 				/>
-				<Button
-					variant="primary" block
-					onClick={calculatePropTest}
-					disabled={!variable}
-				>
-					{t('calculate')}
-				</Button>
+				<div className="d-grid" >
+					<Button
+						variant="primary"
+						onClick={calculatePropTest}
+						disabled={!variable}
+					>
+						{t('calculate')}
+					</Button>
+				</div>
 			</Card.Body>
 		</Card>
 	);

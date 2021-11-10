@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
-import PopoverTitle from 'react-bootstrap/PopoverTitle';
-import PopoverContent from 'react-bootstrap/PopoverContent';
+import PopoverHeader from 'react-bootstrap/PopoverHeader';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 
@@ -13,8 +13,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 const QuestionButton = ( props ) => {
 	const popover = <Popover id="popover-positioned-right">
-		<PopoverTitle>{props.title}</PopoverTitle>
-		<PopoverContent>{props.content}</PopoverContent>
+		<PopoverHeader>{props.title}</PopoverHeader>
+		<PopoverBody>{props.content}</PopoverBody>
 	</Popover>;
 	return (
 		<OverlayTrigger trigger={[ 'click', 'hover', 'focus' ]} placement="left" rootClose overlay={popover}>

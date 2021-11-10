@@ -17,14 +17,14 @@ const FilterList = ( props ) => {
 		const filter = props.filters[ i ];
 		let value;
 		if ( isArray( filter.value ) ) {
-			value = filter.value.map( ( x, i ) => <Badge variant="secondary" key={i} style={{ marginRight: 4 }} >{x}</Badge> );
+			value = filter.value.map( ( x, i ) => <Badge bg="secondary" key={i} style={{ marginRight: 4 }} >{x}</Badge> );
 		}
 		else if ( isPlainObject( filter.value ) ) {
 			const keys = objectKeys( filter.value );
 			value = new Array( keys.length );
 			for ( let i = 0; i < keys.length; i++ ) {
 				const key = keys[ i ];
-				value[ i ] = <Badge key={key} variant="secondary" style={{ marginRight: 4 }} >
+				value[ i ] = <Badge key={key} bg="secondary" style={{ marginRight: 4 }} >
 					<b>{key}: </b>
 					{filter.value[ key ]}
 				</Badge>;

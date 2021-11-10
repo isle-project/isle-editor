@@ -174,9 +174,9 @@ const SliderInput = ( props ) => {
 					null
 				}
 				<span className="slider-range-wrapper" >
-					<Badge variant="secondary" >{minLabel || min}</Badge>
+					<Badge bg="secondary" >{minLabel || min}</Badge>
 					{rangeInput}
-					<Badge variant="secondary" >{maxLabel || max}</Badge>
+					<Badge bg="secondary" >{maxLabel || max}</Badge>
 				</span>
 				{numberInput}
 			</span>
@@ -202,9 +202,9 @@ const SliderInput = ( props ) => {
 				}
 				<br />
 				<span className="slider-range-wrapper" >
-					<Badge variant="secondary" style={{ float: 'left' }} >{minLabel || min}</Badge>
+					<Badge bg="secondary" style={{ float: 'left' }} >{minLabel || min}</Badge>
 					{rangeInput}
-					<Badge variant="secondary" style={{ float: 'left' }} >{maxLabel || max}</Badge>
+					<Badge bg="secondary" style={{ float: 'left' }} >{maxLabel || max}</Badge>
 				</span>
 				{numberInput}
 				<br />

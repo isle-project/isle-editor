@@ -131,7 +131,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 							<Button
 								variant="secondary"
 								size="sm"
-								style={{ position: 'absolute', right: '20px' }}
+								style={{ position: 'absolute', right: '15px' }}
 								onClick={toggleShow}
 							>{t('hide-toolbox')}</Button>
 						</Card.Header>

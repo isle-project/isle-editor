@@ -171,7 +171,7 @@ const HistogramMenu = ( props ) => {
 				{t('Histogram')}
 				<QuestionButton title={t('Histogram')} content={t('Histogram-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<Row>
 					<Col md={6}>
 						<SelectInput
@@ -324,7 +324,7 @@ const HistogramMenu = ( props ) => {
 						/>
 						{densityControls}
 					</div> : null }
-				<Button variant="primary" block onClick={generateHistogram}>
+				<Button variant="primary" onClick={generateHistogram}>
 					{t('generate')}
 				</Button>
 			</Card.Body>

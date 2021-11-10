@@ -170,7 +170,9 @@ class SaveModal extends Component {
 								/>
 							</Col>
 						</Row>
-						<Button onClick={this.savePDF} block>{this.props.t('save')}</Button>
+						<div className="d-grid" >
+							<Button onClick={this.savePDF}>{this.props.t('save')}</Button>
+						</div>
 					</Card.Body>
 				</Card>
 			</Modal.Body>

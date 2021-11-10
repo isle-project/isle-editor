@@ -182,7 +182,6 @@ const Toolbar = () => {
 					variant="warning"
 					className="toolbar-buttongroup toolbar-toggle"
 					onClick={toggleToolbar}
-					aria-label={t('show-toolbar')}
 					style={{
 						display: showToolbar ? 'none' : 'inherit'
 					}}
@@ -302,7 +301,7 @@ const Toolbar = () => {
 					</Tooltip>
 				</Gate>
 				<Overlay
-					placement="top"
+					placement="right"
 					show={engagementMenu}
 					target={engagementButtonRef.current}
 					trigger="click"

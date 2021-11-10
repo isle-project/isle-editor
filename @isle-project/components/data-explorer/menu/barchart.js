@@ -120,7 +120,7 @@ const BarchartMenu = ( props ) => {
 				{t('Bar Chart')}
 				<QuestionButton title={t('Bar Chart')} content={t('Bar Chart-description')} />
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-3" >
 				<SelectInput
 					legend={t('bars-represent')}
 					defaultValue={mode}
@@ -238,7 +238,7 @@ const BarchartMenu = ( props ) => {
 					</Col>
 				</Row>
 				<Button
-					variant="primary" block onClick={generateBarchart}
+					variant="primary" onClick={generateBarchart}
 					disabled={!variable}
 				>
 					{t('generate')}

@@ -139,7 +139,7 @@ class ChatButton extends Component {
 				{label}
 			</span>
 			{ nMessages ? <Badge
-				variant="dark"
+				bg="dark"
 				style={{
 					marginLeft: '5px',
 					fontSize: '10px',
