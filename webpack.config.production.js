@@ -39,7 +39,6 @@ const config = {
 		minimizer: [
 			new ESBuildMinifyPlugin({
 				target: 'esnext',
-				legalComments: 'none',
 				implementation: esbuild
 			})
 		]
@@ -57,7 +56,8 @@ const config = {
 						options: {
 							loader: 'jsx',
 							target: 'esnext',
-							implementation: esbuild
+							implementation: esbuild,
+							legalComments: 'none'
 						}
 					}
 				],

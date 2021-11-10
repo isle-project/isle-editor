@@ -7,6 +7,16 @@ const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
 
 
+// VARIABLES //
+
+const BROWSER_TARGETS = [
+	'es2020',
+	'chrome58',
+	'firefox57',
+	'safari11'
+];
+
+
 // MAIN //
 
 const config = {
@@ -19,7 +29,7 @@ const config = {
 						loader: 'esbuild-loader',
 						options: {
 							loader: 'jsx',
-							target: 'es2015',
+							target: BROWSER_TARGETS,
 							implementation: esbuild
 						}
 					}
@@ -237,7 +247,7 @@ const config = {
 		minimize: true,
 		minimizer: [
 			new ESBuildMinifyPlugin({
-				target: 'es2015',
+				target: BROWSER_TARGETS,
 				legalComments: 'none',
 				implementation: esbuild
 			}),

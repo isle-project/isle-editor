@@ -7,6 +7,7 @@ const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
 const webpack = require( 'webpack' );
 const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const esbuild = require( 'esbuild' );
 const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
@@ -52,6 +53,12 @@ if ( process ) {
 	});
 }
 const START_TIME = new Date();
+const BROWSER_TARGETS = [
+	'es2020',
+	'chrome58',
+	'firefox57',
+	'safari11'
+];
 
 
 // FUNCTIONS //
@@ -494,7 +501,9 @@ function bundleLesson( options ) {
 					loader: 'esbuild-loader',
 					options: {
 						loader: 'jsx',
-						target: 'es2015'
+						target: BROWSER_TARGETS,
+						implementation: esbuild,
+						legalComments: 'none'
 					}
 				},
 				{
@@ -529,7 +538,8 @@ function bundleLesson( options ) {
 			},
 			minimizer: [
 				new ESBuildMinifyPlugin({
-					target: 'es2015'
+					target: BROWSER_TARGETS,
+					implementation: esbuild
 				})
 			]
 		},
