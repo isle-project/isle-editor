@@ -19,8 +19,8 @@ Card component.
 * __trapFocus__ | `boolean`: whether to trap the user's focus in the panel. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline styles for body. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline styles for footer. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS class name for body. Default: `''`.
+* __footerClassName__ | `string`: CSS class name for footer. Default: `''`.
 * __style__ | `object`: CSS inline styles for container. Default: `{}`.
 * __onHide__ | `function`: callback invoked when the close button is clicked. Default: `none`.
 

@@ -8,7 +8,7 @@ A wrapper for the [react-color](https://casesandberg.github.io/react-color/) col
 
 ## Options
 
-* __variant__ | `string`: color picker variant (either `Compact`, `Sketch`, `Material`, or `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: color picker variant (either `Compact`, `Sketch`, `Material`, `Button`, or `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string` holding an HeX code or an `object` holding RGB or HSL values such as `{ r: 255, g: 255, b: 255 }` or `{ h: 0, s: 0, l: .10 }`, which determines the active color. Both accept an `a` property for alpha values other than one. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: controls whether to remove alpha slider and options. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings` specifying the default colors at the bottom of the colorpicker. Default: `[
