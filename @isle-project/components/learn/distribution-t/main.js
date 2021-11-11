@@ -238,7 +238,7 @@ class TProbs extends Component {
 										style={{
 											data: { stroke: '#e95f46', strokeWidth: 1, opacity: 0.5 }
 										}}
-									/>``
+									/>
 									<VictoryLine
 										data={[
 											{ x: 0, y: pt( x0, df ) },
