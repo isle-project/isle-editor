@@ -10,6 +10,7 @@ Komponenta pro zobrazení odkazu.
 
 * __href__ | `string (required)`: Adresa URL webové stránky, na kterou se má odkazovat. Default: `none`.
 * __target__ | `string`: určuje, kde se odkaz otevře: nastaveno na `_blank` pro nové okno, `_self` pro vlastní rám, `_parent` pro nadřazené okno, `_top` pro celé tělo okna nebo název rámu.. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: název třídy. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
 

@@ -15,6 +15,7 @@ Informacinis skydelis, skirtas sujungti kelių vaikų įvesties laukų tvarkymą
 * __label__ | `string`: mygtuko etiketė. Default: `none`.
 * __maxWidth__ | `number`: didžiausias prietaisų skydelio plotis. Default: `600`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 * __onGenerate__ | `function`: funkcija, iškviečiama, kai paspaudžiamas mygtukas arba pasikeičia viena iš prietaisų skydelio įvesties verčių (jei `autoUpdate` nustatyta į `true`). Funkcija iškviečiama su įvesties laukų reikšmėmis tokia tvarka, kokia jos yra prietaisų skydelyje. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kortelės pavadinimas. Default: `''`.

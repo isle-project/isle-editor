@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback, jota kutsutaan, kun värinmuutos on valmis.",
 	"ColorPicker-prop-presetColors": "HeX `merkkijonot`, jotka määrittelevät oletusvärit värivalitsimen alareunassa.",
 	"ColorPicker-prop-style": "CSS-inline-tyylit",
-	"ColorPicker-prop-variant": "värinvalitsimen muunnos (joko `Compact`, `Sketch`, `Material` tai `Block`).",
 	"ColorPicker-prop-width": "värivalitsimen leveys (px)",
 	"Container-description": "Säiliön kääre.",
 	"Container-prop-fluid": "muuttaa minkä tahansa kiinteän leveyden konttiasettelun koko leveyden asetteluksi.",

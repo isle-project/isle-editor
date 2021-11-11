@@ -19,6 +19,8 @@ Componenta cardului.
 * __trapFocus__ | `boolean`: dacă trebuie să rețină atenția utilizatorului în panou. Default: `false`.
 * __bodyStyle__ | `object`: Stiluri CSS inline pentru corp. Default: `{}`.
 * __footerStyle__ | `object`: Stiluri CSS inline pentru subsol de pagină. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: Stiluri CSS inline pentru container. Default: `{}`.
 * __onHide__ | `function`: callback invocat atunci când se face clic pe butonul de închidere. Default: `none`.
 

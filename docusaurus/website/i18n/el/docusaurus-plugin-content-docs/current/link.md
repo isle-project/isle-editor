@@ -10,6 +10,7 @@ sidebar_label: Link
 
 * __href__ | `string (required)`: URL του δικτυακού τόπου στον οποίο θα παραπέμψετε. Default: `none`.
 * __target__ | `string`: ορίζει πού ανοίγει ο σύνδεσμος: ορίζεται σε `_blank` για νέο παράθυρο, `_self` για το δικό του πλαίσιο, `_parent` για τον γονέα, `_top` για ολόκληρο το σώμα του παραθύρου ή το όνομα του πλαισίου.. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 

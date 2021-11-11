@@ -19,6 +19,8 @@ sidebar_label: Panel
 * __trapFocus__ | `boolean`: ユーザーのフォーカスをパネルにトラップするかどうか. Default: `false`.
 * __bodyStyle__ | `object`: 本文のCSSインラインスタイル. Default: `{}`.
 * __footerStyle__ | `object`: フッター用CSSインラインスタイル. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: コンテナ用CSSインラインスタイル. Default: `{}`.
 * __onHide__ | `function`: 閉じボタンがクリックされた時に呼び出されるコールバック. Default: `none`.
 

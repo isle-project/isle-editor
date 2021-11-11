@@ -8,7 +8,7 @@ Kääre [react-color](https://casesandberg.github.io/react-color/) -värinvalits
 
 ## Vaihtoehdot
 
-* __variant__ | `string`: värinvalitsimen muunnos (joko `Compact`, `Sketch`, `Material` tai `Block`).. Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `merkkijono`, joka sisältää HeX-koodin tai `objekti`, joka sisältää RGB- tai HSL-arvoja, kuten `{ r: 255, g: 255, b: 255 }` tai `{ h: 0, s: 0, l: .10 }`, joka määrittää aktiivisen värin. Molemmat hyväksyvät `a`-ominaisuuden muille kuin yhden alfa-arvon arvoille.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: valvoo, poistetaanko alfaliukusäädin ja vaihtoehdot.. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `merkkijonot`, jotka määrittelevät oletusvärit värivalitsimen alareunassa.. Default: `[

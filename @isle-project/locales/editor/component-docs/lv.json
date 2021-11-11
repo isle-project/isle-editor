@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "atsauces zvans, kas tiek izsaukts, tiklīdz ir pabeigta krāsas maiņa.",
 	"ColorPicker-prop-presetColors": "HeX `virknes`, kas norāda noklusējuma krāsas krāsu atlasītāja apakšā.",
 	"ColorPicker-prop-style": "CSS iebūvētie stili",
-	"ColorPicker-prop-variant": "krāsu atlases variants (`Compact`, `Sketch`, `Material` vai `Block`).",
 	"ColorPicker-prop-width": "krāsu atlasītāja platums (px)",
 	"Container-description": "Konteinera iesaiņojums.",
 	"Container-prop-fluid": "jebkuru fiksēta platuma konteinera izkārtojumu pārvērst par pilna platuma izkārtojumu.",

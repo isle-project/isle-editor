@@ -8,7 +8,7 @@ En omslagsform för färgväljaren [react-color] (https://casesandberg.github.io
 
 ## Alternativ
 
-* __variant__ | `string`: variant för färgval (antingen `Compact`, `Sketch`, `Material` eller `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `sträng` som innehåller en HeX-kod eller ett `objekt` som innehåller RGB- eller HSL-värden, t.ex. `{ r: 255, g: 255, b: 255 }` eller `{ h: 0, s: 0, l: .10 }`, som bestämmer den aktiva färgen. Båda accepterar en egenskap `a` för andra alfavärden än ett.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontrollerar om alfaglidaren och alternativen ska tas bort. Default: `false`.
 * __presetColors__ | `array<string>`: HeX-strängar som anger standardfärgerna i botten av färgväljaren. Default: `[

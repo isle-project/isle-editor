@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback hívás a színváltás befejezése után",
 	"ColorPicker-prop-presetColors": "HeX `strings`, amely meghatározza az alapértelmezett színeket a színválasztó alján.",
 	"ColorPicker-prop-style": "CSS inline stílusok",
-	"ColorPicker-prop-variant": "színválasztó változat (vagy `Compact`, `Sketch`, `Material`, vagy `Block`)",
 	"ColorPicker-prop-width": "a színválasztó szélessége (px-ben)",
 	"Container-description": "Konténercsomagolás.",
 	"Container-prop-fluid": "bármely fix szélességű konténer elrendezés teljes szélességű elrendezéssé alakítása",

@@ -15,6 +15,7 @@ Vadības panelis, lai apvienotu vairāku bērnu ievades lauku apstrādi.
 * __label__ | `string`: pogas etiķete. Default: `none`.
 * __maxWidth__ | `number`: maksimālais instrumentu paneļa platums. Default: `600`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onGenerate__ | `function`: funkcija, kas tiek izsaukta, kad tiek noklikšķināts uz pogas vai mainās kāda no paneļa ievades vērtībām (ja `autoUpdate` ir iestatīts uz `true`). Funkcija tiek izsaukta ar ievades lauku vērtībām tādā secībā, kādā tās ir izvietotas vadības panelī.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kartes nosaukums. Default: `''`.

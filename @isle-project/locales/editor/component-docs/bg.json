@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "обратна връзка, задействана след завършване на промяната на цвета",
 	"ColorPicker-prop-presetColors": "HeX `низове`, определящи цветовете по подразбиране в долната част на цветоизбирателя",
 	"ColorPicker-prop-style": "CSS инлайн стилове",
-	"ColorPicker-prop-variant": "вариант за избор на цвят (или `Compact`, `Sketch`, `Material`, или `Block`)",
 	"ColorPicker-prop-width": "ширина на избор на цвят (в px)",
 	"Container-description": "Обвивка на контейнер.",
 	"Container-prop-fluid": "превръщане на всяко оформление на контейнер с фиксирана широчина в оформление с пълна широчина",

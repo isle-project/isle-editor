@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback που καλείται μόλις ολοκληρωθεί μια αλλαγή χρώματος",
 	"ColorPicker-prop-presetColors": "HeX `strings` που καθορίζουν τα προεπιλεγμένα χρώματα στο κάτω μέρος του επιλογέα χρωμάτων",
 	"ColorPicker-prop-style": "Στυλ γραμμής CSS",
-	"ColorPicker-prop-variant": "παραλλαγή του επιλογέα χρωμάτων (είτε `Compact`, `Sketch`, `Material`, ή `Block`)",
 	"ColorPicker-prop-width": "πλάτος του επιλογέα χρωμάτων (σε px)",
 	"Container-description": "Περιτύλιγμα εμπορευματοκιβωτίων.",
 	"Container-prop-fluid": "μετατρέψτε οποιαδήποτε διάταξη δοχείου σταθερού πλάτους σε διάταξη πλήρους πλάτους",

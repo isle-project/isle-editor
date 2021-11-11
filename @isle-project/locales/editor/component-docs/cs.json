@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "zpětné volání vyvolané po dokončení změny barvy",
 	"ColorPicker-prop-presetColors": "HeX `řetězce` určující výchozí barvy v dolní části colorpickeru",
 	"ColorPicker-prop-style": "Řádkové styly CSS",
-	"ColorPicker-prop-variant": "varianta výběru barvy (buď `Compact`, `Sketch`, `Material`, nebo `Block`).",
 	"ColorPicker-prop-width": "šířka nástroje pro výběr barvy (v px)",
 	"Container-description": "Obal kontejneru.",
 	"Container-prop-fluid": "změnit libovolné rozložení kontejneru s pevnou šířkou na rozložení s celou šířkou.",

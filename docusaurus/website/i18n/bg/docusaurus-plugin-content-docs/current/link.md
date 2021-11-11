@@ -10,6 +10,7 @@ sidebar_label: Link
 
 * __href__ | `string (required)`: URL адрес на уебсайта, към който да се свърже. Default: `none`.
 * __target__ | `string`: определя къде се отваря връзката: задава се `_blank` за нов прозорец, `_self` за собствена рамка, `_parent` за родител, `_top` за цялото тяло на прозореца или името на рамката. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: име на класа. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 

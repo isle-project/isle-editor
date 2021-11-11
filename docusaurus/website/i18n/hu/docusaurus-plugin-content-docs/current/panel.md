@@ -19,6 +19,8 @@ Kártyaelem.
 * __trapFocus__ | `boolean`: hogy a felhasználó fókusza a panelben maradjon-e. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stílusok a testhez. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stílusok a lábléchez. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: CSS inline stílusok a konténerhez. Default: `{}`.
 * __onHide__ | `function`: callback, amelyet a bezárás gombra kattintáskor hívnak elő.. Default: `none`.
 

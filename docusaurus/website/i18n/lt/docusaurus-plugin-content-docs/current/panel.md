@@ -19,6 +19,8 @@ Kortelės sudedamoji dalis.
 * __trapFocus__ | `boolean`: ar naudotojo fokusas turi būti fiksuojamas skydelyje. Default: `false`.
 * __bodyStyle__ | `object`: CSS įvesties stilius kūnui. Default: `{}`.
 * __footerStyle__ | `object`: "CSS" eilutės stilius poraštėje. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: Konteinerio CSS vidinės eilutės stiliai. Default: `{}`.
 * __onHide__ | `function`: atgalinis skambutis, inicijuojamas, kai paspaudžiamas uždarymo mygtukas.. Default: `none`.
 

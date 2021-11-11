@@ -8,7 +8,7 @@ sidebar_label: Color Picker
 
 ## Parinktys
 
-* __variant__ | `string`: spalvų rinkiklio variantas (`Compact`, `Sketch`, `Material` arba `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, kuriame įrašytas HeX kodas, arba `objektas`, kuriame įrašytos RGB arba HSL vertės, pavyzdžiui, `{ r: 255, g: 255, b: 255 }` arba `{ h: 0, s: 0, l: .10 }`, kuris nustato aktyviąją spalvą. Abiem atvejais priimama savybė `a`, skirta alfa reikšmėms, išskyrus vieną. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontroliuoja, ar pašalinti alfa slankiklį ir parinktis.. Default: `false`.
 * __presetColors__ | `array<string>`: "HeX" `strings`, nurodančios numatytąsias spalvas, esančias spalvų rinkiklio apačioje. Default: `[

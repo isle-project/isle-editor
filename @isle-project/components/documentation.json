@@ -386,6 +386,12 @@
 				"defaultValue": ""
 			},
 			{
+				"name": "bodyClassName",
+				"type": "string",
+				"description": "Dashboard-prop-bodyClassName",
+				"defaultValue": "d-grid gap-3"
+			},
+			{
 				"name": "style",
 				"type": "object",
 				"description": "Dashboard-prop-style",
@@ -3415,6 +3421,12 @@
 				"defaultValue": "_blank"
 			},
 			{
+				"name": "windowFeatures",
+				"type": "string",
+				"description": "Link-prop-windowFeatures",
+				"defaultValue": null
+			},
+			{
 				"name": "className",
 				"type": "string",
 				"description": "Link-prop-className",
@@ -4254,6 +4266,18 @@
 				"type": "object",
 				"description": "Panel-prop-footerStyle",
 				"defaultValue": {}
+			},
+			{
+				"name": "bodyClassName",
+				"type": "string",
+				"description": "Panel-prop-bodyClassName",
+				"defaultValue": ""
+			},
+			{
+				"name": "footerClassName",
+				"type": "string",
+				"description": "Panel-prop-footerClassName",
+				"defaultValue": ""
 			},
 			{
 				"name": "style",

@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "povratni klic, ki se sproži, ko je sprememba barve končana.",
 	"ColorPicker-prop-presetColors": "HeX `stringi`, ki določajo privzete barve na dnu izbirnika barv",
 	"ColorPicker-prop-style": "Vnosni slogi CSS",
-	"ColorPicker-prop-variant": "različica izbirnika barv (`Compact`, `Sketch`, `Material` ali `Block`)",
 	"ColorPicker-prop-width": "širina izbirnika barv (v px)",
 	"Container-description": "Ovitek zabojnika.",
 	"Container-prop-fluid": "spremenite poljubno postavitev zabojnika s fiksno širino v postavitev po celotni širini",

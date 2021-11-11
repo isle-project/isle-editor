@@ -15,6 +15,7 @@ sidebar_label: Dashboard
 * __label__ | `string`: ボタンラベル. Default: `none`.
 * __maxWidth__ | `number`: ダッシュボードの最大幅. Default: `600`.
 * __className__ | `string`: クラス名. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onGenerate__ | `function`: 関数は、ボタンがクリックされたときやダッシュボードの入力値が変更されたときに呼び出されます(`autoUpdate` が `true` に設定されている場合)。この関数は、入力フィールドの値がダッシュボードに配置された順に呼び出されます。. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: カードタイトル. Default: `''`.

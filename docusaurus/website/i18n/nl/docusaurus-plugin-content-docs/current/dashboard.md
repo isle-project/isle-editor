@@ -15,6 +15,7 @@ Een dashboard voor het combineren van de afhandeling van meerdere kinderinvoerve
 * __label__ | `string`: knoplabel. Default: `none`.
 * __maxWidth__ | `number`: maximale breedte van het dashboard. Default: `600`.
 * __className__ | `string`: klassennaam. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onGenerate__ | `function`: functie aangeroepen wanneer op de knop wordt geklikt of wanneer een van de invoerwaarden van het dashboard verandert (als `autoUpdate` is ingesteld op `true`). De functie wordt aangeroepen met de waarden van de invoervelden, in de volgorde waarin ze in het dashboard zijn geplaatst. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kaarttitel. Default: `''`.

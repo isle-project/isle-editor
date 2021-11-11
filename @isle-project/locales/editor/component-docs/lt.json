@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "grįžtamasis skambutis, iškviečiamas baigus keisti spalvą.",
 	"ColorPicker-prop-presetColors": "\"HeX\" `strings`, nurodančios numatytąsias spalvas, esančias spalvų rinkiklio apačioje",
 	"ColorPicker-prop-style": "CSS eilutės stiliai",
-	"ColorPicker-prop-variant": "spalvų rinkiklio variantas (`Compact`, `Sketch`, `Material` arba `Block`)",
 	"ColorPicker-prop-width": "spalvų rinkiklio plotis (px)",
 	"Container-description": "Konteinerio apvalkalas.",
 	"Container-prop-fluid": "bet kokį fiksuoto pločio konteinerio maketą paversti viso pločio maketu",

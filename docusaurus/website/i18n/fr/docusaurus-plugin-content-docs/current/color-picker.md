@@ -8,7 +8,7 @@ Un emballage pour le sélecteur de couleurs [react-color](https://casesandberg.g
 
 ## Options
 
-* __variant__ | `string`: variante du sélecteur de couleurs (soit "Compact", "Sketch", "Material" ou "Block"). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: une "chaîne" contenant un code HeX ou un "objet" contenant des valeurs RGB ou HSL telles que "r : 255, g : 255, b : 255" ou "h : 0, s : 0, l : .10 }`, qui détermine la couleur active. Les deux acceptent une propriété `a` pour les valeurs alpha autres que. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: contrôle la suppression éventuelle du curseur alpha et des options. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings` spécifiant les couleurs par défaut au bas du colorpicker. Default: `[

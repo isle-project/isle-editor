@@ -8,7 +8,7 @@ Okładka dla zbieracza kolorów [reaktor-kolor](https://casesandberg.github.io/r
 
 ## Opcje
 
-* __variant__ | `string`: Wariant pikietarek kolorowych (albo `Compact`, `Sketch`, `Materiał`, albo `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `sznurek` trzymający kod HeX lub `obiekt` trzymający wartości RGB lub HSL takie jak `{ r: 255, g: 255, b: 255 }` lub `{ h: 0, s: 0, l: .10 }`, który określa aktywny kolor. Oba przyjmują właściwość `a` dla wartości alfa innych niż jedna. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontroluje, czy usunąć suwak alfa i opcje. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `stringi` określające domyślne kolory na dole colorpickera. Default: `[

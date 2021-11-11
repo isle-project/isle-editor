@@ -10,6 +10,7 @@ En komponent för att visa en länk.
 
 * __href__ | `string (required)`: URL till den webbplats som du vill länka till. Default: `none`.
 * __target__ | `string`: definierar var länken öppnas: inställd på `_blank` för nytt fönster, `_self` egen ram, `_parent` för överordnad, `_top` för hela fönstret, eller namnet på ramen.. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: klassens namn. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 

@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "Callback, der aufgerufen wird, sobald ein Farbwechsel abgeschlossen ist",
 	"ColorPicker-prop-presetColors": "HeX `Strings`, die die Standardfarben am unteren Rand des Colorpickers festlegen",
 	"ColorPicker-prop-style": "CSS-Inline-Stile",
-	"ColorPicker-prop-variant": "Farbwähler-Variante (entweder `Kompakt`, `Skizze`, `Material` oder `Block`)",
 	"ColorPicker-prop-width": "Breite des Farbwählers (in px)",
 	"Container-description": "Container-Verpackung.",
 	"Container-prop-fluid": "ein beliebiges Container-Layout mit fester Breite in ein Layout mit voller Breite umwandeln",

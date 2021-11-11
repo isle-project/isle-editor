@@ -10,6 +10,7 @@ Komponenta za prikaz povezave.
 
 * __href__ | `string (required)`: URL spletnega mesta, do katerega želite vzpostaviti povezavo. Default: `none`.
 * __target__ | `string`: določa, kje se odpre povezava: nastavi se na `_blank` za novo okno, `_self` za lastni okvir, `_parent` za starševski okvir, `_top` za celotno telo okna ali ime okvirja.. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: ime razreda. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 

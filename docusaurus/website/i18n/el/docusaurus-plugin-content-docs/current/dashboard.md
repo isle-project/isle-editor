@@ -15,6 +15,7 @@ sidebar_label: Dashboard
 * __label__ | `string`: ετικέτα κουμπιού. Default: `none`.
 * __maxWidth__ | `number`: μέγιστο πλάτος του ταμπλό. Default: `600`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 * __onGenerate__ | `function`: συνάρτηση που καλείται όταν γίνεται κλικ στο κουμπί ή όταν αλλάζει μια από τις τιμές εισόδου του ταμπλό (αν η επιλογή `autoUpdate` έχει οριστεί σε `true`). Η συνάρτηση καλείται με τις τιμές των πεδίων εισόδου, με τη σειρά με την οποία έχουν τοποθετηθεί στο ταμπλό. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: τίτλος κάρτας. Default: `''`.

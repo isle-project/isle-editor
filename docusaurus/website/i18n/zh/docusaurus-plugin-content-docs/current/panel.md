@@ -19,6 +19,8 @@ sidebar_label: Panel
 * __trapFocus__ | `boolean`: 是否将用户的焦点锁定在面板上. Default: `false`.
 * __bodyStyle__ | `object`: 身体的CSS内联样式. Default: `{}`.
 * __footerStyle__ | `object`: 页脚的CSS内联样式. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: 容器的CSS内联样式. Default: `{}`.
 * __onHide__ | `function`: 当点击关闭按钮时调用回调。. Default: `none`.
 

@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "llamada de regreso invocada una vez que el cambio de color se ha completado",
 	"ColorPicker-prop-presetColors": "HeX \"cuerdas\" especificando los colores por defecto en la parte inferior del selector de colores",
 	"ColorPicker-prop-style": "Estilos en línea CSS",
-	"ColorPicker-prop-variant": "variante del selector de colores (ya sea \"Compacto\", \"Esbozo\", \"Material\" o \"Bloque\")",
 	"ColorPicker-prop-width": "ancho del recolector de color (en px)",
 	"Container-description": "Envoltura de contenedor.",
 	"Container-prop-fluid": "convertir cualquier disposición de contenedor de ancho fijo en una disposición de ancho completo",

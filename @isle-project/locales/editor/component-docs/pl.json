@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "wywołanie zwrotne po zakończeniu zmiany koloru",
 	"ColorPicker-prop-presetColors": "HeX `stringi` określające domyślne kolory na dole colorpickera",
 	"ColorPicker-prop-style": "Style CSS inline",
-	"ColorPicker-prop-variant": "Wariant pikietarek kolorowych (albo `Compact`, `Sketch`, `Materiał`, albo `Block`)",
 	"ColorPicker-prop-width": "szerokość zbieracza kolorów (w px)",
 	"Container-description": "Owinięcie w folię.",
 	"Container-prop-fluid": "przekształcić dowolny układ kontenerów o stałej szerokości w układ o pełnej szerokości",

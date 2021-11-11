@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "обратный вызов после завершения смены цвета",
 	"ColorPicker-prop-presetColors": "HeX `strings` с указанием цветов по умолчанию в нижней части цветовой палитры",
 	"ColorPicker-prop-style": "встроенные стили CSS",
-	"ColorPicker-prop-variant": "вариант выбора цвета (либо `Компакт`, либо `Эскиз`, `Материал`, либо `Блок`)",
 	"ColorPicker-prop-width": "ширина палитры цветов (в px)",
 	"Container-description": "Обертка от контейнера.",
 	"Container-prop-fluid": "превратить любую компоновку контейнера фиксированной ширины в компоновку полной ширины",

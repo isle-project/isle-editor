@@ -8,7 +8,7 @@ Ovitek za izbirnik barv [react-color](https://casesandberg.github.io/react-color
 
 ## Možnosti
 
-* __variant__ | `string`: različica izbirnika barv (`Compact`, `Sketch`, `Material` ali `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, ki vsebuje kodo HeX, ali `objekt`, ki vsebuje vrednosti RGB ali HSL, kot so `{ r: 255, g: 255, b: 255 }` ali `{ h: 0, s: 0, l: .10 }`, ki določa aktivno barvo. Oba sprejemata lastnost `a` za vrednosti alfa, ki niso ena. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: nadzoruje, ali se odstranijo drsnik alfa in možnosti. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `stringi`, ki določajo privzete barve na dnu izbirnika barv. Default: `[

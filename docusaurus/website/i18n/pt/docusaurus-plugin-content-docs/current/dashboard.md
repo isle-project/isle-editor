@@ -15,6 +15,7 @@ Um painel de controle para combinar o manuseio de múltiplos campos de entrada d
 * __label__ | `string`: etiqueta do botão. Default: `none`.
 * __maxWidth__ | `number`: largura máxima do painel de instrumentos. Default: `600`.
 * __className__ | `string`: nome da classe. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 * __onGenerate__ | `function`: função invocada quando o botão é clicado ou um dos valores de entrada do painel muda (se `autoUpdate` estiver definido como `verdadeiro'). A função é chamada com os valores dos campos de entrada, na ordem em que eles são colocados no painel. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: título do cartão. Default: `''`.

@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "色の変更が完了したときに呼び出されるコールバック",
 	"ColorPicker-prop-presetColors": "カラーピッカーの下部にあるデフォルトの色を指定する HeX `strings`。",
 	"ColorPicker-prop-style": "CSSインラインスタイル",
-	"ColorPicker-prop-variant": "カラーピッカーバリアント (`Compact`, `Sketch`, `Material`, `Block` のいずれか)",
 	"ColorPicker-prop-width": "カラーピッカーの幅",
 	"Container-description": "コンテナのラッパー。",
 	"Container-prop-fluid": "固定幅のコンテナレイアウトを全幅レイアウトにする",

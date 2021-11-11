@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "在颜色改变完成后调用回调。",
 	"ColorPicker-prop-presetColors": "HeX `strings`指定colorpicker底部的默认颜色。",
 	"ColorPicker-prop-style": "CSS内联样式",
-	"ColorPicker-prop-variant": "挑色器变体(\"Compact\"、\"Sketch\"、\"Material \"或 \"Block \"中的一种)",
 	"ColorPicker-prop-width": "取色器的宽度(单位：px)",
 	"Container-description": "容器包装纸。",
 	"Container-prop-fluid": "将任何固定宽度的容器布局变成全宽布局。",

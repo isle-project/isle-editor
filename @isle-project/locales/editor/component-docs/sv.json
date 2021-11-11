@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback som aktiveras när en färgförändring är klar",
 	"ColorPicker-prop-presetColors": "HeX-strängar som anger standardfärgerna i botten av färgväljaren",
 	"ColorPicker-prop-style": "CSS-stilar inline",
-	"ColorPicker-prop-variant": "variant för färgval (antingen `Compact`, `Sketch`, `Material` eller `Block`)",
 	"ColorPicker-prop-width": "färgväljarens bredd (i px)",
 	"Container-description": "Containeromslag.",
 	"Container-prop-fluid": "förvandla en containerlayout med fast bredd till en layout med full bredd",

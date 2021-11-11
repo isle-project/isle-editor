@@ -19,6 +19,8 @@ Součást karty.
 * __trapFocus__ | `boolean`: zda má být na panelu zachyceno zaměření uživatele.. Default: `false`.
 * __bodyStyle__ | `object`: Řádkové styly CSS pro tělo. Default: `{}`.
 * __footerStyle__ | `object`: Řádkové styly CSS pro zápatí. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS pro kontejner. Default: `{}`.
 * __onHide__ | `function`: zpětné volání vyvolané po kliknutí na tlačítko zavřít.. Default: `none`.
 

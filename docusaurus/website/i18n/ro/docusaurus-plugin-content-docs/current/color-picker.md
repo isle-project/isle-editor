@@ -8,7 +8,7 @@ Un înveliș pentru selectorul de culori [react-color](https://casesandberg.gith
 
 ## Opțiuni
 
-* __variant__ | `string`: varianta de selectare a culorii (fie `Compact`, `Sketch`, `Material`, sau `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string` care conține un cod HeX sau un `object` care conține valori RGB sau HSL, cum ar fi `{ r: 255, g: 255, b: 255 }` sau `{ h: 0, s: 0, l: .10 }`, care determină culoarea activă. Ambele acceptă o proprietate `a` pentru alte valori alfa decât una.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: controlează dacă se elimină sau nu cursorul alfa și opțiunile. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings` care specifică culorile implicite din partea de jos a selectorului de culori. Default: `[

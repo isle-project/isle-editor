@@ -15,6 +15,7 @@ En instrumentpanel för att kombinera hanteringen av flera inmatningsfält för 
 * __label__ | `string`: knappmärke. Default: `none`.
 * __maxWidth__ | `number`: instrumentpanelens maximala bredd. Default: `600`.
 * __className__ | `string`: klassens namn. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onGenerate__ | `function`: funktion som anropas när knappen klickas eller när ett av inmatningsvärdena i instrumentpanelen ändras (om `autoUpdate` är inställt på `true`). Funktionen anropas med värdena för inmatningsfälten i den ordning som de är placerade i instrumentpanelen.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: Kortets titel.. Default: `''`.

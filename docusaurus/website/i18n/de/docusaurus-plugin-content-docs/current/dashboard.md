@@ -15,6 +15,7 @@ Ein Dashboard für die kombinierte Handhabung mehrerer untergeordneter Eingabefe
 * __label__ | `string`: Tastenbeschriftung. Default: `none`.
 * __maxWidth__ | `number`: maximale Breite des Armaturenbretts. Default: `600`.
 * __className__ | `string`: Klassenname. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onGenerate__ | `function`: Funktion, die aufgerufen wird, wenn die Schaltfläche angeklickt wird oder sich einer der Dashboard-Eingabewerte ändert (wenn `autoUpdate` auf `true` gesetzt ist). Die Funktion wird mit den Werten der Eingabefelder aufgerufen, in der Reihenfolge, in der sie im Dashboard platziert sind. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: Kartentitel. Default: `''`.

@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "terugroeping aangeroepen zodra een kleurverandering is voltooid",
 	"ColorPicker-prop-presetColors": "HeX `strings` met vermelding van de standaardkleuren aan de onderkant van de kleurkiezer",
 	"ColorPicker-prop-style": "CSS inline-stijlen",
-	"ColorPicker-prop-variant": "kleurkiesvariant (ofwel `Compact`, `Sketch`, `Material`, of `Block`)",
 	"ColorPicker-prop-width": "breedte van de kleurkiezer (in px)",
 	"Container-description": "Containerwikkelaar.",
 	"Container-prop-fluid": "elke containerlay-out met vaste breedte omzetten in een layout over de volle breedte",

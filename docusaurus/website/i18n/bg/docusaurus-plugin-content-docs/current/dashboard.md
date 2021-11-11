@@ -15,6 +15,7 @@ sidebar_label: Dashboard
 * __label__ | `string`: етикет на бутона. Default: `none`.
 * __maxWidth__ | `number`: максимална ширина на таблото за управление. Default: `600`.
 * __className__ | `string`: име на класа. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 * __onGenerate__ | `function`: функция, която се извиква, когато се щракне върху бутона или се промени една от входните стойности на таблото за управление (ако `autoUpdate` е зададено на `true`). Функцията се извиква със стойностите на входните полета в реда, в който те са поставени в таблото за управление. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: заглавие на картата. Default: `''`.

@@ -19,6 +19,8 @@ Componente della scheda.
 * __trapFocus__ | `boolean`: se intrappolare il focus dell'utente nel pannello. Default: `false`.
 * __bodyStyle__ | `object`: Stili in linea CSS per il corpo. Default: `{}`.
 * __footerStyle__ | `object`: Stili in linea CSS per piè di pagina. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: Stili in linea CSS per container. Default: `{}`.
 * __onHide__ | `function`: richiamata quando si fa clic sul pulsante di chiusura. Default: `none`.
 

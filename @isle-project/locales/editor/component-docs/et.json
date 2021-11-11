@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback, mida kutsutakse üles, kui värvimuutus on lõpule viidud",
 	"ColorPicker-prop-presetColors": "HeX \"stringid\", mis määravad vaikimisi värvid värvivaliku allosas",
 	"ColorPicker-prop-style": "CSS inline stiilid",
-	"ColorPicker-prop-variant": "värvivaliku variant (kas `Kompakt`, `Sketch`, `Material` või `Block`)",
 	"ColorPicker-prop-width": "värvivaliku laius (px)",
 	"Container-description": "Konteineri ümbris.",
 	"Container-prop-fluid": "muuta mis tahes fikseeritud laiusega konteineri paigutus täispikkuses paigutuseks",

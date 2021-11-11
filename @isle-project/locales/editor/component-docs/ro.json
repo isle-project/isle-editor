@@ -93,7 +93,6 @@
 	"ColorPicker-prop-onChangeComplete": "callback invocat odată ce o schimbare de culoare este finalizată",
 	"ColorPicker-prop-presetColors": "HeX `strings` care specifică culorile implicite din partea de jos a selectorului de culori",
 	"ColorPicker-prop-style": "Stiluri inline CSS",
-	"ColorPicker-prop-variant": "varianta de selectare a culorii (fie `Compact`, `Sketch`, `Material`, sau `Block`)",
 	"ColorPicker-prop-width": "lățimea selectorului de culori (în px)",
 	"Container-description": "Învelișul containerului.",
 	"Container-prop-fluid": "transformă orice layout container cu lățime fixă într-un layout pe toată lățimea",

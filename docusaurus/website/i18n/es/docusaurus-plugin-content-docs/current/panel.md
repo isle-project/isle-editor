@@ -19,6 +19,8 @@ Componente de la tarjeta.
 * __trapFocus__ | `boolean`: si se atrapa el foco del usuario en el panel. Default: `false`.
 * __bodyStyle__ | `object`: Estilos en línea CSS para el cuerpo. Default: `{}`.
 * __footerStyle__ | `object`: Estilos en línea CSS para el pie de página. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: Estilos en línea de CSS para el contenedor. Default: `{}`.
 * __onHide__ | `function`: llamada de retorno invocada cuando se hace clic en el botón de cierre. Default: `none`.
 

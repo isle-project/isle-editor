@@ -10,6 +10,7 @@ Komponentas, skirtas nuorodai rodyti.
 
 * __href__ | `string (required)`: Svetainės, į kurią norite pateikti nuorodą, URL. Default: `none`.
 * __target__ | `string`: apibrėžia, kur nuoroda atidaroma: nustatyta į `_blank` - naujam langui, `_self` - savo rėmeliui, `_parent` - pagrindiniam langui, `_top` - visam lango korpusui arba rėmelio pavadinimui.. Default: `'_blank'`.
+* __windowFeatures__ | `string`: undefined. Default: `none`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 

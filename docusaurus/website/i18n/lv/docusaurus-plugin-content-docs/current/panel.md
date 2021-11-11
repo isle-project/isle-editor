@@ -19,6 +19,8 @@ Kartes komponents.
 * __trapFocus__ | `boolean`: vai aizturēt lietotāja fokusu panelī.. Default: `false`.
 * __bodyStyle__ | `object`: CSS iebūvēti stili korpusam. Default: `{}`.
 * __footerStyle__ | `object`: CSS iebūvētie stili pēdiņai. Default: `{}`.
+* __bodyClassName__ | `string`: undefined. Default: `''`.
+* __footerClassName__ | `string`: undefined. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili konteineram. Default: `{}`.
 * __onHide__ | `function`: atsauces zvans, kas tiek izsaukts, kad ir noklikšķināts uz aizvēršanas pogas.. Default: `none`.
 

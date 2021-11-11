@@ -8,7 +8,7 @@ Un involucro per il raccoglitore di colore [react-color](https://casesandberg.gi
 
 ## Opzioni
 
-* __variant__ | `string`: variante color picker (sia `Compact`, `Sketch`, `Material`, o `Block`). Default: `'Sketch'`.
+* __variant__ | `string`: undefined. Default: `'Sketch'`.
 * __color__ | `(string|object)`: "stringa" che contiene un codice HeX o un "oggetto" che contiene valori RGB o HSL come `{ r: 255, g: 255, b: 255 }`` o `{ h: 0, s: 0, l: .10 }``, che determina il colore attivo. Entrambi accettano una proprietà `a` per valori alfa diversi da uno. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: controlla se rimuovere il cursore alfa e le opzioni. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `stringhe` che specificano i colori di default nella parte inferiore del colorpicker. Default: `[

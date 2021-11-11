@@ -15,6 +15,7 @@ Ovládací panel pro kombinaci zpracování více podřízených vstupních pol�
 * __label__ | `string`: štítek tlačítka. Default: `none`.
 * __maxWidth__ | `number`: maximální šířka přístrojové desky. Default: `600`.
 * __className__ | `string`: název třídy. Default: `''`.
+* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
 * __onGenerate__ | `function`: funkce vyvolaná při kliknutí na tlačítko nebo při změně jedné ze vstupních hodnot panelu (pokud je `autoUpdate` nastaveno na `true`). Funkce je volána s hodnotami vstupních polí v pořadí, v jakém jsou umístěny na panelu.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: název karty. Default: `''`.
