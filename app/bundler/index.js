@@ -141,8 +141,8 @@ import 'react-app-polyfill/ie11';
 // MODULES //
 
 import React, { Component } from 'react';
-import { json, csv } from 'd3';
 import { render } from 'react-dom';
+import { json, csv } from 'd3';
 import { extname } from 'path';
 import url from 'url';
 import * as serviceWorker from 'bundler/service_worker.js';
@@ -153,7 +153,6 @@ import Provider from '@isle-project/components/internal/provider';
 import factor from '@isle-project/utils/factor-variable';
 import date from '@isle-project/utils/date';
 import obsToVar from '@isle-project/utils/obs-to-var';
-import 'bundler/loading.css';
 `;
 
 const getComponents = ( arr ) => {
