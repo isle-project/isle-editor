@@ -10,7 +10,6 @@ const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
 const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
 const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
@@ -54,10 +53,7 @@ if ( process ) {
 }
 const START_TIME = new Date();
 const BROWSER_TARGETS = [
-	'es2020',
-	'chrome67',
-	'firefox68',
-	'safari12'
+	'es2015'
 ];
 
 
@@ -406,11 +402,6 @@ function bundleLesson( options ) {
 			prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
 			modules: CDN_MODULES
 		}),
-		new MiniCssExtractPlugin({
-			filename: 'css/[name].css',
-			chunkFilename: 'css/[id].css',
-			experimentalUseImportModule: true
-		}),
 		new WebpackManifestPlugin({
 			fileName: 'asset-manifest.json'
 		}),
@@ -509,8 +500,15 @@ function bundleLesson( options ) {
 				{
 					test: /\.css$/,
 					use: [
-						MiniCssExtractPlugin.loader,
-						'css-loader'
+						'style-loader',
+						'css-loader',
+						{
+							loader: 'esbuild-loader',
+							options: {
+								loader: 'css',
+								minify: true
+							}
+						}
 					]
 				},
 				{
@@ -539,7 +537,12 @@ function bundleLesson( options ) {
 			minimizer: [
 				new ESBuildMinifyPlugin({
 					target: BROWSER_TARGETS,
-					implementation: esbuild
+					implementation: esbuild,
+					minify: false,
+					minifyIdentifiers: false,
+					minifyWhitespace: true,
+					minifySyntax: true,
+					legalComments: 'none'
 				})
 			]
 		},

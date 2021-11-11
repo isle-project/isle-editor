@@ -2,7 +2,6 @@
 
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
-const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
 const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
 
@@ -10,10 +9,7 @@ const esbuild = require( 'esbuild' );
 // VARIABLES //
 
 const BROWSER_TARGETS = [
-	'es2020',
-	'chrome67',
-	'firefox68',
-	'safari12'
+	'es2015'
 ];
 
 
@@ -43,7 +39,14 @@ const config = {
 				test: /\.css$/,
 				use: [
 					'style-loader',
-					'css-loader'
+					'css-loader',
+					{
+						loader: 'esbuild-loader',
+						options: {
+							loader: 'css',
+							minify: true
+						}
+					}
 				]
 			},
 			{
@@ -248,10 +251,13 @@ const config = {
 		minimizer: [
 			new ESBuildMinifyPlugin({
 				target: BROWSER_TARGETS,
-				legalComments: 'none',
-				implementation: esbuild
-			}),
-			new CssMinimizerPlugin()
+				implementation: esbuild,
+				minify: false,
+				minifyIdentifiers: false,
+				minifyWhitespace: true,
+				minifySyntax: true,
+				legalComments: 'none'
+			})
 		]
 	},
 	plugins: [

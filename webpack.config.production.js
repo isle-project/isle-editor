@@ -38,8 +38,13 @@ const config = {
 		minimize: true,
 		minimizer: [
 			new ESBuildMinifyPlugin({
-				target: 'esnext',
-				implementation: esbuild
+				target: 'es2015',
+				implementation: esbuild,
+				minify: false,
+				minifyIdentifiers: false,
+				minifyWhitespace: true,
+				minifySyntax: true,
+				legalComments: 'none'
 			})
 		]
 	},
@@ -55,9 +60,8 @@ const config = {
 						loader: 'esbuild-loader',
 						options: {
 							loader: 'jsx',
-							target: 'esnext',
-							implementation: esbuild,
-							legalComments: 'none'
+							target: 'es2015',
+							implementation: esbuild
 						}
 					}
 				],
