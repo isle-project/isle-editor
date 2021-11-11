@@ -49,29 +49,14 @@ class StickyNote extends Component {
 		this.textareaRef = React.createRef();
 		this.titleInputRef = React.createRef();
 
-		let body = null;
-		let title = null;
-		if ( props.editable ) {
-			title = props.title || props.t( 'custom-title' );
-			body = props.body || props.t( 'type-in-your-note' );
-		}
 		this.state = {
 			exit: false,
 			minimized: props.minimized,
 			editBody: false,
 			editTitle: false,
-			body: body,
-			title: title
+			body: props.body,
+			title: props.title
 		};
-	}
-
-	componentDidUpdate( prevProps ) {
-		if ( this.props.editable & !prevProps.editable ) {
-			this.setState({
-				title: this.props.title || this.props.t( 'custom-title' ),
-				body: this.props.body || this.props.t( 'type-in-your-note' )
-			});
-		}
 	}
 
 	handleClick = () => {
@@ -184,7 +169,7 @@ class StickyNote extends Component {
 	showTitle = () => {
 		return (
 			<div role="button" tabIndex={0} onClick={this.editTitle} onKeyPress={this.editTitle} className="sticky-note-title editable">
-				{this.state.title}
+				{this.state.title || this.props.t( 'custom-title' )}
 			</div>
 		);
 	};
@@ -283,7 +268,7 @@ class StickyNote extends Component {
 				role="button" onClick={this.editBody} onKeyPress={this.editBody}
 				tabIndex={0}
 			>
-				{this.state.body}
+				{this.state.body || this.props.t( 'type-in-your-note' )}
 			</div>
 		);
 	};
