@@ -92,19 +92,21 @@ init();
 args = parseArgs( process.argv.slice( 2 ), opts );
 
 if ( args.help ) {
-	return help();
+	help();
 }
-if ( args.version ) {
-	return version();
+else if ( args.version ) {
+	version();
 }
-if ( args.minify ) {
-	minify = true;
+else {
+	if ( args.minify ) {
+		minify = true;
+	}
+
+	fpath = path.resolve( cwd(), args._[ 0 ]);
+	lessonContent = fs.readFileSync( fpath ).toString();
+	outDir = path.resolve( cwd(), args._[ 1 ]);
+
+
+	// Create ISLE bundle:
+	main( outDir, basePath, lessonContent, minify, onFinish );
 }
-
-fpath = path.resolve( cwd(), args._[ 0 ]);
-lessonContent = fs.readFileSync( fpath ).toString();
-outDir = path.resolve( cwd(), args._[ 1 ]);
-
-
-// Create ISLE bundle:
-main( outDir, basePath, lessonContent, minify, onFinish );
