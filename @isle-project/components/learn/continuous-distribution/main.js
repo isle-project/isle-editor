@@ -309,7 +309,7 @@ class ContinuousDistributions extends Component {
 	renderGenerate() {
 		/* eslint-disable i18next/no-literal-string */
 		return (
-			<div>
+			<div className="d-grid gap-1" >
 				<NumberInput
 					legend={this.props.t('lower-bound')}
 					value={this.state.lowerX}

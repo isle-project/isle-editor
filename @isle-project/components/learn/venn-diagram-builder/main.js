@@ -245,7 +245,6 @@ class VennDiagramBuilder extends Component {
 					step={1}
 					min={0}
 				/>
-				<br />
 				<NumberInput
 					legend={<TeX raw={`| \\text{${first}} \\cap \\text{${second}} | `} />}
 					defaultValue={2}

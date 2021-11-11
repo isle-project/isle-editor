@@ -129,7 +129,7 @@ class Standardize extends Component {
 			<Card.Header as="h4">
 				{t('normal-to-standard-normal')}
 			</Card.Header>
-			<Card.Body>
+			<Card.Body className="d-grid gap-1" >
 				<NumberInput
 					legend={t('mean')}
 					defaultValue={4}

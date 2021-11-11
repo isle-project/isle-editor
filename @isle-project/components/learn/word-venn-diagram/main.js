@@ -244,7 +244,7 @@ class WordVennDiagram extends Component {
 		const { t } = this.props;
 		const inputs = [];
 		for ( let i = 0; i < this.state.nWords; i++ ) {
-			inputs[ i ] = <div key={`outer-${i}`}>
+			inputs[ i ] = <div key={`outer-${i}`} className="d-grid gap-1" >
 				<TextInput
 					key={`text-${i}`}
 					legend={`${t('word')} ${i+1}`}

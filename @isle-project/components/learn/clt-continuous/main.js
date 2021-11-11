@@ -367,7 +367,7 @@ class ContinuousCLT extends Component {
 
 	renderDistSelectionPanel() {
 		const { t } = this.props;
-		const exponential = <div>
+		const exponential = <div className="d-grid gap-1" >
 			<NumberInput legend={<span>{t('rate-parameter')} <TeX raw="\lambda" /></span>}
 				max={100} min={0.01} step={0.01} defaultValue={this.state.lambda}
 				onChange={( lambda ) => {
@@ -379,7 +379,7 @@ class ContinuousCLT extends Component {
 				}}
 			/>
 		</div>;
-		const uniform = <div>
+		const uniform = <div className="d-grid gap-1" >
 			<NumberInput
 				legend={<span>Minimum <TeX raw="a" /></span>}
 				step={0.01}
@@ -409,7 +409,7 @@ class ContinuousCLT extends Component {
 				}}
 			/>
 		</div>;
-		const normal = <div>
+		const normal = <div className="d-grid gap-1" >
 			<NumberInput
 				legend={<span>Mean <TeX raw="\mu" /></span>}
 				step={0.01} min={-100} defaultValue={this.state.mu} max={100}
@@ -487,7 +487,7 @@ class ContinuousCLT extends Component {
 			}
 		}
 		return ( <Card body>
-			<Container>
+			<Container >
 				<Row>
 					<Col md={4}>
 						<Tabs activeKey={this.state.activeDistribution} id="distribution-tabs" onSelect={this.handleSelect} >
@@ -496,7 +496,7 @@ class ContinuousCLT extends Component {
 							{this.props.distributions.includes('normal') ? <Tab eventKey={3} title={t('normal')}>{normal}</Tab>: null}
 						</Tabs>
 					</Col>
-					<Col md={4}>
+					<Col md={4} className="d-grid gap-1" >
 						<label>{t('active-distribution')} {this.state.distFormula}</label>
 						{populationParams}
 						<NumberInput

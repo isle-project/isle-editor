@@ -71,7 +71,7 @@ class DiceThrowing extends Component {
 		return (
 			<Container fluid={true}>
 				<Row>
-					<Col md={5}>
+					<Col md={5} className="d-grid gap-1" >
 						<h3>{this.props.t('probabilities')}:</h3>
 						{inmap( this.state.sides, ( x, i ) => ( <NumberInput
 							key={i}
