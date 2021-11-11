@@ -5,8 +5,11 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 import IS_TOUCH_DEVICE from '@stdlib/assert/is-touch-device';
 import FullscreenButton from '@isle-project/components/internal/fullscreen-button';
+import Tooltip from '@isle-project/components/tooltip';
+import Link from '@isle-project/components/link';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
@@ -113,6 +116,30 @@ const IFrame = ( props ) => {
 				}}
 				wrapInCard={false}
 			/> : null}
+				<Link
+					href={src}
+					windowFeatures={'toolbar=no, menubar=no, resizable=yes, width='+dimensions.width+', height='+dimensions.height+', top=0, left=0'}
+				>
+					<Tooltip
+						id={id+'-external-window-tooltip'}
+						placement="bottom"
+						tooltip={src}
+					>
+					<Button
+						variant="outline-secondary"
+						size="sm"
+						style={{
+							position: 'absolute',
+							top: 0,
+							right: 12,
+							fontSize: 12
+						}}
+						aria-label={src}
+					>
+						<i className="fa fa-external-link-alt"></i>
+					</Button>
+				</Tooltip>
+			</Link>
 			<iframe
 				id={id.current}
 				ref={iframeRef}

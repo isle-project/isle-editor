@@ -18,6 +18,7 @@ import { OPEN_LINK } from '@isle-project/constants/actions.js';
 *
 * @property {string} href - URL of website to link to
 * @property {string} target - defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame
+* @property {string} windowFeatures - comma-separated list of window features for when link is opened in new window (see: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features)
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
@@ -86,6 +87,7 @@ class Link extends Component {
 					url={this.state.url}
 					target={this.state.target}
 					t={this.props.t}
+					windowFeatures={this.props.windowFeatures}
 				/>
 			</Fragment>
 		);
@@ -98,12 +100,14 @@ class Link extends Component {
 Link.propTypes = {
 	href: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types,
 	target: PropTypes.string,
+	windowFeatures: PropTypes.string,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
 
 Link.defaultProps = {
 	target: '_blank',
+	windowFeatures: null,
 	className: '',
 	style: {}
 };

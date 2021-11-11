@@ -47,7 +47,7 @@ class LinkContextMenu extends Component {
 	openInWindow = () => {
 		const url = this.props.url;
 		debug( `Open ${url} in new window` );
-		window.open( url, '_blank', 'location=no,scrollbars=yes,status=yes' );
+		window.open( url, '_blank', this.props.windowFeatures );
 		const session = this.props.session;
 		session.log({
 			id: url,
@@ -92,10 +92,12 @@ class LinkContextMenu extends Component {
 
 LinkContextMenu.propTypes = {
 	url: PropTypes.string,
+	windowFeatures: PropTypes.string,
 	session: PropTypes.object.isRequired
 };
 
 LinkContextMenu.defaultProps = {
+	windowFeatures: 'location=no,scrollbars=yes,status=yes',
 	url: ''
 };
 
