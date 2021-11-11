@@ -11,9 +11,9 @@ const esbuild = require( 'esbuild' );
 
 const BROWSER_TARGETS = [
 	'es2020',
-	'chrome58',
-	'firefox57',
-	'safari11'
+	'chrome67',
+	'firefox68',
+	'safari12'
 ];
 
 

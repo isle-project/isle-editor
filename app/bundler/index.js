@@ -55,9 +55,9 @@ if ( process ) {
 const START_TIME = new Date();
 const BROWSER_TARGETS = [
 	'es2020',
-	'chrome58',
-	'firefox57',
-	'safari11'
+	'chrome67',
+	'firefox68',
+	'safari12'
 ];
 
 
