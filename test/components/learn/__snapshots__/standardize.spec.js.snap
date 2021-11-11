@@ -24,7 +24,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           normal-to-standard-normal
         </h4>
         <div
-          className="card-body"
+          className="d-grid gap-1 card-body"
         >
           <div
             className="input"

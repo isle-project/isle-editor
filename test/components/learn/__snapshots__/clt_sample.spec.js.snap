@@ -35,9 +35,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
               onSubmit={[Function]}
               style={Object {}}
             >
-              <div
-                className="form-group"
-              >
+              <div>
                 <label
                   htmlFor="select-input-1"
                 >

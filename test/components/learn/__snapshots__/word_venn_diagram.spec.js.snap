@@ -49,7 +49,9 @@ Array [
           three
         </button>
       </div>
-      <div>
+      <div
+        className="d-grid gap-1"
+      >
         <div
           className="input text-container-div"
           style={Object {}}

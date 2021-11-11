@@ -18,60 +18,73 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
   <div
     className="card-body"
   >
-    <nav
-      className="nav card-header-tabs nav-tabs"
+    <ul
+      className="nav nav-tabs"
       onKeyDown={[Function]}
       role="tablist"
     >
-      <a
-        aria-controls="chisquared-tabs-tabpane-1"
-        aria-selected={true}
-        className="nav-item nav-link active"
-        data-rb-event-key="1"
-        href="#"
-        id="chisquared-tabs-tab-1"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="chisquared-tabs-tabpane-2"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="2"
-        href="#"
-        id="chisquared-tabs-tab-2"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="chisquared-tabs-tabpane-1"
+          aria-selected={true}
+          className="nav-link active"
+          data-rr-ui-event-key="1"
+          disabled={false}
+          id="chisquared-tabs-tab-1"
+          onClick={[Function]}
+          role="tab"
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="chisquared-tabs-tabpane-3"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="3"
-        href="#"
-        id="chisquared-tabs-tab-3"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="chisquared-tabs-tabpane-2"
+          className="nav-link"
+          data-rr-ui-event-key="2"
+          disabled={false}
+          id="chisquared-tabs-tab-2"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-    </nav>
+        <button
+          aria-controls="chisquared-tabs-tabpane-3"
+          className="nav-link"
+          data-rr-ui-event-key="3"
+          disabled={false}
+          id="chisquared-tabs-tab-3"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+    </ul>
     <div
       className="tab-content"
     >
       <div
-        aria-hidden={false}
         aria-labelledby="chisquared-tabs-tab-1"
-        className="fade tab-pane active show"
+        className="tab-pane active"
         id="chisquared-tabs-tabpane-1"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -1632,11 +1645,9 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="chisquared-tabs-tab-2"
-        className="fade tab-pane"
+        className="tab-pane"
         id="chisquared-tabs-tabpane-2"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -3234,11 +3245,9 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="chisquared-tabs-tab-3"
-        className="fade tab-pane"
+        className="tab-pane"
         id="chisquared-tabs-tabpane-3"
-        role="tabpanel"
       >
         <div
           className="container"

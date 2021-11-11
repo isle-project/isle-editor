@@ -39,9 +39,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 onSubmit={[Function]}
                 style={Object {}}
               >
-                <div
-                  className="form-group"
-                >
+                <div>
                   <div
                     className=" css-b62m3t-container"
                     id="select-input-1"
@@ -154,9 +152,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 onSubmit={[Function]}
                 style={Object {}}
               >
-                <div
-                  className="form-group"
-                >
+                <div>
                   <div
                     className=" css-b62m3t-container"
                     id="select-input-2"

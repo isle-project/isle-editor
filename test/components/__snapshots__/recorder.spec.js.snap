@@ -16,55 +16,67 @@ exports[`<Recorder /> renders a recorder 1`] = `
     REC
   </div>
   <div
-    className="recorder-buttongroup btn-group btn-group-sm btn-group-toggle"
+    className="recorder-buttongroup btn-group btn-group-sm"
     role="group"
   >
+    <input
+      autoComplete="off"
+      checked={false}
+      className="btn-check"
+      disabled={true}
+      id="recorder-toggle-screen"
+      onChange={[Function]}
+      type="checkbox"
+      value="screen"
+    />
     <label
       className="recorder-togglebutton disabled btn btn-light"
-      disabled={false}
+      htmlFor="recorder-toggle-screen"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
     >
-      <input
-        autoComplete="off"
-        checked={false}
-        disabled={true}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="checkbox"
-        value="screen"
-      />
       screen
     </label>
+    <input
+      autoComplete="off"
+      checked={false}
+      className="btn-check"
+      disabled={true}
+      id="recorder-toggle-camera"
+      onChange={[Function]}
+      type="checkbox"
+      value="camera"
+    />
     <label
       className="recorder-togglebutton disabled btn btn-light"
-      disabled={false}
+      htmlFor="recorder-toggle-camera"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
     >
-      <input
-        autoComplete="off"
-        checked={false}
-        disabled={true}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="checkbox"
-        value="camera"
-      />
       cam
     </label>
+    <input
+      autoComplete="off"
+      checked={false}
+      className="btn-check"
+      disabled={true}
+      id="recorder-toggle-audio"
+      onChange={[Function]}
+      type="checkbox"
+      value="audio"
+    />
     <label
       className="recorder-togglebutton disabled btn btn-light"
-      disabled={false}
+      htmlFor="recorder-toggle-audio"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
     >
-      <input
-        autoComplete="off"
-        checked={false}
-        disabled={true}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="checkbox"
-        value="audio"
-      />
       audio
     </label>
   </div>

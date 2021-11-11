@@ -18,73 +18,91 @@ exports[`<LearnHypergeometricDistribution /> renders a learning component 1`] = 
   <div
     className="card-body"
   >
-    <nav
-      className="nav card-header-tabs nav-tabs"
+    <ul
+      className="nav nav-tabs"
       onKeyDown={[Function]}
       role="tablist"
     >
-      <a
-        aria-controls="hypergeometric-tabs-tabpane-0"
-        aria-selected={true}
-        className="nav-item nav-link active"
-        data-rb-event-key="0"
-        href="#"
-        id="hypergeometric-tabs-tab-0"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="hypergeometric-tabs-tabpane-1"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="1"
-        href="#"
-        id="hypergeometric-tabs-tab-1"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="hypergeometric-tabs-tabpane-0"
+          aria-selected={true}
+          className="nav-link active"
+          data-rr-ui-event-key="0"
+          disabled={false}
+          id="hypergeometric-tabs-tab-0"
+          onClick={[Function]}
+          role="tab"
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="hypergeometric-tabs-tabpane-2"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="2"
-        href="#"
-        id="hypergeometric-tabs-tab-2"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="hypergeometric-tabs-tabpane-1"
+          className="nav-link"
+          data-rr-ui-event-key="1"
+          disabled={false}
+          id="hypergeometric-tabs-tab-1"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="hypergeometric-tabs-tabpane-3"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="3"
-        href="#"
-        id="hypergeometric-tabs-tab-3"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="hypergeometric-tabs-tabpane-2"
+          className="nav-link"
+          data-rr-ui-event-key="2"
+          disabled={false}
+          id="hypergeometric-tabs-tab-2"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-    </nav>
+        <button
+          aria-controls="hypergeometric-tabs-tabpane-3"
+          className="nav-link"
+          data-rr-ui-event-key="3"
+          disabled={false}
+          id="hypergeometric-tabs-tab-3"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+    </ul>
     <div
       className="tab-content"
     >
       <div
-        aria-hidden={false}
         aria-labelledby="hypergeometric-tabs-tab-0"
-        className="fade tab-pane active show"
+        className="tab-pane active"
         id="hypergeometric-tabs-tabpane-0"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -102,11 +120,9 @@ exports[`<LearnHypergeometricDistribution /> renders a learning component 1`] = 
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="hypergeometric-tabs-tab-1"
-        className="fade tab-pane"
+        className="tab-pane"
         id="hypergeometric-tabs-tabpane-1"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -124,11 +140,9 @@ exports[`<LearnHypergeometricDistribution /> renders a learning component 1`] = 
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="hypergeometric-tabs-tab-2"
-        className="fade tab-pane"
+        className="tab-pane"
         id="hypergeometric-tabs-tabpane-2"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -146,11 +160,9 @@ exports[`<LearnHypergeometricDistribution /> renders a learning component 1`] = 
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="hypergeometric-tabs-tab-3"
-        className="fade tab-pane"
+        className="tab-pane"
         id="hypergeometric-tabs-tabpane-3"
-        role="tabpanel"
       >
         <div
           className="container"

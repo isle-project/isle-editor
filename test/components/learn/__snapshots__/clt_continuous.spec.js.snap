@@ -33,62 +33,77 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 <div
                   className="col-md-4"
                 >
-                  <nav
-                    className="nav card-header-tabs nav-tabs"
+                  <ul
+                    className="nav nav-tabs"
                     onKeyDown={[Function]}
                     role="tablist"
                   >
-                    <a
-                      aria-controls="distribution-tabs-tabpane-1"
-                      aria-selected={true}
-                      className="nav-item nav-link active"
-                      data-rb-event-key="1"
-                      href="#"
-                      id="distribution-tabs-tab-1"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="tab"
+                    <li
+                      className="nav-item"
+                      role="presentation"
                     >
-                      uniform
-                    </a>
-                    <a
-                      aria-controls="distribution-tabs-tabpane-2"
-                      aria-selected={false}
-                      className="nav-item nav-link"
-                      data-rb-event-key="2"
-                      href="#"
-                      id="distribution-tabs-tab-2"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="tab"
+                      <button
+                        aria-controls="distribution-tabs-tabpane-1"
+                        aria-selected={true}
+                        className="nav-link active"
+                        data-rr-ui-event-key="1"
+                        disabled={false}
+                        id="distribution-tabs-tab-1"
+                        onClick={[Function]}
+                        role="tab"
+                        type="button"
+                      >
+                        uniform
+                      </button>
+                    </li>
+                    <li
+                      className="nav-item"
+                      role="presentation"
                     >
-                      exponential
-                    </a>
-                    <a
-                      aria-controls="distribution-tabs-tabpane-3"
-                      aria-selected={false}
-                      className="nav-item nav-link"
-                      data-rb-event-key="3"
-                      href="#"
-                      id="distribution-tabs-tab-3"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      role="tab"
+                      <button
+                        aria-controls="distribution-tabs-tabpane-2"
+                        className="nav-link"
+                        data-rr-ui-event-key="2"
+                        disabled={false}
+                        id="distribution-tabs-tab-2"
+                        onClick={[Function]}
+                        role="tab"
+                        tabIndex={-1}
+                        type="button"
+                      >
+                        exponential
+                      </button>
+                    </li>
+                    <li
+                      className="nav-item"
+                      role="presentation"
                     >
-                      normal
-                    </a>
-                  </nav>
+                      <button
+                        aria-controls="distribution-tabs-tabpane-3"
+                        className="nav-link"
+                        data-rr-ui-event-key="3"
+                        disabled={false}
+                        id="distribution-tabs-tab-3"
+                        onClick={[Function]}
+                        role="tab"
+                        tabIndex={-1}
+                        type="button"
+                      >
+                        normal
+                      </button>
+                    </li>
+                  </ul>
                   <div
                     className="tab-content"
                   >
                     <div
-                      aria-hidden={false}
                       aria-labelledby="distribution-tabs-tab-1"
-                      className="fade tab-pane active show"
+                      className="tab-pane active"
                       id="distribution-tabs-tabpane-1"
-                      role="tabpanel"
                     >
-                      <div>
+                      <div
+                        className="d-grid gap-1"
+                      >
                         <div
                           className="input"
                           style={
@@ -195,13 +210,13 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       </div>
                     </div>
                     <div
-                      aria-hidden={true}
                       aria-labelledby="distribution-tabs-tab-2"
-                      className="fade tab-pane"
+                      className="tab-pane"
                       id="distribution-tabs-tabpane-2"
-                      role="tabpanel"
                     >
-                      <div>
+                      <div
+                        className="d-grid gap-1"
+                      >
                         <div
                           className="input"
                           style={
@@ -257,13 +272,13 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       </div>
                     </div>
                     <div
-                      aria-hidden={true}
                       aria-labelledby="distribution-tabs-tab-3"
-                      className="fade tab-pane"
+                      className="tab-pane"
                       id="distribution-tabs-tabpane-3"
-                      role="tabpanel"
                     >
-                      <div>
+                      <div
+                        className="d-grid gap-1"
+                      >
                         <div
                           className="input"
                           style={
@@ -371,7 +386,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                   </div>
                 </div>
                 <div
-                  className="col-md-4"
+                  className="d-grid gap-1 col-md-4"
                 >
                   <label>
                     active-distribution

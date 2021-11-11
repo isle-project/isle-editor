@@ -13,7 +13,7 @@ exports[`<LikertScale /> renders a Likert scale 1`] = `
     className="card-body"
   >
     <div
-      className="center form-group"
+      className="center"
     >
       <label>
         Do you agree with the arguments made by the speaker?

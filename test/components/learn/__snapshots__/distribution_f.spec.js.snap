@@ -18,60 +18,73 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
   <div
     className="card-body"
   >
-    <nav
-      className="nav card-header-tabs nav-tabs"
+    <ul
+      className="nav nav-tabs"
       onKeyDown={[Function]}
       role="tablist"
     >
-      <a
-        aria-controls="f-tabs-tabpane-smaller"
-        aria-selected={true}
-        className="nav-item nav-link active"
-        data-rb-event-key="smaller"
-        href="#"
-        id="f-tabs-tab-smaller"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="f-tabs-tabpane-greater"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="greater"
-        href="#"
-        id="f-tabs-tab-greater"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="f-tabs-tabpane-smaller"
+          aria-selected={true}
+          className="nav-link active"
+          data-rr-ui-event-key="smaller"
+          disabled={false}
+          id="f-tabs-tab-smaller"
+          onClick={[Function]}
+          role="tab"
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-      <a
-        aria-controls="f-tabs-tabpane-range"
-        aria-selected={false}
-        className="nav-item nav-link"
-        data-rb-event-key="range"
-        href="#"
-        id="f-tabs-tab-range"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="tab"
+        <button
+          aria-controls="f-tabs-tabpane-greater"
+          className="nav-link"
+          data-rr-ui-event-key="greater"
+          disabled={false}
+          id="f-tabs-tab-greater"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+      <li
+        className="nav-item"
+        role="presentation"
       >
-        <div />
-      </a>
-    </nav>
+        <button
+          aria-controls="f-tabs-tabpane-range"
+          className="nav-link"
+          data-rr-ui-event-key="range"
+          disabled={false}
+          id="f-tabs-tab-range"
+          onClick={[Function]}
+          role="tab"
+          tabIndex={-1}
+          type="button"
+        >
+          <div />
+        </button>
+      </li>
+    </ul>
     <div
       className="tab-content"
     >
       <div
-        aria-hidden={false}
         aria-labelledby="f-tabs-tab-smaller"
-        className="fade tab-pane active show"
+        className="tab-pane active"
         id="f-tabs-tabpane-smaller"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -1770,11 +1783,9 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="f-tabs-tab-greater"
-        className="fade tab-pane"
+        className="tab-pane"
         id="f-tabs-tabpane-greater"
-        role="tabpanel"
       >
         <div
           className="container"
@@ -3510,11 +3521,9 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
         </div>
       </div>
       <div
-        aria-hidden={true}
         aria-labelledby="f-tabs-tab-range"
-        className="fade tab-pane"
+        className="tab-pane"
         id="f-tabs-tabpane-range"
-        role="tabpanel"
       >
         <div
           className="container"
