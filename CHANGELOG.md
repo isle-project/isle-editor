@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.76.10](https://github.com/isle-project/isle-editor/releases/tag/v0.76.10) (2021-11-11)
+
+This release patches several issues in the data explorer and contains refactored components to accommodate breaking changes in several of the project's dependencies. It also supports logging-in via Single Sign-On (SSO)  for ISLE servers for which this form of authentication is enabled. Last but not least, the `<IFrame />` component has been refactored to include an external link to open the page in a new browser tab or separate window.
+
+**Fixed bugs:**
+
+- \[Bug\]: Restored outputs in data explorers do not have correct filters applied [\#2554](https://github.com/isle-project/isle-editor/issues/2554)
+- \[Bug\]: Multiple Linear Regression not working with missing values [\#2531](https://github.com/isle-project/isle-editor/issues/2531)
+- alpha level selector for Interval Plots not working [\#2530](https://github.com/isle-project/isle-editor/issues/2530)
+
 ## [v0.76.9](https://github.com/isle-project/isle-editor/releases/tag/v0.76.9) (2021-10-12)
 
 This patch release solves a bug that caused variable transformations to not be restored inside of a data explorer upon reloading a lesson. As a feature improvement, variable transformations and the like can now be restored from the "History" tab of the data explorer. Finally, the release improves error messages for failed login attempts when connecting the editor to an ISLE server instance. 
