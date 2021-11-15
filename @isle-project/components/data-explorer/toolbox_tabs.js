@@ -405,6 +405,7 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 				/>;
 				break;
 			case 'Chi-squared Independence Test':
+			case 'Chi-square Independence Test':
 				content = <Chi2Test
 					onCreated={onCreated}
 					data={data}
