@@ -251,7 +251,7 @@
 	"scope": "Zakres:",
 	"score-threshold-for-split": "Próg punktowy dla podziału",
 	"second-variable": "Druga zmienna:",
-	"second-variable-statistic-tooltip": "Zweite Zmienna zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Druga zmienna do obliczania statystyki dwudzielnej",
 	"select-grouping-or-second-variable": "Proszę wybrać albo zmienną grupowania, albo drugą zmienną do porównania {{var}} z.",
 	"select-name": "Wybierz nazwę",
 	"select-quantitative-categorical": "Proszę wybrać, które zmienne powinny być traktowane jako ilościowe, a które jako kategoryczne",

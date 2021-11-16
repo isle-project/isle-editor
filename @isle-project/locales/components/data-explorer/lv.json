@@ -251,7 +251,7 @@
 	"scope": "Darbības joma:",
 	"score-threshold-for-split": "Punktu slieksnis sadalīšanai",
 	"second-variable": "Otrais mainīgais lielums:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Otrais mainīgais lielums divdimensiju statistikas aprēķināšanai",
 	"select-grouping-or-second-variable": "Lūdzu, izvēlieties vai nu grupēšanas mainīgo, vai otru mainīgo, ar kuru salīdzināt {{var}}.",
 	"select-name": "Izvēlieties nosaukumu",
 	"select-quantitative-categorical": "Lūdzu, izvēlieties, kuri mainīgie ir uzskatāmi par kvantitatīviem un kuri par kategoriskiem.",

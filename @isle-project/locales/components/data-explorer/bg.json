@@ -251,7 +251,7 @@
 	"scope": "Обхват:",
 	"score-threshold-for-split": "Праг на точките за разделяне",
 	"second-variable": "Втора променлива:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Втора променлива за изчисляване на двумерна статистика",
 	"select-grouping-or-second-variable": "Моля, изберете или групова променлива, или втора променлива, с която да сравнявате {{var}}.",
 	"select-name": "Изберете име",
 	"select-quantitative-categorical": "Моля, изберете кои променливи следва да се разглеждат като количествени и кои като категорични.",

@@ -251,7 +251,7 @@
 	"scope": "Laajuus:",
 	"score-threshold-for-split": "Pistekynnys jakoa varten",
 	"second-variable": "Toinen muuttuja:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik (toinen muuttuja)",
+	"second-variable-statistic-tooltip": "Toinen muuttuja kaksimuuttujaisen tilaston laskemista varten",
 	"select-grouping-or-second-variable": "Valitse joko ryhmittelymuuttuja tai toinen muuttuja, johon vertaat {{var}}.",
 	"select-name": "Valitse nimi",
 	"select-quantitative-categorical": "Valitkaa, mitkä muuttujat käsitellään määrällisinä ja mitkä kategorisina muuttujina.",

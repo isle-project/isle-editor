@@ -251,7 +251,7 @@
 	"scope": "Reguleerimisala:",
 	"score-threshold-for-split": "Punkti künnis jagamise jaoks",
 	"second-variable": "Teine muutuja:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Teine muutuja bivariatiivse statistika arvutamiseks",
 	"select-grouping-or-second-variable": "Palun valige kas rühmitav muutuja või teine muutuja, millega võrrelda {{var}}.",
 	"select-name": "Valige nimi",
 	"select-quantitative-categorical": "Palun valige, milliseid muutujaid tuleks käsitleda kvantitatiivsete ja milliseid kategooriliste muutujatena.",

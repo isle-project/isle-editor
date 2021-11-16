@@ -251,7 +251,7 @@
 	"scope": "Apimtis:",
 	"score-threshold-for-split": "Balų riba padalijimui",
 	"second-variable": "Antrasis kintamasis:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Antrasis kintamasis dvimačiai statistikai apskaičiuoti",
 	"select-grouping-or-second-variable": "Pasirinkite grupuojantį kintamąjį arba antrą kintamąjį, su kuriuo norite palyginti {{var}}.",
 	"select-name": "Pasirinkite pavadinimą",
 	"select-quantitative-categorical": "Pasirinkite, kuriuos kintamuosius laikyti kiekybiniais, o kuriuos - kategoriniais.",

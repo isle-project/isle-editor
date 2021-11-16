@@ -251,7 +251,7 @@
 	"scope": "Terjedelem:",
 	"score-threshold-for-split": "Pontszám küszöbérték a felosztáshoz",
 	"second-variable": "Második változó:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik (második változó a bivariaten Statistik kiszámításához)",
+	"second-variable-statistic-tooltip": "Második változó a kétváltozós statisztika kiszámításához",
 	"select-grouping-or-second-variable": "Kérjük, válasszon ki egy csoportosító változót vagy egy második változót, amellyel a {{var}} összehasonlítható.",
 	"select-name": "Válassza ki a nevet",
 	"select-quantitative-categorical": "Kérjük, válassza ki, mely változókat kell kvantitatív, és melyeket kategorikus változóként kezelni.",

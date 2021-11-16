@@ -251,7 +251,7 @@
 	"scope": "Champ d'application :",
 	"score-threshold-for-split": "Seuil de score pour le partage",
 	"second-variable": "Deuxième variable :",
-	"second-variable-statistic-tooltip": "Deux variables pour l'établissement des statistiques sur les ménages",
+	"second-variable-statistic-tooltip": "Deuxième variable pour le calcul de la statistique bivariée",
 	"select-grouping-or-second-variable": "Veuillez sélectionner une variable de regroupement ou une deuxième variable à laquelle comparer {{var}}.",
 	"select-name": "Sélectionnez un nom",
 	"select-quantitative-categorical": "Veuillez sélectionner les variables qui doivent être traitées comme quantitatives et celles qui doivent être traitées comme catégorielles",

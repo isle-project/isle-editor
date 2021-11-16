@@ -251,7 +251,7 @@
 	"scope": "Scope:",
 	"score-threshold-for-split": "Scoredrempel voor splitsing",
 	"second-variable": "Tweede Variabele:",
-	"second-variable-statistic-tooltip": "Zweite Variabele zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Tweede variabele voor het berekenen van bivariate statistiek",
 	"select-grouping-or-second-variable": "Kies een groepsvariabele of een tweede variabele om {{var}} mee te vergelijken.",
 	"select-name": "Selecteer Naam",
 	"select-quantitative-categorical": "Selecteer welke variabelen als kwantitatief en welke als categorisch moeten worden behandeld.",

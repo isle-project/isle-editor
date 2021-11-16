@@ -251,7 +251,7 @@
 	"scope": "Scope:",
 	"score-threshold-for-split": "Score threshold for split",
 	"second-variable": "Second Variable:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Second variable for computing bivariate statistic",
 	"select-grouping-or-second-variable": "Please select either a grouping variable or a second variable to compare {{var}} against.",
 	"select-name": "Select Name",
 	"select-quantitative-categorical": "Please select which variables should be treated as quantitative and which ones as categorical",

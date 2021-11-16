@@ -251,7 +251,7 @@
 	"scope": "Охват:",
 	"score-threshold-for-split": "Порог оценки для разделения",
 	"second-variable": "Вторая переменная:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Вторая переменная для вычисления бивариантной статистики",
 	"select-grouping-or-second-variable": "Пожалуйста, выберите либо переменную группировки, либо вторую переменную для сравнения {{var}}.",
 	"select-name": "Выберите Имя",
 	"select-quantitative-categorical": "Пожалуйста, выберите, какие переменные следует рассматривать как количественные, а какие - как категорические.",

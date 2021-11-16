@@ -251,7 +251,7 @@
 	"scope": "Omfattning:",
 	"score-threshold-for-split": "Tröskelvärde för poäng för uppdelning",
 	"second-variable": "Andra variabeln:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Andra variabeln för beräkning av bivariat statistik",
 	"select-grouping-or-second-variable": "Välj antingen en grupperingsvariabel eller en andra variabel att jämföra {{var}} med.",
 	"select-name": "Välj namn",
 	"select-quantitative-categorical": "Välj vilka variabler som ska behandlas som kvantitativa och vilka som kategoriska.",

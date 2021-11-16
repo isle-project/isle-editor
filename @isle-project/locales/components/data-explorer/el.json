@@ -251,7 +251,7 @@
 	"scope": "Πεδίο εφαρμογής:",
 	"score-threshold-for-split": "Κατώτατο όριο βαθμολογίας για διαχωρισμό",
 	"second-variable": "Δεύτερη μεταβλητή:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Δεύτερη μεταβλητή για τον υπολογισμό διμεταβλητής στατιστικής",
 	"select-grouping-or-second-variable": "Επιλέξτε είτε μια μεταβλητή ομαδοποίησης είτε μια δεύτερη μεταβλητή για να συγκρίνετε το {{var}}.",
 	"select-name": "Επιλέξτε Όνομα",
 	"select-quantitative-categorical": "Παρακαλούμε επιλέξτε ποιες μεταβλητές θα πρέπει να αντιμετωπίζονται ως ποσοτικές και ποιες ως κατηγορικές.",

@@ -251,7 +251,7 @@
 	"scope": "Portata:",
 	"score-threshold-for-split": "Soglia di punteggio per lo split",
 	"second-variable": "Seconda variabile:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Seconda variabile per il calcolo della statistica bivariata",
 	"select-grouping-or-second-variable": "Si prega di selezionare una variabile di raggruppamento o una seconda variabile da confrontare {{var}}.",
 	"select-name": "Seleziona il nome",
 	"select-quantitative-categorical": "Si prega di selezionare quali variabili devono essere trattate come quantitative e quali come categoriche",

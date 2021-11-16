@@ -251,7 +251,7 @@
 	"scope": "Področje uporabe:",
 	"score-threshold-for-split": "Prag točk za delitev",
 	"second-variable": "Druga spremenljivka:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Druga spremenljivka za izračun bivariatne statistike",
 	"select-grouping-or-second-variable": "Izberite spremenljivko za razvrščanje v skupine ali drugo spremenljivko, s katero boste primerjali {{var}}.",
 	"select-name": "Izberite ime",
 	"select-quantitative-categorical": "Izberite, katere spremenljivke je treba obravnavati kot kvantitativne in katere kot kategorične.",

@@ -251,7 +251,7 @@
 	"scope": "Rozsah:",
 	"score-threshold-for-split": "Bodová hranice pro rozdělení",
 	"second-variable": "Druhá proměnná:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Druhá proměnná pro výpočet dvourozměrné statistiky",
 	"select-grouping-or-second-variable": "Vyberte prosím buď seskupovací proměnnou, nebo druhou proměnnou, se kterou chcete porovnávat {{var}}.",
 	"select-name": "Vyberte název",
 	"select-quantitative-categorical": "Vyberte, které proměnné mají být považovány za kvantitativní a které za kategoriální.",

@@ -251,7 +251,7 @@
 	"scope": "スコープ。",
 	"score-threshold-for-split": "スプリットのスコア閾値",
 	"second-variable": "2番目の変数。",
-	"second-variable-statistic-tooltip": "ビバリアート統計のための二元分布変数",
+	"second-variable-statistic-tooltip": "二変数の統計量を計算するための第二の変数",
 	"select-grouping-or-second-variable": "比較する変数は、{{var}}と比較するグルーピング変数または第2の変数を選択してください。",
 	"select-name": "名前を選択",
 	"select-quantitative-categorical": "どの変数を定量的に扱い、どの変数をカテゴリカルに扱うかを選択してください。",

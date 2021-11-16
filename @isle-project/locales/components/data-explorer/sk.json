@@ -251,7 +251,7 @@
 	"scope": "Rozsah pôsobnosti:",
 	"score-threshold-for-split": "Prahová hodnota pre rozdelenie",
 	"second-variable": "Druhá premenná:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Druhá premenná na výpočet dvojrozmernej štatistiky",
 	"select-grouping-or-second-variable": "Vyberte buď zoskupovaciu premennú, alebo druhú premennú na porovnanie {{var}}.",
 	"select-name": "Vyberte názov",
 	"select-quantitative-categorical": "Vyberte, ktoré premenné sa majú považovať za kvantitatívne a ktoré za kategorické",

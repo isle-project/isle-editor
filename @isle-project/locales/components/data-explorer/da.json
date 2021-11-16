@@ -251,7 +251,7 @@
 	"scope": "Anvendelsesområde:",
 	"score-threshold-for-split": "Score-tærskel for opdeling",
 	"second-variable": "Anden variabel:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Anden variabel til beregning af bivariat statistik",
 	"select-grouping-or-second-variable": "Vælg enten en grupperingsvariabel eller en anden variabel, som {{var}} skal sammenlignes med.",
 	"select-name": "Vælg navn",
 	"select-quantitative-categorical": "Vælg venligst, hvilke variabler der skal behandles som kvantitative og hvilke der skal behandles som kategoriske",

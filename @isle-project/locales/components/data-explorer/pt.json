@@ -251,7 +251,7 @@
 	"scope": "Escopo:",
 	"score-threshold-for-split": "Limiar de pontuação para a divisão",
 	"second-variable": "Segunda variável:",
-	"second-variable-statistic-tooltip": "Zweite Variable zur Berechnung der bivariaten Statistik",
+	"second-variable-statistic-tooltip": "Segunda variável para computação de estatísticas bivariadas",
 	"select-grouping-or-second-variable": "Favor selecionar uma variável de agrupamento ou uma segunda variável para comparar {{var}}.",
 	"select-name": "Selecione o nome",
 	"select-quantitative-categorical": "Favor selecionar quais variáveis devem ser tratadas como quantitativas e quais variáveis como categóricas",
