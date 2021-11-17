@@ -18,6 +18,7 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import SummaryStatistics from '@isle-project/components/summary-statistics';
 import CheckboxInput from '@isle-project/components/input/checkbox';
+import kebabCase from '@isle-project/utils/kebabcase';
 import CreatableSelect from 'react-select/creatable';
 import QuestionButton from './question_button.js';
 import { DATA_EXPLORER_SUMMARY_STATISTICS } from '@isle-project/constants/actions.js';
@@ -29,19 +30,20 @@ import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 const DESCRIPTION = <span>Compute various statistics of interest, i.e. summary measures of the <i>quantitative</i> variables in the data set.</span>;
 const QUANTILE_OPTIONS = [ 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ].map( x => createOption( x ) );
 const Option = props => {
+	const label = kebabCase( props.data.label );
 	const popover = <Popover id={`${props.data.label}-popover`}>
 		<PopoverBody>{STAT_DESCRIPTIONS[ i18n.language ][ props.data.label]}</PopoverBody>
 	</Popover>;
 	return ( <components.Option key={props.data.label} {...props} >
 		<span style={{
 			opacity: props.isSelected ? 0.5 : 1
-		}}>{i18n.t( 'data-explorer:'+props.data.label )}</span>
+		}}>{i18n.t( 'data-explorer:'+label )}</span>
 		<OverlayTrigger
 			trigger={['hover', 'click']}
 			placement="right" rootClose overlay={popover}
 		>
 			<Button
-				aria-label={i18n.t( 'data-explorer:'+props.data.label )}
+				aria-label={i18n.t( 'data-explorer:'+label )}
 				size="sm"
 				variant="outline-secondary"
 				className="question-button"
