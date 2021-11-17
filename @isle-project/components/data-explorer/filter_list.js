@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import isPlainObject from '@stdlib/assert/is-plain-object';
 import isArray from '@stdlib/assert/is-array';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import objectKeys from '@stdlib/utils/keys';
 
 
@@ -18,6 +19,9 @@ const FilterList = ( props ) => {
 		let value;
 		if ( isArray( filter.value ) ) {
 			value = filter.value.map( ( x, i ) => <Badge bg="secondary" key={i} style={{ marginRight: 4 }} >{x}</Badge> );
+		}
+		else if ( isString( filter.value ) ) {
+			value = <Badge bg="secondary" style={{ marginRight: 4 }} >{filter.value}</Badge>;
 		}
 		else if ( isPlainObject( filter.value ) ) {
 			const keys = objectKeys( filter.value );

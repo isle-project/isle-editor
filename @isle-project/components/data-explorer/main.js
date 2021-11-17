@@ -31,6 +31,7 @@ import copy from '@stdlib/utils/copy';
 import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
 import incrspace from '@stdlib/array/incrspace';
+import lowercase from '@stdlib/string/lowercase';
 import generateUID from '@isle-project/utils/uid';
 import SelectInput from '@isle-project/components/input/select';
 import TextEditor from '@isle-project/components/text-editor';
@@ -127,6 +128,13 @@ function filterCreate( data, filters ) {
 			// Case: We have a filter for a quantitative variable, which has a min and max value
 			for ( let z = 0; z < col.length; z++ ) {
 				if ( !( col[ z ] >= filter.value.min && col[ z ] <= filter.value.max ) ) {
+					indices.add( z );
+				}
+			}
+		} else if ( isString( filter.value ) ) {
+			// Case: We have a filter for a text
+			for ( let z = 0; z < col.length; z++ ) {
+				if ( !contains( lowercase( col[ z ] ), lowercase( filter.value ) ) ) {
 					indices.add( z );
 				}
 			}
