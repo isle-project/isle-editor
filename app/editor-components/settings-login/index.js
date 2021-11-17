@@ -26,6 +26,10 @@ import electronStore from 'store/electron.js';
 
 const debug = logger( 'isle:settings' );
 const ISLE_EXAMPLE_SERVER = 'https://isle.stat.cmu.edu';
+const DEFAULT_LOGIN = {
+	requireCredentials: true,
+	label: 'Login with Credentials'
+};
 
 
 // FUNCTIONS //
@@ -58,8 +62,10 @@ class SettingsLogin extends Component {
 			email: electronStore.get('email') || '',
 			password: electronStore.get('password') || '',
 			encounteredError: null,
-			loginMethod: 'SignIn',
-			loginType: 'Both'
+			loginMethod: DEFAULT_LOGIN,
+			loginChoices: [
+				DEFAULT_LOGIN
+			]
 		};
 	}
 
@@ -91,23 +97,24 @@ class SettingsLogin extends Component {
 
 	checkLoginTypes = async () => {
 		try {
-			const response = await axios.get( this.state.server + '/saml-xmw/login-type' );
+			const response = await axios.get( this.state.server + '/saml-xmw/login-choices' );
 			this.setState({
-				loginType: response.data,
-				loginMethod: response.data !== 'Both' ? response.data : this.state.loginMethod
+				loginChoices: response.data
 			});
 		} catch ( err ) {
 			debug( 'Error checking login types: %o', err );
 			this.setState({
-				loginType: 'SignIn',
-				loginMethod: 'SignIn'
+				loginMethod: DEFAULT_LOGIN,
+				loginChoices: [
+					DEFAULT_LOGIN
+				]
 			});
 		}
 	};
 
 	connectToServer = async () => {
 		try {
-			if ( this.state.loginMethod === 'SignIn' ) {
+			if ( this.state.loginMethod.requireCredentials) {
 				const res = await axios.post( this.state.server + '/login', {
 					password: this.state.password,
 					email: trim( this.state.email )
@@ -119,7 +126,7 @@ class SettingsLogin extends Component {
 				});
 			}
 			else {
-				const res = await axios.get( this.state.server + '/saml-xmw/login', {
+				const res = await axios.get( this.state.loginMethod.url, {
 					password: this.state.password,
 					email: trim( this.state.email )
 				});
@@ -278,14 +285,13 @@ class SettingsLogin extends Component {
 							value={this.state.loginMethod}
 							style={{ paddingBottom: '1rem', paddingTop: '1rem' }}
 						>
-							<ToggleButton id="login-signin" value="SignIn" variant="outline-secondary" disabled={this.state.loginType === 'SSO'} >
-								{t('login-with-credentials')}
-							</ToggleButton>
-							<ToggleButton id="login-sso" value="sso" variant="outline-secondary" disabled={this.state.loginType === 'SignIn'} >
-								{t('login-with-sso')}
-							</ToggleButton>
+							{this.state.loginChoices.map( ( choice ) => {
+								return ( <ToggleButton id={`login-${choice.label}`} value={choice} variant="outline-secondary" key={choice.url} >
+									{choice.label}
+								</ToggleButton> );
+							})}
 						</ToggleButtonGroup>
-						{this.state.loginMethod === 'SignIn' ?
+						{this.state.loginMethod.requireCredentials ?
 							<Fragment>
 								<FormGroup>
 									<FormLabel>{t('email')}</FormLabel>
@@ -345,7 +351,7 @@ class SettingsLogin extends Component {
 								onClick={this.unlink}
 								style={{ float: 'right' }}
 							>
-							{t('unlink')}
+								{t('unlink')}
 							</Button>
 						</Card.Body>
 						</Card>
@@ -374,18 +380,18 @@ class SettingsLogin extends Component {
 						) : null}
 						</Fragment>
 					) : (
-						<Card border="success">
-						<Card.Body>
-							<p>{t('connected-to-github')}</p>
-							<Button
-								variant="danger"
-								size="sm"
-								onClick={this.unlinkGitHub}
-								style={{ float: 'right' }}
-							>
-							{t('unlink')}
-							</Button>
-						</Card.Body>
+						<Card border="success" >
+							<Card.Body>
+								<p>{t('connected-to-github')}</p>
+								<Button
+									variant="danger"
+									size="sm"
+									onClick={this.unlinkGitHub}
+									style={{ float: 'right' }}
+								>
+									{t('unlink')}
+								</Button>
+							</Card.Body>
 						</Card>
 					)}
 				</Card.Body>
