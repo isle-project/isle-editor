@@ -99,7 +99,8 @@ class SettingsLogin extends Component {
 		try {
 			const response = await axios.get( this.state.server + '/saml-xmw/login-choices' );
 			this.setState({
-				loginChoices: response.data
+				loginChoices: response.data,
+				loginMethod: response.data[ response.data.length - 1 ]
 			});
 		} catch ( err ) {
 			debug( 'Error checking login types: %o', err );
