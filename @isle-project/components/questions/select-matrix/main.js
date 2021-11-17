@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import copy from '@stdlib/utils/copy';
@@ -85,7 +86,7 @@ class SelectQuestionMatrix extends Component {
 			offset = 3;
 		}
 		return (
-			<Form.Row className="multiple-choice-matrix-question-header" >
+			<Row className="multiple-choice-matrix-question-header" >
 				<Col sm={offset}></Col>
 				{this.props.cols.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
@@ -94,7 +95,7 @@ class SelectQuestionMatrix extends Component {
 						</Form.Label>
 					</Col> );
 				})}
-			</Form.Row>
+			</Row>
 		);
 	}
 
@@ -257,14 +258,14 @@ class SelectQuestionMatrix extends Component {
 		}
 		return this.props.rows.map( ( rowLabel, idx ) => {
 			return (
-				<Form.Row key={idx} style={{ marginBottom: 15, marginTop: 15 }} >
+				<Row key={idx} style={{ marginBottom: 15, marginTop: 15 }} >
 					<Col sm={offset}>
 						<Form.Label column style={{ textAlign: 'right' }}>
 							{ isString( rowLabel ) ? <Text raw={rowLabel} /> : rowLabel }
 						</Form.Label>
 					</Col>
 					{this.renderRowSelects( idx )}
-				</Form.Row>
+				</Row>
 			);
 		});
 	}

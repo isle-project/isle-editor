@@ -9,6 +9,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SolutionButton from '@isle-project/components/solution-button';
@@ -64,7 +65,7 @@ class MultipleChoiceMatrix extends Component {
 			offset = 6;
 		}
 		return (
-			<Form.Row className="multiple-choice-matrix-question-header" >
+			<Row className="multiple-choice-matrix-question-header" >
 				<Col sm={offset}></Col>
 				{this.props.answers.map( ( elem, idx ) => {
 					return ( <Col key={idx}>
@@ -73,7 +74,7 @@ class MultipleChoiceMatrix extends Component {
 						</Form.Label>
 					</Col> );
 				})}
-			</Form.Row>
+			</Row>
 		);
 	}
 
@@ -181,14 +182,14 @@ class MultipleChoiceMatrix extends Component {
 		}
 		return this.props.questions.map( ( question, idx ) => {
 			return (
-				<Form.Row key={idx} >
+				<Row key={idx} >
 					<Col sm={offset}>
 						<Form.Label column >
 							{ isString( question ) ? <Text raw={question} /> : question }
 						</Form.Label>
 					</Col>
 					{this.renderAnswerButtons( idx )}
-				</Form.Row>
+				</Row>
 			);
 		});
 	}
