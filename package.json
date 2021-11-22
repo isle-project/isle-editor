@@ -162,7 +162,7 @@
     "element-resize-event": "^3.0.6",
     "esbuild": "^0.13.13",
     "esbuild-loader": "^2.16.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.0",
