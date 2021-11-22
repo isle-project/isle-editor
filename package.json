@@ -137,7 +137,7 @@
     "axios": "^0.24.0",
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
-    "codemirror": "^5.63.3",
+    "codemirror": "^5.64.0",
     "compute-argmax": "^1.0.0",
     "compute-chebyshev-distance": "^1.0.2",
     "compute-chunkify": "0.0.0",
