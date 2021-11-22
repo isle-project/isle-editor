@@ -281,7 +281,7 @@
     "codecov": "^3.8.3",
     "concurrently": "^6.4.0",
     "doctrine": "^3.0.0",
-    "electron": "15.3.1",
+    "electron": "16.0.1",
     "electron-builder": "22.13.1",
     "electron-devtools-installer": "github:MarshallOfSound/electron-devtools-installer",
     "esbuild-jest": "^0.5.0",
