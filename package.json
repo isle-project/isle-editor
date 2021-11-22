@@ -320,7 +320,7 @@
     "redux-devtools-dock-monitor": "^1.2.0",
     "redux-devtools-log-monitor": "^2.1.0",
     "redux-logger": "^3.0.6",
-    "socket.io-client": "4.3.2",
+    "socket.io-client": "4.4.0",
     "source-map-explorer": "^2.5.2",
     "stylelint": "^14.1.0",
     "stylelint-config-standard": "^24.0.0",
