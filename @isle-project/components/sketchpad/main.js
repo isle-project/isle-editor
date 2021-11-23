@@ -92,7 +92,7 @@ const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
-	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js';
+	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 }
 
 
