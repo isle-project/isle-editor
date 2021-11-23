@@ -63,7 +63,7 @@ const Settings = ({
 				>
 					<Card.Body>
 						<Container><Row>
-							<Col md={5}>
+							<Col md={5} className="d-grid gap-1" >
 								<NumberInput
 									description={t('font-size-description')}
 									legend={t('font-size')}
