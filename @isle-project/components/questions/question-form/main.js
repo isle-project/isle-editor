@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import SessionContext from '@isle-project/session/context.js';
 import isLineWrapper from '@isle-project/utils/is-line-wrapper';
+import isLineButtons from '@isle-project/utils/is-line-buttons';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './question_form.css';
 
@@ -40,7 +41,9 @@ const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
 	if ( !children ) {
 		return <Alert variant="danger" >{t('missing-children')}</Alert>;
 	}
+	let nQuestions = 0;
 	const cloneChild = ( child, idx ) => {
+		nQuestions += 1;
 		return React.cloneElement( child, {
 			disableSubmitNotification: true,
 			onChange: () => {
@@ -52,7 +55,7 @@ const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
 		});
 	};
 	const clonedChildren = React.Children.map( children, ( child, idx ) => {
-		if ( isNull( child ) ) {
+		if ( isNull( child ) || isLineButtons( child ) ) {
 			return child;
 		}
 		if ( isLineWrapper( child ) ) {
@@ -70,7 +73,7 @@ const QuestionForm = ({ buttonLabel, onSubmit, children, t }) => {
 			finished += 1;
 		}
 	}
-	const disabled = ( finished !== clonedChildren.length ) && !session.isOwner();
+	const disabled = ( finished !== nQuestions ) && !session.isOwner();
 	return ( <div
 		ref={questionForm}
 		className="question-form"
