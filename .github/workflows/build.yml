@@ -15,13 +15,13 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: npm install, and build
+    - name: npm install & build
       run: |
         npm ci
         npm run build
       env:
         CI: true
-    - name: npm lint, and test
+    - name: npm lint & test
       run: |
         npm run lint
         npm test
@@ -35,13 +35,13 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: npm install, and build
+    - name: npm install & build
       run: |
         npm ci
         npm run build
       env:
         CI: true
-    - name: npm lint, and test
+    - name: npm lint & test
       run: |
         npm run lint
         npm test
@@ -55,13 +55,13 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: npm install, and build
+    - name: npm install & build
       run: |
         npm ci
         npm run build
       env:
         CI: true
-    - name: npm lint, and test
+    - name: npm lint & test
       run: |
         npm run lint
         npm test
