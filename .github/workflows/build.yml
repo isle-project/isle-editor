@@ -14,18 +14,7 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        cache: 'npm'
     - name: npm install, lint, build, and test
       run: |
         npm ci
@@ -41,6 +30,7 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
+        cache: 'npm'
     - name: npm install, and build
       continue-on-error: true
       run: |
@@ -62,18 +52,7 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        cache: 'npm'
     - name: npm install, lint, build, and test
       run: |
         npm ci
@@ -90,18 +69,9 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_KEY }}
     - uses: actions/setup-node@master
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        node-version: 16.x
+        cache: 'npm'
     - name: Calculate Test Coverage
       run: |
         npm ci
