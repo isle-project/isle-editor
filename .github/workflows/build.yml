@@ -15,12 +15,16 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: npm install, lint, build, and test
+    - name: npm install, and build
       run: |
         npm ci
+        npm run build
+      env:
+        CI: true
+    - name: npm lint, and test
+      run: |
         npm run lint
         npm test
-        npm run build
       env:
         CI: true
   build_on_win:
@@ -32,14 +36,12 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - name: npm install, and build
-      continue-on-error: true
       run: |
         npm ci
         npm run build
       env:
         CI: true
     - name: npm lint, and test
-      continue-on-error: true
       run: |
         npm run lint
         npm test
@@ -53,12 +55,16 @@ jobs:
       with:
         node-version: 16.x
         cache: 'npm'
-    - name: npm install, lint, build, and test
+    - name: npm install, and build
       run: |
         npm ci
+        npm run build
+      env:
+        CI: true
+    - name: npm lint, and test
+      run: |
         npm run lint
         npm test
-        npm run build
       env:
         CI: true
   coverage:
