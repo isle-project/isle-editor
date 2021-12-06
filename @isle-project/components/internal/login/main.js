@@ -70,6 +70,9 @@ class Login extends Component {
 					hasSSO: true
 				});
 			}
+		})
+		.catch( error => {
+			debug( error );
 		});
 	}
 
