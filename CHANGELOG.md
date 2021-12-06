@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.76.11](https://github.com/isle-project/isle-editor/releases/tag/v0.76.11) (2021-12-06)
+
+This patch release fixes an issue that caused **rendering of PDFs inside the sketchpad component to fail**, refactors the login / signup process for the case when Single Sign-On (SSO) is enabled on the respective ISLE server, and improves the handling of applying text filters in the data explorer when creating a filtered dataset.
+
+**Fixed bugs:**
+
+- \[Bug\]: tests-\>chi square, code still needs "chi squared" [\#2556](https://github.com/isle-project/isle-editor/issues/2556)
+
 ## [v0.76.10](https://github.com/isle-project/isle-editor/releases/tag/v0.76.10) (2021-11-11)
 
 This release patches several issues in the data explorer and contains refactored components to accommodate breaking changes in several of the project's dependencies. It also supports logging-in via Single Sign-On (SSO)  for ISLE servers for which this form of authentication is enabled. Last but not least, the `<IFrame />` component has been refactored to include an external link to open the page in a new browser tab or separate window.
