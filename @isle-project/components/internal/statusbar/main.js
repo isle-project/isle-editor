@@ -401,18 +401,10 @@ class StatusBar extends Component {
 						size="sm"
 						className="statusbar-button"
 						variant="outline-secondary"
-						style={{ position: 'absolute', right: '60px' }}
+						style={{ position: 'absolute', right: '-20px' }}
 						onClick={this.login}
 						disabled={!session.live}
 					>{t( 'login' )}</Button>
-					{session.settings.allowUserRegistrations !== false ? <Button
-						size="sm"
-						className="statusbar-button"
-						variant="outline-secondary"
-						style={{ position: 'absolute', right: '-20px' }}
-						onClick={this.signup}
-						disabled={!session.live}
-					>{t( 'signup' )}</Button> : null}
 				</div>
 			);
 		}
@@ -591,7 +583,7 @@ class StatusBar extends Component {
 						<InstructorView />
 					</Gate>
 				</Suspense>
-				{this.state.visibleLogin ? <Login show={this.state.visibleLogin} onClose={this.closeLogin} /> : null}
+				{this.state.visibleLogin ? <Login show={this.state.visibleLogin} onClose={this.closeLogin} onShowSignup={this.signup} /> : null}
 				{this.state.visibleSignup ? <Signup show={this.state.visibleSignup} onClose={this.closeSignup} /> : null}
 				{this.state.visibleLogout ? <ConfirmModal
 					show={this.state.visibleLogout}
