@@ -107,7 +107,9 @@ class StatusBar extends Component {
 						<Button id="statusbar-login-button" size="sm" variant="primary" style={{ float: 'right', marginRight: '10px' }} onClick={this.login}>
 							{t( 'login' )}
 						</Button>
-					</div>
+					</div>,
+					onAdd() {},
+					onRemove() {}
 				});
 			}
 		};

@@ -62,8 +62,8 @@ class Login extends Component {
 		const session = this.context;
 		const res = axios.get( session.server + '/saml-xmw/login-type' );
 		res.then( response => {
-			if ( response.data === 'SSO' ) {
-				window.location.assign( session.server + '/saml-xmw/login-choices' );
+			if ( response.data === 'SSO') {
+				window.location.assign( session.server + '/saml-xmw/login-choice?url=/'+session.namespaceName+'/'+session.lessonName );
 			}
 			else if ( response.data === 'Both' ) {
 				this.setState({
@@ -237,9 +237,9 @@ class Login extends Component {
 						</a> :
 						null
 					}
-					<Button onClick={this.props.onShowSignup} variant="secondary" >
+					{session.settings.allowUserRegistrations !== false ? <Button onClick={this.props.onShowSignup} variant="secondary" >
 						{this.props.t( 'create-account' )}
-					</Button>
+					</Button> : null}
 				</Modal.Footer>
 				<Overlay
 					show={this.state.showInputOverlay}
