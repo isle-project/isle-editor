@@ -133,9 +133,9 @@ class Signup extends Component {
 				<Modal.Header closeButton >
 					<Modal.Title as="h3">{this.props.t( 'create-user' )}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body >
 					<p>{this.props.t( 'opening-paragraph' )}</p>
-					<Form horizontal>
+					<Form horizontal className="d-grid gap-2" >
 						<Tooltip placement="right" tooltip={this.props.t( 'enter-valid-email' )} >
 							<FormGroup
 								controlId="signup-form-email"

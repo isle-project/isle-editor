@@ -160,7 +160,7 @@ class Login extends Component {
 					<Modal.Title as="h3" >{this.props.t( 'login' )}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form horizontal>
+					<Form horizontal className="d-grid gap-2" >
 						<FormGroup controlId="form-email" >
 							<FormLabel>{this.props.t( 'email' )}</FormLabel>
 							<FormControl
@@ -210,8 +210,12 @@ class Login extends Component {
 						variant="primary"
 						type="submit"
 						onClick={this.handleSubmit}
-					>{this.props.t( 'signin' )}</Button>
-					<Button onClick={this.props.onClose}>{this.props.t( 'close' )}</Button>
+					>
+						{this.props.t( 'signin' )}
+					</Button>
+					<Button onClick={this.props.onClose}>
+						{this.props.t( 'close' )}
+					</Button>
 				</Modal.Footer>
 				<Overlay
 					show={this.state.showInputOverlay}
