@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
@@ -40,7 +41,8 @@ class Login extends Component {
 			password: '',
 			show: props.show,
 			showTFA: false,
-			token: ''
+			token: '',
+			hasSSO: false
 		};
 	}
 
@@ -54,6 +56,21 @@ class Login extends Component {
 			};
 		}
 		return null;
+	}
+
+	componentDidMount() {
+		const session = this.context;
+		const res = axios.get( session.server + '/saml-xmw/login-type' );
+		res.then( response => {
+			if ( response.data === 'SSO' ) {
+				window.location.assign( session.server + '/saml-xmw/login-choices' );
+			}
+			else if ( response.data === 'Both' ) {
+				this.setState({
+					hasSSO: true
+				});
+			}
+		});
 	}
 
 	handleInputChange = ( event ) => {
@@ -150,6 +167,7 @@ class Login extends Component {
 	};
 
 	render() {
+		const session = this.context;
 		return (
 			<Modal
 				show={this.props.show}
@@ -160,7 +178,7 @@ class Login extends Component {
 					<Modal.Title as="h3" >{this.props.t( 'login' )}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form horizontal className="d-grid gap-2" >
+					<Form horizontal className="d-grid gap-3" >
 						<FormGroup controlId="form-email" >
 							<FormLabel>{this.props.t( 'email' )}</FormLabel>
 							<FormControl
@@ -200,21 +218,27 @@ class Login extends Component {
 								/>
 							</FormGroup> :
 							null}
+						<Button
+							variant="primary"
+							type="submit"
+							onClick={this.handleSubmit}
+						>
+							{this.props.t( 'signin' )}
+						</Button>
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
 					<button className="forgot-password-button" onClick={this.handleForgotPassword}>
 						{this.props.t( 'forgot-password' )}
 					</button>
-					<Button
-						variant="primary"
-						type="submit"
-						onClick={this.handleSubmit}
-					>
-						{this.props.t( 'signin' )}
-					</Button>
-					<Button onClick={this.props.onClose}>
-						{this.props.t( 'close' )}
+					{this.state.hasSSO ?
+						<a className="sso-link" href={session.server+'/saml-xmw/login-choice?url=/'+session.namespaceName+'/'+session.lessonName} >
+							{this.props.t( 'login-with-sso' )}
+						</a> :
+						null
+					}
+					<Button onClick={this.props.onShowSignup} variant="secondary" >
+						{this.props.t( 'create-account' )}
 					</Button>
 				</Modal.Footer>
 				<Overlay
@@ -238,11 +262,13 @@ class Login extends Component {
 
 Login.defaultProps = {
 	onClose() {},
+	onShowSignup() {},
 	show: false
 };
 
 Login.propTypes = {
 	onClose: PropTypes.func,
+	onShowSignup: PropTypes.func,
 	show: PropTypes.bool
 };
 

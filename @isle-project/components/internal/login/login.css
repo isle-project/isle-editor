@@ -8,13 +8,19 @@
 }
 
 .forgot-password-button {
-	float: left;
-	margin-top: 0px;
 	background: none;
 	border: none;
 	cursor: pointer;
 }
 
 .forgot-password-button:hover {
+	color: #2e4468;
+}
+
+.sso-link {
+	text-decoration: none;
+}
+
+.sso-link:hover {
 	color: #2e4468;
 }
