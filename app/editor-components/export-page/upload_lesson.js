@@ -403,7 +403,7 @@ class UploadLesson extends Component {
 		let formGroups;
 		const { t } = this.props;
 		if ( this.state.namespaces.length > 0 ) {
-			formGroups = <Fragment>
+			formGroups = <div className="d-grid gap-2" >
 				<FormGroup>
 					<FormLabel>{t('select-course')}</FormLabel>
 					<FormControl
@@ -436,7 +436,7 @@ class UploadLesson extends Component {
 						{t('lesson-name-invalid')}
 					</FormControl.Feedback>
 				</FormGroup>
-				<FormGroup style={{ paddingTop: 20, paddingBottom: 10 }} >
+				<FormGroup>
 					<FormLabel>{t('release-to-students')}</FormLabel>
 					<ToggleButtonGroup
 						name="Released"
@@ -474,7 +474,7 @@ class UploadLesson extends Component {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</FormGroup>
-				<FormGroup style={{ paddingTop: 10, paddingBottom: 10 }} >
+				<FormGroup>
 					<FormLabel>{t('show-in-gallery')}</FormLabel>
 					<ToggleButtonGroup
 						name="Visibility"
@@ -548,7 +548,7 @@ class UploadLesson extends Component {
 						disabled={this.state.spinning}
 					/>
 				</FormGroup>
-			</Fragment>;
+			</div>;
 		} else {
 			formGroups = <Card bg="danger" text="white">
 				<Card.Header as="h5">
