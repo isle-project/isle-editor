@@ -1,5 +1,6 @@
 {
 	"close": "Stäng",
+	"create-account": "Skapa ett konto",
 	"email": "E-post",
 	"enter-email": "Ange din e-postadress.",
 	"enter-email-before-password-reset": "Ange din e-postadress innan du begär ett nytt lösenord.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Har du glömt ditt lösenord?",
 	"invalid": "Inte giltigt",
 	"login": "Inloggning",
+	"login-with-sso": "Logga in med SSO",
 	"password": "Lösenord",
 	"signin": "Logga in"
 }

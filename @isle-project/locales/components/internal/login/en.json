@@ -1,5 +1,6 @@
 {
 	"close": "Close",
+	"create-account": "Create Account",
 	"email": "Email",
 	"enter-email": "Enter your email address.",
 	"enter-email-before-password-reset": "Please enter your email address before requesting a new password.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Forgot password?",
 	"invalid": "Not valid",
 	"login": "Login",
+	"login-with-sso": "Login with SSO",
 	"password": "Password",
 	"signin": "Sign in"
 }

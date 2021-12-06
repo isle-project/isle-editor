@@ -1,5 +1,6 @@
 {
 	"close": "Uždaryti",
+	"create-account": "Sukurti paskyrą",
 	"email": "El. paštas",
 	"enter-email": "Įveskite savo el. pašto adresą.",
 	"enter-email-before-password-reset": "Prieš prašydami naujo slaptažodžio, įveskite savo el. pašto adresą.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Pamiršote slaptažodį?",
 	"invalid": "Negalioja",
 	"login": "Prisijungimas",
+	"login-with-sso": "Prisijungimas naudojant SSO",
 	"password": "Slaptažodis",
 	"signin": "Prisijunkite"
 }

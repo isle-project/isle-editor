@@ -1,5 +1,6 @@
 {
 	"close": "Fermer",
+	"create-account": "Créer un compte",
 	"email": "Courriel",
 	"enter-email": "Entrez votre adresse électronique.",
 	"enter-email-before-password-reset": "Veuillez saisir votre adresse électronique avant de demander un nouveau mot de passe.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Mot de passe oublié ?",
 	"invalid": "Non valable",
 	"login": "Connexion",
+	"login-with-sso": "Connexion avec SSO",
 	"password": "Mot de passe",
 	"signin": "S'identifier"
 }

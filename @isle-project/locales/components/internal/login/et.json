@@ -1,5 +1,6 @@
 {
 	"close": "Sulge",
+	"create-account": "Konto loomine",
 	"email": "E-post",
 	"enter-email": "Sisestage oma e-posti aadress.",
 	"enter-email-before-password-reset": "Palun sisestage oma e-posti aadress enne uue salasõna taotlemist.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Unustasid salasõna?",
 	"invalid": "Ei kehti",
 	"login": "Logi sisse",
+	"login-with-sso": "Sisselogimine SSO-ga",
 	"password": "Parool",
 	"signin": "Logi sisse"
 }

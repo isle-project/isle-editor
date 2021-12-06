@@ -1,5 +1,6 @@
 {
 	"close": "Zapri",
+	"create-account": "Ustvarjanje računa",
 	"email": "E-pošta",
 	"enter-email": "Vnesite svoj e-poštni naslov.",
 	"enter-email-before-password-reset": "Preden zahtevate novo geslo, vnesite svoj e-poštni naslov.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Ste pozabili geslo?",
 	"invalid": "Ni veljavno",
 	"login": "Prijava",
+	"login-with-sso": "Prijava s SSO",
 	"password": "Geslo",
 	"signin": "Prijavite se"
 }

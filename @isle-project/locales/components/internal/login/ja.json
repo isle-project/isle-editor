@@ -1,5 +1,6 @@
 {
 	"close": "クローズ",
+	"create-account": "アカウントの作成",
 	"email": "電子メール",
 	"enter-email": "メールアドレスを入力してください。",
 	"enter-email-before-password-reset": "新しいパスワードを要求する前に、メールアドレスを入力してください。",
@@ -9,6 +10,7 @@
 	"forgot-password": "パスワードをお忘れですか？",
 	"invalid": "有効ではありません。",
 	"login": "ログイン",
+	"login-with-sso": "SSOでのログイン",
 	"password": "パスワード",
 	"signin": "サインイン"
 }

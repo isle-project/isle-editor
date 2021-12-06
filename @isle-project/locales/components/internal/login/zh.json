@@ -1,5 +1,6 @@
 {
 	"close": "关闭",
+	"create-account": "创建账户",
 	"email": "电子邮件",
 	"enter-email": "请输入您的电子邮件地址。",
 	"enter-email-before-password-reset": "在申请新密码之前，请输入您的电子邮件地址。",
@@ -9,6 +10,7 @@
 	"forgot-password": "忘记密码？",
 	"invalid": "无效",
 	"login": "登入",
+	"login-with-sso": "用SSO登录",
 	"password": "密码",
 	"signin": "登录"
 }

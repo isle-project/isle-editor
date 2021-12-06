@@ -1,5 +1,6 @@
 {
 	"close": "Close",
+	"create-account": "Utwórz konto",
 	"email": "Email",
 	"enter-email": "Podaj swój adres e-mail.",
 	"enter-email-before-password-reset": "Proszę podać swój adres e-mail przed poproszeniem o nowe hasło.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Zapomniałeś hasła?",
 	"invalid": "Nieważne",
 	"login": "Login",
+	"login-with-sso": "Logowanie za pomocą SSO",
 	"password": "Hasło",
 	"signin": "Zaloguj się"
 }

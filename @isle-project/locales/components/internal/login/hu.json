@@ -1,5 +1,6 @@
 {
 	"close": "Zárja be a",
+	"create-account": "Fiók létrehozása",
 	"email": "E-mail",
 	"enter-email": "Adja meg az e-mail címét.",
 	"enter-email-before-password-reset": "Kérjük, adja meg e-mail címét, mielőtt új jelszót kérne.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Elfelejtette jelszavát?",
 	"invalid": "Nem érvényes",
 	"login": "Bejelentkezés",
+	"login-with-sso": "Bejelentkezés SSO-val",
 	"password": "Jelszó",
 	"signin": "Bejelentkezés"
 }

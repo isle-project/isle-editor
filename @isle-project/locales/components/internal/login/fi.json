@@ -1,5 +1,6 @@
 {
 	"close": "Sulje",
+	"create-account": "Luo tili",
 	"email": "Sähköposti",
 	"enter-email": "Kirjoita sähköpostiosoitteesi.",
 	"enter-email-before-password-reset": "Anna sähköpostiosoitteesi ennen uuden salasanan pyytämistä.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Unohditko salasanan?",
 	"invalid": "Ei voimassa",
 	"login": "Kirjaudu sisään",
+	"login-with-sso": "Sisäänkirjautuminen SSO:lla",
 	"password": "Salasana",
 	"signin": "Kirjaudu sisään"
 }

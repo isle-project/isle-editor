@@ -1,5 +1,6 @@
 {
 	"close": "Închideți",
+	"create-account": "Creați un cont",
 	"email": "Email",
 	"enter-email": "Introduceți adresa dvs. de e-mail.",
 	"enter-email-before-password-reset": "Vă rugăm să introduceți adresa dvs. de e-mail înainte de a solicita o nouă parolă.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Ați uitat parola?",
 	"invalid": "Nu este valabil",
 	"login": "Autentificare",
+	"login-with-sso": "Autentificare cu SSO",
 	"password": "Parola",
 	"signin": "Conectați-vă"
 }

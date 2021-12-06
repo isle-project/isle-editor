@@ -1,5 +1,6 @@
 {
 	"close": "Zatvoriť",
+	"create-account": "Vytvoriť účet",
 	"email": "E-mail",
 	"enter-email": "Zadajte svoju e-mailovú adresu.",
 	"enter-email-before-password-reset": "Pred požiadaním o nové heslo zadajte svoju e-mailovú adresu.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Zabudli ste heslo?",
 	"invalid": "Neplatné",
 	"login": "Prihlásenie",
+	"login-with-sso": "Prihlásenie pomocou SSO",
 	"password": "Heslo",
 	"signin": "Prihlásiť sa"
 }

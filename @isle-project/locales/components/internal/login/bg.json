@@ -1,5 +1,6 @@
 {
 	"close": "Затвори",
+	"create-account": "Създаване на акаунт",
 	"email": "Имейл",
 	"enter-email": "Въведете имейл адреса си.",
 	"enter-email-before-password-reset": "Моля, въведете имейл адреса си, преди да поискате нова парола.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Забравена парола?",
 	"invalid": "Не е валидно",
 	"login": "Вход",
+	"login-with-sso": "Влизане с SSO",
 	"password": "Парола",
 	"signin": "Влезте"
 }

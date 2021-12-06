@@ -1,5 +1,6 @@
 {
 	"close": "Fechar",
+	"create-account": "Criar conta",
 	"email": "Email",
 	"enter-email": "Digite seu endereço de e-mail.",
 	"enter-email-before-password-reset": "Por favor, digite seu endereço de e-mail antes de solicitar uma nova senha.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Esqueceu a senha?",
 	"invalid": "Não válido",
 	"login": "Login",
+	"login-with-sso": "Login com SSO",
 	"password": "Senha",
 	"signin": "Faça o login"
 }

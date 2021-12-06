@@ -1,5 +1,6 @@
 {
 	"close": "Luk",
+	"create-account": "Opret konto",
 	"email": "E-mail",
 	"enter-email": "Indtast din e-mailadresse.",
 	"enter-email-before-password-reset": "Indtast din e-mailadresse, før du anmoder om en ny adgangskode.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Har du glemt din adgangskode?",
 	"invalid": "Ikke gyldig",
 	"login": "Login",
+	"login-with-sso": "Login med SSO",
 	"password": "Adgangskode",
 	"signin": "Log ind"
 }

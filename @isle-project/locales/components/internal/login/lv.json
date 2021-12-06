@@ -1,5 +1,6 @@
 {
 	"close": "Aizvērt",
+	"create-account": "Izveidot kontu",
 	"email": "E-pasts",
 	"enter-email": "Ievadiet savu e-pasta adresi.",
 	"enter-email-before-password-reset": "Pirms pieprasāt jaunu paroli, lūdzu, ievadiet savu e-pasta adresi.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Aizmirsāt paroli?",
 	"invalid": "Nav derīgs",
 	"login": "Pieteikšanās",
+	"login-with-sso": "Pieteikšanās ar SSO",
 	"password": "Parole",
 	"signin": "Pierakstīties"
 }

@@ -1,5 +1,6 @@
 {
 	"close": "Sluit",
+	"create-account": "Account aanmaken",
 	"email": "E-mail",
 	"enter-email": "Voer uw e-mailadres in.",
 	"enter-email-before-password-reset": "Voer uw e-mailadres in voordat u een nieuw wachtwoord aanvraagt.",
@@ -9,6 +10,7 @@
 	"forgot-password": "Wachtwoord vergeten?",
 	"invalid": "Niet geldig",
 	"login": "Inloggen",
+	"login-with-sso": "Inloggen met SSO",
 	"password": "Wachtwoord",
 	"signin": "Aanmelden"
 }
