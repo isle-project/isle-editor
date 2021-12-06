@@ -86,7 +86,7 @@ This component is used by students to briefly summarize data as it is presented 
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean indicating whether to display variable transformation tools. Default: `true`.

@@ -8,7 +8,7 @@ Uma embalagem para o colhedor de cores [react-color](https://casesandberg.github
 
 ## Opções
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: variante do seletor de cores (seja "Compacto", "Esboço", "Material", "Botão" ou "Bloco"). Default: `'Sketch'`.
 * __color__ | `(string|object)`: "string" contendo um código HeX ou um "objeto" contendo valores RGB ou HSL como "r: 255, g: 255, b: 255 }" ou "h: 0, s.": 0, l: .10 }`, que determina a cor ativa. Ambos aceitam uma propriedade `a' para valores alfa diferentes de um. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: controla se é necessário remover o controle deslizante alfa e as opções. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `trings` especificando as cores padrão na parte inferior do colorpicker. Default: `[

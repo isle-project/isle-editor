@@ -86,7 +86,7 @@ Túto zložku študenti používajú na stručné zhrnutie prezentovaných údaj
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean určujúci, či sa majú zobraziť nástroje na transformáciu premenných. Default: `true`.

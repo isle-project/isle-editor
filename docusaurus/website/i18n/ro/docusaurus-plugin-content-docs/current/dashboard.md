@@ -15,7 +15,7 @@ Un tablou de bord pentru combinarea manipulării mai multor câmpuri de intrare 
 * __label__ | `string`: eticheta butonului. Default: `none`.
 * __maxWidth__ | `number`: lățimea maximă a tabloului de bord. Default: `600`.
 * __className__ | `string`: numele clasei. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: numele clasei pentru corpul cardului. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onGenerate__ | `function`: invocată atunci când se face clic pe buton sau când se modifică una dintre valorile de intrare din tabloul de bord (dacă `autoUpdate` este setat la `true`). Funcția este apelată cu valorile câmpurilor de intrare, în ordinea în care acestea sunt plasate în tabloul de bord. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: titlul cardului. Default: `''`.

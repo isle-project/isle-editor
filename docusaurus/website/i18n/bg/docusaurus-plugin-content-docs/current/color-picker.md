@@ -8,7 +8,7 @@ sidebar_label: Color Picker
 
 ## Опции
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: вариант на избор на цвят (или `Compact`, `Sketch`, `Material`, `Button`, или `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, съдържащ HeX код, или `object`, съдържащ RGB или HSL стойности, като например `{ r: 255, g: 255, b: 255 }` или `{ h: 0, s: 0, l: .10 }`, който определя активния цвят. И двете приемат свойство `a` за алфа стойности, различни от единица. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: контролира дали да премахне алфа плъзгача и опциите. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `низове`, определящи цветовете по подразбиране в долната част на цветоизбирателя. Default: `[

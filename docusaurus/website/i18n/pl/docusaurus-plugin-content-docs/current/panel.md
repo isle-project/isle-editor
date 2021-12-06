@@ -19,8 +19,8 @@ Komponent karty.
 * __trapFocus__ | `boolean`: czy uwięzić fokus użytkownika w panelu. Default: `false`.
 * __bodyStyle__ | `object`: CSS style inline dla ciała. Default: `{}`.
 * __footerStyle__ | `object`: Style inline CSS dla stopki. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Nazwa klasy CSS dla ciała. Default: `''`.
+* __footerClassName__ | `string`: Nazwa klasy CSS dla stopki. Default: `''`.
 * __style__ | `object`: Style inline CSS dla kontenerów. Default: `{}`.
 * __onHide__ | `function`: wywołanie zwrotne po kliknięciu przycisku zamknięcia. Default: `none`.
 

@@ -15,7 +15,7 @@ Armatuurlaud mitme lapse sisendvälja käsitlemise kombineerimiseks.
 * __label__ | `string`: nupu silt. Default: `none`.
 * __maxWidth__ | `number`: armatuurlaua maksimaalne laius. Default: `600`.
 * __className__ | `string`: klassi nimi. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: kaardi korpuse klassi nimi. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onGenerate__ | `function`: funktsioon, mis käivitub, kui nupule vajutatakse või kui üks armatuurlaua sisendväärtustest muutub (kui `autoUpdate` on seatud `true`). Funktsiooni kutsutakse välja koos sisendväljade väärtustega selles järjekorras, milles need on armatuurlauale paigutatud.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kaardi pealkiri. Default: `''`.

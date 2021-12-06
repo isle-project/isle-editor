@@ -86,7 +86,7 @@ Diese Komponente wird von den Schülern verwendet, um Daten kurz zusammenzufasse
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: Boolescher Wert, der angibt, ob Werkzeuge zur Variablentransformation angezeigt werden sollen. Default: `true`.

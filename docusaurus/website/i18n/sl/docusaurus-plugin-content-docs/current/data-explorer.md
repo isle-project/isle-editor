@@ -86,7 +86,7 @@ To komponento učenci uporabljajo za kratko povzemanje predstavljenih podatkov i
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean, ki označuje, ali se prikažejo orodja za preoblikovanje spremenljivk.. Default: `true`.

@@ -8,7 +8,7 @@ En wrapper for [react-color](https://casesandberg.github.io/react-color/) farvev
 
 ## Indstillinger
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: farvevælgervariant (enten `Compact`, `Sketch`, `Material`, `Button` eller `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string` med en HeX-kode eller et `object` med RGB- eller HSL-værdier som f.eks. `{ r: 255, g: 255, b: 255 }` eller `{ h: 0, s: 0, l: .10 }`, som bestemmer den aktive farve. Begge accepterer en `a`-egenskab for andre alfaværdier end én. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontrollerer, om alfaregulatoren og indstillingerne skal fjernes. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings`, der angiver standardfarverne nederst i farvevælgeren. Default: `[

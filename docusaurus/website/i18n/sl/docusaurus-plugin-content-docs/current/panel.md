@@ -19,8 +19,8 @@ Sestavni del kartice.
 * __trapFocus__ | `boolean`: ali naj se uporabnikovo osredotočenje ujame na ploščo.. Default: `false`.
 * __bodyStyle__ | `object`: Vnosni slogi CSS za telo. Default: `{}`.
 * __footerStyle__ | `object`: Vmesni slogi CSS za nogo. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Ime razreda CSS za telo. Default: `''`.
+* __footerClassName__ | `string`: Ime razreda CSS za nogo. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS za vsebnik. Default: `{}`.
 * __onHide__ | `function`: povratni klic, ki se sproži, ko je kliknjen gumb za zapiranje.. Default: `none`.
 

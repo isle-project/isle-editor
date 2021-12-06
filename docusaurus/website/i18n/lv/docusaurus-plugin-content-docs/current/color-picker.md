@@ -8,7 +8,7 @@ Krāsu atlasītāja [react-color](https://casesandberg.github.io/react-color/) i
 
 ## Iespējas
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: krāsu atlasītāja variants (`Compact`, `Sketch`, `Material`, `Button` vai `Block`).. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, kurā ir HeX kods, vai `objekts`, kurā ir RGB vai HSL vērtības, piemēram, `{ r: 255, g: 255, b: 255 }` vai `{ h: 0, s: 0, l: .10 }`, kas nosaka aktīvo krāsu. Abi pieņem īpašību `a`, kas paredzēta citām alfa vērtībām, kas nav vienāds ar vienu.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontrolē, vai noņemt alfa slīdni un opcijas.. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `virknes`, kas norāda noklusējuma krāsas krāsu atlasītāja apakšā.. Default: `[

@@ -8,7 +8,7 @@ react-color](https://casesandberg.github.io/react-color/) カラーピッカー�
 
 ## オプション
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: カラーピッカーのバリエーション（`Compact`、`Sketch`、`Material`、`Button`、`Block`のいずれか）。. Default: `'Sketch'`.
 * __color__ | `(string|object)`: 文字列`はHeXコードを、`オブジェクト`はRGBやHSLの値を保持します。または `{ h: 0, s: 0, l: .10 }` のようなRGBやHSLの値を保持する `オブジェクト` を保持します。どちらも、1つ以外のアルファ値に対しては `a` プロパティを受け付けます。. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: アルファスライダーとオプションを削除するかどうかを制御します。. Default: `false`.
 * __presetColors__ | `array<string>`: カラーピッカーの下部にあるデフォルトの色を指定する HeX `strings`。. Default: `[

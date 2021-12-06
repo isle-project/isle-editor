@@ -19,8 +19,8 @@ sidebar_label: Panel
 * __trapFocus__ | `boolean`: αν θα παγιδεύεται η εστίαση του χρήστη στον πίνακα. Default: `false`.
 * __bodyStyle__ | `object`: Στυλ CSS inline για το σώμα. Default: `{}`.
 * __footerStyle__ | `object`: Στυλ CSS inline για υποσέλιδο. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Όνομα κλάσης CSS για το σώμα. Default: `''`.
+* __footerClassName__ | `string`: Όνομα κλάσης CSS για το υποσέλιδο. Default: `''`.
 * __style__ | `object`: Στυλ CSS inline για δοχείο. Default: `{}`.
 * __onHide__ | `function`: callback που καλείται όταν γίνεται κλικ στο κουμπί κλεισίματος. Default: `none`.
 

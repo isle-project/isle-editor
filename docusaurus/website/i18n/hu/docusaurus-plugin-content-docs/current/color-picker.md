@@ -8,7 +8,7 @@ A [react-color](https://casesandberg.github.io/react-color/) színválasztó cso
 
 ## Opciók
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: színválasztó variáns (vagy `Compact`, `Sketch`, `Material`, `Button`, vagy `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, amely egy HeX kódot tartalmaz, vagy egy `objektum`, amely RGB vagy HSL értékeket tartalmaz, mint például `{ r: 255, g: 255, b: 255 }` vagy `{ h: 0, s: 0, l: .10 }`, amely meghatározza az aktív színt. Mindkettő elfogadja az `a` tulajdonságot az egytől eltérő alfa-értékek esetén.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: vezérli, hogy az alfa csúszka és az opciók eltávolításra kerüljenek-e. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings`, amely meghatározza az alapértelmezett színeket a színválasztó alján.. Default: `[

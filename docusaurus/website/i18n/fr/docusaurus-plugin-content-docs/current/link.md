@@ -10,7 +10,7 @@ Un composant permettant d'afficher un lien.
 
 * __href__ | `string (required)`: URL du site web à lier. Default: `none`.
 * __target__ | `string`: définit l'endroit où le lien est ouvert : mis à `_blank` pour une nouvelle fenêtre, `_self` own frame, `_parent` pour le parent, `_top` pour le corps complet de la fenêtre, ou le nom du cadre. Default: `'_blank'`.
-* __windowFeatures__ | `string`: undefined. Default: `none`.
+* __windowFeatures__ | `string`: liste de caractéristiques de fenêtres séparées par des virgules pour l'ouverture du lien dans une nouvelle fenêtre (voir : https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 

@@ -19,8 +19,8 @@ Komponent karty.
 * __trapFocus__ | `boolean`: či sa má fokus používateľa zachytiť na paneli. Default: `false`.
 * __bodyStyle__ | `object`: Riadkové štýly CSS pre telo. Default: `{}`.
 * __footerStyle__ | `object`: Riadkové štýly CSS pre pätičku. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Názov triedy CSS pre telo. Default: `''`.
+* __footerClassName__ | `string`: Názov triedy CSS pre pätičku. Default: `''`.
 * __style__ | `object`: Riadkové štýly CSS pre kontajner. Default: `{}`.
 * __onHide__ | `function`: spätné volanie vyvolané po kliknutí na tlačidlo zatvoriť. Default: `none`.
 

@@ -8,7 +8,7 @@ Obal pro nástroj pro výběr barev [react-color](https://casesandberg.github.io
 
 ## Možnosti
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: varianta výběru barvy (buď `Compact`, `Sketch`, `Material`, `Button`, nebo `Block`).. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string` obsahující HeX kód nebo `objekt` obsahující hodnoty RGB nebo HSL, jako například `{ r: 255, g: 255, b: 255 }` nebo `{ h: 0, s: 0, l: .10 }`, který určuje aktivní barvu. Obě přijímají vlastnost `a` pro jiné hodnoty alfa než jedna. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: určuje, zda se má odstranit posuvník alfa a možnosti. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `řetězce` určující výchozí barvy v dolní části colorpickeru. Default: `[

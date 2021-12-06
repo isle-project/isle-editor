@@ -19,8 +19,8 @@ sidebar_label: Panel
 * __trapFocus__ | `boolean`: удерживать ли фокус пользователя на панели. Default: `false`.
 * __bodyStyle__ | `object`: CSS встраиваемые стили для кузова. Default: `{}`.
 * __footerStyle__ | `object`: CSS-стили для нижнего колонтитула. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Имя класса CSS для тела. Default: `''`.
+* __footerClassName__ | `string`: Имя класса CSS для нижнего колонтитула. Default: `''`.
 * __style__ | `object`: CSS встраиваемые стили для контейнера. Default: `{}`.
 * __onHide__ | `function`: вызов обратного вызова при нажатии кнопки закрытия. Default: `none`.
 

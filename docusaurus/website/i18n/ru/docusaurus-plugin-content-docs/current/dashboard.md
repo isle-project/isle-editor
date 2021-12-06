@@ -15,7 +15,7 @@ sidebar_label: Dashboard
 * __label__ | `string`: наклейка на кнопку. Default: `none`.
 * __maxWidth__ | `number`: максимальная ширина приборной панели. Default: `600`.
 * __className__ | `string`: название класса. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: имя класса для корпуса карты. Default: `'d-grid gap-3'`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onGenerate__ | `function`: вызывается при нажатии кнопки или при изменении одного из входных значений приборной панели (если для `autoUpdate` выбрано `true`). Функция вызывается со значениями полей ввода в том порядке, в котором они размещены в приборной панели. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: название карточки. Default: `''`.

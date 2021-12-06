@@ -15,7 +15,7 @@ Nadzorna plošča za združevanje ravnanja z več otroškimi vnosnimi polji.
 * __label__ | `string`: oznaka gumba. Default: `none`.
 * __maxWidth__ | `number`: največja širina armaturne plošče. Default: `600`.
 * __className__ | `string`: ime razreda. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: ime razreda za telo kartice. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onGenerate__ | `function`: funkcija, ki se sproži ob kliku na gumb ali spremembi ene od vhodnih vrednosti armaturne plošče (če je možnost `autoUpdate` nastavljena na `true`). Funkcija se pokliče z vrednostmi vhodnih polj v vrstnem redu, v katerem so nameščena na nadzorni plošči. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: naslov kartice. Default: `''`.

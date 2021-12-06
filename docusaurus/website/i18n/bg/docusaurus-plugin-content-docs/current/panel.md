@@ -19,8 +19,8 @@ sidebar_label: Panel
 * __trapFocus__ | `boolean`: дали да задържа фокуса на потребителя в панела. Default: `false`.
 * __bodyStyle__ | `object`: CSS вградени стилове за тялото. Default: `{}`.
 * __footerStyle__ | `object`: CSS вградени стилове за footer. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Име на CSS клас за тялото. Default: `''`.
+* __footerClassName__ | `string`: Име на CSS клас за footer. Default: `''`.
 * __style__ | `object`: CSS вградени стилове за контейнер. Default: `{}`.
 * __onHide__ | `function`: обратна връзка, задействана при натискане на бутона за затваряне. Default: `none`.
 

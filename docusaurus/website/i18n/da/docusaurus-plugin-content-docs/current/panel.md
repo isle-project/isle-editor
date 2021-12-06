@@ -19,8 +19,8 @@ Kortkomponent.
 * __trapFocus__ | `boolean`: om brugerens fokus skal fanges i panelet. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline-stilarter for krop. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline-stilarter til sidefod. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS-klassens navn for krop. Default: `''`.
+* __footerClassName__ | `string`: CSS-klassens navn for sidefod. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter til container. Default: `{}`.
 * __onHide__ | `function`: callback, der påkaldes, når der klikkes på lukkeknappen. Default: `none`.
 

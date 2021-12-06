@@ -86,7 +86,7 @@ Ezt a komponenst a diákok arra használják, hogy röviden összefoglalják az 
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean, amely jelzi, hogy megjelenítse-e a változó transzformációs eszközöket. Default: `true`.

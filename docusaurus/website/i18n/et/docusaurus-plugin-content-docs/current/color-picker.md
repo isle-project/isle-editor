@@ -8,7 +8,7 @@ Värvivaliku [react-color](https://casesandberg.github.io/react-color/) ümbris.
 
 ## Valikud
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: värvivaliku variant (kas `Kompakt`, `Sketch`, `Material`, `Nupp` või `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string`, mis sisaldab HeX-koodi või `objekti`, mis sisaldab RGB- või HSL-väärtusi, näiteks `{ r: 255, g: 255, b: 255 }` või `{ h: 0, s: 0, l: .10 }`, mis määrab aktiivse värvi. Mõlemad aktsepteerivad omadust `a`, mis on mõeldud muude kui ühe alfa väärtuste jaoks.. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: kontrollib, kas eemaldada alfa liugur ja valikud. Default: `false`.
 * __presetColors__ | `array<string>`: HeX "stringid", mis määravad vaikimisi värvid värvivaliku allosas. Default: `[

@@ -15,7 +15,7 @@ Tablica rozdzielcza do łączenia obsługi wielu pól wejściowych dla dzieci.
 * __label__ | `string`: etykieta z guzikiem. Default: `none`.
 * __maxWidth__ | `number`: maksymalna szerokość tablicy rozdzielczej. Default: `600`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: nazwa klasy dla korpusu karty. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onGenerate__ | `function`: funkcja wywoływana po kliknięciu przycisku lub zmianie jednej z wartości wejściowych tablicy rozdzielczej (jeśli `autoUpdate` jest ustawione na `prawdziwe`). Funkcja jest wywoływana z wartościami pól wejściowych, w kolejności w jakiej są one umieszczone w desce rozdzielczej. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: tytuł karty. Default: `''`.

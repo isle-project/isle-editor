@@ -86,7 +86,7 @@ Deze component wordt door de studenten gebruikt om de gegevens kort samen te vat
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean die aangeeft of er variabele transformatiegereedschappen moeten worden weergegeven. Default: `true`.

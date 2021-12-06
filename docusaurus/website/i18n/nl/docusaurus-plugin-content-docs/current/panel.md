@@ -19,8 +19,8 @@ Kaartcomponent.
 * __trapFocus__ | `boolean`: of de focus van de gebruiker in het paneel moet worden gevangen. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stijlen voor het lichaam. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stijlen voor footer. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS klasse naam voor lichaam. Default: `''`.
+* __footerClassName__ | `string`: CSS-klasse naam voor voettekst. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen voor containers. Default: `{}`.
 * __onHide__ | `function`: terugbellen wordt aangeroepen wanneer op de sluitknop wordt geklikt. Default: `none`.
 

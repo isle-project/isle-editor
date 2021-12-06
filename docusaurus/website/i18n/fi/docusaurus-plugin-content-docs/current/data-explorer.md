@@ -86,7 +86,7 @@ Tätä komponenttia opiskelijat käyttävät lyhyeen yhteenvetoon esitetyistä t
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean, joka ilmaisee, näytetäänkö muuttujien muunnostyökalut.. Default: `true`.

@@ -15,7 +15,7 @@ Egy műszerfal több gyermek beviteli mező kezelésének kombinálására.
 * __label__ | `string`: gomb címkéje. Default: `none`.
 * __maxWidth__ | `number`: a műszerfal maximális szélessége. Default: `600`.
 * __className__ | `string`: osztály neve. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: a kártya testének osztályneve. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onGenerate__ | `function`: függvény, amely a gombra kattintáskor vagy a műszerfal egyik bemeneti értékének megváltozásakor hívódik elő (ha az "autoUpdate" értéke "igaz"). A függvényt a beviteli mezők értékeivel hívja meg, abban a sorrendben, ahogyan azok a műszerfalra kerültek.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kártya címe. Default: `''`.

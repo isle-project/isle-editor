@@ -19,8 +19,8 @@ Kortin osa.
 * __trapFocus__ | `boolean`: halutaanko käyttäjän fokus jäädyttää paneeliin.. Default: `false`.
 * __bodyStyle__ | `object`: CSS-inline-tyylit runkoa varten. Default: `{}`.
 * __footerStyle__ | `object`: CSS-inline-tyylit alatunnisteeseen. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS-luokan nimi runkoa varten. Default: `''`.
+* __footerClassName__ | `string`: CSS-luokan nimi alatunnisteelle. Default: `''`.
 * __style__ | `object`: CSS inline-tyylit säiliölle. Default: `{}`.
 * __onHide__ | `function`: callback, joka käynnistetään, kun sulkemispainiketta napsautetaan.. Default: `none`.
 

@@ -19,8 +19,8 @@ Kortkomponent.
 * __trapFocus__ | `boolean`: om användarens fokus ska fastna i panelen eller inte. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline-stilar för kroppen. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline-stilar för sidfot. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS-klassnamn för kroppen. Default: `''`.
+* __footerClassName__ | `string`: CSS-klassnamn för sidfot. Default: `''`.
 * __style__ | `object`: CSS inline-stilar för behållare. Default: `{}`.
 * __onHide__ | `function`: callback som aktiveras när stängningsknappen klickas. Default: `none`.
 

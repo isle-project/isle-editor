@@ -86,7 +86,7 @@ Denne komponent bruges af eleverne til kort at opsummere data, når de præsente
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean, der angiver, om der skal vises værktøjer til transformation af variabler. Default: `true`.

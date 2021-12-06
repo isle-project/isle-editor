@@ -86,7 +86,7 @@ sidebar_label: Data Explorer
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: 表示是否显示变量转换工具的布尔值。. Default: `true`.

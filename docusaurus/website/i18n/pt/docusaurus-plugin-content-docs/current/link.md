@@ -10,7 +10,7 @@ Um componente para a exibição de um link.
 
 * __href__ | `string (required)`: URL do site para o link. Default: `none`.
 * __target__ | `string`: define onde o link é aberto: definido como `_blank` para nova janela, `_self` frame próprio, `_parent` para pai, `_top` para o corpo inteiro da janela, ou o nome do frame. Default: `'_blank'`.
-* __windowFeatures__ | `string`: undefined. Default: `none`.
+* __windowFeatures__ | `string`: lista separada por vírgula de recursos de janela para quando o link é aberto em uma nova janela (ver: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __className__ | `string`: nome da classe. Default: `''`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 

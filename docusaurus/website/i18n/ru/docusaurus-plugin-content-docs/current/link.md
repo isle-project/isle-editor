@@ -10,7 +10,7 @@ sidebar_label: Link
 
 * __href__ | `string (required)`: URL-адрес сайта, на который можно перейти по ссылке. Default: `none`.
 * __target__ | `string`: определяет, где открывается ссылка: установите значение `_blank` для нового окна, `_self` собственный кадр, `_parent` для родительского, `_top` для полного тела окна, или имя кадра. Default: `'_blank'`.
-* __windowFeatures__ | `string`: undefined. Default: `none`.
+* __windowFeatures__ | `string`: разделенный запятыми список характеристик окна, когда ссылка открывается в новом окне (см.: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 

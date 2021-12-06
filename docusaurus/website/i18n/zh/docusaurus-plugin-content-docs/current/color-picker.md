@@ -8,7 +8,7 @@ sidebar_label: Color Picker
 
 ## 选项
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: 颜色选择器的变体（"紧凑"、"草图"、"材料"、"按钮 "或 "块状"）。. Default: `'Sketch'`.
 * __color__ | `(string|object)`: `string 含有HeX代码或`object`含有RGB或HSL值，如`{ r: 255, g: 255, b: 255 }`或`{ h: 0, s. 0, l: .10 }`，它决定了活动颜色。0, l: .10 }`，它决定了活动颜色。两者都接受一个`a`属性，用于除一个以外的alpha值。. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: 控制是否删除alpha滑块和选项. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings`指定colorpicker底部的默认颜色。. Default: `[

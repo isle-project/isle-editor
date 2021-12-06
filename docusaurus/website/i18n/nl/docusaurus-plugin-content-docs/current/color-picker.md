@@ -8,7 +8,7 @@ Een wikkel voor de [reactiekleur](https://casesandberg.github.io/react-color/) k
 
 ## Opties
 
-* __variant__ | `string`: undefined. Default: `'Sketch'`.
+* __variant__ | `string`: kleurkiezer variant (ofwel `Compact`, `Sketch`, `Material`, `Button`, of `Block`). Default: `'Sketch'`.
 * __color__ | `(string|object)`: String` met een HeX-code of een `object` met RGB- of HSL-waarden zoals `{ r: 255, g: 255, b: 255 }` of `{ h: 0, s: 0, l: .10 }`, die de actieve kleur bepaalt. Beide accepteren een `a` eigenschap voor andere alpha-waarden dan een. Default: `'#fff'`.
 * __disableAlpha__ | `boolean`: bepaalt of de alfa-schuifregelaar en de opties moeten worden verwijderd. Default: `false`.
 * __presetColors__ | `array<string>`: HeX `strings` met vermelding van de standaardkleuren aan de onderkant van de kleurkiezer. Default: `[

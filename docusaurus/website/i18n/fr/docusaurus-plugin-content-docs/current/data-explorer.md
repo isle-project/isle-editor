@@ -86,7 +86,7 @@ Cette composante est utilisée par les étudiants pour résumer brièvement les 
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: booléen indiquant s'il faut afficher les outils de transformation variables. Default: `true`.

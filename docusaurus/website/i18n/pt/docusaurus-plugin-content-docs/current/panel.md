@@ -19,8 +19,8 @@ Componente do cartão.
 * __trapFocus__ | `boolean`: se o foco do usuário no painel deve ser aprisionado. Default: `false`.
 * __bodyStyle__ | `object`: Estilos de CSS em linha para o corpo. Default: `{}`.
 * __footerStyle__ | `object`: Estilos em linha de CSS para rodapé. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Nome da classe CSS para o corpo. Default: `''`.
+* __footerClassName__ | `string`: Nome da classe CSS para rodapé. Default: `''`.
 * __style__ | `object`: Estilos em linha de CSS para contêineres. Default: `{}`.
 * __onHide__ | `function`: chamada de retorno invocada quando o botão de fechamento é clicado. Default: `none`.
 

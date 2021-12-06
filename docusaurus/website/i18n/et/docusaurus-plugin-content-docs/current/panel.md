@@ -19,8 +19,8 @@ Kaardi komponent.
 * __trapFocus__ | `boolean`: kas kasutaja fookus jääb paneelil lõksu.. Default: `false`.
 * __bodyStyle__ | `object`: CSS inline stiilid keha jaoks. Default: `{}`.
 * __footerStyle__ | `object`: CSS inline stiilid jalusesse. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS-klassi nimi keha jaoks. Default: `''`.
+* __footerClassName__ | `string`: CSS klassi nimi jaluslehe jaoks. Default: `''`.
 * __style__ | `object`: Konteineri CSS inline stiilid. Default: `{}`.
 * __onHide__ | `function`: callback, mis kutsutakse esile, kui klõpsatakse sulgemisnupule. Default: `none`.
 

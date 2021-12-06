@@ -10,7 +10,7 @@ O componentă pentru afișarea unui link.
 
 * __href__ | `string (required)`: URL-ul site-ului web către care se face legătura. Default: `none`.
 * __target__ | `string`: definește unde se deschide link-ul: setează `_blank` pentru fereastră nouă, `_self` pentru propriul cadru, `_parent` pentru părinte, `_top` pentru întregul corp al ferestrei, sau numele cadrului.. Default: `'_blank'`.
-* __windowFeatures__ | `string`: undefined. Default: `none`.
+* __windowFeatures__ | `string`: listă de caracteristici ale ferestrei, separate prin virgulă, pentru momentul în care link-ul este deschis într-o fereastră nouă (a se vedea: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __className__ | `string`: numele clasei. Default: `''`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 

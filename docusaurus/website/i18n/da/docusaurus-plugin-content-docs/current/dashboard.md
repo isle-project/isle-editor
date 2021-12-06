@@ -15,7 +15,7 @@ Et dashboard til at kombinere håndteringen af flere indtastningsfelter for bør
 * __label__ | `string`: knapmærke. Default: `none`.
 * __maxWidth__ | `number`: maksimal bredde af instrumentbrættet. Default: `600`.
 * __className__ | `string`: klassens navn. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: klassens navn for kortets krop. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onGenerate__ | `function`: funktion, der kaldes, når der klikkes på knappen, eller når en af dashboardets inputværdier ændres (hvis `autoUpdate` er indstillet til `true`). Funktionen kaldes med værdierne i inputfelterne i den rækkefølge, de er placeret i instrumentbrættet. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kortets titel. Default: `''`.

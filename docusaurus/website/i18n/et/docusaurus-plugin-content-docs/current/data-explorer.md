@@ -86,7 +86,7 @@ Seda komponenti kasutavad õpilased andmete esitamisel lühikese kokkuvõtte teg
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: boolean, mis näitab, kas kuvada muutuja muundamise vahendeid. Default: `true`.

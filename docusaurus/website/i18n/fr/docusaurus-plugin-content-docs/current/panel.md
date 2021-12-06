@@ -19,8 +19,8 @@ Composant de la carte.
 * __trapFocus__ | `boolean`: si le focus de l'utilisateur doit être piégé dans le panneau.. Default: `false`.
 * __bodyStyle__ | `object`: Styles CSS en ligne pour le corps. Default: `{}`.
 * __footerStyle__ | `object`: Styles CSS en ligne pour le pied de page. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: Nom de la classe CSS pour le corps. Default: `''`.
+* __footerClassName__ | `string`: Nom de la classe CSS pour le pied de page. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne pour le conteneur. Default: `{}`.
 * __onHide__ | `function`: rappel invoqué lorsque le bouton de fermeture est cliqué. Default: `none`.
 

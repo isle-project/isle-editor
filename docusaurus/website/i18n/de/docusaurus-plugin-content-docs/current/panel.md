@@ -19,8 +19,8 @@ Kartenkomponente.
 * __trapFocus__ | `boolean`: ob der Fokus des Benutzers im Panel gefangen werden soll. Default: `false`.
 * __bodyStyle__ | `object`: CSS-Inline-Stile für Body. Default: `{}`.
 * __footerStyle__ | `object`: CSS-Inlinestile für Fußzeile. Default: `{}`.
-* __bodyClassName__ | `string`: undefined. Default: `''`.
-* __footerClassName__ | `string`: undefined. Default: `''`.
+* __bodyClassName__ | `string`: CSS-Klassenname für body. Default: `''`.
+* __footerClassName__ | `string`: CSS-Klassenname für Fußzeile. Default: `''`.
 * __style__ | `object`: CSS-Inlinestile für Container. Default: `{}`.
 * __onHide__ | `function`: Callback, der aufgerufen wird, wenn die Schließen-Schaltfläche angeklickt wird. Default: `none`.
 

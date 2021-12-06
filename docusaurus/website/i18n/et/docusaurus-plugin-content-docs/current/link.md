@@ -10,7 +10,7 @@ Komponent lingi kuvamiseks.
 
 * __href__ | `string (required)`: Veebisaidi URL, millele linkida. Default: `none`.
 * __target__ | `string`: määratleb, kus link avatakse: uue akna puhul on määratud `_blank`, oma raami puhul `_self`, vanema puhul `_parent`, akna kogu keha puhul `_top` või raami nimi.. Default: `'_blank'`.
-* __windowFeatures__ | `string`: undefined. Default: `none`.
+* __windowFeatures__ | `string`: komadega eraldatud loetelu aknafunktsioonidest, kui link avatakse uues aknas (vt: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __className__ | `string`: klassi nimi. Default: `''`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 

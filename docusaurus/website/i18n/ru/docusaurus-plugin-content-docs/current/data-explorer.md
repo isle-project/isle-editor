@@ -86,7 +86,7 @@ sidebar_label: Data Explorer
   'One-Sample Proportion Test',
   'Two-Sample Proportion Test',
   'Correlation Test',
-  'Chi-squared Independence Test',
+  'Chi-square Independence Test',
   'Kruskal-Wallis Test'
 ]`.
 * __transformer__ | `boolean`: логическое указание на то, следует ли отображать инструменты преобразования переменных. Default: `true`.

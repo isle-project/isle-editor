@@ -15,7 +15,7 @@ Kojelauta, jossa yhdistetään useiden lapsisyöttökenttien käsittely.
 * __label__ | `string`: painikkeen etiketti. Default: `none`.
 * __maxWidth__ | `number`: kojelaudan enimmäisleveys. Default: `600`.
 * __className__ | `string`: luokan nimi. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: kortin rungon luokan nimi. Default: `'d-grid gap-3'`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onGenerate__ | `function`: toiminto, joka käynnistyy, kun painiketta napsautetaan tai jokin kojelaudan syöttöarvoista muuttuu (jos `autoUpdate` on asetettu arvoon `true`). Funktiota kutsutaan syöttökenttien arvojen kanssa siinä järjestyksessä, jossa ne on sijoitettu kojelautaan.. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: kortin otsikko. Default: `''`.

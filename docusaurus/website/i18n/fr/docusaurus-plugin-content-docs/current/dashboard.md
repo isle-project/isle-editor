@@ -15,7 +15,7 @@ Un tableau de bord permettant de combiner le traitement de plusieurs champs de s
 * __label__ | `string`: étiquette du bouton. Default: `none`.
 * __maxWidth__ | `number`: largeur maximale du tableau de bord. Default: `600`.
 * __className__ | `string`: nom de la classe. Default: `''`.
-* __bodyClassName__ | `string`: undefined. Default: `'d-grid gap-3'`.
+* __bodyClassName__ | `string`: nom de la classe pour le corps de la carte. Default: `'d-grid gap-3'`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onGenerate__ | `function`: invoquée lorsque l'on clique sur le bouton ou que l'une des valeurs d'entrée du tableau de bord change (si "autoUpdate" est réglé sur "true"). La fonction est appelée avec les valeurs des champs de saisie, dans l'ordre dans lequel ils sont placés dans le tableau de bord. Default: `onGenerate() {}`.
 * __title__ | `(string|node)`: titre de la carte. Default: `''`.
