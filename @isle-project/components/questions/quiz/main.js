@@ -133,7 +133,8 @@ class Quiz extends Component {
 			showInstructorView: false,
 			showFinishModal: false,
 			questions: [],
-			questionIDs: []
+			questionIDs: [],
+			id: this.id // Keep track of the quiz's id for use in `getDerivedStateFromProps`...
 		};
 	}
 
