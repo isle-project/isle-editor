@@ -17,6 +17,7 @@ import Overlay from 'react-bootstrap/Overlay';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
+import isJSON from '@stdlib/assert/is-json';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from '@isle-project/components/tooltip';
@@ -56,8 +57,23 @@ function formatAnswer( value, visualizer ) {
 	}
 	switch ( dataType ) {
 		case 'factor': {
-				let levels = visualizer.ref.props.data.levels;
-				if ( isArray( value ) ) {
+				const levels = visualizer.ref.props.data.levels;
+				if ( isJSON( value ) ) {
+					value = JSON.parse( value );
+
+					// Case: array has `true` for some values and `false` / `null` for others (e.g., [true, false, null, true]):
+					out = value
+						.map( ( v, i ) => {
+							if ( v === true ) {
+								return levels[ i ];
+							}
+							return '';
+						})
+						.filter( v => v !== '' )
+						.join( ', ' );
+				}
+				else if ( isArray( value ) ) {
+					// Case: value is an array of answer indices (e.g., [0, 1, 2]):
 					out = value.map( x => isNumber( x ) ? levels[ x ] : x ).join( ', ' );
 				} else {
 					out = levels[ value ];
