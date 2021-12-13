@@ -57,6 +57,7 @@
           "questions/image-question",
           "questions/match-list-question",
           "questions/multiple-choice-question",
+          "questions/multiple-choice-matrix",
           "questions/number-question",
           "questions/order-question",
           "questions/question-form",

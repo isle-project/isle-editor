@@ -200,6 +200,10 @@
 		"value": "<MultipleChoiceSurvey\n  question=\"${1:Enter question}\"\n  answers={[ '${2:First}', '${3:Second}' ]}\n/>\n"
 	},
 	{
+		"name": "MultipleChoiceMatrix",
+		"value": "<MultipleChoiceMatrix\ntitle=\"On a scale from one to five (where 1 = lowest and 5 = highest), please rate the quality of the workshops on each day\" questions={['First Day', 'Second Day', 'Third Day']}\nanswers={[1,2,3,4,5]}\n/>\n"
+	},
+	{
 		"name": "Nav justified",
 		"value": "<Nav defaultActiveKey={${1:1}} >\n  <NavItem eventKey={1} >${2:NavItem 1 content}</NavItem>\n  <NavItem eventKey={2} >${3:NavItem 2 content}</NavItem>\n  ${4:}\n</Nav>\n"
 	},

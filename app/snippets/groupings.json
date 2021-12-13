@@ -170,6 +170,7 @@
 		"ImageQuestion",
 		"MatchListQuestion",
 		"MultipleChoiceQuestion",
+		"MultipleChoiceMatrix",
 		"NumberQuestion",
 		"OrderQuestion",
 		"RangeQuestion",

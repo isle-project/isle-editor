@@ -341,6 +341,10 @@
       "value": "<MultipleChoiceQuestion\n  solution={${1:0}}\n  answers={[\n    {content:\"${2:}\", explanation:\"${3:}\"},\n{content:\"${4:}\", explanation:\"${5:}\"}\n  ]}\n  question=\"${6:}\"\n/>\n"
     },
     {
+      "name": "MultipleChoiceMatrix",
+      "value": "<MultipleChoiceMatrix\ntitle=\"On a scale from one to five (where 1 = lowest and 5 = highest), please rate the quality of the workshops on each day\" questions={['First Day', 'Second Day', 'Third Day']}\nanswers={[1,2,3,4,5]}\n/>\n"
+    },
+    {
       "name": "NumberQuestion",
       "value": "<NumberQuestion\n  question=\"${1:Enter question}\"\n  ${2:}\n/>\n"
     },
