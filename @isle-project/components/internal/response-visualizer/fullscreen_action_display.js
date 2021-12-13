@@ -854,6 +854,7 @@ class FullscreenActionDisplay extends Component {
 							{ this.state.filtered.length > 0 ?
 								<div style={{ marginLeft: 0, overflowY: 'scroll', height: 0.75 * window.innerHeight }}>
 									<ReactList
+										key={`${this.props.componentID}-list-${this.state.filtered.length}`}
 										initialIndex={0}
 										itemRenderer={this.renderListGroupItem}
 										length={this.state.filtered.length}
