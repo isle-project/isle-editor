@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Overlay from 'react-bootstrap/Overlay';
+import noop from '@stdlib/utils/noop';
 import Draggable from '@isle-project/components/draggable';
 import Gate from '@isle-project/components/gate';
 import Tooltip from '@isle-project/components/tooltip';
@@ -140,11 +141,22 @@ const Toolbar = () => {
 			x.name === 'queue' ||
 			x.name === 'calculator' ||
 			x.name === 'sketchpad' ||
-			x.name === 'help'
+			x.name === 'help' ||
+			x.name === 'ticketing' ||
+			x.name === 'engagement'
 		) {
 			hide[ x.name ] = true;
 		}
 	});
+	const keyControlActions = {
+		'F2': toggleToolbar,
+		'c': hide.calculator ? noop : toggleCalculator,
+		'q': hide.queue ? noop : toggleQueue,
+		's': hide.sketchpad ? noop : toggleSketchpad,
+		'd': hide.help ? noop : toggleHelp,
+		't': ( session.enableTicketing && !hide.ticketing ) ? toggleTicketing : noop,
+		'p': hide.engagement ? noop : toggleEngagement
+	};
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type, value ) => {
 			if ( type === TOGGLE_PRESENTATION_MODE ) {
@@ -379,15 +391,7 @@ const Toolbar = () => {
 			})}
 			{help ? <HelpPage session={session} onClose={toggleHelp} /> : null }
 			<KeyControls
-				actions={{
-					'F2': toggleToolbar,
-					'c': toggleCalculator,
-					'q': toggleQueue,
-					's': toggleSketchpad,
-					'd': toggleHelp,
-					't': toggleTicketing,
-					'p': toggleEngagement
-				}}
+				actions={keyControlActions}
 			/>
 		</Fragment>
 	);
