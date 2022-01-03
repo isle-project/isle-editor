@@ -288,7 +288,7 @@
     "esbuild-jest-transform": "^1.1.0",
     "esbuild-register": "^3.3.1",
     "eslint-plugin-i18next": "^5.1.2",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^25.3.4",
     "eslint-plugin-jest-dom": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
