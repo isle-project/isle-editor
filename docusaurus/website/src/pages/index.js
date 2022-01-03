@@ -202,7 +202,7 @@ function Home() {
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
-									to="http://stat.cmu.edu/isle"
+									to="https://stat.cmu.edu/isle"
 								>
 									{translate({
 										id: 'open-link',
@@ -235,7 +235,7 @@ function Home() {
 							<div className="text--center">
 								<Link
 									className="button button--primary button--lg"
-									to="http://stat.cmu.edu/isle/faq.html"
+									to="https://stat.cmu.edu/isle/faq.html"
 								>
 									{translate({
 										id: 'open-link',
