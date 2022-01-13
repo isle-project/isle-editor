@@ -1,9 +1,6 @@
 // MODULES //
 
 import React, { Component, Fragment } from 'react';
-import fs from 'fs';
-import { join } from 'path';
-import os from 'os';
 import { withTranslation, Trans } from 'react-i18next';
 import axios from 'axios';
 import logger from 'debug';
@@ -114,11 +111,12 @@ class SettingsLogin extends Component {
 	};
 
 	connectToServer = async () => {
+		const { loginMethod, server, email, password } = this.state;
 		try {
-			if ( this.state.loginMethod.requireCredentials) {
-				const res = await axios.post( this.state.server + '/login', {
-					password: this.state.password,
-					email: trim( this.state.email )
+			if ( loginMethod.requireCredentials ) {
+				const res = await axios.post( server + '/login', {
+					password: password,
+					email: trim( email )
 				});
 				const body = res.data;
 				electronStore.set( 'token', body.token );
@@ -127,26 +125,21 @@ class SettingsLogin extends Component {
 				});
 			}
 			else {
-				const res = await axios.get( this.state.loginMethod.url, {
-					password: this.state.password,
-					email: trim( this.state.email )
-				});
-				const body = res.data;
-				const filePath = join( os.tmpdir(), 'saml_login.html' );
-				fs.writeFileSync( filePath, body );
+				debug( 'Open browser window to login: ' + loginMethod.url );
 				const authWindow = new BrowserWindow({
 					width: 800,
 					height: 600,
-					show: true
+					show: true,
+					alwaysOnTop: true
 				});
+				authWindow.loadURL( loginMethod.url );
 				authWindow.removeMenu();
-				authWindow.loadFile( filePath );
-
 				authWindow.webContents.on( 'will-redirect', async ( event, url ) => {
+					debug( 'Redirecting to: ' + url );
 					event.preventDefault();
-					if ( !url.includes( 'okta' ) ) {
+					if ( url.includes( 'saml-xmw' ) || url.includes( 'dashboard' ) ) {
 						authWindow.destroy();
-						const res = await axios.get( this.state.server + '/saml-xmw/session' );
+						const res = await axios.get( server + '/saml-xmw/session' );
 						electronStore.set( 'token', res.data.token );
 						this.setState({
 							encounteredError: null
