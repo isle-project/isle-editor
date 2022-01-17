@@ -236,6 +236,7 @@ class SettingsLogin extends Component {
 	render() {
 		const { t } = this.props;
 		const { server, email, password, encounteredError } = this.state;
+		const requireCredentials = this.state.loginMethod.requireCredentials;
 		const inputsAreEntered =
 			server.length > 6 && email.length > 3 && password.length > 3;
 		const invalidServer = !startsWith( this.state.server, 'https://' );
@@ -285,7 +286,7 @@ class SettingsLogin extends Component {
 								</ToggleButton> );
 							})}
 						</ToggleButtonGroup>
-						{this.state.loginMethod.requireCredentials ?
+						{requireCredentials ?
 							<Fragment>
 								<FormGroup>
 									<FormLabel>{t('email')}</FormLabel>
@@ -323,7 +324,7 @@ class SettingsLogin extends Component {
 								variant="primary"
 								size="sm"
 								onClick={this.connectToServer}
-								disabled={!inputsAreEntered || invalidServer}
+								disabled={(requireCredentials && !inputsAreEntered ) || invalidServer}
 							>
 								{t('connect')}
 							</Button>
