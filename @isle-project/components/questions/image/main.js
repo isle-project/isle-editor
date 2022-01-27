@@ -91,6 +91,8 @@ const ImageQuestion = ( props ) => {
 	}, [ session, setToLastAction ] );
 
 	const onFileRead = useCallback( ( event ) => {
+		debug( 'File read...' );
+		setIsProcessing( false );
 		setSrc( event.target.result );
 	}, [] );
 	const handleSolutionClick = useCallback( () => {
@@ -172,7 +174,12 @@ const ImageQuestion = ( props ) => {
 		const dt = evt.dataTransfer;
 		const reader = new FileReader();
 		let file = null;
-		if ( dt.items && dt.items.length > 0 ) {
+		if ( dt.files && dt.files.length > 0 ) {
+			debug( 'File(s) dropped, processing the first one...' );
+			file = dt.files[ 0 ];
+		}
+		else if ( dt.items && dt.items.length > 0 ) {
+			debug( 'Item(s) dropped, using  the first one...' );
 			const item = dt.items[ 0 ];
 			if ( item.kind === 'file' ) {
 				file = item.getAsFile();
@@ -218,14 +225,9 @@ const ImageQuestion = ( props ) => {
 				});
 			}
 		}
-		else if ( dt.files && dt.files.length > 0 ) {
-			file = dt.files[ 0 ];
-		}
 		if ( file ) {
-			if ( file ) {
-				reader.addEventListener( 'load', onFileRead, false );
-				reader.readAsDataURL( file );
-			}
+			reader.addEventListener( 'load', onFileRead, false );
+			reader.readAsDataURL( file );
 		}
 	};
 	const renderSubmitButton = () => {
