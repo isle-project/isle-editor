@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "Quantiles teóricos",
 	"toggle-fullscreen": "Alternar pantalla completa",
 	"toggle-legend": "Leyenda de la conmutación",
+	"too-many-categories": "Demasiadas categorías para mostrar.",
 	"variable-missing": "Falta la variable a graficar.",
 	"vs": "contra"
 }

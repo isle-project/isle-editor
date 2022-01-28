@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "Theoretical Quantiles",
 	"toggle-fullscreen": "Toggle fullscreen",
 	"toggle-legend": "Toggle legend",
+	"too-many-categories": "Too many categories to display.",
 	"variable-missing": "Variable to be plotted is missing.",
 	"vs": "vs."
 }

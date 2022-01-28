@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "理论数量级",
 	"toggle-fullscreen": "切换全屏",
 	"toggle-legend": "切换传说",
+	"too-many-categories": "有太多的类别需要显示。",
 	"variable-missing": "要绘制的变量缺失。",
 	"vs": "与"
 }

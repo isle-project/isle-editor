@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "Quantiles théoriques",
 	"toggle-fullscreen": "Basculer en plein écran",
 	"toggle-legend": "Légende de la bascule",
+	"too-many-categories": "Trop de catégories à afficher.",
 	"variable-missing": "La variable à tracer est manquante.",
 	"vs": "contre"
 }

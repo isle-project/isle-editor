@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "Teoretiske kvantiler",
 	"toggle-fullscreen": "Skift mellem fuld skærm",
 	"toggle-legend": "Skift legende",
+	"too-many-categories": "Der er for mange kategorier at vise.",
 	"variable-missing": "Den variabel, der skal plottes, mangler.",
 	"vs": "mod."
 }

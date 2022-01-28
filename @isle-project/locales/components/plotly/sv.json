@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "Teoretiska kvoter",
 	"toggle-fullscreen": "Växla till fullskärmsläge",
 	"toggle-legend": "Växla legend",
+	"too-many-categories": "För många kategorier att visa.",
 	"variable-missing": "Den variabel som ska ritas saknas.",
 	"vs": "vs."
 }

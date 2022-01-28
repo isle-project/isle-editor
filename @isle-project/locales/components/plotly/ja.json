@@ -34,6 +34,7 @@
 	"theoretical-quantiles": "理論的な量論",
 	"toggle-fullscreen": "フルスクリーンを切り替える",
 	"toggle-legend": "凡例のトグル",
+	"too-many-categories": "カテゴリーが多すぎて表示できない。",
 	"variable-missing": "プロットする変数が欠落しています。",
 	"vs": "対"
 }
