@@ -15,6 +15,12 @@ import by from '@isle-project/utils/by';
 import by2 from '@isle-project/utils/by2';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 50;
 
 
 // FUNCTIONS //
@@ -115,6 +121,12 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 		title = `${summaryVariable} ${i18n.t('plotly:per')} ${tmp}`;
 	} else {
 		title = tmp;
+	}
+	for ( let i = 0; i < traces.length; i++ ) {
+		const trace = traces[ i ];
+		if ( trace.labels.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 	}
 	const layout = {
 		annotations,

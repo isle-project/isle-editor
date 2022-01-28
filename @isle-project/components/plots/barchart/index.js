@@ -13,6 +13,12 @@ import by2 from '@isle-project/utils/by2';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 150;
 
 
 // FUNCTIONS //
@@ -178,6 +184,9 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		yaxis = {
 			title: ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:Count')
 		};
+	}
+	if ( allCats.size > MAX_CATEGORIES ) {
+		return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
 	}
 	return {
 		data: traces,

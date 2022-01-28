@@ -12,6 +12,12 @@ import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 100;
 
 
 // FUNCTIONS //
@@ -56,6 +62,9 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 		});
 		traces = [];
 		const keys = extractUsedCategories( freqs, group[ 0 ] );
+		if ( keys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const values = freqs[ key ];
@@ -89,6 +98,9 @@ export function generateBoxplotConfig({ data, variable, group = [], orientation,
 		traces = [];
 		const keys = extractUsedCategories( freqs, group[ 0 ] );
 		const catKeys = extractCategoriesFromValues( data[ group[1] ], group[ 1 ] );
+		if ( keys.length > MAX_CATEGORIES || catKeys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		categoryarray = catKeys;
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];

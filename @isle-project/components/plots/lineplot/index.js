@@ -9,6 +9,12 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 100;
 
 
 // FUNCTIONS //
@@ -41,6 +47,9 @@ export function generateLineplotConfig({ data, x, y, group, showPoints }) {
 		});
 		traces = [];
 		const keys = extractUsedCategories( ygrouped, group );
+		if ( keys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			traces.push({

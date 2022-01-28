@@ -9,6 +9,12 @@ import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import by from '@isle-project/utils/by';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 50;
 
 
 // FUNCTIONS //
@@ -16,7 +22,7 @@ import { Factor } from '@isle-project/utils/factor-variable';
 export function generateViolinplotConfig({ data, variable, group, showBox }) {
 	let traces;
 	if ( !group ) {
-		let values = data[ variable ];
+		const values = data[ variable ];
 		traces = [ {
 			y: values,
 			type: 'violin',
@@ -26,11 +32,14 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 			}
 		} ];
 	} else {
-		let freqs = by( data[ variable ], data[ group ], arr => {
+		const freqs = by( data[ variable ], data[ group ], arr => {
 			return arr;
 		});
 		traces = [];
 		const keys = extractUsedCategories( freqs, group );
+		if ( keys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		for ( let i = 0; i < keys.length; i++ ) {
 			const key = keys[ i ];
 			const val = freqs[ key ];

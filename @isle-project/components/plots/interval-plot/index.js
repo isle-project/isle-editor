@@ -17,6 +17,12 @@ import { Factor } from '@isle-project/utils/factor-variable';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import mean from '@isle-project/utils/statistic/mean.js';
 import stdDev from '@isle-project/utils/statistic/stdev.js';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 100;
 
 
 // FUNCTIONS //
@@ -96,6 +102,9 @@ export function generateIntervalPlotConfig({ data, variable, group, orientation,
 			return [ mean( nonmissing ), stdDev( nonmissing ), nonmissing.length ];
 		});
 		const keys = extractUsedCategories( stats, group );
+		if ( keys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		const means = [];
 		const errors = [];
 		const pvalues = [];

@@ -15,6 +15,12 @@ import { Factor } from '@isle-project/utils/factor-variable';
 import by from '@isle-project/utils/by';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
 import calculateDensityValues from './calculate_density_values.js';
+import emptyPlotConfig from '@isle-project/utils/empty-plot-config';
+
+
+// VARIABLES //
+
+const MAX_CATEGORIES = 50;
 
 
 // FUNCTIONS //
@@ -98,6 +104,9 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 		});
 		traces = [];
 		keys = extractUsedCategories( freqs, group );
+		if ( keys.length > MAX_CATEGORIES ) {
+			return emptyPlotConfig( i18n.t( 'plotly:too-many-categories' ) );
+		}
 		const nPlots = keys.length;
 		const nRows = ceil( nPlots / nCols );
 		if ( groupMode === 'Facets' ) {
