@@ -85,6 +85,7 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
         aria-labelledby="chisquared-tabs-tab-1"
         className="tab-pane active"
         id="chisquared-tabs-tabpane-1"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -1648,6 +1649,7 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
         aria-labelledby="chisquared-tabs-tab-2"
         className="tab-pane"
         id="chisquared-tabs-tabpane-2"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -3248,6 +3250,7 @@ exports[`<LearnChiSquareDistribution /> renders a learning component 1`] = `
         aria-labelledby="chisquared-tabs-tab-3"
         className="tab-pane"
         id="chisquared-tabs-tabpane-3"
+        role="tabpanel"
       >
         <div
           className="container"

@@ -85,6 +85,7 @@ exports[`<LearnTDistribution /> renders a learning component 1`] = `
         aria-labelledby="student-tabs-tab-1"
         className="tab-pane active"
         id="student-tabs-tabpane-1"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -1924,6 +1925,7 @@ exports[`<LearnTDistribution /> renders a learning component 1`] = `
         aria-labelledby="student-tabs-tab-2"
         className="tab-pane"
         id="student-tabs-tabpane-2"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -3800,6 +3802,7 @@ exports[`<LearnTDistribution /> renders a learning component 1`] = `
         aria-labelledby="student-tabs-tab-3"
         className="tab-pane"
         id="student-tabs-tabpane-3"
+        role="tabpanel"
       >
         <div
           className="container"

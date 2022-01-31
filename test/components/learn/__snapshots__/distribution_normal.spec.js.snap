@@ -85,6 +85,7 @@ exports[`<LearnNormalDistribution /> renders a learning component 1`] = `
         aria-labelledby="normal-tabs-tab-smaller"
         className="tab-pane active"
         id="normal-tabs-tabpane-smaller"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -1786,6 +1787,7 @@ exports[`<LearnNormalDistribution /> renders a learning component 1`] = `
         aria-labelledby="normal-tabs-tab-greater"
         className="tab-pane"
         id="normal-tabs-tabpane-greater"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -3524,6 +3526,7 @@ exports[`<LearnNormalDistribution /> renders a learning component 1`] = `
         aria-labelledby="normal-tabs-tab-range"
         className="tab-pane"
         id="normal-tabs-tabpane-range"
+        role="tabpanel"
       >
         <div
           className="container"

@@ -103,6 +103,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
         aria-labelledby="poisson-tabs-tab-0"
         className="tab-pane active"
         id="poisson-tabs-tabpane-0"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -123,6 +124,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
         aria-labelledby="poisson-tabs-tab-1"
         className="tab-pane"
         id="poisson-tabs-tabpane-1"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -2125,6 +2127,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
         aria-labelledby="poisson-tabs-tab-2"
         className="tab-pane"
         id="poisson-tabs-tabpane-2"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -4123,6 +4126,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
         aria-labelledby="poisson-tabs-tab-3"
         className="tab-pane"
         id="poisson-tabs-tabpane-3"
+        role="tabpanel"
       >
         <div
           className="container"

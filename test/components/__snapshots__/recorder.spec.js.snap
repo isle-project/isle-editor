@@ -31,10 +31,10 @@ exports[`<Recorder /> renders a recorder 1`] = `
     />
     <label
       className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
       htmlFor="recorder-toggle-screen"
       onClick={[Function]}
       onKeyDown={[Function]}
-      role="button"
       tabIndex={0}
     >
       screen
@@ -51,10 +51,10 @@ exports[`<Recorder /> renders a recorder 1`] = `
     />
     <label
       className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
       htmlFor="recorder-toggle-camera"
       onClick={[Function]}
       onKeyDown={[Function]}
-      role="button"
       tabIndex={0}
     >
       cam
@@ -71,10 +71,10 @@ exports[`<Recorder /> renders a recorder 1`] = `
     />
     <label
       className="recorder-togglebutton disabled btn btn-light"
+      disabled={false}
       htmlFor="recorder-toggle-audio"
       onClick={[Function]}
       onKeyDown={[Function]}
-      role="button"
       tabIndex={0}
     >
       audio

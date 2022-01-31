@@ -85,6 +85,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
         aria-labelledby="uniform-tabs-tab-1"
         className="tab-pane active"
         id="uniform-tabs-tabpane-1"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -2131,6 +2132,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
         aria-labelledby="uniform-tabs-tab-2"
         className="tab-pane"
         id="uniform-tabs-tabpane-2"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -4214,6 +4216,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
         aria-labelledby="uniform-tabs-tab-3"
         className="tab-pane"
         id="uniform-tabs-tabpane-3"
+        role="tabpanel"
       >
         <div
           className="container"

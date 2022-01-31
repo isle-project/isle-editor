@@ -85,6 +85,7 @@ exports[`<LearnGammaDistribution /> renders a learning component 1`] = `
         aria-labelledby="beta-tabs-tab-smaller"
         className="tab-pane active"
         id="beta-tabs-tabpane-smaller"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -2062,6 +2063,7 @@ exports[`<LearnGammaDistribution /> renders a learning component 1`] = `
         aria-labelledby="beta-tabs-tab-greater"
         className="tab-pane"
         id="beta-tabs-tabpane-greater"
+        role="tabpanel"
       >
         <div
           className="container"
@@ -4076,6 +4078,7 @@ exports[`<LearnGammaDistribution /> renders a learning component 1`] = `
         aria-labelledby="beta-tabs-tab-range"
         className="tab-pane"
         id="beta-tabs-tabpane-range"
+        role="tabpanel"
       >
         <div
           className="container"
