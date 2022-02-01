@@ -6,12 +6,14 @@
 
 import { BrowserWindow } from 'electron';
 import { enable } from '@electron/remote/main';
+import * as actions from './actions.js';
 
 
 // VARIABLES //
 
 // Retain global references, if not, window will be closed automatically when garbage collected...
 const _windows = {};
+let isAuthenticating = false;
 
 
 // FUNCTIONS //
@@ -46,7 +48,53 @@ function _createWindow( options ) {
 	const window = new BrowserWindow( opts );
 	_windows[ window.id ] = window;
 	enable( window.webContents );
+
+	const session = window.webContents.session;
+	session.webRequest.onBeforeRedirect( authRedirect );
 	return window;
+
+	/**
+	 * Check redirection for ISLE authentication request and open browser window to authenticate if necessary.
+	 *
+	 * @private
+	 * @param {Object} requestDetails - details of the request
+	 */
+	function authRedirect( requestDetails ) {
+		if ( !isAuthenticating && requestDetails.redirectURL.includes( '/saml-xmw/' ) ) {
+			const authWindow = new BrowserWindow({
+				width: 800,
+				height: 600,
+				show: true,
+				alwaysOnTop: true,
+				webPreferences: {
+					partition: 'persist:isle'
+				}
+			});
+			// Remove query string from redirect URL if present
+			let redirectURL;
+			if ( requestDetails.redirectURL.includes( '?' ) ) {
+				redirectURL = requestDetails.redirectURL.split( '?' )[ 0 ];
+			} else {
+				redirectURL = requestDetails.redirectURL;
+			}
+			isAuthenticating = true;
+			authWindow.loadURL( redirectURL );
+			authWindow.removeMenu();
+
+			authWindow.webContents.on( 'will-redirect', ( event, url ) => {
+				if ( url.includes( 'saml-xmw' ) || url.includes( 'dashboard' ) ) {
+					authWindow.destroy();
+					actions.reload( window );
+					isAuthenticating = false;
+				}
+			});
+
+			// On closing `authWindow`, set `isAuthenticating` to `false`:
+			authWindow.on( 'close', () => {
+				isAuthenticating = false;
+			});
+		}
+	}
 }
 
 // Should not need to be called directly (just in case window.destroy() is ever called)
