@@ -130,7 +130,10 @@ class SettingsLogin extends Component {
 					width: 800,
 					height: 600,
 					show: true,
-					alwaysOnTop: true
+					alwaysOnTop: true,
+					webPreferences: {
+						partition: 'persist:isle'
+					}
 				});
 				authWindow.loadURL( loginMethod.url );
 				authWindow.removeMenu();

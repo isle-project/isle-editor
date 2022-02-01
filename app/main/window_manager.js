@@ -38,7 +38,8 @@ function _createWindow( options ) {
 			webviewTag: true,
 			worldSafeExecuteJavaScript: true,
 			allowRunningInsecureContent: false,
-			contextIsolation: false
+			contextIsolation: false,
+			partition: 'persist:isle'
 		},
 		...options
 	};
