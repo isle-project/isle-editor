@@ -107,6 +107,7 @@ const FileQuestion = ( props ) => {
 					type: FILE_QUESTION_SUBMISSION,
 					value: link
 				});
+				setFileLink( link );
 				setIsProcessing( false );
 			},
 			showNotification: true
@@ -161,12 +162,16 @@ const FileQuestion = ( props ) => {
 
 	let content;
 	if ( !isProcessing ) {
-		content = fileLink ?
-		<div className="center" style={{ maxWidth: 600 }}>
-			<a href={fileLink} target="_blank" rel="noopener noreferrer" >
-				{t('submitted-file-link')}: {fileLink}
-			</a>
-		</div> : <Fragment>
+		content = <Fragment>
+			{fileLink ?
+				<div className="center" style={{ maxWidth: 600 }}>
+					<p>
+						{t('submitted-file-link')}: <a href={fileLink} target="_blank" rel="noopener noreferrer" >
+							{fileLink}
+						</a>
+					</p>
+				</div> : null
+			}
 			<div
 				className="file-question-dropzone"
 				onDrop={onDrop}
