@@ -5279,6 +5279,70 @@
 		],
 		"description": "QRCode-description"
 	},
+	"FileQuestion": {
+		"props": [
+			{
+				"name": "question",
+				"type": "(string|node)",
+				"description": "FileQuestion-prop-question",
+				"defaultValue": ""
+			},
+			{
+				"name": "hintPlacement",
+				"type": "string",
+				"description": "FileQuestion-prop-hintPlacement",
+				"defaultValue": "bottom"
+			},
+			{
+				"name": "hints",
+				"type": "array<(string|node)>",
+				"description": "FileQuestion-prop-hints",
+				"defaultValue": []
+			},
+			{
+				"name": "feedback",
+				"type": "boolean",
+				"description": "FileQuestion-prop-feedback",
+				"defaultValue": true
+			},
+			{
+				"name": "chat",
+				"type": "boolean",
+				"defaultValue": false
+			},
+			{
+				"name": "accept",
+				"type": "string",
+				"description": "FileQuestion-prop-accept",
+				"defaultValue": "*/*"
+			},
+			{
+				"name": "until",
+				"type": "Date",
+				"description": "FileQuestion-prop-until",
+				"defaultValue": null
+			},
+			{
+				"name": "points",
+				"type": "number",
+				"description": "FileQuestion-prop-points",
+				"defaultValue": 10
+			},
+			{
+				"name": "className",
+				"type": "string",
+				"description": "FileQuestion-prop-className",
+				"defaultValue": ""
+			},
+			{
+				"name": "style",
+				"type": "object",
+				"description": "FileQuestion-prop-style",
+				"defaultValue": {}
+			}
+		],
+		"description": "FileQuestion-description"
+	},
 	"FreeTextQuestion": {
 		"props": [
 			{
