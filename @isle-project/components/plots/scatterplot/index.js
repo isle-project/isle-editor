@@ -211,7 +211,7 @@ export function generateScatterplotConfig({ data, xval, yval, text, color, type,
 				y: ygrouped[ groups[ i ] ],
 				type: nobs > 2000 ? 'scattergl' : 'scatter',
 				mode: mode,
-				name: groups[ i ],
+				name: String( groups[ i ] ),
 				marker: {
 					symbol: 'circle',
 					size: size ? scale( group( sizes, colors)[ groups[ i ] ], 5.0, 10.0 ) : 5.0,
