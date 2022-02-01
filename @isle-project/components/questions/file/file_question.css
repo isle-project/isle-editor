@@ -1,0 +1,23 @@
+.file-question {
+	max-width: 1200px;
+	margin: 0 auto 10px;
+}
+
+.file-question-toolbar {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.file-question-dropzone {
+	min-height: 50px;
+	width: 25%;
+	margin: 0 auto;
+	border: 1px solid blue;
+	padding: 10px;
+}
+
+.file-question-input {
+	width: 250px;
+}

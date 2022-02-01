@@ -494,7 +494,7 @@ ResponseVisualizer.propTypes = {
 	buttonStyle: PropTypes.object,
 	data: PropTypes.shape({
 		type: PropTypes.oneOf([
-			'factor', 'image', 'text', 'number', 'matches', 'matrix', 'range', 'tensor'
+			'factor', 'file', 'image', 'text', 'number', 'matches', 'matrix', 'range', 'tensor'
 		]),
 		levels: PropTypes.array,
 		question: PropTypes.oneOfType([ PropTypes.node, PropTypes.string ]),

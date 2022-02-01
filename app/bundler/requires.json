@@ -65,6 +65,7 @@
 	"FeedbackButtons": "@isle-project/components/feedback",
 	"ImageQuestion": "@isle-project/components/questions/image",
 	"FlippableCard": "@isle-project/components/flippable-card",
+	"FileQuestion": "@isle-project/components/questions/file",
 	"FreeTextQuestion": "@isle-project/components/questions/free-text",
 	"FreeTextSurvey": "@isle-project/components/free-text-survey",
 	"Gate": "@isle-project/components/gate",

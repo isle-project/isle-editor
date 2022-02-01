@@ -72,6 +72,10 @@
 		"value": "<FlippableCard>\n  ${1:<div>Question</div>}\n  ${2:<div>Answer</div>}\n</FlippableCard>\n"
 	},
 	{
+		"name": "FileQuestion",
+		"value": "<FileQuestion\n  question=\"${1:Enter question}\"\n/>\n"
+	},
+	{
 		"name": "FreeTextQuestion",
 		"value": "<FreeTextQuestion\n  question=\"${1:Enter question}\"\n  solution=\"${2:Enter solution}\"\n/>\n"
 	},

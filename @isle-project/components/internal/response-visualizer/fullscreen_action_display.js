@@ -627,6 +627,8 @@ class FullscreenActionDisplay extends Component {
 		let highlighter;
 		if ( this.props.data.type === 'image' ) {
 			highlighter = <Image src={value} width="auto" height="250px" />;
+		} else if ( this.props.data.type === 'file' ) {
+			highlighter = <a href={value} target="_blank" >{value}</a>;
 		} else {
 			highlighter = isString( value ) ? <Highlighter
 				className="response-visualizer-text"
@@ -763,6 +765,7 @@ class FullscreenActionDisplay extends Component {
 		}
 		switch ( this.props.data.type ) {
 			case 'image':
+			case 'file':
 				plot = null;
 				break;
 			case 'text':

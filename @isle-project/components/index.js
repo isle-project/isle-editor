@@ -12,7 +12,6 @@ import SliderInput from '@isle-project/components/input/slider';
 import TextInput from '@isle-project/components/input/text';
 import TextArea from '@isle-project/components/input/text-area';
 import VoiceInput from '@isle-project/components/input/voice';
-
 import Accordion from '@isle-project/components/accordion';
 import Animated from '@isle-project/components/animated';
 import BeaconTooltip from '@isle-project/components/beacon-tooltip';
@@ -31,6 +30,7 @@ import EditableText from '@isle-project/components/editable-text';
 import Expire from '@isle-project/components/expire';
 import FeedbackButtons from '@isle-project/components/feedback';
 import ImageQuestion from '@isle-project/components/questions/image';
+import FileQuestion from '@isle-project/components/questions/file';
 import FlippableCard from '@isle-project/components/flippable-card';
 import FreeTextSurvey from '@isle-project/components/free-text-survey';
 import FreeTextQuestion from '@isle-project/components/questions/free-text';
@@ -246,6 +246,7 @@ const scope = {
 	Expire,
 	FeedbackButtons,
 	ImageQuestion,
+	FileQuestion,
 	FlippableCard,
 	FreeTextSurvey,
 	FreeTextQuestion,
