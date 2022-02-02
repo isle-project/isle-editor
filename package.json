@@ -160,7 +160,7 @@
     "electron-updater": "^4.6.1",
     "electron-window-state": "^5.0.3",
     "element-resize-event": "^3.0.6",
-    "esbuild": "^0.14.14",
+    "esbuild": "^0.14.17",
     "esbuild-loader": "^2.18.0",
     "eslint": "^8.8.0",
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
@@ -224,7 +224,7 @@
     "react-dnd-html5-backend": "^14.1.0",
     "react-dnd-touch-backend": "^14.1.1",
     "react-dom": "17.0.2",
-    "react-floater": "^0.8.0",
+    "react-floater": "^0.7.3",
     "react-grid-layout": "^1.3.3",
     "react-highlight-words": "^0.17.0",
     "react-i18next": "^11.15.3",
@@ -281,7 +281,7 @@
     "codecov": "^3.8.3",
     "concurrently": "^7.0.0",
     "doctrine": "^3.0.0",
-    "electron": "16.0.8",
+    "electron": "17.0.0",
     "electron-builder": "22.14.5",
     "electron-devtools-installer": "github:MarshallOfSound/electron-devtools-installer",
     "esbuild-jest": "^0.5.0",
@@ -294,7 +294,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-perf": "^3.3.1",
     "eslint-plugin-spellcheck": "0.0.19",
-    "eslint-plugin-testing-library": "^5.0.4",
+    "eslint-plugin-testing-library": "^5.0.5",
     "glob": "^7.2.0",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^27.4.7",
@@ -327,7 +327,7 @@
     "vex-js": "^4.1.0",
     "victory": "36.2.1",
     "webpack-cli": "4.9.2",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.7.4"
   },
   "devEngines": {
     "node": "14.x || 15.x"
