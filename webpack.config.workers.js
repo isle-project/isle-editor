@@ -91,8 +91,7 @@ const config = {
 		'd3': 'd3',
 		'socket.io-client': 'io',
 		'js-yaml': 'jsyaml',
-		'markdown-it': 'markdownit',
-		'lodash': '_'
+		'markdown-it': 'markdownit'
 	}
 };
 

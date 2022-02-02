@@ -100,6 +100,7 @@ const config = {
 			'@isle-project/components/expire',
 			'@isle-project/components/feedback',
 			'@isle-project/components/flippable-card',
+			'@isle-project/components/questions/file',
 			'@isle-project/components/questions/free-text',
 			'@isle-project/components/free-text-survey',
 			'@isle-project/components/gate',
@@ -293,8 +294,7 @@ const config = {
 		'd3': 'd3',
 		'socket.io-client': 'io',
 		'js-yaml': 'jsyaml',
-		'markdown-it': 'markdownit',
-		'lodash': '_'
+		'markdown-it': 'markdownit'
 	}
 };
 
