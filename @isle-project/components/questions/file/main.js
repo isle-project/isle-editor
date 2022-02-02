@@ -109,6 +109,7 @@ const FileQuestion = ( props ) => {
 				});
 				setFileLink( link );
 				setIsProcessing( false );
+				setSubmitted( true );
 			},
 			showNotification: true
 		});
