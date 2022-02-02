@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
 import { useTranslation } from 'react-i18next';
-import merge from '@stdlib/utils/merge';
 import zIndexAdjustment from '@isle-project/utils/z-index-adjustment';
 
 
@@ -47,7 +46,10 @@ const Wrapper = ( props ) => {
 		zIndex.current = zIndexAdjustment( parentNode );
 	}, [ parentNode ]);
 
-	const styles = merge( {}, STYLES, props.styles );
+	const styles = {
+		...STYLES,
+		...props.styles
+	};
 	if ( styles.options && styles.options.zIndex === 100 ) {
 		styles.options.zIndex = zIndex.current + 100;
 	}
