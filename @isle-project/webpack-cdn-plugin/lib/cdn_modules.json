@@ -4,14 +4,14 @@
 		"alias": "axios",
 		"var": "axios",
 		"path": "axios.min.js",
-		"version": "0.24.0"
+		"version": "0.25.0"
 	},
 	{
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "21.4.2"
+		"version": "21.6.10"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -26,21 +26,14 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.6.2"
-	},
-	{
-		"name": "lodash",
-		"alias": "lodash.js",
-		"var": "_",
-		"path": "lodash.min.js",
-		"version": "4.17.21"
+		"version": "2.8.3"
 	},
 	{
 		"name": "js-yaml",
 		"alias": "js-yaml",
 		"var": "jsyaml",
 		"path": "js-yaml.min.js",
-		"version": "3.14.1"
+		"version": "4.1.0"
 	},
 	{
 		"name": "moment",
@@ -68,7 +61,7 @@
 		"alias": "prop-types",
 		"var": "PropTypes",
 		"path": "prop-types.min.js",
-		"version": "15.7.2"
+		"version": "15.8.1"
 	},
 	{
 		"name": "react-table",
@@ -89,14 +82,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "36.2.0"
+		"version": "36.2.1"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.2.2",
+		"version": "0.2.4",
 		"defer": true
 	},
 	{
