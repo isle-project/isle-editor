@@ -25,6 +25,7 @@
 }
 
 .data-explorer-fullscreen-output {
+	position: relative;
 	font-size: 32px;
 	overflow: scroll;
 	width: 100%;
