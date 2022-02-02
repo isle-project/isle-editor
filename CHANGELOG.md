@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.76.12](https://github.com/isle-project/isle-editor/releases/tag/v0.76.12) (2022-02-02)
+
+This release comes with several performance improvements for lessons (avoiding repositioning of elements when opening/closing modal windows, handling of large numbers of categories for barcharts etc. without freezing the page), which should help reduce responsiveness issues. Bundling times should have also been slightly decreased. A new `<FileQuestion />` component has been added, which can be used to have students submit files inside a lesson as their answer (e.g. PowerPoint presentations, written reports, etc.) 
+
+![image](https://user-images.githubusercontent.com/1913638/152224721-65c5d84b-7532-483a-857d-25694097a427.png)
+
+Last but not least, the editor has been updated to appropriately handle resources that are behind a SSO authentication barrier. Trying to load such resources will prompt one to authenticate before they may be accessed. 
+
 ## [v0.76.11](https://github.com/isle-project/isle-editor/releases/tag/v0.76.11) (2021-12-06)
 
 This patch release fixes an issue that caused **rendering of PDFs inside the sketchpad component to fail**, refactors the login / signup process for the case when Single Sign-On (SSO) is enabled on the respective ISLE server, and improves the handling of applying text filters in the data explorer when creating a filtered dataset.
