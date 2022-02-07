@@ -11,6 +11,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
   }
 >
   <div
+    data-handler-id="T0"
     style={
       Object {
         "backgroundColor": "white",
@@ -25,6 +26,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
     Compact
   </div>
   <div
+    data-handler-id="T2"
     style={
       Object {
         "backgroundColor": "white",
@@ -39,6 +41,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
     Large
   </div>
   <div
+    data-handler-id="T4"
     style={
       Object {
         "backgroundColor": "white",
@@ -53,6 +56,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
     Midsize
   </div>
   <div
+    data-handler-id="T6"
     style={
       Object {
         "backgroundColor": "white",
