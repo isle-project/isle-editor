@@ -9,7 +9,7 @@
     <icon>https://isledocs.com/lt/img/favicon.png</icon>
     <entry>
         <title type="html"><![CDATA[New Documentation]]></title>
-        <id>New Documentation</id>
+        <id>/2019/07/01/new-documentation</id>
         <link href="https://isledocs.com/lt/blog/2019/07/01/new-documentation"/>
         <updated>2019-07-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We just updated the documentation for the ISLE editor. In the coming weeks, we will post additional materials including video tutorials, which should make it easier to get started with building ISLE lessons!]]></summary>
