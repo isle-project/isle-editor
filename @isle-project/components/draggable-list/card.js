@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useDrag, useDrop } from 'react-dnd'
+import { useDrag, useDrop } from 'react-dnd';
 
 // VARIABLES //
 
@@ -42,8 +42,7 @@ export const Card = ({ id, text, index, moveCard }) => {
 			const hoverBoundingRect = ref.current?.getBoundingClientRect();
 
 			// Get vertical middle
-			const hoverMiddleY =
-				(hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+			const hoverMiddleY = ( hoverBoundingRect.bottom - hoverBoundingRect.top ) / 2;
 
 			// Determine mouse position
 			const clientOffset = monitor.getClientOffset();
@@ -85,7 +84,7 @@ export const Card = ({ id, text, index, moveCard }) => {
 	const opacity = isDragging ? 0 : 1;
 	drag( drop( ref ) );
 	return (
-		<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+		<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId} >
 		{text}
 		</div>
 	);
