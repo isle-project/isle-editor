@@ -349,7 +349,7 @@ const Toolbar = () => {
 					</Panel>
 				</Draggable> : null
 			}
-			{calculator ? <Calculator show={calculator} onHide={toggleCalculator} /> : null}
+			{calculator ? <Calculator id="toolbar-calculator" show={calculator} onHide={toggleCalculator} /> : null}
 			<Queue
 				id="main_queue"
 				show={queue}
