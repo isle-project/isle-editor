@@ -1391,7 +1391,7 @@ class Session {
 		}
 
 		const socket = io.connect( this.server, {
-			transports: [ 'websocket' ]
+			transports: [ 'polling', 'websocket' ]
 		});
 
 		socket.on( 'connect', () => {
@@ -1406,6 +1406,11 @@ class Session {
 				});
 			}, 1000 );
 			this.stopPingServer();
+		});
+
+		socket.on( 'connect_error', ( err ) => {
+			console.log( 'Encountered an error while connecting:' );
+			console.error( err );
 		});
 
 		const config = {
