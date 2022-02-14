@@ -59,7 +59,7 @@
 
 .SingleDatePicker_closeButton:focus,
 .SingleDatePicker_closeButton:hover {
-	color: darken(#cacccd, 10%);
+	color: #b1b3b4;
 	text-decoration: none;
 }
 
@@ -195,7 +195,7 @@
 
 .DateRangePicker_closeButton:focus,
 .DateRangePicker_closeButton:hover {
-	color: darken(#cacccd, 10%);
+	color: #b1b3b4;
 	text-decoration: none;
 }
 

@@ -375,7 +375,7 @@ mark {
 
 .date-selection {
 	box-shadow: none;
-	border: 1px solid rbg(64, 64, 64);
+	border: 1px solid rgb(64, 64, 64);
 }
 
 .active-button {
