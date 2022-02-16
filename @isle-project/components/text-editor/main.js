@@ -644,7 +644,7 @@ class TextEditor extends Component {
 								style={{ marginLeft: '20px', width: '320px', display: 'inline-block' }}
 							/>
 						</Gate> : null }
-					{ this.props.mode === 'individual' ? <Gate owner banner={null} >
+					{ this.props.mode === 'individual' || this.props.mode === 'cohort' ? <Gate owner banner={null} >
 							<div onFocus={this.requestTextDocuments} onMouseOver={this.requestTextDocuments} >
 								<SelectInput
 									placeholder={this.props.t('select-document-to-display')}
