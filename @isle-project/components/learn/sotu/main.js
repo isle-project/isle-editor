@@ -116,7 +116,7 @@ class SOTU extends Component {
 					</Col>
 					<Col md={4 + ( hasQuestions ? 0 : 2 )}>
 						{ tdm ? <LearnWordVennDiagram tdm={tdm.tdm} vocabulary={tdm.vocabulary}
-							nTexts={120} height={250} width={350}
+							nTexts={tdm.party.length} height={250} width={350}
 							onClick={this.handleVennClick}
 						/> : null }
 					</Col>
@@ -144,8 +144,8 @@ class SOTU extends Component {
 					<NumberInput
 						legend={t('year')}
 						min={1900}
-						max={2018}
-						defaultValue={2018}
+						max={2021}
+						defaultValue={2021}
 						step={1}
 					/>
 					<Container>

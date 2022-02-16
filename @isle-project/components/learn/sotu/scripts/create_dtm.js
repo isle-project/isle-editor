@@ -11,7 +11,7 @@ const fs = require( 'fs' );
 // MAIN //
 
 let speeches = sotu({
-	range: [ 1900, 2018 ]
+	range: [ 1900, 2021 ]
 });
 let texts = speeches.map( x => removePunctuation( x.text ) );
 let years = speeches.map( x => x.year );
