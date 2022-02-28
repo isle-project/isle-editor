@@ -1786,6 +1786,12 @@ class Session {
 		localStorage.removeItem( this.userVal );
 		this.socket.emit( 'leave' );
 		this.socket.close();
+
+		axios.post( this.server+'/invalidate_session' )
+			.then( () => {
+				debug( 'Session invalidated...' );
+			})
+			.catch( error => debug( 'Encountered an error while invalidating session: '+error.message ) );
 		this.user = {};
 		this.anonymous = true;
 		this.userRightsQuestionPosed = false;
