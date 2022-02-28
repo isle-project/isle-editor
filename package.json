@@ -265,7 +265,7 @@
     "venn.js": "0.2.20",
     "webpack": "5.69.1",
     "webpack-manifest-plugin": "4.1.1",
-    "workbox-webpack-plugin": "6.4.2"
+    "workbox-webpack-plugin": "6.5.0"
   },
   "devDependencies": {
     "@babel/eslint-plugin": "7.16.5",
