@@ -183,7 +183,7 @@
     "markdown-it": "^12.3.2",
     "minimist": "^1.2.5",
     "ml-kmeans": "^5.0.0",
-    "ml-matrix": "^6.8.2",
+    "ml-matrix": "^6.9.0",
     "ml-pca": "4.0.2",
     "ml-regression-multivariate-linear": "^2.0.3",
     "murmurhash3js": "^3.0.1",
