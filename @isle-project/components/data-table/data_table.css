@@ -15,7 +15,7 @@
 	text-align: center;
 	color: #ca5800 !important;
 	font-weight: 600;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 }
 
 .save-button {

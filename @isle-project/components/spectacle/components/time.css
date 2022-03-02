@@ -24,7 +24,7 @@
 .spectacle-tsingle-button {
 	width: 68px;
 	font-size: 1em;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	margin: 3px;
 	border: 0;
 	border-radius: 15px;

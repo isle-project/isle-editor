@@ -91,7 +91,7 @@ mark {
 	height: 100%;
 	color: var(--primaryhalf);
 	overflow: hidden;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	z-index: 9999;
 }
 
@@ -114,7 +114,7 @@ mark {
 	text-align: center;
 	font-size: calc(55px + 2.85vw);
 	font-weight: 400;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	text-shadow: 1px 1px 4px silver;
 	animation: anim-fade-in 1.3s forwards, anim-scale-up 2s forwards;
 }
@@ -131,7 +131,7 @@ mark {
 
 #loading-objectives-title {
 	font-size: calc(22px + 0.75vw);
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 }
 
 #loading-objectives {
@@ -184,7 +184,7 @@ mark {
 	width: 300px;
 	height: auto;
 	font-size: calc(16px + 0.83vw);
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-weight: 400;
 	text-shadow: 1px 1px 2px silver;
 	animation: focus-in 1.2s, anim-fade-in 1.2s;
@@ -225,7 +225,7 @@ mark {
 	top: 50%;
 	position: absolute;
 	text-shadow: 1px 1px 4px #2f4f4f;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-size: 5rem;
 	color: silver;
 }
@@ -257,7 +257,7 @@ mark {
 }
 
 .nav-tabs .nav-item {
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-size: 18px;
 	margin-bottom: 8px;
 }
@@ -425,7 +425,7 @@ mark {
 h1 {
 	color: #2e4468;
 	font-weight: 700;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	margin: 0.3em 0;
 }
 
@@ -478,8 +478,9 @@ h1 {
 h2 {
 	color: #3c763d;
 	font-weight: 700;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	-webkit-background-clip: text;
+	background-clip: text;
 	background-image: linear-gradient(to right, var(--secondaryhalf), var(--secondary) 4%), linear-gradient(to bottom, transparent, var(--quartary));
 }
 
@@ -490,7 +491,7 @@ h2 {
 h3 {
 	color: #2e4468;
 	font-weight: 700;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 }
 
 .Lesson h3 {
@@ -505,7 +506,7 @@ h3 {
 h4 {
 	color: #ca5800;
 	font-weight: 600;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 }
 
 .Lesson h4 {
@@ -1439,7 +1440,7 @@ label {
 	font-size: 28px;
 	z-index: 1004;
 	box-shadow: 0 0 2px darkgrey !important;
-	font-family: "Open Sans Condensed" !important;
+	font-family: "Open Sans Condensed", sans-serif !important;
 }
 
 .Pane1 .react-contextmenu {

@@ -120,7 +120,7 @@
 	font-size: 26px;
 	margin-left: 6px;
 	z-index: 2;
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 }
 
 .sticky-note-remove-button:hover {

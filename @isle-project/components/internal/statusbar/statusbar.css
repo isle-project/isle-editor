@@ -27,7 +27,7 @@
 	position: absolute;
 	top: 3px;
 	left: 10px;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-variant-caps: petite-caps;
 	font-size: 16px;
 	color: #6c757d;
@@ -102,7 +102,7 @@
 
 .statusbar-button {
 	margin-top: 2px;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-weight: 700;
 	font-variant-caps: all-petite-caps;
 	font-size: 20px;
@@ -174,7 +174,7 @@
 	position: absolute;
 	right: 0px;
 	font-size: 12px;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-weight: 700;
 	z-index: 2;
 }
@@ -265,7 +265,7 @@
 	margin-left: 35%;
 	position: absolute;
 	font-size: 14px;
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 	font-variant-caps: all-petite-caps;
 }
 

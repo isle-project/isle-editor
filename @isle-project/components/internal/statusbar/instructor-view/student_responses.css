@@ -46,7 +46,7 @@
 
 .feedback-message {
 	white-space: pre-wrap;
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 	display: flex;
 }
 

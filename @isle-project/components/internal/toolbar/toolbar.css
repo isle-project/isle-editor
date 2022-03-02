@@ -72,7 +72,7 @@
 .toolbar-queue-counter {
 	color: #c24f00;
 	font-size: 18px;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	font-weight: 700;
 	z-index: 2;
 	position: absolute;

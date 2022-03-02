@@ -23,7 +23,7 @@
 	border: none;
 	padding-left: 8px;
 	color: rgb(60, 60, 60);
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 }
 
 .voice-input-text:focus {
@@ -36,7 +36,7 @@
 	border: none;
 	padding-left: 8px;
 	color: rgb(60, 60, 60);
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 }
 
 .voice-input-status {
@@ -46,7 +46,7 @@
 	font-size: 14px;
 	padding-left: 8px;
 	color: rgb(128, 128, 128);
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 }
 
 .voice-microphone {

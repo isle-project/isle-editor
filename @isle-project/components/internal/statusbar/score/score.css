@@ -32,7 +32,7 @@
 	z-index: 100;
 	font-size: 70px;
 	text-align: center;
-	font-family: "Open Sans Condensed";
+	font-family: "Open Sans Condensed", sans-serif;
 	animation: focus-in 0.6s, anim-scale-down-rotate 2s 0.3s forwards;
 	transform: rotate(20deg);
 }
