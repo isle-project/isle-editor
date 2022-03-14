@@ -101,7 +101,7 @@ exports[`<LearnPoissonDistribution /> renders a learning component 1`] = `
     >
       <div
         aria-labelledby="poisson-tabs-tab-0"
-        className="tab-pane active"
+        className="fade tab-pane active show"
         id="poisson-tabs-tabpane-0"
         role="tabpanel"
       >
@@ -122,7 +122,7 @@ exports[`<LearnPoissonDistribution /> renders a learning component 1`] = `
       </div>
       <div
         aria-labelledby="poisson-tabs-tab-1"
-        className="tab-pane"
+        className="fade tab-pane"
         id="poisson-tabs-tabpane-1"
         role="tabpanel"
       >
@@ -2084,7 +2084,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
       </div>
       <div
         aria-labelledby="poisson-tabs-tab-2"
-        className="tab-pane"
+        className="fade tab-pane"
         id="poisson-tabs-tabpane-2"
         role="tabpanel"
       >
@@ -4042,7 +4042,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
       </div>
       <div
         aria-labelledby="poisson-tabs-tab-3"
-        className="tab-pane"
+        className="fade tab-pane"
         id="poisson-tabs-tabpane-3"
         role="tabpanel"
       >

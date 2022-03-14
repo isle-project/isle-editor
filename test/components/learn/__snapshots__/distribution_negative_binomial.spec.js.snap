@@ -101,7 +101,7 @@ exports[`<LearnNegativeBinomialDistribution /> renders a learning component 1`] 
     >
       <div
         aria-labelledby="negative-binomial-tabs-tab-0"
-        className="tab-pane active"
+        className="fade tab-pane active show"
         id="negative-binomial-tabs-tabpane-0"
         role="tabpanel"
       >
@@ -122,7 +122,7 @@ exports[`<LearnNegativeBinomialDistribution /> renders a learning component 1`] 
       </div>
       <div
         aria-labelledby="negative-binomial-tabs-tab-1"
-        className="tab-pane"
+        className="fade tab-pane"
         id="negative-binomial-tabs-tabpane-1"
         role="tabpanel"
       >
@@ -143,7 +143,7 @@ exports[`<LearnNegativeBinomialDistribution /> renders a learning component 1`] 
       </div>
       <div
         aria-labelledby="negative-binomial-tabs-tab-2"
-        className="tab-pane"
+        className="fade tab-pane"
         id="negative-binomial-tabs-tabpane-2"
         role="tabpanel"
       >
@@ -164,7 +164,7 @@ exports[`<LearnNegativeBinomialDistribution /> renders a learning component 1`] 
       </div>
       <div
         aria-labelledby="negative-binomial-tabs-tab-3"
-        className="tab-pane"
+        className="fade tab-pane"
         id="negative-binomial-tabs-tabpane-3"
         role="tabpanel"
       >

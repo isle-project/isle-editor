@@ -83,7 +83,7 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
     >
       <div
         aria-labelledby="f-tabs-tab-smaller"
-        className="tab-pane active"
+        className="fade tab-pane active show"
         id="f-tabs-tabpane-smaller"
         role="tabpanel"
       >
@@ -1785,7 +1785,7 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
       </div>
       <div
         aria-labelledby="f-tabs-tab-greater"
-        className="tab-pane"
+        className="fade tab-pane"
         id="f-tabs-tabpane-greater"
         role="tabpanel"
       >
@@ -3524,7 +3524,7 @@ exports[`<LearnFDistribution /> renders a learning component 1`] = `
       </div>
       <div
         aria-labelledby="f-tabs-tab-range"
-        className="tab-pane"
+        className="fade tab-pane"
         id="f-tabs-tabpane-range"
         role="tabpanel"
       >
