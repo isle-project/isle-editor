@@ -120,6 +120,13 @@ const REQUIRES_MAP = merge( REQUIRES, HTML_ELEMENTS, LANGUAGE_ELEMENTS );
 
 // FUNCTIONS //
 
+/**
+ * Generates a formatted string for the default value of a property.
+ *
+ * @private
+ * @param {*} defaultValue - default value
+ * @returns {string} formatted string
+ */
 function generateDefaultString( defaultValue ) {
 	if ( defaultValue === null || defaultValue === void 0 ) {
 		return 'Default: `none`.';
@@ -132,6 +139,14 @@ function generateDefaultString( defaultValue ) {
 	return 'Default: `'+val+'`.';
 }
 
+/**
+ * Returns an array of component names for which a description is not available.
+ *
+ * @private
+ * @param {Array} typeKeys - array of keys
+ * @param {Object} description - mapping from component names to descriptions
+ * @returns {Array} array of component names with missing descriptions
+ */
 function missingDescriptions( typeKeys, description ) {
 	const out = [];
 	for ( let i = 0; i < typeKeys.length; i++ ) {
@@ -142,6 +157,14 @@ function missingDescriptions( typeKeys, description ) {
 	return out;
 }
 
+/**
+ * Returns an array of component names for which there are superfluous descriptions.
+ *
+ * @private
+ * @param {Object} types - types object
+ * @param {Object} description - mapping from tag names to descriptions
+ * @returns {Array} array of component names with superfluous descriptions
+ */
 function superfluousDescriptions( types, description ) {
 	const keys = objectKeys( description );
 	const out = [];
