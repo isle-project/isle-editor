@@ -1566,12 +1566,12 @@ class Sketchpad extends Component {
 			this.ctx.fillStyle = 'white';
 			this.ctx.fillRect( 0, 0, canvas.width, canvas.height );
 		}
-		const action = {
+		const session = this.context;
+		session.log({
 			id: this.id,
 			type: SKETCHPAD_SAVE_PNG,
 			value: current + 1
-		};
-		session.log( action );
+		});
 		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
@@ -1636,11 +1636,10 @@ class Sketchpad extends Component {
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
 				const name = this.id;
-				const action = {
+				session.log({
 					id: this.id,
 					type: SKETCHPAD_SAVE_PDF
-				};
-				session.log( action );
+				});
 				doc.download( name+'.pdf', () => {
 					this.setState({
 						isExporting: false
