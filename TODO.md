@@ -18,3 +18,21 @@ TODO
 * Mobile responsiveness
 * Remove any R dependencies for the mosaic plot
 * Display additional information when hovering over bars of barcharts (percentage, description, other variables?)
+
+Completion for components in lessons
+
+- Completion Status
+  -   Lesson ID
+  -   Component ID
+  -   Viewed / Interacted / Completed
+
+cmetric: [name, all|exclusions|inclusions, rule, time-filter, type]
+
+type weigthing vector
+
+type=#|missing
+type=boolean
+
+rules: binary proportion (0/1), binary trimmed proportion, thresholded proportion, average, weighted average, average with exclusions, median, ...
+
+- Attach IDs to components in build step
