@@ -6,6 +6,8 @@ import { withTranslation } from 'react-i18next';
 import logger from 'debug';
 import { ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
+import { HIGHLIGHT_TEXT, REMOVE_HIGHLIGHT_TEXT, COPY_TO_CLIPBOARD,
+	TEXT_TO_SPEECH } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //
@@ -65,6 +67,13 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'yellow' );
 		document.designMode = 'off';
+
+		const session = this.props.session;
+		session.log({
+			id: 'lesson',
+			type: HIGHLIGHT_TEXT,
+			value: JSON.stringify( this.state.lastRange )
+		});
 	};
 
 	removeHighlight = ( event ) => {
@@ -76,11 +85,25 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'inherit' );
 		document.designMode = 'off';
+
+		const session = this.props.session;
+		session.log({
+			id: 'lesson',
+			type: REMOVE_HIGHLIGHT_TEXT,
+			value: JSON.stringify( this.state.lastRange )
+		});
 	};
 
 	copyToClipboard = ( event ) => {
 		debug( 'Copying selection to clipboard... ' );
 		navigator.clipboard.writeText( this.state.lastText );
+
+		const session = this.props.session;
+		session.log({
+			id: 'lesson',
+			type: COPY_TO_CLIPBOARD,
+			value: this.state.lastText
+		});
 	};
 
 	textToSpeech = () => {
@@ -98,6 +121,12 @@ class LessonContextMenu extends Component {
 		const ssu = new SpeechSynthesisUtterance( str );
 		ssu.lang = session.config.language || 'en-US';
 		window.speechSynthesis.speak( ssu );
+
+		session.log({
+			id: 'lesson',
+			type: TEXT_TO_SPEECH,
+			value: str
+		});
 	};
 
 	handleShow = () => {
