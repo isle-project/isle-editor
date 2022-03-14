@@ -148,7 +148,7 @@
     "cross-env": "^7.0.3",
     "cross-spawn": "^7.0.3",
     "css": "^3.0.0",
-    "css-loader": "6.7.0",
+    "css-loader": "6.7.1",
     "css-modules-require-hook": "^4.2.3",
     "csv-stringify": "5.6.5",
     "csvtojson": "^2.0.10",
