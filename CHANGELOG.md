@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.76.13](https://github.com/isle-project/isle-editor/releases/tag/v0.76.13) (2022-03-14)
+
+This patch release comes with logging for additional actions in the lesson context menu and calculator / text editor / sketchpad components and fixes a variety of bugs. E.g., logging out now properly invalidates SSO sessions, fallback fonts are specified should loading from Google Fonts be disabled (e.g. via a third-party browser extension), and instructors now see the select menu for reports in the text editor when using the cohort mode. Last but not least, additional years of speeches have been added to the SOTU widget.
+
+**Fixed bugs:**
+
+- \[Bug\]: Bar chart of answers is in reverse order from order of choices [\#2695](https://github.com/isle-project/isle-editor/issues/2695)
+
 ## [v0.76.12](https://github.com/isle-project/isle-editor/releases/tag/v0.76.12) (2022-02-02)
 
 This release comes with several performance improvements for lessons (avoiding repositioning of elements when opening/closing modal windows, handling of large numbers of categories for barcharts etc. without freezing the page), which should help reduce responsiveness issues. Bundling times should have also been slightly decreased. A new `<FileQuestion />` component has been added, which can be used to have students submit files inside a lesson as their answer (e.g. PowerPoint presentations, written reports, etc.) 
