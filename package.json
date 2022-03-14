@@ -1,6 +1,6 @@
 {
   "name": "isle-editor",
-  "version": "0.76.13",
+  "version": "0.76.12",
   "description": "Editor for Integrated Statistics Learning Environment (ISLE) lessons.",
   "keywords": [
     "concepts",
@@ -76,6 +76,8 @@
     "test": "jest",
     "update-docs": "cross-env node ./scripts/update_docs.js && node ./scripts/update_versions.js && node ./app/snippets/scripts/create_grouped_snippets.js",
     "update-extra-resources": "cross-env node ./scripts/update_extra_resources.js",
+    "version": "npm run update-docs && npm run update-extra-resources && git add -A",
+    "postversion": "git push && git push --tags",
     "web": "cross-env NODE_ENV=development node --max-old-space-size=16384 --trace-warnings ./node_modules/webpack/bin/webpack serve --config=webpack.config.web.js --mode=development"
   },
   "jest": {
