@@ -72,7 +72,7 @@ class LessonContextMenu extends Component {
 		session.log({
 			id: 'lesson',
 			type: HIGHLIGHT_TEXT,
-			value: JSON.stringify( this.state.lastRange )
+			value: this.state.lastRange.toString()
 		});
 	};
 
@@ -90,7 +90,7 @@ class LessonContextMenu extends Component {
 		session.log({
 			id: 'lesson',
 			type: REMOVE_HIGHLIGHT_TEXT,
-			value: JSON.stringify( this.state.lastRange )
+			value: this.state.lastRange.toString()
 		});
 	};
 
