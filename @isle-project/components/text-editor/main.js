@@ -39,7 +39,7 @@ import applyMark from './config/apply_mark.js';
 import AnnotationCommand from './config/annotation_command.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
-import { EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
+import { EDITOR_RESET, EDITOR_SAVE_HTML, EDITOR_SAVE_PDF, EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED } from '@isle-project/constants/events.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
@@ -147,6 +147,12 @@ class TextEditor extends Component {
 				title: 'save-html',
 				content: icons.save,
 				run: ( state, dispatch ) => {
+					const session = this.context;
+					session.log({
+						type: EDITOR_SAVE_HTML,
+						id: this.id
+					});
+
 					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 					const tmp = document.createElement( 'div' );
 					tmp.appendChild( domNode );
@@ -165,6 +171,12 @@ class TextEditor extends Component {
 				run: ( state, dispatch ) => {
 					this.togglePDFModal();
 					this.exportPDF = async ( config ) => {
+						const session = this.context;
+						session.log({
+							type: EDITOR_SAVE_PDF,
+							id: this.id,
+							value: JSON.stringify( config )
+						});
 						const title = document.title || 'provisoric';
 						let doc;
 						try {
@@ -504,6 +516,11 @@ class TextEditor extends Component {
 	};
 
 	resetEditor = () => {
+		const session = this.context;
+		session.log({
+			id: this.id,
+			type: EDITOR_RESET
+		});
 		this.setState({
 			value: md.render( this.props.defaultValue ),
 			docId: this.state.docId + 1

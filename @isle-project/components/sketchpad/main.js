@@ -56,8 +56,8 @@ import closeHintButtons from '@isle-project/utils/close-hint-buttons';
 import isElectron from '@isle-project/utils/is-electron';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import {
-	SKETCHPAD_HIDE_POINTER, SKETCHPAD_HIDE_ZOOM,
-	SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
+	SKETCHPAD_SAVE_PDF, SKETCHPAD_SAVE_PNG, SKETCHPAD_HIDE_POINTER,
+	SKETCHPAD_HIDE_ZOOM, SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
 	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENTS,
 	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
 	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
@@ -1566,6 +1566,12 @@ class Sketchpad extends Component {
 			this.ctx.fillStyle = 'white';
 			this.ctx.fillRect( 0, 0, canvas.width, canvas.height );
 		}
+		const action = {
+			id: this.id,
+			type: SKETCHPAD_SAVE_PNG,
+			value: current + 1
+		};
+		session.log( action );
 		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
@@ -1624,11 +1630,17 @@ class Sketchpad extends Component {
 	};
 
 	saveAsPDF = () => {
+		const session = this.context;
 		this.setState({
 			isExporting: true
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
 				const name = this.id;
+				const action = {
+					id: this.id,
+					type: SKETCHPAD_SAVE_PDF
+				};
+				session.log( action );
 				doc.download( name+'.pdf', () => {
 					this.setState({
 						isExporting: false
