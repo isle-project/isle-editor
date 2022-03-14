@@ -217,7 +217,8 @@ const siteConfig = {
 		},
 		image: 'img/docusaurus.png',
 		algolia: {
-			apiKey: '79d8a88e3298cd96be31662732f18703',
+			appId: 'K6DUEPJ58T',
+			apiKey: '8c0dac7de1f31e4b8c515fa26f3573df',
 			indexName: 'isledocs',
 			algoliaOptions: {} // Optional, if provided by Algolia
 		},
