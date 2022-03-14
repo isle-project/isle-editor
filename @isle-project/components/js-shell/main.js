@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-import JSONTree from 'react-json-tree';
+import { JSONTree } from 'react-json-tree';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import isArray from '@stdlib/assert/is-array';
 import isRegExp from '@stdlib/assert/is-regexp';
