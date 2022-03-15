@@ -128,6 +128,8 @@ const siteConfig = {
 
 	favicon: 'img/favicon.png',
 
+	trailingSlash: true,
+
 	themeConfig: {
 		announcementBar: {
 			id: 'updated_docs', // Any value that will identify this message
