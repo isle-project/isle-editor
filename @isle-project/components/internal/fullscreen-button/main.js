@@ -37,7 +37,7 @@ class FullscreenButton extends Component {
 						tooltip={this.props.t('fullscreen-tooltip')}
 					>
 						<Button
-							variant="outline-secondary"
+							variant={this.props.variant}
 							size="sm"
 							onClick={this.toggleFullscreen}
 							style={{
@@ -94,6 +94,7 @@ FullscreenButton.propTypes = {
 	header: PropTypes.string,
 	body: PropTypes.node.isRequired,
 	wrapInCard: PropTypes.bool,
+	variant: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -101,6 +102,7 @@ FullscreenButton.defaultProps = {
 	className: '',
 	header: null,
 	wrapInCard: true,
+	variant: 'outline-secondary',
 	style: {}
 };
 

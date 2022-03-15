@@ -114,6 +114,7 @@ const IFrame = ( props ) => {
 				style={{
 					left: 0
 				}}
+				variant="secondary"
 				wrapInCard={false}
 			/> : null}
 				<Link
@@ -126,7 +127,7 @@ const IFrame = ( props ) => {
 						tooltip={src}
 					>
 					<Button
-						variant="outline-secondary"
+						variant="secondary"
 						size="sm"
 						style={{
 							position: 'absolute',
