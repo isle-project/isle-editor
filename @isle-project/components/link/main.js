@@ -71,6 +71,9 @@ class Link extends Component {
 						target={this.state.target}
 						style={this.props.style}
 						onClick={() => {
+							if ( this.props.openWindow ) {
+								window.open( this.state.url, '_blank', this.props.windowFeatures );
+							}
 							const session = this.context;
 							session.log({
 								id: this.state.url,
@@ -101,6 +104,7 @@ Link.propTypes = {
 	href: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types,
 	target: PropTypes.string,
 	windowFeatures: PropTypes.string,
+	openWindow: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
@@ -108,6 +112,7 @@ Link.propTypes = {
 Link.defaultProps = {
 	target: '_blank',
 	windowFeatures: null,
+	openWindow: false,
 	className: '',
 	style: {}
 };

@@ -119,6 +119,7 @@ const IFrame = ( props ) => {
 			/> : null}
 				<Link
 					href={src}
+					openWindow
 					windowFeatures={'toolbar=no, menubar=no, resizable=yes, width='+dimensions.width+', height='+dimensions.height+', top=0, left=0'}
 				>
 					<Tooltip
