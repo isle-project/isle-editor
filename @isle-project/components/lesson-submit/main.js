@@ -189,9 +189,20 @@ class LessonSubmit extends Component {
 			});
 			let text;
 			if ( isArray( action.value ) ) {
-				text = action.value.map( x => levels[ x ] ).join( ', ' );
+				text = '';
+				action.value.forEach( ( v, idx ) => {
+					if ( v ) {
+						if ( text ) {
+							text += ', ';
+						}
+						text += levels[ idx ];
+					}
+				});
 			} else {
 				text = levels[ action.value ];
+			}
+			if ( !text ) {
+				text = this.props.t( 'none' );
 			}
 			doc.content.push({ text });
 		}
