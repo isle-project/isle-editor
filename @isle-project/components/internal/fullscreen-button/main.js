@@ -45,6 +45,7 @@ class FullscreenButton extends Component {
 								top: 0,
 								right: 0,
 								fontSize: 12,
+								width: 'fit-content',
 								...this.props.style
 							}}
 							aria-label={this.props.t('fullscreen-tooltip')}
