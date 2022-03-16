@@ -70,10 +70,16 @@ class Link extends Component {
 						href={this.state.url}
 						target={this.state.target}
 						style={this.props.style}
-						onClick={() => {
-							if ( this.props.openWindow ) {
-								window.open( this.state.url, '_blank', this.props.windowFeatures );
-							}
+						onClick={this.props.openWindow ? ( event ) => {
+							event.preventDefault();
+							window.open( this.state.url, '_blank', this.props.windowFeatures );
+							const session = this.context;
+							session.log({
+								id: this.state.url,
+								type: OPEN_LINK,
+								value: 'click'
+							});
+						} : () => {
 							const session = this.context;
 							session.log({
 								id: this.state.url,
