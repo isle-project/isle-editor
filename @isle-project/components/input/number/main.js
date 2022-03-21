@@ -39,6 +39,7 @@ const uid = generateUID( 'number-input' );
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
+* @property {string}} placeholder - string indicating the text displayed when the input is empty (requires `defaultValue` to be set to `null` or `undefined`)
 * @property {string} tooltip - tooltip string (if not set, the tooltip is automatically generated)
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {Object} style - CSS inline styles
@@ -157,6 +158,7 @@ const NumberInput = ( props ) => {
 					className="number-number-input"
 					disabled={props.disabled}
 					value={propValue !== null ? propValue : value}
+					placeholder={props.placeholder}
 					step={props.step}
 					min={props.min}
 					max={props.max}
@@ -191,6 +193,7 @@ const NumberInput = ( props ) => {
 		className="number-number-input"
 		disabled={props.disabled}
 		value={propValue !== null ? propValue : value}
+		placeholder={props.placeholder}
 		step={props.step}
 		min={props.min}
 		max={props.max}
@@ -250,6 +253,7 @@ NumberInput.defaultProps = {
 	onKeyUp() {},
 	inline: false,
 	numbersOnly: true,
+	placeholder: '0',
 	style: {},
 	inputStyle: {},
 	value: null,
@@ -269,6 +273,7 @@ NumberInput.propTypes = {
 	max: PropTypes.number,
 	min: PropTypes.number,
 	numbersOnly: PropTypes.bool,
+	placeholder: PropTypes.string,
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	onKeyDown: PropTypes.func,

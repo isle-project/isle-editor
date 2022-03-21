@@ -285,10 +285,11 @@ class NumberQuestion extends Component {
 			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
 		const solutionPresent = solution !== null;
-		const isDisabled = this.state.submitted && solutionPresent && (
-			( this.state.numSubmissions >= nTries && !submitAfterFeedback ) ||
-			this.state.correct
-		);
+		const isDisabled = !isNumber( this.state.value ) ||
+			( this.state.submitted && solutionPresent && (
+				( this.state.numSubmissions >= nTries && !submitAfterFeedback ) ||
+				this.state.correct
+			) );
 		return (
 			<TimedButton
 				className="submit-button"
@@ -403,7 +404,7 @@ NumberQuestion.defaultProps = {
 	digits: 3,
 	max: PINF,
 	min: NINF,
-	defaultValue: 0,
+	defaultValue: null,
 	provideFeedback: true,
 	submitAfterFeedback: false,
 	nTries: 1,
