@@ -24,7 +24,10 @@ function Chi2Test({ data, var1, var2 }) {
 			<ROutput code={`
 				\`${var1}\` = c(${x})
 				\`${var2}\` = c(${y})
-				chisq.test( \`${var1}\`, \`${var2}\` )`}
+				fit = chisq.test( \`${var1}\`, \`${var2}\` )
+				str = capture.output( print( fit )); 
+				str = gsub( "squared", "square", str );
+				cat( str, sep='\n' )`}
 			/>
 		</div>
 	);
