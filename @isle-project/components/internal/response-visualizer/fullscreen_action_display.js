@@ -419,7 +419,7 @@ class FullscreenActionDisplay extends Component {
 				title: this.props.t('value'),
 				type: 'category',
 				categoryorder: 'array',
-				categoryarray: levels.reverse()
+				categoryarray: levels.slice().reverse()
 			},
 			margin: {
 				l: leftMargin
