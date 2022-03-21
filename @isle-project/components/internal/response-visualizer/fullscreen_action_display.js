@@ -10,6 +10,7 @@ import contains from '@stdlib/assert/contains';
 import isStrictEqual from '@stdlib/assert/is-strict-equal';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isEmptyString from '@stdlib/assert/is-empty-string';
 import uncapitalize from '@stdlib/string/uncapitalize';
 import lowercase from '@stdlib/string/lowercase';
@@ -107,7 +108,7 @@ const tabulateValues = ( actions, levels ) => {
 	return counts;
 };
 
-const generateValueLabel = ({ value, type, levels, rows, cols }) => {
+const generateValueLabel = ({ value, type, levels, rows, cols, options }) => {
 	if ( type === 'factor' ) {
 		if ( isArray( value ) ) {
 			let str = '';
@@ -154,7 +155,13 @@ const generateValueLabel = ({ value, type, levels, rows, cols }) => {
 				str += '-';
 				str += ( isString( cv ) && !isEmptyString( cv ) ) ? cv : j;
 				str += ': ';
-				str += ( value ? value[ i+':'+j ] : 'NA' ) + '; ';
+				const ij = i+':'+j;
+				if ( value && isNumber( value[ ij ] ) && isArray( options[ ij ] ) ) {
+					str += options[ ij ][ value[ ij ] ];
+				} else {
+					str += 'NA';
+				}
+				str += '; ';
 			}
 		}
 		value = str || 'None';

@@ -310,7 +310,8 @@ class SelectQuestionMatrix extends Component {
 							rows: this.props.rows,
 							cols: this.props.cols,
 							question: this.props.question,
-							solution: this.props.solution
+							solution: this.props.solution,
+							options: this.props.options
 						}}
 						info={SELECT_QUESTION_MATRIX_SUBMISSION}
 					/>
