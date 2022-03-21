@@ -55,6 +55,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           onKeyDown={[Function]}
           onKeyPress={[Function]}
           onKeyUp={[Function]}
+          placeholder="0"
           step={1}
           style={
             Object {
@@ -119,6 +120,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -167,6 +169,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -215,6 +218,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -263,6 +267,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -311,6 +316,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -359,6 +365,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {

@@ -183,6 +183,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                     onKeyDown={[Function]}
                     onKeyPress={[Function]}
                     onKeyUp={[Function]}
+                    placeholder="0"
                     step={0.001}
                     style={
                       Object {
@@ -241,6 +242,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       onKeyDown={[Function]}
                       onKeyPress={[Function]}
                       onKeyUp={[Function]}
+                      placeholder="0"
                       step={0.001}
                       style={
                         Object {
@@ -289,6 +291,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       onKeyDown={[Function]}
                       onKeyPress={[Function]}
                       onKeyUp={[Function]}
+                      placeholder="0"
                       step={1}
                       style={
                         Object {

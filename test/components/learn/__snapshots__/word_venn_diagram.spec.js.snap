@@ -128,6 +128,7 @@ Array [
               onKeyDown={[Function]}
               onKeyPress={[Function]}
               onKeyUp={[Function]}
+              placeholder="0"
               step={1}
               style={
                 Object {

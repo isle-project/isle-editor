@@ -144,6 +144,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               onKeyDown={[Function]}
                               onKeyPress={[Function]}
                               onKeyUp={[Function]}
+                              placeholder="0"
                               step={0.01}
                               style={
                                 Object {
@@ -196,6 +197,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               onKeyDown={[Function]}
                               onKeyPress={[Function]}
                               onKeyUp={[Function]}
+                              placeholder="0"
                               step={0.01}
                               style={
                                 Object {
@@ -259,6 +261,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               onKeyDown={[Function]}
                               onKeyPress={[Function]}
                               onKeyUp={[Function]}
+                              placeholder="0"
                               step={0.01}
                               style={
                                 Object {
@@ -321,6 +324,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               onKeyDown={[Function]}
                               onKeyPress={[Function]}
                               onKeyUp={[Function]}
+                              placeholder="0"
                               step={0.01}
                               style={
                                 Object {
@@ -372,6 +376,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               onKeyDown={[Function]}
                               onKeyPress={[Function]}
                               onKeyUp={[Function]}
+                              placeholder="0"
                               step={0.01}
                               style={
                                 Object {
@@ -455,6 +460,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         onKeyDown={[Function]}
                         onKeyPress={[Function]}
                         onKeyUp={[Function]}
+                        placeholder="0"
                         step={1}
                         style={
                           Object {
@@ -1159,6 +1165,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
@@ -1235,6 +1242,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
+                placeholder="0"
                 step="any"
                 style={
                   Object {
