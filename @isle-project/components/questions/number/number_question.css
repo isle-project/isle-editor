@@ -19,3 +19,7 @@
 .number-question-input-wrapper {
 	margin-bottom: 12px;
 }
+
+.number-question-input-wrapper input:focus::placeholder {
+	color: transparent;
+}
