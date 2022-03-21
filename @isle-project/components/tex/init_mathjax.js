@@ -5,11 +5,12 @@ const DEFAULT_OPTIONS = {
 		typeset: false
 	},
 	loader: {
-		load: [ '[tex]/action', '[tex]/html', '[tex]/boldsymbol' ]
+		load: [ '[tex]/action', '[tex]/ams', '[tex]/html', '[tex]/boldsymbol', '[tex]/mathtools', '[tex]/newcommand' ]
 	},
 	tex: {
+		macros: {},
 		packages: {
-			'[+]': [ 'action', 'html', 'boldsymbol' ]
+			'[+]': [ 'action', 'ams', 'html', 'boldsymbol', 'mathtools', 'newcommand' ]
 		}
 	},
 	options: {
