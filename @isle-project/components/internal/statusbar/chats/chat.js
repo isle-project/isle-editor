@@ -308,7 +308,8 @@ class Chat extends Component {
 						onMouseOut={this.onMouseOut}
 						onBlur={this.onMouseOut}
 						tabIndex={0} role="button"
-					>{chat.name}
+					>
+						<span className="chat-name">{chat.name}</span>
 						<span className="chat-presence" style={{
 							display: this.state.hasNews ? 'inline' : 'none'
 						}} />

@@ -20,6 +20,14 @@
 	cursor: pointer;
 }
 
+.chat-name {
+	display: inline-block;
+	width: calc(100% - 100px);
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 .chat-presence {
 	width: 10px;
 	margin-left: 6px;
