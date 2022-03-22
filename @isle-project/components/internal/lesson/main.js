@@ -197,13 +197,11 @@ class Lesson extends Component {
 // PROPERTIES //
 
 Lesson.propTypes = {
-	loading: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
 
 Lesson.defaultProps = {
-	loading: false,
 	className: '',
 	style: {}
 };
