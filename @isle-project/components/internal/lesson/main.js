@@ -82,7 +82,9 @@ function scrollToAnchor() {
 	if ( isSelectorValid( anchor ) ) {
 		const domElement = document.querySelector( anchor );
 		if ( domElement ) {
-			domElement.scrollIntoView();
+			window.requestAnimationFrame( () => {
+				domElement.scrollIntoView();
+			});
 		}
 	}
 }
@@ -115,7 +117,9 @@ class Lesson extends Component {
 				});
 			}
 		});
-		scrollToAnchor();
+		setTimeout( () => {
+			scrollToAnchor();
+		}, 2500 );
 		window.addEventListener( 'hashchange', scrollToAnchor );
 	}
 
@@ -193,11 +197,13 @@ class Lesson extends Component {
 // PROPERTIES //
 
 Lesson.propTypes = {
+	loading: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object
 };
 
 Lesson.defaultProps = {
+	loading: false,
 	className: '',
 	style: {}
 };
