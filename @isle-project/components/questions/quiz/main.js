@@ -567,11 +567,14 @@ class Quiz extends Component {
 
 	render() {
 		debug( 'Rendering component...' );
+		const session = this.context;
+		const currentConfig = this.state.questions[ this.state.current ];
+		const currentID = this.state.questionIDs[ this.state.current ];
 		let showButton;
 		if ( this.state.finished ) {
 			showButton = false;
 		} else {
-			showButton = this.state.answered || this.state.answerSelected || this.props.skippable;
+			showButton = this.state.answered || this.state.answerSelected || this.props.skippable || session.currentUserActions[ currentID ];
 		}
 		if ( this.state.showInstructorView ) {
 			return ( <Card className="quiz">
@@ -606,8 +609,6 @@ class Quiz extends Component {
 				</Button>
 			</Card> );
 		}
-		const currentConfig = this.state.questions[ this.state.current ];
-		const currentID = this.state.questionIDs[ this.state.current ];
 		return (
 			<Fragment>
 				{this.props.duration ?
