@@ -27,6 +27,13 @@ const OMITTED_PROPS = [ 'center', 'startTime', 't', 'tReady' ];
 
 // FUNCTIONS //
 
+/**
+ * Invokes a callback function when a change of the element with respect to the viewport occurs.
+ *
+ * @private
+ * @param {HTMLElement} element - element to observe
+ * @param {Function} callback - callback to invoke
+ */
 function respondToVisibility( element, callback ) {
 	const options = {
 		root: document.documentElement
