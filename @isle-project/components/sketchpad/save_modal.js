@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import isArray from '@stdlib/assert/is-array';
+import { SKETCHPAD_SAVE_PDF } from '@isle-project/constants/actions.js';
 
 
 // MAIN //
@@ -30,6 +31,26 @@ class SaveModal extends Component {
 	}
 
 	clickHide = () => {
+		this.props.onHide();
+	};
+
+	handleOriginalDownload = () => {
+		const session = this.props.session;
+		session.log({
+			id: this.props.id,
+			type: SKETCHPAD_SAVE_PDF,
+			value: 'original'
+		});
+		this.props.onHide();
+	};
+
+	handleInstructorAnnotationsDownload = () => {
+		const session = this.props.session;
+		session.log({
+			id: this.props.id,
+			type: SKETCHPAD_SAVE_PDF,
+			value: 'instructor-annotations'
+		});
 		this.props.onHide();
 	};
 
@@ -62,12 +83,12 @@ class SaveModal extends Component {
 			</Modal.Header>
 			<Modal.Body>
 				<div className="d-grid gap-2" >
-					{ this.props.pdf ? <Button className="sketchpad-download-link-btn" size="large" variant="secondary" onClick={this.clickHide} >
+					{ this.props.pdf ? <Button className="sketchpad-download-link-btn" size="large" variant="secondary" onClick={this.handleOriginalDownload} >
 						<a className="unstyled-link sketchpad-download-link" href={this.props.pdf} download >
 							{t('download-original')}
 						</a>
 					</Button> : null }
-					{ this.state.ownerFile ? <Button size="large" variant="secondary" onClick={this.clickHide}>
+					{ this.state.ownerFile ? <Button size="large" variant="secondary" onClick={this.handleInstructorAnnotationsDownload}>
 						<a className="unstyled-link" href={session.server+'/'+this.state.ownerFile.filename} download>
 							{t('download-instructor-annotations')}<br />
 							<small>({t('last-updated')}: {ownerDate.toDateString() + ', ' + ownerDate.toLocaleTimeString()} {t('by')} {ownerName})</small>

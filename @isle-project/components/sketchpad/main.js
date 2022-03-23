@@ -1638,7 +1638,8 @@ class Sketchpad extends Component {
 				const name = this.id;
 				session.log({
 					id: this.id,
-					type: SKETCHPAD_SAVE_PDF
+					type: SKETCHPAD_SAVE_PDF,
+					value: 'all-annotations'
 				});
 				doc.download( name+'.pdf', () => {
 					this.setState({
