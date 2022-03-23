@@ -318,7 +318,7 @@ class UploadLesson extends Component {
 				<Modal.Header closeButton>
 					<Modal.Title>{t('server-response')}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body style={{ wordBreak: 'break-word' }}>
 					{this.state.modalMessage}
 				</Modal.Body>
 				<Modal.Footer>
