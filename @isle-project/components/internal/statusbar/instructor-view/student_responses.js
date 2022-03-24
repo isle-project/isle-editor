@@ -19,6 +19,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
 import isJSON from '@stdlib/assert/is-json';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import round from '@stdlib/math/base/special/round';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from '@isle-project/components/tooltip';
 import Switch from '@isle-project/components/switch';
@@ -36,6 +37,25 @@ const debug = logger( 'isle:statusbar:student-responses' );
 
 
 // FUNCTIONS //
+
+/**
+ * Returns the intersection of two sets
+ *
+ * @private
+ * @param {Set} a - first set
+ * @param {Set} b - second set
+ * @returns {Set} intersection
+ */
+function intersection( a, b ) {
+	const c = new Set();
+	for ( const x of a ) {
+		if ( b.has( x ) ) {
+			c.add( x );
+		}
+	}
+	return c;
+}
+
 
 function removeGlowElements() {
 	// Remove glow effect from previously highlighted elements:
@@ -102,6 +122,66 @@ function formatAnswer( value, visualizer ) {
 function formatTime( time ) {
 	const out = new Date( time );
 	return `${out.toLocaleDateString()} ${out.toLocaleTimeString()}`;
+}
+
+function generateGrade( action, viz ) {
+	if ( !action ) {
+		return 0;
+	}
+	const solution = viz.ref.props.data.solution;
+	const dataType = viz.ref.props.data.type;
+	const maxPoints = viz.ref.props.points;
+	const value = action.value;
+
+	switch ( dataType ) {
+		case 'factor':
+			console.log( value );
+			if ( isArray( solution ) ) {
+				// Case: "Choose all that apply"
+
+				/*
+					-   Partition answers into set of correct and incorrect answers.
+					-   Calculate the size of the intersection of the user's answers with the correct ones
+					-   Subtract the size of the intersection with the incorrect answer choices
+					-   Add the number of elements in the incorrect answer set
+					-   The resulting score is between 0 and the number of correct answer choices
+				*/
+				const correct = new Set( solution );
+				const incorrect = new Set();
+				const levels = viz.ref.props.data.levels;
+				for ( let i = 0; i < levels.length; i++ ) {
+					if ( !correct.has( i ) ) {
+						incorrect.add( i );
+					}
+				}
+				const userAnswers = new Set();
+				for ( let i = 0; i < value.length; i++ ) {
+					if ( value[ i ] === true ) {
+						userAnswers.add( i );
+					}
+				}
+				const correctAnswers = intersection( userAnswers, correct );
+				const incorrectAnswers = intersection( userAnswers, incorrect );
+				return correctAnswers.size - incorrectAnswers.size + incorrect.size;
+			}
+			// Case: "Choose one"
+			return ( value === solution ) ? maxPoints : 0;
+		case 'range':
+			if ( value[ 0 ] === solution[ 0 ] && value[ 1 ] === solution[ 1 ] ) {
+				return maxPoints;
+			}
+			if ( value[ 0 ] === solution[ 0 ] || value[ 1 ] === solution[ 1 ] ) {
+				return round( maxPoints / 2 );
+			}
+			return 0;
+		case 'number':
+			return value === solution ? maxPoints : 0;
+		case 'image':
+		case 'matrix':
+		case 'tensor':
+		case 'matches':
+			return maxPoints;
+	}
 }
 
 
@@ -321,13 +401,12 @@ class StudentResponses extends Component {
 			const id = ids[ i ];
 			const viz = visualizers[ id ];
 			const actions = viz.ref.state.actions;
-			const solution = viz.ref.props.data.solution;
 			const actionsLeft = actions.filter( x => x.email === option.value.email );
 			let numPoints;
 			if ( grades && isNumber( grades[ id ] ) ) {
 				numPoints = grades[ id ];
 			} else {
-				numPoints = actionsLeft[ 0 ] && actionsLeft[ 0 ].value === solution ? viz.ref.props.points : 0;
+				numPoints = generateGrade( actionsLeft[ 0 ], viz );
 			}
 			grades[ id ] = numPoints;
 		}
