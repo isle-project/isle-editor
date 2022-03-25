@@ -17,8 +17,8 @@ import Overlay from 'react-bootstrap/Overlay';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import isArray from '@stdlib/assert/is-array';
-import isJSON from '@stdlib/assert/is-json';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import round from '@stdlib/math/base/special/round';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import Tooltip from '@isle-project/components/tooltip';
@@ -38,6 +38,10 @@ const debug = logger( 'isle:statusbar:student-responses' );
 
 // FUNCTIONS //
 
+const isJSONArray = ( str ) => {
+	return isString( str ) && str.startsWith( '[' ) && str.endsWith( ']' );
+};
+
 /**
  * Returns the intersection of two sets
  *
@@ -55,7 +59,6 @@ function intersection( a, b ) {
 	}
 	return c;
 }
-
 
 function removeGlowElements() {
 	// Remove glow effect from previously highlighted elements:
@@ -78,7 +81,7 @@ function formatAnswer( value, visualizer ) {
 	switch ( dataType ) {
 		case 'factor': {
 				const levels = visualizer.ref.props.data.levels;
-				if ( isJSON( value ) ) {
+				if ( isJSONArray( value ) ) {
 					value = JSON.parse( value );
 
 					// Case: array has `true` for some values and `false` / `null` for others (e.g., [true, false, null, true]):
@@ -101,6 +104,9 @@ function formatAnswer( value, visualizer ) {
 			}
 			break;
 		case 'range':
+			if ( isJSONArray( value ) ) {
+				value = JSON.parse( value );
+			}
 			out = `lower: ${value[ 0 ]}, upper: ${value[ 1 ]}`; // eslint-disable-line i18next/no-literal-string
 			break;
 		case 'number':
@@ -131,14 +137,17 @@ function generateGrade( action, viz ) {
 	const solution = viz.ref.props.data.solution;
 	const dataType = viz.ref.props.data.type;
 	const maxPoints = viz.ref.props.points;
-	const value = action.value;
-
+	if ( isUndefinedOrNull( solution ) ) {
+		return maxPoints;
+	}
+	let value = action.value;
 	switch ( dataType ) {
 		case 'factor':
-			console.log( value );
 			if ( isArray( solution ) ) {
 				// Case: "Choose all that apply"
-
+				if ( isJSONArray( value ) ) {
+					value = JSON.parse( value );
+				}
 				/*
 					-   Partition answers into set of correct and incorrect answers.
 					-   Calculate the size of the intersection of the user's answers with the correct ones
@@ -147,7 +156,6 @@ function generateGrade( action, viz ) {
 					-   The resulting score is between 0 and the number of answer choices
 				*/
 				const correct = new Set( solution );
-				console.log( 'Correct:', correct );
 				const incorrect = new Set();
 				const levels = viz.ref.props.data.levels;
 				for ( let i = 0; i < levels.length; i++ ) {
@@ -155,7 +163,6 @@ function generateGrade( action, viz ) {
 						incorrect.add( i );
 					}
 				}
-				console.log( 'Incorrect:', incorrect );
 				const userAnswers = new Set();
 				for ( let i = 0; i < value.length; i++ ) {
 					if ( value[ i ] === true ) {
@@ -165,14 +172,17 @@ function generateGrade( action, viz ) {
 				const correctAnswers = intersection( userAnswers, correct );
 				const incorrectAnswers = intersection( userAnswers, incorrect );
 				const score = correctAnswers.size - incorrectAnswers.size + incorrect.size;
-				console.log( 'Score: ', score );
 
 				// Scale score to max points:
-				return round( score / ( correct.size + incorrect.size ) * maxPoints );
+				const points = round( score / ( correct.size + incorrect.size ) * maxPoints );
+				return points;
 			}
 			// Case: "Choose one"
 			return ( value === solution ) ? maxPoints : 0;
 		case 'range':
+			if ( isJSONArray( value ) ) {
+				value = JSON.parse( value );
+			}
 			if ( value[ 0 ] === solution[ 0 ] && value[ 1 ] === solution[ 1 ] ) {
 				return maxPoints;
 			}
@@ -186,6 +196,7 @@ function generateGrade( action, viz ) {
 		case 'matrix':
 		case 'tensor':
 		case 'matches':
+		default:
 			return maxPoints;
 	}
 }
