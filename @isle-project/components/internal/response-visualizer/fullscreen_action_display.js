@@ -121,7 +121,7 @@ const generateValueLabel = ({ value, type, levels, rows, cols, options }) => {
 				}
 			});
 			value = str || 'None';
-		} else if ( !isString( value ) ) {
+		} else {
 			value = levels[ value ] || 'None';
 		}
 	}

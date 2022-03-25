@@ -3,12 +3,21 @@
 import copy from '@stdlib/utils/copy';
 import logger from 'debug';
 import isObjectLike from '@stdlib/assert/is-object-like';
-import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION, USER_FEEDBACK_FORM } from '@isle-project/constants/actions.js';
+import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION,
+	MULTIPLE_CHOICE_SUBMISSION, USER_FEEDBACK_FORM, RANGE_QUESTION_SUBMIT_ANSWER } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:response-visualizer' );
+
+
+// FUNCTIONS //
+
+const isJSONArray = ( str ) => {
+	return isString( str ) && str.startsWith( '[' ) && str.endsWith( ']' );
+};
 
 
 // MAIN //
@@ -42,6 +51,16 @@ function extractValue( action ) {
 		action.type === MATCH_LIST_SUBMISSION
 	) {
 		if ( !isObjectLike( action.value ) ) {
+			action = copy( action );
+			action.value = JSON.parse( action.value );
+		}
+	}
+	else if (
+		action.type === MULTIPLE_CHOICE_SUBMISSION ||
+		action.type === RANGE_QUESTION_SUBMIT_ANSWER
+	) {
+		if ( isJSONArray( action.value ) ) {
+			action = copy( action );
 			action.value = JSON.parse( action.value );
 		}
 	}
