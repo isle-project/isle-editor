@@ -83,21 +83,23 @@ function formatAnswer( value, visualizer ) {
 				const levels = visualizer.ref.props.data.levels;
 				if ( isJSONArray( value ) ) {
 					value = JSON.parse( value );
-
-					// Case: array has `true` for some values and `false` / `null` for others (e.g., [true, false, null, true]):
-					out = value
-						.map( ( v, i ) => {
-							if ( v === true ) {
-								return levels[ i ];
-							}
-							return '';
-						})
-						.filter( v => v !== '' )
-						.join( ', ' );
 				}
-				else if ( isArray( value ) ) {
-					// Case: value is an array of answer indices (e.g., [0, 1, 2]):
-					out = value.map( x => isNumber( x ) ? levels[ x ] : x ).join( ', ' );
+				if ( isArray( value ) ) {
+					if ( isNumber( value[ 0 ] ) ) {
+						// Case: Solution, value is an array of answer indices (e.g., [0, 1, 2]):
+						out = value.map( x => isNumber( x ) ? levels[ x ] : x ).join( ', ' );
+					} else {
+						// Case: User answer, array has `true` for some values and `false` / `null` for others (e.g., [true, false, null, true]):
+						out = value
+							.map( ( v, i ) => {
+								if ( v === true ) {
+									return levels[ i ];
+								}
+								return '';
+							})
+							.filter( v => v !== '' )
+							.join( ', ' );
+					}
 				} else {
 					out = levels[ value ];
 				}
@@ -683,7 +685,7 @@ class StudentResponses extends Component {
 									className="student-responses-points-input"
 									type="text"
 									disabled
-									defaultValue={session.lessonGrades[ rightUser.email ] ? session.lessonGrades[ this.state.rightUser.email ][ id ] : NaN}
+									defaultValue={session.lessonGrades[ rightUser.email ] ? session.lessonGrades[ this.state.rightUser.email ][ id ] : ''}
 								/>
 							</Fragment> : null
 						}
