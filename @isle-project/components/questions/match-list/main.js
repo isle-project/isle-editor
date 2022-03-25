@@ -54,10 +54,11 @@ const uid = generateUID( 'match-list-question' );
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onSubmit - callback invoked when students submits an answer
+* @property {Function} onChange - callback invoked when students changes an answer
 */
 const MatchListQuestion = ( props ) => {
 	const { question, elements, hints, submissionMsg, resubmissionMsg,
-		disableSubmitNotification, onSubmit, until
+		disableSubmitNotification, onSubmit, until, onChange
 	} = props;
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
@@ -211,31 +212,35 @@ const MatchListQuestion = ( props ) => {
 
 	const handleLeftSelection = useCallback( ( option ) => {
 		const newColorScale = colorScale.slice();
-		setAnswers( answers.filter(
+		const newAnswers = answers.filter(
 			answer => {
 				if ( answer.a === option || answer.b === option ) {
 					newColorScale.push( answer.color );
 				}
 				return answer.a !== option && answer.b !== option;
 			}
-		) );
+		);
+		setAnswers( newAnswers );
 		setColorScale( newColorScale );
 		setLeftSelected( option );
-	}, [ answers, colorScale ] );
+		onChange( newAnswers );
+	}, [ answers, colorScale, onChange ] );
 
 	const handleRightSelection = useCallback( ( option ) => {
 		const newColorScale = colorScale.slice();
-		setAnswers( answers.filter(
+		const newAnswers = answers.filter(
 			answer => {
 				if ( answer.a === option || answer.b === option ) {
 					newColorScale.push( answer.color );
 				}
 				return answer.a !== option && answer.b !== option;
 			}
-		) );
+		);
+		setAnswers( newAnswers );
 		setColorScale( newColorScale );
 		setRightSelected( option );
-	}, [ answers, colorScale ] );
+		onChange( answers );
+	}, [ answers, colorScale, onChange ] );
 
 	if ( elements.some( x => !x.a && !x.b ) ) {
 		return <Alert variant="danger" >{t('expect-a-or-b-for-each-element')}</Alert>;
@@ -331,6 +336,7 @@ MatchListQuestion.defaultProps = {
 	points: 10,
 	className: '',
 	style: {},
+	onChange() {},
 	onSubmit() {}
 };
 
@@ -359,6 +365,7 @@ MatchListQuestion.propTypes = {
 	points: PropTypes.number,
 	className: PropTypes.string,
 	style: PropTypes.object,
+	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
 

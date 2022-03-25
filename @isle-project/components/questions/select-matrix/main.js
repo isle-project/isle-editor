@@ -59,6 +59,7 @@ const uid = generateUID( 'select-question-matrix' );
 * @property {Object} panelProps - additional properties to be passed to the outer <Panel /> component
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback function invoked upon changing the answers
 * @property {Function} onSubmit - callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter
 */
 class SelectQuestionMatrix extends Component {
@@ -107,6 +108,7 @@ class SelectQuestionMatrix extends Component {
 			this.setState({
 				answers
 			});
+			this.props.onChange( answers );
 		};
 	};
 
@@ -347,6 +349,7 @@ SelectQuestionMatrix.defaultProps = {
 	panelProps: {},
 	className: '',
 	style: {},
+	onChange() {},
 	onSubmit() {}
 };
 
@@ -374,6 +377,7 @@ SelectQuestionMatrix.propTypes = {
 	panelProps: PropTypes.object,
 	className: PropTypes.string,
 	style: PropTypes.object,
+	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
 

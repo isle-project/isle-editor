@@ -56,13 +56,14 @@ const uid = generateUID( 'range-question' );
 * @property {Object} style - CSS inline styles
 * @property {Function} onChangeUpper - callback triggered after the upper bound is changed by the user
 * @property {Function} onChangeLower - callback triggered after the lower bound is changed by the user
+* @property {Function} onChange - callback triggered after a bound is changed by the user (with lower and upper bound as arguments)
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
 	const { digits, min, max, points, question, solution, until, feedback, style,
 		provideFeedback, allowMultipleAnswers, hints, chat, labels,
-		onChangeUpper, onChangeLower, onSubmit } = props;
+		onChangeUpper, onChangeLower, onChange, onSubmit } = props;
 	const session = useContext( SessionContext );
 
 	const [ lower, setLower ] = useState( min );
@@ -74,11 +75,13 @@ const RangeQuestion = ( props ) => {
 	const handleChangeUpper = useCallback( ( newValue ) => {
 		setUpper( newValue );
 		onChangeUpper( maximum( newValue, lower ) );
-	}, [ lower, onChangeUpper ] );
+		onChange( [ lower, maximum( newValue, lower ) ] );
+	}, [ lower, onChange, onChangeUpper ] );
 	const handleChangeLower = useCallback( ( newValue ) => {
 		setLower( newValue );
 		onChangeLower( minimum( newValue, upper ) );
-	}, [ upper, onChangeLower ] );
+		onChange( [ minimum( newValue, upper ), upper ] );
+	}, [ upper, onChange, onChangeLower ] );
 	const handleBlurUpper = useCallback( ( value ) => {
 		if ( value <= lower ) {
 			setUpper( lower );
@@ -272,6 +275,7 @@ RangeQuestion.defaultProps = {
 	style: {},
 	onChangeUpper() {},
 	onChangeLower() {},
+	onChange() {},
 	onSubmit() {}
 };
 
@@ -298,6 +302,7 @@ RangeQuestion.propTypes = {
 	style: PropTypes.object,
 	onChangeLower: PropTypes.func,
 	onChangeUpper: PropTypes.func,
+	onChange: PropTypes.func,
 	onSubmit: PropTypes.func
 };
 

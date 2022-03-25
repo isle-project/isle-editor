@@ -42,10 +42,11 @@ const debug = logger( 'isle:file-upload' );
 * @property {number} points - maximum number of points awarded in grading
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
+* @property {Function} onChange - callback to invoke upon receiving a file
 */
 const FileQuestion = ( props ) => {
 	const { t } = useTranslation( 'questions/file' );
-	const { accept, until } = props;
+	const { accept, until, onChange } = props;
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const fileUpload = useRef( null );
@@ -120,6 +121,7 @@ const FileQuestion = ( props ) => {
 	*/
 	const handleFileInput = () => {
 		const selectedFile = fileUpload.current.files[ 0 ];
+		onChange( selectedFile );
 		setFile( selectedFile );
 	};
 
@@ -141,6 +143,7 @@ const FileQuestion = ( props ) => {
 			file = dt.files[ 0 ];
 		}
 		if ( file ) {
+			onChange( file );
 			setFile( file );
 		}
 	};
@@ -246,7 +249,8 @@ FileQuestion.defaultProps = {
 	until: null,
 	points: 10,
 	className: '',
-	style: {}
+	style: {},
+	onChange() {}
 };
 
 FileQuestion.propTypes = {
@@ -264,7 +268,8 @@ FileQuestion.propTypes = {
 	until: PropTypes.instanceOf( Date ),
 	points: PropTypes.number,
 	className: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.object,
+	onChange: PropTypes.func
 };
 
 
