@@ -1,5 +1,27 @@
 # Changelog
 
+## [v0.76.14](https://github.com/isle-project/isle-editor/releases/tag/v0.76.14) (2022-03-25)
+
+This patch release fixes several bugs and includes various improvements:
+
+-   The category labels of bar charts in the response visualizer are again correctly displayed.
+-   The `<QuestionForm />` component now works even when questions are not direct descendents but e.g. nested inside a `<Slider />` or `<Pages />` component.
+-   Automatically generated `<Revealer />` IDs won't go out of sync depending on initial reveal status.
+-   Both solutions and user answers for "Choose all that apply" questions are displayed correctly in the instructor panel's "Responses".
+-   The page now scrolls to anchors when a lesson is initially loaded.
+-   Actions are now logged when downloading source PDFs of `<Sketchpad />` components.
+-   Grades are now automatically generated for multiple choice questions of the "Choose all that apply" variety.
+-   For non-skippable quizzes, the button to advance to the next question is displayed when the question has previously been answered.
+
+**Implemented enhancements:**
+
+- In NumberQuestions, the placeholder zero should auto-delete for users upon cursor plant [\#2343](https://github.com/isle-project/isle-editor/issues/2343)
+- \[enhancement\]: SelectMatrix -\> Actions-\> Extended should show TEXT of choices [\#2142](https://github.com/isle-project/isle-editor/issues/2142)
+
+**Fixed bugs:**
+
+- \[Bug\]: chi square output says "chi-squareD" [\#2579](https://github.com/isle-project/isle-editor/issues/2579)
+
 ## [v0.76.13](https://github.com/isle-project/isle-editor/releases/tag/v0.76.13) (2022-03-14)
 
 This patch release comes with logging for additional actions in the lesson context menu and calculator / text editor / sketchpad components and fixes a variety of bugs. E.g., logging out now properly invalidates SSO sessions, fallback fonts are specified should loading from Google Fonts be disabled (e.g. via a third-party browser extension), and instructors now see the select menu for reports in the text editor when using the cohort mode. Last but not least, additional years of speeches have been added to the SOTU widget.
