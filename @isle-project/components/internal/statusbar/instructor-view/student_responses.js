@@ -144,9 +144,10 @@ function generateGrade( action, viz ) {
 					-   Calculate the size of the intersection of the user's answers with the correct ones
 					-   Subtract the size of the intersection with the incorrect answer choices
 					-   Add the number of elements in the incorrect answer set
-					-   The resulting score is between 0 and the number of correct answer choices
+					-   The resulting score is between 0 and the number of answer choices
 				*/
 				const correct = new Set( solution );
+				console.log( 'Correct:', correct );
 				const incorrect = new Set();
 				const levels = viz.ref.props.data.levels;
 				for ( let i = 0; i < levels.length; i++ ) {
@@ -154,6 +155,7 @@ function generateGrade( action, viz ) {
 						incorrect.add( i );
 					}
 				}
+				console.log( 'Incorrect:', incorrect );
 				const userAnswers = new Set();
 				for ( let i = 0; i < value.length; i++ ) {
 					if ( value[ i ] === true ) {
@@ -162,7 +164,11 @@ function generateGrade( action, viz ) {
 				}
 				const correctAnswers = intersection( userAnswers, correct );
 				const incorrectAnswers = intersection( userAnswers, incorrect );
-				return correctAnswers.size - incorrectAnswers.size + incorrect.size;
+				const score = correctAnswers.size - incorrectAnswers.size + incorrect.size;
+				console.log( 'Score: ', score );
+
+				// Scale score to max points:
+				return round( score / ( correct.size + incorrect.size ) * maxPoints );
 			}
 			// Case: "Choose one"
 			return ( value === solution ) ? maxPoints : 0;
