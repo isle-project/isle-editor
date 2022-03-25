@@ -32,7 +32,7 @@ const uid = generateUID( 'revealer' );
 */
 const Revealer = ( props ) => {
 	const { message, show, children } = props;
-	const id = useRef( props.id || uid({ message, show }) );
+	const id = useRef( props.id || uid( children ) );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'revealer' );
 
