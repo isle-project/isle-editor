@@ -7,7 +7,7 @@
 	"expected-value-from-list": "`{{field}}` turi būti viena iš šių reikšmių: {{list}} .",
 	"flippable-requires-two-children": "Atverčiamai kortelei reikalingi du papildomi elementai.",
 	"grid-requires-two-children": "Norint, kad vilkimo tinklelis būtų atvaizduotas, reikia bent dviejų antrinių elementų.",
-	"in": "",
+	"in": "svetainėje",
 	"pause": "Pauzė",
 	"resume": "CV",
 	"retry": "Pakartoti",

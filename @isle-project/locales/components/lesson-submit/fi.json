@@ -1,7 +1,7 @@
 {
 	"authentication": "Tunnistus",
 	"authentication-prompt": "Viimeistelläksesi tämän oppitunnin kirjaudu sisään ISLE-tilillesi. Jos et ole vielä luonut tiliä, rekisteröidy, niin saat ISLEn kaikki toiminnot käyttöösi.",
-	"by": "",
+	"by": "by",
 	"choice": "Valinta",
 	"completed": "Valmistunut",
 	"confirmation-email": " Saat pian vahvistussähköpostin.",

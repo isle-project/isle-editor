@@ -1,7 +1,7 @@
 {
 	"authentication": "Autentimine",
 	"authentication-prompt": "Selle õppetüki lõpetamiseks logige palun sisse oma ISLE kontole. Kui te ei ole veel kontot loonud, siis registreerige end ja saate juurdepääsu ISLE täistoimingutele.",
-	"by": "",
+	"by": "poolt",
 	"choice": "Valik",
 	"completed": "Lõpetatud",
 	"confirmation-email": " Saate peagi kinnitava e-kirja.",

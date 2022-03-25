@@ -22,7 +22,7 @@
 	"legend": "Selite",
 	"linear-fit": "Lineaarinen sovitus",
 	"number-of-edges": "Reunojen lukumäärä: {{nEdges}}.",
-	"of": "",
+	"of": "of",
 	"per": "per",
 	"plot-copied-to-clipboard": "Piirros on onnistuneesti kopioitu leikepöydällesi.",
 	"points": "Pisteet",

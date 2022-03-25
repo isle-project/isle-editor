@@ -1,7 +1,7 @@
 {
 	"direction": "kryptis",
 	"humidity": "drėgmė",
-	"in": "",
+	"in": "svetainėje",
 	"loading-weather-data-for": "Orų duomenų įkėlimas {{loc}}...",
 	"wind": "vėjas"
 }

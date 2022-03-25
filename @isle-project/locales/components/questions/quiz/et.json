@@ -2,7 +2,7 @@
 	"answer": "Vastus",
 	"answer-for": "Vastus {{id}}",
 	"answer-summary": "Vastuse kokkuvõte",
-	"by": "",
+	"by": "poolt",
 	"cancel": "Tühista",
 	"close-instructor-view": "Sulge instruktori vaade",
 	"confidence-prompt": "Palun märkige, kui kindel olete oma vastuses (vastustes):",

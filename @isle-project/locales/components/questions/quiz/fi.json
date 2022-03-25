@@ -2,7 +2,7 @@
 	"answer": "Vastaa",
 	"answer-for": "Vastaus {{id}}",
 	"answer-summary": "Vastaus Yhteenveto",
-	"by": "",
+	"by": "by",
 	"cancel": "Peruuta",
 	"close-instructor-view": "Sulje ohjaajan näkymä",
 	"confidence-prompt": "Ilmoittakaa, kuinka varma olette vastauksestanne (vastauksistanne):",
