@@ -24,6 +24,7 @@ Un componente ISLE che rende una domanda in cui l'allievo deve far corrispondere
 * __points__ | `number`: numero massimo di punti assegnati in classifica. Default: `10`.
 * __className__ | `string`: nome della classe. Default: `''`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: richiamata invocata quando gli studenti inviano una risposta. Default: `onSubmit() {}`.
 
 

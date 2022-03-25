@@ -26,6 +26,7 @@ sidebar_label: Select Question Matrix
 * __panelProps__ | `object`: дополнительные свойства, передаваемые внешнему компоненту <Panel />.. Default: `{}`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: функция обратного вызова, вызываемая при отправке с ответами в качестве первого и булевым указателем корректности в качестве второго параметра. Default: `onSubmit() {}`.
 
 

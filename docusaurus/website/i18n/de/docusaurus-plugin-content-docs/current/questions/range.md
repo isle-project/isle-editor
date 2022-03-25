@@ -25,6 +25,7 @@ Eine Bereichskomponente, die die Teilnehmer auffordert, einen unteren und oberen
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
 * __onChangeLower__ | `function`: Callback, der ausgelöst wird, nachdem die untere Grenze durch den Benutzer geändert wurde. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: Callback, der ausgelöst wird, nachdem die obere Grenze durch den Benutzer geändert wurde. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn die Antwort abgeschickt wurde; hat als ersten Parameter ein `boolean`, das angibt, ob die Antwort richtig beantwortet wurde (falls zutreffend, sonst `null`) und die gelieferte Antwort als zweiten Parameter. Default: `onSubmit() {}`.
 
 

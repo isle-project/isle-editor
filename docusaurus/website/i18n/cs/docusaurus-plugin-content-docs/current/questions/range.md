@@ -25,6 +25,7 @@ Složka s otázkou na rozsah, která od studentů vyžaduje, aby uvedli dolní a
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
 * __onChangeLower__ | `function`: zpětné volání spuštěné po změně dolní meze uživatelem. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: zpětné volání spuštěné po změně horní hranice uživatelem. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: zpětné volání vyvolané po odeslání odpovědi; jako první parametr má `boolean` udávající, zda byla odpověď správně zodpovězena (pokud ano, jinak `null`), a jako druhý parametr zadanou odpověď.. Default: `onSubmit() {}`.
 
 

@@ -26,6 +26,7 @@ Une question dont la réponse consiste en plusieurs cases de sélection.
 * __panelProps__ | `object`: propriétés supplémentaires à transmettre au composant externe <Panel /> . Default: `{}`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: fonction de rappel invoquée lors de la soumission avec les réponses comme premier paramètre et un booléen indiquant l'exactitude comme second paramètre. Default: `onSubmit() {}`.
 
 

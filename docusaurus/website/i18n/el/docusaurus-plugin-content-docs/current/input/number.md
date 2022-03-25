@@ -16,6 +16,7 @@ sidebar_label: Number Input
 * __max__ | `number`: αριθμός που υποδεικνύει τη μέγιστη τιμή που μπορεί να εισαχθεί. Default: `null`.
 * __min__ | `number`: αριθμός που υποδεικνύει τη μικρότερη δυνατή τιμή που μπορεί να εισαχθεί. Default: `null`.
 * __numbersOnly__ | `boolean`: ελέγχει αν γίνονται δεκτοί μόνο αριθμοί. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: συνάρτηση επανάκλησης που θα καλείται όταν χρησιμοποιείται μια μέθοδος θόλωσης. Default: `onBlur() {}`.
 * __onChange__ | `function`: συνάρτηση επανάκλησης που θα καλείται όταν αλλάζει η εισαγωγή αριθμού. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: συνάρτηση επανάκλησης που θα καλείται όταν πατηθεί οποιοδήποτε πλήκτρο. Default: `onKeyDown() {}`.

@@ -24,6 +24,7 @@ sidebar_label: Match List Question
 * __points__ | `number`: 採点点数. Default: `10`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: 学生が回答を提出したときに呼び出されるコールバック. Default: `onSubmit() {}`.
 
 

@@ -16,7 +16,7 @@ Egy számkérdés-összetevő.
 * __digits__ | `number`: azon számjegyek száma, amelyek esetében a tanuló által adott válasznak meg kell egyeznie a megoldással ahhoz, hogy helyesnek lehessen tekinteni. Egész számként való megfeleléshez állítsa 0-ra. Ha nullára van állítva, akkor a pontos egyezést keresi.. Default: `3`.
 * __max__ | `number`: maximálisan megengedett bemeneti érték. Default: `null`.
 * __min__ | `number`: minimálisan megengedett bemeneti érték. Default: `null`.
-* __defaultValue__ | `number`: előre kiválasztott érték a számbemenethez. Default: `0`.
+* __defaultValue__ | `number`: előre kiválasztott érték a számbemenethez. Default: `none`.
 * __provideFeedback__ | `boolean`: jelzi, hogy a helyes választ tartalmazó visszajelzés megjelenjen-e, miután a tanulók elküldték a válaszaikat. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: ellenőrzi, hogy a megoldás felfedése után is újra be lehet-e nyújtani a pályázatot). Default: `false`.
 * __nTries__ | `number`: hány próbálkozás után kell visszajelzést adni (ha a `provideFeedback` értéke `true`). Default: `1`.

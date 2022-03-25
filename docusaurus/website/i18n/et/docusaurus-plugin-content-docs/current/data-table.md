@@ -19,8 +19,7 @@ Komponent, mis renderdab andmeid tabeli kujul. Ehitatud [react-table](https://re
 * __undeletableVars__ | `array<string>`: massiivi muutujate nimedest, mida ei tohi kustutada.. Default: `[]`.
 * __filterable__ | `boolean`: kontrollib, kas veerud on filtreeritavad. Default: `true`.
 * __editable__ | `array`: redigeeritavate veergude nimede massiivi. Default: `[]`.
-* __getTrProps__ | `function`: callback-funktsioon, mis täidetakse iga rea jaoks, et kohandada selle kujundust (edastatud tabeli olek, rea info,
-veerg ja tabeli instants). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funktsioon, mida kutsutakse üles, kui veerg on lohistatud teise positsiooni. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funktsioon, mida kutsutakse esile veeru nimega, kui klõpsatakse vastava veeru kustutamise nupule. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funktsioon, mida kutsutakse üles, kui veerg on ümber nimetatud (kutsutakse vana nime esimese ja uue nimega teise argumendina).. Default: `onColumnNameChange() {}`.

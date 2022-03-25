@@ -16,7 +16,7 @@ Una componente di domanda numero.
 * __digits__ | `number`: numero di cifre per le quali la risposta fornita dallo studente deve corrispondere alla soluzione per essere considerata corretta. Impostato a 0 per corrispondere come un intero. Se impostato a null cercherà una corrispondenza esatta. Default: `3`.
 * __max__ | `number`: valore di ingresso massimo consentito. Default: `null`.
 * __min__ | `number`: valore minimo di ingresso consentito. Default: `null`.
-* __defaultValue__ | `number`: valore preselezionato dell'ingresso del numero. Default: `0`.
+* __defaultValue__ | `number`: valore preselezionato dell'ingresso del numero. Default: `none`.
 * __provideFeedback__ | `boolean`: indica se il feedback, compresa la risposta corretta, deve essere visualizzato dopo che gli studenti hanno inviato le loro risposte. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controlla se si deve poter ripresentare anche dopo che la soluzione è stata rivelata). Default: `false`.
 * __nTries__ | `number`: dopo quanti tentativi di feedback dovrebbe essere fornito (se "fornireFeedback" è "vero"). Default: `1`.

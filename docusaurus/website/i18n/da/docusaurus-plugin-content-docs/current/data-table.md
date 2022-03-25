@@ -19,8 +19,7 @@ En komponent, der gengiver data i en tabelform. Bygget oven på [react-table] (h
 * __undeletableVars__ | `array<string>`: array af variabelnavne for kolonner, der ikke må slettes. Default: `[]`.
 * __filterable__ | `boolean`: styrer, om kolonnerne kan filtreres. Default: `true`.
 * __editable__ | `array`: array af navne på kolonner, der skal kunne redigeres. Default: `[]`.
-* __getTrProps__ | `function`: callback-funktion, der udføres for hver række for at tilpasse dens styling (overført tabelstatus, oplysninger om rækken,
-kolonne og bordinstansen). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funktion, der påberåbes, når en kolonne er blevet trukket til en anden position. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funktion, der påkaldes med navnet på en kolonne, når der klikkes på den respektive sletteknap for en kolonne. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funktion, der påkaldes, når en kolonne er blevet omdøbt (kaldes med det gamle navn som første og det nye navn som andet argument). Default: `onColumnNameChange() {}`.

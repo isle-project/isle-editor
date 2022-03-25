@@ -16,7 +16,7 @@ A number question component.
 * __digits__ | `number`: number of digits for which the answer supplied by the student must match the solution to be considered correct. Set to 0 to match as an integer. If set to null it will search for an exact match. Default: `3`.
 * __max__ | `number`: maximum allowed input value. Default: `null`.
 * __min__ | `number`: minimum allowed input value. Default: `null`.
-* __defaultValue__ | `number`: pre-selected value of number input. Default: `0`.
+* __defaultValue__ | `number`: pre-selected value of number input. Default: `none`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controls whether one should be able to resubmit even after the solution has been revealed). Default: `false`.
 * __nTries__ | `number`: after how many tries feedback should be supplied (if `provideFeedback` is `true`). Default: `1`.

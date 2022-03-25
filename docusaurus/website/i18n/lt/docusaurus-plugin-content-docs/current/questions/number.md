@@ -16,7 +16,7 @@ Klausimo apie skaičių komponentas.
 * __digits__ | `number`: skaitmenų, kurių mokinio pateiktas atsakymas turi sutapti su sprendimu, kad būtų laikomas teisingu, skaičius. Nustatykite 0, kad atitiktų kaip sveikasis skaičius. Jei nustatyta kaip nulis, bus ieškoma tikslaus atitikimo.. Default: `3`.
 * __max__ | `number`: didžiausia leistina įvesties vertė. Default: `null`.
 * __min__ | `number`: mažiausia leistina įvesties vertė. Default: `null`.
-* __defaultValue__ | `number`: iš anksto pasirinkta skaičių įvesties vertė. Default: `0`.
+* __defaultValue__ | `number`: iš anksto pasirinkta skaičių įvesties vertė. Default: `none`.
 * __provideFeedback__ | `boolean`: nurodo, ar mokiniams pateikus atsakymus turėtų būti rodomas grįžtamasis ryšys, įskaitant teisingą atsakymą.. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontroliuoja, ar turėtų būti galima pateikti pakartotinį pasiūlymą net ir po to, kai sprendimas buvo atskleistas).. Default: `false`.
 * __nTries__ | `number`: po kiek bandymų turėtų būti pateiktas grįžtamasis ryšys (jei `provideFeedback` yra `true`). Default: `1`.

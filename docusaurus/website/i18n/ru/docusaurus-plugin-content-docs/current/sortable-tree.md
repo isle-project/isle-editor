@@ -8,9 +8,7 @@ sidebar_label: Sortable Tree
 
 ## Варианты
 
-* __treeData__ | `array<object> (required)`: массив объектов с `титулом` (первичная метка для узла),
-`подзаголовок` (вторичная метка), `расширенный` (отображение дочерних элементов узла, если установлено в true), и/или
-`детей` (массив дочерних узлов, принадлежащих соответствующему узлу). Default: `none`.
+* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
 * __title__ | `(string|node)`: заголовок. Default: `none`.
 
 

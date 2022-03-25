@@ -24,6 +24,7 @@ ISLE komponents, kas atveido jautājumu, kurā skolēnam ir pareizi jāsalāgo e
 * __points__ | `number`: maksimālais punktu skaits, ko piešķir klasifikācijā. Default: `10`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: atgriezeniskais zvans, kas tiek izsaukts, kad skolēni iesniedz atbildi.. Default: `onSubmit() {}`.
 
 

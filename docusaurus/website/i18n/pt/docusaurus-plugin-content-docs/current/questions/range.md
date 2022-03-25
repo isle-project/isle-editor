@@ -25,6 +25,7 @@ Um componente de perguntas de gama que pede aos estudantes que forneçam um pont
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 * __onChangeLower__ | `function`: chamada de retorno acionada após o limite inferior ser alterado pelo usuário. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: chamada de retorno acionada depois que o limite superior é alterado pelo usuário. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: chamada de retorno invocada quando a resposta é submetida; tem como primeiro parâmetro um `booleano` indicando se a resposta foi respondida corretamente (se aplicável, `nulo` de outra forma) e a resposta fornecida como segundo parâmetro. Default: `onSubmit() {}`.
 
 

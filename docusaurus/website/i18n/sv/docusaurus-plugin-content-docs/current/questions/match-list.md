@@ -24,6 +24,7 @@ En ISLE-komponent som visar en fråga där eleven måste matcha element från tv
 * __points__ | `number`: Maximalt antal poäng som tilldelas vid betygsättning.. Default: `10`.
 * __className__ | `string`: klassens namn. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback som aktiveras när eleverna lämnar in ett svar. Default: `onSubmit() {}`.
 
 

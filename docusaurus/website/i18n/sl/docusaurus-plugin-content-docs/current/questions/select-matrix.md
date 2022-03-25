@@ -26,6 +26,7 @@ Vprašanje z odgovorom, sestavljenim iz več izbirnih polj.
 * __panelProps__ | `object`: dodatne lastnosti, ki se posredujejo zunanji komponenti <Panel />.. Default: `{}`.
 * __className__ | `string`: ime razreda. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: funkcija povratnega klica, ki se sproži ob oddaji, z odgovori kot prvim in logičnim parametrom, ki označuje pravilnost, kot drugim parametrom.. Default: `onSubmit() {}`.
 
 

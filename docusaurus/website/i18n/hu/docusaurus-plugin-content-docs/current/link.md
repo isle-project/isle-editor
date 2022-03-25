@@ -11,6 +11,7 @@ Egy link megjelenítésére szolgáló komponens.
 * __href__ | `string (required)`: A weboldal URL címe, amelyre hivatkozni kíván. Default: `none`.
 * __target__ | `string`: meghatározza, hogy hol nyílik meg a link: új ablak esetén `_blank`, saját keret esetén `_self`, szülő esetén `_parent`, ablak teljes teste esetén `_top`, vagy a keret neve.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: vesszővel elválasztott lista a link új ablakban való megnyitásakor használt ablakjellemzőkről (lásd: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
+* __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: osztály neve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 

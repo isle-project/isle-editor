@@ -26,6 +26,7 @@ Een vraag met een antwoord bestaande uit meerdere selectievakjes.
 * __panelProps__ | `object`: aanvullende eigenschappen die aan de buitenste <Panel /> component moeten worden doorgegeven. Default: `{}`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback-functie die wordt aangeroepen bij de indiening met de antwoorden als eerste en een booleaanse functie die de juistheid als tweede parameter aangeeft. Default: `onSubmit() {}`.
 
 

@@ -16,7 +16,7 @@ Um componente de várias perguntas.
 * __digits__ | `number`: número de dígitos para os quais a resposta fornecida pelo estudante deve corresponder à solução a ser considerada correta. Definir como 0 para corresponder como um número inteiro. Se definido como nulo, ele procurará uma correspondência exata. Default: `3`.
 * __max__ | `number`: valor máximo de entrada permitido. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
-* __defaultValue__ | `number`: valor pré-selecionado de entrada de número. Default: `0`.
+* __defaultValue__ | `number`: valor pré-selecionado de entrada de número. Default: `none`.
 * __provideFeedback__ | `boolean`: indica se o feedback, incluindo a resposta correta, deve ser exibido depois que os alunos enviarem suas respostas. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controla se se deve ser capaz de reapresentar mesmo depois que a solução tenha sido revelada). Default: `false`.
 * __nTries__ | `number`: após quantas tentativas de feedback devem ser fornecidas (se `provideFeedback` for `verdadeiro`). Default: `1`.

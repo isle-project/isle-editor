@@ -19,8 +19,7 @@ Um componente renderizando dados em um display tabular. Construído sobre [reapr
 * __undeletableVars__ | `array<string>`: matriz de nomes variáveis de colunas que não podem ser apagadas. Default: `[]`.
 * __filterable__ | `boolean`: controla se as colunas são filtráveis. Default: `true`.
 * __editable__ | `array`: matriz de nomes para colunas que devem ser editáveis. Default: `[]`.
-* __getTrProps__ | `function`: função callback executada para cada linha para personalizar seu estilo (estado da tabela passada, informações da linha,
-coluna, e a instância da tabela). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: função invocada quando uma coluna foi arrastada para uma posição diferente. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: função invocada com o nome de uma coluna quando o respectivo botão de exclusão de uma coluna é clicado. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: função invocada quando uma coluna foi renomeada (chamada com o antigo nome como primeiro e o novo nome como segundo argumento). Default: `onColumnNameChange() {}`.

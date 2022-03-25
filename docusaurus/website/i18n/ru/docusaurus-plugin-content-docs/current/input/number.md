@@ -16,6 +16,7 @@ sidebar_label: Number Input
 * __max__ | `number`: число, указывающее максимальное значение, которое может быть вставлено. Default: `null`.
 * __min__ | `number`: число, указывающее на наименьшее возможное значение, которое может быть вставлено. Default: `null`.
 * __numbersOnly__ | `boolean`: контролирует, принимаются ли только номера. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: функция обратного вызова, вызываемая при использовании размытого метода. Default: `onBlur() {}`.
 * __onChange__ | `function`: функция обратного вызова, вызываемая при изменении ввода номера. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: функция обратного вызова для вызова при нажатии любой клавиши. Default: `onKeyDown() {}`.

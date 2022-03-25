@@ -16,7 +16,7 @@ En komponent med et antal spørgsmål.
 * __digits__ | `number`: antal cifre, for hvilke det svar, som den studerende har givet, skal stemme overens med løsningen for at blive betragtet som korrekt. Indstilles til 0 for at matche som et heltal. Hvis den sættes til nul, vil der blive søgt efter en nøjagtig overensstemmelse.. Default: `3`.
 * __max__ | `number`: maksimalt tilladt inputværdi. Default: `null`.
 * __min__ | `number`: mindste tilladte inputværdi. Default: `null`.
-* __defaultValue__ | `number`: forudvalgt værdi af talindgang. Default: `0`.
+* __defaultValue__ | `number`: forudvalgt værdi af talindgang. Default: `none`.
 * __provideFeedback__ | `boolean`: angiver, om der skal vises feedback, herunder det korrekte svar, efter at eleverne har indsendt deres svar. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontrollerer, om man skal kunne indsende en ny ansøgning, selv efter at løsningen er blevet afsløret). Default: `false`.
 * __nTries__ | `number`: efter hvor mange forsøg skal der gives feedback (hvis `provideFeedback` er `true`). Default: `1`.

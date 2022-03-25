@@ -16,6 +16,7 @@ Vstupná zložka čísla. Môže sa používať ako súčasť prístrojovej dosk
 * __max__ | `number`: číslo udávajúce maximálnu hodnotu, ktorú možno vložiť. Default: `null`.
 * __min__ | `number`: číslo označujúce najmenšiu možnú hodnotu, ktorú možno vložiť. Default: `null`.
 * __numbersOnly__ | `boolean`: kontroluje, či sú akceptované iba čísla.. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: spätná funkcia, ktorá sa má vyvolať pri použití metódy rozmazania. Default: `onBlur() {}`.
 * __onChange__ | `function`: spätná funkcia, ktorá sa vyvolá pri zmene vstupného čísla. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funkcia spätného volania, ktorá sa vyvolá po stlačení ľubovoľného klávesu. Default: `onKeyDown() {}`.

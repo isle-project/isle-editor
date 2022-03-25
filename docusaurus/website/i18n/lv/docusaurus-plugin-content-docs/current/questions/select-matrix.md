@@ -26,6 +26,7 @@ Jautājums ar atbildi, kas sastāv no vairākiem izvēles rūtiņām.
 * __panelProps__ | `object`: papildu rekvizīti, kas jānodod ārējam <Panel /> komponentam.. Default: `{}`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: atsauces funkcija, kas tiek izsaukta pēc iesniegšanas ar atbildēm kā pirmo parametru un boolean, kas norāda pareizību, kā otro parametru.. Default: `onSubmit() {}`.
 
 

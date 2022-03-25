@@ -19,8 +19,7 @@ Un componente che rende i dati di rendering dei componenti in una visualizzazion
 * __undeletableVars__ | `array<string>`: array di nomi di variabili di colonne che non possono essere cancellati. Default: `[]`.
 * __filterable__ | `boolean`: controlla se le colonne sono filtrabili. Default: `true`.
 * __editable__ | `array`: array di nomi per le colonne che saranno modificabili. Default: `[]`.
-* __getTrProps__ | `function`: funzione di callback eseguita per ogni riga per personalizzarne lo stile (stato della tabella passato, informazioni sulla riga,
-colonna, e l'istanza della tabella). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funzione invocata quando una colonna è stata trascinata in una posizione diversa. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funzione invocata con il nome di una colonna quando si clicca sul rispettivo pulsante di cancellazione di una colonna. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funzione invocata quando una colonna è stata rinominata (chiamata con il vecchio nome come primo e il nuovo nome come secondo argomento). Default: `onColumnNameChange() {}`.

@@ -16,7 +16,7 @@ sidebar_label: Number Question
 * __digits__ | `number`: 生徒が提供した答えが解答と一致しなければ正しいとみなされない桁数。0に設定すると、整数として一致します。nullに設定すると、完全に一致するものを検索します。. Default: `3`.
 * __max__ | `number`: 最大許容入力値. Default: `null`.
 * __min__ | `number`: 最小許容入力値. Default: `null`.
-* __defaultValue__ | `number`: 事前選択数入力値. Default: `0`.
+* __defaultValue__ | `number`: 事前選択数入力値. Default: `none`.
 * __provideFeedback__ | `boolean`: は、学習者が解答を提出した後に、正解を含むフィードバックを表示するかどうかを指定します。. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: は、解決策が明らかになった後でも再提出できるようにすべきかどうかをコントロールします。). Default: `false`.
 * __nTries__ | `number`: 何回試行した後にフィードバックを提供するか ( `provideFeedback` が `true` の場合). Default: `1`.

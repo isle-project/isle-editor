@@ -16,7 +16,7 @@ Un élément de question numérique.
 * __digits__ | `number`: nombre de chiffres pour lesquels la réponse fournie par l'élève doit correspondre à la solution pour être considérée comme correcte. Défini à 0 pour une correspondance sous forme d'un nombre entier. Si la valeur est nulle, une correspondance exacte sera recherchée. Default: `3`.
 * __max__ | `number`: valeur d'entrée maximale autorisée. Default: `null`.
 * __min__ | `number`: valeur d'entrée minimale autorisée. Default: `null`.
-* __defaultValue__ | `number`: valeur présélectionnée de la saisie du numéro. Default: `0`.
+* __defaultValue__ | `number`: valeur présélectionnée de la saisie du numéro. Default: `none`.
 * __provideFeedback__ | `boolean`: indique si un retour d'information comprenant la bonne réponse doit être affiché après que les apprenants aient soumis leurs réponses. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: contrôle si l'on doit pouvoir soumettre à nouveau une demande même après que la solution a été révélée). Default: `false`.
 * __nTries__ | `number`: après combien d'essais un retour d'information doit être fourni (si "provideFeedback" est "true"). Default: `1`.

@@ -24,6 +24,7 @@ ISLE komponent, mis esitab küsimuse, milles õppija peab kahe loendi elemente o
 * __points__ | `number`: hindamisel antavate punktide maksimaalne arv. Default: `10`.
 * __className__ | `string`: klassi nimi. Default: `''`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, mida kutsutakse üles, kui õpilased esitavad vastuse. Default: `onSubmit() {}`.
 
 

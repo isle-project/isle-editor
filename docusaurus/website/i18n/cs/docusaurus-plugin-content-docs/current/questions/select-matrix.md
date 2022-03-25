@@ -26,6 +26,7 @@ Otázka s odpovědí, která se skládá z několika políček.
 * __panelProps__ | `object`: další vlastnosti, které se předávají vnější komponentě <Panel />.. Default: `{}`.
 * __className__ | `string`: název třídy. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: funkce zpětného volání vyvolaná při odeslání s odpověďmi jako prvním a logickým parametrem označujícím správnost jako druhým parametrem.. Default: `onSubmit() {}`.
 
 

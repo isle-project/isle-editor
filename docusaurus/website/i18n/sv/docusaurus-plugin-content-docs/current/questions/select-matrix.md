@@ -26,6 +26,7 @@ En fråga med ett svar som består av flera valbara rutor.
 * __panelProps__ | `object`: Ytterligare egenskaper som ska skickas till den yttre <Panel /> -komponenten.. Default: `{}`.
 * __className__ | `string`: Klassnamn.. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback-funktion som anropas vid inlämning med svaren som första parameter och en boolean som anger korrekthet som andra parameter.. Default: `onSubmit() {}`.
 
 

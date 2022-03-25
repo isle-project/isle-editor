@@ -25,6 +25,7 @@ Klausimo apie intervalą komponentas, kuriame mokinių prašoma nurodyti apatin�
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 * __onChangeLower__ | `function`: grįžtamasis skambutis, inicijuojamas naudotojui pakeitus apatinę ribą.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: grįžtamasis skambutis, inicijuojamas naudotojui pakeitus viršutinę ribą.. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: grįžtamasis skambutis, iškviečiamas, kai pateikiamas atsakymas; pirmasis parametras yra `boolean`, nurodantis, ar atsakymas buvo teisingas (jei tinka, `null`, jei ne), o antrasis parametras - pateiktas atsakymas.. Default: `onSubmit() {}`.
 
 

@@ -26,6 +26,7 @@ Pytanie z odpowiedzią składającą się z wielu pól wyboru.
 * __panelProps__ | `object`: dodatkowe właściwości przekazywane do zewnętrznego komponentu <Panel /> . Default: `{}`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: funkcja callback wywołana po przesłaniu odpowiedzi jako pierwsza i boolean wskazująca poprawność jako drugi parametr. Default: `onSubmit() {}`.
 
 

@@ -16,7 +16,7 @@ O componentă de întrebare cu număr.
 * __digits__ | `number`: numărul de cifre pentru care răspunsul furnizat de elev trebuie să corespundă soluției pentru a fi considerat corect. Se setează la 0 pentru a corespunde ca număr întreg. Dacă este setat la null, se va căuta o potrivire exactă.. Default: `3`.
 * __max__ | `number`: valoarea de intrare maximă admisă. Default: `null`.
 * __min__ | `number`: valoarea de intrare minimă admisă. Default: `null`.
-* __defaultValue__ | `number`: valoarea preselectată a numărului de intrare. Default: `0`.
+* __defaultValue__ | `number`: valoarea preselectată a numărului de intrare. Default: `none`.
 * __provideFeedback__ | `boolean`: indică dacă feedback-ul care include răspunsul corect trebuie afișat după ce cursanții își trimit răspunsurile. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controlează dacă ar trebui să se poată retrimite chiar și după ce soluția a fost dezvăluită). Default: `false`.
 * __nTries__ | `number`: după câte încercări trebuie să se furnizeze feedback (dacă `provideFeedback` este `true`). Default: `1`.

@@ -11,6 +11,7 @@ Saiknes rādīšanas komponents.
 * __href__ | `string (required)`: Tīmekļa vietnes URL, uz kuru vēlaties izveidot saiti. Default: `none`.
 * __target__ | `string`: nosaka, kur tiek atvērta saite: iestatīts uz `_blank` jaunam logam, `_self` savam rāmim, `_parent` mātes logam, `_top` loga pilnam korpusam vai rāmja nosaukumam.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: ar komatiem atdalīts loga funkciju saraksts, kad saite tiek atvērta jaunā logā (skatīt: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features).. Default: `none`.
+* __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 

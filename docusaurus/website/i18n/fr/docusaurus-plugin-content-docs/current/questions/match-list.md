@@ -24,6 +24,7 @@ Un composant ISLE qui rend une question dans laquelle l'apprenant doit faire cor
 * __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: rappel invoqué lorsque l'étudiant soumet une réponse. Default: `onSubmit() {}`.
 
 

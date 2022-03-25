@@ -25,6 +25,7 @@ Un élément de question de gamme qui demande aux élèves de fournir un point d
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 * __onChangeLower__ | `function`: rappel déclenché après la modification de la limite inférieure par l'utilisateur. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: rappel déclenché après la modification de la limite supérieure par l'utilisateur. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: rappel invoqué lors de la soumission de la réponse ; a comme premier paramètre un "booléen" indiquant si la réponse a été correctement donnée (le cas échéant, "nul" sinon) et la réponse fournie comme second paramètre. Default: `onSubmit() {}`.
 
 

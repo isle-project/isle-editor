@@ -19,8 +19,7 @@ Komponentas, atvaizduojantis duomenis lentelių pavidalu. Sukurtas ant [react-ta
 * __undeletableVars__ | `array<string>`: stulpelių, kurių negalima ištrinti, kintamųjų vardų masyvas. Default: `[]`.
 * __filterable__ | `boolean`: kontroliuoja, ar stulpelius galima filtruoti.. Default: `true`.
 * __editable__ | `array`: redaguojamų stulpelių pavadinimų masyvas. Default: `[]`.
-* __getTrProps__ | `function`: atšaukimo funkcija, vykdoma kiekvienai eilutei, kad būtų pritaikytas jos stilius (perduota lentelės būsena, eilutės informacija,
-stulpelis ir lentelės egzempliorius). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funkcija, iškviečiama, kai stulpelis vilkiamas į kitą padėtį. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkcija, iškviečiama su stulpelio pavadinimu, kai paspaudžiamas atitinkamas stulpelio šalinimo mygtukas.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkcija, iškviečiama pakeitus stulpelio pavadinimą (iškviečiama, kai pirmasis argumentas yra senasis pavadinimas, o antrasis - naujasis pavadinimas).. Default: `onColumnNameChange() {}`.

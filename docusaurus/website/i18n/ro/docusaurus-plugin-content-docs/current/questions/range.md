@@ -25,6 +25,7 @@ O componentă de întrebare de tip "interval" care le cere elevilor să furnizez
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 * __onChangeLower__ | `function`: callback declanșat după ce limita inferioară este modificată de către utilizator. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback declanșat după ce limita superioară este modificată de către utilizator. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invocat atunci când răspunsul este trimis; are ca prim parametru un `boolean` care indică dacă răspunsul a fost dat corect (dacă este cazul, `null` în caz contrar) și răspunsul furnizat ca al doilea parametru. Default: `onSubmit() {}`.
 
 

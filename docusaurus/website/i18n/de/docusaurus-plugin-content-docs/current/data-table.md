@@ -19,8 +19,7 @@ Eine Komponente, die Daten in einer tabellarischen Darstellung wiedergibt. Baut 
 * __undeletableVars__ | `array<string>`: Array mit Variablennamen von Spalten, die nicht gelöscht werden dürfen. Default: `[]`.
 * __filterable__ | `boolean`: steuert, ob Spalten filterbar sind. Default: `true`.
 * __editable__ | `array`: Array von Namen für Spalten, die editierbar sein sollen. Default: `[]`.
-* __getTrProps__ | `function`: Callback-Funktion, die für jede Zeile ausgeführt wird, um ihr Styling anzupassen (übergebener Tabellenstatus, Zeileninfo,
-Spalte, und die Tabelleninstanz). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: Funktion, die aufgerufen wird, wenn eine Spalte an eine andere Position gezogen wurde. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: Funktion, die mit dem Namen einer Spalte aufgerufen wird, wenn die entsprechende Löschschaltfläche für eine Spalte angeklickt wird. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: Funktion, die aufgerufen wird, wenn eine Spalte umbenannt wurde (Aufruf mit dem alten Namen als erstes und dem neuen Namen als zweites Argument). Default: `onColumnNameChange() {}`.

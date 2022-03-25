@@ -16,7 +16,7 @@ Een aantal vraagcomponenten.
 * __digits__ | `number`: aantal cijfers waarvoor het antwoord van de leerling overeen moet komen met de oplossing om als juist beschouwd te worden. Stel in op 0 om een geheel getal te gebruiken. Indien ingesteld op null zal het zoeken naar een exacte overeenkomst. Default: `3`.
 * __max__ | `number`: maximaal toegestane invoerwaarde. Default: `null`.
 * __min__ | `number`: minimaal toegestane invoerwaarde. Default: `null`.
-* __defaultValue__ | `number`: voorgeselecteerde waarde van het ingevoerde aantal. Default: `0`.
+* __defaultValue__ | `number`: voorgeselecteerde waarde van het ingevoerde aantal. Default: `none`.
 * __provideFeedback__ | `boolean`: geeft aan of de feedback, inclusief het juiste antwoord, moet worden weergegeven nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controleert of men opnieuw moet kunnen indienen, zelfs nadat de oplossing is onthuld). Default: `false`.
 * __nTries__ | `number`: na hoeveel pogingen er feedback moet worden gegeven (als `provideFeedback` `true` is). Default: `1`.

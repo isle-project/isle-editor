@@ -8,9 +8,7 @@ Ein dünner Wrapper um [react-sortable-tree](https://www.npmjs.com/package/react
 
 ## Optionen
 
-* __treeData__ | `array<object> (required)`: Array von Objekten mit `title` (primäre Bezeichnung für den Knoten),
-`subtitle` (sekundäre Bezeichnung), `expanded` (zeigt die Kinder des Knotens an, wenn auf true gesetzt), und/oder
-`children` (Array der zum jeweiligen Knoten gehörenden Kindknoten). Default: `none`.
+* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
 * __title__ | `(string|node)`: Kopfzeilen-Titel. Default: `none`.
 
 

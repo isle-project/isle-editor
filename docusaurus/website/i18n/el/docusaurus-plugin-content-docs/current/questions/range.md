@@ -25,6 +25,7 @@ sidebar_label: Range Question
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 * __onChangeLower__ | `function`: επανάκληση που ενεργοποιείται μετά την αλλαγή του κατώτερου ορίου από τον χρήστη. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: επανάκληση που ενεργοποιείται μετά την αλλαγή του ανώτερου ορίου από τον χρήστη. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: έχει ως πρώτη παράμετρο ένα `boolean` που δείχνει αν η απάντηση απαντήθηκε σωστά (αν ισχύει, αλλιώς `null`) και την απάντηση που δόθηκε ως δεύτερη παράμετρο.. Default: `onSubmit() {}`.
 
 

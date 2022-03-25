@@ -16,6 +16,7 @@ Eine Zahleneingabekomponente. Kann als Teil eines ISLE Dashboards oder eigenstä
 * __max__ | `number`: Zahl, die den maximalen Wert angibt, der eingefügt werden darf. Default: `null`.
 * __min__ | `number`: Zahl, die den kleinstmöglichen Wert angibt, der eingefügt werden darf. Default: `null`.
 * __numbersOnly__ | `boolean`: steuert, ob nur Zahlen akzeptiert werden. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: Callback-Funktion, die bei Verwendung einer Weichzeichnermethode aufgerufen werden soll. Default: `onBlur() {}`.
 * __onChange__ | `function`: Callback-Funktion, die aufgerufen werden soll, wenn die Zahleneingabe geändert wird. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: Callback-Funktion, die aufgerufen wird, wenn eine beliebige Taste gedrückt wird. Default: `onKeyDown() {}`.

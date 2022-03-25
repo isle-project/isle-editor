@@ -8,9 +8,7 @@ Tenký obal kolem komponenty [react-sortable-tree](https://www.npmjs.com/package
 
 ## Možnosti
 
-* __treeData__ | `array<object> (required)`: pole objektů s `title` (primární označení uzlu),
-`subtitle` (sekundární popisek), `expanded` (zobrazí děti uzlu, pokud je nastaveno na true) a/nebo
-`children` (pole podřízených uzlů patřících k příslušnému uzlu).. Default: `none`.
+* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
 * __title__ | `(string|node)`: název záhlaví. Default: `none`.
 
 

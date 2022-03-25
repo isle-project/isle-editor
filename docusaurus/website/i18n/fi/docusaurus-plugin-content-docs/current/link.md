@@ -11,6 +11,7 @@ Komponentti linkin näyttämiseen.
 * __href__ | `string (required)`: Linkitettävän verkkosivuston URL-osoite. Default: `none`.
 * __target__ | `string`: määrittelee, mistä linkki avataan: asetetaan arvoksi `_blank`, jos kyseessä on uusi ikkuna, `_self`, jos kyseessä on oma kehys, `_parent`, jos kyseessä on vanhempi, `_top`, jos kyseessä on koko ikkunan runko, tai kehyksen nimi.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: pilkulla erotettu luettelo ikkunan ominaisuuksista, kun linkki avataan uudessa ikkunassa (katso: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features).. Default: `none`.
+* __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: luokan nimi. Default: `''`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 

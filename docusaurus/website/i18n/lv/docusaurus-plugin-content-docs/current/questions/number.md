@@ -16,7 +16,7 @@ Jautājuma komponents.
 * __digits__ | `number`: to ciparu skaits, kuru skolēna sniegtajai atbildei jāatbilst risinājumam, lai to uzskatītu par pareizu. Iestatiet 0, lai atbilstu kā vesels skaitlis. Ja iestatīts kā nulle, tiks meklēta precīza atbilstība.. Default: `3`.
 * __max__ | `number`: maksimālā atļautā ieejas vērtība. Default: `null`.
 * __min__ | `number`: minimālā atļautā ieejas vērtība. Default: `null`.
-* __defaultValue__ | `number`: iepriekš izvēlēta skaitļa ievades vērtība. Default: `0`.
+* __defaultValue__ | `number`: iepriekš izvēlēta skaitļa ievades vērtība. Default: `none`.
 * __provideFeedback__ | `boolean`: norāda, vai pēc tam, kad izglītojamie ir iesnieguši atbildes, ir jānorāda atgriezeniskā saite, tostarp pareizā atbilde.. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontrolē, vai ir jābūt iespējai atkārtoti iesniegt pieteikumu arī pēc tam, kad risinājums ir atklāts).. Default: `false`.
 * __nTries__ | `number`: pēc cik mēģinājumiem jāsniedz atgriezeniskā saite (ja `provideFeedback` ir `true`).. Default: `1`.

@@ -11,6 +11,7 @@ En komponent til visning af et link.
 * __href__ | `string (required)`: URL på det websted, der skal linkes til. Default: `none`.
 * __target__ | `string`: definerer hvor linket åbnes: indstilles til `_blank` for nyt vindue, `_self` for egen ramme, `_parent` for overordnet vindue, `_top` for hele vinduet eller navnet på rammen. Default: `'_blank'`.
 * __windowFeatures__ | `string`: kommasepareret liste over vinduesfunktioner for, hvornår linket åbnes i et nyt vindue (se: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
+* __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: klassens navn. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 

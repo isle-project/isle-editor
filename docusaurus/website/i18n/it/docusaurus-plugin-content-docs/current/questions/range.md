@@ -25,6 +25,7 @@ Una componente di domanda di gamma che chiede agli studenti di fornire un punto 
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.
 * __onChangeLower__ | `function`: richiamo attivato dopo che il limite inferiore è stato modificato dall'utente. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: richiamo attivato dopo che il limite superiore è stato modificato dall'utente. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: richiamata al momento dell'invio della risposta; ha come primo parametro un `booleano` che indica se la risposta è stata data correttamente (se applicabile, `null` altrimenti) e la risposta fornita come secondo parametro. Default: `onSubmit() {}`.
 
 

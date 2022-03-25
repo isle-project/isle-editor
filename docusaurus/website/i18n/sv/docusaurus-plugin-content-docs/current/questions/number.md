@@ -16,7 +16,7 @@ En komponent med en nummerfråga.
 * __digits__ | `number`: antal siffror för vilka det svar som eleven ger måste överensstämma med lösningen för att anses vara korrekt. Ställ in 0 för att matcha som ett heltal. Om värdet är noll kommer det att sökas efter en exakt matchning.. Default: `3`.
 * __max__ | `number`: Högsta tillåtna värde för inmatning.. Default: `null`.
 * __min__ | `number`: Minsta tillåtna värde för inmatning.. Default: `null`.
-* __defaultValue__ | `number`: Förvaltat värde för inmatning av siffror.. Default: `0`.
+* __defaultValue__ | `number`: Förvaltat värde för inmatning av siffror.. Default: `none`.
 * __provideFeedback__ | `boolean`: anger om återkoppling, inklusive det rätta svaret, ska visas efter att eleverna skickat in sina svar.. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontrollerar om man bör kunna lämna in ett nytt förslag även efter det att lösningen har avslöjats).. Default: `false`.
 * __nTries__ | `number`: Efter hur många försök ska feedback ges (om `provideFeedback` är `true`).. Default: `1`.

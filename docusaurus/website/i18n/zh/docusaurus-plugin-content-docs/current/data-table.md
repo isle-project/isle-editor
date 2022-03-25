@@ -19,8 +19,7 @@ sidebar_label: Data Table
 * __undeletableVars__ | `array<string>`: 不可删除的列的变量名数组。. Default: `[]`.
 * __filterable__ | `boolean`: 控制栏目是否可过滤. Default: `true`.
 * __editable__ | `array`: 可编辑的列名数组。. Default: `[]`.
-* __getTrProps__ | `function`: 对每条记录执行回调函数，以自定义其样式（通过表状态，行信息。
-列和表实例). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: 当一列被拖动到不同位置时调用的函数。. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: 当点击列的删除按钮时，调用列名的函数。. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: 当一列被重新命名时调用的函数（调用时将旧名称作为第一个参数，新名称作为第二个参数）。. Default: `onColumnNameChange() {}`.

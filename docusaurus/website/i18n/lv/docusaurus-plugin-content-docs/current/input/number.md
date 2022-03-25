@@ -16,6 +16,7 @@ Skaitļu ievades komponents. Var izmantot kā daļu no ISLE paneļa vai atseviš
 * __max__ | `number`: skaitlis, kas norāda maksimālo vērtību, kuru drīkst ievietot.. Default: `null`.
 * __min__ | `number`: skaitlis, kas norāda mazāko iespējamo vērtību, kuru var ievietot.. Default: `null`.
 * __numbersOnly__ | `boolean`: kontrolē, vai tiek pieņemti tikai skaitļi.. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: atsauces funkcija, kas jāizsauc, izmantojot izplūšanas metodi.. Default: `onBlur() {}`.
 * __onChange__ | `function`: atgriezeniskā zvana funkcija, kas jāizsauc, kad tiek mainīts ievadītais skaitlis.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: atsauces funkcija, kas jāizsauc, kad tiek nospiests jebkurš taustiņš.. Default: `onKeyDown() {}`.

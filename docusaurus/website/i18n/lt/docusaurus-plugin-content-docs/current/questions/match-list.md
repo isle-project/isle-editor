@@ -24,6 +24,7 @@ ISLE komponentas, kuris atvaizduoja klausimą, kuriame besimokantysis turi teisi
 * __points__ | `number`: maksimalus balų skaičius, suteikiamas vertinant. Default: `10`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: grįžtamasis ryšys, iškviečiamas, kai mokiniai pateikia atsakymą.. Default: `onSubmit() {}`.
 
 

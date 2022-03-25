@@ -16,7 +16,7 @@ Un componente de preguntas numéricas.
 * __digits__ | `number`: número de dígitos para los que la respuesta proporcionada por el estudiante debe coincidir con la solución para ser considerada correcta. Establecer a 0 para que coincida como un número entero. Si se establece en null se buscará una coincidencia exacta. Default: `3`.
 * __max__ | `number`: máximo valor de entrada permitido. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
-* __defaultValue__ | `number`: valor preseleccionado de entrada de números. Default: `0`.
+* __defaultValue__ | `number`: valor preseleccionado de entrada de números. Default: `none`.
 * __provideFeedback__ | `boolean`: indica si la retroalimentación, incluyendo la respuesta correcta, debe ser mostrada después de que los estudiantes envíen sus respuestas. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: controla si se debe poder volver a presentar la solicitud incluso después de que se haya revelado la solución). Default: `false`.
 * __nTries__ | `number`: después de cuántos intentos se debe suministrar la retroalimentación (si "suministrarRetroalimentación" es "verdadero"). Default: `1`.

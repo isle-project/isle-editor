@@ -16,6 +16,7 @@ Un componente de entrada de números. Puede ser usado como parte de un tablero d
 * __max__ | `number`: número que indica el valor máximo que se puede insertar. Default: `null`.
 * __min__ | `number`: número que indica el valor más pequeño posible que se puede insertar. Default: `null`.
 * __numbersOnly__ | `boolean`: controla si sólo se aceptan números. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: función de devolución de llamada que se invocará cuando se utilice un método de desenfoque. Default: `onBlur() {}`.
 * __onChange__ | `function`: función de devolución de llamada que se invocará cuando se cambie la entrada de números. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: función de llamada de retorno que se invoca cuando se presiona cualquier tecla. Default: `onKeyDown() {}`.

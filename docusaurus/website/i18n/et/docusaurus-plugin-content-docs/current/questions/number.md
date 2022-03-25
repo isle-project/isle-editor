@@ -16,7 +16,7 @@ Number küsimus komponent.
 * __digits__ | `number`: numbrite arv, mille puhul õpilase antud vastus peab vastama lahendusele, et seda saaks pidada õigeks. Vastamiseks täisarvuna määrata 0. Kui see on null, otsitakse täpset vastet.. Default: `3`.
 * __max__ | `number`: maksimaalne lubatud sisendväärtus. Default: `null`.
 * __min__ | `number`: minimaalne lubatud sisendväärtus. Default: `null`.
-* __defaultValue__ | `number`: eelnevalt valitud numbrisisendi väärtus. Default: `0`.
+* __defaultValue__ | `number`: eelnevalt valitud numbrisisendi väärtus. Default: `none`.
 * __provideFeedback__ | `boolean`: näitab, kas pärast õppijate vastuste esitamist tuleb kuvada tagasisidet, mis sisaldab õiget vastust.. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontrollib, kas peaks olema võimalik uuesti esitada ka pärast lahenduse avalikustamist). Default: `false`.
 * __nTries__ | `number`: kui paljude katsete järel tuleb tagasisidet anda (kui `provideFeedback` on `true`).. Default: `1`.

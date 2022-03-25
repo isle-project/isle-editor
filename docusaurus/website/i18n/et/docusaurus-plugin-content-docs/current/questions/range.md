@@ -25,6 +25,7 @@ Küsimuse osa, milles palutakse õpilastel esitada alumine ja ülemine lõpp-pun
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
 * __onChangeLower__ | `function`: callback, mis käivitub pärast seda, kui kasutaja muudab alampiiri.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: tagasikutsumine, mis käivitub pärast seda, kui kasutaja on ülemist piiri muutnud.. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, mis kutsutakse üles, kui vastus on esitatud; esimese parameetrina on "boolean", mis näitab, kas vastus on õigesti vastatud (kui see on asjakohane, vastasel juhul "null") ja teise parameetrina esitatud vastus.. Default: `onSubmit() {}`.
 
 

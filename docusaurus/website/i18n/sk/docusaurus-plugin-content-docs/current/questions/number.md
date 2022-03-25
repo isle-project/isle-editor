@@ -16,7 +16,7 @@ Zložka s otázkou o počte.
 * __digits__ | `number`: počet číslic, pre ktoré sa odpoveď poskytnutá žiakom musí zhodovať s riešením, aby sa považovala za správnu. Nastavte na 0, aby sa zhodovala ako celé číslo. Ak je nastavená na nulu, bude sa hľadať presná zhoda. Default: `3`.
 * __max__ | `number`: maximálna povolená vstupná hodnota. Default: `null`.
 * __min__ | `number`: minimálna povolená vstupná hodnota. Default: `null`.
-* __defaultValue__ | `number`: vopred zvolená hodnota zadaného čísla. Default: `0`.
+* __defaultValue__ | `number`: vopred zvolená hodnota zadaného čísla. Default: `none`.
 * __provideFeedback__ | `boolean`: označuje, či sa má po odoslaní odpovede žiakom zobraziť spätná väzba vrátane správnej odpovede.. Default: `true`.
 * __submitAfterFeedback__ | `boolean`: kontroluje, či by mal mať človek možnosť opätovne podať žiadosť aj po odhalení riešenia). Default: `false`.
 * __nTries__ | `number`: po koľkých pokusoch sa má poskytnúť spätná väzba (ak je `provideFeedback` `true`). Default: `1`.

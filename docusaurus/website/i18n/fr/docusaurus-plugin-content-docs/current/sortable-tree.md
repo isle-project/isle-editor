@@ -8,9 +8,7 @@ Une fine enveloppe autour de [react-sortable-tree] (https://www.npmjs.com/packag
 
 ## Options
 
-* __treeData__ | `array<object> (required)`: tableau d'objets avec "title" (étiquette primaire pour le nœud),
-sous-titre" (étiquette secondaire), "étendu" (affiche les enfants du nœud si la valeur "true" est définie), et/ou
-enfants" (tableau de nœuds enfants appartenant au nœud respectif). Default: `none`.
+* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
 * __title__ | `(string|node)`: titre de l'en-tête. Default: `none`.
 
 

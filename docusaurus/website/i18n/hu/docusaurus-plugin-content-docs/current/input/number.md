@@ -16,6 +16,7 @@ Számbeviteli komponens. Használható egy ISLE műszerfal részeként vagy ön�
 * __max__ | `number`: a beilleszthető maximális értéket jelző szám. Default: `null`.
 * __min__ | `number`: a beilleszthető legkisebb lehetséges értéket jelző szám. Default: `null`.
 * __numbersOnly__ | `boolean`: szabályozza, hogy csak számok legyenek elfogadva. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: callback függvény, amelyet egy blur módszer használatakor kell meghívni. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback függvény, amelyet a szám bevitelekor kell meghívni.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: bármely billentyű lenyomásakor meghívandó callback függvény. Default: `onKeyDown() {}`.

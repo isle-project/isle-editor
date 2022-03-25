@@ -19,8 +19,7 @@ En komponent som visar data i en tabellform. Byggd på [react-table] (https://re
 * __undeletableVars__ | `array<string>`: en matris med variabelnamn för kolumner som inte får tas bort. Default: `[]`.
 * __filterable__ | `boolean`: kontrollerar om kolumnerna kan filtreras. Default: `true`.
 * __editable__ | `array`: Matris med namn på kolumner som ska kunna redigeras.. Default: `[]`.
-* __getTrProps__ | `function`: callback-funktion som utförs för varje rad för att anpassa dess stil (överlämnades tabellstatus, radinformation,
-kolumn och tabellinstansen). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funktion som anropas när en kolumn har dragits till en annan position. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funktion som anropas med namnet på en kolumn när man klickar på respektive raderingsknapp för en kolumn.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funktion som anropas när en kolumn har bytt namn (anropas med det gamla namnet som första och det nya namnet som andra argument). Default: `onColumnNameChange() {}`.

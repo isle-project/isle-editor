@@ -19,8 +19,7 @@ sidebar_label: Data Table
 * __undeletableVars__ | `array<string>`: 削除されないカラムの変数名の配列. Default: `[]`.
 * __filterable__ | `boolean`: カラムがフィルタリング可能かどうかを制御します。. Default: `true`.
 * __editable__ | `array`: 編集可能なカラム名の配列. Default: `[]`.
-* __getTrProps__ | `function`: コールバック関数は各行に対して実行され、スタイルをカスタマイズします (テーブルの状態、行情報が渡されます)。
-カラム、およびテーブルのインスタンス). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: カラムが別の位置にドラッグされたときに呼び出される関数. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: カラムのそれぞれの削除ボタンがクリックされたときに、そのカラムの名前で呼び出される関数. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: カラムの名前が変更されたときに呼び出される関数 (古い名前を第一引数、新しい名前を第二引数として呼び出されます). Default: `onColumnNameChange() {}`.

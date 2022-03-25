@@ -16,6 +16,7 @@ sidebar_label: Number Input
 * __max__ | `number`: 表示可插入的最大数值的数字。. Default: `null`.
 * __min__ | `number`: 表示可插入的最小值的数字。. Default: `null`.
 * __numbersOnly__ | `boolean`: 控制是否只接受数字. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: 当使用模糊方法时要调用的回调函数。. Default: `onBlur() {}`.
 * __onChange__ | `function`: 当数字输入发生变化时，将调用回调函数。. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: 当任何一个键被按下时，回调函数将被调用。. Default: `onKeyDown() {}`.

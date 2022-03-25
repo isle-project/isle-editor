@@ -25,6 +25,7 @@ sidebar_label: Range Question
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
 * __onChangeLower__ | `function`: обратный вызов, срабатывающий после изменения нижней границы пользователем. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: обратный вызов, срабатывающий после изменения пользователем верхней границы. Default: `onChangeUpper() {}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: обратный вызов, вызываемый при отправке ответа; имеет в качестве первого параметра `булеан`, указывающий, был ли ответ правильным (если применимо, `нулеан` в противном случае), а в качестве второго параметра - ответ, который был отправлен. Default: `onSubmit() {}`.
 
 

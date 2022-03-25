@@ -1739,6 +1739,11 @@
 				"defaultValue": true
 			},
 			{
+				"name": "placeholder",
+				"type": "string",
+				"defaultValue": "0"
+			},
+			{
 				"name": "onBlur",
 				"type": "function",
 				"description": "NumberInput-prop-onBlur",
@@ -3425,6 +3430,11 @@
 				"type": "string",
 				"description": "Link-prop-windowFeatures",
 				"defaultValue": null
+			},
+			{
+				"name": "openWindow",
+				"type": "boolean",
+				"defaultValue": false
 			},
 			{
 				"name": "className",
@@ -5339,6 +5349,12 @@
 				"type": "object",
 				"description": "FileQuestion-prop-style",
 				"defaultValue": {}
+			},
+			{
+				"name": "onChange",
+				"type": "function",
+				"description": "FileQuestion-prop-onChange",
+				"defaultValue": "function onChange() {}"
 			}
 		],
 		"description": "FileQuestion-description"
@@ -5656,6 +5672,12 @@
 				"defaultValue": {}
 			},
 			{
+				"name": "onChange",
+				"type": "function",
+				"description": "MatchListQuestion-prop-onChange",
+				"defaultValue": "function onChange() {}"
+			},
+			{
 				"name": "onSubmit",
 				"type": "function",
 				"description": "MatchListQuestion-prop-onSubmit",
@@ -5869,7 +5891,7 @@
 				"name": "defaultValue",
 				"type": "number",
 				"description": "NumberQuestion-prop-defaultValue",
-				"defaultValue": 0
+				"defaultValue": null
 			},
 			{
 				"name": "provideFeedback",
@@ -6244,6 +6266,12 @@
 				"defaultValue": "function onChangeUpper() {}"
 			},
 			{
+				"name": "onChange",
+				"type": "function",
+				"description": "RangeQuestion-prop-onChange",
+				"defaultValue": "function onChange() {}"
+			},
+			{
 				"name": "onSubmit",
 				"type": "function",
 				"description": "RangeQuestion-prop-onSubmit",
@@ -6361,6 +6389,12 @@
 				"type": "object",
 				"description": "SelectQuestionMatrix-prop-style",
 				"defaultValue": {}
+			},
+			{
+				"name": "onChange",
+				"type": "function",
+				"description": "SelectQuestionMatrix-prop-onChange",
+				"defaultValue": "function onChange() {}"
 			},
 			{
 				"name": "onSubmit",

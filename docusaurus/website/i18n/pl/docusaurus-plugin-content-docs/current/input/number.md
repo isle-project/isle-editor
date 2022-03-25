@@ -16,6 +16,7 @@ Element wejściowy numeru. Może być używany jako część deski rozdzielczej 
 * __max__ | `number`: numer wskazujący maksymalną wartość, która może zostać dodana. Default: `null`.
 * __min__ | `number`: numer wskazujący najmniejszą możliwą wartość, która może zostać dodana. Default: `null`.
 * __numbersOnly__ | `boolean`: kontroluje, czy akceptowane są tylko numery. Default: `true`.
+* __placeholder__ | `string`: undefined. Default: `'0'`.
 * __onBlur__ | `function`: funkcja wywołania zwrotnego w przypadku zastosowania metody rozmycia. Default: `onBlur() {}`.
 * __onChange__ | `function`: funkcja wywołania zwrotnego, która jest wywoływana przy zmianie numeru wejściowego. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funkcja callback, którą można wywołać po naciśnięciu dowolnego klawisza. Default: `onKeyDown() {}`.

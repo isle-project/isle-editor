@@ -24,6 +24,7 @@ Komponent ISLE, ktorý zobrazuje otázku, v ktorej má žiak priradiť k sebe sp
 * __points__ | `number`: maximálny počet bodov udelených pri klasifikácii. Default: `10`.
 * __className__ | `string`: názov triedy. Default: `''`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
+* __onChange__ | `function`: undefined. Default: `onChange() {}`.
 * __onSubmit__ | `function`: spätné volanie vyvolané, keď študenti odošlú odpoveď. Default: `onSubmit() {}`.
 
 

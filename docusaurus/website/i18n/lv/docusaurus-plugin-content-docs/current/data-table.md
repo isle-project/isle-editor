@@ -19,8 +19,7 @@ Komponents, kas attēlo datus tabulārajā displejā. Izstrādāts uz [react-tab
 * __undeletableVars__ | `array<string>`: to kolonnu mainīgo nosaukumu masīvs, kuras nedrīkst dzēst.. Default: `[]`.
 * __filterable__ | `boolean`: kontrolē, vai kolonnas ir filtrējamas.. Default: `true`.
 * __editable__ | `array`: rediģējamo kolonnu nosaukumu masīvs. Default: `[]`.
-* __getTrProps__ | `function`: atsauces funkcija, kas tiek izpildīta katrai rindai, lai pielāgotu tās stilu (nodota tabulas stāvoklis, rindas informācija,
-sleja un tabulas instance). Default: `none`.
+* __getTrProps__ | `function`: undefined. Default: `none`.
 * __onColumnDrag__ | `function`: funkcija, kas tiek izsaukta, kad sleja ir pārvilkta uz citu pozīciju.. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkcija, kas tiek izsaukta ar kolonnas nosaukumu, kad ir noklikšķināts uz attiecīgās kolonnas dzēšanas pogas.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkcija, kas tiek izsaukta, ja kolonnas nosaukums ir mainīts (tiek izsaukta ar veco nosaukumu kā pirmo un jauno nosaukumu kā otro argumentu).. Default: `onColumnNameChange() {}`.
