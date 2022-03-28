@@ -166,6 +166,7 @@ class Session {
 				this.handleLogin( JWT, true );
 			} else {
 				JWT = {};
+				if ( this.server && !this._offline ) {
 				axios.get( this.server+'/saml-xmw/session' )
 					.then( ( response ) => {
 						JWT = response.data || {};
@@ -174,9 +175,10 @@ class Session {
 					.catch( ( error ) => {
 						debug( 'Could not get SAML token: %o', error );
 					});
-				// Connect via WebSockets to other users as an anonymous user...
-				if ( this.server && !this._offline && !this.socket ) {
-					this.socketConnect();
+					// Connect via WebSockets to other users as an anonymous user...
+					if ( !this.socket ) {
+						this.socketConnect();
+					}
 				}
 			}
 		}
