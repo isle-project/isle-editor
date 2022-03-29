@@ -141,7 +141,7 @@ import 'react-app-polyfill/ie11';
 // MODULES //
 
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { json, csv } from 'd3';
 import { extname } from 'path';
 import url from 'url';
@@ -257,11 +257,13 @@ link.href = './css/custom.css';
 link.rel = 'stylesheet';
 document.head.appendChild( link );
 
-render(
+const container = document.getElementById( 'App' );
+const root = createRoot( container );
+
+root.render(
 	<Provider session={session} >
 		<LessonWrapper />
-	</Provider>,
-	document.getElementById( 'App' )
+	</Provider>
 );`;
 
 /**
@@ -462,6 +464,14 @@ function bundleLesson( options ) {
 				'csv-stringify': resolve(
 					basePath,
 					'./node_modules/csv-stringify/lib/browser/index.js'
+				),
+				'react/jsx-dev-runtime.js': resolve(
+					basePath,
+					'./node_modules', 'react', 'jsx-dev-runtime.js'
+				),
+				'react/jsx-runtime.js': resolve(
+					basePath,
+					'./node_modules', 'react', 'jsx-runtime.js'
 				)
 			},
 			fallback: {

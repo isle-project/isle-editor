@@ -27,7 +27,7 @@
 // MODULES //
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import PopUp from './popup.js';
 import generateUID from '@isle-project/utils/uid/incremental';
 import './popup.css';
@@ -36,7 +36,7 @@ import './popup.css';
 // VARIABLES //
 
 const uid = generateUID( 'create-popup' );
-
+let root;
 
 // EXPORTS //
 
@@ -128,7 +128,6 @@ function renderPopUp(
 ) {
 	let fullscreenOffset = 0;
 	const wrapper = document.getElementsByClassName( 'editorview-wrapper fullscreen' );
-	global.DOM = wrapper;
 	if ( wrapper[ 0 ] ) {
 		fullscreenOffset += 1000;
 	}
@@ -142,7 +141,8 @@ function renderPopUp(
 				viewProps={viewProps}
 			/>
 		);
-		ReactDOM.render(component, rootNode);
+		root = createRoot( rootNode );
+		root.render( component );
 	}
 	if ( modalsCount > 0 ) {
 		showModalMask();
@@ -154,7 +154,7 @@ function renderPopUp(
 function unrenderPopUp(rootId) {
 	const rootNode = getRootElement(rootId, false);
 	if ( rootNode ) {
-		ReactDOM.unmountComponentAtNode(rootNode);
+		root.unmount();
 		if ( rootNode.parentElement ) {
 			rootNode.parentElement.removeChild( rootNode );
 		}

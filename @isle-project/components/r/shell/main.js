@@ -383,7 +383,7 @@ class RShell extends Component {
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
-		if ( isFunction( this.editor.destroy ) ) {
+		if ( this.editor && isFunction( this.editor.destroy ) ) {
 			this.editor.destroy();
 		}
 		this.editor = null;

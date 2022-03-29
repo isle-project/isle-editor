@@ -1,7 +1,7 @@
 // MODULES //
 
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
 import 'v8-compile-cache';
 import App from './app.js';
@@ -14,10 +14,12 @@ if ( localStorage && process.env.NODE_ENV === 'development' ) { // eslint-disabl
 	localStorage.debug = process.env.DEBUG; // eslint-disable-line no-process-env
 }
 
-render(
+const container = document.getElementById( 'root' );
+const root = createRoot( container );
+
+root.render(
 	<I18nextProvider i18n={i18n} >
 		<App />
-	</I18nextProvider>,
-	document.getElementById( 'root' )
+	</I18nextProvider>
 );
 

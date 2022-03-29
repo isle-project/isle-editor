@@ -29,7 +29,7 @@
 // MODULES //
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import SelectionObserver from './selection_observer.js';
 
 
@@ -61,7 +61,7 @@ function onMutation(mutations, observer) {
 		const el = view.dom;
 		if (!root.contains(el)) {
 			mountedViews.delete(el);
-			ReactDOM.unmountComponentAtNode(el);
+			view.root.unmount();
 		}
 	}
 
@@ -202,8 +202,8 @@ class CustomNodeView {
 			this.props.selected = false;
 			this.props.focused = false;
 		}
-
-		ReactDOM.render(this.renderReactComponent(), this.dom);
+		this.root = createRoot( this.dom );
+		this.root.render( this.renderReactComponent() );
 	}
 }
 

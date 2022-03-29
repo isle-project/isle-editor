@@ -1,7 +1,6 @@
 // MODULES //
 
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import Draggable from 'react-draggable';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -67,7 +66,6 @@ const createScope = ( session ) => {
 	scope.session = session;
 	scope.React = React;
 	scope.Component = Component;
-	scope.render = render;
 	return scope;
 };
 
