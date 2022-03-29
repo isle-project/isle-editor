@@ -241,7 +241,7 @@ class VideoLecture extends Component {
 						</Alert> : null
 					}
 					{steps}
-					{ this.props.instructorView ? <Gate owner banner={null} >
+					{ this.props.instructorView ? <Gate owner banner={null} showOwnerInPresentationMode={false} >
 						<div className="d-grid gap-2" >
 							<Button
 								className="video-lecture-instructor-button"

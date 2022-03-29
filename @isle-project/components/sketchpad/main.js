@@ -2226,7 +2226,7 @@ class Sketchpad extends Component {
 		if ( this.props.dynamicallyHideButtons && this.state.canvasWidth < 600 ) {
 			return ( <ButtonGroup size="sm" className="sketch-pages" >
 				<Button variant="light" onClick={this.toggleNavigationModal}>{currentPage+1}/{this.state.noPages}</Button>
-				<Gate owner banner={null} >
+				<Gate owner banner={null} showOwnerInPresentationMode={false} >
 					<TooltipButton tooltip={t('insert-page')} onClick={() => {
 						const idx = this.state.currentPage + 1;
 						this.insertPage( idx );
@@ -2240,7 +2240,7 @@ class Sketchpad extends Component {
 			<TooltipButton tooltip={t('goto-previous')} onClick={this.previousPage} glyph="backward" size="sm" />
 			<TooltipButton tooltip={t('goto-next')} onClick={this.nextPage} glyph="forward" size="sm" />
 			<TooltipButton tooltip={t('goto-last')} onClick={this.lastPage} glyph="fast-forward" size="sm" />
-			<Gate owner banner={null} >
+			<Gate owner banner={null} showOwnerInPresentationMode={false} >
 				<TooltipButton tooltip={t('insert-page')} onClick={() => {
 					const idx = this.state.currentPage + 1;
 					this.insertPage( idx );
@@ -2528,7 +2528,7 @@ class Sketchpad extends Component {
 		const { t } = this.props;
 		return (
 			<Fragment>
-				<Gate owner banner={null} >
+				<Gate owner banner={null} showOwnerInPresentationMode={false} >
 					<ButtonGroup size="sm" className="sketch-button-group" >
 						<TooltipButton size="sm" tooltip={this.state.transmitOwner ? t('disable-transmissions') : t('enable-transmissions')} variant={this.state.transmitOwner ? 'success' : 'light'} onClick={this.toggleTransmit} glyph="bullhorn" />
 						<OverlayTrigger trigger="click" placement="bottom" rootClose overlay={popover}>

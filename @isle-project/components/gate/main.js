@@ -293,7 +293,7 @@ Gate.defaultProps = {
 	until: null,
 	banner: void 0,
 	disabled: false,
-	showOwnerInPresentationMode: false,
+	showOwnerInPresentationMode: true,
 	check: null
 };
 

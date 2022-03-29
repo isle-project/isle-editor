@@ -165,7 +165,7 @@ class ChatButton extends Component {
 			</Tooltip>;
 		}
 		return (
-			<Gate user banner={null} >
+			<Gate user banner={null} showOwnerInPresentationMode={false} >
 				{button}
 			</Gate>
 		);

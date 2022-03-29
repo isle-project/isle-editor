@@ -30,7 +30,7 @@ class FullscreenButton extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Gate banner={null} {...this.props} >
+				<Gate banner={null} showOwnerInPresentationMode={false} {...this.props} >
 					<Tooltip
 						id="fullscreen_tooltip"
 						placement="bottom"

@@ -581,7 +581,7 @@ class StatusBar extends Component {
 					}
 				</div>
 				<Suspense fallback={null} >
-					<Gate owner banner={null} >
+					<Gate owner banner={null} showOwnerInPresentationMode={false} >
 						<InstructorView />
 					</Gate>
 				</Suspense>

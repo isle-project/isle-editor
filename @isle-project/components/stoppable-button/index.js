@@ -65,7 +65,7 @@ const StoppableButton = ({ children, disabled, id, size, variant, onClick, onPau
 				onClick={onClick}
 				disabled={disabled || paused}
 			>{children}</Button>
-			<Gate owner banner={null} >
+			<Gate owner banner={null} showOwnerInPresentationMode={false} >
 				<Button
 					size={size}
 					variant={paused ? 'warning' : 'secondary'}

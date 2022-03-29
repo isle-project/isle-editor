@@ -139,7 +139,7 @@ class CustomDeck extends Component {
 			});
 		}
 		return ( <Fragment>
-			<Gate owner banner={null} >
+			<Gate owner banner={null} showOwnerInPresentationMode={false} >
 				<Tooltip tooltip={t('toggle-slide-presenter-mode')} placement="right" >
 					<div
 						tabIndex={0} role="button"
