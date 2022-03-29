@@ -24,7 +24,7 @@ An ISLE component that renders a question in which the learner has to match elem
 * __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback invoked when students changes an answer. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when students submits an answer. Default: `onSubmit() {}`.
 
 

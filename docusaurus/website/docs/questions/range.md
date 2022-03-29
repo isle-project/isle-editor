@@ -25,7 +25,7 @@ A range question component that asks students to supply a lower and upper end po
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 * __onChangeLower__ | `function`: callback triggered after the lower bound is changed by the user. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback triggered after the upper bound is changed by the user. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback triggered after a bound is changed by the user (with lower and upper bound as arguments). Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter. Default: `onSubmit() {}`.
 
 

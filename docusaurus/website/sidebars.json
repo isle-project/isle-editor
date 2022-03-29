@@ -53,6 +53,7 @@
           ]}
         ],
         "Question Components": [
+          "questions/file-question",
           "questions/free-text-question",
           "questions/image-question",
           "questions/match-list-question",

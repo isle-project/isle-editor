@@ -26,7 +26,7 @@ A question with an answer consisting of multiple select boxes.
 * __panelProps__ | `object`: additional properties to be passed to the outer <Panel /> component. Default: `{}`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback function invoked upon changing the answers. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback function invoked upon submission with the answers as a first and a boolean indicating correctness as second parameter. Default: `onSubmit() {}`.
 
 
