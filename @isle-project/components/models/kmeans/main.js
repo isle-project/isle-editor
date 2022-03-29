@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import kmeans from 'ml-kmeans';
 import Alert from 'react-bootstrap/Alert';
+import Plotly from '@isle-project/components/plotly';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import Table from '@isle-project/components/table';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import { restyle } from 'plotly.js';
 
 
 // FUNCTIONS //
@@ -89,12 +91,18 @@ const fitModel = ({ K, variables, data, initialization }) => {
 		for ( let i = 0; i < missingIds.length; i++ ) {
 			result.clusters.splice( missingIds[ i ], 0, null );
 		}
+		let withinGroupSS = 0;
+		result.centroids.forEach( ( centroid ) => {
+			withinGroupSS += centroid.error * centroid.size;
+		});
+		withinGroupSS /= ( n - 1 );
 		result.clusters = result.clusters.map( x => {
 			if ( x === null ) {
 				return null;
 			}
 			return `Cluster ${x+1}`; // eslint-disable-line i18next/no-literal-string
 		});
+		result.withinGroupSS = withinGroupSS;
 		return result;
 	} catch ( _ ) {
 		return null;
@@ -111,6 +119,7 @@ const fitModel = ({ K, variables, data, initialization }) => {
 * @property {Array<string>} variables - names of variables used for clustering
 * @property {string} initialization - initialization method (`kmeans++`, `random`, or `mostDistant`)
 * @property {number} K - number of clusters
+* @property {boolean} elbowPlot - boolean indicating whether to include the elbow plot
 * @property {Function} onResult - callback invoked with model object
 */
 class KMeans extends Component {
@@ -118,6 +127,17 @@ class KMeans extends Component {
 		super( props );
 		const { K, variables, data, initialization } = props;
 		const result = fitModel({ K, variables, data, initialization });
+		if ( props.elbowPlot ) {
+			result.wcss = {
+				k: [],
+				ss: []
+			};
+			for ( let k = 1; k <= K + 3; k++ ) {
+				const res = fitModel({ K: k, variables, data, initialization });
+				result.wcss.k.push( k );
+				result.wcss.ss.push( res.withinGroupSS );
+			}
+		}
 		this.state = {
 			result,
 			...props
@@ -136,6 +156,17 @@ class KMeans extends Component {
 		) {
 			const { K, variables, data, initialization } = nextProps;
 			const result = fitModel({ K, variables, data, initialization });
+			if ( nextProps.elbowPlot ) {
+				result.wcss = {
+					k: [],
+					ss: []
+				};
+				for ( let k = 1; k <= K + 3; k++ ) {
+					const res = fitModel({ K: k, variables, data, initialization });
+					result.wcss.k.push( k );
+					result.wcss.ss.push( res.withinGroupSS );
+				}
+			}
 			nextProps.onResult( result );
 			const newState = {
 				result,
@@ -157,6 +188,19 @@ class KMeans extends Component {
 				<span className="title" >{t('kmeans-summary')}</span>
 				<p>{result.converged ? t('algorithm-converged', { n: result.iterations }) : t('algorithm-not-converged', { n: result.iterations })}</p>
 				{summaryTable( variables, result.centroids, t )}
+				{result.wcss ? <Plotly editable data={[
+					{
+						x: result.wcss.k,
+						y: result.wcss.ss
+					}
+				]} layout={{
+					xaxis: {
+						title: t('number-of-clusters')
+					},
+					yaxis: {
+						title: t('within-group-sum-of-squares')
+					}
+				}} /> : null }
 			</div>
 		);
 	}

@@ -36,6 +36,7 @@
 	"multiple-regression-title": "Regression Summary for Response {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Name of Predictor",
+	"number-of-clusters": "Number of Clusters",
 	"no": "no",
 	"obs": "obs",
 	"p-value": "p-value",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Predictions and residuals will be attached to data table",
 	"use-model-to-predict-tooltip-logistic": "Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table",
 	"variable": "Variable",
+	"within-group-sum-of-squares": "Within-group sum of squares",
 	"yes": "yes"
 }
