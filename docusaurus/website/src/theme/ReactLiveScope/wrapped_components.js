@@ -35,6 +35,7 @@ import DraggableList from '@isle-project/components/draggable-list';
 import Expire from '@isle-project/components/expire';
 import FeedbackButtons from '@isle-project/components/feedback';
 import ImageQuestion from '@isle-project/components/questions/image';
+import FileQuestion from '@isle-project/components/questions/file';
 import FlippableCard from '@isle-project/components/flippable-card';
 import FreeTextSurvey from '@isle-project/components/free-text-survey';
 import FreeTextQuestion from '@isle-project/components/questions/free-text';
@@ -222,6 +223,7 @@ const Components = {
 	Expire,
 	FeedbackButtons,
 	ImageQuestion,
+	FileQuestion,
 	FlippableCard,
 	FreeTextSurvey,
 	FreeTextQuestion,

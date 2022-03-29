@@ -251,6 +251,7 @@
 	"FeedbackButtons-prop-vertical": "buttons are displayed vertically if set to `true`",
 	"FileQuestion-description": "A question that asks the user to upload a file.",
 	"FileQuestion-prop-accept": "comma-separated list of [unique file identifiers](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) that are accepted by the component (e.g., 'image/*', '.pdf' or 'audio/*')",
+	"FileQuestion-prop-chat": "controls whether the element should have an integrated chat",
 	"FileQuestion-prop-className": "class name",
 	"FileQuestion-prop-feedback": "controls whether to display feedback buttons",
 	"FileQuestion-prop-hintPlacement": "placement of the hints (either `top`, `left`, `right`, or `bottom`)",

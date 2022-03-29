@@ -37,6 +37,7 @@ const debug = logger( 'isle:file-upload' );
 * @property {Array<string>} hints - hints providing guidance on how to answer the question
 * @property {string} hintPlacement - placement of the hints (either `top`, `left`, `right`, or `bottom`)
 * @property {boolean} feedback - controls whether to display feedback buttons
+* @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {string} accept - comma-separated list of [unique file identifiers](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) that are accepted by the component (e.g., 'image/*', '.pdf' or 'audio/*')
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading

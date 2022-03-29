@@ -5318,6 +5318,7 @@
 			{
 				"name": "chat",
 				"type": "boolean",
+				"description": "FileQuestion-prop-chat",
 				"defaultValue": false
 			},
 			{
