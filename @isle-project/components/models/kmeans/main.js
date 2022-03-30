@@ -10,7 +10,7 @@ import hasOwnProp from '@stdlib/assert/has-own-property';
 import Table from '@isle-project/components/table';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
-import { restyle } from 'plotly.js';
+import roundn from '@stdlib/math/base/special/roundn';
 
 
 // FUNCTIONS //
@@ -47,6 +47,10 @@ const summaryTable = ( variables, centroids, t ) => {
 				<tr>
 					<th>{t('size')}</th>
 					{centroids.map( ( x, i ) => <th key={i} >{x.size}</th>)}
+				</tr>
+				<tr>
+					<th>{t('error')}</th>
+					{centroids.map( ( x, i ) => <th key={i} >{roundn( x.error, -3 )}</th>)}
 				</tr>
 			</tbody>
 		</Table>
