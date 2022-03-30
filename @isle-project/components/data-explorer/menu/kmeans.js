@@ -19,12 +19,13 @@ import QuestionButton from '../question_button.js';
 
 const KMeansMenu = ( props ) => {
 	const { quantitative, t } = props;
-	const compute = ( variables, K, attach, initialization ) => {
+	const compute = ( variables, K, attach, initialization, elbowPlot ) => {
 		const output = <KMeans
 			data={props.data}
 			variables={variables}
 			K={K}
 			initialization={initialization}
+			elbowPlot={elbowPlot}
 			onResult={( result ) => {
 				if ( attach ) {
 					const newData = copy( props.data, 1 );
@@ -72,6 +73,10 @@ const KMeansMenu = ( props ) => {
 				legend={t('initialization-method')}
 				options={[ 'kmeans++', 'random', 'mostDistant' ]}
 				defaultValue="kmeans++"
+			/>
+			<CheckboxInput
+				legend={t('add-elbow-plot')}
+				defaultValue={false}
 			/>
 		</Dashboard>
 	);
