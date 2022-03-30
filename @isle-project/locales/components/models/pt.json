@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes para Resposta {{y}} (id modelo: bayes{{counter}} )",
 	"name-of-predictor": "Nome do Previsor",
 	"no": "não",
+	"number-of-clusters": "Número de Aglomerados",
 	"obs": "obs",
 	"p-value": "p-valor",
 	"p-value-coefficient-zero": "p-valor para a hipótese de que o coeficiente é zero",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "As previsões e os resíduos serão anexados à tabela de dados",
 	"use-model-to-predict-tooltip-logistic": "Probabilidades, resíduos e categorias previstas (usando o limiar de probabilidade escolhido para ser excedido para prever um sucesso) serão anexados à tabela de dados",
 	"variable": "Variável",
+	"within-group-sum-of-squares": "Soma dos quadrados dentro do grupo",
 	"yes": "sim"
 }

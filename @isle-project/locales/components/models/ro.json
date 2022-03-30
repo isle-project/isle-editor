@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes pentru răspuns {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Numele predictorului",
 	"no": "nu",
+	"number-of-clusters": "Numărul de clustere",
 	"obs": "obs",
 	"p-value": "p-valoare",
 	"p-value-coefficient-zero": "p-valoare pentru ipoteza că coeficientul este zero ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Predicțiile și reziduurile vor fi atașate la tabelul de date.",
 	"use-model-to-predict-tooltip-logistic": "Probabilitățile, reziduurile și categoriile prezise (folosind pragul de probabilitate ales care trebuie depășit pentru a prezice un succes) vor fi atașate la tabelul de date.",
 	"variable": "Variabilă",
+	"within-group-sum-of-squares": "Suma pătratelor în cadrul grupului",
 	"yes": "da"
 }

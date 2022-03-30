@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes för svar {{y}} (modell id: bayes{{counter}} )",
 	"name-of-predictor": "Prediktorens namn",
 	"no": "ingen",
+	"number-of-clusters": "Antal kluster",
 	"obs": "obs",
 	"p-value": "p-värde",
 	"p-value-coefficient-zero": "p-värde för hypotesen att koefficienten är noll. ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Förutsägelser och residualer kommer att bifogas till datatabellen.",
 	"use-model-to-predict-tooltip-logistic": "Sannolikheter, residualer och förutspådda kategorier (med hjälp av den valda sannolikhetströskeln som ska överskridas för att förutsäga en framgång) kommer att bifogas till datatabellen.",
 	"variable": "Variabel",
+	"within-group-sum-of-squares": "Summa av kvadrater inom en grupp",
 	"yes": "ja"
 }

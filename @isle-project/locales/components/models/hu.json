@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "A prediktor neve",
 	"no": "nincs",
+	"number-of-clusters": "Klaszterek száma",
 	"obs": "obs",
 	"p-value": "p-érték",
 	"p-value-coefficient-zero": "p-érték arra a hipotézisre, hogy az együttható nulla ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Az előrejelzések és a maradékok az adattáblázathoz lesznek csatolva.",
 	"use-model-to-predict-tooltip-logistic": "A valószínűségek, a maradékok és a megjósolt kategóriák (a siker előrejelzéséhez a meghaladandó valószínűségi küszöbértéket használva) az adattáblázathoz lesznek csatolva.",
 	"variable": "Változó",
+	"within-group-sum-of-squares": "Csoporton belüli négyzetek összege",
 	"yes": "igen"
 }

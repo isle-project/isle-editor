@@ -3,6 +3,7 @@
 	"2nd-stdev": "2e écart type",
 	"action-required": "Action requise",
 	"actions": "actions",
+	"add-elbow-plot": "Ajout d'un graphique en coude pour choisir le nombre de clusters",
 	"addition": "Ajout",
 	"aggregation-mode": "Mode d'agrégation",
 	"alternate-color-scheme": "Système de couleurs alternatives",

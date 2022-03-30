@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes für Antwort {{y}} (Modell-ID: bayes{{counter}} )",
 	"name-of-predictor": "Name des Prädiktors",
 	"no": "keine",
+	"number-of-clusters": "Anzahl von Clustern",
 	"obs": "obs",
 	"p-value": "p-Wert",
 	"p-value-coefficient-zero": "p-Wert für die Hypothese, dass der Koeffizient Null ist",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Vorhersagen und Residuen werden an die Datentabelle angehängt",
 	"use-model-to-predict-tooltip-logistic": "Wahrscheinlichkeiten, Residuen und vorhergesagte Kategorien (unter Verwendung der gewählten Wahrscheinlichkeitsschwelle, die für die Vorhersage eines Erfolgs überschritten werden soll) werden der Datentabelle beigefügt",
 	"variable": "Variabel",
+	"within-group-sum-of-squares": "Summe der Quadrate innerhalb der Gruppe",
 	"yes": "ja"
 }
