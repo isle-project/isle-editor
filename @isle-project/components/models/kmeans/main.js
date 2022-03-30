@@ -152,7 +152,8 @@ class KMeans extends Component {
 			nextProps.data !== prevState.data ||
 			nextProps.variables !== prevState.variables ||
 			nextProps.K !== prevState.K ||
-			nextProps.initialization !== prevState.initialization
+			nextProps.initialization !== prevState.initialization ||
+			nextProps.elbowPlot !== prevState.elbowPlot
 		) {
 			const { K, variables, data, initialization } = nextProps;
 			const result = fitModel({ K, variables, data, initialization });
