@@ -91,7 +91,11 @@ const SelectInput = ( props ) => {
 		if ( bind ) {
 			const globalValue = global.lesson.state[ bind ];
 			if ( globalValue !== value ) {
-				setValue( globalValue );
+				setValue(
+					globalValue ?
+					transformMultiValue( globalValue ) :
+					transformValue( globalValue )
+				);
 			}
 		}
 	}, [ bind, value ]);
