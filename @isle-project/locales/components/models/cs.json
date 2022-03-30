@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naivní Bayes pro odpověď {{y}} (id modelu: bayes{{counter}} )",
 	"name-of-predictor": "Název prediktoru",
 	"no": "ne",
+	"number-of-clusters": "Počet klastrů",
 	"obs": "obs",
 	"p-value": "p-hodnota",
 	"p-value-coefficient-zero": "p-hodnota pro hypotézu, že koeficient je nulový ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Předpovědi a rezidua budou připojeny k datové tabulce.",
 	"use-model-to-predict-tooltip-logistic": "Pravděpodobnosti, rezidua a předpovězené kategorie (s použitím zvolené prahové hodnoty pravděpodobnosti, která má být překročena pro předpověď úspěchu) budou připojeny k datové tabulce.",
 	"variable": "Variabilní",
+	"within-group-sum-of-squares": "Součet čtverců v rámci skupiny",
 	"yes": "ano"
 }

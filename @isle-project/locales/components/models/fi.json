@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Ennustajan nimi",
 	"no": "ei",
+	"number-of-clusters": "Klusterien lukumäärä",
 	"obs": "obs",
 	"p-value": "p-arvo",
 	"p-value-coefficient-zero": "p-arvo hypoteesille, jonka mukaan kerroin on nolla. ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Ennusteet ja jäännökset liitetään datataulukkoon.",
 	"use-model-to-predict-tooltip-logistic": "Todennäköisyydet, jäännökset ja ennustetut luokat (käyttäen valittua todennäköisyyskynnystä, joka on ylitettävä onnistumisen ennustamiseksi) liitetään datataulukkoon.",
 	"variable": "Muuttuva",
+	"within-group-sum-of-squares": "Ryhmän sisäinen neliösumma",
 	"yes": "kyllä"
 }

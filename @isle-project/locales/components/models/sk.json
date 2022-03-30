@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes pre odpoveď {{y}} (id modelu: bayes{{counter}} )",
 	"name-of-predictor": "Názov prediktora",
 	"no": "nie",
+	"number-of-clusters": "Počet klastrov",
 	"obs": "obs",
 	"p-value": "p-hodnota",
 	"p-value-coefficient-zero": "p-hodnota pre hypotézu, že koeficient je nulový ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Predpovede a rezíduá budú pripojené k tabuľke údajov",
 	"use-model-to-predict-tooltip-logistic": "Pravdepodobnosti, rezíduá a predpovedané kategórie (s použitím zvolenej hranice pravdepodobnosti, ktorá má byť prekročená pre predpovedanie úspechu) budú pripojené k tabuľke údajov",
 	"variable": "Variabilné",
+	"within-group-sum-of-squares": "Súčet štvorcov v rámci skupiny",
 	"yes": "áno"
 }

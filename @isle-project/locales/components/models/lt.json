@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "\"Naive Bayes\" atsakymui {{y}} (modelio id: bayes{{counter}} )",
 	"name-of-predictor": "Prognozuojančio veiksnio pavadinimas",
 	"no": "ne",
+	"number-of-clusters": "Klasterių skaičius",
 	"obs": "obs",
 	"p-value": "p-vertė",
 	"p-value-coefficient-zero": "p-vertė hipotezei, kad koeficientas lygus nuliui ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Prognozės ir liekanos bus pridėtos prie duomenų lentelės",
 	"use-model-to-predict-tooltip-logistic": "Tikimybės, liekanos ir prognozuojamos kategorijos (naudojant pasirinktą tikimybės ribą, kurią reikia viršyti, kad būtų galima prognozuoti sėkmę) bus pridėtos prie duomenų lentelės.",
 	"variable": "Kintamas",
+	"within-group-sum-of-squares": "Grupės viduje kvadratų suma",
 	"yes": "taip"
 }

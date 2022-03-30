@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}}。(model id: bayes{{counter}} )",
 	"name-of-predictor": "预测器名称",
 	"no": "没有",
+	"number-of-clusters": "集群的数量",
 	"obs": "痴迷",
 	"p-value": "p值",
 	"p-value-coefficient-zero": "系数为零的假设的p值。",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "预测和残差将附在数据表中。",
 	"use-model-to-predict-tooltip-logistic": "概率、残差和预测类别（使用所选的预测成功的概率阈值）将附在数据表中。",
 	"variable": "可变",
+	"within-group-sum-of-squares": "组内方差之和",
 	"yes": "是的"
 }

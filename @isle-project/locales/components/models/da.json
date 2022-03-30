@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Navn på prædiktor",
 	"no": "ingen",
+	"number-of-clusters": "Antal klynger",
 	"obs": "obs",
 	"p-value": "p-værdi",
 	"p-value-coefficient-zero": "p-værdi for hypotesen om, at koefficienten er nul ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Forudsigelser og residualer vil blive knyttet til datatabellen",
 	"use-model-to-predict-tooltip-logistic": "Sandsynligheder, residualer og forudsagte kategorier (ved hjælp af den valgte sandsynlighedstærskel, der skal overskrides for at forudsige en succes) vil blive knyttet til datatabellen.",
 	"variable": "Variabel",
+	"within-group-sum-of-squares": "Summen af kvadrater inden for en gruppe",
 	"yes": "ja"
 }

@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes voor de reactie {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Naam van de voorspeller",
 	"no": "geen",
+	"number-of-clusters": "Aantal clusters",
 	"obs": "obs",
 	"p-value": "p-waarde",
 	"p-value-coefficient-zero": "p-waarde voor de hypothese dat de coëfficiënt nul is",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Voorspellingen en restmateriaal worden bij de gegevenstabel gevoegd.",
 	"use-model-to-predict-tooltip-logistic": "Waarschijnlijkheden, residuen en voorspelde categorieën (met behulp van de gekozen waarschijnlijkheidsdrempel die moet worden overschreden voor het voorspellen van een succes) zullen aan de gegevenstabel worden toegevoegd.",
 	"variable": "Variabele",
+	"within-group-sum-of-squares": "Som van kwadraten binnen groepen",
 	"yes": "ja"
 }

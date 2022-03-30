@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes atbildes reakcijai {{y}} (modeļa id: bayes{{counter}} )",
 	"name-of-predictor": "Prognozētāja nosaukums",
 	"no": "nav",
+	"number-of-clusters": "Klasteru skaits",
 	"obs": "obs",
 	"p-value": "p-vērtība",
 	"p-value-coefficient-zero": "p-vērtība hipotēzei, ka koeficients ir nulle ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Prognozes un atlikumi tiks pievienoti datu tabulai.",
 	"use-model-to-predict-tooltip-logistic": "Datu tabulai tiks pievienotas varbūtības, atlikumi un prognozētās kategorijas (izmantojot izvēlēto varbūtības slieksni, kas jāpārsniedz, lai prognozētu veiksmi).",
 	"variable": "Mainīgs",
+	"within-group-sum-of-squares": "Kvadrātu summa grupas iekšienē",
 	"yes": "jā"
 }

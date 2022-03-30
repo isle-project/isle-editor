@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naiwniacy Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Nazwa Predictor",
 	"no": "nie",
+	"number-of-clusters": "Liczba klastrów",
 	"obs": "obs",
 	"p-value": "wartość p- wartość",
 	"p-value-coefficient-zero": "p- wartość dla hipotezy, że współczynnik wynosi zero",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Prognozy i resztki zostaną dołączone do tabeli danych",
 	"use-model-to-predict-tooltip-logistic": "Prawdopodobieństwa, resztki i kategorie przewidywane (przy użyciu wybranego progu prawdopodobieństwa, który zostanie przekroczony w celu przewidzenia sukcesu) zostaną dołączone do tabeli danych.",
 	"variable": "Zmienna",
+	"within-group-sum-of-squares": "Wewnątrzgrupowa suma kwadratów",
 	"yes": "tak"
 }

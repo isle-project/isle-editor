@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "応答のためのナイーブベイズ {{y}}の場合(モデルID: bayes{{counter}} )",
 	"name-of-predictor": "予測変数名",
 	"no": "否",
+	"number-of-clusters": "クラスター数",
 	"obs": "幽体離脱",
 	"p-value": "ピーち",
 	"p-value-coefficient-zero": "係数がゼロであるという仮説のp値",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "予測値と残差はデータ表に添付されます。",
 	"use-model-to-predict-tooltip-logistic": "確率、残差、および予測カテゴリ（成功を予測するために選択された確率閾値を使用）は、データテーブルに添付されます。",
 	"variable": "変数",
+	"within-group-sum-of-squares": "グループ内二乗和",
 	"yes": "嗟乎"
 }

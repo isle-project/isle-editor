@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",
 	"name-of-predictor": "Ennustaja nimi",
 	"no": "ei",
+	"number-of-clusters": "Klastrite arv",
 	"obs": "obs",
 	"p-value": "p-väärtus",
 	"p-value-coefficient-zero": "p-väärtus hüpoteesile, et koefitsient on null. ",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Prognoosid ja jäägid lisatakse andmetabelisse.",
 	"use-model-to-predict-tooltip-logistic": "Andmetabelile lisatakse tõenäosused, jäägid ja prognoositavad kategooriad (kasutades valitud tõenäosuse künnist, mida tuleb ületada edu prognoosimiseks).",
 	"variable": "Muutuv",
+	"within-group-sum-of-squares": "Rühmasisene ruutude summa",
 	"yes": "jah"
 }

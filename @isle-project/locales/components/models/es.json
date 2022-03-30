@@ -37,6 +37,7 @@
 	"naive-bayes-for-response": "Bayes ingenuo para la respuesta (modelo id: bayes{{counter}} )",
 	"name-of-predictor": "Nombre del Predictor",
 	"no": "no",
+	"number-of-clusters": "Número de grupos",
 	"obs": "obs",
 	"p-value": "Valor p",
 	"p-value-coefficient-zero": "Valor p para la hipótesis de que el coeficiente es cero",
@@ -65,5 +66,6 @@
 	"use-model-to-predict-tooltip": "Las predicciones y los residuos se adjuntarán al cuadro de datos",
 	"use-model-to-predict-tooltip-logistic": "Las probabilidades, los residuos y las categorías de predicción (utilizando el umbral de probabilidad elegido que se superará para predecir un éxito) se adjuntarán al cuadro de datos",
 	"variable": "Variable",
+	"within-group-sum-of-squares": "Suma de cuadrados dentro del grupo",
 	"yes": "sí"
 }
