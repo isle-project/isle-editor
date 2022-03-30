@@ -127,7 +127,7 @@ class KMeans extends Component {
 		super( props );
 		const { K, variables, data, initialization } = props;
 		const result = fitModel({ K, variables, data, initialization });
-		if ( props.elbowPlot ) {
+		if ( result && props.elbowPlot ) {
 			result.wcss = {
 				k: [],
 				ss: []
@@ -156,7 +156,7 @@ class KMeans extends Component {
 		) {
 			const { K, variables, data, initialization } = nextProps;
 			const result = fitModel({ K, variables, data, initialization });
-			if ( nextProps.elbowPlot ) {
+			if ( result && nextProps.elbowPlot ) {
 				result.wcss = {
 					k: [],
 					ss: []
