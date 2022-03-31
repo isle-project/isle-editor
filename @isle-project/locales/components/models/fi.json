@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Testitilasto hypoteesille, jonka mukaan kerroin on nolla. ",
 	"threshold": "Kynnysarvo",
 	"toggle-fullscreen": "Vaihda koko näytön näkymä",
+	"total-within-group-sum-of-squares": "Ryhmän sisäinen neliösumma yhteensä",
 	"use-model-to-predict": "Käytä tätä mallia ennustamaan tällä hetkellä valittua dataa",
 	"use-model-to-predict-tooltip": "Ennusteet ja jäännökset liitetään datataulukkoon.",
 	"use-model-to-predict-tooltip-logistic": "Todennäköisyydet, jäännökset ja ennustetut luokat (käyttäen valittua todennäköisyyskynnystä, joka on ylitettävä onnistumisen ennustamiseksi) liitetään datataulukkoon.",

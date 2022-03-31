@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Teststatistiek voor de hypothese dat de coëfficiënt nul is",
 	"threshold": "Drempelwaarde",
 	"toggle-fullscreen": "Schakelen tussen volledige schermweergave",
+	"total-within-group-sum-of-squares": "Totale som van kwadraten binnen groepen",
 	"use-model-to-predict": "Gebruik dit model om voorspellingen te doen voor de momenteel geselecteerde gegevens",
 	"use-model-to-predict-tooltip": "Voorspellingen en restmateriaal worden bij de gegevenstabel gevoegd.",
 	"use-model-to-predict-tooltip-logistic": "Waarschijnlijkheden, residuen en voorspelde categorieën (met behulp van de gekozen waarschijnlijkheidsdrempel die moet worden overschreden voor het voorspellen van een succes) zullen aan de gegevenstabel worden toegevoegd.",

@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Testa statistika hipotēzei, ka koeficients ir nulle ",
 	"threshold": "Slieksnis",
 	"toggle-fullscreen": "Pārslēgt pilnekrāna skatu",
+	"total-within-group-sum-of-squares": "Kopējā kvadrātu summa grupas iekšienē",
 	"use-model-to-predict": "Izmantojiet šo modeli, lai prognozētu pašlaik atlasītos datus.",
 	"use-model-to-predict-tooltip": "Prognozes un atlikumi tiks pievienoti datu tabulai.",
 	"use-model-to-predict-tooltip-logistic": "Datu tabulai tiks pievienotas varbūtības, atlikumi un prognozētās kategorijas (izmantojot izvēlēto varbūtības slieksni, kas jāpārsniedz, lai prognozētu veiksmi).",

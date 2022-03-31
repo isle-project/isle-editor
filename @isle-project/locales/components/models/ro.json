@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Statistica de test pentru ipoteza că coeficientul este zero ",
 	"threshold": "Prag",
 	"toggle-fullscreen": "Comutarea vizualizării pe ecran complet",
+	"total-within-group-sum-of-squares": "Suma totală a pătratelor în cadrul grupului",
 	"use-model-to-predict": "Utilizați acest model pentru a prezice pentru datele selectate în prezent",
 	"use-model-to-predict-tooltip": "Predicțiile și reziduurile vor fi atașate la tabelul de date.",
 	"use-model-to-predict-tooltip-logistic": "Probabilitățile, reziduurile și categoriile prezise (folosind pragul de probabilitate ales care trebuie depășit pentru a prezice un succes) vor fi atașate la tabelul de date.",

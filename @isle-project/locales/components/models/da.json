@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Teststatistik for hypotesen om, at koefficienten er nul ",
 	"threshold": "Tærskelværdi",
 	"toggle-fullscreen": "Skift mellem fuldskærmsvisning",
+	"total-within-group-sum-of-squares": "Samlet sum af kvadrater inden for gruppen",
 	"use-model-to-predict": "Brug denne model til at forudsige for de aktuelt valgte data",
 	"use-model-to-predict-tooltip": "Forudsigelser og residualer vil blive knyttet til datatabellen",
 	"use-model-to-predict-tooltip-logistic": "Sandsynligheder, residualer og forudsagte kategorier (ved hjælp af den valgte sandsynlighedstærskel, der skal overskrides for at forudsige en succes) vil blive knyttet til datatabellen.",

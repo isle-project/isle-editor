@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Teststatistik für die Hypothese, dass der Koeffizient Null ist",
 	"threshold": "Schwelle",
 	"toggle-fullscreen": "Vollbildansicht umschalten",
+	"total-within-group-sum-of-squares": "Gesamte Summe der Quadrate innerhalb der Gruppe",
 	"use-model-to-predict": "Verwenden Sie dieses Modell zur Vorhersage für aktuell ausgewählte Daten",
 	"use-model-to-predict-tooltip": "Vorhersagen und Residuen werden an die Datentabelle angehängt",
 	"use-model-to-predict-tooltip-logistic": "Wahrscheinlichkeiten, Residuen und vorhergesagte Kategorien (unter Verwendung der gewählten Wahrscheinlichkeitsschwelle, die für die Vorhersage eines Erfolgs überschritten werden soll) werden der Datentabelle beigefügt",

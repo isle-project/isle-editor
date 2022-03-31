@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Tester la statistique pour l'hypothèse que le coefficient est égal à zéro",
 	"threshold": "Seuil",
 	"toggle-fullscreen": "Basculer la vue plein écran",
+	"total-within-group-sum-of-squares": "Somme totale des carrés au sein du groupe",
 	"use-model-to-predict": "Utilisez ce modèle pour prévoir pour les données actuellement sélectionnées",
 	"use-model-to-predict-tooltip": "Les prévisions et les résidus seront joints au tableau des données",
 	"use-model-to-predict-tooltip-logistic": "Les probabilités, les résidus et les catégories prévues (en utilisant le seuil de probabilité choisi à dépasser pour prédire un succès) seront joints au tableau des données",

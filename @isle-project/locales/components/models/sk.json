@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Testovacia štatistika pre hypotézu, že koeficient je nulový ",
 	"threshold": "Prahová hodnota",
 	"toggle-fullscreen": "Prepnutie zobrazenia na celú obrazovku",
+	"total-within-group-sum-of-squares": "Celkový súčet štvorcov v rámci skupiny",
 	"use-model-to-predict": "Použite tento model na predpovedanie pre aktuálne vybrané údaje",
 	"use-model-to-predict-tooltip": "Predpovede a rezíduá budú pripojené k tabuľke údajov",
 	"use-model-to-predict-tooltip-logistic": "Pravdepodobnosti, rezíduá a predpovedané kategórie (s použitím zvolenej hranice pravdepodobnosti, ktorá má byť prekročená pre predpovedanie úspechu) budú pripojené k tabuľke údajov",

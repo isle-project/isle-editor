@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Estadística de prueba para la hipótesis de que el coeficiente es cero",
 	"threshold": "Umbral",
 	"toggle-fullscreen": "Cambiar la vista de pantalla completa",
+	"total-within-group-sum-of-squares": "Suma total de cuadrados dentro del grupo",
 	"use-model-to-predict": "Utilice este modelo para predecir para los datos actualmente seleccionados",
 	"use-model-to-predict-tooltip": "Las predicciones y los residuos se adjuntarán al cuadro de datos",
 	"use-model-to-predict-tooltip-logistic": "Las probabilidades, los residuos y las categorías de predicción (utilizando el umbral de probabilidad elegido que se superará para predecir un éxito) se adjuntarán al cuadro de datos",

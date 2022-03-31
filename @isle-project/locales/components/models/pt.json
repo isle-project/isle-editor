@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Teste estatístico para hipótese de que o coeficiente é zero",
 	"threshold": "Threshold",
 	"toggle-fullscreen": "Alternar a visão em tela cheia",
+	"total-within-group-sum-of-squares": "Soma total dentro do grupo de quadrados",
 	"use-model-to-predict": "Use este modelo para prever os dados atualmente selecionados",
 	"use-model-to-predict-tooltip": "As previsões e os resíduos serão anexados à tabela de dados",
 	"use-model-to-predict-tooltip-logistic": "Probabilidades, resíduos e categorias previstas (usando o limiar de probabilidade escolhido para ser excedido para prever um sucesso) serão anexados à tabela de dados",

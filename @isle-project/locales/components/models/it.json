@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Statistica di prova per l'ipotesi che il coefficiente sia pari a zero",
 	"threshold": "Soglia",
 	"toggle-fullscreen": "Attivare e disattivare la visualizzazione a schermo intero",
+	"total-within-group-sum-of-squares": "Somma totale dei quadrati all'interno del gruppo",
 	"use-model-to-predict": "Utilizzare questo modello per prevedere i dati attualmente selezionati",
 	"use-model-to-predict-tooltip": "Le previsioni e i residui saranno allegati alla tabella dei dati",
 	"use-model-to-predict-tooltip-logistic": "Le probabilità, i residui e le categorie previste (utilizzando la soglia di probabilità scelta da superare per prevedere il successo) saranno allegati alla tabella dei dati",

@@ -49,7 +49,7 @@ const summaryTable = ( variables, centroids, t ) => {
 					{centroids.map( ( x, i ) => <th key={i} >{x.size}</th>)}
 				</tr>
 				<tr>
-					<th>{t('error')}</th>
+					<th>{t('within-group-sum-of-squares')}</th>
 					{centroids.map( ( x, i ) => <th key={i} >{roundn( x.error, -3 )}</th>)}
 				</tr>
 			</tbody>
@@ -203,7 +203,7 @@ class KMeans extends Component {
 						title: t('number-of-clusters')
 					},
 					yaxis: {
-						title: t('within-group-sum-of-squares')
+						title: t('total-within-group-sum-of-squares')
 					}
 				}} /> : null }
 			</div>

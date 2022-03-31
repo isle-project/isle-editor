@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Teststatistik för hypotesen att koefficienten är noll ",
 	"threshold": "Tröskelvärde",
 	"toggle-fullscreen": "Växla till helskärmsvisning",
+	"total-within-group-sum-of-squares": "Total summa av kvadrater inom gruppen",
 	"use-model-to-predict": "Använd den här modellen för att förutsäga de data som valts för tillfället.",
 	"use-model-to-predict-tooltip": "Förutsägelser och residualer kommer att bifogas till datatabellen.",
 	"use-model-to-predict-tooltip-logistic": "Sannolikheter, residualer och förutspådda kategorier (med hjälp av den valda sannolikhetströskeln som ska överskridas för att förutsäga en framgång) kommer att bifogas till datatabellen.",

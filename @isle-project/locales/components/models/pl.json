@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Statystyka testowa dla hipotezy, że współczynnik wynosi zero",
 	"threshold": "Próg",
 	"toggle-fullscreen": "Przełączanie Widok pełnoekranowy",
+	"total-within-group-sum-of-squares": "Całkowita suma kwadratów wewnątrz grupy",
 	"use-model-to-predict": "Użyj tego modelu do przewidywania dla aktualnie wybranych danych",
 	"use-model-to-predict-tooltip": "Prognozy i resztki zostaną dołączone do tabeli danych",
 	"use-model-to-predict-tooltip-logistic": "Prawdopodobieństwa, resztki i kategorie przewidywane (przy użyciu wybranego progu prawdopodobieństwa, który zostanie przekroczony w celu przewidzenia sukcesu) zostaną dołączone do tabeli danych.",

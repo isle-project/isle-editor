@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Tesztstatisztika arra a hipotézisre, hogy az együttható nulla ",
 	"threshold": "Küszöbérték",
 	"toggle-fullscreen": "Teljes képernyős nézet váltása",
+	"total-within-group-sum-of-squares": "Összes csoporton belüli négyzetek összege",
 	"use-model-to-predict": "Használja ezt a modellt az aktuálisan kiválasztott adatok előrejelzésére",
 	"use-model-to-predict-tooltip": "Az előrejelzések és a maradékok az adattáblázathoz lesznek csatolva.",
 	"use-model-to-predict-tooltip-logistic": "A valószínűségek, a maradékok és a megjósolt kategóriák (a siker előrejelzéséhez a meghaladandó valószínűségi küszöbértéket használva) az adattáblázathoz lesznek csatolva.",

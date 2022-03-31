@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Test statistic for hypothesis that coefficient is zero ",
 	"threshold": "Threshold",
 	"toggle-fullscreen": "Toggle Fullscreen View",
+	"total-within-group-sum-of-squares": "Total within-group sum of squares",
 	"use-model-to-predict": "Use this model to predict for currently selected data",
 	"use-model-to-predict-tooltip": "Predictions and residuals will be attached to data table",
 	"use-model-to-predict-tooltip-logistic": "Probabilities, residuals, and predicted categories (using the chosen probability threshold to be exceeded for predicting a success) will be attached to the data table",

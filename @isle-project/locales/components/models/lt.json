@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Hipotezės, kad koeficientas lygus nuliui, tikrinimo statistika ",
 	"threshold": "Slenkstis",
 	"toggle-fullscreen": "Perjungti rodinį per visą ekraną",
+	"total-within-group-sum-of-squares": "Bendra grupės vidaus kvadratų suma",
 	"use-model-to-predict": "Naudokite šį modelį šiuo metu pasirinktiems duomenims prognozuoti",
 	"use-model-to-predict-tooltip": "Prognozės ir liekanos bus pridėtos prie duomenų lentelės",
 	"use-model-to-predict-tooltip-logistic": "Tikimybės, liekanos ir prognozuojamos kategorijos (naudojant pasirinktą tikimybės ribą, kurią reikia viršyti, kad būtų galima prognozuoti sėkmę) bus pridėtos prie duomenų lentelės.",

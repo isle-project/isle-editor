@@ -62,6 +62,7 @@
 	"test-statistic-coefficient-zero": "Testna statistika za hipotezo, da je koeficient enak nič ",
 	"threshold": "Prag",
 	"toggle-fullscreen": "Preklopite celozaslonski pogled",
+	"total-within-group-sum-of-squares": "Skupna vsota kvadratov znotraj skupine",
 	"use-model-to-predict": "Uporabite ta model za napovedovanje trenutno izbranih podatkov",
 	"use-model-to-predict-tooltip": "Napovedi in ostanki bodo priloženi podatkovni tabeli.",
 	"use-model-to-predict-tooltip-logistic": "Verjetnosti, ostanki in predvidene kategorije (z uporabo izbranega praga verjetnosti, ki ga je treba preseči za napovedovanje uspeha) bodo priloženi podatkovni tabeli.",
