@@ -5,7 +5,6 @@ exports[`<Timer /> renders a timer (inactive) 1`] = `
   className="timer-div timer-info"
   style={Object {}}
 >
-  
   00:50
 </div>
 `;
@@ -15,7 +14,6 @@ exports[`<Timer /> renders a timer 1`] = `
   className="timer-div timer-info"
   style={Object {}}
 >
-  
   00:50
 </div>
 `;
