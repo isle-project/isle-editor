@@ -185,7 +185,9 @@ class StatusBar extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 		if ( this.renderTextInterval ) {
 			clearInterval( this.renderTextInterval );
 		}

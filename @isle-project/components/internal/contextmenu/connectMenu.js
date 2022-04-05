@@ -43,8 +43,8 @@ export default function connectToMenu(menuId) {
 			}
 
 			componentWillUnmount() {
-				if (this.listenId) {
-					listener.unregister(this.listenId);
+				if ( this.listenId ) {
+					listener.unregister( this.listenId );
 				}
 			}
 

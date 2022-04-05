@@ -13,7 +13,6 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import copy from '@stdlib/utils/copy';
 import contains from '@stdlib/assert/contains';
-import isFunction from '@stdlib/assert/is-function';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import hasOwnProp from '@stdlib/assert/has-own-property';
 import max from '@stdlib/math/base/special/max';
@@ -135,7 +134,7 @@ class ActionLog extends Component {
 	}
 
 	componentWillUnmount() {
-		if ( isFunction( this.unsubscribe ) ) {
+		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
 		window.removeEventListener( 'resize', this.resizeHandler );

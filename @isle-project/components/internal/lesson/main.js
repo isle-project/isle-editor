@@ -124,7 +124,9 @@ class Lesson extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 		window.removeEventListener( 'hashchange', scrollToAnchor );
 	}
 
