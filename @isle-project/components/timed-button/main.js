@@ -47,7 +47,9 @@ class TimedButton extends Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval( this.countdown );
+		if ( this.countdown ) {
+			clearInterval( this.countdown );
+		}
 	}
 
 	refDimensions = (element) => {

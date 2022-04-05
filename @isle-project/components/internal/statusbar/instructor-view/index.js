@@ -66,9 +66,10 @@ class InstructorView extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
-
 	toggleHidden = () => {
 		this.setState({
 			hidden: !this.state.hidden

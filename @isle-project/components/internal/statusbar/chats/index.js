@@ -34,7 +34,9 @@ class Chats extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 		window.removeEventListener( 'resize', this.getStatusbarInfo );
 	}
 

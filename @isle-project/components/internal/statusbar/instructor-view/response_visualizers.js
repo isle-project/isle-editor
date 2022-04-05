@@ -92,7 +92,9 @@ class ResponseVisualizers extends Component {
 
 	componentWillUnmount() {
 		removeGlowElems();
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	thumbnailClickFactory = ( id ) => {

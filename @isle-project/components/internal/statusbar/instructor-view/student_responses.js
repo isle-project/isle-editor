@@ -239,7 +239,9 @@ class StudentResponses extends Component {
 
 	componentWillUnmount() {
 		removeGlowElements();
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	highlightFactory = ( id ) => {

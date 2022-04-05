@@ -90,7 +90,9 @@ class MeanVSMedian extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	medianEvaluation = ( evt ) => {

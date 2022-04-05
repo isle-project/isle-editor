@@ -69,7 +69,9 @@ export default class Clock extends Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval( this.interval );
+		if ( this.interval ) {
+			clearInterval( this.interval );
+		}
 	}
 
 	render() {

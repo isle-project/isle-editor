@@ -65,7 +65,9 @@ class Unveil extends Component {
 	* component timer.
 	*/
 	componentWillUnmount() {
-		clearTimeout( this._timer );
+		if ( this._timer ) {
+			clearTimeout( this._timer );
+		}
 	}
 
 	setTimer() {

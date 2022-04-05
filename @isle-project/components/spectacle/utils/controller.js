@@ -62,7 +62,9 @@ class Controller extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unlisten();
+		if ( this.unlisten ) {
+			this.unlisten();
+		}
 	}
 
 	_updateRoute = ({ location }) => {

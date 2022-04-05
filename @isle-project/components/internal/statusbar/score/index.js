@@ -47,7 +47,9 @@ class Score extends Component {
 
 	componentWillUnmount() {
 		debug( 'Component will unmount...' );
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	addScore( addition ) {

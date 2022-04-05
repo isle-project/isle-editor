@@ -288,7 +288,9 @@ class GroupManager extends Component {
 
 	componentWillUnmount() {
 		debug( 'Component will unmount...' );
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	handleGroupCreation = () => {

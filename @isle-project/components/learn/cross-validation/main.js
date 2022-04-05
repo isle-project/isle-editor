@@ -46,7 +46,9 @@ class CrossValidation extends Component {
 	}
 
 	componentWillUnmount() {
-		window.clearInterval( this.setStateInterval );
+		if ( this.setStateInterval ) {
+			window.clearInterval( this.setStateInterval );
+		}
 	}
 
 	getData() {

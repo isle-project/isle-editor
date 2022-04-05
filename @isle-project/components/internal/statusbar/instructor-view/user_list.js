@@ -8,7 +8,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import indexOf from '@stdlib/utils/index-of';
-import isFunction from '@stdlib/assert/is-function';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import keys from '@stdlib/utils/keys';
 import ChatButton from '@isle-project/components/internal/chat-button';
@@ -85,7 +84,7 @@ class UserList extends Component {
 
 	componentWillUnmount() {
 		debug( 'Unmount user list...' );
-		if ( isFunction( this.unsubscribe ) ) {
+		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
 		removeGlowElems();

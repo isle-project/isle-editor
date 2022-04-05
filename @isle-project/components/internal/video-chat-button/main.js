@@ -56,7 +56,9 @@ class VideoChatButton extends Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubscribe();
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	toggleVideoChat = ( event ) => {

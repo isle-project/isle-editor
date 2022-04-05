@@ -638,7 +638,9 @@ class Sketchpad extends Component {
 	}
 
 	componentWillUnmount() {
-		this.save();
+		if ( this.save ) {
+			this.save();
+		}
 		if ( this.saveInterval ) {
 			clearInterval( this.saveInterval );
 		}
