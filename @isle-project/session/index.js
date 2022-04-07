@@ -2370,6 +2370,28 @@ class Session {
 	}
 
 	/**
+	* Logs completion information for a component.
+	* 
+	* @param {Object} completionScores - object mapping ref names to values between 0 and 100
+	* @param {Object} meta - action information
+	* @param {string} meta.id - component identifier
+	* @param {string} [meta.tag] - custom tag attached to the component (e.g., to group questions together as a quiz)
+	* @param {string} meta.componentType - name of the component (e.g, FreeTextQuestion)
+	*/
+	handleCompletion( completionScores, { id, tag, componentType } ) {
+		const time = new Date().getTime();
+		axios.post( this.server + '/save_completion', {
+			component: id, 
+			componentType, 
+			tag, 
+			score: completionScores,
+			user: this.user.id,
+			lesson: this.lessonID,
+			time
+		})
+	}
+
+	/**
 	* Logs session action to database and sends it via socket connection to specified user(s).
 	*
 	* @param {Object} action - action object
