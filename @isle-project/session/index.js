@@ -2371,7 +2371,7 @@ class Session {
 
 	/**
 	* Logs completion information for a component.
-	* 
+	*
 	* @param {Object} completionScores - object mapping ref names to values between 0 and 100
 	* @param {Object} meta - action information
 	* @param {string} meta.id - component identifier
@@ -2381,14 +2381,14 @@ class Session {
 	handleCompletion( completionScores, { id, tag, componentType } ) {
 		const time = new Date().getTime();
 		axios.post( this.server + '/save_completion', {
-			component: id, 
-			componentType, 
-			tag, 
+			component: id,
+			componentType,
+			tag,
 			score: completionScores,
 			user: this.user.id,
 			lesson: this.lessonID,
 			time
-		})
+		});
 	}
 
 	/**
