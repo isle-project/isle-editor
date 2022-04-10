@@ -264,15 +264,22 @@ class Quiz extends Component {
 				// Case: 'MultipleChoiceQuestion'
 				isArray( elem.props.answers ) && ( elem.props.solution !== void 0 )
 			) {
-				answer = elem.props.answers[ val ].content;
 				const correct = elem.props.solution;
 				if ( isArray( correct ) ) {
 					solution = '';
 					for ( let i = 0; i < correct.length; i++ ) {
-						solution += elem.props.answers[ correct[ i ] ];
+						solution += elem.props.answers[ correct[ i ] ].content;
 						solution += '; ';
 					}
+					answer = '';
+					for ( let i = 0; i < val.length; i++ ) {
+						if ( val[ i ] === true ) {
+							answer += elem.props.answers[ i ].content;
+							answer += '; ';
+						}
+					}
 				} else {
+					answer = elem.props.answers[ val ].content;
 					solution = elem.props.answers[ correct ].content;
 				}
 			}
