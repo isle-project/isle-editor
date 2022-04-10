@@ -491,9 +491,11 @@ class Quiz extends Component {
 				return <RangeQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
 			case 'SelectQuestion':
 				return <SelectQuestion disableSubmitNotification feedback={false} provideFeedback={false} {...props} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
-			default:
+			default: {
 				// Case: `config` already is a React component, clone it to pass in submit handler:
-				return <config.type {...config.props} {...props} disableSubmitNotification feedback={false} provideFeedback={false} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
+				const provideFeedback = config.type === MultipleChoiceQuestion ? 'none' : false;
+				return <config.type {...config.props} {...props} disableSubmitNotification feedback={false} provideFeedback={provideFeedback} onChange={this.markSelected} onSubmit={this.handleSubmission} id={id} />;
+			}
 		}
 	}
 

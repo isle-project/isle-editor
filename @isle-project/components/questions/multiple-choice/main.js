@@ -309,27 +309,35 @@ class MultipleChoiceQuestion extends Component {
 	checkDisabledStatus = () => {
 		const allowMultipleAnswers = isArray( this.props.solution ) && isArray( this.state.active );
 		if ( this.props.disabled ) {
+			// Case: `disabled` property of the component is set to true
 			return true;
 		}
 		if ( !allowMultipleAnswers && !isNumber( this.state.active ) ) {
+			// Case: No answer has been selected for single choice questions
 			return true;
 		}
 		if ( isNull( this.props.solution ) ) {
+			// Case: no solution set, hence no feedback is provided and changing one's answer is permitted...
 			return false;
 		}
 		switch ( this.props.provideFeedback ) {
 			case 'full':
+				// Case: full feedback is provided, so disable the submit button if answer has been submitted...
 				if ( allowMultipleAnswers ) {
 					return this.state.submitted;
 				}
+				// For single-answer questions, a single answer has to be selected, so disable the submit button if no answer has been selected...
 				return this.state.submitted || !this.state.answerSelected;
 			case 'incremental': {
 				if ( isNull( this.state.active ) ) {
+					// Case: no answer selected, so disable the submit button...
 					return true;
 				}
 				if ( !this.state.submitted ) {
+					// Case: answer has not been submitted, so do not disable the submit button...
 					return false;
 				}
+				// Case: Only disable the submit button if the user has selected the correct answer (or ran out of tries)...
 				return this.state.isSolved;
 			}
 		}
