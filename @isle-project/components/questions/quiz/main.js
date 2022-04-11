@@ -30,7 +30,9 @@ import SessionContext from '@isle-project/session/context.js';
 import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
 import generateUID from '@isle-project/utils/uid';
 import { QUESTION_CONFIDENCE, QUESTION_SKIPPED, QUIZ_FINISHED } from '@isle-project/constants/actions.js';
+import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import getLastAction from '@isle-project/utils/get-last-action';
 import isHTMLConfig from './is_html_config.js';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
@@ -95,11 +97,12 @@ const DOC_STYLES = {
 * @property {boolean} active - controls whether the timer for the quiz is active
 * @property {number} duration - duration of the quiz (in minutes); once time is up, the summary page will be displayed
 * @property {boolean} downloadButton - controls whether to display a button for downloading the responses
+* @property {boolean} repeatable - controls whether the quiz can be repeated
 * @property {Function} onFinished - callback invoked when the quiz is finished and the results page is displayed
 * @property {Function} onSubmit - callback invoked when user submits an answer
 */
 class Quiz extends Component {
-	constructor( props ) {
+	constructor( props, context ) {
 		debug( 'Instantiating quiz component...' );
 		super( props );
 
@@ -119,6 +122,8 @@ class Quiz extends Component {
 			});
 			current = this.sample()[ 0 ];
 		}
+		const currentUserActions = context.currentUserActions;
+		const previouslyFinished = getLastAction( currentUserActions, this.id, QUIZ_FINISHED ) === true;
 		this.state = {
 			answers: new Array( questions.length ),
 			answered: false,
@@ -126,7 +131,7 @@ class Quiz extends Component {
 			current,
 			count: props.count || questions.length,
 			counter: 0,
-			finished: false,
+			finished: !props.repeatable && previouslyFinished,
 			answerSelected: false,
 			last: false,
 			selectedConfidence: null,
@@ -162,6 +167,25 @@ class Quiz extends Component {
 		return null;
 	}
 
+	componentDidMount() {
+		const session = this.context;
+		if ( session ) {
+			this.unsubscribe = session.subscribe( ( type, val ) => {
+				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
+					let actions = val[ this.id ];
+					if ( !this.props.repeatable && isArray( actions ) ) {
+						const previouslyFinished = actions.some( action => {
+							return action.type === QUIZ_FINISHED;
+						});
+						this.setState({
+							finished: previouslyFinished
+						});
+					}
+				}
+			});
+		}
+	}
+
 	componentDidUpdate( prevProps ) {
 		debug( 'Component did update...' );
 		if (
@@ -177,6 +201,12 @@ class Quiz extends Component {
 			this.setState({
 				count: this.props.count || this.prop.questions.length
 			});
+		}
+	}
+
+	componentWillUnmount() {
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
 		}
 	}
 
@@ -415,6 +445,9 @@ class Quiz extends Component {
 		}
 		answers.sort( ( a, b ) => a.counter > b.counter );
 		answers = answers.filter( x => isObject( x ) );
+		if ( answers.length === 0 ) {
+			return <h3>{this.props.t('quiz-finished')}</h3>;
+		}
 		return ( <div>
 			<p>{ this.props.duration ? this.props.t('time-up') : this.props.t('quiz-finished') }{this.props.t('summary-label')}:</p>
 			<table className="table table-bordered" >
@@ -726,6 +759,7 @@ Quiz.propTypes = {
 	showFinishButton: PropTypes.bool,
 	finishLabel: PropTypes.string,
 	downloadButton: PropTypes.bool,
+	repeatable: PropTypes.bool,
 	onFinished: PropTypes.func,
 	onSubmit: PropTypes.func
 };
@@ -743,6 +777,7 @@ Quiz.defaultProps = {
 	showFinishButton: false,
 	finishLabel: null,
 	downloadButton: true,
+	repeatable: false,
 	onFinished() {},
 	onSubmit() {}
 };
