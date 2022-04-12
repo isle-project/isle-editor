@@ -18,6 +18,7 @@ import { OPEN_LINK } from '@isle-project/constants/actions.js';
 *
 * @property {string} href - URL of website to link to
 * @property {string} target - defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame
+* @property {(string|boolean)} download - specifies whether link should be downloaded: set to `true` to force download, or a string to specify the filename; if `false`, no download is forced
 * @property {string} windowFeatures - comma-separated list of window features for when link is opened in new window (see: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features)
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
@@ -87,6 +88,7 @@ class Link extends Component {
 								value: 'click'
 							});
 						}}
+						download={this.props.download}
 					>
 						{this.props.children}
 					</a>
@@ -108,6 +110,10 @@ class Link extends Component {
 
 Link.propTypes = {
 	href: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types,
+	download: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.bool
+	]),
 	target: PropTypes.string,
 	windowFeatures: PropTypes.string,
 	openWindow: PropTypes.bool,
@@ -116,6 +122,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
+	download: false,
 	target: '_blank',
 	windowFeatures: null,
 	openWindow: false,
