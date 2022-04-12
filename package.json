@@ -184,6 +184,7 @@
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.0",
     "ieee754": "^1.2.1",
+    "jsonfile": "^6.1.0",
     "lodash.curry": "^4.1.1",
     "lodash.debounce": "^4.0.8",
     "magic-string": "^0.26.1",
