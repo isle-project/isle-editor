@@ -21,6 +21,7 @@ import tabulate from '@stdlib/utils/tabulate';
 import indexOf from '@stdlib/utils/index-of';
 import floor from '@stdlib/math/base/special/floor';
 import max from '@stdlib/math/base/special/max';
+import min from '@stdlib/math/base/special/min';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import NINF from '@stdlib/constants/float64/ninf';
 import Alert from 'react-bootstrap/Alert';
@@ -403,7 +404,7 @@ class FullscreenActionDisplay extends Component {
 		} else {
 			levels = uniq( actions.map( x => x.value ) );
 		}
-		let leftMargin = max( 200, maxLength * 7.5 );
+		const leftMargin = max( 200, min( maxLength * 7.5, 600 ) );
 		let counts = tabulateValues( actions, levels );
 		if ( levels.length > 7 ) {
 			// Drop empty labels in case of many levels for readability of plot:
