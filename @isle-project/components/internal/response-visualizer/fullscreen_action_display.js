@@ -122,8 +122,10 @@ const generateValueLabel = ({ value, type, levels, rows, cols, options }) => {
 				}
 			});
 			value = str || 'None';
-		} else {
+		} else if ( isNumber( value ) ) {
 			value = levels[ value ] || 'None';
+		} else {
+			value = value || 'None';
 		}
 	}
 	else if ( type === 'matches' ) {
