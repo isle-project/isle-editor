@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { I18nextProvider } from 'react-i18next';
+import Button from 'react-bootstrap/Button';
 import { i18n } from '@isle-project/locales';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
@@ -99,9 +100,14 @@ class Lesson extends Component {
 	constructor( props, session ) {
 		super( props );
 
+		const owner = session.isOwner();
+		const active = session.isActive();
 		this.state = {
-			visible: session.lessonID ? ( session.isActive() || session.isOwner() ) : true
+			visible: session.lessonID ? ( active || owner ) : true
 		};
+		if ( !active && owner ) {
+			session.addInactiveNotification();
+		}
 	}
 
 	componentDidMount() {
@@ -112,9 +118,14 @@ class Lesson extends Component {
 				type === RECEIVED_LESSON_INFO ||
 				type === RECEIVED_USER_RIGHTS
 			) {
+				const owner = session.isOwner();
+				const active = session.isActive();
 				this.setState({
-					visible: session.isActive() || session.isOwner()
+					visible: active || owner
 				});
+				if ( !active && owner ) {
+					session.addInactiveNotification();
+				}
 			}
 		});
 		setTimeout( () => {
@@ -151,6 +162,7 @@ class Lesson extends Component {
 	};
 
 	render() {
+		const session = this.context;
 		if ( !this.state.visible ) {
 			return (
 				<I18nextProvider i18n={i18n} >
@@ -185,7 +197,10 @@ class Lesson extends Component {
 				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
-						global.notificationSystemISLE = div;
+						session.notificationSystemISLE = div;
+						if ( session.isOwner() && !session.isActive() ) {
+							session.addInactiveNotification();
+						}
 					}}
 					allowHTML={true}
 					style={NOTIFICATION_STYLE}

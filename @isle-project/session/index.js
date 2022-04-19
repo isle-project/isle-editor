@@ -1918,6 +1918,32 @@ class Session {
 	}
 
 	/**
+	* Activates the current lesson.
+	*/
+	activateLesson = () => {
+		axios.post( this.server+'/activate_lesson', {
+			namespaceName: this.namespaceName,
+			lessonName: this.lessonName
+		})
+			.then( response => {
+				this.addNotification({
+					title: i18n.t( 'session:lesson-activated' ),
+					message: response.data.message,
+					level: 'success',
+					position: 'tl'
+				});
+			})
+			.catch( error => {
+				this.addNotification({
+					title: i18n.t( 'session:lesson-activated' ),
+					message: error.message,
+					level: 'error',
+					position: 'tl'
+				});
+			});
+	}
+
+	/**
 	* Retrieves the ID for the lesson and namespace from the database.
 	*/
 	getLessonInfo = () => {
@@ -2623,8 +2649,8 @@ class Session {
 		if ( !config.position ) {
 			config.position = 'tc';
 		}
-		if ( global.notificationSystemISLE ) {
-			return global.notificationSystemISLE.addNotification( config );
+		if ( this.notificationSystemISLE ) {
+			return this.notificationSystemISLE.addNotification( config );
 		}
 		return null;
 	}
@@ -2636,9 +2662,32 @@ class Session {
 	* @returns {void}
 	*/
 	removeNotification( notification ) {
-		if ( global.notificationSystemISLE ) {
-			global.notificationSystemISLE.removeNotification( notification );
+		if ( this.notificationSystemISLE ) {
+			this.notificationSystemISLE.removeNotification( notification );
 		}
+	}
+
+	/**
+	* Displays notification that the current lesson is inactive.
+	*/
+	addInactiveNotification() {
+		this.addNotification({
+			title: i18n.t( 'session:lesson-inactive' ),
+			message: i18n.t( 'session:lesson-inactive-message' ),
+			position: 'tl',
+			level: 'info',
+			autoDismiss: 0,
+			children: <div style={{ marginBottom: '30px' }}>
+				<button style={{
+					float: 'right',
+					border: '2px solid rgb(0, 123, 255)',
+					backgroundColor: 'rgb(206 222 230)',
+					borderRadius: '3px'
+				}} onClick={this.activateLesson} >
+					{i18n.t('session:activate-lesson')}
+				</button>
+			</div>
+		});
 	}
 }
 
