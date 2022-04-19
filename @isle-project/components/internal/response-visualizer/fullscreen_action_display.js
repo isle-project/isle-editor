@@ -259,8 +259,9 @@ class FullscreenActionDisplay extends Component {
 	};
 
 	itemSizeGetter = ( index ) => {
+		index = this.state.filtered.length - index - 1;
 		let lines = 2.0 * LINE_HEIGHT;
-		const action = this.state.actions[ index ];
+		const action = this.state.filtered[ index ];
 		if ( !action ) {
 			return 0;
 		}
@@ -630,6 +631,7 @@ class FullscreenActionDisplay extends Component {
 	renderListGroupItem = ( index, key ) => {
 		debug( `Rendering item at position ${index}...` );
 		const { filtered, clusters, searchwords } = this.state;
+		index = filtered.length - index - 1;
 		const elem = filtered[ index ];
 		const value = generateValueLabel({ value: elem.value, ...this.props.data });
 		let highlighter;
@@ -710,7 +712,7 @@ class FullscreenActionDisplay extends Component {
 					<Button
 						variant="outline-danger"
 						size="sm"
-						onClick={this.props.deleteFactory( index )}
+						onClick={this.props.deleteFactory( elem )}
 						aria-label={this.props.t('delete')}
 					>
 						<span className="fa fa-trash" />
