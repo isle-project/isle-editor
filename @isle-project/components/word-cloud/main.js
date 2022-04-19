@@ -184,7 +184,7 @@ function createBagOfWords({ texts, stopwords, minCount, customStopwords }) {
 *
 * @property {Array} data - either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys)
 * @property {Function} font - accessor function specifying the font face for each word. Also accepts a constant instead of a function
-* @property {Function} fontSizeMapper - accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively
+* @property {Function} fontSizeMapper - accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively
 * @property {boolean} precalculated - controls whether the word cloud expects an array of precalculated word counts or will generate them for given texts
 * @property {(Function|number)} rotate - accessor function indicating the rotation angle (in degrees) for each word. Also accepts a constant instead of a function
 * @property {number} width - width of the word cloud (in px)
@@ -282,7 +282,7 @@ class Wrapper extends Component {
 		if ( max === min ) {
 			return 50.0;
 		}
-		return ( word.value - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0;
+		return ( word.value - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0;
 	};
 
 	addWordCloud() {
