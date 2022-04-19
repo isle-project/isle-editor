@@ -156,6 +156,7 @@ function generateGrade( action, viz ) {
 					-   Subtract the size of the intersection with the incorrect answer choices
 					-   Add the number of elements in the incorrect answer set
 					-   The resulting score is between 0 and the number of answer choices
+					-   The awarded points are obtained by dividing the score by the number of answer choices times the maximum number of points awarded for the question (default: 10)
 				*/
 				const correct = new Set( solution );
 				const incorrect = new Set();
