@@ -19,7 +19,8 @@ Komponent renderujący dane w formie tabelarycznej. Wbudowany na górze [tabela 
 * __undeletableVars__ | `array<string>`: tablica nazw zmiennych w kolumnach, które nie mogą zostać usunięte. Default: `[]`.
 * __filterable__ | `boolean`: kontroluje, czy kolumny są filtrowalne. Default: `true`.
 * __editable__ | `array`: szereg nazw dla kolumn, które mają być edytowalne. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: funkcja wywołania zwrotnego wykonywana dla każdego wiersza w celu dostosowania jego stylizacji (przekazany stan tabeli, informacje o wierszu,
+kolumna i instancja tabeli). Default: `none`.
 * __onColumnDrag__ | `function`: funkcja wywoływana po przeciągnięciu kolumny do innej pozycji. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkcja wywoływana z nazwą kolumny po kliknięciu odpowiedniego przycisku usuwania dla danej kolumny. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkcja wywoływana po zmianie nazwy kolumny (wywoływana ze starą nazwą jako pierwszą i nową jako drugim argumentem). Default: `onColumnNameChange() {}`.

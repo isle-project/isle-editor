@@ -25,7 +25,7 @@ Vaihteluvälikysymys, jossa oppilaita pyydetään antamaan alempi ja ylempi lopp
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
 * __onChangeLower__ | `function`: takaisinkutsu, joka käynnistyy sen jälkeen, kun käyttäjä on muuttanut alarajaa.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: takaisinsoitto, joka käynnistyy sen jälkeen, kun käyttäjä on muuttanut ylärajaa.. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: takaisinsoitto, joka käynnistyy, kun käyttäjä muuttaa rajaa (argumentteina alempi ja ylempi raja).. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, joka käynnistetään, kun vastaus on lähetetty; ensimmäisenä parametrina on `boolean`, joka ilmaisee, onko vastaukseen vastattu oikein (jos mahdollista, muuten `null`) ja toisena parametrina annettu vastaus.. Default: `onSubmit() {}`.
 
 

@@ -19,7 +19,8 @@ sidebar_label: Data Table
 * __undeletableVars__ | `array<string>`: масив от имена на променливи на колони, които не могат да се изтриват. Default: `[]`.
 * __filterable__ | `boolean`: контролира дали колоните могат да се филтрират.. Default: `true`.
 * __editable__ | `array`: масив от имена на колони, които могат да се редактират. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: функция за обратно извикване, изпълнявана за всеки ред, за да се персонализира стилът му (предадени са състояние на таблицата, информация за реда,
+колона и инстанцията на таблицата). Default: `none`.
 * __onColumnDrag__ | `function`: функция, задействана при плъзгане на колона до различна позиция. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: функция, извикана с името на колона, когато е щракнат съответният бутон за изтриване на колона. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: функция, която се извиква при преименуване на колона (извиква се със старото име като първи и новото име като втори аргумент). Default: `onColumnNameChange() {}`.

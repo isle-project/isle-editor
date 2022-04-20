@@ -19,7 +19,8 @@ Un composant rendant les données dans un affichage tabulaire. Construit au-dess
 * __undeletableVars__ | `array<string>`: tableau de noms de variables des colonnes qui ne peuvent pas être supprimées. Default: `[]`.
 * __filterable__ | `boolean`: contrôle si les colonnes sont filtrables. Default: `true`.
 * __editable__ | `array`: tableau de noms des colonnes qui doivent être modifiables. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: fonction de rappel exécutée pour chaque ligne afin de personnaliser son style (état de la table, informations sur la ligne, colonne et instance de la table passés),
+colonne, et l'instance de la table). Default: `none`.
 * __onColumnDrag__ | `function`: fonction invoquée lorsqu'une colonne a été déplacée vers une autre position. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: fonction invoquée avec le nom d'une colonne lorsque l'on clique sur le bouton de suppression correspondant à une colonne. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: fonction invoquée lorsqu'une colonne a été renommée (appelée avec l'ancien nom comme premier et le nouveau nom comme second argument). Default: `onColumnNameChange() {}`.

@@ -12,13 +12,13 @@ sidebar_label: File Question
 * __hintPlacement__ | `string`: ヒントの配置（`top`, `left`, `right`, `bottom` のいずれか）を指定します。. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: 解答のヒント. Default: `[]`.
 * __feedback__ | `boolean`: フィードバックボタンを表示するかどうかを制御する. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: は、要素にチャットを組み込むかどうかを制御します。. Default: `false`.
 * __accept__ | `string`: コンポーネントで使用可能な[unique file identifiers](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers)のコンマ区切りリスト（例：'image/*', '.pdf', 'audio/*' など）。. Default: `'*/*'`.
 * __until__ | `Date`: 答案提出期限. Default: `none`.
 * __points__ | `number`: 評価点数. Default: `10`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: ファイル受信時に呼び出されるコールバック. Default: `onChange() {}`.
 
 
 ## 例としては、以下のようなものがあります。

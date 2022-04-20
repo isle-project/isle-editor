@@ -24,7 +24,7 @@ Komponenta ISLE, která vykresluje otázku, v níž má žák správně přiřad
 * __points__ | `number`: maximální počet bodů udělených při klasifikaci. Default: `10`.
 * __className__ | `string`: název třídy. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: zpětné volání vyvolané, když studenti změní odpověď. Default: `onChange() {}`.
 * __onSubmit__ | `function`: zpětné volání vyvolané při odeslání odpovědi studentem. Default: `onSubmit() {}`.
 
 

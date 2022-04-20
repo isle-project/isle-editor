@@ -18,7 +18,7 @@ En ISLE-komponent, der gør det muligt kun at vise sine børn til reserveret pub
 * __until__ | `Date`: den tid, indtil indholdet af porten skal forblive synligt. Default: `none`.
 * __banner__ | `node`: en brugerdefineret meddelelse, der vises til besøgende, for hvem portens børn ikke er synlige, i stedet for standardmeddelelsen. Default: `none`.
 * __disabled__ | `boolean`: hvis en gate er deaktiveret, vises banneret uanset hvad. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: styrer, om portens indhold skal vises i præsentationstilstand, når porten er synlig for `owner`s. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: styrer, om portens indhold skal vises i præsentationstilstand, når porten er synlig for `owner`s. Default: `true`.
 * __check__ | `function`: callback-funktion, der returnerer et "boolean", der angiver, om gate skal vise underordnede komponenter; funktionen kaldes, når der ankommer sessionshandlinger. Default: `none`.
 
 

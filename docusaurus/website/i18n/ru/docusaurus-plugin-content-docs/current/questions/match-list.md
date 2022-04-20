@@ -24,7 +24,7 @@ ISLE-компонент, который задает вопрос, в котор
 * __points__ | `number`: максимальное количество баллов, полученных при градации. Default: `10`.
 * __className__ | `string`: название класса. Default: `''`.
 * __style__ | `object`: встроенные стили CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: обратный вызов, вызываемый, когда студенты меняют ответ. Default: `onChange() {}`.
 * __onSubmit__ | `function`: обратный вызов, когда студенты подают ответ. Default: `onSubmit() {}`.
 
 

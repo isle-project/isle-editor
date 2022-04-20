@@ -25,7 +25,7 @@ Sestavni del vprašanja o razponu, ki od učencev zahteva, da navedejo spodnjo i
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 * __onChangeLower__ | `function`: povratni klic, ki se sproži, ko uporabnik spremeni spodnjo mejo.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: povratni klic, ki se sproži, ko uporabnik spremeni zgornjo mejo.. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: povratni klic, ki se sproži, ko uporabnik spremeni mejo (s spodnjo in zgornjo mejo kot argumentoma).. Default: `onChange() {}`.
 * __onSubmit__ | `function`: povratni klic, ki se sproži ob oddaji odgovora; kot prvi parameter ima `boolean`, ki označuje, ali je bil odgovor pravilen (če velja, sicer `null`), kot drugi parameter pa posredovani odgovor.. Default: `onSubmit() {}`.
 
 

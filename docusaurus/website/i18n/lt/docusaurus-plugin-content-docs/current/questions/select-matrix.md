@@ -26,7 +26,7 @@ Klausimas su atsakymu, sudarytas iš kelių pasirinkimo langelių.
 * __panelProps__ | `object`: papildomos savybės, perduodamos išoriniam <Panel /> komponentui.. Default: `{}`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: grįžtamojo ryšio funkcija, iškviečiama pakeitus atsakymus. Default: `onChange() {}`.
 * __onSubmit__ | `function`: grįžtamojo ryšio funkcija, iškviečiama pateikus atsakymus, kurių pirmasis parametras yra atsakymai, o antrasis - teisingumą rodantis loginis rodiklis.. Default: `onSubmit() {}`.
 
 

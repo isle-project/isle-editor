@@ -24,7 +24,7 @@ Komponent ISLE, który sprawia, że pytanie, w którym uczący się musi we wła
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w poszczególnych klasach. Default: `10`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: . Default: `onChange() {}`.
 * __onSubmit__ | `function`: wywołanie zwrotne, gdy uczniowie udzielają odpowiedzi. Default: `onSubmit() {}`.
 
 

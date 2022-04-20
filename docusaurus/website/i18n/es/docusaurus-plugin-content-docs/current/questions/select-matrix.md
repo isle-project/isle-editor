@@ -26,7 +26,7 @@ Una pregunta con una respuesta que consiste en múltiples cuadros de selección.
 * __panelProps__ | `object`: propiedades adicionales que se pasan al componente exterior <Panel /> . Default: `{}`.
 * __className__ | `string`: nombre de la clase. Default: `''`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: función callback invocada al cambiar las respuestas. Default: `onChange() {}`.
 * __onSubmit__ | `function`: La función de devolución de llamada invocada en el momento de la presentación con las respuestas como primer parámetro y un booleano que indica la corrección como segundo parámetro. Default: `onSubmit() {}`.
 
 

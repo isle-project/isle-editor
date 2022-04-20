@@ -26,7 +26,7 @@ Otázka s odpoveďou pozostávajúca z viacerých výberových polí.
 * __panelProps__ | `object`: ďalšie vlastnosti, ktoré sa majú odovzdať vonkajšej zložke <Panel /> . Default: `{}`.
 * __className__ | `string`: názov triedy. Default: `''`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: spätné volanie vyvolané pri zmene odpovedí. Default: `onChange() {}`.
 * __onSubmit__ | `function`: spätné volanie vyvolané po odoslaní s odpoveďami ako prvým a logickým parametrom označujúcim správnosť ako druhým parametrom. Default: `onSubmit() {}`.
 
 

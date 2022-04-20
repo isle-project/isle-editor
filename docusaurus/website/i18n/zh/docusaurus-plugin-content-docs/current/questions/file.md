@@ -12,13 +12,13 @@ sidebar_label: File Question
 * __hintPlacement__ | `string`: 提示的位置（"顶部"、"左侧"、"右侧 "或 "底部"）。. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: 就如何回答问题提供指导的提示. Default: `[]`.
 * __feedback__ | `boolean`: 控制是否显示反馈按钮. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: 控制该元素是否应该有一个集成的聊天工具. Default: `false`.
 * __accept__ | `string`: 逗号分隔的[唯一的文件标识符](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers)列表，可被组件接受（例如，'image/*', '.pdf' or 'audio/*'）。. Default: `'*/*'`.
 * __until__ | `Date`: 直到允许学生提交答案的时间. Default: `none`.
 * __points__ | `number`: 分数上限. Default: `10`.
 * __className__ | `string`: 类别名称. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 在收到文件时调用的回调. Default: `onChange() {}`.
 
 
 ## 例子

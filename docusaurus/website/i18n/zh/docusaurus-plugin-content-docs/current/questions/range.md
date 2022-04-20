@@ -25,7 +25,7 @@ sidebar_label: Range Question
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 * __onChangeLower__ | `function`: 在用户改变下限后触发的回调。. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: 在用户改变上界后触发的回调。. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 在用户改变边界后触发的回调（以下限和上限为参数）。. Default: `onChange() {}`.
 * __onSubmit__ | `function`: 提交答案时调用的回调；第一个参数是一个 "boolean"，表示答案是否正确（如果适用，否则为 "null"），第二个参数是提供的答案。. Default: `onSubmit() {}`.
 
 

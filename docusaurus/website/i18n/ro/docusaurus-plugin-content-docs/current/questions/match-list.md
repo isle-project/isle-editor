@@ -24,7 +24,7 @@ O componentă ISLE care redă o întrebare în care cursantul trebuie să potriv
 * __points__ | `number`: numărul maxim de puncte acordate în cadrul clasificării. Default: `10`.
 * __className__ | `string`: numele clasei. Default: `''`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback invocat atunci când elevii schimbă un răspuns. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback invocat atunci când studenții trimit un răspuns. Default: `onSubmit() {}`.
 
 

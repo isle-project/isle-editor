@@ -12,13 +12,13 @@ Jautājums, kurā lietotājam tiek prasīts augšupielādēt failu.
 * __hintPlacement__ | `string`: mājienu izvietojums (`augšā`, `kreisajā`, `pa labi` vai `apakšā`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: norādījumi, kā atbildēt uz jautājumu.. Default: `[]`.
 * __feedback__ | `boolean`: kontrolē, vai tiek rādītas atgriezeniskās saites pogas.. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.
 * __accept__ | `string`: ar komatu atdalīts [unikālo faila identifikatoru](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) saraksts, kurus komponents pieņem (piemēram, "image/*", ".pdf" vai "audio/*").. Default: `'*/*'`.
 * __until__ | `Date`: laiks, līdz skolēniem jāļauj iesniegt atbildes. Default: `none`.
 * __points__ | `number`: maksimālais punktu skaits, ko piešķir klasifikācijā. Default: `10`.
 * __className__ | `string`: klases nosaukums. Default: `''`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: atgriezeniskais zvans, ko izsaukt pēc faila saņemšanas. Default: `onChange() {}`.
 
 
 ## Piemēri

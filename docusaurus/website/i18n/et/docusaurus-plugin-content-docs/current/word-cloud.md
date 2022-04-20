@@ -10,7 +10,7 @@ Sõnapilve komponent, mis on ehitatud [d3-cloud](https://github.com/jasondavies/
 
 * __data__ | `array`: kas tekstide massiivi, millest sõnapilv genereeritakse, või, kui `precalculated` on seatud `true`, ja sõnade arvu objektide massiivi (võtmetega `text` ja `value`).. Default: `[]`.
 * __font__ | `(string|function)`: accessor funktsioon, mis määrab iga sõna jaoks kirjatüübi näo. Aktsepteerib funktsiooni asemel ka konstanti. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: accessor funktsioon, mis näitab iga sõna kirjasuurust. Vaikimisi on `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, kus `min` ja `max` tähistavad vastavalt minimaalset ja maksimaalset sõnade `arvu`.. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: sõnapilve kõrgus (px). Default: `600`.
 * __language__ | `string`: keele identifikaator (määrab eemaldatavad stoppsõnad). Default: `'en'`.
 * __minCount__ | `number`: kui see on määratud, siis lisatakse ainult sõnad, mis esinevad antud andmetes rohkem kui `minCount` korda.. Default: `none`.

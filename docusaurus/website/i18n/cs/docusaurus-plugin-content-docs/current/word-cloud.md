@@ -10,7 +10,7 @@ Komponenta mraku slov postavená nad [d3-cloud](https://github.com/jasondavies/d
 
 * __data__ | `array`: buď pole textů, ze kterých se generuje mračno slov, nebo, pokud je `precalculated` nastaveno na `true`, pole objektů s počtem slov (s klíči `text` a `value`).. Default: `[]`.
 * __font__ | `(string|function)`: přístupová funkce, která určuje tvář písma pro každé slovo. Místo funkce přijímá také konstantu. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: přístupová funkce, která udává velikost písma pro každé slovo. Výchozí hodnota je `( count - min + 1 ) / ( max - min + 6 ) * 30,0 + 12,0`, kde `min` a `max` označují minimální a maximální počet slov.. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: výška mraku slov (v px). Default: `600`.
 * __language__ | `string`: identifikátor jazyka (určuje stopslova, která mají být odstraněna).. Default: `'en'`.
 * __minCount__ | `number`: pokud je nastaveno, zahrne pouze slova, která se v daných datech vyskytují více než `minCount`.. Default: `none`.

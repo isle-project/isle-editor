@@ -21,6 +21,7 @@ Um componente de quiz exibindo uma seqüência de componentes de perguntas.
 * __showFinishButton__ | `boolean`: controla se deve exibir o botão para terminar o questionário e saltar diretamente para a página de resultados. Default: `false`.
 * __finishLabel__ | `string`: etiqueta de botão para terminar o quiz. Default: `none`.
 * __downloadButton__ | `boolean`: controla se deve ser exibido um botão para baixar as respostas. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: chamada de retorno invocada quando o questionário é concluído e a página de resultados é exibida. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: chamada de retorno invocada quando o usuário submete uma resposta. Default: `onSubmit() {}`.
 

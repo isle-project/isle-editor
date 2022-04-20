@@ -25,7 +25,7 @@ Diapazona jautājuma komponents, kurā skolēniem jānorāda apakšējais un aug
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.
 * __onChangeLower__ | `function`: atsauces zvans, kas tiek aktivizēts pēc tam, kad lietotājs ir mainījis apakšējo robežu.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: atgriezeniskais zvans, kas tiek aktivizēts pēc tam, kad lietotājs ir mainījis augšējo robežu.. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: atgriezeniskais zvans, kas tiek aktivizēts pēc tam, kad lietotājs ir mainījis robežu (ar apakšējo un augšējo robežu kā argumentiem).. Default: `onChange() {}`.
 * __onSubmit__ | `function`: atgriezeniskais zvans, kas tiek izsaukts, kad atbilde ir iesniegta; pirmais parametrs ir `boolean`, kas norāda, vai atbilde ir pareiza (ja ir, citādi `null`), bet otrais parametrs ir sniegtā atbilde.. Default: `onSubmit() {}`.
 
 

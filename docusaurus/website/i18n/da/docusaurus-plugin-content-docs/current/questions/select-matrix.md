@@ -26,7 +26,7 @@ Et spørgsmål med et svar, der består af flere afkrydsningsfelter.
 * __panelProps__ | `object`: yderligere egenskaber, der skal overføres til den ydre <Panel /> -komponent. Default: `{}`.
 * __className__ | `string`: klassens navn. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback-funktion, der påkaldes ved ændring af svarene. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback-funktion, der påkaldes ved indsendelse med svarene som første parameter og en boolean, der angiver korrekthed, som anden parameter. Default: `onSubmit() {}`.
 
 

@@ -19,7 +19,8 @@ Komponentti, joka renderöi tietoja taulukkomuodossa. Rakennettu [react-table](h
 * __undeletableVars__ | `array<string>`: sarakkeiden muuttujien nimet, joita ei saa poistaa.. Default: `[]`.
 * __filterable__ | `boolean`: ohjaa, ovatko sarakkeet suodatettavissa. Default: `true`.
 * __editable__ | `array`: muokattavien sarakkeiden nimien joukko. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: callback-funktio, joka suoritetaan jokaiselle riville sen muotoilun mukauttamiseksi (välitetty taulukon tila, rivin tiedot,
+sarake ja taulukon instanssi). Default: `none`.
 * __onColumnDrag__ | `function`: toiminto, jota kutsutaan, kun sarake on vedetty eri paikkaan.. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funktio, jota kutsutaan sarakkeen nimellä, kun sarakkeen poistopainiketta napsautetaan.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funktio, jota kutsutaan, kun sarake on nimetty uudelleen (kutsutaan vanhalla nimellä ensimmäisenä ja uudella nimellä toisena argumenttina).. Default: `onColumnNameChange() {}`.

@@ -24,7 +24,7 @@ sidebar_label: Match List Question
 * __points__ | `number`: максимален брой точки, присъждани при класирането. Default: `10`.
 * __className__ | `string`: име на класа. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: обратна връзка, задействана, когато учениците променят отговор. Default: `onChange() {}`.
 * __onSubmit__ | `function`: обратна връзка, задействана, когато учениците подадат отговор. Default: `onSubmit() {}`.
 
 

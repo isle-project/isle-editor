@@ -19,7 +19,8 @@ O componentă care redă datele într-un afișaj tabelar. Construită pe baza [r
 * __undeletableVars__ | `array<string>`: matrice de nume de variabile ale coloanelor care nu pot fi șterse. Default: `[]`.
 * __filterable__ | `boolean`: controlează dacă coloanele sunt filtrabile sau nu. Default: `true`.
 * __editable__ | `array`: matrice de nume pentru coloanele care trebuie să fie editabile. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: funcție de callback executată pentru fiecare rând pentru a personaliza stilul acestuia (starea tabelului transmisă, informații despre rând,
+coloana și instanța tabelului). Default: `none`.
 * __onColumnDrag__ | `function`: funcție invocată atunci când o coloană a fost trasă într-o poziție diferită. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funcție invocată cu numele unei coloane atunci când se face clic pe butonul de ștergere respectiv pentru o coloană. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funcție invocată atunci când o coloană a fost redenumită (apelată cu vechiul nume ca prim argument și noul nume ca al doilea argument). Default: `onColumnNameChange() {}`.

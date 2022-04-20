@@ -10,7 +10,7 @@ Komponenta oblaka besed, zgrajena na podlagi [d3-cloud](https://github.com/jason
 
 * __data__ | `array`: bodisi polje besedil, iz katerih se ustvari besedni oblak, ali, če je `precalculated` nastavljeno na `true`, polje objektov za štetje besed (s ključema `text` in `value`).. Default: `[]`.
 * __font__ | `(string|function)`: funkcijo dostopa, ki določa obraz pisave za vsako besedo. Namesto funkcije sprejme tudi konstanto. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: funkcijo dostopa, ki določa velikost pisave za vsako besedo. Privzeta vrednost je `( count - min + 1 ) / ( max - min + 6 ) * 30,0 + 12,0`, kjer `min` in `max` označujeta najmanjše oziroma največje število besed. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: višina oblaka besed (v px). Default: `600`.
 * __language__ | `string`: identifikator jezika (določa stopice, ki jih je treba odstraniti).. Default: `'en'`.
 * __minCount__ | `number`: če je nastavljeno, vključi samo besede, ki se v danih podatkih pojavijo več kot `minCount` krat. Default: `none`.

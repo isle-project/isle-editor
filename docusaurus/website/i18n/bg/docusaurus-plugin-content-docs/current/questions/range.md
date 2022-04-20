@@ -25,7 +25,7 @@ sidebar_label: Range Question
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 * __onChangeLower__ | `function`: обратна връзка, задействана след промяна на долната граница от потребителя. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: обратна връзка, задействана след промяна на горната граница от потребителя. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: обратно извикване, задействано след промяна на граница от потребителя (с долна и горна граница като аргументи). Default: `onChange() {}`.
 * __onSubmit__ | `function`: обратна връзка, задействана при подаване на отговор; първият параметър е `boolean`, показващ дали отговорът е бил верен (ако е приложимо, `null` в противен случай), а вторият параметър е подаденият отговор. Default: `onSubmit() {}`.
 
 

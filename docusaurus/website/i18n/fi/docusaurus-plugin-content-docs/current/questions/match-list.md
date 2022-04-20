@@ -24,7 +24,7 @@ ISLE-komponentti, joka esittää kysymyksen, jossa oppijan on yhdistettävä kah
 * __points__ | `number`: luokittelussa annettavien pisteiden enimmäismäärä. Default: `10`.
 * __className__ | `string`: luokan nimi. Default: `''`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, jota kutsutaan, kun opiskelijat muuttavat vastausta. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, jota kutsutaan, kun opiskelija lähettää vastauksen. Default: `onSubmit() {}`.
 
 

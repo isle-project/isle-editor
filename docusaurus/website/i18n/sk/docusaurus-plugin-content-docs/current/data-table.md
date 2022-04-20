@@ -19,7 +19,8 @@ Komponent vykresľujúci údaje v tabuľkovom zobrazení. Postavená nad [react-
 * __undeletableVars__ | `array<string>`: pole názvov premenných stĺpcov, ktoré sa nesmú vymazať. Default: `[]`.
 * __filterable__ | `boolean`: kontroluje, či je možné stĺpce filtrovať.. Default: `true`.
 * __editable__ | `array`: pole názvov stĺpcov, ktoré sa budú dať upravovať. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: spätné volanie vykonané pre každý riadok na prispôsobenie jeho štýlu (odovzdaný stav tabuľky, informácie o riadku,
+stĺpec a inštancia tabuľky). Default: `none`.
 * __onColumnDrag__ | `function`: funkcia vyvolaná po pretiahnutí stĺpca na inú pozíciu. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkcia vyvolaná s názvom stĺpca po kliknutí na príslušné tlačidlo na odstránenie stĺpca. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkcia vyvolaná pri premenovaní stĺpca (volá sa so starým názvom ako prvým a novým názvom ako druhým argumentom). Default: `onColumnNameChange() {}`.

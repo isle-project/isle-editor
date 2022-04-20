@@ -25,7 +25,7 @@ Egy tartományt tartalmazó kérdéskomponens, amely arra kéri a tanulókat, ho
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
 * __onChangeLower__ | `function`: visszahívás, amely az alsó határérték felhasználó általi módosítása után lép működésbe.. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: visszahívás, amely a felső határérték felhasználó általi módosítása után lép működésbe.. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: visszahívás, amely a felhasználó által megváltoztatott határérték után lép életbe (alsó és felső határértékkel mint argumentummal). Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, amelyet a válasz elküldésekor hívnak meg; első paramétere egy "bólé", amely jelzi, hogy a válasz helyesen lett-e megválaszolva (ha alkalmazható, egyébként "nulla"), második paramétere pedig a megadott válasz.. Default: `onSubmit() {}`.
 
 

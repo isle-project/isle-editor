@@ -24,7 +24,7 @@ sidebar_label: Match List Question
 * __points__ | `number`: μέγιστος αριθμός μορίων που χορηγούνται κατά τη βαθμολόγηση. Default: `10`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback που καλείται όταν οι μαθητές αλλάζουν μια απάντηση. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback που καλείται όταν οι μαθητές υποβάλλουν μια απάντηση. Default: `onSubmit() {}`.
 
 

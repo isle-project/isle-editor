@@ -10,7 +10,7 @@ Uz [d3-cloud](https://github.com/jasondavies/d3-cloud) balstīta vārdu mākoņa
 
 * __data__ | `array`: vai nu tekstu masīvs, no kura ģenerēt vārdu mākoni, vai, ja `precalculated` ir iestatīts uz `true`, un vārdu skaita objektu masīvs (ar `text` un `value` atslēgām).. Default: `[]`.
 * __font__ | `(string|function)`: piekļuves funkcija, kas norāda katra vārda fonta seju. Funkcijas vietā pieņem arī konstantu. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: piekļuves funkcija, kas norāda katra vārda fonta lielumu. Standarta noklusējuma vērtība ir `( count - min + 1 ) / ( max - min + 6 ) * 30,0 + 12,0`, kur `min` un `max` apzīmē attiecīgi minimālo un maksimālo vārdu skaitu.. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: vārdu mākoņa augstums (px). Default: `600`.
 * __language__ | `string`: valodas identifikators (nosaka noņemtās pieturas vārdi).. Default: `'en'`.
 * __minCount__ | `number`: ja iestatīts, iekļauj tikai tos vārdus, kas dotajos datos parādās vairāk nekā `minCount` reižu.. Default: `none`.

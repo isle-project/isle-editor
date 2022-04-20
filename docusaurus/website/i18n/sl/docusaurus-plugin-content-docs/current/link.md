@@ -9,6 +9,7 @@ Komponenta za prikaz povezave.
 ## Možnosti
 
 * __href__ | `string (required)`: URL spletnega mesta, do katerega želite vzpostaviti povezavo. Default: `none`.
+* __download__ | `(string|boolean)`: undefined. Default: `false`.
 * __target__ | `string`: določa, kje se odpre povezava: nastavi se na `_blank` za novo okno, `_self` za lastni okvir, `_parent` za starševski okvir, `_top` za celotno telo okna ali ime okvirja.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: z vejico ločen seznam okenskih funkcij, ki se uporabijo, ko se povezava odpre v novem oknu (glej: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

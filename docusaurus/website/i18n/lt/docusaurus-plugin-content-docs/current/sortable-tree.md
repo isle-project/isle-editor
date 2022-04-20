@@ -8,7 +8,9 @@ Plonas [react-sortable-tree](https://www.npmjs.com/package/react-sortable-tree) 
 
 ## Parinktys
 
-* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
+* __treeData__ | `array<object> (required)`: masyvą objektų su `title` (pagrindine mazgo etikete),
+`subtitle` (antrinė etiketė), `expanded` (rodomi mazgo vaikai, jei nustatyta reikšmė true) ir (arba)
+`children` (atitinkamo mazgo priklausančių dukterinių mazgų masyvas).. Default: `none`.
 * __title__ | `(string|node)`: antraštės pavadinimas. Default: `none`.
 
 

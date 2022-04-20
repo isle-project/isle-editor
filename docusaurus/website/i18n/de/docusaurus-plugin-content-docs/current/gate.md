@@ -18,7 +18,7 @@ Eine ISLE-Komponente, die es erlaubt, ihre Kinder nur für reservierte Zielgrupp
 * __until__ | `Date`: Zeit, bis der Inhalt des Gates sichtbar bleiben soll. Default: `none`.
 * __banner__ | `node`: eine benutzerdefinierte Nachricht, die Besuchern angezeigt wird, für die die Kinder des Tores nicht sichtbar sind, anstelle der Standardnachricht. Default: `none`.
 * __disabled__ | `boolean`: wenn ein Tor deaktiviert ist, wird das Banner angezeigt, egal was. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: steuert, ob der Gate-Inhalt im Präsentationsmodus angezeigt werden soll, wenn das Gate für den `Eigentümer` sichtbar ist. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: steuert, ob der Gate-Inhalt im Präsentationsmodus angezeigt werden soll, wenn das Gate für den `Eigentümer` sichtbar ist. Default: `true`.
 * __check__ | `function`: Callback-Funktion, die ein "Boolean" zurückgibt, das angibt, ob Gate untergeordnete Komponenten anzeigen soll; die Funktion wird immer dann aufgerufen, wenn Sitzungsaktionen eintreffen. Default: `none`.
 
 

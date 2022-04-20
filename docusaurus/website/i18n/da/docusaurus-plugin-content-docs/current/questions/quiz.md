@@ -21,6 +21,7 @@ En quiz-komponent, der viser en sekvens af spørgsmålskomponenter.
 * __showFinishButton__ | `boolean`: styrer, om der skal vises en knap for at afslutte quizzen og gå direkte til resultatsiden. Default: `false`.
 * __finishLabel__ | `string`: etiketten på knappen for at afslutte quiz. Default: `none`.
 * __downloadButton__ | `boolean`: styrer, om der skal vises en knap til downloading af svarene. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: callback, der påkaldes, når quizzen er afsluttet, og resultatsiden vises. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback, der påkaldes, når brugeren afgiver et svar. Default: `onSubmit() {}`.
 

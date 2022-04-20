@@ -19,7 +19,8 @@ Un componente que presenta los datos en una tabla. Construido sobre [react-table
 * __undeletableVars__ | `array<string>`: conjunto de nombres de variables de las columnas que no pueden ser suprimidas. Default: `[]`.
 * __filterable__ | `boolean`: controla si las columnas son filtrables. Default: `true`.
 * __editable__ | `array`: una serie de nombres para las columnas que serán editables. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: función de devolución de llamada ejecutada para cada fila para personalizar su estilo (estado de la tabla pasado, información de la fila
+la columna y la instancia de la tabla). Default: `none`.
 * __onColumnDrag__ | `function`: función invocada cuando una columna ha sido arrastrada a una posición diferente. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: función que se invoca con el nombre de una columna cuando se hace clic en el respectivo botón de eliminación de una columna. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: función que se invoca cuando una columna ha sido renombrada (llamada con el nombre antiguo como primer y nuevo nombre como segundo argumento). Default: `onColumnNameChange() {}`.

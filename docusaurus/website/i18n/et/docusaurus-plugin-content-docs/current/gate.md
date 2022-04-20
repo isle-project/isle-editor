@@ -18,7 +18,7 @@ ISLE komponent, mis võimaldab kuvada oma lapsi ainult reserveeritud publikule.
 * __until__ | `Date`: aeg, kuni värava sisu peaks jääma nähtavaks. Default: `none`.
 * __banner__ | `node`: kohandatud sõnum, mis kuvatakse külastajatele, kelle jaoks värava lapsed ei ole nähtavad, vaikimisi sõnumi asemel.. Default: `none`.
 * __disabled__ | `boolean`: kui värav on välja lülitatud, siis kuvatakse bännerit igal juhul.. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: kontrollib, kas värava sisu näidatakse esitlusrežiimis, kui värav on nähtav `owner` jaoks.. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: kontrollib, kas värava sisu näidatakse esitlusrežiimis, kui värav on nähtav `owner` jaoks.. Default: `true`.
 * __check__ | `function`: callback-funktsioon, mis tagastab "boolean", mis näitab, kas värav peaks kuvama lapse komponente; funktsioon käivitub iga kord, kui sessiooni toimingud saabuvad.. Default: `none`.
 
 

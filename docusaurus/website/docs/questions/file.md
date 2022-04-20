@@ -12,7 +12,7 @@ A question that asks the user to upload a file.
 * __hintPlacement__ | `string`: placement of the hints (either `top`, `left`, `right`, or `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: hints providing guidance on how to answer the question. Default: `[]`.
 * __feedback__ | `boolean`: controls whether to display feedback buttons. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: controls whether the element should have an integrated chat. Default: `false`.
 * __accept__ | `string`: comma-separated list of [unique file identifiers](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) that are accepted by the component (e.g., 'image/*', '.pdf' or 'audio/*'). Default: `'*/*'`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
 * __points__ | `number`: maximum number of points awarded in grading. Default: `10`.

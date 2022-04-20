@@ -12,13 +12,13 @@ Vprašanje, ki od uporabnika zahteva, da naloži datoteko.
 * __hintPlacement__ | `string`: umestitev namigov (`zgoraj`, `levo`, `desno` ali `spodaj`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: napotki, kako odgovoriti na vprašanje.. Default: `[]`.
 * __feedback__ | `boolean`: nadzoruje, ali se prikažejo gumbi za povratne informacije.. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: nadzoruje, ali naj ima element integriran klepet.. Default: `false`.
 * __accept__ | `string`: z vejico ločen seznam [edinstvenih identifikatorjev datotek](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), ki jih sprejme komponenta (npr. "image/*", ".pdf" ali "audio/*"). Default: `'*/*'`.
 * __until__ | `Date`: čas, do katerega lahko učenci oddajo odgovore.. Default: `none`.
 * __points__ | `number`: največje število točk, ki se dodelijo pri razvrščanju. Default: `10`.
 * __className__ | `string`: ime razreda. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: povratni klic, ki se sproži ob prejemu datoteke. Default: `onChange() {}`.
 
 
 ## Primeri

@@ -12,13 +12,13 @@ Kysymys, jossa käyttäjää pyydetään lataamaan tiedosto.
 * __hintPlacement__ | `string`: vihjeiden sijainti (joko "ylhäällä", "vasemmalla", "oikealla" tai "alhaalla").. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: vihjeitä, joissa annetaan ohjeita kysymykseen vastaamiseen.. Default: `[]`.
 * __feedback__ | `boolean`: ohjaa, näytetäänkö palautepainikkeet. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.
 * __accept__ | `string`: pilkulla erotettu luettelo [yksilöllisistä tiedostotunnisteista](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), jotka komponentti hyväksyy (esim. "image/*", ".pdf" tai "audio/*").. Default: `'*/*'`.
 * __until__ | `Date`: aika, jonka kuluessa opiskelijoiden olisi annettava antaa vastauksensa. Default: `none`.
 * __points__ | `number`: luokittelussa annettavien pisteiden enimmäismäärä. Default: `10`.
 * __className__ | `string`: luokan nimi. Default: `''`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, jota kutsutaan tiedoston vastaanottamisen jälkeen. Default: `onChange() {}`.
 
 
 ## Esimerkkejä

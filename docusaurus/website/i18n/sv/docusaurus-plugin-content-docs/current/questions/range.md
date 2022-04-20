@@ -25,7 +25,7 @@ En fråga om intervall där eleverna ombeds ange en nedre och övre slutpunkt.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 * __onChangeLower__ | `function`: callback som utlöses när den nedre gränsen ändras av användaren. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback som utlöses när den övre gränsen ändras av användaren. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback som utlöses när en gräns ändras av användaren (med den nedre och övre gränsen som argument).. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback som aktiveras när svaret skickas in; har som första parameter en "boolean" som anger om svaret var korrekt besvarat (om tillämpligt, annars "noll") och det lämnade svaret som andra parameter.. Default: `onSubmit() {}`.
 
 

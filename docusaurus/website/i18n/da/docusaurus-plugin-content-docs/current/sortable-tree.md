@@ -8,7 +8,9 @@ En tynd indpakning omkring [react-sortable-tree](https://www.npmjs.com/package/r
 
 ## Indstillinger
 
-* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
+* __treeData__ | `array<object> (required)`: array af objekter med `title` (den primære betegnelse for noden),
+`subtitle` (sekundær betegnelse), `expanded` (viser nodens børn, hvis den er sat til true) og/eller
+`children` (array af underknuder, der hører til den pågældende knude). Default: `none`.
 * __title__ | `(string|node)`: overskrift titel. Default: `none`.
 
 

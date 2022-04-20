@@ -18,7 +18,7 @@ ISLE-komponentti, joka sallii sen lasten näyttämisen vain varatuille yleisöil
 * __until__ | `Date`: aika, jonka kuluessa portin sisällön on pysyttävä näkyvissä.. Default: `none`.
 * __banner__ | `node`: mukautettu viesti, joka näytetään kävijöille, joille portin lapset eivät ole näkyvissä, oletusviestin sijaan.. Default: `none`.
 * __disabled__ | `boolean`: jos portti on poistettu käytöstä, banneri näytetään riippumatta siitä, mitä tapahtuu.. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: ohjaa, näytetäänkö portin sisältö esitystilassa, kun portti on näkyvissä `omistajan` kannalta.. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: ohjaa, näytetäänkö portin sisältö esitystilassa, kun portti on näkyvissä `omistajan` kannalta.. Default: `true`.
 * __check__ | `function`: callback-funktio, joka palauttaa "boolean"-arvon, joka osoittaa, pitäisikö portin näyttää lapsikomponentit; funktio kutsutaan aina kun istuntotoimintoja saapuu.. Default: `none`.
 
 

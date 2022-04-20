@@ -12,13 +12,13 @@ Eine Frage, die den Benutzer auffordert, eine Datei hochzuladen.
 * __hintPlacement__ | `string`: Platzierung der Hinweise (entweder `oben`, `links`, `rechts` oder `unten`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: Hinweise, die bei der Beantwortung der Frage helfen. Default: `[]`.
 * __feedback__ | `boolean`: steuert, ob Feedback-Schaltflächen angezeigt werden sollen. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.
 * __accept__ | `string`: kommagetrennte Liste von [eindeutigen Dateikennungen](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), die von der Komponente akzeptiert werden (z. B. "image/*", ".pdf" oder "audio/*"). Default: `'*/*'`.
 * __until__ | `Date`: Zeit, bis die Studenten ihre Antworten einreichen können. Default: `none`.
 * __points__ | `number`: Höchstpunktzahl für die Benotung. Default: `10`.
 * __className__ | `string`: Klassenname. Default: `''`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: Callback, der beim Empfang einer Datei aufgerufen wird. Default: `onChange() {}`.
 
 
 ## Beispiele

@@ -18,7 +18,7 @@ Komponent ISLE, ktorý umožňuje zobrazovať svoje deti len vyhradenému publik
 * __until__ | `Date`: čas, kým obsah brány zostane viditeľný. Default: `none`.
 * __banner__ | `node`: vlastná správa, ktorá sa zobrazí návštevníkom, pre ktorých nie sú viditeľné deti brány, namiesto predvolenej správy. Default: `none`.
 * __disabled__ | `boolean`: ak je brána vypnutá, banner sa zobrazí bez ohľadu na to, čo sa stane.. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: ovláda, či sa má obsah brány zobrazovať v režime prezentácie, keď je brána viditeľná pre `vlastníka`. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: ovláda, či sa má obsah brány zobrazovať v režime prezentácie, keď je brána viditeľná pre `vlastníka`. Default: `true`.
 * __check__ | `function`: funkcia spätného volania, ktorá vracia hodnotu `boolean` označujúcu, či má brána zobraziť podriadené komponenty; funkcia sa vyvolá vždy, keď prídu akcie relácie. Default: `none`.
 
 

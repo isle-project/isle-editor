@@ -26,7 +26,7 @@ Egy kérdés, amelynek válasza több válaszdobozból áll.
 * __panelProps__ | `object`: további tulajdonságok, amelyeket a külső <Panel /> komponensnek kell átadni.. Default: `{}`.
 * __className__ | `string`: osztály neve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback függvény, amelyet a válaszok megváltoztatásakor hívnak meg. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback függvény, amely az elküldéskor hívódik elő a válaszokkal, mint első, és egy boolean értékkel, amely a helyességet jelzi, mint második paraméter.. Default: `onSubmit() {}`.
 
 

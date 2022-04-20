@@ -12,13 +12,13 @@ En fråga som ber användaren att ladda upp en fil.
 * __hintPlacement__ | `string`: placering av tipsen (antingen "topp", "vänster", "höger" eller "botten"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips som ger vägledning om hur frågan ska besvaras. Default: `[]`.
 * __feedback__ | `boolean`: kontrollerar om återkopplingsknapparna ska visas. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.
 * __accept__ | `string`: Kommaseparerad lista över [unika filidentifierare] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) som accepteras av komponenten (t.ex. "image/*", ".pdf" eller "audio/*").. Default: `'*/*'`.
 * __until__ | `Date`: tid fram till dess att eleverna ska få lämna in sina svar. Default: `none`.
 * __points__ | `number`: Maximalt antal poäng som tilldelas vid betygsättning.. Default: `10`.
 * __className__ | `string`: klassens namn. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback som ska anropas när en fil tas emot. Default: `onChange() {}`.
 
 
 ## Exempel

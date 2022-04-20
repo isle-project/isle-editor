@@ -19,7 +19,8 @@ Een component die gegevens weergeeft in een tabelweergave. Gebouwd bovenop [reag
 * __undeletableVars__ | `array<string>`: array van variabele namen van kolommen die niet mogen worden geschrapt. Default: `[]`.
 * __filterable__ | `boolean`: controleert of de kolommen filterbaar zijn. Default: `true`.
 * __editable__ | `array`: array van namen voor kolommen die bewerkbaar moeten zijn. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: callback functie die voor elke rij wordt uitgevoerd om de styling ervan aan te passen (doorgegeven tabelstatus, rij-info,
+kolom, en de tabel instantie). Default: `none`.
 * __onColumnDrag__ | `function`: functie aangeroepen wanneer een kolom naar een andere positie is gesleept. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: functie aangeroepen met de naam van een kolom wanneer op de respectievelijke verwijderknop voor een kolom wordt geklikt. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: functie aangeroepen wanneer een kolom is hernoemd (met de oude naam als eerste en de nieuwe naam als tweede argument). Default: `onColumnNameChange() {}`.

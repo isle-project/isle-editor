@@ -18,7 +18,7 @@ Um componente ISLE que permite exibir seus filhos apenas para públicos reservad
 * __until__ | `Date`: tempo até que o conteúdo do portão permaneça visível. Default: `none`.
 * __banner__ | `node`: uma mensagem personalizada que é exibida aos visitantes para os quais as crianças do portão não são visíveis em vez da mensagem padrão. Default: `none`.
 * __disabled__ | `boolean`: se um portão for desativado, o banner será exibido não importa o que. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: controla se o conteúdo do portão deve ser mostrado no modo de apresentação quando o portão é visível para o "proprietário". Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: controla se o conteúdo do portão deve ser mostrado no modo de apresentação quando o portão é visível para o "proprietário". Default: `true`.
 * __check__ | `function`: função chamada de retorno retornando um `booleano` indicando se o portão deve exibir componentes infantis; a função é invocada sempre que as ações da sessão chegam. Default: `none`.
 
 

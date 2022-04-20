@@ -21,6 +21,7 @@ Viktorinos komponentas, kuriame rodoma klausimų komponentų seka.
 * __showFinishButton__ | `boolean`: kontroliuoja, ar rodomas mygtukas baigti viktoriną ir pereiti tiesiai į rezultatų puslapį.. Default: `false`.
 * __finishLabel__ | `string`: viktorinos užbaigimo mygtuko etiketė. Default: `none`.
 * __downloadButton__ | `boolean`: kontroliuoja, ar rodyti atsakymų atsisiuntimo mygtuką.. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: atgalinis skambutis, inicijuojamas, kai viktorina baigiama ir rodomas rezultatų puslapis.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: atgalinis skambutis, iškviečiamas, kai naudotojas pateikia atsakymą.. Default: `onSubmit() {}`.
 

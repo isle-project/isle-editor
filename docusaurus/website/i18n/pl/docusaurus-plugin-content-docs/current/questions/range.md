@@ -25,7 +25,7 @@ Komponent pytania zakresowego, który prosi uczniów o podanie dolnego i górneg
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 * __onChangeLower__ | `function`: wywołanie zwrotne wywołane po zmianie dolnej granicy przez użytkownika. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: wywołanie zwrotne wywołane po zmianie górnej granicy przez użytkownika. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: wywołanie zwrotne wywoływane po zmianie ograniczenia przez użytkownika (z dolnym i górnym ograniczeniem jako argumentami). Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback wywoływany przy udzielaniu odpowiedzi; ma jako pierwszy parametr `boolean` wskazujący, czy odpowiedź została udzielona poprawnie (jeśli dotyczy, `nie ma znaczenia` inaczej), a udzielona odpowiedź jako drugi parametr. Default: `onSubmit() {}`.
 
 

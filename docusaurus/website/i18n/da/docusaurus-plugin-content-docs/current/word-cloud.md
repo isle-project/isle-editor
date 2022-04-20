@@ -10,7 +10,7 @@ En ordsky-komponent bygget oven på [d3-cloud] (https://github.com/jasondavies/d
 
 * __data__ | `array`: enten et array af tekster, hvorfra ordskyen skal genereres, eller, hvis `precalculated` er sat til `true`, et array af ordtællingsobjekter (med nøgler `text` og `value`). Default: `[]`.
 * __font__ | `(string|function)`: accessor-funktion, der angiver skrifttypen for hvert ord. Accepterer også en konstant i stedet for en funktion. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: accessorfunktion, der angiver skriftstørrelsen for hvert ord. Standardværdien er `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, hvor `min` og `max` angiver henholdsvis det mindste og det største antal ord. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: højden af ordskyen (i px). Default: `600`.
 * __language__ | `string`: sprogidentifikator (bestemmer de stopord, der skal fjernes). Default: `'en'`.
 * __minCount__ | `number`: hvis indstillet, medtages kun ord, der forekommer mere end `minCount` gange i de givne data. Default: `none`.
