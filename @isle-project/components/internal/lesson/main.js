@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNotificationSystem from 'react-notification-system';
 import { I18nextProvider } from 'react-i18next';
-import Button from 'react-bootstrap/Button';
 import { i18n } from '@isle-project/locales';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
