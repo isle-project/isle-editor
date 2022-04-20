@@ -1941,7 +1941,7 @@ class Session {
 					position: 'tl'
 				});
 			});
-	}
+	};
 
 	/**
 	* Retrieves the ID for the lesson and namespace from the database.
