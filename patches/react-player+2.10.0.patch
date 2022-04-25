@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-player/lib/players/FilePlayer.js b/node_modules/react-player/lib/players/FilePlayer.js
+index 2c14717..32c53df 100644
+--- a/node_modules/react-player/lib/players/FilePlayer.js
++++ b/node_modules/react-player/lib/players/FilePlayer.js
+@@ -251,6 +251,9 @@ var FilePlayer = /*#__PURE__*/function (_Component) {
+   }, {
+     key: "removeListeners",
+     value: function removeListeners(player, url) {
++      if ( !player ) {
++        return;
++      }
+       player.removeEventListener('canplay', this.onReady);
+       player.removeEventListener('play', this.onPlay);
+       player.removeEventListener('waiting', this.onBuffer);
+@@ -419,8 +422,9 @@ var FilePlayer = /*#__PURE__*/function (_Component) {
+   }, {
+     key: "stop",
+     value: function stop() {
+-      this.player.removeAttribute('src');
+-
++      if ( this.player ) {
++        this.player.removeAttribute('src');
++      }
+       if (this.dash) {
+         this.dash.reset();
+       }
