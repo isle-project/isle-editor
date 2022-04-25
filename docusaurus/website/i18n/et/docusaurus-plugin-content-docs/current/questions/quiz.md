@@ -21,6 +21,7 @@ Viktoriini komponent, mis kuvab küsimuste järjestust.
 * __showFinishButton__ | `boolean`: kontrollib, kas kuvada nuppu viktoriini lõpetamiseks ja otse tulemuste lehele hüppamiseks. Default: `false`.
 * __finishLabel__ | `string`: viktoriini lõpetamise nupu silt. Default: `none`.
 * __downloadButton__ | `boolean`: kontrollib, kas vastuste allalaadimise nuppu kuvatakse.. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: callback, mida kutsutakse üles, kui viktoriin on lõppenud ja tulemuste lehekülg kuvatakse.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback, mida kutsutakse esile, kui kasutaja esitab vastuse. Default: `onSubmit() {}`.
 

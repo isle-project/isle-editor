@@ -12,13 +12,13 @@ Pytanie, w którym użytkownik proszony jest o przesłanie pliku.
 * __hintPlacement__ | `string`: umiejscowienie podpowiedzi (albo `top`, `left`, `right`, lub `bottom`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: podpowiedzi zawierające wskazówki, jak odpowiedzieć na pytanie. Default: `[]`.
 * __feedback__ | `boolean`: kontroluje czy wyświetlać przyciski zwrotne. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: określa, czy element powinien mieć zintegrowaną czat. Default: `false`.
 * __accept__ | `string`: oddzielona przecinkami lista [unikalnych identyfikatorów plików](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), które są akceptowane przez komponent (np. "image/*", ".pdf" lub "audio/*"). Default: `'*/*'`.
 * __until__ | `Date`: czas, w którym uczniowie powinni nadsyłać odpowiedzi. Default: `none`.
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w ramach oceniania. Default: `10`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style inline CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: . Default: `onChange() {}`.
 
 
 ## Przykłady

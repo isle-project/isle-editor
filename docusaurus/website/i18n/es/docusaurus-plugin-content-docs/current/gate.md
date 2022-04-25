@@ -18,7 +18,7 @@ Un componente de la ISLE que permite mostrar a sus hijos sólo a audiencias rese
 * __until__ | `Date`: tiempo hasta que el contenido de la puerta debe permanecer visible. Default: `none`.
 * __banner__ | `node`: un mensaje personalizado que se muestra a los visitantes para los que los hijos de la puerta no son visibles en lugar del mensaje por defecto. Default: `none`.
 * __disabled__ | `boolean`: si una puerta está desactivada, la bandera se mostrará sin importar lo que pase. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: controla si mostrar el contenido de la puerta en el modo de presentación cuando la puerta es visible para los "propietarios". Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: controla si mostrar el contenido de la puerta en el modo de presentación cuando la puerta es visible para los "propietarios". Default: `true`.
 * __check__ | `function`: función de devolución de llamada que devuelve un "booleano" que indica si la puerta debe mostrar los componentes hijo; la función se invoca cada vez que llegan las acciones de la sesión. Default: `none`.
 
 

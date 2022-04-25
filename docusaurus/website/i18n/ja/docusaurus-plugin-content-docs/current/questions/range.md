@@ -25,7 +25,7 @@ sidebar_label: Range Question
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 * __onChangeLower__ | `function`: 下界変更後のコールバック. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: 上限が変更された後のコールバック. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 境界がユーザーによって変更された後に起動されるコールバック（引数として下限と上限を持つ）. Default: `onChange() {}`.
 * __onSubmit__ | `function`: 最初のパラメータとして、アンサーが正しく回答されたかどうかを示す `boolean` (該当する場合は `null`) と、2番目のパラメータとして与えられたアンサーを指定します。. Default: `onSubmit() {}`.
 
 

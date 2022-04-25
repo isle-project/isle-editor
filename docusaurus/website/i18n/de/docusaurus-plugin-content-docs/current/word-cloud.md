@@ -10,7 +10,7 @@ Eine Wortwolken-Komponente, die auf [d3-cloud] (https://github.com/jasondavies/d
 
 * __data__ | `array`: entweder ein Array mit Texten, aus denen die Wortwolke erzeugt werden soll, oder, wenn `precalculated` auf `true` gesetzt ist, ein Array mit Wortzählungsobjekten (mit den Schlüsseln `text` und `value`). Default: `[]`.
 * __font__ | `(string|function)`: Accessorfunktion, die die Schriftart für jedes Wort angibt. Akzeptiert auch eine Konstante anstelle einer Funktion. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: Accessorfunktion, die die Schriftgröße für jedes Wort angibt. Der Standardwert ist `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, wobei `min` und `max` die minimale bzw. maximale Wortanzahl bezeichnen. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: Höhe der Wortwolke (in px). Default: `600`.
 * __language__ | `string`: Sprachidentifikator (bestimmt die zu entfernenden Stoppwörter). Default: `'en'`.
 * __minCount__ | `number`: wenn gesetzt, nur Wörter einbeziehen, die mehr als `minCount` Mal in den angegebenen Daten vorkommen. Default: `none`.

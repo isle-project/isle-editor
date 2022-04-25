@@ -19,7 +19,8 @@ Komponenta vykreslující data v tabulkovém zobrazení. Postavena nad [react-ta
 * __undeletableVars__ | `array<string>`: pole názvů proměnných sloupců, které se nesmí smazat.. Default: `[]`.
 * __filterable__ | `boolean`: řídí, zda je možné sloupce filtrovat. Default: `true`.
 * __editable__ | `array`: pole názvů sloupců, které mají být editovatelné.. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: zpětné volání prováděné pro každý řádek za účelem přizpůsobení jeho stylu (předaný stav tabulky, informace o řádku,
+sloupce a instance tabulky). Default: `none`.
 * __onColumnDrag__ | `function`: funkce vyvolaná při přetažení sloupce na jinou pozici. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkce vyvolaná s názvem sloupce po kliknutí na příslušné tlačítko pro odstranění sloupce.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkce vyvolaná při přejmenování sloupce (volá se se starým názvem jako prvním a novým názvem jako druhým argumentem).. Default: `onColumnNameChange() {}`.

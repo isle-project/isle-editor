@@ -9,6 +9,7 @@ sidebar_label: Link
 ## Опции
 
 * __href__ | `string (required)`: URL адрес на уебсайта, към който да се свърже. Default: `none`.
+* __download__ | `(string|boolean)`: undefined. Default: `false`.
 * __target__ | `string`: определя къде се отваря връзката: задава се `_blank` за нов прозорец, `_self` за собствена рамка, `_parent` за родител, `_top` за цялото тяло на прозореца или името на рамката. Default: `'_blank'`.
 * __windowFeatures__ | `string`: списък с функции на прозореца, разделени със запетая, за отваряне на връзката в нов прозорец (вж.: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

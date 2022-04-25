@@ -12,13 +12,13 @@ Olyan kérdés, amely arra kéri a felhasználót, hogy töltsön fel egy fájlt
 * __hintPlacement__ | `string`: a tippek elhelyezése (vagy "top", "balra", "jobbra", vagy "alul"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: a kérdés megválaszolására vonatkozó útmutatásokat ad. Default: `[]`.
 * __feedback__ | `boolean`: szabályozza, hogy megjelenjenek-e a visszajelző gombok. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: szabályozza, hogy az elemnek legyen-e integrált chatje. Default: `false`.
 * __accept__ | `string`: a komponens által elfogadott [egyedi fájlazonosítók](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers) vesszővel elválasztott listája (pl. 'image/*', '.pdf' vagy 'audio/*'). Default: `'*/*'`.
 * __until__ | `Date`: a tanulóknak a válaszok benyújtásáig rendelkezésre álló idő. Default: `none`.
 * __points__ | `number`: az osztályozás során adható maximális pontszám. Default: `10`.
 * __className__ | `string`: osztály neve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, amelyet egy fájl fogadásakor kell meghívni. Default: `onChange() {}`.
 
 
 ## Példák

@@ -24,7 +24,7 @@ En ISLE-komponent, der gengiver et spørgsmål, hvor den lærende skal matche el
 * __points__ | `number`: det maksimale antal point, der kan tildeles ved bedømmelsen. Default: `10`.
 * __className__ | `string`: klassens navn. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, der påkaldes, når eleverne ændrer et svar. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, der påkaldes, når eleverne afgiver et svar. Default: `onSubmit() {}`.
 
 

@@ -12,13 +12,13 @@ Otázka, která žádá uživatele o nahrání souboru.
 * __hintPlacement__ | `string`: umístění nápovědy (buď `nahoře`, `vlevo`, `vpravo`, nebo `dole`).. Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: nápovědy, jak odpovědět na otázku.. Default: `[]`.
 * __feedback__ | `boolean`: řídí, zda se mají zobrazovat tlačítka zpětné vazby. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: řídí, zda má mít prvek integrovaný chat. Default: `false`.
 * __accept__ | `string`: čárkou oddělený seznam [jedinečných identifikátorů souborů](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), které komponenta akceptuje (např. "image/*", ".pdf" nebo "audio/*").. Default: `'*/*'`.
 * __until__ | `Date`: čas, do kdy by studenti měli mít možnost odevzdat odpovědi. Default: `none`.
 * __points__ | `number`: maximální počet bodů udělených při klasifikaci. Default: `10`.
 * __className__ | `string`: název třídy. Default: `''`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: zpětné volání, které se vyvolá po přijetí souboru. Default: `onChange() {}`.
 
 
 ## Příklady

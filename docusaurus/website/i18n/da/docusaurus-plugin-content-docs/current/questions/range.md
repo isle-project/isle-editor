@@ -25,7 +25,7 @@ En spørgeskemakomponent, der beder eleverne om at angive et nedre og øvre ende
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
 * __onChangeLower__ | `function`: callback, der udløses, når den nedre grænse ændres af brugeren. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback, der udløses, når den øvre grænse ændres af brugeren. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, der udløses, når en grænse ændres af brugeren (med den nedre og øvre grænse som argumenter). Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, der påkaldes, når svaret er indsendt; har som første parameter en `boolean`, der angiver, om svaret blev besvaret korrekt (hvis det er relevant, ellers `null`), og det indsendte svar som anden parameter. Default: `onSubmit() {}`.
 
 

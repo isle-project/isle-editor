@@ -21,6 +21,7 @@ Viktorīnas komponents, kurā tiek rādīta jautājumu komponentu secība.
 * __showFinishButton__ | `boolean`: kontrolē, vai tiek rādīta poga, lai pabeigtu viktorīnu un pārietu tieši uz rezultātu lapu.. Default: `false`.
 * __finishLabel__ | `string`: pogas etiķete, lai pabeigtu viktorīnu. Default: `none`.
 * __downloadButton__ | `boolean`: kontrolē, vai tiek rādīta poga atbilžu lejupielādei.. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: atsauces zvans, kas tiek izsaukts, kad viktorīna ir pabeigta un tiek parādīta rezultātu lapa.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: atgriezeniskais zvans, kas tiek izsaukts, kad lietotājs iesniedz atbildi.. Default: `onSubmit() {}`.
 

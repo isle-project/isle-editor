@@ -8,7 +8,9 @@ Ohut kääre [react-sortable-tree](https://www.npmjs.com/package/react-sortable-
 
 ## Vaihtoehdot
 
-* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
+* __treeData__ | `array<object> (required)`: joukko objekteja, joilla on `title` (solmun ensisijainen nimi),
+`subtitle` (toissijainen nimike), `expanded` (näyttää solmun lapset, jos arvoksi on asetettu true) ja/tai
+`children` (joukko solmun lapsisolmuja, jotka kuuluvat kyseiseen solmuun).. Default: `none`.
 * __title__ | `(string|node)`: otsikon otsikko. Default: `none`.
 
 

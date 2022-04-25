@@ -25,7 +25,7 @@ Un componente de preguntas de rango que pide a los estudiantes que proporcionen 
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.
 * __onChangeLower__ | `function`: La devolución de llamada se activa después de que el usuario cambie el límite inferior. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: La devolución de llamada se activa después de que el usuario cambie el límite superior. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: llamada de retorno que se activa después de que el usuario cambie un límite (con el límite inferior y superior como argumentos). Default: `onChange() {}`.
 * __onSubmit__ | `function`: llamada de retorno invocada cuando se presenta la respuesta; tiene como primer parámetro un "booleano" que indica si la respuesta fue contestada correctamente (si es aplicable, "nulo" en caso contrario) y la respuesta suministrada como segundo parámetro. Default: `onSubmit() {}`.
 
 

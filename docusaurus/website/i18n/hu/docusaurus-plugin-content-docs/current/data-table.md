@@ -19,7 +19,8 @@ Az adatokat táblázatos formában megjelenítő komponens. A [react-table](http
 * __undeletableVars__ | `array<string>`: a nem törölhető oszlopok változóinak neveit tartalmazó tömb. Default: `[]`.
 * __filterable__ | `boolean`: szabályozza, hogy az oszlopok szűrhetők legyenek-e. Default: `true`.
 * __editable__ | `array`: a szerkeszthető oszlopok neveinek tömbje. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: callback függvény, amely minden egyes sorhoz végrehajtódik, hogy testre szabja annak stílusát (átadott táblaállapot, sorinformáció,
+oszlop és a táblázat példánya). Default: `none`.
 * __onColumnDrag__ | `function`: függvény, amely akkor hívódik meg, ha egy oszlopot más pozícióba húztak át. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: függvény, amely az oszlop nevével hívódik meg, amikor az oszlophoz tartozó törlés gombra kattintanak.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: függvény, amelyet akkor hívnak meg, ha egy oszlopot átneveztek (a régi névvel mint első és az új névvel mint második argumentummal hívják meg).. Default: `onColumnNameChange() {}`.

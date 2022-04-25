@@ -25,7 +25,7 @@ Rozsahová otázka, ktorá od študentov vyžaduje, aby uviedli dolný a horný 
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.
 * __onChangeLower__ | `function`: spätné volanie spustené po zmene dolnej hranice používateľom. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: spätné volanie spustené po zmene hornej hranice používateľom. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: spätné volanie spustené po zmene hranice používateľom (s dolnou a hornou hranicou ako argumentmi). Default: `onChange() {}`.
 * __onSubmit__ | `function`: spätné volanie vyvolané po odoslaní odpovede; ako prvý parameter má `boolean` označujúci, či bola odpoveď správne zodpovedaná (ak je to možné, inak `null`), a ako druhý parameter zadanú odpoveď. Default: `onSubmit() {}`.
 
 

@@ -26,7 +26,7 @@ O întrebare cu un răspuns format din mai multe casete de selectare.
 * __panelProps__ | `object`: proprietăți suplimentare care trebuie transmise componentei exterioare <Panel /> . Default: `{}`.
 * __className__ | `string`: numele clasei. Default: `''`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: funcția callback invocată la modificarea răspunsurilor. Default: `onChange() {}`.
 * __onSubmit__ | `function`: funcția callback invocată la trimiterea răspunsurilor ca prim parametru și un boolean care indică corectitudinea ca al doilea parametru. Default: `onSubmit() {}`.
 
 

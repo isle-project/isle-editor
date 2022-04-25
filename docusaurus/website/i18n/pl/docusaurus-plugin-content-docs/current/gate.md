@@ -18,7 +18,7 @@ Element ISLE, który pozwala na wyświetlanie swoich dzieci tylko zarezerwowanym
 * __until__ | `Date`: czas do momentu, w którym zawartość bramy powinna pozostać widoczna. Default: `none`.
 * __banner__ | `node`: niestandardowy komunikat, który jest wyświetlany dla gości, dla których dzieci bramy nie są widoczne, zamiast domyślnego. Default: `none`.
 * __disabled__ | `boolean`: jeśli brama jest wyłączona, baner będzie wyświetlany niezależnie od tego, co się dzieje. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: kontroluje, czy pokazywać zawartość bramki w trybie prezentacji, gdy bramka jest widoczna dla `właściciela`s. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: kontroluje, czy pokazywać zawartość bramki w trybie prezentacji, gdy bramka jest widoczna dla `właściciela`s. Default: `true`.
 * __check__ | `function`: funkcja callback zwracająca `boolean` wskazująca, czy bramka powinna wyświetlać elementy dziecięce; funkcja jest wywoływana za każdym razem, gdy przychodzą akcje sesji. Default: `none`.
 
 

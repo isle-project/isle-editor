@@ -8,7 +8,9 @@ sidebar_label: Sortable Tree
 
 ## オプション
 
-* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
+* __treeData__ | `array<object> (required)`: タイトル` (ノードのプライマリラベル) を持つオブジェクトの配列です。
+サブタイトル` (二次ラベル)、`expanded` (trueに設定するとノードの子を表示する)、および/または
+children` (それぞれのノードに属する子ノードの配列). Default: `none`.
 * __title__ | `(string|node)`: 見出しタイトル. Default: `none`.
 
 

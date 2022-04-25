@@ -24,7 +24,7 @@ Egy ISLE komponens, amely egy olyan kérdést jelenít meg, amelyben a tanulóna
 * __points__ | `number`: az osztályozás során adható maximális pontszám. Default: `10`.
 * __className__ | `string`: osztály neve. Default: `''`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback hívás, amikor a diákok megváltoztatják a választ. Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback, amit akkor hívnak meg, amikor a diákok beküldik a választ. Default: `onSubmit() {}`.
 
 

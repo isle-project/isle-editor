@@ -26,7 +26,7 @@ sidebar_label: Select Question Matrix
 * __panelProps__ | `object`: 外側の<Panel /> コンポーネントに渡される追加プロパティ. Default: `{}`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 回答を変更した際に呼び出されるコールバック関数. Default: `onChange() {}`.
 * __onSubmit__ | `function`: コールバック関数は、第一のパラメータとして答えを、第二のパラメータとして正しさを示すブール値を指定して、提出時に呼び出されます。. Default: `onSubmit() {}`.
 
 

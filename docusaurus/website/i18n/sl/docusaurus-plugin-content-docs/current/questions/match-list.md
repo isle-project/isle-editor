@@ -24,7 +24,7 @@ Komponenta ISLE, ki prikaže vprašanje, v katerem mora učenec pravilno povezat
 * __points__ | `number`: največje število točk, ki se dodelijo pri razvrščanju. Default: `10`.
 * __className__ | `string`: ime razreda. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: povratni klic, ki se sproži, ko učenci spremenijo odgovor.. Default: `onChange() {}`.
 * __onSubmit__ | `function`: povratni klic, ki se sproži, ko učenci oddajo odgovor.. Default: `onSubmit() {}`.
 
 

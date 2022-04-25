@@ -10,7 +10,7 @@ sidebar_label: Word Cloud
 
 * __data__ | `array`: 単語群を生成するテキストの配列、あるいは `precalculated` が `true` に設定されている場合は単語数オブジェクトの配列 (`text` と `value` のキーを持つ)。. Default: `[]`.
 * __font__ | `(string|function)`: アクセサ関数で、各単語のフォントフェイスを指定します。関数の代わりに定数を指定することもできます。. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: アクセサ関数で，各単語のフォントサイズを指定します．デフォルトは `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0` で、`min` と `max` はそれぞれ単語の最小値と最大値を表します。. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: 語高. Default: `600`.
 * __language__ | `string`: げんごしきべつし. Default: `'en'`.
 * __minCount__ | `number`: セットされている場合、指定されたデータの中で `minCount` 回以上出現する単語のみを含む。. Default: `none`.

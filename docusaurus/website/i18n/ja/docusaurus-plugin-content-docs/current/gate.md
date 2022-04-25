@@ -18,7 +18,7 @@ sidebar_label: Gate
 * __until__ | `Date`: かどの中身が見えるまでの時間. Default: `none`.
 * __banner__ | `node`: ゲートの子供が表示されていない訪問者に表示されるデフォルトのメッセージではなく、カスタムメッセージを表示します。. Default: `none`.
 * __disabled__ | `boolean`: ゲートが無効化されている場合は、何をしてもバナーが表示されます。. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: 所有者のためにゲートが表示されている場合に、プレゼンテーションモードでゲートの内容を表示するかどうかを制御する。. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: 所有者のためにゲートが表示されている場合に、プレゼンテーションモードでゲートの内容を表示するかどうかを制御する。. Default: `true`.
 * __check__ | `function`: コールバック関数は、ゲートが子コンポーネントを表示するかどうかを示す `boolean` を返します。. Default: `none`.
 
 

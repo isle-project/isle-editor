@@ -1186,7 +1186,7 @@
 				"name": "showOwnerInPresentationMode",
 				"type": "boolean",
 				"description": "Gate-prop-showOwnerInPresentationMode",
-				"defaultValue": false
+				"defaultValue": true
 			},
 			{
 				"name": "check",
@@ -3418,6 +3418,12 @@
 				"name": "href",
 				"type": "string (required)",
 				"description": "Link-prop-href"
+			},
+			{
+				"name": "download",
+				"type": "(string|boolean)",
+				"description": "Link-prop-download",
+				"defaultValue": false
 			},
 			{
 				"name": "target",
@@ -6146,6 +6152,12 @@
 				"type": "boolean",
 				"description": "Quiz-prop-downloadButton",
 				"defaultValue": true
+			},
+			{
+				"name": "repeatable",
+				"type": "boolean",
+				"description": "Quiz-prop-repeatable",
+				"defaultValue": false
 			},
 			{
 				"name": "onFinished",

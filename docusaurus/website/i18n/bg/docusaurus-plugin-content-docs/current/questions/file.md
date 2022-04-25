@@ -12,13 +12,13 @@ sidebar_label: File Question
 * __hintPlacement__ | `string`: разположение на подсказките (или `горе`, `ляво`, `дясно`, или `долу`). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: указания за това как да отговорите на въпроса. Default: `[]`.
 * __feedback__ | `boolean`: контролира дали да се показват бутони за обратна връзка. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: контролира дали елементът трябва да има интегриран чат. Default: `false`.
 * __accept__ | `string`: списък с [уникални файлови идентификатори](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), разделени със запетая, които се приемат от компонента (напр. "image/*", ".pdf" или "audio/*"). Default: `'*/*'`.
 * __until__ | `Date`: времето, до което учениците трябва да могат да подават отговори. Default: `none`.
 * __points__ | `number`: максимален брой точки, присъждани при класирането. Default: `10`.
 * __className__ | `string`: име на класа. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: обратна връзка, която се извиква при получаване на файл. Default: `onChange() {}`.
 
 
 ## Примери

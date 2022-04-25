@@ -18,7 +18,7 @@ En ISLE-komponent som gör det möjligt att visa sina barn endast för reservera
 * __until__ | `Date`: tid till dess att innehållet i porten ska förbli synligt.. Default: `none`.
 * __banner__ | `node`: ett anpassat meddelande som visas för besökare som inte kan se portens barn i stället för standardmeddelandet.. Default: `none`.
 * __disabled__ | `boolean`: Om en grind är inaktiverad visas bannern oavsett vad som händer.. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: kontrollerar om grindinnehållet ska visas i presentationsläge när grinden är synlig för "ägarens" ägare.. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: kontrollerar om grindinnehållet ska visas i presentationsläge när grinden är synlig för "ägarens" ägare.. Default: `true`.
 * __check__ | `function`: callback-funktion som returnerar en "boolean" som anger om grinden ska visa underordnade komponenter; funktionen anropas när sessionsåtgärder anländer.. Default: `none`.
 
 

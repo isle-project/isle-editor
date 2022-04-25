@@ -21,6 +21,7 @@ Un élément de quiz affichant une séquence d'éléments de questions.
 * __showFinishButton__ | `boolean`: contrôle l'affichage ou non d'un bouton pour terminer le quiz et passer directement à la page des résultats. Default: `false`.
 * __finishLabel__ | `string`: étiquette du bouton pour terminer le quiz. Default: `none`.
 * __downloadButton__ | `boolean`: contrôle l'affichage ou non d'un bouton pour le téléchargement des réponses. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: rappel invoqué lorsque le quiz est terminé et que la page des résultats est affichée. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: rappel invoqué lorsque l'utilisateur soumet une réponse. Default: `onSubmit() {}`.
 

@@ -9,6 +9,7 @@ Komponentas, skirtas nuorodai rodyti.
 ## Parinktys
 
 * __href__ | `string (required)`: Svetainės, į kurią norite pateikti nuorodą, URL. Default: `none`.
+* __download__ | `(string|boolean)`: undefined. Default: `false`.
 * __target__ | `string`: apibrėžia, kur nuoroda atidaroma: nustatyta į `_blank` - naujam langui, `_self` - savo rėmeliui, `_parent` - pagrindiniam langui, `_top` - visam lango korpusui arba rėmelio pavadinimui.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: kableliais atskirtas lango savybių sąrašas, kai nuoroda atidaroma naujame lange (žr.: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

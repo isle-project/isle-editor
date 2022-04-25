@@ -24,7 +24,7 @@ sidebar_label: Match List Question
 * __points__ | `number`: 最高分. Default: `10`.
 * __className__ | `string`: 班名. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 当学生改变答案时调用的回调. Default: `onChange() {}`.
 * __onSubmit__ | `function`: 当学生提交答案时调用回调。. Default: `onSubmit() {}`.
 
 

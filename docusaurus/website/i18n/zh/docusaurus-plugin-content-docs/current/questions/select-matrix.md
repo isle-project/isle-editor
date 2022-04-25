@@ -26,7 +26,7 @@ sidebar_label: Select Question Matrix
 * __panelProps__ | `object`: 要传递给外部<Panel /> 组件的额外属性. Default: `{}`.
 * __className__ | `string`: 班名. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: 改变答案时调用的回调函数. Default: `onChange() {}`.
 * __onSubmit__ | `function`: 提交时调用的回调函数，第一个参数是答案，第二个参数是表示正确性的布尔值。. Default: `onSubmit() {}`.
 
 

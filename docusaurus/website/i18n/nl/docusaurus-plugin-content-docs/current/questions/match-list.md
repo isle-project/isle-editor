@@ -24,7 +24,7 @@ Een ISLE-component die een vraag stelt waarbij de leerling elementen uit twee li
 * __points__ | `number`: maximumaantal punten voor de indeling in klassen. Default: `10`.
 * __className__ | `string`: klassennaam. Default: `''`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback aangeroepen wanneer leerlingen een antwoord wijzigen. Default: `onChange() {}`.
 * __onSubmit__ | `function`: terugbellen wordt ingeroepen als de studenten een antwoord indienen. Default: `onSubmit() {}`.
 
 

@@ -12,13 +12,13 @@ Et spørgsmål, der beder brugeren om at uploade en fil.
 * __hintPlacement__ | `string`: placeringen af vejledningerne (enten "top", "venstre", "højre" eller "nederst"). Default: `'bottom'`.
 * __hints__ | `array<(string|node)>`: tips, der giver vejledning om, hvordan spørgsmålet skal besvares. Default: `[]`.
 * __feedback__ | `boolean`: styrer, om der skal vises feedback-knapper. Default: `true`.
-* __chat__ | `boolean`: undefined. Default: `false`.
+* __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.
 * __accept__ | `string`: kommasepareret liste over [unikke filidentifikatorer] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers), der accepteres af komponenten (f.eks. "image/*", ".pdf" eller "audio/*"). Default: `'*/*'`.
 * __until__ | `Date`: den tid, der skal gå, før de studerende kan afgive svar. Default: `none`.
 * __points__ | `number`: det maksimale antal point, der kan tildeles ved bedømmelsen. Default: `10`.
 * __className__ | `string`: klassens navn. Default: `''`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback, der skal påkaldes ved modtagelse af en fil. Default: `onChange() {}`.
 
 
 ## Eksempler

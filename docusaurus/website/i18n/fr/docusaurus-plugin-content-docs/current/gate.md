@@ -18,7 +18,7 @@ Un composant ISLE qui permet de présenter ses enfants uniquement à des publics
 * __until__ | `Date`: le temps nécessaire pour que le contenu de la porte reste visible. Default: `none`.
 * __banner__ | `node`: un message personnalisé qui est affiché aux visiteurs pour lesquels les enfants de la porte ne sont pas visibles au lieu du message par défaut.. Default: `none`.
 * __disabled__ | `boolean`: si une porte est désactivée, la bannière sera affichée quoi qu'il arrive. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: contrôle si le contenu de la porte doit être affiché en mode de présentation lorsque la porte est visible pour le "propriétaire. Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: contrôle si le contenu de la porte doit être affiché en mode de présentation lorsque la porte est visible pour le "propriétaire. Default: `true`.
 * __check__ | `function`: fonction de rappel renvoyant un "booléen" indiquant si la porte doit afficher les composants enfants ; la fonction est invoquée à chaque fois que des actions de session arrivent. Default: `none`.
 
 

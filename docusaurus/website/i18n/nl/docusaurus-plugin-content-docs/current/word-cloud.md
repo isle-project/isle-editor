@@ -10,7 +10,7 @@ Een woordwolkcomponent die bovenop [d3-cloud](https://github.com/jasondavies/d3-
 
 * __data__ | `array`: ofwel een reeks teksten waaruit de woordwolk wordt gegenereerd, ofwel, indien `voorgecalculeerd` is ingesteld op `waar`, en een reeks objecten voor het tellen van woorden (met `tekst` en `waarde` toetsen). Default: `[]`.
 * __font__ | `(string|function)`: Accessor-functie die het lettertype voor elk woord specificeert. Accepteert ook een constante in plaats van een functie. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: Accessor-functie die de lettergrootte van elk woord aangeeft. Standaardinstelling op `( telling - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, waarbij `min` en `max` respectievelijk het minimum en maximum woord `counts` aangeven. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: hoogte van de woordwolk (in px). Default: `600`.
 * __language__ | `string`: taalidentificatie (bepaalt de te verwijderen stopwoorden). Default: `'en'`.
 * __minCount__ | `number`: indien ingesteld, alleen woorden opnemen die meer dan `minCount` maal in de gegeven gegevens voorkomen. Default: `none`.

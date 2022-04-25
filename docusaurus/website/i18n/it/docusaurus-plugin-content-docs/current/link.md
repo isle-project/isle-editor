@@ -9,6 +9,7 @@ Un componente per la visualizzazione di un link.
 ## Opzioni
 
 * __href__ | `string (required)`: URL del sito web da collegare a. Default: `none`.
+* __download__ | `(string|boolean)`: undefined. Default: `false`.
 * __target__ | `string`: definisce dove il link viene aperto: impostato a `_blank` per la nuova finestra, `_self` proprio frame, `_parent` per il genitore, `_top` per l'intero corpo della finestra, o il nome del frame. Default: `'_blank'`.
 * __windowFeatures__ | `string`: elenco separato da virgole di caratteristiche della finestra per quando il link viene aperto in una nuova finestra (vedere: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

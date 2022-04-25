@@ -10,7 +10,7 @@ sidebar_label: Word Cloud
 
 * __data__ | `array`: 生成词云的文本数组，或者，如果 "precalculated "设置为 "true"，则生成词数对象数组(有 "text "和 "value "键). Default: `[]`.
 * __font__ | `(string|function)`: 访问函数，指定每个字的字型。也接受一个常量而不是函数. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: 访问函数，表示每个字的字体大小。默认值为`( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`，其中`min`和`max`分别表示最小和最大字数。. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: 字云的高度(单位：px). Default: `600`.
 * __language__ | `string`: 语言标识符(确定要删除的停顿字). Default: `'en'`.
 * __minCount__ | `number`: 如果设置，则只包含给定数据中出现次数超过`minCount`的词。. Default: `none`.

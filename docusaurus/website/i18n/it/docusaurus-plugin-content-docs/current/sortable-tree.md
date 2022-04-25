@@ -8,7 +8,9 @@ Un involucro sottile intorno a [react-sortable-tree](https://www.npmjs.com/packa
 
 ## Opzioni
 
-* __treeData__ | `array<object> (required)`: undefined. Default: `none`.
+* __treeData__ | `array<object> (required)`: array di oggetti con `titolo` (etichetta primaria per il nodo),
+`subtitle` (etichetta secondaria), `expanded` (mostra i figli del nodo se impostato a true), e/o
+`children` (array di nodi figli appartenenti al rispettivo nodo). Default: `none`.
 * __title__ | `(string|node)`: titolo dell'intestazione. Default: `none`.
 
 

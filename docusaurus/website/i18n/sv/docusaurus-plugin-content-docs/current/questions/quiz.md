@@ -21,6 +21,7 @@ En frågesportskomponent som visar en sekvens av frågekomponenter.
 * __showFinishButton__ | `boolean`: Kontrollerar om det ska visas en knapp för att avsluta frågesporten och gå direkt till resultatsidan.. Default: `false`.
 * __finishLabel__ | `string`: etiketten på knappen för att avsluta frågesporten. Default: `none`.
 * __downloadButton__ | `boolean`: Kontrollerar om en knapp för att ladda ner svaren ska visas.. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: callback som aktiveras när frågesporten är avslutad och resultatsidan visas.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback som aktiveras när användaren lämnar in ett svar. Default: `onSubmit() {}`.
 

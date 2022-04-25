@@ -19,7 +19,8 @@ Komponenta, ki prikazuje podatke v tabelaričnem prikazu. Zgrajena na podlagi [r
 * __undeletableVars__ | `array<string>`: polje imen spremenljivk stolpcev, ki se ne smejo izbrisati. Default: `[]`.
 * __filterable__ | `boolean`: nadzoruje, ali je stolpce mogoče filtrirati.. Default: `true`.
 * __editable__ | `array`: niz imen za stolpce, ki jih je mogoče urejati. Default: `[]`.
-* __getTrProps__ | `function`: undefined. Default: `none`.
+* __getTrProps__ | `function`: povratna funkcija, ki se izvede za vsako vrstico za prilagoditev njenega sloga (posredovano stanje tabele, informacije o vrstici,
+stolpec in primerek tabele). Default: `none`.
 * __onColumnDrag__ | `function`: funkcija, ki se sproži, ko je bil stolpec povlečen v drug položaj.. Default: `onColumnDrag() {}`.
 * __onColumnDelete__ | `function`: funkcija, ki se sproži z imenom stolpca, ko je kliknjen ustrezen gumb za brisanje stolpca.. Default: `onColumnDelete() {}`.
 * __onColumnNameChange__ | `function`: funkcija, ki se sproži ob preimenovanju stolpca (klicana s starim imenom kot prvim in novim imenom kot drugim argumentom).. Default: `onColumnNameChange() {}`.

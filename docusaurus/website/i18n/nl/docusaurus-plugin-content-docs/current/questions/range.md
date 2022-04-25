@@ -25,7 +25,7 @@ Een vraagcomponent die de leerlingen vraagt om een onder- en bovengrens aan te g
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.
 * __onChangeLower__ | `function`: callback getriggerd nadat de ondergrens door de gebruiker is gewijzigd. Default: `onChangeLower() {}`.
 * __onChangeUpper__ | `function`: callback geactiveerd nadat de bovengrens door de gebruiker is gewijzigd. Default: `onChangeUpper() {}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback die wordt gestart nadat een limiet door de gebruiker is gewijzigd (met de onder- en bovengrens als argumenten). Default: `onChange() {}`.
 * __onSubmit__ | `function`: callback ingeroepen bij het inzenden van het antwoord; heeft als eerste parameter een `boolean` die aangeeft of het antwoord correct is beantwoord (indien van toepassing, `null` anders) en het verstrekte antwoord als tweede parameter. Default: `onSubmit() {}`.
 
 

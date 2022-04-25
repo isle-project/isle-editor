@@ -10,7 +10,7 @@ Komponent mraku slov postavený nad [d3-cloud](https://github.com/jasondavies/d3
 
 * __data__ | `array`: buď pole textov, z ktorých sa má vygenerovať mrak slov, alebo ak je `precalculated` nastavené na `true`, a pole objektov s počtom slov (s kľúčmi `text` a `value`). Default: `[]`.
 * __font__ | `(string|function)`: prístupová funkcia určujúca tvár písma pre každé slovo. Namiesto funkcie akceptuje aj konštantu. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: prístupová funkcia, ktorá udáva veľkosť písma pre každé slovo. Predvolené nastavenie je `( count - min + 1 ) / ( max - min + 6 ) * 30,0 + 12,0`, kde `min` a `max` označujú minimálny a maximálny počet slov. Default: `none`.
+* __fontSizeMapper__ | `function`: undefined. Default: `none`.
 * __height__ | `number`: výška mraku slov (v px). Default: `600`.
 * __language__ | `string`: identifikátor jazyka (určuje stopslova, ktoré sa majú odstrániť). Default: `'en'`.
 * __minCount__ | `number`: ak je nastavené, zahrnie iba slová, ktoré sa v daných údajoch vyskytujú viac ako `minCount` krát. Default: `none`.

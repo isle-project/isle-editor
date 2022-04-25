@@ -24,7 +24,7 @@ Eine ISLE-Komponente, die eine Frage wiedergibt, bei der der Lerner Elemente aus
 * __points__ | `number`: maximale Anzahl von Punkten, die bei der Benotung vergeben werden. Default: `10`.
 * __className__ | `string`: Klassenname. Default: `''`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: Callback, der aufgerufen wird, wenn Studenten eine Antwort ändern. Default: `onChange() {}`.
 * __onSubmit__ | `function`: Callback, der aufgerufen wird, wenn der Schüler eine Antwort abgibt. Default: `onSubmit() {}`.
 
 

@@ -26,7 +26,7 @@ sidebar_label: Select Question Matrix
 * __panelProps__ | `object`: πρόσθετες ιδιότητες που πρέπει να μεταβιβαστούν στο εξωτερικό στοιχείο <Panel /> . Default: `{}`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: συνάρτηση επανάκλησης που καλείται κατά την αλλαγή των απαντήσεων. Default: `onChange() {}`.
 * __onSubmit__ | `function`: συνάρτηση επανάκλησης που καλείται κατά την υποβολή με τις απαντήσεις ως πρώτη παράμετρο και ένα boolean που υποδεικνύει την ορθότητα ως δεύτερη παράμετρο. Default: `onSubmit() {}`.
 
 

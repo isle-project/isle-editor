@@ -18,7 +18,7 @@ Un componente ISLE che permette di esporre i propri figli solo a un pubblico ris
 * __until__ | `Date`: tempo fino a quando il contenuto del cancello non dovrebbe rimanere visibile. Default: `none`.
 * __banner__ | `node`: un messaggio personalizzato che viene mostrato ai visitatori per i quali i figli del cancello non sono visibili, invece di quello predefinito. Default: `none`.
 * __disabled__ | `boolean`: se un cancello è disattivato, il banner verrà visualizzato a prescindere dal fatto che. Default: `false`.
-* __showOwnerInPresentationMode__ | `boolean`: controlla se mostrare i contenuti del cancello in modalità di presentazione quando il cancello è visibile per i "proprietari". Default: `false`.
+* __showOwnerInPresentationMode__ | `boolean`: controlla se mostrare i contenuti del cancello in modalità di presentazione quando il cancello è visibile per i "proprietari". Default: `true`.
 * __check__ | `function`: funzione di callback che restituisce un `booleano` che indica se il gate deve visualizzare i componenti figli; la funzione viene invocata ogni volta che arrivano le azioni della sessione. Default: `none`.
 
 

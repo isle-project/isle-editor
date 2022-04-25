@@ -21,6 +21,7 @@ O componentă de chestionar care afișează o secvență de componente de între
 * __showFinishButton__ | `boolean`: controlează dacă se afișează sau nu butonul pentru a termina testul și a trece direct la pagina de rezultate. Default: `false`.
 * __finishLabel__ | `string`: eticheta butonului pentru a termina testul. Default: `none`.
 * __downloadButton__ | `boolean`: controlează dacă se afișează sau nu un buton pentru descărcarea răspunsurilor. Default: `true`.
+* __repeatable__ | `boolean`: undefined. Default: `false`.
 * __onFinished__ | `function`: callback invocat atunci când testul se termină și este afișată pagina de rezultate. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback invocat atunci când utilizatorul trimite un răspuns. Default: `onSubmit() {}`.
 

@@ -26,7 +26,7 @@ Küsimus, mille vastus koosneb mitmest valikukastist.
 * __panelProps__ | `object`: täiendavad omadused, mis edastatakse väliskomponendile <Panel />.. Default: `{}`.
 * __className__ | `string`: klassi nimi. Default: `''`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.
-* __onChange__ | `function`: undefined. Default: `onChange() {}`.
+* __onChange__ | `function`: callback funktsioon, mis kutsutakse üles vastuste muutmisel. Default: `onChange() {}`.
 * __onSubmit__ | `function`: tagasilöögifunktsioon, mis kutsutakse üles esitamisel ja mille esimeseks parameetriks on vastused ja teiseks parameetriks boolean, mis näitab korrektsust.. Default: `onSubmit() {}`.
 
 
