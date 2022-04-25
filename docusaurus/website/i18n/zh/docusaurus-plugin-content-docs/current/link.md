@@ -9,7 +9,7 @@ sidebar_label: Link
 ## 选项
 
 * __href__ | `string (required)`: 链接到的网站URL. Default: `none`.
-* __download__ | `(string|boolean)`: undefined. Default: `false`.
+* __download__ | `(string|boolean)`: 指定是否应该下载链接：设置为 "true "可以强制下载，或者用一个字符串指定文件名；如果 "false"，则不强制下载。. Default: `false`.
 * __target__ | `string`: 定义打开链接的位置：设置为`_blank`代表新窗口，`_self`代表自己的框架，`_parent`代表上级，`_top`代表窗口的主体，或者框架的名称。. Default: `'_blank'`.
 * __windowFeatures__ | `string`: 逗号分隔的窗口特征列表，用于链接在新窗口中打开时（见：https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features）。. Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

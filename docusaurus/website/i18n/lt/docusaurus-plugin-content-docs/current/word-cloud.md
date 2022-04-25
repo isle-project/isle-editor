@@ -10,7 +10,7 @@ sidebar_label: Word Cloud
 
 * __data__ | `array`: arba tekstų masyvas, iš kurio generuojamas žodžių debesis, arba, jei `precalculated` nustatyta į `true`, žodžių skaičiaus objektų masyvas (su `text` ir `value` raktais).. Default: `[]`.
 * __font__ | `(string|function)`: prieigos funkcija, nurodanti kiekvieno žodžio šrifto veidą. Taip pat priima konstantą vietoj funkcijos. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: prieigos funkcija, nurodanti kiekvieno žodžio šrifto dydį. Numatytoji reikšmė yra `( count - min + 1 ) / ( max - min + 6 ) * 30,0 + 14,0`, kur `min` ir `max` reiškia atitinkamai mažiausią ir didžiausią žodžių `skaičių`.. Default: `none`.
 * __height__ | `number`: žodžių debesies aukštis (px). Default: `600`.
 * __language__ | `string`: kalbos identifikatorius (nustato šalintinus stopžodžius).. Default: `'en'`.
 * __minCount__ | `number`: jei nustatyta, įtraukti tik tuos žodžius, kurie duotuose duomenyse yra daugiau nei `minCount` kartų.. Default: `none`.

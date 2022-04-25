@@ -21,7 +21,7 @@ Un componente de prueba que muestra una secuencia de componentes de la pregunta.
 * __showFinishButton__ | `boolean`: controla si se muestra el botón para terminar la prueba y saltar directamente a la página de resultados. Default: `false`.
 * __finishLabel__ | `string`: etiqueta del botón para terminar el examen. Default: `none`.
 * __downloadButton__ | `boolean`: controla si se muestra un botón para descargar las respuestas. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: controla si el cuestionario se puede repetir. Default: `false`.
 * __onFinished__ | `function`: Se devuelve la llamada cuando se termina el cuestionario y se muestra la página de resultados. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: La devolución de llamada invocada cuando el usuario presenta una respuesta. Default: `onSubmit() {}`.
 

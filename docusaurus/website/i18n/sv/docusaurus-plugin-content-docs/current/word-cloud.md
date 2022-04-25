@@ -10,7 +10,7 @@ En komponent för ordmoln som bygger på [d3-cloud] (https://github.com/jasondav
 
 * __data__ | `array`: antingen en matris med texter från vilka ordmolnet ska genereras eller, om `precalculated` är satt till `true`, en matris med ordräkningsobjekt (med nycklarna `text` och `value`).. Default: `[]`.
 * __font__ | `(string|function)`: som anger teckensnittet för varje ord. Accepterar även en konstant i stället för en funktion. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: som anger teckensnittsstorleken för varje ord. Standardvärdet är `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, där `min` och `max` anger minsta och största antal ord.. Default: `none`.
 * __height__ | `number`: ordmolnets höjd (i px). Default: `600`.
 * __language__ | `string`: Språkidentifierare (bestämmer vilka stoppord som ska tas bort).. Default: `'en'`.
 * __minCount__ | `number`: om den är inställd, inkludera endast ord som förekommer mer än `minCount` gånger i de givna uppgifterna. Default: `none`.

@@ -21,7 +21,7 @@ Een quizcomponent met een opeenvolging van vraagcomponenten.
 * __showFinishButton__ | `boolean`: bepaalt of de knop moet worden weergegeven om de quiz af te sluiten en direct naar de resultatenpagina te springen. Default: `false`.
 * __finishLabel__ | `string`: label van knop om de quiz af te ronden. Default: `none`.
 * __downloadButton__ | `boolean`: bepaalt of er een knop moet worden weergegeven voor het downloaden van de antwoorden. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: bepaalt of de test herhaald kan worden. Default: `false`.
 * __onFinished__ | `function`: terugbellen wordt aangeroepen als de quiz klaar is en de resultatenpagina wordt weergegeven. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: terugbellen wordt aangeroepen wanneer de gebruiker een antwoord indient. Default: `onSubmit() {}`.
 

@@ -9,7 +9,7 @@ Komponent na zobrazenie odkazu.
 ## Možnosti
 
 * __href__ | `string (required)`: Adresa URL webovej lokality, na ktorú sa má odkazovať. Default: `none`.
-* __download__ | `(string|boolean)`: undefined. Default: `false`.
+* __download__ | `(string|boolean)`: určuje, či sa má odkaz stiahnuť: nastavením na `true` sa vynúti stiahnutie, alebo reťazec na zadanie názvu súboru; ak je `false`, stiahnutie sa nevynúti. Default: `false`.
 * __target__ | `string`: definuje, kde sa odkaz otvorí: nastaví sa na `_blank` pre nové okno, `_self` pre vlastný rám, `_parent` pre rodičovské okno, `_top` pre celé telo okna alebo názov rámu. Default: `'_blank'`.
 * __windowFeatures__ | `string`: zoznam funkcií okna oddelených čiarkou pre prípad otvorenia odkazu v novom okne (pozri: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

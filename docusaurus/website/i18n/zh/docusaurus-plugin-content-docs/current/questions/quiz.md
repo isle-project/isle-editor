@@ -21,7 +21,7 @@ sidebar_label: Quiz
 * __showFinishButton__ | `boolean`: 控制是否显示按钮来完成测验并直接跳到结果页面。. Default: `false`.
 * __finishLabel__ | `string`: 完成测验按钮的标签. Default: `none`.
 * __downloadButton__ | `boolean`: 控制是否显示下载回复的按钮。. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: 控制测验是否可以重复进行. Default: `false`.
 * __onFinished__ | `function`: 当测验结束并显示结果页面时调用的回调。. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: 当用户提交回答时调用回调。. Default: `onSubmit() {}`.
 

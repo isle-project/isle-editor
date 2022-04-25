@@ -21,7 +21,7 @@ Tietokilpailukomponentti, joka näyttää kysymyskomponenttien sarjan.
 * __showFinishButton__ | `boolean`: valvoo, näytetäänkö painike tietovisan loppuun saattamiseksi ja suoraan tulossivulle siirtymiseksi.. Default: `false`.
 * __finishLabel__ | `string`: tietokilpailun loppuun saattamista koskevan painikkeen etiketti. Default: `none`.
 * __downloadButton__ | `boolean`: valvoo, näytetäänkö vastausten lataamista varten painike.. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: valvoo, voidaanko tietokilpailu toistaa. Default: `false`.
 * __onFinished__ | `function`: callback, jota kutsutaan, kun tietokilpailu on päättynyt ja tulossivu näytetään.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback, jota kutsutaan, kun käyttäjä lähettää vastauksen. Default: `onSubmit() {}`.
 

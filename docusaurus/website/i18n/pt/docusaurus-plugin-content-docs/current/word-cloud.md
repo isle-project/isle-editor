@@ -10,7 +10,7 @@ Um componente de nuvem de palavras construído em cima de [d3-cloud](https://git
 
 * __data__ | `array`: ou um conjunto de textos a partir dos quais se pode gerar a palavra nuvem ou, se `precalculado' está definido para `verdadeiro', e um conjunto de objetos de contagem de palavras (com teclas de `texto' e `valor'). Default: `[]`.
 * __font__ | `(string|function)`: função acessor especificando a face da fonte para cada palavra. Também aceita uma constante ao invés de uma função. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: função acessor indicando o tamanho da fonte para cada palavra. O padrão é `( contagem - min + 1 ) / ( max - min + 6 ) * 30,0 + 14,0', onde `min' e `max' denotam o mínimo e o máximo de palavras `contas', respectivamente. Default: `none`.
 * __height__ | `number`: altura da palavra nuvem (em px). Default: `600`.
 * __language__ | `string`: identificador do idioma (determina as palavras de parada a serem removidas). Default: `'en'`.
 * __minCount__ | `number`: se definido, incluir apenas palavras que apareçam mais do que "minCount" vezes nos dados fornecidos. Default: `none`.

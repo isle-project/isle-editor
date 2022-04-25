@@ -21,7 +21,7 @@ sidebar_label: Quiz
 * __showFinishButton__ | `boolean`: クイズを終了して結果ページに直接ジャンプするボタンを表示するかどうかを制御します。. Default: `false`.
 * __finishLabel__ | `string`: クイズ終了ボタンのラベル. Default: `none`.
 * __downloadButton__ | `boolean`: 回答をダウンロードするためのボタンを表示するかどうかを制御します。. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: は小テストを繰り返すことができるかどうかをコントロールします。. Default: `false`.
 * __onFinished__ | `function`: クイズが終了し、結果ページが表示されたときに呼び出されるコールバック. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: ユーザーが回答を送信するとコールバックが呼び出されます。. Default: `onSubmit() {}`.
 

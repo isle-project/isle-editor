@@ -10,7 +10,7 @@ Sanapilvi-komponentti, joka on rakennettu [d3-cloud](https://github.com/jasondav
 
 * __data__ | `array`: joko joukko tekstejä, joista luodaan sanapilvi, tai, jos `precalculated` on asetettu arvoon `true`, joukko sanojen lukumäärän objekteja (avaimilla `text` ja `value`).. Default: `[]`.
 * __font__ | `(string|function)`: accessor-funktio, joka määrittelee kunkin sanan fonttipinnan. Hyväksyy myös vakion funktion sijasta. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: accessor-funktio, joka ilmoittaa kunkin sanan fonttikoon. Oletusarvo on `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, missä `min` ja `max` tarkoittavat sanojen `miinimääriä` ja `maksimääriä`.. Default: `none`.
 * __height__ | `number`: sanapilven korkeus (px). Default: `600`.
 * __language__ | `string`: kielitunniste (määrittää poistettavat stop-sanat). Default: `'en'`.
 * __minCount__ | `number`: jos asetettu, otetaan mukaan vain sanat, jotka esiintyvät yli `minCount`-kertaa annetussa aineistossa.. Default: `none`.

@@ -9,7 +9,7 @@ Komponent lingi kuvamiseks.
 ## Valikud
 
 * __href__ | `string (required)`: Veebisaidi URL, millele linkida. Default: `none`.
-* __download__ | `(string|boolean)`: undefined. Default: `false`.
+* __download__ | `(string|boolean)`: määrab, kas linki tuleb alla laadida: allalaadimise sundimiseks on määratud `true` või string, mis määrab failinime; kui `false`, siis allalaadimist ei sunnita.. Default: `false`.
 * __target__ | `string`: määratleb, kus link avatakse: uue akna puhul on määratud `_blank`, oma raami puhul `_self`, vanema puhul `_parent`, akna kogu keha puhul `_top` või raami nimi.. Default: `'_blank'`.
 * __windowFeatures__ | `string`: komadega eraldatud loetelu aknafunktsioonidest, kui link avatakse uues aknas (vt: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.

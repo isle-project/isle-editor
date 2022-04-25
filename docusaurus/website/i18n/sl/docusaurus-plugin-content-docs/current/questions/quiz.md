@@ -21,7 +21,7 @@ Komponenta kviza, ki prikazuje zaporedje komponent z vprašanji.
 * __showFinishButton__ | `boolean`: nadzoruje, ali se prikaže gumb za dokončanje kviza in skok neposredno na stran z rezultati.. Default: `false`.
 * __finishLabel__ | `string`: oznaka gumba za dokončanje kviza. Default: `none`.
 * __downloadButton__ | `boolean`: nadzoruje, ali se prikaže gumb za prenos odgovorov.. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: nadzoruje, ali se kviz lahko ponovi.. Default: `false`.
 * __onFinished__ | `function`: povratni klic, ki se sproži, ko je kviz končan in se prikaže stran z rezultati.. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: povratni klic, ki se sproži, ko uporabnik odda odgovor. Default: `onSubmit() {}`.
 

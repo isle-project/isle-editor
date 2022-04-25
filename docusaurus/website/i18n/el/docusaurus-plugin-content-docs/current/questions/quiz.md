@@ -21,7 +21,7 @@ sidebar_label: Quiz
 * __showFinishButton__ | `boolean`: ελέγχει αν θα εμφανίζεται το κουμπί για να ολοκληρωθεί το κουίζ και να μεταβείτε απευθείας στη σελίδα αποτελεσμάτων. Default: `false`.
 * __finishLabel__ | `string`: ετικέτα του κουμπιού για την ολοκλήρωση του κουίζ. Default: `none`.
 * __downloadButton__ | `boolean`: ελέγχει αν θα εμφανίζεται ένα κουμπί για τη λήψη των απαντήσεων. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: ελέγχει αν το κουίζ μπορεί να επαναληφθεί. Default: `false`.
 * __onFinished__ | `function`: callback που καλείται όταν το κουίζ τελειώσει και εμφανιστεί η σελίδα αποτελεσμάτων. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback που καλείται όταν ο χρήστης υποβάλλει μια απάντηση. Default: `onSubmit() {}`.
 

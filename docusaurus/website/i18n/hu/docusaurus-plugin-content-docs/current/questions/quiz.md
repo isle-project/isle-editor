@@ -21,7 +21,7 @@ Kérdéskomponensek sorozatát megjelenítő kvízkomponens.
 * __showFinishButton__ | `boolean`: szabályozza, hogy megjelenjen-e a kvíz befejezéséhez és az eredményoldalra való közvetlen ugráshoz szükséges gomb. Default: `false`.
 * __finishLabel__ | `string`: a kvíz befejezéséhez szükséges gomb címkéje. Default: `none`.
 * __downloadButton__ | `boolean`: szabályozza, hogy megjelenjen-e egy gomb a válaszok letöltéséhez. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: szabályozza, hogy a kvíz megismételhető-e. Default: `false`.
 * __onFinished__ | `function`: callback, amely akkor hívódik, amikor a kvíz befejeződik és az eredményoldal megjelenik. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: callback hívás, amikor a felhasználó elküldi a választ. Default: `onSubmit() {}`.
 

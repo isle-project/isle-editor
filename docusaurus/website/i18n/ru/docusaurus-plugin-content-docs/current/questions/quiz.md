@@ -21,7 +21,7 @@ sidebar_label: Quiz
 * __showFinishButton__ | `boolean`: управляет отображением кнопки для завершения теста и перехода непосредственно к странице результатов. Default: `false`.
 * __finishLabel__ | `string`: ярлык кнопки завершения викторины. Default: `none`.
 * __downloadButton__ | `boolean`: управляет отображением кнопки для загрузки ответов. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: контролирует, можно ли повторить тест. Default: `false`.
 * __onFinished__ | `function`: вызов обратного вызова после завершения теста и отображения страницы результатов. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: обратный вызов, когда пользователь отправляет ответ. Default: `onSubmit() {}`.
 

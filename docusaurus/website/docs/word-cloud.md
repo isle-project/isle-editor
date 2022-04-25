@@ -10,7 +10,7 @@ A word cloud component built on top of [d3-cloud](https://github.com/jasondavies
 
 * __data__ | `array`: either an array of texts from which to generate the word cloud or, if `precalculated` is set to `true`, and array of word count objects (with `text` and `value` keys). Default: `[]`.
 * __font__ | `(string|function)`: accessor function specifying the font face for each word. Also accepts a constant instead of a function. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 12.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively. Default: `none`.
+* __fontSizeMapper__ | `function`: accessor function indicating the font size for each word. Defaults to `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, where `min` and `max` denote the minimum and maximum word `counts`, respectively. Default: `none`.
 * __height__ | `number`: height of the word cloud (in px). Default: `600`.
 * __language__ | `string`: language identifier (determines the stopwords to be removed). Default: `'en'`.
 * __minCount__ | `number`: if set, only include words that appear more than `minCount` times in the given data. Default: `none`.

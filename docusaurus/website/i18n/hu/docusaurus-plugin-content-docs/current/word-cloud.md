@@ -10,7 +10,7 @@ A [d3-cloud](https://github.com/jasondavies/d3-cloud) tetejére épülő szófel
 
 * __data__ | `array`: vagy szövegek tömbje, amelyekből a szófelhőt generálni kell, vagy, ha az `precalculated` értéke `true`, és szószám objektumok tömbje (a `text` és `value` kulcsokkal).. Default: `[]`.
 * __font__ | `(string|function)`: accessor függvény, amely meghatározza az egyes szavak betűtípusát. Függvény helyett konstansot is elfogad. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: accessor függvény, amely minden szóhoz megadja a betűméretet. Alapértelmezett értéke `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, ahol `min` és `max` a minimális és maximális szószámot jelöli.. Default: `none`.
 * __height__ | `number`: a szófelhő magassága (px-ben). Default: `600`.
 * __language__ | `string`: nyelvi azonosító (meghatározza az eltávolítandó zárószavakat). Default: `'en'`.
 * __minCount__ | `number`: ha be van állítva, csak azokat a szavakat tartalmazza, amelyek többször fordulnak elő a megadott adatokban, mint a "minCount".. Default: `none`.

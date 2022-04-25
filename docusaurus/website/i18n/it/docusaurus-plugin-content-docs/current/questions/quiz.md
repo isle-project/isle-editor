@@ -21,7 +21,7 @@ Un componente del quiz che mostra una sequenza di componenti di domanda.
 * __showFinishButton__ | `boolean`: controlla se visualizzare il pulsante per finire il quiz e saltare direttamente alla pagina dei risultati. Default: `false`.
 * __finishLabel__ | `string`: etichetta del pulsante per finire il quiz. Default: `none`.
 * __downloadButton__ | `boolean`: controlla se visualizzare un pulsante per scaricare le risposte. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: controlla se il quiz può essere ripetuto. Default: `false`.
 * __onFinished__ | `function`: richiamata quando il quiz è finito e viene visualizzata la pagina dei risultati. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: richiamata quando l'utente invia una risposta. Default: `onSubmit() {}`.
 

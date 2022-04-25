@@ -21,7 +21,7 @@ Komponent quizu przedstawiający sekwencję komponentów pytania.
 * __showFinishButton__ | `boolean`: kontroluje, czy należy wyświetlić przycisk do zakończenia quizu i przejść bezpośrednio do strony wyników. Default: `false`.
 * __finishLabel__ | `string`: etykieta przycisku do zakończenia quizu. Default: `none`.
 * __downloadButton__ | `boolean`: kontroluje, czy ma być wyświetlany przycisk do pobierania odpowiedzi. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: określa, czy quiz może być powtarzany. Default: `false`.
 * __onFinished__ | `function`: wywołanie zwrotne wywołane po zakończeniu quizu i wyświetleniu strony z wynikami. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: wywołanie zwrotne, gdy użytkownik udziela odpowiedzi. Default: `onSubmit() {}`.
 

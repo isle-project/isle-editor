@@ -10,7 +10,7 @@ O componentă de nor de cuvinte construită pe baza [d3-cloud](https://github.co
 
 * __data__ | `array`: fie o matrice de texte din care să se genereze norul de cuvinte, fie, dacă `precalculated` este setat la `true`, o matrice de obiecte de număr de cuvinte (cu cheile `text` și `value`).. Default: `[]`.
 * __font__ | `(string|function)`: funcție de accesor care specifică fontul pentru fiecare cuvânt. Acceptă, de asemenea, o constantă în loc de o funcție. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: funcție accesor care indică dimensiunea fontului pentru fiecare cuvânt. Valoarea implicită este `( număr - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, unde `min` și `max` reprezintă numărul minim și, respectiv, numărul maxim de cuvinte.. Default: `none`.
 * __height__ | `number`: înălțimea norului de cuvinte (în px). Default: `600`.
 * __language__ | `string`: identificatorul de limbă (determină cuvintele de oprire care trebuie eliminate). Default: `'en'`.
 * __minCount__ | `number`: dacă este setat, include numai cuvintele care apar de mai mult de `minCount` ori în datele date. Default: `none`.

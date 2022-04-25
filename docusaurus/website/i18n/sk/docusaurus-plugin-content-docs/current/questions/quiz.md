@@ -21,7 +21,7 @@ Komponent kvízu zobrazujúci postupnosť komponentov otázok.
 * __showFinishButton__ | `boolean`: kontroluje, či sa má zobraziť tlačidlo na ukončenie kvízu a priamy prechod na stránku s výsledkami.. Default: `false`.
 * __finishLabel__ | `string`: označenie tlačidla na dokončenie kvízu. Default: `none`.
 * __downloadButton__ | `boolean`: kontroluje, či sa má zobraziť tlačidlo na stiahnutie odpovedí.. Default: `true`.
-* __repeatable__ | `boolean`: undefined. Default: `false`.
+* __repeatable__ | `boolean`: kontroluje, či sa kvíz môže opakovať.. Default: `false`.
 * __onFinished__ | `function`: spätné volanie vyvolané po dokončení kvízu a zobrazení stránky s výsledkami. Default: `onFinished() {}`.
 * __onSubmit__ | `function`: spätné volanie vyvolané, keď používateľ odošle odpoveď. Default: `onSubmit() {}`.
 

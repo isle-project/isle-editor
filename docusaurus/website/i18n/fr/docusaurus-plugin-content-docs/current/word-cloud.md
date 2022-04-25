@@ -10,7 +10,7 @@ Une composante du nuage de mots construite sur le [d3-cloud] (https://github.com
 
 * __data__ | `array`: soit un tableau de textes à partir duquel on peut générer le nuage de mots ou, si "calculé" est défini à "vrai", et un tableau d'objets de comptage de mots (avec les clés "text" et "value"). Default: `[]`.
 * __font__ | `(string|function)`: fonction d'accès spécifiant la police de caractères pour chaque mot. Accepte également une constante au lieu d'une fonction. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: fonction accesseur indiquant la taille de la police pour chaque mot. La valeur par défaut est `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, où `min` et `max` désignent les `counts` de mots minimum et maximum, respectivement.. Default: `none`.
 * __height__ | `number`: hauteur du nuage de mots (en px). Default: `600`.
 * __language__ | `string`: identifiant de la langue (détermine les mots vides à supprimer). Default: `'en'`.
 * __minCount__ | `number`: s'il est défini, n'inclure que les mots qui apparaissent plus de "minCount" fois dans les données données. Default: `none`.
