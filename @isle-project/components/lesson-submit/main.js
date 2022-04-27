@@ -38,6 +38,7 @@ const debug = logger( 'isle:lesson-submit' );
 * @property {boolean} requireLogin - controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
 * @property {string} message - message for confirmation email
+* @property {Array<string>} coverage - list of identifiers to be submitted and included in the response document
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 * @property {Function} onClick - callback invoked when clicking on the submission button
@@ -135,7 +136,10 @@ class LessonSubmit extends Component {
 			style: 'elapsed'
 		});
 		if ( session.currentUserActions ) {
-			const ids = session.responseVisualizerIds;
+			let ids = session.responseVisualizerIds;
+			if ( this.props.coverage ) {
+				ids = ids.filter( id => this.props.coverage.includes( id ) );
+			}
 			for ( let i = 0; i < ids.length; i++ ) {
 				const visualizer = session.responseVisualizers[ ids[ i ] ];
 				doc.content.push({
@@ -260,7 +264,13 @@ class LessonSubmit extends Component {
 	finalizeSession = () => {
 		debug( 'Finalizing session...' );
 		const session = this.context;
-		const elems = document.getElementsByClassName( 'submit-button' );
+		let elems;
+		if ( !this.props.coverage ) {
+			elems = document.getElementsByClassName( 'submit-button' );
+		} else {
+			const query = this.props.coverage.map( id => `#${id} .submit-button` ).join( ', ' );
+			elems = document.querySelectorAll( query );
+		}
 		for ( let i = 0; i < elems.length; i++ ) {
 			if ( elems[ i ].innerText === this.props.t('submit') ) {
 				elems[ i ].click();
@@ -374,6 +384,7 @@ class LessonSubmit extends Component {
 // PROPERTIES //
 
 LessonSubmit.defaultProps = {
+	coverage: null,
 	label: null,
 	message: '',
 	requireLogin: true,
@@ -384,6 +395,7 @@ LessonSubmit.defaultProps = {
 };
 
 LessonSubmit.propTypes = {
+	coverage: PropTypes.arrayOf( PropTypes.string ),
 	label: PropTypes.string,
 	message: PropTypes.string,
 	requireLogin: PropTypes.bool,
