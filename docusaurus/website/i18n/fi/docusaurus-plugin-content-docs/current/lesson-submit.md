@@ -8,6 +8,7 @@ Oppitunnin lopussa näytettävä painike, jota oppilaat voivat klikata. Oletusar
 
 ## Vaihtoehdot
 
+* __coverage__ | `array<string>`: luettelo tunnisteista, jotka on toimitettava ja sisällytettävä vastausasiakirjaan.. Default: `none`.
 * __label__ | `string`: lähetä-painikkeen etiketti. Default: `none`.
 * __message__ | `string`: viesti vahvistussähköpostia varten. Default: `''`.
 * __requireLogin__ | `boolean`: valvoo, vaaditaanko käyttäjältä kirjautuminen, jotta painike on aktiivinen (anonyymeille käyttäjille ei lähetetä sähköpostivahvistusta).. Default: `true`.

@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Svaret har lagts fram på nytt.",
 	"answer-submitted": "Svar inlämnat.",
 	"answers": "Svar",
+	"correct": "Korrekt",
 	"lower": "Lägre",
 	"question-closed": "Frågan är nu avslutad.",
 	"resubmission-message": "Du har skickat in ditt svar på nytt.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Grattis, det stämmer!",
 	"submission-incorrect": "Inte riktigt. Jämför ditt svar med lösningen.",
 	"submission-message": "Ditt svar har skickats in.",
+	"submission-try-again": "Ditt svar är felaktigt. Försök igen",
 	"submit": "Skicka in",
+	"try-again": "Försök igen",
 	"upper": "Övre"
 }

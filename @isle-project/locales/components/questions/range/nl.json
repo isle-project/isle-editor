@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Antwoord opnieuw ingediend.",
 	"answer-submitted": "Antwoord ingediend.",
 	"answers": "Antwoorden",
+	"correct": "Correct",
 	"lower": "Verlaagt",
 	"question-closed": "De vraag is nu gesloten.",
 	"resubmission-message": "U heeft uw antwoord met succes opnieuw ingediend.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Gefeliciteerd, dat klopt!",
 	"submission-incorrect": "Niet helemaal. Vergelijk je antwoord met de oplossing.",
 	"submission-message": "Uw antwoord is ingediend.",
+	"submission-try-again": "Uw antwoord is onjuist. Probeer het opnieuw",
 	"submit": "Stuur een bericht naar",
+	"try-again": "Probeer het opnieuw.",
 	"upper": "Bovenste"
 }

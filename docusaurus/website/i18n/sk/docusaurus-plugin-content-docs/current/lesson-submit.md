@@ -8,6 +8,7 @@ Tlačidlo, ktoré sa zobrazí na konci hodiny a na ktoré môžu študenti klikn
 
 ## Možnosti
 
+* __coverage__ | `array<string>`: zoznam identifikátorov, ktoré sa majú predložiť a zahrnúť do dokumentu s odpoveďou. Default: `none`.
 * __label__ | `string`: označenie tlačidla odoslania. Default: `none`.
 * __message__ | `string`: správa pre potvrdzujúci e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: kontroluje, či má byť používateľ prihlásený, aby bolo tlačidlo aktívne (pre anonymných používateľov sa neposiela žiadne e-mailové potvrdenie).. Default: `true`.

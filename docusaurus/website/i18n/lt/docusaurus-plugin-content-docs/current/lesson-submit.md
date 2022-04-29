@@ -8,6 +8,7 @@ Mygtuką, kuris bus rodomas pamokos pabaigoje ir kurį mokiniai galės spustelė
 
 ## Parinktys
 
+* __coverage__ | `array<string>`: pateiktinų ir į atsakymo dokumentą įtrauktinų identifikatorių sąrašas. Default: `none`.
 * __label__ | `string`: pateikimo mygtuko etiketė. Default: `none`.
 * __message__ | `string`: žinutė patvirtinimo el. paštui. Default: `''`.
 * __requireLogin__ | `boolean`: kontroliuoja, ar reikia, kad naudotojas būtų prisijungęs, kad mygtukas būtų aktyvus (anoniminiams naudotojams patvirtinimas el. paštu nesiunčiamas).. Default: `true`.

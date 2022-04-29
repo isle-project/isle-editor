@@ -18,8 +18,9 @@ En fråga om intervall där eleverna ombeds ange en nedre och övre slutpunkt.
 * __digits__ | `number`: Antal siffror som måste stämma överens mellan lösningen och det svar som användaren har angett. Om det inte anges eller är noll, kontrollerar komponenten att det råder strikt likhet. Om värdet är 0, kontrolleras helhetsjämlikhet.. Default: `3`.
 * __max__ | `number`: maximalt ingångsvärde. Default: `null`.
 * __min__ | `number`: Minsta inmatningsvärde.. Default: `null`.
+* __nTries__ | `number`: Efter hur många försök ska feedback ges (om `provideFeedback` är `true`).. Default: `1`.
 * __provideFeedback__ | `boolean`: anger om återkoppling, inklusive det rätta svaret, ska visas efter att eleverna skickat in sina svar.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontrollerar om man kan lämna in flera svar. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollerar om man ska kunna lämna in ett nytt förslag även efter det att lösningen har avslöjats.. Default: `false`.
 * __until__ | `Date`: tid fram till dess att eleverna ska få lämna in sina svar. Default: `none`.
 * __points__ | `number`: Maximalt antal poäng som tilldelas vid betygsättning.. Default: `10`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.

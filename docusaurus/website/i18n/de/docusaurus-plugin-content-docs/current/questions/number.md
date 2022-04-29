@@ -18,7 +18,7 @@ Eine Komponente für Zahlenfragen.
 * __min__ | `number`: minimal zulässiger Eingangswert. Default: `null`.
 * __defaultValue__ | `number`: Vorgewählter Wert der Zahleneingabe. Default: `none`.
 * __provideFeedback__ | `boolean`: gibt an, ob ein Feedback einschließlich der richtigen Antwort angezeigt werden soll, nachdem die Lerner ihre Antworten abgeschickt haben. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: steuert, ob man auch nach dem Aufdecken der Lösung eine Wiedervorlage machen können soll). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: steuert, ob eine Wiedervorlage möglich sein soll, auch wenn die Lösung bereits bekannt ist. Default: `false`.
 * __nTries__ | `number`: nach wie vielen Versuchen Feedback geliefert werden soll (wenn `provideFeedback` `true` ist). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: steuert, ob Übermittlungsbenachrichtigungen deaktiviert werden sollen. Default: `false`.
 * __chat__ | `boolean`: steuert, ob das Element einen integrierten Chat haben soll. Default: `false`.

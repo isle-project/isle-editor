@@ -8,6 +8,7 @@ Um botão a ser exibido no final de uma aula para que os alunos possam clicar. P
 
 ## Opções
 
+* __coverage__ | `array<string>`: lista de identificadores a serem apresentados e incluídos no documento de resposta. Default: `none`.
 * __label__ | `string`: etiqueta do botão submeter. Default: `none`.
 * __message__ | `string`: mensagem para confirmação e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: controla se o usuário precisa estar conectado para que o botão esteja ativo (para usuários anônimos, nenhuma confirmação por e-mail é enviada). Default: `true`.

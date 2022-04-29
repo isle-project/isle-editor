@@ -18,7 +18,7 @@ Number küsimus komponent.
 * __min__ | `number`: minimaalne lubatud sisendväärtus. Default: `null`.
 * __defaultValue__ | `number`: eelnevalt valitud numbrisisendi väärtus. Default: `none`.
 * __provideFeedback__ | `boolean`: näitab, kas pärast õppijate vastuste esitamist tuleb kuvada tagasisidet, mis sisaldab õiget vastust.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontrollib, kas peaks olema võimalik uuesti esitada ka pärast lahenduse avalikustamist). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollib, kas keegi peaks saama uuesti esitada ka pärast lahenduse ilmsikstulekut.. Default: `false`.
 * __nTries__ | `number`: kui paljude katsete järel tuleb tagasisidet anda (kui `provideFeedback` on `true`).. Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontrollib, kas keelata esitamisteated. Default: `false`.
 * __chat__ | `boolean`: kontrollib, kas elemendil peaks olema integreeritud vestlus. Default: `false`.

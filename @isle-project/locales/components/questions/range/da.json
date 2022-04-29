@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Svaret er blevet genfremsat.",
 	"answer-submitted": "Svar afgivet.",
 	"answers": "Svar",
+	"correct": "Korrekt",
 	"lower": "Nederste",
 	"question-closed": "Spørgsmålet er nu lukket.",
 	"resubmission-message": "Det er lykkedes dig at indsende dit svar igen.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Tillykke, det er korrekt!",
 	"submission-incorrect": "Ikke helt. Sammenlign dit svar med løsningen.",
 	"submission-message": "Dit svar er blevet indsendt.",
+	"submission-try-again": "Dit svar er forkert. Prøv venligst igen",
 	"submit": "Indsend",
+	"try-again": "Prøv igen",
 	"upper": "Øvre"
 }

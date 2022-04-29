@@ -8,6 +8,7 @@ A lecke végén megjelenő gomb, amelyre a tanulók kattinthatnak. Alapértelmez
 
 ## Opciók
 
+* __coverage__ | `array<string>`: a benyújtandó és a válaszdokumentumban szereplő azonosítók jegyzéke. Default: `none`.
 * __label__ | `string`: az elküldés gomb címkéje. Default: `none`.
 * __message__ | `string`: üzenet a visszaigazoló e-mailhez. Default: `''`.
 * __requireLogin__ | `boolean`: szabályozza, hogy a felhasználónak be kell-e jelentkeznie ahhoz, hogy a gomb aktív legyen (névtelen felhasználók esetében nem küldünk e-mail visszaigazolást).. Default: `true`.

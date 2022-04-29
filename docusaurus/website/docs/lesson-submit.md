@@ -8,6 +8,7 @@ A button to be displayed at the end of a lesson for students to click on. By def
 
 ## Options
 
+* __coverage__ | `array<string>`: list of identifiers to be submitted and included in the response document. Default: `none`.
 * __label__ | `string`: label of submit button. Default: `none`.
 * __message__ | `string`: message for confirmation email. Default: `''`.
 * __requireLogin__ | `boolean`: controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out). Default: `true`.

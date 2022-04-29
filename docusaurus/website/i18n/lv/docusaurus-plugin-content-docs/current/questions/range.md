@@ -18,8 +18,9 @@ Diapazona jautājuma komponents, kurā skolēniem jānorāda apakšējais un aug
 * __digits__ | `number`: ciparu skaits, kuriem jāatbilst risinājumam un lietotāja sniegtajai atbildei. Ja atbilde nav norādīta vai ir nulle, komponents pārbauda stingru vienlīdzību. Ja iestatīts uz 0, tiek pārbaudīta veselu skaitļu vienādība.. Default: `3`.
 * __max__ | `number`: maksimālā ieejas vērtība. Default: `null`.
 * __min__ | `number`: minimālā ieejas vērtība. Default: `null`.
+* __nTries__ | `number`: pēc cik mēģinājumiem jāsniedz atgriezeniskā saite (ja `provideFeedback` ir `true`).. Default: `1`.
 * __provideFeedback__ | `boolean`: norāda, vai pēc tam, kad izglītojamie ir iesnieguši atbildes, ir jānorāda atgriezeniskā saite, tostarp pareizā atbilde.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontrolē, vai var iesniegt vairākas atbildes.. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrolē, vai arī pēc risinājuma atklāšanas ir jābūt iespējai atkārtoti iesniegt pieteikumu.. Default: `false`.
 * __until__ | `Date`: laiks, līdz skolēniem jāļauj iesniegt atbildes. Default: `none`.
 * __points__ | `number`: maksimālais punktu skaits, ko piešķir klasifikācijā. Default: `10`.
 * __style__ | `object`: CSS iebūvētie stili. Default: `{}`.

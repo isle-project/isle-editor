@@ -18,7 +18,7 @@ sidebar_label: Number Question
 * __min__ | `number`: ελάχιστη επιτρεπόμενη τιμή εισόδου. Default: `null`.
 * __defaultValue__ | `number`: προεπιλεγμένη τιμή της εισόδου αριθμού. Default: `none`.
 * __provideFeedback__ | `boolean`: υποδεικνύει αν θα πρέπει να εμφανίζεται ανατροφοδότηση που θα περιλαμβάνει τη σωστή απάντηση μετά την υποβολή των απαντήσεων από τους μαθητές. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: ελέγχει αν κάποιος θα πρέπει να μπορεί να υποβάλει εκ νέου αίτηση ακόμη και μετά την αποκάλυψη της λύσης). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: ελέγχει αν κάποιος θα πρέπει να μπορεί να υποβάλει εκ νέου αίτηση ακόμη και μετά την αποκάλυψη της λύσης. Default: `false`.
 * __nTries__ | `number`: μετά από πόσες προσπάθειες θα πρέπει να παρέχεται ανατροφοδότηση (εάν η επιλογή "provideFeedback" είναι "true"). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: ελέγχει αν θα απενεργοποιηθούν οι ειδοποιήσεις υποβολής. Default: `false`.
 * __chat__ | `boolean`: ελέγχει αν το στοιχείο θα πρέπει να έχει ενσωματωμένη συνομιλία. Default: `false`.

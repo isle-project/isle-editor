@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Opětovně předložená odpověď.",
 	"answer-submitted": "Předložená odpověď.",
 	"answers": "Odpovědi",
+	"correct": "Správně",
 	"lower": "Dolní",
 	"question-closed": "Otázka je nyní uzavřena.",
 	"resubmission-message": "Úspěšně jste znovu odeslali odpověď.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Gratuluji, je to správně!",
 	"submission-incorrect": "Ne tak docela. Porovnejte svou odpověď s řešením.",
 	"submission-message": "Vaše odpověď byla odeslána.",
+	"submission-try-again": "Vaše odpověď je nesprávná. Zkuste to prosím znovu",
 	"submit": "Odeslat",
+	"try-again": "Zkuste to znovu",
 	"upper": "Horní"
 }

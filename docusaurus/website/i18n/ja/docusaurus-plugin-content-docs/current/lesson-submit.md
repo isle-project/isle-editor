@@ -8,6 +8,7 @@ sidebar_label: Lesson Submit
 
 ## オプション
 
+* __coverage__ | `array<string>`: 提出する識別子のリストと回答文書に含まれる識別子のリスト. Default: `none`.
 * __label__ | `string`: 送信ボタンのラベル. Default: `none`.
 * __message__ | `string`: 確認メールのメッセージ. Default: `''`.
 * __requireLogin__ | `boolean`: ボタンを有効にするためにユーザーにサインインを要求するかどうかを制御します（匿名ユーザーの場合、確認のメールを送信しません）。. Default: `true`.

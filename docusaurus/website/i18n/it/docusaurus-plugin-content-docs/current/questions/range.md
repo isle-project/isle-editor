@@ -18,8 +18,9 @@ Una componente di domanda di gamma che chiede agli studenti di fornire un punto 
 * __digits__ | `number`: numero di cifre che devono corrispondere tra la soluzione e la risposta fornita dall'utente. Se non è dato o impostato a zero, il componente verifica la stretta uguaglianza. Se impostato a 0, verifica l'uguaglianza dei numeri interi. Default: `3`.
 * __max__ | `number`: valore massimo di ingresso. Default: `null`.
 * __min__ | `number`: valore minimo di ingresso. Default: `null`.
+* __nTries__ | `number`: dopo quanti tentativi dovrebbe essere fornito un feedback (se `provideFeedback` è `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: indica se il feedback, compresa la risposta corretta, deve essere visualizzato dopo che gli studenti hanno inviato le loro risposte. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controlla se si possono inviare più risposte. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controlla se si deve poter ripresentare anche dopo che la soluzione è stata rivelata. Default: `false`.
 * __until__ | `Date`: il tempo necessario per consentire agli studenti di presentare le risposte. Default: `none`.
 * __points__ | `number`: numero massimo di punti assegnati in classifica. Default: `10`.
 * __style__ | `object`: Stili in linea CSS. Default: `{}`.

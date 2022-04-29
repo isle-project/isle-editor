@@ -18,8 +18,9 @@ Een vraagcomponent die de leerlingen vraagt om een onder- en bovengrens aan te g
 * __digits__ | `number`: aantal cijfers dat moet overeenkomen met het antwoord van de oplossing en de gebruiker. Indien niet gegeven of op nul gezet, controleert de component op strikte gelijkheid. Indien ingesteld op 0, controleert de component op gehele gelijkheid. Default: `3`.
 * __max__ | `number`: maximale invoerwaarde. Default: `null`.
 * __min__ | `number`: minimale invoerwaarde. Default: `null`.
+* __nTries__ | `number`: na hoeveel pogingen feedback moet worden gegeven (als `provideFeedback` `true` is). Default: `1`.
 * __provideFeedback__ | `boolean`: geeft aan of de feedback, inclusief het juiste antwoord, moet worden weergegeven nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controleert of men meerdere antwoorden kan indienen. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controleert of men opnieuw moet kunnen indienen, zelfs nadat de oplossing is onthuld. Default: `false`.
 * __until__ | `Date`: tijd tot de studenten de gelegenheid krijgen om antwoorden in te dienen. Default: `none`.
 * __points__ | `number`: maximumaantal punten voor de indeling in klassen. Default: `10`.
 * __style__ | `object`: CSS inline-stijlen. Default: `{}`.

@@ -18,7 +18,7 @@ Zložka s otázkou o počte.
 * __min__ | `number`: minimálna povolená vstupná hodnota. Default: `null`.
 * __defaultValue__ | `number`: vopred zvolená hodnota zadaného čísla. Default: `none`.
 * __provideFeedback__ | `boolean`: označuje, či sa má po odoslaní odpovede žiakom zobraziť spätná väzba vrátane správnej odpovede.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontroluje, či by mal mať človek možnosť opätovne podať žiadosť aj po odhalení riešenia). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, či by mal mať človek možnosť opätovne predložiť riešenie aj po jeho odhalení.. Default: `false`.
 * __nTries__ | `number`: po koľkých pokusoch sa má poskytnúť spätná väzba (ak je `provideFeedback` `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontroluje, či sa majú vypnúť oznámenia o odoslaní.. Default: `false`.
 * __chat__ | `boolean`: kontroluje, či má mať prvok integrovaný chat. Default: `false`.

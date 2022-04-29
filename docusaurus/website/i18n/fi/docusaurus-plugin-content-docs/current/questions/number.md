@@ -18,7 +18,7 @@ Numerokysymyskomponentti.
 * __min__ | `number`: pienin sallittu syöttöarvo. Default: `null`.
 * __defaultValue__ | `number`: esivalittu arvo numeron syötölle. Default: `none`.
 * __provideFeedback__ | `boolean`: ilmoittaa, näytetäänkö palaute, joka sisältää oikean vastauksen, sen jälkeen, kun oppijat ovat lähettäneet vastauksensa.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: valvoo, voiko ehdotuksen jättää uudelleen, vaikka ratkaisu olisi jo paljastunut).. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: valvoo, voiko ehdotuksen jättää uudelleen, vaikka ratkaisu olisi jo paljastunut.. Default: `false`.
 * __nTries__ | `number`: kuinka monen yrityksen jälkeen palaute on annettava (jos `provideFeedback` on `true`).. Default: `1`.
 * __disableSubmitNotification__ | `boolean`: valvoo, poistetaanko lähetysilmoitukset käytöstä. Default: `false`.
 * __chat__ | `boolean`: valvoo, onko elementillä integroitu chat. Default: `false`.

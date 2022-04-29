@@ -18,7 +18,7 @@ Un componente de preguntas numéricas.
 * __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
 * __defaultValue__ | `number`: valor preseleccionado de entrada de números. Default: `none`.
 * __provideFeedback__ | `boolean`: indica si la retroalimentación, incluyendo la respuesta correcta, debe ser mostrada después de que los estudiantes envíen sus respuestas. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: controla si se debe poder volver a presentar la solicitud incluso después de que se haya revelado la solución). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controla si se puede volver a presentar la solicitud incluso después de que se haya revelado la solución. Default: `false`.
 * __nTries__ | `number`: después de cuántos intentos se debe suministrar la retroalimentación (si "suministrarRetroalimentación" es "verdadero"). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controla si se desactivan las notificaciones de presentación. Default: `false`.
 * __chat__ | `boolean`: controla si el elemento debe tener un chat integrado. Default: `false`.

@@ -18,8 +18,9 @@ Složka s otázkou na rozsah, která od studentů vyžaduje, aby uvedli dolní a
 * __digits__ | `number`: počet číslic, které musí odpovídat řešení a odpovědi zadané uživatelem. Pokud není zadáno nebo je nastaveno na null, komponenta kontroluje striktní rovnost. Pokud je nastavena na 0, kontroluje se rovnost celých čísel.. Default: `3`.
 * __max__ | `number`: maximální vstupní hodnota. Default: `null`.
 * __min__ | `number`: minimální vstupní hodnota. Default: `null`.
+* __nTries__ | `number`: po kolika pokusech má být poskytnuta zpětná vazba (pokud je `provideFeedback` `true`).. Default: `1`.
 * __provideFeedback__ | `boolean`: určuje, zda se má po odeslání odpovědi zobrazit zpětná vazba včetně správné odpovědi.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontroluje, zda lze odeslat více odpovědí.. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, zda má být možné znovu podat žádost i po odhalení řešení.. Default: `false`.
 * __until__ | `Date`: čas, do kdy by studenti měli mít možnost odevzdat odpovědi. Default: `none`.
 * __points__ | `number`: maximální počet bodů udělených při klasifikaci. Default: `10`.
 * __style__ | `object`: Řádkové styly CSS. Default: `{}`.

@@ -18,8 +18,9 @@ Komponent pytania zakresowego, który prosi uczniów o podanie dolnego i górneg
 * __digits__ | `number`: liczba cyfr, które muszą się zgadzać między rozwiązaniem a odpowiedzią użytkownika. Jeśli nie została podana lub została ustawiona na zero, komponent sprawdza, czy istnieje ścisła równość. Jeśli jest ustawiona na 0, sprawdza równość liczb całkowitych. Default: `3`.
 * __max__ | `number`: maksymalna wartość wejściowa. Default: `null`.
 * __min__ | `number`: minimalna wartość wejściowa. Default: `null`.
+* __nTries__ | `number`: po ilu próbach powinna być dostarczona informacja zwrotna (jeśli `provideFeedback` jest `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: wskazuje, czy informacja zwrotna zawierająca poprawną odpowiedź powinna być wyświetlana po udzieleniu odpowiedzi przez uczących się. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontroluje, czy można udzielić wielu odpowiedzi. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, czy osoba powinna mieć możliwość ponownego wysłania zgłoszenia nawet po ujawnieniu rozwiązania. Default: `false`.
 * __until__ | `Date`: czas, w którym studenci powinni mieć możliwość udzielenia odpowiedzi. Default: `none`.
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w poszczególnych klasach. Default: `10`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.

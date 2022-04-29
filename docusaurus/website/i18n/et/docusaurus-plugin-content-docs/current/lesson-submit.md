@@ -8,6 +8,7 @@ Nupp, mis kuvatakse õppetunni lõpus, et õpilased saaksid sellele vajutada. Va
 
 ## Valikud
 
+* __coverage__ | `array<string>`: esitatud ja vastusdokumendis sisalduvate identifikaatorite loetelu. Default: `none`.
 * __label__ | `string`: nupu esitamise silt. Default: `none`.
 * __message__ | `string`: sõnum kinnituse e-kirja jaoks. Default: `''`.
 * __requireLogin__ | `boolean`: kontrollib, kas kasutaja peab olema sisse logitud, et nupp oleks aktiivne (anonüümsetele kasutajatele ei saadeta kinnitust e-postiga).. Default: `true`.

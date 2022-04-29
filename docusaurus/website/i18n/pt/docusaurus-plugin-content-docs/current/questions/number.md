@@ -18,7 +18,7 @@ Um componente de várias perguntas.
 * __min__ | `number`: valor mínimo de entrada permitido. Default: `null`.
 * __defaultValue__ | `number`: valor pré-selecionado de entrada de número. Default: `none`.
 * __provideFeedback__ | `boolean`: indica se o feedback, incluindo a resposta correta, deve ser exibido depois que os alunos enviarem suas respostas. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: controla se se deve ser capaz de reapresentar mesmo depois que a solução tenha sido revelada). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controla se se deve ser capaz de reapresentar mesmo depois de a solução ter sido revelada. Default: `false`.
 * __nTries__ | `number`: após quantas tentativas de feedback devem ser fornecidas (se `provideFeedback` for `verdadeiro`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controla se as notificações de submissão devem ser desativadas. Default: `false`.
 * __chat__ | `boolean`: controla se o elemento deve ter um bate-papo integrado. Default: `false`.

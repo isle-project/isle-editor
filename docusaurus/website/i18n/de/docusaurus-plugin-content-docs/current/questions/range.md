@@ -18,8 +18,9 @@ Eine Bereichskomponente, die die Teilnehmer auffordert, einen unteren und oberen
 * __digits__ | `number`: Anzahl der Ziffern, die zwischen der Lösung und der vom Benutzer eingegebenen Antwort übereinstimmen müssen. Wenn nicht angegeben oder auf null gesetzt, prüft die Komponente auf strikte Gleichheit. Wenn auf 0 gesetzt, wird auf ganzzahlige Gleichheit geprüft. Default: `3`.
 * __max__ | `number`: maximaler Eingangswert. Default: `null`.
 * __min__ | `number`: minimaler Eingangswert. Default: `null`.
+* __nTries__ | `number`: nach wie vielen Versuchen eine Rückmeldung gegeben werden soll (wenn `provideFeedback` `true` ist). Default: `1`.
 * __provideFeedback__ | `boolean`: gibt an, ob ein Feedback einschließlich der richtigen Antwort angezeigt werden soll, nachdem die Lerner ihre Antworten abgeschickt haben. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: steuert, ob man mehrere Antworten abgeben kann. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: steuert, ob eine Wiedervorlage möglich sein soll, auch wenn die Lösung bereits bekannt ist. Default: `false`.
 * __until__ | `Date`: Zeit, bis die Studenten ihre Antworten einreichen dürfen. Default: `none`.
 * __points__ | `number`: maximale Anzahl von Punkten, die bei der Benotung vergeben werden. Default: `10`.
 * __style__ | `object`: CSS-Inline-Stile. Default: `{}`.

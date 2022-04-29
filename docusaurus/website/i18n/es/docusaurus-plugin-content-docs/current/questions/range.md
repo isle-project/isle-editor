@@ -18,8 +18,9 @@ Un componente de preguntas de rango que pide a los estudiantes que proporcionen 
 * __digits__ | `number`: número de dígitos que deben coincidir entre la solución y la respuesta proporcionada por el usuario. Si no se da o se establece como nulo, el componente comprueba la estricta igualdad. Si se establece en 0, comprueba si hay igualdad de números enteros. Default: `3`.
 * __max__ | `number`: valor máximo de entrada. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada. Default: `null`.
+* __nTries__ | `number`: después de cuántos intentos se debe proporcionar retroalimentación (si `provideFeedback` es `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: indica si la retroalimentación, incluyendo la respuesta correcta, debe ser mostrada después de que los estudiantes envíen sus respuestas. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controla si uno puede presentar múltiples respuestas. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controla si se puede volver a presentar la solicitud incluso después de que se haya revelado la solución. Default: `false`.
 * __until__ | `Date`: tiempo hasta que los estudiantes puedan presentar sus respuestas. Default: `none`.
 * __points__ | `number`: número máximo de puntos otorgados en la calificación. Default: `10`.
 * __style__ | `object`: Estilos en línea CSS. Default: `{}`.

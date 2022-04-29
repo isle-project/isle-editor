@@ -18,8 +18,9 @@ O componentă de întrebare de tip "interval" care le cere elevilor să furnizez
 * __digits__ | `number`: numărul de cifre care trebuie să corespundă între soluție și răspunsul furnizat de utilizator. În cazul în care nu este dată sau este setată ca fiind nulă, componenta verifică egalitatea strictă. Dacă este setată la 0, se verifică egalitatea între numere întregi.. Default: `3`.
 * __max__ | `number`: valoarea maximă de intrare. Default: `null`.
 * __min__ | `number`: valoarea minimă de intrare. Default: `null`.
+* __nTries__ | `number`: după câte încercări trebuie să se furnizeze feedback (dacă `provideFeedback` este `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: indică dacă feedback-ul care include răspunsul corect trebuie afișat după ce cursanții își trimit răspunsurile. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controlează dacă se pot trimite răspunsuri multiple. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controlează dacă cineva ar trebui să aibă posibilitatea de a retrimite chiar și după ce soluția a fost dezvăluită. Default: `false`.
 * __until__ | `Date`: timpul până la care studenții ar trebui să fie lăsați să trimită răspunsurile. Default: `none`.
 * __points__ | `number`: numărul maxim de puncte acordate în cadrul clasificării. Default: `10`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.

@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Vastus on uuesti esitatud.",
 	"answer-submitted": "Esitatud vastus.",
 	"answers": "Vastused",
+	"correct": "Õige",
 	"lower": "Alumine",
 	"question-closed": "Küsimus on nüüd suletud.",
 	"resubmission-message": "Te olete oma vastuse edukalt uuesti esitanud.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Palju õnne, see on õige!",
 	"submission-incorrect": "Mitte päris. Võrrelge oma vastust lahendusega.",
 	"submission-message": "Teie vastus on esitatud.",
+	"submission-try-again": "Teie vastus on vale. Palun proovige uuesti",
 	"submit": "Esita",
+	"try-again": "Proovi uuesti",
 	"upper": "Ülemine"
 }

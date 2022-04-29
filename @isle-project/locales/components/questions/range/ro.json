@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Răspuns retransmis.",
 	"answer-submitted": "Răspuns transmis.",
 	"answers": "Răspunsuri",
+	"correct": "Corect",
 	"lower": "Mai jos",
 	"question-closed": "Întrebarea este închisă.",
 	"resubmission-message": "Ați trimis din nou răspunsul cu succes.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Felicitări, este corect!",
 	"submission-incorrect": "Nu chiar. Comparați răspunsul dvs. cu soluția.",
 	"submission-message": "Răspunsul dvs. a fost trimis.",
+	"submission-try-again": "Răspunsul dumneavoastră este incorect. Vă rugăm să încercați din nou",
 	"submit": "Trimiteți",
+	"try-again": "Încearcă din nou",
 	"upper": "Partea superioară"
 }

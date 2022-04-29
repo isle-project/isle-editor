@@ -8,6 +8,7 @@ Un pulsante da visualizzare alla fine di una lezione su cui gli studenti possono
 
 ## Opzioni
 
+* __coverage__ | `array<string>`: elenco di identificatori da presentare e includere nel documento di risposta. Default: `none`.
 * __label__ | `string`: etichetta del pulsante di invio. Default: `none`.
 * __message__ | `string`: messaggio per e-mail di conferma. Default: `''`.
 * __requireLogin__ | `boolean`: controlla se richiedere all'utente l'accesso per l'attivazione del pulsante (per gli utenti anonimi non viene inviata alcuna conferma via e-mail). Default: `true`.

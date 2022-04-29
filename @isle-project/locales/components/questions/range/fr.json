@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Réponse soumise à nouveau.",
 	"answer-submitted": "Réponse soumise.",
 	"answers": "Réponses",
+	"correct": "Correct",
 	"lower": "En bas",
 	"question-closed": "La question est maintenant close.",
 	"resubmission-message": "Vous avez soumis à nouveau votre réponse avec succès.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Félicitations, c'est exact !",
 	"submission-incorrect": "Pas tout à fait. Comparez votre réponse avec la solution.",
 	"submission-message": "Votre réponse a été soumise.",
+	"submission-try-again": "Votre réponse est incorrecte. Veuillez réessayer",
 	"submit": "Soumettre",
+	"try-again": "Essayez à nouveau",
 	"upper": "Haut de page"
 }

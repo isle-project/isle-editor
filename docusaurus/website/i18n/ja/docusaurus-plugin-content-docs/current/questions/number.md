@@ -18,7 +18,7 @@ sidebar_label: Number Question
 * __min__ | `number`: 最小許容入力値. Default: `null`.
 * __defaultValue__ | `number`: 事前選択数入力値. Default: `none`.
 * __provideFeedback__ | `boolean`: は、学習者が解答を提出した後に、正解を含むフィードバックを表示するかどうかを指定します。. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: は、解決策が明らかになった後でも再提出できるようにすべきかどうかをコントロールします。). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: 解答が明らかになった後でも再投稿が可能かどうかを制御します。. Default: `false`.
 * __nTries__ | `number`: 何回試行した後にフィードバックを提供するか ( `provideFeedback` が `true` の場合). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: 投稿通知を無効にするかどうかを制御します。. Default: `false`.
 * __chat__ | `boolean`: 要素が統合されたチャットを持つべきかどうかを制御します。. Default: `false`.

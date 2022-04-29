@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Ponovno predložen odgovor.",
 	"answer-submitted": "Predložen odgovor.",
 	"answers": "Odgovori",
+	"correct": "Pravilno",
 	"lower": "Spodnja stran",
 	"question-closed": "Vprašanje je zaključeno.",
 	"resubmission-message": "Uspešno ste ponovno poslali svoj odgovor.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Čestitamo, to je pravilno!",
 	"submission-incorrect": "Ne povsem. Primerjaj svoj odgovor z rešitvijo.",
 	"submission-message": "Vaš odgovor je bil poslan.",
+	"submission-try-again": "Vaš odgovor je napačen. Prosimo, poskusite znova",
 	"submit": "Pošlji",
+	"try-again": "Poskusite znova",
 	"upper": "Zgornji"
 }

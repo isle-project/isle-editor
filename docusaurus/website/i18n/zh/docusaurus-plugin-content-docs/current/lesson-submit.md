@@ -8,6 +8,7 @@ sidebar_label: Lesson Submit
 
 ## 选项
 
+* __coverage__ | `array<string>`: 需要提交并包含在响应文件中的识别器清单. Default: `none`.
 * __label__ | `string`: 提交按钮的标签. Default: `none`.
 * __message__ | `string`: 确认邮件. Default: `''`.
 * __requireLogin__ | `boolean`: 控制是否需要用户登录才能激活按钮（对于匿名用户，不发送电子邮件确认）。. Default: `true`.

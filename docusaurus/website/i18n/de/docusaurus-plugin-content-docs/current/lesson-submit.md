@@ -8,6 +8,7 @@ Eine Schaltfläche, die am Ende einer Lektion angezeigt wird und auf die die Sch
 
 ## Optionen
 
+* __coverage__ | `array<string>`: Liste der zu übermittelnden und in das Antwortdokument aufzunehmenden Identifikatoren. Default: `none`.
 * __label__ | `string`: Beschriftung der Submit-Taste. Default: `none`.
 * __message__ | `string`: Nachricht für Bestätigungsmail. Default: `''`.
 * __requireLogin__ | `boolean`: steuert, ob der Benutzer angemeldet sein muss, damit die Schaltfläche aktiv ist (für anonyme Benutzer wird keine E-Mail-Bestätigung versendet). Default: `true`.

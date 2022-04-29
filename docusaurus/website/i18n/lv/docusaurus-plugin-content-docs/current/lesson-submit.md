@@ -8,6 +8,7 @@ Mape, kas parādās stundas beigās un uz kuras skolēni var noklikšķināt. P�
 
 ## Iespējas
 
+* __coverage__ | `array<string>`: to identifikatoru saraksts, kas jāiesniedz un jāiekļauj atbildes dokumentā.. Default: `none`.
 * __label__ | `string`: iesniegt pogas etiķete. Default: `none`.
 * __message__ | `string`: apstiprinājuma e-pasta ziņa. Default: `''`.
 * __requireLogin__ | `boolean`: kontrolē, vai lietotājam jābūt pierakstītam, lai poga būtu aktīva (anonīmiem lietotājiem apstiprinājums pa e-pastu netiek nosūtīts).. Default: `true`.

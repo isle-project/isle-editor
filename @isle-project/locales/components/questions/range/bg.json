@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Повторно подаден отговор.",
 	"answer-submitted": "Подаден отговор.",
 	"answers": "Отговори",
+	"correct": "Правилно",
 	"lower": "Долен",
 	"question-closed": "Въпросът е затворен.",
 	"resubmission-message": "Успешно сте изпратили отговора си отново.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Поздравления, това е вярно!",
 	"submission-incorrect": "Не съвсем. Сравнете отговора си с решението.",
 	"submission-message": "Вашият отговор е изпратен.",
+	"submission-try-again": "Вашият отговор е грешен. Моля, опитайте отново",
 	"submit": "Подаване на",
+	"try-again": "Опитайте отново",
 	"upper": "Горен"
 }

@@ -8,6 +8,7 @@ Een knop die aan het einde van een les wordt weergegeven en waarop de leerlingen
 
 ## Opties
 
+* __coverage__ | `array<string>`: lijst van identificatiegegevens die moeten worden ingediend en in het antwoorddocument moeten worden opgenomen. Default: `none`.
 * __label__ | `string`: label van verzendknop. Default: `none`.
 * __message__ | `string`: bericht ter bevestiging e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: controleert of de gebruiker moet worden aangemeld voor het activeren van de knop (voor anonieme gebruikers wordt er geen bevestiging per e-mail verstuurd). Default: `true`.

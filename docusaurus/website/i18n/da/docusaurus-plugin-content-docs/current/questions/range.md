@@ -18,8 +18,9 @@ En spørgeskemakomponent, der beder eleverne om at angive et nedre og øvre ende
 * __digits__ | `number`: antal cifre, der skal stemme overens mellem løsningen og det af brugeren angivne svar. Hvis det ikke er angivet eller er sat til nul, kontrollerer komponenten, at der er streng lighed. Hvis den er sat til 0, kontrolleres der for heltalslighed.. Default: `3`.
 * __max__ | `number`: maksimal indgangsværdi. Default: `null`.
 * __min__ | `number`: mindste indgangsværdi. Default: `null`.
+* __nTries__ | `number`: efter hvor mange forsøg skal der gives feedback (hvis `provideFeedback` er `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: angiver, om der skal vises feedback, herunder det korrekte svar, efter at eleverne har indsendt deres svar. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontrollerer, om man kan indsende flere svar. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollerer, om man skal kunne indsende en ny ansøgning, selv efter at løsningen er blevet afsløret. Default: `false`.
 * __until__ | `Date`: den tid, der skal gå, før de studerende kan afgive svar. Default: `none`.
 * __points__ | `number`: det maksimale antal point, der kan tildeles ved bedømmelsen. Default: `10`.
 * __style__ | `object`: CSS inline-stilarter. Default: `{}`.

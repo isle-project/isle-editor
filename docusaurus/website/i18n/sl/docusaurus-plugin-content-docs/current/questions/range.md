@@ -18,8 +18,9 @@ Sestavni del vprašanja o razponu, ki od učencev zahteva, da navedejo spodnjo i
 * __digits__ | `number`: število številk, ki se morajo ujemati med rešitvijo in odgovorom, ki ga je podal uporabnik. Če ni podana ali je nastavljena na nič, komponenta preveri strogo enakost. Če je nastavljena na 0, se preveri enakost celih števil.. Default: `3`.
 * __max__ | `number`: največja vhodna vrednost. Default: `null`.
 * __min__ | `number`: najmanjša vhodna vrednost. Default: `null`.
+* __nTries__ | `number`: po koliko poskusih je treba zagotoviti povratno informacijo (če je `provideFeedback` `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: označuje, ali naj se po tem, ko učenci pošljejo svoje odgovore, prikaže povratna informacija, vključno s pravilnim odgovorom.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: nadzoruje, ali je mogoče predložiti več odgovorov.. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: nadzoruje, ali je treba omogočiti ponovno predložitev tudi po tem, ko je bila rešitev razkrita.. Default: `false`.
 * __until__ | `Date`: čas, do katerega lahko učenci oddajo odgovore.. Default: `none`.
 * __points__ | `number`: največje število točk, ki se dodelijo pri razvrščanju. Default: `10`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.

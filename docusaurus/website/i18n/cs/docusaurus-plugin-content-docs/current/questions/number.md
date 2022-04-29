@@ -18,7 +18,7 @@ Složka s otázkou na číslo.
 * __min__ | `number`: minimální povolená vstupní hodnota. Default: `null`.
 * __defaultValue__ | `number`: předvolená hodnota číselného vstupu. Default: `none`.
 * __provideFeedback__ | `boolean`: určuje, zda se má po odeslání odpovědi zobrazit zpětná vazba včetně správné odpovědi.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontroluje, zda by mělo být možné řešení znovu odeslat i po jeho odhalení).. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, zda má být možné znovu podat žádost i po odhalení řešení.. Default: `false`.
 * __nTries__ | `number`: po kolika pokusech má být poskytnuta zpětná vazba (pokud je `provideFeedback` `true`).. Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontroluje, zda se mají vypnout oznámení o odeslání. Default: `false`.
 * __chat__ | `boolean`: řídí, zda má mít prvek integrovaný chat. Default: `false`.

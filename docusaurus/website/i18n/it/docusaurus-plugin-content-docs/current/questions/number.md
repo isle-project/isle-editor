@@ -18,7 +18,7 @@ Una componente di domanda numero.
 * __min__ | `number`: valore minimo di ingresso consentito. Default: `null`.
 * __defaultValue__ | `number`: valore preselezionato dell'ingresso del numero. Default: `none`.
 * __provideFeedback__ | `boolean`: indica se il feedback, compresa la risposta corretta, deve essere visualizzato dopo che gli studenti hanno inviato le loro risposte. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: controlla se si deve poter ripresentare anche dopo che la soluzione è stata rivelata). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controlla se si deve poter ripresentare anche dopo che la soluzione è stata rivelata. Default: `false`.
 * __nTries__ | `number`: dopo quanti tentativi di feedback dovrebbe essere fornito (se "fornireFeedback" è "vero"). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controlla se disabilitare le notifiche di presentazione. Default: `false`.
 * __chat__ | `boolean`: controlla se l'elemento deve avere una chat integrata. Default: `false`.

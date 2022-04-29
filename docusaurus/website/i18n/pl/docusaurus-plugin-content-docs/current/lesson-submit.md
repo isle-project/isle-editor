@@ -8,6 +8,7 @@ Przycisk, który ma być wyświetlany na końcu lekcji, na który uczniowie mog�
 
 ## Opcje
 
+* __coverage__ | `array<string>`: lista identyfikatorów, które należy przekazać i zawrzeć w dokumencie odpowiedzi. Default: `none`.
 * __label__ | `string`: etykieta przycisku przedłożenia. Default: `none`.
 * __message__ | `string`: wiadomość do potwierdzenia e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: kontroluje, czy wymagane jest zalogowanie użytkownika, aby przycisk był aktywny (w przypadku użytkowników anonimowych nie jest wysyłane potwierdzenie e-mail). Default: `true`.

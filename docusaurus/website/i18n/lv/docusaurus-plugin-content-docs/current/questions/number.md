@@ -18,7 +18,7 @@ Jautājuma komponents.
 * __min__ | `number`: minimālā atļautā ieejas vērtība. Default: `null`.
 * __defaultValue__ | `number`: iepriekš izvēlēta skaitļa ievades vērtība. Default: `none`.
 * __provideFeedback__ | `boolean`: norāda, vai pēc tam, kad izglītojamie ir iesnieguši atbildes, ir jānorāda atgriezeniskā saite, tostarp pareizā atbilde.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontrolē, vai ir jābūt iespējai atkārtoti iesniegt pieteikumu arī pēc tam, kad risinājums ir atklāts).. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrolē, vai arī pēc risinājuma atklāšanas ir jābūt iespējai atkārtoti iesniegt pieteikumu.. Default: `false`.
 * __nTries__ | `number`: pēc cik mēģinājumiem jāsniedz atgriezeniskā saite (ja `provideFeedback` ir `true`).. Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontrolē, vai atspējot iesniegšanas paziņojumus.. Default: `false`.
 * __chat__ | `boolean`: kontrolē, vai elementam ir jābūt integrētam tērzēšanas. Default: `false`.

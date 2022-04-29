@@ -18,8 +18,9 @@ A range question component that asks students to supply a lower and upper end po
 * __digits__ | `number`: number of digits that have to match between solution and user-supplied answer. If not given or set to null, the component checks for strict equality. If set to 0, checks for integer equality. Default: `3`.
 * __max__ | `number`: maximum input value. Default: `null`.
 * __min__ | `number`: minimum input value. Default: `null`.
+* __nTries__ | `number`: after how many tries feedback should be supplied (if `provideFeedback` is `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: indicates whether feedback including the correct answer should be displayed after learners submit their answers. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controls whether one can submit multiple answers. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controls whether one should be able to resubmit even after the solution has been revealed. Default: `false`.
 * __until__ | `Date`: time until students should be allowed to submit answers. Default: `none`.
 * __points__ | `number`: maximum number of points awarded in grading. Default: `10`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.

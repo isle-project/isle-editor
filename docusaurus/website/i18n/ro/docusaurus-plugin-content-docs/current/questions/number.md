@@ -18,7 +18,7 @@ O componentă de întrebare cu număr.
 * __min__ | `number`: valoarea de intrare minimă admisă. Default: `null`.
 * __defaultValue__ | `number`: valoarea preselectată a numărului de intrare. Default: `none`.
 * __provideFeedback__ | `boolean`: indică dacă feedback-ul care include răspunsul corect trebuie afișat după ce cursanții își trimit răspunsurile. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: controlează dacă ar trebui să se poată retrimite chiar și după ce soluția a fost dezvăluită). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controlează dacă cineva ar trebui să aibă posibilitatea de a retrimite chiar și după ce soluția a fost dezvăluită. Default: `false`.
 * __nTries__ | `number`: după câte încercări trebuie să se furnizeze feedback (dacă `provideFeedback` este `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controlează dacă se dezactivează sau nu notificările de trimitere. Default: `false`.
 * __chat__ | `boolean`: controlează dacă elementul trebuie să aibă un chat integrat. Default: `false`.

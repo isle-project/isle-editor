@@ -18,8 +18,9 @@ sidebar_label: Range Question
 * __digits__ | `number`: 解とユーザが指定した答えの間で一致する必要がある桁数。指定されていないか、NULLに設定されている場合、コンポーネントは厳密に等しいかどうかをチェックします。0に設定されている場合は、整数の等しいかどうかをチェックします。. Default: `3`.
 * __max__ | `number`: 最大入力値. Default: `null`.
 * __min__ | `number`: 最小入力値. Default: `null`.
+* __nTries__ | `number`: 何回試行したらフィードバックを与えるか (`provideFeedback` が `true` の場合)。. Default: `1`.
 * __provideFeedback__ | `boolean`: は、学習者が解答を提出した後に、正解を含むフィードバックを表示するかどうかを指定します。. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: 複数の回答を提出できるかどうかを制御する. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: 解答が明らかになった後でも再投稿が可能かどうかを制御します。. Default: `false`.
 * __until__ | `Date`: 学生が回答を提出するまでの時間. Default: `none`.
 * __points__ | `number`: 採点点数. Default: `10`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.

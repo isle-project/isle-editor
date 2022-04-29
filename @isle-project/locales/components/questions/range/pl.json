@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Odpowiedź przesłana ponownie.",
 	"answer-submitted": "Odpowiedź nadesłana.",
 	"answers": "Odpowiedzi",
+	"correct": "Poprawnie",
 	"lower": "Niżej",
 	"question-closed": "Pytanie jest już zamknięte.",
 	"resubmission-message": "Udało ci się ponownie przesłać swoją odpowiedź.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Gratulacje, to prawda!",
 	"submission-incorrect": "Niezupełnie. Porównaj swoją odpowiedź z rozwiązaniem.",
 	"submission-message": "Twoja odpowiedź została złożona.",
+	"submission-try-again": "Twoja odpowiedź jest nieprawidłowa. Spróbuj ponownie",
 	"submit": "Zgłoś się",
+	"try-again": "Spróbuj jeszcze raz",
 	"upper": "Górna strona"
 }

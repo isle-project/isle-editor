@@ -8,6 +8,7 @@ Un bouton qui s'affiche à la fin d'une leçon et sur lequel les élèves peuven
 
 ## Options
 
+* __coverage__ | `array<string>`: liste des identifiants à soumettre et à inclure dans le document de réponse. Default: `none`.
 * __label__ | `string`: étiquette du bouton d'envoi. Default: `none`.
 * __message__ | `string`: message pour le courrier électronique de confirmation. Default: `''`.
 * __requireLogin__ | `boolean`: contrôle si l'utilisateur doit être connecté pour que le bouton soit actif (pour les utilisateurs anonymes, aucune confirmation par courriel n'est envoyée). Default: `true`.

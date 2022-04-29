@@ -2,6 +2,7 @@
 	"answer-resubmitted": "La risposta è stata ripresentata.",
 	"answer-submitted": "Risposta inviata.",
 	"answers": "Risposte",
+	"correct": "Corretto",
 	"lower": "Abbassare",
 	"question-closed": "La domanda è chiusa.",
 	"resubmission-message": "Lei ha ripresentato con successo la sua risposta.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Congratulazioni, è vero!",
 	"submission-incorrect": "Non proprio. Confronta la tua risposta con la soluzione.",
 	"submission-message": "La sua risposta è stata inviata.",
+	"submission-try-again": "La tua risposta non è corretta. Si prega di riprovare",
 	"submit": "Invia a",
+	"try-again": "Prova di nuovo",
 	"upper": "In alto"
 }

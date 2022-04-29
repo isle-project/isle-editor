@@ -2,6 +2,7 @@
 	"answer-resubmitted": "答复重新提交。",
 	"answer-submitted": "提交的答复：",
 	"answers": "答案",
+	"correct": "正确的",
 	"lower": "较低",
 	"question-closed": "问题现已结束。",
 	"resubmission-message": "你已经成功地重新提交了你的答案。",
@@ -10,6 +11,8 @@
 	"submission-correct": "恭喜你，没错",
 	"submission-incorrect": "不尽然。将你的答案与解决方案进行比较。",
 	"submission-message": "您的答案已经提交。",
+	"submission-try-again": "你的答案是不正确的。请再试一次",
 	"submit": "提交",
+	"try-again": "再试一次",
 	"upper": "上层"
 }

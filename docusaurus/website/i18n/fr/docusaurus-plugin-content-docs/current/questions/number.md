@@ -18,7 +18,7 @@ Un élément de question numérique.
 * __min__ | `number`: valeur d'entrée minimale autorisée. Default: `null`.
 * __defaultValue__ | `number`: valeur présélectionnée de la saisie du numéro. Default: `none`.
 * __provideFeedback__ | `boolean`: indique si un retour d'information comprenant la bonne réponse doit être affiché après que les apprenants aient soumis leurs réponses. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: contrôle si l'on doit pouvoir soumettre à nouveau une demande même après que la solution a été révélée). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: contrôle si l'on doit pouvoir soumettre à nouveau une demande même après que la solution a été révélée.. Default: `false`.
 * __nTries__ | `number`: après combien d'essais un retour d'information doit être fourni (si "provideFeedback" est "true"). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: contrôle s'il faut désactiver les notifications de soumission. Default: `false`.
 * __chat__ | `boolean`: contrôle si l'élément doit avoir un chat intégré. Default: `false`.

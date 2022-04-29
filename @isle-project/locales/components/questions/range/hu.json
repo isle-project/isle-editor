@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Újra benyújtott válasz.",
 	"answer-submitted": "Elküldött válasz.",
 	"answers": "Válaszok",
+	"correct": "Helyes",
 	"lower": "Alsó",
 	"question-closed": "A kérdés lezárult.",
 	"resubmission-message": "Ön sikeresen újra elküldte válaszát.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Gratulálok, ez így van!",
 	"submission-incorrect": "Nem egészen. Hasonlítsa össze a válaszát a megoldással.",
 	"submission-message": "A válaszát elküldtük.",
+	"submission-try-again": "A válasza helytelen. Kérjük, próbálja meg újra.",
 	"submit": "Küldje be a",
+	"try-again": "Próbáld újra",
 	"upper": "Felső"
 }

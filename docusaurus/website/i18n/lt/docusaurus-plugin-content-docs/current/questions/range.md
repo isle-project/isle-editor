@@ -18,8 +18,9 @@ Klausimo apie intervalą komponentas, kuriame mokinių prašoma nurodyti apatin�
 * __digits__ | `number`: skaitmenų, kurie turi sutapti tarp sprendinio ir naudotojo pateikto atsakymo, skaičius. Jei nepateikta arba nustatyta kaip null, komponentas tikrina griežtą lygybę. Jei nustatyta 0, tikrinama sveikųjų skaičių lygybė.. Default: `3`.
 * __max__ | `number`: didžiausia įvesties vertė. Default: `null`.
 * __min__ | `number`: mažiausia įvesties vertė. Default: `null`.
+* __nTries__ | `number`: po kiek bandymų turėtų būti pateiktas grįžtamasis ryšys (jei `provideFeedback` yra `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: nurodo, ar mokiniams pateikus atsakymus turėtų būti rodomas grįžtamasis ryšys, įskaitant teisingą atsakymą.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontroliuoja, ar galima pateikti kelis atsakymus.. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroliuoja, ar turėtų būti galima pateikti pakartotinį pasiūlymą net ir po to, kai sprendimas buvo atskleistas.. Default: `false`.
 * __until__ | `Date`: laikas, per kurį mokiniams turėtų būti leista pateikti atsakymus.. Default: `none`.
 * __points__ | `number`: maksimalus balų skaičius, suteikiamas vertinant. Default: `10`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.

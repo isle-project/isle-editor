@@ -8,6 +8,7 @@ En knapp som eleverna kan klicka på i slutet av en lektion. Som standard skicka
 
 ## Alternativ
 
+* __coverage__ | `array<string>`: Förteckning över identifierare som ska lämnas in och ingå i svarsdokumentet.. Default: `none`.
 * __label__ | `string`: Etikett för knappen "Skicka".. Default: `none`.
 * __message__ | `string`: meddelande för bekräftelse via e-post. Default: `''`.
 * __requireLogin__ | `boolean`: kontrollerar om användaren måste vara inloggad för att knappen ska vara aktiv (för anonyma användare skickas ingen e-postbekräftelse).. Default: `true`.

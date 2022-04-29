@@ -18,7 +18,7 @@ En komponent med en nummerfråga.
 * __min__ | `number`: Minsta tillåtna värde för inmatning.. Default: `null`.
 * __defaultValue__ | `number`: Förvaltat värde för inmatning av siffror.. Default: `none`.
 * __provideFeedback__ | `boolean`: anger om återkoppling, inklusive det rätta svaret, ska visas efter att eleverna skickat in sina svar.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontrollerar om man bör kunna lämna in ett nytt förslag även efter det att lösningen har avslöjats).. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollerar om man ska kunna lämna in ett nytt förslag även efter det att lösningen har avslöjats.. Default: `false`.
 * __nTries__ | `number`: Efter hur många försök ska feedback ges (om `provideFeedback` är `true`).. Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontrollerar om anmälningar om inlämning ska inaktiveras. Default: `false`.
 * __chat__ | `boolean`: kontrollerar om elementet ska ha en integrerad chatt. Default: `false`.

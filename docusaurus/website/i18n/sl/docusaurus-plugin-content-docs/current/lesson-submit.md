@@ -8,6 +8,7 @@ Gumb, ki se prikaže ob koncu učne ure in na katerega lahko učenci kliknejo. P
 
 ## Možnosti
 
+* __coverage__ | `array<string>`: seznam identifikatorjev, ki jih je treba predložiti in vključiti v odgovorni dokument. Default: `none`.
 * __label__ | `string`: oznaka gumba za oddajo. Default: `none`.
 * __message__ | `string`: sporočilo za potrditveno e-pošto. Default: `''`.
 * __requireLogin__ | `boolean`: nadzoruje, ali je treba od uporabnika zahtevati prijavo, da je gumb aktiven (za anonimne uporabnike se ne pošlje e-poštna potrditev).. Default: `true`.

@@ -18,8 +18,9 @@ Küsimuse osa, milles palutakse õpilastel esitada alumine ja ülemine lõpp-pun
 * __digits__ | `number`: numbrite arv, mis peavad vastama lahenduse ja kasutaja antud vastuse vahel. Kui seda ei ole antud või see on null, kontrollib komponent ranget võrdsust. Kui väärtus on 0, kontrollitakse täisarvulist võrdsust.. Default: `3`.
 * __max__ | `number`: maksimaalne sisendväärtus. Default: `null`.
 * __min__ | `number`: minimaalne sisendväärtus. Default: `null`.
+* __nTries__ | `number`: kui paljude katsete järel tuleb tagasiside anda (kui `provideFeedback` on `true`).. Default: `1`.
 * __provideFeedback__ | `boolean`: näitab, kas pärast õppijate vastuste esitamist tuleb kuvada tagasisidet, mis sisaldab õiget vastust.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontrollib, kas saab esitada mitu vastust. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollib, kas keegi peaks saama uuesti esitada ka pärast lahenduse ilmsikstulekut.. Default: `false`.
 * __until__ | `Date`: aega, kuni õpilastel peaks olema lubatud vastuseid esitada. Default: `none`.
 * __points__ | `number`: hindamisel antavate punktide maksimaalne arv. Default: `10`.
 * __style__ | `object`: CSS inline stiilid. Default: `{}`.

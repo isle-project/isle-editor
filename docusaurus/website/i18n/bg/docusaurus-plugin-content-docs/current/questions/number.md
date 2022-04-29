@@ -18,7 +18,7 @@ sidebar_label: Number Question
 * __min__ | `number`: минимална допустима входна стойност. Default: `null`.
 * __defaultValue__ | `number`: предварително избрана стойност на въведеното число. Default: `none`.
 * __provideFeedback__ | `boolean`: посочва дали да се показва обратна връзка, включваща правилния отговор, след като обучаемите изпратят отговорите си.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: контролира дали трябва да може да се подава отново, дори след като решението е било разкрито). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: контролира дали човек трябва да може да подава отново, дори след като решението е било разкрито.. Default: `false`.
 * __nTries__ | `number`: след колко опита трябва да се предостави обратна връзка (ако `provideFeedback` е `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: контролира дали да деактивира известията за подаване. Default: `false`.
 * __chat__ | `boolean`: контролира дали елементът трябва да има интегриран чат. Default: `false`.

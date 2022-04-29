@@ -3327,6 +3327,12 @@
 	"LessonSubmit": {
 		"props": [
 			{
+				"name": "coverage",
+				"type": "array<string>",
+				"description": "LessonSubmit-prop-coverage",
+				"defaultValue": null
+			},
+			{
 				"name": "label",
 				"type": "string",
 				"description": "LessonSubmit-prop-label",
@@ -6237,15 +6243,21 @@
 				"defaultValue": null
 			},
 			{
+				"name": "nTries",
+				"type": "number",
+				"description": "RangeQuestion-prop-nTries",
+				"defaultValue": 1
+			},
+			{
 				"name": "provideFeedback",
 				"type": "boolean",
 				"description": "RangeQuestion-prop-provideFeedback",
 				"defaultValue": true
 			},
 			{
-				"name": "allowMultipleAnswers",
+				"name": "submitAfterFeedback",
 				"type": "boolean",
-				"description": "RangeQuestion-prop-allowMultipleAnswers",
+				"description": "RangeQuestion-prop-submitAfterFeedback",
 				"defaultValue": false
 			},
 			{

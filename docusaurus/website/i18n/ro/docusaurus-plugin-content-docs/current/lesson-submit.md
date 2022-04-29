@@ -8,6 +8,7 @@ Un buton care va fi afișat la sfârșitul unei lecții pentru ca elevii să fac
 
 ## Opțiuni
 
+* __coverage__ | `array<string>`: lista elementelor de identificare care trebuie prezentate și incluse în documentul de răspuns. Default: `none`.
 * __label__ | `string`: eticheta butonului de trimitere. Default: `none`.
 * __message__ | `string`: mesaj pentru e-mail de confirmare. Default: `''`.
 * __requireLogin__ | `boolean`: controlează dacă este necesar ca utilizatorul să fie autentificat pentru ca butonul să fie activ (pentru utilizatorii anonimi, nu se trimite niciun e-mail de confirmare). Default: `true`.

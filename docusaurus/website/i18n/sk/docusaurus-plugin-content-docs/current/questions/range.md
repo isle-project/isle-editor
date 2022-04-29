@@ -18,8 +18,9 @@ Rozsahová otázka, ktorá od študentov vyžaduje, aby uviedli dolný a horný 
 * __digits__ | `number`: počet číslic, ktoré sa musia zhodovať medzi riešením a odpoveďou zadanou používateľom. Ak nie je zadaná alebo je nastavená na null, komponent kontroluje prísnu rovnosť. Ak je nastavená na 0, kontroluje sa rovnosť celých čísel. Default: `3`.
 * __max__ | `number`: maximálna vstupná hodnota. Default: `null`.
 * __min__ | `number`: minimálna vstupná hodnota. Default: `null`.
+* __nTries__ | `number`: po koľkých pokusoch sa má poskytnúť spätná väzba (ak je `provideFeedback` `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: označuje, či sa má po odoslaní odpovede žiakom zobraziť spätná väzba vrátane správnej odpovede.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: kontroluje, či je možné odoslať viacero odpovedí.. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroluje, či by mal mať človek možnosť opätovne predložiť riešenie aj po jeho odhalení.. Default: `false`.
 * __until__ | `Date`: čas, dokedy by študenti mali mať možnosť predložiť odpovede.. Default: `none`.
 * __points__ | `number`: maximálny počet bodov udelených pri klasifikácii. Default: `10`.
 * __style__ | `object`: Riadkové štýly CSS. Default: `{}`.

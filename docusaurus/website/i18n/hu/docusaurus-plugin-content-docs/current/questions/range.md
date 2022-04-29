@@ -18,8 +18,9 @@ Egy tartományt tartalmazó kérdéskomponens, amely arra kéri a tanulókat, ho
 * __digits__ | `number`: azon számjegyek száma, amelyeknek meg kell egyezniük a megoldás és a felhasználó által megadott válasz között. Ha nincs megadva vagy nullára van állítva, az összetevő szigorú egyenlőséget ellenőriz. Ha 0-ra van állítva, akkor az egész számú egyenlőséget ellenőrzi.. Default: `3`.
 * __max__ | `number`: maximális bemeneti érték. Default: `null`.
 * __min__ | `number`: minimális bemeneti érték. Default: `null`.
+* __nTries__ | `number`: hány próbálkozás után kell visszajelzést adni (ha a "provideFeedback" értéke "true"). Default: `1`.
 * __provideFeedback__ | `boolean`: jelzi, hogy a helyes választ tartalmazó visszajelzés megjelenjen-e, miután a tanulók elküldték a válaszaikat. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: szabályozza, hogy több választ is be lehet-e nyújtani. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: ellenőrzi, hogy a megoldás felfedése után is lehessen-e újra benyújtani a pályázatot.. Default: `false`.
 * __until__ | `Date`: a tanulóknak a válaszok benyújtásáig rendelkezésre álló idő. Default: `none`.
 * __points__ | `number`: az osztályozás során adható maximális pontszám. Default: `10`.
 * __style__ | `object`: CSS inline stílusok. Default: `{}`.

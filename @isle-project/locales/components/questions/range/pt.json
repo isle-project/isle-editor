@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Resposta re-submetida.",
 	"answer-submitted": "Resposta apresentada.",
 	"answers": "Respostas",
+	"correct": "Correção",
 	"lower": "Baixar",
 	"question-closed": "A pergunta está agora encerrada.",
 	"resubmission-message": "Você reapresentou com sucesso sua resposta.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Parabéns, isso é correto!",
 	"submission-incorrect": "Não é bem assim. Compare sua resposta com a solução.",
 	"submission-message": "Sua resposta foi enviada.",
+	"submission-try-again": "Sua resposta está incorreta. Por favor, tente novamente",
 	"submit": "Enviar para",
+	"try-again": "Tente novamente",
 	"upper": "Alto"
 }

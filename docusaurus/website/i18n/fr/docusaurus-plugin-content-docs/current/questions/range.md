@@ -18,8 +18,9 @@ Un élément de question de gamme qui demande aux élèves de fournir un point d
 * __digits__ | `number`: nombre de chiffres qui doivent correspondre entre la solution et la réponse fournie par l'utilisateur. S'il n'est pas donné ou s'il est fixé à zéro, le composant vérifie la stricte égalité. S'il est défini à 0, il vérifie l'égalité des nombres entiers. Default: `3`.
 * __max__ | `number`: valeur maximale d'entrée. Default: `null`.
 * __min__ | `number`: valeur d'entrée minimale. Default: `null`.
+* __nTries__ | `number`: après combien d'essais le feedback doit être fourni (si `provideFeedback` est `true`). Default: `1`.
 * __provideFeedback__ | `boolean`: indique si un retour d'information comprenant la bonne réponse doit être affiché après que les apprenants aient soumis leurs réponses. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: contrôle si l'on peut soumettre des réponses multiples. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: contrôle si l'on doit pouvoir soumettre à nouveau une demande même après que la solution a été révélée.. Default: `false`.
 * __until__ | `Date`: le temps nécessaire pour permettre aux étudiants de soumettre des réponses. Default: `none`.
 * __points__ | `number`: nombre maximum de points attribués dans le classement. Default: `10`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.

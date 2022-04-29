@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Vastaus on toimitettu uudelleen.",
 	"answer-submitted": "Vastaus toimitettu.",
 	"answers": "Vastaukset",
+	"correct": "Oikein",
 	"lower": "Alempi",
 	"question-closed": "Kysymys on nyt suljettu.",
 	"resubmission-message": "Olet onnistuneesti lähettänyt vastauksesi uudelleen.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Onnittelut, se on oikein!",
 	"submission-incorrect": "Ei aivan. Vertaa vastaustasi ratkaisuun.",
 	"submission-message": "Vastauksesi on lähetetty.",
+	"submission-try-again": "Vastauksesi on väärä. Yritä uudelleen",
 	"submit": "Lähetä",
+	"try-again": "Yritä uudelleen",
 	"upper": "Ylempi"
 }

@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Antwort erneut eingereicht",
 	"answer-submitted": "Antwort eingereicht.",
 	"answers": "Antworten",
+	"correct": "Richtig",
 	"lower": "Untere",
 	"question-closed": "Frage ist nun geschlossen.",
 	"resubmission-message": "Sie haben Ihre Antwort erfolgreich erneut eingereicht.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Herzlichen Glückwunsch, das ist korrekt!",
 	"submission-incorrect": "Nicht ganz. Vergleiche Deine Antwort mit der Lösung",
 	"submission-message": "Deine Antwort wurde aufgezeichnet",
+	"submission-try-again": "Ihre Antwort ist falsch. Bitte versuchen Sie es erneut",
 	"submit": "Abschicken",
+	"try-again": "Erneut versuchen",
 	"upper": "Obere"
 }

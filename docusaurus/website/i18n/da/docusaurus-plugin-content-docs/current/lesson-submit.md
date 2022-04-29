@@ -8,6 +8,7 @@ En knap, som eleverne kan klikke på i slutningen af en lektion. Som standard se
 
 ## Indstillinger
 
+* __coverage__ | `array<string>`: liste over identifikatorer, der skal indsendes og indgå i svardokumentet. Default: `none`.
 * __label__ | `string`: etiketten på knappen "Send. Default: `none`.
 * __message__ | `string`: besked til bekræftelses-e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: styrer, om brugeren skal være logget ind, for at knappen er aktiv (for anonyme brugere sendes der ingen bekræftelse pr. e-mail). Default: `true`.

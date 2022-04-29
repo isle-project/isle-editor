@@ -18,7 +18,7 @@ Een aantal vraagcomponenten.
 * __min__ | `number`: minimaal toegestane invoerwaarde. Default: `null`.
 * __defaultValue__ | `number`: voorgeselecteerde waarde van het ingevoerde aantal. Default: `none`.
 * __provideFeedback__ | `boolean`: geeft aan of de feedback, inclusief het juiste antwoord, moet worden weergegeven nadat de leerlingen hun antwoorden hebben ingediend. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: controleert of men opnieuw moet kunnen indienen, zelfs nadat de oplossing is onthuld). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controleert of men opnieuw moet kunnen indienen, zelfs nadat de oplossing is onthuld. Default: `false`.
 * __nTries__ | `number`: na hoeveel pogingen er feedback moet worden gegeven (als `provideFeedback` `true` is). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: controleert of de aanmeldingskennisgevingen moeten worden uitgeschakeld. Default: `false`.
 * __chat__ | `boolean`: bepaalt of het element een geïntegreerde chat moet hebben. Default: `false`.

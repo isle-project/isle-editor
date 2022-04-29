@@ -18,8 +18,9 @@ Vaihteluvälikysymys, jossa oppilaita pyydetään antamaan alempi ja ylempi lopp
 * __digits__ | `number`: niiden numeroiden määrä, joiden on täsmättävä ratkaisun ja käyttäjän antaman vastauksen välillä. Jos arvoa ei anneta tai se on nolla, komponentti tarkistaa, että vastaus on täsmälleen sama. Jos arvoksi asetetaan 0, tarkistetaan kokonaislukujen yhtäläisyys.. Default: `3`.
 * __max__ | `number`: suurin tuloarvo. Default: `null`.
 * __min__ | `number`: pienin syöttöarvo. Default: `null`.
+* __nTries__ | `number`: kuinka monen yrityksen jälkeen palaute on annettava (jos `provideFeedback` on `true`).. Default: `1`.
 * __provideFeedback__ | `boolean`: ilmoittaa, näytetäänkö palaute, joka sisältää oikean vastauksen, sen jälkeen, kun oppijat ovat lähettäneet vastauksensa.. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: valvoo, voiko lähettää useita vastauksia. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: valvoo, voiko ehdotuksen jättää uudelleen, vaikka ratkaisu olisi jo paljastunut.. Default: `false`.
 * __until__ | `Date`: aika, jonka kuluessa opiskelijoiden olisi annettava antaa vastauksensa. Default: `none`.
 * __points__ | `number`: luokittelussa annettavien pisteiden enimmäismäärä. Default: `10`.
 * __style__ | `object`: CSS-inline-tyylit. Default: `{}`.

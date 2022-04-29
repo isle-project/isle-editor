@@ -10,7 +10,7 @@ Komponent słowny chmury zbudowany na szczycie [d3-cloud](https://github.com/jas
 
 * __data__ | `array`: albo tablicę tekstów, z której można wygenerować chmurę słów lub, jeśli `prekalkulowane` jest ustawione na `prawdziwe`, oraz tablicę obiektów zliczających słowa (z klawiszami `tekstowymi` i `wartościowymi`). Default: `[]`.
 * __font__ | `(string|function)`: funkcja dostępowa określająca oblicze czcionki dla każdego słowa. Przyjmuje również stałą zamiast funkcji. Default: `'serif'`.
-* __fontSizeMapper__ | `function`: undefined. Default: `none`.
+* __fontSizeMapper__ | `function`: funkcja akcesora określająca rozmiar czcionki dla każdego słowa. Domyślnie `( count - min + 1 ) / ( max - min + 6 ) * 30.0 + 14.0`, gdzie `min` i `max` oznaczają odpowiednio minimalną i maksymalną `liczbę słów`.. Default: `none`.
 * __height__ | `number`: wysokość słowa "chmura" (w px). Default: `600`.
 * __language__ | `string`: identyfikator języka (określa stopery, które mają być usunięte). Default: `'en'`.
 * __minCount__ | `number`: jeśli jest ustawiony, zawiera tylko te słowa, które pojawiają się więcej niż `minCount` razy w podanych danych. Default: `none`.

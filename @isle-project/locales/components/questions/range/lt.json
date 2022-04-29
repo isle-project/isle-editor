@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Pakartotinai pateiktas atsakymas.",
 	"answer-submitted": "Pateiktas atsakymas.",
 	"answers": "Atsakymai",
+	"correct": "Teisingai",
 	"lower": "Žemiau",
 	"question-closed": "Klausimas uždarytas.",
 	"resubmission-message": "Sėkmingai pakartotinai pateikėte atsakymą.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Sveikiname, tai teisinga!",
 	"submission-incorrect": "Ne visai. Palyginkite savo atsakymą su sprendimu.",
 	"submission-message": "Jūsų atsakymas pateiktas.",
+	"submission-try-again": "Jūsų atsakymas neteisingas. Bandykite dar kartą",
 	"submit": "Pateikti",
+	"try-again": "Pabandykite dar kartą",
 	"upper": "Viršutinis"
 }

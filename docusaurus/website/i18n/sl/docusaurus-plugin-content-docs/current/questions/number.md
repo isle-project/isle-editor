@@ -18,7 +18,7 @@ Komponenta z vprašanjem o številu.
 * __min__ | `number`: najmanjša dovoljena vhodna vrednost. Default: `null`.
 * __defaultValue__ | `number`: vnaprej izbrana vrednost vhodnega števila. Default: `none`.
 * __provideFeedback__ | `boolean`: označuje, ali naj se po tem, ko učenci pošljejo svoje odgovore, prikaže povratna informacija, vključno s pravilnim odgovorom.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: nadzoruje, ali je treba omogočiti ponovno predložitev tudi po tem, ko je bila rešitev razkrita). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: nadzoruje, ali je treba omogočiti ponovno predložitev tudi po tem, ko je bila rešitev razkrita.. Default: `false`.
 * __nTries__ | `number`: po koliko poskusih je treba zagotoviti povratno informacijo (če je `provideFeedback` `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: nadzoruje, ali onemogočiti obvestila o predložitvi.. Default: `false`.
 * __chat__ | `boolean`: nadzoruje, ali naj ima element integriran klepet.. Default: `false`.

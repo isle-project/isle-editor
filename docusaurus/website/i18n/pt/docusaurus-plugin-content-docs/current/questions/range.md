@@ -18,8 +18,9 @@ Um componente de perguntas de gama que pede aos estudantes que forneçam um pont
 * __digits__ | `number`: número de dígitos que têm de corresponder entre a solução e a resposta fornecida pelo usuário. Se não for dado ou definido como nulo, o componente verifica a estrita igualdade. Se definido como 0, verifica se há igualdade total. Default: `3`.
 * __max__ | `number`: valor máximo de entrada. Default: `null`.
 * __min__ | `number`: valor mínimo de entrada. Default: `null`.
+* __nTries__ | `number`: após quantas tentativas de feedback devem ser fornecidas (se `provideFeedback` for `verdadeiro`). Default: `1`.
 * __provideFeedback__ | `boolean`: indica se o feedback, incluindo a resposta correta, deve ser exibido depois que os alunos enviarem suas respostas. Default: `true`.
-* __allowMultipleAnswers__ | `boolean`: controla se é possível apresentar respostas múltiplas. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: controla se se deve ser capaz de reapresentar mesmo depois de a solução ter sido revelada. Default: `false`.
 * __until__ | `Date`: tempo até que os estudantes tenham permissão para enviar respostas. Default: `none`.
 * __points__ | `number`: número máximo de pontos concedidos na classificação. Default: `10`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.

@@ -8,6 +8,7 @@ Tlačítko, které se zobrazí na konci lekce a na které mohou studenti kliknou
 
 ## Možnosti
 
+* __coverage__ | `array<string>`: seznam identifikátorů, které mají být předloženy a zahrnuty do dokumentu s odpovědí.. Default: `none`.
 * __label__ | `string`: popisek tlačítka odeslat. Default: `none`.
 * __message__ | `string`: zpráva pro potvrzovací e-mail. Default: `''`.
 * __requireLogin__ | `boolean`: určuje, zda má být uživatel přihlášen, aby bylo tlačítko aktivní (pro anonymní uživatele se nezasílá žádné potvrzení e-mailem).. Default: `true`.

@@ -18,7 +18,7 @@ En komponent med et antal spørgsmål.
 * __min__ | `number`: mindste tilladte inputværdi. Default: `null`.
 * __defaultValue__ | `number`: forudvalgt værdi af talindgang. Default: `none`.
 * __provideFeedback__ | `boolean`: angiver, om der skal vises feedback, herunder det korrekte svar, efter at eleverne har indsendt deres svar. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontrollerer, om man skal kunne indsende en ny ansøgning, selv efter at løsningen er blevet afsløret). Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontrollerer, om man skal kunne indsende en ny ansøgning, selv efter at løsningen er blevet afsløret. Default: `false`.
 * __nTries__ | `number`: efter hvor mange forsøg skal der gives feedback (hvis `provideFeedback` er `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontrollerer, om meddelelser om indsendelse skal deaktiveres. Default: `false`.
 * __chat__ | `boolean`: kontrollerer, om elementet skal have en integreret chat. Default: `false`.

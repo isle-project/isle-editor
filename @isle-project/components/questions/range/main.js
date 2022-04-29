@@ -50,6 +50,7 @@ const uid = generateUID( 'range-question' );
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
+* @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is `true`)
 * @property {boolean} submitAfterFeedback - controls whether one should be able to resubmit even after the solution has been revealed
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading

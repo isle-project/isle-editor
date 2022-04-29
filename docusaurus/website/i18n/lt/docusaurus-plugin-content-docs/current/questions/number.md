@@ -18,7 +18,7 @@ Klausimo apie skaičių komponentas.
 * __min__ | `number`: mažiausia leistina įvesties vertė. Default: `null`.
 * __defaultValue__ | `number`: iš anksto pasirinkta skaičių įvesties vertė. Default: `none`.
 * __provideFeedback__ | `boolean`: nurodo, ar mokiniams pateikus atsakymus turėtų būti rodomas grįžtamasis ryšys, įskaitant teisingą atsakymą.. Default: `true`.
-* __submitAfterFeedback__ | `boolean`: kontroliuoja, ar turėtų būti galima pateikti pakartotinį pasiūlymą net ir po to, kai sprendimas buvo atskleistas).. Default: `false`.
+* __submitAfterFeedback__ | `boolean`: kontroliuoja, ar turėtų būti galima pateikti pakartotinį pasiūlymą net ir po to, kai sprendimas buvo atskleistas.. Default: `false`.
 * __nTries__ | `number`: po kiek bandymų turėtų būti pateiktas grįžtamasis ryšys (jei `provideFeedback` yra `true`). Default: `1`.
 * __disableSubmitNotification__ | `boolean`: kontroliuoja, ar išjungti pranešimus apie pateikimą.. Default: `false`.
 * __chat__ | `boolean`: kontroliuoja, ar elementas turi turėti integruotą pokalbių. Default: `false`.

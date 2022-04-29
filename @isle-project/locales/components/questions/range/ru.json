@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Ответьте заново.",
 	"answer-submitted": "Ответ получен.",
 	"answers": "Ответы",
+	"correct": "Правильно",
 	"lower": "Нижний",
 	"question-closed": "Вопрос закрыт.",
 	"resubmission-message": "Вы успешно переслали свой ответ.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Поздравляю, это верно!",
 	"submission-incorrect": "Не совсем. Сравните ваш ответ с решением.",
 	"submission-message": "Ваш ответ был представлен.",
+	"submission-try-again": "Ваш ответ неверен. Пожалуйста, попробуйте еще раз",
 	"submit": "Отправить .",
+	"try-again": "Попробуйте еще раз",
 	"upper": "Верхний"
 }
