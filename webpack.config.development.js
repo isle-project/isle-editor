@@ -110,7 +110,7 @@ const config = smp.wrap({
 	}
 });
 
-console.log( config.module.rules );
+
 // EXPORTS //
 
 module.exports = config;
