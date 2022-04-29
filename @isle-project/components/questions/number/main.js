@@ -90,7 +90,7 @@ function formatArraySolution( solution, t ) {
 * @property {number} min - minimum allowed input value
 * @property {number} defaultValue - pre-selected value of number input
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
-* @property {boolean} submitAfterFeedback - controls whether one should be able to resubmit even after the solution has been revealed)
+* @property {boolean} submitAfterFeedback - controls whether one should be able to resubmit even after the solution has been revealed
 * @property {number} nTries - after how many tries feedback should be supplied (if `provideFeedback` is `true`)
 * @property {boolean} chat - controls whether the element should have an integrated chat
 * @property {boolean} disableSubmitNotification - controls whether to disable submission notifications

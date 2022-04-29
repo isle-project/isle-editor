@@ -50,7 +50,7 @@ const uid = generateUID( 'range-question' );
 * @property {number} max - maximum input value
 * @property {number} min - minimum input value
 * @property {boolean} provideFeedback - indicates whether feedback including the correct answer should be displayed after learners submit their answers
-* @property {boolean} allowMultipleAnswers - controls whether one can submit multiple answers
+* @property {boolean} submitAfterFeedback - controls whether one should be able to resubmit even after the solution has been revealed
 * @property {Date} until - time until students should be allowed to submit answers
 * @property {number} points - maximum number of points awarded in grading
 * @property {Object} style - CSS inline styles
@@ -62,14 +62,15 @@ const uid = generateUID( 'range-question' );
 const RangeQuestion = ( props ) => {
 	const id = props.id || uid( props );
 	const { digits, min, max, points, question, solution, until, feedback, style,
-		provideFeedback, allowMultipleAnswers, hints, chat, labels,
+		provideFeedback, submitAfterFeedback, hints, nTries, chat, labels,
 		onChangeUpper, onChangeLower, onChange, onSubmit } = props;
 	const session = useContext( SessionContext );
 
 	const [ lower, setLower ] = useState( min );
 	const [ upper, setUpper ] = useState( max );
 	const [ submitted, setSubmitted ] = useState( false );
-	const [ correct, setCorrect ] = useState( false );
+	const [ correct, setCorrect ] = useState({ lower: false, upper: false });
+	const [ numSubmissions, setNumSubmissions ] = useState( 0 );
 	const { t } = useTranslation( 'questions/range' );
 
 	const handleChangeUpper = useCallback( ( newValue ) => {
@@ -101,22 +102,36 @@ const RangeQuestion = ( props ) => {
 		});
 	}, [ id, session ] );
 	const submitHandler = useCallback( () => {
-		let correct;
+		let correct = { lower: false, upper: false };
 		const lowerVal = parseFloat( lower );
 		const upperVal = parseFloat( upper );
 		if ( !isUndefinedOrNull( solution ) ) {
 			if ( digits === null ) {
-				correct = ( lowerVal === solution[0] && upperVal === solution[1] );
+				correct.lower = lowerVal === solution[ 0 ];
+				correct.upper = upperVal === solution[ 1 ];
 			} else {
-				correct = ( roundn( lowerVal, -digits ) === roundn( solution[0], -digits ) &&
-					(roundn(upperVal, -digits) === roundn(solution[1], -digits)) );
+				correct.lower = roundn( lowerVal, -digits ) === roundn( solution[0], -digits );
+				correct.upper = roundn( upperVal, -digits ) === roundn( solution[1], -digits );
 			}
 			onSubmit( correct, [ lowerVal, upperVal ] );
 			if ( provideFeedback ) {
+				let message;
+				let level;
+				if ( correct.lower && correct.upper ) {
+					message = t('submission-correct');
+					level = 'success';
+				} else {
+					message = numSubmissions + 1 < nTries ?
+						t('submission-try-again') + ' (' +
+							t('tries', { count:
+								nTries - numSubmissions + 1
+							}) + ').' : t('submission-incorrect');
+					level = 'error';
+				}
 				session.addNotification({
 					title: t('answer-submitted'),
-					message: correct ? t('submission-correct') : t('submission-incorrect'),
-					level: correct ? 'success' : 'error'
+					message,
+					level
 				});
 			} else {
 				session.addNotification({
@@ -139,12 +154,13 @@ const RangeQuestion = ( props ) => {
 		}
 		setSubmitted( true );
 		setCorrect( correct );
+		setNumSubmissions( numSubmissions + 1 );
 		session.log({
 			id: id,
 			type: RANGE_QUESTION_SUBMIT_ANSWER,
 			value: JSON.stringify( [ lower, upper ] )
 		});
-	}, [ digits, id, lower, upper, onSubmit, provideFeedback, session, solution, submitted, t ] );
+	}, [ digits, id, lower, upper, onSubmit, numSubmissions, nTries, provideFeedback, session, solution, submitted, t ] );
 	const handleKeyPress = useCallback( ( event ) => {
 		if ( event.charCode === 13 ) {
 			// Manually trigger blur event since not happening when pressing ENTER:
@@ -160,9 +176,14 @@ const RangeQuestion = ( props ) => {
 			setLower( min );
 			setUpper( max );
 			setSubmitted( false );
-			setCorrect( false );
+			setCorrect({ lower: false, upper: false });
 		}
 	}, [ question, solution, min, max ]);
+	const solutionPresent = solution !== null;
+	const isDisabled = submitted && solutionPresent && (
+		( numSubmissions >= props.nTries && !submitAfterFeedback ) ||
+		( correct.lower && correct.upper )
+	);
 	const renderSubmitButton = () => {
 		if ( until && session.startTime > until ) {
 			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
@@ -172,15 +193,14 @@ const RangeQuestion = ( props ) => {
 				className="submit-button"
 				variant="primary"
 				size="sm"
-				disabled={submitted && !allowMultipleAnswers}
+				disabled={isDisabled}
 				onClick={submitHandler}
 			>
-				{ submitted && allowMultipleAnswers ? t('resubmit') : t('submit') }
+				{ submitted && submitAfterFeedback ? t('resubmit') : t('submit') }
 			</TimedButton>
 		);
 	};
 	const nHints = hints.length;
-	const solutionPresent = solution !== null;
 	return (
 		<Card id={id} className="range-question" style={style} >
 			<Card.Body style={{ width: feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}>
@@ -191,7 +211,7 @@ const RangeQuestion = ( props ) => {
 						legend={labels ? labels[ 0 ] : t('lower')}
 						onChange={handleChangeLower}
 						defaultValue={lower}
-						disabled={submitted && !allowMultipleAnswers}
+						disabled={isDisabled || correct.lower}
 						inline
 						width={90}
 						min={min}
@@ -200,12 +220,19 @@ const RangeQuestion = ( props ) => {
 						onBlur={handleBlurLower}
 						onKeyPress={handleKeyPress}
 					/>
+					{ submitted && solutionPresent && provideFeedback ?
+						<Badge bg={correct.lower ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+							{correct.lower ? t('correct') :
+								( numSubmissions >= nTries ) ? `${t('solution')}:   ${solution[ 0 ]}` : `${t('try-again')}`}
+						</Badge> :
+						null
+					}
 					<NumberInput
 						step="any"
 						legend={labels ? labels[ 1 ] : t('upper')}
 						onChange={handleChangeUpper}
 						defaultValue={upper}
-						disabled={submitted && !allowMultipleAnswers}
+						disabled={isDisabled || correct.upper}
 						inline
 						width={90}
 						min={min}
@@ -215,9 +242,9 @@ const RangeQuestion = ( props ) => {
 						onKeyPress={handleKeyPress}
 					/>
 					{ submitted && solutionPresent && provideFeedback ?
-						<Badge bg={correct ? 'success' : 'danger'} style={{ fontSize: 18 }}>
-							{`${t('solution')}:   `}
-							{solution[0]}, {solution[1]}
+						<Badge bg={correct.upper ? 'success' : 'danger'} style={{ fontSize: 18 }}>
+							{correct.upper ? t('correct') :
+								( numSubmissions >= nTries ) ? `${t('solution')}:   ${solution[ 1 ]}` : `${t('try-again')}`}
 						</Badge> :
 						null
 					}
@@ -268,8 +295,9 @@ RangeQuestion.defaultProps = {
 	digits: 3,
 	max: PINF,
 	min: NINF,
+	nTries: 1,
 	provideFeedback: true,
-	allowMultipleAnswers: false,
+	submitAfterFeedback: false,
 	until: null,
 	points: 10,
 	style: {},
@@ -295,8 +323,9 @@ RangeQuestion.propTypes = {
 	digits: PropTypes.number,
 	max: PropTypes.number,
 	min: PropTypes.number,
+	nTries: PropTypes.number,
 	provideFeedback: PropTypes.bool,
-	allowMultipleAnswers: PropTypes.bool,
+	submitAfterFeedback: PropTypes.bool,
 	until: PropTypes.instanceOf( Date ),
 	points: PropTypes.number,
 	style: PropTypes.object,

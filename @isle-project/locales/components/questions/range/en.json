@@ -2,6 +2,7 @@
 	"answer-resubmitted": "Answer re-submitted.",
 	"answer-submitted": "Answer submitted.",
 	"answers": "Answers",
+	"correct": "Correct",
 	"lower": "Lower",
 	"question-closed": "Question is now closed.",
 	"resubmission-message": "You have successfully re-submitted your answer.",
@@ -10,6 +11,8 @@
 	"submission-correct": "Congratulations, that is correct!",
 	"submission-incorrect": "Not quite. Compare your answer with the solution.",
 	"submission-message": "Your answer has been submitted.",
+	"submission-try-again": "Your answer is incorrect. Please try again",
 	"submit": "Submit",
+	"try-again": "Try Again",
 	"upper": "Upper"
 }
