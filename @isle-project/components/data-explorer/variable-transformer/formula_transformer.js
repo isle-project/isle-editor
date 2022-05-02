@@ -340,7 +340,7 @@ class FormulaTransformer extends Component {
 								<FormLabel>{t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={t('select-valid-name')}
+									placeholder={t('select-name')}
 									onChange={this.handleNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

@@ -267,7 +267,7 @@
 	"select-grouping-or-second-variable": "Please select either a grouping variable or a second variable to compare {{var}} against.",
 	"select-quantitative-categorical": "Please select which variables should be treated as quantitative and which ones as categorical",
 	"select-row-and-column-variable": "You need to select a row and column variable for the contingency table",
-	"select-valid-name": "Please enter a name consisting of one or more characters (no spaces or periods)",
+	"select-name": "Please enter a name (no spaces or periods)...",
 	"select-variable-bin": "Please select a variable to bin...",
 	"select-variables": "Select Variables",
 	"set-slice-sizes": "Set slice sizes to sum of summary variable:",

@@ -367,7 +367,7 @@ class CategoricalTransformer extends Component {
 								<FormLabel>{t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={t('select-valid-name')}
+									placeholder={t('select-name')}
 									onChange={this.handleGeneratedNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

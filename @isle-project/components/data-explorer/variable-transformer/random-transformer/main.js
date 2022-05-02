@@ -398,7 +398,7 @@ const RandomTransformer = ( props ) => {
 						<FormLabel>{t('data-explorer:name-new-variable')}:</FormLabel>
 						<FormControl
 							type="text"
-							placeholder={t('data-explorer:select-valid-name')}
+							placeholder={t('data-explorer:select-name')}
 							onChange={handleGeneratedNameChange}
 							onKeyPress={handleKeyPress}
 						/>

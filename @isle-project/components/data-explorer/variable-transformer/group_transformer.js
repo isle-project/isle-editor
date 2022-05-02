@@ -178,7 +178,7 @@ class GroupTransformer extends Component {
 								<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={this.props.t('select-valid-name')}
+									placeholder={this.props.t('select-name')}
 									onChange={this.handleGeneratedNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

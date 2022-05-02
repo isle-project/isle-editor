@@ -422,7 +422,7 @@ const BinningTransformer = ( props ) => {
 					<FormLabel>{props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
-						placeholder={props.t('select-valid-name')}
+						placeholder={props.t('select-name')}
 						onChange={handleNameChange}
 						onKeyPress={handleKeyPress}
 					/>
