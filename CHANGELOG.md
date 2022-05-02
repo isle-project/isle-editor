@@ -1,5 +1,24 @@
 # Changelog
 
+## [v0.76.15](https://github.com/isle-project/isle-editor/releases/tag/v0.76.15) (2022-05-02)
+
+Among bug fixes for various components, this update comes with the following improvements:
+
+-   the `<LessonSubmit />` component now has a `coverage` property that can be used to limit the question answers that shall be included in the generated responses PDF. 
+-   answers in the response visualizer are now displayed in ascending order so that arriving responses do not cause the layout to change
+-   inactive lessons now display a button for instructors with which they can be made instantly available 
+
+This release also improves performance due to an upgrade to the latest version of the React.js user interface library, and resolves the issues listed below.
+
+**Implemented enhancements:**
+
+- request for RangeQuestion:  ntries, and different feedback style [\#2723](https://github.com/isle-project/isle-editor/issues/2723)
+- request for "create filtered data" button to be moved to top of spreadsheet [\#2720](https://github.com/isle-project/isle-editor/issues/2720)
+
+**Fixed bugs:**
+
+- \[Bug\]: new categorical variable doesn't appear in boxplot on mac chrome if space in name [\#2722](https://github.com/isle-project/isle-editor/issues/2722)
+
 ## [v0.76.14](https://github.com/isle-project/isle-editor/releases/tag/v0.76.14) (2022-03-25)
 
 This patch release fixes several bugs and includes various improvements:
