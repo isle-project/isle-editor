@@ -4,14 +4,14 @@
 		"alias": "axios",
 		"var": "axios",
 		"path": "axios.min.js",
-		"version": "0.25.0"
+		"version": "0.27.2"
 	},
 	{
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "21.6.10"
+		"version": "21.6.16"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -26,7 +26,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.8.3"
+		"version": "2.11.1"
 	},
 	{
 		"name": "js-yaml",
@@ -40,21 +40,21 @@
 		"alias": "moment.js",
 		"var": "moment",
 		"path": "moment.min.js",
-		"version": "2.29.1"
+		"version": "2.29.3"
 	},
 	{
 		"name": "react",
 		"alias": "react",
 		"var": "React",
 		"path": "umd/react.production.min.js",
-		"version": "18.0.0"
+		"version": "18.1.0"
 	},
 	{
 		"name": "react-dom",
 		"alias": "react-dom",
 		"var": "ReactDOM",
 		"path": "umd/react-dom.production.min.js",
-		"version": "18.0.0"
+		"version": "18.1.0"
 	},
 	{
 		"name": "prop-types",
@@ -75,21 +75,21 @@
 		"alias": "markdown-it",
 		"var": "markdownit",
 		"path": "markdown-it.min.js",
-		"version": "12.2.0"
+		"version": "13.0.0"
 	},
 	{
 		"name": "victory",
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "36.2.1"
+		"version": "36.3.2"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.2.4",
+		"version": "0.2.5",
 		"defer": true
 	},
 	{
@@ -97,7 +97,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.2.4",
+		"version": "0.2.5",
 		"defer": true
 	},
 	{
@@ -113,7 +113,7 @@
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "2.9.0"
+		"version": "2.10.0"
 	},
 	{
 		"name": "react-draggable",
@@ -121,7 +121,7 @@
 		"var": "ReactDraggable",
 		"path": "build/web/react-draggable.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.4.4"
+		"version": "4.4.5"
 	},
 	{
 		"name": "socket.io-client",
@@ -129,7 +129,7 @@
 		"var": "io",
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.3.2"
+		"version": "4.5.0"
 	},
 	{
 		"name": "react-list",
