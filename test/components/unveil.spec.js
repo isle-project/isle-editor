@@ -23,10 +23,10 @@ describe( '<Unveil />', function test() {
 	});
 
 	it( 'the component unveils child elements after a specified delay if it is active', async () => {
-		render( <Unveil active={true} delay={100} ><h1>I am visible...</h1></Unveil> );
+		render( <Unveil active={true} delay={2000} ><h1>I am visible...</h1></Unveil> );
 		await new Promise( res => setTimeout(() => {
 			expect( screen.getByRole( 'heading' ) ).toHaveTextContent( 'I am visible...' );
 			res();
-		}, 200 ));
+		}, 3000 ));
 	});
 });
