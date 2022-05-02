@@ -26,6 +26,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import { DATA_EXPLORER_CAT_TRANSFORMER } from '@isle-project/constants/actions.js';
 import recodeCategorical from './recode_categorical';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
+import validateName from './validate_name.js';
 import './categorical_transformer.css';
 
 
@@ -168,7 +169,7 @@ class CategoricalTransformer extends Component {
 	};
 
 	handleKeyPress = ( event ) => {
-		if ( event.charCode === 13 && this.state.generatedName.length >= 2 ) {
+		if ( event.charCode === 13 && validateName( this.state.generatedName ) ) {
 			this.makeNewVar();
 		}
 	};
@@ -315,7 +316,7 @@ class CategoricalTransformer extends Component {
 						onHide={this.props.onHide}
 						show={this.props.show}
 						header={t('categorical-transformer-header')}
-						footer={<Button onClick={this.makeNewVar} disabled={this.state.generatedName.length < 1}>
+						footer={<Button onClick={this.makeNewVar} disabled={!validateName( this.state.generatedName )}>
 							{t('create-new-variable')}
 						</Button>}
 						bodyStyle={{
@@ -366,7 +367,7 @@ class CategoricalTransformer extends Component {
 								<FormLabel>{t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={t('select-name')}
+									placeholder={t('select-valid-name')}
 									onChange={this.handleGeneratedNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

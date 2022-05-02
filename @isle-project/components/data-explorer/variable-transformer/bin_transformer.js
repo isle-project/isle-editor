@@ -34,6 +34,7 @@ import { DATA_EXPLORER_BIN_TRANSFORMER } from '@isle-project/constants/actions.j
 import { generateHistogramConfig } from '@isle-project/components/plots/histogram';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import retrieveBinnedValues from './retrieve_binned_values.js';
+import validateName from './validate_name.js';
 import ClearButton from './../clear_button.js';
 import './bin_transformer.css';
 
@@ -132,7 +133,7 @@ const BinningTransformer = ( props ) => {
 		categories: null,
 		customNames: null
 	});
-	const invalidName = name.length < 1;
+	const invalidName = validateName( name );
 	const makeNewVar = () => {
 		const { variable, categories, breakpoints } = state;
 		const rawData = props.data[ variable ];
@@ -421,7 +422,7 @@ const BinningTransformer = ( props ) => {
 					<FormLabel>{props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
-						placeholder={props.t('select-name')}
+						placeholder={props.t('select-valid-name')}
 						onChange={handleNameChange}
 						onKeyPress={handleKeyPress}
 					/>
@@ -439,7 +440,7 @@ const BinningTransformer = ( props ) => {
 					onHide={props.onHide}
 					show={props.show}
 					header={props.t('bin-transformer-header')}
-					footer={<Button onClick={makeNewVar} disabled={invalidName} >
+					footer={<Button onClick={makeNewVar} disabled={!invalidName} >
 						{props.t('create-new-variable')}
 					</Button>}
 					bodyStyle={{

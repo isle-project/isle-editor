@@ -26,6 +26,7 @@ import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
 import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import valuesFromFormula from './values_from_formula.js';
+import validateName from './validate_name.js';
 import FUNCTION_KEYS from './function_keys.json';
 import './formula_transformer.css';
 
@@ -200,7 +201,7 @@ class FormulaTransformer extends Component {
 						show={this.props.show}
 						onHide={this.props.onHide}
 						header={this.props.t('formula-transformer-header')}
-						footer={<Button onClick={this.handleGenerate} disabled={this.state.name.length < 1} >{this.props.t('create-new-variable')}</Button>}
+						footer={<Button onClick={this.handleGenerate} disabled={!validateName( this.state.name )} >{this.props.t('create-new-variable')}</Button>}
 						role="button" tabIndex={0}
 						bodyStyle={{
 							maxHeight: 'calc(100vh - 200px)',
@@ -339,7 +340,7 @@ class FormulaTransformer extends Component {
 								<FormLabel>{t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={t('select-name')}
+									placeholder={t('select-valid-name')}
 									onChange={this.handleNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

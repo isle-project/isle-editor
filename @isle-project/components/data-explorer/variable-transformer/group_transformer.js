@@ -19,6 +19,7 @@ import NumberInput from '@isle-project/components/input/number';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import { DATA_EXPLORER_GROUP_TRANSFORMER } from '@isle-project/constants/actions.js';
+import validateName from './validate_name.js';
 
 
 // VARIABLES //
@@ -68,7 +69,7 @@ class GroupTransformer extends Component {
 			for ( let i = 0; i < this.state.groupProbs.length; i++ ) {
 				sum += this.state.groupProbs[ i ];
 			}
-			const hasValidValues = this.state.generatedName.length > 2 && absdiff( sum, 1.0 ) <= 1.5e-8;
+			const hasValidValues = validateName( this.state.generatedName ) && absdiff( sum, 1.0 ) <= 1.5e-8;
 			if ( hasValidValues ) {
 				this.makeNewVar();
 			}
@@ -139,7 +140,7 @@ class GroupTransformer extends Component {
 		for ( let i = 0; i < this.state.groupProbs.length; i++ ) {
 			sum += this.state.groupProbs[ i ];
 		}
-		const hasValidValues = this.state.generatedName.length > 2 && absdiff( sum, 1.0 ) <= 1.5e-8;
+		const hasValidValues = validateName( this.state.generatedName ) && absdiff( sum, 1.0 ) <= 1.5e-8;
 		return (
 			<Draggable cancel=".card-body" onDragStart={( event ) => {
 				event.stopPropagation();
@@ -177,7 +178,7 @@ class GroupTransformer extends Component {
 								<FormLabel>{this.props.t('name-new-variable')}:</FormLabel>
 								<FormControl
 									type="text"
-									placeholder={this.props.t('select-name')}
+									placeholder={this.props.t('select-valid-name')}
 									onChange={this.handleGeneratedNameChange}
 									onKeyPress={this.handleKeyPress}
 								/>

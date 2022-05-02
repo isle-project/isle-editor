@@ -22,6 +22,7 @@ import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import SelectInput from '@isle-project/components/input/select';
 import { DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
+import validateName from './../validate_name.js';
 import drawRandomVariates from './draw_random_variates.js';
 
 
@@ -339,7 +340,7 @@ const RandomTransformer = ( props ) => {
 	}, [ asCategorical, distribution, name, nObs, params, props ] );
 
 	const handleKeyPress = useCallback( ( event ) => {
-		if ( event.charCode === 13 && name.length >= 2 ) {
+		if ( event.charCode === 13 && validateName( name ) ) {
 			createVariable();
 		}
 	}, [ createVariable, name ] );
@@ -354,7 +355,7 @@ const RandomTransformer = ( props ) => {
 				onHide={props.onHide}
 				show={props.show}
 				header={t('data-explorer:generate-random-data')}
-				footer={<Button onClick={createVariable} disabled={!name || name.length === 0} >
+				footer={<Button onClick={createVariable} disabled={!validateName( name )} >
 					{t('data-explorer:create-new-variable')}
 				</Button>}
 				role="button" tabIndex={0}
@@ -397,7 +398,7 @@ const RandomTransformer = ( props ) => {
 						<FormLabel>{t('data-explorer:name-new-variable')}:</FormLabel>
 						<FormControl
 							type="text"
-							placeholder={t('data-explorer:select-name')}
+							placeholder={t('data-explorer:select-valid-name')}
 							onChange={handleGeneratedNameChange}
 							onKeyPress={handleKeyPress}
 						/>
