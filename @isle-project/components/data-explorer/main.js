@@ -1456,66 +1456,59 @@ class DataExplorer extends Component {
 									onColumnDrag={this.onColumnDrag}
 									deletable
 									id={this.id + '_table'}
-								/>
-								<Row>
-									<Col md={4} >
-										{ this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
-											<OverlayTrigger placement="top" overlay={<Tooltip>{this.props.t('create-filtered-dataset-tooltip')}</Tooltip>} >
-												<Button
-													onClick={() => {
-														if ( this.state.subsetFilters ) {
-															// Case: Dataset is already filtered
-															this.onFilterAdd();
-														} else {
-															this.onFilterCreate();
-														}
-													}}
-													variant="secondary"
-													size="xsmall"
-													style={{ float: 'left' }}
-												>
-													{this.props.t('create-filtered-dataset')}
-												</Button>
-											</OverlayTrigger> : null
-										}
-									</Col>
-									<Col md={8} >
-										{ this.state.subsetFilters ? <div className="data-explorer-subset-filter-display">
-											<p>
-												<span style={{ color: 'white', paddingLeft: 2 }} >{this.props.t('filtered')}:</span>
-												{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>
-													{this.props.t('restore-original-dataset-tooltip')}
-												</Tooltip>} >
-													<Button
-														onClick={this.onRestoreData}
-														variant="secondary"
-														size="small"
-														style={{ float: 'right' }}
-													>
-														{this.props.t('restore-original-dataset')}
-													</Button>
-												</OverlayTrigger> : null }
-											</p>
-											<FilterList
-												filters={this.state.subsetFilters}
-												removeButtons
-												onRemove={( idx ) => {
-													debug( 'Removing filter at position '+idx );
-													const newSubsetFilters = this.state.subsetFilters.slice();
-													newSubsetFilters.splice( idx, 1 );
-													if ( newSubsetFilters.length > 0 ) {
-														this.setState({
-															data: this.state.oldData,
-															filters: newSubsetFilters
-														}, this.onFilterCreate );
+									headerButtons={this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
+										<OverlayTrigger placement="top" overlay={<Tooltip>{this.props.t('create-filtered-dataset-tooltip')}</Tooltip>} >
+											<Button
+												onClick={() => {
+													if ( this.state.subsetFilters ) {
+														// Case: Dataset is already filtered
+														this.onFilterAdd();
 													} else {
-														this.onRestoreData();
+														this.onFilterCreate();
 													}
 												}}
-											/>
-										</div> : null }
-									</Col>
-								</Row>
+												variant="secondary"
+												size="xsmall"
+											>
+												{this.props.t('create-filtered-dataset')}
+											</Button>
+										</OverlayTrigger> : null
+									}
+								/>
+								{ this.state.subsetFilters ? <div className="data-explorer-subset-filter-display">
+									<p>
+										<span style={{ color: 'white', paddingLeft: 2 }} >{this.props.t('filtered')}:</span>
+										{ this.state.subsetFilters ? <OverlayTrigger placement="top" overlay={<Tooltip>
+											{this.props.t('restore-original-dataset-tooltip')}
+										</Tooltip>} >
+											<Button
+												onClick={this.onRestoreData}
+												variant="secondary"
+												size="small"
+												style={{ float: 'right' }}
+											>
+												{this.props.t('restore-original-dataset')}
+											</Button>
+										</OverlayTrigger> : null }
+									</p>
+									<FilterList
+										filters={this.state.subsetFilters}
+										removeButtons
+										onRemove={( idx ) => {
+											debug( 'Removing filter at position '+idx );
+											const newSubsetFilters = this.state.subsetFilters.slice();
+											newSubsetFilters.splice( idx, 1 );
+											if ( newSubsetFilters.length > 0 ) {
+												this.setState({
+													data: this.state.oldData,
+													filters: newSubsetFilters
+												}, this.onFilterCreate );
+											} else {
+												this.onRestoreData();
+											}
+										}}
+									/>
+								</div> : null }
 						</div>
 						{ this.props.history && this.state.openedNav === 'history' ?
 							<History

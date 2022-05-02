@@ -69,6 +69,23 @@
 	box-shadow: none;
 	border-color: #0000004d;
 	float: right;
+	margin-left: 4px;
+}
+
+.num-rows-badge {
+	background: rgba(0, 0, 0, 0.05);
+	box-shadow: none;
+	border: 1px solid transparent;
+	border-color: #0000004d;
+	float: right;
+	font-weight: 400;
+	color: #212529;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	border-radius: 0.25rem;
 }
 
 .data-table-header-wrapper {

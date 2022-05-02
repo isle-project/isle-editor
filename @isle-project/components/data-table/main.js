@@ -894,22 +894,25 @@ class DataTable extends Component {
 										>
 											{this.props.t('variable-descriptions')}
 										</Button></Tooltip> : null }
-										{ ( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
-										<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
-											<Button
-												onClick={this.reset}
-												variant="light"
-												size="xsmall"
-												className="reset-button"
-											>
-												{this.props.t('reset-display')}
-											</Button>
-										</Tooltip> : null }
+										{( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
+											<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
+												<Button
+													onClick={this.reset}
+													variant="light"
+													size="xsmall"
+													className="reset-button"
+												>
+													{this.props.t('reset-display')}
+												</Button>
+											</Tooltip> : null }
+										<div className="num-rows-badge" >
+											{this.props.t('num-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})
+										</div>
 									</ButtonToolbar>
+									{ this.props.headerButtons ? <ButtonToolbar className="data-table-header-toolbar" >
+										{this.props.headerButtons}
+									</ButtonToolbar> : null }
 									{makeTable()}
-									<label className="label-number-rows">
-										<i>{this.props.t('number-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})</i>
-									</label>
 								</div>
 							);
 						}}
