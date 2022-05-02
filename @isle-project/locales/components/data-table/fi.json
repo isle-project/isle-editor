@@ -13,7 +13,7 @@
 	"next": "Seuraava",
 	"no-data": "Tietoja ei ole toimitettu.",
 	"no-rows-found": "Rivejä ei löytynyt",
-	"number-rows": "Rivien lukumäärä",
+	"num-rows": "Rivit:",
 	"of": "of",
 	"open-description": "Avoimen tietokokonaisuuden kuvaus",
 	"page": "Sivu",
