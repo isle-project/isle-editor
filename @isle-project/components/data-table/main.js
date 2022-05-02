@@ -906,7 +906,7 @@ class DataTable extends Component {
 												</Button>
 											</Tooltip> : null }
 										<div className="num-rows-badge" >
-											{this.props.t('num-rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})
+											{this.props.t('rows')}: {selectedRows} ({this.props.t('total')}: {rows.length})
 										</div>
 									</ButtonToolbar>
 									{ this.props.headerButtons ? <ButtonToolbar className="data-table-header-toolbar" >

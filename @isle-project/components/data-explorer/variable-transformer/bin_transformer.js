@@ -418,7 +418,7 @@ const BinningTransformer = ( props ) => {
 						</Card.Body>
 					</Card>
 				</div>
-				<FormGroup style={{ width: 'fit-content' }} >
+				<FormGroup>
 					<FormLabel>{props.t('name-new-variable')}:</FormLabel>
 					<FormControl
 						type="text"
