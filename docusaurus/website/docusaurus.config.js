@@ -243,7 +243,18 @@ const siteConfig = {
 		path.resolve( __dirname, 'plugins', 'isle-components' )
 	],
 
-	themes: ['@docusaurus/theme-live-codeblock']
+	themes: ['@docusaurus/theme-live-codeblock'],
+
+	webpack: {
+		jsLoader: ( isServer ) => ({
+			loader: require.resolve('esbuild-loader'),
+			options: {
+				loader: 'tsx',
+				format: isServer ? 'cjs' : void 0,
+				target: isServer ? 'node12' : 'es2017'
+			}
+		})
+	}
 };
 
 module.exports = siteConfig;
