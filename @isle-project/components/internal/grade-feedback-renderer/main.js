@@ -109,16 +109,14 @@ class GradeFeedbackRenderer extends Component {
 			return null;
 		}
 		const grades = session.user.lessonGrades[ session.lessonID ];
-		if ( !grades || !isNumber( grades[ this.props.for ] ) ) {
-			return null;
-		}
+		const hasGrade = grades && isNumber( grades[ this.props.for ] );
 		const gradeMessages = session.user.lessonGradeMessages[ session.lessonID ];
 		const hasMessages = gradeMessages && gradeMessages[ this.props.for ];
 		return (
 			<Fragment>
-				<Badge bg="success" style={{ fontSize: '1em' }} >
+				{hasGrade ? <Badge bg="success" style={{ fontSize: '1em' }} >
 					{this.props.t('your-points')}: {grades[ this.props.for ]} / {this.props.points}
-				</Badge>
+				</Badge> : null}
 				{hasMessages ? <Tooltip tooltip={this.props.t('display-instructor-feedback')} >
 					<Button
 						aria-label={this.props.t('display-instructor-feedback')}

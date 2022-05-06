@@ -133,12 +133,15 @@ function formatTime( time ) {
 }
 
 function generateGrade( action, viz ) {
-	if ( !action ) {
-		return 0;
-	}
 	const solution = viz.ref.props.data.solution;
 	const dataType = viz.ref.props.data.type;
 	const maxPoints = viz.ref.props.points;
+	if ( !maxPoints ) {
+		return null;
+	}
+	if ( !action ) {
+		return 0;
+	}
 	if ( isUndefinedOrNull( solution ) ) {
 		return maxPoints;
 	}
@@ -427,10 +430,13 @@ class StudentResponses extends Component {
 			let numPoints;
 			if ( grades && isNumber( grades[ id ] ) ) {
 				numPoints = grades[ id ];
+				grades[ id ] = numPoints;
 			} else {
 				numPoints = generateGrade( actionsLeft[ 0 ], viz );
+				if ( isNumber( numPoints ) ) {
+					grades[ id ] = numPoints;
+				}
 			}
-			grades[ id ] = numPoints;
 		}
 		return grades;
 	};
