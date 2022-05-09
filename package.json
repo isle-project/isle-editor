@@ -340,7 +340,7 @@
     "vex-js": "^4.1.0",
     "victory": "36.3.2",
     "webpack-cli": "4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.9.0"
   },
   "devEngines": {
     "node": "14.x || 15.x"
