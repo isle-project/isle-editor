@@ -45,9 +45,25 @@ class GradeFeedbackRenderer extends Component {
 						gradeMessages[ this.props.for ] = [];
 					}
 					gradeMessages[ this.props.for ].push( action.value );
-					this.setState({
-						showMessages: true
+					const el = document.getElementById( this.props.for );
+					session.addNotification({
+						title: this.props.t( 'Feedback received' ),
+						message: this.props.t( 'You have received feedback from ' + action.value.user + ' for question ' + this.props.for ),
+						position: 'tl',
+						level: 'info',
+						autoDismiss: 0,
+						children: ( el && el.offsetParent !== null ) ? <div style={{ marginBottom: '30px' }}>
+							<button style={{
+								float: 'right',
+								border: '2px solid rgb(0, 123, 255)',
+								backgroundColor: 'rgb(206 222 230)',
+								borderRadius: '3px'
+							}} onClick={this.scrollToQuestion} >
+								{this.props.t( 'Scroll to the question' )}
+							</button>
+						</div> : null
 					});
+					this.forceUpdate();
 				}
 			}
 		});
@@ -56,6 +72,13 @@ class GradeFeedbackRenderer extends Component {
 	componentWillUnmount() {
 		this.unsubscribe();
 	}
+
+	scrollToQuestion = () => {
+		const question = document.getElementById( this.props.for );
+		if ( question ) {
+			question.scrollIntoView();
+		}
+	};
 
 	renderMessages() {
 		const session = this.context;
@@ -163,6 +186,9 @@ class GradeFeedbackRenderer extends Component {
 						className="grade-feedback-button"
 					>
 						<i className="fas fa-envelope-open" ></i>
+						<Badge className="ms-2" pill bg="success" >
+							{gradeMessages[ this.props.for ].length}
+						</Badge>
 					</Button>
 				</Tooltip> : null}
 				{this.renderOverlay()}
