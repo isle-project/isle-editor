@@ -25,6 +25,7 @@ const debug = logger( 'isle:reaction' );
 *
 * @property {string} actionID - ID of component to watch
 * @property {(Object|Function)} show - hash table of components to display given the different responses (if no `key` matches the response, the value corresponding to the `default` key will be displayed if set) or a function that returns a component to display (sole argument of function is the latest result)
+* @property {Node} banner - custom message displayed if the user has not yet performed the action
 */
 const Reaction = ( props ) => {
 	debug( 'Render component...' );
@@ -54,16 +55,16 @@ const Reaction = ( props ) => {
 				actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
 				const lastAction = actions[ actions.length-1 ];
 				if ( isObject( props.show ) ) {
-					return props.show[ lastAction.value ] || props.show[ 'default' ] || null;
+					return props.show[ lastAction.value ] || props.show[ 'default' ] || props.banner;
 				}
 				if ( isFunction( props.show ) ) {
-					return props.show( lastAction.value, lastAction ) || null;
+					return props.show( lastAction.value, lastAction ) || props.banner;
 				}
 			}
-			return null;
+			return props.banner;
 		}
 	}
-	return null;
+	return props.banner;
 };
 
 
@@ -71,10 +72,12 @@ const Reaction = ( props ) => {
 
 Reaction.propTypes = {
 	actionID: PropTypes.string.isRequired,
+	banner: PropTypes.node,
 	show: PropTypes.oneOfType([ PropTypes.object, PropTypes.func ])
 };
 
 Reaction.defaultProps = {
+	banner: null,
 	show: {}
 };
 
