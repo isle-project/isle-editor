@@ -45,7 +45,7 @@ import retrieveUserGroup from '@isle-project/utils/retrieve-user-group';
 import beforeUnload from '@isle-project/utils/before-unload';
 import SpeechInterface from './speech_interface.js';
 import { OPEN_CPU_DEFAULT_SERVER, OPEN_CPU_IDENTITY } from '@isle-project/constants/opencpu';
-import { LESSON_CONNECTED, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
+import { APPEND_GRADE_MESSAGE, LESSON_CONNECTED, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { CHAT_MESSAGE, CHAT_STATISTICS, COLLABORATIVE_EDITING_EVENTS, CONNECTED_TO_SERVER,
 	CREATED_GROUPS, DELETED_GROUPS, DISCONNECTED_FROM_SERVER, FOCUS_ELEMENT, LOSE_FOCUS_ELEMENT, JOINED_COLLABORATIVE_EDITING,
 	LOGGED_IN, LOGGED_OUT, MARK_MESSAGES, MEMBER_ACTION, MEMBER_HAS_JOINED_CHAT, MEMBER_HAS_LEFT_CHAT,
@@ -2179,6 +2179,12 @@ class Session {
 		} else {
 			this.lessonGradeMessages[ email ][ componentID ] = [ message ];
 		}
+		this.log({
+			type: APPEND_GRADE_MESSAGE,
+			id: componentID,
+			value: message,
+			noSave: true
+		}, email );
 		axios.post( this.server+'/user_append_grade_message', {
 			lessonID: this.lessonID,
 			namespaceID: this.namespaceID,

@@ -10,6 +10,8 @@ import Overlay from 'react-bootstrap/Overlay';
 import Button from 'react-bootstrap/Button';
 import Tooltip from '@isle-project/components/tooltip';
 import renderTime from '@isle-project/utils/render-time';
+import { APPEND_GRADE_MESSAGE } from '@isle-project/constants/actions.js';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 import './grade_feedback_renderer.css';
 
 
@@ -22,6 +24,37 @@ class GradeFeedbackRenderer extends Component {
 		this.state = {
 			showMessages: false
 		};
+	}
+
+	componentDidMount() {
+		const session = this.context;
+		this.unsubscribe = session.subscribe( ( type, action ) => {
+			if ( type === MEMBER_ACTION ) {
+				if ( action.id !== this.props.for ) {
+					return;
+				}
+				if ( action.type === APPEND_GRADE_MESSAGE ) {
+					if ( action.id !== this.props.for ) {
+						return;
+					}
+					if ( !session.user.lessonGradeMessages[ session.lessonID ] ) {
+						session.user.lessonGradeMessages[ session.lessonID ] = {};
+					}
+					const gradeMessages = session.user.lessonGradeMessages[ session.lessonID ];
+					if ( !gradeMessages[ this.props.for ] ) {
+						gradeMessages[ this.props.for ] = [];
+					}
+					gradeMessages[ this.props.for ].push( action.value );
+					this.setState({
+						showMessages: true
+					});
+				}
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	renderMessages() {
