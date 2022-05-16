@@ -120,9 +120,9 @@
     "extensionsToTreatAsEsm": []
   },
   "dependencies": {
-    "@babel/core": "^7.17.10",
+    "@babel/core": "^7.17.12",
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
     "@loadable/component": "^5.15.2",
     "@nosferatu500/react-sortable-tree": "^4.1.0",
     "@stdlib/array": "^0.0.12",
@@ -281,10 +281,10 @@
   },
   "devDependencies": {
     "@babel/eslint-plugin": "7.17.7",
-    "@babel/plugin-proposal-export-default-from": "^7.16.7",
-    "@babel/plugin-transform-runtime": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/plugin-proposal-export-default-from": "^7.17.12",
+    "@babel/plugin-transform-runtime": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-react": "^7.17.12",
     "@electron/remote": "^2.0.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
