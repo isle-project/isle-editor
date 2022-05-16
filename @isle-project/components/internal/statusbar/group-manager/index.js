@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import contains from '@stdlib/assert/contains';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import ceil from '@stdlib/math/base/special/ceil';
 import floor from '@stdlib/math/base/special/floor';
 import sample from '@stdlib/random/sample';
 import shuffle from '@stdlib/random/shuffle';
@@ -136,6 +135,14 @@ function randomGroupAssignment( nGroups, users ) {
 	return out;
 }
 
+function emptyGroupAssignment( nGroups ) {
+	const out = {};
+	for ( let i = 0; i < nGroups; i++ ) {
+		out[ i ] = [];
+	}
+	return out;
+}
+
 function progressGroupAssignment( nGroups, users, progress, matching ) {
 	const out = {};
 	const nUsersPerGroup = floor( users.length / nGroups );
@@ -180,6 +187,9 @@ function createGroups({ nGroups, users, mode, progress, matching }) {
 	});
 	let groupUsers;
 	switch ( mode ) {
+		case 'empty':
+			groupUsers = emptyGroupAssignment( nGroups );
+		break;
 		case 'random':
 			groupUsers = randomGroupAssignment( nGroups, users );
 		break;
@@ -535,7 +545,7 @@ class GroupManager extends Component {
 			<NumberInput
 				legend={this.props.t( 'number-of-groups' )}
 				value={this.state.nGroups}
-				min={1} max={floor( ceil( nUsers / 2 + 1e-9 ), 99 )}
+				min={1} max={50}
 				onChange={( nGroups ) => {
 					this.setState({
 						nGroups
@@ -546,9 +556,23 @@ class GroupManager extends Component {
 			<span className="title" >{groupSizes}</span>
 			<hr />
 			<div>
+				<Tooltip tooltip={this.props.t( 'no-assignment' )} placement="bottom" >
+					<Button
+						active={this.state.activeMode === 'empty'} size="lg" variant="outline-secondary"
+						onClick={() => {
+							if ( this.state.activeMode !== 'empty' ) {
+								this.setState({ activeMode: 'empty' });
+							}
+						}}
+						aria-label={this.props.t( 'empty-groups' )}
+					>
+						<span className="fa fa-circle-0" />
+					</Button>
+				</Tooltip>
 				<Tooltip tooltip={this.props.t( 'random-assignment' )} placement="bottom" >
 					<Button
-						active={this.state.activeMode === 'random'} size="lg" variant="outline-secondary"
+						active={this.state.activeMode === 'random'} size="lg"
+						variant="outline-secondary" style={{ marginLeft: 6 }}
 						onClick={() => {
 							if ( this.state.activeMode !== 'random' ) {
 								this.setState({ activeMode: 'random' });
@@ -596,7 +620,6 @@ class GroupManager extends Component {
 
 	renderFooter() {
 		const session = this.context;
-		const nUsers = countStudents( session.userList );
 		if ( session.allGroups.length > 0 ) {
 			return ( <Fragment>
 				<Tooltip tooltip={this.props.t( 'broadcast-message-tooltip')} placement="bottom" >
@@ -626,9 +649,8 @@ class GroupManager extends Component {
 					onClick={this.reuseLastGroups}
 				>{this.props.t( 'reopen-last-groups' )}</Button>
 			</Tooltip>
-			<Tooltip tooltip={this.props.t( 'create-groups-tooltip' )} placement="bottom" show={nUsers > 0} >
+			<Tooltip tooltip={this.props.t( 'create-groups-tooltip' )} placement="bottom" show={true} >
 			<Button
-				disabled={nUsers === 0}
 				onClick={this.handleGroupCreation}
 				style={{ float: 'right' }}
 			>{this.props.t( 'create-groups' )}</Button>
