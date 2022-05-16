@@ -19,6 +19,8 @@ import Panel from '@isle-project/components/panel';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import VideoChatButton from '@isle-project/components/internal/video-chat-button';
 import Draggable from '@isle-project/components/draggable';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import Tooltip from '@isle-project/components/tooltip';
 import Timer from '@isle-project/components/timer';
 import NumberInput from '@isle-project/components/input/number';
@@ -180,11 +182,19 @@ function progressGroupAssignment( nGroups, users, progress, matching ) {
 	return out;
 }
 
-function createGroups({ nGroups, users, mode, progress, matching }) {
-	const groupNames = sample( names, {
-		size: nGroups,
-		replace: false
-	});
+function createGroups({ nGroups, users, mode, progress, matching, randomNames }) {
+	let groupNames;
+	if ( randomNames ) {
+		groupNames = sample( names, {
+			size: nGroups,
+			replace: false
+		});
+	} else {
+		groupNames = [];
+		for ( let i = 0; i < nGroups; i++ ) {
+			groupNames.push( `${i+1}` );
+		}
+	}
 	let groupUsers;
 	switch ( mode ) {
 		case 'empty':
@@ -225,6 +235,7 @@ class GroupManager extends Component {
 			toAdd: [],
 			lastGroups: null,
 			message: '',
+			randomNames: true,
 			docId: 0
 		};
 	}
@@ -261,7 +272,12 @@ class GroupManager extends Component {
 						position: 'tr',
 						dismissible: 'none',
 						autoDismiss: 0,
-						children: <Timer style={{ position: 'relative' }} duration={60} active />
+						children: <Timer
+							style={{ position: 'relative' }} duration={60} active
+							onTimeUp={() => {
+								this.forceUpdate();
+							}}
+						/>
 					});
 					this.setState({
 						isClosing: true
@@ -310,7 +326,8 @@ class GroupManager extends Component {
 			users: selectUsers( session.userList, session.selectedCohort ),
 			mode: this.state.activeMode,
 			progress: session.userProgress,
-			matching: this.state.matching
+			matching: this.state.matching,
+			randomNames: this.state.randomNames
 		});
 		session.createGroups( groups );
 	};
@@ -422,6 +439,12 @@ class GroupManager extends Component {
 						{questionSelect}
 					</p>
 				</div> );
+			case 'empty':
+				return (
+					<div>
+						<p>{this.props.t( 'empty-groups-description' )}</p>
+					</div>
+				);
 			default:
 				return (
 					<div>
@@ -554,25 +577,49 @@ class GroupManager extends Component {
 				inline inputStyle={{ width: 50 }}
 			/>
 			<span className="title" >{groupSizes}</span>
+			<div style={{ padding: '5px' }}>
+				<label htmlFor="random-names-toggle-button" style={{ marginRight: 5 }}>{this.props.t('group-names')}</label>
+				<ToggleButtonGroup
+					id="random-names-toggle-button"
+					name="names"
+					onChange={( value ) => {
+						this.setState({
+							randomNames: value
+						});
+					}}
+					type="radio"
+					size="small"
+					value={this.state.randomNames}
+					style={{ marginRight: '5px' }}
+				>
+					<ToggleButton
+						id="toggle-random-names"
+						size="sm"
+						variant="light"
+						value={true}
+						style={{
+							fontSize: '12px',
+							color: this.state.randomNames ? 'black' : '#A9A9A9'
+						}}
+					>{this.props.t( 'random' )}</ToggleButton>
+					<ToggleButton
+						id="toggle-numeric-names"
+						size="sm"
+						variant="light"
+						value={false}
+						style={{
+							fontSize: '12px',
+							color: this.state.randomNames ? '#A9A9A9' : 'black'
+						}}
+					>{this.props.t( 'numeric' )}</ToggleButton>
+				</ToggleButtonGroup>
+			</div>
 			<hr />
 			<div>
-				<Tooltip tooltip={this.props.t( 'no-assignment' )} placement="bottom" >
-					<Button
-						active={this.state.activeMode === 'empty'} size="lg" variant="outline-secondary"
-						onClick={() => {
-							if ( this.state.activeMode !== 'empty' ) {
-								this.setState({ activeMode: 'empty' });
-							}
-						}}
-						aria-label={this.props.t( 'empty-groups' )}
-					>
-						<span className="fa fa-circle-0" />
-					</Button>
-				</Tooltip>
 				<Tooltip tooltip={this.props.t( 'random-assignment' )} placement="bottom" >
 					<Button
 						active={this.state.activeMode === 'random'} size="lg"
-						variant="outline-secondary" style={{ marginLeft: 6 }}
+						variant="outline-secondary"
 						onClick={() => {
 							if ( this.state.activeMode !== 'random' ) {
 								this.setState({ activeMode: 'random' });
@@ -581,6 +628,20 @@ class GroupManager extends Component {
 						aria-label={this.props.t( 'random-assignment' )}
 					>
 						<span className="fa fa-dice" />
+					</Button>
+				</Tooltip>
+				<Tooltip tooltip={this.props.t( 'no-assignment' )} placement="bottom" >
+					<Button
+						active={this.state.activeMode === 'empty'} size="lg"
+						variant="outline-secondary" style={{ marginLeft: 6 }}
+						onClick={() => {
+							if ( this.state.activeMode !== 'empty' ) {
+								this.setState({ activeMode: 'empty' });
+							}
+						}}
+						aria-label={this.props.t( 'empty-groups' )}
+					>
+						<span className="fa fa-0" />
 					</Button>
 				</Tooltip>
 				<Tooltip tooltip={this.props.t( 'match-by-progress' )} placement="bottom" >

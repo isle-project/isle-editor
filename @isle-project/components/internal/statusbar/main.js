@@ -23,7 +23,7 @@ import VideoChats from './video-chats';
 import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';
 import isHidden from '@isle-project/utils/is-hidden';
-import { TOGGLE_BLACKSCREEN } from '@isle-project/constants/actions.js';
+import { TOGGLE_BLACKSCREEN, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
 import VoiceControl from './voice-control';
@@ -178,6 +178,8 @@ class StatusBar extends Component {
 					}
 				}
 			} else if ( type === CREATED_GROUPS && !this.state.showGroupManager ) {
+				this.toggleGroupManager();
+			} else if ( type === TOGGLE_PRESENTATION_MODE && this.state.showGroupManager ) {
 				this.toggleGroupManager();
 			}
 		});
