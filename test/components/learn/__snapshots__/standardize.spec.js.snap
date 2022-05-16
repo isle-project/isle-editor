@@ -423,7 +423,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={50}
                     >
-                      -30
+                      −30
                     </tspan>
                   </text>
                 </g>
@@ -453,7 +453,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={108.33333333333333}
                     >
-                      -20
+                      −20
                     </tspan>
                   </text>
                 </g>
@@ -483,7 +483,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={166.66666666666666}
                     >
-                      -10
+                      −10
                     </tspan>
                   </text>
                 </g>
@@ -877,7 +877,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={85}
                     >
-                      -4
+                      −4
                     </tspan>
                   </text>
                 </g>
@@ -907,7 +907,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={155}
                     >
-                      -2
+                      −2
                     </tspan>
                   </text>
                 </g>

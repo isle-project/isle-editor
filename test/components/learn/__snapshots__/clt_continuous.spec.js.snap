@@ -491,6 +491,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                     }
                   >
                     <svg
+                      aria-labelledby="victory-container-1-title"
                       height={300}
                       role="img"
                       style={
@@ -503,6 +504,11 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       viewBox="0 0 450 300"
                       width={450}
                     >
+                      <title
+                        id="victory-container-1-title"
+                      >
+                        population-density
+                      </title>
                       <g
                         role="presentation"
                       >
@@ -577,7 +583,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               textAnchor="middle"
                               x={50}
                             >
-                              -1.0
+                              −1.0
                             </tspan>
                           </text>
                         </g>
@@ -607,7 +613,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               textAnchor="middle"
                               x={108.33333333333333}
                             >
-                              -0.5
+                              −0.5
                             </tspan>
                           </text>
                         </g>

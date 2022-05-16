@@ -711,7 +711,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={50}
                     >
-                      -3.0
+                      −3.0
                     </tspan>
                   </text>
                 </g>
@@ -741,7 +741,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={108.33333333333333}
                     >
-                      -2.0
+                      −2.0
                     </tspan>
                   </text>
                 </g>
@@ -771,7 +771,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       textAnchor="middle"
                       x={166.66666666666666}
                     >
-                      -1.0
+                      −1.0
                     </tspan>
                   </text>
                 </g>
