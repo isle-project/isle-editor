@@ -90,7 +90,7 @@ const Reaction = ( props ) => {
 			<Button variant="secondary" size="small" onClick={() => {
 				setShowAll( !showAll );
 			}} style={{ float: 'right' }} >
-				<i className="fas fa-clock"></i> {t('toggle')}
+				<i className="fas fa-clock"></i> {t('toggle-all')}
 			</Button>
 		</Gate> : null}
 	</Fragment> );
