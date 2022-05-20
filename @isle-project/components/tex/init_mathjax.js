@@ -66,7 +66,7 @@ const DEFAULT_OPTIONS = {
 
 const importMathJax = () => {
 	const script = document.createElement('script');
-	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.1/es5/tex-chtml.js';
 	script.async = true;
 	document.head.appendChild( script );
 };
