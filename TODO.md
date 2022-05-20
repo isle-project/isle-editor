@@ -35,4 +35,19 @@ type=boolean
 
 rules: binary proportion (0/1), binary trimmed proportion, thresholded proportion, average, weighted average, average with exclusions, median, ...
 
-- Attach IDs to components in build step
+Add commas when formatting numbers in model outputs (e.g., 1230091131 -> 1,230,091,131)
+
+add weight property to answer choices (non-negative, at least one correct answer weight is
+positive)
+
+TODOs:
+
+- Reshape the session data (add id, component to session data)
+  id, component type, value separate (as object, no JSON.stringify in components necessary)
+- Logging of actions
+  - Completeness
+- focus hook to compute time in component
+higher order component model for injecting component type etc.
+
+- migration: keep old endpoints for backwards compatibility, but reshape database session data and add new endpoints
+
