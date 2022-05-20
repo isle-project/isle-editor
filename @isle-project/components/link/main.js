@@ -39,18 +39,20 @@ class Link extends Component {
 			const newState = {
 				href: nextProps.href
 			};
+			const isStr = isString( nextProps.href );
+			const isAnchor = isStr && startsWith( nextProps.href, '#' );
 			if (
-				isString( nextProps.href ) &&
+				isStr &&
 				!startsWith( nextProps.href, 'http' ) &&
 				!startsWith( nextProps.href, 'mailto' ) &&
-				!startsWith( nextProps.href, '#' )
+				!isAnchor
 			) {
 				newState.url = 'http://'+nextProps.href;
 				newState.target = nextProps.target;
 			}
 			else {
 				newState.url = nextProps.href;
-				newState.target = nextProps.target;
+				newState.target = isAnchor ? '_self' : nextProps.target;
 			}
 			return newState;
 		}
@@ -69,7 +71,7 @@ class Link extends Component {
 					<a
 						className={this.props.className}
 						href={this.state.url}
-						target={this.state.target}
+						target={this.state.target || '_blank'}
 						style={this.props.style}
 						onClick={this.props.openWindow ? ( event ) => {
 							event.preventDefault();
@@ -123,7 +125,7 @@ Link.propTypes = {
 
 Link.defaultProps = {
 	download: false,
-	target: '_blank',
+	target: null,
 	windowFeatures: null,
 	openWindow: false,
 	className: '',

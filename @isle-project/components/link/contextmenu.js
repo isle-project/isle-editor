@@ -47,7 +47,8 @@ class LinkContextMenu extends Component {
 	openInWindow = () => {
 		const url = this.props.url;
 		debug( `Open ${url} in new window` );
-		window.open( url, '_blank', this.props.windowFeatures );
+		const features = this.props.windowFeatures || 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=800,height=600';
+		window.open( url, '_blank', features );
 		const session = this.props.session;
 		session.log({
 			id: url,
@@ -57,28 +58,20 @@ class LinkContextMenu extends Component {
 	};
 
 	render() {
-		let menuItems = [
+		const menuItems = [
 			<MenuItem key={0} onClick={this.copyToClipboard} >
 				{this.props.t('copy-link')}
+			</MenuItem>,
+			<MenuItem key={1} onClick={this.openInTab} >
+				{this.props.t('open-link-tab')}
+			</MenuItem>,
+			<MenuItem key={2} onClick={this.openInWindow} >
+				{this.props.t('open-link-window')}
+			</MenuItem>,
+			<MenuItem key={3} onClick={this.textToSpeech} >
+				{this.props.t('read-aloud')}
 			</MenuItem>
 		];
-		if ( this.props.target === '_blank' ) {
-			menuItems.push(
-				<MenuItem key={1} onClick={this.openInTab} >
-					{this.props.t('open-link-tab')}
-				</MenuItem>
-			);
-			menuItems.push(
-				<MenuItem key={2} onClick={this.openInWindow} >
-					{this.props.t('open-link-window')}
-				</MenuItem>
-			);
-		} else {
-			menuItems = [];
-		}
-		menuItems.push( <MenuItem key={3} onClick={this.textToSpeech} >
-			{this.props.t('read-aloud')}
-		</MenuItem> );
 		return ( <ContextMenu
 			id={`${this.props.url}-context-menu`}
 		>
