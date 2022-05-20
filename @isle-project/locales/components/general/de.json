@@ -14,5 +14,6 @@
 	"save-changes": "Änderungen speichern",
 	"search": "Suche",
 	"supply-component-id": "Bitte geben Sie eine ID für die zu überwachende Komponente an.",
+	"toggle-all": "Alle umschalten",
 	"toggle-error-stack-trace": "Stack-Trace des Fehlers umschalten"
 }

@@ -14,5 +14,6 @@
 	"save-changes": "Salvar mudanças",
 	"search": "Busca",
 	"supply-component-id": "Favor fornecer uma identificação para o componente a ser vigiado.",
+	"toggle-all": "Alternar todos",
 	"toggle-error-stack-trace": "Alternar o traço de erro da pilha"
 }

@@ -14,5 +14,6 @@
 	"save-changes": "Uloženie zmien",
 	"search": "Vyhľadávanie",
 	"supply-component-id": "Uveďte identifikačné číslo súčasti, ktorá sa má sledovať.",
+	"toggle-all": "Prepnúť všetko",
 	"toggle-error-stack-trace": "Prepínanie stack trace chyby"
 }

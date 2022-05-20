@@ -14,5 +14,6 @@
 	"save-changes": "保存更改",
 	"search": "检索",
 	"supply-component-id": "请提供要观看的组件的ID。",
+	"toggle-all": "切换全部",
 	"toggle-error-stack-trace": "切换错误的堆栈跟踪"
 }
