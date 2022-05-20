@@ -14,5 +14,6 @@
 	"save-changes": "変更の保存",
 	"search": "検索",
 	"supply-component-id": "視聴する部品のIDをご提示ください。",
+	"toggle-all": "すべてトグル",
 	"toggle-error-stack-trace": "エラーのスタックトレースをトグル"
 }

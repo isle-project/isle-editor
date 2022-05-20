@@ -14,5 +14,6 @@
 	"save-changes": "Tallenna muutokset",
 	"search": "Etsi",
 	"supply-component-id": "Anna tarkkailtavan komponentin tunniste.",
+	"toggle-all": "Vaihda kaikki",
 	"toggle-error-stack-trace": "Vaihda virheen pinojälki"
 }

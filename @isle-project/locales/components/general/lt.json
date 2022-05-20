@@ -14,5 +14,6 @@
 	"save-changes": "Išsaugoti pakeitimus",
 	"search": "Paieška",
 	"supply-component-id": "Pateikite stebimo komponento ID.",
+	"toggle-all": "Perjungti viską",
 	"toggle-error-stack-trace": "Klaidos kamino sekos perjungimas"
 }

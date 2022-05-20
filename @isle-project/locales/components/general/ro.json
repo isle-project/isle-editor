@@ -14,5 +14,6 @@
 	"save-changes": "Salvați modificările",
 	"search": "Căutare",
 	"supply-component-id": "Vă rugăm să furnizați un ID pentru componenta care urmează să fie supravegheată.",
+	"toggle-all": "Treci la toate",
 	"toggle-error-stack-trace": "Comutați urma de stivă a erorii"
 }

@@ -14,5 +14,6 @@
 	"save-changes": "Muudatuste salvestamine",
 	"search": "Otsi",
 	"supply-component-id": "Palun esitage jälgitava komponendi ID.",
+	"toggle-all": "Vaheta kõik",
 	"toggle-error-stack-trace": "Vahetage vea virna jälgimine"
 }
