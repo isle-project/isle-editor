@@ -1,13 +1,15 @@
 // MODULES //
 
-import React, { useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 import SessionContext from '@isle-project/session/context.js';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
+import Gate from '@isle-project/components/gate';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
@@ -16,6 +18,7 @@ import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
 // VARIABLES //
 
 const debug = logger( 'isle:reaction' );
+const ARROW_RIGHT = '→';
 
 
 // MAIN //
@@ -30,6 +33,7 @@ const debug = logger( 'isle:reaction' );
 const Reaction = ( props ) => {
 	debug( 'Render component...' );
 	const session = useContext( SessionContext );
+	const [ showAll, setShowAll ] = useState( false );
 	const forceUpdate = useForceUpdate();
 	const { t } = useTranslation( 'general' );
 	useEffect( () => {
@@ -45,7 +49,21 @@ const Reaction = ( props ) => {
 	if ( !props.actionID ) {
 		return <Alert variant="danger">{t('supply-component-id')}</Alert>;
 	}
-	if ( session.currentUserActions ) {
+	let content;
+	const isObj = isObject( props.show );
+	if ( showAll ) {
+		content = [];
+		const keys = Object.keys( props.show );
+		for ( let i = 0; i < keys.length; i++ ) {
+			const key = keys[ i ];
+			const value = props.show[ key ];
+			content.push( <div>
+				<h3>{props.actionID} {ARROW_RIGHT} {key} {ARROW_RIGHT}</h3>
+				{value}
+			</div> );
+		}
+	}
+	else if ( session.currentUserActions ) {
 		const visualizer = session.responseVisualizers[ props.actionID ];
 		if ( visualizer ) {
 			const { type } = visualizer;
@@ -54,17 +72,28 @@ const Reaction = ( props ) => {
 				actions = actions.filter( x => x.type === type );
 				actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
 				const lastAction = actions[ actions.length-1 ];
-				if ( isObject( props.show ) ) {
-					return props.show[ lastAction.value ] || props.show[ 'default' ] || props.banner;
+				if ( isObj ) {
+					content = props.show[ lastAction.value ] || props.show[ 'default' ] || props.banner;
 				}
-				if ( isFunction( props.show ) ) {
-					return props.show( lastAction.value, lastAction ) || props.banner;
+				else if ( isFunction( props.show ) ) {
+					content = props.show( lastAction.value, lastAction ) || props.banner;
 				}
 			}
-			return props.banner;
+			content = props.banner;
 		}
+	} else {
+		content = props.banner;
 	}
-	return props.banner;
+	return ( <Fragment>
+		{content}
+		{isObj ? <Gate owner banner={null} >
+			<Button variant="secondary" size="small" onClick={() => {
+				setShowAll( !showAll );
+			}} style={{ float: 'right' }} >
+				<i className="fas fa-clock"></i> {t('toggle')}
+			</Button>
+		</Gate> : null}
+	</Fragment> );
 };
 
 
