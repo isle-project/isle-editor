@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/session",
-	"version": "0.50.44",
+	"version": "0.50.45",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,9 +11,9 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.44",
-		"@isle-project/locales": "0.50.44",
-		"@isle-project/utils": "0.50.44"
+		"@isle-project/constants": "0.50.45",
+		"@isle-project/locales": "0.50.45",
+		"@isle-project/utils": "0.50.45"
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
@@ -22,6 +22,6 @@
 		"lodash.debounce": "^4.0.8",
 		"react": "18.1.0",
 		"react-dom": "18.1.0",
-		"socket.io-client": "4.5.0"
+		"socket.io-client": "4.5.1"
 	}
 }
