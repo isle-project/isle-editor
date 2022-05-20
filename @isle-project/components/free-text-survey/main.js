@@ -13,8 +13,6 @@ import Panel from '@isle-project/components/panel';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
-import lowercase from '@stdlib/string/lowercase';
-import tokenize from '@stdlib/nlp/tokenize';
 import generateUID from '@isle-project/utils/uid';
 import TextArea from '@isle-project/components/input/text-area';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
