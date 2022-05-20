@@ -115,7 +115,7 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-dnd|react-dnd|react-dnd-html5-backend|react-dnd-touch-backend|profanities|dnd-core)/)"
+      "node_modules/(?!(@react-dnd|react-dnd|react-dnd-html5-backend|react-dnd-touch-backend|dnd-core)/)"
     ],
     "extensionsToTreatAsEsm": []
   },
@@ -206,7 +206,6 @@
     "path-browserify": "^1.0.1",
     "platform": "^1.3.6",
     "pressure": "^2.2.0",
-    "profanities": "3.0.0",
     "prop-types": "^15.8.1",
     "prosemirror-collab": "^1.2.2",
     "prosemirror-commands": "^1.2.2",

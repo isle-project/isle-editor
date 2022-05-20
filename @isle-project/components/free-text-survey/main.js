@@ -8,7 +8,6 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import profanities from 'profanities';
 import Plotly from '@isle-project/components/plotly';
 import Panel from '@isle-project/components/panel';
 import logger from 'debug';
@@ -31,29 +30,6 @@ import './free-text-survey.css';
 
 const debug = logger( 'isle:free-text-survey' );
 const uid = generateUID( 'free-text-survey' );
-
-
-// FUNCTIONS //
-
-/**
- * Checks a response for profanity and returns the first one.
- *
- * @private
- * @param {string} text to check
- * @returns {(string|null)} first profanity or null
- */
-function containsProfanity( text ) {
-	text = lowercase( text );
-	const tokens = tokenize( text );
-	for ( let i = 0; i < profanities.length; i++ ) {
-		for ( let j = 0; j < tokens.length; j++ ) {
-			if ( tokens[ j ] === profanities[ i ]) {
-				return profanities[ i ];
-			}
-		}
-	}
-	return null;
-}
 
 
 // MAIN //
@@ -111,28 +87,19 @@ const FreeTextSurvey = ( props ) => {
 		});
 	}, [ t ] );
 	const submitQuestion = useCallback( () => {
-		const val = containsProfanity( value );
-		if ( val ) {
-			session.addNotification({
-				title: t('action-required'),
-				message: t('offensive-word', { w: val }),
-				level: 'warning'
-			});
-		} else {
-			session.log({
-				id: id.current,
-				type: TEXT_SURVEY_SUBMISSION,
-				value: value,
-				anonymous: anonymous
-			}, 'members' );
-			setSubmitted( true );
-			session.addNotification({
-				title: t('submitted'),
-				message: t('answer-submitted'),
-				level: 'success'
-			});
-			onSubmit( value );
-		}
+		session.log({
+			id: id.current,
+			type: TEXT_SURVEY_SUBMISSION,
+			value: value,
+			anonymous: anonymous
+		}, 'members' );
+		setSubmitted( true );
+		session.addNotification({
+			title: t('submitted'),
+			message: t('answer-submitted'),
+			level: 'success'
+		});
+		onSubmit( value );
 	}, [ anonymous, onSubmit, session, t, value ] );
 
 	const disabled = submitted && !props.allowMultipleAnswers;

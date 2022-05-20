@@ -28,7 +28,6 @@ const EXTERNALS = [
 	'murmurhash3js',
 	'node-libs-browser',
 	'pdfjs-dist',
-	'profanities',
 	'pressure',
 	'react-bootstrap',
 	'react-color',
