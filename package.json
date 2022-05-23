@@ -290,7 +290,7 @@
     "ajv": "8.11.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "codecov": "^3.8.3",
-    "concurrently": "^7.2.0",
+    "concurrently": "^7.2.1",
     "doctrine": "^3.0.0",
     "electron": "18.2.4",
     "electron-builder": "23.0.3",
