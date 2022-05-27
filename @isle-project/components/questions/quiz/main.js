@@ -421,7 +421,7 @@ class Quiz extends Component {
 					});
 				}
 				doc.content.push({
-					text: `${this.props.t('solution')}:`,
+					text: `${this.props.t('correct-answer')}:`,
 					style: 'boldTitle'
 				});
 				doc.content.push({
@@ -455,7 +455,7 @@ class Quiz extends Component {
 					<tr>
 						<th>{this.props.t('question')}</th>
 						<th>{this.props.t('your-answer')}</th>
-						<th>{this.props.t('solution')}</th>
+						<th>{this.props.t('correct-answer')}</th>
 						{ this.props.confidence ? <th>{this.props.t('your-confidence')}</th> : null }
 					</tr>
 				</thead>
