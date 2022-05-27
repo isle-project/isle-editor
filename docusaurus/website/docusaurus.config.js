@@ -133,14 +133,18 @@ const siteConfig = {
 	themeConfig: {
 		announcementBar: {
 			id: 'updated_docs', // Any value that will identify this message
-			content: 'Watch out for new video tutorials in the coming weeks',
+			content: 'Documentation will be updated and significantly improved over the summer!',
 			backgroundColor: '#fafbfc', // Defaults to `#fff`
 			textColor: '#091E42' // Defaults to `#000`
 		},
 		colorMode: {
 			disableSwitch: true
 		},
-		hideableSidebar: true,
+		docs: {
+			sidebar: {
+				hideable: true
+			}
+		},
 		footer: {
 			logo: {
 				alt: 'ISLE Logo',
