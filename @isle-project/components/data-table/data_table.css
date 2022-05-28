@@ -4,12 +4,14 @@
 	display: inline-block;
 }
 
-.data-table-title-button {
+.data-table-title {
+	display: inline-block;
 	background: rgba(0, 0, 0, 0.05);
 	border-color: #0000004d;
 	box-shadow: none;
 	width: calc(100% - 88px);
-	font-size: 21px;
+	height: 42.5px;
+	font-size: 24px;
 	letter-spacing: 2.5px;
 	margin: 0px;
 	text-align: center;
@@ -57,7 +59,7 @@
 	text-align: center;
 }
 
-.variable-descriptions-button {
+.description-button {
 	background: rgba(0, 0, 0, 0.05);
 	box-shadow: none;
 	border-color: #0000004d;

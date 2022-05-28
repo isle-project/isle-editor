@@ -1,11 +1,5 @@
 [
 	{
-		"target": ".data-table-title-button",
-		"content": "On top of the data table you find the name of the data set. Clicking on it will open a modal window with a detailed description.",
-		"placement": "bottom",
-		"placementBeacon": "bottom"
-	},
-	{
 		"target": ".ReactTable",
 		"content": "Tabular display of the data set, with rows corresponding to individual records and columns to the different variables.",
 		"placement": "bottom",
@@ -37,7 +31,7 @@
 	},
 	{
 		"target": ".variable-descriptions-button",
-		"content": "The descriptions for each variable can also be accessed by clicking on this button.",
+		"content": "Clicking on this button will open a modal window with a dataset description and descriptions for each variable (if available).",
 		"placement": "top",
 		"placementBeacon": "top"
 	}

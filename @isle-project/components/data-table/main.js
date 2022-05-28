@@ -575,12 +575,6 @@ class DataTable extends Component {
 		});
 	};
 
-	showDescriptions = () => {
-		this.setState({
-			showVarModal: true
-		});
-	};
-
 	reset = () => {
 		const session = this.context;
 		session.log({
@@ -596,10 +590,9 @@ class DataTable extends Component {
 		});
 	};
 
-	showInfo = () => {
-		debug( 'Show dataset information...' );
+	toggleInfo = () => {
 		this.setState({
-			showInfo: true
+			showInfo: !this.state.showInfo
 		});
 	};
 
@@ -663,16 +656,6 @@ class DataTable extends Component {
 		this.toggleSaveModal();
 	};
 
-	hideVarModal = () =>{
-		this.setState({ showVarModal: false });
-	};
-
-	hideInfoModal = () => {
-		this.setState({
-			showInfo: false
-		});
-	};
-
 	handleTableProps = () => {
 		return {
 			onScroll: e => {
@@ -705,35 +688,21 @@ class DataTable extends Component {
 			return <Alert variant="danger">{this.props.t('no-data')}</Alert>;
 		}
 		let modal = null;
-		if ( this.state.showVarModal ) {
+		if ( this.state.showInfo ) {
 			modal = <Modal
-				dialogClassName="modal-50w"
-				show={this.state.showVarModal}
-				onHide={this.hideVarModal}>
+				dialogClassName="modal-75w"
+				show={this.state.showInfo}
+				onHide={this.toggleInfo}>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{this.props.t('variables')}
+						{dataInfo && dataInfo.name} {this.props.t('description')}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
+					<div dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+						__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
+					}} />
 					{createDescriptions( dataInfo.variables, this.props.t )}
-				</Modal.Body>
-			</Modal>;
-		} else if ( this.state.showInfo ) {
-			debug( 'Rendering dataset information modal...' );
-			modal = <Modal
-				show={this.state.showInfo}
-				dialogClassName="modal-50w"
-				onHide={this.hideInfoModal}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title>
-						{dataInfo.name} {this.props.t('description')}
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-					__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
-				}}>
 				</Modal.Body>
 			</Modal>;
 		}
@@ -829,20 +798,10 @@ class DataTable extends Component {
 		return (
 			<Fragment>
 				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
-					<div className='data-table-header-wrapper'>
-						<Tooltip placement="bottom" tooltip={this.props.t('open-description')} show={dataInfo.info.length > 0} >
-							<Button
-								variant="light"
-								disabled={dataInfo.info.length === 0}
-								onClick={this.showInfo}
-								className='data-table-title-button'
-								style={{
-									cursor: dataInfo.info.length > 0 ? 'pointer' : 'inherit'
-								}}
-							>
-								{dataInfo.name ? dataInfo.name : this.props.t('data')}
-							</Button>
-						</Tooltip>
+					<div className='data-table-header-wrapper' >
+						<div className="data-table-title" >
+							{dataInfo.name ? dataInfo.name : this.props.t('data')}
+						</div>
 						{saveButton}
 						<TutorialButton
 							id={this.id}
@@ -885,14 +844,14 @@ class DataTable extends Component {
 										this.frozenElems = findDOMNode( this.table ).getElementsByClassName( 'frozen' );
 									}
 								}} >
-									<ButtonToolbar className="data-table-header-toolbar">
-										{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('variable-descriptions-tooltip')} ><Button
-											onClick={this.showDescriptions}
+									<ButtonToolbar className="data-table-header-toolbar" >
+										{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('open-description')} ><Button
+											onClick={this.toggleInfo}
 											variant="light"
 											size="xsmall"
-											className="variable-descriptions-button"
+											className="description-button"
 										>
-											{this.props.t('variable-descriptions')}
+											{this.props.t('description')}
 										</Button></Tooltip> : null }
 										{( selectedRows !== rows.length ) || ( this.state.sorted && this.state.sorted.length > 0 ) ?
 											<Tooltip placement="left" tooltip={this.props.t('reset-display-tooltip')} >
