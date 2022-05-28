@@ -853,7 +853,7 @@ class DataTable extends Component {
 									}
 								}} >
 									<ButtonToolbar className="data-table-header-toolbar" >
-										{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('open-description')} ><Button
+										{ dataInfo.variables ? <Tooltip placement="right" tooltip={this.props.t('description-tooltip')} ><Button
 											onClick={this.toggleInfo}
 											variant="light"
 											size="xsmall"
