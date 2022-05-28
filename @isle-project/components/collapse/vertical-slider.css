@@ -14,6 +14,9 @@
 	border: 1px solid rgba(92, 92, 92, 0.6);
 	background: rgba(0, 0, 0, 0.03);
 	cursor: pointer;
+}
+
+.vertical-slider-header-default {
 	color: #2e4468;
 	font-weight: 700;
 	font-family: "Open Sans Condensed", sans-serif;

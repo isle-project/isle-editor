@@ -16,7 +16,7 @@ class VSHeader extends Component {
 			<button
 				onClick={this.props.onClick}
 				aria-label="Collapsable Header"
-				className={`vertical-slider-header ${this.props.className}`}
+				className={`vertical-slider-header ${this.props.className ? this.props.className : 'vertical-slider-header-default'}`}
 				style={this.props.style}
 			>
 				{this.props.children}

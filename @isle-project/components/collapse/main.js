@@ -24,7 +24,7 @@ const debug = logger( 'isle:vertical-slider' );
 * @property {boolean} defaultVisible - if set, the body is visible right from the start
 * @property {boolean} visible - controls whether slider is visible; turns it into a controlled component where state needs to be handled externally
 * @property {(string|node)} header - header content
-* @property {string} headerClassName - this overrules the given class name of the header
+* @property {string} headerClassName - overrules the given class name of the header
 * @property {Object} headerStyle - one may also assign a style to the header bar
 * @property {string} className - class name
 * @property {Object} style - inline CSS styles for outer container
