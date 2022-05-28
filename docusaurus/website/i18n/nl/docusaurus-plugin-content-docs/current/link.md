@@ -10,7 +10,7 @@ Een component voor het weergeven van een link.
 
 * __href__ | `string (required)`: URL van de website om naar te linken. Default: `none`.
 * __download__ | `(string|boolean)`: geeft aan of de link gedownload moet worden: zet `true` om downloaden te forceren, of een string om de bestandsnaam te specificeren; indien `false`, wordt downloaden niet geforceerd. Default: `false`.
-* __target__ | `string`: definieert waar de link wordt geopend: ingesteld op `_blank` voor een nieuw venster, `_zelf` eigen frame, `_ouder` voor de ouder, `_top` voor het volledige venster, of de naam van het frame. Default: `'_blank'`.
+* __target__ | `string`: definieert waar de link wordt geopend: ingesteld op `_blank` voor een nieuw venster, `_zelf` eigen frame, `_ouder` voor de ouder, `_top` voor het volledige venster, of de naam van het frame. Default: `none`.
 * __windowFeatures__ | `string`: door komma's gescheiden lijst van vensterkenmerken voor wanneer de link in een nieuw venster wordt geopend (zie: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: klassennaam. Default: `''`.

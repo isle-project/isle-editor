@@ -9,6 +9,7 @@ Mostra diversi componenti a seconda delle azioni dell'utente.
 ## Opzioni
 
 * __actionID__ | `string (required)`: ID del componente da guardare. Default: `none`.
+* __banner__ | `node`: messaggio personalizzato visualizzato se l'utente non ha ancora eseguito l'azione. Default: `none`.
 * __show__ | `(object|function)`: tabella hash dei componenti da visualizzare date le diverse risposte (se nessun `tasto` corrisponde alla risposta, il valore corrispondente al `default` sarà visualizzato se impostato) o una funzione che restituisce un componente da visualizzare (l'unico argomento della funzione è l'ultimo risultato). Default: `{}`.
 
 

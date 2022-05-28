@@ -9,6 +9,7 @@ Atkarībā no lietotāja darbībām tiek rādīti dažādi komponenti.
 ## Iespējas
 
 * __actionID__ | `string (required)`: Skatāmās sastāvdaļas ID. Default: `none`.
+* __banner__ | `node`: pielāgotais ziņojums, kas tiek parādīts, ja lietotājs vēl nav veicis darbību.. Default: `none`.
 * __show__ | `(object|function)`: heš tabula ar komponentiem, kas jāattēlo, ņemot vērā dažādas atbildes (ja atbildei neatbilst neviens `key`, tiks attēlota vērtība, kas atbilst `default` atslēgai, ja tā ir iestatīta), vai funkcija, kas atgriež attēlojamo komponentu (vienīgais funkcijas arguments ir pēdējais rezultāts).. Default: `{}`.
 
 

@@ -10,7 +10,7 @@ Saiknes rādīšanas komponents.
 
 * __href__ | `string (required)`: Tīmekļa vietnes URL, uz kuru vēlaties izveidot saiti. Default: `none`.
 * __download__ | `(string|boolean)`: norāda, vai saite ir jālejupielādē: iestatīts uz `true`, lai piespiestu lejupielādi, vai virkne, lai norādītu faila nosaukumu; ja `false`, lejupielāde netiek piespiedu kārtā veikta.. Default: `false`.
-* __target__ | `string`: nosaka, kur tiek atvērta saite: iestatīts uz `_blank` jaunam logam, `_self` savam rāmim, `_parent` mātes logam, `_top` loga pilnam korpusam vai rāmja nosaukumam.. Default: `'_blank'`.
+* __target__ | `string`: nosaka, kur tiek atvērta saite: iestatīts uz `_blank` jaunam logam, `_self` savam rāmim, `_parent` mātes logam, `_top` loga pilnam korpusam vai rāmja nosaukumam.. Default: `none`.
 * __windowFeatures__ | `string`: ar komatiem atdalīts loga funkciju saraksts, kad saite tiek atvērta jaunā logā (skatīt: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features).. Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: klases nosaukums. Default: `''`.

@@ -9,6 +9,7 @@ sidebar_label: Reaction
 ## オプション
 
 * __actionID__ | `string (required)`: ウォッチするコンポーネントのID. Default: `none`.
+* __banner__ | `node`: ユーザーがまだアクションを実行していない場合に表示されるカスタムメッセージ. Default: `none`.
 * __show__ | `(object|function)`: 異なるレスポンスが与えられた場合に表示するコンポーネントのハッシュテーブル(`key` がレスポンスにマッチしない場合、`default` キーが設定されていればそれに対応する値が表示されます)、または表示するコンポーネントを返す関数(関数の唯一の引数は最新の結果です)です。. Default: `{}`.
 
 

@@ -9,6 +9,7 @@ Näyttää eri komponentteja käyttäjän toimien mukaan.
 ## Vaihtoehdot
 
 * __actionID__ | `string (required)`: Tarkkailtavan komponentin ID. Default: `none`.
+* __banner__ | `node`: mukautettu viesti, joka näytetään, jos käyttäjä ei ole vielä suorittanut toimintoa.. Default: `none`.
 * __show__ | `(object|function)`: hash-taulukko eri vastausten perusteella näytettävistä komponenteista (jos mikään `avain` ei vastaa vastausta, näytetään `default`-avainta vastaava arvo, jos se on asetettu) tai funktio, joka palauttaa näytettävän komponentin (funktion ainoa argumentti on viimeisin tulos).. Default: `{}`.
 
 

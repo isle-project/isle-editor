@@ -9,6 +9,7 @@ Atsižvelgiant į naudotojo veiksmus, rodomi skirtingi komponentai.
 ## Parinktys
 
 * __actionID__ | `string (required)`: Stebimo komponento ID. Default: `none`.
+* __banner__ | `node`: pasirinktinis pranešimas, rodomas, jei naudotojas dar neatliko veiksmo.. Default: `none`.
 * __show__ | `(object|function)`: komponentų, kuriuos reikia rodyti atsižvelgiant į skirtingus atsakymus, hash lentelė (jei atsakymo raktas `key` neatitinka atsakymo, bus rodoma reikšmė, atitinkanti `default` raktą, jei jis nustatytas) arba funkcija, grąžinanti rodomą komponentą (vienintelis funkcijos argumentas yra naujausias rezultatas).. Default: `{}`.
 
 

@@ -9,6 +9,7 @@ Zobrazuje rôzne komponenty v závislosti od akcií používateľa.
 ## Možnosti
 
 * __actionID__ | `string (required)`: ID sledovaného komponentu. Default: `none`.
+* __banner__ | `node`: vlastná správa zobrazená, ak používateľ ešte nevykonal akciu. Default: `none`.
 * __show__ | `(object|function)`: hashová tabuľka komponentov, ktoré sa majú zobraziť vzhľadom na rôzne odpovede (ak odpovedi nezodpovedá žiadny kľúč `key`, zobrazí sa hodnota zodpovedajúca predvolenému kľúču `default`, ak je nastavený) alebo funkcia, ktorá vráti komponent, ktorý sa má zobraziť (jediným argumentom funkcie je posledný výsledok). Default: `{}`.
 
 

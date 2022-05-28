@@ -10,7 +10,7 @@ Komponenta pro zobrazení odkazu.
 
 * __href__ | `string (required)`: Adresa URL webové stránky, na kterou se má odkazovat. Default: `none`.
 * __download__ | `(string|boolean)`: určuje, zda se má odkaz stáhnout: nastaví se na `true` pro vynucení stažení, nebo na řetězec pro zadání názvu souboru; pokud je `false`, stahování se nevynucuje.. Default: `false`.
-* __target__ | `string`: určuje, kde se odkaz otevře: nastaveno na `_blank` pro nové okno, `_self` pro vlastní rám, `_parent` pro nadřazené okno, `_top` pro celé tělo okna nebo název rámu.. Default: `'_blank'`.
+* __target__ | `string`: určuje, kde se odkaz otevře: nastaveno na `_blank` pro nové okno, `_self` pro vlastní rám, `_parent` pro nadřazené okno, `_top` pro celé tělo okna nebo název rámu.. Default: `none`.
 * __windowFeatures__ | `string`: čárkou oddělený seznam vlastností okna pro otevření odkazu v novém okně (viz: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
 * __openWindow__ | `boolean`: undefined. Default: `false`.
 * __className__ | `string`: název třídy. Default: `''`.
