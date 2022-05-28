@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/components",
-	"version": "0.50.45",
+	"version": "0.50.46",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,10 +11,10 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.45",
-		"@isle-project/locales": "0.50.45",
-		"@isle-project/session": "0.50.45",
-		"@isle-project/utils": "0.50.45"
+		"@isle-project/constants": "0.50.46",
+		"@isle-project/locales": "0.50.46",
+		"@isle-project/session": "0.50.46",
+		"@isle-project/utils": "0.50.46"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.15.2",
@@ -39,7 +39,7 @@
 		"history": "5.3.0",
 		"html-to-image": "^1.9.0",
 		"html-to-pdfmake": "^2.3.11",
-		"i18next": "^21.8.3",
+		"i18next": "^21.8.4",
 		"i18next-browser-languagedetector": "^6.1.4",
 		"ieee754": "^1.2.1",
 		"js-yaml": "4.1.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/session",
-	"version": "0.50.45",
+	"version": "0.50.46",
 	"author": {
 		"name": "Philipp Burckhardt",
 		"email": "pburckhardt@outlook.com",
@@ -11,9 +11,9 @@
 	"license": "AGPL-3.0-only",
 	"main": "index.js",
 	"peerDependencies": {
-		"@isle-project/constants": "0.50.45",
-		"@isle-project/locales": "0.50.45",
-		"@isle-project/utils": "0.50.45"
+		"@isle-project/constants": "0.50.46",
+		"@isle-project/locales": "0.50.46",
+		"@isle-project/utils": "0.50.46"
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
