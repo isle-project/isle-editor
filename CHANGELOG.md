@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.76.16](https://github.com/isle-project/isle-editor/releases/tag/v0.76.16) (2022-05-28)
+
+This patch release refactors the display of dataset and variable descriptions for data tables, which are now combined into a single modal window. It also fixes a bug causing actions inside the context menu of links (to open in a new tab or window) to not work properly.
+
+**Implemented enhancements:**
+
+- ability to edit text of "open dataset description" button in data explorers [\#2765](https://github.com/isle-project/isle-editor/issues/2765)
+- request "restore original dataset" button also above spreadsheet [\#2747](https://github.com/isle-project/isle-editor/issues/2747)
+
+**Fixed bugs:**
+
+- \[Bug\]: Student identifiers don't appear in select student responses [\#2766](https://github.com/isle-project/isle-editor/issues/2766)
+
 ## [v0.76.15](https://github.com/isle-project/isle-editor/releases/tag/v0.76.15) (2022-05-02)
 
 Among bug fixes for various components, this update comes with the following improvements:
