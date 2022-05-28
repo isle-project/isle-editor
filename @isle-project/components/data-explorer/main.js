@@ -1471,6 +1471,7 @@ class DataExplorer extends Component {
 													}}
 													variant="secondary"
 													size="xsmall"
+													className="mb-1"
 												>
 													{this.props.t('create-filtered-dataset')}
 												</Button>

@@ -23,6 +23,8 @@ import Alert from 'react-bootstrap/Alert';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Tooltip from '@isle-project/components/tooltip';
 import markdownit from 'markdown-it';
 import isDigitString from '@stdlib/assert/is-digit-string';
@@ -93,7 +95,9 @@ function createDescriptions( descriptions, t ) {
 		const key = keys[ i ];
 		arr[ i ] = <tr key={`${key}-${i}`} >
 			<td>{`${key}`}</td>
-			<td>{descriptions[ key ]}</td>
+			<td dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+				__html: md.renderInline( descriptions[ key ] )
+			}} />
 		</tr>;
 	}
 	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
@@ -690,7 +694,7 @@ class DataTable extends Component {
 		let modal = null;
 		if ( this.state.showInfo ) {
 			modal = <Modal
-				dialogClassName="modal-75w"
+				dialogClassName="modal-90w"
 				show={this.state.showInfo}
 				onHide={this.toggleInfo}>
 				<Modal.Header closeButton>
@@ -699,10 +703,14 @@ class DataTable extends Component {
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<div dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-						__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
-					}} />
-					{createDescriptions( dataInfo.variables, this.props.t )}
+					<Row>
+						<Col sm={7} dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+							__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
+						}} />
+						<Col sm={5} >
+							{createDescriptions( dataInfo.variables, this.props.t )}
+						</Col>
+					</Row>
 				</Modal.Body>
 			</Modal>;
 		}
