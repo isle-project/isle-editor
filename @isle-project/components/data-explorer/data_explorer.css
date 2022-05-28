@@ -110,3 +110,9 @@
 	overflow-y: auto;
 	max-height: 90vh;
 }
+
+.data-explorer-collapsible-filters {
+	font-size: 1rem;
+	color: white;
+	line-height: 2rem;
+}
