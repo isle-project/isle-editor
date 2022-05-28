@@ -3,6 +3,7 @@
 	"close-tutorial": "Zapri vadnico",
 	"data": "Podatki",
 	"description": "Opis",
+	"description-tooltip": "Kliknite za odprtje opisov podatkovnih nizov in spremenljivk",
 	"download-data": "Prenos podatkov",
 	"download-data-body": "Prenesite trenutni nabor podatkov v obliki datoteke CSV ali JSON.",
 	"download-disabled": "Prenos onemogočen",
@@ -14,7 +15,6 @@
 	"no-data": "Ni podatkov.",
 	"no-rows-found": "Ni najdenih vrstic",
 	"of": "na spletnem mestu .",
-	"open-description": "Opis odprtega podatkovnega niza",
 	"page": "Stran",
 	"previous": "Prejšnji",
 	"remove": "Odstranite",
@@ -29,7 +29,5 @@
 	"show-all": "Pokaži vse",
 	"show-tutorial": "Prikaži vadnico",
 	"total": "skupaj",
-	"variable-descriptions": "Opisi spremenljivk",
-	"variable-descriptions-tooltip": "Opisi odprtih spremenljivk",
 	"variables": "Spremenljivke"
 }

@@ -3,6 +3,7 @@
 	"close-tutorial": "Tutorial schließen",
 	"data": "Daten",
 	"description": "Beschreibung",
+	"description-tooltip": "Klicken Sie hier, um die Datensatz- und Variablenbeschreibungen zu öffnen",
 	"download-data": "Daten herunterladen",
 	"download-data-body": "Laden Sie den aktuellen Datensatz entweder im CSV- oder JSON-Dateiformat herunter.",
 	"download-disabled": "Download deaktiviert",
@@ -14,7 +15,6 @@
 	"no-data": "Keine Daten vorhanden.",
 	"no-rows-found": "Keine Zeilen gefunden",
 	"of": "von",
-	"open-description": "Datensatzbeschreibung öffnen",
 	"page": "Seite",
 	"previous": "Vorherige",
 	"remove": "Entfernen",
@@ -29,7 +29,5 @@
 	"show-all": "Alle anzeigen",
 	"show-tutorial": "Tutorial anzeigen",
 	"total": "insgesamt",
-	"variable-descriptions": "Variablen-Beschreibungen",
-	"variable-descriptions-tooltip": "Variablen-Beschreibungen öffnen",
 	"variables": "Variablen"
 }

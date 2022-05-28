@@ -3,6 +3,7 @@
 	"close-tutorial": "Luk vejledning",
 	"data": "Data",
 	"description": "Beskrivelse",
+	"description-tooltip": "Klik for at åbne datasæt og beskrivelser af variabler",
 	"download-data": "Download data",
 	"download-data-body": "Download det aktuelle datasæt i enten CSV- eller JSON-filformat.",
 	"download-disabled": "Download handicappede",
@@ -14,7 +15,6 @@
 	"no-data": "Ingen oplysninger.",
 	"no-rows-found": "Ingen rækker fundet",
 	"of": "på",
-	"open-description": "Beskrivelse af det åbne datasæt",
 	"page": "Side",
 	"previous": "Forrige",
 	"remove": "Fjern",
@@ -29,7 +29,5 @@
 	"show-all": "Vis alle",
 	"show-tutorial": "Vis vejledning",
 	"total": "i alt",
-	"variable-descriptions": "Beskrivelser af variabler",
-	"variable-descriptions-tooltip": "Åbne beskrivelser af variabler",
 	"variables": "Variabler"
 }

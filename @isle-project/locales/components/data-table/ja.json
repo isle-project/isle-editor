@@ -3,6 +3,7 @@
 	"close-tutorial": "チュートリアルを閉じる",
 	"data": "データ",
 	"description": "説明",
+	"description-tooltip": "クリックするとデータセットと変数の説明が表示されます。",
 	"download-data": "データのダウンロード",
 	"download-data-body": "現在のデータセットをCSVまたはJSONファイル形式でダウンロードすることができます。",
 	"download-disabled": "ダウンロードを無効にする",
@@ -14,7 +15,6 @@
 	"no-data": "データは提供されていません。",
 	"no-rows-found": "行が見つかりませんでした。",
 	"of": "の",
-	"open-description": "オープンデータセットの記述",
 	"page": "ページ",
 	"previous": "前の記事",
 	"remove": "除去",
@@ -29,7 +29,5 @@
 	"show-all": "すべて表示",
 	"show-tutorial": "チュートリアルを表示",
 	"total": "乄切り",
-	"variable-descriptions": "変数の説明",
-	"variable-descriptions-tooltip": "変数の説明を開く",
 	"variables": "変数"
 }

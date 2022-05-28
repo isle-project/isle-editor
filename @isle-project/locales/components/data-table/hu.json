@@ -3,6 +3,7 @@
 	"close-tutorial": "Bezárás Tutorial",
 	"data": "Adatok",
 	"description": "Leírás",
+	"description-tooltip": "Kattintson az adatkészlet és a változók leírásának megnyitásához",
 	"download-data": "Adatok letöltése",
 	"download-data-body": "Töltse le az aktuális adatállományt CSV vagy JSON fájlformátumban.",
 	"download-disabled": "Letöltés letiltva",
@@ -14,7 +15,6 @@
 	"no-data": "Nincs adatszolgáltatás.",
 	"no-rows-found": "Nem találtunk sorokat",
 	"of": "a",
-	"open-description": "Nyílt adatkészlet leírása",
 	"page": "Oldal",
 	"previous": "Előző",
 	"remove": "Távolítsa el a",
@@ -29,7 +29,5 @@
 	"show-all": "Mindent megmutatni",
 	"show-tutorial": "Mutasd Tutorial",
 	"total": "összesen",
-	"variable-descriptions": "Változó leírások",
-	"variable-descriptions-tooltip": "Nyitott változó leírások",
 	"variables": "Változók"
 }

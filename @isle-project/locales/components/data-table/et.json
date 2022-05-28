@@ -3,6 +3,7 @@
 	"close-tutorial": "Sulge õpetus",
 	"data": "Andmed",
 	"description": "Kirjeldus",
+	"description-tooltip": "Andmekogumi ja muutujate kirjelduste avamiseks klõpsake",
 	"download-data": "Andmete allalaadimine",
 	"download-data-body": "Laadige praegune andmekogum alla kas CSV- või JSON-failiformaadis.",
 	"download-disabled": "Lae alla puudega",
@@ -14,7 +15,6 @@
 	"no-data": "Andmeid ei ole esitatud.",
 	"no-rows-found": "Ridu ei leitud",
 	"of": "aadressilt",
-	"open-description": "Avatud andmekogumi kirjeldus",
 	"page": "Lehekülg",
 	"previous": "Eelmine",
 	"remove": "Eemaldage",
@@ -29,7 +29,5 @@
 	"show-all": "Näita kõiki",
 	"show-tutorial": "Näita õpetust",
 	"total": "kokku",
-	"variable-descriptions": "Muutujate kirjeldused",
-	"variable-descriptions-tooltip": "Avatud muutujate kirjeldused",
 	"variables": "Muutujad"
 }

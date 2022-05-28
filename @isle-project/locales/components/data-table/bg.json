@@ -3,6 +3,7 @@
 	"close-tutorial": "Затвори урока",
 	"data": "Данни",
 	"description": "Описание",
+	"description-tooltip": "Кликнете, за да отворите описанията на набора от данни и променливите",
 	"download-data": "Изтегляне на данни",
 	"download-data-body": "Изтеглете текущия набор от данни във формат CSV или JSON.",
 	"download-disabled": "Изтегляне на инвалиди",
@@ -14,7 +15,6 @@
 	"no-data": "Няма предоставени данни.",
 	"no-rows-found": "Не са намерени редове",
 	"of": "на",
-	"open-description": "Описание на отворен набор от данни",
 	"page": "Страница",
 	"previous": "Предишна",
 	"remove": "Премахване на",
@@ -29,7 +29,5 @@
 	"show-all": "Покажи всички",
 	"show-tutorial": "Покажи урока",
 	"total": "общо",
-	"variable-descriptions": "Описания на променливите",
-	"variable-descriptions-tooltip": "Описания на отворени променливи",
 	"variables": "Променливи"
 }

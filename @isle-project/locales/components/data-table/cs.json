@@ -3,6 +3,7 @@
 	"close-tutorial": "Zavřít výukový program",
 	"data": "Data",
 	"description": "Popis",
+	"description-tooltip": "Kliknutím otevřete datovou sadu a popisy proměnných.",
 	"download-data": "Stáhnout data",
 	"download-data-body": "Stáhněte si aktuální soubor dat ve formátu CSV nebo JSON.",
 	"download-disabled": "Stáhnout postižené",
@@ -14,7 +15,6 @@
 	"no-data": "Nejsou k dispozici žádné údaje.",
 	"no-rows-found": "Nebyly nalezeny žádné řádky",
 	"of": "z",
-	"open-description": "Popis otevřené datové sady",
 	"page": "Stránka",
 	"previous": "Předchozí",
 	"remove": "Odstranění stránky",
@@ -29,7 +29,5 @@
 	"show-all": "Zobrazit všechny",
 	"show-tutorial": "Zobrazit výukový program",
 	"total": "celkem",
-	"variable-descriptions": "Popisy proměnných",
-	"variable-descriptions-tooltip": "Otevřené popisy proměnných",
 	"variables": "Proměnné"
 }

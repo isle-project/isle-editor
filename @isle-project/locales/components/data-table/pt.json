@@ -3,6 +3,7 @@
 	"close-tutorial": "Tutorial de fechamento",
 	"data": "Dados",
 	"description": "Descrição",
+	"description-tooltip": "Clique para abrir o conjunto de dados e as descrições das variáveis",
 	"download-data": "Download de dados",
 	"download-data-body": "Baixe o conjunto de dados atual nos formatos de arquivo CSV ou JSON.",
 	"download-disabled": "Download desativado",
@@ -14,7 +15,6 @@
 	"no-data": "Nenhum dado fornecido.",
 	"no-rows-found": "Nenhuma fila encontrada",
 	"of": "de",
-	"open-description": "Descrição do conjunto de dados aberto",
 	"page": "Página",
 	"previous": "Anterior",
 	"remove": "Remover",
@@ -29,7 +29,5 @@
 	"show-all": "Mostrar tudo",
 	"show-tutorial": "Mostrar Tutorial",
 	"total": "total",
-	"variable-descriptions": "Descrições variáveis",
-	"variable-descriptions-tooltip": "Descrições variáveis abertas",
 	"variables": "Variáveis"
 }

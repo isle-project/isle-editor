@@ -3,6 +3,7 @@
 	"close-tutorial": "Samouczek zbliżony (Close Tutorial)",
 	"data": "Dane",
 	"description": "Opis",
+	"description-tooltip": "Kliknij, aby otworzyć opisy zbiorów danych i zmiennych",
 	"download-data": "Pobieranie danych",
 	"download-data-body": "Pobierz aktualny zbiór danych w formacie CSV lub JSON.",
 	"download-disabled": "Pobieranie nieaktywne",
@@ -14,7 +15,6 @@
 	"no-data": "Nie dostarczono żadnych danych.",
 	"no-rows-found": "Nie znaleziono żadnych wierszy",
 	"of": "z",
-	"open-description": "Opis otwartego zbioru danych",
 	"page": "Strona",
 	"previous": "Poprzedni",
 	"remove": "Usuń",
@@ -29,7 +29,5 @@
 	"show-all": "Pokaż wszystko",
 	"show-tutorial": "Pokaż samouczek",
 	"total": "Łącznie",
-	"variable-descriptions": "Zmienna Opisy",
-	"variable-descriptions-tooltip": "Otwarte opisy zmiennych",
 	"variables": "Zmienne"
 }

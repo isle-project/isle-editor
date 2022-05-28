@@ -3,6 +3,7 @@
 	"close-tutorial": "Aizvērt pamācību",
 	"data": "Dati",
 	"description": "Apraksts",
+	"description-tooltip": "Noklikšķiniet, lai atvērtu datu kopas un mainīgo lielumu aprakstus.",
 	"download-data": "Lejupielādēt datus",
 	"download-data-body": "Lejupielādēt pašreizējo datu kopu CSV vai JSON faila formātā.",
 	"download-disabled": "Lejupielādēt atspējots",
@@ -14,7 +15,6 @@
 	"no-data": "Dati nav sniegti.",
 	"no-rows-found": "Rindu nav atrasts",
 	"of": "no",
-	"open-description": "Atvērto datu kopas apraksts",
 	"page": "Lapa",
 	"previous": "Iepriekšējais",
 	"remove": "Noņemt",
@@ -29,7 +29,5 @@
 	"show-all": "Rādīt visu",
 	"show-tutorial": "Rādīt pamācību",
 	"total": "kopā",
-	"variable-descriptions": "Mainīgo lielumu apraksti",
-	"variable-descriptions-tooltip": "Atvērto mainīgo apraksti",
 	"variables": "Mainīgie"
 }

@@ -3,6 +3,7 @@
 	"close-tutorial": "Uždaryti vadovėlį",
 	"data": "Duomenys",
 	"description": "Aprašymas",
+	"description-tooltip": "Spustelėkite, jei norite atverti duomenų rinkinį ir kintamųjų aprašymus",
 	"download-data": "Atsisiųsti duomenis",
 	"download-data-body": "Atsisiųskite dabartinį duomenų rinkinį CSV arba JSON failų formatais.",
 	"download-disabled": "Atsisiųsti neįgaliųjų",
@@ -14,7 +15,6 @@
 	"no-data": "Duomenų nepateikta.",
 	"no-rows-found": "Nerasta eilučių",
 	"of": "iš",
-	"open-description": "Atviras duomenų rinkinio aprašymas",
 	"page": "Puslapis",
 	"previous": "Ankstesnis",
 	"remove": "Pašalinti",
@@ -29,7 +29,5 @@
 	"show-all": "Rodyti visus",
 	"show-tutorial": "Rodyti vadovėlį",
 	"total": "iš viso",
-	"variable-descriptions": "Kintamųjų aprašymai",
-	"variable-descriptions-tooltip": "Atvirų kintamųjų aprašymai",
 	"variables": "Kintamieji"
 }

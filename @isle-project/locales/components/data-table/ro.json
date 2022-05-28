@@ -3,6 +3,7 @@
 	"close-tutorial": "Închideți Tutorialul",
 	"data": "Date",
 	"description": "Descriere",
+	"description-tooltip": "Faceți clic pentru a deschide setul de date și descrierile variabilelor",
 	"download-data": "Descărcați date",
 	"download-data-body": "Descărcați setul de date curent în format CSV sau JSON.",
 	"download-disabled": "Descărcare cu handicap",
@@ -14,7 +15,6 @@
 	"no-data": "Nu sunt furnizate date.",
 	"no-rows-found": "Nu s-au găsit rânduri",
 	"of": "de",
-	"open-description": "Descrierea setului de date deschis",
 	"page": "Pagina",
 	"previous": "Anterior",
 	"remove": "Eliminați",
@@ -29,7 +29,5 @@
 	"show-all": "Arată tot",
 	"show-tutorial": "Arată tutorialul",
 	"total": "total",
-	"variable-descriptions": "Descrieri de variabile",
-	"variable-descriptions-tooltip": "Descrieri de variabile deschise",
 	"variables": "Variabile"
 }

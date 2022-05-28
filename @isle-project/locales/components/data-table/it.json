@@ -3,6 +3,7 @@
 	"close-tutorial": "Chiudere il tutorial",
 	"data": "Dati",
 	"description": "Descrizione",
+	"description-tooltip": "Fare clic per aprire il set di dati e le descrizioni delle variabili",
 	"download-data": "Scarica i dati",
 	"download-data-body": "Scaricare il set di dati attuale nei formati CSV o JSON.",
 	"download-disabled": "Scarica disabili",
@@ -14,7 +15,6 @@
 	"no-data": "Non sono stati forniti dati.",
 	"no-rows-found": "Nessun file trovato",
 	"of": "di",
-	"open-description": "Descrizione del dataset aperto",
 	"page": "Pagina",
 	"previous": "Precedente",
 	"remove": "Rimuovere",
@@ -29,7 +29,5 @@
 	"show-all": "Mostra tutti",
 	"show-tutorial": "Mostra il tutorial",
 	"total": "totale",
-	"variable-descriptions": "Descrizioni delle variabili",
-	"variable-descriptions-tooltip": "Descrizioni delle variabili aperte",
 	"variables": "Variabili"
 }

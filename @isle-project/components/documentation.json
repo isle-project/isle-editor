@@ -3435,7 +3435,7 @@
 				"name": "target",
 				"type": "string",
 				"description": "Link-prop-target",
-				"defaultValue": "_blank"
+				"defaultValue": null
 			},
 			{
 				"name": "windowFeatures",
@@ -6794,6 +6794,12 @@
 				"name": "actionID",
 				"type": "string (required)",
 				"description": "Reaction-prop-actionID"
+			},
+			{
+				"name": "banner",
+				"type": "node",
+				"description": "Reaction-prop-banner",
+				"defaultValue": null
 			},
 			{
 				"name": "show",

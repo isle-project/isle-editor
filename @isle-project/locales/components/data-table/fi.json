@@ -3,6 +3,7 @@
 	"close-tutorial": "Sulje opetusohjelma",
 	"data": "Tiedot",
 	"description": "Kuvaus",
+	"description-tooltip": "Klikkaa avataksesi tietokokonaisuuden ja muuttujien kuvaukset",
 	"download-data": "Lataa tiedot",
 	"download-data-body": "Lataa nykyinen tietokokonaisuus joko CSV- tai JSON-tiedostomuodossa.",
 	"download-disabled": "Lataa käytöstä poistetut",
@@ -14,7 +15,6 @@
 	"no-data": "Tietoja ei ole toimitettu.",
 	"no-rows-found": "Rivejä ei löytynyt",
 	"of": "of",
-	"open-description": "Avoimen tietokokonaisuuden kuvaus",
 	"page": "Sivu",
 	"previous": "Edellinen",
 	"remove": "Poista",
@@ -29,7 +29,5 @@
 	"show-all": "Näytä kaikki",
 	"show-tutorial": "Näytä opetusohjelma",
 	"total": "yhteensä",
-	"variable-descriptions": "Muuttujien kuvaukset",
-	"variable-descriptions-tooltip": "Avoimet muuttujien kuvaukset",
 	"variables": "Muuttujat"
 }

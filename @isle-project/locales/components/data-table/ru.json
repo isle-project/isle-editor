@@ -3,6 +3,7 @@
 	"close-tutorial": "Закрыть Учебное пособие",
 	"data": "Данные",
 	"description": "Описание",
+	"description-tooltip": "Нажмите, чтобы открыть набор данных и описания переменных",
 	"download-data": "Скачать данные",
 	"download-data-body": "Загрузите текущий набор данных в формате CSV или JSON.",
 	"download-disabled": "Скачать отключено",
@@ -14,7 +15,6 @@
 	"no-data": "Данные не предоставлены.",
 	"no-rows-found": "Строк не найдено",
 	"of": "от",
-	"open-description": "Описание открытого набора данных",
 	"page": "Страница",
 	"previous": "Предыдущий",
 	"remove": "Удалить",
@@ -29,7 +29,5 @@
 	"show-all": "Показать все",
 	"show-tutorial": "Показать учебник",
 	"total": "всего",
-	"variable-descriptions": "Переменные Описания",
-	"variable-descriptions-tooltip": "Описания открытых переменных",
 	"variables": "Переменные"
 }

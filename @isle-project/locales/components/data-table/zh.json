@@ -3,6 +3,7 @@
 	"close-tutorial": "关闭教程",
 	"data": "数据",
 	"description": "说明",
+	"description-tooltip": "点击打开数据集和变量描述",
 	"download-data": "下载数据",
 	"download-data-body": "下载CSV或JSON文件格式的当前数据集。",
 	"download-disabled": "下载禁用",
@@ -14,7 +15,6 @@
 	"no-data": "没有提供数据。",
 	"no-rows-found": "未找到行数",
 	"of": "的",
-	"open-description": "开放的数据集描述",
 	"page": "页数",
 	"previous": "上一篇",
 	"remove": "移除",
@@ -29,7 +29,5 @@
 	"show-all": "显示所有",
 	"show-tutorial": "显示教程",
 	"total": "总",
-	"variable-descriptions": "变量描述",
-	"variable-descriptions-tooltip": "打开变量描述",
 	"variables": "变量"
 }

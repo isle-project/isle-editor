@@ -3,6 +3,7 @@
 	"close-tutorial": "Stäng handledning",
 	"data": "Uppgifter",
 	"description": "Beskrivning",
+	"description-tooltip": "Klicka för att öppna beskrivningar av dataset och variabler",
 	"download-data": "Ladda ner data",
 	"download-data-body": "Ladda ner det aktuella datasetet i antingen CSV- eller JSON-filformat.",
 	"download-disabled": "Hämta handikappade",
@@ -14,7 +15,6 @@
 	"no-data": "Inga uppgifter har lämnats.",
 	"no-rows-found": "Inga rader hittades",
 	"of": "på",
-	"open-description": "Beskrivning av öppna dataset",
 	"page": "Sidan",
 	"previous": "Föregående",
 	"remove": "Ta bort",
@@ -29,7 +29,5 @@
 	"show-all": "Visa alla",
 	"show-tutorial": "Visa handledning",
 	"total": "totalt",
-	"variable-descriptions": "Beskrivning av variabler",
-	"variable-descriptions-tooltip": "Öppna beskrivningar av variabler",
 	"variables": "Variabler"
 }

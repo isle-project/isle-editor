@@ -3,6 +3,7 @@
 	"close-tutorial": "Zatvoriť výukový program",
 	"data": "Údaje",
 	"description": "Popis",
+	"description-tooltip": "Kliknutím otvoríte súbor údajov a opisy premenných",
 	"download-data": "Stiahnite si údaje",
 	"download-data-body": "Stiahnite si aktuálny súbor údajov vo formáte CSV alebo JSON.",
 	"download-disabled": "Stiahnite si postihnutých",
@@ -14,7 +15,6 @@
 	"no-data": "Neboli poskytnuté žiadne údaje.",
 	"no-rows-found": "Nenašli sa žiadne riadky",
 	"of": "z",
-	"open-description": "Popis otvoreného súboru údajov",
 	"page": "Strana",
 	"previous": "Predchádzajúci",
 	"remove": "Odstránenie stránky",
@@ -29,7 +29,5 @@
 	"show-all": "Zobraziť všetky",
 	"show-tutorial": "Zobraziť výukový program",
 	"total": "celkom",
-	"variable-descriptions": "Popisy premenných",
-	"variable-descriptions-tooltip": "Otvorené popisy premenných",
 	"variables": "Premenné"
 }
