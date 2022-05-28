@@ -7,6 +7,7 @@
         <lastBuildDate>Mon, 01 Jul 2019 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>de</language>
         <item>
             <title><![CDATA[New Documentation]]></title>
             <link>https://isledocs.com/de/blog/2019/07/01/new-documentation</link>
