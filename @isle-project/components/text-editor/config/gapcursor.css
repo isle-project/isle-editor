@@ -26,7 +26,7 @@
 	position: absolute;
 }
 
-.ProseMirror-gapcursor:after {
+.ProseMirror-gapcursor::after {
 	content: "";
 	display: block;
 	position: absolute;
