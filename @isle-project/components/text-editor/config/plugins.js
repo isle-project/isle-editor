@@ -4,7 +4,6 @@ import { dropCursor } from 'prosemirror-dropcursor';
 import { gapCursor } from 'prosemirror-gapcursor';
 import { history } from 'prosemirror-history';
 import { columnResizing, tableEditing } from 'prosemirror-tables';
-import 'prosemirror-gapcursor/style/gapcursor.css';
 import 'prosemirror-tables/style/tables.css';
 import LinkTooltipPlugin from './link_tooltip_plugin.js';
 import SelectionPlaceholderPlugin from './selection_placeholder_plugin.js';
@@ -14,6 +13,7 @@ import TableCellMenuPlugin from './table_cell_menu_plugin.js';
 import cursorParking from './cursor_parking.js';
 import keys from './keys.js';
 import rules from './rules.js';
+import './gapcursor.css';
 
 
 // EXPORTS //
