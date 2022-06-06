@@ -145,6 +145,7 @@ const IFrame = ( props ) => {
 			<iframe
 				id={id.current}
 				ref={iframeRef}
+				key={`${id.current}-${loaded}`}
 				src={src}
 				width={dimensions.width}
 				height={dimensions.height}
