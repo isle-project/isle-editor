@@ -14,6 +14,7 @@ import Card from 'react-bootstrap/Card';
 import FormLabel from 'react-bootstrap/FormLabel';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import isArray from '@stdlib/assert/is-array';
 import startsWith from '@stdlib/string/starts-with';
 import trim from '@stdlib/string/trim';
 import electronStore from 'store/electron.js';
@@ -95,6 +96,9 @@ class SettingsLogin extends Component {
 	checkLoginTypes = async () => {
 		try {
 			const response = await axios.get( this.state.server + '/saml-xmw/login-choices' );
+			if ( !isArray( response.data ) ) {
+				throw new Error( 'Invalid response from server: '+ response.data );
+			}
 			this.setState({
 				loginChoices: response.data,
 				loginMethod: response.data[ response.data.length - 1 ]
