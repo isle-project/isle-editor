@@ -78,8 +78,9 @@ const Reaction = ( props ) => {
 				else if ( isFunction( props.show ) ) {
 					content = props.show( lastAction.value, lastAction ) || props.banner;
 				}
+			} else {
+				content = props.banner;
 			}
-			content = props.banner;
 		}
 	} else {
 		content = props.banner;
