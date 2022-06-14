@@ -18,7 +18,7 @@ table[data-sortable] td {
 }
 
 /* line 14, ../sass/_sortable.sass */
-table[data-sortable] thead th:not([data-sortable="false"]):not(.not-sortable) {
+table[data-sortable] thead th:not([data-sortable="false"], .not-sortable) {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
