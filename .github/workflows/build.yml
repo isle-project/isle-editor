@@ -80,7 +80,7 @@ jobs:
         cache: 'npm'
     - name: Calculate Test Coverage
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run coverage
     - name: Upload Test Coverage
       uses: codecov/codecov-action@v1
