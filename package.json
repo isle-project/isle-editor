@@ -147,7 +147,7 @@
     "base16": "^1.0.0",
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
-    "codemirror": "^5.65.5",
+    "codemirror": "^6.0.0",
     "compute-argmax": "^1.0.0",
     "compute-chebyshev-distance": "^1.0.2",
     "compute-chunkify": "0.0.0",
