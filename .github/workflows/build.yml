@@ -17,7 +17,7 @@ jobs:
         cache: 'npm'
     - name: npm install & build
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run build
       env:
         CI: true
@@ -37,7 +37,7 @@ jobs:
         cache: 'npm'
     - name: npm install & build
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run build
       env:
         CI: true
@@ -57,7 +57,7 @@ jobs:
         cache: 'npm'
     - name: npm install & build
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run build
       env:
         CI: true

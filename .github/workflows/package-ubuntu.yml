@@ -13,7 +13,7 @@ jobs:
         node-version: 16.x
     - name: npm install and package
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run package-ci
       env:
         CI: true

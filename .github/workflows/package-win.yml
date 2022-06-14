@@ -14,7 +14,7 @@ jobs:
     - name: npm install and package
       continue-on-error: true
       run: |
-        npm ci
+        npm ci --legacy-peer-deps
         npm run package-ci
       env:
         CI: true
