@@ -291,6 +291,9 @@ const Toolbar = () => {
 							onClick={toggleTicketing}
 							onKeyPress={toggleTicketing}
 							aria-label={`${ticketing ? close : open} ${t( 'ticketing' )}`}
+							style={{
+								display: !hide.ticketing ? 'inline-block' : 'none'
+							}}
 						>
 							<span className="fa fa-lg fa-medkit toolbar-icon" />
 						</Button>
@@ -307,6 +310,9 @@ const Toolbar = () => {
 							onClick={toggleEngagement}
 							ref={engagementButtonRef}
 							aria-label={engagementInProgress ? t( 'finish-poll' ) : t( 'open-poll-menu' )}
+							style={{
+								display: !hide.engagement ? 'inline-block' : 'none'
+							}}
 						>
 							<span className="fa fa-lg fa-poll-h toolbar-icon" />
 						</Button>
