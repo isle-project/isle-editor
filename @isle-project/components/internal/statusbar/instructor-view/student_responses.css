@@ -45,7 +45,7 @@
 }
 
 .student-responses-list-container {
-	height: calc(85vh - 175px);
+	height: calc(85vh - 200px);
 	overflow-y: scroll;
 	user-select: text;
 }

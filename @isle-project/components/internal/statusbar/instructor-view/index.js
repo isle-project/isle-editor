@@ -203,7 +203,7 @@ class InstructorView extends Component {
 					style={{
 						right: this.state.rightPos,
 						display: this.state.hidden ? 'none' : 'inherit',
-						width: this.state.activeTab === 'student_responses' ? '65%' : '45%'
+						width: this.state.activeTab === 'student_responses' ? '68%' : '45%'
 					}}
 					tabIndex="-1"
 				>
