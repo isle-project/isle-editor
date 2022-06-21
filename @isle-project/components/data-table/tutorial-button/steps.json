@@ -18,7 +18,7 @@
 		"placementBeacon": "top"
 	},
 	{
-		"target": ".label-number-rows",
+		"target": ".num-rows-badge",
 		"content": "The number of currently displayed rows, i.e. the rows matching the specified filters, and in parentheses the total number of rows in the table.",
 		"placement": "top",
 		"placementBeacon": "top"
@@ -30,7 +30,7 @@
 		"placementBeacon": "top"
 	},
 	{
-		"target": ".variable-descriptions-button",
+		"target": ".description-button",
 		"content": "Clicking on this button will open a modal window with a dataset description and descriptions for each variable (if available).",
 		"placement": "top",
 		"placementBeacon": "top"
