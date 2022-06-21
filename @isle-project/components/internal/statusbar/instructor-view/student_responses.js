@@ -231,6 +231,7 @@ class StudentResponses extends Component {
 		const session = this.props.session;
 		session.getLessonGrades();
 		session.getLessonGradeMessages();
+		this.users = this.assembleUserList();
 		this.unsubscribe = session.subscribe( ( type, value ) => {
 			if (
 				type === UPDATED_VISUALIZER ||
@@ -550,6 +551,7 @@ class StudentResponses extends Component {
 							resize: 'none',
 							height: '20vh'
 						}}
+						value={this.state.feedbackText}
 						onChange={( event ) => {
 							this.setState({
 								feedbackText: event.target.value
@@ -579,7 +581,7 @@ class StudentResponses extends Component {
 		const lessonGradeMessages = session.lessonGradeMessages;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
-		const users = this.assembleUserList();
+		const users = this.users;
 		const list = new Array( ids.length );
 		const { leftUser, rightUser } = this.state;
 		let invalidGrades = false;
@@ -782,6 +784,7 @@ class StudentResponses extends Component {
 						components={{ Option: SelectOption, SingleValue }}
 						placeholder={this.props.t('solutions-or-student')}
 						options={users} styles={selectStyles}
+						isDisabled={!this.state.leftUser}
 						onChange={( option ) => {
 							this.setState({
 								rightUser: option ? option.value : null
