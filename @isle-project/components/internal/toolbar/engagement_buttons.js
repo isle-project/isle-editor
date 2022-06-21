@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import KeyControls from '@isle-project/components/key-controls';
+import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import Tooltip from '@isle-project/components/tooltip';
 import { ENGAGEMENT_SURVEY_START } from '@isle-project/constants/actions.js';
@@ -48,7 +49,7 @@ const EngagementButtons = ( props ) => {
 		session.log( action, 'members' );
 	}, [ session ] );
 	return (
-		<Fragment>
+		<Gate owner banner={null} >
 			<ButtonGroup vertical className="toolbar-engagement-buttons" {...props} >
 				<Tooltip tooltip={`${t( 'yes-no' )} (1)`} placement="right" >
 					<Button
@@ -99,7 +100,7 @@ const EngagementButtons = ( props ) => {
 					'4': startSurvey
 				}}
 			/>
-		</Fragment>
+		</Gate>
 	);
 };
 
