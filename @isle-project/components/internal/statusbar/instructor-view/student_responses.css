@@ -44,6 +44,12 @@
 	overflow-y: auto;
 }
 
+.student-responses-list-container {
+	height: calc(85vh - 175px);
+	overflow-y: scroll;
+	user-select: text;
+}
+
 .feedback-message {
 	white-space: pre-wrap;
 	font-family: "Open Sans", sans-serif;

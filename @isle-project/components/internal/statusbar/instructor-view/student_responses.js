@@ -811,10 +811,7 @@ class StudentResponses extends Component {
 						</Fragment>: null }
 				</Col>
 			</Row>
-			<Container style={{
-				height: 'calc(85vh - 175px)',
-				overflowY: 'scroll'
-			}} >
+			<Container className="student-responses-list-container" >
 				{list}
 			</Container>
 			<ToggleButtonGroup
