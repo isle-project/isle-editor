@@ -60,8 +60,12 @@ function intersection( a, b ) {
 	return c;
 }
 
+/**
+ * Removes glow effect from previously highlighted elements.
+ *
+ * @private
+ */
 function removeGlowElements() {
-	// Remove glow effect from previously highlighted elements:
 	const focused = document.getElementsByClassName( 'focus-glow' );
 	while ( focused.length ) {
 		focused[0].classList.remove( 'focus-glow' );
@@ -101,7 +105,8 @@ function formatAnswer( value, visualizer ) {
 							.join( ', ' );
 					}
 				} else {
-					out = levels[ value ];
+					// Handle both the case where value is a single answer index (e.g., 0) or a string equal to a single answer (e.g., 'Yes'):
+					out = levels[ value ] ? levels[ value ] : value;
 				}
 			}
 			break;
@@ -127,6 +132,13 @@ function formatAnswer( value, visualizer ) {
 	return out;
 }
 
+/**
+ * Formats a time stamp (milliseconds) into a human-readable format.
+ *
+ * @private
+ * @param {number} time - time stamp (milliseconds)
+ * @returns {string} human-readable time stamp
+ */
 function formatTime( time ) {
 	const out = new Date( time );
 	return `${out.toLocaleDateString()} ${out.toLocaleTimeString()}`;
