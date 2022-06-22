@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isArray from '@stdlib/assert/is-array';
 import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
@@ -48,7 +49,7 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	return config;
 }
 
-export function generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType, densityParams, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
+export function generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType = [], densityParams, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
 	let traces;
 	let layout;
 	let keys;
@@ -70,13 +71,13 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 		} ];
 		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xBins );
 		if ( displayDensity ) {
-			if ( densityType ) {
-				const [ x, y ] = calculateDensityValues( vals, densityType, densityParams, bandwidthAdjust );
+			for ( let i = 0; i < densityType.length; i++ ) {
+				const [ x, y ] = calculateDensityValues( vals, densityType[ i ], densityParams, bandwidthAdjust );
 				traces.push({
 					x: x,
 					y: y,
 					type: 'lines',
-					name: densityType+' density'
+					name: densityType[ i ]+' density'
 				});
 			}
 			traces[ 0 ][ 'histnorm' ] = 'probability density';
@@ -124,8 +125,8 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 					};
 					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
-					if ( densityType ) {
-						const [ x, y ] = calculateDensityValues( vals, densityType, densityParams, bandwidthAdjust );
+					for ( let i = 0; i < densityType.length; i++ ) {
+						const [ x, y ] = calculateDensityValues( vals, densityType[ i ], densityParams, bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
@@ -161,8 +162,8 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 					};
 					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
-					if ( densityType ) {
-						const [ x, y ] = calculateDensityValues( vals, densityType, bandwidthAdjust );
+					for ( let i = 0; i < densityType.length; i++ ) {
+						const [ x, y ] = calculateDensityValues( vals, densityType[ i ], bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
@@ -222,7 +223,7 @@ function Histogram({ id, data, variable, group, title, groupMode, nCols, display
 		if ( !data ) {
 			return {};
 		}
-		return generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType, densityParams, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
+		return generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType: isArray( densityType ) ? densityType : [ densityType ], densityParams, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
 	}, [ bandwidthAdjust, binStrategy, data, densityType, densityParams, displayDensity, group, title, groupMode, nBins, nCols, variable, xBins, sameXRange, sameYRange ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
@@ -275,7 +276,10 @@ Histogram.propTypes = {
 	title: PropTypes.string,
 	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
 	displayDensity: PropTypes.bool,
-	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ),
+	densityType: PropTypes.oneOfType([
+		PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ),
+		PropTypes.arrayOf( PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ) )
+	]),
 	densityParams: PropTypes.arrayOf( PropTypes.number ),
 	bandwidthAdjust: PropTypes.number,
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
@@ -302,7 +306,7 @@ Histogram.propTypes = {
 * @property {string} title - title of histogram
 * @property {(string|Factor)} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
 * @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
-* @property {string} densityType - when displaying densities, one can either overlay a parametric distribution (`Normal`, `Uniform`, or `Exponential`) or a non-parametric kernel density estimate (`Data-driven`)
+* @property {(string|Array<string>)} densityType - when displaying densities, one can either overlay parametric distribution(s) (`Normal`, `Uniform`, `T`, 'Chi-squared`, or `Exponential`) and/or a non-parametric kernel density estimate (`Data-driven`)
 * @property {Array<number>} densityParams - distribution parameters for the density when a parametric distribution is used ([mu, sigma] for a normal distribution, [a, b] for a uniform distribution, [lambda] for an exponential distribution)
 * @property {number} bandwidthAdjust - manual adjustment of bandwidth of kernel density (applicable only when `densityType` is set to `Data-driven`)
 * @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
