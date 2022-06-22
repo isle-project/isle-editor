@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, Fragment } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
