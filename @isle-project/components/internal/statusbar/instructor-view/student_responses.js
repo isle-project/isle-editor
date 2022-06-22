@@ -593,6 +593,9 @@ class StudentResponses extends Component {
 		const lessonGradeMessages = session.lessonGradeMessages;
 		const visualizers = session.responseVisualizers;
 		const ids = session.responseVisualizerIds;
+		if ( !this.users ) {
+			this.users = this.assembleUserList();
+		}
 		const users = this.users;
 		const list = new Array( ids.length );
 		const { leftUser, rightUser } = this.state;
