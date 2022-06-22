@@ -310,7 +310,7 @@ class MultipleLinearRegression extends Component {
 				{summaryTable( y, predictors, nobs, result, t )}
 				<p>{t('residual-standard-error')}: {round( result.stdError )}</p>
 				<p>{R2} {rSquared.toFixed( 6 )}, {t('adjusted')} {R2} {adjRSquared.toFixed( 6 )}</p>
-				<p>{t('f-statistic')}: {fScore.toFixed( 3 )} (${DF}: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
+				<p>{t('f-statistic')}: {fScore.toFixed( 3 )} ({DF}: {nobs-p-1}, {p}), {t('p-value')}: {(1.0 - fCDF( fScore, p, nobs-p-1 )).toFixed( 6 )}</p>
 				{ this.props.onPredict ? <Tooltip placement="top" tooltip={t('use-model-to-predict-tooltip')} >
 					<Button variant="secondary" size="sm" onClick={this.handlePredict}>{t('use-model-to-predict')}</Button>
 				</Tooltip> : null }
