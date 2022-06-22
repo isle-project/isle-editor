@@ -275,7 +275,7 @@ Histogram.propTypes = {
 	title: PropTypes.string,
 	groupMode: PropTypes.oneOf([ 'Overlay', 'Facets' ]),
 	displayDensity: PropTypes.bool,
-	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ] ),
+	densityType: PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ),
 	densityParams: PropTypes.arrayOf( PropTypes.number ),
 	bandwidthAdjust: PropTypes.number,
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),

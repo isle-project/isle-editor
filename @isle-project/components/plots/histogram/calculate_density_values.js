@@ -4,8 +4,10 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import linspace from '@stdlib/array/linspace';
 import pow from '@stdlib/math/base/special/pow';
 import gaussian from '@stdlib/stats/base/dists/normal/pdf';
-import dexp from '@stdlib/stats/base/dists/exponential/pdf';
+import dchisq from '@stdlib/stats/base/dists/chisquare/pdf';
 import dunif from '@stdlib/stats/base/dists/uniform/pdf';
+import dexp from '@stdlib/stats/base/dists/exponential/pdf';
+import dt from '@stdlib/stats/base/dists/t/pdf';
 import mean from '@isle-project/utils/statistic/mean';
 import stdev from '@isle-project/utils/statistic/stdev';
 import iqr from '@isle-project/utils/statistic/iqr';
@@ -57,6 +59,13 @@ function calculateDensityValues( values, densityType, densityParams = [], bandwi
 		const sd = isNumber( densityParams[ 1 ] ) ? densityParams[ 1 ] : stdev( values );
 		y = x.map( x => gaussian( x, avg, sd ) );
 		break;
+	case 'T':
+		const df = isNumber( densityParams[ 0 ] ) ? densityParams[ 0 ] : values.length - 1;
+		y = x.map( x => dt( x, df ) );
+		break;
+	case 'Chi-squared':
+		const nu = isNumber( densityParams[ 0 ] ) ? densityParams[ 0 ] : mean( values );
+		y = x.map( x => dchisq( x, nu ) );
 	}
 	return [ x, y ];
 }

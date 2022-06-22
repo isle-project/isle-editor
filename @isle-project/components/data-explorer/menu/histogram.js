@@ -57,6 +57,22 @@ const DISTRIBUTION_PARAMS = {
 			'description': 'maximum',
 			'step': 'any'
 		}
+	],
+	'T': [
+		{
+			'name': 'df',
+			'description': 'degrees of freedom',
+			'min': 0,
+			'step': 'any'
+		}
+	],
+	'Chi-squared': [
+		{
+			'name': 'df',
+			'description': 'degrees of freedom (= mean)',
+			'min': 0,
+			'step': 'any'
+		}
 	]
 };
 
@@ -315,7 +331,7 @@ const HistogramMenu = ( props ) => {
 						/>
 						<SelectInput
 							legend={t('overlay-density-line')}
-							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential' ]}
+							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ]}
 							disabled={!displayDensity}
 							defaultValue={densityType}
 							clearable
