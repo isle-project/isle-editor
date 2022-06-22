@@ -38,6 +38,13 @@ const debug = logger( 'isle:statusbar:student-responses' );
 
 // FUNCTIONS //
 
+/**
+ * Returns true if the value is a JSON array string (e.g., `"[1, 2, 3]"`).
+ *
+ * @private
+ * @param {string} str - string to test
+ * @returns {boolean} boolean indicating whether the value is a JSON array string
+ */
 const isJSONArray = ( str ) => {
 	return isString( str ) && str.startsWith( '[' ) && str.endsWith( ']' );
 };
@@ -76,6 +83,14 @@ function removeGlowElements() {
 	}
 }
 
+/**
+ * Formats a question answer into a human-readable format.
+ *
+ * @private
+ * @param {*} value - question answer
+ * @param {Object} visualizer - response visualizer object
+ * @returns {string} human-readable question answer
+ */
 function formatAnswer( value, visualizer ) {
 	const dataType = visualizer.ref.props.data.type;
 	let out;
@@ -144,6 +159,14 @@ function formatTime( time ) {
 	return `${out.toLocaleDateString()} ${out.toLocaleTimeString()}`;
 }
 
+/**
+ * Returns number of points to be awarded for a given question answer.
+ *
+ * @private
+ * @param {Object} action - action object containing question answer data
+ * @param {Object} viz - response visualizer object
+ * @returns {number} number of points to be awarded
+ */
 function generateGrade( action, viz ) {
 	const solution = viz.ref.props.data.solution;
 	const dataType = viz.ref.props.data.type;
