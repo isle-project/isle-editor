@@ -196,9 +196,11 @@ class Lesson extends Component {
 				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
-						session.notificationSystemISLE = div;
-						if ( session.isOwner() && !session.isActive() ) {
-							session.addInactiveNotification();
+						if ( !session.notificationSystemISLE ) {
+							session.notificationSystemISLE = div;
+							if ( session.isOwner() && !session.isActive() ) {
+								session.addInactiveNotification();
+							}
 						}
 					}}
 					allowHTML={true}
