@@ -28,6 +28,7 @@ import isMissing from '@isle-project/utils/is-missing';
 // VARIABLES //
 
 let COUNTER = 0;
+const MAX_NUM_GROUPS = 50;
 const T = 't';
 
 
@@ -138,6 +139,14 @@ class SimpleLinearRegression extends Component {
 		try {
 			if ( group ) {
 				const xmeans = by( xd, groups, mean );
+				const nGroups = Object.keys( xmeans ).length;
+				if ( nGroups > MAX_NUM_GROUPS ) {
+					return (
+						<Alert variant="danger" >
+							{t('too-many-groups')}
+						</Alert>
+					);
+				}
 				const res = by2( xd, yd, groups, calculateCoefficients );
 				output = <div style={{ overflowX: 'auto', width: '100%' }}>
 					<label>{t('regression-y-on-x', { x, y })}</label>

@@ -30,6 +30,7 @@ import isMissing from '@isle-project/utils/is-missing';
 // VARIABLES //
 
 let COUNTER = 0;
+const MAX_NUM_PREDICTORS = 500;
 const TSTAT = 't';
 const DF = 'df';
 const R2 = 'R²:';
@@ -174,6 +175,12 @@ const fitModel = ({ x, y, intercept, omitMissing, data, quantitative }) => {
 	try {
 		const dMatrix = omitMissing ? designMatrixMissing : designMatrix;
 		const { matrix, predictors, yvalues, nobs } = dMatrix( x, y, data, quantitative, intercept );
+		if ( predictors.length > MAX_NUM_PREDICTORS ) {
+			throw new Error( 'Too many predictors...' );
+		}
+		if ( nobs < predictors.length ) {
+			throw new Error( 'Not enough observations...' );
+		}
 		out.result = new MLR( matrix, yvalues, {
 			intercept
 		});
