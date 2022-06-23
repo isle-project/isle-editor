@@ -20,6 +20,8 @@ import { Factor } from '@isle-project/utils/factor-variable';
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
+const MAX_NUM_GROUPS = 25;
+const MAX_NUM_ROWS = 250;
 
 
 // FUNCTIONS //
@@ -32,6 +34,9 @@ function getFrequencies( variable, x, calculateCounts, calculateRelative ) {
 	} else {
 		keys = objectKeys( counts );
 		keys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
+	if ( keys.length > MAX_NUM_ROWS ) {
+		return null;
 	}
 	let freqs = new Array( keys.length );
 	for ( let i = 0; i < keys.length; i++ ) {
@@ -56,6 +61,13 @@ function getFrequencies( variable, x, calculateCounts, calculateRelative ) {
 }
 
 const frequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
+	if ( !freqs ) {
+		return (
+			<Alert variant="danger">
+				{t('too-many-rows')}
+			</Alert>
+		);
+	}
 	let nTotal = 0;
 	if ( freqs.absoluteFreqs && !freqs.relativeFreqs ) {
 		return (
@@ -151,6 +163,13 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
 			{entries( freqs ).map( ( arr, i ) => {
+				if ( !arr[ i ] ) {
+					return (
+						<Alert variant="danger">
+							{t('too-many-rows')}
+						</Alert>
+					);
+				}
 				const relativeFreqs = arr[ 1 ].relativeFreqs;
 				const absoluteFreqs = arr[ 1 ].absoluteFreqs;
 				const categories = arr[ 1 ].keys.map(
@@ -225,6 +244,9 @@ function FrequencyTable({ data, variable, group, calculateCounts, calculateRelat
 		freqs = by( data[ variable ], data[ group ], ( arr ) => {
 			return getFrequencies( variable, arr, calculateCounts, calculateRelative );
 		});
+		if ( Object.keys( freqs ).length > MAX_NUM_GROUPS ) {
+			return <Alert variant="danger">{t('too-many-groups')}</Alert>;
+		}
 		if ( group.categories ) {
 			// Create new object with different insertion order:
 			const tmp = {};

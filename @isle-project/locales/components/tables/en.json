@@ -7,5 +7,8 @@
 	"grouped-by": "Grouped by",
 	"relative-frequency": "Relative Frequency",
 	"row-totals": "Row Totals",
+	"too-many-groups": "Too many groups.",
+	"too-many-rows": "Too many rows to display.",
+	"too-many-columns": "Too many columns to display.",
 	"total": "Total"
 }

@@ -21,6 +21,8 @@ import { Factor } from '@isle-project/utils/factor-variable';
 const SORT_OPTS = {
 	'numeric': true // Use numeric collation such that "1" < "2" < "10"...
 };
+const MAX_NUM_GROUPS = 25;
+const MAX_NUM_CATEGORIES = 250;
 
 
 // FUNCTIONS //
@@ -53,6 +55,12 @@ const createContingencyTable = ( data, rowVar, colVar, relativeFreqs, nDecimalPl
 	} else {
 		colKeys = objectKeys( colFreqs );
 		colKeys.sort( ( a, b ) => a.localeCompare( b, void 0, SORT_OPTS ) );
+	}
+	if ( rowKeys.length > MAX_NUM_CATEGORIES ) {
+		return <Alert variant="danger">{t('too-many-rows')}</Alert>;
+	}
+	if ( colKeys.length > MAX_NUM_CATEGORIES ) {
+		return <Alert variant="danger">{t('too-many-columns')}</Alert>;
 	}
 	for ( let i = 0; i < rowKeys.length; i++ ) {
 		for ( let l = 0; l < colKeys.length; l++ ) {
@@ -181,12 +189,17 @@ const createGroupedContingencyTable = ( data, rowVar, colVar, group, relativeFre
 	}
 	let table = [];
 	const keys = extractUsedCategories( groupedData, group );
-
+	if ( keys.length > MAX_NUM_GROUPS ) {
+		return (
+			<Alert variant="danger" >
+				{t('too-many-groups')}
+			</Alert>
+		);
+	}
 	for ( let i = 0; i < keys.length; i++ ) {
 		const key = keys[ i ];
 		table.push( createContingencyTable( groupedData[ key ], rowVar, colVar, relativeFreqs, nDecimalPlaces, display, t ) );
 	}
-
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{ t('grouped-by')} {group}:</label>
