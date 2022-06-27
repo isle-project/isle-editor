@@ -196,7 +196,7 @@
     "ml-kmeans": "^5.0.0",
     "ml-matrix": "^6.10.1",
     "ml-pca": "4.0.2",
-    "ml-regression-multivariate-linear": "^2.0.3",
+    "ml-regression-multivariate-linear": "^2.0.4",
     "murmurhash3js": "^3.0.1",
     "node": "18.4.0",
     "node-bin-setup": "^1.1.0",
