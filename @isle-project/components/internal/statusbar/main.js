@@ -573,7 +573,7 @@ class StatusBar extends Component {
 							</Gate>
 						</div>
 					</div>
-					{!this.state.showStatusBar && ( isOwner || isElectron ) ?
+					{!this.state.showStatusBar && ( isOwner || isElectron ) && !this.context.config.hideStatusBar ?
 						<Tooltip placement="bottom" tooltip={`${t( 'presentation-mode-exit' )} (F7)`} >
 							<span className="statusbar-presentation-mode-lone-icon" role="button" tabIndex={0}
 								onClick={this.toggleBarVisibility} onKeyPress={this.toggleBarVisibility}
