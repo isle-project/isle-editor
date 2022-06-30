@@ -62,6 +62,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                     >
                       <button
                         aria-controls="distribution-tabs-tabpane-2"
+                        aria-selected={false}
                         className="nav-link"
                         data-rr-ui-event-key="2"
                         disabled={false}
@@ -80,6 +81,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                     >
                       <button
                         aria-controls="distribution-tabs-tabpane-3"
+                        aria-selected={false}
                         className="nav-link"
                         data-rr-ui-event-key="3"
                         disabled={false}

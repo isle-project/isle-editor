@@ -47,6 +47,7 @@ exports[`<LearnBetaDistribution /> renders a learning component 1`] = `
       >
         <button
           aria-controls="beta-tabs-tabpane-greater"
+          aria-selected={false}
           className="nav-link"
           data-rr-ui-event-key="greater"
           disabled={false}
@@ -65,6 +66,7 @@ exports[`<LearnBetaDistribution /> renders a learning component 1`] = `
       >
         <button
           aria-controls="beta-tabs-tabpane-range"
+          aria-selected={false}
           className="nav-link"
           data-rr-ui-event-key="range"
           disabled={false}
