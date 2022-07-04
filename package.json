@@ -337,7 +337,7 @@
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "vex-js": "^4.1.0",
-    "victory": "36.5.0",
+    "victory": "36.5.3",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "^4.9.2"
   },
