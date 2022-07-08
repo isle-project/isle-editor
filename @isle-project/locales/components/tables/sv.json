@@ -7,5 +7,8 @@
 	"grouped-by": "Grupperade efter",
 	"relative-frequency": "Relativ frekvens",
 	"row-totals": "Totalsummor för rader",
+	"too-many-columns": "För många kolumner att visa.",
+	"too-many-groups": "För många grupper.",
+	"too-many-rows": "För många rader att visa.",
 	"total": "Totalt"
 }

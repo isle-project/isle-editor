@@ -7,5 +7,8 @@
 	"grouped-by": "Sugrupuota pagal",
 	"relative-frequency": "Santykinis dažnis",
 	"row-totals": "Eilutės iš viso",
+	"too-many-columns": "Per daug rodomų stulpelių.",
+	"too-many-groups": "Per daug grupių.",
+	"too-many-rows": "Per daug rodomų eilučių.",
 	"total": "Iš viso"
 }

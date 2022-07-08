@@ -7,5 +7,8 @@
 	"grouped-by": "Agrupado por",
 	"relative-frequency": "Freqüência Relativa",
 	"row-totals": "Totais de fileiras",
+	"too-many-columns": "Demasiadas colunas para exibir.",
+	"too-many-groups": "Demasiados grupos.",
+	"too-many-rows": "Demasiadas filas para serem exibidas.",
 	"total": "Total"
 }

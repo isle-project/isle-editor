@@ -7,5 +7,8 @@
 	"grouped-by": "Razdeljeno po skupinah",
 	"relative-frequency": "Relativna pogostost",
 	"row-totals": "Skupni seštevki vrstic",
+	"too-many-columns": "Preveč stolpcev za prikaz.",
+	"too-many-groups": "Preveč skupin.",
+	"too-many-rows": "Preveč vrstic za prikaz.",
 	"total": "Skupaj"
 }

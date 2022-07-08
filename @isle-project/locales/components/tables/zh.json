@@ -7,5 +7,8 @@
 	"grouped-by": "按组别划分",
 	"relative-frequency": "相对频率",
 	"row-totals": "行总数",
+	"too-many-columns": "太多的栏目需要显示。",
+	"too-many-groups": "太多的团体。",
+	"too-many-rows": "显示的行数太多。",
 	"total": "总数"
 }

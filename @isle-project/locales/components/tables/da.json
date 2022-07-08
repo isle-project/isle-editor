@@ -7,5 +7,8 @@
 	"grouped-by": "Grupperet efter",
 	"relative-frequency": "Relativ hyppighed",
 	"row-totals": "Rækkesummen",
+	"too-many-columns": "Der er for mange kolonner at vise.",
+	"too-many-groups": "For mange grupper.",
+	"too-many-rows": "Der er for mange rækker at vise.",
 	"total": "I alt"
 }

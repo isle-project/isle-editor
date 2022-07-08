@@ -7,5 +7,8 @@
 	"grouped-by": "Csoportosítva",
 	"relative-frequency": "Relatív gyakoriság",
 	"row-totals": "Sorok összege",
+	"too-many-columns": "Túl sok oszlopot kell megjeleníteni.",
+	"too-many-groups": "Túl sok csoport.",
+	"too-many-rows": "Túl sok sor jelenik meg.",
 	"total": "Összesen"
 }

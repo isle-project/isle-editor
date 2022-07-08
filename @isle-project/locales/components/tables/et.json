@@ -7,5 +7,8 @@
 	"grouped-by": "Grupeeritud",
 	"relative-frequency": "Suhteline sagedus",
 	"row-totals": "Ridade kogusummad",
+	"too-many-columns": "Kuvamiseks liiga palju veerge.",
+	"too-many-groups": "Liiga palju gruppe.",
+	"too-many-rows": "Kuvamiseks liiga palju ridu.",
 	"total": "Kokku"
 }

@@ -7,5 +7,8 @@
 	"grouped-by": "Gegroepeerd door",
 	"relative-frequency": "Relatieve Frequentie",
 	"row-totals": "Rijtotalen",
+	"too-many-columns": "Te veel kolommen om weer te geven.",
+	"too-many-groups": "Te veel groepen.",
+	"too-many-rows": "Te veel rijen om weer te geven.",
 	"total": "Totaal"
 }

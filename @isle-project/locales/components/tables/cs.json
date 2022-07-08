@@ -7,5 +7,8 @@
 	"grouped-by": "Seskupeno podle",
 	"relative-frequency": "Relativní četnost",
 	"row-totals": "Součty řádků",
+	"too-many-columns": "Příliš mnoho sloupců k zobrazení.",
+	"too-many-groups": "Příliš mnoho skupin.",
+	"too-many-rows": "Příliš mnoho řádků k zobrazení.",
 	"total": "Celkem"
 }

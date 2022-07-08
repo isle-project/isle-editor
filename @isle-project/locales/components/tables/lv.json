@@ -7,5 +7,8 @@
 	"grouped-by": "Grupēts pēc",
 	"relative-frequency": "Relatīvais biežums",
 	"row-totals": "Rindas kopsumma",
+	"too-many-columns": "Pārāk daudz rādāmo kolonnu.",
+	"too-many-groups": "Pārāk daudz grupu.",
+	"too-many-rows": "Pārāk daudz rindu, lai parādītu.",
 	"total": "Kopā"
 }
