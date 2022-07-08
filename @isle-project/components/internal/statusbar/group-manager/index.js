@@ -25,6 +25,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import Timer from '@isle-project/components/timer';
 import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import EditorView from '@isle-project/components/text-editor/view.js';
 import { marks, wraps, insert } from '@isle-project/components/text-editor/config/menu.js';
 import SessionContext from '@isle-project/session/context.js';
@@ -72,45 +73,94 @@ const customSelectComponents = {
 
 // FUNCTIONS //
 
-function selectUsers( userList, selectedCohort ) {
-	const users = userList;
-	if ( !selectedCohort ) {
-		return users.filter( x => !x.owner && !x.exitTime && contains( x.email, '@' ) );
-	}
-	const out = [];
-	for ( let i = 0; i < users.length; i++ ) {
-		const user = users[ i ];
-		if ( !user.owner && isUserInCohort( selectedCohort, user.email ) ) {
-			out.push( user );
+/**
+* Returns a list of users that can be assigned to groups.
+*
+* @private
+* @param {Object} session - session object
+* @param {boolean} onlyOnline - boolean indicating whether to only include online users
+* @returns {Array} - list of users assignable to groups
+*/
+function selectUsers( session, onlyOnline ) {
+	if ( onlyOnline ) {
+		const users = session.userList;
+		if ( !session.selectedCohort ) {
+			return users.filter( x => !x.owner && !x.exitTime && contains( x.email, '@' ) );
 		}
+		const out = [];
+		for ( let i = 0; i < users.length; i++ ) {
+			const user = users[ i ];
+			if ( !user.owner && isUserInCohort( session.selectedCohort, user.email ) ) {
+				out.push( user );
+			}
+		}
+		return out;
+	}
+	// Case: include users who are not online:
+	if ( session.selectedCohort ) {
+		// Return all users in the cohort...
+		return session.selectedCohort.members;
+	}
+	// Return all users from all cohorts...
+	let out = [];
+	for ( let i = 0; i < session.cohorts.length; i++ ) {
+		const cohort = session.cohorts[ i ];
+		out = out.concat( cohort.members );
 	}
 	return out;
 }
 
-function countStudents( userList, selectedCohort ) {
+/**
+* Counts the number of users assignable to groups.
+*
+* @private
+* @param {Object} session - session object
+* @param {boolean} onlyOnline - boolean indicating whether to only include online users
+* @returns {number} - number of users assignable to groups
+*/
+function countStudents( session, onlyOnline ) {
 	let out = 0;
-	if ( !selectedCohort ) {
-		for ( let i = 0; i < userList.length; i++ ) {
-			const user = userList[ i ];
-			if ( !user.owner && !user.exitTime && contains( user.email, '@' ) ) {
-				out += 1;
+	if ( onlyOnline ) {
+		// Case: only count online users...
+		if ( !session.selectedCohort ) {
+			for ( let i = 0; i < session.userList.length; i++ ) {
+				const user = session.userList[ i ];
+				if ( !user.owner && !user.exitTime && contains( user.email, '@' ) ) {
+					out += 1;
+				}
+			}
+		} else {
+			for ( let i = 0; i < session.userList.length; i++ ) {
+				const user = session.userList[ i ];
+				if (
+					!user.owner &&
+					!user.exitTime &&
+					isUserInCohort( session.selectedCohort, user.email )
+				) {
+					out += 1;
+				}
 			}
 		}
+	} else if ( session.selectedCohort ) {
+		// Case: include all users in the cohort...
+		out = session.selectedCohort.members.length;
 	} else {
-		for ( let i = 0; i < userList.length; i++ ) {
-			const user = userList[ i ];
-			if (
-				!user.owner &&
-				!user.exitTime &&
-				isUserInCohort( selectedCohort, user.email )
-			) {
-				out += 1;
-			}
+		// Case: include all users from all cohorts...
+		for ( let i = 0; i < session.cohorts.length; i++ ) {
+			const cohort = session.cohorts[ i ];
+			out += cohort.members.length;
 		}
 	}
 	return out;
 }
 
+/**
+* Extracts all questions from the lesson.
+*
+* @private
+* @param {Object} session - session object
+* @returns {Array<string>} - list of question prompts and IDs
+*/
 function extractQuestions( session ) {
 	const questions = [];
 	const keys = session.responseVisualizerIds;
@@ -137,6 +187,13 @@ function randomGroupAssignment( nGroups, users ) {
 	return out;
 }
 
+/**
+* Return an object with empty arrays for each group.
+*
+* @private
+* @param {number} nGroups - number of groups
+* @returns {Object} - object with empty arrays for each group
+*/
 function emptyGroupAssignment( nGroups ) {
 	const out = {};
 	for ( let i = 0; i < nGroups; i++ ) {
@@ -182,6 +239,19 @@ function progressGroupAssignment( nGroups, users, progress, matching ) {
 	return out;
 }
 
+/**
+* Returns groups of users based on the given assignment.
+*
+* @private
+* @param {Object} options - options object
+* @param {integer} options.nGroups - number of groups
+* @param {Array} options.users - list of users
+* @param {string} options.mode - mode of assignment (`random`, `progress`, `answers`, or `empty`)
+* @param {Object} progress - user progress object
+* @param {string} options.matching - matching strategy (`similar` or `dissimilar`)
+* @param {boolean} options.randomNames - whether to use random names for groups or numbers
+* @returns {Array} list of group objects
+*/
 function createGroups({ nGroups, users, mode, progress, matching, randomNames }) {
 	let groupNames;
 	if ( randomNames ) {
@@ -236,7 +306,8 @@ class GroupManager extends Component {
 			lastGroups: null,
 			message: '',
 			randomNames: true,
-			docId: 0
+			docId: 0,
+			onlyOnline: true
 		};
 	}
 
@@ -323,7 +394,7 @@ class GroupManager extends Component {
 		const session = this.context;
 		const groups = createGroups({
 			nGroups: this.state.nGroups,
-			users: selectUsers( session.userList, session.selectedCohort ),
+			users: selectUsers( session, this.state.onlyOnline ),
 			mode: this.state.activeMode,
 			progress: session.userProgress,
 			matching: this.state.matching,
@@ -518,7 +589,7 @@ class GroupManager extends Component {
 
 	renderBody() {
 		const session = this.context;
-		const nUsers = countStudents( session.userList, session.selectedCohort );
+		const nUsers = countStudents( session, this.state.onlyOnline );
 		const nUsersPerGroup = floor( nUsers / this.state.nGroups );
 		let groupSizes = `(${this.props.t( 'group-sizes' )}: ${nUsersPerGroup}`;
 		if ( nUsers % this.state.nGroups !== 0 ) {
@@ -564,6 +635,16 @@ class GroupManager extends Component {
 				label={this.props.t( 'pair-users-from' )}
 				session={this.context}
 				t={this.props.t}
+			/>
+			<CheckboxInput
+				id="group-manager-online-checkbox"
+				legend={this.props.t( 'only-pair-online-users' )}
+				value={this.state.onlyOnline}
+				onChange={( checked ) => {
+					this.setState({
+						onlyOnline: checked
+					});
+				}}
 			/>
 			<NumberInput
 				legend={this.props.t( 'number-of-groups' )}
