@@ -392,14 +392,33 @@ class GroupManager extends Component {
 
 	handleGroupCreation = () => {
 		const session = this.context;
+		const users = selectUsers( session, this.state.onlyOnline );
 		const groups = createGroups({
 			nGroups: this.state.nGroups,
-			users: selectUsers( session, this.state.onlyOnline ),
+			users: users,
 			mode: this.state.activeMode,
 			progress: session.userProgress,
 			matching: this.state.matching,
 			randomNames: this.state.randomNames
 		});
+		if ( this.state.activeMode === 'empty' ) {
+			// Add the users to the `notAssigned` list:
+			const newNotAssigned = this.state.notAssigned.slice();
+			for ( let i = 0; i < users.length; i++ ) {
+				const picture = users[ i ].picture.startsWith( 'http' ) ? users[ i ].picture : session.server + '/thumbnail/' + users[ i ].picture;
+				const value = {
+					'value': {
+						...users[ i ],
+						picture
+					},
+					'label': users[ i ].name
+				};
+				newNotAssigned.push( value );
+			}
+			this.setState({
+				notAssigned: newNotAssigned
+			});
+		}
 		session.createGroups( groups );
 	};
 
@@ -428,8 +447,7 @@ class GroupManager extends Component {
 					group.name === user.group &&
 					group.members.filter( x => x.email === user.email ).length === 0
 				) {
-					const found = session.userList.filter( x => x.email === user.email );
-					group.members.push( found[ 0 ] );
+					group.members.push( user );
 					break;
 				}
 			}
@@ -531,8 +549,8 @@ class GroupManager extends Component {
 		for ( let i = 0; i < session.allGroups.length; i++ ) {
 			const { name, members } = session.allGroups[ i ];
 			const options = members.map( x => {
-				const picture = session.server + '/thumbnail/' + x.picture;
-				return { 'value': { email: x.email, picture, group: name }, 'label': x.name };
+				const picture = x.picture.startsWith( 'http' ) ? x.picture : session.server + '/thumbnail/' + x.picture;
+				return { 'value': { email: x.email, name: x.name, picture, group: name }, 'label': x.name };
 			});
 			out[ i ] = <div
 				key={i}
@@ -553,6 +571,7 @@ class GroupManager extends Component {
 					menuShouldScrollIntoView={false}
 					onChange={( _, action ) => {
 						if ( action.action === 'remove-value' ) {
+							console.log( 'Tentatively remove user from group: ', action.removedValue );
 							const notAssigned = this.state.notAssigned.slice();
 							notAssigned.push( action.removedValue );
 							const toRemove = this.state.toRemove.slice();
@@ -562,6 +581,7 @@ class GroupManager extends Component {
 								toRemove
 							});
 						} else if ( action.action === 'select-option' ) {
+							console.log( 'Tentatively add user to group: ', action.option.value );
 							const toAdd = this.state.toAdd.slice();
 							action.option.value.group = name;
 							toAdd.push( action.option );
