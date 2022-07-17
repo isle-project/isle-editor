@@ -8,10 +8,15 @@ const DEFAULT_OPTIONS = {
 		load: [ '[tex]/action', '[tex]/ams', '[tex]/html', '[tex]/boldsymbol', '[tex]/mathtools', '[tex]/newcommand' ]
 	},
 	tex: {
-		macros: {},
+		macros: {
+			'widebar': [ '\\mathop{\\overline{\\!#1}}', 1 ]
+		},
 		packages: {
 			'[+]': [ 'action', 'ams', 'html', 'boldsymbol', 'mathtools', 'newcommand' ]
 		}
+	},
+	svg: {
+		fontCache: 'global'
 	},
 	options: {
 		enableMenu: true,
@@ -65,8 +70,8 @@ const DEFAULT_OPTIONS = {
 };
 
 const importMathJax = () => {
-	const script = document.createElement('script');
-	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.1/es5/tex-chtml.js';
+	const script = document.createElement( 'script' );
+	script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js';
 	script.async = true;
 	document.head.appendChild( script );
 };
