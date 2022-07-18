@@ -1,13 +1,18 @@
 // MODULES //
 
 import React, { Fragment, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import logger from 'debug';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import PopoverBody from 'react-bootstrap/PopoverBody';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import PropTypes from 'prop-types';
+import { components } from 'react-select';
 import isArray from '@stdlib/assert/is-array';
+import { i18n } from '@isle-project/locales';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
@@ -24,6 +29,31 @@ const DEFAULT_XBINS = {
 	start: null,
 	size: 100,
 	end: null
+};
+const Option = props => {
+	const popover = <Popover id={`${props.data.label}-popover`}>
+		<PopoverBody>{i18n.t(`data-explorer:${props.data.label}-description`)}</PopoverBody>
+	</Popover>;
+	return ( <components.Option key={props.data.label} {...props} >
+		<span style={{
+			opacity: props.isSelected ? 0.5 : 1
+		}}>{i18n.t( 'data-explorer:'+props.data.label )}</span>
+		<OverlayTrigger
+			trigger={['hover', 'click']}
+			placement="right" rootClose overlay={popover}
+		>
+			<Button
+				aria-label={i18n.t( 'data-explorer:'+props.data.label )}
+				size="sm"
+				variant="outline-secondary"
+				className="question-button"
+				style={{ float: 'right', fontSize: 14 }}
+				onClick={( event ) => event.stopPropagation()}
+			>
+				<span className="fa fa-question" />
+			</Button>
+		</OverlayTrigger>
+	</components.Option> );
 };
 const DISTRIBUTION_PARAMS = {
 	'Exponential': [
@@ -375,6 +405,7 @@ const HistogramMenu = ( props ) => {
 							clearable
 							menuPlacement="top"
 							onChange={setDensityType}
+							components={{ Option }}
 						/>
 						{densityControls}
 					</div> : null }
