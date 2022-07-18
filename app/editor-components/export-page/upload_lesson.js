@@ -33,7 +33,6 @@ import isArray from '@stdlib/assert/is-array';
 import pick from '@stdlib/utils/pick';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
 import CheckboxInput from '@isle-project/components/input/checkbox';
-import Spinner from '@isle-project/components/internal/spinner';
 import KeyControls from '@isle-project/components/key-controls';
 import electronStore from 'store/electron.js';
 
@@ -241,6 +240,9 @@ class UploadLesson extends Component {
 	};
 
 	checkLesson = () => {
+		this.setState({
+			log: ''
+		});
 		const form = {
 			namespaceName: this.props.namespaceName,
 			lessonName: this.state.lessonName
@@ -295,7 +297,7 @@ class UploadLesson extends Component {
 		const child = cp.fork( script, [ settingsPath ], options );
 		child.on( 'message', message => {
 			this.setState({
-				log: this.state.log + '\n' + message
+				log: this.state.log + message + '\n'
 			});
 			if ( startsWith( message, 'success' ) ) {
 				debug( 'Lesson successfully bundled...' );
@@ -380,9 +382,9 @@ class UploadLesson extends Component {
 	};
 
 	renderProgress() {
-		const { error, spinning, log } = this.state;
+		const { error, log } = this.state;
 		return ( <Fragment>
-			{spinning && <Alert variant="info" className="export-page-bundle-log" >
+			{log && <Alert variant="info" className="export-page-bundle-log" >
 				{log}
 			</Alert>}
 			{ error ? <Card bg="danger" text="white" >

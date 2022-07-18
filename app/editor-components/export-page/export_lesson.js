@@ -8,6 +8,7 @@ import { writeFileSync } from 'fs';
 import cp from 'child_process';
 import path from 'path';
 import jsyaml from 'js-yaml';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -18,8 +19,8 @@ import Card from 'react-bootstrap/Card';
 import replace from '@stdlib/string/replace';
 import isArray from '@stdlib/assert/is-array';
 import exists from '@stdlib/fs/exists';
+import startsWith from '@stdlib/string/starts-with';
 import CheckboxInput from '@isle-project/components/input/checkbox';
-import Spinner from '@isle-project/components/internal/spinner';
 import electronStore from 'store/electron.js';
 import './export_page.css';
 
@@ -51,7 +52,8 @@ class ExportLesson extends Component {
 			minify: false,
 			loadFromCDN: true,
 			writeStats: false,
-			alreadyExists: false
+			alreadyExists: false,
+			log: ''
 		};
 	}
 
@@ -94,12 +96,14 @@ class ExportLesson extends Component {
 		const { outputPath, outputDir, minify, writeStats, loadFromCDN } = this.state;
 		if ( exists.sync( path.join( outputPath, outputDir ) ) ) {
 			this.setState({
-				alreadyExists: true
+				alreadyExists: true,
+				log: ''
 			});
 		} else {
 			this.setState({
 				finished: false,
-				spinning: true
+				spinning: true,
+				log: ''
 			});
 			const content = this.props.content;
 			let yamlStr = content.match( RE_PREAMBLE )[ 1 ];
@@ -126,9 +130,14 @@ class ExportLesson extends Component {
 			const child = cp.fork( script, [ settingsPath ], options );
 			child.on( 'message', message => {
 				this.setState({
-					finished: true,
-					spinning: false
+					log: this.state.log + message + '\n'
 				});
+				if ( startsWith( message, 'success' ) ) {
+					this.setState({
+						finished: true,
+						spinning: false
+					});
+				}
 			});
 			child.on('error', ( err ) => {
 				this.setState({
@@ -181,7 +190,9 @@ class ExportLesson extends Component {
 			card = null;
 		}
 		return ( <Fragment>
-			<Spinner width={128} height={64} running={this.state.spinning} />
+			{this.state.log && <Alert variant="info" className="export-page-bundle-log" >
+				{this.state.log}
+			</Alert>}
 			{card}
 		</Fragment> );
 	};

@@ -21,7 +21,7 @@
 }
 
 .export-page-bundle-log {
-	height: 250px;
+	height: 200px;
 	white-space: pre;
 	overflow-y: auto;
 	overflow-x: hidden;
