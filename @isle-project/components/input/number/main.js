@@ -39,7 +39,7 @@ const uid = generateUID( 'number-input' );
 * @property {boolean} inline - indicates whether the input is displayed inline
 * @property {string} legend - string indicating the text displayed next to the number input
 * @property {boolean} numbersOnly - controls whether only numbers are accepted
-* @property {string}} placeholder - string indicating the text displayed when the input is empty (requires `defaultValue` to be set to `null` or `undefined`)
+* @property {string} placeholder - string indicating the text displayed when the input is empty (requires `defaultValue` to be set to `null` or `undefined`)
 * @property {string} tooltip - tooltip string (if not set, the tooltip is automatically generated)
 * @property {string} tooltipPlacement - direction of the tooltip
 * @property {Object} style - CSS inline styles

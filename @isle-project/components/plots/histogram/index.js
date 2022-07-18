@@ -282,7 +282,7 @@ Histogram.propTypes = {
 		PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ),
 		PropTypes.arrayOf( PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ) )
 	]),
-	densityParams: PropTypes.oneOfType( PropTypes.arrayOf( PropTypes.number ), PropTypes.any ),
+	densityParams: PropTypes.oneOfType([ PropTypes.arrayOf( PropTypes.number ), PropTypes.any ]),
 	bandwidthAdjust: PropTypes.number,
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
 	nBins: PropTypes.number,

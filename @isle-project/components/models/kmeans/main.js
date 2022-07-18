@@ -216,6 +216,7 @@ class KMeans extends Component {
 
 KMeans.defaultProps = {
 	K: 3,
+	elbowPlot: false,
 	initialization: 'kmeans++',
 	onResult() {}
 };
@@ -224,6 +225,7 @@ KMeans.propTypes = {
 	data: PropTypes.object.isRequired,
 	variables: PropTypes.arrayOf( PropTypes.string ).isRequired,
 	K: PropTypes.number,
+	elbowPlot: PropTypes.bool,
 	initialization: PropTypes.oneOf([ 'kmeans++', 'random', 'mostDistant' ]),
 	onResult: PropTypes.func
 };

@@ -20,6 +20,7 @@ import { OPEN_LINK } from '@isle-project/constants/actions.js';
 * @property {string} target - defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame
 * @property {(string|boolean)} download - specifies whether link should be downloaded: set to `true` to force download, or a string to specify the filename; if `false`, no download is forced
 * @property {string} windowFeatures - comma-separated list of window features for when link is opened in new window (see: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features)
+* @property {boolean} openWindow - boolean controlling whether to open URL in new window
 * @property {string} className - class name
 * @property {Object} style - CSS inline styles
 */
