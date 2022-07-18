@@ -19,3 +19,10 @@
 	padding-top: 6px;
 	color: darkred;
 }
+
+.export-page-bundle-log {
+	height: 250px;
+	white-space: pre;
+	overflow-y: auto;
+	overflow-x: hidden;
+}

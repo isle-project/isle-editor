@@ -14,6 +14,7 @@ import url from 'url';
 import cp from 'child_process';
 import FormData from 'form-data';
 import jsyaml from 'js-yaml';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -73,7 +74,8 @@ class UploadLesson extends Component {
 			token: electronStore.get( 'token' ),
 			showResponseModal: false,
 			showConfirmModal: false,
-			invalidLessonName: false
+			invalidLessonName: false,
+			log: ''
 		};
 	}
 
@@ -222,7 +224,8 @@ class UploadLesson extends Component {
 				this.setState({
 					error: new Error( msg ),
 					spinning: false,
-					dirname: randomstring( 16, 65, 90 )
+					dirname: randomstring( 16, 65, 90 ),
+					log: ''
 				});
 			}
 		});
@@ -231,7 +234,8 @@ class UploadLesson extends Component {
 			this.setState({
 				error,
 				spinning: false,
-				dirname: randomstring( 16, 65, 90 )
+				dirname: randomstring( 16, 65, 90 ),
+				log: ''
 			});
 		});
 	};
@@ -290,7 +294,9 @@ class UploadLesson extends Component {
 
 		const child = cp.fork( script, [ settingsPath ], options );
 		child.on( 'message', message => {
-			console.log( message ); // eslint-disable-line no-console
+			this.setState({
+				log: this.state.log + '\n' + message
+			});
 			if ( startsWith( message, 'success' ) ) {
 				debug( 'Lesson successfully bundled...' );
 				this.zipLesson( settings.outputPath, settings.outputDir, () => {
@@ -374,9 +380,11 @@ class UploadLesson extends Component {
 	};
 
 	renderProgress() {
-		const { error, spinning } = this.state;
+		const { error, spinning, log } = this.state;
 		return ( <Fragment>
-			<Spinner width={128} height={64} running={spinning} />
+			{spinning && <Alert variant="info" className="export-page-bundle-log" >
+				{log}
+			</Alert>}
 			{ error ? <Card bg="danger" text="white" >
 				<Card.Header as="h5">
 					{this.props.t('error-encountered')}

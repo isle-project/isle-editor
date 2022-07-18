@@ -415,7 +415,7 @@ function bundleLesson( options ) {
 			activeModules: true,
 			entries: true,
 			handler( percentage, message, ...args ) {
-				logMsg( `${percentage}: ${message} ${args.join( ', ' )}` );
+				logMsg( `${percentage.toFixed( 3 )}: ${message} ${args.join( ', ' )}` );
 			},
 			profile: true
 		}),
