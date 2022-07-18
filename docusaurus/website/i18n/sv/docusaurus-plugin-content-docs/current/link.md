@@ -12,7 +12,7 @@ En komponent för att visa en länk.
 * __download__ | `(string|boolean)`: anger om länken ska laddas ner: ställ in till `true` för att tvinga nerladdning, eller en sträng för att specificera filnamnet; om `false`, tvingas ingen nerladdning.. Default: `false`.
 * __target__ | `string`: definierar var länken öppnas: inställd på `_blank` för nytt fönster, `_self` egen ram, `_parent` för överordnad, `_top` för hela fönstret, eller namnet på ramen.. Default: `none`.
 * __windowFeatures__ | `string`: Kommaseparerad lista över fönsterfunktioner för när länken öppnas i ett nytt fönster (se: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features).. Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean som styr om URL ska öppnas i ett nytt fönster. Default: `false`.
 * __className__ | `string`: klassens namn. Default: `''`.
 * __style__ | `object`: CSS-stilar inline. Default: `{}`.
 

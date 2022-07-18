@@ -11,6 +11,7 @@ Urejevalnik besedila za pisanje opomb ali poročil. Podpira izvoz zapiskov kot d
 * __allowSubmissions__ | `boolean`: nadzoruje, ali lahko učenci svoja poročila pošljejo v strežnik.. Default: `true`.
 * __canLoadHTML__ | `boolean`: nadzoruje, ali se prikaže gumb za nalaganje shranjene datoteke HTML v urejevalnik.. Default: `true`.
 * __defaultValue__ | `string`: privzeto besedilo urejevalnika. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: določa, ali naj urejevalnik vključuje pogled zgodovine.. Default: `true`.
 * __mode__ | `string`: nadzoruje način urejanja besedila (`individual` za osebni dokument, `group` za dokument za skupine, `collaborative` za en dokument za vse ali `cohort` za dokument za kohorto).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: predmet za prilagajanje modalnega okna za ponastavitev dokumenta (običajno se ne sme spreminjati).. Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: nadzoruje, ali naj se ob predložitvi pošljejo potrditvena e-poštna sporočila z izpisom PDF/HTML.. Default: `false`.

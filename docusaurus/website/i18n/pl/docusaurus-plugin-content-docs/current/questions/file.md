@@ -18,7 +18,7 @@ Pytanie, w którym użytkownik proszony jest o przesłanie pliku.
 * __points__ | `number`: maksymalna liczba punktów przyznawanych w ramach oceniania. Default: `10`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style inline CSS. Default: `{}`.
-* __onChange__ | `function`: . Default: `onChange() {}`.
+* __onChange__ | `function`: callback do wywołania po otrzymaniu pliku. Default: `onChange() {}`.
 
 
 ## Przykłady

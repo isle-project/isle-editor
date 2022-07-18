@@ -12,7 +12,7 @@ Komponent do wyświetlania łącza.
 * __download__ | `(string|boolean)`: określa, czy link powinien zostać pobrany: ustawione na `true`, aby wymusić pobranie, lub łańcuch znaków, aby określić nazwę pliku; jeśli `false`, pobieranie nie jest wymuszane. Default: `false`.
 * __target__ | `string`: definiuje miejsce otwarcia linku: ustawia się na `_blank` dla nowego okna, `_self` own frame, `_parent` dla rodzica, `_top` dla pełnej treści okna, lub nazwę ramki. Default: `none`.
 * __windowFeatures__ | `string`: rozdzielona przecinkami lista właściwości okna, w którym link zostanie otwarty w nowym oknie (patrz: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean kontrolujący czy otworzyć URL w nowym oknie. Default: `false`.
 * __className__ | `string`: nazwa klasy. Default: `''`.
 * __style__ | `object`: Style CSS inline. Default: `{}`.
 

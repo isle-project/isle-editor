@@ -14,8 +14,8 @@ Histogramma.
 * __title__ | `string`: histogrammas nosaukums. Default: `none`.
 * __groupMode__ | `string`: vai pārklāt sagrupētas histogrammas vienu virs otras (`Overlay`) vai atsevišķos laukumos blakus (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontrolē, vai uz y-asis attēlot blīvuma vērtības, nevis skaitļus.. Default: `false`.
-* __densityType__ | `string`: parādot blīvumus, var pārklāt parametrisku sadalījumu (`Normāls`, `vienmērīgs` vai `eksponenciāls`) vai neparametrisku kodola blīvuma novērtējumu (`Data-driven`).. Default: `none`.
-* __densityParams__ | `array<number>`: blīvuma sadalījuma parametri, ja tiek izmantots parametriskais sadalījums ([mu, sigma] normālajam sadalījumam, [a, b] vienmērīgajam sadalījumam, [lambda] eksponenciālajam sadalījumam).. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: parādot blīvumus, var pārklāt parametrisko(-os) sadalījumu(-us) (`Normāls`, `Uniformāls`, `T`, 'Chi-kvadrātveida` vai `eksponenciāls`) un/vai neparametrisku kodola blīvuma novērtējumu (`Data-driven`).. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: sadalījuma parametri blīvumam, ja tiek izmantots parametriskais sadalījums ([mu, sigma] normālajam sadalījumam, [a, b] vienmērīgajam sadalījumam, [lambda] eksponenciālajam sadalījumam), vai objekts, kas attēlo sadalījuma nosaukumus parametriem, ja jāattēlo vairāki blīvumi (piemēram, `{{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}`).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: kodola blīvuma joslas platuma manuāla regulēšana (piemērojams tikai tad, ja `densityType` ir iestatīts uz `Data-driven`).. Default: `1`.
 * __binStrategy__ | `string`: binēšanas stratēģija (`Automātiska`, `Izvēlēties # bins` vai `Noteikt bin platumu`).. Default: `'Automatic'`.
 * __nBins__ | `number`: pielāgotais tvertņu skaits. Default: `none`.

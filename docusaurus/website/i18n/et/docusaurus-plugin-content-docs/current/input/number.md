@@ -16,7 +16,7 @@ Numbriline sisendkomponent. Saab kasutada ISLE armatuurlaua osana või iseseisva
 * __max__ | `number`: number, mis näitab maksimaalset väärtust, mida võib sisestada. Default: `null`.
 * __min__ | `number`: number, mis näitab väikseimat võimalikku väärtust, mida võib sisestada.. Default: `null`.
 * __numbersOnly__ | `boolean`: kontrollib, kas aktsepteeritakse ainult numbreid. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: string, mis näitab teksti, mis kuvatakse, kui sisend on tühi (eeldab, et `defaultValue` on seatud `null` või `undefined`).. Default: `'0'`.
 * __onBlur__ | `function`: tagasilöögifunktsioon, mis kutsutakse esile, kui kasutatakse hägususmeetodit. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback-funktsioon, mida kutsutakse esile, kui numbrisisend muutub. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: callback-funktsioon, mis kutsutakse esile, kui mõni klahv vajutatakse alla.. Default: `onKeyDown() {}`.

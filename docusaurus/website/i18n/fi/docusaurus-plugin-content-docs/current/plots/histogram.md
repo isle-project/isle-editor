@@ -14,8 +14,8 @@ Histogrammi.
 * __title__ | `string`: histogrammin otsikko. Default: `none`.
 * __groupMode__ | `string`: asetetaanko ryhmitellyt histogrammit päällekkäin (`Overlay`) vai erillisinä kuvioina vierekkäin (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: valvoo, näytetäänkö y-akselilla tiheysarvot lukumäärien sijasta.. Default: `false`.
-* __densityType__ | `string`: kun näytetään tiheyksiä, voidaan päälle asettaa joko parametrinen jakauma (`Normaali`, `Yhtenäinen` tai `Exponentiaalinen`) tai ei-parametrinen ydintiheysestimaatti (`Data-driven`).. Default: `none`.
-* __densityParams__ | `array<number>`: tiheyden jakaumaparametrit, kun käytetään parametrista jakaumaa ([mu, sigma] normaalijakaumalle, [a, b] tasajakaumalle, [lambda] eksponenttijakaumalle).. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: kun näytetään tiheyksiä, voidaan joko päällekkäin asettaa parametrinen jakauma (`Normaali`, `Yhtenäinen`, `T`, 'Chi-squared` tai `Exponentiaalinen`) ja/tai ei-parametrinen ydintiheysestimaatti (`Data-driven`).. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: jakauman parametrit tiheyttä varten, kun käytetään parametrista jakaumaa ([mu, sigma] normaalijakaumalle, [a, b] tasajakaumalle, [lambda] eksponenttijakaumalle), tai objekti, joka kuvaa jakauman nimet parametreihin, kun näytetään useita tiheyksiä (esim. `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}`).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: ytimen tiheyden kaistanleveyden manuaalinen säätö (sovelletaan vain, kun `densityType` on asetettu `Data-driven`).. Default: `1`.
 * __binStrategy__ | `string`: binning-strategia (`Automatic`, `Select # of bins`, tai `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: mukautettu lokeroiden määrä. Default: `none`.

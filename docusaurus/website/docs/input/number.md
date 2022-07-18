@@ -16,7 +16,7 @@ A number input component. Can be used as part of an ISLE dashboard or standalone
 * __max__ | `number`: number indicating the maximum value that may be inserted. Default: `null`.
 * __min__ | `number`: number indicating the smallest possible value that may be inserted. Default: `null`.
 * __numbersOnly__ | `boolean`: controls whether only numbers are accepted. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: string indicating the text displayed when the input is empty (requires `defaultValue` to be set to `null` or `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: callback function to be invoked when using a blur method. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback function to be invoked when number input is changed. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: callback function to be invoked when any key is pressed down. Default: `onKeyDown() {}`.

@@ -12,7 +12,7 @@ sidebar_label: Link
 * __download__ | `(string|boolean)`: 指定是否应该下载链接：设置为 "true "可以强制下载，或者用一个字符串指定文件名；如果 "false"，则不强制下载。. Default: `false`.
 * __target__ | `string`: 定义打开链接的位置：设置为`_blank`代表新窗口，`_self`代表自己的框架，`_parent`代表上级，`_top`代表窗口的主体，或者框架的名称。. Default: `none`.
 * __windowFeatures__ | `string`: 逗号分隔的窗口特征列表，用于链接在新窗口中打开时（见：https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features）。. Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: 控制是否在新窗口打开URL的布尔值. Default: `false`.
 * __className__ | `string`: 班名. Default: `''`.
 * __style__ | `object`: CSS内联样式. Default: `{}`.
 

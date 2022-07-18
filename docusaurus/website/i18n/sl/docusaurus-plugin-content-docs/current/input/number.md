@@ -16,7 +16,7 @@ Komponenta za vnos številk. Uporablja se lahko kot del armaturne plošče ISLE 
 * __max__ | `number`: število, ki označuje največjo vrednost, ki se lahko vstavi.. Default: `null`.
 * __min__ | `number`: število, ki označuje najmanjšo možno vrednost, ki se lahko vstavi.. Default: `null`.
 * __numbersOnly__ | `boolean`: nadzoruje, ali so sprejete samo številke.. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: niz, ki označuje besedilo, ki se prikaže, ko je vnos prazen (zahteva, da je `defaultValue` nastavljen na `null` ali `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: povratna funkcija, ki se sproži ob uporabi metode zameglitve. Default: `onBlur() {}`.
 * __onChange__ | `function`: funkcija povratne zveze, ki se sproži ob spremembi vhodne številke.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funkcija povratne zveze, ki se sproži, ko je pritisnjena katera koli tipka.. Default: `onKeyDown() {}`.

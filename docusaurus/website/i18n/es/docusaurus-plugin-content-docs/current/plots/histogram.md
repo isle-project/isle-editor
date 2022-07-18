@@ -14,8 +14,8 @@ Un histograma.
 * __title__ | `string`: título del histograma. Default: `none`.
 * __groupMode__ | `string`: si superponer los histogramas agrupados unos sobre otros (`Superponer`) o en parcelas separadas una al lado de la otra (`Facetas`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controla si se muestran los valores de densidad en lugar de los recuentos en el eje y. Default: `false`.
-* __densityType__ | `string`: cuando se muestran las densidades, se puede superponer una distribución paramétrica (`Normal`, `Uniforme`, o `Exponencial`) o una estimación de la densidad del núcleo no paramétrica (`Data-driven`). Default: `none`.
-* __densityParams__ | `array<number>`: parámetros de distribución para la densidad cuando se utiliza una distribución paramétrica ([mu, sigma] para una distribución normal, [a, b] para una distribución uniforme, [lambda] para una distribución exponencial). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: cuando se muestran las densidades, se puede superponer la(s) distribución(es) paramétrica(s) (`Normal`, `Uniforme`, `T`, `Chi-cuadrado` o `Exponencial`) y/o una estimación de densidad de núcleo no paramétrica (`Data-driven`). Default: `none`.
+* __densityParams__ | `(array<number>|any)`: parámetros de la distribución para la densidad cuando se utiliza una distribución paramétrica ([mu, sigma] para una distribución normal, [a, b] para una distribución uniforme, [lambda] para una distribución exponencial) o un objeto que asigna los nombres de las distribuciones a los parámetros cuando se deben mostrar varias densidades (por ejemplo, `{'Normal': [mu, sigma], 'Uniforme': [a, b]}, 'Exponencial': [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ajuste manual del ancho de banda de la densidad del kernel (aplicable sólo cuando `densityType` se establece como `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: la estrategia de los contenedores (`Automático`, `Seleccionar # de contenedores`, o `Ajustar el ancho de los contenedores`). Default: `'Automatic'`.
 * __nBins__ | `number`: número personalizado de contenedores. Default: `none`.

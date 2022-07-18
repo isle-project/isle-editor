@@ -16,7 +16,7 @@ O componentă de intrare a numerelor. Poate fi utilizată ca parte a unui tablou
 * __max__ | `number`: număr care indică valoarea maximă care poate fi introdusă. Default: `null`.
 * __min__ | `number`: număr care indică cea mai mică valoare posibilă care poate fi introdusă. Default: `null`.
 * __numbersOnly__ | `boolean`: controlează dacă sunt acceptate numai numere. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: șir de caractere care indică textul afișat atunci când intrarea este goală (necesită ca `defaultValue` să fie setat la `null` sau `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: funcția de rechemare care trebuie invocată atunci când se utilizează o metodă de estompare. Default: `onBlur() {}`.
 * __onChange__ | `function`: funcția de callback care trebuie invocată atunci când se modifică numărul introdus. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funcția de callback care trebuie invocată atunci când este apăsată orice tastă. Default: `onKeyDown() {}`.

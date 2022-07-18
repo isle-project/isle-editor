@@ -11,6 +11,7 @@ Teksto redaktorius, skirtas užrašams ar ataskaitoms rašyti. Palaikomas užra�
 * __allowSubmissions__ | `boolean`: kontroliuoja, ar mokiniai gali pateikti savo ataskaitas į serverį.. Default: `true`.
 * __canLoadHTML__ | `boolean`: kontroliuoja, ar rodyti išsaugoto HTML failo įkėlimo į redaktorių mygtuką.. Default: `true`.
 * __defaultValue__ | `string`: numatytasis redaktoriaus tekstas. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: kontroliuoja, ar į redaktorių turi būti įtrauktas istorijos rodinys.. Default: `true`.
 * __mode__ | `string`: valdo teksto redagavimo režimą (`individualus` - asmeniniam dokumentui, `grupinis` - dokumentui kiekvienai grupei, `bendradarbiavimas` - vienam dokumentui visiems arba `kohortos` - dokumentui kiekvienai grupei).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objektas, skirtas pritaikyti dokumento atstatymo modalą (paprastai neturėtų būti keičiamas).. Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: kontroliuoja, ar pateikus duomenis siųsti patvirtinimo el. laiškus su PDF/HTML išvestimi.. Default: `false`.

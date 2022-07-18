@@ -16,7 +16,7 @@ En komponent för inmatning av nummer. Kan användas som en del av en ISLE-instr
 * __max__ | `number`: Tal som anger det högsta värde som får införas.. Default: `null`.
 * __min__ | `number`: Tal som anger det minsta möjliga värdet som kan införas.. Default: `null`.
 * __numbersOnly__ | `boolean`: kontrollerar om endast siffror accepteras. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: sträng som anger den text som visas när inmatningen är tom (kräver att `defaultValue` är satt till `null` eller `undefined`).. Default: `'0'`.
 * __onBlur__ | `function`: callback-funktion som ska åberopas när man använder en suddig metod.. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback-funktion som ska anropas när nummerinmatningen ändras.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: callback-funktion som ska anropas när en tangent trycks ned.. Default: `onKeyDown() {}`.

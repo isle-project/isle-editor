@@ -11,6 +11,7 @@ Un editor de text pentru a scrie note sau rapoarte. Suportă exportul notelor ca
 * __allowSubmissions__ | `boolean`: controlează dacă elevii pot trimite rapoartele lor către server. Default: `true`.
 * __canLoadHTML__ | `boolean`: controlează dacă se afișează butonul pentru încărcarea unui fișier HTML salvat în editor. Default: `true`.
 * __defaultValue__ | `string`: textul implicit al editorului. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: controlează dacă editorul trebuie să includă o vizualizare a istoricului. Default: `true`.
 * __mode__ | `string`: controlează modul de editare a textului (fie `individual` pentru un document personal, `group` pentru un document pe grupuri, `collaborative` pentru un singur document pentru toată lumea, sau `cohort` pentru un document pe cohortă). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: obiect pentru personalizarea modalității de resetare a documentului (de obicei, nu ar trebui să fie modificat). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: controlează dacă se trimit e-mailuri de confirmare cu ieșire PDF/HTML la trimitere. Default: `false`.

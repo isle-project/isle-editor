@@ -11,6 +11,7 @@ En textredigerare för att skriva anteckningar eller rapporter. Stödjer export 
 * __allowSubmissions__ | `boolean`: kontrollerar om eleverna får skicka sina rapporter till servern. Default: `true`.
 * __canLoadHTML__ | `boolean`: kontrollerar om knappen för att ladda en sparad HTML-fil i redigeraren ska visas eller inte. Default: `true`.
 * __defaultValue__ | `string`: standardtext för redaktören. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: kontrollerar om redigeraren ska innehålla en historikvy. Default: `true`.
 * __mode__ | `string`: kontrollerar textredigeringsläget (antingen `individual` för ett personligt dokument, `group` för ett dokument per grupp, `collaborative` för ett enda dokument för alla, eller `cohort` för ett dokument per grupp).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekt för anpassning av modalfunktionen för återställning av dokumentet (bör vanligtvis inte ändras). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: Kontrollerar om det ska skickas e-postmeddelanden med PDF-/HTML-utgång vid inlämning.. Default: `false`.

@@ -11,6 +11,7 @@ Textový editor na písanie poznámok alebo správ. Podporuje export poznámok a
 * __allowSubmissions__ | `boolean`: kontroluje, či študenti môžu odosielať svoje správy na server.. Default: `true`.
 * __canLoadHTML__ | `boolean`: kontroluje, či sa má zobraziť tlačidlo na načítanie uloženého súboru HTML do editora.. Default: `true`.
 * __defaultValue__ | `string`: predvolený text editora. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: kontroluje, či má editor obsahovať zobrazenie histórie.. Default: `true`.
 * __mode__ | `string`: ovláda režim úpravy textu (buď `individuálny` pre osobný dokument, `skupinový` pre dokument pre skupiny, `spolupráca` pre jeden dokument pre všetkých alebo `skupinový` pre dokument pre skupinu). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekt na prispôsobenie modálneho okna na resetovanie dokumentu (zvyčajne by sa nemal meniť). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: kontroluje, či sa majú po odoslaní odoslať potvrdzujúce e-maily s výstupom PDF/HTML.. Default: `false`.

@@ -14,8 +14,8 @@ Et histogram.
 * __title__ | `string`: titel på histogrammet. Default: `none`.
 * __groupMode__ | `string`: om grupperede histogrammer skal overlejres oven på hinanden (`Overlay`) eller i separate plot ved siden af hinanden (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: styrer, om der skal vises tæthedsværdier i stedet for tællinger på y-aksen. Default: `false`.
-* __densityType__ | `string`: Når man viser tætheder, kan man enten lægge en parametrisk fordeling (`Normal`, `Uniform` eller `Exponential`) eller et ikke-parametrisk kerne-tæthedsestimat (`Data-driven`) over hinanden.. Default: `none`.
-* __densityParams__ | `array<number>`: fordelingsparametre for tætheden, når der anvendes en parametrisk fordeling ([mu, sigma] for en normalfordeling, [a, b] for en ensartet fordeling, [lambda] for en eksponentiel fordeling). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: ved visning af tætheder kan man enten overlejre parametriske fordelinger (`Normal`, `Uniform`, `T`, 'Chi-squared` eller `Exponential`) og/eller et ikke-parametrisk kernetæthedsestimat (`Data-driven`). Default: `none`.
+* __densityParams__ | `(array<number>|any)`: fordelingsparametre for tætheden, når der anvendes en parametrisk fordeling ([mu, sigma] for en normalfordeling, [a, b] for en ensartet fordeling, [lambda] for en eksponentiel fordeling) eller et objekt, der mapper fordelingsnavne til parametre, når der skal vises flere tætheder (f.eks. `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}`).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: manuel justering af båndbredden for kernetætheden (kun gældende, når `densityType` er indstillet til `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: binningstrategi (`Automatisk`, `Vælg antal bin'er` eller `Sæt binbredde`). Default: `'Automatic'`.
 * __nBins__ | `number`: brugerdefineret antal beholdere. Default: `none`.

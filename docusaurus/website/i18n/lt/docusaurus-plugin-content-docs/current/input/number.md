@@ -16,7 +16,7 @@ Skaičių įvesties komponentas. Gali būti naudojamas kaip ISLE prietaisų skyd
 * __max__ | `number`: skaičius, nurodantis didžiausią galimą įterpti vertę.. Default: `null`.
 * __min__ | `number`: skaičius, nurodantis mažiausią galimą įterpti vertę.. Default: `null`.
 * __numbersOnly__ | `boolean`: kontroliuoja, ar priimami tik skaičiai.. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: eilutė, nurodanti tekstą, rodomą, kai įvestis yra tuščia (reikia, kad `defaultValue` būtų nustatyta į `null` arba `undefined`).. Default: `'0'`.
 * __onBlur__ | `function`: grįžtamojo ryšio funkcija, kurią reikia iškviesti, kai naudojamas suliejimo metodas. Default: `onBlur() {}`.
 * __onChange__ | `function`: grįžtamojo ryšio funkcija, kuri bus iškviečiama, kai bus pakeistas įvestas skaičius.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: grįžtamojo ryšio funkcija, kuri bus iškviečiama, kai bus paspaustas bet kuris klavišas.. Default: `onKeyDown() {}`.

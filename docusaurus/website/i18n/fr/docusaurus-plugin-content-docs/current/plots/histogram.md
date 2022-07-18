@@ -14,8 +14,8 @@ Un histogramme.
 * __title__ | `string`: titre de l'histogramme. Default: `none`.
 * __groupMode__ | `string`: la superposition d'histogrammes groupés ("Overlay") ou la mise en place de graphiques séparés les uns à côté des autres ("Facets"). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: contrôle si les valeurs de densité doivent être affichées sur l'axe des y au lieu des comptes. Default: `false`.
-* __densityType__ | `string`: lors de l'affichage des densités, on peut soit superposer une distribution paramétrique (`Normal`, `Uniforme`, ou `Exponentiel`) ou une estimation non-paramétrique de la densité du noyau (`Data-driven`). Default: `none`.
-* __densityParams__ | `array<number>`: paramètres de distribution pour la densité lorsqu'une distribution paramétrique est utilisée ([mu, sigma] pour une distribution normale, [a, b] pour une distribution uniforme, [lambda] pour une distribution exponentielle). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: lors de l'affichage des densités, on peut soit superposer une ou plusieurs distributions paramétriques (`Normal`, `Uniforme`, `T`, `Khi-deux`, ou `Exponentiel`) et/ou une estimation non paramétrique de la densité par noyau (`Data-driven`). Default: `none`.
+* __densityParams__ | `(array<number>|any)`: paramètres de distribution pour la densité lorsqu'une distribution paramétrique est utilisée ([mu, sigma] pour une distribution normale, [a, b] pour une distribution uniforme, [lambda] pour une distribution exponentielle) ou un objet faisant correspondre les noms de distribution aux paramètres lorsque plusieurs densités doivent être affichées (par exemple, `{'Normal' : [mu, sigma], 'Uniform' : [a, b]}, 'Exponential' : [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ajustement manuel de la largeur de bande de la densité du noyau (applicable uniquement lorsque "densityType" est réglé sur "Data-driven"). Default: `1`.
 * __binStrategy__ | `string`: stratégie de mise en bac ("Automatique", "Sélectionner le nombre de bacs", ou "Définir la largeur du bac"). Default: `'Automatic'`.
 * __nBins__ | `number`: nombre de bacs personnalisé. Default: `none`.

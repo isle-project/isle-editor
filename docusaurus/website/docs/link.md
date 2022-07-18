@@ -12,7 +12,7 @@ A component for displaying a link.
 * __download__ | `(string|boolean)`: specifies whether link should be downloaded: set to `true` to force download, or a string to specify the filename; if `false`, no download is forced. Default: `false`.
 * __target__ | `string`: defines where link is opened: set to `_blank` for new window, `_self` own frame, `_parent` for parent, `_top` for full body of window, or the name of the frame. Default: `none`.
 * __windowFeatures__ | `string`: comma-separated list of window features for when link is opened in new window (see: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean controlling whether to open URL in new window. Default: `false`.
 * __className__ | `string`: class name. Default: `''`.
 * __style__ | `object`: CSS inline styles. Default: `{}`.
 

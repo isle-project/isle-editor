@@ -14,8 +14,8 @@ Egy hisztogram.
 * __title__ | `string`: a hisztogram címe. Default: `none`.
 * __groupMode__ | `string`: hogy a csoportosított hisztogramokat egymásra helyezzük-e (`Overlay`) vagy különálló ábrákon egymás mellett (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: szabályozza, hogy az y-tengelyen a sűrűségértékek jelenjenek-e meg a számlálás helyett.. Default: `false`.
-* __densityType__ | `string`: a sűrűségek megjelenítésekor vagy egy parametrikus eloszlást (`Normális`, `Egyenletes` vagy `Exponenciális`) vagy egy nem parametrikus kernel sűrűségbecslést (`Adatvezérelt`) lehet ráteríteni.. Default: `none`.
-* __densityParams__ | `array<number>`: eloszlás paraméterei a sűrűséghez, ha parametrikus eloszlást használunk ([mu, sigma] normális eloszlás esetén, [a, b] egyenletes eloszlás esetén, [lambda] exponenciális eloszlás esetén).. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: a sűrűségek megjelenítésekor a parametrikus eloszlás(ok) (`Normális`, `Egyenletes`, `T`, 'Chi-négyzet`, vagy `Exponenciális`) és/vagy egy nem parametrikus kernel sűrűségbecslés (`Adatvezérelt`) is megjeleníthető.. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: eloszlás paraméterei a sűrűséghez, ha parametrikus eloszlást használunk ([mu, sigma] normál eloszlás esetén, [a, b] egyenletes eloszlás esetén, [lambda] exponenciális eloszlás esetén), vagy egy objektum, amely az eloszlás neveit paraméterekre képezi le, ha több sűrűséget kell megjeleníteni (pl. `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: a kernel sűrűség sávszélességének kézi beállítása (csak akkor alkalmazható, ha a "densityType" értéke "Data-driven"). Default: `1`.
 * __binStrategy__ | `string`: binning stratégia (`Automatic`, `Select # of bins`, vagy `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: tárolók egyéni száma. Default: `none`.

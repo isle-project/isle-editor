@@ -11,6 +11,7 @@ sidebar_label: Text Editor
 * __allowSubmissions__ | `boolean`: 学生がレポートをサーバーに提出するかどうかを制御します。. Default: `true`.
 * __canLoadHTML__ | `boolean`: 保存したHTMLファイルをエディタに読み込むためのボタンを表示するかどうかを制御します。. Default: `true`.
 * __defaultValue__ | `string`: エディタのデフォルトテキスト. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: は、エディタにヒストリービューを含めるかどうかを制御します。. Default: `true`.
 * __mode__ | `string`: テキスト編集モードを制御します (個人文書であれば `individual`、グループ文書であれば `group`、全員の文書であれば `collaborative`、コホート文書であれば `cohort` のいずれか)。. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: ドキュメントをリセットするためのモーダルをカスタマイズするためのオブジェクト (通常は変更されるべきではありません). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: 送信時にPDF/HTML出力で確認メールを送信するかどうかを制御します。. Default: `false`.

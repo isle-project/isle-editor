@@ -16,7 +16,7 @@ sidebar_label: Number Input
 * __max__ | `number`: 挿入可能な最大値を示す番号. Default: `null`.
 * __min__ | `number`: 挿入可能な最小値を示す番号. Default: `null`.
 * __numbersOnly__ | `boolean`: 数字だけを受け入れるかどうかを制御します。. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: 入力が空の場合に表示されるテキストを表す文字列 (`defaultValue` が `null` または `undefined` に設定されている必要があります). Default: `'0'`.
 * __onBlur__ | `function`: ぼかしメソッドを使用する際に呼び出されるコールバック関数. Default: `onBlur() {}`.
 * __onChange__ | `function`: 番号入力が変更されたときに呼び出すコールバック関数. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: コールバック関数. Default: `onKeyDown() {}`.

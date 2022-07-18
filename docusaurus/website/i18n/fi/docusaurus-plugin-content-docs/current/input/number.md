@@ -16,7 +16,7 @@ Numeron syöttökomponentti. Voidaan käyttää osana ISLE-kojelautaa tai itsen�
 * __max__ | `number`: numero, joka osoittaa suurimman sallitun syötettävän arvon.. Default: `null`.
 * __min__ | `number`: numero, joka osoittaa pienimmän mahdollisen arvon, joka voidaan lisätä.. Default: `null`.
 * __numbersOnly__ | `boolean`: valvoo, hyväksytäänkö vain numerot. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: merkkijono, joka osoittaa tekstin, joka näytetään, kun syöttö on tyhjä (edellyttää, että `defaultValue` on asetettu arvoon `null` tai `undefined`).. Default: `'0'`.
 * __onBlur__ | `function`: callback-funktio, joka kutsutaan, kun käytetään blur-menetelmää. Default: `onBlur() {}`.
 * __onChange__ | `function`: takaisinkutsufunktio, joka käynnistetään, kun numeron syöttöä muutetaan.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: takaisinkutsufunktio, joka käynnistetään, kun jokin näppäin painetaan alas.. Default: `onKeyDown() {}`.

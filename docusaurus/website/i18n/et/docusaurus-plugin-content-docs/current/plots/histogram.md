@@ -14,8 +14,8 @@ Histogramm.
 * __title__ | `string`: histogrammi pealkiri. Default: `none`.
 * __groupMode__ | `string`: kas grupeeritud histogramme üksteise peale (`Overlay`) või eraldi graafikutena üksteise kõrval (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontrollib, kas y-teljel näidatakse loenduste asemel tiheduse väärtusi.. Default: `false`.
-* __densityType__ | `string`: tiheduste kuvamisel saab üle kanda kas parameetrilise jaotuse (`Normal`, `Uniform` või `Eksponentsiaalne`) või mitteparameetrilise kerneli tiheduse hinnangu (`Data-driven`).. Default: `none`.
-* __densityParams__ | `array<number>`: jaotusparameetrid tiheduse jaoks, kui kasutatakse parameetrilist jaotust ([mu, sigma] normaaljaotuse korral, [a, b] ühtlase jaotuse korral, [lambda] eksponentsiaaljaotuse korral).. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: tiheduste kuvamisel saab üle kanda parameetrilise(d) jaotuse(d) (`Normaalne`, `Uniformne`, `T`, 'Chi-squared` või `Eksponentsiaalne`) ja/või mitteparameetrilise kerneli tiheduse hinnangu (`Data-driven`).. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: jaotuse parameetrid tiheduse jaoks, kui kasutatakse parameetrilist jaotust ([mu, sigma] normaaljaotuse puhul, [a, b] ühtlase jaotuse puhul, [lambda] eksponentsiaalse jaotuse puhul) või objekt, mis kaardistab jaotuse nimed parameetritele, kui tuleks kuvada mitu tihedust (nt `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponentsiaalne': [lambda]}`).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: kerneli tiheduse ribalaiuse käsitsi reguleerimine (rakendub ainult siis, kui "densityType" on seatud "Data-driven").. Default: `1`.
 * __binStrategy__ | `string`: binning strateegia (`Automaatne`, `Valige binside arv` või `Set bin width`). Default: `'Automatic'`.
 * __nBins__ | `number`: kohandatud mahutite arv. Default: `none`.

@@ -14,8 +14,8 @@ Histogram.
 * __title__ | `string`: tytuł histogramu. Default: `none`.
 * __groupMode__ | `string`: czy nakładać na siebie zgrupowane histogramy (`Overlay`), czy też w oddzielnych działkach obok siebie (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontroluje, czy wartości gęstości mają być wyświetlane zamiast zliczane na osi y. Default: `false`.
-* __densityType__ | `string`: przy wyświetlaniu gęstości można albo nałożyć rozkład parametryczny (`Normalny`, `Uniformalny` lub `Exponential`), albo nieparametryczną ocenę gęstości jądra (`Data-driven`). Default: `none`.
-* __densityParams__ | `array<number>`: parametry rozkładu dla gęstości, gdy używany jest rozkład parametryczny ([mu, sigma] dla rozkładu normalnego, [a, b] dla rozkładu jednostajnego, [lambda] dla rozkładu wykładniczego). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: podczas wyświetlania gęstości można nałożyć rozkład parametryczny (`normalny`, `jednolity`, `T`, 'Chi-kwadrat` lub `wykładniczy`) i/lub nieparametryczne oszacowanie gęstości jądra (`Data-driven`). Default: `none`.
+* __densityParams__ | `(array<number>|any)`: parametry rozkładu dla gęstości, gdy używany jest rozkład parametryczny ([mu, sigma] dla rozkładu normalnego, [a, b] dla rozkładu jednostajnego, [lambda] dla rozkładu wykładniczego) lub obiekt odwzorowujący nazwy rozkładów na parametry, gdy należy wyświetlić wiele gęstości (np. `{'Normalny': [mu, sigma], 'Jednostajny': [a, b]}, 'Wykładniczy': [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ręczne dostosowanie szerokości pasma gęstości jądra (dotyczy tylko gdy `densityType` jest ustawione na `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: Strategia kosza (`Automatyczna`, `Wybieranie # koszy`, lub `Ustawianie szerokości kosza`). Default: `'Automatic'`.
 * __nBins__ | `number`: niestandardowa liczba pojemników. Default: `none`.

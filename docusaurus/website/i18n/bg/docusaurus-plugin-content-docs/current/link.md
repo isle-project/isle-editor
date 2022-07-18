@@ -12,7 +12,7 @@ sidebar_label: Link
 * __download__ | `(string|boolean)`: указва дали връзката трябва да бъде изтеглена: задава се `true`, за да се наложи изтегляне, или низ, за да се посочи името на файла; ако е `false`, не се налага изтегляне. Default: `false`.
 * __target__ | `string`: определя къде се отваря връзката: задава се `_blank` за нов прозорец, `_self` за собствена рамка, `_parent` за родител, `_top` за цялото тяло на прозореца или името на рамката. Default: `none`.
 * __windowFeatures__ | `string`: списък с функции на прозореца, разделени със запетая, за отваряне на връзката в нов прозорец (вж.: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: булева, контролираща дали URL адресът да се отваря в нов прозорец. Default: `false`.
 * __className__ | `string`: име на класа. Default: `''`.
 * __style__ | `object`: CSS инлайн стилове. Default: `{}`.
 

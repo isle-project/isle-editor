@@ -11,6 +11,7 @@ sidebar_label: Text Editor
 * __allowSubmissions__ | `boolean`: контролира дали учениците могат да изпращат отчетите си на сървъра.. Default: `true`.
 * __canLoadHTML__ | `boolean`: контролира дали да се показва бутон за зареждане на запазен HTML файл в редактора. Default: `true`.
 * __defaultValue__ | `string`: текст по подразбиране на редактора. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: контролира дали редакторът да включва изглед на историята. Default: `true`.
 * __mode__ | `string`: контролира режима на редактиране на текст (или `индивидуален` за личен документ, или `групов` за документ за групи, или `съвместен` за единен документ за всички, или `кохорта` за документ за кохорта).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: обект за персонализиране на модала за нулиране на документа (обикновено не трябва да се променя). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: контролира дали да се изпращат имейли за потвърждение с PDF/HTML изход при подаване.. Default: `false`.

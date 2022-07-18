@@ -12,7 +12,7 @@ Um componente para a exibição de um link.
 * __download__ | `(string|boolean)`: especifica se o link deve ser baixado: definir para "verdadeiro" para forçar o download, ou uma string para especificar o nome do arquivo; se "falso", nenhum download é forçado. Default: `false`.
 * __target__ | `string`: define onde o link é aberto: definido como `_blank` para nova janela, `_self` frame próprio, `_parent` para pai, `_top` para o corpo inteiro da janela, ou o nome do frame. Default: `none`.
 * __windowFeatures__ | `string`: lista separada por vírgula de recursos de janela para quando o link é aberto em uma nova janela (ver: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: booleano controlando se a URL deve ser aberta em uma nova janela. Default: `false`.
 * __className__ | `string`: nome da classe. Default: `''`.
 * __style__ | `object`: Estilos em linha CSS. Default: `{}`.
 

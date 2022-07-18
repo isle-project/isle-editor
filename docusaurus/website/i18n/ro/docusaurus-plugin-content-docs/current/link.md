@@ -12,7 +12,7 @@ O componentă pentru afișarea unui link.
 * __download__ | `(string|boolean)`: specifică dacă linkul trebuie descărcat: setat la `true` pentru a forța descărcarea, sau un șir de caractere pentru a specifica numele fișierului; dacă `false`, nu se forțează descărcarea. Default: `false`.
 * __target__ | `string`: definește unde se deschide link-ul: setează `_blank` pentru fereastră nouă, `_self` pentru propriul cadru, `_parent` pentru părinte, `_top` pentru întregul corp al ferestrei, sau numele cadrului.. Default: `none`.
 * __windowFeatures__ | `string`: listă de caracteristici ale ferestrei, separate prin virgulă, pentru momentul în care link-ul este deschis într-o fereastră nouă (a se vedea: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean care controlează dacă se deschide URL-ul într-o fereastră nouă. Default: `false`.
 * __className__ | `string`: numele clasei. Default: `''`.
 * __style__ | `object`: Stiluri inline CSS. Default: `{}`.
 

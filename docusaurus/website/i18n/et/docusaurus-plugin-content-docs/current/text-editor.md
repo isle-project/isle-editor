@@ -11,6 +11,7 @@ Tekstiredaktor märkmete või aruannete kirjutamiseks. Toetab märkmete eksporti
 * __allowSubmissions__ | `boolean`: kontrollib, kas õpilased võivad oma aruandeid serverisse esitada.. Default: `true`.
 * __canLoadHTML__ | `boolean`: kontrollib, kas kuvatakse nuppu salvestatud HTML-faili laadimiseks redaktorisse. Default: `true`.
 * __defaultValue__ | `string`: redaktori vaikimisi tekst. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: kontrollib, kas toimetaja peaks sisaldama ajaloovaadet. Default: `true`.
 * __mode__ | `string`: kontrollib teksti redigeerimise režiimi (kas `individuaalne` isikliku dokumendi puhul, `gruppi` dokumendi puhul rühmade kaupa, `koostöö` ühe dokumendi puhul kõigi jaoks või `koondise` dokumendi puhul kohordi kaupa).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekt dokumendi lähtestamise modaali kohandamiseks (tavaliselt ei tohiks seda muuta). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: kontrollib, kas saata PDF/HTML-väljundiga kinnituse e-kirju esitamisel.. Default: `false`.

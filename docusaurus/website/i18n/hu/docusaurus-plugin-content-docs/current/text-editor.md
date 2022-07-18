@@ -11,6 +11,7 @@ Szövegszerkesztő jegyzetek vagy jelentések írásához. Támogatja a jegyzete
 * __allowSubmissions__ | `boolean`: szabályozza, hogy a diákok elküldhetik-e jelentéseiket a szerverre.. Default: `true`.
 * __canLoadHTML__ | `boolean`: szabályozza, hogy megjelenjen-e a mentett HTML fájl betöltésére szolgáló gomb a szerkesztőbe.. Default: `true`.
 * __defaultValue__ | `string`: a szerkesztő alapértelmezett szövege. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: szabályozza, hogy a szerkesztő tartalmazzon-e előzménynézetet. Default: `true`.
 * __mode__ | `string`: a szövegszerkesztés módját vezérli (egyéni dokumentum esetén "egyéni", csoportos dokumentum esetén "csoportonként", közös dokumentum esetén "kollaboratív", ha mindenki számára egy dokumentumot készít, vagy csoportonként "kohorsz").. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objektum a dokumentum visszaállítására szolgáló modál testreszabásához (általában nem kell megváltoztatni). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: ellenőrzi, hogy küldjön-e visszaigazoló e-mailt PDF/HTML kimenettel a benyújtáskor. Default: `false`.

@@ -16,7 +16,7 @@ Komponenta pro zadávání čísel. Lze ji použít jako součást ovládacího 
 * __max__ | `number`: číslo udávající maximální hodnotu, kterou lze vložit.. Default: `null`.
 * __min__ | `number`: číslo udávající nejmenší možnou hodnotu, kterou lze vložit.. Default: `null`.
 * __numbersOnly__ | `boolean`: kontroluje, zda jsou přijímána pouze čísla. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: řetězec označující text, který se zobrazí, když je vstup prázdný (vyžaduje, aby `defaultValue` bylo nastaveno na `null` nebo `undefined`).. Default: `'0'`.
 * __onBlur__ | `function`: funkce zpětného volání, která má být vyvolána při použití metody rozmazání. Default: `onBlur() {}`.
 * __onChange__ | `function`: funkce zpětného volání, která se vyvolá při změně zadaného čísla.. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funkce zpětného volání, která se vyvolá při stisknutí libovolné klávesy.. Default: `onKeyDown() {}`.

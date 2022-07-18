@@ -12,7 +12,7 @@ Un composant permettant d'afficher un lien.
 * __download__ | `(string|boolean)`: spécifie si le lien doit être téléchargé : défini à `true` pour forcer le téléchargement, ou une chaîne pour spécifier le nom du fichier ; si `false`, aucun téléchargement n'est forcé.. Default: `false`.
 * __target__ | `string`: définit l'endroit où le lien est ouvert : mis à `_blank` pour une nouvelle fenêtre, `_self` own frame, `_parent` pour le parent, `_top` pour le corps complet de la fenêtre, ou le nom du cadre. Default: `none`.
 * __windowFeatures__ | `string`: liste de caractéristiques de fenêtres séparées par des virgules pour l'ouverture du lien dans une nouvelle fenêtre (voir : https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: booléen contrôlant l'ouverture de l'URL dans une nouvelle fenêtre.. Default: `false`.
 * __className__ | `string`: nom de la classe. Default: `''`.
 * __style__ | `object`: Styles CSS en ligne. Default: `{}`.
 

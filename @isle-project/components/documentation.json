@@ -1741,6 +1741,7 @@
 			{
 				"name": "placeholder",
 				"type": "string",
+				"description": "NumberInput-prop-placeholder",
 				"defaultValue": "0"
 			},
 			{
@@ -3446,6 +3447,7 @@
 			{
 				"name": "openWindow",
 				"type": "boolean",
+				"description": "Link-prop-openWindow",
 				"defaultValue": false
 			},
 			{
@@ -3666,6 +3668,12 @@
 				"type": "number",
 				"description": "KMeans-prop-K",
 				"defaultValue": 3
+			},
+			{
+				"name": "elbowPlot",
+				"type": "boolean",
+				"description": "KMeans-prop-elbowPlot",
+				"defaultValue": false
 			},
 			{
 				"name": "initialization",
@@ -4686,13 +4694,13 @@
 			},
 			{
 				"name": "densityType",
-				"type": "string",
+				"type": "(string|array<string>)",
 				"description": "Histogram-prop-densityType",
 				"defaultValue": null
 			},
 			{
 				"name": "densityParams",
-				"type": "array<number>",
+				"type": "(array<number>|any)",
 				"description": "Histogram-prop-densityParams",
 				"defaultValue": []
 			},
@@ -8317,6 +8325,12 @@
 				"type": "string",
 				"description": "TextEditor-prop-defaultValue",
 				"defaultValue": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+			},
+			{
+				"name": "history",
+				"type": "boolean",
+				"description": "TextEditor-prop-history",
+				"defaultValue": true
 			},
 			{
 				"name": "mode",

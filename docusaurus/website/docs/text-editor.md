@@ -11,6 +11,7 @@ A text editor for writing notes or reports. Supports exporting of notes as HTML 
 * __allowSubmissions__ | `boolean`: controls whether students may submit their reports to the server. Default: `true`.
 * __canLoadHTML__ | `boolean`: controls whether to display button for loading a saved HTML file into the editor. Default: `true`.
 * __defaultValue__ | `string`: default text of the editor. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: controls whether the editor should include a history view. Default: `true`.
 * __mode__ | `string`: controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: object for customizing the modal for resetting the document (should usually not be changed). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: controls whether to send confirmation emails with PDF/HTML output upon submission. Default: `false`.

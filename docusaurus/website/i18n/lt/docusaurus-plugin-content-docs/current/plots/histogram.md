@@ -14,8 +14,8 @@ Histograma.
 * __title__ | `string`: histogramos pavadinimas. Default: `none`.
 * __groupMode__ | `string`: ar sugrupuotas histogramas dengti vieną ant kitos (`Overlay`), ar atskirose diagramose šalia viena kitos (`Facets`).. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: kontroliuoja, ar y ašyje rodyti tankio vertes, o ne skaičių.. Default: `false`.
-* __densityType__ | `string`: rodant tankį, galima uždengti parametrinį pasiskirstymą (`Normalusis`, `Vienodasis` arba `Eksponentinis`) arba neparametrinį branduolio tankio įvertį (`Data-driven`).. Default: `none`.
-* __densityParams__ | `array<number>`: tankio pasiskirstymo parametrai, kai naudojamas parametrinis pasiskirstymas ([mu, sigma] normaliajam pasiskirstymui, [a, b] tolygiam pasiskirstymui, [lambda] eksponentiniam pasiskirstymui).. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: rodant tankį, galima uždengti parametrinį (-ius) pasiskirstymą (-us) (`Normalus`, `Vienodas`, `T`, `Chi kvadratas` arba `Eksponentinis`) ir (arba) neparametrinį branduolio tankio įvertinimą (`Data-driven`).. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: pasiskirstymo parametrai, kai naudojamas parametrinis pasiskirstymas ([mu, sigma] - normalusis pasiskirstymas, [a, b] - tolygusis pasiskirstymas, [lambda] - eksponentinis pasiskirstymas), arba objektas, atvaizduojantis pasiskirstymo pavadinimus į parametrus, kai reikia rodyti kelis tankumus (pvz., `{{'Normalusis': [mu, sigma], 'Tolygusis': [a, b]}, 'Eksponentinis': [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: rankinis branduolio tankio juostos pločio reguliavimas (taikoma tik tada, kai `densityType` nustatyta į `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: binavimo strategija (`Automatinė`, `Pasirinkite # bins` arba `Nustatykite bins plotį`). Default: `'Automatic'`.
 * __nBins__ | `number`: pasirinktinis talpyklų skaičius. Default: `none`.

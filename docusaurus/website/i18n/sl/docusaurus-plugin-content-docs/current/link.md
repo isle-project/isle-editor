@@ -12,7 +12,7 @@ Komponenta za prikaz povezave.
 * __download__ | `(string|boolean)`: določa, ali naj se povezava prenese: nastavi na `true`, da se prenese, ali na niz, da se določi ime datoteke; če je `false`, se ne prenese.. Default: `false`.
 * __target__ | `string`: določa, kje se odpre povezava: nastavi se na `_blank` za novo okno, `_self` za lastni okvir, `_parent` za starševski okvir, `_top` za celotno telo okna ali ime okvirja.. Default: `none`.
 * __windowFeatures__ | `string`: z vejico ločen seznam okenskih funkcij, ki se uporabijo, ko se povezava odpre v novem oknu (glej: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean, ki določa, ali se URL odpre v novem oknu. Default: `false`.
 * __className__ | `string`: ime razreda. Default: `''`.
 * __style__ | `object`: Vnosni slogi CSS. Default: `{}`.
 

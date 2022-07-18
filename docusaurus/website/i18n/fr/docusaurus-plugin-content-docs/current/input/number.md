@@ -16,7 +16,7 @@ Un élément de saisie de chiffres. Peut être utilisé dans le cadre d'un table
 * __max__ | `number`: numéro indiquant la valeur maximale qui peut être insérée. Default: `null`.
 * __min__ | `number`: numéro indiquant la plus petite valeur possible qui peut être insérée. Default: `null`.
 * __numbersOnly__ | `boolean`: contrôle si seuls les numéros sont acceptés. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: chaîne de caractères indiquant le texte affiché lorsque l'entrée est vide (nécessite que `defaultValue` soit défini à `null` ou `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: fonction de rappel à invoquer en cas d'utilisation d'une méthode de flou. Default: `onBlur() {}`.
 * __onChange__ | `function`: fonction de rappel à invoquer en cas de modification de la saisie du numéro. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: fonction de rappel à invoquer en appuyant sur n'importe quelle touche. Default: `onKeyDown() {}`.

@@ -11,6 +11,7 @@ sidebar_label: Text Editor
 * __allowSubmissions__ | `boolean`: 控制学生是否可以向服务器提交他们的报告. Default: `true`.
 * __canLoadHTML__ | `boolean`: 控制是否显示将保存的HTML文件加载到编辑器中的按钮。. Default: `true`.
 * __defaultValue__ | `string`: 编辑器默认文本. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: 控制编辑器是否应该包括一个历史视图. Default: `true`.
 * __mode__ | `string`: 控制文本编辑模式(`individual`代表个人文件，`group`代表每个小组的文件，`collaborative`代表每个人的单一文件，或 `cohort`代表每个群体的文件). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: 对象，用于自定义重置文档的模式(通常不应更改). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: 控制是否在提交时发送带有PDF/HTML输出的确认邮件。. Default: `false`.

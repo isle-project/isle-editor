@@ -12,7 +12,7 @@ Komponentas, skirtas nuorodai rodyti.
 * __download__ | `(string|boolean)`: nurodo, ar nuoroda turi būti atsisiųsta: nustatyta reikšmė `true`, kad būtų priverstinai atsisiųsta, arba eilutė, kad būtų nurodytas failo vardas; jei `false`, atsisiųsti nebūtina.. Default: `false`.
 * __target__ | `string`: apibrėžia, kur nuoroda atidaroma: nustatyta į `_blank` - naujam langui, `_self` - savo rėmeliui, `_parent` - pagrindiniam langui, `_top` - visam lango korpusui arba rėmelio pavadinimui.. Default: `none`.
 * __windowFeatures__ | `string`: kableliais atskirtas lango savybių sąrašas, kai nuoroda atidaroma naujame lange (žr.: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: loginis veiksnys, rodantis, ar URL atidaryti naujame lange. Default: `false`.
 * __className__ | `string`: klasės pavadinimas. Default: `''`.
 * __style__ | `object`: CSS eilutės stiliai. Default: `{}`.
 

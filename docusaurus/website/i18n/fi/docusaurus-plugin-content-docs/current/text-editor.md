@@ -11,6 +11,7 @@ Tekstieditori muistiinpanojen tai raporttien kirjoittamiseen. Tukee muistiinpano
 * __allowSubmissions__ | `boolean`: valvoo, voivatko opiskelijat lähettää raporttinsa palvelimelle.. Default: `true`.
 * __canLoadHTML__ | `boolean`: valvoo, näytetäänkö painike tallennetun HTML-tiedoston lataamiseksi editoriin.. Default: `true`.
 * __defaultValue__ | `string`: editorin oletusteksti. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: valvoo, sisältääkö editori historiannäkymän. Default: `true`.
 * __mode__ | `string`: ohjaa tekstinmuokkaustilaa (joko `yksilöllinen` henkilökohtaiselle asiakirjalle, `ryhmä` ryhmäkohtaiselle asiakirjalle, `yhteistyö` kaikille yhteiselle asiakirjalle tai `ryhmä` kohorttikohtaiselle asiakirjalle).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekti, jolla mukautetaan modaalia asiakirjan nollaamiseksi (yleensä sitä ei pitäisi muuttaa).. Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: valvoo, lähetetäänkö lähetyksen yhteydessä vahvistussähköposteja PDF/HTML-tulosteen kanssa. Default: `false`.

@@ -12,7 +12,7 @@ sidebar_label: Link
 * __download__ | `(string|boolean)`: καθορίζει αν ο σύνδεσμος θα πρέπει να μεταφορτωθεί: τίθεται σε `true` για να εξαναγκαστεί η μεταφόρτωση, ή μια συμβολοσειρά για να καθοριστεί το όνομα του αρχείου- αν `false`, δεν εξαναγκάζεται η μεταφόρτωση.. Default: `false`.
 * __target__ | `string`: ορίζει πού ανοίγει ο σύνδεσμος: ορίζεται σε `_blank` για νέο παράθυρο, `_self` για το δικό του πλαίσιο, `_parent` για τον γονέα, `_top` για ολόκληρο το σώμα του παραθύρου ή το όνομα του πλαισίου.. Default: `none`.
 * __windowFeatures__ | `string`: λίστα χαρακτηριστικών παραθύρου με διαχωρισμό με κόμμα για το άνοιγμα του συνδέσμου σε νέο παράθυρο (βλέπε: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features). Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: boolean που ελέγχει αν θα ανοίξει η διεύθυνση URL σε νέο παράθυρο. Default: `false`.
 * __className__ | `string`: όνομα κλάσης. Default: `''`.
 * __style__ | `object`: Στυλ γραμμής CSS. Default: `{}`.
 

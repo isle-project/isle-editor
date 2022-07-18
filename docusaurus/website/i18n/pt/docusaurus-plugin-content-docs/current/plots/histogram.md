@@ -14,8 +14,8 @@ Um histograma.
 * __title__ | `string`: título do histograma. Default: `none`.
 * __groupMode__ | `string`: se devem sobrepor histogramas agrupados uns sobre os outros (`Overlay') ou em parcelas separadas umas ao lado das outras (`Facetas'). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controla se deve exibir valores de densidade em vez de contar com o eixo y. Default: `false`.
-* __densityType__ | `string`: ao exibir as densidades, pode-se sobrepor uma distribuição paramétrica (`Normal', `Uniforme' ou `Exponencial') ou uma estimativa não paramétrica da densidade do grão (`Acionada por dados'). Default: `none`.
-* __densityParams__ | `array<number>`: parâmetros de distribuição para a densidade quando uma distribuição paramétrica é utilizada ([mu, sigma] para uma distribuição normal, [a, b] para uma distribuição uniforme, [lambda] para uma distribuição exponencial). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: ao exibir densidades, pode-se sobrepor distribuição(ões) paramétrica(s) (`Normal', `Uniforme', `T', 'Chi-quadrado', ou `Exponencial') e/ou uma estimativa de densidade de núcleo não paramétrica (`Data-driven'). Default: `none`.
+* __densityParams__ | `(array<number>|any)`: parâmetros de distribuição para a densidade quando uma distribuição paramétrica é utilizada ([mu, sigma] para uma distribuição normal, [a, b] para uma distribuição uniforme, [lambda] para uma distribuição exponencial) ou um objeto mapeando nomes de distribuição para parâmetros quando múltiplas densidades devem ser exibidas (por exemplo, `{'Normal': [mu, sigma], 'Uniforme': [a, b]}, 'Exponencial': [lambda]}`). Default: `[]`.
 * __bandwidthAdjust__ | `number`: ajuste manual da largura de banda da densidade do núcleo (aplicável somente quando o "Tipo de densidade" estiver definido como "Acionado por dados"). Default: `1`.
 * __binStrategy__ | `string`: estratégia de fiação (`Automático`, `Selecionar # de caixas`, ou `Configurar largura da caixa`). Default: `'Automatic'`.
 * __nBins__ | `number`: número personalizado de silos. Default: `none`.

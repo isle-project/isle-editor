@@ -12,7 +12,7 @@ sidebar_label: Link
 * __download__ | `(string|boolean)`: リンクをダウンロードするかどうかを指定する。強制的にダウンロードさせる場合は `true` を、ファイル名を指定する場合は文字列を指定する。. Default: `false`.
 * __target__ | `string`: リンクが開かれる場所を定義します: 新しいウィンドウを `_blank`、自分のフレームを `_self`、親を `_parent`、ウィンドウ全体を `_top`、フレームの名前に設定します。. Default: `none`.
 * __windowFeatures__ | `string`: リンクが新しいウィンドウで開かれるときのウィンドウ機能のコンマ区切りのリスト（参照：https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features. Default: `none`.
-* __openWindow__ | `boolean`: undefined. Default: `false`.
+* __openWindow__ | `boolean`: URLを新しいウィンドウで開くかどうかを制御する boolean。. Default: `false`.
 * __className__ | `string`: クラス名. Default: `''`.
 * __style__ | `object`: CSSインラインスタイル. Default: `{}`.
 

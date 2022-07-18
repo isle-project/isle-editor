@@ -14,8 +14,8 @@ Un istogramma.
 * __title__ | `string`: titolo dell'istogramma. Default: `none`.
 * __groupMode__ | `string`: se sovrapporre istogrammi raggruppati l'uno sull'altro (`Overlay`) o in trame separate l'una accanto all'altra (`Facets`). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: controlla se visualizzare i valori di densità invece dei conteggi sull'asse y. Default: `false`.
-* __densityType__ | `string`: quando si visualizzano le densità, si può sia sovrapporre una distribuzione parametrica (`Normale`, `Uniforme`, o `Exponenziale`) sia una stima non parametrica della densità del kernel (`Data-driven`). Default: `none`.
-* __densityParams__ | `array<number>`: parametri di distribuzione per la densità quando viene usata una distribuzione parametrica ([mu, sigma] per una distribuzione normale, [a, b] per una distribuzione uniforme, [lambda] per una distribuzione esponenziale). Default: `[]`.
+* __densityType__ | `(string|array<string>)`: Quando si visualizzano le densità, si possono sovrapporre distribuzioni parametriche (`Normale`, `Uniforme`, `T`, `Chi-quadro` o `Esponenziale`) e/o una stima di densità kernel non parametrica (`Data-driven`).. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: parametri della distribuzione per la densità quando si usa una distribuzione parametrica ([mu, sigma] per una distribuzione normale, [a, b] per una distribuzione uniforme, [lambda] per una distribuzione esponenziale) o un oggetto che mappi i nomi delle distribuzioni ai parametri quando devono essere visualizzate più densità (ad esempio, `{'Normale': [mu, sigma], 'Uniforme': [a, b]}, 'Esponenziale': [lambda]}`).. Default: `[]`.
 * __bandwidthAdjust__ | `number`: regolazione manuale della larghezza di banda della densità del kernel (applicabile solo quando `densityType` è impostato su `Data-driven`). Default: `1`.
 * __binStrategy__ | `string`: strategia di binning (`Automatico`, `Seleziona # di bidoni`, o `Imposta larghezza bidone`). Default: `'Automatic'`.
 * __nBins__ | `number`: numero personalizzato di bidoni. Default: `none`.

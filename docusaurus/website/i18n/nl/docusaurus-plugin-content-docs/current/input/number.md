@@ -16,7 +16,7 @@ Een aantal invoercomponenten. Kan worden gebruikt als onderdeel van een ISLE-das
 * __max__ | `number`: getal dat de maximumwaarde aangeeft die mag worden ingevoerd. Default: `null`.
 * __min__ | `number`: getal dat de kleinst mogelijke waarde aangeeft die kan worden ingevoegd. Default: `null`.
 * __numbersOnly__ | `boolean`: controleert of alleen getallen worden geaccepteerd. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: tekenreeks die de tekst aangeeft die wordt weergegeven wanneer de invoer leeg is (vereist dat `defaultValue` is ingesteld op `null` of `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: terugbelfunctie die moet worden ingeroepen bij gebruik van een waasmethode. Default: `onBlur() {}`.
 * __onChange__ | `function`: terugbelfunctie die moet worden aangeroepen wanneer de nummerinvoer wordt gewijzigd. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: terugbelfunctie die moet worden aangeroepen wanneer een toets wordt ingedrukt. Default: `onKeyDown() {}`.

@@ -14,8 +14,8 @@ sidebar_label: Histogram
 * __title__ | `string`: ヒストグラムのタイトル. Default: `none`.
 * __groupMode__ | `string`: グループ化されたヒストグラムを重ねて表示するか (`Overlay`)、あるいは隣り合った別々のプロットに表示するか (`Facets`)。. Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: y軸にカウントではなく密度値を表示するかどうかを制御します。. Default: `false`.
-* __densityType__ | `string`: 密度を表示する際には、パラメトリック分布（`正規分布`, `一様分布`, `指数分布`）かノンパラメトリックカーネル密度推定値（`データ駆動型`）を重ね合わせることができます。. Default: `none`.
-* __densityParams__ | `array<number>`: パラメトリック分布を使用する場合の密度の分布パラメータ（正規分布の場合は[mu, sigma]，一様分布の場合は[a, b]，指数分布の場合は[lambda]）．. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: 密度を表示する場合、パラメトリック分布 (`Normal`, `Uniform`, `T`, 'Chi-squared`, `Exponential`) とノンパラメトリックカーネル密度推定値 (`Data-driven`) のどちらかをオーバーレイすることができます。. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: パラメトリック分布を用いる場合の密度の分布パラメータ（正規分布なら [mu, sigma], 一様分布なら [a, b], 指数分布なら [lambda] ），または複数の密度を表示する場合の分布名とパラメータを対応付けたオブジェクト（例： `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}` など）．. Default: `[]`.
 * __bandwidthAdjust__ | `number`: カーネル密度の帯域幅を手動で調整する ( `densityType` が `Data-driven` に設定されている場合にのみ適用されます). Default: `1`.
 * __binStrategy__ | `string`: ビニング戦略 (`自動`, `ビンの数を選択`, `ビンの幅を設定`). Default: `'Automatic'`.
 * __nBins__ | `number`: 慣習的な箱の数. Default: `none`.

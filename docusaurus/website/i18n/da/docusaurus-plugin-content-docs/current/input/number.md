@@ -16,7 +16,7 @@ En talindgangskomponent. Kan bruges som en del af et ISLE-dashboard eller som en
 * __max__ | `number`: tal, der angiver den maksimale værdi, der kan indsættes. Default: `null`.
 * __min__ | `number`: tal, der angiver den mindste mulige værdi, der kan indsættes. Default: `null`.
 * __numbersOnly__ | `boolean`: kontrollerer, om kun tal accepteres. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: streng, der angiver den tekst, der vises, når input er tomt (kræver, at `defaultValue` er sat til `null` eller `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: callback-funktion, der skal påkaldes, når der anvendes en sløringsmetode. Default: `onBlur() {}`.
 * __onChange__ | `function`: callback-funktion, der skal påkaldes, når talindtastningen ændres. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: callback-funktion, der skal påkaldes, når en tast trykkes ned. Default: `onKeyDown() {}`.

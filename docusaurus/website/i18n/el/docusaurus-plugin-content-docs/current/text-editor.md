@@ -11,6 +11,7 @@ sidebar_label: Text Editor
 * __allowSubmissions__ | `boolean`: ελέγχει αν οι μαθητές μπορούν να υποβάλλουν τις εκθέσεις τους στο διακομιστή. Default: `true`.
 * __canLoadHTML__ | `boolean`: ελέγχει αν θα εμφανίζεται το κουμπί για τη φόρτωση ενός αποθηκευμένου αρχείου HTML στον επεξεργαστή. Default: `true`.
 * __defaultValue__ | `string`: προεπιλεγμένο κείμενο του συντάκτη. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: ελέγχει αν ο συντάκτης θα πρέπει να περιλαμβάνει προβολή ιστορικού. Default: `true`.
 * __mode__ | `string`: ελέγχει τη λειτουργία επεξεργασίας κειμένου (είτε "ατομική" για ένα προσωπικό έγγραφο, είτε "ομαδική" για ένα έγγραφο ανά ομάδες, είτε "συνεργατική" για ένα ενιαίο έγγραφο για όλους, είτε "κοόρτη" για ένα έγγραφο ανά κοόρτη).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: αντικείμενο για την προσαρμογή του modal για την επαναφορά του εγγράφου (συνήθως δεν πρέπει να αλλάζει). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: ελέγχει αν θα στέλνει email επιβεβαίωσης με έξοδο PDF/HTML κατά την υποβολή. Default: `false`.

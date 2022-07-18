@@ -16,7 +16,7 @@ Um número de componentes de entrada. Pode ser usado como parte de um painel de 
 * __max__ | `number`: número indicando o valor máximo que pode ser inserido. Default: `null`.
 * __min__ | `number`: número indicando o menor valor possível que pode ser inserido. Default: `null`.
 * __numbersOnly__ | `boolean`: controla se apenas números são aceitos. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: string indicando o texto exibido quando a entrada está vazia (requer que o "valor por defeito" seja definido como "nulo" ou "indefinido"). Default: `'0'`.
 * __onBlur__ | `function`: função de chamada de retorno a ser invocada quando se utiliza um método de desfocagem. Default: `onBlur() {}`.
 * __onChange__ | `function`: função de chamada de retorno a ser invocada quando a entrada do número é alterada. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: função chamada de retorno a ser invocada quando qualquer tecla é pressionada. Default: `onKeyDown() {}`.

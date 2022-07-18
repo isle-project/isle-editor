@@ -11,6 +11,7 @@ Teksta redaktors piezīmju vai ziņojumu rakstīšanai. Atbalsta piezīmju ekspo
 * __allowSubmissions__ | `boolean`: kontrolē, vai skolēni var iesniegt savus ziņojumus serverī.. Default: `true`.
 * __canLoadHTML__ | `boolean`: kontrolē, vai tiek rādīta poga saglabātā HTML faila ielādēšanai redaktorā.. Default: `true`.
 * __defaultValue__ | `string`: redaktora noklusējuma teksts. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: nosaka, vai redaktoram jāiekļauj vēstures skats.. Default: `true`.
 * __mode__ | `string`: kontrolē teksta rediģēšanas režīmu (`individuāls` personīgajam dokumentam, `grupa` dokumentam katrai grupai, `kooperatīvs` dokumentam visiem vai `kohortas` dokumentam katrai grupai).. Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekts, kas paredzēts modālā modāla pielāgošanai dokumenta atiestatīšanai (parasti nav jāmaina).. Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: kontrolē, vai pēc iesniegšanas sūtīt apstiprinājuma e-pasta ziņojumus ar PDF/HTML izvades failiem.. Default: `false`.

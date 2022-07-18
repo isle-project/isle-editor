@@ -11,6 +11,7 @@ Un éditeur de texte pour la rédaction de notes ou de rapports. Prend en charge
 * __allowSubmissions__ | `boolean`: contrôle si les étudiants peuvent soumettre leurs rapports au serveur. Default: `true`.
 * __canLoadHTML__ | `boolean`: contrôle l'affichage ou non d'un bouton permettant de charger un fichier HTML enregistré dans l'éditeur. Default: `true`.
 * __defaultValue__ | `string`: texte par défaut de l'éditeur. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: contrôle si l'éditeur doit inclure une vue historique. Default: `true`.
 * __mode__ | `string`: contrôle le mode d'édition du texte (soit `individual` pour un document personnel, `group` pour un document par groupes, `collaborative` pour un document unique pour tous, ou `cohort` pour un document par cohorte). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objet pour la personnalisation du mode de réinitialisation du document (ne doit généralement pas être modifié). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: contrôle l'envoi éventuel de courriels de confirmation avec sortie PDF/HTML lors de la soumission. Default: `false`.

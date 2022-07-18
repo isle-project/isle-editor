@@ -14,8 +14,8 @@ sidebar_label: Histogram
 * __title__ | `string`: 柱状图的标题. Default: `none`.
 * __groupMode__ | `string`: 是将分组直方图叠加在一起("Overlay")，还是叠加在彼此相邻的独立图中("Facets"). Default: `'Overlay'`.
 * __displayDensity__ | `boolean`: 控制是否在y轴上显示密度值而不是计数。. Default: `false`.
-* __densityType__ | `string`: 当显示密度时，可以覆盖一个参数分布("正态"、"均匀 "或 "指数")或一个非参数核密度估计("数据驱动"). Default: `none`.
-* __densityParams__ | `array<number>`: 当使用参数分布时，密度的分布参数（正态分布为[mu, sigma]，均匀分布为[a, b]，指数分布为[lambda] ）。. Default: `[]`.
+* __densityType__ | `(string|array<string>)`: 当显示密度时，可以叠加参数分布（"正态"、"均匀"、"T"、"Chi-squared "或 "Exponential"）和/或非参数核密度估计（"数据驱动"）。. Default: `none`.
+* __densityParams__ | `(array<number>|any)`: 当使用参数分布时，密度的分布参数（正态分布为[mu, sigma]，均匀分布为[a, b]，指数分布为[lambda]）或当应显示多个密度时，分布名称与参数的映射对象（例如，"{'正态'：[mu, sigma]，'均匀'：[a, b]}，'指数'：[lambda]}"。. Default: `[]`.
 * __bandwidthAdjust__ | `number`: 手动调整内核密度的带宽（仅在 "密度类型 "设置为 "数据驱动 "时适用）。. Default: `1`.
 * __binStrategy__ | `string`: 分仓策略（"自动"、"选择仓数 "或 "设置仓宽"）。. Default: `'Automatic'`.
 * __nBins__ | `number`: 自定义箱数. Default: `none`.

@@ -16,7 +16,7 @@ Un componente di input numerico. Può essere utilizzato come parte di un cruscot
 * __max__ | `number`: numero che indica il valore massimo che può essere inserito. Default: `null`.
 * __min__ | `number`: numero che indica il più piccolo valore possibile che può essere inserito. Default: `null`.
 * __numbersOnly__ | `boolean`: controlla se sono accettati solo numeri. Default: `true`.
-* __placeholder__ | `string`: undefined. Default: `'0'`.
+* __placeholder__ | `string`: stringa che indica il testo visualizzato quando l'input è vuoto (richiede che `defaultValue` sia impostato su `null` o `undefined`). Default: `'0'`.
 * __onBlur__ | `function`: funzione di richiamo da invocare quando si utilizza un metodo di sfocatura. Default: `onBlur() {}`.
 * __onChange__ | `function`: funzione di callback da richiamare quando viene modificato l'ingresso del numero. Default: `onChange() {}`.
 * __onKeyDown__ | `function`: funzione di richiamo da richiamare quando si preme un tasto qualsiasi. Default: `onKeyDown() {}`.

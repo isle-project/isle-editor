@@ -11,6 +11,7 @@ En teksteditor til at skrive noter eller rapporter. Understøtter eksport af not
 * __allowSubmissions__ | `boolean`: styrer, om eleverne kan sende deres rapporter til serveren. Default: `true`.
 * __canLoadHTML__ | `boolean`: styrer, om der skal vises en knap til indlæsning af en gemt HTML-fil i editoren. Default: `true`.
 * __defaultValue__ | `string`: standardtekst i editoren. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: styrer, om editoren skal indeholde en historikvisning. Default: `true`.
 * __mode__ | `string`: styrer tekstredigeringstilstand (enten `individual` for et personligt dokument, `group` for et dokument pr. gruppe, `collaborative` for et enkelt dokument for alle, eller `cohort` for et dokument pr. gruppe). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: objekt til tilpasning af modal til nulstilling af dokumentet (bør normalt ikke ændres). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: styrer, om der skal sendes bekræftelses-e-mails med PDF/HTML-udskrift ved indsendelse. Default: `false`.

@@ -11,6 +11,7 @@ Ein Texteditor zum Schreiben von Notizen oder Berichten. Unterstützt den Export
 * __allowSubmissions__ | `boolean`: steuert, ob Schüler ihre Berichte an den Server senden dürfen. Default: `true`.
 * __canLoadHTML__ | `boolean`: steuert, ob die Schaltfläche zum Laden einer gespeicherten HTML-Datei in den Editor angezeigt werden soll. Default: `true`.
 * __defaultValue__ | `string`: Standardtext des Editors. Default: `'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'`.
+* __history__ | `boolean`: steuert, ob der Editor eine Verlaufsansicht enthalten soll. Default: `true`.
 * __mode__ | `string`: steuert den Textbearbeitungsmodus (entweder `individual` für ein persönliches Dokument, `group` für ein Dokument pro Gruppe, `collaborative` für ein einzelnes Dokument für alle oder `cohort` für ein Dokument pro Kohorte). Default: `'individual'`.
 * __resetModal__ | `{title,body,buttonLabel,notificationTitle,notification,tooltip}`: Objekt zum Anpassen des Modals zum Zurücksetzen des Dokuments (sollte normalerweise nicht geändert werden). Default: `none`.
 * __sendSubmissionEmails__ | `boolean`: steuert, ob bei der Übermittlung Bestätigungs-E-Mails mit PDF/HTML-Ausgabe gesendet werden sollen. Default: `false`.
