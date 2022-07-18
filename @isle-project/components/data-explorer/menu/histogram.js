@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
+import isArray from '@stdlib/assert/is-array';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
@@ -89,8 +90,8 @@ const DISTRIBUTION_PARAMS = {
 const HistogramMenu = ( props ) => {
 	const [ displayDensity, setDisplayDensity ] = useState( false );
 	const [ densityType, setDensityType ] = useState( null );
-	const [ densityParams, setDensityParams ] = useState( [ 0.0, 1.0 ] );
-	const [ specifyParams, setSpecifyParams ] = useState( false );
+	const [ densityParams, setDensityParams ] = useState( {} );
+	const [ specifyParams, setSpecifyParams ] = useState( {} );
 	const [ bandwidthAdjust, setBandwidthAdjust ] = useState( 1 );
 	const [ sameXRange, setSameXRange ] = useState( false );
 	const [ sameYRange, setSameYRange ] = useState( false );
@@ -127,12 +128,20 @@ const HistogramMenu = ( props ) => {
 		if ( groupMode === 'Facets' ) {
 			state.nCols = nCols;
 		}
-		if ( densityType === 'Data-driven' ) {
-			state.bandwidthAdjust = bandwidthAdjust;
-		}
-		else if ( densityType && specifyParams ) {
-			// Case: densityType is not null but not 'Data-driven' (i.e., a parametric distribution)
-			state.densityParams = densityParams;
+		if ( isArray( densityType ) ) {
+			if ( densityType.includes( 'Data-driven' ) ) {
+				state.bandwidthAdjust = bandwidthAdjust;
+			}
+			const keys = Object.keys( densityParams );
+			if ( keys.length > 0 ) {
+				const obj = {};
+				keys.forEach( key => {
+					if ( specifyParams[ key ] ) {
+						obj[ key ] = densityParams[ key ];
+					}
+				});
+				state.densityParams = obj;
+			}
 		}
 		const action = { ...state, plotId };
 		const onShare = () => {
@@ -148,45 +157,66 @@ const HistogramMenu = ( props ) => {
 		props.logAction( DATA_EXPLORER_HISTOGRAM, action );
 		props.onCreated( output );
 	};
-	let densityControls;
-	if ( densityType === 'Data-driven' ) {
-		densityControls = <NumberInput
-			legend={t('bandwidth-adjustment')}
-			defaultValue={bandwidthAdjust}
-			min={0} step={0.1}
-			onChange={setBandwidthAdjust}
-		/>;
-	}
-	else if ( densityType ) {
-		let inputs;
-		if ( specifyParams ) {
-			inputs = DISTRIBUTION_PARAMS[ densityType ].map( ( x, idx ) => {
-				return ( <NumberInput
-					key={idx}
-					legend={t( x.name )}
-					description={t( x.description )}
-					value={densityParams[ idx ] || x.defaultValue}
-					onChange={( value ) => {
-						const newParams = densityParams.slice();
-						newParams[ idx ] = value;
-						setDensityParams( newParams );
-					}}
-					max={x.max}
-					min={x.min}
-					step={x.step}
-					tooltipPlacement="bottom"
-				/> );
-			});
+	const densityControls = [];
+	if ( isArray( densityType ) ) {
+		if ( densityType.includes( 'Data-driven' ) ) {
+			densityControls.push( <Fragment>
+					<h4>{t('data-driven')}</h4>
+					<NumberInput
+						legend={t('bandwidth-adjustment')}
+						defaultValue={bandwidthAdjust}
+						min={0} step={0.1}
+						onChange={setBandwidthAdjust}
+					/>
+			</Fragment> );
 		}
-		densityControls = <Fragment>
-			<CheckboxInput
-				legend={t('specify-parameters')}
-				tooltip={t('specify-parameters-tooltip')}
-				defaultValue={specifyParams}
-				onChange={setSpecifyParams}
-			/>
-			{inputs}
-		</Fragment>;
+		densityType.forEach( ( type, i ) => {
+			if ( type === 'Data-driven' ) {
+				return null;
+			}
+			const inputs = [];
+			if ( specifyParams[ type ] ) {
+				inputs.push( ...( DISTRIBUTION_PARAMS[ type ] || [] ).map( ( x, j ) => {
+					return ( <NumberInput
+						key={`${i}-${j}`}
+						legend={t( x.name )}
+						description={t( x.description )}
+						value={densityParams[ type ][ j ]}
+						onChange={( value ) => {
+							const newParams = densityParams[ type ].slice();
+							newParams[ j ] = value;
+							setDensityParams({
+								...densityParams,
+								[type]: newParams
+							});
+						}}
+						max={x.max}
+						min={x.min}
+						step={x.step}
+						tooltipPlacement="bottom"
+					/> );
+				}) );
+			}
+			densityControls.push( <Fragment>
+				<h4>{type}</h4>
+				<CheckboxInput
+					legend={t('specify-parameters')}
+					tooltip={t('specify-parameters-tooltip')}
+					defaultValue={specifyParams[ type ]}
+					onChange={( value ) => {
+						setDensityParams({
+							...densityParams,
+							[type]: DISTRIBUTION_PARAMS[ type ].map( x => x.defaultValue )
+						});
+						setSpecifyParams({
+							...specifyParams,
+							[type]: value
+						});
+					}}
+				/>
+				{inputs}
+			</Fragment> );
+		});
 	}
 	return (
 		<Card>
@@ -337,7 +367,8 @@ const HistogramMenu = ( props ) => {
 							onChange={setDisplayDensity}
 						/>
 						<SelectInput
-							legend={t('overlay-density-line')}
+							multi
+							legend={t('overlay-density-lines')}
 							options={[ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ]}
 							disabled={!displayDensity}
 							defaultValue={densityType}

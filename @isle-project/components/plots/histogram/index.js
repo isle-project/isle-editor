@@ -72,12 +72,13 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 		traces[ 0 ] = setBins( traces[ 0 ], vals, binStrategy, nBins, xBins );
 		if ( displayDensity ) {
 			for ( let i = 0; i < densityType.length; i++ ) {
-				const [ x, y ] = calculateDensityValues( vals, densityType[ i ], densityParams, bandwidthAdjust );
+				const type = densityType[ i ];
+				const [ x, y ] = calculateDensityValues( vals, type, densityParams[ type ], bandwidthAdjust );
 				traces.push({
 					x: x,
 					y: y,
 					type: 'lines',
-					name: densityType[ i ]+' density'
+					name: type+' density'
 				});
 			}
 			traces[ 0 ][ 'histnorm' ] = 'probability density';
@@ -126,7 +127,8 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 					setBins( config, vals, binStrategy, nBins, xBins );
 					traces.push( config );
 					for ( let i = 0; i < densityType.length; i++ ) {
-						const [ x, y ] = calculateDensityValues( vals, densityType[ i ], densityParams, bandwidthAdjust );
+						const type = densityType[ i ];
+						const [ x, y ] = calculateDensityValues( vals, type, densityParams[ type ], bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
@@ -280,7 +282,7 @@ Histogram.propTypes = {
 		PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ),
 		PropTypes.arrayOf( PropTypes.oneOf( [ 'Data-driven', 'Normal', 'Uniform', 'Exponential', 'T', 'Chi-squared' ] ) )
 	]),
-	densityParams: PropTypes.arrayOf( PropTypes.number ),
+	densityParams: PropTypes.oneOfType( PropTypes.arrayOf( PropTypes.number ), PropTypes.any ),
 	bandwidthAdjust: PropTypes.number,
 	binStrategy: PropTypes.oneOf( [ 'Automatic', 'Select # of bins', 'Set bin width' ] ),
 	nBins: PropTypes.number,
@@ -307,7 +309,7 @@ Histogram.propTypes = {
 * @property {(string|Factor)} groupMode - whether to overlay grouped histograms on top of each other (`Overlay`) or in separate plots next to each other (`Facets`)
 * @property {boolean} displayDensity - controls whether to display density values instead of counts on the y-axis
 * @property {(string|Array<string>)} densityType - when displaying densities, one can either overlay parametric distribution(s) (`Normal`, `Uniform`, `T`, 'Chi-squared`, or `Exponential`) and/or a non-parametric kernel density estimate (`Data-driven`)
-* @property {Array<number>} densityParams - distribution parameters for the density when a parametric distribution is used ([mu, sigma] for a normal distribution, [a, b] for a uniform distribution, [lambda] for an exponential distribution)
+* @property {(Array<number>|Object)} densityParams - distribution parameters for the density when a parametric distribution is used ([mu, sigma] for a normal distribution, [a, b] for a uniform distribution, [lambda] for an exponential distribution) or an object mapping distribution names to parameters when multiple densities should be displayed (e.g., `{'Normal': [mu, sigma], 'Uniform': [a, b]}, 'Exponential': [lambda]}`)
 * @property {number} bandwidthAdjust - manual adjustment of bandwidth of kernel density (applicable only when `densityType` is set to `Data-driven`)
 * @property {string} binStrategy - binning strategy (`Automatic`, `Select # of bins`, or `Set bin width`)
 * @property {number} nBins - custom number of bins
