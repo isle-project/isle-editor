@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.76.17](https://github.com/isle-project/isle-editor/releases/tag/v0.76.17) (2022-07-18)
+
+This release contains bug fixes for the `<IFrame />` and `<Reaction />` components. Concerning new features, it allows overlaying of multiple density lines on histograms. In addition, the group functionality now allows instructors to create empty groups and/or assign students to groups who are enrolled in the course but currently not online.
+
+**Implemented enhancements:**
+
+- mathjax equivalent of \widebar{} ? [\#2696](https://github.com/isle-project/isle-editor/issues/2696)
+- features: select more than one density overlay on histogram; and tool tip explanation [\#2694](https://github.com/isle-project/isle-editor/issues/2694)
+
+**Fixed bugs:**
+
+- \[Bug\]: applet in IFrame doesn't appear  [\#2802](https://github.com/isle-project/isle-editor/issues/2802)
+
 ## [v0.76.16](https://github.com/isle-project/isle-editor/releases/tag/v0.76.16) (2022-05-28)
 
 This patch release refactors the display of dataset and variable descriptions for data tables, which are now combined into a single modal window. It also fixes a bug causing actions inside the context menu of links (to open in a new tab or window) to not work properly.
