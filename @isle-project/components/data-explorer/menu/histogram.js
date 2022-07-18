@@ -29,6 +29,7 @@ const DISTRIBUTION_PARAMS = {
 		{
 			'name': 'lambda',
 			'description': 'rate',
+			'defaultValue': 1,
 			'min': 0,
 			'step': 'any'
 		}
@@ -37,11 +38,13 @@ const DISTRIBUTION_PARAMS = {
 		{
 			'name': 'mu',
 			'description': 'mean',
+			'defaultValue': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'sigma',
 			'description': 'standard-deviation',
+			'defaultValue': 1,
 			'min': 0,
 			'step': 'any'
 		}
@@ -50,11 +53,13 @@ const DISTRIBUTION_PARAMS = {
 		{
 			'name': 'a',
 			'description': 'minimum',
+			'defaultValue': 0,
 			'step': 'any'
 		},
 		{
 			'name': 'b',
 			'description': 'maximum',
+			'defaultValue': 1,
 			'step': 'any'
 		}
 	],
@@ -62,7 +67,8 @@ const DISTRIBUTION_PARAMS = {
 		{
 			'name': 'df',
 			'description': 'degrees of freedom',
-			'min': 0,
+			'min': 0e-6,
+			'defaultValue': 1,
 			'step': 'any'
 		}
 	],
@@ -70,8 +76,9 @@ const DISTRIBUTION_PARAMS = {
 		{
 			'name': 'df',
 			'description': 'degrees of freedom (= mean)',
-			'min': 0,
-			'step': 'any'
+			'min': 1,
+			'step': 1,
+			'defaultValue': 1
 		}
 	]
 };
@@ -158,7 +165,7 @@ const HistogramMenu = ( props ) => {
 					key={idx}
 					legend={t( x.name )}
 					description={t( x.description )}
-					value={densityParams[ idx ]}
+					value={densityParams[ idx ] || x.defaultValue}
 					onChange={( value ) => {
 						const newParams = densityParams.slice();
 						newParams[ idx ] = value;
