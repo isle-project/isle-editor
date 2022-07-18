@@ -164,7 +164,7 @@
     "d3": "5.16.0",
     "d3-cloud": "1.2.5",
     "debug": "4.3.4",
-    "dompurify": "^2.3.9",
+    "dompurify": "^2.3.10",
     "electron-store": "^8.0.2",
     "electron-updater": "^5.0.5",
     "electron-window-state": "^5.0.3",
