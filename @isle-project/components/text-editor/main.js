@@ -78,6 +78,7 @@ async function toDataURL( url ){
 *
 * @property {boolean} allowSubmissions - controls whether students may submit their reports to the server
 * @property {string} defaultValue - default text of the editor
+* @property {boolean} history - controls whether the editor should include a history view
 * @property {boolean} canLoadHTML - controls whether to display button for loading a saved HTML file into the editor
 * @property {boolean} sendSubmissionEmails - controls whether to send confirmation emails with PDF/HTML output upon submission
 * @property {string} mode - controls text editing mode (either `individual` for a personal document, `group` for a document per groups, `collaborative` for a single document for everyone, or `cohort` for a document per cohort)
@@ -285,13 +286,15 @@ class TextEditor extends Component {
 				run: this.toggleGuides,
 				content: icons.guides
 			},
-			new AnnotationCommand(),
-			{
+			new AnnotationCommand()
+		]);
+		if ( props.history ) {
+			this.menu.addons.push({
 				title: 'show-history',
 				content: icons.history,
 				run: this.toggleHistory
-			}
-		]);
+			});
+		}
 		if ( props.defaultValue !== DEFAULT_VALUE ) {
 			let tooltip;
 			let icon;
@@ -716,6 +719,7 @@ TextEditor.propTypes= {
 	allowSubmissions: PropTypes.bool,
 	canLoadHTML: PropTypes.bool,
 	defaultValue: PropTypes.string,
+	history: PropTypes.bool,
 	mode: PropTypes.oneOf([
 		'group', 'collaborative', 'individual', 'cohort'
 	]),
@@ -736,6 +740,7 @@ TextEditor.defaultProps = {
 	allowSubmissions: true,
 	canLoadHTML: true,
 	defaultValue: DEFAULT_VALUE,
+	history: true,
 	mode: 'individual',
 	sendSubmissionEmails: false,
 	voiceTimeout: 5000,
