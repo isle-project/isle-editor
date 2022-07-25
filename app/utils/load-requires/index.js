@@ -77,6 +77,7 @@ async function loadRequires( libs, filePath ) {
 						}
 					}
 					else if ( ext === '.csv' ) {
+						asyncExtensions.push( ext );
 						asyncOps.push( csv( lib ) );
 						asyncKeys.push( key );
 						global[ key ] = null;
