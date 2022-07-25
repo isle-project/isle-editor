@@ -217,7 +217,7 @@
     "prosemirror-model": "^1.18.1",
     "prosemirror-schema-list": "^1.2.0",
     "prosemirror-state": "^1.4.1",
-    "prosemirror-tables": "1.2.3",
+    "prosemirror-tables": "1.2.4",
     "prosemirror-transform": "^1.6.0",
     "prosemirror-utils": "^0.9.6",
     "prosemirror-view": "^1.26.5",
