@@ -83,25 +83,16 @@ class FreeTextQuestion extends Component {
 			value: isString( value ) ? value : '',
 			solutionDisplayed: false,
 			submitted: isString( value ),
-			placeholder: props.placeholder,
-			solution: props.solution,
-			question: props.question
+			solution: props.solution
 		};
 	}
 
 	static getDerivedStateFromProps( nextProps, prevState ) {
-		if (
-			nextProps.placeholder !== prevState.placeholder ||
-			nextProps.solution !== prevState.solution ||
-			nextProps.question !== prevState.question
-		) {
+		if ( nextProps.solution !== prevState.solution ) {
 			return {
-				value: '',
 				solutionDisplayed: false,
 				submitted: false,
-				placeholder: nextProps.placeholder,
-				solution: nextProps.solution,
-				question: nextProps.question
+				solution: nextProps.solution
 			};
 		}
 		return null;
