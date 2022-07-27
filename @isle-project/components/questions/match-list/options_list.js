@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import randomShuffle from '@stdlib/random/shuffle';
 import hash from 'object-hash';
@@ -9,19 +9,19 @@ import hash from 'object-hash';
 // MAIN //
 
 const OptionsList = ({ active, answers, baseColor, options, shuffle, onSelect }) => {
-	const optionsRef = useRef( shuffle ? randomShuffle( options ) : options );
+	const [ optionNodes, setOptionNodes ] = useState( shuffle ? randomShuffle( options ) : options );
 	const hashRef = useRef( hash( options ) );
 	useEffect( () => {
 		const newHash = hash( options );
 		if ( hashRef.current !== newHash ) {
-			optionsRef.current = shuffle ? randomShuffle( options ) : options;
+			setOptionNodes( shuffle ? randomShuffle( options ) : options );
 			hashRef.current = newHash;
 		}
 	}, [ options, shuffle ] );
 	return (
 		<ul className="match-list-question-ul" >
 			{
-				optionsRef.current.map( ( q, i ) => {
+				optionNodes.map( ( q, i ) => {
 					if ( !q ) {
 						return null;
 					}
