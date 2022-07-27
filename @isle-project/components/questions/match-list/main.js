@@ -346,8 +346,14 @@ MatchListQuestion.propTypes = {
 		PropTypes.node
 	]),
 	elements: PropTypes.arrayOf( PropTypes.shape({
-		a: PropTypes.string,
-		b: PropTypes.string
+		a: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.node
+		]),
+		b: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.node
+		])
 	}) ),
 	hintPlacement: PropTypes.string,
 	hints: PropTypes.arrayOf(
