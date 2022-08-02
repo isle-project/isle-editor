@@ -27,8 +27,8 @@
 
 // MODULES //
 
+import quantiles from '@isle-project/utils/statistic/quantiles.js';
 import sample from '@stdlib/random/sample';
-import contains from '@stdlib/assert/contains';
 import ln from '@stdlib/math/base/special/ln';
 import round from '@stdlib/math/base/special/round';
 import incrspace from '@stdlib/array/incrspace';
@@ -350,7 +350,7 @@ function buildClassificationTree( opts, importances ) {
 			let attrPredPivot;
 			if ( isQuantitative.get( attr ) ) {
 				predicateName = '>=';
-				attrPredPivot = ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 );
+				attrPredPivot = Number( ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 ) );
 			} else {
 				// No sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
@@ -365,7 +365,7 @@ function buildClassificationTree( opts, importances ) {
 			const predicate = predicates[ predicateName ];
 
 			// Splitting training set by given 'attribute-predicate-value':
-			const currSplit = split( data, indices, attr, predicate, pivot );
+			const currSplit = split( data, indices, attr, predicate, attrPredPivot );
 
 			// Recursively calculating for subsets:
 			const matchEntropy = criterion( yValues, currSplit.match );
@@ -472,7 +472,7 @@ function buildRegressionTree( opts ) {
 			let attrPredPivot;
 			if ( isQuantitative.get( attr ) ) {
 				predicateName = '>=';
-				attrPredPivot = ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 );
+				attrPredPivot = Number( ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 ) );
 			} else {
 				// There is no sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
@@ -488,7 +488,7 @@ function buildRegressionTree( opts ) {
 			const predicate = predicates[ predicateName ];
 
 			// splitting training set by given 'attribute-predicate-value'
-			const currSplit = split( data, indices, attr, predicate, pivot );
+			const currSplit = split( data, indices, attr, predicate, attrPredPivot );
 
 			// calculating for subsets:
 			const matchEntropy = variance( yValues, currSplit.match );
