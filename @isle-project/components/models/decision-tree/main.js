@@ -6,10 +6,14 @@ import { withTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import isArray from '@stdlib/assert/is-array';
+import contains from '@stdlib/assert/contains';
+import hasOwnProp from '@stdlib/assert/has-own-property';
 import Tooltip from '@isle-project/components/tooltip';
 import { RegressionTree, ClassificationTree, TreePlot } from './tree.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
+import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import isMissing from '@isle-project/utils/is-missing';
 
 
 // VARIABLES //
@@ -19,7 +23,44 @@ let COUNTER = 0;
 
 // FUNCTIONS //
 
-const fitModel = ({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount }) => {
+function removeMissing( x, y, data, quantitative, isRegression ) {
+	const newData = {};
+	for ( const key in data ) {
+		if ( hasOwnProp( data, key ) ) {
+			newData[ key ] = [];
+		}
+	}
+	const isM = isRegression ? x => !isNonMissingNumber( x ) : isMissing;
+	for ( let i = 0; i < data[ x[ 0 ] ].length; i++ ) {
+		let missing = false;
+		for ( let j = 0; j < x.length; j++ ) {
+			const values = data[ x[ j ] ];
+			if ( contains( quantitative, x[ j ] ) ) {
+				if ( !isNonMissingNumber( values[ i ] ) ) {
+					missing = true;
+					break;
+				}
+			} else {
+				const val = values[ i ];
+				if ( isMissing( val ) ) {
+					missing = true;
+					break;
+				}
+			}
+		}
+		const yval = data[ y ][ i ];
+		if ( !missing && !isM( yval ) ) {
+			for ( let j = 0; j < x.length; j++ ) {
+				const values = data[ x[ j ] ];
+				newData[ x[ j ] ].push( values[ i ] );
+			}
+			newData[ y ].push( yval );
+		}
+	}
+	return newData;
+}
+
+const fitModel = ({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount, omitMissing }) => {
 	let predictors;
 	if ( isArray( x ) ) {
 		predictors = x;
@@ -29,6 +70,9 @@ const fitModel = ({ x, y, data, type, quantitative, impurityMeasure, scoreThresh
 	try {
 		let tree;
 		if ( type === 'Classification' ) {
+			if ( omitMissing ) {
+				data = removeMissing( predictors, y, data, quantitative, false );
+			}
 			tree = new ClassificationTree({
 				response: y,
 				predictors,
@@ -40,6 +84,9 @@ const fitModel = ({ x, y, data, type, quantitative, impurityMeasure, scoreThresh
 				minItemsCount: minItemsCount
 			});
 		} else {
+			if ( omitMissing ) {
+				data = removeMissing( predictors, y, data, quantitative, true );
+			}
 			tree = new RegressionTree({
 				response: y,
 				predictors,
@@ -71,6 +118,7 @@ const fitModel = ({ x, y, data, type, quantitative, impurityMeasure, scoreThresh
 * @property {number} scoreThreshold - score threshold for split
 * @property {number} maxTreeDepth - maximum tree depth
 * @property {number} minItemsCount - minimum # of observations in leaf nodes
+* @property {boolean} omitMissing - omit observations with missing values
 * @property {Function} onPredict - callback invoked with model object when clicking on the predict button
 */
 class DecisionTree extends Component {
@@ -79,9 +127,9 @@ class DecisionTree extends Component {
 
 		COUNTER += 1;
 
-		const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = this.props;
+		const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount, omitMissing } = props;
 		this.state = {
-			tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount }),
+			tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount, omitMissing }),
 			...props
 		};
 	}
@@ -96,11 +144,12 @@ class DecisionTree extends Component {
 			nextProps.quantitative !== prevState.quantitative ||
 			nextProps.scoreThreshold !== prevState.scoreThreshold ||
 			nextProps.maxTreeDepth !== prevState.maxTreeDepth ||
-			nextProps.minItemsCount !== prevState.minItemsCount
+			nextProps.minItemsCount !== prevState.minItemsCount ||
+			nextProps.omitMissing !== prevState.omitMissing
 		) {
-			const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount } = nextProps;
+			const { x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount, omitMissing } = nextProps;
 			return {
-				tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount }),
+				tree: fitModel({ x, y, data, type, quantitative, impurityMeasure, scoreThreshold, maxTreeDepth, minItemsCount, omitMissing }),
 				...nextProps
 			};
 		}
@@ -137,6 +186,7 @@ DecisionTree.defaultProps = {
 	scoreThreshold: 0.0075,
 	maxTreeDepth: 5,
 	minItemsCount: 50,
+	omitMissing: true,
 	onPredict: null
 };
 
@@ -157,6 +207,7 @@ DecisionTree.propTypes = {
 	scoreThreshold: PropTypes.number,
 	maxTreeDepth: PropTypes.number,
 	minItemsCount: PropTypes.number,
+	omitMissing: PropTypes.bool,
 	onPredict: PropTypes.func
 };
 

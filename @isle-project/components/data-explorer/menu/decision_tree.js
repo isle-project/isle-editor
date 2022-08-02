@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import unique from 'uniq';
+import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import Collapse from '@isle-project/components/collapse';
@@ -24,6 +25,7 @@ const DecisionTreeMenu = ( props ) => {
 	const [ scoreThreshold, setScoreThreshold ] = useState( 0.0075 );
 	const [ maxTreeDepth, setMaxTreeDepth ] = useState( 5 );
 	const [ minItemsCount, setMinItemsCount ] = useState( 50 );
+	const [ omitMissing, setOmitMissing ] = useState( false );
 
 	const compute = () => {
 		const output = <DecisionTree
@@ -31,7 +33,7 @@ const DecisionTreeMenu = ( props ) => {
 			data={props.data} quantitative={props.quantitative}
 			scoreThreshold={scoreThreshold} maxTreeDepth={maxTreeDepth}
 			minItemsCount={minItemsCount}
-			onPredict={props.onPredict}
+			onPredict={props.onPredict} omitMissing={omitMissing}
 		/>;
 		props.logAction( DATA_EXPLORER_DECISION_TREE, {
 			y, x, type
@@ -92,6 +94,11 @@ const DecisionTreeMenu = ( props ) => {
 						onChange={setMinItemsCount}
 					/>
 				</Collapse>
+				<CheckboxInput
+					legend={t('omit-missing')}
+					defaultValue={omitMissing}
+					onChange={setOmitMissing}
+				/>
 				<Button disabled={!x || x.length === 0} variant="primary" onClick={compute} >
 					{t('calculate')}
 				</Button>

@@ -27,7 +27,6 @@
 
 // MODULES //
 
-import quantiles from '@isle-project/utils/statistic/quantiles.js';
 import sample from '@stdlib/random/sample';
 import ln from '@stdlib/math/base/special/ln';
 import round from '@stdlib/math/base/special/round';
