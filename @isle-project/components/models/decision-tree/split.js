@@ -14,7 +14,7 @@ function split( data, indices, attr, predicate, pivot ) {
 			out[ runningIndex ] = idx;
 			runningIndex += 1;
 		} else {
-			out[ i ] = idx;
+			out[ i + runningIndex ] = idx;
 		}
 	}
 	const match = new Int32Array( out.buffer, 0, runningIndex );
