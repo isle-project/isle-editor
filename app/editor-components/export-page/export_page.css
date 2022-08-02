@@ -25,4 +25,6 @@
 	white-space: pre;
 	overflow-y: auto;
 	overflow-x: hidden;
+	flex-direction: column-reverse;
+	display: flex;
 }
