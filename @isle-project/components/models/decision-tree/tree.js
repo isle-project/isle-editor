@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 
 /**
 * Contains MIT-licensed code:
@@ -28,7 +29,6 @@
 
 import sample from '@stdlib/random/sample';
 import contains from '@stdlib/assert/contains';
-import hasOwnProp from '@stdlib/assert/has-own-property';
 import ln from '@stdlib/math/base/special/ln';
 import round from '@stdlib/math/base/special/round';
 import incrspace from '@stdlib/array/incrspace';
@@ -96,12 +96,11 @@ function mostFrequentValue( values, indices ) {
  */
 function gini( values, indices ) {
 	const counter = countUniqueValues( values, indices );
+	const len = indices.length;
 	let out = 0;
 	for ( let i in counter ) {
-		if ( hasOwnProp( counter, i ) ) {
-			const p = counter[i] / indices.length;
-			out += p * (1-p);
-		}
+		const p = counter[i] / len;
+		out += p * (1-p);
 	}
 	return out;
 }
@@ -117,12 +116,11 @@ function gini( values, indices ) {
 function entropy( values, indices ) {
 	// Count number of occurrences of each value:
 	const counter = countUniqueValues( values, indices );
+	const len = indices.length;
 	let entropy = 0;
 	for ( let i in counter ) {
-		if ( hasOwnProp( counter, i ) ) {
-			const p = counter[i] / indices.length;
-			entropy += -p * ln(p);
-		}
+		const p = counter[i] / len;
+		entropy += -p * ln(p);
 	}
 	return entropy;
 }
@@ -314,16 +312,21 @@ function buildClassificationTree( opts, importances ) {
 		quantitative, criterion, minBucket, nTry
 	} = opts;
 	const nobs = indices.length;
+	const yValues = data[ response ];
 	if ( ( maxTreeDepth === 0 ) || ( nobs <= minItemsCount ) ) {
 		// Restriction by maximal depth of tree or size of training set is to small so we have to terminate process of building tree...
 		return {
-			category: mostFrequentValue( data[ response ], indices )
+			category: mostFrequentValue( yValues, indices )
 		};
 	}
-	const initialScore = criterion( data[ response ], indices );
+	const initialScore = criterion( yValues, indices );
 
-	// Used as hash-set for avoiding the checking of split by rules with the same 'attribute-predicate-pivot' more than once
-	const alreadyChecked = {};
+	const alreadyChecked = new Map();
+	const isQuantitative = new Map();
+	predictors.forEach( attr => {
+		alreadyChecked.set( attr, new Map() );
+		isQuantitative.set( attr, quantitative.indexOf( attr ) !== -1 );
+	});
 
 	let bestSplit = {
 		gain: 0
@@ -333,6 +336,8 @@ function buildClassificationTree( opts, importances ) {
 	}
 	for ( let i = nobs - 1; i >= 0; i-- ) {
 		const idx = indices[ i ];
+
+		// Used as hash-set for avoiding the checking of split by rules with the same 'attribute-predicate-pivot' more than once
 		for ( let j = 0; j < predictors.length; j++ ) {
 			const attr = predictors[ j ];
 
@@ -341,27 +346,28 @@ function buildClassificationTree( opts, importances ) {
 
 			// Pick the predicate depending on the type of the attribute value...
 			let predicateName;
-			if ( contains( quantitative, attr ) ) {
+			let attrPredPivot;
+			if ( isQuantitative.get( attr ) ) {
 				predicateName = '>=';
+				attrPredPivot = pivot.toFixed( 3 );
 			} else {
 				// No sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
+				attrPredPivot = pivot;
 			}
-
-			const attrPredPivot = attr + predicateName + pivot;
-			if ( alreadyChecked[attrPredPivot] ) {
-				// Skip such pairs of 'attribute-predicate-pivot' which have been already checked...
+			if ( alreadyChecked.get( attr ).has( attrPredPivot ) ) {
+				// We have already checked this split so we can skip it...
 				continue;
 			}
-			alreadyChecked[ attrPredPivot ] = true;
+			alreadyChecked.get( attr ).set( attrPredPivot, true );
 			const predicate = predicates[ predicateName ];
 
 			// Splitting training set by given 'attribute-predicate-value':
 			const currSplit = split( data, indices, attr, predicate, pivot );
 
 			// Recursively calculating for subsets:
-			const matchEntropy = criterion( data[ response ], currSplit.match );
-			const notMatchEntropy = criterion( data[ response ], currSplit.notMatch );
+			const matchEntropy = criterion( yValues, currSplit.match );
+			const notMatchEntropy = criterion( yValues, currSplit.notMatch );
 
 			// Calculating gain:
 			let newScore = 0;
@@ -385,7 +391,7 @@ function buildClassificationTree( opts, importances ) {
 		}
 	}
 	if ( !bestSplit.gain || ( bestSplit.gain / initialScore ) < scoreThreshold ) {
-		return { category: mostFrequentValue( data[ response ], indices ) };
+		return { category: mostFrequentValue( yValues, indices ) };
 	}
 	// Building sub-trees:
 	opts.maxTreeDepth = maxTreeDepth - 1;
@@ -421,16 +427,17 @@ function buildRegressionTree( opts ) {
 	} = opts;
 
 	const nobs = indices.length;
+	const yValues = data[ response ];
 	if ((maxTreeDepth === 0) || ( nobs <= minItemsCount)) {
 		// restriction by maximal depth of tree
 		// or size of training set is to small
 		// so we have to terminate process of building tree
 		return {
-			category: mean( data[ response ], indices )
+			category: mean( yValues, indices )
 		};
 	}
 
-	const initialScore = variance( data[ response ], indices );
+	const initialScore = variance( yValues, indices );
 
 	// used as hash-set for avoiding the checking of split by rules
 	// with the same 'attribute-predicate-pivot' more than once
@@ -465,7 +472,7 @@ function buildRegressionTree( opts ) {
 			}
 
 			const attrPredPivot = attr + predicateName + pivot;
-			if ( alreadyChecked[attrPredPivot] ) {
+			if ( alreadyChecked[ attrPredPivot ] ) {
 				// skip such pairs of 'attribute-predicate-pivot',
 				// which been already checked
 				continue;
@@ -478,8 +485,8 @@ function buildRegressionTree( opts ) {
 			const currSplit = split( data, indices, attr, predicate, pivot );
 
 			// calculating for subsets:
-			const matchEntropy = variance( data[ response ], currSplit.match );
-			const notMatchEntropy = variance( data[ response ], currSplit.notMatch );
+			const matchEntropy = variance( yValues, currSplit.match );
+			const notMatchEntropy = variance( yValues, currSplit.notMatch );
 
 			// calculating informational gain
 			let newScore = 0;
@@ -583,11 +590,9 @@ function predictRandomForest( forest, data, idx ) {
 	let max = -1;
 	let out;
 	for ( let key in result ) {
-		if ( hasOwnProp( result, key ) ) {
-			if ( result[ key ] > max ) {
-				max = result[ key ];
-				out = key;
-			}
+		if ( result[ key ] > max ) {
+			max = result[ key ];
+			out = key;
 		}
 	}
 	return out;
