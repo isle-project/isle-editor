@@ -47,6 +47,7 @@ import split from './split.js';
  * @returns {Object} object with counts
  */
 function countUniqueValues( values, indices ) {
+	console.log( 'countUniqueValues' );
 	const counter = {};
 
 	// Detect different values of attribute:
@@ -349,17 +350,18 @@ function buildClassificationTree( opts, importances ) {
 			let attrPredPivot;
 			if ( isQuantitative.get( attr ) ) {
 				predicateName = '>=';
-				attrPredPivot = pivot.toFixed( 3 );
+				attrPredPivot = ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 );
 			} else {
 				// No sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
 				attrPredPivot = pivot;
 			}
-			if ( alreadyChecked.get( attr ).has( attrPredPivot ) ) {
+			const checked = alreadyChecked.get( attr );
+			if ( checked.has( attrPredPivot ) ) {
 				// We have already checked this split so we can skip it...
 				continue;
 			}
-			alreadyChecked.get( attr ).set( attrPredPivot, true );
+			checked.set( attrPredPivot, true );
 			const predicate = predicates[ predicateName ];
 
 			// Splitting training set by given 'attribute-predicate-value':
@@ -385,7 +387,7 @@ function buildClassificationTree( opts, importances ) {
 				bestSplit.predicateName = predicateName;
 				bestSplit.predicate = predicate;
 				bestSplit.attribute = attr;
-				bestSplit.pivot = pivot;
+				bestSplit.pivot = attrPredPivot;
 				bestSplit.gain = currGain;
 			}
 		}
@@ -439,9 +441,12 @@ function buildRegressionTree( opts ) {
 
 	const initialScore = variance( yValues, indices );
 
-	// used as hash-set for avoiding the checking of split by rules
-	// with the same 'attribute-predicate-pivot' more than once
-	const alreadyChecked = {};
+	const alreadyChecked = new Map();
+	const isQuantitative = new Map();
+	predictors.forEach( attr => {
+		alreadyChecked.set( attr, new Map() );
+		isQuantitative.set( attr, quantitative.indexOf( attr ) !== -1 );
+	});
 
 	// this variable expected to contain rule, which splits training set
 	// into subsets with smaller values of entropy (produces informational gain)
@@ -464,20 +469,21 @@ function buildRegressionTree( opts ) {
 
 			// Pick the predicate depending on the type of the attribute value:
 			let predicateName;
-			if ( contains( quantitative, attr ) ) {
+			let attrPredPivot;
+			if ( isQuantitative.get( attr ) ) {
 				predicateName = '>=';
+				attrPredPivot = ( pivot > -1 && pivot < 1 ) ? pivot.toPrecision( 2 ) : pivot.toFixed( 2 );
 			} else {
 				// There is no sense to compare non-numeric attributes so we will check only equality of such attributes...
 				predicateName = '==';
+				attrPredPivot = pivot;
 			}
-
-			const attrPredPivot = attr + predicateName + pivot;
-			if ( alreadyChecked[ attrPredPivot ] ) {
-				// skip such pairs of 'attribute-predicate-pivot',
-				// which been already checked
+			const checked = alreadyChecked.get( attr );
+			if ( checked.has( attrPredPivot ) ) {
+				// We have already checked this split so we can skip it...
 				continue;
 			}
-			alreadyChecked[ attrPredPivot ] = true;
+			checked.set( attrPredPivot, true );
 
 			const predicate = predicates[ predicateName ];
 
@@ -503,13 +509,13 @@ function buildRegressionTree( opts ) {
 				bestSplit.predicateName = predicateName;
 				bestSplit.predicate = predicate;
 				bestSplit.attribute = attr;
-				bestSplit.pivot = pivot;
+				bestSplit.pivot = attrPredPivot;
 				bestSplit.gain = currGain;
 			}
 		}
 	}
 	if ( !bestSplit.gain || ( bestSplit.gain / initialScore ) < scoreThreshold ) {
-		return { category: mean( data[ response ], indices ) };
+		return { category: mean( yValues, indices ) };
 	}
 
 	// Building sub-trees:
