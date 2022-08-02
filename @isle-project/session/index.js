@@ -2430,7 +2430,7 @@ class Session {
 	* @param {string} to - group to send log message to (either `owners`, `members`, or email address of an individual user)
 	* @returns {void}
 	*/
-	log( action, to ) {
+	log = ( action, to ) => {
 		const onLogged = ( err, res ) => {
 			if ( err ) {
 				return this.addNotification({
