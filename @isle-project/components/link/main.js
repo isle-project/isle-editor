@@ -23,6 +23,7 @@ import { withActionLogger } from '@isle-project/session/action_logger.js';
 * @property {string} windowFeatures - comma-separated list of window features for when link is opened in new window (see: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#window_features)
 * @property {boolean} openWindow - boolean controlling whether to open URL in new window
 * @property {string} className - class name
+* @property {string} tag - a label or category associated with the action of clicking on the link
 * @property {Object} style - CSS inline styles
 */
 class Link extends Component {
@@ -79,8 +80,10 @@ class Link extends Component {
 							event.preventDefault();
 							window.open( this.state.url, '_blank', this.props.windowFeatures );
 							this.props.logAction( OPEN, 'click' );
+							this.props.logScore( 100, 'completed', this.props.tag );
 						} : () => {
 							this.props.logAction( OPEN, 'click' );
+							this.props.logScore( 100, 'completed', this.props.tag );
 						}}
 						download={this.props.download}
 					>
@@ -112,6 +115,7 @@ Link.propTypes = {
 	windowFeatures: PropTypes.string,
 	openWindow: PropTypes.bool,
 	className: PropTypes.string,
+	tag: PropTypes.string,
 	style: PropTypes.object
 };
 
@@ -121,6 +125,7 @@ Link.defaultProps = {
 	windowFeatures: null,
 	openWindow: false,
 	className: '',
+	tag: null,
 	style: {}
 };
 
