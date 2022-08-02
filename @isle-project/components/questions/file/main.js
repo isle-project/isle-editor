@@ -17,8 +17,9 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
 import getLastAction from '@isle-project/utils/get-last-action';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import { FILE_QUESTION_SUBMISSION, FILE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { FILE_QUESTION_SUBMISSION, OPEN_HINT, SUBMIT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './file_question.css';
 
 
@@ -51,6 +52,7 @@ const FileQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const fileUpload = useRef( null );
+	const { logAction } = useActionLogger( 'FILE_QUESTION', id.current );
 	const [ file, setFile ] = useState( null );
 	const [ fileLink, setFileLink ] = useState( null );
 	const [ isProcessing, setIsProcessing ] = useState( false );
@@ -70,12 +72,8 @@ const FileQuestion = ( props ) => {
 	const nHints = hints.length;
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		session.log({
-			id: id.current,
-			type: FILE_QUESTION_OPEN_HINT,
-			value: idx
-		});
-	}, [ session ] );
+		logAction( OPEN_HINT, idx );
+	}, [ logAction ] );
 
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type ) => {
@@ -104,18 +102,14 @@ const FileQuestion = ( props ) => {
 				}
 				const filename = res.filename;
 				const link = session.server + '/' + filename;
-				session.log({
-					id: id.current,
-					type: FILE_QUESTION_SUBMISSION,
-					value: link
-				});
+				logAction( SUBMIT, link );
 				setFileLink( link );
 				setIsProcessing( false );
 				setSubmitted( true );
 			},
 			showNotification: true
 		});
-	}, [ file, session ] );
+	}, [ file, logAction, session ] );
 
 	/**
 	* Creates FileReader and attaches event listener for when the file is ready.

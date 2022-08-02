@@ -17,6 +17,10 @@
 
 // EXPORTS //
 
+export const OPEN = 'OPEN';
+export const OPEN_HINT = 'OPEN_HINT';
+export const SUBMIT = 'SUBMIT';
+
 export const ADJUST_GRADES = 'ADJUST_GRADES';
 export const APPEND_GRADE_MESSAGE = 'APPEND_GRADE_MESSAGE';
 export const BUTTON_PAUSE = 'BUTTON_PAUSE';

@@ -8,7 +8,8 @@ import startsWith from '@stdlib/string/starts-with';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import SessionContext from '@isle-project/session/context.js';
 import LinkContextMenu from './contextmenu.js';
-import { OPEN_LINK } from '@isle-project/constants/actions.js';
+import { OPEN } from '@isle-project/constants/actions.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 
 
 // MAIN //
@@ -77,19 +78,9 @@ class Link extends Component {
 						onClick={this.props.openWindow ? ( event ) => {
 							event.preventDefault();
 							window.open( this.state.url, '_blank', this.props.windowFeatures );
-							const session = this.context;
-							session.log({
-								id: this.state.url,
-								type: OPEN_LINK,
-								value: 'click'
-							});
+							this.props.logAction( OPEN, 'click' );
 						} : () => {
-							const session = this.context;
-							session.log({
-								id: this.state.url,
-								type: OPEN_LINK,
-								value: 'click'
-							});
+							this.props.logAction( OPEN, 'click' );
 						}}
 						download={this.props.download}
 					>
@@ -138,4 +129,4 @@ Link.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'link' )( Link );
+export default withTranslation( 'link' )( withActionLogger( 'LINK', props => props.href )( Link ) );
