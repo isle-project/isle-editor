@@ -163,7 +163,7 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 		<div style={{ overflowX: 'auto', width: '100%' }}>
 			<label>{variable}: </label>
 			{entries( freqs ).map( ( arr, i ) => {
-				if ( !arr[ i ] ) {
+				if ( !arr ) {
 					return (
 						<Alert variant="danger">
 							{t('too-many-rows')}
