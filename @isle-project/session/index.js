@@ -2347,6 +2347,8 @@ class Session {
 			startTime: PRIVATE_VARS[ 'startTime' ],
 			userID: this.user.id,
 			lessonID: this.lessonID,
+			component: data.id,
+			componentType: data.componentType,
 			type,
 			data
 		};
@@ -2404,19 +2406,21 @@ class Session {
 	/**
 	* Logs completion information for a component.
 	*
-	* @param {Object} completionScores - object mapping ref names to values between 0 and 100
 	* @param {Object} meta - action information
-	* @param {string} meta.id - component identifier
+	* @param {number} meta.score - score value (number between 0 and 100)
+	* @param {string} meta.metricName - name of metric for which the score is given
+	* @param {string} meta.component - component identifier
 	* @param {string} [meta.tag] - custom tag attached to the component (e.g., to group questions together as a quiz)
 	* @param {string} meta.componentType - name of the component (e.g, FreeTextQuestion)
 	*/
-	handleCompletion( completionScores, { id, tag, componentType } ) {
+	recordCompletion( { component, componentType, score, metricName, tag = '_default_tag' } ) {
 		const time = new Date().getTime();
-		axios.post( this.server + '/save_completion', {
-			component: id,
+		axios.post( this.server + '/record_completion', {
+			component,
 			componentType,
+			score,
+			metricName,
 			tag,
-			score: completionScores,
 			user: this.user.id,
 			lesson: this.lessonID,
 			time
@@ -2486,7 +2490,7 @@ class Session {
 				this.sendSocketMessage( action, to );
 			}
 		}
-	}
+	};
 
 	/**
 	* Retrieves all owner files for the current lesson.
