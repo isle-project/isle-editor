@@ -166,6 +166,7 @@
 		"PropTest2"
 	],
 	"QUESTION": [
+		"FileQuestion",
 		"FreeTextQuestion",
 		"ImageQuestion",
 		"MatchListQuestion",
