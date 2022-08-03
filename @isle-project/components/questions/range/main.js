@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -23,8 +23,9 @@ import HintButton from '@isle-project/components/hint-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import { RANGE_QUESTION_SUBMIT_ANSWER, RANGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { OPEN_HINT, SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './range_question.css';
 
 
@@ -61,7 +62,7 @@ const uid = generateUID( 'range-question' );
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
 const RangeQuestion = ( props ) => {
-	const id = props.id || uid( props );
+	const id = useRef( props.id || uid( props ) );
 	const { digits, min, max, points, question, solution, until, feedback, style,
 		provideFeedback, submitAfterFeedback, hints, nTries, chat, labels,
 		onChangeUpper, onChangeLower, onChange, onSubmit } = props;
@@ -73,6 +74,7 @@ const RangeQuestion = ( props ) => {
 	const [ correct, setCorrect ] = useState({ lower: false, upper: false });
 	const [ numSubmissions, setNumSubmissions ] = useState( 0 );
 	const { t } = useTranslation( 'questions/range' );
+	const { logAction } = useActionLogger( 'RANGE_QUESTION', id.current );
 
 	const handleChangeUpper = useCallback( ( newValue ) => {
 		setUpper( newValue );
@@ -96,12 +98,8 @@ const RangeQuestion = ( props ) => {
 	}, [ upper ] );
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		session.log({
-			id: id,
-			type: RANGE_QUESTION_OPEN_HINT,
-			value: idx
-		});
-	}, [ id, session ] );
+		logAction( OPEN_HINT, idx );
+	}, [ logAction ] );
 	const submitHandler = useCallback( () => {
 		let correct = { lower: false, upper: false };
 		const lowerVal = parseFloat( lower );
@@ -156,12 +154,8 @@ const RangeQuestion = ( props ) => {
 		setSubmitted( true );
 		setCorrect( correct );
 		setNumSubmissions( numSubmissions + 1 );
-		session.log({
-			id: id,
-			type: RANGE_QUESTION_SUBMIT_ANSWER,
-			value: JSON.stringify( [ lower, upper ] )
-		});
-	}, [ digits, id, lower, upper, onSubmit, numSubmissions, nTries, provideFeedback, session, solution, submitted, t ] );
+		logAction( SUBMISSION, JSON.stringify( [ lower, upper ] ) );
+	}, [ digits, lower, upper, onSubmit, numSubmissions, nTries, provideFeedback, logAction, session, solution, submitted, t ] );
 	const handleKeyPress = useCallback( ( event ) => {
 		if ( event.charCode === 13 ) {
 			// Manually trigger blur event since not happening when pressing ENTER:
@@ -259,7 +253,7 @@ const RangeQuestion = ( props ) => {
 							question: question,
 							solution: solution
 						}}
-						info={RANGE_QUESTION_SUBMIT_ANSWER}
+						info="RANGE_QUESTION_SUBMISSION"
 						style={{ marginLeft: '3px', marginRight: '3px' }}
 						points={points}
 					/>

@@ -17,10 +17,10 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import Text from '@isle-project/components/text';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import { MATCH_LIST_TOGGLE_SOLUTION, MATCH_LIST_OPEN_HINT, MATCH_LIST_SUBMISSION } from '@isle-project/constants/actions.js';
+import { OPEN_HINT, SUBMISSION, TOGGLE_SOLUTION } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import getLastAction from '@isle-project/utils/get-last-action';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import createColorScale from './create_color_scale.js';
 import OptionsList from './options_list.js';
 import './match_list_question.css';
@@ -61,23 +61,21 @@ const MatchListQuestion = ( props ) => {
 		disableSubmitNotification, onSubmit, until, onChange
 	} = props;
 	const id = useRef( props.id || uid( props ) );
+	const { retrieveLastAction, logAction } = useActionLogger( 'MATCH_LIST_QUESTION', id.current );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/match-list' );
 
 	const [ leftSelected, setLeftSelected ] = useState( null );
 	const [ rightSelected, setRightSelected ] = useState( null );
 	const [ colorScale, setColorScale ] = useState( props.colorScale ? props.colorScale : createColorScale( 2 * elements.length ) );
-
-	const currentUserActions = session.currentUserActions;
-	const lastAnswer = getLastAction( currentUserActions, id.current, MATCH_LIST_SUBMISSION );
+	const lastAnswer = retrieveLastAction( SUBMISSION );
 	const [ answers, setAnswers ] = useState( lastAnswer || [] );
 	const [ userAnswers, setUserAnswers ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
 
 	const setToLastAction = useCallback( () => {
 		debug( `Set submission to last action for question ${id.current} if available...` );
-		const actions = session.currentUserActions;
-		const value = getLastAction( actions, id.current, MATCH_LIST_SUBMISSION );
+		const value = retrieveLastAction( SUBMISSION );
 		if ( value ) {
 			const elements = JSON.parse( value );
 			setAnswers( elements.map( ( q, i ) => {
@@ -91,7 +89,7 @@ const MatchListQuestion = ( props ) => {
 			}) );
 			setSubmitted( true );
 		}
-	}, [ session, colorScale ] );
+	}, [ colorScale, retrieveLastAction ] );
 
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type ) => {
@@ -122,12 +120,8 @@ const MatchListQuestion = ( props ) => {
 
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		session.log({
-			id: id.current,
-			type: MATCH_LIST_OPEN_HINT,
-			value: idx
-		});
-	}, [ session ] );
+		logAction( OPEN_HINT, idx );
+	}, [ logAction ] );
 	const sendSubmitNotification = useCallback( () => {
 		if ( submitted ) {
 			session.addNotification({
@@ -151,11 +145,7 @@ const MatchListQuestion = ( props ) => {
 		} else {
 			solutionColorScale = colorScale;
 		}
-		session.log({
-			id: id.current,
-			type: MATCH_LIST_TOGGLE_SOLUTION,
-			value: null
-		});
+		logAction( TOGGLE_SOLUTION );
 		if ( !userAnswers ) {
 			setUserAnswers( answers );
 			setAnswers( elements.map( ( q, i ) => {
@@ -172,20 +162,16 @@ const MatchListQuestion = ( props ) => {
 			setUserAnswers( null );
 			setAnswers( userAnswers );
 		}
-	}, [ props, userAnswers, answers, session ] );
+	}, [ props, userAnswers, answers, logAction ] );
 	const handleSubmit = useCallback( () => {
 		if ( !disableSubmitNotification ) {
 			sendSubmitNotification();
 		}
 		setSubmitted( true );
 		const newAnswers = answers.map( ans => ({ a: ans.a, b: ans.b }) );
-		session.log({
-			id: id.current,
-			type: MATCH_LIST_SUBMISSION,
-			value: JSON.stringify( newAnswers )
-		});
+		logAction( SUBMISSION, JSON.stringify( newAnswers ) );
 		onSubmit( newAnswers );
-	}, [ answers, disableSubmitNotification, session, sendSubmitNotification, onSubmit ] );
+	}, [ answers, disableSubmitNotification, logAction, sendSubmitNotification, onSubmit ] );
 	const renderSubmitButton = useCallback( ( unfinished ) => {
 		if ( until && session.startTime > until ) {
 			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
@@ -295,7 +281,7 @@ const MatchListQuestion = ( props ) => {
 				}
 				<ResponseVisualizer
 					buttonLabel={t('answers')}
-					info={MATCH_LIST_SUBMISSION}
+					info="MATCH_LIST_SUBMISSION"
 					id={id.current}
 					data={{
 						type: 'matches',

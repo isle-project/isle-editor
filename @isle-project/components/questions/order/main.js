@@ -14,8 +14,9 @@ import ChatButton from '@isle-project/components/internal/chat-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import { ORDER_QUESTION_SUBMISSION, ORDER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { OPEN_HINT, SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './order_question.css';
 
 
@@ -49,6 +50,7 @@ const debug = logger( 'isle:order-question' );
 const OrderQuestion = ( props ) => {
 	const { disableSubmitNotification, onChange, onSubmit } = props;
 	const id = useRef( props.id || uid( props ) );
+	const { logAction } = useActionLogger( 'ORDER_QUESTION', id.current );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/order' );
 	const [ submitted, setSubmitted ] = useState( false );
@@ -93,12 +95,8 @@ const OrderQuestion = ( props ) => {
 
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		session.log({
-			id: id.current,
-			type: ORDER_QUESTION_OPEN_HINT,
-			value: idx
-		});
-	}, [ session ] );
+		logAction( OPEN_HINT, idx );
+	}, [ logAction ] );
 
 	const sendSubmitNotification = useCallback( () => {
 		if ( props.provideFeedback ) {
@@ -129,13 +127,8 @@ const OrderQuestion = ( props ) => {
 		}
 		onSubmit( state.cards, state.correct );
 		setSubmitted( true );
-
-		session.log({
-			id: id.current,
-			type: ORDER_QUESTION_SUBMISSION,
-			value: state.cards.map( x => x.text ).join( ' -> ' )
-		});
-	}, [ disableSubmitNotification, sendSubmitNotification, session, state, onSubmit ] );
+		logAction( SUBMISSION, state.cards.map( x => x.text ).join( ' -> ' ) );
+	}, [ disableSubmitNotification, sendSubmitNotification, logAction, state, onSubmit ] );
 	const nHints = props.hints.length;
 	return (
 		<Card id={id.current} className="order-question" style={props.style} >
