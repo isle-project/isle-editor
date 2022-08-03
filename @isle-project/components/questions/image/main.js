@@ -22,8 +22,8 @@ import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedb
 import SessionContext from '@isle-project/session/context.js';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
-import getLastAction from '@isle-project/utils/get-last-action';
-import { IMAGE_QUESTION_SUBMISSION, IMAGE_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
+import { SUBMISSION, OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './image_question.css';
@@ -57,13 +57,13 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 */
 const ImageQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
+	const { retrieveLastAction, logAction } = useActionLogger( 'IMAGE_QUESTION', id.current );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/image' );
 	const fileUpload = useRef( null );
 
 	const [ submitted, setSubmitted ] = useState( false );
-	const currentUserActions = session.currentUserActions;
-	const lastSrc = getLastAction( currentUserActions, id.current, IMAGE_QUESTION_SUBMISSION );
+	const lastSrc = retrieveLastAction( SUBMISSION );
 	const [ src, setSrc ] = useState( lastSrc );
 	const [ exhaustedHints, setExhaustedHints ] = useState( props.hints.length === 0 );
 	const [ displaySolution, setDisplaySolution ] = useState( false );
@@ -71,13 +71,12 @@ const ImageQuestion = ( props ) => {
 
 	const setToLastAction = useCallback( () => {
 		debug( `Set submission to last action for question ${id.current} if available...` );
-		const actions = session.currentUserActions;
-		const value = getLastAction( actions, id.current, IMAGE_QUESTION_SUBMISSION );
+		const value = retrieveLastAction( SUBMISSION );
 		if ( value && value !== src ) {
 			setSrc( value );
 			setSubmitted( true );
 		}
-	}, [ session, src ] );
+	}, [ retrieveLastAction, src ] );
 
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type ) => {
@@ -107,12 +106,8 @@ const ImageQuestion = ( props ) => {
 	/>;
 	const logHint = useCallback( ( idx ) => {
 		debug( 'Logging hint...' );
-		session.log({
-			id: id.current,
-			type: IMAGE_QUESTION_OPEN_HINT,
-			value: idx
-		});
-	}, [ session ] );
+		logAction( OPEN_HINT, idx );
+	}, [ logAction ] );
 	const sendSubmitNotification = useCallback( () => {
 		session.addNotification({
 			title: t('submitted'),
@@ -144,20 +139,12 @@ const ImageQuestion = ( props ) => {
 		props.onSubmit();
 		setSubmitted( true );
 		if ( src ) {
-			session.log({
-				id: id.current,
-				type: IMAGE_QUESTION_SUBMISSION,
-				value: src
-			});
+			logAction( SUBMISSION, src );
 		} else {
 			const canvas = document.getElementById( id.current+'-canvas' );
 			canvas.toBlob( ( blob ) => {
 				blobToBase64( blob ).then( newSrc => {
-					session.log({
-						id: id.current,
-						type: IMAGE_QUESTION_SUBMISSION,
-						value: newSrc
-					});
+					logAction( SUBMISSION, newSrc );
 					setSrc( newSrc );
 				});
 			});
@@ -311,7 +298,7 @@ const ImageQuestion = ( props ) => {
 				/> : null }
 				<ResponseVisualizer
 					buttonLabel="Answers" id={id.current}
-					info={IMAGE_QUESTION_SUBMISSION}
+					info="IMAGE_QUESTION_SUBMISSION"
 					data={{
 						question: props.question,
 						type: 'image'

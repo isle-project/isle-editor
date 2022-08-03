@@ -15,9 +15,8 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import stopDefaultAndPropagation from '@isle-project/utils/stop-default-and-propagation';
-import getLastAction from '@isle-project/utils/get-last-action';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import { FILE_QUESTION_SUBMISSION, OPEN_HINT, SUBMIT } from '@isle-project/constants/actions.js';
+import { OPEN_HINT, SUBMISSION } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './file_question.css';
@@ -52,7 +51,7 @@ const FileQuestion = ( props ) => {
 	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const fileUpload = useRef( null );
-	const { logAction } = useActionLogger( 'FILE_QUESTION', id.current );
+	const { logAction, retrieveLastAction } = useActionLogger( 'FILE_QUESTION', id.current );
 	const [ file, setFile ] = useState( null );
 	const [ fileLink, setFileLink ] = useState( null );
 	const [ isProcessing, setIsProcessing ] = useState( false );
@@ -60,13 +59,12 @@ const FileQuestion = ( props ) => {
 
 	const setToLastAction = useCallback( () => {
 		debug( `Set submission to last action for question ${id.current} if available...` );
-		const actions = session.currentUserActions;
-		const value = getLastAction( actions, id.current, FILE_QUESTION_SUBMISSION );
+		const value = retrieveLastAction( SUBMISSION );
 		if ( value && value !== fileLink ) {
 			setFileLink( value );
 			setSubmitted( true );
 		}
-	}, [ session, fileLink ] );
+	}, [ retrieveLastAction, fileLink ] );
 
 	const { hints } = props;
 	const nHints = hints.length;
@@ -102,7 +100,7 @@ const FileQuestion = ( props ) => {
 				}
 				const filename = res.filename;
 				const link = session.server + '/' + filename;
-				logAction( SUBMIT, link );
+				logAction( SUBMISSION, link );
 				setFileLink( link );
 				setIsProcessing( false );
 				setSubmitted( true );
@@ -206,7 +204,7 @@ const FileQuestion = ( props ) => {
 				/> : null }
 				<ResponseVisualizer
 					buttonLabel="Answers" id={id.current}
-					info={FILE_QUESTION_SUBMISSION}
+					info="FILE_QUESTION_SUBMISSION"
 					data={{
 						question: props.question,
 						type: 'file'

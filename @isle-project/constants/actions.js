@@ -19,7 +19,8 @@
 
 export const OPEN = 'OPEN';
 export const OPEN_HINT = 'OPEN_HINT';
-export const SUBMIT = 'SUBMIT';
+export const SUBMISSION = 'SUBMISSION';
+export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION';
 
 export const ADJUST_GRADES = 'ADJUST_GRADES';
 export const APPEND_GRADE_MESSAGE = 'APPEND_GRADE_MESSAGE';

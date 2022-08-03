@@ -1,6 +1,8 @@
 // MODULES //
 
 import React, { useContext, useRef } from 'react';
+import isArray from '@stdlib/assert/is-array';
+import isObject from '@stdlib/assert/is-object';
 import SessionContext from '@isle-project/session/context.js';
 
 
@@ -25,10 +27,26 @@ function useActionLogger( componentType, id ) {
 			session.log({
 				type: componentType + '_' + action,
 				id: isFn ? id() : id,
-				value: value,
+				value: value || null,
 				componentType: componentType,
 				...options
 			});
+		},
+		retrieveLastAction: ( actionType ) => {
+			const userActions = session.currentUserActions;
+			const type = `${componentType}_${actionType}`;
+			if ( isObject( userActions ) ) {
+				let actions = userActions[ isFn ? id() : id ];
+				if ( isArray( actions ) ) {
+					actions = actions.filter( action => {
+						return action.type === type;
+					});
+					if ( actions.length > 0 ) {
+						return actions[ 0 ].value;
+					}
+				}
+			}
+			return null;
 		}
 	};
 }
@@ -45,8 +63,8 @@ function withActionLogger( componentType, idAccessor ) {
 		function WrappedComponent({ forwardedRef, ...rest }) {
 			const childRef = useRef( null );
 			const id = idAccessor ? () => idAccessor( childRef.current.props ) : () => childRef.current.props.id;
-			const { logAction, logScore } = useActionLogger( componentType, id );
-			const elem = React.createElement( Component, { ...rest, logScore, logAction, ref: forwardedRef } );
+			const { logAction, logScore, retrieveLastAction } = useActionLogger( componentType, id );
+			const elem = React.createElement( Component, { ...rest, logScore, logAction, retrieveLastAction, ref: forwardedRef } );
 			childRef.current = elem;
 			return elem;
 		}
