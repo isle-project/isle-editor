@@ -17,7 +17,6 @@ import contains from '@stdlib/assert/contains';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isEmptyObject from '@stdlib/assert/is-empty-object';
-import generateUID from '@isle-project/utils/uid';
 import Panel from '@isle-project/components/panel';
 import HintButton from '@isle-project/components/hint-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
@@ -25,15 +24,15 @@ import ChatButton from '@isle-project/components/internal/chat-button';
 import Text from '@isle-project/components/text';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
-import { SELECT_QUESTION_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './select-question-matrix.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:select-question-matrix' );
-const uid = generateUID( 'select-question-matrix' );
 
 
 // MAIN //
@@ -65,7 +64,6 @@ const uid = generateUID( 'select-question-matrix' );
 class SelectQuestionMatrix extends Component {
 	constructor( props ) {
 		super( props );
-		this.id = props.id || uid( props );
 		this.state = {
 			answers: {},
 			submitted: false,
@@ -155,11 +153,7 @@ class SelectQuestionMatrix extends Component {
 				level: 'info'
 			});
 		}
-		session.log({
-			id: this.id,
-			type: SELECT_QUESTION_MATRIX_SUBMISSION,
-			value: this.state.answers
-		});
+		this.props.logAction( SUBMISSION, this.state.answers );
 		this.props.onSubmit( this.state.answers, correct );
 		let answerState = null;
 		if ( this.props.provideFeedback && hasSolution ) {
@@ -281,7 +275,7 @@ class SelectQuestionMatrix extends Component {
 			this.state.completed;
 		return (
 			<Panel
-				id={this.id} border={this.state.answerState}
+				id={this.props.id} border={this.state.answerState}
 				className={`select-question-matrix ${this.props.className}`}
 				style={this.props.style}
 				{...this.props.panelProps}
@@ -301,12 +295,12 @@ class SelectQuestionMatrix extends Component {
 						null
 					}
 					{
-						this.props.chat ? <ChatButton for={this.id} /> : null
+						this.props.chat ? <ChatButton for={this.props.id} /> : null
 					}
 				</div>
 				<div>
 					<ResponseVisualizer
-						id={this.id}
+						id={this.props.id}
 						data={{
 							type: 'tensor',
 							rows: this.props.rows,
@@ -315,10 +309,10 @@ class SelectQuestionMatrix extends Component {
 							solution: this.props.solution,
 							options: this.props.options
 						}}
-						info={SELECT_QUESTION_MATRIX_SUBMISSION}
+						info="SELECT_QUESTION_MATRIX_SUBMISSION"
 					/>
 					{ this.props.feedback ? <FeedbackButtons
-						id={this.id+'_feedback'}
+						id={this.props.id+'_feedback'}
 						style={{ float: 'left' }}
 					/> : null }
 				</div>
@@ -386,4 +380,4 @@ SelectQuestionMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/select-matrix' )( withPropCheck( SelectQuestionMatrix ) );
+export default withActionLogger( 'SELECT_QUESTION_MATRIX' )( withTranslation( 'questions/select-matrix' )( withPropCheck( SelectQuestionMatrix ) ) );

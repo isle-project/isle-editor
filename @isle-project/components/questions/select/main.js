@@ -16,16 +16,11 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import ChatButton from '@isle-project/components/internal/chat-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
-import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
-import { SELECT_QUESTION_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './select_question.css';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'select-question' );
 
 
 // MAIN //
@@ -58,8 +53,6 @@ class SelectQuestion extends Component {
 	*/
 	constructor( props ) {
 		super( props );
-
-		this.id = props.id || uid( props );
 
 		// Initialize state variables...
 		this.state = {
@@ -108,11 +101,7 @@ class SelectQuestion extends Component {
 				level: 'info'
 			});
 		}
-		session.log({
-			id: this.id,
-			type: SELECT_QUESTION_SUBMISSION,
-			value: this.state.value
-		});
+		this.props.logAction( SUBMISSION, this.state.value );
 		this.props.onSubmit( this.state.value, correct );
 		this.setState({
 			answerState,
@@ -128,7 +117,7 @@ class SelectQuestion extends Component {
 		const isValid = this.state.answerState === 'success';
 		const isInvalid = this.state.answerState === 'danger';
 		const responseVisualizer = <ResponseVisualizer
-			id={this.id}
+			id={this.props.id}
 			info="SELECT_QUESTION_SUBMISSION"
 			data={{
 				type: 'factor',
@@ -142,7 +131,7 @@ class SelectQuestion extends Component {
 		if ( this.props.inline ) {
 			return (
 				<span
-					id={this.id}
+					id={this.props.id}
 					style={{
 						...this.props.style
 					}}
@@ -171,9 +160,9 @@ class SelectQuestion extends Component {
 			);
 		}
 		return (
-			<Card id={this.id} className="select-question" style={this.props.style} body >
+			<Card id={this.props.id} className="select-question" style={this.props.style} body >
 				<Form>
-					<FormGroup controlId={`${this.id}-form`}>
+					<FormGroup controlId={`${this.props.id}-form`}>
 						{ this.props.question ?
 							<label>{this.props.question}</label> :
 							null
@@ -202,14 +191,14 @@ class SelectQuestion extends Component {
 						null
 					}
 					{
-						this.props.chat ? <ChatButton for={this.id} /> : null
+						this.props.chat ? <ChatButton for={this.props.id} /> : null
 					}
 				</div>
 				{responseVisualizer}
 				{ this.props.feedback ? <FeedbackButtons
-					id={this.id+'_feedback'}
+					id={this.props.id+'_feedback'}
 				/> : null }
-				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
+				<GradeFeedbackRenderer for={this.props.id} points={this.props.points} />
 			</Card>
 		);
 	}
@@ -265,4 +254,4 @@ SelectQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/select' )( withPropCheck( SelectQuestion ) );
+export default withActionLogger( 'SELECT_QUESTION' )( withTranslation( 'questions/select' )( withPropCheck( SelectQuestion ) ) );
