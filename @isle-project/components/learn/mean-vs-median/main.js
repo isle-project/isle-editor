@@ -19,6 +19,8 @@ import lognormal from '@stdlib/stats/base/dists/lognormal';
 import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
+import { GUESS } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
@@ -115,11 +117,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			session.log({
-				id: this.props.id,
-				type: 'MEDIAN_GUESS_DISTANCE',
-				value: distance
-			});
+			this.props.logAction( GUESS, distance );
 			this.setState({ showLognormalMedian: true });
 		}
 	};
@@ -144,11 +142,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			session.log({
-				id: this.props.id,
-				type: 'MEAN_GUESS_DISTANCE',
-				value: distance
-			});
+			this.props.logAction( GUESS, distance );
 			this.setState({ showLognormalMean: true });
 		}
 	};
@@ -319,7 +313,6 @@ class MeanVSMedian extends Component {
 MeanVSMedian.defaultProps = {
 	feedback: false,
 	header: null,
-	id: 'mean_vs_median',
 	intro: null,
 	seed: null,
 	showStatistics: false,
@@ -329,7 +322,6 @@ MeanVSMedian.defaultProps = {
 MeanVSMedian.propTypes = {
 	feedback: PropTypes.bool,
 	header: PropTypes.string,
-	id: PropTypes.string,
 	intro: PropTypes.node,
 	seed: PropTypes.number,
 	showStatistics: PropTypes.bool,
@@ -341,4 +333,4 @@ MeanVSMedian.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'learn/mean-vs-median' )( MeanVSMedian );
+export default withActionLogger( 'MEAN_VS_MEDIAN' )( withTranslation( 'learn/mean-vs-median' )( MeanVSMedian ) );

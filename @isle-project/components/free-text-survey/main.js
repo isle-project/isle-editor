@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
@@ -13,21 +13,20 @@ import Panel from '@isle-project/components/panel';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
-import generateUID from '@isle-project/utils/uid';
 import TextArea from '@isle-project/components/input/text-area';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
-import { TEXT_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './free-text-survey.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:free-text-survey' );
-const uid = generateUID( 'free-text-survey' );
 
 
 // MAIN //
@@ -44,7 +43,7 @@ const uid = generateUID( 'free-text-survey' );
 * @property {Function} onSubmit - callback function called when an answer is submitted
 */
 const FreeTextSurvey = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id, logAction } = useActionLogger( 'TEXT_SURVEY', props );
 	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
@@ -85,10 +84,7 @@ const FreeTextSurvey = ( props ) => {
 		});
 	}, [ t ] );
 	const submitQuestion = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: TEXT_SURVEY_SUBMISSION,
-			value: value,
+		logAction( SUBMISSION, value, {
 			anonymous: anonymous
 		}, 'members' );
 		setSubmitted( true );
@@ -98,7 +94,7 @@ const FreeTextSurvey = ( props ) => {
 			level: 'success'
 		});
 		onSubmit( value );
-	}, [ anonymous, onSubmit, session, t, value ] );
+	}, [ anonymous, onSubmit, logAction, session, t, value ] );
 
 	const disabled = submitted && !props.allowMultipleAnswers;
 	return (
@@ -152,7 +148,7 @@ const FreeTextSurvey = ( props ) => {
 			</Container>
 			<ResponseVisualizer
 				buttonLabel={t('responses')} id={id.current}
-				info={TEXT_SURVEY_SUBMISSION}
+				info="TEXT_SURVEY_SUBMISSION"
 			/>
 		</Panel>
 	);

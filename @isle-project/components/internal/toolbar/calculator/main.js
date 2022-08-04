@@ -14,11 +14,12 @@ import IS_MOBILE from '@stdlib/assert/is-mobile';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import TeX from '@isle-project/components/tex';
-import { CALCULATOR_SOLVE } from '@isle-project/constants/actions.js';
+import { SOLVE } from '@isle-project/constants/actions.js';
 import SessionContext from '@isle-project/session/context.js';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
+import { useActionLogger } from '@isle-project/session/actions_logger.js';
 import evaluate from './shunting_yard.js';
 import './calculator.css';
 
@@ -44,6 +45,7 @@ const RE_OPERATOR = /[+\-/*^!]/;
 const Calculator = ( props ) => {
 	debug( 'Rendering calculator...' );
 	const { t } = props;
+	const { logAction } = useActionLogger( 'CALCULATOR' );
 	const session = useContext( SessionContext );
 	let textInput = React.createRef();
 
@@ -141,6 +143,8 @@ const Calculator = ( props ) => {
 		if ( isDigitString( visible ) ) {
 			setAnswer( visible );
 		}
+		logAction( SOLVE, visible );
+
 		// Handle implicit multiplication operators:
 		let result = replace( visible, /\) *\(/g, ') * (' );
 		result = replace( result, /\) *([a-z0-9])/g, ') * $1' );
@@ -152,12 +156,6 @@ const Calculator = ( props ) => {
 		// Handle unary operators:
 		result = replace( result, /(^|[(*/:^!+]) *-([^+\-/*^!]+)/g, '$1 (0-$2) ' );
 		result = replace( result, /(^|[(*/:^!+]) *\+/g, '$1 ' );
-
-		session.log({
-			id: props.id,
-			type: CALCULATOR_SOLVE,
-			value: result
-		});
 
 		let keys = result.split( RE_SPLIT_KEY );
 		keys = keys.filter( e => e !== '' );
