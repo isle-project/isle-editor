@@ -232,7 +232,6 @@ class DataExplorer extends Component {
 			ready = true;
 			validVariables = checkVariables( data, quantitative.concat( categorical ) );
 		}
-		this.id = props.id || uid( props );
 		this.state = {
 			data: data,
 			quantitative: quantitative,
@@ -296,8 +295,8 @@ class DataExplorer extends Component {
 	componentDidMount() {
 		const session = this.context;
 		if ( !this.props.data ) {
-			if ( session.metadata.store[ this.id ] ) {
-				const meta = session.metadata.store[ this.id ];
+			if ( session.metadata.store[ this.props.id ] ) {
+				const meta = session.metadata.store[ this.props.id ];
 				json( meta ).then( res => {
 					const groupVars = ( res.categorical || [] ).slice();
 					this.setState({
@@ -314,7 +313,7 @@ class DataExplorer extends Component {
 					});
 				});
 			} else {
-				session.store.getItem( this.id ).then( ({ quantitative = [], categorical = [], data = null }) => {
+				session.store.getItem( this.props.id ).then( ({ quantitative = [], categorical = [], data = null }) => {
 					let ready = false;
 					if ( isEmptyObject( data ) ) {
 						data = null;
@@ -342,7 +341,7 @@ class DataExplorer extends Component {
 			}
 		}
 		if ( session.currentUserActions ) {
-			const actions = session.currentUserActions[ this.id ];
+			const actions = session.currentUserActions[ this.props.id ];
 			if ( this.props.data && isObjectArray( actions ) ) {
 				this.restoreTransformations( actions );
 			}
@@ -350,14 +349,14 @@ class DataExplorer extends Component {
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				const currentUserActions = action;
-				const actions = currentUserActions[ this.id ];
+				const actions = currentUserActions[ this.props.id ];
 				if ( this.props.data && isObjectArray( actions ) ) {
 					this.restoreTransformations( actions );
 				}
 			}
 			else if ( type === RECEIVED_LESSON_INFO ) {
-				if ( session.metadata.store[ this.id ] ) {
-					const meta = session.metadata.store[ this.id ];
+				if ( session.metadata.store[ this.props.id ] ) {
+					const meta = session.metadata.store[ this.props.id ];
 					json( meta ).then( res => {
 						const groupVars = ( res.categorical || [] ).slice();
 						this.setState({
@@ -372,7 +371,7 @@ class DataExplorer extends Component {
 			}
 			else if ( type === MEMBER_ACTION ) {
 				if (
-					action.id !== this.id ||
+					action.id !== this.props.id ||
 					action.email === session.user.email ||
 					this.props.reportMode === 'individual'
 				) {
@@ -403,7 +402,7 @@ class DataExplorer extends Component {
 				) {
 					this.restoreTransformations( [ action ] );
 				}
-				this.context.currentUserActions[ this.id ].unshift( action );
+				this.context.currentUserActions[ this.props.id ].unshift( action );
 			}
 		});
 	}
@@ -533,7 +532,7 @@ class DataExplorer extends Component {
 
 	resetStorage = () => {
 		const session = this.context;
-		session.store.removeItem( this.id );
+		session.store.removeItem( this.props.id );
 		this.setState({
 			data: null,
 			categorical: [],
@@ -544,8 +543,8 @@ class DataExplorer extends Component {
 
 	shareData = () => {
 		const session = this.context;
-		if ( session.metadata.store[ this.id ] ) {
-			session.updateMetadata( 'store', this.id, null );
+		if ( session.metadata.store[ this.props.id ] ) {
+			session.updateMetadata( 'store', this.props.id, null );
 			this.forceUpdate();
 		} else {
 			const internalData = {
@@ -564,7 +563,7 @@ class DataExplorer extends Component {
 				callback: ( error, res ) => {
 					const filename = res.filename;
 					const link = session.server + '/' + filename;
-					session.updateMetadata( 'store', this.id, link );
+					session.updateMetadata( 'store', this.props.id, link );
 					this.forceUpdate();
 				},
 				showNotification: false
@@ -898,7 +897,7 @@ class DataExplorer extends Component {
 				categorical: categoricalGuesses,
 				data
 			}, () => {
-				session.store.setItem( this.id, {
+				session.store.setItem( this.props.id, {
 					data: this.state.data,
 					quantitative: quantitativeGuesses,
 					categorical: categoricalGuesses
@@ -1282,13 +1281,13 @@ class DataExplorer extends Component {
 								quantitative: this.state.quantitative,
 								categorical: this.state.categorical
 							};
-							session.store.setItem( this.id, internalData );
+							session.store.setItem( this.props.id, internalData );
 							this.setState({
 								unaltered: internalData
 							});
 						});
 					}}>{this.props.t('submit')}</Button>
-					<DataTable data={this.state.data} id={this.id + '_table'} />
+					<DataTable data={this.state.data} id={this.props.id + '_table'} />
 				</Card.Body>
 			</Card> );
 		}
@@ -1362,7 +1361,7 @@ class DataExplorer extends Component {
 							Loading...
 						</Button>} >
 							<ToolboxButton
-								id={`${this.id}-toolbox`}
+								id={`${this.props.id}-toolbox`}
 								models={this.props.models}
 								tables={this.props.tables}
 								statistics={this.props.statistics}
@@ -1406,7 +1405,7 @@ class DataExplorer extends Component {
 					</Navbar>
 					<Card.Body style={{ overflowY: 'auto' }}>
 						{ hasQuestions ? <Pages
-							id={this.id + '_questions'}
+							id={this.props.id + '_questions'}
 							height={pagesHeight}
 							className="data-explorer-questions"
 							style={{
@@ -1419,7 +1418,7 @@ class DataExplorer extends Component {
 								display: this.state.openedNav !== 'data' ? 'none' : null
 							}}
 						>
-								{ !this.props.data && !session.metadata.store[ this.id ] ? <Button
+								{ !this.props.data && !session.metadata.store[ this.props.id ] ? <Button
 									size="small" onClick={this.resetStorage}
 									style={{ position: 'absolute', top: '80px', zIndex: 2 }}
 								>{this.props.t('clear-data')}</Button> : null }
@@ -1427,7 +1426,7 @@ class DataExplorer extends Component {
 									<Button
 										size="small" onClick={this.shareData}
 										style={{ position: 'absolute', top: '80px', left: '140px', zIndex: 2 }}
-									>{!session.metadata.store[ this.id ] ? this.props.t('share') : this.props.t('unshare')}</Button>
+									>{!session.metadata.store[ this.props.id ] ? this.props.t('share') : this.props.t('unshare')}</Button>
 								</Gate>: null }
 								<DataTable
 									{...this.props.dataTableProps}
@@ -1445,7 +1444,7 @@ class DataExplorer extends Component {
 									onColumnNameChange={this.onColumnNameChange}
 									onColumnDrag={this.onColumnDrag}
 									deletable
-									id={this.id + '_table'}
+									id={this.props.id + '_table'}
 									headerButtons={<Fragment>
 										{this.state.filters.length > 0 && this.state.subsetFilters !== this.state.filters ?
 											<OverlayTrigger placement="top" overlay={<Tooltip>{this.props.t('create-filtered-dataset-tooltip')}</Tooltip>} >
@@ -1517,8 +1516,8 @@ class DataExplorer extends Component {
 						</div>
 						{ this.props.history && this.state.openedNav === 'history' ?
 							<History
-								explorerID={this.id}
-								actions={this.context.currentUserActions[ this.id ]}
+								explorerID={this.props.id}
+								actions={this.context.currentUserActions[ this.props.id ]}
 								onCreated={this.addToOutputs}
 								onTransformation={( action ) => {
 									const state = this.applyTransformation( this.state, action );
@@ -1545,7 +1544,7 @@ class DataExplorer extends Component {
 							<TextEditor
 								{...this.props.editorProps}
 								mode={this.props.reportMode}
-								id={this.id + '_editor'}
+								id={this.props.id + '_editor'}
 								style={{ display: this.state.openedNav !== 'editor' ? 'none' : null }}
 								submitButton
 							/> : null
@@ -1619,7 +1618,7 @@ class DataExplorer extends Component {
 								style={{ float: 'right' }}
 								onClick={this.toggleStudentPlots}
 							>{this.props.t('open-shared-plots')}</Button>
-							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
+							<RealtimeMetrics returnFullObject for={[ this.props.id ]} onDatum={this.onUserAction} />
 						</Gate>}
 						clearOutput={() => {
 							this.props.logAction( CLEAR_OUTPUT_PANE, null, {}, 'owners' );
