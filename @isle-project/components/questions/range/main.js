@@ -14,7 +14,6 @@ import maximum from '@stdlib/math/base/special/max';
 import roundn from '@stdlib/math/base/special/roundn';
 import isnan from '@stdlib/assert/is-nan';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
-import generateUID from '@isle-project/utils/uid';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import TimedButton from '@isle-project/components/timed-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
@@ -32,7 +31,6 @@ import './range_question.css';
 // VARIABLES //
 
 const debug = logger( 'isle:range-question' );
-const uid = generateUID( 'range-question' );
 
 
 // MAIN //
@@ -62,7 +60,6 @@ const uid = generateUID( 'range-question' );
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as first parameter a `boolean` indicating whether the answer was correctly answered (if applicable, `null` otherwise) and the supplied answer as the second parameter
  */
 const RangeQuestion = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
 	const { digits, min, max, points, question, solution, until, feedback, style,
 		provideFeedback, submitAfterFeedback, hints, nTries, chat, labels,
 		onChangeUpper, onChangeLower, onChange, onSubmit } = props;
@@ -74,7 +71,7 @@ const RangeQuestion = ( props ) => {
 	const [ correct, setCorrect ] = useState({ lower: false, upper: false });
 	const [ numSubmissions, setNumSubmissions ] = useState( 0 );
 	const { t } = useTranslation( 'questions/range' );
-	const { logAction } = useActionLogger( 'RANGE_QUESTION', id.current );
+	const { logAction, id } = useActionLogger( 'RANGE_QUESTION', props );
 
 	const handleChangeUpper = useCallback( ( newValue ) => {
 		setUpper( newValue );

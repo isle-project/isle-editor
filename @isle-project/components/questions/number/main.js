@@ -12,7 +12,6 @@ import roundn from '@stdlib/math/base/special/roundn';
 import isUndefinedOrNull from '@stdlib/assert/is-undefined-or-null';
 import isNumber from '@stdlib/assert/is-number';
 import isArray from '@stdlib/assert/is-array';
-import generateUID from '@isle-project/utils/uid';
 import Panel from '@isle-project/components/panel';
 import TimedButton from '@isle-project/components/timed-button';
 import ChatButton from '@isle-project/components/internal/chat-button';
@@ -22,16 +21,15 @@ import HintButton from '@isle-project/components/hint-button';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import getLastAction from '@isle-project/utils/get-last-action';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
-import { NUMBER_QUESTION_SUBMISSION, NUMBER_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { SUBMISSION, OPEN_HINT } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import './number_question.css';
 
 
 // VARIABLES //
 
-const uid = generateUID( 'number-question' );
 const debug = logger( 'isle:number-question' );
 
 
@@ -109,9 +107,7 @@ class NumberQuestion extends Component {
 	constructor( props, context ) {
 		super( props );
 
-		this.id = props.id || uid( props );
-		const currentUserActions = context.currentUserActions;
-		const value = getLastAction( currentUserActions, this.id, NUMBER_QUESTION_SUBMISSION );
+		const value = props.retrieveLastAction( SUBMISSION );
 
 		// Initialize state variables...
 		this.state = {
@@ -143,20 +139,14 @@ class NumberQuestion extends Component {
 	componentDidMount() {
 		const session = this.context;
 		if ( session ) {
-			this.unsubscribe = session.subscribe( ( type, val ) => {
+			this.unsubscribe = session.subscribe( ( type ) => {
 				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-					let actions = val[ this.id ];
-					if ( isArray( actions ) ) {
-						actions = actions.filter( action => {
-							return action.type === NUMBER_QUESTION_SUBMISSION;
+					const lastAction = this.props.retrieveLastAction( SUBMISSION );
+					if ( lastAction ) {
+						this.setState({
+							value: lastAction,
+							submitted: isUndefinedOrNull( this.props.solution )
 						});
-						if ( actions.length > 0 ) {
-							const lastAction = actions[ 0 ].value;
-							this.setState({
-								value: lastAction,
-								submitted: isUndefinedOrNull( this.props.solution )
-							});
-						}
 					}
 				}
 			});
@@ -261,21 +251,12 @@ class NumberQuestion extends Component {
 			correct,
 			numSubmissions: this.state.numSubmissions + 1
 		});
-		session.log({
-			id: this.id,
-			type: NUMBER_QUESTION_SUBMISSION,
-			value: this.state.value
-		});
+		this.props.logAction( SUBMISSION, this.state.value );
 	};
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: NUMBER_QUESTION_OPEN_HINT,
-			value: idx
-		});
+		this.props.logAction( OPEN_HINT, idx );
 	};
 
 	renderSubmitButton() {
@@ -320,7 +301,7 @@ class NumberQuestion extends Component {
 			this.state.correct );
 		return (
 			<Panel
-				id={this.id} className="number-question" style={style} fullscreen
+				id={this.props.id} className="number-question" style={style} fullscreen
 				bodyStyle={{ display: 'inline-block', marginBottom: 6 }}
 			>
 				{ question ? <p><label>{question}</label></p> : null }
@@ -354,7 +335,7 @@ class NumberQuestion extends Component {
 				</div>
 				<ButtonToolbar className="number-question-toolbar">
 					<ResponseVisualizer
-						buttonLabel={t('answers')} id={this.id}
+						buttonLabel={t('answers')} id={this.props.id}
 						data={{
 							type: 'number',
 							question: question,
@@ -377,16 +358,16 @@ class NumberQuestion extends Component {
 					{
 						chat ?
 							<div style={{ display: 'inline-block', marginLeft: 3 }}>
-								<ChatButton for={this.id} />
+								<ChatButton for={this.props.id} />
 							</div> : null
 					}
 					{this.renderSubmitButton()}
 				</ButtonToolbar>
 				{ feedback ? <FeedbackButtons
-					id={this.id+'_feedback'}
+					id={this.props.id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
-				<GradeFeedbackRenderer for={this.id} points={points} />
+				<GradeFeedbackRenderer for={this.props.id} points={points} />
 			</Panel>
 		);
 	}
@@ -452,4 +433,4 @@ NumberQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/number' )( withPropCheck( NumberQuestion ) );
+export default withActionLogger( 'NUMBER_QUESTION' )( withTranslation( 'questions/number' )( withPropCheck( NumberQuestion ) ) );

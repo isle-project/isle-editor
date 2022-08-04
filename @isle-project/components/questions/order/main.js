@@ -1,11 +1,10 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
-import generateUID from '@isle-project/utils/uid';
 import DraggableList from '@isle-project/components/draggable-list';
 import TimedButton from '@isle-project/components/timed-button';
 import HintButton from '@isle-project/components/hint-button';
@@ -22,7 +21,6 @@ import './order_question.css';
 
 // VARIABLES //
 
-const uid = generateUID( 'order-question' );
 const debug = logger( 'isle:order-question' );
 
 
@@ -49,8 +47,7 @@ const debug = logger( 'isle:order-question' );
 */
 const OrderQuestion = ( props ) => {
 	const { disableSubmitNotification, onChange, onSubmit } = props;
-	const id = useRef( props.id || uid( props ) );
-	const { logAction } = useActionLogger( 'ORDER_QUESTION', id.current );
+	const { logAction, id } = useActionLogger( 'ORDER_QUESTION', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/order' );
 	const [ submitted, setSubmitted ] = useState( false );
@@ -131,7 +128,7 @@ const OrderQuestion = ( props ) => {
 	}, [ disableSubmitNotification, sendSubmitNotification, logAction, state, onSubmit ] );
 	const nHints = props.hints.length;
 	return (
-		<Card id={id.current} className="order-question" style={props.style} >
+		<Card id={id} className="order-question" style={props.style} >
 			<Card.Body style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<DraggableList
@@ -157,11 +154,11 @@ const OrderQuestion = ( props ) => {
 					}
 					{
 						props.chat ?
-							<ChatButton for={id.current} /> : null
+							<ChatButton for={id} /> : null
 					}
 				</div>
 				<ResponseVisualizer
-					id={id.current}
+					id={id}
 					data={{
 						type: 'factor',
 						question: props.question,
@@ -171,9 +168,9 @@ const OrderQuestion = ( props ) => {
 					points={props.points}
 				/>
 				{ props.feedback ? <FeedbackButtons
-					id={id.current+'_feedback'}
+					id={id+'_feedback'}
 				/> : null }
-				<GradeFeedbackRenderer for={id.current} points={props.points} />
+				<GradeFeedbackRenderer for={id} points={props.points} />
 			</Card.Body>
 		</Card>
 	);
