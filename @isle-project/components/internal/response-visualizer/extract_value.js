@@ -4,8 +4,6 @@ import copy from '@stdlib/utils/copy';
 import logger from 'debug';
 import isObjectLike from '@stdlib/assert/is-object-like';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import { MATCH_LIST_SUBMISSION, MULTIPLE_CHOICE_MATRIX_SUBMISSION,
-	MULTIPLE_CHOICE_SUBMISSION, USER_FEEDBACK_FORM, RANGE_QUESTION_SUBMIT_ANSWER } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //
@@ -23,7 +21,7 @@ const isJSONArray = ( str ) => {
 // MAIN //
 
 function extractValue( action ) {
-	if ( action.type === USER_FEEDBACK_FORM ) {
+	if ( action.type === 'FEEDBACK_FORM' ) {
 		action = copy( action );
 		debug( 'Received a feedback action...' );
 		let json;
@@ -47,8 +45,8 @@ function extractValue( action ) {
 		}
 	}
 	else if (
-		action.type === MULTIPLE_CHOICE_MATRIX_SUBMISSION ||
-		action.type === MATCH_LIST_SUBMISSION
+		action.type === 'MULTIPLE_CHOICE_MATRIX_SUBMISSION' ||
+		action.type === 'MATCH_LIST_SUBMISSION'
 	) {
 		if ( !isObjectLike( action.value ) ) {
 			action = copy( action );
@@ -56,8 +54,8 @@ function extractValue( action ) {
 		}
 	}
 	else if (
-		action.type === MULTIPLE_CHOICE_SUBMISSION ||
-		action.type === RANGE_QUESTION_SUBMIT_ANSWER
+		action.type === 'MULTIPLE_CHOICE_SUBMISSION' ||
+		action.type === 'RANGE_QUESTION_SUBMISSION'
 	) {
 		if ( isJSONArray( action.value ) ) {
 			action = copy( action );

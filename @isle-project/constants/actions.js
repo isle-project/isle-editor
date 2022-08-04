@@ -19,6 +19,8 @@
 
 export const CLICK = 'CLICK';
 export const CONFIDENCE = 'CONFIDENCE';
+export const CONFUSED = 'CONFUSED';
+export const COPY_TO_CLIPBOARD = 'COPY_TO_CLIPBOARD';
 export const DRAG = 'DRAG';
 export const END = 'END';
 export const ENTER = 'ENTER';
@@ -26,6 +28,8 @@ export const EVALUATE = 'EVALUATE';
 export const FILTER = 'FILTER';
 export const FINISH = 'FINISH';
 export const FIRST = 'FIRST';
+export const FORM = 'FORM';
+export const HIGHLIGHT_TEXT = 'HIGHLIGHT_TEXT';
 export const INTERACTION = 'INTERACTION';
 export const JUMP = 'JUMP';
 export const LAST = 'LAST';
@@ -36,30 +40,27 @@ export const OPEN_HINT = 'OPEN_HINT';
 export const PAUSE = 'PAUSE';
 export const PLAY = 'PLAY';
 export const PREVIOUS = 'PREVIOUS';
+export const REMOVE_HIGHLIGHT_TEXT = 'REMOVE_HIGHLIGHT_TEXT';
 export const RESET = 'RESET';
+export const SAVE_HTML = 'SAVE_HTML';
+export const SAVE_PDF = 'SAVE_PDF';
 export const SEEK = 'SEEK';
 export const SKIP = 'SKIP';
 export const SOLVE = 'SOLVE';
 export const SORT = 'SORT';
 export const START = 'START';
 export const SUBMISSION = 'SUBMISSION';
-export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION';
-export const HIGHLIGHT_TEXT = 'HIGHLIGHT_TEXT';
-export const REMOVE_HIGHLIGHT_TEXT = 'REMOVE_HIGHLIGHT_TEXT';
-export const COPY_TO_CLIPBOARD = 'COPY_TO_CLIPBOARD';
+export const SUBMIT = 'SUBMIT';
 export const TEXT_TO_SPEECH = 'TEXT_TO_SPEECH';
+export const TOGGLE_SOLUTION = 'TOGGLE_SOLUTION';
+export const UNDERSTOOD = 'UNDERSTOOD';
 
 export const ADJUST_GRADES = 'ADJUST_GRADES';
 export const APPEND_GRADE_MESSAGE = 'APPEND_GRADE_MESSAGE';
 export const BUTTON_PAUSE = 'BUTTON_PAUSE';
 export const BUTTON_RESUME = 'BUTTON_RESUME';
-export const DASHBOARD_CLICK_GENERATE = 'DASHBOARD_CLICK_GENERATE';
-export const USER_FEEDBACK_CONFUSED = 'USER_FEEDBACK_CONFUSED';
-export const USER_FEEDBACK_UNDERSTOOD = 'USER_FEEDBACK_UNDERSTOOD';
-export const USER_FEEDBACK_FORM = 'USER_FEEDBACK_FORM';
-export const TEXT_SURVEY_SUBMISSION = 'TEXT_SURVEY_SUBMISSION';
+
 export const LESSON_CONNECTED = 'LESSON_CONNECTED';
-export const LIKERT_SCALE_SUBMISSION = 'LIKERT_SCALE_SUBMISSION';
 
 export const CONTINGENCY_TABLE = 'CONTINGENCY_TABLE';
 export const FREQUENCY_TABLE = 'FREQUENCY_TABLE';
@@ -122,9 +123,7 @@ export const DELETE_VARIABLE = 'DELETE_VARIABLE';
 export const DELETE_STICKY_NOTE = 'DELETE_STICKY_NOTE';
 export const INSERT_STICKY_NOTE = 'INSERT_STICKY_NOTE';
 
-export const SAVE_PDF = 'SAVE_PDF';
-export const SAVE_HTML = 'SAVE_HTML';
-export const SUBMIT = 'SUBMIT';
+
 
 export const ENGAGEMENT_SURVEY_START = 'ENGAGEMENT_SURVEY_START';
 export const ENGAGEMENT_SURVEY_END = 'ENGAGEMENT_SURVEY_END';

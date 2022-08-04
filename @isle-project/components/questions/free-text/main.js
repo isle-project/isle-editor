@@ -281,7 +281,7 @@ class FreeTextQuestion extends Component {
 				</FormGroup>
 				<ResponseVisualizer
 					buttonLabel={this.props.t('answers')} id={this.props.id}
-					info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
+					info="FREE_TEXT_QUESTION_SUBMISSION"
 					data={{
 						question: this.props.question,
 						solution: this.props.solution
