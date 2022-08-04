@@ -41,6 +41,8 @@ export const FINISH = 'FINISH';
 export const CONFIDENCE = 'CONFIDENCE';
 export const SKIP = 'SKIP';
 export const SOLVE = 'SOLVE';
+export const ENTER = 'ENTER';
+export const LEAVE = 'LEAVE';
 
 export const ADJUST_GRADES = 'ADJUST_GRADES';
 export const APPEND_GRADE_MESSAGE = 'APPEND_GRADE_MESSAGE';
@@ -152,8 +154,6 @@ export const CHANGE_BODY = 'CHANGE_BODY';
 export const STICKY_NOTE_MOVE = 'STICKY_NOTE_MOVE';
 export const PLOT_UPDATE = 'PLOT_UPDATE';
 export const SEND_QUEUE_SIZE = 'SEND_QUEUE_SIZE';
-export const ENTER_QUEUE = 'ENTER_QUEUE';
-export const LEFT_QUEUE = 'LEFT_QUEUE';
 export const QUESTION_CONFIDENCE = 'QUESTION_CONFIDENCE';
 export const QUESTION_SKIPPED = 'QUESTION_SKIPPED';
 export const QUIZ_FINISHED = 'QUIZ_FINISHED';

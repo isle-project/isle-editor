@@ -11,6 +11,7 @@ import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import SessionContext from '@isle-project/session/context.js';
 import { INSERT_STICKY_NOTE } from '@isle-project/constants/actions.js';
 import { RECEIVED_LESSON_INFO, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import InterfaceTourButton from './interface_tour_button.js';
 import LessonContextMenu from './contextmenu.js';
 import Forbidden from './forbidden.js';
@@ -147,15 +148,10 @@ class Lesson extends Component {
 		});
 		if ( !noteID ) {
 			noteID = randomstring( 3 );
-			const session = this.context;
-			session.log({
-				id: 'lesson',
-				type: INSERT_STICKY_NOTE,
-				value: {
-					top,
-					left,
-					noteID
-				}
+			this.props.logAction( INSERT_STICKY_NOTE, {
+				top,
+				left,
+				noteID
 			});
 		}
 	};
@@ -193,6 +189,7 @@ class Lesson extends Component {
 				<LessonContextMenu
 					addNote={this.addNote}
 					session={this.context}
+					logAction={this.props.logAction}
 				/>
 				<ReactNotificationSystem
 					ref={( div ) => {
@@ -229,4 +226,4 @@ Lesson.contextType = SessionContext;
 
 // EXPORTS //
 
-export default Lesson;
+export default withActionLogger( 'LESSON', () => 'lesson' )( Lesson );

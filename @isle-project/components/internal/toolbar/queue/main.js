@@ -11,14 +11,14 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import ReactTable from 'react-table';
 import contains from '@stdlib/assert/contains';
 import isNull from '@stdlib/assert/is-null';
-import generateUID from '@isle-project/utils/uid/incremental';
 import Tooltip from '@isle-project/components/tooltip';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import SessionContext from '@isle-project/session/context.js';
-import { ENTER_QUEUE } from '@isle-project/constants/actions.js';
+import { ENTER } from '@isle-project/constants/actions.js';
 import { RECEIVED_QUEUE_QUESTIONS } from '@isle-project/constants/events.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import 'react-table/react-table.css';
 import './queue.css';
 
@@ -26,7 +26,6 @@ import './queue.css';
 // VARIABLES //
 
 const debug = logger( 'isle:queue' );
-const uid = generateUID( 'queue' );
 
 
 // FUNCTIONS //
@@ -132,8 +131,9 @@ const QueueTable = ( props ) => {
 
 // MAIN //
 
-const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
-	id = id || uid();
+const Queue = ( props ) => {
+	const { id, logAction } = useActionLogger( 'QUEUE', props );
+	const { draggable, show, onHide, onNewQuestion } = props;
 	const session = useContext( SessionContext );
 	const questions = session.questions;
 	const { t } = useTranslation( 'internal/toolbar/queue' );
@@ -142,11 +142,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 
 	const enter = () => {
 		debug( 'Send the signal to enter the queue...' );
-		session.log({
-			id: id,
-			type: ENTER_QUEUE,
-			value: text
-		}, 'members' );
+		logAction( ENTER, text, {}, 'members' );
 		const question = {
 			name: session.user.name,
 			email: session.user.email,
@@ -185,7 +181,7 @@ const Queue = ({ id, draggable, show, onHide, onNewQuestion }) => {
 					}
 					setSpot( idx );
 				}
-				if ( action && action.id === id && action.type === ENTER_QUEUE ) {
+				if ( action && action.id === id && action.type === ENTER ) {
 					if ( session.isOwner() ) {
 						onNewQuestion();
 					}

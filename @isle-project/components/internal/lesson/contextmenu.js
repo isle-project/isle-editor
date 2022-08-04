@@ -67,13 +67,7 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'yellow' );
 		document.designMode = 'off';
-
-		const session = this.props.session;
-		session.log({
-			id: 'lesson',
-			type: HIGHLIGHT_TEXT,
-			value: this.state.lastRange.toString()
-		});
+		this.props.logAction( HIGHLIGHT_TEXT, this.state.lastRange.toString() );
 	};
 
 	removeHighlight = ( event ) => {
@@ -85,25 +79,13 @@ class LessonContextMenu extends Component {
 		document.execCommand( 'styleWithCSS', false, true );
 		document.execCommand( 'backColor', false, 'inherit' );
 		document.designMode = 'off';
-
-		const session = this.props.session;
-		session.log({
-			id: 'lesson',
-			type: REMOVE_HIGHLIGHT_TEXT,
-			value: this.state.lastRange.toString()
-		});
+		this.props.logAction( REMOVE_HIGHLIGHT_TEXT, this.state.lastRange.toString() );
 	};
 
 	copyToClipboard = ( event ) => {
 		debug( 'Copying selection to clipboard... ' );
 		navigator.clipboard.writeText( this.state.lastText );
-
-		const session = this.props.session;
-		session.log({
-			id: 'lesson',
-			type: COPY_TO_CLIPBOARD,
-			value: this.state.lastText
-		});
+		this.props.logAction( COPY_TO_CLIPBOARD, this.state.lastText );
 	};
 
 	textToSpeech = () => {
@@ -121,12 +103,7 @@ class LessonContextMenu extends Component {
 		const ssu = new SpeechSynthesisUtterance( str );
 		ssu.lang = session.config.language || 'en-US';
 		window.speechSynthesis.speak( ssu );
-
-		session.log({
-			id: 'lesson',
-			type: TEXT_TO_SPEECH,
-			value: str
-		});
+		this.props.logAction( TEXT_TO_SPEECH, str );
 	};
 
 	handleShow = () => {
@@ -212,6 +189,7 @@ class LessonContextMenu extends Component {
 
 LessonContextMenu.propTypes = {
 	addNote: PropTypes.func.isRequired,
+	logAction: PropTypes.func.isRequired,
 	session: PropTypes.object.isRequired
 };
 
