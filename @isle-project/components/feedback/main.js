@@ -1,23 +1,23 @@
 // MODULES //
 
-import React, { Fragment, useCallback, useContext, useRef, useState } from 'react';
+import React, { Fragment, useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Modal from 'react-bootstrap/Modal';
-import generateUID from '@isle-project/utils/uid/incremental';
 import Tooltip from '@isle-project/components/tooltip';
 import TextArea from '@isle-project/components/input/text-area';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import SessionContext from '@isle-project/session/context.js';
-import { USER_FEEDBACK_CONFUSED, USER_FEEDBACK_UNDERSTOOD, USER_FEEDBACK_FORM } from '@isle-project/constants/actions.js';
+import { CONFUSED, UNDERSTOOD, FORM } from '@isle-project/constants/actions.js';
 import Confused from '-!svg-react-loader!./img/confused.svg';
 import Understood from '-!svg-react-loader!./img/lightbulb.svg';
 import Feedback from '-!svg-react-loader!./img/feedback.svg';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './feedback.css';
 
 
@@ -29,21 +29,15 @@ const DEFAULT_CUSTOM_FEEDBACK = {
 	noLogic: false,
 	comments: ''
 };
-const uid = generateUID( 'feedback' );
 
 
 // FUNCTIONS //
 
-const FeedbackModal = ({ closeModal, id, session, t }) => {
+const FeedbackModal = ({ closeModal, id, session, logAction, t }) => {
 	const [ customFeedback, setCustomFeedback ] = useState( DEFAULT_CUSTOM_FEEDBACK );
 
 	const submitFeedback = useCallback( () => {
-		session.log({
-			id: id,
-			type: USER_FEEDBACK_FORM,
-			value: customFeedback
-		}, 'members' );
-
+		logAction( FORM, customFeedback, {}, 'members' );
 		setCustomFeedback( DEFAULT_CUSTOM_FEEDBACK );
 		closeModal();
 		session.addNotification({
@@ -52,7 +46,7 @@ const FeedbackModal = ({ closeModal, id, session, t }) => {
 			level: 'info',
 			position: 'tr'
 		});
-	}, [ closeModal, customFeedback, id, session, t ] );
+	}, [ closeModal, customFeedback, logAction, session, t ] );
 
 	return (
 		<Modal
@@ -135,18 +129,14 @@ const FeedbackModal = ({ closeModal, id, session, t }) => {
 * @property {Object} style - CSS inline styles
 */
 const FeedbackButtons = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id, logAction } = useActionLogger( 'FEEDBACK', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'feedback' );
 	const [ submittedBinary, setSubmittedBinary ] = useState( false );
 	const [ showModal, setShowModal ] = useState( false );
 
 	const submitConfused = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: USER_FEEDBACK_CONFUSED,
-			value: 'confused'
-		}, 'members' );
+		logAction( CONFUSED, 'confused', {}, 'members' );
 		session.addNotification({
 			title: t( 'thank-you' ),
 			message: t( 'submit-confused-message' ),
@@ -154,13 +144,9 @@ const FeedbackButtons = ( props ) => {
 			position: 'tr'
 		});
 		setSubmittedBinary( true );
-	}, [ session, t ] );
+	}, [ logAction, session, t ] );
 	const submitUnderstood = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: USER_FEEDBACK_UNDERSTOOD,
-			value: 'understood'
-		}, 'members' );
+		logAction( UNDERSTOOD, 'understood', {}, 'members' );
 		session.addNotification({
 			title: t( 'thank-you' ),
 			message: t( 'submit-understood-message' ),
@@ -168,7 +154,7 @@ const FeedbackButtons = ( props ) => {
 			position: 'tr'
 		});
 		setSubmittedBinary( true );
-	}, [ session, t ] );
+	}, [ logAction, session, t ] );
 
 	const closeModal = () => {
 		setShowModal( false );
@@ -178,7 +164,7 @@ const FeedbackButtons = ( props ) => {
 	};
 	const tpos = props.vertical ? 'left' : 'bottom';
 	return (
-		<div id={id.current} className={`feedback-buttons ${props.className}`} >
+		<div id={id} className={`feedback-buttons ${props.className}`} >
 			<ButtonGroup style={{ float: 'right', ...props.style }} vertical={props.vertical} >
 				{ submittedBinary ?
 					<Fragment>
@@ -218,15 +204,15 @@ const FeedbackButtons = ( props ) => {
 						width: '100%'
 					}}
 					showID={false}
-					id={id.current}
-					success={USER_FEEDBACK_UNDERSTOOD}
-					danger={USER_FEEDBACK_CONFUSED}
-					info={USER_FEEDBACK_FORM}
+					id={id}
+					success="FEEDBACK_UNDERSTOOD"
+					danger="FEEDBACK_CONFUSED"
+					info="FEEDBACK_FORM"
 					noSessionRegistration
 				/>
 			</ButtonGroup>
 			{ showModal ? <FeedbackModal
-				closeModal={closeModal} id={id.current} session={session} t={t}
+				closeModal={closeModal} id={id} session={session} logAction={logAction} t={t}
 			/> : null }
 		</div>
 	);

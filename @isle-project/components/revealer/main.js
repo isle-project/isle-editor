@@ -8,10 +8,11 @@ import Button from 'react-bootstrap/Button';
 import isNull from '@stdlib/assert/is-null';
 import Panel from '@isle-project/components/panel';
 import Gate from '@isle-project/components/gate';
-import generateUID from '@isle-project/utils/uid';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import SessionContext from '@isle-project/session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import { MEMBER_ACTION, RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
 import './revealer.css';
 
@@ -19,7 +20,6 @@ import './revealer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:revealer' );
-const uid = generateUID( 'revealer' );
 
 
 // MAIN //
@@ -32,7 +32,7 @@ const uid = generateUID( 'revealer' );
 */
 const Revealer = ( props ) => {
 	const { message, show, children } = props;
-	const id = useRef( props.id || uid( children ) );
+	const { id } = useActionLogger( 'REVEALER', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'revealer' );
 
@@ -50,11 +50,11 @@ const Revealer = ( props ) => {
 				session &&
 				session.metadata &&
 				session.metadata.revealer &&
-				session.metadata.revealer[ id.current ]
+				session.metadata.revealer[ id ]
 			) {
-				let show = session.metadata.revealer[ id.current ][ session.cohort ];
+				let show = session.metadata.revealer[ id ][ session.cohort ];
 				if ( show === void 0 ) {
-					show = session.metadata.revealer[ id.current ][ 'all' ];
+					show = session.metadata.revealer[ id ][ 'all' ];
 				}
 				if ( show === true || show === false ) {
 					setShowChildren( show );
@@ -74,7 +74,7 @@ const Revealer = ( props ) => {
 					readMetadata();
 				}
 				else if ( type === MEMBER_ACTION ) {
-					if ( action.id === id.current ) {
+					if ( action.id === id ) {
 						const cohortName = action.value;
 						debug( `Received action for cohort ${cohortName}: ` );
 						if (
@@ -82,19 +82,19 @@ const Revealer = ( props ) => {
 							( session.cohort && session.cohort === cohortName )
 						) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content for ${id.current}...` );
+								debug( `Reveal content for ${id}...` );
 								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content for ${id.current}...` );
+								debug( `Hide content for ${id}...` );
 								setShowChildren( false );
 							}
 						}
 						else if ( selectedCohort === cohortName ) {
 							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content of ${id.current} for cohort ${cohortName}...` );
+								debug( `Reveal content of ${id} for cohort ${cohortName}...` );
 								setShowChildren( true );
 							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content of ${id.current} for cohort ${cohortName}...` );
+								debug( `Hide content of ${id} for cohort ${cohortName}...` );
 								setShowChildren( false );
 							}
 						}
@@ -129,28 +129,20 @@ const Revealer = ( props ) => {
 			session &&
 			session.metadata &&
 			session.metadata.revealer &&
-			session.metadata.revealer[ id.current ]
+			session.metadata.revealer[ id ]
 		) {
-			status = session.metadata.revealer[ id.current ];
+			status = session.metadata.revealer[ id ];
 		} else {
 			status = {};
 		}
 		if ( newShowChildren ) {
-			session.log({
-				id: id.current,
-				type: REVEAL_CONTENT,
-				value: selectedCohort
-			}, 'members' );
+			session.log( REVEAL_CONTENT, selectedCohort, {}, 'members' );
 			status[ selectedCohort || 'all' ] = true;
-			session.updateMetadata( 'revealer', id.current, status );
+			session.updateMetadata( 'revealer', id, status );
 		} else {
-			session.log({
-				id: id.current,
-				type: HIDE_CONTENT,
-				value: selectedCohort
-			}, 'members' );
+			session.log( HIDE_CONTENT, selectedCohort, {}, 'members' );
 			status[ selectedCohort || 'all' ] = false;
-			session.updateMetadata( 'revealer', id.current, status );
+			session.updateMetadata( 'revealer', id, status );
 		}
 	};
 	const cohorts = session.cohorts || [];
@@ -163,7 +155,7 @@ const Revealer = ( props ) => {
 					className="revealer-button"
 					onClick={toggleContent}
 				>{showChildren ? t('hide') : t('reveal')}</Button>
-				{t('contents-of')}<i>{id.current}</i> {showChildren ? t('from') : t('to')}
+				{t('contents-of')}<i>{id}</i> {showChildren ? t('from') : t('to')}
 				<select
 					className="revealer-select"
 					onChange={handleCohortChange}
@@ -209,4 +201,4 @@ Revealer.propTypes = {
 
 // EXPORTS //
 
-export default Revealer;
+export default withPropCheck( Revealer );

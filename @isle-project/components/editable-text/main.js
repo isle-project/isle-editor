@@ -5,18 +5,17 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import markdownit from 'markdown-it';
 import Tooltip from '@isle-project/components/tooltip';
-import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import Gate from '@isle-project/components/gate';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import { RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
+import { useActionLogger } from '@isle-project/session/action_logger';
 import './editable_text.css';
 
 
 // VARIABLES //
 
-const uid = generateUID( 'editable-text' );
 const md = markdownit({
 	html: true,
 	xhtmlOut: true,
@@ -36,7 +35,7 @@ const md = markdownit({
 * @property {Object} style - CSS inline styles
 */
 const EditableText = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id } = useActionLogger( 'EDITABLE_TEXT', props );
 	const { defaultText, inline, className, style } = props;
 	const session = useContext( SessionContext );
 	const divRef = useRef();
@@ -52,9 +51,9 @@ const EditableText = ( props ) => {
 				session &&
 				session.metadata &&
 				session.metadata.store &&
-				session.metadata.store[ id.current ]
+				session.metadata.store[ id ]
 			) {
-				setText( session.metadata.store[ id.current ] );
+				setText( session.metadata.store[ id ] );
 			}
 		};
 		let unsubscribe;
@@ -81,10 +80,10 @@ const EditableText = ( props ) => {
 	}, [ text ] );
 	const saveText = useCallback( () => {
 		const newText = divRef.current.innerHTML;
-		session.updateMetadata( 'store', id.current, newText );
+		session.updateMetadata( 'store', id, newText );
 		setEditing( false );
 		setText( newText );
-	}, [ session ] );
+	}, [ session, id ] );
 	const node = {
 		'__html': inline ? md.renderInline( text ) : md.render( text )
 	};
