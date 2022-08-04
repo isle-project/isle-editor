@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { ContextMenu, MenuItem } from '@isle-project/components/internal/contextmenu';
-import { OPEN_LINK } from '@isle-project/constants/actions.js';
+import { OPEN } from '@isle-project/constants/actions.js';
 
 
 // VARIABLES //
@@ -36,12 +36,7 @@ class LinkContextMenu extends Component {
 		const url = this.props.url;
 		debug( `Open ${url} in new tab` );
 		window.open( url, '_blank' );
-		const session = this.props.session;
-		session.log({
-			id: url,
-			type: OPEN_LINK,
-			value: 'tab'
-		});
+		this.props.logAction( OPEN, 'tab' );
 	};
 
 	openInWindow = () => {
@@ -49,12 +44,7 @@ class LinkContextMenu extends Component {
 		debug( `Open ${url} in new window` );
 		const features = this.props.windowFeatures || 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=800,height=600';
 		window.open( url, '_blank', features );
-		const session = this.props.session;
-		session.log({
-			id: url,
-			type: OPEN_LINK,
-			value: 'window'
-		});
+		this.props.logAction( OPEN, 'window' );
 	};
 
 	render() {

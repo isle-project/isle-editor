@@ -96,6 +96,7 @@ class Link extends Component {
 					target={this.state.target}
 					t={this.props.t}
 					windowFeatures={this.props.windowFeatures}
+					logAction={this.props.logAction}
 				/>
 			</Fragment>
 		);

@@ -16,10 +16,11 @@ import objectKeys from '@stdlib/utils/keys';
 import isNull from '@stdlib/assert/is-null';
 import isUndefined from '@stdlib/assert/is-undefined';
 import SessionContext from '@isle-project/session/context.js';
-import { PLOT_UPDATE } from '@isle-project/constants/actions.js';
+import { UPDATE } from '@isle-project/constants/actions.js';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import usePrevious from '@isle-project/utils/hooks/use-previous';
 import StyleMenu from './style_menu.js';
 import PlotlyIcons from './icons.js';
@@ -86,6 +87,7 @@ Plotly.setPlotConfig({
 */
 const Wrapper = ( props ) => {
 	const { t } = useTranslation( 'plotly' );
+	const { logAction } = useActionLogger( 'PLOT' );
 	const [ layout, setLayout ] = useState({
 		...props.layout,
 		autosize: true
@@ -230,19 +232,13 @@ const Wrapper = ( props ) => {
 		props.onInitialized( figure, gd );
 	};
 	const handleUpdate = useCallback( () => {
-		if ( props.id ) {
-			const changes = calculateChanges( figure.current.layout, oldLayout );
-			if ( changes.length > 0 ) {
-				session.log({
-					id: props.id,
-					type: PLOT_UPDATE,
-					value: changes
-				});
-			}
+		const changes = calculateChanges( figure.current.layout, oldLayout );
+		if ( changes.length > 0 ) {
+			logAction( UPDATE, changes );
 		}
 		setLayout( figure.current.layout );
 		drawPlot();
-	}, [ drawPlot, oldLayout, props.id, session ] );
+	}, [ drawPlot, logAction, oldLayout ] );
 	const onUpdate = useCallback( ( newFigure ) => {
 		setFinishedDrawing( false );
 		figure.current = newFigure;

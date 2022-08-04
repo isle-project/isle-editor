@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useRef, useState, Fragment } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import logger from 'debug';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +32,7 @@ const debug = logger( 'isle:revealer' );
 */
 const Revealer = ( props ) => {
 	const { message, show, children } = props;
-	const { id } = useActionLogger( 'REVEALER', props );
+	const { id, logAction } = useActionLogger( 'REVEALER', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'revealer' );
 
@@ -136,11 +136,11 @@ const Revealer = ( props ) => {
 			status = {};
 		}
 		if ( newShowChildren ) {
-			session.log( REVEAL_CONTENT, selectedCohort, {}, 'members' );
+			logAction( REVEAL_CONTENT, selectedCohort, {}, 'members' );
 			status[ selectedCohort || 'all' ] = true;
 			session.updateMetadata( 'revealer', id, status );
 		} else {
-			session.log( HIDE_CONTENT, selectedCohort, {}, 'members' );
+			logAction( HIDE_CONTENT, selectedCohort, {}, 'members' );
 			status[ selectedCohort || 'all' ] = false;
 			session.updateMetadata( 'revealer', id, status );
 		}
