@@ -179,7 +179,7 @@ class RShell extends Component {
 			} else {
 				this.editor.setOption( 'theme', 'elegant' );
 				this.editor.setOption( 'readOnly', false );
-			}d
+			}
 			if ( val !== solutionUnescaped ) {
 				this.props.logAction( TOGGLE_SOLUTION, val );
 				this.setState({

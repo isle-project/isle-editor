@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
