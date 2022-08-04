@@ -18,7 +18,7 @@ import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Histogram from '@isle-project/components/plots/histogram';
-import { DATA_EXPLORER_SHARE_HISTOGRAM, DATA_EXPLORER_HISTOGRAM } from '@isle-project/constants/actions.js';
+import { SHARE_HISTOGRAM, HISTOGRAM } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -181,10 +181,10 @@ const HistogramMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_HISTOGRAM, action );
+			props.logAction( SHARE_HISTOGRAM, action );
 		};
 		const output = <Histogram data={props.data} {...state} id={plotId} action={action} onShare={onShare} />;
-		props.logAction( DATA_EXPLORER_HISTOGRAM, action );
+		props.logAction( HISTOGRAM, action );
 		props.onCreated( output );
 	};
 	const densityControls = [];

@@ -13,7 +13,7 @@ import ContourChart from '@isle-project/components/plots/contourchart';
 import SelectInput from '@isle-project/components/input/select';
 import SliderInput from '@isle-project/components/input/slider';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
-import { DATA_EXPLORER_SHARE_CONTOURPLOT, DATA_EXPLORER_CONTOURPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_CONTOURPLOT, CONTOURPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -43,7 +43,7 @@ const ContourChartMenu = ( props ) => {
 					level: 'success',
 					position: 'tr'
 				});
-				logAction( DATA_EXPLORER_SHARE_CONTOURPLOT, action );
+				logAction( SHARE_CONTOURPLOT, action );
 			}}
 			x={x}
 			y={y}
@@ -52,7 +52,7 @@ const ContourChartMenu = ( props ) => {
 			smoothSpan={smoothSpan}
 			onSelected={onSelected}
 		/>;
-		logAction( DATA_EXPLORER_CONTOURPLOT, action );
+		logAction( CONTOURPLOT, action );
 		onCreated( output );
 	};
 	const { variables, t } = props;

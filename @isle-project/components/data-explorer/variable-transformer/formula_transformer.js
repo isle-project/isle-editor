@@ -24,7 +24,7 @@ import Tooltip from '@isle-project/components/tooltip';
 import incrspace from '@stdlib/array/incrspace';
 import contains from '@stdlib/assert/contains';
 import replace from '@stdlib/string/replace';
-import { DATA_EXPLORER_VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { VARIABLE_TRANSFORMER } from '@isle-project/constants/actions.js';
 import valuesFromFormula from './values_from_formula.js';
 import validateName from './validate_name.js';
 import FUNCTION_KEYS from './function_keys.json';
@@ -107,7 +107,7 @@ class FormulaTransformer extends Component {
 		let values;
 		try {
 			values = valuesFromFormula( code, this.props.data );
-			this.props.logAction( DATA_EXPLORER_VARIABLE_TRANSFORMER, {
+			this.props.logAction( VARIABLE_TRANSFORMER, {
 				code, name
 			});
 			if ( this.state.asCategorical ) {

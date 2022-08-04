@@ -7,7 +7,7 @@ import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
 import TeX from '@isle-project/components/tex';
 import CorrTest from '@isle-project/components/tests/corrtest';
-import { DATA_EXPLORER_TESTS_CORRTEST } from '@isle-project/constants/actions.js';
+import { TESTS_CORRTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -17,7 +17,7 @@ const CorrTestMenu = ( props ) => {
 	const calculateCorrTest = ( var1, var2, rho0, direction, alpha ) => {
 		const { data, showDecision } = props;
 		const output = <CorrTest data={data} var1={var1} var2={var2} rho0={rho0} direction={direction} alpha={alpha} showDecision={showDecision} />;
-		props.logAction( DATA_EXPLORER_TESTS_CORRTEST, {
+		props.logAction( TESTS_CORRTEST, {
 			var1, var2, rho0, direction, alpha, showDecision
 		});
 		props.onCreated( output );

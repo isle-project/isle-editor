@@ -6,7 +6,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
 import SimpleLinearRegression from '@isle-project/components/models/simple-linear-regression';
-import { DATA_EXPLORER_LINEAR_REGRESSION } from '@isle-project/constants/actions.js';
+import { LINEAR_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -26,7 +26,7 @@ const SimpleLinearRegressionMenu = ( props ) => {
 			onPredict={props.onPredict}
 			onDiagnostics={props.onCreated}
 		/>;
-		props.logAction( DATA_EXPLORER_LINEAR_REGRESSION, {
+		props.logAction( LINEAR_REGRESSION, {
 			y, x, group, omitMissing
 		});
 		props.onCreated( output );

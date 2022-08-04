@@ -8,7 +8,7 @@ import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import IntervalPlot from '@isle-project/components/plots/interval-plot';
-import { DATA_EXPLORER_SHARE_INTERVALPLOT, DATA_EXPLORER_INTERVALPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_INTERVALPLOT, INTERVALPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -34,13 +34,13 @@ const IntervalPlotMenu = ({ data, variables, groupingVariables, t, session, logA
 				level: 'success',
 				position: 'tr'
 			});
-			logAction( DATA_EXPLORER_SHARE_INTERVALPLOT, action );
+			logAction( SHARE_INTERVALPLOT, action );
 		};
 		const output = <IntervalPlot id={plotId} onShare={onShare} action={action}
 			data={data} variable={selectedVariable} group={group}
 			orientation={orientation} significanceLevel={significanceLevel}
 		/>;
-		logAction( DATA_EXPLORER_INTERVALPLOT, action );
+		logAction( INTERVALPLOT, action );
 		onCreated( output );
 	};
 	return (

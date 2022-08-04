@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import SelectInput from '@isle-project/components/input/select';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import PieChart from '@isle-project/components/plots/piechart';
-import { DATA_EXPLORER_SHARE_PIECHART, DATA_EXPLORER_PIECHART } from '@isle-project/constants/actions.js';
+import { SHARE_PIECHART, PIECHART } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -43,7 +43,7 @@ const PieChartMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_PIECHART, action );
+			props.logAction( SHARE_PIECHART, action );
 		};
 		const output= <PieChart
 			id={plotId}
@@ -54,7 +54,7 @@ const PieChartMenu = ( props ) => {
 			action={action}
 			onShare={onShare}
 		/>;
-		props.logAction( DATA_EXPLORER_PIECHART, action );
+		props.logAction( PIECHART, action );
 		props.onCreated( output );
 	};
 	return (

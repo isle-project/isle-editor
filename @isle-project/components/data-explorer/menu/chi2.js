@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
 import Chi2Test from '@isle-project/components/tests/chi2';
-import { DATA_EXPLORER_TESTS_CHISQUARE } from '@isle-project/constants/actions.js';
+import { TESTS_CHISQUARE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -14,7 +14,7 @@ import QuestionButton from './../question_button.js';
 const Chi2TestMenu = ({ data, categorical, t, logAction, onCreated }) => {
 	const calculateChisquareTest = ( var1, var2 ) => {
 		const output = <Chi2Test data={data} var1={var1} var2={var2} />;
-		logAction( DATA_EXPLORER_TESTS_CHISQUARE, {
+		logAction( TESTS_CHISQUARE, {
 			var1, var2
 		});
 		onCreated( output );

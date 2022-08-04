@@ -12,7 +12,7 @@ import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import MeanTest2 from '@isle-project/components/tests/meantest2';
-import { DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN } from '@isle-project/constants/actions.js';
+import { TESTS_TWO_SAMPLE_MEAN } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
 
@@ -57,7 +57,7 @@ const MeanTest2Menu = ( props ) => {
 			alpha={alpha} type={type} xstdev={xstdev} ystdev={ystdev}
 			data={data} showDecision={showDecision}
 		/>;
-		props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN, {
+		props.logAction( TESTS_TWO_SAMPLE_MEAN, {
 			x, group, y, diff, direction, alpha, showDecision
 		});
 		props.onCreated( output );

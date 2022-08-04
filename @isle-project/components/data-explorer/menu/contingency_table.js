@@ -9,7 +9,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import ContingencyTable from '@isle-project/components/tables/contingency-table';
-import { DATA_EXPLORER_CONTINGENCY_TABLE } from '@isle-project/constants/actions.js';
+import { CONTINGENCY_TABLE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -66,7 +66,7 @@ class ContingencyTableMenu extends Component {
 			display={display}
 			data={this.props.data}
 		/>;
-		this.props.logAction( DATA_EXPLORER_CONTINGENCY_TABLE, {
+		this.props.logAction( CONTINGENCY_TABLE, {
 			rowVar, colVar, group, relativeFreqs, display
 		});
 		this.props.onCreated( output );

@@ -49,106 +49,106 @@ function recreateOutput( action, props ) {
 	const params = { ...props, ...action.value };
 	let output;
 	switch ( action.type ) {
-		case 'DATA_EXPLORER_SUMMARY_STATISTICS':
+		case 'SUMMARY_STATISTICS':
 			output = <SummaryStatistics {...params} />;
 			break;
-		case 'DATA_EXPLORER_BARCHART':
+		case 'BARCHART':
 			output = <BarChart {...params} />;
 			break;
-		case 'DATA_EXPLORER_BOXPLOT':
+		case 'BOXPLOT':
 			output = <BoxPlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_CONTOURPLOT':
+		case 'CONTOURPLOT':
 			output = <ContourChart {...params} />;
 			break;
-		case 'DATA_EXPLORER_HISTOGRAM':
+		case 'HISTOGRAM':
 			output = <Histogram {...params} />;
 			break;
-		case 'DATA_EXPLORER_HEATMAP':
+		case 'HEATMAP':
 			output = <HeatMap {...params} />;
 			break;
-		case 'DATA_EXPLORER_LINEPLOT':
+		case 'LINEPLOT':
 			output = <LinePlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_MAP':
+		case 'MAP':
 			output = <Map {...params} />;
 			break;
-		case 'DATA_EXPLORER_MOSAIC':
+		case 'MOSAIC':
 			output = <MosaicPlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_PIECHART':
+		case 'PIECHART':
 			output = <PieChart {...params} />;
 			break;
-		case 'DATA_EXPLORER_QQPLOT':
+		case 'QQPLOT':
 			output = <QQPlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_SCATTERPLOT':
+		case 'SCATTERPLOT':
 			output = <ScatterPlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_SPLOM':
+		case 'SPLOM':
 			output = <ScatterPlotMatrix {...params} />;
 			break;
-		case 'DATA_EXPLORER_VIOLINPLOT':
+		case 'VIOLINPLOT':
 			output = <ViolinPlot {...params} />;
 			break;
-		case 'DATA_EXPLORER_FREQUENCY_TABLE':
+		case 'FREQUENCY_TABLE':
 			output = <FrequencyTable {...params} />;
 			break;
-		case 'DATA_EXPLORER_CONTINGENCY_TABLE':
+		case 'CONTINGENCY_TABLE':
 			output = <ContingencyTable {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_ANOVA':
+		case 'TESTS_ANOVA':
 			output = <Anova {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_KRUSKAL':
+		case 'TESTS_KRUSKAL':
 			output = <Kruskal {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_MEAN':
+		case 'TESTS_MEAN':
 			output = <MeanTest {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_TWO_SAMPLE_MEAN':
+		case 'TESTS_TWO_SAMPLE_MEAN':
 			output = <MeanTest2 {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_CHISQUARE':
+		case 'TESTS_CHISQUARE':
 			output = <Chi2Test {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_CORRTEST':
+		case 'TESTS_CORRTEST':
 			output = <CorrTest {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_PROPTEST':
+		case 'TESTS_PROPTEST':
 			output = <PropTest {...params} />;
 			break;
-		case 'DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST':
+		case 'TESTS_TWO_SAMPLE_PROPTEST':
 			output = <PropTest2 {...params} />;
 			break;
-		case 'DATA_EXPLORER_KMEANS':
+		case 'KMEANS':
 			output = <KMeans {...params} />;
 			break;
-		case 'DATA_EXPLORER_HIERARCHICAL_CLUSTERING':
+		case 'HIERARCHICAL_CLUSTERING':
 			output = <HierarchicalClustering {...params} />;
 			break;
-		case 'DATA_EXPLORER_DECISION_TREE':
+		case 'DECISION_TREE':
 			output = <DecisionTree {...params} />;
 			break;
-		case 'DATA_EXPLORER_LASSO_REGRESSION':
+		case 'LASSO_REGRESSION':
 			output = <LassoRegression {...params} />;
 			break;
-		case 'DATA_EXPLORER_LINEAR_REGRESSION':
+		case 'LINEAR_REGRESSION':
 			output = <SimpleLinearRegression {...params} />;
 			break;
-		case 'DATA_EXPLORER_LOGISTIC_REGRESSION':
+		case 'LOGISTIC_REGRESSION':
 			output = <LogisticRegression {...params} />;
 			break;
-		case 'DATA_EXPLORER_MULTIPLE_REGRESSION':
+		case 'MULTIPLE_REGRESSION':
 			output = <MultipleLinearRegression {...params} />;
 			break;
-		case 'DATA_EXPLORER_NAIVE_BAYES':
+		case 'NAIVE_BAYES':
 			output = <NaiveBayes {...params} />;
 			break;
-		case 'DATA_EXPLORER_PCA':
+		case 'PCA':
 			output = <PrincipalComponentAnalysis {...params} />;
 			break;
-		case 'DATA_EXPLORER_RANDOM_FOREST':
+		case 'RANDOM_FOREST':
 			output = <RandomForest {...params} />;
 			break;
 	}

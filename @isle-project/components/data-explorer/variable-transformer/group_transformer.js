@@ -18,7 +18,7 @@ import TextInput from '@isle-project/components/input/text';
 import NumberInput from '@isle-project/components/input/number';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
-import { DATA_EXPLORER_GROUP_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { GROUP_TRANSFORMER } from '@isle-project/constants/actions.js';
 import validateName from './validate_name.js';
 
 
@@ -87,7 +87,7 @@ class GroupTransformer extends Component {
 			replace: true
 		});
 		this.props.onGenerate( this.state.generatedName, values );
-		this.props.logAction( DATA_EXPLORER_GROUP_TRANSFORMER, {
+		this.props.logAction( GROUP_TRANSFORMER, {
 			name: this.state.generatedName,
 			labels: this.state.labels,
 			groupProbs: this.state.groupProbs

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
 import Anova from '@isle-project/components/tests/anova';
-import { DATA_EXPLORER_TESTS_ANOVA } from '@isle-project/constants/actions.js';
+import { TESTS_ANOVA } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -21,7 +21,7 @@ const AnovaMenu = ({ quantitative, categorical, t, data, showDecision, logAction
 			</span>}
 			label={t('calculate')}
 			onGenerate={( variable, group ) => {
-				logAction( DATA_EXPLORER_TESTS_ANOVA, {
+				logAction( TESTS_ANOVA, {
 					variable, group, showDecision
 				});
 				const output = <Anova data={data} variable={variable} group={group} showDecision={showDecision} />;

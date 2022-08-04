@@ -8,7 +8,7 @@ import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import MeanTest from '@isle-project/components/tests/meantest';
-import { DATA_EXPLORER_TESTS_MEAN } from '@isle-project/constants/actions.js';
+import { TESTS_MEAN } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -34,7 +34,7 @@ const MeanTestMenu = ( props ) => {
 			type={type}
 			alpha={alpha}
 		/>;
-		props.logAction( DATA_EXPLORER_TESTS_MEAN, {
+		props.logAction( TESTS_MEAN, {
 			variable, mu0, direction, alpha, type, stdev, showDecision
 		});
 		props.onCreated( output );

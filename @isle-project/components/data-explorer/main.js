@@ -32,7 +32,6 @@ import noop from '@stdlib/utils/noop';
 import objectKeys from '@stdlib/utils/keys';
 import incrspace from '@stdlib/array/incrspace';
 import lowercase from '@stdlib/string/lowercase';
-import generateUID from '@isle-project/utils/uid';
 import SelectInput from '@isle-project/components/input/select';
 import TextEditor from '@isle-project/components/text-editor';
 import GridLayout from './grid_layout.js';
@@ -59,11 +58,12 @@ import valuesFromFormula from './variable-transformer/values_from_formula.js';
 import retrieveBinnedValues from './variable-transformer/retrieve_binned_values.js';
 import recodeCategorical from './variable-transformer/recode_categorical.js';
 import drawRandomVariates from './variable-transformer/random-transformer/draw_random_variates.js';
-import { DATA_EXPLORER_BIN_TRANSFORMER, DATA_EXPLORER_CAT_TRANSFORMER,
-	DATA_EXPLORER_CLEAR_OUTPUT_PANE, DATA_EXPLORER_DELETE_OUTPUT, DATA_EXPLORER_DELETE_VARIABLE,
-	DATA_EXPLORER_VARIABLE_TRANSFORMER, DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { BIN_TRANSFORMER, CAT_TRANSFORMER,
+	CLEAR_OUTPUT_PANE, DELETE_OUTPUT, DELETE_VARIABLE,
+	VARIABLE_TRANSFORMER, RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { MEMBER_ACTION, RECEIVED_LESSON_INFO, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './data_explorer.css';
 
 
@@ -87,7 +87,6 @@ import { generateContourChart } from '@isle-project/components/plots/contourchar
 // VARIABLES //
 
 const debug = logger( 'isle:data-explorer' );
-const uid = generateUID( 'data-explorer' );
 const KEYS = {
 	'questions': '(Shift+Alt+Q)',
 	'history': '(Shift+Alt+H)',
@@ -258,13 +257,8 @@ class DataExplorer extends Component {
 			if ( this.state.subsetFilters ) {
 				value = { ...value, filters: this.state.subsetFilters };
 			}
-			const session = this.context;
 			const recipients = this.props.reportMode !== 'individual' ? 'members' : 'owners';
-			session.log({
-				id: this.id,
-				type,
-				value
-			}, recipients );
+			this.props.logAction( type, value, {}, recipients );
 		};
 	}
 
@@ -402,10 +396,10 @@ class DataExplorer extends Component {
 				}
 				// Case: `collaborative` or `group` mode
 				if (
-					action.type === DATA_EXPLORER_VARIABLE_TRANSFORMER ||
-					action.type === DATA_EXPLORER_BIN_TRANSFORMER ||
-					action.type === DATA_EXPLORER_CAT_TRANSFORMER ||
-					action.type === DATA_EXPLORER_DELETE_VARIABLE
+					action.type === VARIABLE_TRANSFORMER ||
+					action.type === BIN_TRANSFORMER ||
+					action.type === CAT_TRANSFORMER ||
+					action.type === DELETE_VARIABLE
 				) {
 					this.restoreTransformations( [ action ] );
 				}
@@ -433,10 +427,10 @@ class DataExplorer extends Component {
 		const skip = [];
 		for ( let i = 0; i < actions.length; i++ ) {
 			const action = actions[ i ];
-			if ( action.type === DATA_EXPLORER_CLEAR_OUTPUT_PANE ) {
+			if ( action.type === CLEAR_OUTPUT_PANE ) {
 				break;
 			}
-			else if ( action.type === DATA_EXPLORER_DELETE_OUTPUT ) {
+			else if ( action.type === DELETE_OUTPUT ) {
 				skip.push( action.value );
 			}
 			candidates.push( action );
@@ -472,14 +466,14 @@ class DataExplorer extends Component {
 
 	applyTransformation = ( state, action ) => {
 		switch ( action.type ) {
-			case DATA_EXPLORER_VARIABLE_TRANSFORMER:
+			case VARIABLE_TRANSFORMER:
 				debug( `Should add transformed variable ${action.value.name}` );
 				if ( !hasProp( this.props.data, action.value.name ) ) {
 					const values = valuesFromFormula( action.value.code, state.data );
 					state = this.transformVariable( action.value.name, values, state );
 				}
 			break;
-			case DATA_EXPLORER_BIN_TRANSFORMER: {
+			case BIN_TRANSFORMER: {
 				const { name, variable, breaks, categories } = action.value;
 				debug( `Should add binned variable ${name}` );
 				if ( !hasProp( this.props.data, name ) ) {
@@ -490,7 +484,7 @@ class DataExplorer extends Component {
 				}
 			}
 			break;
-			case DATA_EXPLORER_CAT_TRANSFORMER: {
+			case CAT_TRANSFORMER: {
 				const { name, firstVar, secondVar, nameMappings, castNumeric } = action.value;
 				debug( `Should add recoded variable ${name}` );
 				if ( !hasProp( this.props.data, name ) ) {
@@ -501,10 +495,10 @@ class DataExplorer extends Component {
 				}
 			}
 			break;
-			case DATA_EXPLORER_DELETE_VARIABLE:
+			case DELETE_VARIABLE:
 				state = this.deleteVariable( action.value, state );
 			break;
-			case DATA_EXPLORER_RANDOM_TRANSFORMER: {
+			case RANDOM_TRANSFORMER: {
 				const { name, distribution, params, asCategorical, nObs, seed } = action.value;
 				debug( `Should add random variable ${name}` );
 				const out = drawRandomVariates({ name, distribution, params, asCategorical, nObs, seed });
@@ -591,12 +585,7 @@ class DataExplorer extends Component {
 	* Remove output element at the specified index.
 	*/
 	clearOutput = ( idx ) => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: DATA_EXPLORER_DELETE_OUTPUT,
-			value: idx
-		}, 'owners' );
+		this.props.logAction( DELETE_OUTPUT, idx, {}, 'owners' );
 		const newOutputs = this.state.output.slice();
 		newOutputs[ idx ] = null;
 		this.setState({
@@ -623,43 +612,43 @@ class DataExplorer extends Component {
 			value = JSON.parse( value );
 		}
 		switch ( action.type ) {
-		case 'DATA_EXPLORER_SHARE_BARCHART':
+		case 'SHARE_BARCHART':
 			config = generateBarchartConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_BOXPLOT':
+		case 'SHARE_BOXPLOT':
 			config = generateBoxplotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_CONTOURCHART':
+		case 'SHARE_CONTOURCHART':
 			config = generateContourChart({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_HEATMAP':
+		case 'SHARE_HEATMAP':
 			config = generateHeatmapConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_HISTOGRAM':
+		case 'SHARE_HISTOGRAM':
 			config = generateHistogramConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_LINEPLOT':
+		case 'SHARE_LINEPLOT':
 			config = generateLineplotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_MAP':
+		case 'SHARE_MAP':
 			config = generateMapConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_MOSAIC':
+		case 'SHARE_MOSAIC':
 			config = generateMosaicPlotCode({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_PIECHART':
+		case 'SHARE_PIECHART':
 			config = generatePiechartConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_QQPLOT':
+		case 'SHARE_QQPLOT':
 			config = generateQQPlotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_SCATTERPLOT':
+		case 'SHARE_SCATTERPLOT':
 			config = generateScatterplotConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_SPLOM':
+		case 'SHARE_SPLOM':
 			config = generateScatterplotMatrixConfig({ data: this.state.data, ...value });
 			break;
-		case 'DATA_EXPLORER_SHARE_VIOLINPLOT':
+		case 'SHARE_VIOLINPLOT':
 			config = generateViolinplotConfig({ data: this.state.data, ...value });
 		}
 		if ( config ) {
@@ -796,7 +785,7 @@ class DataExplorer extends Component {
 	onColumnDelete = ( variable ) => {
 		debug( 'Should remove variable with name '+variable );
 		const session = this.context;
-		this.logAction( DATA_EXPLORER_DELETE_VARIABLE, variable );
+		this.logAction( DELETE_VARIABLE, variable );
 		session.addNotification({
 			title: this.props.t('variable-removed'),
 			message: this.props.t('variable-removed-msg', {
@@ -1633,11 +1622,7 @@ class DataExplorer extends Component {
 							<RealtimeMetrics returnFullObject for={[ this.id ]} onDatum={this.onUserAction} />
 						</Gate>}
 						clearOutput={() => {
-							session.log({
-								id: this.id,
-								type: DATA_EXPLORER_CLEAR_OUTPUT_PANE,
-								value: null
-							}, 'owners' );
+							this.props.logAction( CLEAR_OUTPUT_PANE, null, {}, 'owners' );
 							this.setState({
 								output: []
 							});
@@ -1786,4 +1771,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'data-explorer' )( withPropCheck( DataExplorer ) );
+export default withActionLogger( 'DATA_EXPLORER' )( withTranslation( 'data-explorer' )( withPropCheck( DataExplorer ) ) );

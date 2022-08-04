@@ -10,7 +10,7 @@ import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import Map from '@isle-project/components/plots/map';
-import { DATA_EXPLORER_SHARE_MAP, DATA_EXPLORER_MAP } from '@isle-project/constants/actions.js';
+import { SHARE_MAP, MAP } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -73,7 +73,7 @@ const MapMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_MAP, action );
+			props.logAction( SHARE_MAP, action );
 		};
 		const output = <Map
 			data={props.data} variable={variable} locations={locations}
@@ -82,7 +82,7 @@ const MapMenu = ( props ) => {
 			id={plotId} action={action} onShare={onShare}
 			aggregation={aggregation}
 		/>;
-		props.logAction( DATA_EXPLORER_MAP, action );
+		props.logAction( MAP, action );
 		props.onCreated( output );
 	};
 	return (

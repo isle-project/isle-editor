@@ -12,7 +12,7 @@ import SelectInput from '@isle-project/components/input/select';
 import SliderInput from '@isle-project/components/input/slider';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import ScatterPlot from '@isle-project/components/plots/scatterplot';
-import { DATA_EXPLORER_SHARE_SCATTERPLOT, DATA_EXPLORER_SCATTERPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_SCATTERPLOT, SCATTERPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -66,7 +66,7 @@ const ScatterplotMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_SCATTERPLOT, action );
+			props.logAction( SHARE_SCATTERPLOT, action );
 		};
 		const output = <ScatterPlot
 			data={props.data}
@@ -78,7 +78,7 @@ const ScatterplotMenu = ( props ) => {
 			onSelected={props.onSelected}
 			onShare={onShare}
 		/>;
-		props.logAction( DATA_EXPLORER_SCATTERPLOT, action );
+		props.logAction( SCATTERPLOT, action );
 		props.onCreated( output );
 	};
 	return (

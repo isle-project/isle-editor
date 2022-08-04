@@ -30,7 +30,7 @@ import factor from '@isle-project/utils/factor-variable';
 import mean from '@isle-project/utils/statistic/mean.js';
 import min from '@isle-project/utils/statistic/min.js';
 import max from '@isle-project/utils/statistic/max.js';
-import { DATA_EXPLORER_BIN_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { BIN_TRANSFORMER } from '@isle-project/constants/actions.js';
 import { generateHistogramConfig } from '@isle-project/components/plots/histogram';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import retrieveBinnedValues from './retrieve_binned_values.js';
@@ -138,7 +138,7 @@ const BinningTransformer = ( props ) => {
 		const { variable, categories, breakpoints } = state;
 		const rawData = props.data[ variable ];
 		const values = retrieveBinnedValues( rawData, categories, breakpoints );
-		props.logAction( DATA_EXPLORER_BIN_TRANSFORMER, {
+		props.logAction( BIN_TRANSFORMER, {
 			name,
 			variable,
 			breaks: breakpoints,

@@ -9,7 +9,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import SliderInput from '@isle-project/components/input/slider';
 import Dashboard from '@isle-project/components/dashboard';
 import LassoRegression from '@isle-project/components/models/lasso-regression';
-import { DATA_EXPLORER_LASSO_REGRESSION } from '@isle-project/constants/actions.js';
+import { LASSO_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -25,7 +25,7 @@ const LassoRegressionMenu = ( props ) => {
 			quantitative={quantitative}
 			onPredict={onPredict}
 		/>;
-		logAction( DATA_EXPLORER_LASSO_REGRESSION, {
+		logAction( LASSO_REGRESSION, {
 			y, x, intercept, lambda
 		});
 		onCreated( output );

@@ -13,7 +13,7 @@ import NumberInput from '@isle-project/components/input/number';
 import Dashboard from '@isle-project/components/dashboard';
 import factor from '@isle-project/utils/factor-variable';
 import HierarchicalClustering from '@isle-project/components/models/hierarchical-clustering';
-import { DATA_EXPLORER_HIERARCHICAL_CLUSTERING } from '@isle-project/constants/actions.js';
+import { HIERARCHICAL_CLUSTERING } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -46,7 +46,7 @@ const HierarchicalClusteringMenu = ( props ) => {
 				}
 			}}
 		/>;
-		props.logAction( DATA_EXPLORER_HIERARCHICAL_CLUSTERING, {
+		props.logAction( HIERARCHICAL_CLUSTERING, {
 			variables, attach, K, linkage, distance
 		});
 		props.onCreated( output );

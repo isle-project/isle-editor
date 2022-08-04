@@ -12,7 +12,7 @@ import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import Collapse from '@isle-project/components/collapse';
 import RandomForest from '@isle-project/components/models/random-forest';
-import { DATA_EXPLORER_RANDOM_FOREST } from '@isle-project/constants/actions.js';
+import { RANDOM_FOREST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -68,7 +68,7 @@ class RandomForestMenu extends Component {
 			data={this.props.data}
 			onPredict={this.props.onPredict}
 		/>;
-		this.props.logAction( DATA_EXPLORER_RANDOM_FOREST, {
+		this.props.logAction( RANDOM_FOREST, {
 			y, x, type, nTrees, nTry
 		});
 		this.props.onCreated( output );

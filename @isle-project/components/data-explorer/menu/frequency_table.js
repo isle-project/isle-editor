@@ -10,7 +10,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import FrequencyTable from '@isle-project/components/tables/frequency-table';
-import { DATA_EXPLORER_FREQUENCY_TABLE } from '@isle-project/constants/actions.js';
+import { FREQUENCY_TABLE } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -34,7 +34,7 @@ const FrequencyTableMenu = ( props ) => {
 			nDecimalPlaces={nDecimalPlaces}
 			data={props.data}
 		/>;
-		props.logAction( DATA_EXPLORER_FREQUENCY_TABLE, {
+		props.logAction( FREQUENCY_TABLE, {
 			variable, group, calculateRelative, calculateCounts, nDecimalPlaces
 		});
 		props.onCreated( output );

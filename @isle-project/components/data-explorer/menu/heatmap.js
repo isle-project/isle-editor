@@ -13,7 +13,7 @@ import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import isArray from '@stdlib/assert/is-array';
 import contains from '@stdlib/assert/contains';
 import HeatMap from '@isle-project/components/plots/heatmap';
-import { DATA_EXPLORER_SHARE_HEATMAP, DATA_EXPLORER_HEATMAP } from '@isle-project/constants/actions.js';
+import { SHARE_HEATMAP, HEATMAP } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -44,13 +44,13 @@ const HeatMapMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_HEATMAP, action );
+			props.logAction( SHARE_HEATMAP, action );
 		};
 		const output = <HeatMap id={plotId} data={props.data} x={x} y={y} group={group}
 			overlayPoints={overlayPoints} commonXAxis={commonXAxis} commonYAxis={commonYAxis}
 			alternateColor={alternateColor} regressionMethod={regressionMethod}
 			smoothSpan={smoothSpan} action={action} onShare={onShare} onSelected={props.onSelected} />;
-		props.logAction( DATA_EXPLORER_HEATMAP, action );
+		props.logAction( HEATMAP, action );
 		props.onCreated( output );
 	};
 	return (

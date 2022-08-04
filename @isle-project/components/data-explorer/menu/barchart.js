@@ -14,7 +14,7 @@ import SelectInput from '@isle-project/components/input/select';
 import selectStyles from '@isle-project/components/input/select/styles';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import BarChart from '@isle-project/components/plots/barchart';
-import { DATA_EXPLORER_SHARE_BARCHART, DATA_EXPLORER_BARCHART } from '@isle-project/constants/actions.js';
+import { SHARE_BARCHART, BARCHART } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -80,7 +80,7 @@ const BarchartMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_BARCHART, action );
+			props.logAction( SHARE_BARCHART, action );
 		};
 		let output;
 		if ( mode === MODES[ 1 ] ) {
@@ -106,7 +106,7 @@ const BarchartMenu = ( props ) => {
 				onShare={onShare}
 			/>;
 		}
-		props.logAction( DATA_EXPLORER_BARCHART, action );
+		props.logAction( BARCHART, action );
 		props.onCreated( output );
 	};
 	const hideRelativeFrequencies = (

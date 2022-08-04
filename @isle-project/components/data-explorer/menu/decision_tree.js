@@ -10,7 +10,7 @@ import SelectInput from '@isle-project/components/input/select';
 import NumberInput from '@isle-project/components/input/number';
 import Collapse from '@isle-project/components/collapse';
 import DecisionTree from '@isle-project/components/models/decision-tree';
-import { DATA_EXPLORER_DECISION_TREE } from '@isle-project/constants/actions.js';
+import { DECISION_TREE } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -35,7 +35,7 @@ const DecisionTreeMenu = ( props ) => {
 			minItemsCount={minItemsCount}
 			onPredict={props.onPredict} omitMissing={omitMissing}
 		/>;
-		props.logAction( DATA_EXPLORER_DECISION_TREE, {
+		props.logAction( DECISION_TREE, {
 			y, x, type
 		});
 		props.onCreated( output );

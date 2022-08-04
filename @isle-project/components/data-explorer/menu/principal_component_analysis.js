@@ -9,7 +9,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import NumberInput from '@isle-project/components/input/number';
 import Dashboard from '@isle-project/components/dashboard';
 import PrincipalComponentAnalysis from '@isle-project/components/models/principal-component-analysis';
-import { DATA_EXPLORER_PCA } from '@isle-project/constants/actions.js';
+import { PCA } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -42,7 +42,7 @@ const PrincipalComponentAnalysisMenu = ( props ) => {
 				}
 			}}
 		/>;
-		props.logAction( DATA_EXPLORER_PCA, {
+		props.logAction( PCA, {
 			variables, center, scale
 		});
 		props.onCreated( output );

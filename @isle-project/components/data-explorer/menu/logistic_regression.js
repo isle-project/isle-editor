@@ -11,7 +11,7 @@ import isArray from '@stdlib/assert/is-array';
 import memoize from '@stdlib/utils/memoize';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
-import { DATA_EXPLORER_LOGISTIC_REGRESSION } from '@isle-project/constants/actions.js';
+import { LOGISTIC_REGRESSION } from '@isle-project/constants/actions.js';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import LogisticRegression from '@isle-project/components/models/logistic-regression';
 import QuestionButton from './../question_button.js';
@@ -73,7 +73,7 @@ class LogisticRegressionMenu extends Component {
 			quantitative={this.props.quantitative}
 			onPredict={this.props.onPredict}
 		/>;
-		this.props.logAction( DATA_EXPLORER_LOGISTIC_REGRESSION, {
+		this.props.logAction( LOGISTIC_REGRESSION, {
 			y, x, intercept
 		});
 		this.props.onCreated( output );

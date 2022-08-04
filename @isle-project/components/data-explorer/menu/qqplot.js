@@ -6,7 +6,7 @@ import SelectInput from '@isle-project/components/input/select';
 import Dashboard from '@isle-project/components/dashboard';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import QQPlot from '@isle-project/components/plots/qqplot';
-import { DATA_EXPLORER_SHARE_QQPLOT, DATA_EXPLORER_QQPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_QQPLOT, QQPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -42,10 +42,10 @@ const QQPlotMenu = ({ data, variables, defaultValue, t, session, logAction, onCr
 				level: 'success',
 				position: 'tr'
 			});
-			logAction( DATA_EXPLORER_SHARE_QQPLOT, action );
+			logAction( SHARE_QQPLOT, action );
 		};
 		const output = <QQPlot data={data} variable={variable} id={plotId} action={action} onShare={onShare} onSelected={onSelected} />;
-		logAction( DATA_EXPLORER_QQPLOT, action );
+		logAction( QQPLOT, action );
 		onCreated( output );
 	}
 };

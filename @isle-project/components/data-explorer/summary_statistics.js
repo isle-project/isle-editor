@@ -21,7 +21,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import kebabCase from '@isle-project/utils/kebabcase';
 import CreatableSelect from 'react-select/creatable';
 import QuestionButton from './question_button.js';
-import { DATA_EXPLORER_SUMMARY_STATISTICS } from '@isle-project/constants/actions.js';
+import { SUMMARY_STATISTICS } from '@isle-project/constants/actions.js';
 import STAT_DESCRIPTIONS from './statistics_descriptions.json';
 
 
@@ -169,7 +169,7 @@ class SummaryStatisticsMenu extends Component {
 				group,
 				omit: this.state.omit
 			};
-			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, action );
+			this.props.logAction( SUMMARY_STATISTICS, action );
 		} else {
 			const action = {
 				statistics: statistics,
@@ -181,7 +181,7 @@ class SummaryStatisticsMenu extends Component {
 			if ( contains( statistics, 'Quantile' ) ) {
 				action.quantiles = quantiles;
 			}
-			this.props.logAction( DATA_EXPLORER_SUMMARY_STATISTICS, action );
+			this.props.logAction( SUMMARY_STATISTICS, action );
 		}
 		const elem = <SummaryStatistics
 			data={this.props.data}

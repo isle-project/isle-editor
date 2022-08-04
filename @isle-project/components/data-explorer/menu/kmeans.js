@@ -11,7 +11,7 @@ import NumberInput from '@isle-project/components/input/number';
 import Dashboard from '@isle-project/components/dashboard';
 import factor from '@isle-project/utils/factor-variable';
 import KMeans from '@isle-project/components/models/kmeans';
-import { DATA_EXPLORER_KMEANS } from '@isle-project/constants/actions.js';
+import { KMEANS } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -40,7 +40,7 @@ const KMeansMenu = ( props ) => {
 				}
 			}}
 		/>;
-		props.logAction( DATA_EXPLORER_KMEANS, {
+		props.logAction( KMEANS, {
 			variables, K, attach, initialization
 		});
 		props.onCreated( output );

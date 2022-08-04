@@ -7,7 +7,7 @@ import CheckboxInput from '@isle-project/components/input/checkbox';
 import Dashboard from '@isle-project/components/dashboard';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import ViolinPlot from '@isle-project/components/plots/violinplot';
-import { DATA_EXPLORER_SHARE_VIOLINPLOT, DATA_EXPLORER_VIOLINPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_VIOLINPLOT, VIOLINPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -63,14 +63,14 @@ const ViolinPlotMenu = ({ data, variables, defaultValue, groupingVariables, t, s
 				level: 'success',
 				position: 'tr'
 			});
-			logAction( DATA_EXPLORER_SHARE_VIOLINPLOT, action );
+			logAction( SHARE_VIOLINPLOT, action );
 		};
 		const output = <ViolinPlot
 			id={plotId} variable={variable} group={group}
 			data={data} onShare={onShare} action={action}
 			showBox={showBox}
 		/>;
-		logAction( DATA_EXPLORER_VIOLINPLOT, action );
+		logAction( VIOLINPLOT, action );
 		onCreated( output );
 	}
 };

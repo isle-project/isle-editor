@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
-import { DATA_EXPLORER_NAIVE_BAYES } from '@isle-project/constants/actions.js';
+import { NAIVE_BAYES } from '@isle-project/constants/actions.js';
 import NaiveBayes from '@isle-project/components/models/naive-bayes';
 import QuestionButton from './../question_button.js';
 
@@ -29,7 +29,7 @@ const NaiveBayesMenu = ( props ) => {
 			categorical={props.categorical}
 			onPredict={props.onPredict}
 		/>;
-		props.logAction( DATA_EXPLORER_NAIVE_BAYES, {
+		props.logAction( NAIVE_BAYES, {
 			y, x, omitMissing
 		});
 		props.onCreated( output );

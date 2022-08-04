@@ -12,7 +12,7 @@ import selectStyles from '@isle-project/components/input/select/styles';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import LinePlot from '@isle-project/components/plots/lineplot';
-import { DATA_EXPLORER_SHARE_LINEPLOT, DATA_EXPLORER_LINEPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_LINEPLOT, LINEPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -49,14 +49,14 @@ const LinePlotMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			logAction( DATA_EXPLORER_SHARE_LINEPLOT, action );
+			logAction( SHARE_LINEPLOT, action );
 		};
 		const output = <LinePlot
 			data={data} x={x} y={y}
 			group={group} showPoints={showPoints}
 			onShare={onShare} action={action} id={plotId}
 		/>;
-		logAction( DATA_EXPLORER_LINEPLOT, action );
+		logAction( LINEPLOT, action );
 		onCreated( output );
 	};
 	return (

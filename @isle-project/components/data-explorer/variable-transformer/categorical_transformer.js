@@ -23,7 +23,7 @@ import isDigitString from '@stdlib/assert/is-digit-string';
 import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import Tooltip from '@isle-project/components/tooltip';
-import { DATA_EXPLORER_CAT_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { CAT_TRANSFORMER } from '@isle-project/constants/actions.js';
 import recodeCategorical from './recode_categorical';
 import extractUsedCategories from '@isle-project/utils/extract-used-categories';
 import validateName from './validate_name.js';
@@ -217,7 +217,7 @@ class CategoricalTransformer extends Component {
 		const { firstVar, secondVar, nameMappings, castNumeric } = this.state;
 		const newVar = recodeCategorical( firstVar, secondVar, nameMappings, this.props.data, castNumeric );
 		this.props.onGenerate( this.state.generatedName, newVar );
-		this.props.logAction( DATA_EXPLORER_CAT_TRANSFORMER, {
+		this.props.logAction( CAT_TRANSFORMER, {
 			name: this.state.generatedName,
 			firstVar: firstVar,
 			secondVar: secondVar,

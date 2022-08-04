@@ -9,7 +9,7 @@ import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import PropTest from '@isle-project/components/tests/proptest';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
-import { DATA_EXPLORER_TESTS_PROPTEST } from '@isle-project/constants/actions.js';
+import { TESTS_PROPTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -27,7 +27,7 @@ const PropTestMenu = ( props ) => {
 
 	const calculatePropTest = () => {
 		const output = <PropTest data={data} variable={variable} success={success} p0={p0} direction={direction} alpha={alpha} showDecision={showDecision} />;
-		props.logAction( DATA_EXPLORER_TESTS_PROPTEST, {
+		props.logAction( TESTS_PROPTEST, {
 			variable, success, p0, direction, alpha, showDecision
 		});
 		props.onCreated( output );

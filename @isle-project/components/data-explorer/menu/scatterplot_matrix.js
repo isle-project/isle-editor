@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import SelectInput from '@isle-project/components/input/select';
 import ScatterPlotMatrix from '@isle-project/components/plots/scatterplot-matrix';
-import { DATA_EXPLORER_SHARE_SPLOM, DATA_EXPLORER_SPLOM } from '@isle-project/constants/actions.js';
+import { SHARE_SPLOM, SPLOM } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -30,7 +30,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 				level: 'success',
 				position: 'tr'
 			});
-			props.logAction( DATA_EXPLORER_SHARE_SPLOM, action );
+			props.logAction( SHARE_SPLOM, action );
 		};
 		const output = <ScatterPlotMatrix
 			id={plotId}
@@ -41,7 +41,7 @@ const ScatterplotMatrixMenu = ( props ) => {
 			onShare={onShare}
 			onSelected={props.onSelected}
 		/>;
-		props.logAction( DATA_EXPLORER_SPLOM, action );
+		props.logAction( SPLOM, action );
 		props.onCreated( output );
 	};
 	return (

@@ -7,7 +7,7 @@ import SelectInput from '@isle-project/components/input/select';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import Dashboard from '@isle-project/components/dashboard';
 import MultipleLinearRegression from '@isle-project/components/models/multiple-linear-regression';
-import { DATA_EXPLORER_MULTIPLE_REGRESSION } from '@isle-project/constants/actions.js';
+import { MULTIPLE_REGRESSION } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 
 
@@ -26,7 +26,7 @@ const MultipleLinearRegressionMenu = ( props ) => {
 		const action = {
 			y, x, intercept
 		};
-		props.logAction( DATA_EXPLORER_MULTIPLE_REGRESSION, action );
+		props.logAction( MULTIPLE_REGRESSION, action );
 		props.onCreated( output );
 	};
 	return (

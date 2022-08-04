@@ -21,7 +21,7 @@ import NumberInput from '@isle-project/components/input/number';
 import Draggable from '@isle-project/components/draggable';
 import Panel from '@isle-project/components/panel';
 import SelectInput from '@isle-project/components/input/select';
-import { DATA_EXPLORER_RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
+import { RANDOM_TRANSFORMER } from '@isle-project/constants/actions.js';
 import validateName from './../validate_name.js';
 import drawRandomVariates from './draw_random_variates.js';
 
@@ -331,7 +331,7 @@ const RandomTransformer = ( props ) => {
 	const { t } = useTranslation( 'learn/distribution' );
 	const createVariable = useCallback( () => {
 		const seed = minstd();
-		props.logAction( DATA_EXPLORER_RANDOM_TRANSFORMER, {
+		props.logAction( RANDOM_TRANSFORMER, {
 			distribution, name, params, asCategorical, nObs, seed
 		});
 		const out = drawRandomVariates({ name, distribution, params, nObs, seed });

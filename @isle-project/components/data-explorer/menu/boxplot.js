@@ -12,7 +12,7 @@ import selectStyles from '@isle-project/components/input/select/styles';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import BoxPlot from '@isle-project/components/plots/boxplot';
-import { DATA_EXPLORER_SHARE_BOXPLOT, DATA_EXPLORER_BOXPLOT } from '@isle-project/constants/actions.js';
+import { SHARE_BOXPLOT, BOXPLOT } from '@isle-project/constants/actions.js';
 import QuestionButton from '../question_button.js';
 
 
@@ -39,13 +39,13 @@ const BoxplotMenu = ({ data, variables, groupingVariables, t, session, logAction
 				level: 'success',
 				position: 'tr'
 			});
-			logAction( DATA_EXPLORER_SHARE_BOXPLOT, action );
+			logAction( SHARE_BOXPLOT, action );
 		};
 		const output = <BoxPlot id={plotId} onShare={onShare} action={action}
 			data={data} variable={selectedVariables} group={groupValues} orientation={orientation}
 			overlayPoints={overlayPoints}
 		/>;
-		logAction( DATA_EXPLORER_BOXPLOT, action );
+		logAction( BOXPLOT, action );
 		onCreated( output );
 	};
 	return (

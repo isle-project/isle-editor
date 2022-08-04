@@ -15,7 +15,7 @@ import isArray from '@stdlib/assert/is-array';
 import unique from 'uniq';
 import PropTest2 from '@isle-project/components/tests/proptest2';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
-import { DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST } from '@isle-project/constants/actions.js';
+import { TESTS_TWO_SAMPLE_PROPTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
 
@@ -75,7 +75,7 @@ const PropTest2Menu = ( props ) => {
 			var1={var1} var2={var2} group={group}
 			diff={diff} direction={direction} alpha={alpha} success={success}
 		/>;
-		props.logAction( DATA_EXPLORER_TESTS_TWO_SAMPLE_PROPTEST, {
+		props.logAction( TESTS_TWO_SAMPLE_PROPTEST, {
 			var1, group, var2, success, diff, direction, alpha, showDecision
 		});
 		props.onCreated( output );
