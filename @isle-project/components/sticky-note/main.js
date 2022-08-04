@@ -7,8 +7,10 @@ import { withTranslation } from 'react-i18next';
 import isObject from '@stdlib/assert/is-plain-object';
 import Draggable from '@isle-project/components/draggable';
 import SessionContext from '@isle-project/session/context.js';
-import { DELETE_STICKY_NOTE, STICKY_NOTE_TITLE, STICKY_NOTE_BODY, STICKY_NOTE_MOVE } from '@isle-project/constants/actions.js';
+import { DELETE, CHANGE_TITLE, CHANGE_BODY, MOVE } from '@isle-project/constants/actions.js';
 import pixelsToNumber from '@isle-project/utils/pixels-to-number';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
+import { withPropCheck } from '@isle-project/utils/prop-check';
 import './sticky_note.css';
 
 
@@ -77,14 +79,7 @@ class StickyNote extends Component {
 		this.setState({
 			exit: true
 		});
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: DELETE_STICKY_NOTE,
-				value: true
-			});
-		}
+		this.props.logAction( DELETE );
 		this.props.onDelete();
 	};
 
@@ -177,14 +172,7 @@ class StickyNote extends Component {
 	checkTitle = ( event ) => {
 		if ( event.keyCode === 13 ) {
 			const title = event.target.value;
-			if ( this.props.id ) {
-				const session = this.context;
-				session.log({
-					id: this.props.id,
-					type: STICKY_NOTE_TITLE,
-					value: title
-				});
-			}
+			this.props.logAction( CHANGE_TITLE, title );
 			this.props.onTitleChange( title );
 			this.setState({
 				title,
@@ -194,14 +182,7 @@ class StickyNote extends Component {
 	};
 
 	handleTitleBlur = () => {
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: STICKY_NOTE_TITLE,
-				value: this.state.title
-			});
-		}
+		this.props.logAction( CHANGE_TITLE, this.state.title );
 		this.props.onTitleChange( this.state.title );
 		this.setState({
 			editTitle: false
@@ -223,17 +204,10 @@ class StickyNote extends Component {
 		setTimeout( () => {
 			this.isDragging = false;
 		}, 200 );
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: STICKY_NOTE_MOVE,
-				value: {
-					x: data.lastX,
-					y: data.lastY
-				}
-			});
-		}
+		this.props.logAction( MOVE, {
+			x: data.lastX,
+			y: data.lastY
+		});
 		this.props.onMove({ left: data.lastX / window.innerWidth, top: data.lastY / window.innerHeight });
 	};
 
@@ -275,14 +249,7 @@ class StickyNote extends Component {
 
 	submitBody = () => {
 		const body = this.textareaRef.current.value;
-		if ( this.props.id ) {
-			const session = this.context;
-			session.log({
-				id: this.props.id,
-				type: STICKY_NOTE_BODY,
-				value: body
-			});
-		}
+		this.props.logAction( CHANGE_BODY, body );
 		this.props.onBodyChange( body );
 		this.setState({
 			body,
@@ -446,4 +413,4 @@ StickyNote.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'sticky-note' )( StickyNote );
+export default withActionLogger( 'STICKY_NOTE' )( withTranslation( 'sticky-note' )( withPropCheck( StickyNote ) ) );

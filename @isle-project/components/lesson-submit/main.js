@@ -317,7 +317,7 @@ class LessonSubmit extends Component {
 				});
 			}
 		});
-		session.log( SUBMISSION );
+		this.props.logAction( SUBMISSION );
 		this.setState({
 			disabled: true
 		});
