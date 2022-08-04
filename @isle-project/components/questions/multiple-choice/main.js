@@ -19,11 +19,10 @@ import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
 import toNumber from '@isle-project/utils/to-number';
-import generateUID from '@isle-project/utils/uid';
-import getLastAction from '@isle-project/utils/get-last-action';
-import { MULTIPLE_CHOICE_OPEN_HINT, MULTIPLE_CHOICE_SUBMISSION } from '@isle-project/constants/actions.js';
+import { OPEN_HINT, SUBMISSION } from '@isle-project/constants/actions.js';
 import { FOCUS_ELEMENT, RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import AnswerOptionWithFeedback from './answer_option_feedback.js';
 import AnswerOptionIncrFeedback from './answer_option_incr_feedback.js';
 import AnswerOption from './answer_option';
@@ -33,7 +32,6 @@ import Question from './question.js';
 // VARIABLES //
 
 const debug = logger( 'isle:multiple-choice-question' );
-const uid = generateUID( 'multiple-choice-question' );
 
 
 // FUNCTIONS //
@@ -74,10 +72,7 @@ class MultipleChoiceQuestion extends Component {
 	constructor( props, context ) {
 		super( props );
 
-		this.id = props.id || uid( props );
-		const currentUserActions = context.currentUserActions;
-
-		const value = getLastAction( currentUserActions, this.id, MULTIPLE_CHOICE_SUBMISSION );
+		const value = props.retrieveLastAction( SUBMISSION );
 		this.state = {
 			correct: new Array( props.answers.length ),
 			answerSelected: false,
@@ -122,18 +117,12 @@ class MultipleChoiceQuestion extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-					let actions = val[ this.id ];
-					if ( isArray( actions ) ) {
-						actions = actions.filter( action => {
-							return action.type === MULTIPLE_CHOICE_SUBMISSION;
+					const lastAction = this.props.retrieveLastAction( SUBMISSION );
+					if ( lastAction ) {
+						this.setState({
+							active: lastAction,
+							submitted: this.props.provideFeedback === 'none'
 						});
-						if ( actions.length > 0 ) {
-							const lastAction = actions[ 0 ].value;
-							this.setState({
-								active: lastAction,
-								submitted: this.props.provideFeedback === 'none'
-							});
-						}
 					}
 				}
 			});
@@ -162,12 +151,7 @@ class MultipleChoiceQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: MULTIPLE_CHOICE_OPEN_HINT,
-			value: idx
-		});
+		this.props.logAction( OPEN_HINT, idx );
 	};
 
 	selectAnswer( no ) {
@@ -231,15 +215,10 @@ class MultipleChoiceQuestion extends Component {
 	submitQuestion = () => {
 		const sol = this.props.solution;
 		const noSolution = isNull( sol );
-		const session = this.context;
 		let newCorrect = ( this.props.provideFeedback === 'incremental' && !noSolution ) ?
 			this.state.correct.slice() :
 			new Array( this.props.answers.length );
-		session.log({
-			id: this.id,
-			type: MULTIPLE_CHOICE_SUBMISSION,
-			value: this.state.active
-		});
+		this.props.logAction( SUBMISSION, this.state.active );
 		let isSolved = false;
 		if ( isArray( sol ) ) {
 			for ( let i = 0; i < this.state.active.length; i++ ) {
@@ -346,10 +325,7 @@ class MultipleChoiceQuestion extends Component {
 
 	triggerFocusEvent = () => {
 		const session = this.context;
-		session.log({
-			type: FOCUS_ELEMENT,
-			value: session.user.email,
-			id: this.id,
+		this.props.logAction( FOCUS_ELEMENT, session.user.email, {
 			noSave: true
 		}, 'owners' );
 	};
@@ -515,7 +491,7 @@ class MultipleChoiceQuestion extends Component {
 			bodyStyle.width = '100%';
 		}
 		return (
-			<Card id={this.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
+			<Card id={this.props.id} className="multiple-choice-question-container" style={{ ...this.props.style }} >
 				<Card.Body style={bodyStyle} >
 					<Question
 						content={question}
@@ -534,30 +510,30 @@ class MultipleChoiceQuestion extends Component {
 							null
 						}
 						{
-							chat && this.id ?
+							chat && this.props.id ?
 							<div style={{ display: 'inline-block' }}>
-								<ChatButton size="small" for={this.id} />
+								<ChatButton size="small" for={this.props.id} />
 							</div> : null
 						}
 					</div>
-					{ this.id ? <div style={{ marginTop: '6px' }}>
+					{ this.props.id ? <div style={{ marginTop: '6px' }}>
 						<ResponseVisualizer
 							buttonLabel={this.props.t('answers')}
-							id={this.id}
+							id={this.props.id}
 							data={{
 								type: 'factor',
 								levels: this.props.answers.map( x => x.content ),
 								question: this.props.question,
 								solution: this.props.solution
 							}}
-							info={MULTIPLE_CHOICE_SUBMISSION}
+							info="MULTIPLE_CHOICE_SUBMISSION"
 							points={this.props.points}
 						/>
 						{ this.props.feedback ? <FeedbackButtons
-							id={this.id+'_feedback'}
+							id={this.props.id+'_feedback'}
 						/> : null }
 					</div> : null }
-					<GradeFeedbackRenderer for={this.id} points={this.props.points} />
+					<GradeFeedbackRenderer for={this.props.id} points={this.props.points} />
 				</Card.Body>
 			</Card>
 		);
@@ -617,4 +593,4 @@ MultipleChoiceQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceQuestion ) );
+export default withActionLogger( 'MULTIPLE_CHOICE_QUESTION' )( withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceQuestion ) ) );

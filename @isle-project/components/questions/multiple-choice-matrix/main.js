@@ -16,16 +16,15 @@ import SolutionButton from '@isle-project/components/solution-button';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import Text from '@isle-project/components/text';
 import SessionContext from '@isle-project/session/context.js';
-import generateUID from '@isle-project/utils/uid';
-import { MULTIPLE_CHOICE_MATRIX_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './multiple_choice_matrix.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:multiple-choice-matrix' );
-const uid = generateUID( 'multiple-choice-matrix' );
 
 
 // MAIN //
@@ -46,7 +45,6 @@ class MultipleChoiceMatrix extends Component {
 	constructor( props ) {
 		super( props );
 
-		this.id = props.id || uid( props );
 		const active = new Array( props.questions.length );
 		for ( let i = 0; i < active.length; i++ ) {
 			active[ i ] = new Array( props.answers.length );
@@ -126,18 +124,11 @@ class MultipleChoiceMatrix extends Component {
 	};
 
 	handleSubmit = () => {
-		const session = this.context;
 		debug( 'Submit answer...' );
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
-		if ( this.id ) {
-			session.log({
-				id: this.id,
-				type: MULTIPLE_CHOICE_MATRIX_SUBMISSION,
-				value: JSON.stringify( this.state.active )
-			});
-		}
+		this.props.logAction( SUBMISSION, JSON.stringify( this.state.active ) );
 		this.setState({
 			submitted: true
 		});
@@ -283,4 +274,4 @@ MultipleChoiceMatrix.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceMatrix ) );
+export default withActionLogger( 'MULTIPLE_CHOICE_MATRIX' )( withTranslation( 'questions/multiple-choice' )( withPropCheck( MultipleChoiceMatrix ) ) );

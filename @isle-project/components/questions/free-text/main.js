@@ -11,7 +11,6 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import Tooltip from 'react-bootstrap/Tooltip';
 import logger from 'debug';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import generateUID from '@isle-project/utils/uid';
 import Panel from '@isle-project/components/panel';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import TimedButton from '@isle-project/components/timed-button';
@@ -22,17 +21,16 @@ import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import FeedbackButtons from '@isle-project/components/feedback';
 import GradeFeedbackRenderer from '@isle-project/components/internal/grade-feedback-renderer';
 import SessionContext from '@isle-project/session/context.js';
-import getLastAction from '@isle-project/utils/get-last-action';
 import beforeUnload from '@isle-project/utils/before-unload';
-import { FREE_TEXT_QUESTION_SUBMIT_ANSWER, FREE_TEXT_QUESTION_DISPLAY_SOLUTION, FREE_TEXT_QUESTION_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { SUBMISSION, TOGGLE_SOLUTION, OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './free_text_question.css';
 
 
 // VARIABLES //
 
-const uid = generateUID( 'free-text-question' );
 const debug = logger( 'isle:free-text-question' );
 
 
@@ -73,9 +71,7 @@ class FreeTextQuestion extends Component {
 		super( props );
 		debug( 'Invoking constructor of FreeTextQuestion...' );
 
-		const actions = context.currentUserActions;
-		this.id = props.id || uid( props );
-		const value = getLastAction( actions, this.id, FREE_TEXT_QUESTION_SUBMIT_ANSWER );
+		const value = props.retrieveLastAction( SUBMISSION );
 
 		// Initialize state variables...
 		this.state = {
@@ -102,7 +98,13 @@ class FreeTextQuestion extends Component {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type ) => {
 			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-				this.setToLastAction();
+				const last = this.props.retrieveLastAction( SUBMISSION );
+				if ( isString( last ) && last !== this.state.value ) {
+					this.setState({
+						value: last,
+						submitted: true
+					});
+				}
 			}
 		});
 	}
@@ -159,7 +161,6 @@ class FreeTextQuestion extends Component {
 	};
 
 	submitHandler = ( event ) => {
-		const session = this.context;
 		if ( !this.props.disableSubmitNotification ) {
 			this.sendSubmitNotification();
 		}
@@ -169,26 +170,17 @@ class FreeTextQuestion extends Component {
 		});
 		window.removeEventListener( 'beforeunload', beforeUnload );
 		this.beforeUnload = false;
-		session.log({
-			id: this.id,
-			type: FREE_TEXT_QUESTION_SUBMIT_ANSWER,
-			value: this.state.value
-		});
+		this.props.logAction( SUBMISSION, this.state.value );
 	};
 
 	handleSolutionClick = () => {
-		const session = this.context;
 		if ( this.state.solutionDisplayed ) {
 			this.setState({
 				solutionDisplayed: false,
 				value: this.state.studentAnswer
 			});
 		} else {
-			session.log({
-				id: this.id,
-				type: FREE_TEXT_QUESTION_DISPLAY_SOLUTION,
-				value: null
-			});
+			this.props.logAction( TOGGLE_SOLUTION );
 			this.setState({
 				solutionDisplayed: true,
 				studentAnswer: this.state.value,
@@ -197,18 +189,6 @@ class FreeTextQuestion extends Component {
 		}
 	};
 
-	setToLastAction() {
-		const session = this.context;
-		const actions = session.currentUserActions;
-		const value = getLastAction( actions, this.id, FREE_TEXT_QUESTION_SUBMIT_ANSWER );
-		if ( isString( value ) && value !== this.state.value ) {
-			this.setState({
-				value: value,
-				submitted: true
-			});
-		}
-	}
-
 	triggerHint() {
 		const node = ReactDOM.findDOMNode( this.hintButton );
 		node.click();
@@ -216,12 +196,7 @@ class FreeTextQuestion extends Component {
 
 	logHint = ( idx ) => {
 		debug( 'Logging hint...' );
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: FREE_TEXT_QUESTION_OPEN_HINT,
-			value: idx
-		});
+		this.props.logAction( OPEN_HINT, idx );
 	};
 
 	renderSubmitButton() {
@@ -276,16 +251,16 @@ class FreeTextQuestion extends Component {
 		/>;
 		return (
 			<Panel
-				id={this.id} className={`free-text-question ${this.props.className}`}
+				id={this.props.id} className={`free-text-question ${this.props.className}`}
 				style={this.props.style} fullscreen
 				bodyStyle={{ width: this.props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }}
 			>
 				{ this.props.question ? <div className="title">{this.props.question}</div> : null }
 				<FormGroup style={{ paddingBottom: 12 }} >
-					<label htmlFor={`${this.id}-textarea`} >{this.state.solutionDisplayed ? this.props.t('solution') : this.props.t('your-answer') }</label>
+					<label htmlFor={`${this.props.id}-textarea`} >{this.state.solutionDisplayed ? this.props.t('solution') : this.props.t('your-answer') }</label>
 					{!this.state.solutionDisplayed ?
 						<FormControl
-							id={`${this.id}-textarea`}
+							id={`${this.props.id}-textarea`}
 							as="textarea"
 							placeholder={this.props.placeholder || this.props.t('enter-your-answer-here')}
 							onChange={this.handleChange}
@@ -305,8 +280,8 @@ class FreeTextQuestion extends Component {
 					}
 				</FormGroup>
 				<ResponseVisualizer
-					buttonLabel={this.props.t('answers')} id={this.id}
-					info={FREE_TEXT_QUESTION_SUBMIT_ANSWER}
+					buttonLabel={this.props.t('answers')} id={this.props.id}
+					info="FREE_TEXT_QUESTION_SUBMIT_ANSWER"
 					data={{
 						question: this.props.question,
 						solution: this.props.solution
@@ -317,7 +292,7 @@ class FreeTextQuestion extends Component {
 				<ButtonToolbar className="free-text-question-toolbar" >
 					{ nHints > 0 ?
 						<HintButton
-							id={`${this.id}-hints`}
+							id={`${this.props.id}-hints`}
 							onClick={this.logHint}
 							ref={( div ) => { this.hintButton = div; }}
 							hints={this.props.hints}
@@ -336,16 +311,16 @@ class FreeTextQuestion extends Component {
 					{
 						this.props.chat ?
 							<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.id} />
+								<ChatButton for={this.props.id} />
 							</div> : null
 					}
 					{this.renderSubmitButton()}
 				</ButtonToolbar>
 				{ this.props.feedback ? <FeedbackButtons
-					id={this.id+'_feedback'}
+					id={this.props.id+'_feedback'}
 					style={{ marginRight: 5, marginTop: -5 }}
 				/> : null }
-				<GradeFeedbackRenderer for={this.id} points={this.props.points} />
+				<GradeFeedbackRenderer for={this.props.id} points={this.props.points} />
 			</Panel>
 		);
 	}
@@ -415,4 +390,4 @@ FreeTextQuestion.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/free-text' )( withPropCheck( FreeTextQuestion ) );
+export default withActionLogger( 'FREE_TEXT_QUESTION' )( withTranslation( 'questions/free-text' )( withPropCheck( FreeTextQuestion ) ) );
