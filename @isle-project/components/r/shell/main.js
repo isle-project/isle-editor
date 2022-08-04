@@ -14,20 +14,19 @@ import DOMPurify from 'dompurify';
 import createPrependCode from '@isle-project/components/r/utils/create-prepend-code';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import isArray from '@stdlib/assert/is-array';
-import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import max from '@stdlib/math/base/special/max';
 import logger from 'debug';
 import CodeMirror from 'codemirror';
-import generateUID from '@isle-project/utils/uid';
 import Spinner from '@isle-project/components/internal/spinner';
 import HintButton from '@isle-project/components/hint-button';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
-import { RSHELL_DISPLAY_SOLUTION, RSHELL_EVALUATION, RSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { TOGGLE_SOLUTION, EVALUATE, OPEN_HINT } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import 'codemirror/mode/r/r.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -37,28 +36,12 @@ import './rshell.css';
 // VARIABLES //
 
 const debug = logger( 'isle:r-shell' );
-const uid = generateUID( 'r-shell' );
 const HELP_REGEX = /(help\([^)]*\)|\?[^\n]*)/;
 let counter = 0;
 let rCode = [];
 
 
 // FUNCTIONS //
-
-const getLastAction = ( val, id ) => {
-	if ( isObject( val ) ) {
-		let actions = val[ id ];
-		if ( isArray( actions ) ) {
-			actions = actions.filter( action => {
-				return action.type === RSHELL_EVALUATION;
-			});
-			if ( actions.length > 0 ) {
-				return actions[ 0 ].value;
-			}
-		}
-	}
-	return null;
-};
 
 const insertImages = ( imgs, t ) => {
 	const ret = [];
@@ -180,9 +163,6 @@ class RShell extends Component {
 			solutionOpen: false,
 			help: ''
 		};
-
-		this.id = props.id || uid( props );
-
 		counter += 1;
 		rCode.push( props.code );
 
@@ -199,14 +179,9 @@ class RShell extends Component {
 			} else {
 				this.editor.setOption( 'theme', 'elegant' );
 				this.editor.setOption( 'readOnly', false );
-			}
+			}d
 			if ( val !== solutionUnescaped ) {
-				const session = this.context;
-				session.log({
-					id: this.id,
-					type: RSHELL_DISPLAY_SOLUTION,
-					value: val
-				});
+				this.props.logAction( TOGGLE_SOLUTION, val );
 				this.setState({
 					lastSolution: val,
 					solutionOpen: !this.state.solutionOpen
@@ -248,11 +223,7 @@ class RShell extends Component {
 						}
 					});
 				}
-				session.log({
-					id: this.id,
-					type: RSHELL_EVALUATION,
-					value: currentCode
-				});
+				this.props.logAction( EVALUATE, currentCode );
 				let prependCode = createPrependCode( this.props.libraries, this.props.prependCode, session );
 				if ( this.props.addPreceding ) {
 					for ( let i = 0; i < this.state.id; i++ ) {
@@ -320,7 +291,7 @@ class RShell extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-					let lastAction = getLastAction( val, this.id );
+					const lastAction = this.props.retrieveLastAction( EVALUATE );
 					if ( isString( lastAction ) ) {
 						this.setState({
 							lastSolution: lastAction,
@@ -332,15 +303,14 @@ class RShell extends Component {
 					this.forceUpdate();
 				}
 			});
-			const actions = session.currentUserActions;
-			const value = getLastAction( actions, this.id );
-			if ( isString( value ) ) {
+			const lastAction = this.props.retrieveLastAction( EVALUATE );
+			if ( isString( lastAction ) ) {
 				// eslint-disable-next-line react/no-did-mount-set-state
 				this.setState({
-					lastSolution: value,
+					lastSolution: lastAction,
 					solutionOpen: false
 				});
-				this.editor.setValue( value, 1 );
+				this.editor.setValue( lastAction, 1 );
 			}
 		}
 	}
@@ -394,12 +364,7 @@ class RShell extends Component {
 	};
 
 	logHint = ( idx ) => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: RSHELL_OPEN_HINT,
-			value: idx
-		});
+		this.props.logAction( OPEN_HINT, idx );
 	};
 
 	hideHelp = () => {
@@ -510,7 +475,7 @@ class RShell extends Component {
 					{
 						( this.props.chat ) ?
 							<span style={{ display: 'inline-block', marginLeft: '4px' }}>
-								<ChatButton for={this.id} />
+								<ChatButton for={this.props.id} />
 							</span> :
 							null
 					}
@@ -519,7 +484,7 @@ class RShell extends Component {
 					{ showResult( this.state.result ) }
 					{ insertImages( this.state.plots, t ) }
 				</div>
-				<ResponseVisualizer id={this.id} info={RSHELL_EVALUATION} />
+				<ResponseVisualizer id={this.props.id} info="RSHELL_EVALUATE" />
 				{this.renderHelpModal()}
 			</div>
 		);
@@ -575,4 +540,4 @@ RShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'r' )( withPropCheck( RShell ) );
+export default withActionLogger( 'RSHELL' )( withTranslation( 'r' )( withPropCheck( RShell ) ) );

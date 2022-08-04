@@ -18,11 +18,11 @@ import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
 import CodeMirror from 'codemirror';
 import scrollTo from '@isle-project/utils/scroll-to';
-import generateUID from '@isle-project/utils/uid';
 import OverlayTrigger from '@isle-project/components/overlay-trigger';
 import SessionContext from '@isle-project/session/context.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import CONSOLE_STYLES from './console_styles.json';
-import { JSSHELL_DISPLAY_SOLUTION, JSSHELL_EVALUATION, JSSHELL_OPEN_HINT } from '@isle-project/constants/actions.js';
+import { TOGGLE_SOLUTION, EVALUATE, OPEN_HINT } from '@isle-project/constants/actions.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/theme/elegant.css';
 import 'codemirror/theme/paraiso-light.css';
@@ -32,7 +32,6 @@ import './js_shell.css';
 // VARIABLES //
 
 const RE_CONSOLE = /console\.(error|warn|debug|log|info)/g;
-const uid = generateUID( 'js-shell' );
 const THEME = {
 	scheme: 'bright',
 	author: 'chris kempson (http://chriskempson.com)',
@@ -134,7 +133,6 @@ class JSShell extends Component {
 			exhaustedHints: props.hints.length === 0,
 			solutionOpen: false
 		};
-		this.id = props.id || uid( props );
 		if ( this.props.vars ) {
 			for ( let key in this.props.vars ) {
 				if ( hasOwnProp( this.props.vars, key ) ) {
@@ -219,12 +217,7 @@ class JSShell extends Component {
 		}
 
 		if ( val !== solutionUnescaped ) {
-			const session = this.context;
-			session.log({
-				id: this.id,
-				type: JSSHELL_DISPLAY_SOLUTION,
-				value: val
-			});
+			this.props.logAction( TOGGLE_SOLUTION, val );
 			this.setState({
 				lastSolution: val,
 				solutionOpen: !this.state.solutionOpen
@@ -241,12 +234,7 @@ class JSShell extends Component {
 	handleEvaluationClick = () => {
 		let currentCode = this.editor.getValue();
 		currentCode = replace( currentCode, RE_CONSOLE, 'print.$1' );
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: JSSHELL_EVALUATION,
-			value: currentCode
-		});
+		this.props.logAction( EVALUATE, currentCode );
 		try {
 			if ( this.props.check ) {
 				currentCode += ';' + this.props.check;
@@ -317,12 +305,7 @@ class JSShell extends Component {
 	};
 
 	logHint = ( idx ) => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: JSSHELL_OPEN_HINT,
-			value: idx
-		});
+		this.props.logAction( OPEN_HINT, idx );
 	};
 
 	showHints() {
@@ -469,4 +452,4 @@ JSShell.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( [ 'r', 'solution-button' ] )( JSShell );
+export default withActionLogger( 'JS_SHELL' )( withTranslation( [ 'r', 'solution-button' ] )( JSShell ) );

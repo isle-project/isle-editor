@@ -18,9 +18,10 @@ import Login from '@isle-project/components/internal/login';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SessionContext from '@isle-project/session/context.js';
 import { LOGGED_IN, LOGGED_OUT, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
-import { LESSON_SUBMIT } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import 'pdfmake/build/vfs_fonts.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import createMessage from './create_message.js';
 
 
@@ -316,11 +317,7 @@ class LessonSubmit extends Component {
 				});
 			}
 		});
-		session.log({
-			id: session.lessonName,
-			type: LESSON_SUBMIT,
-			value: this.props.t('lesson-submitted')
-		});
+		session.log( SUBMISSION );
 		this.setState({
 			disabled: true
 		});
@@ -410,4 +407,4 @@ LessonSubmit.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'lesson-submit' )( withPropCheck( LessonSubmit ) );
+export default withActionLogger( 'LESSON_SUBMIT' )( withTranslation( 'lesson-submit' )( withPropCheck( LessonSubmit ) ) );
