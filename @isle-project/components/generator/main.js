@@ -4,12 +4,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Panel from '@isle-project/components/panel';
-import generateUID from '@isle-project/utils/uid';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'generator' );
+import { useActionLogger } from '@isle-project/session/action_logger.js';
+import { CLICK } from '@isle-project/constants/actions.js';
 
 
 // MAIN //
@@ -21,8 +17,9 @@ const uid = generateUID( 'generator' );
 * @property {(string|node)} buttonLabel - label for button
 * @property {Function} onGenerate - function invoked that should return a new component to be rendered in the lesson
 */
-const Generator = ({ id, autoStart, buttonLabel, onGenerate }) => {
-	const idRef = useRef( id || uid({ autoStart, buttonLabel, onGenerate }) );
+const Generator = ( props ) => {
+	const { id, logAction } = useActionLogger( 'GENERATOR', props );
+	const { autoStart, buttonLabel, onGenerate } = props;
 	const [ element, setElement ] = useState( null );
 	const generateRef = useRef();
 
@@ -32,12 +29,11 @@ const Generator = ({ id, autoStart, buttonLabel, onGenerate }) => {
 	const handleClick = useCallback( () => {
 		let elem = generateRef.current();
 		if ( elem ) {
-			elem = React.cloneElement( elem, {
-				id: idRef.current
-			});
+			elem = React.cloneElement( elem, { id });
 			setElement( elem );
 		}
-	}, [] );
+		logAction( CLICK );
+	}, [ id, logAction ] );
 
 	useEffect( () => {
 		if ( autoStart ) {

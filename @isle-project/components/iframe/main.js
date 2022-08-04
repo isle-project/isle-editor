@@ -11,14 +11,9 @@ import FullscreenButton from '@isle-project/components/internal/fullscreen-butto
 import Tooltip from '@isle-project/components/tooltip';
 import Link from '@isle-project/components/link';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import generateUID from '@isle-project/utils/uid';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import SessionContext from '@isle-project/session/context.js';
-import { IFRAME_INTERACTION } from '@isle-project/constants/actions.js';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'iframe' );
+import { INTERACTION } from '@isle-project/constants/actions.js';
 
 
 // MAIN //
@@ -35,8 +30,8 @@ const uid = generateUID( 'iframe' );
 * @property {Object} style - CSS inline styles
 */
 const IFrame = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
 	const iframeRef = useRef( null );
+	const { logAction, id } = useActionLogger( 'IFRAME', { id: props.src } );
 	const { title, src, fullscreen, width, height, className, style } = props;
 	const [ dimensions, setDimensions ] = useState({
 		width: width || window.innerWidth,
@@ -49,11 +44,7 @@ const IFrame = ( props ) => {
 	useEffect( () => {
 		const logger = () => {
 			if ( document.activeElement === iframeRef.current ) {
-				session.log({
-					id: id.current,
-					type: IFRAME_INTERACTION,
-					value: true
-				});
+				logAction( INTERACTION );
 			}
 		};
 		const handleEvent = () => {
@@ -100,7 +91,7 @@ const IFrame = ( props ) => {
 		};
 	}
 	return (
-		<Card id={`${id.current}-card`} className={`center ${className}`} style={divStyle} >
+		<Card id={`${id}-card`} className={`center ${className}`} style={divStyle} >
 			{loaded && !fullscreen ? <FullscreenButton
 				header={`${title}: ${src}`}
 				body={<iframe
@@ -143,9 +134,9 @@ const IFrame = ( props ) => {
 				</Tooltip>
 			</Link>
 			<iframe
-				id={id.current}
+				id={id}
 				ref={iframeRef}
-				key={`${id.current}-${loaded}`}
+				key={`${id}-${loaded}`}
 				src={src}
 				width={dimensions.width}
 				height={dimensions.height}
