@@ -43,10 +43,9 @@ import isNull from '@stdlib/assert/is-null';
 import objectKeys from '@stdlib/utils/keys';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
-import generateUID from '@isle-project/utils/uid';
 import saveAs from '@isle-project/utils/file-saver';
 import SessionContext from '@isle-project/session/context.js';
-import { TABLE_SORT, TABLE_FILTER, TABLE_RESET } from '@isle-project/constants/actions.js';
+import { SORT, FILTER, RESET } from '@isle-project/constants/actions.js';
 import NINF from '@stdlib/constants/float64/ninf';
 import SelectInput from '@isle-project/components/input/select';
 import { components } from 'react-select';
@@ -54,6 +53,7 @@ import TutorialButton from './tutorial-button/index.js';
 import ColumnTitle from './column_title.js';
 import FilterInputRange from './input_range.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import 'react-table/react-table.css';
 import './input_range.css';
 import './react_table_height.css';
@@ -69,7 +69,6 @@ const md = markdownit({
 	typographer: false
 });
 const debug = logger( 'isle:data-table' );
-const uid = generateUID( 'data-table' );
 const collator = new Intl.Collator( 'en', { numeric: true, sensitivity: 'base' });
 const RE_NUMBER = /[0-9.,]+/;
 
@@ -389,7 +388,6 @@ class DataTable extends Component {
 		super( props );
 
 		debug( 'Constructor is invoked...' );
-		this.id = props.id || uid( props );
 		const dataInfo = props.dataInfo || {};
 
 		this.dragged = null;
@@ -403,7 +401,7 @@ class DataTable extends Component {
 				showOnStartup: dataInfo.showOnStartup || null
 			},
 			showSaveModal: false,
-			id: this.id // eslint-disable-line react/no-unused-state
+			id: props.id // eslint-disable-line react/no-unused-state
 		};
 	}
 
@@ -554,12 +552,7 @@ class DataTable extends Component {
 	handleFilterChange = ( filtered, column ) => {
 		const tbody = findDOMNode( this.table ).getElementsByClassName( 'rt-tbody' )[0];
 		tbody.scrollTop = 0;
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: TABLE_FILTER,
-			value: column.id
-		});
+		this.props.logAction( FILTER, column.id );
 		this.setState({
 			filtered
 		}, () => {
@@ -568,24 +561,14 @@ class DataTable extends Component {
 	};
 
 	handleSortedChange = ( sorted, column ) => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: TABLE_SORT,
-			value: column.id
-		});
+		this.props.logAction( SORT, column.id );
 		this.setState({
 			sorted
 		});
 	};
 
 	reset = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: TABLE_RESET,
-			value: ''
-		});
+		this.props.logAction( RESET );
 		this.setState({
 			filtered: [],
 			sorted: []
@@ -975,5 +958,5 @@ DataTable.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'data-table' )( withPropCheck( DataTable ) );
+export default withActionLogger( 'TABLE' )( withTranslation( 'data-table' )( withPropCheck( DataTable ) ) );
 

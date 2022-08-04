@@ -8,16 +8,15 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
 import indexOf from '@stdlib/utils/index-of';
-import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
-import { LIKERT_SCALE_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 
 
 // VARIABLES //
 
-const uid = generateUID( 'likert-scale' );
 const DEFAULT_OPTIONS = [
 	'strongly-disagree',
 	'disagree',
@@ -40,8 +39,8 @@ const DEFAULT_OPTIONS = [
 * @property {Object} style - CSS inline styles
 */
 const LikertScale = ( props ) => {
-	const id = props.id || uid( props );
 	const session = useContext( SessionContext );
+	const { id, logAction } = useActionLogger( 'LIKERT_SCALE', props );
 	const [ value, setValue ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
 	const { t } = useTranslation( 'likert-scale' );
@@ -56,11 +55,7 @@ const LikertScale = ( props ) => {
 			});
 		}
 		setSubmitted( true );
-		session.log({
-			id: id,
-			type: LIKERT_SCALE_SUBMISSION,
-			value: indexOf( options, value )
-		});
+		logAction( SUBMISSION, indexOf( options, value ) );
 	};
 	const handleChange = ( event ) => {
 		setValue( event.target.value );
@@ -107,7 +102,7 @@ const LikertScale = ( props ) => {
 						type: 'factor',
 						levels: options
 					}}
-					info={LIKERT_SCALE_SUBMISSION}
+					info="LIKERT_SCALE_SUBMISSION"
 				/>
 			</Card.Body>
 		</Card>
