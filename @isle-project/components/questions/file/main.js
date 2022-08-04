@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
-import generateUID from '@isle-project/utils/uid';
 import SessionContext from '@isle-project/session/context.js';
 import Spinner from '@isle-project/components/internal/spinner';
 import TimedButton from '@isle-project/components/timed-button';
@@ -24,7 +23,6 @@ import './file_question.css';
 
 // VARIABLES //
 
-const uid = generateUID( 'file-question' );
 const debug = logger( 'isle:file-upload' );
 
 
@@ -48,23 +46,22 @@ const debug = logger( 'isle:file-upload' );
 const FileQuestion = ( props ) => {
 	const { t } = useTranslation( 'questions/file' );
 	const { accept, until, onChange } = props;
-	const id = useRef( props.id || uid( props ) );
 	const session = useContext( SessionContext );
 	const fileUpload = useRef( null );
-	const { logAction, retrieveLastAction } = useActionLogger( 'FILE_QUESTION', id.current );
+	const { id, logAction, retrieveLastAction } = useActionLogger( 'FILE_QUESTION', props );
 	const [ file, setFile ] = useState( null );
 	const [ fileLink, setFileLink ] = useState( null );
 	const [ isProcessing, setIsProcessing ] = useState( false );
 	const [ submitted, setSubmitted ] = useState( false );
 
 	const setToLastAction = useCallback( () => {
-		debug( `Set submission to last action for question ${id.current} if available...` );
+		debug( `Set submission to last action for question ${id} if available...` );
 		const value = retrieveLastAction( SUBMISSION );
 		if ( value && value !== fileLink ) {
 			setFileLink( value );
 			setSubmitted( true );
 		}
-	}, [ retrieveLastAction, fileLink ] );
+	}, [ retrieveLastAction, fileLink, id ] );
 
 	const { hints } = props;
 	const nHints = hints.length;
@@ -189,13 +186,13 @@ const FileQuestion = ( props ) => {
 		</Fragment>;
 	}
 	return (
-		<Card id={id.current} className={`file-question ${props.className}`} style={props.style} >
+		<Card id={id} className={`file-question ${props.className}`} style={props.style} >
 			<Card.Body className="d-grid gap-2" style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<Spinner running={isProcessing} width={256} height={128} />
 				{content}
 				{ props.feedback ? <FeedbackButtons vertical
-					id={id.current+'_feedback'}
+					id={id+'_feedback'}
 					style={{
 						position: 'absolute',
 						right: '4px',
@@ -203,7 +200,7 @@ const FileQuestion = ( props ) => {
 					}}
 				/> : null }
 				<ResponseVisualizer
-					buttonLabel="Answers" id={id.current}
+					buttonLabel="Answers" id={id}
 					info="FILE_QUESTION_SUBMISSION"
 					data={{
 						question: props.question,
@@ -221,9 +218,9 @@ const FileQuestion = ( props ) => {
 						null
 					}
 					{renderSubmitButton()}
-					{ props.chat ? <ChatButton for={id.current} /> : null }
+					{ props.chat ? <ChatButton for={id} /> : null }
 				</div>
-				<GradeFeedbackRenderer for={id.current} points={props.points} />
+				<GradeFeedbackRenderer for={id} points={props.points} />
 			</Card.Body>
 		</Card>
 	);

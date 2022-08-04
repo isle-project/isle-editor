@@ -8,7 +8,6 @@ import { toJpeg } from 'html-to-image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
-import generateUID from '@isle-project/utils/uid';
 import Image from '@isle-project/components/image';
 import Spinner from '@isle-project/components/internal/spinner';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
@@ -31,7 +30,6 @@ import './image_question.css';
 
 // VARIABLES //
 
-const uid = generateUID( 'image-question' );
 const debug = logger( 'isle:image-question' );
 const RE_IMAGE_SRC = /src="([^"]*)"/;
 
@@ -56,8 +54,7 @@ const RE_IMAGE_SRC = /src="([^"]*)"/;
 * @property {Function} onSubmit - callback invoked when answer is submitted; has as a sole parameter a `boolean` indicating whether the elements were placed in the correct order
 */
 const ImageQuestion = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
-	const { retrieveLastAction, logAction } = useActionLogger( 'IMAGE_QUESTION', id.current );
+	const { id, retrieveLastAction, logAction } = useActionLogger( 'IMAGE_QUESTION', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/image' );
 	const fileUpload = useRef( null );
@@ -70,13 +67,13 @@ const ImageQuestion = ( props ) => {
 	const [ isProcessing, setIsProcessing ] = useState( false );
 
 	const setToLastAction = useCallback( () => {
-		debug( `Set submission to last action for question ${id.current} if available...` );
+		debug( `Set submission to last action for question ${id} if available...` );
 		const value = retrieveLastAction( SUBMISSION );
 		if ( value && value !== src ) {
 			setSrc( value );
 			setSubmitted( true );
 		}
-	}, [ retrieveLastAction, src ] );
+	}, [ retrieveLastAction, src, id ] );
 
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type ) => {
@@ -141,7 +138,7 @@ const ImageQuestion = ( props ) => {
 		if ( src ) {
 			logAction( SUBMISSION, src );
 		} else {
-			const canvas = document.getElementById( id.current+'-canvas' );
+			const canvas = document.getElementById( id+'-canvas' );
 			canvas.toBlob( ( blob ) => {
 				blobToBase64( blob ).then( newSrc => {
 					logAction( SUBMISSION, newSrc );
@@ -262,7 +259,7 @@ const ImageQuestion = ( props ) => {
 			</div>
 			<p className="center">{t('or')}</p>
 			<input
-				id={id.current+'-upload'}
+				id={id+'-upload'}
 				className="image-question-upload center"
 				type="file"
 				accept="image/*"
@@ -273,7 +270,7 @@ const ImageQuestion = ( props ) => {
 			<Fragment>
 				<p className="center">{t('or')}</p>
 				<Sketchpad
-					id={id.current}
+					id={id}
 					hideNavigationButtons hideSaveButtons hideTransmitButtons
 					canvasWidth={900}
 					canvasHeight={600}
@@ -283,13 +280,13 @@ const ImageQuestion = ( props ) => {
 		</Fragment>;
 	}
 	return (
-		<Card id={id.current} className={`image-question ${props.className}`} style={props.style} >
+		<Card id={id} className={`image-question ${props.className}`} style={props.style} >
 			<Card.Body className="d-grid gap-2" style={{ width: props.feedback ? 'calc(100%-60px)' : '100%', display: 'inline-block' }} >
 				<label>{props.question}</label>
 				<Spinner running={isProcessing} width={256} height={128} />
 				{content}
 				{ props.feedback ? <FeedbackButtons vertical
-					id={id.current+'_feedback'}
+					id={id+'_feedback'}
 					style={{
 						position: 'absolute',
 						right: '4px',
@@ -297,7 +294,7 @@ const ImageQuestion = ( props ) => {
 					}}
 				/> : null }
 				<ResponseVisualizer
-					buttonLabel="Answers" id={id.current}
+					buttonLabel="Answers" id={id}
 					info="IMAGE_QUESTION_SUBMISSION"
 					data={{
 						question: props.question,
@@ -318,9 +315,9 @@ const ImageQuestion = ( props ) => {
 					{ src ? <Button size="sm" variant="warning" onClick={handleReset}>{t('reset')}</Button> : null }
 					{renderSubmitButton()}
 					{ props.solution ? solutionButton : null }
-					{ props.chat ? <ChatButton for={id.current} /> : null }
+					{ props.chat ? <ChatButton for={id} /> : null }
 				</div>
-				<GradeFeedbackRenderer for={id.current} points={props.points} />
+				<GradeFeedbackRenderer for={id} points={props.points} />
 			</Card.Body>
 		</Card>
 	);

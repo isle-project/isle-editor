@@ -1,13 +1,12 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import generateUID from '@isle-project/utils/uid';
 import SolutionButton from '@isle-project/components/solution-button';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
@@ -29,7 +28,6 @@ import './match_list_question.css';
 // VARIABLES //
 
 const debug = logger( 'isle:match-list-question' );
-const uid = generateUID( 'match-list-question' );
 
 
 // MAIN //
@@ -60,8 +58,7 @@ const MatchListQuestion = ( props ) => {
 	const { question, elements, hints, submissionMsg, resubmissionMsg,
 		disableSubmitNotification, onSubmit, until, onChange
 	} = props;
-	const id = useRef( props.id || uid( props ) );
-	const { retrieveLastAction, logAction } = useActionLogger( 'MATCH_LIST_QUESTION', id.current );
+	const { retrieveLastAction, logAction, id } = useActionLogger( 'MATCH_LIST_QUESTION', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'questions/match-list' );
 
@@ -74,7 +71,7 @@ const MatchListQuestion = ( props ) => {
 	const [ submitted, setSubmitted ] = useState( false );
 
 	const setToLastAction = useCallback( () => {
-		debug( `Set submission to last action for question ${id.current} if available...` );
+		debug( `Set submission to last action for question ${id} if available...` );
 		const value = retrieveLastAction( SUBMISSION );
 		if ( value ) {
 			const elements = JSON.parse( value );
@@ -89,7 +86,7 @@ const MatchListQuestion = ( props ) => {
 			}) );
 			setSubmitted( true );
 		}
-	}, [ colorScale, retrieveLastAction ] );
+	}, [ colorScale, retrieveLastAction, id ] );
 
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type ) => {
@@ -177,7 +174,7 @@ const MatchListQuestion = ( props ) => {
 			return <span className="title" style={{ marginLeft: 4 }} >{t('question-closed')}</span>;
 		}
 		return (
-			<Tooltip id={`${id.current}_tooltip`} tooltip={t('submit-tooltip')} >
+			<Tooltip id={`${id}_tooltip`} tooltip={t('submit-tooltip')} >
 				<div style={{ display: 'inline-block' }}>
 					<Button
 						className="submit-button"
@@ -246,7 +243,7 @@ const MatchListQuestion = ( props ) => {
 	}
 	const unfinished = answers.length !== nComplete;
 	return (
-		<div id={id.current} className={`match-list-question-container ${props.className}`} style={props.style} >
+		<div id={id} className={`match-list-question-container ${props.className}`} style={props.style} >
 			{ isString( question ) ? <Text inline className="question" raw={question} /> : <span className="question">{question}</span> }
 			<i style={{ fontSize: '0.8rem' }} >{t('instructions', { complete: nComplete })}</i>
 			<div className="match-list-question-lists">
@@ -276,13 +273,13 @@ const MatchListQuestion = ( props ) => {
 				{
 					props.chat ?
 						<div style={{ display: 'inline-block', marginLeft: '4px' }}>
-							<ChatButton for={id.current} />
+							<ChatButton for={id} />
 						</div> : null
 				}
 				<ResponseVisualizer
 					buttonLabel={t('answers')}
 					info="MATCH_LIST_SUBMISSION"
-					id={id.current}
+					id={id}
 					data={{
 						type: 'matches',
 						left: props.elements.map( x => x.a ),
@@ -295,9 +292,9 @@ const MatchListQuestion = ( props ) => {
 			</div>
 			{ props.feedback ? <FeedbackButtons
 				style={{ marginTop: '5px', marginRight: '8px' }}
-				id={id.current+'_feedback'}
+				id={id+'_feedback'}
 			/> : null }
-			<GradeFeedbackRenderer for={id.current} points={props.points} />
+			<GradeFeedbackRenderer for={id} points={props.points} />
 		</div>
 	);
 };
