@@ -36,14 +36,14 @@ function useActionLogger( componentType, props ) {
 		logScore: ( score, metricName, tag ) => {
 			session.recordCompletion( { id, componentType, score, metricName, tag } );
 		},
-		logAction: ( action, value, options = {} ) => {
+		logAction: ( action, value, options = {}, recipients ) => {
 			session.log({
 				type: componentType + '_' + action,
 				id,
 				value: value || null,
 				componentType: componentType,
 				...options
-			});
+			}, recipients );
 		},
 		retrieveLastAction: ( actionType ) => {
 			const userActions = session.currentUserActions;

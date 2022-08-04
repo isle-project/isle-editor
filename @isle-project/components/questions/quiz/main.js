@@ -28,11 +28,10 @@ import SelectQuestion from '@isle-project/components/questions/select';
 import Gate from '@isle-project/components/gate';
 import SessionContext from '@isle-project/session/context.js';
 import convertJSONtoJSX from '@isle-project/utils/json-to-jsx';
-import generateUID from '@isle-project/utils/uid';
-import { QUESTION_CONFIDENCE, QUESTION_SKIPPED, QUIZ_FINISHED } from '@isle-project/constants/actions.js';
+import { CONFIDENCE, SKIP, FINISH } from '@isle-project/constants/actions.js';
 import { RETRIEVED_CURRENT_USER_ACTIONS } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import getLastAction from '@isle-project/utils/get-last-action';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import isHTMLConfig from './is_html_config.js';
 import FinishModal from './finish_modal.js';
 import 'pdfmake/build/vfs_fonts.js';
@@ -42,7 +41,6 @@ import './quiz.css';
 // VARIABLES //
 
 const debug = logger( 'isle:quiz' );
-const uid = generateUID( 'quiz' );
 const DOC_STYLES = {
 	header: {
 		fontSize: 24,
@@ -106,8 +104,6 @@ class Quiz extends Component {
 		debug( 'Instantiating quiz component...' );
 		super( props );
 
-		this.id = props.id || uid( props );
-
 		let questions = props.questions;
 		if ( !props.questions ) {
 			questions = [];
@@ -122,8 +118,7 @@ class Quiz extends Component {
 			});
 			current = this.sample()[ 0 ];
 		}
-		const currentUserActions = context.currentUserActions;
-		const previouslyFinished = getLastAction( currentUserActions, this.id, QUIZ_FINISHED ) === true;
+		const previouslyFinished = props.retrieveLastAction( FINISH ) === true;
 		this.state = {
 			answers: new Array( questions.length ),
 			answered: false,
@@ -139,7 +134,7 @@ class Quiz extends Component {
 			showFinishModal: false,
 			questions: [],
 			questionIDs: [],
-			id: this.id // Keep track of the quiz's id for use in `getDerivedStateFromProps`...
+			id: props.id // Keep track of the quiz's id for use in `getDerivedStateFromProps`...
 		};
 	}
 
@@ -172,11 +167,8 @@ class Quiz extends Component {
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, val ) => {
 				if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
-					let actions = val[ this.id ];
-					if ( !this.props.repeatable && isArray( actions ) ) {
-						const previouslyFinished = actions.some( action => {
-							return action.type === QUIZ_FINISHED;
-						});
+					if ( !this.props.repeatable ) {
+						const previouslyFinished = this.props.retrieveLastAction( FINISH ) === true;
 						this.setState({
 							finished: previouslyFinished
 						});
@@ -233,21 +225,16 @@ class Quiz extends Component {
 		debug( 'Display next question...' );
 		const elem = this.state.questions[ this.state.current ];
 
-		const session = this.context;
 		if ( !this.state.answered ) {
-			session.log({
-				id: elem.props.id,
-				type: QUESTION_SKIPPED,
-				value: true
+			this.props.logAction( SKIP, true, {
+				id: elem.props.id
 			});
 		}
 
 		// Save chosen confidence level:
 		if ( elem.props && elem.props.id && this.state.selectedConfidence ) {
-			session.log({
-				id: elem.props.id+'_confidence',
-				type: QUESTION_CONFIDENCE,
-				value: this.state.selectedConfidence
+			this.props.logAction( CONFIDENCE, this.state.selectedConfidence, {
+				id: elem.props.id+'_confidence'
 			});
 		}
 		this.props.onSubmit();
@@ -257,11 +244,7 @@ class Quiz extends Component {
 		if ( counter >= this.state.count ) {
 			debug( 'No further questions should be shown...' );
 			newState.finished = true;
-			session.log({
-				id: this.id,
-				type: QUIZ_FINISHED,
-				value: true
-			});
+			this.props.logAction( FINISH, true );
 			this.props.onFinished();
 		} else {
 			if ( counter === this.state.count-1 ) {
@@ -661,12 +644,7 @@ class Quiz extends Component {
 						duration={this.props.duration}
 						onTimeUp={() => {
 							debug( 'Time is up...' );
-							const session = this.context;
-							session.log({
-								id: this.id,
-								type: QUIZ_FINISHED,
-								value: true
-							});
+							this.props.logAction( FINISH, true );
 							this.setState({
 								finished: true
 							}, () => {
@@ -787,4 +765,4 @@ Quiz.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'questions/quiz' )( withPropCheck( Quiz ) );
+export default withActionLogger( 'QUIZ' )( withTranslation( 'questions/quiz' )( withPropCheck( Quiz ) ) );

@@ -26,15 +26,14 @@ import sqrt from '@stdlib/math/base/special/sqrt';
 import min from '@stdlib/math/base/special/min';
 import PI from '@stdlib/constants/float64/pi';
 import { CAT20 as COLORS } from '@isle-project/constants/colors';
-import generateUID from '@isle-project/utils/uid';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './style.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:sunburst' );
-const uid = generateUID( 'sunburst' );
 
 
 // FUNCTIONS //
@@ -72,7 +71,6 @@ function createColorMapping( categories ) {
 class Sunburst extends Component {
 	constructor( props ) {
 		super( props );
-		this.id = props.id || uid( props );
 	}
 
 	componentDidMount() {
@@ -84,10 +82,10 @@ class Sunburst extends Component {
 		const trail = d3.select( this.sequence ).append( 'svg:svg' )
 			.attr( 'width', this.props.width )
 			.attr( 'height', 50 )
-			.attr( 'id', `${this.id}_trail` ); // eslint-disable-line i18next/no-literal-string
+			.attr( 'id', `${this.props.id}_trail` ); // eslint-disable-line i18next/no-literal-string
 		// Add the label at the end, for the percentage.
 		trail.append( 'svg:text' )
-			.attr( 'id', `${this.id}_endlabel` )
+			.attr( 'id', `${this.props.id}_endlabel` )
 			.style( 'fill', '#000' );
 	};
 
@@ -108,7 +106,7 @@ class Sunburst extends Component {
 			.attr( 'width', width )
 			.attr( 'height', height )
 			.append( 'svg:g' )
-			.attr( 'id', `${this.id}_container` )
+			.attr( 'id', `${this.props.id}_container` )
 			.attr( 'transform', 'translate(' + width / 2 + ',' + height / 2 + ')' );
 
 		this.partition = d3.partition()
@@ -155,7 +153,7 @@ class Sunburst extends Component {
 			.on( 'mouseover', this.mouseover );
 
 		// Add the mouseleave handler to the bounding circle.
-		d3.select( `#${this.id}_container` ).on( 'mouseleave', this.mouseleave );
+		d3.select( `#${this.props.id}_container` ).on( 'mouseleave', this.mouseleave );
 
 		// Get total size of the tree = value of root node from partition.
 		this.totalSize = path.datum().value;
@@ -164,7 +162,7 @@ class Sunburst extends Component {
 	mouseleave = ( d ) => {
 		debug( 'Restore everything to full opacity when moving off the visualization...' );
 		// Hide the breadcrumb trail
-		d3.select( `#${this.id}_trail` ).style( 'visibility', 'hidden' );
+		d3.select( `#${this.props.id}_trail` ).style( 'visibility', 'hidden' );
 
 		// Transition each segment to full opacity and then reactivate it.
 		d3.selectAll( 'path' )
@@ -204,7 +202,7 @@ class Sunburst extends Component {
 	// Update the breadcrumb trail to show the current sequence and percentage.
 	updateBreadcrumbs = ( nodeArray, percentageString ) => {
 		// Data join; key function combines name and depth (= position in sequence).
-		const trail = d3.select( `#${this.id}_trail` )
+		const trail = d3.select( `#${this.props.id}_trail` )
 			.selectAll( 'g' )
 			.data( nodeArray, d => d.data.name + d.depth );
 
@@ -232,7 +230,7 @@ class Sunburst extends Component {
 		});
 
 		// Now move and update the percentage at the end.
-		d3.select( `#${this.id}_trail` ).select( `#${this.id}_endlabel` )
+		d3.select( `#${this.props.id}_trail` ).select( `#${this.props.id}_endlabel` )
 			.attr( 'x', (nodeArray.length + 0.5) * (b.w + b.s) )
 			.attr( 'y', b.h / 2 )
 			.attr( 'dy', '0.35em' )
@@ -240,7 +238,7 @@ class Sunburst extends Component {
 			.text( percentageString );
 
 		// Make the breadcrumb trail visible, if it's hidden.
-		d3.select( `#${this.id}_trail` ).style( 'visibility', '' );
+		d3.select( `#${this.props.id}_trail` ).style( 'visibility', '' );
 	};
 
 	// Generate a string that describes the points of a breadcrumb polygon.
@@ -304,4 +302,4 @@ Sunburst.propTypes = {
 
 // EXPORTS //
 
-export default withPropCheck( Sunburst );
+export default withActionLogger( 'SUNBURST' )( withPropCheck( Sunburst ) );
