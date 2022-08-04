@@ -39,7 +39,6 @@ import noop from '@stdlib/utils/noop';
 import omit from '@stdlib/utils/omit';
 import objectKeys from '@stdlib/utils/keys';
 import replace from '@stdlib/string/replace';
-import generateUID from '@isle-project/utils/uid';
 import saveAs from '@isle-project/utils/file-saver';
 import base64toBlob from '@isle-project/utils/base64-to-blob';
 import Joyride from '@isle-project/components/joyride';
@@ -56,16 +55,17 @@ import closeHintButtons from '@isle-project/utils/close-hint-buttons';
 import isElectron from '@isle-project/utils/is-electron';
 import stopPropagation from '@isle-project/utils/stop-propagation';
 import {
-	SKETCHPAD_SAVE_PDF, SKETCHPAD_SAVE_PNG, SKETCHPAD_HIDE_POINTER,
-	SKETCHPAD_HIDE_ZOOM, SKETCHPAD_CLEAR_PAGE, SKETCHPAD_CLEAR_ALL_PAGES,
-	SKETCHPAD_DRAW_CURVE, SKETCHPAD_DRAW_TEXT, SKETCHPAD_DRAG_ELEMENTS,
-	SKETCHPAD_INSERT_PAGE, SKETCHPAD_DELETE_ELEMENT, SKETCHPAD_FIRST_PAGE,
-	SKETCHPAD_LAST_PAGE, SKETCHPAD_NEXT_PAGE, SKETCHPAD_PREVIOUS_PAGE,
-	SKETCHPAD_GOTO_PAGE, SKETCHPAD_VERTICAL_SCROLL, SKETCHPAD_MOVE_POINTER,
-	SKETCHPAD_MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
+	SAVE_PDF, SAVE_PNG, HIDE_POINTER,
+	HIDE_ZOOM, CLEAR_PAGE, CLEAR_ALL_PAGES,
+	DRAW_CURVE, DRAW_TEXT, DRAG_ELEMENTS,
+	INSERT_PAGE, DELETE_ELEMENT, FIRST_PAGE,
+	LAST_PAGE, NEXT_PAGE, PREVIOUS_PAGE,
+	GOTO_PAGE, VERTICAL_SCROLL, MOVE_POINTER,
+	MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from '@isle-project/constants/actions.js';
 import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 const ResetModal = Loadable( () => import( /* webpackChunkName: "SketchpadResetModal" */ './reset_modal.js' ) );
 const DeletePageModal = Loadable( () => import( /* webpackChunkName: "SketchpadDeleteModal" */ './delete_page_modal.js' ) );
 const NavigationModal = Loadable( () => import( /* webpackChunkName: "SketchpadNavigationModal" */ './navigation_modal.js' ) );
@@ -80,7 +80,6 @@ import './pdf_viewer.css';
 // VARIABLES //
 
 const debug = logger( 'isle:sketchpad' );
-const uid = generateUID( 'sketchpad' );
 const OMITTED_KEYS = [
 	'isExporting', 'showColorPicker', 'showUploadModal', 'showNavigationModal', 'showResetModal', 'showFeedbackModal', 'showSaveModal',
 	'hideInputButtons', 'hideNavigationButtons', 'hideSaveButtons', 'hideTransmitButtons'
@@ -215,7 +214,6 @@ class Sketchpad extends Component {
 
 		this.canvas = null;
 		this.ctx = null;
-		this.id = props.id || uid( props );
 
 		const loc = !isElectron ? this.readURL() : 0;
 		this.state = {
@@ -346,13 +344,13 @@ class Sketchpad extends Component {
 					});
 				}
 				else if ( type === MEMBER_ACTION ) {
-					if ( action.id !== this.id ) {
+					if ( action.id !== this.props.id ) {
 						return;
 					}
 					const type = action.type;
 					debug( 'Received member action of type: '+type );
 					if ( action.email === session.user.email ) {
-						if ( type === SKETCHPAD_MOVE_POINTER ) {
+						if ( type === MOVE_POINTER ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
 								x *= this.canvas.width / DPR;
@@ -363,10 +361,10 @@ class Sketchpad extends Component {
 								this.pointer.style.top = y;
 								this.pointer.style.opacity = 0.7;
 							}
-						} else if ( type === SKETCHPAD_HIDE_POINTER ) {
+						} else if ( type === HIDE_POINTER ) {
 							this.pointer.style.opacity = 0;
 						}
-						else if ( type === SKETCHPAD_MOVE_ZOOM ) {
+						else if ( type === MOVE_ZOOM ) {
 							let { x, y, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
 								x *= this.canvas.width / DPR;
@@ -400,9 +398,9 @@ class Sketchpad extends Component {
 								this.zoom.style.left = xPos;
 								this.zoom.style.display = 'block';
 							}
-						} else if ( type === SKETCHPAD_HIDE_ZOOM ) {
+						} else if ( type === HIDE_ZOOM ) {
 							this.zoom.style.display = 'none';
-						} else if ( type === SKETCHPAD_VERTICAL_SCROLL ) {
+						} else if ( type === VERTICAL_SCROLL ) {
 							let { diffY, sessionID } = JSON.parse( action.value );
 							if ( sessionID !== session.sessionID ) {
 								diffY *= this.canvas.height;
@@ -421,11 +419,11 @@ class Sketchpad extends Component {
 						}
 						if ( action.email === session.user.email ) {
 							if (
-								type === SKETCHPAD_NEXT_PAGE ||
-								type === SKETCHPAD_PREVIOUS_PAGE ||
-								type === SKETCHPAD_GOTO_PAGE ||
-								type === SKETCHPAD_FIRST_PAGE ||
-								type === SKETCHPAD_LAST_PAGE
+								type === NEXT_PAGE ||
+								type === PREVIOUS_PAGE ||
+								type === GOTO_PAGE ||
+								type === FIRST_PAGE ||
+								type === LAST_PAGE
 							) {
 								debug( `Go to page ${action.value}...` );
 								this.gotoPage( action.value, false );
@@ -433,8 +431,8 @@ class Sketchpad extends Component {
 						}
 					}
 					if (
-						type === SKETCHPAD_DRAW_TEXT ||
-						type === SKETCHPAD_DRAW_CURVE
+						type === DRAW_TEXT ||
+						type === DRAW_CURVE
 					) {
 						let elem = JSON.parse( action.value );
 						const elements = this.elements[ elem.page ];
@@ -471,7 +469,7 @@ class Sketchpad extends Component {
 							this.props.onChange( elements );
 						}
 					}
-					else if ( type === SKETCHPAD_INSERT_PAGE ) {
+					else if ( type === INSERT_PAGE ) {
 						let { pos } = JSON.parse( action.value );
 						if ( action.email !== session.user.email ) {
 							pos = this.toLocalPage( pos, action.email );
@@ -482,7 +480,7 @@ class Sketchpad extends Component {
 							this.insertPage( pos, action.email );
 						}
 					}
-					else if ( type === SKETCHPAD_DELETE_ELEMENT ) {
+					else if ( type === DELETE_ELEMENT ) {
 						const { drawID, page, user, sessionID } = JSON.parse( action.value );
 						debug( `Should delete element with id ${drawID} by user ${user}` );
 						if ( sessionID !== session.sessionID ) {
@@ -505,7 +503,7 @@ class Sketchpad extends Component {
 							}
 						}
 					}
-					else if ( type === SKETCHPAD_DRAG_ELEMENTS ) {
+					else if ( type === DRAG_ELEMENTS ) {
 						const { drawIDs, user, page, dx, dy, sessionID } = JSON.parse( action.value );
 						debug( `Should drag specified elements by dx: ${dx} and dy: ${dy}...` );
 						if ( sessionID !== session.sessionID ) {
@@ -532,7 +530,7 @@ class Sketchpad extends Component {
 							this.debouncedRedraw();
 						}
 					}
-					else if ( type === SKETCHPAD_CLEAR_PAGE ) {
+					else if ( type === CLEAR_PAGE ) {
 						const { page, sessionID } = JSON.parse( action.value );
 						const user = action.email;
 						if ( sessionID !== session.sessionID ) {
@@ -554,7 +552,7 @@ class Sketchpad extends Component {
 							}
 						}
 					}
-					else if ( type === SKETCHPAD_CLEAR_ALL_PAGES && action.value !== session.sessionID ) {
+					else if ( type === CLEAR_ALL_PAGES && action.value !== session.sessionID ) {
 						if ( action.email === session.user.email ) {
 							this.clearAll( true );
 						}
@@ -738,26 +736,12 @@ class Sketchpad extends Component {
 	};
 
 	hidePointer = () => {
-		const action = {
-			id: this.id,
-			type: SKETCHPAD_HIDE_POINTER,
-			value: true,
-			noSave: true
-		};
-		const session = this.context;
-		session.log( action, 'members' );
+		this.props.logAction( HIDE_POINTER, true, { noSave: true }, 'members' );
 		this.pointer.style.opacity = 0;
 	};
 
 	hideZoom = () => {
-		const action = {
-			id: this.id,
-			type: SKETCHPAD_HIDE_ZOOM,
-			value: true,
-			noSave: true
-		};
-		const session = this.context;
-		session.log( action, 'members' );
+		this.props.logAction( HIDE_ZOOM, true, { noSave: true }, 'members' );
 		this.zoom.style.display = 'none';
 	};
 
@@ -1055,21 +1039,17 @@ class Sketchpad extends Component {
 		const currentPage = this.state.currentPage;
 		this.clearPage( currentPage );
 		const session = this.context;
-		const logAction = {
-			id: this.id,
-			type: SKETCHPAD_CLEAR_PAGE,
-			value: JSON.stringify({
-				page: currentPage,
-				sessionID: session.sessionID
-			})
-		};
+		const value = JSON.stringify({
+			page: currentPage,
+			sessionID: session.sessionID
+		});
 		this.hasChangedSinceLastSave = true;
 		if (
 			session.isOwner() && this.state.transmitOwner
 		) {
-			session.log( logAction, 'members' );
+			this.props.logAction( CLEAR_PAGE, value, {}, 'members' );
 		} else {
-			session.log( logAction, 'owners' );
+			this.props.logAction( CLEAR_PAGE, value, {}, 'owners' );
 		}
 	};
 
@@ -1106,19 +1086,14 @@ class Sketchpad extends Component {
 				insertedPages: []
 			});
 		}
-		const logAction = {
-			id: this.id,
-			type: SKETCHPAD_CLEAR_ALL_PAGES,
-			value: session.sessionID
-		};
 		if ( !silent ) {
 			this.hasChangedSinceLastSave = true;
 			if (
 				session.isOwner() && this.state.transmitOwner
 			) {
-				session.log( logAction, 'members' );
+				this.props.logAction( CLEAR_ALL_PAGES, session.sessionID, {}, 'members' );
 			} else {
-				session.log( logAction, 'owners' );
+				this.props.logAction( CLEAR_ALL_PAGES, session.sessionID, {}, 'owners' );
 			}
 		}
 	};
@@ -1341,21 +1316,14 @@ class Sketchpad extends Component {
 			// Restore image before line and redraw smoothed version:
 			this.ctx.putImageData( this.imageData, 0, 0 );
 			this.drawCurve( line );
-
-			const logAction = {
-				id: this.id,
-				type: SKETCHPAD_DRAW_CURVE,
-				value: JSON.stringify( line ),
-				noSave: true
-			};
 			this.hasChangedSinceLastSave = true;
 			if (
 				this.state.groupMode ||
 				session.isOwner() && this.state.transmitOwner
 			) {
-				session.log( logAction, 'members' );
+				this.props.logAction( DRAW_CURVE, JSON.stringify( line ), { noSave: true }, 'members' );
 			} else {
-				session.log( logAction, 'owners' );
+				this.props.logAction( DRAW_CURVE, JSON.stringify( line ), { noSave: true }, 'owners' );
 			}
 			this.currentPoints = [];
 		}
@@ -1436,24 +1404,19 @@ class Sketchpad extends Component {
 				this.dragPoints[ i+1 ] += ( y - this.y );
 			}
 			const username = session.user.email || session.anonymousIdentifier;
-			const action = {
-				id: this.id,
-				type: SKETCHPAD_DRAG_ELEMENTS,
-				value: JSON.stringify({
-					dx: dx,
-					dy: dy,
-					page: this.state.currentPage,
-					drawIDs: selected.map( x => x.drawID ),
-					user: username,
-					sessionID: session.sessionID
-				}),
-				noSave: true
-			};
 			this.hasChangedSinceLastSave = true;
+			const value = JSON.stringify({
+				dx: dx,
+				dy: dy,
+				page: this.state.currentPage,
+				drawIDs: selected.map( x => x.drawID ),
+				user: username,
+				sessionID: session.sessionID
+			});
 			if ( session.isOwner() || this.state.groupMode ) {
-				session.log( action, 'members' );
+				this.props.logAction( DRAG_ELEMENTS, value, { noSave: true }, 'members' );
 			} else {
-				session.log( action );
+				this.props.logAction( DRAG_ELEMENTS, value, { noSave: true } );
 			}
 			this.x = x;
 			this.y = y;
@@ -1568,12 +1531,7 @@ class Sketchpad extends Component {
 			this.ctx.fillStyle = 'white';
 			this.ctx.fillRect( 0, 0, canvas.width, canvas.height );
 		}
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: SKETCHPAD_SAVE_PNG,
-			value: current + 1
-		});
+		this.props.logAction( SAVE_PNG, current + 1 );
 		canvas.toBlob( function onBlob( blob ) {
 			saveAs( blob, name );
 		});
@@ -1632,17 +1590,12 @@ class Sketchpad extends Component {
 	};
 
 	saveAsPDF = () => {
-		const session = this.context;
 		this.setState({
 			isExporting: true
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
 				const name = this.id;
-				session.log({
-					id: this.id,
-					type: SKETCHPAD_SAVE_PDF,
-					value: 'all-annotations'
-				});
+				this.props.logAction( SAVE_PDF, 'all-annotations' );
 				doc.download( name+'.pdf', () => {
 					this.setState({
 						isExporting: false
@@ -1681,13 +1634,9 @@ class Sketchpad extends Component {
 			this.debouncedRedraw();
 			if ( !from ) {
 				this.hasChangedSinceLastSave = true;
-				session.log({
-					id: this.id,
-					type: SKETCHPAD_INSERT_PAGE,
-					value: JSON.stringify({
-						pos: idx
-					})
-				}, session.isOwner() ? 'members' : session.user.email );
+				this.props.logAction( INSERT_PAGE, JSON.stringify({
+					pos: idx
+				}), {}, session.isOwner() ? 'members' : session.user.email );
 			}
 		});
 	};
@@ -1746,27 +1695,23 @@ class Sketchpad extends Component {
 		ctx.fillText( value, xval, yval );
 		const session = this.context;
 		if ( shouldLog ) {
-			const logAction = {
-				id: this.id,
-				type: SKETCHPAD_DRAW_TEXT,
-				value: JSON.stringify({
-					x: x,
-					y: y,
-					value,
-					color,
-					fontSize,
-					fontFamily,
-					page: this.state.currentPage,
-					drawID: drawID,
-					user: user,
-					type: 'text'
-				})
-			};
 			this.hasChangedSinceLastSave = true;
+			const actionValue = JSON.stringify({
+				x: x,
+				y: y,
+				value,
+				color,
+				fontSize,
+				fontFamily,
+				page: this.state.currentPage,
+				drawID: drawID,
+				user: user,
+				type: 'text'
+			});
 			if ( session.isOwner() || this.state.groupMode ) {
-				session.log( logAction, 'members' );
+				this.props.logAction( DRAW_TEXT, actionValue, {}, 'members' );
 			} else {
-				session.log( logAction );
+				this.props.logAction( DRAW_TEXT, actionValue, {} );
 			}
 		}
 	};
@@ -1832,24 +1777,20 @@ class Sketchpad extends Component {
 			this.deleteElement( id, found );
 			const session = this.context;
 			const username = session.user.email || session.anonymousIdentifier;
-			const action = {
-				id: this.id,
-				type: SKETCHPAD_DELETE_ELEMENT,
-				value: JSON.stringify({
-					drawID: id,
-					page: this.state.currentPage,
-					user: username,
-					sessionID: session.sessionID
-				})
-			};
+			const value = JSON.stringify({
+				drawID: id,
+				page: this.state.currentPage,
+				user: username,
+				sessionID: session.sessionID
+			});
 			this.hasChangedSinceLastSave = true;
 			if (
 				( session.isOwner() && this.state.transmitOwner ) ||
 				this.state.groupMode
 			) {
-				session.log( action, 'members' );
+				this.props.logAction( DELETE_ELEMENT, value, {}, 'members' );
 			} else {
-				session.log( action, 'owners' );
+				this.props.logAction( DELETE_ELEMENT, value, {}, 'owners' );
 			}
 		}
 	};
@@ -1899,12 +1840,7 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.debouncedRedraw();
-			const session = this.context;
-			session.log({
-				id: this.id,
-				type: SKETCHPAD_FIRST_PAGE,
-				value: this.state.currentPage
-			});
+			this.props.logAction( FIRST_PAGE, this.state.currentPage );
 		});
 	};
 
@@ -1922,12 +1858,7 @@ class Sketchpad extends Component {
 			// Update hash of URL:
 			this.updateURL( this.state.currentPage );
 			this.debouncedRedraw();
-			const session = this.context;
-			session.log({
-				id: this.id,
-				type: SKETCHPAD_LAST_PAGE,
-				value: this.state.currentPage
-			});
+			this.props.logAction( LAST_PAGE, this.state.currentPage );
 		});
 	};
 
@@ -1978,12 +1909,7 @@ class Sketchpad extends Component {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
 				this.debouncedRedraw();
-				const session = this.context;
-				session.log({
-					id: this.id,
-					type: SKETCHPAD_NEXT_PAGE,
-					value: this.state.currentPage
-				});
+				this.props.logAction( NEXT_PAGE, this.state.currentPage );
 			});
 		}
 	};
@@ -2007,12 +1933,7 @@ class Sketchpad extends Component {
 				// Update hash of URL:
 				this.updateURL( this.state.currentPage );
 				this.debouncedRedraw();
-				const session = this.context;
-				session.log({
-					id: this.id,
-					type: SKETCHPAD_PREVIOUS_PAGE,
-					value: this.state.currentPage
-				});
+				this.props.logAction( PREVIOUS_PAGE, this.state.currentPage );
 			});
 		}
 	};
@@ -2042,12 +1963,7 @@ class Sketchpad extends Component {
 
 				this.debouncedRedraw();
 				if ( shouldLog ) {
-					const session = this.context;
-					session.log({
-						id: this.id,
-						type: SKETCHPAD_GOTO_PAGE,
-						value: idx
-					});
+					this.props.logAction( GOTO_PAGE, idx );
 				}
 			});
 		} else {
@@ -2474,17 +2390,16 @@ class Sketchpad extends Component {
 			this.zoom.style.left = `${x-sw+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
 			this.zoom.style.top = `${y-sh}px`; // eslint-disable-line i18next/no-literal-string
 		}
-		const action = {
-			id: this.id,
-			type: this.state.mode === 'pointer' ? SKETCHPAD_MOVE_POINTER : SKETCHPAD_MOVE_ZOOM,
-			value: JSON.stringify({
+		this.props.logAction(
+			this.state.mode === 'pointer' ? MOVE_POINTER : MOVE_ZOOM,
+			JSON.stringify({
 				x: x / ( this.canvas.width / DPR ),
 				y: y / ( this.canvas.height / DPR ),
 				sessionID: session.sessionID
 			}),
-			noSave: true
-		};
-		session.log( action, 'members' );
+			{ noSave: true },
+			'members'
+		);
 	};
 
 	renderTransmitButtons() {
@@ -2597,16 +2512,10 @@ class Sketchpad extends Component {
 			diffY < -MIN_SWIPE_Y
 		) {
 			const session = this.context;
-			const action = {
-				id: this.id,
-				type: SKETCHPAD_VERTICAL_SCROLL,
-				value: JSON.stringify({
-					diffY: diffY / this.canvas.height,
-					sessionID: session.sessionID
-				}),
-				noSave: true
-			};
-			session.log( action, 'members' );
+			this.props.logAction( 'VERTICAL_SCROLL', JSON.stringify({
+				diffY: diffY / this.canvas.height,
+				sessionID: session.sessionID
+			}), { noSave: true }, 'members' );
 			this.canvasWrapper.scrollTop -= 0.1 * diffY;
 		}
 	}
@@ -2964,4 +2873,4 @@ Sketchpad.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'sketchpad' )( withPropCheck( Sketchpad ) );
+export default withActionLogger( 'SKETCHPAD' )( withTranslation( 'sketchpad' )( withPropCheck( Sketchpad ) ) );
