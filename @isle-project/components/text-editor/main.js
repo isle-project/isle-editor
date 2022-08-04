@@ -18,7 +18,6 @@ import noop from '@stdlib/utils/noop';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import replace from '@stdlib/string/replace';
 import startsWith from '@stdlib/string/starts-with';
-import generateUID from '@isle-project/utils/uid';
 import saveAs from '@isle-project/utils/file-saver';
 import base64toBlob from '@isle-project/utils/base64-to-blob';
 import blobToBase64 from '@isle-project/utils/blob-to-base64';
@@ -39,8 +38,9 @@ import applyMark from './config/apply_mark.js';
 import AnnotationCommand from './config/annotation_command.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
-import { EDITOR_RESET, EDITOR_SAVE_HTML, EDITOR_SAVE_PDF, EDITOR_SUBMIT } from '@isle-project/constants/actions.js';
+import { RESET, SAVE_HTML, SAVE_PDF, SUBMISSION } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED } from '@isle-project/constants/events.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
 import './editor.css';
@@ -50,7 +50,6 @@ import './editor.css';
 
 const debug = logger( 'isle:text-editor' );
 const RE_BODY = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
-const uid = generateUID( 'text-editor' );
 const DEFAULT_VALUE = repeat( '\n', 15 );
 const md = markdownit({
 	html: true,
@@ -90,7 +89,6 @@ class TextEditor extends Component {
 	constructor( props, session ) {
 		super( props );
 
-		this.id = props.id || uid( props );
 		let value;
 		if ( !value ) {
 			value = md.render( props.defaultValue );
@@ -148,11 +146,7 @@ class TextEditor extends Component {
 				title: 'save-html',
 				content: icons.save,
 				run: ( state, dispatch ) => {
-					const session = this.context;
-					session.log({
-						type: EDITOR_SAVE_HTML,
-						id: this.id
-					});
+					this.props.logAction( SAVE_HTML );
 
 					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 					const tmp = document.createElement( 'div' );
@@ -172,12 +166,7 @@ class TextEditor extends Component {
 				run: ( state, dispatch ) => {
 					this.togglePDFModal();
 					this.exportPDF = async ( config ) => {
-						const session = this.context;
-						session.log({
-							type: EDITOR_SAVE_PDF,
-							id: this.id,
-							value: JSON.stringify( config )
-						});
+						this.props.logAction( SAVE_PDF, JSON.stringify( config ) );
 						const title = document.title || 'provisoric';
 						let doc;
 						try {
@@ -486,8 +475,8 @@ class TextEditor extends Component {
 			const pdfForm = new FormData();
 
 			let filename = 'report.html';
-			if ( this.id ) {
-				filename = this.id+'_'+filename;
+			if ( this.props.id ) {
+				filename = this.props.id+'_'+filename;
 			}
 			const htmlFile = new File([ html ], filename, {
 				type: 'text/html'
@@ -495,7 +484,7 @@ class TextEditor extends Component {
 			htmlForm.append( 'file', htmlFile );
 
 			filename = 'report.pdf';
-			filename = this.id+'_'+filename;
+			filename = this.props.id+'_'+filename;
 			const pdfBlob = base64toBlob( pdf, 'application/pdf' );
 			const pdfFile = new File([ pdfBlob ], filename, {
 				type: 'application/pdf'
@@ -510,20 +499,12 @@ class TextEditor extends Component {
 				level: 'success',
 				position: 'tr'
 			});
-			session.log({
-				id: this.id,
-				type: EDITOR_SUBMIT,
-				value: tmp.innerText
-			});
+			this.props.logAction( SUBMISSION, tmp.innerText );
 		});
 	};
 
 	resetEditor = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: EDITOR_RESET
-		});
+		this.props.logAction( RESET );
 		this.setState({
 			value: md.render( this.props.defaultValue ),
 			docId: this.state.docId + 1
@@ -551,20 +532,20 @@ class TextEditor extends Component {
 
 	generateDocumentId() {
 		if ( this.props.mode === 'group' ) {
-			return this.state.group + '-' + this.id;
+			return this.state.group + '-' + this.props.id;
 		}
 		const session = this.context;
 		if ( this.state.selectedUserReport ) {
-			return this.id + '-'+ this.state.selectedUserReport;
+			return this.props.id + '-'+ this.state.selectedUserReport;
 		}
 		if ( this.props.mode === 'individual' ) {
-			return this.id + '-' + ( session.user.email || session.anonymousIdentifier );
+			return this.props.id + '-' + ( session.user.email || session.anonymousIdentifier );
 		}
 		if ( this.props.mode === 'cohort' && session.cohort ) {
-			return this.id + '-' + session.cohort;
+			return this.props.id + '-' + session.cohort;
 		}
 		// Case: mode === 'collaborative'
-		return this.id;
+		return this.props.id;
 	}
 
 	renderView() {
@@ -621,7 +602,7 @@ class TextEditor extends Component {
 			fullscreen={this.state.isFullscreen}
 			showColorPicker={this.state.showColorPicker}
 			onColorChoice={this.onColorChoice}
-			id={!isElectron ? this.id : null}
+			id={!isElectron ? this.props.id : null}
 			onEditorState={( editorState ) => {
 				this.editorState = editorState;
 			}}
@@ -645,7 +626,7 @@ class TextEditor extends Component {
 		return (
 			<Fragment>
 				<div
-					id={this.id} className="editorview-wrapper"
+					id={this.props.id} className="editorview-wrapper"
 					ref={( div ) => { this.editorWrapper = div; }}
 					style={this.props.style}
 				>
@@ -668,7 +649,7 @@ class TextEditor extends Component {
 							<div onFocus={this.requestTextDocuments} onMouseOver={this.requestTextDocuments} >
 								<SelectInput
 									placeholder={this.props.t('select-document-to-display')}
-									options={session.textEditorDocuments.filter( x => x.startsWith( this.id )).map( x => x.slice( this.id.length + 1 ))}
+									options={session.textEditorDocuments.filter( x => x.startsWith( this.props.id )).map( x => x.slice( this.props.id.length + 1 ))}
 									value={this.state.selectedUserReport}
 									onChange={( id ) => {
 										this.setState({
@@ -698,7 +679,7 @@ class TextEditor extends Component {
 				<Guides
 					show={this.state.showGuides}
 					onHide={this.toggleGuides}
-					target={this.id}
+					target={this.props.id}
 					t={this.props.t}
 				/>
 				{this.state.showPDFModal ? <PDFModal
@@ -753,4 +734,4 @@ TextEditor.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'text-editor' )( TextEditor );
+export default withActionLogger( 'EDITOR' )( withTranslation( 'text-editor' )( TextEditor ) );
