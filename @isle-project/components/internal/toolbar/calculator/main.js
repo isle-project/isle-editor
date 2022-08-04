@@ -45,7 +45,7 @@ const RE_OPERATOR = /[+\-/*^!]/;
 const Calculator = ( props ) => {
 	debug( 'Rendering calculator...' );
 	const { t } = props;
-	const { logAction } = useActionLogger( 'CALCULATOR' );
+	const { logAction } = useActionLogger( 'CALCULATOR', props );
 	const session = useContext( SessionContext );
 	let textInput = React.createRef();
 

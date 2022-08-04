@@ -16,7 +16,7 @@ import objectKeys from '@stdlib/utils/keys';
 import isNull from '@stdlib/assert/is-null';
 import isUndefined from '@stdlib/assert/is-undefined';
 import SessionContext from '@isle-project/session/context.js';
-import { UPDATE } from '@isle-project/constants/actions.js';
+import { UPDATE, DRAG, COPY_TO_CLIPBOARD } from '@isle-project/constants/actions.js';
 import html2clipboard from '@isle-project/utils/html-to-clipboard';
 import { ACCESS_TOKEN } from '@isle-project/constants/mapbox.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
@@ -87,7 +87,7 @@ Plotly.setPlotConfig({
 */
 const Wrapper = ( props ) => {
 	const { t } = useTranslation( 'plotly' );
-	const { logAction } = useActionLogger( 'PLOT' );
+	const { logAction } = useActionLogger( 'PLOT', props );
 	const [ layout, setLayout ] = useState({
 		...props.layout,
 		autosize: true
@@ -255,10 +255,12 @@ const Wrapper = ( props ) => {
 			className="plotly-draggable-bar"
 			draggable={finishedDrawing}
 			onDragStart={( ev ) => {
+				logAction( DRAG );
 				ev.dataTransfer.setData( 'text/html', plotDataRef.current );
 			}}
 			disabled={!finishedDrawing}
 			onClick={() => {
+				logAction( COPY_TO_CLIPBOARD );
 				html2clipboard( plotDataRef.current );
 				session.addNotification({
 					title: t('copied-to-clipboard'),
