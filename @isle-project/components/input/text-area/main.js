@@ -6,13 +6,8 @@ import { useTranslation } from 'react-i18next';
 import FormControl from 'react-bootstrap/FormControl';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
-import generateUID from '@isle-project/utils/uid';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'text-area' );
 
 
 // MAIN //
@@ -32,7 +27,7 @@ const uid = generateUID( 'text-area' );
 * @property {Function} onChange - callback function invoked with the new text when the area text changes
 */
 const TextArea = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id } = useActionLogger( 'TEXT_AREA', props );
 	const { defaultValue, placeholder, onChange } = props;
 	const [ value, setValue ] = useState( props.value || defaultValue );
 	const { t } = useTranslation( 'input' );

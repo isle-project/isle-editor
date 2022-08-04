@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { useTranslation } from 'react-i18next';
@@ -13,14 +13,13 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import { isPrimitive as isBoolean } from '@stdlib/assert/is-boolean';
 import isObject from '@stdlib/assert/is-object';
 import Tooltip from '@isle-project/components/tooltip';
-import generateUID from '@isle-project/utils/uid';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import customStyles from './styles.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:select-input' );
-const uid = generateUID( 'select-input' );
 
 
 // FUNCTIONS //
@@ -77,6 +76,7 @@ function preventFormPageReload( e ) {
 */
 const SelectInput = ( props ) => {
 	const { bind, defaultValue, multi, onChange } = props;
+	const { id } = useActionLogger( 'SELECT_INPUT', props );
 	let initialValue = null;
 	if ( defaultValue ) {
 		initialValue = multi ?
@@ -85,7 +85,6 @@ const SelectInput = ( props ) => {
 	}
 	const [ value, setValue ] = useState( initialValue );
 	const { t } = useTranslation( 'input' );
-	const id = useRef( props.id || uid( props ) );
 
 	useEffect( () => {
 		if ( bind ) {
@@ -174,15 +173,15 @@ const SelectInput = ( props ) => {
 	}
 	return (
 		<Form className="input" style={{ ...style }} onSubmit={preventFormPageReload} >
-			<FormGroup controlId={`${id.current}-form`} >
+			<FormGroup controlId={`${id}-form`} >
 				{ props.legend ?
 					<Tooltip tooltip={props.tooltip}>
-						<label htmlFor={id.current} >{props.legend}</label>
+						<label htmlFor={id} >{props.legend}</label>
 					</Tooltip> :
 					null
 				}
 				<Select
-					id={id.current}
+					id={id}
 					aria-label={`${t('select-between')} ${props.options.join( ', ' )}`}
 					name="form-field-name"
 					menuShouldScrollIntoView={false}

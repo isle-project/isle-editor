@@ -4,14 +4,9 @@ import React, { useCallback, useRef, useState, useContext, useEffect } from 'rea
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import generateUID from '@isle-project/utils/uid';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import SessionContext from '@isle-project/session/context.js';
 import './text.css';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'text-input' );
 
 
 // MAIN //
@@ -34,7 +29,7 @@ const uid = generateUID( 'text-input' );
 * @property {Function} onKeyUp - callback function to be invoked when key is released
 */
 const TextInput = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id } = useActionLogger( 'TEXT_INPUT', props );
 	const session = useContext( SessionContext );
 	const { bind, defaultValue, placeholder, onChange } = props;
 	const { t } = useTranslation( 'input' );

@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ import PINF from '@stdlib/constants/float64/pinf';
 import NINF from '@stdlib/constants/float64/ninf';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
-import generateUID from '@isle-project/utils/uid';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import createTooltip from './create_tooltip.js';
 import './number.css';
 
@@ -21,7 +21,6 @@ import './number.css';
 // VARIABLES //
 
 const debug = logger( 'isle:number-input' );
-const uid = generateUID( 'number-input' );
 
 
 // MAIN //
@@ -51,7 +50,7 @@ const uid = generateUID( 'number-input' );
 * @property {Function} onKeyUp - callback function to be invoked when key is released
 */
 const NumberInput = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id } = useActionLogger( 'NUMBER_INPUT', props );
 	const { bind, defaultValue, min, max, step, value: propValue, onBlur, onChange } = props;
 	const { t } = useTranslation( 'input' );
 	const session = useContext( SessionContext );
@@ -150,9 +149,9 @@ const NumberInput = ( props ) => {
 	if ( props.inline === true ) {
 		const input =
 			<span className="input" style={{ padding: '5px', ...props.style }}>
-				{ props.legend ? <label htmlFor={id.current} > {props.legend} =  </label> : null }
+				{ props.legend ? <label htmlFor={id} > {props.legend} =  </label> : null }
 				<input
-					id={id.current}
+					id={id}
 					type={props.numbersOnly ? 'number' : 'text'}
 					name="input"
 					className="number-number-input"
@@ -187,7 +186,7 @@ const NumberInput = ( props ) => {
 			</Tooltip>;
 	}
 	const input = <input
-		id={id.current}
+		id={id}
 		type={props.numbersOnly ? 'number' : 'text'}
 		name="input"
 		className="number-number-input"
@@ -216,7 +215,7 @@ const NumberInput = ( props ) => {
 	}}>
 		{ props.legend ?
 			<span>
-				<label htmlFor={id.current} >
+				<label htmlFor={id} >
 					{isString( props.legend ) ?
 						props.legend+':' :
 						props.legend
