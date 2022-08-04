@@ -9,7 +9,6 @@ import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './checkbox.css';
 
 
-
 // MAIN //
 
 /**
