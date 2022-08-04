@@ -19,7 +19,7 @@ import SessionContext from '@isle-project/session/context.js';
 import isDigitString from '@stdlib/assert/is-digit-string';
 import startsWith from '@stdlib/string/starts-with';
 import replace from '@stdlib/string/replace';
-import { useActionLogger } from '@isle-project/session/actions_logger.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import evaluate from './shunting_yard.js';
 import './calculator.css';
 
