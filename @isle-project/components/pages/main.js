@@ -10,20 +10,15 @@ import papply from '@stdlib/utils/papply';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
 import isArray from '@stdlib/assert/is-array';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
-import generateUID from '@isle-project/utils/uid';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import isElectron from '@isle-project/utils/is-electron';
-import { PAGES_FIRST_PAGE, PAGES_NEXT_PAGE, PAGES_PREVIOUS_PAGE, PAGES_LAST_PAGE, PAGES_JUMP_PAGE } from '@isle-project/constants/actions.js';
+import { FIRST, NEXT, PREVIOUS, LAST, JUMP } from '@isle-project/constants/actions.js';
 import isLineButtons from '@isle-project/utils/is-line-buttons';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import ordinal from './ordinal.js';
 import './pages.css';
-
-
-// VARIABLES //
-
-const uid = generateUID( 'pages' );
 
 
 // MAIN //
@@ -43,7 +38,6 @@ const uid = generateUID( 'pages' );
 class Pages extends Component {
 	constructor( props ) {
 		super( props );
-		this.id = props.id || uid( props );
 		this.state = {
 			activePage: props.activePage,
 			rawActivePage: props.activePage
@@ -60,23 +54,12 @@ class Pages extends Component {
 		return null;
 	}
 
-	log = ( type, value ) => {
-		const session = this.context;
-		if ( session && session.log ) {
-			session.log({
-				id: this.id,
-				type: type,
-				value: value
-			});
-		}
-	};
-
 	firstPage = () => {
 		this.props.onSelect( 1 );
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		this.log( PAGES_FIRST_PAGE, 0 );
+		this.props.logAction( FIRST, 0 );
 		this.setState({
 			activePage: 1
 		});
@@ -91,7 +74,7 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		this.log( PAGES_NEXT_PAGE, this.state.activePage + 1 );
+		this.props.logAction( NEXT, this.state.activePage + 1 );
 		this.setState({
 			activePage: this.state.activePage + 1
 		});
@@ -105,7 +88,7 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		this.log( PAGES_PREVIOUS_PAGE, this.state.activePage - 1 );
+		this.props.logAction( PREVIOUS, this.state.activePage - 1 );
 		this.setState({
 			activePage: this.state.activePage - 1
 		});
@@ -116,7 +99,7 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		this.log( PAGES_LAST_PAGE, this.props.children.length );
+		this.props.logAction( LAST, this.props.children.length );
 		this.setState({
 			activePage: this.props.children.length
 		});
@@ -131,7 +114,7 @@ class Pages extends Component {
 		if ( this.wrapper ) {
 			this.wrapper.scrollTop = 0;
 		}
-		this.log( PAGES_JUMP_PAGE, page );
+		this.props.logAction( JUMP, page );
 		this.setState({
 			activePage: page
 		});
@@ -243,7 +226,7 @@ class Pages extends Component {
 		return (
 			<Card
 				className="pages"
-				id={this.id}
+				id={this.props.id}
 				style={this.props.style}
 			>
 				{ this.props.title ? header : null }
@@ -317,4 +300,4 @@ Pages.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'pages' )( withPropCheck( Pages ) );
+export default withActionLogger( 'PAGES' )( withTranslation( 'pages' )( withPropCheck( Pages ) ) );

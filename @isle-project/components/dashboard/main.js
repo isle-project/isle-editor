@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import isNull from '@stdlib/assert/is-null';
 import hasOwnProperty from '@stdlib/assert/has-own-property';
-import generateUID from '@isle-project/utils/uid';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import NumberInput from '@isle-project/components/input/number';
 import SelectInput from '@isle-project/components/input/select';
@@ -17,15 +16,15 @@ import TextInput from '@isle-project/components/input/text';
 import TextArea from '@isle-project/components/input/text-area';
 import ProportionsInput from '@isle-project/components/input/proportions';
 import SessionContext from '@isle-project/session/context.js';
-import { DASHBOARD_CLICK_GENERATE } from '@isle-project/constants/actions.js';
+import { CLICK } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import './dashboard.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:dashboard' );
-const uid = generateUID( 'dashboard' );
 
 
 // MAIN //
@@ -71,7 +70,6 @@ class Dashboard extends Component {
 		};
 		walk( props.children );
 		debug( 'Initial state: %s', JSON.stringify( initialState ) );
-		this.id = props.id || uid( props );
 		this.state = initialState;
 	}
 
@@ -87,12 +85,7 @@ class Dashboard extends Component {
 			args[ i ] = this.state[ i ];
 		}
 		if ( !this.props.autoUpdate ) {
-			const session = this.context;
-			session.log({
-				id: this.id,
-				type: DASHBOARD_CLICK_GENERATE,
-				value: args
-			});
+			this.props.logAction( CLICK, args );
 		}
 		this.props.onGenerate( ...args );
 	};
@@ -238,4 +231,4 @@ Dashboard.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'dashboard' )( withPropCheck( Dashboard ) );
+export default withActionLogger( 'dashboard' )( withTranslation( 'dashboard' )( withPropCheck( Dashboard ) ) );

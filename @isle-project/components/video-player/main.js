@@ -9,18 +9,17 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import omit from '@stdlib/utils/omit';
 import contains from '@stdlib/assert/contains';
-import generateUID from '@isle-project/utils/uid';
 import Tooltip from '@isle-project/components/tooltip';
 import SessionContext from '@isle-project/session/context.js';
 import isHidden from '@isle-project/utils/is-hidden';
 import isElectron from '@isle-project/utils/is-electron';
-import { VIDEO_END, VIDEO_PLAY, VIDEO_START, VIDEO_PAUSE, VIDEO_SEEK } from '@isle-project/constants/actions.js';
+import { END, PLAY, START, PAUSE, SEEK } from '@isle-project/constants/actions.js';
+import { withActionLogger } from '@isle-project/session/action_logger.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 
 
 // VARIABLES //
 
-const uid = generateUID( 'video-player' );
 const debug = logger( 'isle:video-player' );
 const OMITTED_PROPS = [ 'center', 'startTime', 't', 'tReady' ];
 
@@ -71,7 +70,6 @@ function respondToVisibility( element, callback ) {
 class Video extends Component {
 	constructor( props ) {
 		super( props );
-		this.id = props.id || uid( props );
 		this.state = {
 			encounteredError: null,
 			progress: {},
@@ -110,42 +108,22 @@ class Video extends Component {
 	};
 
 	handleStart = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: VIDEO_START,
-			value: this.state.progress.playedSeconds
-		});
+		this.props.logAction( START, this.state.progress.playedSeconds );
 		this.props.onStart();
 	};
 
 	handlePlay = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: VIDEO_PLAY,
-			value: this.state.progress.playedSeconds
-		});
+		this.props.logAction( PLAY, this.state.progress.playedSeconds );
 		this.props.onPlay();
 	};
 
 	handlePause = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: VIDEO_PAUSE,
-			value: this.state.progress.playedSeconds
-		});
+		this.props.logAction( PAUSE, this.state.progress.playedSeconds );
 		this.props.onPause();
 	};
 
 	handleSeek = ( seconds ) => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: VIDEO_SEEK,
-			value: seconds
-		});
+		this.props.logAction( SEEK, seconds );
 		this.props.onSeek( seconds );
 	};
 
@@ -160,12 +138,7 @@ class Video extends Component {
 	};
 
 	handleEnded = () => {
-		const session = this.context;
-		session.log({
-			id: this.id,
-			type: VIDEO_END,
-			value: this.state.progress.playedSeconds
-		});
+		this.props.logAction( END, this.state.progress.playedSeconds );
 		this.props.onEnded();
 	};
 
@@ -350,4 +323,4 @@ Video.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withTranslation( 'video' )( withPropCheck( Video ) );
+export default withActionLogger( 'VIDEO' )( withTranslation( 'video' )( withPropCheck( Video ) ) );
