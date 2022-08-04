@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import isArray from '@stdlib/assert/is-array';
-import { SKETCHPAD_SAVE_PDF } from '@isle-project/constants/actions.js';
+import { SAVE_PDF } from '@isle-project/constants/actions.js';
 
 
 // MAIN //
@@ -13,7 +13,6 @@ import { SKETCHPAD_SAVE_PDF } from '@isle-project/constants/actions.js';
 class SaveModal extends Component {
 	constructor( props ) {
 		super( props );
-
 		this.state = {
 			ownerFile: null
 		};
@@ -35,22 +34,12 @@ class SaveModal extends Component {
 	};
 
 	handleOriginalDownload = () => {
-		const session = this.props.session;
-		session.log({
-			id: this.props.id,
-			type: SKETCHPAD_SAVE_PDF,
-			value: 'original'
-		});
+		this.props.logAction( SAVE_PDF, 'original' );
 		this.props.onHide();
 	};
 
 	handleInstructorAnnotationsDownload = () => {
-		const session = this.props.session;
-		session.log({
-			id: this.props.id,
-			type: SKETCHPAD_SAVE_PDF,
-			value: 'instructor-annotations'
-		});
+		this.props.logAction( SAVE_PDF, 'instructor-annotations' );
 		this.props.onHide();
 	};
 
@@ -111,6 +100,7 @@ class SaveModal extends Component {
 
 SaveModal.propTypes = {
 	id: PropTypes.string.isRequired,
+	logAction: PropTypes.func.isRequired,
 	onHide: PropTypes.func,
 	pdf: PropTypes.string,
 	saveAsPDF: PropTypes.func.isRequired,

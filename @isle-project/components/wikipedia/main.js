@@ -1,16 +1,16 @@
 // MODULES //
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import VoiceInput from '@isle-project/components/input/voice';
-import SessionContext from '@isle-project/session/context.js';
 import { i18n } from '@isle-project/locales';
-import { WIKIPEDIA_SEARCH } from '@isle-project/constants/actions.js';
+import { SEARCH } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './wikipedia.css';
 
 
@@ -35,30 +35,26 @@ function extractTopic( value ) {
 * @property {string} defaultEntry - default entry to display
 * @property {Object} style - CSS inline styles
 */
-const Wikipedia = ({ defaultEntry, style }) => {
+const Wikipedia = ( props ) => {
 	const [ text, setText ] = useState( '' );
+	const { defaultEntry, style } = props;
 	const [ response, setResponse ] = useState( '' );
+	const { logAction } = useActionLogger( 'WIKIPEDIA', props );
 	const { t } = useTranslation( 'wikipedia' );
-	const session = useContext( SessionContext );
 
 	const getResult = useCallback( ( text ) => {
-		session.log({
-			id: 'wikipedia',
-			type: WIKIPEDIA_SEARCH,
-			value: text
-		});
+		logAction( SEARCH, text );
 		text = extractTopic( text );
 		text = text.replace( ' ', '_' );
 		text = 'https://' + i18n.language + '.wikipedia.org/wiki/' + text;
 		setResponse( text );
-	}, [ session ] );
+	}, [ logAction ] );
 
 	useEffect(() => {
 		if ( isString( defaultEntry ) ) {
 			getResult( defaultEntry );
 		}
 	}, [ defaultEntry, getResult ] );
-
 	return (
 		<Card className="wikipedia" style={style} >
 			<Card.Header>

@@ -2769,6 +2769,7 @@ class Sketchpad extends Component {
 						onHide={this.toggleSaveModal}
 						pdf={this.props.pdf}
 						session={this.context}
+						logAction={this.props.logAction}
 						id={this.id}
 						t={this.props.t}
 					/> : null}
