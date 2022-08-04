@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Col from 'react-bootstrap/Col';
@@ -11,15 +11,15 @@ import Card from 'react-bootstrap/Card';
 import logger from 'debug';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import tabulate from '@stdlib/utils/tabulate';
-import generateUID from '@isle-project/utils/uid';
 import Plotly from '@isle-project/components/plotly';
 import Panel from '@isle-project/components/panel';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
-import { MULTIPLE_CHOICE_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import AnswerOption from './answer_option';
 import './multiple-choice-survey.css';
 
@@ -27,7 +27,6 @@ import './multiple-choice-survey.css';
 // VARIABLES //
 
 const debug = logger( 'isle:multiple-choice-survey' );
-const uid = generateUID( 'multiple-choice-survey' );
 
 
 // MAIN //
@@ -44,7 +43,7 @@ const uid = generateUID( 'multiple-choice-survey' );
 * @property {Function} onSubmit - function to be called when an answer is submitted
 */
 const MultipleChoiceSurvey = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id, logAction } = useActionLogger( 'MULTIPLE_CHOICE_SURVEY', props );
 	const { t } = useTranslation( 'surveys' );
 	const { allowMultipleAnswers, anonymous, answers, multipleAnswers, question, onSubmit } = props;
 	const session = useContext( SessionContext );
@@ -57,10 +56,7 @@ const MultipleChoiceSurvey = ( props ) => {
 	const [ data, setData ] = useState({ counts: [], freqTable: null });
 
 	const submitQuestion = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: MULTIPLE_CHOICE_SURVEY_SUBMISSION,
-			value: active,
+		logAction( SUBMISSION, active, {
 			anonymous: anonymous
 		}, 'members' );
 		if ( !allowMultipleAnswers ) {
@@ -72,7 +68,7 @@ const MultipleChoiceSurvey = ( props ) => {
 			level: 'success'
 		});
 		onSubmit( active );
-	}, [ active, allowMultipleAnswers, anonymous, session, onSubmit, t ] );
+	}, [ active, allowMultipleAnswers, anonymous, logAction, session, onSubmit, t ] );
 	const onData = useCallback( ( data ) => {
 		debug( 'MultipleChoiceSurvey is receiving data: ' + JSON.stringify( data ) );
 		const tabulated = tabulate( data );
@@ -151,7 +147,7 @@ const MultipleChoiceSurvey = ( props ) => {
 		disabled = submitted || !answerSelected;
 	}
 	return (
-		<Panel id={id.current} style={props.style} >
+		<Panel id={id} style={props.style} >
 			<Container>
 				<Row>
 					<Col md={6}>
@@ -171,7 +167,7 @@ const MultipleChoiceSurvey = ( props ) => {
 								}
 							</ListGroup>
 							<StoppableButton
-								id={id.current}
+								id={id}
 								disabled={disabled}
 								onClick={submitQuestion}
 								onPaused={setPaused}
@@ -181,7 +177,7 @@ const MultipleChoiceSurvey = ( props ) => {
 						</Card>
 					</Col>
 					<Col md={6}>
-						<RealtimeMetrics for={[ id.current ]} onData={onData} />
+						<RealtimeMetrics for={[ id ]} onData={onData} />
 						{isEmptyArray( data.counts ) ?
 							<h3>{t('no-responses-yet')}</h3> :
 							<Plotly
@@ -204,12 +200,12 @@ const MultipleChoiceSurvey = ( props ) => {
 				</Row>
 			</Container>
 			<ResponseVisualizer
-				buttonLabel={t('responses')} id={id.current}
+				buttonLabel={t('responses')} id={id}
 				data={{
 					type: 'factor',
 					levels: props.answers
 				}}
-				info={MULTIPLE_CHOICE_SURVEY_SUBMISSION}
+				info="MULTIPLE_CHOICE_SURVEY_SUBMISSION"
 			/>
 		</Panel>
 	);

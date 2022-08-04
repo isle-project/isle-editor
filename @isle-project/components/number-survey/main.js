@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
@@ -9,7 +9,6 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import logger from 'debug';
-import generateUID from '@isle-project/utils/uid';
 import isEmptyArray from '@stdlib/assert/is-empty-array';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import mean from '@isle-project/utils/statistic/mean';
@@ -21,15 +20,15 @@ import ResponseVisualizer from '@isle-project/components/internal/response-visua
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
-import { NUMBER_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import './number-survey.css';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:number-survey' );
-const uid = generateUID( 'number-survey' );
 const SD = 'SD';
 
 
@@ -46,7 +45,7 @@ const SD = 'SD';
 * @property {Function} onSubmit - callback function invoked once students submits an answer
 */
 const NumberSurvey = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id, logAction } = useActionLogger( 'NUMBER_SURVEY', props );
 	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
@@ -56,10 +55,7 @@ const NumberSurvey = ( props ) => {
 	const { anonymous, onSubmit } = props;
 
 	const submitQuestion = useCallback( () => {
-		session.log({
-			id: id.current,
-			type: NUMBER_SURVEY_SUBMISSION,
-			value: value,
+		logAction( SUBMISSION, value, {
 			anonymous: anonymous
 		}, 'members' );
 		setSubmitted( true );
@@ -69,7 +65,7 @@ const NumberSurvey = ( props ) => {
 			level: 'success'
 		});
 		onSubmit( value );
-	}, [ anonymous, onSubmit, session, t, value ] );
+	}, [ anonymous, logAction, onSubmit, session, t, value ] );
 	const onData = useCallback( ( data ) => {
 		debug( 'NumberSurvey is receiving data: ' + JSON.stringify( data ) );
 		setData({
@@ -132,7 +128,7 @@ const NumberSurvey = ( props ) => {
 			</Container>
 			<ResponseVisualizer
 				buttonLabel={t('responses')} id={id.current}
-				info={NUMBER_SURVEY_SUBMISSION}
+				info="NUMBER_SURVEY_SUBMISSION"
 			/>
 		</Panel>
 	);

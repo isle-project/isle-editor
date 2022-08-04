@@ -1,7 +1,7 @@
 
 // MODULES //
 
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import logger from 'debug';
 import { useTranslation } from 'react-i18next';
@@ -10,14 +10,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import absdiff from '@stdlib/math/base/utils/absolute-difference';
-import generateUID from '@isle-project/utils/uid';
 import ProportionsInput from '@isle-project/components/input/proportions';
 import ResponseVisualizer from '@isle-project/components/internal/response-visualizer';
 import RealtimeMetrics from '@isle-project/components/metrics/realtime';
 import StoppableButton from '@isle-project/components/stoppable-button';
 import SessionContext from '@isle-project/session/context.js';
 import Panel from '@isle-project/components/panel';
-import { PROPORTIONS_SURVEY_SUBMISSION } from '@isle-project/constants/actions.js';
+import { SUBMISSION } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import sum from '@isle-project/utils/statistic/sum';
 import './proportions_survey.css';
 
@@ -25,7 +25,6 @@ import './proportions_survey.css';
 // VARIABLES //
 
 const debug = logger( 'isle:proportions-survey' );
-const uid = generateUID( 'proportions-survey' );
 
 
 // MAIN //
@@ -48,7 +47,7 @@ const uid = generateUID( 'proportions-survey' );
 * @property {Function} onSubmit - callback function invoked once students submits an answer
 */
 const ProportionsSurvey = ( props ) => {
-	const id = useRef( props.id || uid( props ) );
+	const { id, logAction } = useActionLogger( 'PROPORTIONS_SURVEY' );
 	const { t } = useTranslation( 'surveys' );
 	const session = useContext( SessionContext );
 	const [ submitted, setSubmitted ] = useState( false );
@@ -62,12 +61,7 @@ const ProportionsSurvey = ( props ) => {
 	const { anonymous, legends, onSubmit } = props;
 	const submitQuestion = useCallback( () => {
 		debug( 'Sending the data: ' + value );
-		session.log({
-			id: id.current,
-			type: PROPORTIONS_SURVEY_SUBMISSION,
-			value: JSON.stringify( value ),
-			anonymous: anonymous
-		}, 'members' );
+		logAction( SUBMISSION, JSON.stringify( value ), { anonymous: anonymous }, 'members' );
 		setSubmitted( true );
 		session.addNotification({
 			title: t( 'submitted' ),
@@ -75,7 +69,7 @@ const ProportionsSurvey = ( props ) => {
 			level: 'success'
 		});
 		onSubmit( value );
-	}, [ anonymous, onSubmit, session, t, value ] );
+	}, [ anonymous, logAction, onSubmit, session, t, value ] );
 	const onData = useCallback( ( data ) => {
 		debug( 'ProportionsSurvey is receiving data: ' + JSON.stringify( data ) );
 		const list = new Array( data.length );
