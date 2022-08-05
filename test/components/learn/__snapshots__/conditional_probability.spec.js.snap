@@ -17,11 +17,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         <span />
         <input
           className="text-inline-input"
-          id={
-            Object {
-              "current": "text-input-1",
-            }
-          }
+          id="text-input-1"
           name="input"
           onChange={[Function]}
           onKeyDown={[Function]}
@@ -48,11 +44,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         <span />
         <input
           className="text-inline-input"
-          id={
-            Object {
-              "current": "text-input-2",
-            }
-          }
+          id="text-input-2"
           name="input"
           onChange={[Function]}
           onKeyDown={[Function]}

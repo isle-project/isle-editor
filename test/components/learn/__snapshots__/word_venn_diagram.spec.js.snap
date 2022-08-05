@@ -58,11 +58,7 @@ Array [
         >
           <span>
             <label
-              htmlFor={
-                Object {
-                  "current": "text-input-1",
-                }
-              }
+              htmlFor="text-input-1"
             >
               word 1
               :
@@ -71,11 +67,7 @@ Array [
           </span>
           <input
             className="text-input"
-            id={
-              Object {
-                "current": "text-input-1",
-              }
-            }
+            id="text-input-1"
             name="input"
             onBlur={[Function]}
             onChange={[Function]}
@@ -183,7 +175,7 @@ Array [
         118
       </span>
       <div
-        id="word-venn-diagram-1-venn"
+        id="undefined-venn"
       />
     </div>
   </div>,
