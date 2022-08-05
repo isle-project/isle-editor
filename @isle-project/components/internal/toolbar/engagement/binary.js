@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useCallback, useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
@@ -9,13 +9,13 @@ import Draggable from '@isle-project/components/draggable';
 import Gate from '@isle-project/components/gate';
 import Panel from '@isle-project/components/panel';
 import ResponsesTable from './responses_table.js';
-import { SHARE_ENGAGEMENT } from '@isle-project/constants/actions.js';
-import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { SHARE } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 
 
 // VARIABLES //
 
-const ENGAGEMENT_BINARY = 'ENGAGEMENT_BINARY';
+const ENGAGEMENT_BINARY = 'engagement-binary';
 
 
 // MAIN //
@@ -23,62 +23,49 @@ const ENGAGEMENT_BINARY = 'ENGAGEMENT_BINARY';
 /**
 * An ISLE component that displays an engagement meter with which the students can indicate how well they are following the class.
 */
-class EngagementBinary extends Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			nLeft: 0,
-			nRight: 0,
-			responses: [],
-			showResponses: false
-		};
-	}
+const EngagementBinary = ({ session, type, t, onHide }) => {
+	const [ nLeft, setNLeft ] = useState( 0 );
+	const [ nRight, setNRight ] = useState( 0 );
+	const [ responses, setResponses ] = useState( [] );
+	const [ showResponses, setShowResponses ] = useState( false );
+	const { logAction, onAction } = useActionLogger( ENGAGEMENT_BINARY, { id: ENGAGEMENT_BINARY } );
 
-	componentDidMount() {
-		const session = this.props.session;
-		if ( session ) {
-			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === MEMBER_ACTION && action.id === ENGAGEMENT_BINARY ) {
-					if ( action.type === SHARE_ENGAGEMENT ) {
-						const responses = this.state.responses.slice();
-						responses.push({
-							name: action.name,
-							email: action.email,
-							value: action.value
-						});
-						if ( action.value === 1 ) {
-							this.setState({
-								nRight: this.state.nRight + 1,
-								responses
-							});
-						} else if ( action.value === -1 ){
-							this.setState({
-								nLeft: this.state.nLeft + 1,
-								responses
-							});
-						}
-					}
+	useEffect( () => {
+		const unsubscribe = onAction({
+			[SHARE]: ( action ) => {
+				const newResponses = responses.slice();
+				newResponses.push({
+					name: action.name,
+					email: action.email,
+					value: action.value
+				});
+				if ( action.value === 1 ) {
+					setNRight( nRight + 1 );
+					setResponses( newResponses );
+				} else if ( action.value === -1 ){
+					setNLeft( nLeft + 1 );
+					setResponses( newResponses );
 				}
-			});
-		}
+			}
+		});
 		let leftButton;
 		let rightButton;
 		let message;
-		switch ( this.props.type ) {
+		switch ( type ) {
 			case 'yes:no':
 				leftButton = 'fas fa-times';
 				rightButton = 'fas fa-check';
-				message = this.props.t( 'answer-yes-no' );
+				message = t( 'answer-yes-no' );
 			break;
 			case 'too-slow:too-fast':
 				leftButton = 'fas fa-backward';
 				rightButton = 'fas fa-forward';
-				message = this.props.t( 'answer-slow-fast' );
+				message = t( 'answer-slow-fast' );
 			break;
 		}
 		if ( !session.isOwner() ) {
 			const notification = session.addNotification({
-				title: this.props.t( 'poll' ),
+				title: t( 'poll' ),
 				message,
 				level: 'info',
 				position: 'tc',
@@ -88,15 +75,11 @@ class EngagementBinary extends Component {
 					<Button
 						variant="secondary" style={{ float: 'left' }}
 						onClick={() => {
-							session.log({
-								id: ENGAGEMENT_BINARY,
-								type: SHARE_ENGAGEMENT,
-								value: -1
-							});
+							logAction( SHARE, -1 );
 							session.removeNotification( notification );
 							session.addNotification({
-								title: this.props.t( 'answer-recorded' ),
-								message: this.props.t( 'answer-recorded-message' ),
+								title: t( 'answer-recorded' ),
+								message: t( 'answer-recorded-message' ),
 								level: 'success',
 								position: 'tc'
 							});
@@ -107,15 +90,11 @@ class EngagementBinary extends Component {
 					<Button
 						variant="secondary" style={{ float: 'right' }}
 						onClick={() => {
-							session.log({
-								id: ENGAGEMENT_BINARY,
-								type: SHARE_ENGAGEMENT,
-								value: 1
-							});
+							logAction( SHARE, 1 );
 							session.removeNotification( notification );
 							session.addNotification({
-								title: this.props.t( 'answer-recorded' ),
-								message: this.props.t( 'answer-recorded-message' ),
+								title: t( 'answer-recorded' ),
+								message: t( 'answer-recorded-message' ),
 								level: 'success',
 								position: 'tc'
 							});
@@ -126,83 +105,80 @@ class EngagementBinary extends Component {
 				</div>
 			});
 		}
-	}
+		return () => {
+			unsubscribe();
+		};
+	});
+	const toggleResponses = useCallback( () => {
+		setShowResponses( !showResponses );
+	}, [ showResponses ] );
 
-	toggleResponses = () => {
-		this.setState({
-			showResponses: !this.state.showResponses
-		});
-	};
-
-	render() {
-		let leftButton;
-		let rightButton;
-		switch ( this.props.type ) {
-			case 'yes:no':
-				leftButton = 'fas fa-times';
-				rightButton = 'fas fa-check';
-			break;
-			case 'too-slow:too-fast':
-				leftButton = 'fas fa-backward';
-				rightButton = 'fas fa-forward';
-			break;
-		}
-		const { t } = this.props;
-		const table = <Table bordered size="sm">
-			<thead>
-				<tr>
-					<th><i className={leftButton}></i></th>
-					<th><i className={rightButton}></i></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>{this.state.nLeft}</td>
-					<td>{this.state.nRight}</td>
-				</tr>
-			</tbody>
-		</Table>;
-		return (
-			<Fragment>
-				<Draggable dragHandleClassName="card-header" >
-					<Gate owner showOwnerInPresentationMode={false} banner={null} >
-						<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={this.props.onHide}
-							className="engagement-meter-panel" minimizable trapFocus
-						>
-							{table}
-							<Button
-								variant="link"
-								onClick={this.toggleResponses}
-							>
-								<small>{t('toggle-details')}</small>
-							</Button>
-						</Panel>
-					</Gate>
-					<Gate user notOwner header={t('poll')} banner={null} >
-						<Panel
-							header={t('poll')}
-							className="engagement-meter-panel"
-							minimizable trapFocus
-						>
-							{table}
-						</Panel>
-					</Gate>
-				</Draggable>
-				{this.state.showResponses ? <ResponsesTable
-					responses={this.state.responses}
-					session={this.props.session}
-					onHide={this.toggleResponses}
-					renderValue={( row ) => {
-						return ( row.value === -1 ?
-							<i className={leftButton}></i> :
-							<i className={rightButton}></i>
-						);
-					}}
-				/> : null}
-			</Fragment>
-		);
+	let leftButton;
+	let rightButton;
+	switch ( type ) {
+		case 'yes:no':
+			leftButton = 'fas fa-times';
+			rightButton = 'fas fa-check';
+		break;
+		case 'too-slow:too-fast':
+			leftButton = 'fas fa-backward';
+			rightButton = 'fas fa-forward';
+		break;
 	}
-}
+	const table = <Table bordered size="sm">
+		<thead>
+			<tr>
+				<th><i className={leftButton}></i></th>
+				<th><i className={rightButton}></i></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{nLeft}</td>
+				<td>{nRight}</td>
+			</tr>
+		</tbody>
+	</Table>;
+	return (
+		<Fragment>
+			<Draggable dragHandleClassName="card-header" >
+				<Gate owner showOwnerInPresentationMode={false} banner={null} >
+					<Panel header={t('poll')} hideTooltip={t('finish-poll')} onHide={onHide}
+						className="engagement-meter-panel" minimizable trapFocus
+					>
+						{table}
+						<Button
+							variant="link"
+							onClick={toggleResponses}
+						>
+							<small>{t('toggle-details')}</small>
+						</Button>
+					</Panel>
+				</Gate>
+				<Gate user notOwner header={t('poll')} banner={null} >
+					<Panel
+						header={t('poll')}
+						className="engagement-meter-panel"
+						minimizable trapFocus
+					>
+						{table}
+					</Panel>
+				</Gate>
+			</Draggable>
+			{showResponses ? <ResponsesTable
+				responses={responses}
+				session={session}
+				onHide={toggleResponses}
+				renderValue={( row ) => {
+					return ( row.value === -1 ?
+						<i className={leftButton}></i> :
+						<i className={rightButton}></i>
+					);
+				}}
+			/> : null}
+		</Fragment>
+	);
+};
 
 
 // PROPERTIES //

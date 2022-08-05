@@ -11,15 +11,15 @@ import ChatButton from '@isle-project/components/internal/chat-button';
 
 // MAIN //
 
-const ResponsesTable = ( props ) => {
-	const responsesPanel = <Draggable dragHandleClassName="card-header" >
-		<Panel className="engagement-meter-panel" header={props.t( 'poll-responses')} onHide={props.onHide}
+const ResponsesTable = ({ session, renderValue, responses, t, onHide }) => {
+	return ( <Draggable dragHandleClassName="card-header" >
+		<Panel className="engagement-meter-panel" header={t( 'poll-responses')} onHide={onHide}
 			minimizable trapFocus style={{ width: 400 }}
 		>
 			<ReactTable
 				className="engagement-table"
 				showPageSizeOptions={false}
-				data={props.responses}
+				data={responses}
 				resizable={false}
 				sortable={false}
 				columns={[
@@ -27,7 +27,7 @@ const ResponsesTable = ( props ) => {
 						Header: 'Pic',
 						id: 'pic',
 						accessor: ( d ) => {
-							const { userList } = props.session;
+							const { userList } = session;
 							for ( let i = 0; i < userList.length; i++ ) {
 								if ( userList[ i ].name === d.name ) {
 									return userList[ i ].picture;
@@ -39,7 +39,7 @@ const ResponsesTable = ( props ) => {
 							return (
 								<img
 									className="engagement-table-pic" alt="User thumbnail"
-									src={`${props.session.server}/thumbnail/${row.value}`}
+									src={`${session.server}/thumbnail/${row.value}`}
 								/>
 							);
 						},
@@ -48,7 +48,7 @@ const ResponsesTable = ( props ) => {
 						style: { color: 'darkslategrey' }
 					},
 					{
-						Header: props.t( 'name' ),
+						Header: t( 'name' ),
 						id: 'nameCol',
 						accessor: 'name',
 						width: 180,
@@ -59,26 +59,25 @@ const ResponsesTable = ( props ) => {
 						}
 					},
 					{
-						Header: props.t( 'response' ),
+						Header: t( 'response' ),
 						id: 'responseCol',
 						accessor: 'value',
-						Cell: props.renderValue,
+						Cell: renderValue,
 						maxWidth: 38,
 						minWidth: 38
 					},
 					{
-						Header: props.t( 'chat' ),
+						Header: t( 'chat' ),
 						Cell: ( row ) => {
 							const chatID = `Chat with ${row.original.name}`;
-							return <ChatButton tooltip={props.t( 'chat-tooltip' )} showTooltip={false} for={chatID} />;
+							return <ChatButton tooltip={t( 'chat-tooltip' )} showTooltip={false} for={chatID} />;
 						}
 					}
 				]}
 				pageSize={8}
 			/>
 		</Panel>
-	</Draggable>;
-	return responsesPanel;
+	</Draggable> );
 };
 
 

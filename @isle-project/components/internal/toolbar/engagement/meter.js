@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { useCallback, useEffect, useRef, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
@@ -12,9 +12,14 @@ import Draggable from '@isle-project/components/draggable';
 import Gate from '@isle-project/components/gate';
 import Panel from '@isle-project/components/panel';
 import ResponsesTable from './responses_table.js';
-import { SHARE_ENGAGEMENT } from '@isle-project/constants/actions.js';
-import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { SHARE } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 import ScoreSetter from './score_setter.js';
+
+
+// VARIABLES //
+
+const ENGAGEMENT_METER = 'engagement-meter';
 
 
 // MAIN //
@@ -22,120 +27,103 @@ import ScoreSetter from './score_setter.js';
 /**
 * An ISLE component that displays an engagement meter with which the students can indicate how well they are following the class.
 */
-class EngagementMeter extends Component {
-	constructor( props ) {
-		super( props );
+const EngagementMeter = ({ session, t, onHide }) => {
+	const [ mean, setMean ] = useState( null );
+	const [ range, setRange ] = useState( null );
+	const [ responses, setResponses ] = useState( [] );
+	const [ showResponses, setShowResponses ] = useState( false );
 
-		this.state = {
-			mean: null,
-			range: null,
-			responses: [],
-			showResponses: false
-		};
-		this.id = props.id || 'engagement-meter';
-		this.meanAcc = incrmmean( 6 );
-		this.rangeAcc = incrmrange( 6 );
-	}
+	const { logAction, onAction } = useActionLogger( ENGAGEMENT_METER, { id: ENGAGEMENT_METER } );
 
-	componentDidMount() {
-		const session = this.props.session;
-		if ( session ) {
-			this.unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === MEMBER_ACTION && action.id === this.id ) {
-					if ( action.type === SHARE_ENGAGEMENT ) {
-						const mean = this.meanAcc( action.value );
-						const range = this.rangeAcc( action.value );
-						const responses = this.state.responses.slice();
-						responses.push({
-							name: action.name,
-							email: action.email,
-							value: action.value
-						});
-						this.setState({
-							mean, range, responses
-						});
-					}
-				}
-			});
-		}
+	const toggleResponses = useCallback( () => {
+		setShowResponses( !showResponses );
+	}, [ showResponses ] );
+
+	const meanAcc = useRef( incrmmean( 6 ) );
+	const rangeAcc = useRef( incrmrange( 6 ) );
+
+	useEffect( () => {
+		const unsubscribe = onAction({
+			[SHARE]: ( action ) => {
+				const newMean = meanAcc.current( action.value );
+				const newRange = rangeAcc.current( action.value );
+				const newResponses = responses.slice();
+				newResponses.push({
+					name: action.name,
+					email: action.email,
+					value: action.value
+				});
+				setMean( newMean );
+				setRange( newRange );
+				setResponses( newResponses );
+			}
+		});
 		if ( !session.isOwner() ) {
 			const notification = session.addNotification({
-				title: this.props.t( 'poll' ),
-				message: this.props.t( 'meter-prompt' ),
+				title: t( 'poll' ),
+				message: t( 'meter-prompt' ),
 				level: 'info',
 				position: 'tc',
 				dismissible: 'none',
 				autoDismiss: 0,
-				children: <ScoreSetter t={this.props.t} onSubmit={( progress ) => {
-					const session = this.props.session;
-					session.log({
-						id: this.id,
-						type: SHARE_ENGAGEMENT,
-						value: progress
-					});
+				children: <ScoreSetter t={t} onSubmit={( progress ) => {
+					logAction( SHARE, progress );
 					session.removeNotification( notification );
 					session.addNotification({
-						title: this.props.t( 'answer-recorded' ),
-						message: this.props.t( 'answer-recorded-message' ),
+						title: t( 'answer-recorded' ),
+						message: t( 'answer-recorded-message' ),
 						level: 'success',
 						position: 'tc'
 					});
 				}} />
 			});
 		}
-	}
-
-	toggleResponses = () => {
-		this.setState({
-			showResponses: !this.state.showResponses
-		});
-	};
-
-	render() {
-		return (
-			<Fragment>
-				<Draggable dragHandleClassName="card-header" >
-					<Gate owner showOwnerInPresentationMode={false} banner={null} >
-						<Panel header={this.props.t( 'poll' )} hideTooltip={this.props.t( 'finish-poll' )} onHide={this.props.onHide}
-							className="engagement-meter-panel" minimizable trapFocus
+		return () => {
+			unsubscribe();
+		};
+	}, [ logAction, responses, session, t, onAction ] );
+	return (
+		<Fragment>
+			<Draggable dragHandleClassName="card-header" >
+				<Gate owner showOwnerInPresentationMode={false} banner={null} >
+					<Panel header={t( 'poll' )} hideTooltip={t( 'finish-poll' )} onHide={onHide}
+						className="engagement-meter-panel" minimizable trapFocus
+					>
+						<div className="score-bottom" >
+							{mean ?
+								<Fragment>
+									<ProgressBar style={{ marginTop: 23 }}>
+										<ProgressBar animated variant="success" now={mean} />
+										<ProgressBar animated variant="danger" now={100-mean} />
+									</ProgressBar>
+								</Fragment> : null }
+						</div>
+						{mean ?
+							<p>{t( 'mean' )}: {roundn( mean, -2 )} (n: {responses.length})</p> : null
+						}
+						{range ?
+							<p>{t( 'range' )}: {roundn( range, -2 )}</p> : null
+						}
+						<Button
+							variant="link"
+							onClick={toggleResponses}
 						>
-							<div className="score-bottom" >
-								{this.state.mean ?
-									<Fragment>
-										<ProgressBar style={{ marginTop: 23 }}>
-											<ProgressBar animated variant="success" now={this.state.mean} />
-											<ProgressBar animated variant="danger" now={100-this.state.mean} />
-										</ProgressBar>
-									</Fragment> : null }
-							</div>
-							{this.state.mean ?
-								<p>{this.props.t( 'mean' )}: {roundn( this.state.mean, -2 )} (n: {this.state.responses.length})</p> : null
-							}
-							{this.state.range ?
-								<p>{this.props.t( 'range' )}: {roundn( this.state.range, -2 )}</p> : null
-							}
-							<Button
-								variant="link"
-								onClick={this.toggleResponses}
-							>
-								<small>{this.props.t( 'toggle-details' )}</small>
-							</Button>
-						</Panel>
-					</Gate>
-				</Draggable>
-				{this.state.showResponses ? <ResponsesTable
-					responses={this.state.responses}
-					session={this.props.session}
-					onHide={this.toggleResponses}
-					renderValue={( row ) => {
-						return row.value;
-					}}
-				/> : null}
-			</Fragment>
-		);
-	}
-}
-
+							<small>{t( 'toggle-details' )}</small>
+						</Button>
+					</Panel>
+				</Gate>
+			</Draggable>
+			{showResponses ? <ResponsesTable
+				responses={responses}
+				session={session}
+				onHide={toggleResponses}
+				renderValue={( row ) => {
+					return row.value;
+				}}
+			/> : null}
+		</Fragment>
+	);
+};
 
 // PROPERTIES //
 
