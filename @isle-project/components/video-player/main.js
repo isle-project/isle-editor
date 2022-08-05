@@ -21,7 +21,7 @@ import { withPropCheck } from '@isle-project/utils/prop-check';
 // VARIABLES //
 
 const debug = logger( 'isle:video-player' );
-const OMITTED_PROPS = [ 'center', 'startTime', 't', 'tReady', 'retrieveLastAction', 'onAction' ];
+const OMITTED_PROPS = [ 'center', 'startTime', 't', 'tReady', 'retrieveLastAction', 'onAction', 'logAction', 'logScore' ];
 
 
 // FUNCTIONS //
