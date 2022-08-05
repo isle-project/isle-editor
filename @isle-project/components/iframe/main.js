@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useState, useEffect, useCallback, useContext, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
