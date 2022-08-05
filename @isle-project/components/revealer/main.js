@@ -13,7 +13,7 @@ import SessionContext from '@isle-project/session/context.js';
 import { REVEAL_CONTENT, HIDE_CONTENT } from '@isle-project/constants/actions.js';
 import { useActionLogger } from '@isle-project/session/action_logger.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
-import { MEMBER_ACTION, RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
+import { RETRIEVED_COHORTS, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
 import './revealer.css';
 
 
@@ -32,7 +32,7 @@ const debug = logger( 'isle:revealer' );
 */
 const Revealer = ( props ) => {
 	const { message, show, children } = props;
-	const { id, logAction } = useActionLogger( 'REVEALER', props );
+	const { id, logAction, onAction } = useActionLogger( 'REVEALER', props );
 	const session = useContext( SessionContext );
 	const { t } = useTranslation( 'revealer' );
 
@@ -52,7 +52,9 @@ const Revealer = ( props ) => {
 				session.metadata.revealer &&
 				session.metadata.revealer[ id ]
 			) {
-				let show = session.metadata.revealer[ id ][ session.cohort ];
+				const cohort = selectedCohort ? selectedCohort : session.cohort;
+				let show = session.metadata.revealer[ id ][ cohort ];
+				debug( 'Revealer '+id+' show status read from metadata for cohort '+cohort+': ', show );
 				if ( show === void 0 ) {
 					show = session.metadata.revealer[ id ][ 'all' ];
 				}
@@ -63,51 +65,54 @@ const Revealer = ( props ) => {
 		};
 
 		let unsubscribe;
-		if ( session ) {
-			readMetadata();
-			debug( 'Subscribe revealer with ID: '+id );
-			unsubscribe = session.subscribe( ( type, action ) => {
-				if ( type === RETRIEVED_COHORTS ) {
-					setSelectedCohort( null );
+		readMetadata();
+		debug( 'Subscribe revealer with ID: '+id );
+		unsubscribe = session.subscribe( ( type ) => {
+			if ( type === RETRIEVED_COHORTS ) {
+				setSelectedCohort( null );
+			}
+			else if ( type === RECEIVED_LESSON_INFO ) {
+				readMetadata();
+			}
+		});
+		onAction({
+			[REVEAL_CONTENT]: ( action ) => {
+				const cohortName = action.value;
+				debug( `Received action for cohort ${cohortName}: ` );
+				if (
+					!cohortName ||
+					( session.cohort && session.cohort === cohortName )
+				) {
+					debug( `Reveal content for ${id}...` );
+					setShowChildren( true );
 				}
-				else if ( type === RECEIVED_LESSON_INFO ) {
-					readMetadata();
+				else if ( selectedCohort === cohortName ) {
+					debug( `Reveal content of ${id} for cohort ${cohortName}...` );
+					setShowChildren( true );
 				}
-				else if ( type === MEMBER_ACTION ) {
-					if ( action.id === id ) {
-						const cohortName = action.value;
-						debug( `Received action for cohort ${cohortName}: ` );
-						if (
-							!cohortName ||
-							( session.cohort && session.cohort === cohortName )
-						) {
-							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content for ${id}...` );
-								setShowChildren( true );
-							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content for ${id}...` );
-								setShowChildren( false );
-							}
-						}
-						else if ( selectedCohort === cohortName ) {
-							if ( action.type === REVEAL_CONTENT ) {
-								debug( `Reveal content of ${id} for cohort ${cohortName}...` );
-								setShowChildren( true );
-							} else if ( action.type === HIDE_CONTENT ) {
-								debug( `Hide content of ${id} for cohort ${cohortName}...` );
-								setShowChildren( false );
-							}
-						}
-					}
+			},
+			[HIDE_CONTENT]: ( action ) => {
+				const cohortName = action.value;
+				debug( `Received action for cohort ${cohortName}: ` );
+				if (
+					!cohortName ||
+					( session.cohort && session.cohort === cohortName )
+				) {
+					debug( `Hide content for ${id}...` );
+					setShowChildren( false );
 				}
-			});
-		}
+				else if ( selectedCohort === cohortName ) {
+					debug( `Hide content of ${id} for cohort ${cohortName}...` );
+					setShowChildren( false );
+				}
+			}
+		});
 		return () => {
 			if ( unsubscribe ) {
 				unsubscribe();
 			}
 		};
-	}, [ id, selectedCohort, session ] );
+	}, [ id, selectedCohort, onAction, session ] );
 
 	const handleCohortChange = ( event ) => {
 		const value = event.target.value;
