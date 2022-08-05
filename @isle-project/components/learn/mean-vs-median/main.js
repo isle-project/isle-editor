@@ -20,8 +20,6 @@ import incrmean from '@stdlib/stats/incr/mean';
 import FeedbackButtons from '@isle-project/components/feedback';
 import SessionContext from '@isle-project/session/context.js';
 import { withActionLogger } from '@isle-project/session/action_logger.js';
-import { GUESS } from '@isle-project/constants/actions.js';
-import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //
@@ -73,28 +71,18 @@ class MeanVSMedian extends Component {
 
 	componentDidMount() {
 		this.generateData();
-		const session = this.context;
-		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if (
-				type === MEMBER_ACTION
-			) {
-				if ( action.type === 'MEDIAN_GUESS_DISTANCE' ) {
-					const value = action.value;
-					this.groupAccMedian( value );
-					this.forceUpdate();
-				} else if ( action.type === 'MEAN_GUESS_DISTANCE' ) {
-					const value = action.value;
-					this.groupAccMean( value );
-					this.forceUpdate();
-				}
+		this.props.onAction({
+			'GUESS_MEDIAN': ( action ) => {
+				const value = action.value;
+				this.groupAccMedian( value );
+				this.forceUpdate();
+			},
+			'GUESS_MEAN': ( action ) => {
+				const value = action.value;
+				this.groupAccMean( value );
+				this.forceUpdate();
 			}
 		});
-	}
-
-	componentWillUnmount() {
-		if ( this.unsubscribe ) {
-			this.unsubscribe();
-		}
 	}
 
 	medianEvaluation = ( evt ) => {
@@ -117,7 +105,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			this.props.logAction( GUESS, distance );
+			this.props.logAction( 'GUESS_MEDIAN', distance );
 			this.setState({ showLognormalMedian: true });
 		}
 	};
@@ -142,7 +130,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			this.props.logAction( GUESS, distance );
+			this.props.logAction( 'GUESS_MEAN', distance );
 			this.setState({ showLognormalMean: true });
 		}
 	};
