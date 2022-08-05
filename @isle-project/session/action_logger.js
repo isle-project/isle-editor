@@ -3,6 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
+import isFunction from '@stdlib/assert/is-function';
 import SessionContext from '@isle-project/session/context.js';
 import generateUID from '@isle-project/utils/uid';
 import kebabcase from '@isle-project/utils/kebabcase';
@@ -45,14 +46,27 @@ function useActionLogger( componentType, props ) {
 	const idRef = useRef( id );
 	return {
 		onAction( fcnMap ) {
-			setUnsubscribe( session.subscribe( ( type, action ) => {
-				if ( type === MEMBER_ACTION && action.id === id ) {
-					const fcn = fcnMap[ componentType + '_' + action.type ];
-					if ( fcn ) {
-						fcn( action );
+			if ( isObject( fcnMap ) ) {
+				setUnsubscribe( session.subscribe( ( type, action ) => {
+					if ( type === MEMBER_ACTION && action.id === id ) {
+						const fcn = fcnMap[ action.type.substring( componentType.length + 1 ) ];
+						if ( fcn ) {
+							fcn( action );
+						}
 					}
-				}
-			} ) );
+				} ) );
+			}
+			else if ( isFunction( fcnMap ) ) {
+				setUnsubscribe( session.subscribe( ( type, action ) => {
+					if ( type === MEMBER_ACTION && action.id === id ) {
+						action = { ...action, type: action.type.substring( componentType.length + 1 ) };
+						fcnMap( action );
+					}
+				} ) );
+			}
+			else {
+				throw new Error( 'Invalid argument. Argument must be an object or a function.' );
+			}
 		},
 		logScore: ( score, metricName, tag ) => {
 			session.recordCompletion( { id, componentType, score, metricName, tag } );
