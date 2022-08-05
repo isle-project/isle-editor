@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
@@ -27,15 +27,6 @@ const uid = {};
 */
 function useActionLogger( componentType, props ) {
 	const session = useContext( SessionContext );
-	const [ unsubscribe, setUnsubscribe ] = useState( null );
-
-	useEffect( () => {
-		return () => {
-			if ( unsubscribe ) {
-				unsubscribe();
-			}
-		};
-	});
 	let id = props.id;
 	if ( !id ) {
 		if ( !uid[ componentType ] ) {
@@ -46,27 +37,31 @@ function useActionLogger( componentType, props ) {
 	const idRef = useRef( id );
 	return {
 		onAction( fcnMap ) {
+			let unsubscribe;
 			if ( isObject( fcnMap ) ) {
-				setUnsubscribe( session.subscribe( ( type, action ) => {
+				console.log( 'Registering action listeners for component: ', componentType, id );
+				unsubscribe = session.subscribe( ( type, action ) => {
 					if ( type === MEMBER_ACTION && action.id === id ) {
 						const fcn = fcnMap[ action.type.substring( componentType.length + 1 ) ];
 						if ( fcn ) {
 							fcn( action );
 						}
 					}
-				} ) );
+				} );
 			}
 			else if ( isFunction( fcnMap ) ) {
-				setUnsubscribe( session.subscribe( ( type, action ) => {
+				console.log( 'Registering action listener for component: ', componentType, id );
+				unsubscribe = session.subscribe( ( type, action ) => {
 					if ( type === MEMBER_ACTION && action.id === id ) {
 						action = { ...action, type: action.type.substring( componentType.length + 1 ) };
 						fcnMap( action );
 					}
-				} ) );
+				} );
 			}
 			else {
 				throw new Error( 'Invalid argument. Argument must be an object or a function.' );
 			}
+			return unsubscribe;
 		},
 		logScore: ( score, metricName, tag ) => {
 			session.recordCompletion( { id, componentType, score, metricName, tag } );

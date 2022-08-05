@@ -71,18 +71,26 @@ class MeanVSMedian extends Component {
 
 	componentDidMount() {
 		this.generateData();
-		this.props.onAction({
+		this.unsubscribe = this.props.onAction({
 			'GUESS_MEDIAN': ( action ) => {
+				debug( 'Received guess for median: ', action );
 				const value = action.value;
 				this.groupAccMedian( value );
 				this.forceUpdate();
 			},
 			'GUESS_MEAN': ( action ) => {
+				debug( 'Received guess for mean: ', action );
 				const value = action.value;
 				this.groupAccMean( value );
 				this.forceUpdate();
 			}
 		});
+	}
+
+	componentWillUnmount() {
+		if ( this.unsubscribe ) {
+			this.unsubscribe();
+		}
 	}
 
 	medianEvaluation = ( evt ) => {
@@ -105,7 +113,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			this.props.logAction( 'GUESS_MEDIAN', distance );
+			this.props.logAction( 'GUESS_MEDIAN', distance, {}, 'members' );
 			this.setState({ showLognormalMedian: true });
 		}
 	};
@@ -130,7 +138,7 @@ class MeanVSMedian extends Component {
 				position: 'tc',
 				level: 'success'
 			});
-			this.props.logAction( 'GUESS_MEAN', distance );
+			this.props.logAction( 'GUESS_MEAN', distance, {}, 'members' );
 			this.setState({ showLognormalMean: true });
 		}
 	};
