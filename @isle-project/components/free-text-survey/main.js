@@ -98,7 +98,7 @@ const FreeTextSurvey = ( props ) => {
 
 	const disabled = submitted && !props.allowMultipleAnswers;
 	return (
-		<Panel id={id.current} className={props.className} style={props.style} >
+		<Panel id={id} className={props.className} style={props.style} >
 			<Container>
 				<Row>
 					<Col md={6}>
@@ -116,7 +116,7 @@ const FreeTextSurvey = ( props ) => {
 								rows={props.rows}
 							/>
 							<StoppableButton
-								id={id.current}
+								id={id}
 								disabled={!value || disabled}
 								onClick={submitQuestion}
 								onPaused={setPaused}
@@ -126,7 +126,7 @@ const FreeTextSurvey = ( props ) => {
 						</Card>
 					</Col>
 					<Col md={6}>
-						<RealtimeMetrics for={[ id.current ]} onData={onData} />
+						<RealtimeMetrics for={[ id ]} onData={onData} />
 						{isEmptyArray( data.counts ) ?
 							<h3>{t('no-responses-yet')}</h3> :
 							<Plotly
@@ -147,7 +147,7 @@ const FreeTextSurvey = ( props ) => {
 				</Row>
 			</Container>
 			<ResponseVisualizer
-				buttonLabel={t('responses')} id={id.current}
+				buttonLabel={t('responses')} id={id}
 				info="TEXT_SURVEY_SUBMISSION"
 			/>
 		</Panel>

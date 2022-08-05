@@ -83,11 +83,11 @@ const NumberSurvey = ( props ) => {
 					<Col md={6}>
 						<Card className="number-survey" body>
 							<Card.Title as="h5">{props.question}</Card.Title>
-							<label htmlFor={`number-survey-input-${id.current}`}>{t('your-answer')}:</label>
+							<label htmlFor={`number-survey-input-${id}`}>{t('your-answer')}:</label>
 							<NumberInput
 								{...props}
 								inline
-								id={`number-survey-input-${id.current}`}
+								id={`number-survey-input-${id}`}
 								disabled={disabled}
 								onChange={setValue}
 							/>
@@ -96,7 +96,7 @@ const NumberSurvey = ( props ) => {
 								null
 							}
 							<StoppableButton
-								id={id.current}
+								id={id}
 								disabled={disabled}
 								onClick={submitQuestion}
 								onPaused={setPaused}
@@ -104,7 +104,7 @@ const NumberSurvey = ( props ) => {
 						</Card>
 					</Col>
 					<Col md={6}>
-						<RealtimeMetrics for={[ id.current ]} onData={onData} />
+						<RealtimeMetrics for={[ id ]} onData={onData} />
 						{isEmptyArray( data ) ?
 							<h3>{t('no-responses-yet')}</h3> :
 							<Plotly
@@ -127,7 +127,7 @@ const NumberSurvey = ( props ) => {
 				</Row>
 			</Container>
 			<ResponseVisualizer
-				buttonLabel={t('responses')} id={id.current}
+				buttonLabel={t('responses')} id={id}
 				info="NUMBER_SURVEY_SUBMISSION"
 			/>
 		</Panel>

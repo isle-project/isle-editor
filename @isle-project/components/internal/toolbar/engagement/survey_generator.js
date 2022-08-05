@@ -16,15 +16,15 @@ import TextArea from '@isle-project/components/input/text-area';
 import MultipleChoiceSurvey from '@isle-project/components/multiple-choice-survey';
 import NumberSurvey from '@isle-project/components/number-survey';
 import FreeTextSurvey from '@isle-project/components/free-text-survey';
-import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
-import { STOP_SURVEY, START_SURVEY } from '@isle-project/constants/actions.js';
-import { MEMBER_ACTION } from '@isle-project/constants/events.js';
+import { STOP, START } from '@isle-project/constants/actions.js';
+import { useActionLogger } from '@isle-project/session/action_logger.js';
 
 
 // VARIABLES //
 
 const debug = logger( 'isle:survey-generator' );
-const COMPONENT_ID = 'survey-generator';
+const SURVEY_GENERATOR = 'SURVEY_GENERATOR';
+const SURVEY_GENERATOR_ID = 'survey-generator';
 
 
 // MAIN //
@@ -40,32 +40,25 @@ const SurveyGenerator = ({ session, onHide }) => {
 	const [ anonymous, setAnonymous ] = useState( true );
 	const [ disabled, setDisabled ] = useState( true );
 	const { t } = useTranslation( 'internal/toolbar' );
-	const forceUpdate = useForceUpdate();
-
+	const { logAction, onAction } = useActionLogger( SURVEY_GENERATOR, { id: SURVEY_GENERATOR_ID });
 	useEffect( () => {
-		const unsubscribe = session.subscribe( ( type, action ) => {
-			debug( 'Received member action...' );
-			if ( type === MEMBER_ACTION && COMPONENT_ID === action.id ) {
-				if ( action.type === START_SURVEY ) {
-					debug( 'Should start the survey...' );
-					setQuestion( action.value.question );
-					setType( action.value.type );
-					setAnswers( action.value.answers );
-					setShowSurvey( true );
-				}
-				else if ( action.type === STOP_SURVEY ) {
-					debug( 'Should stop the survey...' );
-					setShowSurvey( false );
-				}
-				else {
-					forceUpdate();
-				}
+		const unsubscribe = onAction({
+			[START]: ( action ) => {
+				debug( 'Should start the survey...' );
+				setQuestion( action.value.question );
+				setType( action.value.type );
+				setAnswers( action.value.answers );
+				setShowSurvey( true );
+			},
+			[STOP]: ( action ) => {
+				debug( 'Should stop the survey...' );
+				setShowSurvey( false );
 			}
 		});
 		return () => {
 			unsubscribe();
 		};
-	}, [ forceUpdate, session ] );
+	}, [ session, onAction ] );
 
 	useEffect( () => {
 		let newDisabled;
@@ -97,49 +90,38 @@ const SurveyGenerator = ({ session, onHide }) => {
 
 	const toggleSurvey = useCallback( () => {
 		if ( showSurvey ) {
-			session.log({
-				id: COMPONENT_ID,
-				type: STOP_SURVEY,
-				value: null
-			}, 'members' );
+			logAction( STOP, null, {}, 'members' );
 		} else {
-			session.log({
-				id: COMPONENT_ID,
-				type: START_SURVEY,
-				value: {
-					answers: answers,
-					type: type,
-					question: question
-				}
-			}, 'members' );
+			logAction( START, {
+				answers: answers,
+				type: type,
+				question: question
+			}, {}, 'members' );
 		}
-	}, [ answers, session, question, showSurvey, type ] );
+	}, [ answers, question, logAction, showSurvey, type ] );
 	let body;
 	if ( showSurvey ) {
 		body = <div>
 			{ type === 'multiple-choice' ?
 				<MultipleChoiceSurvey
-					user
 					question={question}
 					answers={answers}
-					id={COMPONENT_ID+':multiple-choice-survey'}
+					id={question}
 					anonymous={anonymous}
 				/> : null
 			}
 			{ type === 'number' ?
 				<NumberSurvey
-					user
 					question={question}
-					id={COMPONENT_ID+':number-survey'}
+					id={question}
 					anonymous={anonymous}
 				/> : null
 			}
 			{ type === 'free-text' ?
 				<FreeTextSurvey
-					user
 					question={question}
 					answers={answers}
-					id={COMPONENT_ID+':free-text-survey'}
+					id={question}
 					anonymous={anonymous}
 				/> : null
 			}

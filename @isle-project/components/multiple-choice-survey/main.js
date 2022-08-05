@@ -103,35 +103,35 @@ const MultipleChoiceSurvey = ( props ) => {
 			freqTable
 		});
 	}, [ answers, t ] );
-	const renderAnswerOptionsSingle = useCallback( ( key, id ) => {
+	const renderAnswerOptionsSingle = useCallback( ( key, idx ) => {
 		return (
 			<AnswerOption
-				key={id}
-				no={id}
+				key={idx}
+				no={idx}
 				answerContent={key}
-				active={active === id}
+				active={active === idx}
 				submitted={submitted}
 				onAnswerSelected={() => {
 					if ( !submitted ) {
-						setActive( id );
+						setActive( idx );
 						setAnswerSelected( true );
 					}
 				}}
 			/>
 		);
 	}, [ active, submitted ] );
-	const renderAnswerOptionsMultiple = useCallback( ( key, id ) => {
+	const renderAnswerOptionsMultiple = useCallback( ( key, idx ) => {
 		return (
 			<AnswerOption
 				key={key}
-				no={id}
+				no={idx}
 				answerContent={key}
-				active={active[ id ]}
+				active={active[ idx ]}
 				submitted={submitted}
 				onAnswerSelected={() => {
 					if ( !submitted ) {
 						let newActive = active.slice();
-						newActive[ id ] = !newActive[ id ];
+						newActive[ idx ] = !newActive[ idx ];
 						setActive( newActive );
 						setAnswerSelected( true );
 					}
