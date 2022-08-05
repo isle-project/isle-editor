@@ -46,7 +46,6 @@ import split from './split.js';
  * @returns {Object} object with counts
  */
 function countUniqueValues( values, indices ) {
-	console.log( 'countUniqueValues' );
 	const counter = {};
 
 	// Detect different values of attribute:
