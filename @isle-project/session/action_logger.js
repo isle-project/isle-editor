@@ -1,11 +1,12 @@
 // MODULES //
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import SessionContext from '@isle-project/session/context.js';
 import generateUID from '@isle-project/utils/uid';
 import kebabcase from '@isle-project/utils/kebabcase';
+import { MEMBER_ACTION } from '@isle-project/constants/events.js';
 
 
 // VARIABLES //
@@ -25,6 +26,15 @@ const uid = {};
 */
 function useActionLogger( componentType, props ) {
 	const session = useContext( SessionContext );
+	const [ unsubscribe, setUnsubscribe ] = useState( null );
+
+	useEffect( () => {
+		return () => {
+			if ( unsubscribe ) {
+				unsubscribe();
+			}
+		};
+	});
 	let id = props.id;
 	if ( !id ) {
 		if ( !uid[ componentType ] ) {
@@ -32,14 +42,25 @@ function useActionLogger( componentType, props ) {
 		}
 		id = uid[ componentType ]( props );
 	}
+	const idRef = useRef( id );
 	return {
+		onAction( fcnMap ) {
+			setUnsubscribe( session.subscribe( ( type, action ) => {
+				if ( type === MEMBER_ACTION && action.id === id ) {
+					const fcn = fcnMap[ componentType + '_' + action.type ];
+					if ( fcn ) {
+						fcn( action );
+					}
+				}
+			} ) );
+		},
 		logScore: ( score, metricName, tag ) => {
 			session.recordCompletion( { id, componentType, score, metricName, tag } );
 		},
 		logAction: ( action, value, options = {}, recipients ) => {
 			session.log({
 				type: componentType + '_' + action,
-				id,
+				id: idRef.current,
 				value: value || null,
 				componentType: componentType,
 				...options
@@ -49,7 +70,7 @@ function useActionLogger( componentType, props ) {
 			const userActions = session.currentUserActions;
 			const type = `${componentType}_${actionType}`;
 			if ( isObject( userActions ) ) {
-				let actions = userActions[ id ];
+				let actions = userActions[ idRef.current ];
 				if ( isArray( actions ) ) {
 					actions = actions.filter( action => {
 						return action.type === type;
@@ -61,7 +82,7 @@ function useActionLogger( componentType, props ) {
 			}
 			return null;
 		},
-		id
+		id: idRef.current
 	};
 }
 
@@ -76,8 +97,8 @@ function withActionLogger( componentType, idAccessor ) {
 	return ( Component ) => {
 		function WrappedComponent({ forwardedRef, ...rest }) {
 			const props = idAccessor ? { ...rest, id: idAccessor( rest ) }: rest;
-			const { id, logAction, logScore, retrieveLastAction } = useActionLogger( componentType, props );
-			return React.createElement( Component, { ...rest, logScore, logAction, retrieveLastAction, id, ref: forwardedRef } );
+			const { id, logAction, logScore, retrieveLastAction, onAction } = useActionLogger( componentType, props );
+			return React.createElement( Component, { ...rest, logScore, logAction, retrieveLastAction, onAction, id, ref: forwardedRef } );
 		}
 		const forwardRef = ( props, ref ) => {
 			return <WrappedComponent {...props} forwardedRef={ref} />;
