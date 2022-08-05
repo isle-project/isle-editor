@@ -12,7 +12,6 @@ import Tooltip from '@isle-project/components/tooltip';
 import Link from '@isle-project/components/link';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { useActionLogger } from '@isle-project/session/action_logger.js';
-import SessionContext from '@isle-project/session/context.js';
 import { INTERACTION } from '@isle-project/constants/actions.js';
 
 
@@ -37,7 +36,6 @@ const IFrame = ( props ) => {
 		width: width || window.innerWidth,
 		height: height || window.innerHeight
 	});
-	const session = useContext( SessionContext );
 	const [ loaded, setLoaded ] = useState( false );
 	const { t } = useTranslation( 'iframe' );
 
@@ -55,7 +53,7 @@ const IFrame = ( props ) => {
 		return () => {
 			window.removeEventListener( eventType, handleEvent );
 		};
-	}, [ session ] );
+	}, [ logAction ] );
 	useEffect( () => {
 		if ( fullscreen ) {
 			setDimensions({
