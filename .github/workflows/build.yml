@@ -21,9 +21,13 @@ jobs:
         npm run build
       env:
         CI: true
-    - name: npm lint & test
+    - name: npm lint
       run: |
         npm run lint
+      env:
+        CI: true
+    - name: npm test
+      run: |
         npm test
       env:
         CI: true
@@ -41,9 +45,13 @@ jobs:
         npm run build
       env:
         CI: true
-    - name: npm lint & test
+    - name: npm lint
       run: |
         npm run lint
+      env:
+        CI: true
+    - name: npm test
+      run: |
         npm test
       env:
         CI: true
@@ -61,9 +69,13 @@ jobs:
         npm run build
       env:
         CI: true
-    - name: npm lint & test
+    - name: npm lint
       run: |
         npm run lint
+      env:
+        CI: true
+    - name: npm test
+      run: |
         npm test
       env:
         CI: true
