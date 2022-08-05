@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { useCallback, useEffect, useState, Fragment } from 'react';
+import React, { useCallback, useEffect, useState, Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import Table from 'react-bootstrap/Table';
@@ -15,7 +15,8 @@ import { useActionLogger } from '@isle-project/session/action_logger.js';
 
 // VARIABLES //
 
-const ENGAGEMENT_BINARY = 'engagement-binary';
+const ENGAGEMENT_BINARY = 'ENGAGEMENT_BINARY';
+const ENGAGEMENT_BINARY_ID = 'engagement-binary';
 
 
 // MAIN //
@@ -28,8 +29,67 @@ const EngagementBinary = ({ session, type, t, onHide }) => {
 	const [ nRight, setNRight ] = useState( 0 );
 	const [ responses, setResponses ] = useState( [] );
 	const [ showResponses, setShowResponses ] = useState( false );
-	const { logAction, onAction } = useActionLogger( ENGAGEMENT_BINARY, { id: ENGAGEMENT_BINARY } );
-
+	const { logAction, onAction } = useActionLogger( ENGAGEMENT_BINARY, { id: ENGAGEMENT_BINARY_ID } );
+	const notification = useRef( null );
+	useEffect( () => {
+		let leftButton;
+		let rightButton;
+		let message;
+		switch ( type ) {
+			case 'yes:no':
+				leftButton = 'fas fa-times';
+				rightButton = 'fas fa-check';
+				message = t( 'answer-yes-no' );
+			break;
+			case 'too-slow:too-fast':
+				leftButton = 'fas fa-backward';
+				rightButton = 'fas fa-forward';
+				message = t( 'answer-slow-fast' );
+			break;
+		}
+		if ( !session.isOwner() && !notification.current ) {
+			notification.current = session.addNotification({
+				title: t( 'poll' ),
+				message,
+				level: 'info',
+				position: 'tc',
+				dismissible: 'none',
+				autoDismiss: 0,
+				children: <div style={{ marginBottom: '40px', marginTop: '10px' }}>
+					<Button
+						variant="secondary" style={{ float: 'left' }}
+						onClick={() => {
+							logAction( SHARE, -1 );
+							session.removeNotification( notification.current );
+							session.addNotification({
+								title: t( 'answer-recorded' ),
+								message: t( 'answer-recorded-message' ),
+								level: 'success',
+								position: 'tc'
+							});
+						}}
+					>
+						<i className={leftButton} ></i>
+					</Button>
+					<Button
+						variant="secondary" style={{ float: 'right' }}
+						onClick={() => {
+							logAction( SHARE, 1 );
+							session.removeNotification( notification.current );
+							session.addNotification({
+								title: t( 'answer-recorded' ),
+								message: t( 'answer-recorded-message' ),
+								level: 'success',
+								position: 'tc'
+							});
+						}}
+					>
+						<i className={rightButton}></i>
+					</Button>
+				</div>
+			});
+		}
+	}, [ logAction, session, t, type ] );
 	useEffect( () => {
 		const unsubscribe = onAction({
 			[SHARE]: ( action ) => {
@@ -48,67 +108,10 @@ const EngagementBinary = ({ session, type, t, onHide }) => {
 				}
 			}
 		});
-		let leftButton;
-		let rightButton;
-		let message;
-		switch ( type ) {
-			case 'yes:no':
-				leftButton = 'fas fa-times';
-				rightButton = 'fas fa-check';
-				message = t( 'answer-yes-no' );
-			break;
-			case 'too-slow:too-fast':
-				leftButton = 'fas fa-backward';
-				rightButton = 'fas fa-forward';
-				message = t( 'answer-slow-fast' );
-			break;
-		}
-		if ( !session.isOwner() ) {
-			const notification = session.addNotification({
-				title: t( 'poll' ),
-				message,
-				level: 'info',
-				position: 'tc',
-				dismissible: 'none',
-				autoDismiss: 0,
-				children: <div style={{ marginBottom: '40px', marginTop: '10px' }}>
-					<Button
-						variant="secondary" style={{ float: 'left' }}
-						onClick={() => {
-							logAction( SHARE, -1 );
-							session.removeNotification( notification );
-							session.addNotification({
-								title: t( 'answer-recorded' ),
-								message: t( 'answer-recorded-message' ),
-								level: 'success',
-								position: 'tc'
-							});
-						}}
-					>
-						<i className={leftButton} ></i>
-					</Button>
-					<Button
-						variant="secondary" style={{ float: 'right' }}
-						onClick={() => {
-							logAction( SHARE, 1 );
-							session.removeNotification( notification );
-							session.addNotification({
-								title: t( 'answer-recorded' ),
-								message: t( 'answer-recorded-message' ),
-								level: 'success',
-								position: 'tc'
-							});
-						}}
-					>
-						<i className={rightButton}></i>
-					</Button>
-				</div>
-			});
-		}
 		return () => {
 			unsubscribe();
 		};
-	});
+	}, [ nLeft, nRight, onAction, responses ] );
 	const toggleResponses = useCallback( () => {
 		setShowResponses( !showResponses );
 	}, [ showResponses ] );

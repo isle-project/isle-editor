@@ -19,7 +19,8 @@ import ScoreSetter from './score_setter.js';
 
 // VARIABLES //
 
-const ENGAGEMENT_METER = 'engagement-meter';
+const ENGAGEMENT_METER = 'ENGAGEMENT_METER';
+const ENGAGEMENT_METER_ID = 'engagement-meter';
 
 
 // MAIN //
@@ -33,7 +34,7 @@ const EngagementMeter = ({ session, t, onHide }) => {
 	const [ responses, setResponses ] = useState( [] );
 	const [ showResponses, setShowResponses ] = useState( false );
 
-	const { logAction, onAction } = useActionLogger( ENGAGEMENT_METER, { id: ENGAGEMENT_METER } );
+	const { logAction, onAction } = useActionLogger( ENGAGEMENT_METER, { id: ENGAGEMENT_METER_ID } );
 
 	const toggleResponses = useCallback( () => {
 		setShowResponses( !showResponses );
@@ -41,6 +42,7 @@ const EngagementMeter = ({ session, t, onHide }) => {
 
 	const meanAcc = useRef( incrmmean( 6 ) );
 	const rangeAcc = useRef( incrmrange( 6 ) );
+	const notification = useRef( null );
 
 	useEffect( () => {
 		const unsubscribe = onAction({
@@ -58,8 +60,8 @@ const EngagementMeter = ({ session, t, onHide }) => {
 				setResponses( newResponses );
 			}
 		});
-		if ( !session.isOwner() ) {
-			const notification = session.addNotification({
+		if ( !session.isOwner() && !notification.current ) {
+			notification.current = session.addNotification({
 				title: t( 'poll' ),
 				message: t( 'meter-prompt' ),
 				level: 'info',
@@ -68,7 +70,7 @@ const EngagementMeter = ({ session, t, onHide }) => {
 				autoDismiss: 0,
 				children: <ScoreSetter t={t} onSubmit={( progress ) => {
 					logAction( SHARE, progress );
-					session.removeNotification( notification );
+					session.removeNotification( notification.current );
 					session.addNotification({
 						title: t( 'answer-recorded' ),
 						message: t( 'answer-recorded-message' ),

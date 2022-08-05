@@ -1,10 +1,9 @@
 // MODULES //
 
-import React, { Fragment, memo, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { Fragment, memo, useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Overlay from 'react-bootstrap/Overlay';
 import noop from '@stdlib/utils/noop';
 import Draggable from '@isle-project/components/draggable';
 import Gate from '@isle-project/components/gate';
@@ -16,12 +15,11 @@ import isElectron from '@isle-project/utils/is-electron';
 import SessionContext from '@isle-project/session/context.js';
 import pixelsToNumber from '@isle-project/utils/pixels-to-number';
 import useForceUpdate from '@isle-project/utils/hooks/use-force-update';
-import { ENGAGEMENT_SURVEY_START, ENGAGEMENT_SURVEY_END, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
-import { MEMBER_ACTION, RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from '@isle-project/constants/events.js';
-import EngagementButtons from './engagement_buttons.js';
+import { TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
+import { RECEIVED_QUEUE_QUESTIONS, RECEIVED_LESSON_INFO, RECEIVED_USERS, USER_JOINED } from '@isle-project/constants/events.js';
+import EngagementButtons from './engagement';
 import HelpPage from './help';
 import Calculator from './calculator';
-import Engagement from './engagement';
 import Ticketing from './ticketing';
 import Queue from './queue';
 import './toolbar.css';
@@ -33,7 +31,6 @@ const F2 = '(F2)';
 const C = '(C)';
 const Q = '(Q)';
 const D = '(D)';
-const P = '(P)';
 const S = '(S)';
 const T = '(T)';
 const DEFAULT_CUSTOM_STATE = {};
@@ -52,8 +49,6 @@ const Toolbar = () => {
 	const [ help, setHelp ] = useState( false );
 	const [ queue, setQueue ] = useState( false );
 	const [ sketchpad, setSketchpad ] = useState( false );
-	const [ engagementMenu, setEngagementMenu ] = useState( false );
-	const [ engagementInProgress, setEngagementInProgress ] = useState( false );
 	const [ ticketing, setTicketing ] = useState( false );
 	const [ showToolbar, setShowToolbar ] = useState( true );
 	const [ sketchpadDims, setSketchpadDims ] = useState({
@@ -61,7 +56,6 @@ const Toolbar = () => {
 		height: window.innerHeight * 0.6
 	});
 	const [ showCustom, setShowCustom ] = useState( DEFAULT_CUSTOM_STATE );
-	const engagementButtonRef = useRef( null );
 
 	const toggleCalculator = useCallback( () => {
 		setCalculator( !calculator );
@@ -75,25 +69,12 @@ const Toolbar = () => {
 	const toggleTicketing = useCallback( () => {
 		setTicketing( !ticketing );
 	}, [ ticketing ] );
-	const toggleEngagement = useCallback( () => {
-		if ( engagementInProgress ) {
-			const action = {
-				id: 'engagement',
-				type: ENGAGEMENT_SURVEY_END
-			};
-			return session.log( action, 'members' );
-		}
-		setEngagementMenu( !engagementMenu );
-	}, [ engagementInProgress, engagementMenu, session ] );
 	const toggleHelp = useCallback( () => {
 		setHelp( !help );
 	}, [ help ] );
 	const toggleToolbar = useCallback( () => {
-		if ( engagementMenu ) {
-			setEngagementMenu( !engagementMenu );
-		}
 		setShowToolbar( !showToolbar );
-	}, [ engagementMenu, showToolbar ] );
+	}, [ showToolbar ] );
 	const renderButton = ( elem, key ) => {
 		const toggleElement = () => {
 			setShowCustom({
@@ -154,8 +135,7 @@ const Toolbar = () => {
 		'q': hide.queue ? noop : toggleQueue,
 		's': hide.sketchpad ? noop : toggleSketchpad,
 		'd': hide.help ? noop : toggleHelp,
-		't': ( session.enableTicketing && !hide.ticketing ) ? toggleTicketing : noop,
-		'p': hide.engagement ? noop : toggleEngagement
+		't': ( session.enableTicketing && !hide.ticketing ) ? toggleTicketing : noop
 	};
 	useEffect( () => {
 		const unsubscribe = session.subscribe( ( type, value ) => {
@@ -167,16 +147,6 @@ const Toolbar = () => {
 				type === RECEIVED_LESSON_INFO || type === RECEIVED_QUEUE_QUESTIONS
 			) {
 				forceUpdate();
-			}
-			else if ( type === MEMBER_ACTION && value.id === 'engagement' ) {
-				const actionType = value.type;
-				if ( actionType === ENGAGEMENT_SURVEY_START ) {
-					setEngagementInProgress( true );
-					setEngagementMenu( false );
-				}
-				else if ( actionType === ENGAGEMENT_SURVEY_END ) {
-					setEngagementInProgress( false );
-				}
 			}
 		});
 		return () => {
@@ -299,37 +269,8 @@ const Toolbar = () => {
 						</Button>
 					</Tooltip>
 				</Gate>
-				<Gate owner inline showOwnerInPresentationMode banner={null} >
-					<Tooltip
-						tooltip={`${engagementInProgress ? t( 'finish-poll' ) : t( 'polls' )} ${P}`}
-						placement="right"
-					>
-						<Button
-							variant={engagementInProgress ? 'warning' : ( engagementMenu ? 'success' : 'light' )}
-							className="toolbar-button toolbar-engagement"
-							onClick={toggleEngagement}
-							ref={engagementButtonRef}
-							aria-label={engagementInProgress ? t( 'finish-poll' ) : t( 'open-poll-menu' )}
-							style={{
-								display: !hide.engagement ? 'inline-block' : 'none'
-							}}
-						>
-							<span className="fa fa-lg fa-poll-h toolbar-icon" />
-						</Button>
-					</Tooltip>
-				</Gate>
-				<Overlay
-					placement="right"
-					show={engagementMenu}
-					target={engagementButtonRef.current}
-					trigger="click"
-				>
-					<div>
-						<EngagementButtons />
-					</div>
-				</Overlay>
+				{ !hide.engagement ? <EngagementButtons session={session} /> : null }
 			</ButtonGroup>
-			<Engagement session={session} onHide={toggleEngagement} />
 			{sketchpad ?
 				<Draggable
 					resizable
