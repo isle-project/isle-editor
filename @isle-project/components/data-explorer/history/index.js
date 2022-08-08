@@ -30,6 +30,11 @@ import TextSelect from './text_select.js';
 import SearchBar from './search.js';
 
 
+// VARIABLES //
+
+const RE_COMPONENT_TYPE = /^DATA_EXPLORER_/;
+
+
 // MAIN //
 
 const HistoryPanel = ( props ) => {
@@ -58,7 +63,8 @@ const HistoryPanel = ( props ) => {
 	const expr = new RegExp( searchWords[ 0 ], 'i' );
 	if ( includes.length !== 0 ) {
 		for ( let i = 0; i < props.actions.length; i++ ) {
-			const action = props.actions[ i ];
+			const action = { ...props.actions[ i ] };
+			action.type = action.type.replace( RE_COMPONENT_TYPE, '' );
 			if (
 				action.type === CLEAR_OUTPUT_PANE ||
 				action.type === DELETE_OUTPUT ||
