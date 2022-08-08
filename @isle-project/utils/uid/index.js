@@ -18,6 +18,14 @@
 // MODULES //
 
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import objectToHash from 'object-hash';
+
+
+// VARIABLES //
+
+const HASH_OPTIONS = {
+	ignoreUnknown: true
+};
 
 
 // MAIN //
@@ -34,7 +42,7 @@ import { isPrimitive as isString } from '@stdlib/assert/is-string';
 */
 function generateUID( prefix ) {
 	let counter = 1;
-	const map = new WeakMap();
+	const map = new Map();
 
 	/**
 	* Returns an identifier.
@@ -46,11 +54,12 @@ function generateUID( prefix ) {
 		if ( isString( item ) ) {
 			return `${prefix}-${item}`;
 		}
-		if ( !map.has( item ) ) {
-			map.set( item, `${prefix}-${counter++}` );
+		const hash = objectToHash( item, HASH_OPTIONS );
+		if ( !map.has( hash ) ) {
+			map.set( hash, `${prefix}-${counter++}` );
 			return uid( item );
 		}
-		return map.get( item );
+		return map.get( hash );
 	};
 	return uid;
 }
