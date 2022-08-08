@@ -1,6 +1,6 @@
 // MODULES //
 
-import React, { Component } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -12,39 +12,26 @@ import FormGroup from 'react-bootstrap/FormGroup';
 /**
  * Displays a search input.
  */
-class Search extends Component {
-	constructor() {
-		super();
-
-		this.state = {
-			search: ''
-		};
-	}
-
-	handleSearch = ( event ) => {
-		this.setState({
-			search: event.target.value
-		});
-		this.props.onClick( event.target.value );
-	};
-
-	render() {
-		return (
-			<FormGroup>
-				<InputGroup size="small" >
-					<FormControl
-						aria-label="Search"
-						type="text"
-						placeholder="Search actions..."
-						onChange={this.handleSearch}
-						onKeyPress={this.handleKeyPress}
-						value={this.state.search}
-					/>
-				</InputGroup>
-			</FormGroup>
-		);
-	}
-}
+const Search = ({ onClick }) => {
+	const [ search, setSearch ] = useState( '' );
+	const handleSearch = useCallback( ( event ) => {
+		setSearch( event.target.value );
+		onClick( event.target.value );
+	}, [ onClick ]);
+	return (
+		<FormGroup>
+			<InputGroup size="small" >
+				<FormControl
+					aria-label="Search"
+					type="text"
+					placeholder="Search actions..."
+					onChange={handleSearch}
+					value={search}
+				/>
+			</InputGroup>
+		</FormGroup>
+	);
+};
 
 
 // PROPERTIES //
