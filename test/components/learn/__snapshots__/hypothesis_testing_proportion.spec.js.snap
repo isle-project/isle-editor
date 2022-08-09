@@ -42,7 +42,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                 <div>
                   <div
                     className=" css-b62m3t-container"
-                    id="select-input-1"
+                    id="dynamic-select-input-1"
                     onKeyDown={[Function]}
                   >
                     <span
@@ -156,7 +156,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
               >
                 <span>
                   <label
-                    htmlFor="number-input-1"
+                    htmlFor="dynamic-number-input-1"
                   >
                     Hypothesized proportion (null hypothesis):
                   </label>
@@ -172,7 +172,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                     autoComplete="off"
                     className="number-number-input"
                     disabled={false}
-                    id="number-input-1"
+                    id="dynamic-number-input-1"
                     max={1}
                     min={0}
                     name="input"
@@ -215,7 +215,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                 >
                   <span>
                     <label
-                      htmlFor="number-input-2"
+                      htmlFor="dynamic-number-input-2"
                     >
                       sample-proportion:
                     </label>
@@ -231,7 +231,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-2"
+                      id="dynamic-number-input-2"
                       max={1}
                       min={0}
                       name="input"
@@ -264,7 +264,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                 >
                   <span>
                     <label
-                      htmlFor="number-input-3"
+                      htmlFor="dynamic-number-input-3"
                     >
                       sample-size:
                     </label>
@@ -280,7 +280,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-3"
+                      id="dynamic-number-input-3"
                       max={Infinity}
                       min={1}
                       name="input"

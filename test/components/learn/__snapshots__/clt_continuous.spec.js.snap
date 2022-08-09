@@ -118,7 +118,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         >
                           <span>
                             <label
-                              htmlFor="number-input-1"
+                              htmlFor="dynamic-number-input-1"
                             >
                               <span>
                                 Minimum 
@@ -137,7 +137,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               autoComplete="off"
                               className="number-number-input"
                               disabled={false}
-                              id="number-input-1"
+                              id="dynamic-number-input-1"
                               max={1}
                               min={-500}
                               name="input"
@@ -170,7 +170,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         >
                           <span>
                             <label
-                              htmlFor="number-input-2"
+                              htmlFor="dynamic-number-input-2"
                             >
                               <span>
                                 maximum
@@ -190,7 +190,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               autoComplete="off"
                               className="number-number-input"
                               disabled={false}
-                              id="number-input-2"
+                              id="dynamic-number-input-2"
                               max={500}
                               min={0}
                               name="input"
@@ -234,7 +234,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         >
                           <span>
                             <label
-                              htmlFor="number-input-3"
+                              htmlFor="dynamic-number-input-3"
                             >
                               <span>
                                 rate-parameter
@@ -254,7 +254,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               autoComplete="off"
                               className="number-number-input"
                               disabled={false}
-                              id="number-input-3"
+                              id="dynamic-number-input-3"
                               max={100}
                               min={0.01}
                               name="input"
@@ -298,7 +298,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         >
                           <span>
                             <label
-                              htmlFor="number-input-4"
+                              htmlFor="dynamic-number-input-4"
                             >
                               <span>
                                 Mean 
@@ -317,7 +317,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               autoComplete="off"
                               className="number-number-input"
                               disabled={false}
-                              id="number-input-4"
+                              id="dynamic-number-input-4"
                               max={100}
                               min={-100}
                               name="input"
@@ -350,7 +350,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         >
                           <span>
                             <label
-                              htmlFor="number-input-5"
+                              htmlFor="dynamic-number-input-5"
                             >
                               <span>
                                  Standard deviation 
@@ -369,7 +369,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               autoComplete="off"
                               className="number-number-input"
                               disabled={false}
-                              id="number-input-5"
+                              id="dynamic-number-input-5"
                               max={500}
                               min={0.01}
                               name="input"
@@ -437,7 +437,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                   >
                     <span>
                       <label
-                        htmlFor="number-input-6"
+                        htmlFor="dynamic-number-input-6"
                       >
                         sample-size:
                       </label>
@@ -453,7 +453,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         autoComplete="off"
                         className="number-number-input"
                         disabled={false}
-                        id="number-input-6"
+                        id="dynamic-number-input-6"
                         max={500}
                         min={1}
                         name="input"
@@ -1074,7 +1074,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
             </p>
             <div
               className="input checkbox-input-div"
-              id="checkbox-input-1"
+              id="dynamic-checkbox-input-1"
               style={Object {}}
             >
               <input
@@ -1154,7 +1154,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
               }
             >
               <label
-                htmlFor="number-input-7"
+                htmlFor="dynamic-number-input-7"
               >
                  
                 <div />
@@ -1164,7 +1164,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-7"
+                id="dynamic-number-input-7"
                 max={Infinity}
                 min={-Infinity}
                 name="input"
@@ -1231,7 +1231,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
               }
             >
               <label
-                htmlFor="number-input-8"
+                htmlFor="dynamic-number-input-8"
               >
                  
                 <div />
@@ -1241,7 +1241,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-8"
+                id="dynamic-number-input-8"
                 max={Infinity}
                 min={-Infinity}
                 name="input"

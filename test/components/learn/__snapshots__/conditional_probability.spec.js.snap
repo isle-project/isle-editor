@@ -17,7 +17,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         <span />
         <input
           className="text-inline-input"
-          id="text-input-1"
+          id="dynamic-text-input-1"
           name="input"
           onChange={[Function]}
           onKeyDown={[Function]}
@@ -44,7 +44,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         <span />
         <input
           className="text-inline-input"
-          id="text-input-2"
+          id="dynamic-text-input-2"
           name="input"
           onChange={[Function]}
           onKeyDown={[Function]}
@@ -81,7 +81,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           autoComplete="off"
           className="number-number-input"
           disabled={false}
-          id="number-input-1"
+          id="dynamic-number-input-1"
           max={1}
           min={0}
           name="input"
@@ -124,7 +124,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           autoComplete="off"
           className="number-number-input"
           disabled={false}
-          id="number-input-2"
+          id="dynamic-number-input-2"
           max={1}
           min={0}
           name="input"
@@ -209,7 +209,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-3"
+                      id="dynamic-number-input-3"
                       max={0.5}
                       min={0}
                       name="input"
@@ -250,7 +250,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-4"
+                      id="dynamic-number-input-4"
                       max={0.5}
                       min={0}
                       name="input"
@@ -301,7 +301,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-5"
+                      id="dynamic-number-input-5"
                       max={0.5}
                       min={0}
                       name="input"
@@ -342,7 +342,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-6"
+                      id="dynamic-number-input-6"
                       max={0.5}
                       min={0}
                       name="input"
@@ -469,7 +469,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
               }
             >
               <label
-                htmlFor="number-input-7"
+                htmlFor="dynamic-number-input-7"
               >
                  
                 <div />
@@ -479,7 +479,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-7"
+                id="dynamic-number-input-7"
                 max={1}
                 min={0}
                 name="input"
@@ -518,7 +518,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
               }
             >
               <label
-                htmlFor="number-input-8"
+                htmlFor="dynamic-number-input-8"
               >
                  
                 <div />
@@ -528,7 +528,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-8"
+                id="dynamic-number-input-8"
                 max={1}
                 min={0}
                 name="input"

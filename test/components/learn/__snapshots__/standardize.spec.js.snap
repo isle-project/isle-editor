@@ -37,7 +37,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-1"
+                htmlFor="dynamic-number-input-1"
               >
                 mean:
               </label>
@@ -53,7 +53,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-1"
+                id="dynamic-number-input-1"
                 max={25}
                 min={-25}
                 name="input"
@@ -86,7 +86,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-2"
+                htmlFor="dynamic-number-input-2"
               >
                 standard-deviation:
               </label>
@@ -102,7 +102,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-2"
+                id="dynamic-number-input-2"
                 max={10}
                 min={1}
                 name="input"

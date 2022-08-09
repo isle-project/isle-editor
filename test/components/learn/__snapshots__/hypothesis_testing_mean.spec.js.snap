@@ -42,7 +42,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 <div>
                   <div
                     className=" css-b62m3t-container"
-                    id="select-input-1"
+                    id="dynamic-select-input-1"
                     onKeyDown={[Function]}
                   >
                     <span
@@ -153,7 +153,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 <div>
                   <div
                     className=" css-b62m3t-container"
-                    id="select-input-2"
+                    id="dynamic-select-input-2"
                     onKeyDown={[Function]}
                   >
                     <span
@@ -267,7 +267,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
               >
                 <span>
                   <label
-                    htmlFor="number-input-1"
+                    htmlFor="dynamic-number-input-1"
                   >
                     Hypothesized mean (null hypothesis):
                   </label>
@@ -283,7 +283,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                     autoComplete="off"
                     className="number-number-input"
                     disabled={false}
-                    id="number-input-1"
+                    id="dynamic-number-input-1"
                     max={Infinity}
                     min={-Infinity}
                     name="input"
@@ -328,7 +328,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 >
                   <span>
                     <label
-                      htmlFor="number-input-2"
+                      htmlFor="dynamic-number-input-2"
                     >
                       sample-mean:
                     </label>
@@ -344,7 +344,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-2"
+                      id="dynamic-number-input-2"
                       max={Infinity}
                       min={-Infinity}
                       name="input"
@@ -377,7 +377,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 >
                   <span>
                     <label
-                      htmlFor="number-input-3"
+                      htmlFor="dynamic-number-input-3"
                     >
                       <span>
                         Sigma 
@@ -396,7 +396,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-3"
+                      id="dynamic-number-input-3"
                       max={Infinity}
                       min={0.1}
                       name="input"
@@ -429,7 +429,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                 >
                   <span>
                     <label
-                      htmlFor="number-input-4"
+                      htmlFor="dynamic-number-input-4"
                     >
                       sample-size:
                     </label>
@@ -445,7 +445,7 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
                       autoComplete="off"
                       className="number-number-input"
                       disabled={false}
-                      id="number-input-4"
+                      id="dynamic-number-input-4"
                       max={Infinity}
                       min={1}
                       name="input"

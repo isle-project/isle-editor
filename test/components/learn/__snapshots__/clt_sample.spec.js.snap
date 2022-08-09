@@ -37,13 +37,13 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
             >
               <div>
                 <label
-                  htmlFor="select-input-1"
+                  htmlFor="dynamic-select-input-1"
                 >
                   select-variable
                 </label>
                 <div
                   className=" css-b62m3t-container"
-                  id="select-input-1"
+                  id="dynamic-select-input-1"
                   onKeyDown={[Function]}
                 >
                   <span

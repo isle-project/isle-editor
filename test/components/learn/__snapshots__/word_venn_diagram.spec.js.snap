@@ -58,7 +58,7 @@ Array [
         >
           <span>
             <label
-              htmlFor="text-input-1"
+              htmlFor="dynamic-text-input-1"
             >
               word 1
               :
@@ -67,7 +67,7 @@ Array [
           </span>
           <input
             className="text-input"
-            id="text-input-1"
+            id="dynamic-text-input-1"
             name="input"
             onBlur={[Function]}
             onChange={[Function]}
@@ -95,7 +95,7 @@ Array [
         >
           <span>
             <label
-              htmlFor="number-input-1"
+              htmlFor="dynamic-number-input-1"
             >
               min-of-times:
             </label>
@@ -111,7 +111,7 @@ Array [
               autoComplete="off"
               className="number-number-input"
               disabled={false}
-              id="number-input-1"
+              id="dynamic-number-input-1"
               max={50}
               min={1}
               name="input"

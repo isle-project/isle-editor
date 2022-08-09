@@ -30,7 +30,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
     >
       <span>
         <label
-          htmlFor="number-input-1"
+          htmlFor="dynamic-number-input-1"
         >
           number-of-sides:
         </label>
@@ -46,7 +46,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           autoComplete="off"
           className="number-number-input"
           disabled={false}
-          id="number-input-1"
+          id="dynamic-number-input-1"
           max={20}
           min={2}
           name="input"
@@ -95,7 +95,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-2"
+                htmlFor="dynamic-number-input-2"
               >
                 Side 1:
               </label>
@@ -111,7 +111,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-2"
+                id="dynamic-number-input-2"
                 max={1}
                 min={0}
                 name="input"
@@ -144,7 +144,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-3"
+                htmlFor="dynamic-number-input-3"
               >
                 Side 2:
               </label>
@@ -160,7 +160,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-3"
+                id="dynamic-number-input-3"
                 max={1}
                 min={0}
                 name="input"
@@ -193,7 +193,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-4"
+                htmlFor="dynamic-number-input-4"
               >
                 Side 3:
               </label>
@@ -209,7 +209,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-4"
+                id="dynamic-number-input-4"
                 max={1}
                 min={0}
                 name="input"
@@ -242,7 +242,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-5"
+                htmlFor="dynamic-number-input-5"
               >
                 Side 4:
               </label>
@@ -258,7 +258,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-5"
+                id="dynamic-number-input-5"
                 max={1}
                 min={0}
                 name="input"
@@ -291,7 +291,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-6"
+                htmlFor="dynamic-number-input-6"
               >
                 Side 5:
               </label>
@@ -307,7 +307,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-6"
+                id="dynamic-number-input-6"
                 max={1}
                 min={0}
                 name="input"
@@ -340,7 +340,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           >
             <span>
               <label
-                htmlFor="number-input-7"
+                htmlFor="dynamic-number-input-7"
               >
                 Side 6:
               </label>
@@ -356,7 +356,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 autoComplete="off"
                 className="number-number-input"
                 disabled={false}
-                id="number-input-7"
+                id="dynamic-number-input-7"
                 max={1}
                 min={0}
                 name="input"
