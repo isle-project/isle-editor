@@ -1780,4 +1780,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withActionLogger( 'DATA_EXPLORER' )( withTranslation( 'data-explorer' )( withPropCheck(  DataExplorer ) ) );
+export default withActionLogger( 'DATA_EXPLORER' )( withTranslation( 'data-explorer' )( withPropCheck( DataExplorer ) ) );
