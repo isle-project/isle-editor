@@ -49,11 +49,14 @@ function setBins( config, vals, binStrategy, nBins, xbins ) {
 	return config;
 }
 
-export function generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType = [], densityParams, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
+export function generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType = [], densityParams = {}, bandwidthAdjust, binStrategy, nBins, xBins = {}, sameXRange, sameYRange }) {
 	let traces;
 	let layout;
 	let keys;
 
+	if ( !isArray( densityType ) ) {
+		densityType = [ densityType ];
+	}
 	if ( !group ) {
 		let vals = data[ variable ];
 		let nonmissing = [];
@@ -73,7 +76,13 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 		if ( displayDensity ) {
 			for ( let i = 0; i < densityType.length; i++ ) {
 				const type = densityType[ i ];
-				const [ x, y ] = calculateDensityValues( vals, type, densityParams[ type ], bandwidthAdjust );
+				let params;
+				if ( isArray( densityParams ) ) {
+					params = densityParams;
+				} else {
+					params = densityParams[ type ] || [];
+				}
+				const [ x, y ] = calculateDensityValues( vals, type, params, bandwidthAdjust );
 				traces.push({
 					x: x,
 					y: y,
@@ -128,7 +137,13 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 					traces.push( config );
 					for ( let i = 0; i < densityType.length; i++ ) {
 						const type = densityType[ i ];
-						const [ x, y ] = calculateDensityValues( vals, type, densityParams[ type ], bandwidthAdjust );
+						let params;
+						if ( isArray( densityParams ) ) {
+							params = densityParams;
+						} else {
+							params = densityParams[ type ] || [];
+						}
+						const [ x, y ] = calculateDensityValues( vals, type, params, bandwidthAdjust );
 						traces.push({
 							x: x,
 							y: y,
