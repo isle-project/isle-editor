@@ -93,6 +93,17 @@ const KEYS = {
 	'data': '(Shift+Alt+D)',
 	'editor': '(Shift+Alt+R)'
 };
+const RE_TRANSFORMATION = /(DELETE_VARIABLE|TRANSFORMER)$/;
+const RE_COMPONENT_TYPE = /^DATA_EXPLORER_/;
+const trimActionType = ( actions ) => {
+	const out = actions.map( action => {
+		return {
+			...action,
+			type: action.type.replace( RE_COMPONENT_TYPE, '' )
+		};
+	});
+	return out;
+};
 
 
 // FUNCTIONS //
@@ -341,16 +352,20 @@ class DataExplorer extends Component {
 			}
 		}
 		if ( session.currentUserActions ) {
-			const actions = session.currentUserActions[ this.props.id ];
+			debug( 'Checking user actions' );
+			let actions = session.currentUserActions[ this.props.id ];
 			if ( this.props.data && isObjectArray( actions ) ) {
+				actions = trimActionType( actions );
 				this.restoreTransformations( actions );
 			}
 		}
 		this.unsubscribe = session.subscribe( ( type, action ) => {
 			if ( type === RETRIEVED_CURRENT_USER_ACTIONS ) {
 				const currentUserActions = action;
-				const actions = currentUserActions[ this.props.id ];
+				let actions = currentUserActions[ this.props.id ];
+				debug( 'Retrieved current user actions...' );
 				if ( this.props.data && isObjectArray( actions ) ) {
+					actions = trimActionType( actions );
 					this.restoreTransformations( actions );
 				}
 			}
@@ -394,12 +409,7 @@ class DataExplorer extends Component {
 					}
 				}
 				// Case: `collaborative` or `group` mode
-				if (
-					action.type === VARIABLE_TRANSFORMER ||
-					action.type === BIN_TRANSFORMER ||
-					action.type === CAT_TRANSFORMER ||
-					action.type === DELETE_VARIABLE
-				) {
+				if ( RE_TRANSFORMATION.test( action.type ) ) {
 					this.restoreTransformations( [ action ] );
 				}
 				this.context.currentUserActions[ this.props.id ].unshift( action );
@@ -1770,4 +1780,4 @@ DataExplorer.contextType = SessionContext;
 
 // EXPORTS //
 
-export default withActionLogger( 'DATA_EXPLORER' )( withTranslation( 'data-explorer' )( withPropCheck( DataExplorer ) ) );
+export default withActionLogger( 'DATA_EXPLORER' )( withTranslation( 'data-explorer' )( withPropCheck(  DataExplorer ) ) );
