@@ -4,6 +4,7 @@ import React, { useContext, useRef } from 'react';
 import isArray from '@stdlib/assert/is-array';
 import isObject from '@stdlib/assert/is-object';
 import isFunction from '@stdlib/assert/is-function';
+import isUndefined from '@stdlib/assert/is-undefined';
 import SessionContext from '@isle-project/session/context.js';
 import generateUID from '@isle-project/utils/uid';
 import kebabcase from '@isle-project/utils/kebabcase';
@@ -30,7 +31,7 @@ function useActionLogger( componentType, props ) {
 	let id = props.id;
 	if ( !id ) {
 		if ( !uid[ componentType ] ) {
-			uid[ componentType ] = generateUID( kebabcase( componentType ) );
+			uid[ componentType ] = generateUID( `dynamic-${kebabcase( componentType )}` ); // eslint-disable-line i18next/no-literal-string
 		}
 		id = uid[ componentType ]( props );
 	}
@@ -70,7 +71,7 @@ function useActionLogger( componentType, props ) {
 			session.log({
 				type: componentType + '_' + action,
 				id: idRef.current,
-				value: value || null,
+				value: !isUndefined( value ) ? value : null,
 				componentType: componentType,
 				...options
 			}, recipients );
