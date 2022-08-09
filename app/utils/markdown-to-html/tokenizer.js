@@ -9,6 +9,7 @@ const endsWith = require( '@stdlib/string/ends-with' );
 const removeLast = require( '@stdlib/string/remove-last' );
 const hasOwnProp = require( '@stdlib/assert/has-own-property' );
 const isLowercase = require( '@stdlib/assert/is-lowercase' );
+const isCapitalized = require( '@stdlib/assert/is-capitalized' );
 const isQuotationMark = require( './is_quotation_mark.js' );
 const isPreviousChar = require( './is_previous_char.js' );
 const trimLineStarts = require( './trim_line_starts.js' );
@@ -366,7 +367,7 @@ class Tokenizer {
 			this._openTagEnd = this._current.length;
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
-			if ( !this._current.includes( 'id=' ) && !RE_NO_ID_COMPONENTS.test( this._openingTagName ) ) {
+			if ( !this._current.includes( 'id=' ) && isCapitalized( this._openingTagName ) && !RE_NO_ID_COMPONENTS.test( this._openingTagName ) ) {
 				const pos = this._startTagNamePos + this._openingTagName.length + 1;
 				this._current = this._current.substring( 0, pos ) + ' id="'+this.uidHash[ this._openingTagName ]()+'"' + this._current.substring( pos );
 			}
