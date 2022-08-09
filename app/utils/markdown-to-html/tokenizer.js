@@ -14,6 +14,7 @@ const isPreviousChar = require( './is_previous_char.js' );
 const trimLineStarts = require( './trim_line_starts.js' );
 const isEmptyLine = require( './is_empty_line.js' );
 const isWhitespace = require( './is_whitespace.js' );
+const generateUID = require( './uid.js' );
 const tagName = require( './tagname.js' );
 const md = require( './markdownit.js' );
 
@@ -45,6 +46,7 @@ const RE_INLINE_ATTR = /\s(?:inline)(?:\s|={true})/;
 const RE_DISPLAY_MODE = /\sdisplayMode(?:\s|={true})/;
 const RE_INLINE_TAGS = /^(?:a|abbr|acronym|b|bdo|big|br|button|cite|code|dfn|em|i|img|input|kbd|label|map|object|output|q|samp|script|select|small|span|strong|sub|sup|textarea|time|tt|u|var|Badge|BeaconTooltip|Button|Citation|Clock|Input|Link|Nav\.Link|NavLink|RHelp|Text|TeX|Typewriter)$/;
 const RE_SRC_URL = /\s(src|url|pdf)=['"]$/;
+const RE_NO_ID_COMPONENTS = /^(?:Link|IFrame|TeX)$/;
 
 
 // MAIN //
@@ -65,6 +67,7 @@ class Tokenizer {
 		this.addLineWrappers = opts.addLineWrappers;
 		this.trimLineStarts = opts.trimLineStarts ? true : false;
 		this.fileDirectory = opts.fileDirectory;
+		this.uidHash = {};
 	}
 
 	setup( str ) {
@@ -336,6 +339,10 @@ class Tokenizer {
 			debug( 'IN_OPENING_TAG_NAME -> IN_OPENING_TAG' );
 			const name = this._current.substring( this._startTagNamePos );
 			this._openingTagName = removeFirst( name );
+			if ( this._openingTagName && !this.uidHash[ this._openingTagName ] ) {
+				debug( 'Generate UID for '+this._openingTagName );
+				this.uidHash[ this._openingTagName ] = generateUID( this._openingTagName );
+			}
 			this._state = IN_OPENING_TAG;
 		}
 		else if (
@@ -359,6 +366,10 @@ class Tokenizer {
 			this._openTagEnd = this._current.length;
 			this._endLineNumber = this.lineNumber;
 			this._endColumn = this.columnNumber + 1;
+			if ( !this._current.includes( 'id=' ) && !RE_NO_ID_COMPONENTS.test( this._openingTagName ) ) {
+				const pos = this._startTagNamePos + this._openingTagName.length + 1;
+				this._current = this._current.substring( 0, pos ) + ' id="'+this.uidHash[ this._openingTagName ]()+'"' + this._current.substring( pos );
+			}
 			if ( this._buffer.charAt( this.pos-1 ) === '/' ) {
 				// Case: self-closing tag
 				if (
