@@ -63,7 +63,7 @@ import {
 	GOTO_PAGE, VERTICAL_SCROLL, MOVE_POINTER,
 	MOVE_ZOOM, TOGGLE_PRESENTATION_MODE
 } from '@isle-project/constants/actions.js';
-import { LOGGED_IN, LOGGED_OUT, MEMBER_ACTION, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
+import { LOGGED_IN, LOGGED_OUT, RECEIVED_LESSON_INFO } from '@isle-project/constants/events.js';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { withActionLogger } from '@isle-project/session/action_logger.js';
 const ResetModal = Loadable( () => import( /* webpackChunkName: "SketchpadResetModal" */ './reset_modal.js' ) );
@@ -289,7 +289,7 @@ class Sketchpad extends Component {
 		window.addEventListener( 'unload', this.save );
 		let init;
 		if (
-			this.props.pdf || session.metadata.store[ this.id ]
+			this.props.pdf || session.metadata.store[ this.props.id ]
 		) {
 			init = this.initializePDF();
 		} else {
@@ -297,8 +297,8 @@ class Sketchpad extends Component {
 		}
 		init.then( () => {
 			const promise = session.anonymous ?
-				session.getSketchpadVisitorData( this.id ):
-				session.getSketchpadUserData( this.id );
+				session.getSketchpadVisitorData( this.props.id ):
+				session.getSketchpadUserData( this.props.id );
 			promise
 			.then( this.retrieveData )
 			.catch( ( err ) => {
@@ -314,8 +314,8 @@ class Sketchpad extends Component {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === LOGGED_IN || type === LOGGED_OUT ) {
 					const promise = session.anonymous ?
-						session.store.getItem( this.id ):
-						session.getSketchpadUserData( this.id );
+						session.store.getItem( this.props.id ):
+						session.getSketchpadUserData( this.props.id );
 					promise
 						.then( this.retrieveData )
 						.catch( ( err ) => {
@@ -343,238 +343,234 @@ class Sketchpad extends Component {
 						this.debouncedRedraw();
 					});
 				}
-				else if ( type === MEMBER_ACTION ) {
-					if ( action.id !== this.props.id ) {
-						return;
+			});
+		}
+		this.actionUnsubscribe = this.props.onAction( ( action ) => {
+			const type = action.type;
+			if ( action.email === session.user.email ) {
+				if ( type === MOVE_POINTER ) {
+					let { x, y, sessionID } = JSON.parse( action.value );
+					if ( sessionID !== session.sessionID ) {
+						x *= this.canvas.width / DPR;
+						y *= this.canvas.height / DPR;
+						x = `${x+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+						y = `${y}px`; // eslint-disable-line i18next/no-literal-string
+						this.pointer.style.left = x;
+						this.pointer.style.top = y;
+						this.pointer.style.opacity = 0.7;
 					}
-					const type = action.type;
-					debug( 'Received member action of type: '+type );
-					if ( action.email === session.user.email ) {
-						if ( type === MOVE_POINTER ) {
-							let { x, y, sessionID } = JSON.parse( action.value );
-							if ( sessionID !== session.sessionID ) {
-								x *= this.canvas.width / DPR;
-								y *= this.canvas.height / DPR;
-								x = `${x+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
-								y = `${y}px`; // eslint-disable-line i18next/no-literal-string
-								this.pointer.style.left = x;
-								this.pointer.style.top = y;
-								this.pointer.style.opacity = 0.7;
-							}
-						} else if ( type === HIDE_POINTER ) {
-							this.pointer.style.opacity = 0;
+				} else if ( type === HIDE_POINTER ) {
+					this.pointer.style.opacity = 0;
+				}
+				else if ( type === MOVE_ZOOM ) {
+					let { x, y, sessionID } = JSON.parse( action.value );
+					if ( sessionID !== session.sessionID ) {
+						x *= this.canvas.width / DPR;
+						y *= this.canvas.height / DPR;
+						const { width, height } = this.zoom;
+						let sw = width / ( 2.0*DPR ); // Width of sub-rectangle of source image in the destination context
+						let sh = height / ( 2.0*DPR ); // Height of sub-rectangle of source image in the destination context
+						this.zoomCtx.clearRect( 0, 0, width, height );
+						let dw = width / DPR; // Width of image in destination canvas
+						let dh = height / DPR; // Height of image in destination canvas
+						let sx = ( x*DPR - (sw/2) ); // x-axis of top left corner of sub-rectangle of source image
+						let sy = ( y*DPR - (sh/2) ); // y-axis of top left corner of sub-rectangle of source image
+						let dx = 0; // x-axis coordinate in destination canvas at which to place top-left corner of source image
+						let dy = 0; // y-axis coordinate in destination canvas at which to place top-left corner of source image
+						if ( sx < 0 ) {
+							dx -= sx;
+							sx = 0;
+							dw += ( dw / sw ) * sx;
+							sw += sx;
 						}
-						else if ( type === MOVE_ZOOM ) {
-							let { x, y, sessionID } = JSON.parse( action.value );
-							if ( sessionID !== session.sessionID ) {
-								x *= this.canvas.width / DPR;
-								y *= this.canvas.height / DPR;
-								const { width, height } = this.zoom;
-								let sw = width / ( 2.0*DPR ); // Width of sub-rectangle of source image in the destination context
-								let sh = height / ( 2.0*DPR ); // Height of sub-rectangle of source image in the destination context
-								this.zoomCtx.clearRect( 0, 0, width, height );
-								let dw = width / DPR; // Width of image in destination canvas
-								let dh = height / DPR; // Height of image in destination canvas
-								let sx = ( x*DPR - (sw/2) ); // x-axis of top left corner of sub-rectangle of source image
-								let sy = ( y*DPR - (sh/2) ); // y-axis of top left corner of sub-rectangle of source image
-								let dx = 0; // x-axis coordinate in destination canvas at which to place top-left corner of source image
-								let dy = 0; // y-axis coordinate in destination canvas at which to place top-left corner of source image
-								if ( sx < 0 ) {
-									dx -= sx;
-									sx = 0;
-									dw += ( dw / sw ) * sx;
-									sw += sx;
-								}
-								if ( sy < 0 ) {
-									dy -= sy;
-									sy = 0;
-									dh += ( dh / sh ) * sy;
-									sh += sy;
-								}
-								this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
-								const xPos = `${x-sw+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
-								const yPos = `${y-sh}px`; // eslint-disable-line i18next/no-literal-string
-								this.zoom.style.top = yPos;
-								this.zoom.style.left = xPos;
-								this.zoom.style.display = 'block';
-							}
-						} else if ( type === HIDE_ZOOM ) {
-							this.zoom.style.display = 'none';
-						} else if ( type === VERTICAL_SCROLL ) {
-							let { diffY, sessionID } = JSON.parse( action.value );
-							if ( sessionID !== session.sessionID ) {
-								diffY *= this.canvas.height;
-								this.canvasWrapper.scrollTop -= 0.1 * diffY;
-							}
+						if ( sy < 0 ) {
+							dy -= sy;
+							sy = 0;
+							dh += ( dh / sh ) * sy;
+							sh += sy;
 						}
+						this.zoomCtx.drawImage( this.canvas, sx, sy, sw, sh, dx, dy, dw, dh );
+						const xPos = `${x-sw+this.leftMargin}px`; // eslint-disable-line i18next/no-literal-string
+						const yPos = `${y-sh}px`; // eslint-disable-line i18next/no-literal-string
+						this.zoom.style.top = yPos;
+						this.zoom.style.left = xPos;
+						this.zoom.style.display = 'block';
 					}
-					// Owners should only process actions from selected users:
-					if ( session.isOwner() ) {
-						if (
-							this.state.receiveFrom.name !== action.name &&
-							!action.owner &&
-							!this.state.groupMode
-						) {
-							return;
-						}
-						if ( action.email === session.user.email ) {
-							if (
-								type === NEXT_PAGE ||
-								type === PREVIOUS_PAGE ||
-								type === GOTO_PAGE ||
-								type === FIRST_PAGE ||
-								type === LAST_PAGE
-							) {
-								debug( `Go to page ${action.value}...` );
-								this.gotoPage( action.value, false );
-							}
-						}
+				} else if ( type === HIDE_ZOOM ) {
+					this.zoom.style.display = 'none';
+				} else if ( type === VERTICAL_SCROLL ) {
+					let { diffY, sessionID } = JSON.parse( action.value );
+					if ( sessionID !== session.sessionID ) {
+						diffY *= this.canvas.height;
+						this.canvasWrapper.scrollTop -= 0.1 * diffY;
 					}
+				}
+			}
+			// Owners should only process actions from selected users:
+			if ( session.isOwner() ) {
+				if (
+					this.state.receiveFrom.name !== action.name &&
+					!action.owner &&
+					!this.state.groupMode
+				) {
+					return;
+				}
+				if ( action.email === session.user.email ) {
 					if (
-						type === DRAW_TEXT ||
-						type === DRAW_CURVE
+						type === NEXT_PAGE ||
+						type === PREVIOUS_PAGE ||
+						type === GOTO_PAGE ||
+						type === FIRST_PAGE ||
+						type === LAST_PAGE
 					) {
-						let elem = JSON.parse( action.value );
-						const elements = this.elements[ elem.page ];
-						const sharedElements = this.sharedElements[ elem.page ];
-						let present = false;
-						if (
-							elem.user === session.user.email ||
-							elem.user === session.anonymousIdentifier
-						) {
-							for ( let i = 0; i < elements.length; i++ ) {
-								if ( elements[ i ].drawID === elem.drawID ) {
-									present = true;
-									break;
-								}
-							}
-						}
-						if ( !present ) {
-							elem.shouldLog = false;
-							if (
-								elem.page === this.state.currentPage &&
-								this.state.showInstructorAnnotations
-							) {
-								if ( elem.type === 'text' ) {
-									this.drawText( elem );
-								} else {
-									this.drawCurve( elem );
-								}
-							}
-							if ( elem.user === session.user.email ) {
-								elements.push( elem );
-							} else {
-								sharedElements.push( elem );
-							}
-							this.props.onChange( elements );
-						}
+						debug( `Go to page ${action.value}...` );
+						this.gotoPage( action.value, false );
 					}
-					else if ( type === INSERT_PAGE ) {
-						let { pos } = JSON.parse( action.value );
-						if ( action.email !== session.user.email ) {
-							pos = this.toLocalPage( pos, action.email );
-						}
-						const bool = isAlreadyInserted( pos, this.state.insertedPages );
-						if ( !bool ) {
-							debug( `Should insert page at ${pos}...` );
-							this.insertPage( pos, action.email );
-						}
-					}
-					else if ( type === DELETE_ELEMENT ) {
-						const { drawID, page, user, sessionID } = JSON.parse( action.value );
-						debug( `Should delete element with id ${drawID} by user ${user}` );
-						if ( sessionID !== session.sessionID ) {
-							const elems = ( action.email === session.user.email ) ?
-								this.elements[ page ] :
-								this.sharedElements[ page ];
-							let elemPos;
-							for ( let i = 0; i < elems.length; i++ ) {
-								if (
-									elems[ i ].drawID === drawID &&
-									elems[ i ].user === user
-								) {
-									elemPos = i;
-									break;
-								}
-							}
-							if ( isNumber( elemPos ) ) {
-								elems.splice( elemPos, 1 );
-								this.debouncedRedraw();
-							}
-						}
-					}
-					else if ( type === DRAG_ELEMENTS ) {
-						const { drawIDs, user, page, dx, dy, sessionID } = JSON.parse( action.value );
-						debug( `Should drag specified elements by dx: ${dx} and dy: ${dy}...` );
-						if ( sessionID !== session.sessionID ) {
-							const elems = ( action.email === session.user.email ) ?
-								this.elements[ page ] :
-								this.sharedElements[ page ];
-							for ( let i = 0; i < elems.length; i++ ) {
-								const e = elems[ i ];
-								if ( contains( drawIDs, e.drawID ) && e.user === user ) {
-									if ( e.type === 'curve' ) {
-										const points = e.points;
-
-										// eslint-disable-next-line max-depth
-										for ( let i = 0; i < points.length; i++ ) {
-											points[ i ] += i % 2 === 0 ? dx : dy;
-										}
-									}
-									else if ( e.type === 'text' ) {
-										e.x += dx;
-										e.y += dy;
-									}
-								}
-							}
-							this.debouncedRedraw();
-						}
-					}
-					else if ( type === CLEAR_PAGE ) {
-						const { page, sessionID } = JSON.parse( action.value );
-						const user = action.email;
-						if ( sessionID !== session.sessionID ) {
-							if ( user === session.user.email ) {
-								// Own action, clear page:
-								this.clearPage( page );
-							} else {
-								// Only remove all elements from the sending user on the page:
-								const elems = this.sharedElements[ page ];
-								const newElems = [];
-								for ( let i = 0; i < elems.length; i++ ) {
-									const e = elems[ i ];
-									if ( e.user !== user ) {
-										newElems.push( e );
-									}
-								}
-								this.sharedElements[ page ] = newElems;
-								this.debouncedRedraw();
-							}
-						}
-					}
-					else if ( type === CLEAR_ALL_PAGES && action.value !== session.sessionID ) {
-						if ( action.email === session.user.email ) {
-							this.clearAll( true );
-						}
-						else {
-							const user = action.email;
-							for ( let page = 0; page < this.state.noPages; page++ ) {
-								const elems = this.sharedElements[ page ];
-								const newElems = [];
-								for ( let i = 0; i < elems.length; i++ ) {
-									const e = elems[ i ];
-									if ( e.user !== user ) {
-										newElems.push( e );
-									}
-								}
-								this.sharedElements[ page ] = newElems;
-							}
-							this.debouncedRedraw();
+				}
+			}
+			if (
+				type === DRAW_TEXT ||
+				type === DRAW_CURVE
+			) {
+				let elem = JSON.parse( action.value );
+				const elements = this.elements[ elem.page ];
+				const sharedElements = this.sharedElements[ elem.page ];
+				let present = false;
+				if (
+					elem.user === session.user.email ||
+					elem.user === session.anonymousIdentifier
+				) {
+					for ( let i = 0; i < elements.length; i++ ) {
+						if ( elements[ i ].drawID === elem.drawID ) {
+							present = true;
+							break;
 						}
 					}
 				}
-			});
-		}
+				if ( !present ) {
+					elem.shouldLog = false;
+					if (
+						elem.page === this.state.currentPage &&
+						this.state.showInstructorAnnotations
+					) {
+						if ( elem.type === 'text' ) {
+							this.drawText( elem );
+						} else {
+							this.drawCurve( elem );
+						}
+					}
+					if ( elem.user === session.user.email ) {
+						elements.push( elem );
+					} else {
+						sharedElements.push( elem );
+					}
+					this.props.onChange( elements );
+				}
+			}
+			else if ( type === INSERT_PAGE ) {
+				let { pos } = JSON.parse( action.value );
+				if ( action.email !== session.user.email ) {
+					pos = this.toLocalPage( pos, action.email );
+				}
+				const bool = isAlreadyInserted( pos, this.state.insertedPages );
+				if ( !bool ) {
+					debug( `Should insert page at ${pos}...` );
+					this.insertPage( pos, action.email );
+				}
+			}
+			else if ( type === DELETE_ELEMENT ) {
+				const { drawID, page, user, sessionID } = JSON.parse( action.value );
+				debug( `Should delete element with id ${drawID} by user ${user}` );
+				if ( sessionID !== session.sessionID ) {
+					const elems = ( action.email === session.user.email ) ?
+						this.elements[ page ] :
+						this.sharedElements[ page ];
+					let elemPos;
+					for ( let i = 0; i < elems.length; i++ ) {
+						if (
+							elems[ i ].drawID === drawID &&
+							elems[ i ].user === user
+						) {
+							elemPos = i;
+							break;
+						}
+					}
+					if ( isNumber( elemPos ) ) {
+						elems.splice( elemPos, 1 );
+						this.debouncedRedraw();
+					}
+				}
+			}
+			else if ( type === DRAG_ELEMENTS ) {
+				const { drawIDs, user, page, dx, dy, sessionID } = JSON.parse( action.value );
+				debug( `Should drag specified elements by dx: ${dx} and dy: ${dy}...` );
+				if ( sessionID !== session.sessionID ) {
+					const elems = ( action.email === session.user.email ) ?
+						this.elements[ page ] :
+						this.sharedElements[ page ];
+					for ( let i = 0; i < elems.length; i++ ) {
+						const e = elems[ i ];
+						if ( contains( drawIDs, e.drawID ) && e.user === user ) {
+							if ( e.type === 'curve' ) {
+								const points = e.points;
+
+								// eslint-disable-next-line max-depth
+								for ( let i = 0; i < points.length; i++ ) {
+									points[ i ] += i % 2 === 0 ? dx : dy;
+								}
+							}
+							else if ( e.type === 'text' ) {
+								e.x += dx;
+								e.y += dy;
+							}
+						}
+					}
+					this.debouncedRedraw();
+				}
+			}
+			else if ( type === CLEAR_PAGE ) {
+				const { page, sessionID } = JSON.parse( action.value );
+				const user = action.email;
+				if ( sessionID !== session.sessionID ) {
+					if ( user === session.user.email ) {
+						// Own action, clear page:
+						this.clearPage( page );
+					} else {
+						// Only remove all elements from the sending user on the page:
+						const elems = this.sharedElements[ page ];
+						const newElems = [];
+						for ( let i = 0; i < elems.length; i++ ) {
+							const e = elems[ i ];
+							if ( e.user !== user ) {
+								newElems.push( e );
+							}
+						}
+						this.sharedElements[ page ] = newElems;
+						this.debouncedRedraw();
+					}
+				}
+			}
+			else if ( type === CLEAR_ALL_PAGES && action.value !== session.sessionID ) {
+				if ( action.email === session.user.email ) {
+					this.clearAll( true );
+				}
+				else {
+					const user = action.email;
+					for ( let page = 0; page < this.state.noPages; page++ ) {
+						const elems = this.sharedElements[ page ];
+						const newElems = [];
+						for ( let i = 0; i < elems.length; i++ ) {
+							const e = elems[ i ];
+							if ( e.user !== user ) {
+								newElems.push( e );
+							}
+						}
+						this.sharedElements[ page ] = newElems;
+					}
+					this.debouncedRedraw();
+				}
+			}
+		});
 
 		if ( this.props.autoSave ) {
 			this.saveInterval = setInterval( this.save, this.props.intervalTime );
@@ -644,6 +640,9 @@ class Sketchpad extends Component {
 		}
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
+		}
+		if ( this.actionUnsubscribe ) {
+			this.actionUnsubscribe();
 		}
 		window.removeEventListener( 'resize', this.handleResize );
 		if ( !isElectron ) {
@@ -1060,7 +1059,7 @@ class Sketchpad extends Component {
 		if ( ctx ) {
 			ctx.clearRect( 0, 0, canvas.width, canvas.height );
 		}
-		session.store.removeItem( this.id + '_sketchpad' );
+		session.store.removeItem( this.props.id + '_sketchpad' );
 		if ( this.props.pdf ) {
 			this.initializePDF().then( () => {
 				this.debouncedRedraw();
@@ -1482,7 +1481,7 @@ class Sketchpad extends Component {
 				doc.getBase64( ( pdf ) => {
 					debug( 'Processing base64 string of PDF document' );
 					const pdfForm = new FormData();
-					const name = this.id;
+					const name = this.props.id;
 					const filename = name + '.pdf';
 					const pdfBlob = base64toBlob( pdf, 'application/pdf' );
 					const pdfFile = new File([ pdfBlob ], filename, {
@@ -1524,7 +1523,7 @@ class Sketchpad extends Component {
 
 	saveAsPNG = () => {
 		const current = this.state.currentPage;
-		const name = this.id+'_'+(current+1)+'.png';
+		const name = this.props.id+'_'+(current+1)+'.png';
 		const canvas = this.canvas;
 		if ( !this.backgrounds[ current ]) {
 			// Set white background if none present:
@@ -1594,7 +1593,7 @@ class Sketchpad extends Component {
 			isExporting: true
 		}, () => {
 			this.preparePDF( ( err, doc ) => {
-				const name = this.id;
+				const name = this.props.id;
 				this.props.logAction( SAVE_PDF, 'all-annotations' );
 				doc.download( name+'.pdf', () => {
 					this.setState({
@@ -1864,7 +1863,7 @@ class Sketchpad extends Component {
 
 	readURL = () => {
 		const hash = window.location.hash;
-		const id = encodeURI( this.id );
+		const id = encodeURI( this.props.id );
 		const RE = new RegExp( id+'=(\\d+)' );
 		const match = hash.match( RE );
 		if ( match ) {
@@ -1876,7 +1875,7 @@ class Sketchpad extends Component {
 	updateURL = ( pageNo ) => {
 		const hash = String( window.location.hash );
 		if ( !isElectron ) {
-			const id = encodeURI( this.id );
+			const id = encodeURI( this.props.id );
 			if ( !hash ) {
 				window.location.hash = `#/?${id}=${pageNo+1}`;
 			}
@@ -1991,7 +1990,7 @@ class Sketchpad extends Component {
 			callback: ( error, res ) => {
 				const filename = res.filename;
 				const link = session.server + '/' + filename;
-				session.updateMetadata( 'store', this.id, link );
+				session.updateMetadata( 'store', this.props.id, link );
 				this.initializePDF();
 			}
 		});
@@ -2001,7 +2000,7 @@ class Sketchpad extends Component {
 		debug( `Initialize PDF document at ${this.props.pdf}...` );
 		const session = this.context;
 		return new Promise( ( resolve, reject ) => {
-			const metadataPDF = session.metadata.store[ this.id ];
+			const metadataPDF = session.metadata.store[ this.props.id ];
 			const loadingTask = pdfjsLib.getDocument({
 				url: this.props.pdf || metadataPDF,
 				disableFontFace: false
@@ -2078,10 +2077,10 @@ class Sketchpad extends Component {
 		const anonymous = session.anonymous;
 		if ( anonymous ) {
 			debug( 'Save created elements to local storage...' );
-			return session.store.setItem( this.id, data );
+			return session.store.setItem( this.props.id, data );
 		}
 		debug( 'Saving data on server...' );
-		return session.saveSketchpadData( this.id, data );
+		return session.saveSketchpadData( this.props.id, data );
 	};
 
 	closeResponseModal = () => {
@@ -2528,7 +2527,7 @@ class Sketchpad extends Component {
 		return (
 			<Fragment>
 				<FeedbackButtons
-					key={`${this.id}-slide-${page}`} id={`${this.id}-slide-${page}`}
+					key={`${this.props.id}-slide-${page}`} id={`${this.props.id}-slide-${page}`}
 					customFeedback={false} vertical
 					style={{ zIndex: 3, position: 'absolute', top: 35, right: 20 }}
 				/>
@@ -2636,8 +2635,8 @@ class Sketchpad extends Component {
 			};
 		}
 		const canvas = <canvas
-			id={`${this.id}-canvas`}
-			key={`${this.id}-canvas-${this.state.canvasWidth}x${this.state.canvasHeight}`}
+			id={`${this.props.id}-canvas`}
+			key={`${this.props.id}-canvas-${this.state.canvasWidth}x${this.state.canvasHeight}`}
 			className="sketch-canvas"
 			width={this.state.canvasWidth * DPR}
 			height={this.state.canvasHeight * DPR}
@@ -2674,7 +2673,7 @@ class Sketchpad extends Component {
 		return (
 			<Fragment>
 				<Card
-					id={this.id}
+					id={this.props.id}
 					ref={( div ) => {
 						this.sketchpadPanel = div;
 					}}
@@ -2770,7 +2769,7 @@ class Sketchpad extends Component {
 						pdf={this.props.pdf}
 						session={this.context}
 						logAction={this.props.logAction}
-						id={this.id}
+						id={this.props.id}
 						t={this.props.t}
 					/> : null}
 					{this.state.showFeedbackModal ? <FeedbackModal
@@ -2781,7 +2780,7 @@ class Sketchpad extends Component {
 								showFeedbackModal: !this.state.showFeedbackModal
 							});
 						}}
-						id={this.id}
+						id={this.props.id}
 						noPages={this.state.noPages}
 						toOriginalPage={this.toOriginalPage}
 						gotoPage={this.gotoPage}
