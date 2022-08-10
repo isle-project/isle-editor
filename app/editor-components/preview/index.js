@@ -53,6 +53,7 @@ const RE_PREAMBLE = /---([\S\s]*?)---/;
  * @param {Object} oldPreamble - old preamble
  */
 function clearGlobalVariables( oldPreamble ) {
+	debug( 'Clearing global variables...' );
 	const { require } = oldPreamble;
 	let keys = objectKeys( require );
 	for ( let i = 0; i < keys.length; i++ ) {
@@ -147,14 +148,13 @@ class Preview extends Component {
 			const session = new Session( this.props.preamble, offline );
 			this.session = session;
 			this.scope = createScope( session );
-			let lessonState = session.config.state;
+			const lessonState = session.config.state || {};
 			this.setState({
 				...lessonState,
 				isLoading: true
-			}, async () => {
-				clearGlobalVariables( prevProps.preamble );
-				await this.handlePreambleChange( this.props.preamble );
 			});
+			clearGlobalVariables( prevProps.preamble );
+			this.handlePreambleChange( this.props.preamble );
 		}
 	}
 
@@ -163,7 +163,8 @@ class Preview extends Component {
 		this._isMounted = false;
 	}
 
-	async loadRequires( preamble, filePath ) {
+	loadRequires = async ( preamble, filePath ) => {
+		debug( 'Loading requires...' );
 		const { encounteredError, t } = this.props;
 		try {
 			const err = await loadRequires( preamble.require, filePath || '' );
@@ -189,7 +190,7 @@ class Preview extends Component {
 				});
 			}
 		}
-	}
+	};
 
 	handlePreambleChange = async ( newPreamble ) => {
 		debug( 'Handle preamble change...' );
