@@ -335,7 +335,7 @@
     "socket.io-client": "4.5.1",
     "source-map-explorer": "^2.5.2",
     "stylelint": "^14.9.1",
-    "stylelint-config-standard": "^26.0.0",
+    "stylelint-config-standard": "^27.0.0",
     "vex-js": "^4.1.0",
     "victory": "36.6.0",
     "webpack-cli": "4.10.0",
