@@ -32,6 +32,7 @@ const FONTS = [
 ];
 const HEADERS = [ 'general', 'legend' ];
 const HEADER_STYLE = { fontSize: '1em', fontFamily: 'Open Sans', fontWeight: 400, textAlign: 'left' };
+const COLOR_PICKER_STYLE = { zIndex: 2000 };
 
 
 // MAIN //
@@ -140,6 +141,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 								onChange={handleBackgroundColor}
 								variant="Button"
 								color={layout.paper_bgcolor}
+								style={COLOR_PICKER_STYLE}
 							/>
 						</Col>
 					</Form.Group>
@@ -152,6 +154,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 								onChange={handleFontColor}
 								variant="Button"
 								color={layout.font && layout.font.color}
+								style={COLOR_PICKER_STYLE}
 							/>
 						</Col>
 					</Form.Group>
@@ -193,6 +196,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 								onChange={handleLegendBgColor}
 								variant="Button"
 								color={layout.legend && layout.legend.bgcolor}
+								style={COLOR_PICKER_STYLE}
 							/>
 						</Col>
 					</Form.Group>
@@ -205,6 +209,7 @@ const PlotlyStyleMenu = ({ layout, setLayout, layoutUpdate, setLayoutUpdate, onH
 								onChange={handleLegendBorderColor}
 								variant="Button"
 								color={layout.legend && layout.legend.bordercolor}
+								style={COLOR_PICKER_STYLE}
 							/>
 						</Col>
 					</Form.Group>
