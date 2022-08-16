@@ -9,12 +9,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ColorPicker from '@isle-project/components/color-picker';
 import CheckboxInput from '@isle-project/components/input/checkbox';
 import SelectInput from '@isle-project/components/input/select';
 import selectStyles from '@isle-project/components/input/select/styles';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import BarChart from '@isle-project/components/plots/barchart';
 import { SHARE_BARCHART, BARCHART } from '@isle-project/constants/actions.js';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import Collapse from '@isle-project/components/collapse';
 import QuestionButton from './../question_button.js';
 
 
@@ -63,6 +67,8 @@ const BarchartMenu = ( props ) => {
 	const [ stackBars, setStackBars ] = useState( false );
 	const [ totalPercent, setTotalPercent ] = useState( false );
 	const [ xOrder, setXOrder ] = useState( null );
+	const [ groupCategories, setGroupCategories ] = useState( [] );
+	const [ color, setColor ] = useState( null );
 
 	const generateBarchart = () => {
 		const plotId = randomstring( 6 );
@@ -82,6 +88,7 @@ const BarchartMenu = ( props ) => {
 			});
 			props.logAction( SHARE_BARCHART, action );
 		};
+		const colors = group ? groupCategories.map( category => category.color ) : [ color ];
 		let output;
 		if ( mode === MODES[ 1 ] ) {
 			output = <BarChart
@@ -93,6 +100,7 @@ const BarchartMenu = ( props ) => {
 				id={plotId}
 				action={action}
 				onShare={onShare}
+				colors={colors}
 			/>;
 		} else {
 			output = <BarChart
@@ -104,6 +112,7 @@ const BarchartMenu = ( props ) => {
 				id={plotId}
 				action={action}
 				onShare={onShare}
+				colors={colors}
 			/>;
 		}
 		props.logAction( BARCHART, action );
@@ -158,7 +167,13 @@ const BarchartMenu = ( props ) => {
 					defaultValue={group}
 					options={groupingVariables}
 					menuPlacement="top"
-					onChange={setGroup}
+					onChange={( value ) => {
+						setGroup( value );
+						const newCategories = extractCategoriesFromValues( props.data[ value ], value );
+						setGroupCategories( newCategories.map( x => (
+							{ color: null, category: x }
+						) ) );
+					}}
 				/>
 				<Row>
 					<Col>
@@ -237,6 +252,49 @@ const BarchartMenu = ( props ) => {
 						/>
 					</Col>
 				</Row>
+				{<Collapse
+					header={group ? t('customize-colors') : t('customize-color')}
+					headerStyle={{ fontSize: '1rem' }}
+					style={{
+						width: '100%'
+					}}
+				>
+					<ListGroup>
+						{group && groupCategories.map( ( elem, index ) => {
+							return (
+								<ListGroup.Item key={index} >
+									{elem.category}
+									<ColorPicker
+										onChange={( color ) => {
+											const newCategories = [ ...groupCategories.slice( 0, index ), { ...elem, color: color.hex }, ...groupCategories.slice( index + 1 ) ];
+											setGroupCategories( newCategories );
+										}}
+										variant="Button"
+										color={elem.color || '#000000'}
+										buttonStyle={{
+											marginLeft: '0.5rem'
+										}}
+										style={{
+											'width': 'auto',
+											float: 'right'
+										}}
+										disableAlpha
+									/>
+								</ListGroup.Item>
+							);
+						})}
+						{!group && <ListGroup.Item>
+							<ColorPicker
+								onChange={( value ) => {
+									setColor( value.hex );
+								}}
+								disableAlpha
+								variant="Button"
+								color={color || '#000000'}
+							/>
+						</ListGroup.Item>}
+					</ListGroup>
+				</Collapse>}
 				<Button
 					variant="primary" onClick={generateBarchart}
 					disabled={!variable}

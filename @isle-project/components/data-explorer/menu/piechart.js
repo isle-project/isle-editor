@@ -4,10 +4,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import SelectInput from '@isle-project/components/input/select';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
 import PieChart from '@isle-project/components/plots/piechart';
 import { SHARE_PIECHART, PIECHART } from '@isle-project/constants/actions.js';
+import Collapse from '@isle-project/components/collapse';
+import ColorPicker from '@isle-project/components/color-picker';
+import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
 import QuestionButton from './../question_button.js';
 
 
@@ -27,6 +31,7 @@ const PieChartMenu = ( props ) => {
 	const [ summaryVariable, setSummaryVariable ] = useState( quantitative[ 0 ] );
 	const [ group, setGroup ] = useState( null );
 	const [ mode, setMode ] = useState( MODES[ 0 ] );
+	const [ categories, setCategories ] = useState( [] );
 
 	const handleGenerate = () => {
 		const plotId = randomstring( 6 );
@@ -45,6 +50,7 @@ const PieChartMenu = ( props ) => {
 			});
 			props.logAction( SHARE_PIECHART, action );
 		};
+		const colors = categories.map( x => x?.color );
 		const output= <PieChart
 			id={plotId}
 			{...props}
@@ -53,6 +59,7 @@ const PieChartMenu = ( props ) => {
 			summaryVariable={mode === MODES[ 1 ] ? summaryVariable : null}
 			action={action}
 			onShare={onShare}
+			colors={colors}
 		/>;
 		props.logAction( PIECHART, action );
 		props.onCreated( output );
@@ -74,7 +81,14 @@ const PieChartMenu = ( props ) => {
 					legend={t('variable')}
 					defaultValue={variable}
 					options={variables}
-					onChange={setVariable}
+					onChange={( value ) => {
+						setVariable( value );
+						const newCategories = extractCategoriesFromValues( props.data[ value ], value );
+						setCategories( newCategories.map( x => (
+							{ color: null, category: x }
+						) ) );
+						console.log( categories );
+					}}
 				/>
 				{ mode === MODES[ 1 ] ?
 					<SelectInput
@@ -91,6 +105,40 @@ const PieChartMenu = ( props ) => {
 					menuPlacement="top"
 					onChange={setGroup}
 				/>
+				{categories.length > 0 && <Collapse
+					header={t('customize-colors')} headerStyle={{ fontSize: '1rem' }}
+					style={{
+						width: '100%'
+					}}
+				>
+					<ListGroup>
+					{categories.map( ( elem, index ) => {
+						return (
+							<ListGroup.Item key={index} >
+								{elem.category}
+								<ColorPicker
+									onChange={( color ) => {
+										console.log( color );
+										const newCategories = [ ...categories.slice( 0, index ), { ...elem, color: color.hex }, ...categories.slice( index + 1 ) ];
+										console.log( newCategories );
+										setCategories( newCategories );
+									}}
+									variant="Button"
+									color={elem.color || '#000000'}
+									buttonStyle={{
+										marginLeft: '0.5rem'
+									}}
+									style={{
+										'width': 'auto',
+										float: 'right'
+									}}
+									disableAlpha
+								/>
+							</ListGroup.Item>
+						);
+					})}
+					</ListGroup>
+				</Collapse>}
 				<Button
 					variant="primary"
 					onClick={handleGenerate}

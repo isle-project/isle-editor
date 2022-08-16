@@ -25,7 +25,7 @@ const MAX_CATEGORIES = 50;
 
 // FUNCTIONS //
 
-export function generatePiechartConfig({ data, variable, group, summaryVariable }) {
+export function generatePiechartConfig({ data, variable, group, colors, summaryVariable }) {
 	let annotations;
 	let traces;
 	if ( !group ) {
@@ -49,7 +49,10 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 		traces = [ {
 			values: counts,
 			labels: categories,
-			type: 'pie'
+			type: 'pie',
+			marker: {
+				colors: colors
+			}
 		} ];
 	} else {
 		let freqs;
@@ -102,6 +105,9 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 				domain: {
 					x: [ ( col ) / nCols, ( col+1 ) / nCols ],
 					y: [ ( row ) / nRows, ( row+0.8 ) / nRows ]
+				},
+				marker: {
+					colors: colors
 				}
 			});
 			annotations.push({
@@ -141,7 +147,7 @@ export function generatePiechartConfig({ data, variable, group, summaryVariable 
 
 // MAIN //
 
-function PieChart({ variable, group, data, summaryVariable, id, action, onShare }) {
+function PieChart({ variable, group, data, summaryVariable, colors, id, action, onShare }) {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
@@ -150,9 +156,10 @@ function PieChart({ variable, group, data, summaryVariable, id, action, onShare 
 			data,
 			variable,
 			group,
-			summaryVariable
+			summaryVariable,
+			colors
 		});
-	}, [ data, group, summaryVariable, variable ] );
+	}, [ data, group, summaryVariable, colors, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
@@ -199,5 +206,6 @@ PieChart.propTypes = {
 * @property {(string|Factor)} variable - variable to display
 * @property {(string|Factor)} group - grouping variable
 * @property {string} summaryVariable - optional variable whose sum to display for each `variable` category
+* @property {Array} [colors] - array of colors for the slices of the pie chart
 */
 export default withPropCheck( PieChart );

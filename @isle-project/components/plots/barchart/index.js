@@ -23,7 +23,7 @@ const MAX_CATEGORIES = 150;
 
 // FUNCTIONS //
 
-export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction }) {
+export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, colors, direction }) {
 	let traces;
 	if ( !data[ variable ] ) {
 		return {};
@@ -59,13 +59,19 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				y: categories,
 				x: counts,
 				type: 'bar',
-				orientation: 'h'
+				orientation: 'h',
+				marker: {
+					color: colors[ 0 ]
+				}
 			} ];
 		} else {
 			traces = [ {
 				y: counts,
 				x: categories,
-				type: 'bar'
+				type: 'bar',
+				marker: {
+					color: colors[ 0 ]
+				}
 			} ];
 		}
 	} else {
@@ -109,14 +115,20 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h'
+						orientation: 'h',
+						marker: {
+							color: colors[ i ]
+						}
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key
+						name: key,
+						marker: {
+							color: colors[ i ]
+						}
 					});
 				}
 			}
@@ -141,14 +153,20 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 						x: counts,
 						type: 'bar',
 						name: key,
-						orientation: 'h'
+						orientation: 'h',
+						marker: {
+							color: colors[ i ]
+						}
 					});
 				} else {
 					traces.push({
 						y: counts,
 						x: categories,
 						type: 'bar',
-						name: key
+						name: key,
+						marker: {
+							color: colors[ i ]
+						}
 					});
 				}
 			}
@@ -217,14 +235,15 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 * @property {boolean} horizontal - whether to display bars horizontally
 * @property {string} xOrder - either `total`, `category`, `min`, `max`, `mean`, or `median`
 * @property {string} direction - how to order bars alongside x-axis (`ascending` or `descending`)
+* @property {Array} colors - either a single-element array with a color for the bars or an array of colors for each category when grouping
 */
-const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, onShare, onSelected }) => {
+const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, action, colors, onShare, onSelected }) => {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction });
-	}, [ data, direction, group, horizontal, relative, stackBars, summary, totalPercent, variable, xOrder, yvar ] );
+		return generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, direction, colors });
+	}, [ data, direction, colors, group, horizontal, relative, stackBars, summary, totalPercent, variable, xOrder, yvar ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
