@@ -92,7 +92,7 @@ const Toolbox = ({ id, categorical, quantitative, originalQuantitative, grouping
 		<Fragment>
 			{button}
 			<Draggable
-				cancel=".input"
+				cancel=".input,.cancel"
 				disabled={disableDragging}
 				bounds={isElectron ? 'window' : 'body'}
 				position={position}

@@ -25,12 +25,12 @@ const ButtonColorPicker = ( pickerProps ) => {
 	return (
 		<Fragment>
 			<Button ref={target} size="sm" style={{
-				backgroundColor: pickerProps.color, width: 38, height: 38
+				backgroundColor: pickerProps.color, width: 38, height: 38, ...pickerProps.buttonStyle
 			}} onClick={handleClick} >
 			</Button>
 			{ show ? <Overlay target={target.current} show={show} placement="right" >
 			{({ placement, arrowProps, show: _show, popper, ...props }) => (
-				<Popover {...props} id={`${props.variant}-popover`} style={{ zIndex: 1051, ...pickerProps.style, ...props.style }} >
+				<Popover {...props} id={`${props.variant}-popover`} className="cancel" style={{ zIndex: 1051, ...pickerProps.style, ...props.style }} >
 					<PopoverBody>
 						<SketchPicker {...pickerProps} />
 					</PopoverBody>

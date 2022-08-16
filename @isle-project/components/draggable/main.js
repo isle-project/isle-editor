@@ -57,6 +57,7 @@ function onDraggableStop( event ) {
 * @property {boolean} disabled - whether dragging should be disabled
 * @property {boolean} resizable - whether resize handlers should be attached to the edges of the child element
 * @property {Object} default - object with `width` and `height` property for default size and `x` and `y` for default positioning of the component
+* @property {string} cancel - comma-separated list of class names for elements that should prevent the component from being dragged
 * @property {Object} position - object with `x` and `y` position numbers ( for controlled component )
 * @property {Function} onStop - event handler called when dragging is stopped
 * @property {Function} onEscape - event handler called when the escape key is pressed
