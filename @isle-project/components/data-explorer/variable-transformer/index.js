@@ -8,6 +8,7 @@ import FormulaTransformer from './formula_transformer.js';
 import CategoricalModal from './categorical_transformer.js';
 import GroupModal from './group_transformer.js';
 import RandomModal from './random-transformer';
+import SampleModal from './sample_transformer.js';
 
 
 // MAIN //
@@ -38,6 +39,11 @@ const Transformer = ( props ) => {
 	};
 	const toggleRandomModal = () => {
 		const newActive = active === 'random' ? null : 'random';
+		setActive( newActive );
+		props.onActive( newActive );
+	};
+	const toggleSampleModal = () => {
+		const newActive = active === 'sample' ? null : 'sample';
 		setActive( newActive );
 		props.onActive( newActive );
 	};
@@ -100,6 +106,17 @@ const Transformer = ( props ) => {
 					t={t}
 				/>;
 			break;
+			case 'sample':
+				modal = <SampleModal
+					show={true}
+					onHide={toggleSampleModal}
+					logAction={logAction}
+					onGenerate={onGenerate}
+					categorical={categorical}
+					quantitative={quantitative}
+					data={data}
+					t={t}
+				/>;
 		}
 	}
 	return (
@@ -135,15 +152,20 @@ const Transformer = ( props ) => {
 				>
 					{t('create-groups')}
 				</Button>
-				<div className="d-grid" >
-					<Button
-						onClick={toggleRandomModal}
-						variant="primary"
-						style={{ fontSize: '1.2em' }}
-					>
-						{t('generate-random-data')}
-					</Button>
-				</div>
+				<Button
+					onClick={toggleRandomModal}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('generate-random-data')}
+				</Button>
+				<Button
+					onClick={toggleSampleModal}
+					variant="primary"
+					style={{ fontSize: '1.2em' }}
+				>
+					{t('sample-from-column')}
+				</Button>
 			</div>
 			{modal}
 		</Fragment>
