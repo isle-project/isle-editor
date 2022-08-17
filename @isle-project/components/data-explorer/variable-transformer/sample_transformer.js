@@ -108,7 +108,8 @@ const SampleTransformer = ( props ) => {
 								setReplace( event.target.checked );
 							}}
 							label={t('data-explorer:sample-with-replacement')}
-							disabled={variable && nObs >= props.data[ variable ].length}
+							disabled={variable && nObs > props.data[ variable ].length}
+							value={replace || ( variable && nObs >= props.data[ variable ].length )}
 						/>
 					</FormGroup>
 				</Row>
