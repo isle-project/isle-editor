@@ -69,7 +69,7 @@ const SampleTransformer = ( props ) => {
 			<Panel
 				onHide={props.onHide}
 				show={props.show}
-				header={t('data-explorer:generate-random-data')}
+				header={t('data-explorer:sample-from-column')}
 				footer={<Button onClick={createVariable} disabled={!variable || !validateName( name )} >
 					{t('data-explorer:create-new-variable')}
 				</Button>}
@@ -93,7 +93,7 @@ const SampleTransformer = ( props ) => {
 				</Row>
 				<Row>
 					<FormGroup>
-						<FormLabel>{t('data-explorer:variable-to-sample-from')}:</FormLabel>
+						<FormLabel>{t('data-explorer:column-to-sample-from')}:</FormLabel>
 						<SelectInput
 							options={keys}
 							onChange={setVariable}
