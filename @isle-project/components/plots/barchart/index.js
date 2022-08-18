@@ -271,6 +271,7 @@ const BarChart = ({ id, data, variable, yvar, summary, group, horizontal, stackB
 
 BarChart.defaultProps = {
 	group: null,
+	colors: [],
 	horizontal: false,
 	stackBars: false,
 	relative: false,
@@ -291,6 +292,7 @@ BarChart.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]),
+	colors: PropTypes.arrayOf( PropTypes.string ),
 	yvar: PropTypes.string,
 	summary: PropTypes.oneOf([ 'Mean', 'Median', 'Min', 'Max', 'Sum' ]),
 	horizontal: PropTypes.bool,

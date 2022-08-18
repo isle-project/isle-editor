@@ -179,12 +179,14 @@ function PieChart({ variable, group, data, summaryVariable, colors, id, action, 
 // PROPERTIES //
 
 PieChart.defaultProps = {
+	colors: [],
 	group: null,
 	summaryVariable: null
 };
 
 PieChart.propTypes = {
 	data: PropTypes.object.isRequired,
+	colors: PropTypes.arrayOf( PropTypes.string ),
 	variable: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
