@@ -2404,7 +2404,7 @@ class Session {
 	}
 
 	/**
-	* Logs completion information for a component.
+	* Logs assessment information for a component.
 	*
 	* @param {Object} meta - action information
 	* @param {number} meta.score - score value (number between 0 and 100)
@@ -2413,7 +2413,7 @@ class Session {
 	* @param {string} [meta.tag] - custom tag attached to the component (e.g., to group questions together as a quiz)
 	* @param {string} meta.componentType - name of the component (e.g, FreeTextQuestion)
 	*/
-	recordCompletion( { component, componentType, score, metricName, tag = '_default_tag' } ) {
+	recordAssessment( { component, componentType, score, metricName, tag = '_default_tag' } ) {
 		const time = new Date().getTime();
 		axios.post( this.server + '/record_assessment', {
 			component,

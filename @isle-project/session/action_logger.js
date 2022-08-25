@@ -65,7 +65,7 @@ function useActionLogger( componentType, props ) {
 			return unsubscribe;
 		},
 		logScore: ( score, metricName, tag ) => {
-			session.recordCompletion( { id, componentType, score, metricName, tag } );
+			session.recordAssessment( { id, componentType, score, metricName, tag } );
 		},
 		logAction: ( action, value, options = {}, recipients ) => {
 			session.log({
