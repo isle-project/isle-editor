@@ -2423,6 +2423,7 @@ class Session {
 			tag,
 			user: this.user.id,
 			lesson: this.lessonID,
+			namespace: this.namespaceID,
 			time
 		});
 	}
