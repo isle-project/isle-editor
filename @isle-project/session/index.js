@@ -2415,7 +2415,7 @@ class Session {
 	*/
 	recordCompletion( { component, componentType, score, metricName, tag = '_default_tag' } ) {
 		const time = new Date().getTime();
-		axios.post( this.server + '/record_completion', {
+		axios.post( this.server + '/record_assessment', {
 			component,
 			componentType,
 			score,
