@@ -219,8 +219,10 @@ class MultipleChoiceQuestion extends Component {
 			this.state.correct.slice() :
 			new Array( this.props.answers.length );
 		this.props.logAction( SUBMISSION, this.state.active );
+		this.props.logScore( 100, 'completed' );
 		let isSolved = false;
 		if ( isArray( sol ) ) {
+			// Case: multiple solutions
 			for ( let i = 0; i < this.state.active.length; i++ ) {
 				if ( this.state.active[ i ] === true ) {
 					if ( contains( sol, i ) ) {
@@ -245,8 +247,10 @@ class MultipleChoiceQuestion extends Component {
 				nActiveAnswers > sol.length
 			) {
 				isSolved = false;
+				this.props.logScore( 100 * ( nCorrectAnswers / sol.length ), 'completed' ); // TODO: use auto-grading algorithm here; could customize penalties/scores
 			} else {
 				isSolved = true;
+				this.props.logScore( 100, 'correct' );
 			}
 			let active = new Array( this.props.answers.length );
 			if ( !this.props.disableSubmitNotification ) {
@@ -266,8 +270,10 @@ class MultipleChoiceQuestion extends Component {
 					if ( i === sol || noSolution ) {
 						newCorrect[ i ] = true;
 						isSolved = true;
+						this.props.logScore( 100, 'correct' );
 					} else {
 						newCorrect[ i ] = false;
+						this.props.logScore( 0, 'correct' );
 					}
 				}
 			}
@@ -405,6 +411,7 @@ class MultipleChoiceQuestion extends Component {
 						answerSelected: true
 					});
 					this.props.onChange( id );
+					this.props.logScore( 100, 'interacted' );
 				}}
 			/> );
 		}
@@ -433,6 +440,7 @@ class MultipleChoiceQuestion extends Component {
 						answerSelected: true
 					});
 					this.props.onChange( id );
+					this.props.logScore( 100, 'interacted' );
 				}
 			}
 		};
