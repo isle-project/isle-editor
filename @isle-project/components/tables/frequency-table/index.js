@@ -165,7 +165,7 @@ const groupedFrequencyTable = ( variable, freqs, nDecimalPlaces, t ) => {
 			{entries( freqs ).map( ( arr, i ) => {
 				if ( !arr ) {
 					return (
-						<Alert variant="danger">
+						<Alert key={`alert-${i}`} variant="danger">
 							{t('too-many-rows')}
 						</Alert>
 					);
