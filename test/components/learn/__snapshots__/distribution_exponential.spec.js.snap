@@ -4,7 +4,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
 <div
   className="card"
   style={
-    Object {
+    {
       "margin": "10px auto",
       "maxWidth": 1200,
     }
@@ -104,7 +104,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -118,7 +118,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -134,7 +134,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -155,7 +155,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -174,7 +174,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -200,7 +200,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -224,7 +224,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -243,7 +243,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -269,7 +269,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -293,7 +293,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -312,7 +312,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -338,7 +338,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -362,7 +362,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -381,7 +381,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -407,7 +407,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -431,7 +431,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -450,7 +450,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -476,7 +476,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -501,7 +501,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -526,7 +526,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -550,7 +550,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -569,7 +569,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -595,7 +595,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -619,7 +619,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -638,7 +638,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -664,7 +664,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -688,7 +688,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -707,7 +707,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -733,7 +733,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -757,7 +757,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -776,7 +776,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -802,7 +802,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -826,7 +826,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -845,7 +845,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -871,7 +871,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -895,7 +895,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -914,7 +914,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -940,7 +940,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -964,7 +964,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -983,7 +983,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1009,7 +1009,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1030,7 +1030,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-2)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -1055,7 +1055,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "tomato",
                           "opacity": 0.3,
                           "stroke": "tomato",
@@ -1066,7 +1066,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-3)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -1091,7 +1091,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -1103,7 +1103,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -1116,7 +1116,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",
@@ -1134,7 +1134,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -1148,7 +1148,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -1164,7 +1164,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -1185,7 +1185,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1204,7 +1204,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1230,7 +1230,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1254,7 +1254,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1273,7 +1273,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1299,7 +1299,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1323,7 +1323,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1342,7 +1342,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1368,7 +1368,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1392,7 +1392,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1411,7 +1411,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1437,7 +1437,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1461,7 +1461,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1480,7 +1480,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1506,7 +1506,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1531,7 +1531,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -1556,7 +1556,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -1580,7 +1580,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1599,7 +1599,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1625,7 +1625,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1649,7 +1649,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1668,7 +1668,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1694,7 +1694,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1718,7 +1718,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1737,7 +1737,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1763,7 +1763,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1787,7 +1787,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1806,7 +1806,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1832,7 +1832,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1856,7 +1856,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1875,7 +1875,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1901,7 +1901,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1925,7 +1925,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -1944,7 +1944,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -1970,7 +1970,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1991,7 +1991,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-5)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -2016,7 +2016,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -2028,7 +2028,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-6)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -2053,7 +2053,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "#e95f46",
@@ -2065,7 +2065,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-7)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -2090,7 +2090,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "#e95f46",
@@ -2102,7 +2102,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -2115,7 +2115,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",
@@ -2151,7 +2151,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -2165,7 +2165,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -2181,7 +2181,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -2202,7 +2202,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2221,7 +2221,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2247,7 +2247,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2271,7 +2271,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2290,7 +2290,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2316,7 +2316,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2340,7 +2340,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2359,7 +2359,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2385,7 +2385,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2409,7 +2409,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2428,7 +2428,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2454,7 +2454,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2478,7 +2478,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2497,7 +2497,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2523,7 +2523,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2548,7 +2548,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -2573,7 +2573,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -2597,7 +2597,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2616,7 +2616,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2642,7 +2642,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2666,7 +2666,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2685,7 +2685,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2711,7 +2711,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2735,7 +2735,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2754,7 +2754,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2780,7 +2780,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2804,7 +2804,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2823,7 +2823,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2849,7 +2849,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2873,7 +2873,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2892,7 +2892,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2918,7 +2918,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -2942,7 +2942,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -2961,7 +2961,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -2987,7 +2987,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3011,7 +3011,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3030,7 +3030,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3056,7 +3056,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3077,7 +3077,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-9)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -3102,7 +3102,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "tomato",
                           "opacity": 0.3,
                           "stroke": "tomato",
@@ -3113,7 +3113,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-10)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -3138,7 +3138,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -3150,7 +3150,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -3163,7 +3163,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",
@@ -3181,7 +3181,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -3195,7 +3195,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -3211,7 +3211,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -3232,7 +3232,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3251,7 +3251,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3277,7 +3277,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3301,7 +3301,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3320,7 +3320,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3346,7 +3346,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3370,7 +3370,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3389,7 +3389,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3415,7 +3415,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3439,7 +3439,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3458,7 +3458,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3484,7 +3484,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3508,7 +3508,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3527,7 +3527,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3553,7 +3553,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3578,7 +3578,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -3603,7 +3603,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -3627,7 +3627,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3646,7 +3646,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3672,7 +3672,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3696,7 +3696,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3715,7 +3715,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3741,7 +3741,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3765,7 +3765,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3784,7 +3784,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3810,7 +3810,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3834,7 +3834,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3853,7 +3853,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3879,7 +3879,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3903,7 +3903,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3922,7 +3922,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -3948,7 +3948,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -3972,7 +3972,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -3991,7 +3991,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4017,7 +4017,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4038,7 +4038,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-12)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -4063,7 +4063,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -4075,7 +4075,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-13)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -4100,7 +4100,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "#e95f46",
@@ -4112,7 +4112,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-14)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -4137,7 +4137,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "steelblue",
@@ -4149,7 +4149,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-15)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -4174,7 +4174,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "#e95f46",
@@ -4186,7 +4186,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -4199,7 +4199,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",
@@ -4235,7 +4235,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -4249,7 +4249,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -4265,7 +4265,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -4286,7 +4286,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4305,7 +4305,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4331,7 +4331,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4355,7 +4355,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4374,7 +4374,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4400,7 +4400,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4424,7 +4424,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4443,7 +4443,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4469,7 +4469,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4493,7 +4493,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4512,7 +4512,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4538,7 +4538,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4562,7 +4562,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4581,7 +4581,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4607,7 +4607,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4632,7 +4632,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -4657,7 +4657,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -4681,7 +4681,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4700,7 +4700,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4726,7 +4726,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4750,7 +4750,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4769,7 +4769,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4795,7 +4795,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4819,7 +4819,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4838,7 +4838,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4864,7 +4864,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4888,7 +4888,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4907,7 +4907,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -4933,7 +4933,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -4957,7 +4957,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -4976,7 +4976,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5002,7 +5002,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5026,7 +5026,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5045,7 +5045,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5071,7 +5071,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5095,7 +5095,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5114,7 +5114,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5140,7 +5140,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5161,7 +5161,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-17)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -5186,7 +5186,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "tomato",
                           "opacity": 0.3,
                           "stroke": "tomato",
@@ -5197,7 +5197,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-18)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -5222,7 +5222,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -5234,7 +5234,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -5247,7 +5247,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",
@@ -5265,7 +5265,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
               <div
                 className="VictoryContainer"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "pointerEvents": "none",
                     "position": "relative",
@@ -5279,7 +5279,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   height={350}
                   role="img"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "all",
                       "width": "100%",
@@ -5295,7 +5295,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -5316,7 +5316,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5335,7 +5335,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5361,7 +5361,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5385,7 +5385,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5404,7 +5404,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5430,7 +5430,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5454,7 +5454,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5473,7 +5473,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5499,7 +5499,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5523,7 +5523,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5542,7 +5542,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5568,7 +5568,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5592,7 +5592,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5611,7 +5611,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5637,7 +5637,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5662,7 +5662,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "stroke": "#90A4AE",
                           "strokeLinecap": "round",
@@ -5687,7 +5687,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         dx={0}
                         dy={0}
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                             "fontSize": 12,
@@ -5711,7 +5711,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5730,7 +5730,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5756,7 +5756,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5780,7 +5780,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5799,7 +5799,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5825,7 +5825,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5849,7 +5849,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5868,7 +5868,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5894,7 +5894,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5918,7 +5918,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -5937,7 +5937,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -5963,7 +5963,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -5987,7 +5987,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -6006,7 +6006,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -6032,7 +6032,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -6056,7 +6056,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "none",
                             "pointerEvents": "painted",
                             "stroke": "#ECEFF1",
@@ -6075,7 +6075,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "size": 5,
                             "stroke": "#90A4AE",
@@ -6101,7 +6101,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -6122,7 +6122,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-20)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -6147,7 +6147,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 1,
                           "stroke": "#455A64",
@@ -6159,7 +6159,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-21)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -6184,7 +6184,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "steelblue",
@@ -6196,7 +6196,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <g
                     clipPath="url(#victory-clip-22)"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "userSelect": "none",
                         "width": "100%",
@@ -6221,7 +6221,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                       role="presentation"
                       shapeRendering="auto"
                       style={
-                        Object {
+                        {
                           "fill": "transparent",
                           "opacity": 0.5,
                           "stroke": "#e95f46",
@@ -6233,7 +6233,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                 </svg>
                 <div
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "left": 0,
                       "position": "absolute",
@@ -6246,7 +6246,7 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
                   <svg
                     height={350}
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "overflow": "visible",
                         "width": "100%",

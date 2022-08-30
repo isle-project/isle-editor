@@ -3,7 +3,7 @@
 exports[`<QRCode /> renders a QRCode 1`] = `
 <div
   className="qrcode-wrapper "
-  style={Object {}}
+  style={{}}
 >
   <canvas
     className="qrcode-canvas"
@@ -14,7 +14,7 @@ exports[`<QRCode /> renders a QRCode 1`] = `
 exports[`<QRCode /> renders a QRCode with a custom scale 1`] = `
 <div
   className="qrcode-wrapper "
-  style={Object {}}
+  style={{}}
 >
   <canvas
     className="qrcode-canvas"
@@ -25,7 +25,7 @@ exports[`<QRCode /> renders a QRCode with a custom scale 1`] = `
 exports[`<QRCode /> renders a QRCode with custom text 1`] = `
 <div
   className="qrcode-wrapper "
-  style={Object {}}
+  style={{}}
 >
   <canvas
     className="qrcode-canvas"
@@ -36,7 +36,7 @@ exports[`<QRCode /> renders a QRCode with custom text 1`] = `
 exports[`<QRCode /> renders a centered QRCode 1`] = `
 <div
   className="qrcode-wrapper center"
-  style={Object {}}
+  style={{}}
 >
   <canvas
     className="qrcode-canvas"

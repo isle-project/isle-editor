@@ -4,7 +4,7 @@ exports[`<LearnBinomialDistribution /> renders a learning component 1`] = `
 <div
   className="card"
   style={
-    Object {
+    {
       "margin": "10px auto",
       "maxWidth": 1200,
     }

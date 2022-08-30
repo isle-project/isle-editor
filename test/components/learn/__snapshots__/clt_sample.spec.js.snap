@@ -4,7 +4,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
 <div
   className="container"
   style={
-    Object {
+    {
       "maxWidth": 1200,
     }
   }
@@ -15,7 +15,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
     <div
       className="card"
       style={
-        Object {
+        {
           "margin": "2%",
           "width": "96%",
         }
@@ -33,7 +33,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
             <form
               className="input"
               onSubmit={[Function]}
-              style={Object {}}
+              style={{}}
             >
               <div>
                 <label
@@ -92,7 +92,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
                           role="combobox"
                           spellCheck="false"
                           style={
-                            Object {
+                            {
                               "background": 0,
                               "border": 0,
                               "color": "inherit",
@@ -160,7 +160,7 @@ exports[`<LearnSampleCLT /> renders a learning component 1`] = `
     className="fade alert alert-info show"
     role="alert"
     style={
-      Object {
+      {
         "fontSize": 24,
       }
     }

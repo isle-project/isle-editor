@@ -4,7 +4,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "margin": "0 auto 10px",
       "maxWidth": "600px",
     }
@@ -13,7 +13,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
   <div
     data-handler-id="T0"
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "border": "1px dashed gray",
         "cursor": "move",
@@ -28,7 +28,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
   <div
     data-handler-id="T2"
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "border": "1px dashed gray",
         "cursor": "move",
@@ -43,7 +43,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
   <div
     data-handler-id="T4"
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "border": "1px dashed gray",
         "cursor": "move",
@@ -58,7 +58,7 @@ exports[`<DraggableList /> renders a draggable list 1`] = `
   <div
     data-handler-id="T6"
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "border": "1px dashed gray",
         "cursor": "move",

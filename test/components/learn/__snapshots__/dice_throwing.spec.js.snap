@@ -5,7 +5,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
   className="card"
   id="diceThrowingModule"
   style={
-    Object {
+    {
       "margin": "0 auto",
       "maxWidth": 1200,
     }
@@ -22,7 +22,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
     <div
       className="input"
       style={
-        Object {
+        {
           "marginBottom": "4px",
           "marginTop": "4px",
         }
@@ -58,7 +58,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           placeholder="0"
           step={1}
           style={
-            Object {
+            {
               "marginLeft": "24px",
               "width": "80px",
             }
@@ -87,7 +87,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -123,7 +123,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -136,7 +136,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -172,7 +172,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -185,7 +185,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -221,7 +221,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -234,7 +234,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -270,7 +270,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -283,7 +283,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -319,7 +319,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -332,7 +332,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -368,7 +368,7 @@ exports[`<LearnDiceThrowing /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }

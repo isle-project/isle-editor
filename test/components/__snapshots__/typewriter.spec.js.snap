@@ -3,6 +3,6 @@
 exports[`<Typewriter /> renders correctly when just supplied text 1`] = `
 <span
   className="typewriter"
-  style={Object {}}
+  style={{}}
 />
 `;

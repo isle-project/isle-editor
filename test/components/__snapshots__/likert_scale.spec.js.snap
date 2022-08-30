@@ -4,7 +4,7 @@ exports[`<LikertScale /> renders a Likert scale 1`] = `
 <div
   className=" center card"
   style={
-    Object {
+    {
       "width": "75%",
     }
   }
@@ -116,7 +116,7 @@ exports[`<LikertScale /> renders a Likert scale 1`] = `
       disabled={true}
       onClick={[Function]}
       style={
-        Object {
+        {
           "marginRight": "5px",
         }
       }

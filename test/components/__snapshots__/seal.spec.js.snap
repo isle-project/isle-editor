@@ -7,7 +7,7 @@ exports[`<Seal /> renders a seal 1`] = `
   onKeyPress={[Function]}
   role="button"
   style={
-    Object {
+    {
       "WebkitFilter": "grayscale(0%)",
       "filter": "grayscale(0%)",
       "opacity": 1,
@@ -23,7 +23,7 @@ exports[`<Seal /> renders a seal 1`] = `
   />
   <div
     className="seal-inner-circle"
-    style={Object {}}
+    style={{}}
   />
   <div
     className="seal-logo"
@@ -46,7 +46,7 @@ exports[`<Seal /> renders a seal 1`] = `
     <div>
       <p
         style={
-          Object {
+          {
             "left": 7.066675633983849,
             "position": "absolute",
             "top": 113.29371405922686,
@@ -59,7 +59,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 13.482882750536746,
             "position": "absolute",
             "top": 130.21186180514633,
@@ -72,7 +72,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 23.15348674518549,
             "position": "absolute",
             "top": 145.50469853656887,
@@ -85,7 +85,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 35.68761441575152,
             "position": "absolute",
             "top": 158.55410773596233,
@@ -98,7 +98,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 50.57865266735261,
             "position": "absolute",
             "top": 168.8326493010199,
@@ -111,7 +111,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 67.22472515303176,
             "position": "absolute",
             "top": 175.92487798576911,
@@ -124,7 +124,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 84.95301933080347,
             "position": "absolute",
             "top": 179.54413515563812,
@@ -137,7 +137,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 103.04698066919654,
             "position": "absolute",
             "top": 179.54413515563812,
@@ -150,7 +150,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 120.77527484696827,
             "position": "absolute",
             "top": 175.92487798576911,
@@ -163,7 +163,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 137.42134733264743,
             "position": "absolute",
             "top": 168.8326493010199,
@@ -176,7 +176,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 152.3123855842485,
             "position": "absolute",
             "top": 158.5541077359623,
@@ -189,7 +189,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 164.8465132548145,
             "position": "absolute",
             "top": 145.50469853656887,
@@ -202,7 +202,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 174.51711724946327,
             "position": "absolute",
             "top": 130.21186180514633,
@@ -215,7 +215,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 180.93332436601617,
             "position": "absolute",
             "top": 113.29371405922684,
@@ -234,7 +234,7 @@ exports[`<Seal /> renders a seal 1`] = `
     <div>
       <p
         style={
-          Object {
+          {
             "left": 5.791349613852773,
             "position": "absolute",
             "top": 78.89612295078682,
@@ -247,7 +247,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 11.446812445764479,
             "position": "absolute",
             "top": 60.12790598157926,
@@ -260,7 +260,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 20.742107681649117,
             "position": "absolute",
             "top": 42.8702203162264,
@@ -273,7 +273,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 33.301531609922975,
             "position": "absolute",
             "top": 27.82059910384085,
@@ -286,7 +286,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 48.61744869395589,
             "position": "absolute",
             "top": 15.587328407848801,
@@ -299,7 +299,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 66.0708095384617,
             "position": "absolute",
             "top": 6.664861076563312,
@@ -312,7 +312,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 84.95617205876349,
             "position": "absolute",
             "top": 1.413831603863187,
@@ -325,7 +325,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 104.51021452989988,
             "position": "absolute",
             "top": 0.04647975324861875,
@@ -338,7 +338,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 123.942588055312,
             "position": "absolute",
             "top": 2.6180721033790917,
@@ -351,7 +351,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 142.46786143856042,
             "position": "absolute",
             "top": 9.024668245036139,
@@ -364,7 +364,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 159.33726728801673,
             "position": "absolute",
             "top": 19.007321916916908,
@@ -377,7 +377,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 173.86896621837724,
             "position": "absolute",
             "top": 32.16254727582826,
@@ -390,7 +390,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 185.47560590944062,
             "position": "absolute",
             "top": 47.95862726828896,
@@ -403,7 +403,7 @@ exports[`<Seal /> renders a seal 1`] = `
       </p>
       <p
         style={
-          Object {
+          {
             "left": 193.68806112093344,
             "position": "absolute",
             "top": 65.75710494042735,

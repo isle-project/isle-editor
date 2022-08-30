@@ -4,7 +4,7 @@ exports[`<Panel /> renders a panel 1`] = `
 <div
   className="panel  card"
   style={
-    Object {
+    {
       "height": undefined,
     }
   }
@@ -12,7 +12,7 @@ exports[`<Panel /> renders a panel 1`] = `
   <div
     className="card-body"
     style={
-      Object {
+      {
         "display": null,
       }
     }
@@ -28,7 +28,7 @@ exports[`<Panel /> renders a panel with a heading 1`] = `
 <div
   className="panel  card"
   style={
-    Object {
+    {
       "height": undefined,
     }
   }
@@ -43,7 +43,7 @@ exports[`<Panel /> renders a panel with a heading 1`] = `
     </span>
     <div
       style={
-        Object {
+        {
           "float": "right",
         }
       }
@@ -52,7 +52,7 @@ exports[`<Panel /> renders a panel with a heading 1`] = `
   <div
     className="card-body"
     style={
-      Object {
+      {
         "display": null,
       }
     }

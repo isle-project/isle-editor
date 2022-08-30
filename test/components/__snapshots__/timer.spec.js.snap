@@ -3,7 +3,7 @@
 exports[`<Timer /> renders a timer (inactive) 1`] = `
 <div
   className="timer-div timer-info"
-  style={Object {}}
+  style={{}}
 >
   00:50
 </div>
@@ -12,7 +12,7 @@ exports[`<Timer /> renders a timer (inactive) 1`] = `
 exports[`<Timer /> renders a timer 1`] = `
 <div
   className="timer-div timer-info"
-  style={Object {}}
+  style={{}}
 >
   00:50
 </div>

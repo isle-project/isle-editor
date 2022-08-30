@@ -4,7 +4,7 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
 <div
   className="container"
   style={
-    Object {
+    {
       "backgroundColor": "white",
       "border": "2px solid black",
       "maxWidth": 1600,
@@ -17,7 +17,7 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
     <div
       className="col-sm-3"
       style={
-        Object {
+        {
           "height": "450px",
         }
       }
@@ -25,7 +25,7 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
     <div
       className="col-sm-3"
       style={
-        Object {
+        {
           "height": "450px",
         }
       }
@@ -33,7 +33,7 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
     <div
       className="col-sm-6"
       style={
-        Object {
+        {
           "height": "450px",
         }
       }

@@ -3,12 +3,12 @@
 exports[`<Recorder /> renders a recorder 1`] = `
 <div
   className="recorder-container unselectable"
-  style={Object {}}
+  style={{}}
 >
   <div
     className="recorder-rec"
     style={
-      Object {
+      {
         "color": "rgb(100,100,100)",
       }
     }
@@ -82,7 +82,7 @@ exports[`<Recorder /> renders a recorder 1`] = `
   </div>
   <div
     style={
-      Object {
+      {
         "background": "rgba(0, 80,255,0.5)",
       }
     }

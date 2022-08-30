@@ -3,7 +3,7 @@
 exports[`<MultiCards /> renders a multiple cards component 1`] = `
 <div
   style={
-    Object {
+    {
       "animationDuration": undefined,
       "animationName": undefined,
       "overflow": "auto",

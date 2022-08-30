@@ -3,7 +3,7 @@
 exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
 <div
   style={
-    Object {
+    {
       "margin": "0 auto",
       "maxWidth": 1200,
     }
@@ -110,7 +110,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         <div
                           className="input"
                           style={
-                            Object {
+                            {
                               "marginBottom": "4px",
                               "marginTop": "4px",
                             }
@@ -149,7 +149,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               placeholder="0"
                               step={0.01}
                               style={
-                                Object {
+                                {
                                   "marginLeft": "24px",
                                   "width": "80px",
                                 }
@@ -162,7 +162,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         <div
                           className="input"
                           style={
-                            Object {
+                            {
                               "marginBottom": "4px",
                               "marginTop": "4px",
                             }
@@ -202,7 +202,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               placeholder="0"
                               step={0.01}
                               style={
-                                Object {
+                                {
                                   "marginLeft": "24px",
                                   "width": "80px",
                                 }
@@ -226,7 +226,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         <div
                           className="input"
                           style={
-                            Object {
+                            {
                               "marginBottom": "4px",
                               "marginTop": "4px",
                             }
@@ -266,7 +266,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               placeholder="0"
                               step={0.01}
                               style={
-                                Object {
+                                {
                                   "marginLeft": "24px",
                                   "width": "80px",
                                 }
@@ -290,7 +290,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         <div
                           className="input"
                           style={
-                            Object {
+                            {
                               "marginBottom": "4px",
                               "marginTop": "4px",
                             }
@@ -329,7 +329,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               placeholder="0"
                               step={0.01}
                               style={
-                                Object {
+                                {
                                   "marginLeft": "24px",
                                   "width": "80px",
                                 }
@@ -342,7 +342,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         <div
                           className="input"
                           style={
-                            Object {
+                            {
                               "marginBottom": "4px",
                               "marginTop": "4px",
                             }
@@ -381,7 +381,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               placeholder="0"
                               step={0.01}
                               style={
-                                Object {
+                                {
                                   "marginLeft": "24px",
                                   "width": "80px",
                                 }
@@ -429,7 +429,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                   <div
                     className="input"
                     style={
-                      Object {
+                      {
                         "marginBottom": "4px",
                         "marginTop": "4px",
                       }
@@ -465,7 +465,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                         placeholder="0"
                         step={1}
                         style={
-                          Object {
+                          {
                             "marginLeft": "24px",
                             "width": "80px",
                           }
@@ -482,7 +482,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                   <div
                     className="VictoryContainer"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "none",
                         "position": "relative",
@@ -497,7 +497,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       height={300}
                       role="img"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "all",
                           "width": "100%",
@@ -518,7 +518,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#252525",
                               "strokeLinecap": "round",
@@ -543,7 +543,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#252525",
                                 "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                 "fontSize": 14,
@@ -573,7 +573,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -603,7 +603,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -633,7 +633,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -663,7 +663,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -693,7 +693,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -723,7 +723,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -747,7 +747,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#252525",
                               "strokeLinecap": "round",
@@ -775,7 +775,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -805,7 +805,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -835,7 +835,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -865,7 +865,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -895,7 +895,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#252525",
                                   "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                                   "fontSize": 14,
@@ -915,7 +915,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       <g
                         clipPath="url(#victory-clip-2)"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "userSelect": "none",
                             "width": "100%",
@@ -940,7 +940,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#252525",
                               "strokeWidth": 2,
@@ -951,7 +951,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                     </svg>
                     <div
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "left": 0,
                           "position": "absolute",
@@ -964,7 +964,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                       <svg
                         height={300}
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "overflow": "visible",
                             "width": "100%",
@@ -1028,7 +1028,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
         <div
           className="card"
           style={
-            Object {
+            {
               "height": "400px",
               "overflowY": "scroll",
             }
@@ -1044,7 +1044,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
               onDragOver={[Function]}
               onDrop={[Function]}
               style={
-                Object {
+                {
                   "height": "10px",
                 }
               }
@@ -1075,7 +1075,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
             <div
               className="input checkbox-input-div"
               id="dynamic-checkbox-input-1"
-              style={Object {}}
+              style={{}}
             >
               <input
                 aria-label="overlay-normal-density"
@@ -1148,7 +1148,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
               onMouseOut={[Function]}
               onMouseOver={[Function]}
               style={
-                Object {
+                {
                   "padding": "5px",
                 }
               }
@@ -1176,7 +1176,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "3px",
                     "paddingLeft": "6px",
                     "width": "80px",
@@ -1225,7 +1225,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
               onMouseOut={[Function]}
               onMouseOver={[Function]}
               style={
-                Object {
+                {
                   "padding": "5px",
                 }
               }
@@ -1253,7 +1253,7 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "3px",
                     "paddingLeft": "6px",
                     "width": "80px",

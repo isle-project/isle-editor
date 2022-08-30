@@ -4,7 +4,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
 <div
   className="card"
   style={
-    Object {
+    {
       "margin": "10px auto",
       "maxWidth": 1200,
     }
@@ -153,7 +153,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                     <div
                       className="VictoryContainer"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "none",
                           "position": "relative",
@@ -167,7 +167,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                         height={350}
                         role="img"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "pointerEvents": "all",
                             "width": "100%",
@@ -183,7 +183,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "stroke": "#90A4AE",
                                 "strokeLinecap": "round",
@@ -204,7 +204,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -223,7 +223,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -249,7 +249,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -273,7 +273,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -292,7 +292,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -318,7 +318,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -342,7 +342,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -361,7 +361,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -387,7 +387,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -411,7 +411,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -430,7 +430,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -456,7 +456,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -480,7 +480,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -499,7 +499,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -525,7 +525,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -550,7 +550,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "stroke": "#90A4AE",
                                 "strokeLinecap": "round",
@@ -575,7 +575,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -599,7 +599,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -618,7 +618,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -644,7 +644,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -668,7 +668,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -687,7 +687,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -713,7 +713,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -737,7 +737,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -756,7 +756,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -782,7 +782,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -806,7 +806,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -825,7 +825,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -851,7 +851,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -875,7 +875,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -894,7 +894,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -920,7 +920,7 @@ exports[`<LearnGeometricDistribution /> renders a learning component 1`] = `
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -955,7 +955,7 @@ A 0 0 0 0 1, 55.208333333333336, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "tomato",
                                 "padding": 8,
                                 "stroke": "tomato",
@@ -977,7 +977,7 @@ A 0 0 0 0 1, 77.93560606060605, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -999,7 +999,7 @@ A 0 0 0 0 1, 100.66287878787878, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1021,7 +1021,7 @@ A 0 0 0 0 1, 123.39015151515152, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1043,7 +1043,7 @@ A 0 0 0 0 1, 146.11742424242425, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1065,7 +1065,7 @@ A 0 0 0 0 1, 168.84469696969697, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1087,7 +1087,7 @@ A 0 0 0 0 1, 191.5719696969697, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1109,7 +1109,7 @@ A 0 0 0 0 1, 214.29924242424244, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1131,7 +1131,7 @@ A 0 0 0 0 1, 237.02651515151516, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1153,7 +1153,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "steelblue",
                                 "padding": 8,
                                 "stroke": "steelblue",
@@ -1165,7 +1165,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       </svg>
                       <div
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "left": 0,
                             "position": "absolute",
@@ -1178,7 +1178,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         <svg
                           height={350}
                           style={
-                            Object {
+                            {
                               "height": "100%",
                               "overflow": "visible",
                               "width": "100%",
@@ -1196,7 +1196,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                     <div
                       className="VictoryContainer"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "none",
                           "position": "relative",
@@ -1210,7 +1210,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         height={350}
                         role="img"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "pointerEvents": "all",
                             "width": "100%",
@@ -1226,7 +1226,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "stroke": "#90A4AE",
                                 "strokeLinecap": "round",
@@ -1247,7 +1247,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1266,7 +1266,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1292,7 +1292,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1316,7 +1316,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1335,7 +1335,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1361,7 +1361,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1385,7 +1385,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1404,7 +1404,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1430,7 +1430,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1454,7 +1454,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1473,7 +1473,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1499,7 +1499,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1523,7 +1523,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1542,7 +1542,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1568,7 +1568,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1593,7 +1593,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "stroke": "#90A4AE",
                                 "strokeLinecap": "round",
@@ -1618,7 +1618,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -1642,7 +1642,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1661,7 +1661,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1687,7 +1687,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1711,7 +1711,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1730,7 +1730,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1756,7 +1756,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1780,7 +1780,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1799,7 +1799,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1825,7 +1825,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1849,7 +1849,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1868,7 +1868,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1894,7 +1894,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1918,7 +1918,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "none",
                                   "pointerEvents": "painted",
                                   "stroke": "#ECEFF1",
@@ -1937,7 +1937,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               role="presentation"
                               shapeRendering="auto"
                               style={
-                                Object {
+                                {
                                   "fill": "transparent",
                                   "size": 5,
                                   "stroke": "#90A4AE",
@@ -1963,7 +1963,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                                 dx={0}
                                 dy={0}
                                 style={
-                                  Object {
+                                  {
                                     "fill": "#455A64",
                                     "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                     "fontSize": 12,
@@ -1984,7 +1984,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         <g
                           clipPath="url(#victory-clip-3)"
                           style={
-                            Object {
+                            {
                               "height": "100%",
                               "userSelect": "none",
                               "width": "100%",
@@ -2009,7 +2009,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "opacity": 1,
                                 "stroke": "#455A64",
@@ -2021,7 +2021,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         <g
                           clipPath="url(#victory-clip-4)"
                           style={
-                            Object {
+                            {
                               "height": "100%",
                               "userSelect": "none",
                               "width": "100%",
@@ -2046,7 +2046,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "opacity": 0.5,
                                 "stroke": "#e95f46",
@@ -2058,7 +2058,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         <g
                           clipPath="url(#victory-clip-5)"
                           style={
-                            Object {
+                            {
                               "height": "100%",
                               "userSelect": "none",
                               "width": "100%",
@@ -2083,7 +2083,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "opacity": 0.5,
                                 "stroke": "#e95f46",
@@ -2095,7 +2095,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       </svg>
                       <div
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "left": 0,
                             "position": "absolute",
@@ -2108,7 +2108,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                         <svg
                           height={350}
                           style={
-                            Object {
+                            {
                               "height": "100%",
                               "overflow": "visible",
                               "width": "100%",
@@ -2153,7 +2153,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                   <div
                     className="VictoryContainer"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "none",
                         "position": "relative",
@@ -2167,7 +2167,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       height={350}
                       role="img"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "all",
                           "width": "100%",
@@ -2183,7 +2183,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -2204,7 +2204,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2223,7 +2223,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2249,7 +2249,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2273,7 +2273,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2292,7 +2292,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2318,7 +2318,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2342,7 +2342,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2361,7 +2361,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2387,7 +2387,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2411,7 +2411,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2430,7 +2430,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2456,7 +2456,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2480,7 +2480,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2499,7 +2499,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2525,7 +2525,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2550,7 +2550,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -2575,7 +2575,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -2599,7 +2599,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2618,7 +2618,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2644,7 +2644,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2668,7 +2668,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2687,7 +2687,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2713,7 +2713,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2737,7 +2737,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2756,7 +2756,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2782,7 +2782,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2806,7 +2806,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2825,7 +2825,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2851,7 +2851,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2875,7 +2875,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -2894,7 +2894,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -2920,7 +2920,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -2955,7 +2955,7 @@ A 0 0 0 0 1, 55.208333333333336, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -2977,7 +2977,7 @@ A 0 0 0 0 1, 77.93560606060605, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -2999,7 +2999,7 @@ A 0 0 0 0 1, 100.66287878787878, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3021,7 +3021,7 @@ A 0 0 0 0 1, 123.39015151515152, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3043,7 +3043,7 @@ A 0 0 0 0 1, 146.11742424242425, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3065,7 +3065,7 @@ A 0 0 0 0 1, 168.84469696969697, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3087,7 +3087,7 @@ A 0 0 0 0 1, 191.5719696969697, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3109,7 +3109,7 @@ A 0 0 0 0 1, 214.29924242424244, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3131,7 +3131,7 @@ A 0 0 0 0 1, 237.02651515151516, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3153,7 +3153,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -3165,7 +3165,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                     </svg>
                     <div
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "left": 0,
                           "position": "absolute",
@@ -3178,7 +3178,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <svg
                         height={350}
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "overflow": "visible",
                             "width": "100%",
@@ -3196,7 +3196,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                   <div
                     className="VictoryContainer"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "none",
                         "position": "relative",
@@ -3210,7 +3210,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       height={350}
                       role="img"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "all",
                           "width": "100%",
@@ -3226,7 +3226,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -3247,7 +3247,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3266,7 +3266,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3292,7 +3292,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3316,7 +3316,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3335,7 +3335,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3361,7 +3361,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3385,7 +3385,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3404,7 +3404,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3430,7 +3430,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3454,7 +3454,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3473,7 +3473,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3499,7 +3499,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3523,7 +3523,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3542,7 +3542,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3568,7 +3568,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3593,7 +3593,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -3618,7 +3618,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -3642,7 +3642,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3661,7 +3661,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3687,7 +3687,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3711,7 +3711,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3730,7 +3730,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3756,7 +3756,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3780,7 +3780,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3799,7 +3799,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3825,7 +3825,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3849,7 +3849,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3868,7 +3868,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3894,7 +3894,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3918,7 +3918,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -3937,7 +3937,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -3963,7 +3963,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -3984,7 +3984,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <g
                         clipPath="url(#victory-clip-8)"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "userSelect": "none",
                             "width": "100%",
@@ -4009,7 +4009,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "opacity": 1,
                               "stroke": "#455A64",
@@ -4021,7 +4021,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <g
                         clipPath="url(#victory-clip-9)"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "userSelect": "none",
                             "width": "100%",
@@ -4046,7 +4046,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "opacity": 0.5,
                               "stroke": "#e95f46",
@@ -4058,7 +4058,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <g
                         clipPath="url(#victory-clip-10)"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "userSelect": "none",
                             "width": "100%",
@@ -4083,7 +4083,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "opacity": 0.5,
                               "stroke": "#e95f46",
@@ -4095,7 +4095,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                     </svg>
                     <div
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "left": 0,
                           "position": "absolute",
@@ -4108,7 +4108,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <svg
                         height={350}
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "overflow": "visible",
                             "width": "100%",
@@ -4152,7 +4152,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                   <div
                     className="VictoryContainer"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "none",
                         "position": "relative",
@@ -4166,7 +4166,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       height={350}
                       role="img"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "all",
                           "width": "100%",
@@ -4182,7 +4182,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -4203,7 +4203,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4222,7 +4222,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4248,7 +4248,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4272,7 +4272,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4291,7 +4291,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4317,7 +4317,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4341,7 +4341,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4360,7 +4360,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4386,7 +4386,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4410,7 +4410,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4429,7 +4429,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4455,7 +4455,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4479,7 +4479,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4498,7 +4498,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4524,7 +4524,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4549,7 +4549,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -4574,7 +4574,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -4598,7 +4598,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4617,7 +4617,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4643,7 +4643,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4667,7 +4667,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4686,7 +4686,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4712,7 +4712,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4736,7 +4736,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4755,7 +4755,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4781,7 +4781,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4805,7 +4805,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4824,7 +4824,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4850,7 +4850,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4874,7 +4874,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -4893,7 +4893,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -4919,7 +4919,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -4954,7 +4954,7 @@ A 0 0 0 0 1, 55.208333333333336, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -4976,7 +4976,7 @@ A 0 0 0 0 1, 77.93560606060605, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "tomato",
                               "padding": 8,
                               "stroke": "tomato",
@@ -4998,7 +4998,7 @@ A 0 0 0 0 1, 100.66287878787878, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5020,7 +5020,7 @@ A 0 0 0 0 1, 123.39015151515152, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5042,7 +5042,7 @@ A 0 0 0 0 1, 146.11742424242425, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5064,7 +5064,7 @@ A 0 0 0 0 1, 168.84469696969697, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5086,7 +5086,7 @@ A 0 0 0 0 1, 191.5719696969697, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5108,7 +5108,7 @@ A 0 0 0 0 1, 214.29924242424244, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5130,7 +5130,7 @@ A 0 0 0 0 1, 237.02651515151516, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5152,7 +5152,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "steelblue",
                               "padding": 8,
                               "stroke": "steelblue",
@@ -5164,7 +5164,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                     </svg>
                     <div
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "left": 0,
                           "position": "absolute",
@@ -5177,7 +5177,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <svg
                         height={350}
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "overflow": "visible",
                             "width": "100%",
@@ -5195,7 +5195,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                   <div
                     className="VictoryContainer"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "none",
                         "position": "relative",
@@ -5209,7 +5209,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       height={350}
                       role="img"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "pointerEvents": "all",
                           "width": "100%",
@@ -5225,7 +5225,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -5246,7 +5246,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5265,7 +5265,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5291,7 +5291,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5315,7 +5315,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5334,7 +5334,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5360,7 +5360,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5384,7 +5384,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5403,7 +5403,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5429,7 +5429,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5453,7 +5453,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5472,7 +5472,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5498,7 +5498,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5522,7 +5522,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5541,7 +5541,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5567,7 +5567,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5592,7 +5592,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "stroke": "#90A4AE",
                               "strokeLinecap": "round",
@@ -5617,7 +5617,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -5641,7 +5641,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5660,7 +5660,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5686,7 +5686,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5710,7 +5710,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5729,7 +5729,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5755,7 +5755,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5779,7 +5779,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5798,7 +5798,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5824,7 +5824,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5848,7 +5848,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5867,7 +5867,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5893,7 +5893,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5917,7 +5917,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "none",
                                 "pointerEvents": "painted",
                                 "stroke": "#ECEFF1",
@@ -5936,7 +5936,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                             role="presentation"
                             shapeRendering="auto"
                             style={
-                              Object {
+                              {
                                 "fill": "transparent",
                                 "size": 5,
                                 "stroke": "#90A4AE",
@@ -5962,7 +5962,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                               dx={0}
                               dy={0}
                               style={
-                                Object {
+                                {
                                   "fill": "#455A64",
                                   "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                   "fontSize": 12,
@@ -5983,7 +5983,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <g
                         clipPath="url(#victory-clip-13)"
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "userSelect": "none",
                             "width": "100%",
@@ -6008,7 +6008,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "opacity": 1,
                               "stroke": "#455A64",
@@ -6020,7 +6020,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                     </svg>
                     <div
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "left": 0,
                           "position": "absolute",
@@ -6033,7 +6033,7 @@ A 0 0 0 0 1, 259.7537878787879, 300
                       <svg
                         height={350}
                         style={
-                          Object {
+                          {
                             "height": "100%",
                             "overflow": "visible",
                             "width": "100%",

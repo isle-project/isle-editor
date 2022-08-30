@@ -3,7 +3,7 @@
 exports[`<Anova /> renders test result 1`] = `
 <div
   style={
-    Object {
+    {
       "overflowX": "auto",
       "width": "100%",
     }
@@ -14,7 +14,7 @@ exports[`<Anova /> renders test result 1`] = `
   </label>
   <pre
     style={
-      Object {
+      {
         "marginTop": 10,
       }
     }

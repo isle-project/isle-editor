@@ -3,7 +3,7 @@
 exports[`<ScrollingText /> renders a scrolling text 1`] = `
 <div
   style={
-    Object {
+    {
       "overflow": "hidden",
       "width": "100%",
     }
@@ -12,7 +12,7 @@ exports[`<ScrollingText /> renders a scrolling text 1`] = `
   <p
     className="scrolling-text "
     style={
-      Object {
+      {
         "animation": "ticker-slide-in-left 1s forwards, ticker-slide-out-right 1s 3s forwards",
         "color": "blue",
         "fontSize": 44,

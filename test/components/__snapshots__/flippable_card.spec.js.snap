@@ -7,7 +7,7 @@ exports[`<FlippableCard /> renders a flippable card 1`] = `
   onKeyPress={[Function]}
   role="button"
   style={
-    Object {
+    {
       "cursor": "pointer",
       "float": "none",
       "height": 250,
@@ -21,7 +21,7 @@ exports[`<FlippableCard /> renders a flippable card 1`] = `
   <div
     className="react-card-flipper"
     style={
-      Object {
+      {
         "height": "100%",
         "position": "relative",
         "transformStyle": "preserve-3d",
@@ -32,7 +32,7 @@ exports[`<FlippableCard /> renders a flippable card 1`] = `
     <div
       className="react-card-front"
       style={
-        Object {
+        {
           "WebkitBackfaceVisibility": "hidden",
           "backfaceVisibility": "hidden",
           "background": "gainsboro",
@@ -57,7 +57,7 @@ exports[`<FlippableCard /> renders a flippable card 1`] = `
     <div
       className="react-card-back"
       style={
-        Object {
+        {
           "WebkitBackfaceVisibility": "hidden",
           "backfaceVisibility": "hidden",
           "background": "purple",

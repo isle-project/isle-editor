@@ -3,7 +3,7 @@
 exports[`<MeanTest2 /> renders test result 1`] = `
 <div
   style={
-    Object {
+    {
       "overflowX": "auto",
       "width": "100%",
     }

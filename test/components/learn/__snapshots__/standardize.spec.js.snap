@@ -13,7 +13,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
       <div
         className="card"
         style={
-          Object {
+          {
             "marginBottom": 10,
           }
         }
@@ -29,7 +29,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -65,7 +65,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -78,7 +78,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           <div
             className="input"
             style={
-              Object {
+              {
                 "marginBottom": "4px",
                 "marginTop": "4px",
               }
@@ -114,7 +114,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                 placeholder="0"
                 step="any"
                 style={
-                  Object {
+                  {
                     "marginLeft": "24px",
                     "width": "80px",
                   }
@@ -148,7 +148,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           <div
             className="VictoryContainer"
             style={
-              Object {
+              {
                 "height": "100%",
                 "pointerEvents": "none",
                 "position": "relative",
@@ -162,7 +162,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               height={300}
               role="img"
               style={
-                Object {
+                {
                   "height": "100%",
                   "pointerEvents": "all",
                   "width": "100%",
@@ -174,7 +174,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               <g
                 clipPath="url(#victory-clip-2)"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "userSelect": "none",
                     "width": "100%",
@@ -199,7 +199,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeWidth": 2,
@@ -214,7 +214,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeLinecap": "round",
@@ -242,7 +242,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -272,7 +272,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -302,7 +302,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -332,7 +332,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -356,7 +356,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeLinecap": "round",
@@ -381,7 +381,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                     dx={0}
                     dy={0}
                     style={
-                      Object {
+                      {
                         "fill": "#252525",
                         "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                         "fontSize": 14,
@@ -411,7 +411,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -441,7 +441,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -471,7 +471,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -501,7 +501,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -531,7 +531,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -561,7 +561,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -581,7 +581,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
             </svg>
             <div
               style={
-                Object {
+                {
                   "height": "100%",
                   "left": 0,
                   "position": "absolute",
@@ -594,7 +594,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               <svg
                 height={300}
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "overflow": "visible",
                     "width": "100%",
@@ -638,7 +638,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
           <div
             className="VictoryContainer"
             style={
-              Object {
+              {
                 "height": "100%",
                 "pointerEvents": "none",
                 "position": "relative",
@@ -652,7 +652,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               height={300}
               role="img"
               style={
-                Object {
+                {
                   "height": "100%",
                   "pointerEvents": "all",
                   "width": "100%",
@@ -668,7 +668,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeLinecap": "round",
@@ -696,7 +696,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -726,7 +726,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -756,7 +756,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -786,7 +786,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -810,7 +810,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeLinecap": "round",
@@ -835,7 +835,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                     dx={0}
                     dy={0}
                     style={
-                      Object {
+                      {
                         "fill": "#252525",
                         "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                         "fontSize": 14,
@@ -865,7 +865,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -895,7 +895,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -925,7 +925,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -955,7 +955,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                       dx={0}
                       dy={0}
                       style={
-                        Object {
+                        {
                           "fill": "#252525",
                           "fontFamily": "'Gill Sans', 'Seravek', 'Trebuchet MS', sans-serif",
                           "fontSize": 14,
@@ -975,7 +975,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               <g
                 clipPath="url(#victory-clip-4)"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "userSelect": "none",
                     "width": "100%",
@@ -1000,7 +1000,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   role="presentation"
                   shapeRendering="auto"
                   style={
-                    Object {
+                    {
                       "fill": "transparent",
                       "stroke": "#252525",
                       "strokeWidth": 2,
@@ -1011,7 +1011,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
             </svg>
             <div
               style={
-                Object {
+                {
                   "height": "100%",
                   "left": 0,
                   "position": "absolute",
@@ -1024,7 +1024,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
               <svg
                 height={300}
                 style={
-                  Object {
+                  {
                     "height": "100%",
                     "overflow": "visible",
                     "width": "100%",

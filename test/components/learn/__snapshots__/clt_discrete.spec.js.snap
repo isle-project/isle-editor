@@ -3,7 +3,7 @@
 exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
 <div
   style={
-    Object {
+    {
       "margin": "0 auto",
       "maxWidth": 1200,
     }
@@ -41,7 +41,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
                   <div
                     className="input"
                     style={
-                      Object {
+                      {
                         "marginBottom": "4px",
                         "marginTop": "4px",
                       }
@@ -77,7 +77,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
                         placeholder="0"
                         step={1}
                         style={
-                          Object {
+                          {
                             "marginLeft": "24px",
                             "width": "80px",
                           }
@@ -90,7 +90,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
                   <div
                     className="input"
                     style={
-                      Object {
+                      {
                         "marginBottom": "4px",
                         "marginTop": "4px",
                       }
@@ -126,7 +126,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
                         placeholder="0"
                         step={0.01}
                         style={
-                          Object {
+                          {
                             "marginLeft": "24px",
                             "width": "80px",
                           }
@@ -218,7 +218,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
               disabled={false}
               onClick={[Function]}
               style={
-                Object {
+                {
                   "marginLeft": "80px",
                 }
               }
@@ -245,7 +245,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
             <div
               className="input checkbox-input-div"
               id="dynamic-checkbox-input-1"
-              style={Object {}}
+              style={{}}
             >
               <input
                 aria-label="overlay-normal-density"
@@ -276,7 +276,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
         <div
           className="card"
           style={
-            Object {
+            {
               "height": "400px",
               "overflowY": "scroll",
             }
@@ -292,7 +292,7 @@ exports[`<LearnDiscreteCLT /> renders a learning component 1`] = `
               onDragOver={[Function]}
               onDrop={[Function]}
               style={
-                Object {
+                {
                   "height": "10px",
                 }
               }

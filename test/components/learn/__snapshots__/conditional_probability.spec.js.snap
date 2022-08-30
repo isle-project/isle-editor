@@ -12,7 +12,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
        
       <span
         className="input"
-        style={Object {}}
+        style={{}}
       >
         <span />
         <input
@@ -25,7 +25,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           onKeyUp={[Function]}
           placeholder="enter-text"
           style={
-            Object {
+            {
               "width": 80,
             }
           }
@@ -39,7 +39,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
        
       <span
         className="input"
-        style={Object {}}
+        style={{}}
       >
         <span />
         <input
@@ -52,7 +52,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           onKeyUp={[Function]}
           placeholder="enter-text"
           style={
-            Object {
+            {
               "width": 80,
             }
           }
@@ -72,7 +72,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
         style={
-          Object {
+          {
             "padding": "5px",
           }
         }
@@ -93,7 +93,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           placeholder="0"
           step={0.01}
           style={
-            Object {
+            {
               "marginLeft": "3px",
               "paddingLeft": "6px",
               "width": "80px",
@@ -115,7 +115,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
         onMouseOut={[Function]}
         onMouseOver={[Function]}
         style={
-          Object {
+          {
             "padding": "5px",
           }
         }
@@ -136,7 +136,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
           placeholder="0"
           step={0.01}
           style={
-            Object {
+            {
               "marginLeft": "3px",
               "paddingLeft": "6px",
               "width": "80px",
@@ -200,7 +200,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                     style={
-                      Object {
+                      {
                         "padding": "5px",
                       }
                     }
@@ -221,7 +221,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       placeholder="0"
                       step={0.01}
                       style={
-                        Object {
+                        {
                           "marginLeft": "3px",
                           "paddingLeft": "6px",
                           "width": "80px",
@@ -241,7 +241,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                     style={
-                      Object {
+                      {
                         "padding": "5px",
                       }
                     }
@@ -262,7 +262,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       placeholder="0"
                       step={0.01}
                       style={
-                        Object {
+                        {
                           "marginLeft": "3px",
                           "paddingLeft": "6px",
                           "width": "80px",
@@ -292,7 +292,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                     style={
-                      Object {
+                      {
                         "padding": "5px",
                       }
                     }
@@ -313,7 +313,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       placeholder="0"
                       step={0.01}
                       style={
-                        Object {
+                        {
                           "marginLeft": "3px",
                           "paddingLeft": "6px",
                           "width": "80px",
@@ -333,7 +333,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                     style={
-                      Object {
+                      {
                         "padding": "5px",
                       }
                     }
@@ -354,7 +354,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                       placeholder="0"
                       step={0.01}
                       style={
-                        Object {
+                        {
                           "marginLeft": "3px",
                           "paddingLeft": "6px",
                           "width": "80px",
@@ -463,7 +463,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
               onMouseOut={[Function]}
               onMouseOver={[Function]}
               style={
-                Object {
+                {
                   "padding": "5px",
                 }
               }
@@ -491,7 +491,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                 placeholder="0"
                 step={0.001}
                 style={
-                  Object {
+                  {
                     "marginLeft": "3px",
                     "paddingLeft": "6px",
                     "width": "80px",
@@ -512,7 +512,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
               onMouseOut={[Function]}
               onMouseOver={[Function]}
               style={
-                Object {
+                {
                   "padding": "5px",
                 }
               }
@@ -540,7 +540,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                 placeholder="0"
                 step={0.001}
                 style={
-                  Object {
+                  {
                     "marginLeft": "3px",
                     "paddingLeft": "6px",
                     "width": "80px",
@@ -571,7 +571,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                 <div
                   className="VictoryContainer"
                   style={
-                    Object {
+                    {
                       "height": "100%",
                       "pointerEvents": "none",
                       "position": "relative",
@@ -585,7 +585,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                     height={350}
                     role="img"
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "pointerEvents": "all",
                         "width": "100%",
@@ -601,7 +601,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "stroke": "#90A4AE",
                             "strokeLinecap": "round",
@@ -622,7 +622,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -641,7 +641,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -667,7 +667,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -691,7 +691,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -710,7 +710,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -736,7 +736,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -760,7 +760,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -779,7 +779,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -805,7 +805,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -829,7 +829,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -848,7 +848,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -874,7 +874,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -898,7 +898,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -917,7 +917,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -943,7 +943,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -968,7 +968,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "stroke": "#90A4AE",
                             "strokeLinecap": "round",
@@ -989,7 +989,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -1008,7 +1008,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -1034,7 +1034,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -1058,7 +1058,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "none",
                               "pointerEvents": "painted",
                               "stroke": "#ECEFF1",
@@ -1077,7 +1077,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                           role="presentation"
                           shapeRendering="auto"
                           style={
-                            Object {
+                            {
                               "fill": "transparent",
                               "size": 5,
                               "stroke": "#90A4AE",
@@ -1103,7 +1103,7 @@ exports[`<LearnConditionalProbability /> renders a learning component 1`] = `
                             dx={0}
                             dy={0}
                             style={
-                              Object {
+                              {
                                 "fill": "#455A64",
                                 "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                                 "fontSize": 12,
@@ -1138,7 +1138,7 @@ A 0 0 0 0 1, 115.625, 300
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "padding": 8,
                             "stroke": "#455A64",
@@ -1160,7 +1160,7 @@ A 0 0 0 0 1, 265.625, 300
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "#455A64",
                             "padding": 8,
                             "stroke": "#455A64",
@@ -1179,7 +1179,7 @@ A 0 0 0 0 1, 265.625, 300
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1206,7 +1206,7 @@ A 0 0 0 0 1, 265.625, 300
                           dx={0}
                           dy={0}
                           style={
-                            Object {
+                            {
                               "fill": "#455A64",
                               "fontFamily": "'Helvetica Neue', 'Helvetica', sans-serif",
                               "fontSize": 12,
@@ -1226,7 +1226,7 @@ A 0 0 0 0 1, 265.625, 300
                     <g
                       clipPath="url(#victory-clip-2)"
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "userSelect": "none",
                           "width": "100%",
@@ -1251,7 +1251,7 @@ A 0 0 0 0 1, 265.625, 300
                         role="presentation"
                         shapeRendering="auto"
                         style={
-                          Object {
+                          {
                             "fill": "transparent",
                             "opacity": 1,
                             "stroke": "#455A64",
@@ -1263,7 +1263,7 @@ A 0 0 0 0 1, 265.625, 300
                   </svg>
                   <div
                     style={
-                      Object {
+                      {
                         "height": "100%",
                         "left": 0,
                         "position": "absolute",
@@ -1276,7 +1276,7 @@ A 0 0 0 0 1, 265.625, 300
                     <svg
                       height={350}
                       style={
-                        Object {
+                        {
                           "height": "100%",
                           "overflow": "visible",
                           "width": "100%",

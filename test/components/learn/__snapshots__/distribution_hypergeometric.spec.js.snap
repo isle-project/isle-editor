@@ -4,7 +4,7 @@ exports[`<LearnHypergeometricDistribution /> renders a learning component 1`] = 
 <div
   className="card"
   style={
-    Object {
+    {
       "margin": "0 auto",
       "maxWidth": 1200,
     }

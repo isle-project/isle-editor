@@ -14,7 +14,7 @@ exports[`<Polaroid /> renders a draggable polaroid image 1`] = `
   onTouchEnd={[Function]}
   role="button"
   style={
-    Object {
+    {
       "height": 385.00000000000006,
       "transform": "translate(0px,0px)",
       "width": 350,
@@ -29,7 +29,7 @@ exports[`<Polaroid /> renders a draggable polaroid image 1`] = `
     <div
       className="polaroid-image"
       style={
-        Object {
+        {
           "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
           "backgroundPosition": "center",
           "backgroundSize": "auto 100%",
@@ -51,7 +51,7 @@ exports[`<Polaroid /> renders a polaroid image 1`] = `
   onMouseOver={[Function]}
   role="button"
   style={
-    Object {
+    {
       "height": 385.00000000000006,
       "width": 350,
     }
@@ -64,7 +64,7 @@ exports[`<Polaroid /> renders a polaroid image 1`] = `
     <div
       className="polaroid-image"
       style={
-        Object {
+        {
           "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
           "backgroundPosition": "center",
           "backgroundSize": "auto 100%",
@@ -86,7 +86,7 @@ exports[`<Polaroid /> renders a polaroid image with a pin 1`] = `
   onMouseOver={[Function]}
   role="button"
   style={
-    Object {
+    {
       "height": 385.00000000000006,
       "width": 350,
     }
@@ -99,7 +99,7 @@ exports[`<Polaroid /> renders a polaroid image with a pin 1`] = `
     <div
       className="polaroid-image"
       style={
-        Object {
+        {
           "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
           "backgroundPosition": "center",
           "backgroundSize": "auto 100%",
@@ -124,7 +124,7 @@ exports[`<Polaroid /> renders a removable polaroid image 1`] = `
   onMouseOver={[Function]}
   role="button"
   style={
-    Object {
+    {
       "height": 385.00000000000006,
       "width": 350,
     }
@@ -137,7 +137,7 @@ exports[`<Polaroid /> renders a removable polaroid image 1`] = `
     <div
       className="polaroid-image"
       style={
-        Object {
+        {
           "backgroundImage": "url(https://avatars1.githubusercontent.com/u/18444488?s=200&v=4)",
           "backgroundPosition": "center",
           "backgroundSize": "auto 100%",

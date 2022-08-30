@@ -3,7 +3,7 @@
 exports[`<Spinner /> renders an active spinner 1`] = `
 <canvas
   style={
-    Object {
+    {
       "display": "block",
       "height": 64,
       "margin": "auto",
@@ -16,7 +16,7 @@ exports[`<Spinner /> renders an active spinner 1`] = `
 exports[`<Spinner /> renders an inactive spinner 1`] = `
 <canvas
   style={
-    Object {
+    {
       "display": "none",
       "height": 64,
       "margin": "auto",
