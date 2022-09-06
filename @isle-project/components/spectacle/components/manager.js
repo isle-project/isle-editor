@@ -734,7 +734,6 @@ export class Manager extends Component {
 		return (
 			<div
 				className="spectacle-deck"
-				route={this.context.route}
 				style={{
 					backgroundColor: (
 						this.context.route.params.indexOf('presenter') !== -1 ||

@@ -153,7 +153,6 @@ class Slide extends React.PureComponent {
 							this.contentRef = c;
 						}}
 						className={`${contentClass} spectacle-content`}
-						margin={this.props.margin}
 						style={{
 							flex: 1,
 							maxHeight: this.context.contentHeight || 700,

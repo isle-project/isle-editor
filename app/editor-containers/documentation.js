@@ -56,6 +56,8 @@ class Documentation extends Component {
 
 	render() {
 		const { t } = this.props;
+
+		/* eslint-disable react/no-unknown-property */
 		return (
 			<div>
 				<HeaderUpperBar backToEditor title={t('documentation')} />
@@ -73,6 +75,7 @@ class Documentation extends Component {
 				/>
 			</div>
 		);
+		/* eslint-enable react/no-unknown-property */
 	}
 }
 

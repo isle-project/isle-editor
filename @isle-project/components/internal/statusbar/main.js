@@ -416,7 +416,7 @@ class StatusBar extends Component {
 		}
 		return (
 			<Fragment>
-				<a href={session.server} target="_blank" rel="noopener noreferrer" id="statusbar-dashboard-button" size="sm" className="statusbar-button" variant="outline-secondary" style={{ float: 'right', marginRight: '60px' }}>
+				<a href={session.server} target="_blank" rel="noopener noreferrer" id="statusbar-dashboard-button" size="sm" className="statusbar-button" style={{ float: 'right', marginRight: '60px' }}>
 					{t( 'goto-dashboard' )}
 				</a>
 				<Button size="sm" className="statusbar-button" variant="outline-secondary" style={{ position: 'absolute', right: '-20px' }} onClick={this.logout}>

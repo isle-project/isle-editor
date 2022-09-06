@@ -83,7 +83,6 @@ class Overview extends Component {
 			return (
 				<div
 					className="spectacle-slide-thumbnail"
-					screen={screen}
 					key={index}
 					role="button" tabIndex={0}
 					onClick={slideClicked}
