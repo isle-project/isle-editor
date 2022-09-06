@@ -169,6 +169,9 @@ const generateValueLabel = ({ value, type, levels, rows, cols, options }) => {
 		}
 		value = str || 'None';
 	}
+	else if ( type === 'range' ) {
+		value = value ? `[${value.map( x => isNumber( x ) ? x : 'NA' ).join( ', ' )}]` : 'None';
+	}
 	return value;
 };
 
@@ -732,7 +735,8 @@ class FullscreenActionDisplay extends Component {
 		const indices = [];
 		const actions = this.getActions();
 		for ( let i = 0; i < actions.length; i++ ) {
-			values.push( JSON.parse( actions[ i ].value ) );
+			const x = actions[ i ].value;
+			values.push( isString( x ) ? JSON.parse( x ) : x );
 			midpoints.push( 0.5 * ( values[ i ][ 0 ] + values[ i ][ 1 ] ) );
 			halfWidth.push( 0.5 * ( values[ i ][ 1 ] - values[ i ][ 0 ] ) );
 			indices.push( i );
