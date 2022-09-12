@@ -221,7 +221,7 @@
     "prosemirror-tables": "1.2.5",
     "prosemirror-transform": "^1.7.0",
     "prosemirror-utils": "^0.9.6",
-    "prosemirror-view": "^1.27.2",
+    "prosemirror-view": "^1.28.0",
     "qrcode": "^1.5.1",
     "querystring": "^0.2.1",
     "raf": "^3.4.1",
