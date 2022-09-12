@@ -246,7 +246,7 @@
     "react-json-view": "^1.21.3",
     "react-live": "2.2.2",
     "react-notification-system": "^0.4.0",
-    "react-plotly.js": "^2.5.1",
+    "react-plotly.js": "^2.6.0",
     "react-portal": "^4.2.2",
     "react-redux": "8.0.2",
     "react-rnd": "10.3.7",
