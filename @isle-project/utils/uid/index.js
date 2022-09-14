@@ -17,6 +17,7 @@
 
 // MODULES //
 
+import { isValidElement } from 'react';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
 import objectToHash from 'object-hash';
 
@@ -24,7 +25,16 @@ import objectToHash from 'object-hash';
 // VARIABLES //
 
 const HASH_OPTIONS = {
-	ignoreUnknown: true
+	ignoreUnknown: true,
+	respectFunctionProperties: false,
+	respectFunctionNames: false,
+	respectType: false,
+	replacer: ( value ) => {
+		if ( typeof value === 'object' && isValidElement( value ) ) {
+			return value.type;
+		}
+		return value;
+	}
 };
 
 
