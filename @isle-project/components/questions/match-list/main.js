@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { isPrimitive as isString } from '@stdlib/assert/is-string';
+import isArray from '@stdlib/assert/is-array';
 import SolutionButton from '@isle-project/components/solution-button';
 import ChatButton from '@isle-project/components/internal/chat-button';
 import HintButton from '@isle-project/components/hint-button';
@@ -66,7 +67,7 @@ const MatchListQuestion = ( props ) => {
 	const [ rightSelected, setRightSelected ] = useState( null );
 	const [ colorScale, setColorScale ] = useState( props.colorScale ? props.colorScale : createColorScale( 2 * elements.length ) );
 	const lastAnswer = retrieveLastAction( SUBMISSION );
-	const [ answers, setAnswers ] = useState( lastAnswer || [] );
+	const [ answers, setAnswers ] = useState( isArray( lastAnswer ) ? lastAnswer : [] );
 	const [ userAnswers, setUserAnswers ] = useState( null );
 	const [ submitted, setSubmitted ] = useState( false );
 
@@ -191,7 +192,7 @@ const MatchListQuestion = ( props ) => {
 				</div>
 			</Tooltip>
 		);
-	}, [ session, handleSubmit, submitted, t, until ] );
+	}, [ session, handleSubmit, id, submitted, t, until ] );
 
 	const handleLeftSelection = useCallback( ( option ) => {
 		const newColorScale = colorScale.slice();
