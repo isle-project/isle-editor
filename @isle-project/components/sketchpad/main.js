@@ -772,14 +772,14 @@ class Sketchpad extends Component {
 		if ( page ) {
 			debug( `Found background for page ${pageNumber}...` );
 			let ratio;
-			const vp1 = page.getViewport({ scale: 1.0, rotation: 0, dontFlip: false });
+			const vp1 = page.getViewport({ scale: 1.0, dontFlip: false });
 			const fill = this.state.fill || ( vp1.width > vp1.height ? 'vertical' : 'horizontal' );
 			if ( fill === 'vertical' ) {
 				ratio = this.state.canvasHeight / vp1.height;
 			} else {
 				ratio = this.state.canvasWidth / vp1.width;
 			}
-			const viewport = page.getViewport({ scale: ratio, rotation: 0, dontFlip: false });
+			const viewport = page.getViewport({ scale: ratio, dontFlip: false });
 			const textLayer = this.textLayer;
 			while ( textLayer.firstChild ) {
 				textLayer.removeChild( textLayer.firstChild );
@@ -2025,6 +2025,7 @@ class Sketchpad extends Component {
 
 	processPDF = ( pdf, clbk = noop ) => {
 		debug( 'PDF loaded...' );
+		console.log( pdf );
 		const noPages = pdf.numPages;
 		const elems = new Array( noPages );
 		const promises = new Array( noPages );
