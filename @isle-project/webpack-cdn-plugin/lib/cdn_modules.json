@@ -15,10 +15,11 @@
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
-		"alias": "pdf.js",
+		"alias": "pdfjs-dist",
 		"var": "pdfjsLib",
-		"path": "pdf.min.js",
-		"version": "2.10.377",
+		"path": "legacy/build/pdf.min.js",
+		"version": "2.16.105",
+		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"defer": true
 	},
 	{
