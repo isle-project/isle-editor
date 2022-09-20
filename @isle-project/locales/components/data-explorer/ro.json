@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Crearea unui nou set de date din filtrele active în prezent",
 	"create-groups": "Crearea de grupuri (de exemplu, pentru împărțirea setului de instruire și testare sau validarea încrucișată)",
 	"create-new-variable": "Crearea unei noi variabile",
+	"customize-color": "Personalizați culoarea",
 	"data": "Date",
 	"data-driven": "Bazat pe date",
 	"Data-driven-description": "O estimare neparametrică a densității de kernel care nu derivă dintr-o distribuție statistică cu parametri, ci este calculată din date.",

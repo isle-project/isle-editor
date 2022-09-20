@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Ustvari nov nabor podatkov iz trenutno aktivnih filtrov",
 	"create-groups": "Ustvarjanje skupin (npr. za razdelitev učnega in testnega niza ali navzkrižno preverjanje)",
 	"create-new-variable": "Ustvari novo spremenljivko",
+	"customize-color": "Prilagodite barvo",
 	"data": "Podatki",
 	"data-driven": "Na podlagi podatkov",
 	"Data-driven-description": "Neparametrična ocena gostote jedra, ki ne izhaja iz statistične porazdelitve s parametri, temveč se izračuna iz podatkov.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Opret nyt datasæt ud fra de aktive filtre i øjeblikket",
 	"create-groups": "Opret grupper (f.eks. til opdeling af trænings- og testsæt eller krydsvalidering)",
 	"create-new-variable": "Opret ny variabel",
+	"customize-color": "Tilpas farve",
 	"data": "Data",
 	"data-driven": "Datadrevet",
 	"Data-driven-description": "Et ikke-parametrisk kernetæthedsestimat, der ikke er afledt af en statistisk fordeling med parametre, men beregnet ud fra dataene.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "現在アクティブなフィルタから新しいデータセットを作成",
 	"create-groups": "グループを作成する (例: トレーニング-テストセットの分割やクロスバリデーション)",
 	"create-new-variable": "新しい変数の作成",
+	"customize-color": "カスタマイズカラー",
 	"data": "データ",
 	"data-driven": "データ駆動型",
 	"Data-driven-description": "ノンパラメトリックカーネル密度推定値は、パラメータを持つ統計分布から得られるのではなく、データから計算されます。",

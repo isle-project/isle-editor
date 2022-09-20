@@ -17,7 +17,7 @@ const ENV = require( '@stdlib/process/env' );
 
 const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 const MAX_TRANSLATION_CALLS = 5;
-const DEEPL_SERVER = 'https://api.deepl.com/v2/translate';
+const DEEPL_SERVER = 'https://api-free.deepl.com/v2/translate';
 const TOPLEVEL_DIR = path.resolve( __dirname, '..', '..', '..' );
 const RE_HANDLEBAR_EXPRESSION = /\{\{([^}]+)\}\}/g;
 const RE_BACKTICK_EXPRESSION = /`([^`]+?)`/g;

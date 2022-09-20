@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Tworzenie nowego zbioru danych z aktualnie aktywnych filtrów",
 	"create-groups": "Tworzenie grup (np. w celu podzielenia zestawu treningowo-testowego lub walidacji krzyżowej)",
 	"create-new-variable": "Stwórz nową zmienną",
+	"customize-color": "Dostosuj kolor",
 	"data": "Dane",
 	"data-driven": "Data-driven",
 	"Data-driven-description": "Nieparametryczna estymacja gęstości jądra, nie pochodząca z rozkładu statystycznego z parametrami, ale obliczona na podstawie danych.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Sukurti naują duomenų rinkinį iš šiuo metu aktyvių filtrų",
 	"create-groups": "sukurti grupes (pvz., mokymo ir bandymo rinkinio padalijimui arba kryžminiam tikrinimui).",
 	"create-new-variable": "Sukurti naują kintamąjį",
+	"customize-color": "Tinkinti spalvą",
 	"data": "Duomenys",
 	"data-driven": "Duomenimis pagrįstas",
 	"Data-driven-description": "Neparametrinis branduolio tankio įvertis, apskaičiuotas ne pagal statistinį pasiskirstymą su parametrais, o pagal duomenis.",

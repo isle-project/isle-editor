@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Créer un nouvel ensemble de données à partir des filtres actuellement actifs",
 	"create-groups": "Créer des groupes (par exemple, pour la division ou la validation croisée d'un ensemble de tests de formation)",
 	"create-new-variable": "Créer une nouvelle variable",
+	"customize-color": "Personnaliser la couleur",
 	"data": "Données",
 	"data-driven": "Pilotage par les données",
 	"Data-driven-description": "Une estimation non paramétrique de la densité du noyau qui n'est pas dérivée d'une distribution statistique avec des paramètres mais calculée à partir des données.",

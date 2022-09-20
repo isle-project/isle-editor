@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Új adatkészlet létrehozása a jelenleg aktív szűrőkből",
 	"create-groups": "Csoportok létrehozása (pl. a gyakorló- és tesztkészlet felosztásához vagy keresztellenőrzéshez)",
 	"create-new-variable": "Új változó létrehozása",
+	"customize-color": "Szín testreszabása",
 	"data": "Adatok",
 	"data-driven": "Adatvezérelt",
 	"Data-driven-description": "Nem parametrikus kernel sűrűségbecslés, amely nem egy paraméterekkel rendelkező statisztikai eloszlásból származik, hanem az adatokból számítják ki.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "从当前活动的过滤器中创建新的数据集",
 	"create-groups": "创建组（例如，用于训练-测试集分割或交叉验证）。",
 	"create-new-variable": "创建新的变量",
+	"customize-color": "自定义颜色",
 	"data": "数据",
 	"data-driven": "数据驱动的",
 	"Data-driven-description": "一个非参数的内核密度估计，不是从有参数的统计分布中得出，而是从数据中计算出来的。",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Neuen Datensatz aus derzeit aktiven Filtern erstellen",
 	"create-groups": "Gruppen erstellen (z.B. für die Aufteilung von Trainings-Testsätzen oder die Kreuzvalidierung)",
 	"create-new-variable": "Neue Variable erstellen",
+	"customize-color": "Farbe anpassen",
 	"data": "Daten",
 	"data-driven": "Datengesteuert",
 	"Data-driven-description": "Eine nichtparametrische Kerndichteschätzung, die nicht aus einer statistischen Verteilung mit Parametern abgeleitet, sondern aus den Daten berechnet wird.",

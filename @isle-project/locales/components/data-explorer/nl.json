@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Maak een nieuwe dataset aan van de huidige actieve filters",
 	"create-groups": "Creëer groepen (bijv. voor de splitsing van een trainingsset of voor kruisvalidatie)",
 	"create-new-variable": "Creëer nieuwe variabele",
+	"customize-color": "Kleur aanpassen",
 	"data": "Gegevens",
 	"data-driven": "Datagestuurd",
 	"Data-driven-description": "Een niet-parametrische schatting van de kerneldichtheid, niet afgeleid van een statistische verdeling met parameters, maar berekend op basis van de gegevens.",

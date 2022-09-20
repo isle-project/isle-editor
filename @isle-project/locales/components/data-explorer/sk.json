@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Vytvorenie nového súboru údajov z aktuálne aktívnych filtrov",
 	"create-groups": "Vytvorenie skupín (napr. na rozdelenie tréningovej a testovacej sady alebo krížovú validáciu)",
 	"create-new-variable": "Vytvorenie novej premennej",
+	"customize-color": "Prispôsobenie farby",
 	"data": "Údaje",
 	"data-driven": "Na základe údajov",
 	"Data-driven-description": "Neparametrický jadrový odhad hustoty, ktorý nie je odvodený zo štatistického rozdelenia s parametrami, ale vypočítaný z údajov.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Create new dataset from currently active filters",
 	"create-groups": "Create groups (e.g., for training-test set split or cross-validation)",
 	"create-new-variable": "Create new variable",
+	"customize-color": "Customize color",
 	"data": "Data",
 	"data-driven": "Data-driven",
 	"Data-driven-description": "A non-parametric kernel density estimate not derived from a statistical distribution with parameters but computed from the data.",

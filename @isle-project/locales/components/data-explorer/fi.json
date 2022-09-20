@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Luo uusi tietokokonaisuus aktiivisista suodattimista",
 	"create-groups": "Luo ryhmiä (esim. harjoittelu- ja testijoukon jakamista tai ristiinvalidointia varten).",
 	"create-new-variable": "Luo uusi muuttuja",
+	"customize-color": "Mukauta väri",
 	"data": "Tiedot",
 	"data-driven": "Tietoon perustuva",
 	"Data-driven-description": "Ei-parametrinen ytimen tiheysestimaatti, jota ei johdeta tilastollisesta jakaumasta, jolla on parametrit, vaan joka lasketaan datasta.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Criar novo conjunto de dados a partir de filtros atualmente ativos",
 	"create-groups": "Criação de grupos (por exemplo, para treinamento de conjuntos de teste divididos ou validação cruzada)",
 	"create-new-variable": "Criar nova variável",
+	"customize-color": "Personalizar a cor",
 	"data": "Dados",
 	"data-driven": "Data-driven",
 	"Data-driven-description": "Uma estimativa não paramétrica da densidade de kernel não derivada de uma distribuição estatística com parâmetros, mas computada a partir dos dados.",

@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Skapa nya dataset från aktiva filter",
 	"create-groups": "Skapa grupper (t.ex. för att dela upp tränings- och testuppsättningar eller korsvalidering).",
 	"create-new-variable": "Skapa en ny variabel",
+	"customize-color": "Anpassa färg",
 	"data": "Uppgifter",
 	"data-driven": "Datadriven",
 	"Data-driven-description": "En icke-parametrisk kärndensitetsuppskattning som inte härrör från en statistisk fördelning med parametrar utan beräknas från data.",

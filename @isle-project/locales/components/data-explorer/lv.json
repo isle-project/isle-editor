@@ -62,6 +62,7 @@
 	"create-filtered-dataset-tooltip": "Izveidot jaunu datu kopu no pašlaik aktīvajiem filtriem",
 	"create-groups": "Izveidot grupas (piemēram, mācību un testa kopas sadalīšanai vai savstarpējai validācijai).",
 	"create-new-variable": "Izveidot jaunu mainīgo",
+	"customize-color": "Pielāgot krāsu",
 	"data": "Dati",
 	"data-driven": "Uz datiem balstīts",
 	"Data-driven-description": "Neparametrisks kodola blīvuma novērtējums, kas nav iegūts no statistiskā sadalījuma ar parametriem, bet aprēķināts no datiem.",
