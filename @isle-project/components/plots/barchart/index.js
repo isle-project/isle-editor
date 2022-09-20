@@ -23,6 +23,10 @@ const MAX_CATEGORIES = 150;
 
 // FUNCTIONS //
 
+function escape( str ) {
+	return str.replace( /\$/g, '&#36;' );
+}
+
 export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, colors, direction }) {
 	let traces;
 	if ( !data[ variable ] ) {
@@ -48,6 +52,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		const counts = new Array( categories.length );
 		for ( let i = 0; i < categories.length; i++ ) {
 			counts[ i ] = freqs[ categories[ i ] ];
+			categories[ i ] = escape( categories[ i ] );
 		}
 		if ( totalPercent ) {
 			for ( let i = 0; i < counts.length; i++ ) {
@@ -103,6 +108,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ] / catCounts[ categories[ i ] ];
+					categories[ i ] = escape( categories[ i ] );
 				}
 				if ( totalPercent ) {
 					for ( let i = 0; i < counts.length; i++ ) {
@@ -141,6 +147,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 				const counts = new Array( categories.length );
 				for ( let i = 0; i < categories.length; i++ ) {
 					counts[ i ] = val[ categories[ i ] ];
+					categories[ i ] = escape( categories[ i ] );
 				}
 				if ( totalPercent ) {
 					for ( let i = 0; i < counts.length; i++ ) {
