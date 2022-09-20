@@ -11,6 +11,7 @@ const replace = require( '@stdlib/string/replace' );
 // VARIABLES //
 
 const RE_NODE_MODULE = /^[\s\S]*?\/node_modules\/([\s\S]+$)/;
+const RE_EOL = /\r?\n/;
 const pkgPath = path.join( __dirname, '..', 'package.json' );
 const pkg = require( pkgPath );
 const IGNORE_LIST = [
@@ -45,7 +46,7 @@ const DEV_DEPS = new Set();
 const listDevDeps = spawn( 'npm', [ 'ls', '--only=dev', '--parseable', '--all' ] );
 
 listDevDeps.stdout.on( 'data', ( data ) => {
-	const lines = data.toString().split( '\n' );
+	const lines = data.toString().split( RE_EOL );
 	for ( let i = 1; i < lines.length - 1; i++ ) {
 		DEV_DEPS.add( lines[ i ] );
 	}
@@ -56,8 +57,9 @@ listDevDeps.stdout.on( 'close', ( code ) => {
 	console.log( `The isle-editor has ${DEV_DEPS.size} development dependencies.` );
 
 	const listProdDeps = spawn( 'npm', [ 'ls', '--only=prod', '--parseable', '-all' ]);
+
 	listProdDeps.stdout.on( 'data', ( data ) => {
-		const lines = data.toString().split( '\n' );
+		const lines = data.toString().split( RE_EOL );
 		for ( let i = 1; i < lines.length - 1; i++ ) {
 			const val = lines[ i ];
 			if ( DEV_DEPS.has( val ) ) {
