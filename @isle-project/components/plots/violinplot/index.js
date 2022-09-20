@@ -19,12 +19,12 @@ const MAX_CATEGORIES = 50;
 
 // FUNCTIONS //
 
-export function generateViolinplotConfig({ data, variable, group, showBox }) {
+export function generateViolinplotConfig({ data, variable, group, horizontal, showBox }) {
 	let traces;
 	if ( !group ) {
 		const values = data[ variable ];
 		traces = [ {
-			y: values,
+			[ horizontal ? 'x' : 'y' ]: values,
 			type: 'violin',
 			name: variable,
 			box: {
@@ -44,7 +44,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 			const key = keys[ i ];
 			const val = freqs[ key ];
 			traces.push({
-				y: val,
+				[ horizontal ? 'x' : 'y' ]: val,
 				name: key,
 				type: 'violin',
 				box: {
@@ -57,7 +57,7 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 		data: traces,
 		layout: {
 			title: group ? `${variable} ${i18n.t('plotly:given')} ${group}` : variable,
-			xaxis: {
+			[ horizontal ? 'yaxis' : 'xaxis']: {
 				type: 'category'
 			}
 		}
@@ -67,13 +67,13 @@ export function generateViolinplotConfig({ data, variable, group, showBox }) {
 
 // MAIN //
 
-function ViolinPlot({ data, variable, id, group, showBox, action, onShare }) {
+function ViolinPlot({ data, variable, id, group, showBox, horizontal, action, onShare }) {
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateViolinplotConfig({ data, variable, group, showBox });
-	}, [ data, group, showBox, variable ] );
+		return generateViolinplotConfig({ data, variable, group, horizontal, showBox });
+	}, [ data, group, horizontal, showBox, variable ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
 	}
@@ -118,6 +118,7 @@ ViolinPlot.propTypes = {
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
 * @property {(string|Factor)} group - grouping variable
+* @property {boolean} horizontal - controls whether to display the violin plot horizontally
 * @property {boolean} showBox - controls whether to display a box plot inside
 */
 export default withPropCheck( ViolinPlot );
