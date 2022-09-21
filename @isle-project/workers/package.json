@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/workers",
-	"version": "0.50.51",
+	"version": "0.50.52",
 	"description": "ISLE worker scripts.",
 	"author": {
 		"name": "Philipp Burckhardt",
