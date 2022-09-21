@@ -245,7 +245,7 @@ class ResponseVisualizer extends Component {
 
 	addSessionActions = () => {
 		const session = this.context;
-		debug( !session.selectedCohort ? 'Add session actions...' : 'Add session actions for cohort '+session.selectedCohort.title );
+		debug( !session.selectedCohort ? `Add ${this.props.id} session actions...` : `Add ${this.props.id} session actions for cohort ${session.selectedCohort.title}` );
 		const actions = session.socketActions;
 		const filtered = [];
 		this.emailHash = {};
