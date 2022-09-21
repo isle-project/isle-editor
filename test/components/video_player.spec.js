@@ -21,7 +21,7 @@ describe( '<VideoPlayer />', function test() {
 	});
 
 	it( 'renders a video player with controls and a custom style', () => {
-		const { container } = render( <VideoPlayer id="player" url="https://youtu.be/Lkj8b25ppZo" controls style={{ width: '100%' }} /> );
+		const { container } = render( <VideoPlayer id="player" url="https://youtu.be/Lkj8b25ppZo" controls width="100%" /> );
 		const player = container.querySelector( '#player' );
 		expect( player ).toHaveStyle( { width: '100%' } );
 	});
