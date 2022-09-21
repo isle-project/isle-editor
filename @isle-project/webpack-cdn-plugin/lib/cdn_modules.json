@@ -11,7 +11,7 @@
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "21.6.16"
+		"version": "21.9.2"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -27,7 +27,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.11.1"
+		"version": "2.14.0"
 	},
 	{
 		"name": "js-yaml",
@@ -41,21 +41,21 @@
 		"alias": "moment.js",
 		"var": "moment",
 		"path": "moment.min.js",
-		"version": "2.29.3"
+		"version": "2.29.4"
 	},
 	{
 		"name": "react",
 		"alias": "react",
 		"var": "React",
 		"path": "umd/react.production.min.js",
-		"version": "18.1.0"
+		"version": "18.2.0"
 	},
 	{
 		"name": "react-dom",
 		"alias": "react-dom",
 		"var": "ReactDOM",
 		"path": "umd/react-dom.production.min.js",
-		"version": "18.1.0"
+		"version": "18.2.0"
 	},
 	{
 		"name": "prop-types",
@@ -76,14 +76,14 @@
 		"alias": "markdown-it",
 		"var": "markdownit",
 		"path": "markdown-it.min.js",
-		"version": "13.0.0"
+		"version": "13.0.1"
 	},
 	{
 		"name": "victory",
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "36.3.2"
+		"version": "36.6.7"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
@@ -114,7 +114,7 @@
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "2.10.0"
+		"version": "2.11.0"
 	},
 	{
 		"name": "react-draggable",
@@ -130,7 +130,7 @@
 		"var": "io",
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.5.0"
+		"version": "4.5.2"
 	},
 	{
 		"name": "react-list",
