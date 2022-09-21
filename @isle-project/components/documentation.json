@@ -3176,12 +3176,6 @@
 				"defaultValue": null
 			},
 			{
-				"name": "id",
-				"type": "string",
-				"description": "LearnMeanVSMedian-prop-id",
-				"defaultValue": "mean_vs_median"
-			},
-			{
 				"name": "intro",
 				"type": "node",
 				"description": "LearnMeanVSMedian-prop-intro",
@@ -3457,6 +3451,12 @@
 				"defaultValue": ""
 			},
 			{
+				"name": "tag",
+				"type": "string",
+				"description": "Link-prop-tag",
+				"defaultValue": null
+			},
+			{
 				"name": "style",
 				"type": "object",
 				"description": "Link-prop-style",
@@ -3608,6 +3608,12 @@
 				"type": "number",
 				"description": "DecisionTree-prop-minItemsCount",
 				"defaultValue": 50
+			},
+			{
+				"name": "omitMissing",
+				"type": "boolean",
+				"description": "DecisionTree-prop-omitMissing",
+				"defaultValue": true
 			},
 			{
 				"name": "onPredict",
@@ -4467,6 +4473,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "colors",
+				"type": "array<string>",
+				"description": "BarChart-prop-colors",
+				"defaultValue": []
+			},
+			{
 				"name": "yvar",
 				"type": "string",
 				"description": "BarChart-prop-yvar",
@@ -4930,6 +4942,12 @@
 				"description": "PieChart-prop-data"
 			},
 			{
+				"name": "colors",
+				"type": "array<string>",
+				"description": "PieChart-prop-colors",
+				"defaultValue": []
+			},
+			{
 				"name": "variable",
 				"type": "(string|Factor) (required)",
 				"description": "PieChart-prop-variable"
@@ -5128,6 +5146,12 @@
 				"type": "(string|Factor)",
 				"description": "ViolinPlot-prop-group",
 				"defaultValue": null
+			},
+			{
+				"name": "horizontal",
+				"type": "boolean",
+				"description": "ViolinPlot-prop-horizontal",
+				"defaultValue": false
 			},
 			{
 				"name": "showBox",

@@ -96,7 +96,8 @@ function ViolinPlot({ data, variable, id, group, showBox, horizontal, action, on
 
 ViolinPlot.defaultProps = {
 	group: null,
-	showBox: false
+	showBox: false,
+	horizontal: false
 };
 
 ViolinPlot.propTypes = {
@@ -106,6 +107,7 @@ ViolinPlot.propTypes = {
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
 	]),
+	horizontal: PropTypes.bool,
 	showBox: PropTypes.bool
 };
 

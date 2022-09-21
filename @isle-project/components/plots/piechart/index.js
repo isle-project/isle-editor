@@ -208,6 +208,6 @@ PieChart.propTypes = {
 * @property {(string|Factor)} variable - variable to display
 * @property {(string|Factor)} group - grouping variable
 * @property {string} summaryVariable - optional variable whose sum to display for each `variable` category
-* @property {Array} [colors] - array of colors for the slices of the pie chart
+* @property {Array} colors - array of colors for the slices of the pie chart
 */
 export default withPropCheck( PieChart );
