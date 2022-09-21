@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.76.19](https://github.com/isle-project/isle-editor/releases/tag/v0.76.19) (2022-09-21)
+
+Installing packages via `npm` errors in the last release. This release includes a patch solving the problem.
+
 ## [v0.76.18](https://github.com/isle-project/isle-editor/releases/tag/v0.76.18) (2022-09-21)
 
 This release comes with a fix for a bug causing component identifiers to be re-generated: Instead of generating them at runtime, they are now baked in while uploading the lesson.
