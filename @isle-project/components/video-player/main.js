@@ -201,13 +201,15 @@ const Video = ( props ) => {
 				onError={handleError}
 				progressInterval={1000}
 				config={config}
+				width={width}
+				height={height}
 			/>
 		</Fragment>;
 	} else {
 		player = null;
 	}
 	const out = <div
-		id={id}
+		id={`${id}-outer`}
 		style={customStyle}
 		className="video"
 		ref={( el ) => {
