@@ -1,5 +1,25 @@
 # Changelog
 
+## [v0.76.18](https://github.com/isle-project/isle-editor/releases/tag/v0.76.18) (2022-09-21)
+
+This release comes with a fix for a bug causing component identifiers to be re-generated: Instead of generating them at runtime, they are now baked in while uploading the lesson.
+
+In addition, the release updates the internal logging of actions in preparation of the rollout of our new assessment system, which allows for fine-grained control of tracker user progress. 
+
+PDF rendering has been improved through an update of the underlying library, and several other minor bugs have been resolved (multiple dollar signs in plot labels are not interpreted as LaTeX anymore, answer formats for various question components are improved, ...)
+
+Custom colors can now be chosen for pie charts and bar charts, and an ability to flip coordinates for violin plots has been added.
+
+**Implemented enhancements:**
+
+- request: Edit Cohort to accept space delimited, tab delimited, etc [\#2845](https://github.com/isle-project/isle-editor/issues/2845)
+- Have ability to select custom color for legends in clustered bar charts [\#2324](https://github.com/isle-project/isle-editor/issues/2324)
+
+**Fixed bugs:**
+
+- \[Bug\]: RangeQuestion -\> Answers [\#2903](https://github.com/isle-project/isle-editor/issues/2903)
+- \[Bug\]: progress tab search windows not working [\#2880](https://github.com/isle-project/isle-editor/issues/2880)
+
 ## [v0.76.17](https://github.com/isle-project/isle-editor/releases/tag/v0.76.17) (2022-07-18)
 
 This release contains bug fixes for the `<IFrame />` and `<Reaction />` components. Concerning new features, it allows overlaying of multiple density lines on histograms. In addition, the group functionality now allows instructors to create empty groups and/or assign students to groups who are enrolled in the course but currently not online.
