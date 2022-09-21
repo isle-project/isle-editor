@@ -9,7 +9,6 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import contains from '@stdlib/assert/contains';
 import Tooltip from '@isle-project/components/tooltip';
-import SessionContext from '@isle-project/session/context.js';
 import isHidden from '@isle-project/utils/is-hidden';
 import isElectron from '@isle-project/utils/is-electron';
 import { END, PLAY, START, PAUSE, SEEK } from '@isle-project/constants/actions.js';
@@ -268,8 +267,6 @@ Video.defaultProps = {
 	onStart() {},
 	onSeek() {}
 };
-
-Video.contextType = SessionContext;
 
 
 // EXPORTS //
