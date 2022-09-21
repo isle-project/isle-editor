@@ -810,7 +810,6 @@
       "!node_modules/xml-name-validator/**/*",
       "!node_modules/jest/node_modules/chalk/**/*",
       "!node_modules/immediate/**/*",
-      "!node_modules/npm/node_modules/@npmcli/git/**/*",
       "!node_modules/@foliojs-fork/linebreak/node_modules/base64-js/**/*",
       "!node_modules/brfs/**/*",
       "!node_modules/unicode-trie/**/*",
