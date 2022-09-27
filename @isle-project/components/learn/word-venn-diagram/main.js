@@ -291,7 +291,7 @@ class WordVennDiagram extends Component {
 							right: 40,
 							top: 50
 						}}>{t('total-texts')}: {this.props.nTexts}</span>
-						<div id={`${this.id}-venn`}></div>
+						<div id={`${this.props.id}-venn`}></div>
 					</Card.Body>
 				</Card>
 			</Fragment>
