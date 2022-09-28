@@ -175,7 +175,7 @@ exports[`<LearnWordVennDiagram /> renders a learning component 1`] = `
         118
       </span>
       <div
-        id="undefined-venn"
+        id="dynamic-word-venn-diagram-1-venn"
       />
     </div>
   </div>,
