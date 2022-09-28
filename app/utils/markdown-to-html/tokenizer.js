@@ -68,7 +68,7 @@ class Tokenizer {
 		this.addLineWrappers = opts.addLineWrappers;
 		this.trimLineStarts = opts.trimLineStarts ? true : false;
 		this.fileDirectory = opts.fileDirectory;
-		this.uidHash = {};
+		this.uidHash = opts.uidHash || {};
 	}
 
 	setup( str ) {
@@ -269,7 +269,8 @@ class Tokenizer {
 						addEmptySpans: this.addEmptySpans,
 						trimLineStarts: true,
 						columnNumber: this._betweenColumnNumber,
-						fileDirectory: this.fileDirectory
+						fileDirectory: this.fileDirectory,
+						uidHash: this.uidHash
 					});
 					if ( this.betweenStr && this.betweenStr.length > 0 ) {
 						let str = tokenizer.parse( this.betweenStr );
@@ -539,7 +540,8 @@ class Tokenizer {
 							lineNumber: startLineNumber,
 							addLineWrappers: this.addLineWrappers,
 							addEmptySpans: this.addEmptySpans,
-							fileDirectory: this.fileDirectory
+							fileDirectory: this.fileDirectory,
+							uidHash: this.uidHash
 						});
 						this._current += tokenizer.parse( current );
 						current = '';
@@ -555,7 +557,8 @@ class Tokenizer {
 						lineNumber: startLineNumber,
 						addLineWrappers: this.addLineWrappers,
 						addEmptySpans: this.addEmptySpans,
-						fileDirectory: this.fileDirectory
+						fileDirectory: this.fileDirectory,
+						uidHash: this.uidHash
 					});
 					this._current += tokenizer.parse( current );
 					current = '';
@@ -669,7 +672,8 @@ class Tokenizer {
 				lineNumber: this._jsxStartLine,
 				addLineWrappers: this.addLineWrappers,
 				addEmptySpans: this.addEmptySpans,
-				fileDirectory: this.fileDirectory
+				fileDirectory: this.fileDirectory,
+				uidHash: this.uidHash
 			});
 			let replacement = tokenizer.parse( inner );
 			this._current = this._current.substring( 0, this._JSX_ATTRIBUTE_START ) +
