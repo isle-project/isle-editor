@@ -73,6 +73,9 @@ const LineWrapper = ( props ) => {
 			return;
 		}
 		const node = findDOMNode( lineWrapper.current );
+		if ( !node ) {
+			return;
+		}
 		const child = node.lastChild;
 		if (
 			child &&
