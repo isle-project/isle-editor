@@ -534,7 +534,7 @@ class MultipleChoiceQuestion extends Component {
 								question: this.props.question,
 								solution: this.props.solution
 							}}
-							info="MULTIPLE_CHOICE_SUBMISSION"
+							info="MULTIPLE_CHOICE_QUESTION_SUBMISSION"
 							points={this.props.points}
 						/>
 						{ this.props.feedback ? <FeedbackButtons
