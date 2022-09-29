@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.76.20](https://github.com/isle-project/isle-editor/releases/tag/v0.76.20) (2022-09-28)
+
+This patch release fixes a bug in the automatic assignment of component identifiers, which caused identifiers to potentially be assigned multiple times.
+
 ## [v0.76.19](https://github.com/isle-project/isle-editor/releases/tag/v0.76.19) (2022-09-21)
 
 Installing packages via `npm` errors in the last release. This release includes a patch solving the problem.
