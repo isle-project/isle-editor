@@ -63,6 +63,7 @@ function onReady() {
 			const { autoUpdater } = require( 'electron-updater' );
 			autoUpdater.allowPrerelease = true;
 			autoUpdater.autoDownload = false;
+			console.log( autoUpdater );
 			const pkg = require( './package.json' );
 			autoUpdater.currentVersion = pkg.version;
 			if ( process.env.NODE_ENV === 'production' ) {

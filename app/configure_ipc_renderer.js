@@ -403,6 +403,8 @@ function configureIpcRenderer( store ) {
 	});
 
 	ipcRenderer.on( 'update-available', ( event, info ) => {
+		console.log( event );
+		console.log( info );
 		store.dispatch( actions.updateAvailable( info ) );
 	});
 }
