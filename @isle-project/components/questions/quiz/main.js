@@ -355,7 +355,7 @@ class Quiz extends Component {
 			const doc = {
 				content: [
 					{
-						text: this.props.t('answer-for', { id: this.id }),
+						text: this.props.t('answer-for', { id: this.props.id }),
 						style: 'header',
 						alignment: 'center'
 					}
@@ -580,7 +580,7 @@ class Quiz extends Component {
 			id = elem.props.id;
 		}
 		if ( !id ) {
-			id = `${this.id}-${idx}`;
+			id = `${this.props.id}-${idx}`;
 		}
 		return React.Children.map( this.props.footerNodes, ( child, idx ) => {
 			return React.cloneElement( child, {
@@ -639,7 +639,7 @@ class Quiz extends Component {
 				{this.props.duration ?
 					<Timer
 						invisible
-						id={this.id}
+						id={this.props.id}
 						active={this.props.active}
 						duration={this.props.duration}
 						onTimeUp={() => {
