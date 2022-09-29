@@ -120,7 +120,7 @@ const createHelpMenu = ( i18n ) => {
 							const newVersion = json.version;
 							const updateAvailable = newVersion !== pkg.version;
 							const msg = updateAvailable ?
-								`${i18n.t('new-version-available', { newVersion })}: <a href="https://isledocs.com/docs/overview/install" target="_blank" ><i class="fas fa-download"></i></a>.` :
+								`${i18n.t('Editor:new-version-available', { newVersion })}: <a href="https://isledocs.com/docs/overview/install" target="_blank" ><i class="fas fa-download"></i></a>.` :
 								i18n.t('no-update-available');
 							const html = [
 								'<body>',
