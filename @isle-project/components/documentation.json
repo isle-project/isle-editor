@@ -605,7 +605,8 @@
 					"Two-Sample Proportion Test",
 					"Correlation Test",
 					"Chi-square Independence Test",
-					"Kruskal-Wallis Test"
+					"Kruskal-Wallis Test",
+					"Tukey HSD Test"
 				]
 			},
 			{
@@ -7948,9 +7949,8 @@
 			},
 			{
 				"name": "group",
-				"type": "(string|Factor)",
-				"description": "Anova-prop-group",
-				"defaultValue": null
+				"type": "(string|Factor) (required)",
+				"description": "Anova-prop-group"
 			},
 			{
 				"name": "showDecision",
@@ -8271,6 +8271,32 @@
 			}
 		],
 		"description": "PropTest2-description"
+	},
+	"TukeyHSDTest": {
+		"props": [
+			{
+				"name": "data",
+				"type": "object (required)",
+				"description": "TukeyHSDTest-prop-data"
+			},
+			{
+				"name": "variable",
+				"type": "string (required)",
+				"description": "TukeyHSDTest-prop-variable"
+			},
+			{
+				"name": "group",
+				"type": "(string|Factor) (required)",
+				"description": "TukeyHSDTest-prop-group"
+			},
+			{
+				"name": "confidenceLevel",
+				"type": "number",
+				"description": "TukeyHSDTest-prop-confidenceLevel",
+				"defaultValue": 0.95
+			}
+		],
+		"description": "TukeyHSDTest-description"
 	},
 	"TeX": {
 		"props": [
