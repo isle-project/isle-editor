@@ -25,9 +25,18 @@ function Chi2Test({ data, var1, var2 }) {
 				\`${var1}\` = c(${x})
 				\`${var2}\` = c(${y})
 				fit = chisq.test( \`${var1}\`, \`${var2}\` )
-				str = capture.output( print( fit )); 
+				str = capture.output( print( fit ));
 				str = gsub( "squared", "square", str );
-				cat( str, sep='\n' )`}
+				cat( str, sep='\n' )
+
+				observed = fit$observed
+				expected = round( fit$expected, 2 )
+				contrib = 100*fit$residuals^2/fit$statistic
+
+				for ( i in 1:length( expected ) ) {
+				  expected[i] = paste(  observed[i], "/", expected[i], " (", round( contrib[i], 1 ), "%)", sep="" )
+				}
+				print( expected )`}
 			/>
 		</div>
 	);
