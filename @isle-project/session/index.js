@@ -2425,6 +2425,8 @@ class Session {
 			lesson: this.lessonID,
 			namespace: this.namespaceID,
 			time
+		}).catch( err => {
+			debug( `Encountered an error: ${err.message}.` );
 		});
 	}
 
