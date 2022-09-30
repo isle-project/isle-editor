@@ -639,9 +639,9 @@ class Quiz extends Component {
 				{this.props.duration ?
 					<Timer
 						invisible
-						id={this.props.id}
+						id={`${this.props.id}-timer`}
 						active={this.props.active}
-						duration={this.props.duration}
+						duration={this.props.duration * 60}
 						onTimeUp={() => {
 							debug( 'Time is up...' );
 							this.props.logAction( FINISH, true );
