@@ -36,7 +36,8 @@ function Chi2Test({ data, var1, var2 }) {
 				for ( i in 1:length( expected ) ) {
 				  expected[i] = paste(  observed[i], "/", expected[i], " (", round( contrib[i], 1 ), "%)", sep="" )
 				}
-				print( expected )`}
+				print( noquote( expected ) )
+				print( "observed/expected (contribution to chi-square in %)" )`}
 			/>
 		</div>
 	);
