@@ -8,6 +8,7 @@ import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
 import isnan from '@stdlib/assert/is-nan';
 import isNull from '@stdlib/assert/is-null';
 import ROutput from '@isle-project/components/r/output';
+import RPlot from '@isle-project/components/r/plot';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import { Factor } from '@isle-project/utils/factor-variable';
 
@@ -38,8 +39,16 @@ function TukeyHSD({ data, variable, group, confidenceLevel }) {
 				\`${variable}\` = c(${valsFiltered.join( ',' )})
 				\`${group}\` = c(${groupsFiltered.join( ',' )})
 				model <- aov( ${variable} ~ ${group} )
-				TukeyHSD( model, conf.level = ${confidenceLevel} )`}
+				fit <- TukeyHSD( model, conf.level = ${confidenceLevel} )
+				fit`}
 			/>
+			<RPlot code={`
+				\`${variable}\` = c(${valsFiltered.join( ',' )})
+				\`${group}\` = c(${groupsFiltered.join( ',' )})
+				model <- aov( ${variable} ~ ${group} )
+				fit <- TukeyHSD( model, conf.level = ${confidenceLevel} )
+				plot( fit, las = 2)
+			`} />
 		</div>
 	);
 }
