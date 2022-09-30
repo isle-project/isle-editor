@@ -28,6 +28,7 @@ import CorrTest from '@isle-project/components/tests/corrtest';
 import Kruskal from '@isle-project/components/tests/kruskal';
 import MeanTest from '@isle-project/components/tests/meantest';
 import MeanTest2 from '@isle-project/components/tests/meantest2';
+import TukeyHSD from '@isle-project/components/tests/tukey-hsd';
 import PropTest from '@isle-project/components/tests/proptest';
 import PropTest2 from '@isle-project/components/tests/proptest2';
 import DecisionTree from '@isle-project/components/models/decision-tree';
@@ -149,7 +150,8 @@ function createOutputElement( e, idx, clearOutput, subsetFilters, onFilters, t )
 		e.type === MeanTest ||
 		e.type === MeanTest2 ||
 		e.type === PropTest ||
-		e.type === PropTest2
+		e.type === PropTest2 ||
+		e.type === TukeyHSD
 	) {
 		const elem = <pre key={idx} >
 			{createButtons( t('output-test'), e, clearOutput, idx, subsetFilters, onFilters, t )}

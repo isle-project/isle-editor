@@ -1716,7 +1716,8 @@ DataExplorer.defaultProps = {
 		'Two-Sample Proportion Test',
 		'Correlation Test',
 		'Chi-square Independence Test',
-		'Kruskal-Wallis Test'
+		'Kruskal-Wallis Test',
+		'Tukey HSD Test'
 	],
 	models: [
 		'Simple Linear Regression',

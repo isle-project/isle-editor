@@ -23,6 +23,7 @@ import MeanTest from '@isle-project/components/tests/meantest';
 import MeanTest2 from '@isle-project/components/tests/meantest2';
 import PropTest from '@isle-project/components/tests/proptest';
 import PropTest2 from '@isle-project/components/tests/proptest2';
+import TukeyHSDTest from '@isle-project/components/tests/tukey-hsd';
 import DecisionTree from '@isle-project/components/models/decision-tree';
 import LassoRegression from '@isle-project/components/models/lasso-regression';
 import LogisticRegression from '@isle-project/components/models/logistic-regression';
@@ -120,6 +121,9 @@ function recreateOutput( action, props ) {
 			break;
 		case 'TESTS_TWO_SAMPLE_PROPTEST':
 			output = <PropTest2 {...params} />;
+			break;
+		case 'TESTS_TUKEY_HSD':
+			output = <TukeyHSDTest {...params} />;
 			break;
 		case 'KMEANS':
 			output = <KMeans {...params} />;

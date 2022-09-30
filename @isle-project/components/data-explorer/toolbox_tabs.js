@@ -37,6 +37,7 @@ const MeanTest = Loadable( () => import( /* webpackChunkName: "MeanTestMenu" */ 
 const MeanTest2 = Loadable( () => import( /* webpackChunkName: "MeanTest2Menu" */ '@isle-project/components/data-explorer/menu/meantest2' ) );
 const PropTest = Loadable( () => import( /* webpackChunkName: "PropTestMenu" */ '@isle-project/components/data-explorer/menu/proptest' ) );
 const PropTest2 = Loadable( () => import( /* webpackChunkName: "PropTest2Menu" */ '@isle-project/components/data-explorer/menu/proptest2' ) );
+const TukeyHSDTest = Loadable( () => import( /* webpackChunkName: "TukeyHSDTestMenu" */ '@isle-project/components/data-explorer/menu/tukey_hsd' ) );
 
 // PLOT COMPONENTS //
 
@@ -423,6 +424,16 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					categorical={categorical}
 					logAction={logAction}
 					showDecision={showTestDecisions}
+					t={t}
+				/>;
+				break;
+			case 'Tukey HSD Test':
+				content = <TukeyHSDTest
+					onCreated={onCreated}
+					data={data}
+					quantitative={quantitative}
+					categorical={categorical}
+					logAction={logAction}
 					t={t}
 				/>;
 				break;
