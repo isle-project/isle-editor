@@ -151,7 +151,8 @@
             "tests/meantest",
             "tests/meantest2",
             "tests/proptest",
-            "tests/proptest2"
+            "tests/proptest2",
+            "tests/tukeyhsd"
           ]},
           "summary-statistics"
         ],
