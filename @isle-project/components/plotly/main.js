@@ -87,7 +87,7 @@ Plotly.setPlotConfig({
 */
 const Wrapper = ( props ) => {
 	const { t } = useTranslation( 'plotly' );
-	const { logAction } = useActionLogger( 'PLOT', props );
+	const { logAction, id } = useActionLogger( 'PLOT', props );
 	const [ layout, setLayout ] = useState({
 		...props.layout,
 		autosize: true
@@ -219,12 +219,12 @@ const Wrapper = ( props ) => {
 						return isNull( value );
 					});
 					meta = jsyaml.dump( meta );
-					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${props.id}" data-plot-meta="${meta}"></img>`;
+					value = `<img src="${data}" style="display: block; margin: 0 auto;" data-plot-id="${id}" data-plot-meta="${meta}"></img>`;
 				}
 				plotDataRef.current = value;
 				setFinishedDrawing( true );
 			});
-	}, [ props.id, props.meta ] );
+	}, [ id, props.meta ] );
 	const onInitialized = ( figure, gd ) => {
 		debug( 'Initialize plot...' );
 		figure.current = figure;
