@@ -76,7 +76,8 @@ class SelectQuestion extends Component {
 		let correct;
 		let answerState;
 		if ( !isUndefinedOrNull( this.props.solution ) && this.props.provideFeedback ) {
-			correct = this.props.solution === indexOf( this.props.options, this.state.value );
+			const value = this.state.value;
+			correct = this.props.solution === indexOf( this.props.options.map( String ), value );
 			answerState = correct ? 'success' : 'danger';
 			if ( correct ) {
 				session.addNotification({
