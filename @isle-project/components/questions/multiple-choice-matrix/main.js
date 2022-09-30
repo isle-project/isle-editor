@@ -224,7 +224,7 @@ class MultipleChoiceMatrix extends Component {
 							{ this.state.submitted ? this.props.t('resubmit') : this.props.t('submit')}
 						</Button>
 						<ResponseVisualizer
-							id={this.id}
+							id={this.props.id}
 							data={{
 								type: 'matrix',
 								rows: this.props.questions,
@@ -233,8 +233,8 @@ class MultipleChoiceMatrix extends Component {
 							}}
 							info="MULTIPLE_CHOICE_MATRIX_SUBMISSION"
 						/>
-						{ this.id && this.props.feedback ? <FeedbackButtons
-							id={this.id+'_feedback'}
+						{ this.props.id && this.props.feedback ? <FeedbackButtons
+							id={this.props.id+'_feedback'}
 						/> : null }
 					</div>
 				</Card.Body>
