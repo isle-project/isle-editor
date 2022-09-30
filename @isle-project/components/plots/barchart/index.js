@@ -27,6 +27,13 @@ function escape( str ) {
 	return str.replace( /\$/g, '&#36;' );
 }
 
+function generateTitle({ totalPercent, relative, summary }) {
+	if ( summary ) {
+		return summary;
+	}
+	return ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:count');
+}
+
 export function generateBarchartConfig({ data, variable, yvar, summary, group, horizontal, stackBars, relative, totalPercent, xOrder, colors, direction }) {
 	let traces;
 	if ( !data[ variable ] ) {
@@ -183,10 +190,10 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 	let yaxis;
 	if ( horizontal ) {
 		xaxis = {
-			title: ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:count')
+			title: generateTitle({ totalPercent, relative, summary })
 		};
 		yaxis = {
-			title: group ? group : variable,
+			title: String( group ? group : variable ),
 			categoryorder: xOrder ? xOrder + ' ' + direction : null,
 			type: 'category',
 			tickmode: 'array',
@@ -197,7 +204,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 		};
 	} else {
 		xaxis = {
-			title: group ? group : variable,
+			title: String( group ? group : variable ),
 			categoryorder: xOrder ? xOrder + ' ' + direction : null,
 			type: 'category',
 			tickmode: 'array',
@@ -207,7 +214,7 @@ export function generateBarchartConfig({ data, variable, yvar, summary, group, h
 			tickcolor: 'white'
 		};
 		yaxis = {
-			title: ( totalPercent || relative ) ? i18n.t('plotly:proportion') : i18n.t('plotly:Count')
+			title: generateTitle({ totalPercent, relative, summary })
 		};
 	}
 	if ( allCats.size > MAX_CATEGORIES ) {
