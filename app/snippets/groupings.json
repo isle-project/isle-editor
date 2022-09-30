@@ -163,7 +163,8 @@
 		"MeanTest",
 		"MeanTest2",
 		"PropTest",
-		"PropTest2"
+		"PropTest2",
+		"TukeyHSDTest"
 	],
 	"QUESTION": [
 		"FileQuestion",

@@ -199,6 +199,7 @@ import MeanTest from '@isle-project/components/tests/meantest';
 import MeanTest2 from '@isle-project/components/tests/meantest2';
 import PropTest from '@isle-project/components/tests/proptest';
 import PropTest2 from '@isle-project/components/tests/proptest2';
+import TukeyHSDTest from '@isle-project/components/tests/tukey-hsd';
 import DecisionTree from '@isle-project/components/models/decision-tree';
 import LassoRegression from '@isle-project/components/models/lasso-regression';
 import LogisticRegression from '@isle-project/components/models/logistic-regression';
@@ -417,6 +418,7 @@ const scope = {
 	MeanTest2,
 	PropTest,
 	PropTest2,
+	TukeyHSDTest,
 
 	DecisionTree,
 	HierarchicalClustering,

@@ -813,7 +813,7 @@
 	},
 	{
 		"name": "Anova",
-		"value": "<Anova data={${1:null}} variable=\"${2:}\" />"
+		"value": "<Anova data={${1:null}} variable=\"${2:}\" group=\"${3:}\" />"
 	},
 	{
 		"name": "Chi2Test",
@@ -842,6 +842,10 @@
 	{
 		"name": "PropTest2",
 		"value": "<PropTest2\n  data={${1:null}}\n  var1=\"${2:}\"\n  success=\"${3:}\"\n  ${4:} />"
+	},
+	{
+		"name": "TukeyHSDTest",
+		"value": "<TukeyHSDTest data={${1:null}} variable=\"${2:}\" group=\"${3:}\" />"
 	},
 	{
 		"name": "DecisionTree",

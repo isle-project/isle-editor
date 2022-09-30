@@ -206,6 +206,7 @@
 	"MeanTest2": "@isle-project/components/tests/meantest2",
 	"PropTest": "@isle-project/components/tests/proptest",
 	"PropTest2": "@isle-project/components/tests/proptest2",
+	"TukeyHSDTest": "@isle-project/components/tests/tukey-hsd",
 	"DecisionTree": "@isle-project/components/models/decision-tree",
 	"LassoRegression": "@isle-project/components/models/lasso-regression",
 	"LogisticRegression": "@isle-project/components/models/logistic-regression",

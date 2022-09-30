@@ -46,7 +46,6 @@ function Anova({ data, variable, group, showDecision }) {
 // PROPERTIES //
 
 Anova.defaultProps = {
-	group: null,
 	showDecision: false
 };
 
@@ -56,7 +55,7 @@ Anova.propTypes = {
 	group: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.instanceOf( Factor )
-	]),
+	]).isRequired,
 	showDecision: PropTypes.bool
 };
 
