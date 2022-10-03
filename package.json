@@ -87,7 +87,8 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ogg)$": "<rootDir>/test/mocks/file_mock.js",
       "\\.(css|less)$": "<rootDir>/test/mocks/style_mock.js",
       "worker\\.js$": "<rootDir>/test/mocks/worker.js",
-      "internal/text-clustering$": "<rootDir>/test/mocks/component_mock.js"
+      "internal/text-clustering$": "<rootDir>/test/mocks/component_mock.js",
+      "^@isle-project/components/([^/]*)$": "@isle-project/components/$1/main.js"
     },
     "modulePaths": [
       "<rootDir>",
