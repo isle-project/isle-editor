@@ -1,3 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ContingencyTable /> renders a contingency table 1`] = `null`;
+exports[`<ContingencyTable /> renders a contingency table 1`] = `
+<table
+  className="sortable-theme-bootstrap table table-sm table-bordered"
+  data-sortable={true}
+>
+  <thead>
+    <tr>
+      <th>
+        Gender
+         \\ 
+        Drugs
+      </th>
+      <th>
+        0
+      </th>
+      <th>
+        1
+      </th>
+      <th>
+        2
+      </th>
+      <th>
+        row-totals
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        Female
+      </th>
+      <td>
+        477
+      </td>
+      <td>
+        63
+      </td>
+      <td>
+        68
+      </td>
+      <td>
+        608
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Male
+      </th>
+      <td>
+        133
+      </td>
+      <td>
+        26
+      </td>
+      <td>
+        21
+      </td>
+      <td>
+        180
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <th>
+        column-totals
+      </th>
+      <td>
+        610
+      </td>
+      <td>
+        89
+      </td>
+      <td>
+        89
+      </td>
+      <th>
+        788
+      </th>
+    </tr>
+  </tbody>
+</table>
+`;

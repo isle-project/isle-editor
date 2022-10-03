@@ -619,6 +619,83 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
     <div
       className="col-md-4"
     >
+      <div
+        className="dashboard  card"
+        style={
+          {
+            "maxWidth": 600,
+          }
+        }
+      >
+        <h4
+          className="card-header"
+        >
+          standardize-values
+        </h4>
+        <div
+          className="d-grid gap-3 card-body"
+        >
+          <p />
+          <div />
+          <div
+            className="input"
+            style={
+              {
+                "marginBottom": "4px",
+                "marginTop": "4px",
+              }
+            }
+          >
+            <span>
+              <label
+                htmlFor="dynamic-number-input-3"
+              >
+                x-value:
+              </label>
+            </span>
+            <span
+              className="number-input-span"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <input
+                autoComplete="off"
+                className="number-number-input"
+                disabled={false}
+                id="dynamic-number-input-3"
+                max={30}
+                min={-30}
+                name="input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                placeholder="0"
+                step="any"
+                style={
+                  {
+                    "marginLeft": "24px",
+                    "width": "80px",
+                  }
+                }
+                type="number"
+                value={0}
+              />
+            </span>
+          </div>
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            compute
+          </button>
+        </div>
+      </div>
       <div />
     </div>
     <div

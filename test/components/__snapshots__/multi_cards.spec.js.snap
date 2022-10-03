@@ -9,5 +9,314 @@ exports[`<MultiCards /> renders a multiple cards component 1`] = `
       "overflow": "auto",
     }
   }
-/>
+>
+  <div
+    className="react-card-flip"
+    id="undefined_0"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    style={
+      {
+        "cursor": "pointer",
+        "float": "left",
+        "height": 250,
+        "perspective": 1000,
+        "transformStyle": "preserve-3d",
+        "width": 250,
+      }
+    }
+    tabIndex={0}
+  >
+    <div
+      className="react-card-flipper"
+      style={
+        {
+          "height": "100%",
+          "position": "relative",
+          "transformStyle": "preserve-3d",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="react-card-front"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "gainsboro",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(0deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": "2",
+          }
+        }
+      >
+        <div>
+          number 1
+        </div>
+      </div>
+      <div
+        className="react-card-back"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "pink",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(-180deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": 2,
+          }
+        }
+      >
+        <div>
+          back side of #1
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="react-card-flip"
+    id="undefined_1"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    style={
+      {
+        "cursor": "pointer",
+        "float": "left",
+        "height": 250,
+        "perspective": 1000,
+        "transformStyle": "preserve-3d",
+        "width": 250,
+      }
+    }
+    tabIndex={0}
+  >
+    <div
+      className="react-card-flipper"
+      style={
+        {
+          "height": "100%",
+          "position": "relative",
+          "transformStyle": "preserve-3d",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="react-card-front"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "gainsboro",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(0deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": "2",
+          }
+        }
+      >
+        <div>
+          number 2
+        </div>
+      </div>
+      <div
+        className="react-card-back"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "pink",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(-180deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": 2,
+          }
+        }
+      >
+        <div>
+          back side of #2
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="react-card-flip"
+    id="undefined_2"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    style={
+      {
+        "cursor": "pointer",
+        "float": "left",
+        "height": 250,
+        "perspective": 1000,
+        "transformStyle": "preserve-3d",
+        "width": 250,
+      }
+    }
+    tabIndex={0}
+  >
+    <div
+      className="react-card-flipper"
+      style={
+        {
+          "height": "100%",
+          "position": "relative",
+          "transformStyle": "preserve-3d",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="react-card-front"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "gainsboro",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(0deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": "2",
+          }
+        }
+      >
+        <div>
+          number 3
+        </div>
+      </div>
+      <div
+        className="react-card-back"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "pink",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(-180deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": 2,
+          }
+        }
+      >
+        <div>
+          back side of #3
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="react-card-flip"
+    id="undefined_3"
+    onClick={[Function]}
+    onKeyPress={[Function]}
+    role="button"
+    style={
+      {
+        "cursor": "pointer",
+        "float": "left",
+        "height": 250,
+        "perspective": 1000,
+        "transformStyle": "preserve-3d",
+        "width": 250,
+      }
+    }
+    tabIndex={0}
+  >
+    <div
+      className="react-card-flipper"
+      style={
+        {
+          "height": "100%",
+          "position": "relative",
+          "transformStyle": "preserve-3d",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="react-card-front"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "gainsboro",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(0deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": "2",
+          }
+        }
+      >
+        <div>
+          number 4
+        </div>
+      </div>
+      <div
+        className="react-card-back"
+        style={
+          {
+            "WebkitBackfaceVisibility": "hidden",
+            "backfaceVisibility": "hidden",
+            "background": "pink",
+            "height": "100%",
+            "left": "0",
+            "position": "absolute",
+            "top": "0",
+            "transform": "rotateY(-180deg)",
+            "transformStyle": "preserve-3d",
+            "transition": "1s",
+            "width": "100%",
+            "zIndex": 2,
+          }
+        }
+      >
+        <div>
+          back side of #4
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

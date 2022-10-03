@@ -97,7 +97,203 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-1"
+                      >
+                        minimum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-1"
+                        max={0.99}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={0}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-2"
+                      >
+                        maximum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-2"
+                        max={Infinity}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={1}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        -1
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={2}
+                        min={-1}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        2
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={2}
+                      min={-1}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >
@@ -2144,7 +2340,203 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-1"
+                      >
+                        minimum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-1"
+                        max={0.99}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={0}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-2"
+                      >
+                        maximum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-2"
+                        max={Infinity}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={1}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        -1
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={2}
+                        min={-1}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        2
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={2}
+                      min={-1}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >
@@ -4228,7 +4620,281 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-1"
+                      >
+                        minimum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-1"
+                        max={0.99}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={0}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="input"
+                    style={
+                      {
+                        "marginBottom": "4px",
+                        "marginTop": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <label
+                        htmlFor="dynamic-number-input-2"
+                      >
+                        maximum:
+                      </label>
+                    </span>
+                    <span
+                      className="number-input-span"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <input
+                        autoComplete="off"
+                        className="number-number-input"
+                        disabled={false}
+                        id="dynamic-number-input-2"
+                        max={Infinity}
+                        min={-Infinity}
+                        name="input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyPress={[Function]}
+                        onKeyUp={[Function]}
+                        placeholder="0"
+                        step={0.1}
+                        style={
+                          {
+                            "marginLeft": "24px",
+                            "width": "80px",
+                          }
+                        }
+                        type="number"
+                        value={1}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        -1
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={2}
+                        min={-1}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        2
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={2}
+                      min={-1}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x1
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        -1
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={2}
+                        min={-1}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={1}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        2
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={2}
+                      min={-1}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={1}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >

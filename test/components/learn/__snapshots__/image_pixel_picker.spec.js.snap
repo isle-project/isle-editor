@@ -1,3 +1,173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LearnImagePixelPicker /> renders a learning component 1`] = `null`;
+exports[`<LearnImagePixelPicker /> renders a learning component 1`] = `
+<div
+  className="panel  card"
+  style={
+    {
+      "height": undefined,
+    }
+  }
+>
+  <div
+    className="card-body"
+    style={
+      {
+        "display": null,
+      }
+    }
+  >
+    <div>
+      <form
+        className="input"
+        onSubmit={[Function]}
+        style={{}}
+      >
+        <div>
+          <div
+            className=" css-b62m3t-container"
+            id="dynamic-select-input-1"
+            onKeyDown={[Function]}
+          >
+            <span
+              className="css-1f43avz-a11yText-A11yText"
+              id="react-select-2-live-region"
+            />
+            <span
+              aria-atomic="false"
+              aria-live="polite"
+              aria-relevant="additions text"
+              className="css-1f43avz-a11yText-A11yText"
+            />
+            <div
+              className=" css-b82su3-control"
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+            >
+              <div
+                className=" css-319lph-ValueContainer"
+              >
+                <div
+                  className=" css-bqaabt-placeholder"
+                  id="react-select-2-placeholder"
+                >
+                  select-placeholder
+                </div>
+                <div
+                  className=" css-6j8wv5-Input"
+                  data-value=""
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-describedby="react-select-2-placeholder"
+                    aria-expanded={false}
+                    aria-haspopup={true}
+                    aria-label="select-between Landscape, Boats, Airplane"
+                    autoCapitalize="none"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    className=""
+                    disabled={false}
+                    id="react-select-2-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    role="combobox"
+                    spellCheck="false"
+                    style={
+                      {
+                        "background": 0,
+                        "border": 0,
+                        "color": "inherit",
+                        "font": "inherit",
+                        "gridArea": "1 / 2",
+                        "label": "input",
+                        "margin": 0,
+                        "minWidth": "2px",
+                        "opacity": 1,
+                        "outline": 0,
+                        "padding": 0,
+                        "width": "100%",
+                      }
+                    }
+                    tabIndex={0}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <span
+                  className=" css-1okebmr-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  className=" css-tlfecz-indicatorContainer"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="css-tj5bde-Svg"
+                    focusable="false"
+                    height={20}
+                    viewBox="0 0 20 20"
+                    width={20}
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <input
+              name="form-field-name"
+              type="hidden"
+              value=""
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-8"
+        >
+          <canvas
+            height="400"
+            id="picker"
+            width="600"
+          />
+        </div>
+        <div
+          className="col-md-3"
+        >
+          <div
+            id="color"
+            style={
+              {
+                "color": "red",
+                "height": "50px",
+                "width": "250px",
+              }
+            }
+          />
+          <canvas
+            height="200"
+            id="zoom"
+            width="250"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

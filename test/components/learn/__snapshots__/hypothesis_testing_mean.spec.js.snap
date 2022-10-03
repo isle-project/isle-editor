@@ -473,6 +473,26 @@ exports[`<LearnMeanTest /> renders a learning component 1`] = `
           <p>
             conduct-the-following-test
           </p>
+          <span
+            className="switch active"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyPress={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            role="button"
+            style={
+              {
+                "width": "100%",
+              }
+            }
+            tabIndex={0}
+          >
+            <div />
+            <div />
+            <div />
+          </span>
           <p>
             calculate-test-statistic
           </p>

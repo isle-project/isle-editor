@@ -1,3 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FrequencyTable /> renders a frequency table 1`] = `null`;
+exports[`<FrequencyTable /> renders a frequency table 1`] = `
+<table
+  className="sortable-theme-bootstrap table table-sm table-bordered"
+  data-sortable={true}
+>
+  <thead>
+    <tr>
+      <th
+        className="not-sortable"
+      >
+        Drugs
+      </th>
+      <th>
+        category
+      </th>
+      <th>
+        count
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td />
+      <td>
+        0
+      </td>
+      <td>
+        610
+      </td>
+    </tr>
+    <tr>
+      <td />
+      <td>
+        1
+      </td>
+      <td>
+        89
+      </td>
+    </tr>
+    <tr>
+      <td />
+      <td>
+        2
+      </td>
+      <td>
+        89
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <th>
+        total
+      </th>
+      <td />
+      <td>
+        788
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

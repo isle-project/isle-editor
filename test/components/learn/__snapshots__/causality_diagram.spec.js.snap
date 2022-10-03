@@ -21,7 +21,285 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
           "height": "450px",
         }
       }
-    />
+    >
+      <div
+        className="dashboard  card"
+        style={
+          {
+            "maxWidth": 600,
+          }
+        }
+      >
+        <div
+          className="d-grid gap-3 card-body"
+        >
+          <p />
+          <div
+            className="input checkbox-input-div"
+            id="dynamic-checkbox-input-1"
+            style={{}}
+          >
+            <input
+              aria-label="Randomized Assignment"
+              checked={false}
+              className="checkbox-input"
+              disabled={false}
+              onChange={[Function]}
+              onKeyPress={[Function]}
+              type="checkbox"
+              value="checkbox"
+            />
+            <span
+              className="checkbox-legend"
+              onClick={[Function]}
+              onKeyPress={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              Randomized Assignment
+            </span>
+          </div>
+          <div
+            className="slider-outer-div input"
+            style={
+              {
+                "opacity": 1,
+              }
+            }
+          >
+            <label>
+              <span>
+                X
+                 → 
+                Y
+              </span>
+              :
+            </label>
+            <br />
+            <span
+              className="slider-range-wrapper"
+            >
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                0
+              </span>
+              <input
+                className="slider-range-input"
+                disabled={false}
+                max={5}
+                min={0}
+                onChange={[Function]}
+                step="any"
+                style={
+                  {
+                    "display": "block",
+                    "float": "left",
+                  }
+                }
+                type="range"
+                value={1}
+              />
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                5
+              </span>
+            </span>
+            <input
+              autoComplete="off"
+              className="slider-number-input"
+              disabled={false}
+              max={5}
+              min={0}
+              name="input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              step="any"
+              style={
+                {
+                  "display": "none",
+                  "float": "right",
+                  "marginTop": -22,
+                }
+              }
+              type="number"
+              value={1}
+            />
+            <br />
+          </div>
+          <div
+            className="slider-outer-div input"
+            style={
+              {
+                "opacity": 1,
+              }
+            }
+          >
+            <label>
+              <span>
+                Z
+                 → 
+                Y
+              </span>
+              :
+            </label>
+            <br />
+            <span
+              className="slider-range-wrapper"
+            >
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                0
+              </span>
+              <input
+                className="slider-range-input"
+                disabled={false}
+                max={5}
+                min={0}
+                onChange={[Function]}
+                step="any"
+                style={
+                  {
+                    "display": "block",
+                    "float": "left",
+                  }
+                }
+                type="range"
+                value={1}
+              />
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                5
+              </span>
+            </span>
+            <input
+              autoComplete="off"
+              className="slider-number-input"
+              disabled={false}
+              max={5}
+              min={0}
+              name="input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              step="any"
+              style={
+                {
+                  "display": "none",
+                  "float": "right",
+                  "marginTop": -22,
+                }
+              }
+              type="number"
+              value={1}
+            />
+            <br />
+          </div>
+          <div
+            className="slider-outer-div input"
+            style={
+              {
+                "opacity": 1,
+              }
+            }
+          >
+            <label>
+              <span>
+                Z
+                 → 
+                X
+              </span>
+              :
+            </label>
+            <br />
+            <span
+              className="slider-range-wrapper"
+            >
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                0
+              </span>
+              <input
+                className="slider-range-input"
+                disabled={false}
+                max={5}
+                min={0}
+                onChange={[Function]}
+                step="any"
+                style={
+                  {
+                    "display": "block",
+                    "float": "left",
+                  }
+                }
+                type="range"
+                value={1}
+              />
+              <span
+                className="badge bg-secondary"
+                style={
+                  {
+                    "float": "left",
+                  }
+                }
+              >
+                5
+              </span>
+            </span>
+            <input
+              autoComplete="off"
+              className="slider-number-input"
+              disabled={false}
+              max={5}
+              min={0}
+              name="input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              step="any"
+              style={
+                {
+                  "display": "none",
+                  "float": "right",
+                  "marginTop": -22,
+                }
+              }
+              type="number"
+              value={1}
+            />
+            <br />
+          </div>
+          <span />
+        </div>
+      </div>
+    </div>
     <div
       className="col-sm-3"
       style={
@@ -29,7 +307,29 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
           "height": "450px",
         }
       }
-    />
+    >
+      <div
+        className="plotly-container"
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      >
+        <div
+          className={null}
+          style={
+            {
+              "height": "100%",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        />
+      </div>
+    </div>
     <div
       className="col-sm-6"
       style={
@@ -37,20 +337,108 @@ exports[`<LearnCausalityDiagram /> renders a learning component 1`] = `
           "height": "450px",
         }
       }
-    />
+    >
+      <div
+        className="plotly-container"
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      >
+        <div
+          className={null}
+          style={
+            {
+              "height": "100%",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        />
+      </div>
+    </div>
   </div>
   <div
     className="row"
   >
     <div
       className="col"
-    />
+    >
+      <div
+        className="plotly-container"
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      >
+        <div
+          className={null}
+          style={
+            {
+              "height": "100%",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        />
+      </div>
+    </div>
     <div
       className="col"
-    />
+    >
+      <div
+        className="plotly-container"
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      >
+        <div
+          className={null}
+          style={
+            {
+              "height": "100%",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        />
+      </div>
+    </div>
     <div
       className="col"
-    />
+    >
+      <div
+        className="plotly-container"
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      >
+        <div
+          className={null}
+          style={
+            {
+              "height": "100%",
+              "width": "100%",
+              "zIndex": 1,
+            }
+          }
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;

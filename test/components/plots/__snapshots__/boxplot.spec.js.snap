@@ -1,3 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BoxPlot /> renders a box plot 1`] = `null`;
+exports[`<BoxPlot /> renders a box plot 1`] = `
+<div
+  className="plotly-container"
+  style={
+    {
+      "height": "100%",
+      "width": "100%",
+      "zIndex": 1,
+    }
+  }
+>
+  <button
+    className="plotly-draggable-bar"
+    disabled={true}
+    draggable={false}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    style={
+      {
+        "opacity": 0.2,
+      }
+    }
+  >
+    drag-plot
+  </button>
+  <div
+    className="plotly-draggable"
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  />
+</div>
+`;

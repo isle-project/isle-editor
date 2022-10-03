@@ -1003,6 +1003,45 @@ exports[`<LearnContinuousCLT /> renders a learning component 1`] = `
                     >
                       draw-sample
                     </button>
+                    <div
+                      className="timed-button-container"
+                    >
+                      <div
+                        className="timed-button-remaining"
+                        style={
+                          {
+                            "marginLeft": 3,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        <div
+                          className="timed-button-bar"
+                        >
+                          <div
+                            className="timed-button-bar-overlay"
+                            style={
+                              {
+                                "marginLeft": 0,
+                              }
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className=""
+                      >
+                        <button
+                          className="btn btn-primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          style={{}}
+                          type={null}
+                        >
+                          draw-n-samples
+                        </button>
+                      </div>
+                    </div>
                     <button
                       className="btn btn-primary"
                       disabled={false}

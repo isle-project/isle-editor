@@ -1,3 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MultipleChoiceSurvey /> renders a survey 1`] = `null`;
+exports[`<MultipleChoiceSurvey /> renders a survey 1`] = `
+<div
+  className="panel  card"
+  id="dynamic-multiple-choice-survey-1"
+  style={
+    {
+      "height": undefined,
+    }
+  }
+>
+  <div
+    className="card-body"
+    style={
+      {
+        "display": null,
+      }
+    }
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-6"
+        >
+          <div
+            className="multiple-choice-survey card"
+          >
+            <div
+              className="card-body"
+            >
+              <p>
+                <label />
+              </p>
+              <div
+                className="list-group"
+                fill={true}
+                onKeyDown={[Function]}
+              />
+              <div
+                className="d-grid gap-2"
+              >
+                <button
+                  className="stoppable-button btn btn-success btn-small"
+                  disabled={true}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  submit
+                </button>
+                <div
+                  className="gate outer-element"
+                  style={
+                    {
+                      "display": "none",
+                    }
+                  }
+                >
+                  <button
+                    className="btn btn-secondary btn-small"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <span>
+                      pause
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col-md-6"
+        >
+          <h3>
+            no-responses-yet
+          </h3>
+          <p />
+        </div>
+      </div>
+    </div>
+    <div />
+  </div>
+</div>
+`;

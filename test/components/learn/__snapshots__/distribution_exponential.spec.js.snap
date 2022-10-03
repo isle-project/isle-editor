@@ -97,7 +97,183 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      rate
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0.001
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={10}
+                        min={0.001}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={1}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        10
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={10}
+                      min={0.001}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={1}
+                    />
+                    <br />
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={13.815510557935518}
+                        min={0}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        13.815510557935518
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={13.815510557935518}
+                      min={0}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >
@@ -2144,7 +2320,183 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      rate
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0.001
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={10}
+                        min={0.001}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={1}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        10
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={10}
+                      min={0.001}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={1}
+                    />
+                    <br />
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={13.815510557935518}
+                        min={0}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        13.815510557935518
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={13.815510557935518}
+                      min={0}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >
@@ -4228,7 +4580,261 @@ exports[`<LearnExponentialDistribution /> renders a learning component 1`] = `
           >
             <div
               className="col"
-            />
+            >
+              <div
+                className="panel  card"
+                style={
+                  {
+                    "height": undefined,
+                  }
+                }
+              >
+                <div
+                  className="d-grid gap-1 card-body"
+                  style={
+                    {
+                      "display": null,
+                    }
+                  }
+                >
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      rate
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0.001
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={10}
+                        min={0.001}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={1}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        10
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={10}
+                      min={0.001}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={1}
+                    />
+                    <br />
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x0
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={13.815510557935518}
+                        min={0}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={0}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        13.815510557935518
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={13.815510557935518}
+                      min={0}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={0}
+                    />
+                    <br />
+                  </div>
+                  <div
+                    className="slider-outer-div input"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    style={
+                      {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <label>
+                      x1
+                      :
+                    </label>
+                    <br />
+                    <span
+                      className="slider-range-wrapper"
+                    >
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        0
+                      </span>
+                      <input
+                        className="slider-range-input"
+                        disabled={false}
+                        max={13.815510557935518}
+                        min={0}
+                        onChange={[Function]}
+                        step={0.01}
+                        style={
+                          {
+                            "display": "block",
+                            "float": "left",
+                          }
+                        }
+                        type="range"
+                        value={1}
+                      />
+                      <span
+                        className="badge bg-secondary"
+                        style={
+                          {
+                            "float": "left",
+                          }
+                        }
+                      >
+                        13.815510557935518
+                      </span>
+                    </span>
+                    <input
+                      autoComplete="off"
+                      className="slider-number-input"
+                      disabled={false}
+                      max={13.815510557935518}
+                      min={0}
+                      name="input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      step={0.01}
+                      style={
+                        {
+                          "float": "right",
+                          "marginTop": -22,
+                        }
+                      }
+                      type="number"
+                      value={1}
+                    />
+                    <br />
+                  </div>
+                  <div />
+                </div>
+              </div>
+            </div>
             <div
               className="col"
             >

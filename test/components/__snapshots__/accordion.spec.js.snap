@@ -4,5 +4,57 @@ exports[`<Accordion /> renders an accordion 1`] = `
 <div
   className="accordion "
   style={null}
-/>
+>
+  <div
+    className=" vertical-slider"
+    style={{}}
+  >
+    <button
+      aria-label="Collapsable Header"
+      className="vertical-slider-header vertical-slider-header-default"
+      onClick={[Function]}
+      style={
+        {
+          "background": "rgba(201, 93, 10, 0.2)",
+          "borderTopLeftRadius": 6,
+          "borderTopRightRadius": 6,
+          "boxShadow": "0 0 -4px rgba(92, 92, 92, 0.5)",
+        }
+      }
+    >
+      First
+    </button>
+    <div
+      className="vs-body vs-display"
+    >
+      <div>
+        First content
+      </div>
+    </div>
+  </div>
+  <div
+    className=" vertical-slider"
+    style={{}}
+  >
+    <button
+      aria-label="Collapsable Header"
+      className="vertical-slider-header vertical-slider-header-default"
+      onClick={[Function]}
+      style={
+        {
+          "boxShadow": "0 0 -4px rgba(92, 92, 92, 0.5)",
+        }
+      }
+    >
+      Second
+    </button>
+    <div
+      className="vs-body vs-hidden"
+    >
+      <div>
+        Second content
+      </div>
+    </div>
+  </div>
+</div>
 `;

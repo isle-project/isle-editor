@@ -1301,7 +1301,69 @@ A 0 0 0 0 1, 265.625, 300
         </div>
         <div
           className="col-sm-1"
-        />
+        >
+          <div
+            className="feedback-buttons "
+            id="independence_applet"
+          >
+            <div
+              className="btn-group-vertical"
+              role="group"
+              style={
+                {
+                  "float": "right",
+                }
+              }
+            >
+              <button
+                aria-label="Confused"
+                className="feedback-button btn btn-light btn-small"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+                type="button"
+              >
+                <test-file-stub
+                  className="feedback-icon"
+                />
+              </button>
+              <button
+                aria-label="Understood"
+                className="feedback-button btn btn-light btn-small"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+                type="button"
+              >
+                <test-file-stub
+                  className="feedback-icon"
+                />
+              </button>
+              <button
+                aria-label="give-custom-feedback"
+                className="feedback-button btn btn-light btn-small"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+                type="button"
+              >
+                <test-file-stub
+                  className="feedback-icon"
+                />
+              </button>
+              <div />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
