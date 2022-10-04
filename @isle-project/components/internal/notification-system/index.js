@@ -25,10 +25,16 @@
 // MODULES //
 
 import React, { Component } from 'react';
+import logger from 'debug';
 import PropTypes from 'prop-types';
 import NotificationContainer from './notification_container.js';
 import Constants from './constants.js';
 import Styles from './styles.js';
+
+
+// VARIABLES //
+
+const debug = logger( 'isle:notification-system' );
 
 
 // MAIN //
@@ -52,17 +58,7 @@ class NotificationSystem extends Component {
 			actionWrapper: 'ActionWrapper'
 		};
 
-		this.setOverrideStyle = this.setOverrideStyle.bind(this);
-		this.wrapper = this.wrapper.bind(this);
-		this.container = this.container.bind(this);
-		this.byElement = this.byElement.bind(this);
-		this._didNotificationRemoved = this._didNotificationRemoved.bind(this);
-		this.addNotification = this.addNotification.bind(this);
-		this.getNotificationRef = this.getNotificationRef.bind(this);
-		this.removeNotification = this.removeNotification.bind(this);
-		this.editNotification = this.editNotification.bind(this);
-		this.clearNotifications = this.clearNotifications.bind(this);
-
+		this._refs = {};
 		this._getStyles = {
 			overrideWidth: this.overrideWidth,
 			overrideStyle: this.overrideStyle,
@@ -75,24 +71,26 @@ class NotificationSystem extends Component {
 	}
 
 	componentDidMount() {
-		this.setOverrideStyle(this.props.style);
+		debug( 'Notification system mounted...' );
+		this.setOverrideStyle( this.props.style );
 		this._isMounted = true;
 	}
 
 	componentWillUnmount() {
+		debug( 'Notification system will unmount...' );
 		this._isMounted = false;
 	}
 
-	setOverrideStyle(style) {
+	setOverrideStyle = ( style ) => {
 		this.overrideStyle = style;
-	}
+	};
 
-	wrapper() {
+	wrapper = () => {
 		if (!this.overrideStyle) return {};
 		return Object.assign({}, Styles.Wrapper, this.overrideStyle.Wrapper);
-	}
+	};
 
-	container(position) {
+	container = (position) => {
 		var override = this.overrideStyle.Containers || {};
 		if (!this.overrideStyle) return {};
 
@@ -113,9 +111,9 @@ class NotificationSystem extends Component {
 			override.DefaultStyle,
 			override[position]
 		);
-	}
+	};
 
-	byElement(element) {
+	byElement = ( element ) => {
 		return (level) => {
 			var _element = this.elements[element];
 			var override = this.overrideStyle[_element] || {};
@@ -128,9 +126,9 @@ class NotificationSystem extends Component {
 				override[level]
 			);
 		};
-	}
+	};
 
-	_didNotificationRemoved(uid) {
+	_didNotificationRemoved = ( uid ) => {
 		var notification;
 		var notifications = this.state.notifications.filter(function check(toCheck) {
 			if (toCheck.uid === uid) {
@@ -147,9 +145,9 @@ class NotificationSystem extends Component {
 		if (notification && notification.onRemove) {
 			notification.onRemove(notification);
 		}
-	}
+	};
 
-	addNotification(notification) {
+	addNotification = ( notification ) => {
 		var _notification = Object.assign({}, Constants.notification, notification);
 		var notifications = this.state.notifications;
 		var i;
@@ -207,44 +205,41 @@ class NotificationSystem extends Component {
 		});
 
 		return _notification;
-	}
+	};
 
-	getNotificationRef(notification) {
+	getNotificationRef = ( notification ) => {
 		var foundNotification = null;
-
-		Object.keys(this.refs).forEach((container) => {
+		Object.keys(this._refs).forEach((container) => {
 			if (container.indexOf('container') > -1) {
-				Object.keys(this.refs[container].refs).forEach((_notification) => {
+				Object.keys(this._refs[container].refs).forEach((_notification) => {
 					var uid = notification.uid ? notification.uid : notification;
 					if (_notification === 'notification-' + uid) {
 						// NOTE: Stop iterating further and return the found notification.
 						// Since UIDs are uniques and there won't be another notification found.
-						foundNotification = this.refs[container].refs[_notification];
+						foundNotification = this._refs[container].refs[_notification];
 					}
 				});
 			}
 		});
-
 		return foundNotification;
-	}
+	};
 
-	removeNotification(notification) {
+	removeNotification = ( notification ) => {
 		var foundNotification = this.getNotificationRef(notification);
 		return foundNotification && foundNotification._hideNotification();
-	}
+	};
 
-	editNotification(notification, newNotification) {
+	editNotification = ( notification, newNotification ) => {
 		var foundNotification = null;
 		// NOTE: Find state notification to update by using
 		// `setState` and forcing React to re-render the component.
 		var uid = notification.uid ? notification.uid : notification;
 
-		var newNotifications = this.state.notifications.filter(function(stateNotification) {
+		var newNotifications = this.state.notifications.filter(function check(stateNotification) {
 			if (uid === stateNotification.uid) {
 				foundNotification = stateNotification;
 				return false;
 			}
-
 			return true;
 		});
 
@@ -257,22 +252,21 @@ class NotificationSystem extends Component {
 		this.setState({
 			notifications: newNotifications
 		});
-	}
+	};
 
-	clearNotifications() {
-		Object.keys(this.refs).forEach((container) => {
+	clearNotifications = () => {
+		Object.keys( this._refs).forEach((container) => {
 			if (container.indexOf('container') > -1) {
-				Object.keys(this.refs[container].refs).forEach((_notification) => {
-					this.refs[container].refs[_notification]._hideNotification();
+				Object.keys( this._refs[container].refs).forEach((_notification) => {
+					this._refs[container].refs[_notification]._hideNotification();
 				});
 			}
 		});
-	}
+	};
 
 	render() {
 		var containers = null;
 		var notifications = this.state.notifications;
-
 		if (notifications.length) {
 			containers = Object.keys(Constants.positions).map((position) => {
 				var _notifications = notifications.filter((notification) => {
@@ -285,21 +279,22 @@ class NotificationSystem extends Component {
 
 				return (
 					<NotificationContainer
-						ref={ 'container-' + position }
-						key={ position }
-						position={ position }
-						notifications={ _notifications }
-						getStyles={ this._getStyles }
-						onRemove={ this._didNotificationRemoved }
-						noAnimation={ this.props.noAnimation }
-						allowHTML={ this.props.allowHTML }
+						ref={( div ) => {
+							this._refs[ 'container-' + position ] = div;
+						}}
+						key={position}
+						position={position}
+						notifications={_notifications}
+						getStyles={this._getStyles}
+						onRemove={this._didNotificationRemoved}
+						noAnimation={this.props.noAnimation}
+						allowHTML={this.props.allowHTML}
 					/>
 				);
 			});
 		}
-
 		return (
-			<div className="notifications-wrapper" style={ this.wrapper() }>
+			<div className="notifications-wrapper" style={this.wrapper()}>
 				{containers}
 			</div>
 		);
