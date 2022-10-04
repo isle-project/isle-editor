@@ -158,11 +158,14 @@ class ProseMirrorCollaborative extends Component {
 	}
 
 	replaceEditorState = () => {
+		console.log( 'Replace editor state with current default value...' );
+		console.log( this.dispatchState );
 		if ( !this.dispatchState ) {
 			return setTimeout( this.replaceEditorState, 100 );
 		}
 		const state = this.dispatchState.edit;
 		const selection = new AllSelection( state.doc );
+		console.log( selection );
 		const doc = isJSON( this.props.defaultValue ) ?
 			Node.fromJSON( schema, JSON.parse( this.props.defaultValue ) ) :
 			parser( this.props.defaultValue );

@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactNotificationSystem from 'react-notification-system';
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from '@isle-project/locales';
+import NotificationSystem from '@isle-project/components/internal/notification-system';
 import { ContextMenuTrigger } from '@isle-project/components/internal/contextmenu';
 import LanguageSwitcher from '@isle-project/components/internal/language-switcher';
 import randomstring from '@isle-project/utils/randomstring/alphanumeric';
@@ -191,7 +191,7 @@ class Lesson extends Component {
 					session={this.context}
 					logAction={this.props.logAction}
 				/>
-				<ReactNotificationSystem
+				<NotificationSystem
 					ref={( div ) => {
 						if ( !session.notificationSystemISLE ) {
 							session.notificationSystemISLE = div;

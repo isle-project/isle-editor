@@ -81,7 +81,6 @@ const config = {
 		'prop-types': 'PropTypes',
 		'react-draggable': 'ReactDraggable',
 		'react-list': 'ReactList',
-		'react-notification-system': 'ReactNotificationSystem',
 		'react-player': 'ReactPlayer',
 		'pdfmake/build/pdfmake': 'pdfMake',
 		'pdfmake/build/vfs_fonts.js': 'pdfMake',

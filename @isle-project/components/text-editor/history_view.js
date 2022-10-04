@@ -281,6 +281,8 @@ class HistoryView extends Component {
 	};
 
 	handleRestore = () => {
+		console.log( 'Restoring document to state at step '+this.state.counter+'...' );
+		console.log( this.state.editorState.doc );
 		this.props.onRestore( this.state.editorState.doc.content );
 	};
 
@@ -288,6 +290,7 @@ class HistoryView extends Component {
 		const { document, counter } = this.state;
 		const { t, session } = this.props;
 		const notSignedIn = session.anonymous;
+		console.log( document );
 		let editorDiv;
 		if ( !notSignedIn ) {
 			editorDiv = <div
