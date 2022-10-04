@@ -198,6 +198,8 @@ class Lesson extends Component {
 							if ( session.isOwner() && !session.isActive() ) {
 								session.addInactiveNotification();
 							}
+						} else {
+							session.notificationSystemISLE = div;
 						}
 					}}
 					allowHTML={true}
