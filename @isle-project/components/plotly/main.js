@@ -67,7 +67,6 @@ Plotly.setPlotConfig({
 * @property {Array} data - data array
 * @property {boolean} editable - controls whether labels of the created plot are editable
 * @property {boolean} draggable - controls whether the plot should be draggable
-* @property {string} id - component identifier
 * @property {Object} layout - Plotly layout object
 * @property {boolean} legendButtons - controls whether to display buttons for changing the legend
 * @property {boolean} toggleFullscreen - controls whether to allow displaying the plot in fullscreen mode
@@ -354,7 +353,6 @@ const Wrapper = ( props ) => {
 Wrapper.defaultProps = {
 	draggable: false,
 	editable: false,
-	id: null,
 	layout: {},
 	config: {},
 	legendButtons: true,
@@ -377,7 +375,6 @@ Wrapper.propTypes = {
 	data: PropTypes.array.isRequired,
 	draggable: PropTypes.bool,
 	editable: PropTypes.bool,
-	id: PropTypes.string,
 	layout: PropTypes.object,
 	config: PropTypes.object,
 	legendButtons: PropTypes.bool,

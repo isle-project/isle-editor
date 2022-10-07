@@ -46,14 +46,14 @@ function whichTransitionEvent() {
 		WebkitTransition: 'webkitTransitionEnd'
 	};
 
-	Object.keys(transitions).forEach( function(transitionKey) {
+	Object.keys(transitions).forEach( function onTransition(transitionKey) {
 		if ( el.style[transitionKey] !== void 0 ) {
 			transition = transitions[transitionKey];
 		}
 	});
 
 	return transition;
-};
+}
 
 function _allowHTML(string) {
 	return { __html: string };
@@ -90,10 +90,9 @@ class NotificationItem extends Component {
 			action: getStyles.byElement('action')(level)
 		};
 
-		if (!dismissible || dismissible === 'none' || dismissible === 'button') {
+		if ( !dismissible || dismissible === 'none' || dismissible === 'button' ) {
 			this._styles.notification.cursor = 'default';
 		}
-
 		this._getCssPropertyByPosition = this._getCssPropertyByPosition.bind(this);
 		this._defaultAction = this._defaultAction.bind(this);
 		this._hideNotification = this._hideNotification.bind(this);
@@ -315,7 +314,7 @@ class NotificationItem extends Component {
 
 		if (notification.title) {
 			title = (
-				<h4 className="notification-title" style={ this._styles.title }>
+				<h4 className="notification-title" style={this._styles.title}>
 					{notification.title}
 				</h4>
 			);
@@ -363,12 +362,12 @@ class NotificationItem extends Component {
 			actionButton = (
 				<div
 					className="notification-action-wrapper"
-					style={ this._styles.actionWrapper }
+					style={this._styles.actionWrapper}
 				>
 					<button
 						className="notification-action-button"
-						onClick={ this._defaultAction }
-						style={ this._styles.action }
+						onClick={this._defaultAction}
+						style={this._styles.action}
 					>
 						{notification.action.label}
 					</button>
@@ -379,6 +378,7 @@ class NotificationItem extends Component {
 		if ( notification.children ) {
 			actionButton = notification.children;
 		}
+		/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
 		return (
 			<div
 				className={className}
@@ -394,6 +394,7 @@ class NotificationItem extends Component {
 				{actionButton}
 			</div>
 		);
+		/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
 	}
 }
 
@@ -401,8 +402,8 @@ class NotificationItem extends Component {
 // PROPERTIES //
 
 NotificationItem.propTypes = {
-	notification: PropTypes.object,
-	getStyles: PropTypes.object,
+	notification: PropTypes.object.isRequired,
+	getStyles: PropTypes.object.isRequired,
 	onRemove: PropTypes.func,
 	allowHTML: PropTypes.bool,
 	noAnimation: PropTypes.bool

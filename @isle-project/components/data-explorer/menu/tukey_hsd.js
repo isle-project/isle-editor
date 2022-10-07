@@ -60,7 +60,7 @@ TukeyHSDMenu.propTypes = {
 	quantitative: PropTypes.array.isRequired,
 	data: PropTypes.object.isRequired,
 	logAction: PropTypes.func,
-	onCreated: PropTypes.func.isRequired,
+	onCreated: PropTypes.func.isRequired
 };
 
 TukeyHSDMenu.defaultProps = {
