@@ -192,7 +192,7 @@
     "jsonfile": "^6.1.0",
     "lodash.curry": "^4.1.1",
     "lodash.debounce": "^4.0.8",
-    "magic-string": "^0.26.5",
+    "magic-string": "^0.26.7",
     "markdown-it": "^13.0.1",
     "minimist": "^1.2.6",
     "ml-kmeans": "^5.0.0",
