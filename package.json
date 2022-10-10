@@ -126,7 +126,7 @@
     "@babel/plugin-transform-react-jsx": "^7.19.0",
     "@babel/runtime": "^7.19.0",
     "@loadable/component": "^5.15.2",
-    "@nosferatu500/react-sortable-tree": "^4.1.4",
+    "@nosferatu500/react-sortable-tree": "^4.2.0",
     "@stdlib/array": "^0.0.12",
     "@stdlib/assert": "^0.0.12",
     "@stdlib/constants": "^0.0.11",
