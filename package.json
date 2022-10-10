@@ -185,7 +185,7 @@
     "html-to-image": "^1.10.8",
     "html-to-pdfmake": "^2.4.6",
     "html-webpack-plugin": "5.5.0",
-    "i18next": "^21.9.2",
+    "i18next": "^21.10.0",
     "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.4",
     "ieee754": "^1.2.1",
