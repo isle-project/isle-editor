@@ -294,7 +294,7 @@
     "codecov": "^3.8.3",
     "concurrently": "^7.4.0",
     "doctrine": "^3.0.0",
-    "electron": "21.0.1",
+    "electron": "21.1.0",
     "electron-builder": "23.3.3",
     "electron-devtools-installer": "github:MarshallOfSound/electron-devtools-installer",
     "electron-license": "^3.0.0",
