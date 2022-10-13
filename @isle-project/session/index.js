@@ -353,6 +353,14 @@ class Session {
 		return PRIVATE_VARS[ 'duration' ];
 	}
 
+	get progress() {
+		return PRIVATE_VARS[ 'progress' ];
+	}
+
+	get score() {
+		return PRIVATE_VARS[ 'score' ];
+	}
+
 	get videoChats() {
 		return VIDEO_CHATS;
 	}
