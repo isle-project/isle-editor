@@ -870,10 +870,11 @@ class DataExplorer extends Component {
 			newData = varState.data;
 		}
 		delete newData[ variable ];
-		let newQuantitative = state.quantitative.filter( x => x !== variable );
-		let newCategorical = state.categorical.filter( x => x !== variable );
-		let newGroupVars = state.groupVars.filter( x => x !== variable );
-		let filters = ( state.filters || [] ).filter( x => x.id !== variable );
+		const varName = String( variable );
+		let newQuantitative = state.quantitative.filter( x => String( x ) !== varName );
+		let newCategorical = state.categorical.filter( x => String( x ) !== varName );
+		let newGroupVars = state.groupVars.filter( x => String( x ) !== varName );
+		let filters = ( state.filters || [] ).filter( x => x.id !== varName );
 		return {
 			data: newData,
 			quantitative: newQuantitative,
