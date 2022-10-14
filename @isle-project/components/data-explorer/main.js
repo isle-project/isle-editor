@@ -441,8 +441,12 @@ class DataExplorer extends Component {
 			}
 			else if ( action.type === DELETE_OUTPUT ) {
 				skip.push( action.value );
+			} else if (
+				action.type !== DELETE_VARIABLE &&
+				action.type !== VARIABLE_TRANSFORMER
+			) {
+				candidates.push( action );
 			}
-			candidates.push( action );
 		}
 		const output = [];
 		const outputProps = {
@@ -455,6 +459,7 @@ class DataExplorer extends Component {
 		for ( let i = candidates.length - 1; i >= 0; i-- ) {
 			const idx = candidates.length - 1 - i;
 			if ( contains( skip, idx ) ) {
+				output.push( null );
 				continue;
 			}
 			const action = candidates[ i ];
