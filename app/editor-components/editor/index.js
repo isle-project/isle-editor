@@ -48,7 +48,6 @@ import loadRequires from 'utils/load-requires';
 import uploadBugImage from './upload_bug_image.js';
 import VIDEO_EXTENSIONS from './video_extensions.json';
 import IMAGE_EXTENSIONS from './image_extensions.json';
-import IS_WINDOWS from '@stdlib/assert/is-windows';
 import MonacoDragNDropProvider from './monaco_drag_provider.js';
 const EditorContextMenu = Loadable( () => import( 'editor-components/components-contextmenu' ) );
 const EditorComponentStyler = Loadable( () => import( 'editor-components/editor-component-styler' ) );
@@ -68,6 +67,7 @@ const md = markdownit({
 });
 md.disable( 'code' );
 const ELECTRON_REGEXP = /node_modules[\\/]electron[\\/]dist/;
+const IS_WINDOWS = process.platform === 'win32';
 const IS_PACKAGED = !( ELECTRON_REGEXP.test( process.resourcesPath ) );
 const BASE_PATH = IS_PACKAGED ? join( process.resourcesPath, 'app' ) : '.';
 const RE_DATE = /date: ([^\n]+)/;
@@ -343,7 +343,11 @@ class Editor extends Component {
 			let PATH = process.env.PATH || ''; // eslint-disable-line no-process-env
 			if ( IS_PACKAGED ) {
 				const bin = join( process.resourcesPath, 'node_modules', '.bin' );
-				PATH = PATH.concat( delimiter, bin );
+				if ( !PATH ) {
+					PATH = bin;
+				} else {
+					PATH = PATH.concat( delimiter, bin );
+				}
 				if ( !IS_WINDOWS ) {
 					PATH = PATH.concat( delimiter, '/usr/local/bin' );
 				}
@@ -363,14 +367,17 @@ class Editor extends Component {
 			});
 			npm.stdout.on( 'data', ( data ) => {
 				const str = data.toString();
+				console.log( 'stdout: '+str ); // eslint-disable-line no-console
 				if ( !contains( str, 'looking for funding' ) ) {
 					overlayInstallWidget.pre.innerHTML += str;
 				}
 			});
 			npm.stderr.on( 'data', ( data ) => {
+				console.log( 'stderr: '+data ); // eslint-disable-line no-console
 				overlayInstallWidget.pre.innerHTML += data;
 			});
 			npm.on( 'error', function onError( err ) {
+				console.error( err ); // eslint-disable-line no-console
 				overlayInstallWidget.pre.innerHTML += '\n' + err.message;
 			});
 			npm.on( 'close', ( code ) => {
