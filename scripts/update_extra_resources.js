@@ -38,7 +38,6 @@ const extraResources = [
 	'!node_modules/**/changelog.md',
 	'!node_modules/**/test/*',
 	'!node_modules/**/tests/*',
-	'!node_modules/**/bin/*',
 	'!node_modules/**/example/*',
 	'!node_modules/**/examples/*',
 	'!node_modules/**/coverage/*',
