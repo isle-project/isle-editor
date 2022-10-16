@@ -1,6 +1,24 @@
 # Changelog
 
-## [v0.76.20](https://github.com/isle-project/isle-editor/releases/tag/v0.76.20) (2022-09-28)
+## [v0.76.21](https://github.com/isle-project/isle-editor/releases/tag/v0.76.21) (2022-10-16)
+
+This update adds the Tukey HSD test and extended output for the chi-square independence test.  
+
+In addition, it resolves the following issues:
+
+-   Variables generated from the binning tool were not properly removed upon deletion from the list of available qualitative variables, causing select boxes in the data explorer toolbox to still list them.  
+-   Restoration of outputs in data explorers upon reload has been improved.
+-   Under rare conditions, the notification system didn't properly mount, causing e.g. the "Lesson Submit" notifications prompting for a download of a lesson's answers in PDF format to not show up. This is now prevented.
+-   When editing plot titles of e.g. bar charts for factor variables (categorical variables with ordered categories), it was possible that multiple labels were changed at once.
+-   In the last release, a regression in the `<Quiz />` component caused timed quizzes (i.e., when the `duration` property was set) to not work anymore, and the response visualizer for multiple choice questions to not display answers.
+
+
+**Implemented enhancements:**
+
+- Multiple Comparisons test \(Tukey HSD\) for ANOVA [\#2506](https://github.com/isle-project/isle-editor/issues/2506)
+- chi-square info in contingency table [\#1472](https://github.com/isle-project/isle-editor/issues/1472)
+
+## [v0.76.20](https://github.com/isle-project/isle-editor/releases/tag/v0.76.20) (2022-09-29)
 
 This patch release fixes a bug in the automatic assignment of component identifiers, which caused identifiers to potentially be assigned multiple times.
 
