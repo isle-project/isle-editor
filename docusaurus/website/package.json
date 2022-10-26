@@ -14,13 +14,13 @@
     "@docusaurus/preset-classic": "2.1.0",
     "@docusaurus/theme-live-codeblock": "2.1.0  ",
     "buffer": "^6.0.3",
-    "bufferutil": "^4.0.6",
+    "bufferutil": "^4.0.7",
     "classnames": "^2.3.2",
     "core-js": "^2.6.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-live": "2.2.3",
-    "utf-8-validate": "^5.0.9"
+    "utf-8-validate": "^5.0.10"
   },
   "browserslist": {
     "production": [
