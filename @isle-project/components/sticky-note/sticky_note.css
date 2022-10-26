@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Indie+Flower";
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
 
 .sticky-note {
 	transition: all 0.3s;
