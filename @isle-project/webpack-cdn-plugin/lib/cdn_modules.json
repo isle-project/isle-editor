@@ -18,7 +18,7 @@
 		"alias": "pdfjs-dist",
 		"var": "pdfjsLib",
 		"path": "legacy/build/pdf.min.js",
-		"version": "2.16.105",
+		"version": "3.0.279",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
 		"defer": true
 	},
