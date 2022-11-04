@@ -64,7 +64,7 @@ where `<depth>` refers to the number of commits that should be retrieved (smalle
 To install development dependencies,
 
 ``` bash
-$ npm install
+$ npm install --legacy-peer-deps
 ```
 
 #### Build
