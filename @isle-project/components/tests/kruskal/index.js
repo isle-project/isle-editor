@@ -31,6 +31,7 @@ function Kruskal({ data, variable, group, showDecision }) {
 			valsFiltered.push( values[ i ] );
 			groupsFiltered.push( `"${groups[i]}"` );
 		}
+		// TODO: increment counter for missing values
 	}
 	return (
 		<div style={{ overflowX: 'auto', width: '100%' }}>

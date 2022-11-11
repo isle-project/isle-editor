@@ -23,6 +23,8 @@ function Anova({ data, variable, group, showDecision }) {
 	const groups = data[ group ];
 	const groupsFiltered = [];
 	const valsFiltered = [];
+
+	let nMissing = 0;
 	for ( let i = 0; i < vals.length; i++ ) {
 		if (
 			( isNumber( vals[i] ) && !isnan( vals[i] ) ) &&
@@ -30,6 +32,8 @@ function Anova({ data, variable, group, showDecision }) {
 		) {
 			valsFiltered.push( vals[ i ] );
 			groupsFiltered.push( `"${groups[i]}"` );
+		} else {
+			nMissing += 1;
 		}
 	}
 	return (
@@ -38,6 +42,7 @@ function Anova({ data, variable, group, showDecision }) {
 			<pre style={{ marginTop: 10 }}>{anova1( valsFiltered, groupsFiltered ).print({
 				decision: showDecision
 			})}</pre>
+			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
 		</div>
 	);
 }

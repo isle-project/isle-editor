@@ -16,6 +16,7 @@ function Chi2Test({ data, var1, var2 }) {
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}
+	// TODO: Filter our missing values and keep count of them
 	const x = data[ var1 ].map( x => `"${x}"` );
 	const y = data[ var2 ].map( x => `"${x}"` );
 	return (

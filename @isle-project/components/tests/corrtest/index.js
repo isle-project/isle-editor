@@ -30,6 +30,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 			xFiltered.push( x[i] );
 			yFiltered.push( y[i] );
 		}
+		// TODO: increment counter for missing values
 	}
 	const result = pcorrtest( xFiltered, yFiltered, {
 		'alpha': alpha,

@@ -31,6 +31,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
  * @returns {Array} numeric, non-missing values
  */
 function extractValues( data, variable ) {
+	// TODO: change function to return both array and counter of missing values
 	const x = data[ variable ];
 	const arr = [];
 	if ( !x ) {
