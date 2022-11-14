@@ -404,7 +404,13 @@ const HistogramMenu = ( props ) => {
 							defaultValue={densityType}
 							clearable
 							menuPlacement="top"
-							onChange={setDensityType}
+							onChange={( val ) => {
+								if ( val && val.length === 0 ) {
+									setDensityType( null );
+								} else {
+									setDensityType( val );
+								}
+							}}
 							components={{ Option }}
 						/>
 						{densityControls}

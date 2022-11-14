@@ -7,6 +7,7 @@ import { i18n } from '@isle-project/locales';
 import min from '@isle-project/utils/statistic/min';
 import max from '@isle-project/utils/statistic/max';
 import { isPrimitive as isNumber } from '@stdlib/assert/is-number';
+import isNull from '@stdlib/assert/is-null';
 import isArray from '@stdlib/assert/is-array';
 import ceil from '@stdlib/math/base/special/ceil';
 import Plotly from '@isle-project/components/plotly';
@@ -54,7 +55,10 @@ export function generateHistogramConfig({ data, variable, group, title, groupMod
 	let layout;
 	let keys;
 
-	if ( !isArray( densityType ) ) {
+	if ( isNull( densityType ) ) {
+		densityType = [];
+	}
+	else if ( !isArray( densityType ) ) {
 		densityType = [ densityType ];
 	}
 	if ( !group ) {
@@ -240,7 +244,7 @@ function Histogram({ id, data, variable, group, title, groupMode, nCols, display
 		if ( !data ) {
 			return {};
 		}
-		return generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType: isArray( densityType ) ? densityType : [ densityType ], densityParams, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
+		return generateHistogramConfig({ data, variable, group, title, groupMode, nCols, displayDensity, densityType: ( isArray( densityType ) || isNull( densityType ) ) ? densityType : [ densityType ], densityParams, bandwidthAdjust, binStrategy, nBins, xBins, sameXRange, sameYRange });
 	}, [ bandwidthAdjust, binStrategy, data, densityType, densityParams, displayDensity, group, title, groupMode, nBins, nCols, variable, xBins, sameXRange, sameYRange ] );
 	if ( !data ) {
 		return <Alert variant="danger">{i18n.t('plotly:data-missing')}</Alert>;
