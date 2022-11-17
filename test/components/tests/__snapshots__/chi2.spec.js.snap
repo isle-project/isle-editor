@@ -13,5 +13,14 @@ exports[`<Anova /> renders test result 1`] = `
     hypothesis-test-for-independence
     :
   </label>
+  Chi-square independence test
+
+Null hypothesis: the two variables are independent
+
+    pValue: 0.1326
+    statistic: 4.0407
+    degrees of freedom: 2
+
+
 </div>
 `;
