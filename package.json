@@ -162,7 +162,7 @@
     "css": "^3.0.0",
     "css-loader": "6.7.2",
     "css-modules-require-hook": "^4.2.3",
-    "csv-stringify": "5.6.5",
+    "csv-stringify": "6.2.2",
     "csvtojson": "^2.0.10",
     "d3": "5.16.0",
     "d3-cloud": "1.2.5",
