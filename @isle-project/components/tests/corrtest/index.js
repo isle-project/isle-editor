@@ -22,6 +22,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 	const y = data[ var2 ];
 	const xFiltered = [];
 	const yFiltered = [];
+	let nMissing = 0;
 	for ( let i = 0; i < x.length; i++ ) {
 		if (
 			( isNumber( x[i] ) && !isnan( x[i] ) ) &&
@@ -30,7 +31,9 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 			xFiltered.push( x[i] );
 			yFiltered.push( y[i] );
 		}
-		// TODO: increment counter for missing values
+		else {
+			nMissing += 1;
+		}
 	}
 	const result = pcorrtest( xFiltered, yFiltered, {
 		'alpha': alpha,
@@ -52,6 +55,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 					decision: showDecision
 				})}
 			</pre>
+			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
 		</div>
 	);
 }
