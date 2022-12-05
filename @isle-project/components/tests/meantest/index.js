@@ -28,21 +28,27 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
  *
  * @param {Object} data - data set
  * @param {string} value - name of the value to extract
- * @returns {Array} numeric, non-missing values
+ * @returns {Object} object with numeric, non-missing `values` and `nMissing` count
  */
 function extractValues( data, variable ) {
-	// TODO: change function to return both array and counter of missing values
 	const x = data[ variable ];
 	const arr = [];
 	if ( !x ) {
 		return arr;
 	}
+	let nMissing = 0;
 	for ( let i = 0; i < x.length; i++ ) {
 		if ( isNumber( x[ i ] ) && !isnan( x[ i ] ) ) {
 			arr.push( x[ i ] );
 		}
+		else {
+			nMissing += 1;
+		}
 	}
-	return arr;
+	return {
+		values: arr,
+		nMissing: nMissing
+	};
 }
 
 
@@ -53,22 +59,22 @@ function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDeci
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}
-	const xvalues = extractValues( data, variable );
+	const { values, nMissing } = extractValues( data, variable );
 	let sd;
 	if ( type === 'Z Test' && stdev ) {
 		sd = stdev;
 	} else {
-		sd = roundn( standardDeviation( xvalues ), -6 );
+		sd = roundn( standardDeviation( values ), -6 );
 	}
 	let result;
 	if ( type === 'Z Test' ) {
-		result = ztest( xvalues, sd, {
+		result = ztest( values, sd, {
 			'alpha': alpha,
 			'alternative': direction,
 			'mu': mu0
 		});
 	} else {
-		result = ttest( xvalues, {
+		result = ttest( values, {
 			'alpha': alpha,
 			'alternative': direction,
 			'mu': mu0
@@ -92,6 +98,7 @@ function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDeci
 			<pre>
 				{printout}
 			</pre>
+			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
 		</div>
 	);
 }
