@@ -253,7 +253,7 @@
     "react-redux": "8.0.5",
     "react-rnd": "10.3.7",
     "react-router": "6.4.3",
-    "react-router-dom": "6.4.3",
+    "react-router-dom": "6.4.4",
     "react-select": "5.6.1",
     "react-slick": "0.29.0",
     "react-split-pane": "0.1.92",
