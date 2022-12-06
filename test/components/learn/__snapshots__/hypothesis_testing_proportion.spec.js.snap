@@ -56,20 +56,20 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       className="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      className=" css-b82su3-control"
+                      className=" css-15udvsq-control"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
                       <div
-                        className=" css-319lph-ValueContainer"
+                        className=" css-1fdsijx-ValueContainer"
                       >
                         <div
-                          className=" css-qc6sy-singleValue"
+                          className=" css-1dimb5e-singleValue"
                         >
                           One-Sample
                         </div>
                         <div
-                          className=" css-6j8wv5-Input"
+                          className=" css-qbdosj-Input"
                           data-value=""
                         >
                           <input
@@ -114,11 +114,11 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                         className=" css-1hb7zxy-IndicatorsContainer"
                       >
                         <span
-                          className=" css-1okebmr-indicatorSeparator"
+                          className=" css-1u9des2-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          className=" css-tlfecz-indicatorContainer"
+                          className=" css-1xc3v61-indicatorContainer"
                           onMouseDown={[Function]}
                           onTouchEnd={[Function]}
                         >
