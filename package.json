@@ -121,7 +121,7 @@
     "extensionsToTreatAsEsm": []
   },
   "dependencies": {
-    "@babel/core": "^7.20.5",
+    "@babel/core": "^7.20.7",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-transform-react-jsx": "^7.19.0",
     "@babel/runtime": "^7.20.6",
