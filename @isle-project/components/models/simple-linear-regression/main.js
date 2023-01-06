@@ -55,6 +55,7 @@ function extractValues({ x, y, data, group, omitMissing }) {
 	const xd = data[ x ];
 	const yd = data[ y ];
 	const groups = data[ group ];
+	let nRemoved = 0;
 	if ( omitMissing ) {
 		const xvals = [];
 		const yvals = [];
@@ -69,6 +70,8 @@ function extractValues({ x, y, data, group, omitMissing }) {
 					xvals.push( xd[ i ] );
 					yvals.push( yd[ i ] );
 					groupvals.push( groups[ i ] );
+				} else {
+					nRemoved += 1;
 				}
 			}
 		} else {
@@ -79,13 +82,16 @@ function extractValues({ x, y, data, group, omitMissing }) {
 				) {
 					xvals.push( xd[ i ] );
 					yvals.push( yd[ i ] );
+				} else {
+					nRemoved += 1;
 				}
 			}
 		}
 		return {
 			xd: xvals,
 			yd: yvals,
-			groups: groupvals
+			groups: groupvals,
+			nRemoved
 		};
 	}
 	return {
@@ -320,6 +326,7 @@ class SimpleLinearRegression extends Component {
 							</tr>
 						</tbody>
 					</Table>
+					{ this.state.nRemoved > 0 && <small>{this.state.nRemoved} missing observations were excluded from the data.</small>}
 					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
 							const predict = ( data ) => {

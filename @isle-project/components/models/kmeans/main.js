@@ -107,6 +107,7 @@ const fitModel = ({ K, variables, data, initialization }) => {
 			return `Cluster ${x+1}`; // eslint-disable-line i18next/no-literal-string
 		});
 		result.withinGroupSS = withinGroupSS;
+		result.nRemoved = missingIds.length;
 		return result;
 	} catch ( _ ) {
 		return null;
@@ -206,6 +207,7 @@ class KMeans extends Component {
 						title: t('total-within-group-sum-of-squares')
 					}
 				}} /> : null }
+				{ this.state.nRemoved > 0 && <small>{this.state.nRemoved} missing observations were excluded from the data.</small>}
 			</div>
 		);
 	}
