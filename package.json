@@ -256,7 +256,7 @@
     "react-router-dom": "6.6.1",
     "react-select": "5.7.0",
     "react-slick": "0.29.0",
-    "react-split-pane": "2.0.3",
+    "react-split-pane": "0.1.92",
     "react-table": "6.11.5",
     "react-transition-group": "^4.4.5",
     "react-viewer": "^3.2.2",
