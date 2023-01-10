@@ -326,7 +326,7 @@ class SimpleLinearRegression extends Component {
 							</tr>
 						</tbody>
 					</Table>
-					{ this.state.nRemoved > 0 && <small>{this.state.nRemoved} missing observations were excluded from the data.</small>}
+					{ this.state.nRemoved > 0 && <small>{t('missing-excluded', { nRemoved: this.state.nRemoved })}</small>}
 					{ this.props.onPredict ? <Tooltip tooltip={t('use-model-to-predict-tooltip')} >
 						<Button variant="secondary" size="sm" onClick={() => {
 							const predict = ( data ) => {

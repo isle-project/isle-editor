@@ -207,7 +207,7 @@ class KMeans extends Component {
 						title: t('total-within-group-sum-of-squares')
 					}
 				}} /> : null }
-				{ this.state.nRemoved > 0 && <small>{this.state.nRemoved} missing observations were excluded from the data.</small>}
+				{ this.state.nRemoved > 0 && <small>{t('missing-excluded', { nRemoved: this.state.nRemoved })}</small>}
 			</div>
 		);
 	}

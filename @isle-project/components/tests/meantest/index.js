@@ -28,7 +28,7 @@ const RE_ONESIDED_GREATER = /\d{2}% confidence interval: \[-?[\d.]+,Infinity\]/;
  *
  * @param {Object} data - data set
  * @param {string} value - name of the value to extract
- * @returns {Object} object with numeric, non-missing `values` and `nMissing` count
+ * @returns {Object} object with numeric, non-missing `values` and `nRemoved` count
  */
 function extractValues( data, variable ) {
 	const x = data[ variable ];
@@ -36,18 +36,18 @@ function extractValues( data, variable ) {
 	if ( !x ) {
 		return arr;
 	}
-	let nMissing = 0;
+	let nRemoved = 0;
 	for ( let i = 0; i < x.length; i++ ) {
 		if ( isNumber( x[ i ] ) && !isnan( x[ i ] ) ) {
 			arr.push( x[ i ] );
 		}
 		else {
-			nMissing += 1;
+			nRemoved += 1;
 		}
 	}
 	return {
 		values: arr,
-		nMissing: nMissing
+		nRemoved: nRemoved
 	};
 }
 
@@ -59,7 +59,7 @@ function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDeci
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}
-	const { values, nMissing } = extractValues( data, variable );
+	const { values, nRemoved } = extractValues( data, variable );
 	let sd;
 	if ( type === 'Z Test' && stdev ) {
 		sd = stdev;
@@ -98,7 +98,7 @@ function MeanTest({ data, variable, type, stdev, alpha, direction, mu0, showDeci
 			<pre>
 				{printout}
 			</pre>
-			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
+			{nRemoved> 0 && <small>{t('missing-excluded', { nRemoved })}</small>}
 		</div>
 	);
 }

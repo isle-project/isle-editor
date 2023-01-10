@@ -24,7 +24,7 @@ function Kruskal({ data, variable, group, showDecision }) {
 	const groupsFiltered = [];
 	const valsFiltered = [];
 
-	let nMissing = 0;
+	let nRemoved = 0;
 	for ( let i = 0; i < values.length; i++ ) {
 		if (
 			( isNumber( values[i] ) && !isnan( values[i] ) ) &&
@@ -34,7 +34,7 @@ function Kruskal({ data, variable, group, showDecision }) {
 			groupsFiltered.push( `"${groups[i]}"` );
 		}
 		else {
-			nMissing += 1;
+			nRemoved += 1;
 		}
 	}
 	return (
@@ -43,7 +43,7 @@ function Kruskal({ data, variable, group, showDecision }) {
 			<pre style={{ marginTop: 10 }}>{kruskalTest( valsFiltered, { groups: groupsFiltered }).print({
 				decision: showDecision
 			})}</pre>
-			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
+			{nRemoved> 0 && <small>{t('missing-excluded', { nRemoved })}</small>}
 		</div>
 	);
 }

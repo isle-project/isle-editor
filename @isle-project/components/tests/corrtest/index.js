@@ -22,7 +22,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 	const y = data[ var2 ];
 	const xFiltered = [];
 	const yFiltered = [];
-	let nMissing = 0;
+	let nRemoved = 0;
 	for ( let i = 0; i < x.length; i++ ) {
 		if (
 			( isNumber( x[i] ) && !isnan( x[i] ) ) &&
@@ -32,7 +32,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 			yFiltered.push( y[i] );
 		}
 		else {
-			nMissing += 1;
+			nRemoved += 1;
 		}
 	}
 	const result = pcorrtest( xFiltered, yFiltered, {
@@ -55,7 +55,7 @@ function CorrTest({ data, var1, var2, direction, alpha, rho0, showDecision }) {
 					decision: showDecision
 				})}
 			</pre>
-			{ nMissing > 0 && <small>{nMissing} missing observations were excluded from the data.</small>}
+			{nRemoved> 0 && <small>{t('missing-excluded', { nRemoved })}</small>}
 		</div>
 	);
 }
