@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hipotezės testas dėl nepriklausomybės tarp {{var1}} ir {{var2}}",
 	"hypothesis-test-x-y": "Hipotezės testas {{x}} prieš {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis testas {{variable}} tarp {{group}}",
+	"missing-excluded": "{{nRemoved} trūkstami stebėjimai buvo pašalinti iš duomenų.",
 	"must-have-two-different-values": "Grupavimo kintamasis <1>{{group}}</1> turi turėti bent dvi skirtingas reikšmes.",
 	"pop-prob-first-group": "Tegul <1 /> yra populiacijos tikimybė, kad <3>{{var1}}</3> būti <5>{{success}}</5> pirmoje grupėje,",
 	"probability-second-group": "atitinkamai antrosios grupės tikimybė. Tikriname",

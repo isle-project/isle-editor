@@ -32,6 +32,7 @@
 	"logistic-title": "Regressiooni kokkuvõte vastuse kohta {{y}} (mudeli id: logis{{counter}})",
 	"mean": "Keskmine",
 	"missing-attributes": "Mudelit ei olnud võimalik hinnata. Palun kontrollige, et kõik nõutavad atribuudid oleksid esitatud.",
+	"missing-excluded": "{nEemaldatud} puuduolevad vaatlused jäeti andmetest välja.",
 	"model-diagnostics": "Mudeli diagnostika",
 	"multiple-regression-title": "Regressiooni kokkuvõte vastuse kohta {{y}} (mudeli id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",

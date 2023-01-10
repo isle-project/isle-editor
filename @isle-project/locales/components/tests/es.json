@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Prueba de hipótesis para la independencia entre {{var1}}y {{var2}}",
 	"hypothesis-test-x-y": "Prueba de hipótesis para {{x}} contra {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Prueba de {{variable}} entre {{group}}",
+	"missing-excluded": "{Se excluyeron de los datos las observaciones que faltaban.",
 	"must-have-two-different-values": "La variable de agrupación <1>{{group}}</1> debe tener al menos dos valores diferentes.",
 	"pop-prob-first-group": "Sea <1 /> la probabilidad de la población de <3>{{var1}}</3> ser <5>{{success}}</5> en el primer grupo,",
 	"probability-second-group": "la probabilidad en el segundo grupo, respectivamente. Probamos",

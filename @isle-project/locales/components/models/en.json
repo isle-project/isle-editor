@@ -32,6 +32,7 @@
 	"logistic-title": "Regression Summary for Response {{y}} (model id: logis{{counter}})",
 	"mean": "Mean",
 	"missing-attributes": "Model could not be estimated. Please check that all required attributes are supplied.",
+	"missing-excluded": "{{nRemoved} missing observations were excluded from the data.",
 	"model-diagnostics": "Model Diagnostics",
 	"multiple-regression-title": "Regression Summary for Response {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",

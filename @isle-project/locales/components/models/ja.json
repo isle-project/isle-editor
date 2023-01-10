@@ -32,6 +32,7 @@
 	"logistic-title": "応答{{y}}の回帰サマリー(モデルID: logis{{counter}})",
 	"mean": "平均",
 	"missing-attributes": "モデルを推定できませんでした。必要な属性がすべて提供されていることを確認してください。",
+	"missing-excluded": "{nRemoved} 欠損オブザベーションはデータから除外されました。",
 	"model-diagnostics": "モデル診断",
 	"multiple-regression-title": "応答{{y}}の回帰サマリー(モデル ID: lm{{counter}})",
 	"naive-bayes-for-response": "応答のためのナイーブベイズ {{y}}の場合(モデルID: bayes{{counter}} )",

@@ -32,6 +32,7 @@
 	"logistic-title": "Rezumat al regresiei pentru răspunsul {{y}} (model id: logis{{counter}})",
 	"mean": "Media",
 	"missing-attributes": "Modelul nu a putut fi estimat. Vă rugăm să verificați dacă sunt furnizate toate atributele necesare.",
+	"missing-excluded": "{{nRemoved} observațiile lipsă au fost excluse din date.",
 	"model-diagnostics": "Diagnosticarea modelului",
 	"multiple-regression-title": "Rezumat al regresiei pentru răspunsul {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes pentru răspuns {{y}} (model id: bayes{{counter}} )",

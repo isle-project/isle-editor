@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hypotesprövning för oberoende mellan {{var1}} och {{var2}}",
 	"hypothesis-test-x-y": "Hypotesprövning för {{x}} mot {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Test av {{variable}} mellan {{group}}",
+	"missing-excluded": "{{nRemoved} saknade observationer har uteslutits från data.",
 	"must-have-two-different-values": "Grupperingsvariabel <1>{{group}}</1> måste ha minst två olika värden.",
 	"pop-prob-first-group": "Låt <1 /> vara befolkningens sannolikhet för <3>{{var1}}</3> att vara <5>{{success}}</5> i den första gruppen,",
 	"probability-second-group": "sannolikheten i den andra gruppen. Vi testar",

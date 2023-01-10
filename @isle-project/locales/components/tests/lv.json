@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hipotēzes tests par neatkarību starp {{var1}} un {{var2}}",
 	"hypothesis-test-x-y": "Hipotēzes pārbaude {{x}} pret {{y}}",
 	"kruskal-wallis-test": "Kruskala Volisa tests {{variable}} starp {{group}}",
+	"missing-excluded": "{{nRemoved} no datiem tika izslēgti trūkstošie novērojumi.",
 	"must-have-two-different-values": "Grupēšanas mainīgais <1>{{group}}</1> jābūt vismaz divām dažādām vērtībām.",
 	"pop-prob-first-group": "Lai <1 /> ir populācijas varbūtība, ka <3>{{var1}}</3> ir <5>{{success}}</5> pirmajā grupā,",
 	"probability-second-group": "attiecīgi varbūtība otrajā grupā. Mēs pārbaudām",

@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "と{{var1}}と{{var2}}の間の独立性の仮説検定",
 	"hypothesis-test-x-y": "{{x}}に対する{{y}}の仮説検定",
 	"kruskal-wallis-test": "{{group}}間の{{variable}}のクルスカルワリス検定",
+	"missing-excluded": "{nRemoved} 欠損オブザベーションはデータから除外されました。",
 	"must-have-two-different-values": "グループ化変数<1>{{group}}</1>は、少なくとも2つの異なる値を持つ必要があります。",
 	"pop-prob-first-group": "<1 />を、<3>{{var1}}</3>が第1群で<5>{{success}}</5>になる母集団確率とします。",
 	"probability-second-group": "はそれぞれ第2群の確率である。我々は",

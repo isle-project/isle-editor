@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Test hypotézy o nezávislosti mezi {{var1}} a {{var2}}",
 	"hypothesis-test-x-y": "Test hypotézy pro {{x}} proti {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallisův test {{variable}} mezi {{group}}",
+	"missing-excluded": "{{nOdstraněno} chybějící pozorování byla z údajů vyloučena.",
 	"must-have-two-different-values": "Seskupovací proměnná <1>{{group}}</1> musí mít alespoň dvě různé hodnoty.",
 	"pop-prob-first-group": "Nechť <1 /> je populační pravděpodobnost <3>{{var1}}</3> být <5>{{success}}</5> v první skupině,",
 	"probability-second-group": "pravděpodobnost ve druhé skupině. Testujeme",

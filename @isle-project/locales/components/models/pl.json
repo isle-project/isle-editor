@@ -32,6 +32,7 @@
 	"logistic-title": "Podsumowanie regresji dla reakcji {{y}} (model id: logis{{counter}})",
 	"mean": "Mean",
 	"missing-attributes": "Model nie mógł być oszacowany. Proszę sprawdzić, czy wszystkie wymagane atrybuty zostały dostarczone.",
+	"missing-excluded": "{Brakujące obserwacje {nRemoved} zostały wyłączone z danych.",
 	"model-diagnostics": "Diagnostyka modelowa",
 	"multiple-regression-title": "Podsumowanie regresji dla reakcji {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naiwniacy Bayes for Response {{y}} (model id: bayes{{counter}} )",

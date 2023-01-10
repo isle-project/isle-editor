@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hypotesetest for uafhængighed mellem {{var1}} og {{var2}}",
 	"hypothesis-test-x-y": "Hypotesetest for {{x}} mod {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Test af {{variable}} mellem {{group}}",
+	"missing-excluded": "{{nRemoved} manglende observationer blev udelukket fra dataene.",
 	"must-have-two-different-values": "Grupperingsvariabel <1>{{group}}</1> skal have mindst to forskellige værdier.",
 	"pop-prob-first-group": "Lad <1 /> være populationens sandsynlighed for <3>{{var1}}</3> at være <5>{{success}}</5> i den første gruppe,",
 	"probability-second-group": "sandsynligheden i henholdsvis den anden gruppe. Vi tester",

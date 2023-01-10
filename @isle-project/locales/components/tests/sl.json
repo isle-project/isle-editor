@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Test hipoteze o neodvisnosti med {{var1}} in {{var2}}",
 	"hypothesis-test-x-y": "Preizkus hipoteze za {{x}} proti {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallisov test {{variable}} med {{group}}",
+	"missing-excluded": "{{nRemoved} manjkajoča opazovanja so bila izključena iz podatkov.",
 	"must-have-two-different-values": "Spremenljivka za razvrščanje v skupine <1>{{group}}</1> mora imeti vsaj dve različni vrednosti.",
 	"pop-prob-first-group": "Naj bo <1 /> populacijska verjetnost <3>{{var1}}</3> da je <5>{{success}}</5> v prvi skupini,",
 	"probability-second-group": "verjetnost v drugi skupini. Preizkušamo",

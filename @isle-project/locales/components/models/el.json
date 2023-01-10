@@ -32,6 +32,7 @@
 	"logistic-title": "Σύνοψη παλινδρόμησης για την απόκριση {{y}} (model id: logis{{counter}})",
 	"mean": "Μέσος όρος",
 	"missing-attributes": "Το μοντέλο δεν μπόρεσε να εκτιμηθεί. Παρακαλούμε ελέγξτε ότι παρέχονται όλα τα απαιτούμενα χαρακτηριστικά.",
+	"missing-excluded": "{{nRemoved} Οι ελλείπουσες παρατηρήσεις εξαιρέθηκαν από τα δεδομένα.",
 	"model-diagnostics": "Μοντέλο διαγνωστικών",
 	"multiple-regression-title": "Σύνοψη παλινδρόμησης για την απόκριση {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes για απάντηση {{y}} (model id: bayes{{counter}} )",

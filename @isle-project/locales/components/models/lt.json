@@ -32,6 +32,7 @@
 	"logistic-title": "Regresijos suvestinė atsakui {{y}} (modelio ID: logis{{counter}})",
 	"mean": "Vidutinis",
 	"missing-attributes": "Modelio nepavyko įvertinti. Patikrinkite, ar pateikti visi reikalaujami atributai.",
+	"missing-excluded": "{{nRemoved} trūkstami stebėjimai buvo pašalinti iš duomenų.",
 	"model-diagnostics": "Modelio diagnostika",
 	"multiple-regression-title": "Regresijos suvestinė atsakui {{y}} (modelio ID: lm{{counter}})",
 	"naive-bayes-for-response": "\"Naive Bayes\" atsakymui {{y}} (modelio id: bayes{{counter}} )",

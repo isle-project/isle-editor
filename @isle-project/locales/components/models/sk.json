@@ -32,6 +32,7 @@
 	"logistic-title": "Regresný súhrn pre odpoveď {{y}} (id modelu: logis{{counter}})",
 	"mean": "Priemer",
 	"missing-attributes": "Model nebolo možné odhadnúť. Skontrolujte, či sú dodané všetky požadované atribúty.",
+	"missing-excluded": "{{nRemoved} chýbajúce pozorovania boli z údajov vylúčené.",
 	"model-diagnostics": "Diagnostika modelu",
 	"multiple-regression-title": "Regresný súhrn pre odpoveď {{y}} (id modelu: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes pre odpoveď {{y}} (id modelu: bayes{{counter}} )",

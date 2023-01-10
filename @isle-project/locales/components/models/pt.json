@@ -32,6 +32,7 @@
 	"logistic-title": "Resumo de Regressão para Resposta {{y}} (id modelo: logis{{counter}})",
 	"mean": "Média",
 	"missing-attributes": "O modelo não pôde ser estimado. Por favor, verifique se todos os atributos necessários são fornecidos.",
+	"missing-excluded": "{nRemovidas} observações ausentes foram excluídas dos dados.",
 	"model-diagnostics": "Diagnóstico de modelos",
 	"multiple-regression-title": "Resumo de Regressão para Resposta {{y}} (id modelo: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes para Resposta {{y}} (id modelo: bayes{{counter}} )",

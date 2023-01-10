@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hypoteesitesti riippumattomuudesta {{var1}} ja {{var2}}",
 	"hypothesis-test-x-y": "Hypoteesitesti {{x}} vastaan {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} between {{group}}",
+	"missing-excluded": "{Puuttuvat havainnot jätettiin aineistosta pois.",
 	"must-have-two-different-values": "Ryhmittelymuuttuja <1>{{group}}</1> on oltava vähintään kaksi eri arvoa.",
 	"pop-prob-first-group": "Olkoon <1 /> populaation todennäköisyys <3>{{var1}}</3> olla <5>{{success}}</5> ensimmäiseen ryhmään,",
 	"probability-second-group": "todennäköisyys toisessa ryhmässä. Testaamme",

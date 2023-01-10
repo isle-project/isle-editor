@@ -32,6 +32,7 @@
 	"logistic-title": "Regression Summary for Response {{y}} (model id: logis{{counter}})",
 	"mean": "Keskiarvo",
 	"missing-attributes": "Mallia ei voitu arvioida. Tarkista, että kaikki vaaditut attribuutit on annettu.",
+	"missing-excluded": "{Puuttuvat havainnot jätettiin aineistosta pois.",
 	"model-diagnostics": "Mallin diagnostiikka",
 	"multiple-regression-title": "Regression Summary for Response {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",

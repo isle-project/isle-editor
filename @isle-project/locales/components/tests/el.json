@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Έλεγχος υπόθεσης για την ανεξαρτησία μεταξύ {{var1}} και {{var2}}",
 	"hypothesis-test-x-y": "Δοκιμή υπόθεσης για {{x}} κατά {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} μεταξύ {{group}}",
+	"missing-excluded": "{{nRemoved} Οι ελλείπουσες παρατηρήσεις εξαιρέθηκαν από τα δεδομένα.",
 	"must-have-two-different-values": "Μεταβλητή ομαδοποίησης <1>{{group}}</1> πρέπει να έχει τουλάχιστον δύο διαφορετικές τιμές.",
 	"pop-prob-first-group": "Έστω <1 /> η πληθυσμιακή πιθανότητα <3>{{var1}}</3> να είναι <5>{{success}}</5> στην πρώτη ομάδα,",
 	"probability-second-group": "η πιθανότητα στη δεύτερη ομάδα, αντίστοιχα. Ελέγχουμε",

@@ -32,6 +32,7 @@
 	"logistic-title": "Regresní shrnutí pro odpověď {{y}} (id modelu: logis{{counter}})",
 	"mean": "Průměr",
 	"missing-attributes": "Model nebylo možné odhadnout. Zkontrolujte, zda jsou zadány všechny požadované atributy.",
+	"missing-excluded": "{{nOdstraněno} chybějící pozorování byla z údajů vyloučena.",
 	"model-diagnostics": "Diagnostika modelu",
 	"multiple-regression-title": "Regresní shrnutí pro odpověď {{y}} (id modelu: lm{{counter}})",
 	"naive-bayes-for-response": "Naivní Bayes pro odpověď {{y}} (id modelu: bayes{{counter}} )",

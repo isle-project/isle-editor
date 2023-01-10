@@ -32,6 +32,7 @@
 	"logistic-title": "Résumé de la régression pour la réponse {{y}} (modèle id : logis{{counter}})",
 	"mean": "Moyenne",
 	"missing-attributes": "Le modèle n'a pas pu être estimé. Veuillez vérifier que tous les attributs requis sont fournis.",
+	"missing-excluded": "{Les observations manquantes ont été exclues des données.",
 	"model-diagnostics": "Diagnostics modèles",
 	"multiple-regression-title": "Résumé de la régression pour la réponse {{y}} (modèle id : lm{{counter}})",
 	"naive-bayes-for-response": "Bayes naïf pour la réponse {{y}} (modèle id : bayes{{counter}} )",

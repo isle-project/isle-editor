@@ -32,6 +32,7 @@
 	"logistic-title": "Regressiesamenvatting voor de reactie {{y}} (model id: logis{{counter}})",
 	"mean": "Betekenis",
 	"missing-attributes": "Het model kon niet worden ingeschat. Controleer of alle benodigde attributen zijn meegeleverd.",
+	"missing-excluded": "{Ontbrekende waarnemingen werden uit de gegevens verwijderd.",
 	"model-diagnostics": "Modeldiagnose",
 	"multiple-regression-title": "Regressiesamenvatting voor de reactie {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes voor de reactie {{y}} (model id: bayes{{counter}} )",

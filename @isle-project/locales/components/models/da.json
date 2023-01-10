@@ -32,6 +32,7 @@
 	"logistic-title": "Regressionsoversigt for respons {{y}} (model id: logis{{counter}})",
 	"mean": "Gennemsnitlig",
 	"missing-attributes": "Modellen kunne ikke estimeres. Kontroller venligst, at alle nødvendige attributter er angivet.",
+	"missing-excluded": "{{nRemoved} manglende observationer blev udelukket fra dataene.",
 	"model-diagnostics": "Modeldiagnostik",
 	"multiple-regression-title": "Regressionsoversigt for respons {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",

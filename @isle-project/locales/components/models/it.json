@@ -32,6 +32,7 @@
 	"logistic-title": "Riepilogo della regressione per la risposta {{y}} (id del modello: logis{{counter}})",
 	"mean": "Significato",
 	"missing-attributes": "Non è stato possibile stimare il modello. Si prega di verificare che tutti gli attributi richiesti siano forniti.",
+	"missing-excluded": "{Le osservazioni mancanti sono state escluse dai dati.",
 	"model-diagnostics": "Diagnostica dei modelli",
 	"multiple-regression-title": "Riepilogo della regressione per la risposta {{y}} (model id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes per la risposta {{y}} (model id: bayes{{counter}} )",

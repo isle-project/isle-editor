@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "A {{var1}} és a közötti függetlenség hipotézisvizsgálat. {{var2}}",
 	"hypothesis-test-x-y": "Hipotézisteszt a {{x}} ellen {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallis Test of {{variable}} between {{group}}",
+	"missing-excluded": "{A hiányzó megfigyeléseket kizártuk az adatokból.",
 	"must-have-two-different-values": "Csoportosító változó <1>{{group}}</1> legalább két különböző értékkel kell rendelkeznie.",
 	"pop-prob-first-group": "Legyen <1 /> a populáció valószínűsége <3>{{var1}}</3> hogy <5>{{success}}</5> az első csoportba tartozni,",
 	"probability-second-group": "a valószínűség a második csoportban. Teszteljük",

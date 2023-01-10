@@ -32,6 +32,7 @@
 	"logistic-title": "回归总结的对策{{y}}。(模型ID：logis{{counter}})",
 	"mean": "平均值",
 	"missing-attributes": "无法估计模型。请检查是否提供了所有必要的属性。",
+	"missing-excluded": "{{nRemoved}缺失的观察值被排除在数据之外。",
 	"model-diagnostics": "模型诊断",
 	"multiple-regression-title": "回归总结的对策{{y}}。(型号id：lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}}。(model id: bayes{{counter}} )",

@@ -32,6 +32,7 @@
 	"logistic-title": "Regressionsöversikt för respons {{y}} (modell id: logis{{counter}})",
 	"mean": "Medelvärde",
 	"missing-attributes": "Modellen kunde inte uppskattas. Kontrollera att alla nödvändiga attribut har angetts.",
+	"missing-excluded": "{{nRemoved} saknade observationer har uteslutits från data.",
 	"model-diagnostics": "Modelldiagnostik",
 	"multiple-regression-title": "Regressionsöversikt för respons {{y}} (modell id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes för svar {{y}} (modell id: bayes{{counter}} )",

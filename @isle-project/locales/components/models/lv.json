@@ -32,6 +32,7 @@
 	"logistic-title": "Regresijas kopsavilkums reakcijai {{y}} (modeļa id: logis{{counter}})",
 	"mean": "Vidējais",
 	"missing-attributes": "Modelis nav novērtēts. Lūdzu, pārbaudiet, vai ir norādīti visi nepieciešamie atribūti.",
+	"missing-excluded": "{{nRemoved} no datiem tika izslēgti trūkstošie novērojumi.",
 	"model-diagnostics": "Modeļa diagnostika",
 	"multiple-regression-title": "Regresijas kopsavilkums atbildes reakcijai {{y}} (modeļa id: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes atbildes reakcijai {{y}} (modeļa id: bayes{{counter}} )",

@@ -32,6 +32,7 @@
 	"logistic-title": "Regressziós összefoglaló a válaszhoz {{y}} (model id: logis{{counter}})",
 	"mean": "Átlag",
 	"missing-attributes": "A modellt nem lehetett megbecsülni. Kérjük, ellenőrizze, hogy az összes szükséges attribútumot megadta-e.",
+	"missing-excluded": "{A hiányzó megfigyeléseket kizártuk az adatokból.",
 	"model-diagnostics": "Modell diagnosztika",
 	"multiple-regression-title": "Regressziós összefoglaló a válaszhoz {{y}} (modell azonosító: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes for Response {{y}} (model id: bayes{{counter}} )",

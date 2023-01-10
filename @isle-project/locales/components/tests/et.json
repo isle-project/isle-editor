@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "Hüpoteesi test sõltumatuse kohta {{var1}} ja {{var2}}",
 	"hypothesis-test-x-y": "Hüpoteesi test {{x}} vastu {{y}}",
 	"kruskal-wallis-test": "Kruskal Wallise test {{variable}} vahel {{group}}",
+	"missing-excluded": "{nEemaldatud} puuduolevad vaatlused jäeti andmetest välja.",
 	"must-have-two-different-values": "Rühmitav muutuja <1>{{group}}</1> peab olema vähemalt kaks erinevat väärtust.",
 	"pop-prob-first-group": "Olgu <1 /> populatsiooni tõenäosus <3>{{var1}}</3> olla <5>{{success}}</5> esimesse rühma,",
 	"probability-second-group": "tõenäosus teises rühmas vastavalt. Me testime",

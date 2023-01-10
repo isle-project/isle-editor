@@ -8,6 +8,7 @@
 	"hypothesis-test-for-independence": "{{var1}}和{{var2}}之间独立性的假设检验。",
 	"hypothesis-test-x-y": "对{{x}}与{{y}}进行假设检验。",
 	"kruskal-wallis-test": "{{group}}之间的{{variable}}的Kruskal Wallis检验。",
+	"missing-excluded": "{{nRemoved}缺失的观察值被排除在数据之外。",
 	"must-have-two-different-values": "分组变量<1>{{group}}</1>必须至少有两个不同的值。",
 	"pop-prob-first-group": "让<1 />为<3>{{var1}}</3>在第一组中成为<5>{{success}}</5>的人口概率。",
 	"probability-second-group": "的概率，分别为第二组。我们检验",

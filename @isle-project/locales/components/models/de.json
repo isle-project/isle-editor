@@ -32,6 +32,7 @@
 	"logistic-title": "Regressionszusammenfassung für Antwort {{y}} (Modell-ID: logis{{counter}})",
 	"mean": "Mittelwert",
 	"missing-attributes": "Modell konnte nicht geschätzt werden. Bitte überprüfen Sie, ob alle erforderlichen Attribute vorhanden sind.",
+	"missing-excluded": "{{nRemoved} fehlende Beobachtungen wurden aus den Daten ausgeschlossen.",
 	"model-diagnostics": "Modell-Diagnostik",
 	"multiple-regression-title": "Regressionszusammenfassung für Antwort {{y}} (Modell-ID: lm{{counter}})",
 	"naive-bayes-for-response": "Naive Bayes für Antwort {{y}} (Modell-ID: bayes{{counter}} )",
