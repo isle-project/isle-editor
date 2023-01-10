@@ -4351,12 +4351,6 @@
 				"defaultValue": false
 			},
 			{
-				"name": "id",
-				"type": "string",
-				"description": "Plotly-prop-id",
-				"defaultValue": null
-			},
-			{
 				"name": "layout",
 				"type": "object",
 				"description": "Plotly-prop-layout",
@@ -7977,6 +7971,12 @@
 				"name": "var2",
 				"type": "(string|Factor) (required)",
 				"description": "Chi2Test-prop-var2"
+			},
+			{
+				"name": "showDecision",
+				"type": "boolean",
+				"description": "Chi2Test-prop-showDecision",
+				"defaultValue": false
 			}
 		],
 		"description": "Chi2Test-description"
