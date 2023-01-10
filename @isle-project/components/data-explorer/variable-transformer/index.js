@@ -164,7 +164,7 @@ const Transformer = ( props ) => {
 					variant="primary"
 					style={{ fontSize: '1.2em' }}
 				>
-					{t('sample-from-column')}
+					{t('sample-from-columns')}
 				</Button>
 			</div>
 			{modal}

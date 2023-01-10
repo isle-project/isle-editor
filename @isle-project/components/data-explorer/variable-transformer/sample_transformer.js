@@ -69,7 +69,7 @@ const SampleTransformer = ( props ) => {
 			<Panel
 				onHide={props.onHide}
 				show={props.show}
-				header={t('data-explorer:sample-from-column')}
+				header={t('data-explorer:sample-from-columns')}
 				footer={<Button onClick={createVariable} disabled={!variable || !validateName( name )} >
 					{t('data-explorer:create-new-variable')}
 				</Button>}
