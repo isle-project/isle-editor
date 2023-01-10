@@ -788,21 +788,21 @@ class DataTable extends Component {
 		</Tooltip>;
 		return (
 			<Fragment>
-				<div className="data-table-wrapper" id={this.id} style={this.props.style} >
+				<div className="data-table-wrapper" id={this.props.id} style={this.props.style} >
 					<div className='data-table-header-wrapper' >
 						<div className="data-table-title" >
 							{dataInfo.name ? dataInfo.name : this.props.t('data')}
 						</div>
 						{saveButton}
 						<TutorialButton
-							id={this.id}
+							id={this.props.id}
 							session={this.context}
 							onTutorialCompletion={this.props.onTutorialCompletion}
 							t={this.props.t}
 						/>
 					</div>
 					<ReactTable
-						id={this.id}
+						id={this.props.id}
 						data={rows}
 						columns={cols}
 						showPagination={true}
