@@ -51,8 +51,9 @@ const PropTypes = require( './prop_types.js' );
 // VARIABLES //
 
 const debug = logger( 'isle-editor:update-docs' );
-const files = glob( path.join( '**', 'index.js' ), {
-	'cwd': path.join( __dirname, '..', '@isle-project', 'components' )
+const componentsDir = path.join( __dirname, '..', '@isle-project', 'components' );
+const files = glob( '**/index.js', {
+	'cwd': componentsDir
 });
 const LANGUAGE_TARGETS = [ 'bg', 'cs', 'da', 'de', 'el', 'es', 'et', 'fi', 'fr', 'hu', 'it', 'ja', 'lt', 'lv', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'sl', 'sv', 'zh' ];
 const RE_JSDOC = /(\/\*\*\s*\n(?:[^*]|(?:\*(?!\/)))*\*\/)\r?\n(?:class|export default)|(\/\*\*\s*\n(?:[^*]|(?:\*(?!\/)))*@property(?:[^*]|(?:\*(?!\/)))*\*\/)\r?\n(?:const)/;
@@ -185,15 +186,18 @@ const TRANSLATIONS = {
 	'examples': 'Examples',
 	'no-properties': 'No properties available.'
 };
+
+debug( `Processing ${files.length} files...` );
 for ( let i = 0; i < files.length; i++ ) {
 	const component = path.dirname( files[ i ] );
-	const tagName = REQUIRES_MAP[ '@isle-project/components/'+component ];
-	delete REQUIRES_MAP[ '@isle-project/components/'+component ];
+	const posixComp = component.replace( /\\/g, '/' );
+	const tagName = REQUIRES_MAP[ '@isle-project/components/'+posixComp ];
+	delete REQUIRES_MAP[ '@isle-project/components/'+posixComp ];
 	DOCS[ tagName ] = {
 		props: []
 	};
-	let fpath = path.join( './@isle-project/components', component, 'main.js' );
-	const mdpath = path.join( './docusaurus/website/docs', component+'.md' );
+	let fpath = path.join( '@isle-project', 'components', component, 'main.js' );
+	const mdpath = path.join( 'docusaurus', 'website', 'docs', component, '.md' );
 	if ( tagName === void 0 ) {
 		debug( 'Missing tag name for: '+fpath );
 		continue;
@@ -202,7 +206,7 @@ for ( let i = 0; i < files.length; i++ ) {
 	let file;
 	try {
 		if ( !existsSync( fpath ) ) {
-			fpath = path.join( './@isle-project/components', component, 'index.js' );
+			fpath = path.join( '@isle-project', 'components', component, 'index.js' );
 		}
 		file = readFileSync( fpath ).toString();
 	} catch ( err ) {
@@ -340,7 +344,7 @@ for ( let i = 0; i < files.length; i++ ) {
 }
 
 console.log( 'Write `documentation.json` file...' );
-writeFileSync( './@isle-project/components/documentation.json', JSON.stringify( DOCS, null, '\t' ) );
+writeFileSync( path.join( '@isle-project', 'components', 'documentation.json' ), JSON.stringify( DOCS, null, '\t' ) );
 
 console.log( 'Write translation `en.json` file...' );
 
@@ -353,11 +357,13 @@ for ( let i = 0; i < translationKeys.length; i++ ) {
 	const key = translationKeys[ i ];
 	out[ key ] = TRANSLATIONS[ key ];
 }
-writeFileSync( './@isle-project/locales/editor/component-docs/en.json', JSON.stringify( out, null, '\t' ).concat( '\n' ) );
+const enFile = path.join( '@isle-project', 'locales', 'editor', 'component-docs', 'en.json' );
+writeFileSync( enFile, JSON.stringify( out, null, '\t' ).concat( '\n' ) );
 
 for ( let i = 0; i < LANGUAGE_TARGETS.length; i++ ) {
 	const lng = LANGUAGE_TARGETS[ i ];
-	writeFileSync( './@isle-project/locales/editor/component-docs/'+lng+'.json', JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
+	const lngFile = path.join( '@isle-project', 'locales', 'editor', 'component-docs', lng+'.json' );
+	writeFileSync( lngFile, JSON.stringify( COMPONENT_DOCS[ lng ], null, '\t' ).concat( '\n' ) );
 }
 console.log( 'Finished updating docs.' );
 
