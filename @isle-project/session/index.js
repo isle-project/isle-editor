@@ -2123,25 +2123,28 @@ class Session {
 		) {
 			return;
 		}
+		if ( !this.unfinished ) {
+			this.initializeProgress();
+		}
 		const ids = this.responseVisualizerIds;
+		console.log( 'Set progress for id: '+id );
 		if ( id ) {
 			// Received a new action, check whether we need to increment progress...
 			const actions = this.currentUserActions[ id ];
 			const ref = this.responseVisualizers[ id ];
-			if ( actions && ref ) {
+			if ( actions && ref && this.unfinished.indexOf( id ) !== -1 ) {
 				const type = ref.type;
 				for ( let j = 0; j < actions.length; j++ ) {
 					if ( actions[ j ].type === type ) {
+						console.log( 'Action type of response visualizer ('+type+') matches type of action: '+actions[ j ].type );
 						if ( j < actions.length - 1 ) {
 							break;
 						}
 						else if ( j === actions.length - 1 ) {
+							console.log( 'Increment progress...' );
 							const progress = clamp( this.get( 'progress' ) + 1.0 / ids.length, 0, 1 );
 							PRIVATE_VARS[ 'progress' ] = progress;
 							this.update( SELF_UPDATED_PROGRESS, progress );
-							if ( !this.unfinished ) {
-								this.initializeProgress();
-							}
 							this.unfinished = this.unfinished.filter( x => x !== id );
 							this.socket.emit( 'progress', progress );
 							this.logSession();
