@@ -13,6 +13,7 @@ import isEmptyObject from '@stdlib/assert/is-empty-object';
 import isArray from '@stdlib/assert/is-array';
 import round from '@stdlib/math/base/special/round';
 import beforeUnload from '@isle-project/utils/before-unload';
+import jumpToUnfinished from '@isle-project/utils/jump-to-unfinished';
 import Signup from '@isle-project/components/internal/signup';
 import Login from '@isle-project/components/internal/login';
 import CheckboxInput from '@isle-project/components/input/checkbox';
@@ -278,7 +279,7 @@ class LessonSubmit extends Component {
 			}
 		}
 		session.finalize();
-		let notificationMessage = this.props.t('lesson-successfully-completed');
+		let notificationMessage = this.props.t( 'lesson-successfully-completed' );
 		if ( !isEmptyObject( session.user ) && this.props.sendConfirmationEmail ) {
 			notificationMessage += this.props.t('confirmation-email');
 			const msg = createMessage( session, this.props.message, this.props.t );
@@ -332,7 +333,39 @@ class LessonSubmit extends Component {
 				showUserModal: true
 			});
 		}
-		this.finalizeSession();
+		if ( this.props.alertUnfinished && session.unfinished && session.unfinished.length > 0 ) {
+			session.addNotification({
+				title: 'Unfinished',
+				message: 'You have unfinished questions. Are you sure you want to finalize the session anyway?',
+				level: 'warning',
+				position: 'tr',
+				autoDismiss: 0,
+				dismissible: 'button',
+				children: <div style={{ marginBottom: '40px' }}>
+					<Button
+						variant="success"
+						size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
+						onClick={this.finalizeSession}
+					>{this.props.t('submit')}</Button>
+					<Button
+						variant="success"
+						size="sm" style={{ float: 'right', marginRight: '10px', marginTop: '10px' }}
+						onClick={() => {
+							const session = this.context;
+							const unfinished = session.unfinished;
+							this.jumpToUnfinished( unfinished );
+						}}
+					>Show Unfinished</Button>
+				</div>,
+				onRemove: () => {
+					this.setState({
+						disabled: false
+					});
+				}
+			});
+		} else {
+			this.finalizeSession();
+		}
 	};
 
 	render() {
@@ -381,6 +414,7 @@ class LessonSubmit extends Component {
 // PROPERTIES //
 
 LessonSubmit.defaultProps = {
+	alertUnfinished: false,
 	coverage: null,
 	label: null,
 	message: '',
@@ -392,6 +426,7 @@ LessonSubmit.defaultProps = {
 };
 
 LessonSubmit.propTypes = {
+	alertUnfinished: PropTypes.bool,
 	coverage: PropTypes.arrayOf( PropTypes.string ),
 	label: PropTypes.string,
 	message: PropTypes.string,

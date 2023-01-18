@@ -22,7 +22,7 @@ import SessionContext from '@isle-project/session/context.js';
 import VideoChats from './video-chats';
 import Chats from './chats';
 import ConfirmModal from './confirm_modal.js';
-import isHidden from '@isle-project/utils/is-hidden';
+import jumpToUnfinished from '@isle-project/utils/jump-to-unfinished';
 import { TOGGLE_BLACKSCREEN, TOGGLE_PRESENTATION_MODE } from '@isle-project/constants/actions.js';
 import { CREATED_GROUPS, DISCONNECTED_FROM_SERVER, MEMBER_ACTION, SELF_INITIAL_PROGRESS, SELF_UPDATED_PROGRESS, SELF_UPDATED_SCORE,
 	SERVER_IS_LIVE, LOGGED_OUT, LOGGED_IN, RECEIVED_USER_RIGHTS } from '@isle-project/constants/events.js';
@@ -351,41 +351,12 @@ class StatusBar extends Component {
 		}
 	};
 
-	jumpToUnfinished = ( event ) => {
+	handleProgressClick = ( event ) => {
 		debug( 'Jump to next unfinished question...' );
 		event.stopPropagation();
 		const session = this.context;
 		const unfinished = session.unfinished;
-		if ( isArray( unfinished ) ) {
-			const first = unfinished[ 0 ];
-			if ( first ) {
-				const elem = document.getElementById( first );
-				if ( !elem ) {
-					return;
-				}
-				if ( isHidden( elem ) ) {
-					const clone = elem.cloneNode( true );
-					const newDiv = document.createElement( 'div' );
-					newDiv.id = 'unfinished-container';
-					clone.id = 'unfinished-elem';
-					clone.classList.add( 'focus-glow' );
-					newDiv.append( clone );
-					document.body.appendChild( newDiv );
-					setTimeout( () => {
-						const element = document.getElementById( 'unfinished-container' );
-						if ( element ) {
-							element.parentNode.removeChild( element );
-						}
-					}, 4000 );
-				} else {
-					elem.classList.add( 'focus-glow' );
-					elem.scrollIntoView();
-					setTimeout( () => {
-						elem.classList.remove( 'focus-glow' );
-					}, 4000 );
-				}
-			}
-		}
+		jumpToUnfinished( unfinished );
 	};
 
 	preventPropagationForUsers = ( evt ) => {
@@ -563,7 +534,7 @@ class StatusBar extends Component {
 													animation: 'anim-fade-in 0.7s',
 													border: 'solid 1px darkgrey'
 												}}
-												onClick={this.jumpToUnfinished}
+												onClick={this.handleProgressClick}
 											/>
 										</div>
 									</Tooltip> :
