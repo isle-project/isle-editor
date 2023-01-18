@@ -297,7 +297,7 @@ class LessonSubmit extends Component {
 			title: this.props.t('completed'),
 			message: notificationMessage,
 			level: 'success',
-			position: 'tr',
+			position: 'bc',
 			autoDismiss: 0,
 			dismissible: 'button',
 			children: <div style={{ marginBottom: '40px' }}>
@@ -338,7 +338,7 @@ class LessonSubmit extends Component {
 				title: 'Unfinished',
 				message: 'You have unfinished questions. Are you sure you want to finalize the session anyway?',
 				level: 'warning',
-				position: 'tr',
+				position: 'bc',
 				autoDismiss: 0,
 				dismissible: 'both',
 				children: <div style={{ marginBottom: '40px' }}>
