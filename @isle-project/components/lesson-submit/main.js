@@ -38,6 +38,7 @@ const debug = logger( 'isle:lesson-submit' );
 *
 * @property {string} label - label of submit button
 * @property {boolean} requireLogin - controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
+* @property {boolean} alertUnfinished - controls whether to alert the user if there are unfinished questions or whether to automatically submit all open questions that have typed answers and finish the lesson
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
 * @property {string} message - message for confirmation email
 * @property {Array<string>} coverage - list of identifiers to be submitted and included in the response document

@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` v pořadí předaného pole `tdm` tak, aby indexy odpovídaly slovům.",
 	"LearnWordVennDiagram-prop-width": "šířka Vennova diagramu v pixelech",
 	"LessonSubmit-description": "Tlačítko, které se zobrazí na konci lekce a na které mohou studenti kliknout. Ve výchozím nastavení je na jejich e-mailovou adresu odeslána zpráva potvrzující dokončení lekce.",
+	"LessonSubmit-prop-alertUnfinished": "určuje, zda má uživatele upozornit na nedokončené otázky nebo zda má automaticky odeslat všechny otevřené otázky, na které byly zadány odpovědi, a ukončit lekci.",
 	"LessonSubmit-prop-className": "název třídy",
 	"LessonSubmit-prop-coverage": "seznam identifikátorů, které mají být předloženy a zahrnuty do dokumentu s odpovědí.",
 	"LessonSubmit-prop-label": "popisek tlačítka odeslat",

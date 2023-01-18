@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array`按传递的`tdm`数组的顺序排列，以便索引可以与它们的文字相匹配。",
 	"LearnWordVennDiagram-prop-width": "维恩图的宽度，单位为像素",
 	"LessonSubmit-description": "在课程结束时显示的按钮，供学生点击。默认情况下，课程结束的确认信息会发送到学生的电子邮件地址。",
+	"LessonSubmit-prop-alertUnfinished": "控制是否在有未完成的问题时提醒用户，或者是否自动提交所有已输入答案的开放性问题并完成课程。",
 	"LessonSubmit-prop-className": "班名",
 	"LessonSubmit-prop-coverage": "需要提交并包含在响应文件中的识别器清单",
 	"LessonSubmit-prop-label": "提交按钮的标签",

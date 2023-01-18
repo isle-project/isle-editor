@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` în ordinea din matricea `tdm` transmisă, astfel încât indicii să poată fi potriviți cu cuvintele lor.",
 	"LearnWordVennDiagram-prop-width": "lățimea diagramei Venn în pixeli",
 	"LessonSubmit-description": "Un buton care va fi afișat la sfârșitul unei lecții pentru ca elevii să facă clic pe el. În mod implicit, un mesaj de confirmare a finalizării lecției este trimis la adresa lor de e-mail.",
+	"LessonSubmit-prop-alertUnfinished": "controlează dacă trebuie să alerteze utilizatorul în cazul în care există întrebări neterminate sau dacă trebuie să trimită automat toate întrebările deschise care au răspunsuri tastate și să încheie lecția.",
 	"LessonSubmit-prop-className": "numele clasei",
 	"LessonSubmit-prop-coverage": "lista elementelor de identificare care trebuie prezentate și incluse în documentul de răspuns",
 	"LessonSubmit-prop-label": "eticheta butonului de trimitere",

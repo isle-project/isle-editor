@@ -3323,6 +3323,12 @@
 	"LessonSubmit": {
 		"props": [
 			{
+				"name": "alertUnfinished",
+				"type": "boolean",
+				"description": "LessonSubmit-prop-alertUnfinished",
+				"defaultValue": false
+			},
+			{
 				"name": "coverage",
 				"type": "array<string>",
 				"description": "LessonSubmit-prop-coverage",

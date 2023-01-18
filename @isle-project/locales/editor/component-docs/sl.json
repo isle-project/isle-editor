@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` v vrstnem redu posredovanega polja `tdm`, tako da se lahko indeksi ujemajo s svojimi besedami",
 	"LearnWordVennDiagram-prop-width": "širina Vennovega diagrama v pikslih",
 	"LessonSubmit-description": "Gumb, ki se prikaže ob koncu učne ure in na katerega lahko učenci kliknejo. Privzeto je na njihov e-poštni naslov poslano sporočilo, ki potrjuje zaključek lekcije.",
+	"LessonSubmit-prop-alertUnfinished": "nadzoruje, ali naj uporabnika opozori na nedokončana vprašanja ali naj samodejno pošlje vsa odprta vprašanja, na katera so vneseni odgovori, in zaključi lekcijo.",
 	"LessonSubmit-prop-className": "ime razreda",
 	"LessonSubmit-prop-coverage": "seznam identifikatorjev, ki jih je treba predložiti in vključiti v odgovorni dokument",
 	"LessonSubmit-prop-label": "oznaka gumba za oddajo",

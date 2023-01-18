@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` w kolejności tablicy `tdm` minął tak, że indeksy mogą być dopasowane do ich słów",
 	"LearnWordVennDiagram-prop-width": "szerokość wykresu Venna w pikselach",
 	"LessonSubmit-description": "Przycisk, który ma być wyświetlany na końcu lekcji, na który uczniowie mogą kliknąć. Domyślnie, wiadomość potwierdzająca ukończenie lekcji jest wysyłana na ich adres e-mail.",
+	"LessonSubmit-prop-alertUnfinished": "kontroluje, czy ostrzegać użytkownika, jeśli są niedokończone pytania lub czy automatycznie przesłać wszystkie otwarte pytania, które mają wpisane odpowiedzi i zakończyć lekcję",
 	"LessonSubmit-prop-className": "nazwa klasy",
 	"LessonSubmit-prop-coverage": "lista identyfikatorów, które należy przekazać i zawrzeć w dokumencie odpowiedzi",
 	"LessonSubmit-prop-label": "etykieta przycisku przedłożenia",

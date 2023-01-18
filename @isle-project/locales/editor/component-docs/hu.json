@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` az átadott `tdm` tömb sorrendjében, hogy az indexek a szavakhoz illeszkedjenek.",
 	"LearnWordVennDiagram-prop-width": "a Venn-diagram szélessége pixelben",
 	"LessonSubmit-description": "A lecke végén megjelenő gomb, amelyre a tanulók kattinthatnak. Alapértelmezés szerint a lecke befejezését megerősítő üzenet kerül elküldésre az e-mail címükre.",
+	"LessonSubmit-prop-alertUnfinished": "szabályozza, hogy figyelmeztesse a felhasználót, ha vannak befejezetlen kérdések, vagy automatikusan elküldje az összes nyitott kérdést, amelyre beírt válaszok vannak, és befejezze a leckét.",
 	"LessonSubmit-prop-className": "osztály neve",
 	"LessonSubmit-prop-coverage": "a benyújtandó és a válaszdokumentumban szereplő azonosítók jegyzéke",
 	"LessonSubmit-prop-label": "az elküldés gomb címkéje",

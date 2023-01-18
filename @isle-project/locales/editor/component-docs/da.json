@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` i den rækkefølge, som `tdm` arrayet er overdraget, så indeksene kan matches til deres ord",
 	"LearnWordVennDiagram-prop-width": "Venn-diagrammets bredde i pixels",
 	"LessonSubmit-description": "En knap, som eleverne kan klikke på i slutningen af en lektion. Som standard sendes der en meddelelse til deres e-mailadresse, som bekræfter, at lektionen er afsluttet.",
+	"LessonSubmit-prop-alertUnfinished": "styrer, om brugeren skal advares, hvis der er uafsluttede spørgsmål, eller om alle åbne spørgsmål med indtastede svar skal indsendes automatisk, så lektionen afsluttes.",
 	"LessonSubmit-prop-className": "klassens navn",
 	"LessonSubmit-prop-coverage": "liste over identifikatorer, der skal indsendes og indgå i svardokumentet",
 	"LessonSubmit-prop-label": "etiketten på knappen \"Send",

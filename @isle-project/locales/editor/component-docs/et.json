@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` edastatud `tdm` massiivi järjekorras, nii et indeksid võivad olla vastavuses nende sõnadega",
 	"LearnWordVennDiagram-prop-width": "Venn diagrammi laius pikslites",
 	"LessonSubmit-description": "Nupp, mis kuvatakse õppetunni lõpus, et õpilased saaksid sellele vajutada. Vaikimisi saadetakse nende e-posti aadressile sõnum, mis kinnitab õppetunni lõpetamist.",
+	"LessonSubmit-prop-alertUnfinished": "kontrollib, kas kasutajat hoiatatakse, kui on lõpetamata küsimusi, või esitatakse automaatselt kõik lahtised küsimused, millele on sisestatud vastused, ja lõpetatakse õppetund.",
 	"LessonSubmit-prop-className": "klassi nimi",
 	"LessonSubmit-prop-coverage": "esitatud ja vastusdokumendis sisalduvate identifikaatorite loetelu",
 	"LessonSubmit-prop-label": "nupu esitamise silt",

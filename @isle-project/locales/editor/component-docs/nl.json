@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` in de volgorde van de `tdm` array doorgegeven, zodat de indexen overeen kunnen komen met hun woorden",
 	"LearnWordVennDiagram-prop-width": "breedte van het Venn-diagram in pixels",
 	"LessonSubmit-description": "Een knop die aan het einde van een les wordt weergegeven en waarop de leerlingen kunnen klikken. Standaard wordt een bericht ter bevestiging van de voltooiing van de les naar hun e-mailadres gestuurd.",
+	"LessonSubmit-prop-alertUnfinished": "bepaalt of de gebruiker moet worden gewaarschuwd als er onvoltooide vragen zijn of dat alle open vragen met getypte antwoorden automatisch moeten worden ingediend en de les moet worden afgesloten.",
 	"LessonSubmit-prop-className": "klassennaam",
 	"LessonSubmit-prop-coverage": "lijst van identificatiegegevens die moeten worden ingediend en in het antwoorddocument moeten worden opgenomen",
 	"LessonSubmit-prop-label": "label van verzendknop",

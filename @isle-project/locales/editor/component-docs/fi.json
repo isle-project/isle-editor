@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` välitetyn `tdm`-matriisin järjestyksessä, jotta indeksit voivat vastata sanojaan.",
 	"LearnWordVennDiagram-prop-width": "Venn-diagrammin leveys pikseleinä",
 	"LessonSubmit-description": "Oppitunnin lopussa näytettävä painike, jota oppilaat voivat klikata. Oletusarvoisesti oppilaiden sähköpostiosoitteeseen lähetetään viesti, joka vahvistaa oppitunnin päättymisen.",
+	"LessonSubmit-prop-alertUnfinished": "valvoo, ilmoitetaanko käyttäjälle, jos on keskeneräisiä kysymyksiä, vai lähetetäänkö automaattisesti kaikki avoimet kysymykset, joihin on kirjoitettu vastaukset, ja lopetetaanko oppitunti.",
 	"LessonSubmit-prop-className": "luokan nimi",
 	"LessonSubmit-prop-coverage": "luettelo tunnisteista, jotka on toimitettava ja sisällytettävä vastausasiakirjaan.",
 	"LessonSubmit-prop-label": "lähetä-painikkeen etiketti",

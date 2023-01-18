@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "配列のインデックスが単語にマッチするように、`tdm` の配列の順序で `array` を渡します。",
 	"LearnWordVennDiagram-prop-width": "ピクセル単位でのベン図の幅",
 	"LessonSubmit-description": "レッスンの最後に表示されるボタンです。デフォルトでは、レッスンの完了を確認するメッセージが学生のメールアドレスに送信されます。",
+	"LessonSubmit-prop-alertUnfinished": "は、未完成の問題がある場合、ユーザに警告するか、または入力された答えを持つすべての未解決問題を自動的に提出して、レッスンを終了するかどうかをコントロールします。",
 	"LessonSubmit-prop-className": "クラス名",
 	"LessonSubmit-prop-coverage": "提出する識別子のリストと回答文書に含まれる識別子のリスト",
 	"LessonSubmit-prop-label": "送信ボタンのラベル",

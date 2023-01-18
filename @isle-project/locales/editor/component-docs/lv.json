@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array`, lai nodotā `tdm` masīva secībā indeksi atbilstu to vārdiem.",
 	"LearnWordVennDiagram-prop-width": "Venna diagrammas platums pikseļos",
 	"LessonSubmit-description": "Mape, kas parādās stundas beigās un uz kuras skolēni var noklikšķināt. Pēc noklusējuma uz skolēnu e-pasta adresi tiek nosūtīts ziņojums, kas apstiprina stundas pabeigšanu.",
+	"LessonSubmit-prop-alertUnfinished": "kontrolē, vai lietotājs tiks brīdināts, ja ir nepabeigti jautājumi, vai arī automātiski tiks iesniegti visi atvērtie jautājumi, uz kuriem ir ievadītas atbildes, un pabeigta mācību stunda.",
 	"LessonSubmit-prop-className": "klases nosaukums",
 	"LessonSubmit-prop-coverage": "to identifikatoru saraksts, kas jāiesniedz un jāiekļauj atbildes dokumentā.",
 	"LessonSubmit-prop-label": "iesniegt pogas etiķete",

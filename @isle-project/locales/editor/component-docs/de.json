@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` in der Reihenfolge des übergebenen `tdm`-Arrays, so dass die Indizes ihren Wörtern zugeordnet werden können",
 	"LearnWordVennDiagram-prop-width": "Breite des Venn-Diagramms in Pixel",
 	"LessonSubmit-description": "Eine Schaltfläche, die am Ende einer Lektion angezeigt wird und auf die die Schüler klicken können. Standardmäßig wird eine Nachricht zur Bestätigung des Abschlusses der Lektion an ihre E-Mail-Adresse gesendet.",
+	"LessonSubmit-prop-alertUnfinished": "steuert, ob der Benutzer bei offenen Fragen benachrichtigt werden soll oder ob alle offenen Fragen mit eingegebenen Antworten automatisch eingereicht und die Lektion beendet werden soll",
 	"LessonSubmit-prop-className": "Klassenname",
 	"LessonSubmit-prop-coverage": "Liste der zu übermittelnden und in das Antwortdokument aufzunehmenden Identifikatoren",
 	"LessonSubmit-prop-label": "Beschriftung der Submit-Taste",

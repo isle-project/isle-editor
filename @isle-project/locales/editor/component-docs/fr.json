@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "tableau\" dans l'ordre du tableau \"tdm\" passé afin que les indices puissent correspondre à leurs mots",
 	"LearnWordVennDiagram-prop-width": "largeur du diagramme de Venn en pixels",
 	"LessonSubmit-description": "Un bouton qui s'affiche à la fin d'une leçon et sur lequel les élèves peuvent cliquer. Par défaut, un message confirmant la fin de la leçon est envoyé à leur adresse électronique.",
+	"LessonSubmit-prop-alertUnfinished": "contrôle s'il faut alerter l'utilisateur s'il y a des questions inachevées ou s'il faut soumettre automatiquement toutes les questions ouvertes dont les réponses ont été saisies et terminer la leçon.",
 	"LessonSubmit-prop-className": "nom de la classe",
 	"LessonSubmit-prop-coverage": "liste des identifiants à soumettre et à inclure dans le document de réponse",
 	"LessonSubmit-prop-label": "étiquette du bouton d'envoi",

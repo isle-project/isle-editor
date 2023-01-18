@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` perduoto `tdm` masyvo tvarka, kad indeksai atitiktų jų žodžius.",
 	"LearnWordVennDiagram-prop-width": "Venno diagramos plotis pikseliais",
 	"LessonSubmit-description": "Mygtuką, kuris bus rodomas pamokos pabaigoje ir kurį mokiniai galės spustelėti. Pagal numatytuosius nustatymus į jų el. pašto adresą išsiunčiamas pranešimas, patvirtinantis pamokos užbaigimą.",
+	"LessonSubmit-prop-alertUnfinished": "kontroliuoja, ar įspėti naudotoją, jei yra nebaigtų klausimų, ar automatiškai pateikti visus nebaigtus klausimus, į kuriuos įvesti atsakymai, ir užbaigti pamoką.",
 	"LessonSubmit-prop-className": "klasės pavadinimas",
 	"LessonSubmit-prop-coverage": "pateiktinų ir į atsakymo dokumentą įtrauktinų identifikatorių sąrašas",
 	"LessonSubmit-prop-label": "pateikimo mygtuko etiketė",

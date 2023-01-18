@@ -613,6 +613,7 @@
 	"LearnWordVennDiagram-prop-vocabulary": "`array` in the order of the `tdm` array passed so that the indices may be matches to their words",
 	"LearnWordVennDiagram-prop-width": "width of the Venn diagram in pixels",
 	"LessonSubmit-description": "A button to be displayed at the end of a lesson for students to click on. By default, a message confirming completion of the lesson is sent to their email address.",
+	"LessonSubmit-prop-alertUnfinished": "controls whether to alert the user if there are unfinished questions or whether to automatically submit all open questions that have typed answers and finish the lesson",
 	"LessonSubmit-prop-className": "class name",
 	"LessonSubmit-prop-coverage": "list of identifiers to be submitted and included in the response document",
 	"LessonSubmit-prop-label": "label of submit button",
