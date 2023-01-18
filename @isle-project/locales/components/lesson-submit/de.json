@@ -14,8 +14,11 @@
 	"login": "Anmelden",
 	"only-latest": "Nur meine letzten Antworten enthalten",
 	"responses-header": "Antworten für die ISLE-Lektion",
+	"show-unfinished": "Unvollendete anzeigen",
 	"signup": "Registrieren",
 	"submission": "Einreichung",
 	"submit": "Abschicken",
-	"successfully-completed": "erfolgreich abgeschlossen"
+	"successfully-completed": "erfolgreich abgeschlossen",
+	"unfinished": "Unvollendete",
+	"unfinished-lesson-msg": "Sie haben noch offene Fragen. Sind Sie sicher, dass Sie die Sitzung trotzdem abschließen wollen?"
 }

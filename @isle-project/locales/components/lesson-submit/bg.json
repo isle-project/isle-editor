@@ -14,8 +14,11 @@
 	"login": "Вход",
 	"only-latest": "Включете само последните ми отговори",
 	"responses-header": "Отговори за урока ISLE",
+	"show-unfinished": "Показване на недовършени",
 	"signup": "Регистрирайте се",
 	"submission": "Подаване на документи",
 	"submit": "Подаване на",
-	"successfully-completed": "успешно завършен"
+	"successfully-completed": "успешно завършен",
+	"unfinished": "Незавършен",
+	"unfinished-lesson-msg": "Имате недовършени въпроси. Сигурни ли сте, че все пак искате да завършите сесията?"
 }

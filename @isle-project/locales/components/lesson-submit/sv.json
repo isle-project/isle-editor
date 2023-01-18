@@ -14,8 +14,11 @@
 	"login": "Inloggning",
 	"only-latest": "Endast mina senaste svar ska inkluderas",
 	"responses-header": "Svar för ISLE-lektionen",
+	"show-unfinished": "Visa Oavslutad",
 	"signup": "Registrera dig",
 	"submission": "Inlämning",
 	"submit": "Skicka in",
-	"successfully-completed": "framgångsrikt genomförd."
+	"successfully-completed": "framgångsrikt genomförd.",
+	"unfinished": "Oavslutad",
+	"unfinished-lesson-msg": "Du har oavslutade frågor. Är du säker på att du vill avsluta sessionen ändå?"
 }

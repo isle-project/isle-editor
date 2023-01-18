@@ -14,8 +14,11 @@
 	"login": "Login",
 	"only-latest": "Only include my latest answers",
 	"responses-header": "Responses for ISLE lesson",
+	"show-unfinished": "Show Unfinished",
 	"signup": "Sign up",
 	"submission": "Submission",
 	"submit": "Submit",
-	"successfully-completed": "successfully completed"
+	"successfully-completed": "successfully completed",
+	"unfinished": "Unfinished",
+	"unfinished-lesson-msg": "You have unfinished questions. Are you sure you want to finalize the session anyway?"
 }

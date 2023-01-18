@@ -14,8 +14,11 @@
 	"login": "Logi sisse",
 	"only-latest": "Sisaldab ainult minu viimaseid vastuseid",
 	"responses-header": "Vastused ISLE õppetundide jaoks",
+	"show-unfinished": "Näita lõpetamata",
 	"signup": "Registreeru",
 	"submission": "Esitamine",
 	"submit": "Esita",
-	"successfully-completed": "edukalt lõpetatud"
+	"successfully-completed": "edukalt lõpetatud",
+	"unfinished": "Lõpetamata",
+	"unfinished-lesson-msg": "Teil on lõpetamata küsimusi. Kas olete kindel, et soovite ikkagi lõpetada seansi?"
 }

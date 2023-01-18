@@ -14,8 +14,11 @@
 	"login": "Connexion",
 	"only-latest": "N'inclure que mes dernières réponses",
 	"responses-header": "Réponses pour la leçon ISLE",
+	"show-unfinished": "Afficher inachevé",
 	"signup": "S'inscrire",
 	"submission": "Soumission",
 	"submit": "Soumettre",
-	"successfully-completed": "achevé avec succès"
+	"successfully-completed": "achevé avec succès",
+	"unfinished": "Inachevé",
+	"unfinished-lesson-msg": "Vous avez des questions inachevées. Êtes-vous sûr de vouloir quand même finaliser la session ?"
 }

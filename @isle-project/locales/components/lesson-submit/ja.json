@@ -14,8 +14,11 @@
 	"login": "ログイン",
 	"only-latest": "私の最新の回答のみを掲載",
 	"responses-header": "ISLEレッスンへの対応",
+	"show-unfinished": "未完成を表示する",
 	"signup": "サインアップ",
 	"submission": "提出",
 	"submit": "提出",
-	"successfully-completed": "上手くいった"
+	"successfully-completed": "上手くいった",
+	"unfinished": "未完成",
+	"unfinished-lesson-msg": "やり残したことがあるのでは？とにかくセッションを終了させたいのですか？"
 }

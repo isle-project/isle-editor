@@ -14,8 +14,11 @@
 	"login": "Вход",
 	"only-latest": "Включите только мои последние ответы",
 	"responses-header": "Ответы на урок ISLE",
+	"show-unfinished": "Показать незавершенное",
 	"signup": "Зарегистрироваться",
 	"submission": "Представление",
 	"submit": "Отправить .",
-	"successfully-completed": "успешно завершённый"
+	"successfully-completed": "успешно завершённый",
+	"unfinished": "Незаконченный",
+	"unfinished-lesson-msg": "У вас есть незаконченные вопросы. Вы уверены, что хотите завершить сессию в любом случае?"
 }

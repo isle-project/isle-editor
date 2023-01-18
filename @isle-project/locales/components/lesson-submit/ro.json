@@ -14,8 +14,11 @@
 	"login": "Autentificare",
 	"only-latest": "Includeți doar ultimele mele răspunsuri",
 	"responses-header": "Răspunsuri pentru lecția ISLE",
+	"show-unfinished": "Arată neterminat",
 	"signup": "Înscrieți-vă",
 	"submission": "Trimitere",
 	"submit": "Trimiteți",
-	"successfully-completed": "finalizat cu succes"
+	"successfully-completed": "finalizat cu succes",
+	"unfinished": "Neterminat",
+	"unfinished-lesson-msg": "Aveți întrebări neterminate. Sunteți sigur că doriți să finalizați oricum sesiunea?"
 }

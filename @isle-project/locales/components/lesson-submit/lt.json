@@ -14,8 +14,11 @@
 	"login": "Prisijungimas",
 	"only-latest": "Įtraukite tik mano naujausius atsakymus",
 	"responses-header": "ISLE pamokos atsakymai",
+	"show-unfinished": "Rodyti nebaigtą",
 	"signup": "Užsiregistruokite",
 	"submission": "Pateikimas",
 	"submit": "Pateikti",
-	"successfully-completed": "sėkmingai užbaigtas"
+	"successfully-completed": "sėkmingai užbaigtas",
+	"unfinished": "Nebaigtas",
+	"unfinished-lesson-msg": "Turite nebaigtų klausimų. Ar tikrai norite užbaigti sesiją?"
 }

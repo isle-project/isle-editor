@@ -335,8 +335,8 @@ class LessonSubmit extends Component {
 		}
 		if ( this.props.alertUnfinished && session.unfinished && session.unfinished.length > 0 ) {
 			session.addNotification({
-				title: 'Unfinished',
-				message: 'You have unfinished questions. Are you sure you want to finalize the session anyway?',
+				title: this.props.t( 'unfinished' ),
+				message: this.props.t( 'unfinished-lesson-msg' ),
 				level: 'warning',
 				position: 'bc',
 				autoDismiss: 0,
@@ -355,7 +355,7 @@ class LessonSubmit extends Component {
 							const unfinished = session.unfinished;
 							jumpToUnfinished( unfinished );
 						}}
-					>Show Unfinished</Button>
+					>{this.props.t('show-unfinished')}</Button>
 				</div>,
 				onRemove: () => {
 					this.setState({

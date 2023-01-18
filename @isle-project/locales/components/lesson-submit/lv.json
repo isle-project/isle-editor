@@ -14,8 +14,11 @@
 	"login": "Pieteikšanās",
 	"only-latest": "Iekļaujiet tikai manas jaunākās atbildes",
 	"responses-header": "Atbildes par ISLE nodarbību",
+	"show-unfinished": "Rādīt Nepabeigts",
 	"signup": "Reģistrējieties",
 	"submission": "Iesniegšana",
 	"submit": "Iesniegt",
-	"successfully-completed": "veiksmīgi pabeigts"
+	"successfully-completed": "veiksmīgi pabeigts",
+	"unfinished": "Nepabeigts",
+	"unfinished-lesson-msg": "Jums ir nepabeigti jautājumi. Vai esat pārliecināts, ka vēlaties pabeigt sesiju?"
 }

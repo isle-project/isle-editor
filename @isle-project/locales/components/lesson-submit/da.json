@@ -14,8 +14,11 @@
 	"login": "Login",
 	"only-latest": "Kun mine seneste svar medtages",
 	"responses-header": "Svar til ISLE-lektionen",
+	"show-unfinished": "Vis Ufærdige",
 	"signup": "Tilmeld dig",
 	"submission": "Indsendelse",
 	"submit": "Indsend",
-	"successfully-completed": "afsluttet med succes"
+	"successfully-completed": "afsluttet med succes",
+	"unfinished": "Ufærdige",
+	"unfinished-lesson-msg": "Du har uafsluttede spørgsmål. Er du sikker på, at du alligevel vil afslutte sessionen?"
 }

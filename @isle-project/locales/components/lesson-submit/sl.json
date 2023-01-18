@@ -14,8 +14,11 @@
 	"login": "Prijava",
 	"only-latest": "Vključite samo moje najnovejše odgovore",
 	"responses-header": "Odzivi za lekcijo ISLE",
+	"show-unfinished": "Prikaži nedokončano",
 	"signup": "Prijavite se",
 	"submission": "Predložitev",
 	"submit": "Pošlji",
-	"successfully-completed": "uspešno zaključen"
+	"successfully-completed": "uspešno zaključen",
+	"unfinished": "Nedokončano",
+	"unfinished-lesson-msg": "Imate nedokončana vprašanja. Ali ste prepričani, da želite sejo vseeno zaključiti?"
 }

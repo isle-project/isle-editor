@@ -14,8 +14,11 @@
 	"login": "Prihlásenie",
 	"only-latest": "Zahrňte len moje najnovšie odpovede",
 	"responses-header": "Odpovede na lekciu ISLE",
+	"show-unfinished": "Zobraziť nedokončené",
 	"signup": "Zaregistrujte sa",
 	"submission": "Odoslanie",
 	"submit": "Odoslať",
-	"successfully-completed": "úspešne ukončené"
+	"successfully-completed": "úspešne ukončené",
+	"unfinished": "Nedokončené",
+	"unfinished-lesson-msg": "Máte nedokončené otázky. Ste si istí, že chcete reláciu aj tak dokončiť?"
 }

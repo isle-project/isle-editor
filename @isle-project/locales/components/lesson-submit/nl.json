@@ -14,8 +14,11 @@
 	"login": "Inloggen",
 	"only-latest": "Neem alleen mijn laatste antwoorden op",
 	"responses-header": "Reacties voor ISLE-les",
+	"show-unfinished": "Toon onvoltooid",
 	"signup": "Aanmelden",
 	"submission": "Indiening",
 	"submit": "Stuur een bericht naar",
-	"successfully-completed": "succesvol afgerond"
+	"successfully-completed": "succesvol afgerond",
+	"unfinished": "Onvoltooid",
+	"unfinished-lesson-msg": "Je hebt onafgemaakte vragen. Weet je zeker dat je de sessie toch wilt afronden?"
 }

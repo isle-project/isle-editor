@@ -14,8 +14,11 @@
 	"login": "Kirjaudu sisään",
 	"only-latest": "Sisällytä vain viimeisimmät vastaukseni",
 	"responses-header": "Vastaukset ISLE-tunnille",
+	"show-unfinished": "Näytä keskeneräinen",
 	"signup": "Rekisteröidy",
 	"submission": "Toimitusosoite",
 	"submit": "Lähetä",
-	"successfully-completed": "onnistuneesti suoritettu"
+	"successfully-completed": "onnistuneesti suoritettu",
+	"unfinished": "Keskeneräinen",
+	"unfinished-lesson-msg": "Sinulla on keskeneräisiä kysymyksiä. Oletko varma, että haluat kuitenkin päättää istunnon?"
 }
