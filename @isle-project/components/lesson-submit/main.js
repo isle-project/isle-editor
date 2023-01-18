@@ -340,7 +340,7 @@ class LessonSubmit extends Component {
 				level: 'warning',
 				position: 'tr',
 				autoDismiss: 0,
-				dismissible: 'button',
+				dismissible: 'both',
 				children: <div style={{ marginBottom: '40px' }}>
 					<Button
 						variant="success"
@@ -353,7 +353,7 @@ class LessonSubmit extends Component {
 						onClick={() => {
 							const session = this.context;
 							const unfinished = session.unfinished;
-							this.jumpToUnfinished( unfinished );
+							jumpToUnfinished( unfinished );
 						}}
 					>Show Unfinished</Button>
 				</div>,
