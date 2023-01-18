@@ -303,8 +303,8 @@ class Session {
 			this.getLessonInfo();
 		}
 
-		// Initialize progress after a response visualizer hasn't registered for at least ten seconds:
-		this.debouncedInitializeProgress = debounce( this.initializeProgress, 10000 );
+		// Initialize progress after a response visualizer hasn't registered for at least three seconds:
+		this.debouncedInitializeProgress = debounce( this.initializeProgress, 3000 );
 
 		if ( !isElectron && !offline ) {
 			document.addEventListener( 'focusin', this.focusInListener );
@@ -1718,6 +1718,7 @@ class Session {
 			debug( 'Received current user actions...' );
 			this.currentUserActions = response.data.actions;
 			this.update( RETRIEVED_CURRENT_USER_ACTIONS, this.currentUserActions );
+			this.debouncedInitializeProgress();
 		})
 		.catch( error => debug( 'Encountered an error: '+error.message ) );
 	};
