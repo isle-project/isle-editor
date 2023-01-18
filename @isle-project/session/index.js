@@ -303,8 +303,8 @@ class Session {
 			this.getLessonInfo();
 		}
 
-		// Initialize progress after a response visualizer hasn't registered for at least three seconds:
-		this.debouncedInitializeProgress = debounce( this.initializeProgress, 3000 );
+		// Initialize progress after a response visualizer hasn't registered for at least ten seconds:
+		this.debouncedInitializeProgress = debounce( this.initializeProgress, 10000 );
 
 		if ( !isElectron && !offline ) {
 			document.addEventListener( 'focusin', this.focusInListener );
@@ -2070,6 +2070,7 @@ class Session {
 	* Initialize progress after response visualizer has mounted.
 	*/
 	initializeProgress() {
+		console.log( 'Initialize progress...' );
 		if (
 			this.anonymous ||
 			isEmptyObject( this.currentUserActions ) ||
@@ -2077,10 +2078,12 @@ class Session {
 		) {
 			return;
 		}
-		debug( 'Set initial progress...' );
+		console.log( 'Setting initial progress...' );
 		let progress = 0;
 		const ids = this.responseVisualizerIds;
+		console.log( 'IDs: '+JSON.stringify( ids ) );
 		this.unfinished = ids.slice();
+		console.log( 'Unfinished: '+JSON.stringify( this.unfinished ) );
 		for ( let i = ids.length - 1; i >= 0; i-- ) {
 			const key = ids[ i ];
 			const actions = this.currentUserActions[ key ];
@@ -2100,7 +2103,7 @@ class Session {
 			}
 		}
 		PRIVATE_VARS[ 'progress' ] = clamp( progress, 0, 1 );
-		debug( 'Initial progress: '+progress );
+		console.log( 'Initial progress: '+progress );
 		this.update( SELF_INITIAL_PROGRESS, progress );
 		this.socket.emit( 'progress', progress );
 		this.logSession();

@@ -95,8 +95,8 @@ class ResponseVisualizer extends Component {
 
 	componentDidMount() {
 		const session = this.context;
-		this.registerInSession();
 		this.addSessionActions();
+		this.registerInSession();
 		if ( session ) {
 			this.unsubscribe = session.subscribe( ( type, action ) => {
 				if ( type === RETRIEVED_USER_ACTIONS || type === SELECTED_COHORT ) {
