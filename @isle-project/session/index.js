@@ -420,6 +420,12 @@ class Session {
 			this.socket.close();
 			this.socket = null;
 		}
+		this.addNotification({
+			title: 'Offline',
+			message: 'You are currently offline. Please check your internet connection.',
+			level: 'error',
+			position: 'tc'
+		});
 		this.update( DISCONNECTED_FROM_SERVER );
 	};
 
@@ -1311,6 +1317,9 @@ class Session {
 	*/
 	getTextEditorDocuments = () => {
 		if ( !userRights || !userRights.owner ) {
+			return;
+		}
+		if ( !this.live ) {
 			return;
 		}
 		axios.get( this.server+'/text_editor_document_list?'+qs.stringify({

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import markdownit from 'markdown-it';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { withTranslation } from 'react-i18next';
+import Alert from 'react-bootstrap/Alert';
 import debounce from 'lodash.debounce';
 import Loadable from '@isle-project/components/internal/loadable';
 import VoiceInput from '@isle-project/components/input/voice';
@@ -39,7 +40,8 @@ import AnnotationCommand from './config/annotation_command.js';
 import isTextStyleMarkCommandEnabled from './config/is_text_style_mark_command_enabled.js';
 import generatePDF from './generate_pdf.js';
 import { RESET, SAVE_HTML, SAVE_PDF, SUBMISSION } from '@isle-project/constants/actions.js';
-import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED } from '@isle-project/constants/events.js';
+import { CREATED_GROUPS, DELETED_GROUPS, LOGGED_IN, LOGGED_OUT, TEXT_EDITOR_DOCUMENTS_UPDATED,
+	SERVER_IS_LIVE, DISCONNECTED_FROM_SERVER } from '@isle-project/constants/events.js';
 import { withActionLogger } from '@isle-project/session/action_logger.js';
 import imgToStr from '@isle-project/utils/image-to-str';
 import 'pdfmake/build/vfs_fonts.js';
@@ -323,7 +325,11 @@ class TextEditor extends Component {
 	componentDidMount() {
 		const session = this.context;
 		this.unsubscribe = session.subscribe( ( type, action ) => {
-			if ( type === LOGGED_IN || type === LOGGED_OUT || type === TEXT_EDITOR_DOCUMENTS_UPDATED ) {
+			if (
+				type === SERVER_IS_LIVE || type === DISCONNECTED_FROM_SERVER ||
+				type === LOGGED_IN || type === LOGGED_OUT ||
+				type === TEXT_EDITOR_DOCUMENTS_UPDATED
+			) {
 				this.forceUpdate();
 			}
 			else if ( type === CREATED_GROUPS ) {
@@ -575,6 +581,18 @@ class TextEditor extends Component {
 			/> );
 		}
 		if ( useCollaborativeView ) {
+			if ( !session.live ) {
+				return ( <div className="editorview-connection-lost" >
+					<Alert variant="danger" >
+						<Alert.Heading>
+							Connection lost
+						</Alert.Heading>
+						<p>
+							Please check your internet connection.
+						</p>
+					</Alert>
+				</div> );
+			}
 			return ( <ProseMirrorCollaborativeView
 				defaultValue={this.state.value}
 				menu={this.menu}
