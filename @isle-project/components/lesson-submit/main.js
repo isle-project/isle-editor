@@ -39,6 +39,7 @@ const debug = logger( 'isle:lesson-submit' );
 * @property {string} label - label of submit button
 * @property {boolean} requireLogin - controls whether to require user to be signed in for button to be active (for anonymous users, no email confirmation is sent out)
 * @property {boolean} alertUnfinished - controls whether to alert the user if there are unfinished questions or whether to automatically submit all open questions that have typed answers and finish the lesson
+* @property {boolean} includeSolutions - controls whether to include question solutions in the response document
 * @property {boolean} sendConfirmationEmail - controls whether to send confirmation email upon lesson submission
 * @property {string} message - message for confirmation email
 * @property {Array<string>} coverage - list of identifiers to be submitted and included in the response document
@@ -162,6 +163,11 @@ class LessonSubmit extends Component {
 					if ( actions ) {
 						actions = actions.filter( x => x.type === type );
 						actions = actions.sort( ( a, b ) => a.absoluteTime - b.absoluteTime );
+						if ( this.props.includeSolutions ) {
+							doc.content.push({
+								text: this.props.t('your-answer') + ':'
+							});
+						}
 						if ( this.state.onlyLatest ) {
 							const lastAction = actions[ actions.length-1 ];
 							this.addAction( lastAction, doc, dataType, visualizer );
@@ -172,6 +178,15 @@ class LessonSubmit extends Component {
 								});
 								this.addAction( action, doc, dataType, visualizer );
 							});
+						}
+						if ( this.props.includeSolutions && visualizer.ref.props.data.solution !== void 0 ) {
+							doc.content.push({
+								text: this.props.t('solution') + ':'
+							});
+							this.addAction({
+								type: type,
+								value: visualizer.ref.props.data.solution
+							}, doc, dataType, visualizer );
 						}
 					}
 				}
@@ -417,6 +432,7 @@ class LessonSubmit extends Component {
 LessonSubmit.defaultProps = {
 	alertUnfinished: false,
 	coverage: null,
+	includeSolutions: false,
 	label: null,
 	message: '',
 	requireLogin: true,
@@ -429,6 +445,7 @@ LessonSubmit.defaultProps = {
 LessonSubmit.propTypes = {
 	alertUnfinished: PropTypes.bool,
 	coverage: PropTypes.arrayOf( PropTypes.string ),
+	includeSolutions: PropTypes.bool,
 	label: PropTypes.string,
 	message: PropTypes.string,
 	requireLogin: PropTypes.bool,
