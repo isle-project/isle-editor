@@ -23,6 +23,7 @@ Do Not Translate or Localize
 
 
 - 7zip-bin retrieved from https://github.com/develar/7zip-bin
+- abort-controller retrieved from https://github.com/mysticatea/abort-controller
 - abs-svg-path retrieved from https://github.com/jkroso/abs-svg-path
 - accepts retrieved from https://github.com/jshttp/accepts
 - acorn retrieved from https://github.com/acornjs/acorn
@@ -68,6 +69,7 @@ Do Not Translate or Localize
 - array.prototype.find retrieved from https://github.com/paulmillr/Array.prototype.find
 - array.prototype.flat retrieved from https://github.com/es-shims/Array.prototype.flat
 - array.prototype.flatmap retrieved from https://github.com/es-shims/Array.prototype.flatMap
+- array.prototype.tosorted retrieved from https://github.com/es-shims/Array.prototype.toSorted
 - arrify retrieved from https://github.com/sindresorhus/arrify
 - asap retrieved from https://github.com/kriskowal/asap
 - asar retrieved from https://github.com/electron/asar
@@ -85,9 +87,9 @@ Do Not Translate or Localize
 - atob-lite retrieved from https://github.com/hughsk/atob-lite
 - atomically retrieved from https://github.com/fabiospampinato/atomically
 - autobind-decorator retrieved from https://github.com/andreypopp/autobind-decorator
+- available-typed-arrays retrieved from https://github.com/inspect-js/available-typed-arrays
 - axios retrieved from https://github.com/axios/axios
 - babel-jest retrieved from https://github.com/facebook/jest
-- babel-plugin-dynamic-import-node retrieved from https://github.com/airbnb/babel-plugin-dynamic-import-node
 - babel-plugin-jest-hoist retrieved from https://github.com/facebook/jest
 - babel-plugin-macros retrieved from https://github.com/kentcdodds/babel-plugin-macros
 - babel-plugin-module-resolver retrieved from https://github.com/tleunen/babel-plugin-module-resolver
@@ -114,7 +116,6 @@ Do Not Translate or Localize
 - bonjour-service retrieved from https://github.com/onlxltd/bonjour-service
 - boolbase retrieved from https://github.com/fb55/boolbase
 - boolean retrieved from https://github.com/thenativeweb/boolean
-- boxen retrieved from https://github.com/sindresorhus/boxen
 - brace-expansion retrieved from https://github.com/juliangruber/brace-expansion
 - braces retrieved from https://github.com/micromatch/braces
 - brcast retrieved from https://github.com/vesparny/brcast
@@ -147,12 +148,14 @@ Do Not Translate or Localize
 - builtins retrieved from https://github.com/juliangruber/builtins
 - bytes retrieved from https://github.com/visionmedia/bytes.js
 - cache-base retrieved from https://github.com/jonschlinkert/cache-base
+- cacheable-lookup retrieved from https://github.com/szmarczak/cacheable-lookup
 - cacheable-request retrieved from https://github.com/lukechilds/cacheable-request
 - call-bind retrieved from https://github.com/ljharb/call-bind
 - callsites retrieved from https://github.com/sindresorhus/callsites
 - camel-case retrieved from https://github.com/blakeembrey/change-case
 - camelcase retrieved from https://github.com/sindresorhus/camelcase
 - camelcase-keys retrieved from https://github.com/sindresorhus/camelcase-keys
+- canvas retrieved from https://github.com/Automattic/node-canvas
 - canvas-fit retrieved from https://github.com/hughsk/canvas-fit
 - capture-exit retrieved from https://github.com/stefanpenner/capture-exit
 - center-align retrieved from https://github.com/jonschlinkert/center-align
@@ -169,7 +172,6 @@ Do Not Translate or Localize
 - classnames retrieved from https://github.com/JedWatson/classnames
 - clean-css retrieved from https://github.com/clean-css/clean-css
 - clean-stack retrieved from https://github.com/sindresorhus/clean-stack
-- cli-boxes retrieved from https://github.com/sindresorhus/cli-boxes
 - cli-columns retrieved from https://github.com/shannonmoeller/cli-columns
 - cli-table3 retrieved from https://github.com/cli-table/cli-table3
 - clone retrieved from https://github.com/pvorb/node-clone
@@ -217,7 +219,7 @@ Do Not Translate or Localize
 - compute-hamming retrieved from https://github.com/compute-io/hamming
 - compute-l2norm retrieved from https://github.com/compute-io/l2norm
 - compute-manhattan-distance retrieved from https://github.com/compute-io/manhattan-distance
-- compute-scroll-into-view retrieved from https://github.com/stipsan/compute-scroll-into-view
+- compute-scroll-into-view retrieved from https://github.com/scroll-into-view/compute-scroll-into-view
 - concat-map retrieved from https://github.com/substack/node-concat-map
 - concat-stream retrieved from https://github.com/maxogden/concat-stream
 - concurrently retrieved from https://github.com/open-cli-tools/concurrently
@@ -240,7 +242,6 @@ Do Not Translate or Localize
 - copy-to-clipboard retrieved from https://github.com/sudodoki/copy-to-clipboard
 - core-js retrieved from https://github.com/zloirock/core-js
 - core-js-compat retrieved from https://github.com/zloirock/core-js
-- core-js-pure retrieved from https://github.com/zloirock/core-js
 - core-util-is retrieved from https://github.com/isaacs/core-util-is
 - cosmiconfig retrieved from https://github.com/davidtheclark/cosmiconfig
 - country-regex retrieved from https://github.com/etpinard/country-regex
@@ -287,14 +288,13 @@ Do Not Translate or Localize
 - debug retrieved from https://github.com/visionmedia/debug
 - debuglog retrieved from https://github.com/sam-github/node-debuglog
 - decamelize retrieved from https://github.com/sindresorhus/decamelize
-- decamelize-keys retrieved from https://github.com/dsblv/decamelize-keys
+- decamelize-keys retrieved from https://github.com/sindresorhus/decamelize-keys
 - decimal.js retrieved from https://github.com/MikeMcl/decimal.js
 - decode-uri-component retrieved from https://github.com/SamVerschueren/decode-uri-component
 - decompress-response retrieved from https://github.com/sindresorhus/decompress-response
 - dedent retrieved from https://github.com/dmnd/dedent
 - deep-diff retrieved from https://github.com/flitbit/diff
-- deep-equal retrieved from https://github.com/substack/node-deep-equal
-- deep-extend retrieved from https://github.com/unclechu/node-deep-extend
+- deep-equal retrieved from https://github.com/inspect-js/node-deep-equal
 - deep-is retrieved from https://github.com/thlorenz/deep-is
 - deepmerge retrieved from https://github.com/TehShrike/deepmerge
 - defaults retrieved from https://github.com/tmpvar/defaults
@@ -302,7 +302,7 @@ Do Not Translate or Localize
 - define-lazy-prop retrieved from https://github.com/sindresorhus/define-lazy-prop
 - define-properties retrieved from https://github.com/ljharb/define-properties
 - define-property retrieved from https://github.com/jonschlinkert/define-property
-- defined retrieved from https://github.com/substack/defined
+- defined retrieved from https://github.com/inspect-js/defined
 - delayed-stream retrieved from https://github.com/felixge/node-delayed-stream
 - delegates retrieved from https://github.com/visionmedia/node-delegates
 - depd retrieved from https://github.com/dougwilson/nodejs-depd
@@ -334,7 +334,6 @@ Do Not Translate or Localize
 - domain-browser retrieved from https://github.com/bevry/domain-browser
 - domexception retrieved from https://github.com/jsdom/domexception
 - domify retrieved from https://github.com/component/domify
-- dommatrix retrieved from https://github.com/thednp/dommatrix
 - domutils retrieved from 
 - dot-case retrieved from https://github.com/blakeembrey/change-case
 - dot-prop retrieved from https://github.com/sindresorhus/dot-prop
@@ -374,7 +373,9 @@ Do Not Translate or Localize
 - err-code retrieved from https://github.com/IndigoUnited/js-err-code
 - error-ex retrieved from https://github.com/qix-/node-error-ex
 - es-abstract retrieved from https://github.com/ljharb/es-abstract
+- es-get-iterator retrieved from https://github.com/ljharb/es-get-iterator
 - es-module-lexer retrieved from https://github.com/guybedford/es-module-lexer
+- es-set-tostringtag retrieved from https://github.com/es-shims/es-set-tostringtag
 - es-shim-unscopables retrieved from https://github.com/ljharb/es-shim-unscopables
 - es-to-primitive retrieved from https://github.com/ljharb/es-to-primitive
 - es6-error retrieved from https://github.com/bjyoungblood/es6-error
@@ -386,10 +387,8 @@ Do Not Translate or Localize
 - esbuild-jest-transform retrieved from https://github.com/AkifumiSato/esbuild-jest-transform
 - esbuild-loader retrieved from https://github.com/privatenumber/esbuild-loader
 - esbuild-register retrieved from 
-- esbuild-windows-64 retrieved from https://github.com/evanw/esbuild
 - escalade retrieved from https://github.com/lukeed/escalade
 - escape-carriage retrieved from https://github.com/lgeiger/escape-carriage
-- escape-goat retrieved from https://github.com/sindresorhus/escape-goat
 - escape-html retrieved from https://github.com/component/escape-html
 - escape-string-regexp retrieved from https://github.com/sindresorhus/escape-string-regexp
 - escodegen retrieved from https://github.com/Constellation/escodegen
@@ -417,6 +416,7 @@ Do Not Translate or Localize
 - etag retrieved from https://github.com/jshttp/etag
 - event-emitter retrieved from https://github.com/medikoo/event-emitter
 - event-stream retrieved from https://github.com/dominictarr/event-stream
+- event-target-shim retrieved from https://github.com/mysticatea/event-target-shim
 - eventemitter3 retrieved from https://github.com/primus/eventemitter3
 - events retrieved from https://github.com/Gozala/events
 - evp_bytestokey retrieved from https://github.com/crypto-browserify/EVP_BytesToKey
@@ -489,7 +489,6 @@ Do Not Translate or Localize
 - gl-util retrieved from https://github.com/dy/gl-util
 - glob-to-regexp retrieved from https://github.com/fitzgen/glob-to-regexp
 - global-cache retrieved from https://github.com/ljharb/global-cache
-- global-dirs retrieved from https://github.com/sindresorhus/global-dirs
 - global-modules retrieved from https://github.com/jonschlinkert/global-modules
 - global-prefix retrieved from https://github.com/jonschlinkert/global-prefix
 - globals retrieved from https://github.com/sindresorhus/globals
@@ -511,6 +510,7 @@ Do Not Translate or Localize
 - glslify retrieved from https://github.com/stackgl/glslify
 - glslify-bundle retrieved from https://github.com/stackgl/glslify-bundle
 - glslify-deps retrieved from https://github.com/stackgl/glslify-deps
+- gopd retrieved from https://github.com/ljharb/gopd
 - got retrieved from https://github.com/sindresorhus/got
 - graceful-readlink retrieved from https://github.com/zhiyelee/graceful-readlink
 - grapheme-splitter retrieved from https://github.com/orling/grapheme-splitter
@@ -525,11 +525,11 @@ Do Not Translate or Localize
 - has-hover retrieved from https://github.com/dfcreative/has-hover
 - has-passive-events retrieved from https://github.com/dfcreative/has-passive-events
 - has-property-descriptors retrieved from https://github.com/inspect-js/has-property-descriptors
+- has-proto retrieved from https://github.com/inspect-js/has-proto
 - has-symbols retrieved from https://github.com/inspect-js/has-symbols
 - has-tostringtag retrieved from https://github.com/inspect-js/has-tostringtag
 - has-value retrieved from https://github.com/jonschlinkert/has-value
 - has-values retrieved from https://github.com/jonschlinkert/has-values
-- has-yarn retrieved from https://github.com/sindresorhus/has-yarn
 - hash-base retrieved from https://github.com/crypto-browserify/hash-base
 - hash.js retrieved from https://github.com/indutny/hash.js
 - he retrieved from https://github.com/mathiasbynens/he
@@ -554,6 +554,7 @@ Do Not Translate or Localize
 - http-proxy retrieved from https://github.com/http-party/node-http-proxy
 - http-proxy-agent retrieved from https://github.com/TooTallNate/node-http-proxy-agent
 - http-proxy-middleware retrieved from https://github.com/chimurai/http-proxy-middleware
+- http2-wrapper retrieved from https://github.com/szmarczak/http2-wrapper
 - https-browserify retrieved from https://github.com/substack/https-browserify
 - https-proxy-agent retrieved from https://github.com/TooTallNate/node-https-proxy-agent
 - humanize-ms retrieved from https://github.com/node-modules/humanize-ms
@@ -580,6 +581,7 @@ Do Not Translate or Localize
 - is-accessor-descriptor retrieved from https://github.com/jonschlinkert/is-accessor-descriptor
 - is-any-array retrieved from https://github.com/cheminfo-js/is-any-array
 - is-arguments retrieved from https://github.com/inspect-js/is-arguments
+- is-array-buffer retrieved from https://github.com/inspect-js/is-array-buffer
 - is-arrayish retrieved from https://github.com/qix-/node-is-arrayish
 - is-base64 retrieved from https://github.com/miguelmota/is-base64
 - is-bigint retrieved from https://github.com/inspect-js/is-bigint
@@ -604,13 +606,12 @@ Do Not Translate or Localize
 - is-generator-fn retrieved from https://github.com/sindresorhus/is-generator-fn
 - is-glob retrieved from https://github.com/micromatch/is-glob
 - is-iexplorer retrieved from https://github.com/kevva/is-iexplorer
-- is-installed-globally retrieved from https://github.com/sindresorhus/is-installed-globally
 - is-lambda retrieved from https://github.com/watson/is-lambda
 - is-lite retrieved from https://github.com/gilbarbara/is-lite
+- is-map retrieved from https://github.com/inspect-js/is-map
 - is-mobile retrieved from https://github.com/juliangruber/is-mobile
 - is-module retrieved from https://github.com/component/is-module
 - is-negative-zero retrieved from https://github.com/inspect-js/is-negative-zero
-- is-npm retrieved from https://github.com/sindresorhus/is-npm
 - is-number retrieved from https://github.com/jonschlinkert/is-number
 - is-number-object retrieved from https://github.com/inspect-js/is-number-object
 - is-obj retrieved from https://github.com/sindresorhus/is-obj
@@ -621,6 +622,7 @@ Do Not Translate or Localize
 - is-property retrieved from https://github.com/mikolalysenko/is-property
 - is-regex retrieved from https://github.com/inspect-js/is-regex
 - is-regexp retrieved from https://github.com/sindresorhus/is-regexp
+- is-set retrieved from https://github.com/inspect-js/is-set
 - is-shared-array-buffer retrieved from https://github.com/inspect-js/is-shared-array-buffer
 - is-stream retrieved from https://github.com/sindresorhus/is-stream
 - is-string retrieved from https://github.com/ljharb/is-string
@@ -628,12 +630,14 @@ Do Not Translate or Localize
 - is-svg-path retrieved from https://github.com/dfcreative/is-svg-path
 - is-symbol retrieved from https://github.com/inspect-js/is-symbol
 - is-touch-device retrieved from https://github.com/airbnb/is-touch-device
+- is-typed-array retrieved from https://github.com/inspect-js/is-typed-array
 - is-typedarray retrieved from https://github.com/hughsk/is-typedarray
 - is-utf8 retrieved from https://github.com/wayfind/is-utf8
+- is-weakmap retrieved from https://github.com/inspect-js/is-weakmap
 - is-weakref retrieved from https://github.com/inspect-js/is-weakref
+- is-weakset retrieved from https://github.com/inspect-js/is-weakset
 - is-windows retrieved from https://github.com/jonschlinkert/is-windows
 - is-wsl retrieved from https://github.com/sindresorhus/is-wsl
-- is-yarn-global retrieved from https://github.com/LitoMore/is-yarn-global
 - isarray retrieved from https://github.com/juliangruber/isarray
 - isbinaryfile retrieved from https://github.com/gjtorikian/isBinaryFile
 - isle-editor retrieved from https://github.com/isle-project/isle-editor
@@ -689,7 +693,7 @@ Do Not Translate or Localize
 - jszip retrieved from https://github.com/Stuk/jszip
 - just-diff retrieved from https://github.com/angus-c/just
 - just-diff-apply retrieved from https://github.com/angus-c/just
-- keyv retrieved from https://github.com/lukechilds/keyv
+- keyv retrieved from https://github.com/jaredwray/keyv
 - kind-of retrieved from https://github.com/jonschlinkert/kind-of
 - klaw-sync retrieved from https://github.com/manidlou/node-klaw-sync
 - kleur retrieved from https://github.com/lukeed/kleur
@@ -697,7 +701,6 @@ Do Not Translate or Localize
 - lancaster-stemmer retrieved from https://github.com/words/lancaster-stemmer
 - language-subtag-registry retrieved from https://github.com/mattcg/language-subtag-registry
 - language-tags retrieved from https://github.com/mattcg/language-tags
-- latest-version retrieved from https://github.com/sindresorhus/latest-version
 - lazy-cache retrieved from https://github.com/jonschlinkert/lazy-cache
 - lazy-val retrieved from https://github.com/develar/lazy-val
 - lazystream retrieved from https://github.com/jpommerening/node-lazystream
@@ -735,7 +738,6 @@ Do Not Translate or Localize
 - media-typer retrieved from https://github.com/jshttp/media-typer
 - memoize-one retrieved from https://github.com/alexreardon/memoize-one
 - meow retrieved from https://github.com/sindresorhus/meow
-- merge-class-names retrieved from https://github.com/wojtekmaj/merge-class-names
 - merge-descriptors retrieved from https://github.com/component/merge-descriptors
 - merge-source-map retrieved from https://github.com/keik/merge-source-map
 - merge-stream retrieved from https://github.com/grncdr/merge-stream
@@ -750,7 +752,7 @@ Do Not Translate or Localize
 - mimic-response retrieved from https://github.com/sindresorhus/mimic-response
 - min-indent retrieved from https://github.com/thejameskyle/min-indent
 - minimalistic-crypto-utils retrieved from https://github.com/indutny/minimalistic-crypto-utils
-- minimist retrieved from https://github.com/substack/minimist
+- minimist retrieved from https://github.com/minimistjs/minimist
 - minimist-options retrieved from https://github.com/vadimdemedes/minimist-options
 - minipass-fetch retrieved from https://github.com/npm/minipass-fetch
 - minipass-json-stream retrieved from https://github.com/npm/minipass-json-stream
@@ -781,6 +783,7 @@ Do Not Translate or Localize
 - mumath retrieved from https://github.com/dfcreative/mumath
 - murmurhash-js retrieved from https://github.com/mikolalysenko/murmurhash-js
 - murmurhash3js retrieved from https://github.com/pid/murmurHash3js
+- nan retrieved from https://github.com/nodejs/nan
 - nanoid retrieved from https://github.com/ai/nanoid
 - nanomatch retrieved from https://github.com/micromatch/nanomatch
 - native-promise-only retrieved from https://github.com/getify/native-promise-only
@@ -799,10 +802,10 @@ Do Not Translate or Localize
 - node-int64 retrieved from https://github.com/broofa/node-int64
 - node-libs-browser retrieved from https://github.com/webpack/node-libs-browser
 - node-releases retrieved from https://github.com/chicoxyzzy/node-releases
+- node-win-x64 retrieved from 
 - normalize-path retrieved from https://github.com/jonschlinkert/normalize-path
 - normalize-svg-path retrieved from https://github.com/jkroso/normalize-svg-path
 - normalize-url retrieved from https://github.com/sindresorhus/normalize-url
-- npm-conf retrieved from https://github.com/kevva/npm-conf
 - npm-run-path retrieved from https://github.com/sindresorhus/npm-run-path
 - number-is-integer retrieved from https://github.com/sindresorhus/number-is-integer
 - nwsapi retrieved from https://github.com/dperini/nwsapi
@@ -824,7 +827,6 @@ Do Not Translate or Localize
 - on-headers retrieved from https://github.com/jshttp/on-headers
 - onetime retrieved from https://github.com/sindresorhus/onetime
 - open retrieved from https://github.com/sindresorhus/open
-- opener retrieved from https://github.com/domenic/opener
 - optionator retrieved from https://github.com/gkz/optionator
 - orderedmap retrieved from https://github.com/marijnh/orderedmap
 - os-browserify retrieved from https://github.com/CoderPuppy/os-browserify
@@ -837,7 +839,6 @@ Do Not Translate or Localize
 - p-map retrieved from https://github.com/sindresorhus/p-map
 - p-retry retrieved from https://github.com/sindresorhus/p-retry
 - p-try retrieved from https://github.com/sindresorhus/p-try
-- package-json retrieved from https://github.com/sindresorhus/package-json
 - pako retrieved from https://github.com/nodeca/pako
 - param-case retrieved from https://github.com/blakeembrey/change-case
 - parent-module retrieved from https://github.com/sindresorhus/parent-module
@@ -860,6 +861,7 @@ Do Not Translate or Localize
 - path-parse retrieved from https://github.com/jbgutierrez/path-parse
 - path-to-regexp retrieved from https://github.com/component/path-to-regexp
 - path-type retrieved from https://github.com/sindresorhus/path-type
+- path2d-polyfill retrieved from https://github.com/nilzona/path2d-polyfill
 - pause-stream retrieved from https://github.com/dominictarr/pause-stream
 - pbkdf2 retrieved from https://github.com/crypto-browserify/pbkdf2
 - pdfmake retrieved from https://github.com/bpampuch/pdfmake
@@ -891,7 +893,6 @@ Do Not Translate or Localize
 - postcss-selector-parser retrieved from https://github.com/postcss/postcss-selector-parser
 - postcss-value-parser retrieved from https://github.com/TrySound/postcss-value-parser
 - prelude-ls retrieved from https://github.com/gkz/prelude-ls
-- prepend-http retrieved from https://github.com/sindresorhus/prepend-http
 - pressure retrieved from https://github.com/stuyam/pressure
 - pretty-bytes retrieved from https://github.com/sindresorhus/pretty-bytes
 - pretty-error retrieved from https://github.com/AriaMinaei/pretty-error
@@ -923,11 +924,11 @@ Do Not Translate or Localize
 - prosemirror-view retrieved from https://github.com/prosemirror/prosemirror-view
 - protocol-buffers-schema retrieved from https://github.com/mafintosh/protocol-buffers-schema
 - proxy-addr retrieved from https://github.com/jshttp/proxy-addr
+- proxy-from-env retrieved from https://github.com/Rob--W/proxy-from-env
 - psl retrieved from https://github.com/lupomontero/psl
 - public-encrypt retrieved from https://github.com/crypto-browserify/publicEncrypt
 - pump retrieved from https://github.com/mafintosh/pump
 - punycode retrieved from https://github.com/bestiejs/punycode.js
-- pupa retrieved from https://github.com/sindresorhus/pupa
 - pure-color retrieved from https://github.com/WickyNilliams/pure-color
 - pxls retrieved from https://github.com/dy/pxls
 - qrcode retrieved from https://github.com/soldair/node-qrcode
@@ -944,7 +945,6 @@ Do Not Translate or Localize
 - randomfill retrieved from https://github.com/crypto-browserify/randomfill
 - range-parser retrieved from https://github.com/jshttp/range-parser
 - raw-body retrieved from https://github.com/stream-utils/raw-body
-- rc retrieved from https://github.com/dominictarr/rc
 - re-resizable retrieved from https://github.com/bokuweb/react-resizable-box
 - react retrieved from https://github.com/facebook/react
 - react-app-polyfill retrieved from https://github.com/facebook/create-react-app
@@ -981,7 +981,6 @@ Do Not Translate or Localize
 - react-live retrieved from https://github.com/philpl/react-live
 - react-moment-proptypes retrieved from https://github.com/CalebMorris/react-moment-proptypes
 - react-monaco-editor retrieved from https://github.com/react-monaco-editor/react-monaco-editor
-- react-notification-system retrieved from https://github.com/igorprado/react-notification-system
 - react-outside-click-handler retrieved from https://github.com/airbnb/react-outside-click-handler
 - react-player retrieved from https://github.com/CookPete/react-player
 - react-plotly.js retrieved from https://github.com/plotly/react-plotly.js
@@ -1036,8 +1035,6 @@ Do Not Translate or Localize
 - regexp.prototype.flags retrieved from https://github.com/es-shims/RegExp.prototype.flags
 - regexpp retrieved from https://github.com/mysticatea/regexpp
 - regexpu-core retrieved from https://github.com/mathiasbynens/regexpu-core
-- registry-auth-token retrieved from https://github.com/rexxars/registry-auth-token
-- registry-url retrieved from https://github.com/sindresorhus/registry-url
 - regjsgen retrieved from https://github.com/bnjmnt4n/regjsgen
 - regjsparser retrieved from https://github.com/jviereck/regjsparser
 - regl-error2d retrieved from https://github.com/dy/regl-error2d
@@ -1055,12 +1052,13 @@ Do Not Translate or Localize
 - reselect retrieved from https://github.com/reduxjs/reselect
 - resize-observer-polyfill retrieved from https://github.com/que-etc/resize-observer-polyfill
 - resolve retrieved from https://github.com/browserify/resolve
+- resolve-alpn retrieved from https://github.com/szmarczak/resolve-alpn
 - resolve-cwd retrieved from https://github.com/sindresorhus/resolve-cwd
 - resolve-from retrieved from https://github.com/sindresorhus/resolve-from
 - resolve-protobuf-schema retrieved from https://github.com/mafintosh/resolve-protobuf-schema
 - resolve-url retrieved from https://github.com/lydell/resolve-url
 - resolve.exports retrieved from https://github.com/lukeed/resolve.exports
-- responselike retrieved from https://github.com/lukechilds/responselike
+- responselike retrieved from https://github.com/sindresorhus/responselike
 - resumer retrieved from https://github.com/substack/resumer
 - ret retrieved from https://github.com/fent/ret.js
 - retry retrieved from https://github.com/tim-kos/node-retry
@@ -1082,13 +1080,12 @@ Do Not Translate or Localize
 - scheduler retrieved from https://github.com/facebook/react
 - schema-utils retrieved from https://github.com/webpack/schema-utils
 - scroll retrieved from https://github.com/michaelrhodes/scroll
-- scroll-into-view-if-needed retrieved from https://github.com/stipsan/scroll-into-view-if-needed
+- scroll-into-view-if-needed retrieved from https://github.com/scroll-into-view/scroll-into-view-if-needed
 - scrollparent retrieved from https://github.com/olahol/scrollparent.js
 - seekout retrieved from https://github.com/sullenor/seekout
 - select-hose retrieved from https://github.com/indutny/select-hose
 - selfsigned retrieved from https://github.com/jfromaniello/selfsigned
 - semver-compare retrieved from https://github.com/substack/semver-compare
-- semver-diff retrieved from https://github.com/sindresorhus/semver-diff
 - send retrieved from https://github.com/pillarjs/send
 - sentence-case retrieved from https://github.com/blakeembrey/sentence-case
 - serialize-error retrieved from https://github.com/sindresorhus/serialize-error
@@ -1101,10 +1098,13 @@ Do Not Translate or Localize
 - shallow-copy retrieved from https://github.com/substack/shallow-copy
 - shebang-command retrieved from https://github.com/kevva/shebang-command
 - shebang-regex retrieved from https://github.com/sindresorhus/shebang-regex
-- shell-quote retrieved from https://github.com/substack/node-shell-quote
+- shell-quote retrieved from https://github.com/ljharb/shell-quote
 - side-channel retrieved from https://github.com/ljharb/side-channel
 - signum retrieved from https://github.com/mikolalysenko/signum
+- simple-concat retrieved from https://github.com/feross/simple-concat
+- simple-get retrieved from https://github.com/feross/simple-get
 - simple-swizzle retrieved from https://github.com/qix-/node-simple-swizzle
+- simple-update-notifier retrieved from https://github.com/alexbrazier/simple-update-notifier
 - sisteransi retrieved from https://github.com/terkelg/sisteransi
 - slash retrieved from https://github.com/sindresorhus/slash
 - slice-ansi retrieved from https://github.com/chalk/slice-ansi
@@ -1141,6 +1141,7 @@ Do Not Translate or Localize
 - static-module retrieved from https://github.com/substack/static-module
 - statuses retrieved from https://github.com/jshttp/statuses
 - stemmer retrieved from https://github.com/words/stemmer
+- stop-iteration-iterator retrieved from https://github.com/ljharb/stop-iteration-iterator
 - stream-browserify retrieved from https://github.com/browserify/stream-browserify
 - stream-combiner retrieved from https://github.com/dominictarr/stream-combiner
 - stream-events retrieved from https://github.com/stephenplusplus/stream-events
@@ -1189,7 +1190,6 @@ Do Not Translate or Localize
 - temp-dir retrieved from https://github.com/sindresorhus/temp-dir
 - temp-file retrieved from https://github.com/develar/temp-file
 - tempy retrieved from https://github.com/sindresorhus/tempy
-- terminal-link retrieved from https://github.com/sindresorhus/terminal-link
 - terser-webpack-plugin retrieved from https://github.com/webpack-contrib/terser-webpack-plugin
 - text-miner retrieved from https://github.com/Planeshifter/text-miner
 - text-table retrieved from https://github.com/substack/text-table
@@ -1209,7 +1209,6 @@ Do Not Translate or Localize
 - to-float32 retrieved from https://github.com/dy/to-float32
 - to-object-path retrieved from https://github.com/jonschlinkert/to-object-path
 - to-px retrieved from https://github.com/mikolalysenko/to-px
-- to-readable-stream retrieved from https://github.com/sindresorhus/to-readable-stream
 - to-regex retrieved from https://github.com/jonschlinkert/to-regex
 - to-regex-range retrieved from https://github.com/micromatch/to-regex-range
 - to-uint8 retrieved from https://github.com/dy/to-uint8
@@ -1224,12 +1223,12 @@ Do Not Translate or Localize
 - tsconfig-paths retrieved from https://github.com/dividab/tsconfig-paths
 - tsutils retrieved from https://github.com/ajafff/tsutils
 - tty-browserify retrieved from https://github.com/substack/tty-browserify
-- tunnel retrieved from https://github.com/koichik/node-tunnel
 - type-check retrieved from https://github.com/gkz/type-check
 - type-detect retrieved from https://github.com/chaijs/type-detect
 - type-fest retrieved from https://github.com/sindresorhus/type-fest
 - type-is retrieved from https://github.com/jshttp/type-is
 - type-name retrieved from https://github.com/twada/type-name
+- typed-array-length retrieved from https://github.com/inspect-js/typed-array-length
 - typed-emitter retrieved from https://github.com/andywer/typed-emitter
 - typedarray retrieved from https://github.com/substack/typedarray
 - typedarray-pool retrieved from https://github.com/mikolalysenko/typedarray-pool
@@ -1265,7 +1264,6 @@ Do Not Translate or Localize
 - urix retrieved from https://github.com/lydell/urix
 - url retrieved from https://github.com/defunctzombie/node-url
 - url-parse retrieved from https://github.com/unshiftio/url-parse
-- url-parse-lax retrieved from https://github.com/sindresorhus/url-parse-lax
 - urlgrey retrieved from https://github.com/cainus/urlgrey
 - use retrieved from https://github.com/jonschlinkert/use
 - use-composed-ref retrieved from https://github.com/Andarist/use-composed-ref
@@ -1341,7 +1339,6 @@ Do Not Translate or Localize
 - vm-browserify retrieved from https://github.com/substack/vm-browserify
 - void-elements retrieved from https://github.com/pugjs/void-elements
 - vt-pbf retrieved from https://github.com/mapbox/vt-pbf
-- w3c-hr-time retrieved from https://github.com/jsdom/w3c-hr-time
 - w3c-keyname retrieved from https://github.com/marijnh/w3c-keyname
 - w3c-xmlserializer retrieved from https://github.com/jsdom/w3c-xmlserializer
 - warning retrieved from https://github.com/BerkeleyTrue/warning
@@ -1363,7 +1360,8 @@ Do Not Translate or Localize
 - whatwg-mimetype retrieved from https://github.com/jsdom/whatwg-mimetype
 - whatwg-url retrieved from https://github.com/jsdom/whatwg-url
 - which-boxed-primitive retrieved from https://github.com/inspect-js/which-boxed-primitive
-- widest-line retrieved from https://github.com/sindresorhus/widest-line
+- which-collection retrieved from https://github.com/inspect-js/which-collection
+- which-typed-array retrieved from https://github.com/inspect-js/which-typed-array
 - wildcard retrieved from https://github.com/DamonOehlman/wildcard
 - window-size retrieved from https://github.com/jonschlinkert/window-size
 - word-wrap retrieved from https://github.com/jonschlinkert/word-wrap
@@ -1389,7 +1387,6 @@ Do Not Translate or Localize
 - wrap-ansi retrieved from https://github.com/chalk/wrap-ansi
 - write-json-file retrieved from https://github.com/sindresorhus/write-json-file
 - ws retrieved from https://github.com/websockets/ws
-- xdg-basedir retrieved from https://github.com/sindresorhus/xdg-basedir
 - xml2js retrieved from https://github.com/Leonidas-from-XIV/node-xml2js
 - xmlbuilder retrieved from https://github.com/oozcitak/xmlbuilder-js
 - xmlchars retrieved from https://github.com/lddubeau/xmlchars
@@ -1407,9 +1404,7 @@ Do Not Translate or Localize
 - abab retrieved from https://github.com/jsdom/abab
 - babel-plugin-istanbul retrieved from https://github.com/istanbuljs/babel-plugin-istanbul
 - boom retrieved from 
-- browser-process-hrtime retrieved from https://github.com/kumavis/browser-process-hrtime
 - cidr-regex retrieved from https://github.com/silverwind/cidr-regex
-- configstore retrieved from https://github.com/yeoman/configstore
 - cryptiles retrieved from 
 - css-select retrieved from https://github.com/fb55/css-select
 - css-what retrieved from https://github.com/fb55/css-what
@@ -1453,7 +1448,6 @@ Do Not Translate or Localize
 - dotenv retrieved from https://github.com/motdotla/dotenv
 - dotenv-expand retrieved from 
 - duplexer2 retrieved from https://github.com/deoxxa/duplexer2
-- duplexer3 retrieved from https://github.com/sindresorhus/duplexer3
 - electron-osx-sign retrieved from https://github.com/electron-userland/electron-osx-sign
 - entities retrieved from https://github.com/fb55/entities
 - eslint-scope retrieved from https://github.com/eslint/eslint-scope
@@ -1465,7 +1459,6 @@ Do Not Translate or Localize
 - flux retrieved from https://github.com/facebook/flux
 - fmin retrieved from https://github.com/benfred/fmin
 - global-agent retrieved from https://github.com/gajus/global-agent
-- global-tunnel-ng retrieved from https://github.com/np-maintain/global-tunnel
 - hawk retrieved from 
 - hoek retrieved from 
 - hoist-non-react-statics retrieved from https://github.com/mridgway/hoist-non-react-statics
@@ -1502,15 +1495,13 @@ Do Not Translate or Localize
 - tmpl retrieved from https://github.com/daaku/nodejs-tmpl
 - tough-cookie retrieved from https://github.com/salesforce/tough-cookie
 - uglify-js retrieved from https://github.com/mishoo/UglifyJS2
-- update-notifier retrieved from https://github.com/yeoman/update-notifier
 - uri-js retrieved from https://github.com/garycourt/uri-js
 - webidl-conversions retrieved from https://github.com/jsdom/webidl-conversions
 
 ### SECTION 3: ISC LICENSE
 
 
-- abbrev retrieved from https://github.com/isaacs/abbrev-js
-- ansi-align retrieved from https://github.com/nexdrew/ansi-align
+- abbrev retrieved from https://github.com/npm/abbrev-js
 - anymatch retrieved from https://github.com/micromatch/anymatch
 - aproba retrieved from https://github.com/iarna/aproba
 - are-we-there-yet retrieved from https://github.com/npm/are-we-there-yet
@@ -1584,7 +1575,6 @@ Do Not Translate or Localize
 - minipass-flush retrieved from https://github.com/isaacs/minipass-flush
 - minipass-pipeline retrieved from 
 - minipass-sized retrieved from https://github.com/isaacs/minipass-sized
-- mkdirp-infer-owner retrieved from https://github.com/isaacs/mkdirp-infer-owner
 - mute-stream retrieved from https://github.com/isaacs/mute-stream
 - next-tick retrieved from https://github.com/medikoo/next-tick
 - node-object-hash retrieved from https://github.com/SkeLLLa/node-object-hash
@@ -1610,7 +1600,6 @@ Do Not Translate or Localize
 - promise-call-limit retrieved from https://github.com/isaacs/promise-call-limit
 - promise-inflight retrieved from https://github.com/iarna/promise-inflight
 - promzard retrieved from https://github.com/isaacs/promzard
-- proto-list retrieved from https://github.com/isaacs/proto-list
 - quickselect retrieved from https://github.com/mourner/quickselect
 - read retrieved from https://github.com/isaacs/read
 - read-cmd-shim retrieved from https://github.com/npm/read-cmd-shim
@@ -1663,6 +1652,7 @@ Do Not Translate or Localize
 - crc-32 retrieved from https://github.com/SheetJS/js-crc32
 - dash-ast retrieved from https://github.com/goto-bus-stop/dash-ast
 - deep-clone-simple retrieved from https://github.com/balloob/deep-clone-simple
+- detect-libc retrieved from https://github.com/lovell/detect-libc
 - doctrine retrieved from https://github.com/eslint/doctrine
 - ejs retrieved from https://github.com/mde/ejs
 - eslint-visitor-keys retrieved from https://github.com/eslint/eslint-visitor-keys
@@ -1797,7 +1787,7 @@ Do Not Translate or Localize
 
 ### SECTION 1: MIT LICENSE
 
-The MIT License is applicable to the following 1378 component(s).
+The MIT License is applicable to the following 1375 component(s).
 
 
 
@@ -1830,6 +1820,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+
+
+    - abort-controller retrieved from https://github.com/mysticatea/abort-controller
+    - eslint-utils retrieved from https://github.com/mysticatea/eslint-utils
+    - event-target-shim retrieved from https://github.com/mysticatea/event-target-shim
+    - regexpp retrieved from https://github.com/mysticatea/regexpp
+
+MIT License
+
+Copyright (c) 2017 Toru Nagashima
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
 
@@ -2098,18 +2117,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - array-union retrieved from https://github.com/sindresorhus/array-union
     - arrify retrieved from https://github.com/sindresorhus/arrify
     - binary-extensions retrieved from https://github.com/sindresorhus/binary-extensions
-    - boxen retrieved from https://github.com/sindresorhus/boxen
     - builtin-modules retrieved from https://github.com/sindresorhus/builtin-modules
     - callsites retrieved from https://github.com/sindresorhus/callsites
     - camelcase retrieved from https://github.com/sindresorhus/camelcase
     - camelcase-keys retrieved from https://github.com/sindresorhus/camelcase-keys
     - clean-stack retrieved from https://github.com/sindresorhus/clean-stack
-    - cli-boxes retrieved from https://github.com/sindresorhus/cli-boxes
     - clone-response retrieved from https://github.com/sindresorhus/clone-response
     - conf retrieved from https://github.com/sindresorhus/conf
     - crypto-random-string retrieved from https://github.com/sindresorhus/crypto-random-string
     - debounce-fn retrieved from https://github.com/sindresorhus/debounce-fn
     - decamelize retrieved from https://github.com/sindresorhus/decamelize
+    - decamelize-keys retrieved from https://github.com/sindresorhus/decamelize-keys
     - decompress-response retrieved from https://github.com/sindresorhus/decompress-response
     - define-lazy-prop retrieved from https://github.com/sindresorhus/define-lazy-prop
     - detect-indent retrieved from https://github.com/sindresorhus/detect-indent
@@ -2118,13 +2136,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - electron-store retrieved from https://github.com/sindresorhus/electron-store
     - emittery retrieved from https://github.com/sindresorhus/emittery
     - env-paths retrieved from https://github.com/sindresorhus/env-paths
-    - escape-goat retrieved from https://github.com/sindresorhus/escape-goat
     - escape-string-regexp retrieved from https://github.com/sindresorhus/escape-string-regexp
     - execa retrieved from https://github.com/sindresorhus/execa
     - figures retrieved from https://github.com/sindresorhus/figures
     - find-up retrieved from https://github.com/sindresorhus/find-up
     - get-stream retrieved from https://github.com/sindresorhus/get-stream
-    - global-dirs retrieved from https://github.com/sindresorhus/global-dirs
     - globals retrieved from https://github.com/sindresorhus/globals
     - globby retrieved from https://github.com/sindresorhus/globby
     - got retrieved from https://github.com/sindresorhus/got
@@ -2132,7 +2148,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - hard-rejection retrieved from https://github.com/sindresorhus/hard-rejection
     - has-ansi retrieved from https://github.com/sindresorhus/has-ansi
     - has-flag retrieved from https://github.com/sindresorhus/has-flag
-    - has-yarn retrieved from https://github.com/sindresorhus/has-yarn
     - html-tags retrieved from https://github.com/sindresorhus/html-tags
     - import-fresh retrieved from https://github.com/sindresorhus/import-fresh
     - import-lazy retrieved from https://github.com/sindresorhus/import-lazy
@@ -2145,15 +2160,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - is-finite retrieved from https://github.com/sindresorhus/is-finite
     - is-fullwidth-code-point retrieved from https://github.com/sindresorhus/is-fullwidth-code-point
     - is-generator-fn retrieved from https://github.com/sindresorhus/is-generator-fn
-    - is-installed-globally retrieved from https://github.com/sindresorhus/is-installed-globally
-    - is-npm retrieved from https://github.com/sindresorhus/is-npm
     - is-obj retrieved from https://github.com/sindresorhus/is-obj
     - is-path-inside retrieved from https://github.com/sindresorhus/is-path-inside
     - is-plain-obj retrieved from https://github.com/sindresorhus/is-plain-obj
     - is-regexp retrieved from https://github.com/sindresorhus/is-regexp
     - is-stream retrieved from https://github.com/sindresorhus/is-stream
     - is-wsl retrieved from https://github.com/sindresorhus/is-wsl
-    - latest-version retrieved from https://github.com/sindresorhus/latest-version
     - leven retrieved from https://github.com/sindresorhus/leven
     - locate-path retrieved from https://github.com/sindresorhus/locate-path
     - lowercase-keys retrieved from https://github.com/sindresorhus/lowercase-keys
@@ -2179,7 +2191,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - p-map retrieved from https://github.com/sindresorhus/p-map
     - p-retry retrieved from https://github.com/sindresorhus/p-retry
     - p-try retrieved from https://github.com/sindresorhus/p-try
-    - package-json retrieved from https://github.com/sindresorhus/package-json
     - parent-module retrieved from https://github.com/sindresorhus/parent-module
     - parse-json retrieved from https://github.com/sindresorhus/parse-json
     - path-exists retrieved from https://github.com/sindresorhus/path-exists
@@ -2189,17 +2200,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - pify retrieved from https://github.com/sindresorhus/pify
     - pkg-dir retrieved from https://github.com/sindresorhus/pkg-dir
     - pkg-up retrieved from https://github.com/sindresorhus/pkg-up
-    - prepend-http retrieved from https://github.com/sindresorhus/prepend-http
     - pretty-bytes retrieved from https://github.com/sindresorhus/pretty-bytes
-    - pupa retrieved from https://github.com/sindresorhus/pupa
     - quick-lru retrieved from https://github.com/sindresorhus/quick-lru
     - read-pkg retrieved from https://github.com/sindresorhus/read-pkg
     - read-pkg-up retrieved from https://github.com/sindresorhus/read-pkg-up
     - redent retrieved from https://github.com/sindresorhus/redent
-    - registry-url retrieved from https://github.com/sindresorhus/registry-url
     - resolve-cwd retrieved from https://github.com/sindresorhus/resolve-cwd
     - resolve-from retrieved from https://github.com/sindresorhus/resolve-from
-    - semver-diff retrieved from https://github.com/sindresorhus/semver-diff
+    - responselike retrieved from https://github.com/sindresorhus/responselike
     - serialize-error retrieved from https://github.com/sindresorhus/serialize-error
     - shebang-regex retrieved from https://github.com/sindresorhus/shebang-regex
     - slash retrieved from https://github.com/sindresorhus/slash
@@ -2213,16 +2221,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - strip-json-comments retrieved from https://github.com/sindresorhus/strip-json-comments
     - temp-dir retrieved from https://github.com/sindresorhus/temp-dir
     - tempy retrieved from https://github.com/sindresorhus/tempy
-    - terminal-link retrieved from https://github.com/sindresorhus/terminal-link
     - to-fast-properties retrieved from https://github.com/sindresorhus/to-fast-properties
-    - to-readable-stream retrieved from https://github.com/sindresorhus/to-readable-stream
     - trim-newlines retrieved from https://github.com/sindresorhus/trim-newlines
     - type-fest retrieved from https://github.com/sindresorhus/type-fest
     - unique-string retrieved from https://github.com/sindresorhus/unique-string
-    - url-parse-lax retrieved from https://github.com/sindresorhus/url-parse-lax
-    - widest-line retrieved from https://github.com/sindresorhus/widest-line
     - write-json-file retrieved from https://github.com/sindresorhus/write-json-file
-    - xdg-basedir retrieved from https://github.com/sindresorhus/xdg-basedir
     - yocto-queue retrieved from https://github.com/sindresorhus/yocto-queue
 
 MIT License
@@ -2238,7 +2241,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
     - airbnb-prop-types retrieved from https://github.com/airbnb/prop-types
-    - babel-plugin-dynamic-import-node retrieved from https://github.com/airbnb/babel-plugin-dynamic-import-node
     - is-touch-device retrieved from https://github.com/airbnb/is-touch-device
     - prop-types-exact retrieved from https://github.com/airbnb/prop-types-exact
     - react-dates retrieved from https://github.com/airbnb/react-dates
@@ -2618,11 +2620,8 @@ OTHER DEALINGS IN THE SOFTWARE.
     - buffer-equal retrieved from https://github.com/substack/node-buffer-equal
     - commondir retrieved from https://github.com/substack/node-commondir
     - concat-map retrieved from https://github.com/substack/node-concat-map
-    - deep-equal retrieved from https://github.com/substack/node-deep-equal
-    - defined retrieved from https://github.com/substack/defined
     - falafel retrieved from https://github.com/substack/node-falafel
     - https-browserify retrieved from https://github.com/substack/https-browserify
-    - minimist retrieved from https://github.com/substack/minimist
     - path-browserify retrieved from https://github.com/substack/path-browserify
     - point-in-polygon retrieved from https://github.com/substack/point-in-polygon
     - quote-stream retrieved from https://github.com/substack/quote-stream
@@ -2630,7 +2629,6 @@ OTHER DEALINGS IN THE SOFTWARE.
     - safe-regex retrieved from https://github.com/substack/safe-regex
     - semver-compare retrieved from https://github.com/substack/semver-compare
     - shallow-copy retrieved from https://github.com/substack/shallow-copy
-    - shell-quote retrieved from https://github.com/substack/node-shell-quote
     - static-module retrieved from https://github.com/substack/static-module
     - text-table retrieved from https://github.com/substack/text-table
     - traverse retrieved from https://github.com/substack/js-traverse
@@ -2667,6 +2665,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - eslint-plugin-enforce-ids-in-jsx retrieved from 
     - highlight-words-core retrieved from github.com/bvaughn/highlight-words-core
     - less-cache retrieved from 
+    - node-win-x64 retrieved from 
     - postcss-resolve-nested-selector retrieved from 
     - tree-changes retrieved from https://github.com/gilbarbara
     - underscore-plus retrieved from 
@@ -2759,6 +2758,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     - array-includes retrieved from https://github.com/es-shims/array-includes
     - array.prototype.flat retrieved from https://github.com/es-shims/Array.prototype.flat
     - array.prototype.flatmap retrieved from https://github.com/es-shims/Array.prototype.flatMap
+    - array.prototype.tosorted retrieved from https://github.com/es-shims/Array.prototype.toSorted
+    - es-set-tostringtag retrieved from https://github.com/es-shims/es-set-tostringtag
     - function.prototype.name retrieved from https://github.com/es-shims/Function.prototype.name
     - object-is retrieved from https://github.com/es-shims/object-is
     - object.entries retrieved from https://github.com/es-shims/Object.entries
@@ -3018,7 +3019,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - compare-version retrieved from https://github.com/kevva/compare-version
     - dir-glob retrieved from https://github.com/kevva/dir-glob
     - is-iexplorer retrieved from https://github.com/kevva/is-iexplorer
-    - npm-conf retrieved from https://github.com/kevva/npm-conf
     - shebang-command retrieved from https://github.com/kevva/shebang-command
 
 MIT License
@@ -3397,9 +3397,43 @@ SOFTWARE.
 
 
 
-    - axios retrieved from https://github.com/axios/axios
+    - available-typed-arrays retrieved from https://github.com/inspect-js/available-typed-arrays
+    - deep-equal retrieved from https://github.com/inspect-js/node-deep-equal
+    - defined retrieved from https://github.com/inspect-js/defined
+    - functions-have-names retrieved from https://github.com/inspect-js/functions-have-names
+    - get-symbol-description retrieved from https://github.com/inspect-js/get-symbol-description
+    - has-property-descriptors retrieved from https://github.com/inspect-js/has-property-descriptors
+    - has-proto retrieved from https://github.com/inspect-js/has-proto
+    - has-symbols retrieved from https://github.com/inspect-js/has-symbols
+    - has-tostringtag retrieved from https://github.com/inspect-js/has-tostringtag
+    - is-arguments retrieved from https://github.com/inspect-js/is-arguments
+    - is-array-buffer retrieved from https://github.com/inspect-js/is-array-buffer
+    - is-bigint retrieved from https://github.com/inspect-js/is-bigint
+    - is-boolean-object retrieved from https://github.com/inspect-js/is-boolean-object
+    - is-callable retrieved from https://github.com/inspect-js/is-callable
+    - is-core-module retrieved from https://github.com/inspect-js/is-core-module
+    - is-date-object retrieved from https://github.com/inspect-js/is-date-object
+    - is-map retrieved from https://github.com/inspect-js/is-map
+    - is-negative-zero retrieved from https://github.com/inspect-js/is-negative-zero
+    - is-number-object retrieved from https://github.com/inspect-js/is-number-object
+    - is-regex retrieved from https://github.com/inspect-js/is-regex
+    - is-set retrieved from https://github.com/inspect-js/is-set
+    - is-shared-array-buffer retrieved from https://github.com/inspect-js/is-shared-array-buffer
+    - is-symbol retrieved from https://github.com/inspect-js/is-symbol
+    - is-typed-array retrieved from https://github.com/inspect-js/is-typed-array
+    - is-weakmap retrieved from https://github.com/inspect-js/is-weakmap
+    - is-weakref retrieved from https://github.com/inspect-js/is-weakref
+    - is-weakset retrieved from https://github.com/inspect-js/is-weakset
+    - object-inspect retrieved from https://github.com/inspect-js/object-inspect
+    - supports-preserve-symlinks-flag retrieved from https://github.com/inspect-js/node-supports-preserve-symlinks-flag
+    - typed-array-length retrieved from https://github.com/inspect-js/typed-array-length
+    - which-boxed-primitive retrieved from https://github.com/inspect-js/which-boxed-primitive
+    - which-collection retrieved from https://github.com/inspect-js/which-collection
+    - which-typed-array retrieved from https://github.com/inspect-js/which-typed-array
 
-Copyright (c) 2014-present Matt Zabriskie
+MIT License
+
+Copyright (c) 2020 Inspect JS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -3408,16 +3442,28 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+    - axios retrieved from https://github.com/axios/axios
+
+# Copyright (c) 2014-present Matt Zabriskie & Collaborators
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
@@ -4103,6 +4149,8 @@ SOFTWARE.
     - queue-microtask retrieved from https://github.com/feross/queue-microtask
     - run-parallel retrieved from https://github.com/feross/run-parallel
     - safe-buffer retrieved from https://github.com/feross/safe-buffer
+    - simple-concat retrieved from https://github.com/feross/simple-concat
+    - simple-get retrieved from https://github.com/feross/simple-get
     - typedarray-to-buffer retrieved from https://github.com/feross/typedarray-to-buffer
 
 The MIT License (MIT)
@@ -4188,9 +4236,36 @@ THE SOFTWARE.
 
 
 
+    - cacheable-lookup retrieved from https://github.com/szmarczak/cacheable-lookup
+    - defer-to-connect retrieved from https://github.com/szmarczak/defer-to-connect
+    - http2-wrapper retrieved from https://github.com/szmarczak/http2-wrapper
+    - resolve-alpn retrieved from https://github.com/szmarczak/resolve-alpn
+
+MIT License
+
+Copyright (c) 2019 Szymon Marczak
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
     - cacheable-request retrieved from https://github.com/lukechilds/cacheable-request
-    - keyv retrieved from https://github.com/lukechilds/keyv
-    - responselike retrieved from https://github.com/lukechilds/responselike
 
 MIT License
 
@@ -4220,18 +4295,22 @@ SOFTWARE.
     - define-properties retrieved from https://github.com/ljharb/define-properties
     - document.contains retrieved from https://github.com/ljharb/document.contains
     - es-abstract retrieved from https://github.com/ljharb/es-abstract
+    - es-get-iterator retrieved from https://github.com/ljharb/es-get-iterator
     - es-shim-unscopables retrieved from https://github.com/ljharb/es-shim-unscopables
     - es-to-primitive retrieved from https://github.com/ljharb/es-to-primitive
     - get-intrinsic retrieved from https://github.com/ljharb/get-intrinsic
     - global-cache retrieved from https://github.com/ljharb/global-cache
     - globalthis retrieved from https://github.com/ljharb/System.global
+    - gopd retrieved from https://github.com/ljharb/gopd
     - has-bigints retrieved from https://github.com/ljharb/has-bigints
     - internal-slot retrieved from https://github.com/ljharb/internal-slot
     - is-string retrieved from https://github.com/ljharb/is-string
     - object-keys retrieved from https://github.com/ljharb/object-keys
     - object.assign retrieved from https://github.com/ljharb/object.assign
     - safe-regex-test retrieved from https://github.com/ljharb/safe-regex-test
+    - shell-quote retrieved from https://github.com/ljharb/shell-quote
     - side-channel retrieved from https://github.com/ljharb/side-channel
+    - stop-iteration-iterator retrieved from https://github.com/ljharb/stop-iteration-iterator
     - tape retrieved from https://github.com/ljharb/tape
     - unbox-primitive retrieved from https://github.com/ljharb/unbox-primitive
 
@@ -4256,6 +4335,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+
+    - canvas retrieved from https://github.com/Automattic/node-canvas
+
 
 
 
@@ -4325,7 +4409,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2018 Thomas Watson Steen
+Copyright (c) 2016-2022 Thomas Watson Steen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -4857,13 +4941,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-    - compute-scroll-into-view retrieved from https://github.com/stipsan/compute-scroll-into-view
-    - scroll-into-view-if-needed retrieved from https://github.com/stipsan/scroll-into-view-if-needed
-    - smooth-scroll-into-view-if-needed retrieved from https://github.com/stipsan/smooth-scroll-into-view-if-needed
+    - compute-scroll-into-view retrieved from https://github.com/scroll-into-view/compute-scroll-into-view
+    - scroll-into-view-if-needed retrieved from https://github.com/scroll-into-view/scroll-into-view-if-needed
 
 MIT License
 
-Copyright (c) 2018 Cody Olsen
+Copyright (c) 2022 Cody Olsen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -5095,7 +5178,6 @@ SOFTWARE.
 
     - core-js retrieved from https://github.com/zloirock/core-js
     - core-js-compat retrieved from https://github.com/zloirock/core-js
-    - core-js-pure retrieved from https://github.com/zloirock/core-js
 
 Copyright (c) 2014-2020 Denis Pushkarev
 
@@ -5532,7 +5614,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - html-encoding-sniffer retrieved from https://github.com/jsdom/html-encoding-sniffer
     - jsdom retrieved from https://github.com/jsdom/jsdom
     - symbol-tree retrieved from https://github.com/jsdom/js-symbol-tree
-    - w3c-hr-time retrieved from https://github.com/jsdom/w3c-hr-time
     - w3c-xmlserializer retrieved from https://github.com/jsdom/w3c-xmlserializer
     - whatwg-encoding retrieved from https://github.com/jsdom/whatwg-encoding
     - whatwg-mimetype retrieved from https://github.com/jsdom/whatwg-mimetype
@@ -5728,55 +5809,17 @@ IN THE SOFTWARE.
 
 
 
-    - decamelize-keys retrieved from https://github.com/dsblv/decamelize-keys
-
-The MIT License (MIT)
-
-Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com), Dmirty Sobolev <disobolev@icloud.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-
     - decode-uri-component retrieved from https://github.com/SamVerschueren/decode-uri-component
 
 The MIT License (MIT)
 
-Copyright (c) Sam Verschueren <sam.verschueren@gmail.com> (github.com/SamVerschueren)
+Copyright (c) 2017, Sam Verschueren <sam.verschueren@gmail.com> (github.com/SamVerschueren)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
@@ -5818,31 +5861,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
-    - deep-extend retrieved from https://github.com/unclechu/node-deep-extend
-
-The MIT License (MIT)
-
-Copyright (c) 2013-2018, Viacheslav Lotsmanov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
     - deepmerge retrieved from https://github.com/TehShrike/deepmerge
 
 The MIT License (MIT)
@@ -5866,32 +5884,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-
-    - defer-to-connect retrieved from https://github.com/szmarczak/defer-to-connect
-
-MIT License
-
-Copyright (c) 2018 Szymon Marczak
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -5955,7 +5947,6 @@ THE SOFTWARE.
     - detect-element-overflow retrieved from https://github.com/wojtekmaj/detect-element-overflow
     - get-user-locale retrieved from https://github.com/wojtekmaj/get-user-locale
     - make-event-props retrieved from https://github.com/wojtekmaj/make-event-props
-    - merge-class-names retrieved from https://github.com/wojtekmaj/merge-class-names
     - react-calendar retrieved from https://github.com/wojtekmaj/react-calendar
     - react-clock retrieved from https://github.com/wojtekmaj/react-clock
     - react-date-picker retrieved from https://github.com/wojtekmaj/react-date-picker
@@ -5966,7 +5957,7 @@ THE SOFTWARE.
 
 MIT License
 
-Copyright (c) 2017-2019 Wojciech Maj
+Copyright (c) 2017–2023 Wojciech Maj
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -6287,32 +6278,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </pre>
 
 <!-- /LICENSEFILE -->
-
-
-
-    - dommatrix retrieved from https://github.com/thednp/dommatrix
-
-MIT License
-
-Copyright (c) 2020 thednp
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -6812,7 +6777,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
     - esbuild retrieved from https://github.com/evanw/esbuild
-    - esbuild-windows-64 retrieved from https://github.com/evanw/esbuild
     - source-map-support retrieved from https://github.com/evanw/node-source-map-support
 
 MIT License
@@ -7115,33 +7079,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-    - eslint-utils retrieved from https://github.com/mysticatea/eslint-utils
-    - regexpp retrieved from https://github.com/mysticatea/regexpp
-
-MIT License
-
-Copyright (c) 2018 Toru Nagashima
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
     - esprima retrieved from https://github.com/jquery/esprima
 
 
@@ -7159,7 +7096,6 @@ SOFTWARE.
     - json-buffer retrieved from https://github.com/dominictarr/json-buffer
     - map-stream retrieved from https://github.com/dominictarr/map-stream
     - pause-stream retrieved from https://github.com/dominictarr/pause-stream
-    - rc retrieved from https://github.com/dominictarr/rc
     - split retrieved from https://github.com/dominictarr/split
     - stream-combiner retrieved from https://github.com/dominictarr/stream-combiner
     - through retrieved from https://github.com/dominictarr/through
@@ -7620,51 +7556,6 @@ OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHE
 
 
 
-    - functions-have-names retrieved from https://github.com/inspect-js/functions-have-names
-    - get-symbol-description retrieved from https://github.com/inspect-js/get-symbol-description
-    - has-property-descriptors retrieved from https://github.com/inspect-js/has-property-descriptors
-    - has-symbols retrieved from https://github.com/inspect-js/has-symbols
-    - has-tostringtag retrieved from https://github.com/inspect-js/has-tostringtag
-    - is-arguments retrieved from https://github.com/inspect-js/is-arguments
-    - is-bigint retrieved from https://github.com/inspect-js/is-bigint
-    - is-boolean-object retrieved from https://github.com/inspect-js/is-boolean-object
-    - is-callable retrieved from https://github.com/inspect-js/is-callable
-    - is-core-module retrieved from https://github.com/inspect-js/is-core-module
-    - is-date-object retrieved from https://github.com/inspect-js/is-date-object
-    - is-negative-zero retrieved from https://github.com/inspect-js/is-negative-zero
-    - is-number-object retrieved from https://github.com/inspect-js/is-number-object
-    - is-regex retrieved from https://github.com/inspect-js/is-regex
-    - is-shared-array-buffer retrieved from https://github.com/inspect-js/is-shared-array-buffer
-    - is-symbol retrieved from https://github.com/inspect-js/is-symbol
-    - is-weakref retrieved from https://github.com/inspect-js/is-weakref
-    - object-inspect retrieved from https://github.com/inspect-js/object-inspect
-    - supports-preserve-symlinks-flag retrieved from https://github.com/inspect-js/node-supports-preserve-symlinks-flag
-    - which-boxed-primitive retrieved from https://github.com/inspect-js/which-boxed-primitive
-
-MIT License
-
-Copyright (c) 2019 Jordan Harband
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
     - gensync retrieved from https://github.com/loganfsmyth/gensync
 
 Copyright 2018 Logan Smyth <loganfsmyth@gmail.com>
@@ -8034,7 +7925,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 MIT License
 
-Copyright (c) 2017 W.Y.
+Copyright (c) 2017-2023 W.Y.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -8377,28 +8268,27 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     - interpret retrieved from https://github.com/gulpjs/interpret
     - rechoir retrieved from https://github.com/gulpjs/rechoir
 
-Copyright (c) 2014-2018 Tyler Kellen <tyler@sleekcode.net>, Blaine Bublitz <blaine.bublitz@gmail.com>, and Eric Schoffstall <yo@contra.io>
+The MIT License (MIT)
 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
+Copyright (c) 2014-2018, 2022 Tyler Kellen <tyler@sleekcode.net>, Blaine Bublitz <blaine.bublitz@gmail.com>, and Eric Schoffstall <yo@contra.io>
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
 
@@ -8559,32 +8449,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-    - is-yarn-global retrieved from https://github.com/LitoMore/is-yarn-global
-
-MIT License
-
-Copyright (c) 2018 LitoMore
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -9392,6 +9256,11 @@ SOFTWARE.
 
 
 
+    - keyv retrieved from https://github.com/jaredwray/keyv
+
+
+
+
     - klaw-sync retrieved from https://github.com/manidlou/node-klaw-sync
 
 The MIT license
@@ -9881,6 +9750,29 @@ THE SOFTWARE.
 
 
 
+    - minimist retrieved from https://github.com/minimistjs/minimist
+
+This software is released under the MIT license:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
     - minimist-options retrieved from https://github.com/vadimdemedes/minimist-options
 
 The MIT License (MIT)
@@ -10075,6 +9967,23 @@ THE SOFTWARE.
 
 
 
+    - nan retrieved from https://github.com/nodejs/nan
+    - node-gyp retrieved from https://github.com/nodejs/node-gyp
+    - readable-stream retrieved from https://github.com/nodejs/readable-stream
+    - string_decoder retrieved from https://github.com/nodejs/string_decoder
+
+The MIT License (MIT)
+
+Copyright (c) 2018 [NAN contributors](<https://github.com/nodejs/nan#wg-members--collaborators>)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
     - nanoid retrieved from https://github.com/ai/nanoid
 
 The MIT License (MIT)
@@ -10246,37 +10155,6 @@ SOFTWARE.
 
 
 
-    - node-gyp retrieved from https://github.com/nodejs/node-gyp
-    - readable-stream retrieved from https://github.com/nodejs/readable-stream
-    - string_decoder retrieved from https://github.com/nodejs/string_decoder
-
-(The MIT License)
-
-Copyright (c) 2012 Nathan Rajlich <nathan@tootallnate.net>
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-
-
     - node-releases retrieved from https://github.com/chicoxyzzy/node-releases
 
 The MIT License
@@ -10354,58 +10232,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
-
-
-    - opener retrieved from https://github.com/domenic/opener
-
-Dual licensed under WTFPL and MIT:
-
----
-
-Copyright © 2012–2020 Domenic Denicola <d@domenic.me>
-
-This work is free. You can redistribute it and/or modify it under the
-terms of the Do What The Fuck You Want To Public License, Version 2,
-as published by Sam Hocevar. See below for more details.
-
-        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
-
- Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
-
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
-
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-
-  0. You just DO WHAT THE FUCK YOU WANT TO.
-
----
-
-The MIT License (MIT)
-
-Copyright © 2012–2020 Domenic Denicola <d@domenic.me>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 
@@ -10514,7 +10340,7 @@ THE SOFTWARE.
 
     - patch-package retrieved from https://github.com/ds300/patch-package
 
-Copyright (c) 2017 David Sheldrick
+Copyright (c) 2017-Present David Sheldrick
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -10562,12 +10388,38 @@ SOFTWARE.
 
 
 
+    - path2d-polyfill retrieved from https://github.com/nilzona/path2d-polyfill
+
+MIT License
+
+Copyright (c) 2018 Anders Nilsson
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
     - pdfmake retrieved from https://github.com/bpampuch/pdfmake
 
 The MIT License (MIT)
 
 Copyright (c) 2014-2015 bpampuch
-              2016-2021 liborm85
+              2016-2022 liborm85
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -10906,6 +10758,31 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+
+    - proxy-from-env retrieved from https://github.com/Rob--W/proxy-from-env
+
+The MIT License
+
+Copyright (C) 2016-2018 Rob Wu <rob@robwu.nl>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
@@ -11487,32 +11364,6 @@ SOFTWARE.
 
 
 
-    - react-notification-system retrieved from https://github.com/igorprado/react-notification-system
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Igor Prado
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-
     - react-player retrieved from https://github.com/CookPete/react-player
 
 The MIT License
@@ -11851,32 +11702,6 @@ SOFTWARE.
 The MIT License (MIT)
 
 Copyright (c) 2015 Athan Reines.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-
-    - registry-auth-token retrieved from https://github.com/rexxars/registry-auth-token
-
-The MIT License (MIT)
-
-Copyright (c) 2016 Espen Hovlandsdal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -12989,6 +12814,32 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
+    - simple-update-notifier retrieved from https://github.com/alexbrazier/simple-update-notifier
+
+MIT License
+
+Copyright (c) 2022 Alex Brazier
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
     - smart-buffer retrieved from https://github.com/JoshGlazebrook/smart-buffer
     - socks retrieved from https://github.com/JoshGlazebrook/socks
 
@@ -13012,6 +12863,32 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+    - smooth-scroll-into-view-if-needed retrieved from https://github.com/stipsan/smooth-scroll-into-view-if-needed
+
+MIT License
+
+Copyright (c) 2018 Cody Olsen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
 
@@ -13133,7 +13010,7 @@ SOFTWARE.
 
 The MIT License (MIT)
 
-Copyright (c) Isaac Z. Schlueter <i@izs.me>, James Talmage <james@talmage.io> (github.com/jamestalmage), and Contributors
+Copyright (c) 2016-2022 Isaac Z. Schlueter <i@izs.me>, James Talmage <james@talmage.io> (github.com/jamestalmage), and Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -13608,32 +13485,6 @@ SOFTWARE.
 
 
 
-    - tunnel retrieved from https://github.com/koichik/node-tunnel
-
-The MIT License (MIT)
-
-Copyright (c) 2012 Koichi Kobayashi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-
     - type-detect retrieved from https://github.com/chaijs/type-detect
 
 Copyright (c) 2013 Jake Luer <jake@alogicalparadox.com> (http://alogicalparadox.com)
@@ -13757,8 +13608,7 @@ SOFTWARE.
 
     - underscore retrieved from https://github.com/jashkenas/underscore
 
-Copyright (c) 2009-2018 Jeremy Ashkenas, DocumentCloud and Investigative
-Reporters & Editors
+Copyright (c) 2009-2022 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -14358,24 +14208,25 @@ SOFTWARE.
     - ws retrieved from https://github.com/websockets/ws
 
 Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+Copyright (c) 2013 Arnout Kazemier and contributors
+Copyright (c) 2016 Luigi Pinca and contributors
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
@@ -14538,7 +14389,7 @@ SOFTWARE.
 
 ### SECTION 2: BSD LICENSE
 
-The BSD License is applicable to the following 101 component(s).
+The BSD License is applicable to the following 96 component(s).
 
 
 
@@ -14608,20 +14459,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
-    - browser-process-hrtime retrieved from https://github.com/kumavis/browser-process-hrtime
-
-Copyright 2014 kumavis
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
     - cidr-regex retrieved from https://github.com/silverwind/cidr-regex
     - default-gateway retrieved from https://github.com/silverwind/default-gateway
     - is-cidr retrieved from https://github.com/silverwind/is-cidr
@@ -14648,38 +14485,6 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
-    - configstore retrieved from https://github.com/yeoman/configstore
-    - stringify-object retrieved from https://github.com/yeoman/stringify-object
-    - update-notifier retrieved from https://github.com/yeoman/update-notifier
-
-BSD 2-Clause License
-
-Copyright (c) Google
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
@@ -14934,21 +14739,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
-    - duplexer3 retrieved from https://github.com/sindresorhus/duplexer3
-
-Copyright (c) 2022, Sindre Sorhus.
-Copyright (c) 2020, Vsevolod Strukchinsky.
-Copyright (c) 2013, Deoxxa Development.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
     - electron-osx-sign retrieved from https://github.com/electron-userland/electron-osx-sign
 
 Copyright (c) 2015-2016 Zhuo Lu, Jason Hinkle, et al.
@@ -15167,23 +14957,6 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-
-    - global-tunnel-ng retrieved from https://github.com/np-maintain/global-tunnel
-
-Copyright (c) 2013, GoInstant Inc., a salesforce.com company
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-* Neither the name of salesforce.com, nor GoInstant, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
@@ -15914,7 +15687,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     - sprintf-js retrieved from https://github.com/alexei/sprintf.js
 
-Copyright (c) 2007-present, Alexandru Mărășteanu <hello@alexei.ro>
+Copyright (c) 2007-2014, Alexandru Marasteanu <hello [at) alexei (dot] ro>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -15932,6 +15705,33 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+    - stringify-object retrieved from https://github.com/yeoman/stringify-object
+
+Copyright (c) 2015, Yeoman team
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
 ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -16044,151 +15844,11 @@ The views and conclusions contained in the software and documentation are those 
 
 ### SECTION 3: ISC LICENSE
 
-The ISC License is applicable to the following 143 component(s).
+The ISC License is applicable to the following 140 component(s).
 
 
 
-    - abbrev retrieved from https://github.com/isaacs/abbrev-js
-    - chownr retrieved from https://github.com/isaacs/chownr
-    - color-support retrieved from https://github.com/isaacs/color-support
-    - common-ancestor-path retrieved from https://github.com/isaacs/common-ancestor-path
-    - glob retrieved from https://github.com/isaacs/node-glob
-    - graceful-fs retrieved from https://github.com/isaacs/node-graceful-fs
-    - inherits retrieved from https://github.com/isaacs/inherits
-    - isexe retrieved from https://github.com/isaacs/isexe
-    - json-stringify-nice retrieved from https://github.com/isaacs/json-stringify-nice
-    - json-stringify-safe retrieved from https://github.com/isaacs/json-stringify-safe
-    - lru-cache retrieved from https://github.com/isaacs/node-lru-cache
-    - minimatch retrieved from https://github.com/isaacs/minimatch
-    - minipass retrieved from https://github.com/isaacs/minipass
-    - minipass-flush retrieved from https://github.com/isaacs/minipass-flush
-    - minipass-sized retrieved from https://github.com/isaacs/minipass-sized
-    - mkdirp-infer-owner retrieved from https://github.com/isaacs/mkdirp-infer-owner
-    - mute-stream retrieved from https://github.com/isaacs/mute-stream
-    - once retrieved from https://github.com/isaacs/once
-    - promise-call-limit retrieved from https://github.com/isaacs/promise-call-limit
-    - promzard retrieved from https://github.com/isaacs/promzard
-    - proto-list retrieved from https://github.com/isaacs/proto-list
-    - read retrieved from https://github.com/isaacs/read
-    - read-installed retrieved from https://github.com/isaacs/read-installed
-    - rimraf retrieved from https://github.com/isaacs/rimraf
-    - sax retrieved from https://github.com/isaacs/sax-js
-    - slide retrieved from https://github.com/isaacs/slide-flow-control
-    - walk-up-path retrieved from https://github.com/isaacs/walk-up-path
-    - which retrieved from https://github.com/isaacs/node-which
-    - yallist retrieved from https://github.com/isaacs/yallist
-
-This software is dual-licensed under the ISC and MIT licenses.
-You may use this software under EITHER of the following licenses.
-
-----------
-
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-----------
-
-Copyright Isaac Z. Schlueter and Contributors
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-    - ansi-align retrieved from https://github.com/nexdrew/ansi-align
-    - which-module retrieved from https://github.com/nexdrew/which-module
-
-Copyright (c) 2016, Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
-
-
-
-    - anymatch retrieved from https://github.com/micromatch/anymatch
-
-The ISC License
-
-Copyright (c) 2019 Elan Shanker, Paul Miller (https://paulmillr.com)
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-
-
-    - aproba retrieved from https://github.com/iarna/aproba
-    - console-control-strings retrieved from https://github.com/iarna/console-control-strings
-    - has-unicode retrieved from https://github.com/iarna/has-unicode
-    - promise-inflight retrieved from https://github.com/iarna/promise-inflight
-    - wide-align retrieved from https://github.com/iarna/wide-align
-
-Copyright (c) 2015, Rebecca Turner <me@re-becca.org>
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-
-
-
+    - abbrev retrieved from https://github.com/npm/abbrev-js
     - are-we-there-yet retrieved from https://github.com/npm/are-we-there-yet
     - bin-links retrieved from https://github.com/npm/bin-links
     - cacache retrieved from https://github.com/npm/cacache
@@ -16240,24 +15900,95 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     - wrappy retrieved from https://github.com/npm/wrappy
     - write-file-atomic retrieved from https://github.com/npm/write-file-atomic
 
-ISC License
+This software is dual-licensed under the ISC and MIT licenses.
+You may use this software under EITHER of the following licenses.
 
-Copyright npm, Inc.
+----------
 
-Permission to use, copy, modify, and/or distribute this
-software for any purpose with or without fee is hereby
-granted, provided that the above copyright notice and this
-permission notice appear in all copies.
+The ISC License
 
-THE SOFTWARE IS PROVIDED "AS IS" AND NPM DISCLAIMS ALL
-WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO
-EVENT SHALL NPM BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS SOFTWARE.
+Copyright (c) Isaac Z. Schlueter and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+----------
+
+Copyright Isaac Z. Schlueter and Contributors
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+    - anymatch retrieved from https://github.com/micromatch/anymatch
+
+The ISC License
+
+Copyright (c) 2019 Elan Shanker, Paul Miller (https://paulmillr.com)
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+
+    - aproba retrieved from https://github.com/iarna/aproba
+    - console-control-strings retrieved from https://github.com/iarna/console-control-strings
+    - has-unicode retrieved from https://github.com/iarna/has-unicode
+    - promise-inflight retrieved from https://github.com/iarna/promise-inflight
+    - wide-align retrieved from https://github.com/iarna/wide-align
+
+Copyright (c) 2015, Rebecca Turner <me@re-becca.org>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 
 
 
@@ -16288,6 +16019,51 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+
+    - chownr retrieved from https://github.com/isaacs/chownr
+    - color-support retrieved from https://github.com/isaacs/color-support
+    - common-ancestor-path retrieved from https://github.com/isaacs/common-ancestor-path
+    - glob retrieved from https://github.com/isaacs/node-glob
+    - graceful-fs retrieved from https://github.com/isaacs/node-graceful-fs
+    - inherits retrieved from https://github.com/isaacs/inherits
+    - isexe retrieved from https://github.com/isaacs/isexe
+    - json-stringify-nice retrieved from https://github.com/isaacs/json-stringify-nice
+    - json-stringify-safe retrieved from https://github.com/isaacs/json-stringify-safe
+    - lru-cache retrieved from https://github.com/isaacs/node-lru-cache
+    - minimatch retrieved from https://github.com/isaacs/minimatch
+    - minipass retrieved from https://github.com/isaacs/minipass
+    - minipass-flush retrieved from https://github.com/isaacs/minipass-flush
+    - minipass-sized retrieved from https://github.com/isaacs/minipass-sized
+    - mute-stream retrieved from https://github.com/isaacs/mute-stream
+    - once retrieved from https://github.com/isaacs/once
+    - promise-call-limit retrieved from https://github.com/isaacs/promise-call-limit
+    - promzard retrieved from https://github.com/isaacs/promzard
+    - read retrieved from https://github.com/isaacs/read
+    - read-installed retrieved from https://github.com/isaacs/read-installed
+    - rimraf retrieved from https://github.com/isaacs/rimraf
+    - sax retrieved from https://github.com/isaacs/sax-js
+    - slide retrieved from https://github.com/isaacs/slide-flow-control
+    - walk-up-path retrieved from https://github.com/isaacs/walk-up-path
+    - which retrieved from https://github.com/isaacs/node-which
+    - yallist retrieved from https://github.com/isaacs/yallist
+
+The ISC License
+
+Copyright (c) Isaac Z. Schlueter and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
 
@@ -16776,6 +16552,24 @@ THIS SOFTWARE.
 
 
 
+    - which-module retrieved from https://github.com/nexdrew/which-module
+
+Copyright (c) 2016, Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+
+
     - yaml retrieved from https://github.com/eemeli/yaml
 
 Copyright 2018 Eemeli Aro <eemeli@gmail.com>
@@ -16796,7 +16590,7 @@ THIS SOFTWARE.
 
 ### SECTION 4: Apache LICENSE
 
-The Apache License is applicable to the following 34 component(s).
+The Apache License is applicable to the following 35 component(s).
 
 
 
@@ -17450,6 +17244,212 @@ limitations under the License.
 
 
     - deep-clone-simple retrieved from https://github.com/balloob/deep-clone-simple
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "{}"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright {yyyy} {name of copyright owner}
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+
+    - detect-libc retrieved from https://github.com/lovell/detect-libc
 
                                  Apache License
                            Version 2.0, January 2004
