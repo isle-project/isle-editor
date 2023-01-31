@@ -437,6 +437,18 @@ const ToolboxTabs = ({ categorical, quantitative, originalQuantitative, grouping
 					t={t}
 				/>;
 				break;
+			case 'Simple Linear Regression':
+				content = <SimpleLinearRegression
+					categorical={categorical}
+					quantitative={quantitative}
+					onCreated={onCreated}
+					data={data}
+					logAction={logAction}
+					session={session}
+					onPredict={onPredict['simple-linear-regression']}
+					t={t}
+				/>;
+				break;
 			}
 			return ( <Tab.Pane key={i} eventKey={`4.${i+1}`}>
 				{content}
