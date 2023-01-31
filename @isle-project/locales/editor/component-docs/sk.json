@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "ovláda, či má používateľa upozorniť na nedokončené otázky alebo či má automaticky odoslať všetky otvorené otázky, na ktoré boli zadané odpovede, a ukončiť lekciu.",
 	"LessonSubmit-prop-className": "názov triedy",
 	"LessonSubmit-prop-coverage": "zoznam identifikátorov, ktoré sa majú predložiť a zahrnúť do dokumentu s odpoveďou",
+	"LessonSubmit-prop-includeSolutions": "kontroluje, či sa do dokumentu s odpoveďou majú zahrnúť riešenia otázok.",
 	"LessonSubmit-prop-label": "označenie tlačidla odoslania",
 	"LessonSubmit-prop-message": "správa pre potvrdzujúci e-mail",
 	"LessonSubmit-prop-onClick": "spätné volanie vyvolané po kliknutí na tlačidlo odoslania",

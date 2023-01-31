@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "styr om användaren ska varnas om det finns oavslutade frågor eller om alla öppna frågor som har skrivna svar ska skickas in automatiskt och lektionen avslutas.",
 	"LessonSubmit-prop-className": "klassens namn",
 	"LessonSubmit-prop-coverage": "Förteckning över identifierare som ska lämnas in och ingå i svarsdokumentet.",
+	"LessonSubmit-prop-includeSolutions": "kontrollerar om frågelösningarna ska inkluderas i svarsdokumentet",
 	"LessonSubmit-prop-label": "Etikett för knappen \"Skicka\".",
 	"LessonSubmit-prop-message": "meddelande för bekräftelse via e-post",
 	"LessonSubmit-prop-onClick": "callback som aktiveras när man klickar på inlämningsknappen",

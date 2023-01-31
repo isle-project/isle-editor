@@ -20,5 +20,6 @@
 	"submit": "Enviar para",
 	"successfully-completed": "concluído com sucesso",
 	"unfinished": "Inacabado",
-	"unfinished-lesson-msg": "Você tem perguntas inacabadas. Você tem certeza de que quer finalizar a sessão de qualquer maneira?"
+	"unfinished-lesson-msg": "Você tem perguntas inacabadas. Você tem certeza de que quer finalizar a sessão de qualquer maneira?",
+	"your-answer": "Sua(s) resposta(ões)"
 }

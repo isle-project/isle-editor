@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "controlează dacă trebuie să alerteze utilizatorul în cazul în care există întrebări neterminate sau dacă trebuie să trimită automat toate întrebările deschise care au răspunsuri tastate și să încheie lecția.",
 	"LessonSubmit-prop-className": "numele clasei",
 	"LessonSubmit-prop-coverage": "lista elementelor de identificare care trebuie prezentate și incluse în documentul de răspuns",
+	"LessonSubmit-prop-includeSolutions": "controlează dacă se includ sau nu soluțiile întrebărilor în documentul de răspuns",
 	"LessonSubmit-prop-label": "eticheta butonului de trimitere",
 	"LessonSubmit-prop-message": "mesaj pentru e-mail de confirmare",
 	"LessonSubmit-prop-onClick": "callback invocat atunci când se face clic pe butonul de trimitere",

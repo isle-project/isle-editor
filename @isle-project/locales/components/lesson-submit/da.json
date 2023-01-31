@@ -20,5 +20,6 @@
 	"submit": "Indsend",
 	"successfully-completed": "afsluttet med succes",
 	"unfinished": "Ufærdige",
-	"unfinished-lesson-msg": "Du har uafsluttede spørgsmål. Er du sikker på, at du alligevel vil afslutte sessionen?"
+	"unfinished-lesson-msg": "Du har uafsluttede spørgsmål. Er du sikker på, at du alligevel vil afslutte sessionen?",
+	"your-answer": "Dit (dine) svar"
 }

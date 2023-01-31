@@ -20,5 +20,6 @@
 	"submit": "Invia a",
 	"successfully-completed": "completato con successo",
 	"unfinished": "Incompiuto",
-	"unfinished-lesson-msg": "Ci sono domande non concluse. È sicuro di voler concludere la sessione in ogni caso?"
+	"unfinished-lesson-msg": "Ci sono domande non concluse. È sicuro di voler concludere la sessione in ogni caso?",
+	"your-answer": "Le vostre risposte"
 }

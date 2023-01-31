@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "controlla se avvisare l'utente se ci sono domande non concluse o se inviare automaticamente tutte le domande aperte con risposte digitate e terminare la lezione.",
 	"LessonSubmit-prop-className": "nome della classe",
 	"LessonSubmit-prop-coverage": "elenco di identificatori da presentare e includere nel documento di risposta",
+	"LessonSubmit-prop-includeSolutions": "controlla se includere o meno le soluzioni alle domande nel documento di risposta.",
 	"LessonSubmit-prop-label": "etichetta del pulsante di invio",
 	"LessonSubmit-prop-message": "messaggio per e-mail di conferma",
 	"LessonSubmit-prop-onClick": "richiamata quando si clicca sul pulsante di invio",

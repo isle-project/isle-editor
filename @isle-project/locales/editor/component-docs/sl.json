@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "nadzoruje, ali naj uporabnika opozori na nedokončana vprašanja ali naj samodejno pošlje vsa odprta vprašanja, na katera so vneseni odgovori, in zaključi lekcijo.",
 	"LessonSubmit-prop-className": "ime razreda",
 	"LessonSubmit-prop-coverage": "seznam identifikatorjev, ki jih je treba predložiti in vključiti v odgovorni dokument",
+	"LessonSubmit-prop-includeSolutions": "nadzoruje, ali naj se rešitve vprašanj vključijo v dokument z odgovori.",
 	"LessonSubmit-prop-label": "oznaka gumba za oddajo",
 	"LessonSubmit-prop-message": "sporočilo za potrditveno e-pošto",
 	"LessonSubmit-prop-onClick": "povratni klic, ki se sproži ob kliku na gumb za oddajo.",

@@ -20,5 +20,6 @@
 	"submit": "Esita",
 	"successfully-completed": "edukalt lõpetatud",
 	"unfinished": "Lõpetamata",
-	"unfinished-lesson-msg": "Teil on lõpetamata küsimusi. Kas olete kindel, et soovite ikkagi lõpetada seansi?"
+	"unfinished-lesson-msg": "Teil on lõpetamata küsimusi. Kas olete kindel, et soovite ikkagi lõpetada seansi?",
+	"your-answer": "Teie vastus(ed)"
 }

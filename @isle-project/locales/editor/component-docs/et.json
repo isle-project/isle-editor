@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "kontrollib, kas kasutajat hoiatatakse, kui on lõpetamata küsimusi, või esitatakse automaatselt kõik lahtised küsimused, millele on sisestatud vastused, ja lõpetatakse õppetund.",
 	"LessonSubmit-prop-className": "klassi nimi",
 	"LessonSubmit-prop-coverage": "esitatud ja vastusdokumendis sisalduvate identifikaatorite loetelu",
+	"LessonSubmit-prop-includeSolutions": "kontrollib, kas küsimuste lahendused lisatakse vastusdokumenti.",
 	"LessonSubmit-prop-label": "nupu esitamise silt",
 	"LessonSubmit-prop-message": "sõnum kinnituse e-kirja jaoks",
 	"LessonSubmit-prop-onClick": "callback, mis kutsutakse esile, kui vajutatakse esitamisnupule",

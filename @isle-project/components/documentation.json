@@ -3335,6 +3335,12 @@
 				"defaultValue": null
 			},
 			{
+				"name": "includeSolutions",
+				"type": "boolean",
+				"description": "LessonSubmit-prop-includeSolutions",
+				"defaultValue": false
+			},
+			{
 				"name": "label",
 				"type": "string",
 				"description": "LessonSubmit-prop-label",
@@ -8375,6 +8381,11 @@
 				"type": "boolean",
 				"description": "TextEditor-prop-canLoadHTML",
 				"defaultValue": true
+			},
+			{
+				"name": "connectionLostMessage",
+				"type": "string",
+				"defaultValue": "Please check your internet connection. To prevent data loss, save the HTML version of your report."
 			},
 			{
 				"name": "defaultValue",

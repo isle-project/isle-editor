@@ -20,5 +20,6 @@
 	"submit": "Soumettre",
 	"successfully-completed": "achevé avec succès",
 	"unfinished": "Inachevé",
-	"unfinished-lesson-msg": "Vous avez des questions inachevées. Êtes-vous sûr de vouloir quand même finaliser la session ?"
+	"unfinished-lesson-msg": "Vous avez des questions inachevées. Êtes-vous sûr de vouloir quand même finaliser la session ?",
+	"your-answer": "Votre/vos réponse(s)"
 }

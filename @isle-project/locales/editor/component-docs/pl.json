@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "kontroluje, czy ostrzegać użytkownika, jeśli są niedokończone pytania lub czy automatycznie przesłać wszystkie otwarte pytania, które mają wpisane odpowiedzi i zakończyć lekcję",
 	"LessonSubmit-prop-className": "nazwa klasy",
 	"LessonSubmit-prop-coverage": "lista identyfikatorów, które należy przekazać i zawrzeć w dokumencie odpowiedzi",
+	"LessonSubmit-prop-includeSolutions": "kontroluje, czy rozwiązania pytań mają być zawarte w dokumencie odpowiedzi",
 	"LessonSubmit-prop-label": "etykieta przycisku przedłożenia",
 	"LessonSubmit-prop-message": "wiadomość do potwierdzenia e-mail",
 	"LessonSubmit-prop-onClick": "wywołanie zwrotne po kliknięciu przycisku zgłoszenia",

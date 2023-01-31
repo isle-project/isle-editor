@@ -20,5 +20,6 @@
 	"submit": "Abschicken",
 	"successfully-completed": "erfolgreich abgeschlossen",
 	"unfinished": "Unvollendete",
-	"unfinished-lesson-msg": "Sie haben noch offene Fragen. Sind Sie sicher, dass Sie die Sitzung trotzdem abschließen wollen?"
+	"unfinished-lesson-msg": "Sie haben noch offene Fragen. Sind Sie sicher, dass Sie die Sitzung trotzdem abschließen wollen?",
+	"your-answer": "Ihre Antwort(en)"
 }

@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "steuert, ob der Benutzer bei offenen Fragen benachrichtigt werden soll oder ob alle offenen Fragen mit eingegebenen Antworten automatisch eingereicht und die Lektion beendet werden soll",
 	"LessonSubmit-prop-className": "Klassenname",
 	"LessonSubmit-prop-coverage": "Liste der zu übermittelnden und in das Antwortdokument aufzunehmenden Identifikatoren",
+	"LessonSubmit-prop-includeSolutions": "steuert, ob die Lösungen der Fragen in das Antwortdokument aufgenommen werden sollen",
 	"LessonSubmit-prop-label": "Beschriftung der Submit-Taste",
 	"LessonSubmit-prop-message": "Nachricht für Bestätigungsmail",
 	"LessonSubmit-prop-onClick": "Callback, der beim Klicken auf die Schaltfläche \"Senden\" aufgerufen wird",

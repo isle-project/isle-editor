@@ -20,5 +20,6 @@
 	"submit": "Pateikti",
 	"successfully-completed": "sėkmingai užbaigtas",
 	"unfinished": "Nebaigtas",
-	"unfinished-lesson-msg": "Turite nebaigtų klausimų. Ar tikrai norite užbaigti sesiją?"
+	"unfinished-lesson-msg": "Turite nebaigtų klausimų. Ar tikrai norite užbaigti sesiją?",
+	"your-answer": "Jūsų atsakymas (-ai)"
 }

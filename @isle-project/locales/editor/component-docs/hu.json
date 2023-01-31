@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "szabályozza, hogy figyelmeztesse a felhasználót, ha vannak befejezetlen kérdések, vagy automatikusan elküldje az összes nyitott kérdést, amelyre beírt válaszok vannak, és befejezze a leckét.",
 	"LessonSubmit-prop-className": "osztály neve",
 	"LessonSubmit-prop-coverage": "a benyújtandó és a válaszdokumentumban szereplő azonosítók jegyzéke",
+	"LessonSubmit-prop-includeSolutions": "ellenőrzi, hogy a kérdésmegoldások szerepeljenek-e a válaszdokumentumban.",
 	"LessonSubmit-prop-label": "az elküldés gomb címkéje",
 	"LessonSubmit-prop-message": "üzenet a visszaigazoló e-mailhez",
 	"LessonSubmit-prop-onClick": "a benyújtás gombra való kattintáskor előhívott callback",

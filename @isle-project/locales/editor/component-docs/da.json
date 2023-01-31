@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "styrer, om brugeren skal advares, hvis der er uafsluttede spørgsmål, eller om alle åbne spørgsmål med indtastede svar skal indsendes automatisk, så lektionen afsluttes.",
 	"LessonSubmit-prop-className": "klassens navn",
 	"LessonSubmit-prop-coverage": "liste over identifikatorer, der skal indsendes og indgå i svardokumentet",
+	"LessonSubmit-prop-includeSolutions": "styrer, om der skal medtages spørgsmålsløsninger i svardokumentet",
 	"LessonSubmit-prop-label": "etiketten på knappen \"Send",
 	"LessonSubmit-prop-message": "besked til bekræftelses-e-mail",
 	"LessonSubmit-prop-onClick": "callback, der påkaldes, når der klikkes på indsendelsesknappen",

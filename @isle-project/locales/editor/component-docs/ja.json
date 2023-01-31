@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "は、未完成の問題がある場合、ユーザに警告するか、または入力された答えを持つすべての未解決問題を自動的に提出して、レッスンを終了するかどうかをコントロールします。",
 	"LessonSubmit-prop-className": "クラス名",
 	"LessonSubmit-prop-coverage": "提出する識別子のリストと回答文書に含まれる識別子のリスト",
+	"LessonSubmit-prop-includeSolutions": "は、問題の解答を回答文書に含めるかどうかを制御します。",
 	"LessonSubmit-prop-label": "送信ボタンのラベル",
 	"LessonSubmit-prop-message": "確認メールのメッセージ",
 	"LessonSubmit-prop-onClick": "投稿ボタンをクリックしたときに呼び出されるコールバック",

@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "kontrolē, vai lietotājs tiks brīdināts, ja ir nepabeigti jautājumi, vai arī automātiski tiks iesniegti visi atvērtie jautājumi, uz kuriem ir ievadītas atbildes, un pabeigta mācību stunda.",
 	"LessonSubmit-prop-className": "klases nosaukums",
 	"LessonSubmit-prop-coverage": "to identifikatoru saraksts, kas jāiesniedz un jāiekļauj atbildes dokumentā.",
+	"LessonSubmit-prop-includeSolutions": "kontrolē, vai atbildes dokumentā iekļaut jautājumu risinājumus.",
 	"LessonSubmit-prop-label": "iesniegt pogas etiķete",
 	"LessonSubmit-prop-message": "apstiprinājuma e-pasta ziņa",
 	"LessonSubmit-prop-onClick": "atsauces zvans, kas tiek izsaukts, noklikšķinot uz iesniegšanas pogas.",

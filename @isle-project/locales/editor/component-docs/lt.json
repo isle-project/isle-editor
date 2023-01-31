@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "kontroliuoja, ar įspėti naudotoją, jei yra nebaigtų klausimų, ar automatiškai pateikti visus nebaigtus klausimus, į kuriuos įvesti atsakymai, ir užbaigti pamoką.",
 	"LessonSubmit-prop-className": "klasės pavadinimas",
 	"LessonSubmit-prop-coverage": "pateiktinų ir į atsakymo dokumentą įtrauktinų identifikatorių sąrašas",
+	"LessonSubmit-prop-includeSolutions": "kontroliuoja, ar į atsakymo dokumentą įtraukti klausimų sprendimus.",
 	"LessonSubmit-prop-label": "pateikimo mygtuko etiketė",
 	"LessonSubmit-prop-message": "žinutė patvirtinimo el. paštui",
 	"LessonSubmit-prop-onClick": "grįžtamasis ryšys, inicijuojamas paspaudus pateikimo mygtuką.",

@@ -20,5 +20,6 @@
 	"submit": "Zgłoś się",
 	"successfully-completed": "pomyślnie zakończony",
 	"unfinished": "Niedokończone",
-	"unfinished-lesson-msg": "Masz niedokończone pytania. Czy na pewno chcesz mimo wszystko sfinalizować sesję?"
+	"unfinished-lesson-msg": "Masz niedokończone pytania. Czy na pewno chcesz mimo wszystko sfinalizować sesję?",
+	"your-answer": "Twoja odpowiedź (odpowiedzi)"
 }

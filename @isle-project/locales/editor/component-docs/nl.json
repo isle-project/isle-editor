@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "bepaalt of de gebruiker moet worden gewaarschuwd als er onvoltooide vragen zijn of dat alle open vragen met getypte antwoorden automatisch moeten worden ingediend en de les moet worden afgesloten.",
 	"LessonSubmit-prop-className": "klassennaam",
 	"LessonSubmit-prop-coverage": "lijst van identificatiegegevens die moeten worden ingediend en in het antwoorddocument moeten worden opgenomen",
+	"LessonSubmit-prop-includeSolutions": "bepaalt of vraagoplossingen in het antwoorddocument moeten worden opgenomen",
 	"LessonSubmit-prop-label": "label van verzendknop",
 	"LessonSubmit-prop-message": "bericht ter bevestiging e-mail",
 	"LessonSubmit-prop-onClick": "terugroeping aangeroepen bij het klikken op de indieningsknop",

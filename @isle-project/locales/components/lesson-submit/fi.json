@@ -20,5 +20,6 @@
 	"submit": "Lähetä",
 	"successfully-completed": "onnistuneesti suoritettu",
 	"unfinished": "Keskeneräinen",
-	"unfinished-lesson-msg": "Sinulla on keskeneräisiä kysymyksiä. Oletko varma, että haluat kuitenkin päättää istunnon?"
+	"unfinished-lesson-msg": "Sinulla on keskeneräisiä kysymyksiä. Oletko varma, että haluat kuitenkin päättää istunnon?",
+	"your-answer": "Vastauksesi (vastauksesi)"
 }

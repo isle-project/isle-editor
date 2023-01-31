@@ -20,5 +20,6 @@
 	"submit": "Skicka in",
 	"successfully-completed": "framgångsrikt genomförd.",
 	"unfinished": "Oavslutad",
-	"unfinished-lesson-msg": "Du har oavslutade frågor. Är du säker på att du vill avsluta sessionen ändå?"
+	"unfinished-lesson-msg": "Du har oavslutade frågor. Är du säker på att du vill avsluta sessionen ändå?",
+	"your-answer": "Dina svar"
 }

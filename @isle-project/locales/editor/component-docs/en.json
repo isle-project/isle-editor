@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "controls whether to alert the user if there are unfinished questions or whether to automatically submit all open questions that have typed answers and finish the lesson",
 	"LessonSubmit-prop-className": "class name",
 	"LessonSubmit-prop-coverage": "list of identifiers to be submitted and included in the response document",
+	"LessonSubmit-prop-includeSolutions": "controls whether to include question solutions in the response document",
 	"LessonSubmit-prop-label": "label of submit button",
 	"LessonSubmit-prop-message": "message for confirmation email",
 	"LessonSubmit-prop-onClick": "callback invoked when clicking on the submission button",

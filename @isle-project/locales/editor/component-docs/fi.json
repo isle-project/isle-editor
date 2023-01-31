@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "valvoo, ilmoitetaanko käyttäjälle, jos on keskeneräisiä kysymyksiä, vai lähetetäänkö automaattisesti kaikki avoimet kysymykset, joihin on kirjoitettu vastaukset, ja lopetetaanko oppitunti.",
 	"LessonSubmit-prop-className": "luokan nimi",
 	"LessonSubmit-prop-coverage": "luettelo tunnisteista, jotka on toimitettava ja sisällytettävä vastausasiakirjaan.",
+	"LessonSubmit-prop-includeSolutions": "valvoo, sisällytetäänkö kysymysten ratkaisut vastausasiakirjaan.",
 	"LessonSubmit-prop-label": "lähetä-painikkeen etiketti",
 	"LessonSubmit-prop-message": "viesti vahvistussähköpostia varten",
 	"LessonSubmit-prop-onClick": "callback, joka käynnistetään, kun napsautetaan lähetyspainiketta.",

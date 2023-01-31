@@ -20,5 +20,6 @@
 	"submit": "Presentar",
 	"successfully-completed": "completado con éxito",
 	"unfinished": "Sin terminar",
-	"unfinished-lesson-msg": "Tiene preguntas pendientes. ¿Estás seguro de que quieres finalizar la sesión de todos modos?"
+	"unfinished-lesson-msg": "Tiene preguntas pendientes. ¿Estás seguro de que quieres finalizar la sesión de todos modos?",
+	"your-answer": "Su(s) respuesta(s)"
 }

@@ -616,6 +616,7 @@
 	"LessonSubmit-prop-alertUnfinished": "controla se o usuário deve alertar se há perguntas inacabadas ou se deve enviar automaticamente todas as perguntas abertas que tenham digitado respostas e terminar a lição",
 	"LessonSubmit-prop-className": "nome da classe",
 	"LessonSubmit-prop-coverage": "lista de identificadores a serem apresentados e incluídos no documento de resposta",
+	"LessonSubmit-prop-includeSolutions": "controla se as soluções de perguntas devem ser incluídas no documento de resposta",
 	"LessonSubmit-prop-label": "etiqueta do botão submeter",
 	"LessonSubmit-prop-message": "mensagem para confirmação e-mail",
 	"LessonSubmit-prop-onClick": "chamada de retorno invocada ao clicar no botão de submissão",

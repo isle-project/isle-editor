@@ -20,5 +20,6 @@
 	"submit": "Submit",
 	"successfully-completed": "successfully completed",
 	"unfinished": "Unfinished",
-	"unfinished-lesson-msg": "You have unfinished questions. Are you sure you want to finalize the session anyway?"
+	"unfinished-lesson-msg": "You have unfinished questions. Are you sure you want to finalize the session anyway?",
+	"your-answer": "Your answer(s)"
 }
