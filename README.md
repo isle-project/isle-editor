@@ -161,7 +161,7 @@ The following icons are used under a Creative Commons CCBY license.
 [license-image]: https://img.shields.io/badge/license-Apache2-blue.svg
 [license-url]: https://raw.githubusercontent.com/isle-project/isle-editor/master/LICENSE.md
 
-[actions-image]: https://github.com/isle-project/isle-editor/workflows/Electron/badge.svg
+[actions-image]: https://github.com/isle-project/isle-editor/workflows/Build/badge.svg
 [actions-url]: https://github.com/isle-project/isle-editor/actions
 
 [codecov-image]: https://codecov.io/gh/isle-project/isle-editor/branch/master/graph/badge.svg
