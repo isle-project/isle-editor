@@ -32,6 +32,7 @@ import menu from './config/menu';
 import icons from './config/icons';
 import ProseMirrorEditorView from './view.js';
 import ProseMirrorCollaborativeView from './collaborative_view.js';
+import MenuBar from './menubar.js';
 import HistoryView from './history_view.js';
 import createHTML from './create_html.js';
 import schema from './config/schema';
@@ -148,8 +149,12 @@ class TextEditor extends Component {
 				title: 'save-html',
 				content: icons.save,
 				run: ( state, dispatch ) => {
-					this.props.logAction( SAVE_HTML );
-
+					if ( session.live ) {
+						this.props.logAction( SAVE_HTML );
+					}
+					if ( !state ) {
+						state = this.editorState;
+					}
 					const domNode = DOMSerializer.fromSchema( schema ).serializeFragment( state.doc.content );
 					const tmp = document.createElement( 'div' );
 					tmp.appendChild( domNode );
@@ -582,16 +587,23 @@ class TextEditor extends Component {
 		}
 		if ( useCollaborativeView ) {
 			if ( !session.live ) {
-				return ( <div className="editorview-connection-lost" >
-					<Alert variant="danger" >
-						<Alert.Heading>
-							Connection lost
-						</Alert.Heading>
-						<p>
-							Please check your internet connection.
-						</p>
-					</Alert>
-				</div> );
+				return (
+					<Fragment>
+						<MenuBar
+							menu={this.menu}
+							fullscreen={this.props.fullscreen}
+						/>
+						<div className="editorview-connection-lost" >
+							<Alert variant="danger" >
+								<Alert.Heading>
+									Connection lost
+								</Alert.Heading>
+								<p>
+									{this.props.connectionLostMessage}
+								</p>
+							</Alert>
+						</div>
+					</Fragment>);
 			}
 			return ( <ProseMirrorCollaborativeView
 				defaultValue={this.state.value}
@@ -717,6 +729,7 @@ class TextEditor extends Component {
 TextEditor.propTypes= {
 	allowSubmissions: PropTypes.bool,
 	canLoadHTML: PropTypes.bool,
+	connectionLostMessage: PropTypes.string,
 	defaultValue: PropTypes.string,
 	history: PropTypes.bool,
 	mode: PropTypes.oneOf([
@@ -738,6 +751,7 @@ TextEditor.propTypes= {
 TextEditor.defaultProps = {
 	allowSubmissions: true,
 	canLoadHTML: true,
+	connectionLostMessage: 'Please check your internet connection. To prevent data loss, save the HTML version of your report.',
 	defaultValue: DEFAULT_VALUE,
 	history: true,
 	mode: 'individual',

@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import logger from 'debug';
 import { withTranslation } from 'react-i18next';
 import CirclePicker from 'react-color/lib/components/circle/Circle';
@@ -61,7 +62,7 @@ const Button = ( props ) => {
 	);
 };
 
-const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, container, t }) => {
+const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorPicker, onColorChoice, t }) => {
 	const onClick = ( item ) => e => {
 		e.preventDefault();
 		if ( item.run ) {
@@ -75,7 +76,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			itemKey={itemKey}
 			type="button"
 			active={item.active && state ? item.active( state ) : false}
-			disabled={item.enable && state ? !item.enable( state ) : false}
+			disabled={( !view && item.title !== 'save-html' ) || ( item.enable && state ? !item.enable( state ) : false )}
 			title={typeof item.title === 'string' ? t( item.title ) : ''}
 			hotkey={item.hotkey}
 			onClick={onClick(item)}
@@ -85,7 +86,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 		</Button>
 	);
 	const createDropdownButtons = ( item, itemKey ) => {
-		if ( item.enable && state ? !item.enable( state ) : false ) {
+		if ( !view || ( item.enable && state ? !item.enable( state ) : false ) ) {
 			return (
 				<DropdownItem
 					key={`dropdown-item-${itemKey}`}
@@ -170,6 +171,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
 						name="Insert"
+						disabled={!view}
 					>
 						{menu.insert.map( createDropdownButtons )}
 					</DropdownButton>
@@ -185,6 +187,7 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 						variant="outline-secondary"
 						size="sm" style={{ display: 'inline-block' }}
 						name="Table"
+						disabled={!view}
 					>
 						{menu.tableEdits.map( createDropdownButtons )}
 					</DropdownButton>
@@ -199,6 +202,26 @@ const MenuBar = ({ menu, children, state, dispatch, view, fullscreen, showColorP
 			{renderMenuGroupButtons( menu.addons )}
 		</div>
 	);
+};
+
+
+// PROPERTIES //
+
+MenuBar.propTypes = {
+	dispatch: PropTypes.func,
+	view: PropTypes.object,
+	menu: PropTypes.object.isRequired,
+	state: PropTypes.object,
+	onColorChoice: PropTypes.func.isRequired,
+	showColorPicker: PropTypes.bool.isRequired,
+	fullscreen: PropTypes.bool.isRequired,
+	t: PropTypes.func.isRequired
+};
+
+MenuBar.defaultProps = {
+	dispatch: null,
+	view: null,
+	state: null
 };
 
 
