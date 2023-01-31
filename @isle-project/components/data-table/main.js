@@ -68,6 +68,18 @@ const md = markdownit({
 	breaks: true,
 	typographer: false
 });
+md.renderer.rules.link_open = function onLinkOpen( tokens, idx, options, env, renderer ) {
+	// If you are sure other plugins can't add `target` - drop check below
+	const token = tokens[ idx ];
+	const aIndex = token.attrIndex( 'target' );
+	if ( aIndex < 0 ) {
+		token.attrPush( [ 'target', '_blank' ] ); // add new attribute...
+	} else {
+		token.attrs[ aIndex ][ 1 ] = '_blank'; // replace value of existing attribute...
+	}
+	// Pass token to default renderer:
+	return renderer.renderToken( tokens, idx, options );
+};
 const debug = logger( 'isle:data-table' );
 const collator = new Intl.Collator( 'en', { numeric: true, sensitivity: 'base' });
 const RE_NUMBER = /[0-9.,]+/;
