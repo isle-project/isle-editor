@@ -91,7 +91,7 @@ const MAX_SWIPE_Y = 40;
 const MIN_SWIPE_Y = 30;
 const DPR = window.devicePixelRatio || 1.0;
 if ( pdfjsLib && pdfjsLib.GlobalWorkerOptions ) {
-	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.0.279/legacy/build/pdf.worker.min.js';
+	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/legacy/build/pdf.worker.min.js';
 }
 
 
