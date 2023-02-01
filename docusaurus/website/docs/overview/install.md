@@ -98,7 +98,7 @@ $ npm run test -- -t "name-of-spec"
 [jest]: https://jestjs.io
 [node-js]: https://nodejs.org/en/
 
-[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.76.21/isle-editor-0.76.21.dmg
-[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.76.21/isle-editor-0.76.21-x86_64.AppImage
-[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.76.21/isle-editor-0.76.21-amd64.deb
-[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.76.21/isle-editor-Setup-0.76.21.exe
+[macOS]: https://github.com/isle-project/isle-editor/releases/download/v0.76.22/isle-editor-0.76.22.dmg
+[linux-appimage]: https://github.com/isle-project/isle-editor/releases/download/v0.76.22/isle-editor-0.76.22-x86_64.AppImage
+[linux-deb]: https://github.com/isle-project/isle-editor/releases/download/v0.76.22/isle-editor-0.76.22-amd64.deb
+[windows]: https://github.com/isle-project/isle-editor/releases/download/v0.76.22/isle-editor-Setup-0.76.22.exe
