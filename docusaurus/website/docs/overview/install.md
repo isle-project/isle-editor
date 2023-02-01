@@ -8,7 +8,7 @@ You may either download prebuilt binaries of the ISLE editor or built it yoursel
 
 ## Binaries
 
-Current version: _v0.76.21_.
+Current version: _v0.76.22_.
 
 [Download the isle-editor for Windows (.exe)][windows]
 

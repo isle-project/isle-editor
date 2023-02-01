@@ -25,7 +25,7 @@ A desktop-application that can be used to author and preview *integrated statist
 
 ### Binaries
 
-Current version: v0.76.21.
+Current version: v0.76.22.
 
 [Download the isle-editor for Windows (.exe)][windows]
 
