@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.76.22](https://github.com/isle-project/isle-editor/releases/tag/v0.76.22) (2023-02-01)
+
+This update comes with improved PDF rendering and fixes student progress calculations: Since the last editor, progress values were not properly initialized when reloading a lesson after having already worked on it due to the user data not being available when attempting to recalculate the progress.
+
+Multiple model outputs and test printouts now include the number of missing observations that were removed before the results could be calculated.
+
+**Implemented enhancements:**
+
+- links on info.json should open in new window [\#3088](https://github.com/isle-project/isle-editor/issues/3088)
+- on-screen alert if connection to server lost [\#3046](https://github.com/isle-project/isle-editor/issues/3046)
+- request for option for linear regression test to be added to "tests" [\#3045](https://github.com/isle-project/isle-editor/issues/3045)
+- answers to be included in emailed "finish lesson" document, and "finish lesson" to alert and to not activate if unanswered questions [\#3034](https://github.com/isle-project/isle-editor/issues/3034)
+
 ## [v0.76.21](https://github.com/isle-project/isle-editor/releases/tag/v0.76.21) (2022-10-16)
 
 This update adds the Tukey HSD test and extended output for the chi-square independence test.  
