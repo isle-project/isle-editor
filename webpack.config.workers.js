@@ -2,7 +2,7 @@
 
 const { DefinePlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
-const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const { EsbuildPlugin } = require( 'esbuild-loader' );
 
 
 // MAIN //
@@ -56,7 +56,7 @@ const config = {
 	optimization: {
 		minimize: true,
 		minimizer: [
-			new ESBuildMinifyPlugin({
+			new EsbuildPlugin({
 				target: 'es2015',
 				legalComments: 'none'
 			})

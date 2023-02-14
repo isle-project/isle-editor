@@ -2,7 +2,7 @@
 
 const { DefinePlugin, DllPlugin } = require( 'webpack' );
 const { join, resolve } = require( 'path' );
-const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const { EsbuildPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
 
 
@@ -249,7 +249,7 @@ const config = {
 	optimization: {
 		minimize: true,
 		minimizer: [
-			new ESBuildMinifyPlugin({
+			new EsbuildPlugin({
 				target: BROWSER_TARGETS,
 				implementation: esbuild,
 				minify: false,

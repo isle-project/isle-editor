@@ -6,7 +6,7 @@ const { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, write
 const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
 const webpack = require( 'webpack' );
-const { ESBuildMinifyPlugin } = require( 'esbuild-loader' );
+const { EsbuildPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
 const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
