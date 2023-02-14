@@ -544,7 +544,7 @@ function bundleLesson( options ) {
 				}
 			},
 			minimizer: [
-				new ESBuildMinifyPlugin({
+				new EsbuildPlugin({
 					target: BROWSER_TARGETS,
 					implementation: esbuild,
 					minify: false,
