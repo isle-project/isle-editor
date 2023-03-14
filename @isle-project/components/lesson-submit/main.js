@@ -183,9 +183,13 @@ class LessonSubmit extends Component {
 							doc.content.push({
 								text: this.props.t('solution') + ':'
 							});
+							let solution = visualizer.ref.props.data.solution;
+							if ( React.isValidElement( solution ) ) {
+								solution = innerText( solution );
+							}
 							this.addAction({
 								type: type,
-								value: visualizer.ref.props.data.solution
+								value: solution
 							}, doc, dataType, visualizer );
 						}
 					}
