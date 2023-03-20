@@ -187,7 +187,7 @@
     "html-webpack-plugin": "5.5.0",
     "i18next": "^22.4.11",
     "i18next-browser-languagedetector": "^7.0.1",
-    "i18next-http-backend": "^2.1.1",
+    "i18next-http-backend": "^2.2.0",
     "ieee754": "^1.2.1",
     "jsonfile": "^6.1.0",
     "lodash.curry": "^4.1.1",
