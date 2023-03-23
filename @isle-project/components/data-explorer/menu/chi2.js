@@ -32,7 +32,7 @@ const Chi2TestMenu = ({ data, categorical, t, logAction, onCreated }) => {
 			onGenerate={calculateChisquareTest}
 		>
 			<SelectInput
-				legend={t('variable')}
+				legend={t('first-variable')}
 				defaultValue={categorical[ 0 ]}
 				options={categorical}
 			/>

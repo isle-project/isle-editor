@@ -46,7 +46,7 @@ const CorrTestMenu = ( props ) => {
 				options={quantitative}
 			/>
 			<NumberInput
-				legend={<TeX raw="\rho_0" />}
+				legend={<span><TeX raw="H_0" /> ${t('correlation')} {t('value')} (<TeX raw="\rho_0" />)</span>}
 				defaultValue={0.0}
 				step="any"
 				min={-1.0}

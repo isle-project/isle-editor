@@ -54,13 +54,13 @@ const PropTestMenu = ( props ) => {
 					}}
 				/>
 				{ categories ? <SelectInput
-					legend={`${t('success')}:`}
+					legend={`${t('category-of-interest')}:`}
 					defaultValue={success}
 					options={categories}
 					onChange={setSuccess}
 				/> : null }
 				<NumberInput
-					legend={<TeX raw="p_0" />}
+					legend={<span><TeX raw="H_0" /> ${t('proportion')} {t('value')} (<TeX raw="p_0" />)</span>}
 					defaultValue={p0}
 					min={0.001}
 					max={0.999}

@@ -108,7 +108,7 @@ const PropTest2Menu = ( props ) => {
 					</Col>
 					<Col md={6}>
 						<SelectInput
-							legend={t('success')}
+							legend={t('category-of-interest')}
 							defaultValue={categories[ 0 ]}
 							options={categories}
 							onChange={setSuccess}

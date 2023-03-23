@@ -73,7 +73,7 @@ const MeanTestMenu = ( props ) => {
 					/> : null
 				}
 				<NumberInput
-					legend={<span><TeX raw="H_0" /> mean value (<TeX raw="\mu_0" />)</span>}
+					legend={<span><TeX raw="H_0" /> {t('mean')} {t('value')} (<TeX raw="\mu_0" />)</span>}
 					defaultValue={mu0}
 					step="any"
 					onChange={setMu0}
