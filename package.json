@@ -295,7 +295,7 @@
     "concurrently": "^7.6.0",
     "doctrine": "^3.0.0",
     "electron": "23.2.0",
-    "electron-builder": "24.1.1",
+    "electron-builder": "24.1.2",
     "electron-devtools-installer": "github:MarshallOfSound/electron-devtools-installer",
     "electron-license": "^3.0.0",
     "esbuild-jest": "^0.5.0",
