@@ -323,7 +323,7 @@
     "pdfjs-dist": "3.3.122",
     "pdfmake": "^0.2.7",
     "plotly.js": "2.20.0",
-    "react-datetime-picker": "^4.2.1",
+    "react-datetime-picker": "^5.0.2",
     "react-draggable": "^4.4.5",
     "react-linear-gradient-picker": "^3.0.1",
     "react-list": "^0.8.17",
