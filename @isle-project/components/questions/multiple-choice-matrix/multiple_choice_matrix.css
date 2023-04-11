@@ -15,7 +15,7 @@
 	padding-right: 10px;
 }
 
-@media (max-width: 576px) {
+@media (width <= 576px) {
 	.multiple-choice-matrix-question-header {
 		display: none;
 	}
@@ -25,7 +25,7 @@
 	display: none;
 }
 
-@media (max-width: 576px) {
+@media (width <= 576px) {
 	.multiple-choice-matrix-answer-text {
 		display: inherit;
 	}
