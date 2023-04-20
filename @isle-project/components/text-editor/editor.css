@@ -191,7 +191,6 @@ li.ProseMirror-selectednode::after {
 }
 
 .ProseMirror-tooltip .ProseMirror-menu {
-	width: -webkit-fit-content;
 	width: fit-content;
 	white-space: pre;
 }
