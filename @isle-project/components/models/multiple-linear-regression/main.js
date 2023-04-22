@@ -261,7 +261,7 @@ class MultipleLinearRegression extends Component {
 		const qqPlot = <Plotly
 			draggable
 			editable fit
-			{...generateQQPlotConfig( this.state.resid, 'residuals' )}
+			{...generateQQPlotConfig( this.state.resid, 'standardized residuals', true )}
 			meta={{ type: 'qqplot of regression residuals', x, y, intercept }}
 		/>;
 		const hist = <Histogram

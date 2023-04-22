@@ -243,7 +243,7 @@ class SimpleLinearRegression extends Component {
 						const qqPlot = <Plotly
 							draggable
 							editable fit
-							{...generateQQPlotConfig( residuals, 'residuals' )}
+							{...generateQQPlotConfig( residuals, 'standardized residuals', true )}
 							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 						/>;
 						const residualPlot = <Plotly
@@ -355,7 +355,7 @@ class SimpleLinearRegression extends Component {
 						const qqPlot = <Plotly
 							draggable
 							editable fit
-							{...generateQQPlotConfig( resid, 'residuals' )}
+							{...generateQQPlotConfig( resid, 'standardized residuals', true )}
 							meta={{ type: 'qqplot of regression residuals', x: xd, y: yd }}
 						/>;
 						const hist = <Histogram

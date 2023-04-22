@@ -10,16 +10,18 @@ import Plotly from '@isle-project/components/plotly';
 import quantile from '@isle-project/utils/statistic/quantile';
 import { withPropCheck } from '@isle-project/utils/prop-check';
 import isNonMissingNumber from '@isle-project/utils/is-non-missing-number';
+import zScore from '@isle-project/utils/zscore';
 import ascending from './ascending.js';
 
 
 // FUNCTIONS //
 
-export function generateQQPlotConfig( y, variable ) {
+export function generateQQPlotConfig( y, variable, standardize ) {
 	let annotations;
 	let traces;
 
 	y = y.filter( v => isNonMissingNumber( v ) );
+	y = standardize ? zScore( y ) : y;
 	const len = y.length;
 	const yq = y.sort( ascending );
 	const lowerQuartile = qnorm( 0.25, 0, 1 );
@@ -71,14 +73,14 @@ export function generateQQPlotConfig( y, variable ) {
 
 // MAIN //
 
-function QQPlot({ id, data, variable, action, onShare, onSelected }) {
+function QQPlot({ id, data, variable, standardize, action, onShare, onSelected }) {
 	const { t } = useTranslation( 'plotly' );
 	const config = useMemo( () => {
 		if ( !data ) {
 			return {};
 		}
-		return generateQQPlotConfig( data[ variable ], variable );
-	}, [ data, variable ] );
+		return generateQQPlotConfig( data[ variable ], variable, standardize );
+	}, [ data, variable, standardize ] );
 	if ( !data ) {
 		return <Alert variant="danger">{t('data-missing')}</Alert>;
 	}
@@ -104,11 +106,18 @@ function QQPlot({ id, data, variable, action, onShare, onSelected }) {
 
 // PROPERTIES //
 
-QQPlot.defaultProps = {};
+QQPlot.defaultProps = {
+	standardize: false,
+	onShare() {},
+	onSelected() {}
+};
 
 QQPlot.propTypes = {
 	data: PropTypes.object.isRequired,
-	variable: PropTypes.string.isRequired
+	variable: PropTypes.string.isRequired,
+	standardize: PropTypes.bool,
+	onShare: PropTypes.func,
+	onSelected: PropTypes.func
 };
 
 
@@ -119,5 +128,6 @@ QQPlot.propTypes = {
 *
 * @property {Object} data - object of value arrays
 * @property {string} variable - variable to display
+* @property {boolean} standardize - controls whether to standardize the variable values
 */
 export default withPropCheck( QQPlot );
