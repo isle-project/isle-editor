@@ -111,7 +111,7 @@ function createDescriptions( descriptions, t ) {
 			}} />
 		</tr>;
 	}
-	return ( <table className="table-bordered table-condensed" style={{ width: '100%' }} >
+	return ( <table className="table-bordered table-condensed" >
 		<thead>
 			<tr><th>{t('name')}</th><th>{t('description')}</th></tr>
 		</thead>
@@ -699,10 +699,10 @@ class DataTable extends Component {
 				</Modal.Header>
 				<Modal.Body>
 					<Row>
-						<Col sm={7} dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+						<Col xs sm={7} dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
 							__html: md.render( isArray( dataInfo.info ) ? dataInfo.info.join( '\n' ) : dataInfo.info )
 						}} />
-						<Col sm={5} >
+						<Col xs sm={5} >
 							{createDescriptions( dataInfo.variables, this.props.t )}
 						</Col>
 					</Row>
