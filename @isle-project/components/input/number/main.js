@@ -83,19 +83,17 @@ const NumberInput = ( props ) => {
 		setValue( newValue );
 		if ( propValue ||
 			( valid && newValue !== '' &&
-			newValue !== '-' && newValue !== '.' && newValue !== '-.' )
+			newValue !== '-' && newValue !== '.' &&
+			newValue !== '-.' && newValue !== '-0' && newValue !== '-0.'
+			)
 		) {
-			newValue = parseFloat( newValue );
+			newValue = Number( newValue );
 			if ( isnan( newValue ) ) {
 				newValue = '';
 			}
 			onChange( newValue );
-			if ( bind ) {
-				global.lesson.setState({
-					[ bind ]: newValue
-				});
-			}
-		} else if ( bind ) {
+		}
+		if ( bind ) {
 			global.lesson.setState({
 				[ bind ]: newValue
 			});
@@ -108,7 +106,7 @@ const NumberInput = ( props ) => {
 			debug( 'Encountered a fraction...' );
 			const splitted = newValue.split( '/' );
 			if ( splitted[ 0 ] !== '' && splitted[ 1 ] !== '' ) {
-				newValue = parseFloat( splitted[ 0 ]) / parseFloat( splitted[ 1 ]);
+				newValue = Number( splitted[ 0 ]) / Number( splitted[ 1 ]);
 			}
 		}
 		if ( isnan( newValue ) ) {
@@ -118,7 +116,7 @@ const NumberInput = ( props ) => {
 			newValue !== '' && newValue !== '-' &&
 			newValue !== '.' && newValue !== '-.'
 		) {
-			newValue = parseFloat( newValue );
+			newValue = Number( newValue );
 		}
 		if ( newValue > max ) {
 			newValue = max;
