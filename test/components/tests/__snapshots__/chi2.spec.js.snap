@@ -22,5 +22,58 @@ Null hypothesis: the two variables are independent
     degrees of freedom: 2
 
 
+  <table
+    className="table table-bordered table-condensed"
+  >
+    <thead>
+      <tr>
+        <th />
+        <th>
+          0
+        </th>
+        <th>
+          1
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          0
+        </th>
+        <td>
+          582/576.71 (1.2%)
+        </td>
+        <td>
+          28/33.29 (20.78%)
+        </td>
+      </tr>
+      <tr>
+        <th>
+          1
+        </th>
+        <td>
+          82/84.14 (1.35%)
+        </td>
+        <td>
+          7/4.86 (23.41%)
+        </td>
+      </tr>
+      <tr>
+        <th>
+          2
+        </th>
+        <td>
+          81/84.14 (2.91%)
+        </td>
+        <td>
+          8/4.86 (50.35%)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    observed/expected (contribution to chi-square in %)
+  </p>
 </div>
 `;
