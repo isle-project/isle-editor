@@ -337,7 +337,7 @@
     "redux-logger": "^3.0.6",
     "socket.io-client": "4.6.1",
     "source-map-explorer": "^2.5.3",
-    "stylelint": "^15.5.0",
+    "stylelint": "^15.6.0",
     "stylelint-config-standard": "^33.0.0",
     "vex-js": "^4.1.0",
     "victory": "36.6.8",
