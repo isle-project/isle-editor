@@ -201,6 +201,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   style={
                     {
                       "fill": "transparent",
+                      "pointerEvents": "stroke",
                       "stroke": "#252525",
                       "strokeWidth": 2,
                     }
@@ -1079,6 +1080,7 @@ exports[`<LearnStandardize /> renders a learning component 1`] = `
                   style={
                     {
                       "fill": "transparent",
+                      "pointerEvents": "stroke",
                       "stroke": "#252525",
                       "strokeWidth": 2,
                     }

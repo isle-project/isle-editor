@@ -1254,6 +1254,7 @@ A 0 0 0 0 1, 265.625, 300
                           {
                             "fill": "transparent",
                             "opacity": 1,
+                            "pointerEvents": "stroke",
                             "stroke": "#455A64",
                             "strokeWidth": 2,
                           }

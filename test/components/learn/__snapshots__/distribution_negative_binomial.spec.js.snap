@@ -2711,6 +2711,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 1,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#455A64",
                                   "strokeWidth": 2,
                                 }
@@ -2748,6 +2749,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -2785,6 +2787,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -5380,6 +5383,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 1,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#455A64",
                                   "strokeWidth": 2,
                                 }
@@ -5417,6 +5421,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -5454,6 +5459,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -7980,6 +7986,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 1,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#455A64",
                                   "strokeWidth": 2,
                                 }
@@ -8017,6 +8024,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -8054,6 +8062,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -10658,6 +10667,7 @@ A 0 0 0 0 1, 301.953125, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 1,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#455A64",
                                   "strokeWidth": 2,
                                 }

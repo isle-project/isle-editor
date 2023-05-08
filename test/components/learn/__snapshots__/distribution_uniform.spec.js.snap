@@ -1290,6 +1290,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -2215,6 +2216,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -2252,6 +2254,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "#e95f46",
                           "strokeWidth": 1,
                         }
@@ -2289,6 +2292,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "#e95f46",
                           "strokeWidth": 1,
                         }
@@ -3533,6 +3537,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -4458,6 +4463,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -4495,6 +4501,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "#e95f46",
                           "strokeWidth": 1,
                         }
@@ -4532,6 +4539,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "steelblue",
                           "strokeWidth": 1,
                         }
@@ -4569,6 +4577,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "#e95f46",
                           "strokeWidth": 1,
                         }
@@ -5891,6 +5900,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -6816,6 +6826,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 1,
+                          "pointerEvents": "stroke",
                           "stroke": "#455A64",
                           "strokeWidth": 2,
                         }
@@ -6853,6 +6864,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "steelblue",
                           "strokeWidth": 1,
                         }
@@ -6890,6 +6902,7 @@ exports[`<LearnUniformDistribution /> renders a learning component 1`] = `
                         {
                           "fill": "transparent",
                           "opacity": 0.5,
+                          "pointerEvents": "stroke",
                           "stroke": "#e95f46",
                           "strokeWidth": 1,
                         }

@@ -1975,6 +1975,7 @@ A 0 0 0 0 1, 308.92857142857144, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 1,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#455A64",
                                   "strokeWidth": 2,
                                 }
@@ -2012,6 +2013,7 @@ A 0 0 0 0 1, 308.92857142857144, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -2049,6 +2051,7 @@ A 0 0 0 0 1, 308.92857142857144, 300
                                 {
                                   "fill": "transparent",
                                   "opacity": 0.5,
+                                  "pointerEvents": "stroke",
                                   "stroke": "#e95f46",
                                   "strokeWidth": 1,
                                 }
@@ -4114,6 +4117,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                               {
                                 "fill": "transparent",
                                 "opacity": 1,
+                                "pointerEvents": "stroke",
                                 "stroke": "#455A64",
                                 "strokeWidth": 2,
                               }
@@ -4151,6 +4155,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                               {
                                 "fill": "transparent",
                                 "opacity": 0.5,
+                                "pointerEvents": "stroke",
                                 "stroke": "#e95f46",
                                 "strokeWidth": 1,
                               }
@@ -4188,6 +4193,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                               {
                                 "fill": "transparent",
                                 "opacity": 0.5,
+                                "pointerEvents": "stroke",
                                 "stroke": "#e95f46",
                                 "strokeWidth": 1,
                               }
@@ -6249,6 +6255,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                             {
                               "fill": "transparent",
                               "opacity": 1,
+                              "pointerEvents": "stroke",
                               "stroke": "#455A64",
                               "strokeWidth": 2,
                             }
@@ -6286,6 +6293,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                             {
                               "fill": "transparent",
                               "opacity": 0.5,
+                              "pointerEvents": "stroke",
                               "stroke": "#e95f46",
                               "strokeWidth": 1,
                             }
@@ -6323,6 +6331,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                             {
                               "fill": "transparent",
                               "opacity": 0.5,
+                              "pointerEvents": "stroke",
                               "stroke": "#e95f46",
                               "strokeWidth": 1,
                             }
@@ -8461,6 +8470,7 @@ A 0 0 0 0 1, 201.78571428571425, 300
                             {
                               "fill": "transparent",
                               "opacity": 1,
+                              "pointerEvents": "stroke",
                               "stroke": "#455A64",
                               "strokeWidth": 2,
                             }
