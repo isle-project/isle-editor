@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -15,6 +16,7 @@ import isArray from '@stdlib/assert/is-array';
 import unique from 'uniq';
 import PropTest2 from '@isle-project/components/tests/proptest2';
 import extractCategoriesFromValues from '@isle-project/utils/extract-categories-from-values';
+import selectStyles from '@isle-project/components/input/select/styles';
 import { TESTS_TWO_SAMPLE_PROPTEST } from '@isle-project/constants/actions.js';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
@@ -25,6 +27,21 @@ import getBinaryVars from './../get_binary_vars.js';
 const extractCategories = memoize( extractCategoriesFromValues, ( args ) => {
 	return args[ 1 ];
 });
+
+const DIRECTIONS = [
+	{
+		value: 'less',
+		label: 'less than (left-sided)'
+	},
+	{
+		value: 'greater',
+		label: 'greater than (right-sided)'
+	},
+	{
+		value: 'two-sided',
+		label: 'not equal (two-sided)'
+	}
+];
 
 
 // MAIN //
@@ -37,7 +54,7 @@ const PropTest2Menu = ( props ) => {
 	const [ group, setGroup ] = useState( null );
 	const [ var2, setVar2 ] = useState( null );
 	const [ diff, setDiff ] = useState( 0 );
-	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ direction, setDirection ] = useState( DIRECTIONS[ 2 ] );
 	const [ alpha, setAlpha ] = useState( 0.05 );
 
 	useEffect( () => {
@@ -73,10 +90,10 @@ const PropTest2Menu = ( props ) => {
 		const output = <PropTest2
 			data={data} showDecision={showDecision}
 			var1={var1} var2={var2} group={group}
-			diff={diff} direction={direction} alpha={alpha} success={success}
+			diff={diff} direction={direction.value} alpha={alpha} success={success}
 		/>;
 		props.logAction( TESTS_TWO_SAMPLE_PROPTEST, {
-			var1, group, var2, success, diff, direction, alpha, showDecision
+			var1, group, var2, success, diff, direction: direction.value, alpha, showDecision
 		});
 		props.onCreated( output );
 	};
@@ -150,11 +167,12 @@ const PropTest2Menu = ( props ) => {
 					step="any"
 					onChange={setDiff}
 				/>
-				<SelectInput
+				<Select
 					legend={t('direction')}
 					defaultValue={direction}
-					options={[ 'less', 'greater', 'two-sided' ]}
+					options={DIRECTIONS}
 					onChange={setDirection}
+					styles={selectStyles}
 				/>
 				<NumberInput
 					legend={<span>{t('significance-level')}<TeX raw="\alpha" /></span>}

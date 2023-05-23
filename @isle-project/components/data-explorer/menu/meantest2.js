@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -13,6 +14,7 @@ import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import MeanTest2 from '@isle-project/components/tests/meantest2';
 import { TESTS_TWO_SAMPLE_MEAN } from '@isle-project/constants/actions.js';
+import selectStyles from '@isle-project/components/input/select/styles';
 import QuestionButton from './../question_button.js';
 import getBinaryVars from './../get_binary_vars.js';
 
@@ -23,6 +25,21 @@ const memoizedBinaryVars = memoize( getBinaryVars, ( args ) => {
 	return `${args[ 0 ]}-${objectKeys( args[ 1 ])}`;
 });
 
+const DIRECTIONS = [
+	{
+		value: 'less',
+		label: 'less than (left-sided)'
+	},
+	{
+		value: 'greater',
+		label: 'greater than (right-sided)'
+	},
+	{
+		value: 'two-sided',
+		label: 'not equal (two-sided)'
+	}
+];
+
 
 // MAIN //
 
@@ -32,7 +49,7 @@ const MeanTest2Menu = ( props ) => {
 	const [ group, setGroup ] = useState( null );
 	const [ y, setY ] = useState( null );
 	const [ diff, setDiff ] = useState( 0 );
-	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ direction, setDirection ] = useState( DIRECTIONS[ 2 ] );
 	const [ alpha, setAlpha ] = useState( 0.05 );
 	const [ type, setType ] = useState( 'T Test' );
 	const [ xstdev, setXstdev ] = useState( null );
@@ -53,12 +70,12 @@ const MeanTest2Menu = ( props ) => {
 			});
 		}
 		const output = <MeanTest2
-			x={x} group={group} y={y} diff={diff} direction={direction}
+			x={x} group={group} y={y} diff={diff} direction={direction.value}
 			alpha={alpha} type={type} xstdev={xstdev} ystdev={ystdev}
 			data={data} showDecision={showDecision}
 		/>;
 		props.logAction( TESTS_TWO_SAMPLE_MEAN, {
-			x, group, y, diff, direction, alpha, showDecision
+			x, group, y, diff, direction: direction.value, alpha, showDecision
 		});
 		props.onCreated( output );
 	};
@@ -156,12 +173,13 @@ const MeanTest2Menu = ( props ) => {
 						/>
 					</Col>
 				</Row>
-				<SelectInput
+				<Select
 					legend={t('direction')}
 					defaultValue={direction}
-					options={[ 'less', 'greater', 'two-sided' ]}
+					options={DIRECTIONS}
 					onChange={setDirection}
 					menuPlacement="top"
+					styles={selectStyles}
 				/>
 				<Button
 					variant="primary"

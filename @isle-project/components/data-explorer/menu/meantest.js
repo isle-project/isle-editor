@@ -1,6 +1,7 @@
 // MODULES //
 
 import React, { useState } from 'react';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +10,26 @@ import SelectInput from '@isle-project/components/input/select';
 import TeX from '@isle-project/components/tex';
 import MeanTest from '@isle-project/components/tests/meantest';
 import { TESTS_MEAN } from '@isle-project/constants/actions.js';
+import selectStyles from '@isle-project/components/input/select/styles';
 import QuestionButton from './../question_button.js';
+
+
+// VARIABLES //
+
+const DIRECTIONS = [
+	{
+		value: 'less',
+		label: 'less than (left-sided)'
+	},
+	{
+		value: 'greater',
+		label: 'greater than (right-sided)'
+	},
+	{
+		value: 'two-sided',
+		label: 'not equal (two-sided)'
+	}
+];
 
 
 // MAIN //
@@ -19,7 +39,7 @@ const MeanTestMenu = ( props ) => {
 	const [ type, setType ] = useState( 'T Test' );
 	const [ variable, setVariable ] = useState( null );
 	const [ mu0, setMu0 ] = useState( 0 );
-	const [ direction, setDirection ] = useState( 'two-sided' );
+	const [ direction, setDirection ] = useState( DIRECTIONS[ 2 ] );
 	const [ alpha, setAlpha ] = useState( 0.05 );
 	const [ stdev, setStdev ] = useState( null );
 
@@ -29,13 +49,13 @@ const MeanTestMenu = ( props ) => {
 			variable={variable}
 			showDecision={showDecision}
 			mu0={mu0}
-			direction={direction}
+			direction={direction.value}
 			stdev={stdev}
 			type={type}
 			alpha={alpha}
 		/>;
 		props.logAction( TESTS_MEAN, {
-			variable, mu0, direction, alpha, type, stdev, showDecision
+			variable, mu0, direction: direction.value, alpha, type, stdev, showDecision
 		});
 		props.onCreated( output );
 	};
@@ -87,12 +107,13 @@ const MeanTestMenu = ( props ) => {
 					step="any"
 					onChange={setAlpha}
 				/>
-				<SelectInput
+				<Select
 					legend={t('direction')}
 					defaultValue={direction}
-					options={[ 'less', 'greater', 'two-sided' ]}
+					options={DIRECTIONS}
 					onChange={setDirection}
 					menuPlacement="top"
+					styles={selectStyles}
 				/>
 				<Button
 					variant="primary" onClick={calculateMeanTest}
