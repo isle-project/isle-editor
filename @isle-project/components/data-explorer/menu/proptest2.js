@@ -160,7 +160,7 @@ const PropTest2Menu = ( props ) => {
 					</Col>
 				</Row>
 				<NumberInput
-					legend={t('difference-h0')}
+					legend={<span><TeX raw="H_0" /> {t('difference-proportions')}</span>}
 					defaultValue={diff}
 					min={0}
 					max={1}

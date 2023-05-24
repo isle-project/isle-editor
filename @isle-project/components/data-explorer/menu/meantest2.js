@@ -155,7 +155,7 @@ const MeanTest2Menu = ( props ) => {
 				<Row>
 					<Col>
 						<NumberInput
-							legend={t('difference-h0')}
+							legend={<span><TeX raw="H_0" /> {t('difference-means')}</span>}
 							defaultValue={diff}
 							step="any"
 							onChange={setDiff}
