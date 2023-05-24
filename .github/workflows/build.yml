@@ -10,7 +10,7 @@ jobs:
   build_on_mac:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
@@ -34,7 +34,7 @@ jobs:
   build_on_win:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
@@ -58,11 +58,10 @@ jobs:
   build_on_ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
-        cache: 'npm'
     - name: npm install & build
       run: |
         npm ci --legacy-peer-deps
@@ -82,14 +81,13 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: webfactory/ssh-agent@v0.5.2
       with:
         ssh-private-key: ${{ secrets.SSH_KEY }}
     - uses: actions/setup-node@master
       with:
         node-version: 16.x
-        cache: 'npm'
     - name: Calculate Test Coverage
       run: |
         npm ci --legacy-peer-deps
