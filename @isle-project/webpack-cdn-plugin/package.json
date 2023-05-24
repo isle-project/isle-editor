@@ -1,6 +1,6 @@
 {
 	"name": "@isle-project/webpack-cdn-plugin",
-	"version": "0.50.62",
+	"version": "0.50.63",
 	"description": "Internal ISLE package to configure webpack to load packages via CDN.",
 	"main": "lib/index.js",
 	"author": {
@@ -11,6 +11,6 @@
 	"license": "AGPL-3.0-only",
 	"dependencies": {
 		"debug": "4.3.4",
-		"html-webpack-plugin": "5.5.0"
+		"html-webpack-plugin": "5.5.1"
 	}
 }
