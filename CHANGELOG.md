@@ -1,5 +1,27 @@
 # Changelog
 
+## [v0.76.23](https://github.com/isle-project/isle-editor/releases/tag/v0.76.23) (2023-05-24)
+
+This release comes with a variety of small bug fixes and improvements.
+
+**Implemented enhancements:**
+
+- request for hideable info in "description" of datasets [\#3193](https://github.com/isle-project/isle-editor/issues/3193)
+- request disable history function in report editor [\#3124](https://github.com/isle-project/isle-editor/issues/3124)
+
+**Fixed bugs:**
+
+- \[Bug\]: barchart Y axis wrongly remains labeled "proportion" after "group by" is de-selected [\#3289](https://github.com/isle-project/isle-editor/issues/3289)
+- \[Bug\]: number question removes negative sign if a leading zero is typed; and removes negative and decimal if placeholding zero is typed. [\#3222](https://github.com/isle-project/isle-editor/issues/3222)
+- \[Bug\]: variable descriptions pushed off side of panel due to long variable names [\#3200](https://github.com/isle-project/isle-editor/issues/3200)
+- \[Bug\]: qqplot not correct [\#3194](https://github.com/isle-project/isle-editor/issues/3194)
+- \[Bug\]: Tests -\> chi square test should say "\*\*First\*\* variable" and second variable [\#3141](https://github.com/isle-project/isle-editor/issues/3141)
+- \[Bug\]: on Windows, need to ctrl+z \*twice\* to undo in editor [\#3140](https://github.com/isle-project/isle-editor/issues/3140)
+- \[Bug\]: Toolbox -\> Two Sample Proportion -\> "success" is poor term [\#3139](https://github.com/isle-project/isle-editor/issues/3139)
+- \[Bug\]: inconsistent terminology and typography between two-group tests dialog and one-group tests dialog [\#3138](https://github.com/isle-project/isle-editor/issues/3138)
+- \[Bug\]: inconsistency in notation between one mean test dialog and one proportion test dialog [\#3136](https://github.com/isle-project/isle-editor/issues/3136)
+- \[Bug\]: inconsistent toolbox terminology for different directions of tests [\#3134](https://github.com/isle-project/isle-editor/issues/3134)
+
 ## [v0.76.22](https://github.com/isle-project/isle-editor/releases/tag/v0.76.22) (2023-02-01)
 
 This update comes with improved PDF rendering and fixes student progress calculations: Since the last editor, progress values were not properly initialized when reloading a lesson after having already worked on it due to the user data not being available when attempting to recalculate the progress.
