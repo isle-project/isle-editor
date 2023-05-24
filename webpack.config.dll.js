@@ -243,7 +243,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.63/',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.64/',
 		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {
@@ -251,6 +251,7 @@ const config = {
 		minimizer: [
 			new EsbuildPlugin({
 				target: BROWSER_TARGETS,
+				format: 'cjs',
 				implementation: esbuild,
 				minify: false,
 				minifyIdentifiers: false,
