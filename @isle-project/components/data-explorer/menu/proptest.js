@@ -80,7 +80,7 @@ const PropTestMenu = ( props ) => {
 					onChange={setSuccess}
 				/> : null }
 				<NumberInput
-					legend={<span><TeX raw="H_0" /> {t('proportion')} {t('value')} (<TeX raw="p_0" />)</span>}
+					legend={<span><TeX raw="H_0" /> {t('proportion')} (<TeX raw="p_0" />)</span>}
 					defaultValue={p0}
 					min={0.001}
 					max={0.999}
