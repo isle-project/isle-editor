@@ -169,6 +169,8 @@ const BarchartMenu = ( props ) => {
 					menuPlacement="top"
 					onChange={( value ) => {
 						setGroup( value );
+						setStackBars( false );
+						setRelative( false );
 						const newCategories = extractCategoriesFromValues( props.data[ value ], value );
 						setGroupCategories( newCategories.map( x => (
 							{ color: null, category: x }
@@ -232,7 +234,7 @@ const BarchartMenu = ( props ) => {
 					<Col>
 						<CheckboxInput
 							legend={t('stack-bars')}
-							defaultValue={stackBars}
+							value={stackBars}
 							onChange={setStackBars}
 							disabled={!group}
 							style={{
@@ -243,7 +245,7 @@ const BarchartMenu = ( props ) => {
 					<Col>
 						<CheckboxInput
 							legend={t('relative-frequencies-inside-each-group')}
-							defaultValue={relative}
+							value={relative}
 							disabled={hideRelativeFrequencies}
 							onChange={setRelative}
 							style={{
