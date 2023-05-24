@@ -4,14 +4,14 @@
 		"alias": "axios",
 		"var": "axios",
 		"path": "axios.min.js",
-		"version": "0.27.2"
+		"version": "1.4.0"
 	},
 	{
 		"name": "i18next",
 		"alias": "i18next",
 		"var": "i18next",
 		"path": "i18next.min.js",
-		"version": "21.9.2"
+		"version": "22.5.0"
 	},
 	{
 		"name": "pdfjs-dist/build/pdf.min.js",
@@ -27,7 +27,7 @@
 		"alias": "plotly.js",
 		"var": "Plotly",
 		"path": "plotly.min.js",
-		"version": "2.14.0"
+		"version": "2.23.2"
 	},
 	{
 		"name": "js-yaml",
@@ -83,14 +83,14 @@
 		"alias": "victory",
 		"var": "Victory",
 		"path": "victory.min.js",
-		"version": "36.6.7"
+		"version": "36.6.10"
 	},
 	{
 		"name": "pdfmake/build/pdfmake",
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "pdfmake.min.js",
-		"version": "0.2.5",
+		"version": "0.2.7",
 		"defer": true
 	},
 	{
@@ -98,7 +98,7 @@
 		"alias": "pdfmake",
 		"var": "pdfMake",
 		"path": "vfs_fonts.js",
-		"version": "0.2.5",
+		"version": "0.2.7",
 		"defer": true
 	},
 	{
@@ -114,7 +114,7 @@
 		"var": "ReactPlayer",
 		"path": "dist/ReactPlayer.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "2.11.0"
+		"version": "2.12.0"
 	},
 	{
 		"name": "react-draggable",
@@ -130,7 +130,7 @@
 		"var": "io",
 		"path": "dist/socket.io.min.js",
 		"prodUrl": "https://cdn.jsdelivr.net/npm/:alias@:version/:path",
-		"version": "4.5.2"
+		"version": "4.6.1"
 	},
 	{
 		"name": "react-list",
