@@ -21,7 +21,15 @@ import './number.css';
 // VARIABLES //
 
 const debug = logger( 'isle:number-input' );
+const RE_NEGATIVE_ZERO = /^-0*(\.0*)?$/;
 
+const finishedNumber = val => {
+	return (
+		val !== '' &&
+		val !== '-' && val !== '.' &&
+		RE_NEGATIVE_ZERO.test( val ) === false
+	);
+};
 
 // MAIN //
 
@@ -81,12 +89,7 @@ const NumberInput = ( props ) => {
 		let valid = event.target.validity.valid;
 		let newValue = event.target.value;
 		setValue( newValue );
-		if ( propValue ||
-			( valid && newValue !== '' &&
-			newValue !== '-' && newValue !== '.' &&
-			newValue !== '-.' && newValue !== '-0' && newValue !== '-0.'
-			)
-		) {
+		if ( propValue || ( valid && finishedNumber( newValue ) ) ) {
 			newValue = Number( newValue );
 			if ( isnan( newValue ) ) {
 				newValue = '';
