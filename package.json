@@ -186,7 +186,7 @@
     "html-to-pdfmake": "^2.4.20",
     "html-webpack-plugin": "5.5.1",
     "i18next": "^22.5.0",
-    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
     "ieee754": "^1.2.1",
     "jsonfile": "^6.1.0",
