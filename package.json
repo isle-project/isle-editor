@@ -286,7 +286,7 @@
     "@babel/plugin-transform-runtime": "^7.22.4",
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
-    "@electron/remote": "^2.0.9",
+    "@electron/remote": "^2.0.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "ajv": "8.12.0",
