@@ -141,7 +141,7 @@
     "@stdlib/stats": "^0.0.13",
     "@stdlib/string": "^0.0.14",
     "@stdlib/utils": "^0.0.12",
-    "acorn": "^8.8.2",
+    "acorn": "^8.9.0",
     "ansi-to-react": "6.1.6",
     "archiver": "^5.3.1",
     "autobind-decorator": "^2.4.0",
