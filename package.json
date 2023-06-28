@@ -320,7 +320,7 @@
     "moment": "2.29.4",
     "monaco-editor": "0.39.0",
     "monaco-editor-webpack-plugin": "7.0.1",
-    "pdfjs-dist": "3.3.122",
+    "pdfjs-dist": "3.7.107",
     "pdfmake": "^0.2.7",
     "plotly.js": "2.24.2",
     "react-datetime-picker": "^5.2.0",
