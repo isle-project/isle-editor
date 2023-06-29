@@ -57,7 +57,7 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 				break;
 			}
 		}
-		if ( !secondCategory ) {
+		if ( secondCategory === void 0 ) {
 			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
 				<Trans i18nKey="must-have-two-different-values" ns="Test" values={{ group }} >
 					Grouping variable <code>{{ group }}</code> must have at least two different values.
