@@ -69,7 +69,14 @@ function PropTest2({ data, var1, var2, group, alpha, direction, diff, showDecisi
 		});
 		x = splitted[ 0 ];
 		y = splitted[ 1 ];
-		const result = ztest2( x, y, stdev( x ), stdev( y ), {
+		const sdX = stdev( x );
+		const sdY = stdev( y );
+		if ( sdX === 0 || sdY === 0 ) {
+			return ( <Alert variant="danger" style={{ overflowX: 'auto', width: '100%' }}>
+				No variance in one of the groups.
+			</Alert> );
+		}
+		const result = ztest2( x, y, sdX, sdY, {
 			'alpha': alpha,
 			'alternative': direction,
 			'difference': diff
