@@ -302,7 +302,7 @@
     "esbuild-jest-transform": "^1.1.1",
     "esbuild-register": "^3.4.2",
     "eslint-plugin-i18next": "^6.0.3",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-jest": "^27.2.3",
     "eslint-plugin-jest-dom": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
