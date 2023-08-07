@@ -124,7 +124,7 @@
     "@babel/core": "^7.22.9",
     "@babel/eslint-parser": "^7.22.9",
     "@babel/plugin-transform-react-jsx": "^7.22.5",
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.10",
     "@loadable/component": "^5.15.3",
     "@nosferatu500/react-sortable-tree": "^4.4.0",
     "@stdlib/array": "^0.0.12",
