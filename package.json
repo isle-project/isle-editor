@@ -172,7 +172,7 @@
     "electron-updater": "^6.1.4",
     "electron-window-state": "^5.0.3",
     "element-resize-event": "^3.0.6",
-    "esbuild": "^0.18.20",
+    "esbuild": "^0.19.0",
     "esbuild-loader": "^3.1.0",
     "eslint": "^8.46.0",
     "eslint-plugin-enforce-ids-in-jsx": "^1.0.0",
