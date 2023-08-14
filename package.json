@@ -287,7 +287,7 @@
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@electron/remote": "^2.0.10",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "ajv": "8.12.0",
     "babel-plugin-module-resolver": "^5.0.0",
