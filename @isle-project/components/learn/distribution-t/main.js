@@ -450,6 +450,7 @@ TProbs.propTypes = {
 		PropTypes.number,
 		PropTypes.string
 	]),
+	maxDf: PropTypes.number,
 	quantile: PropTypes.bool,
 	style: PropTypes.object
 };
