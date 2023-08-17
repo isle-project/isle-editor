@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import './../mocks/intersection_observer.js';
 import VideoPlayer from '@isle-project/components/video-player/main.js';
 

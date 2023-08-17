@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import LearnDiscreteCLT from '@isle-project/components/learn/clt-discrete/main.js';
 
 

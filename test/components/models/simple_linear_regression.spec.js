@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import SimpleLinearRegression from '@isle-project/components/models/simple-linear-regression';
 import heartdisease from './../fixtures/heartdisease.json';
 

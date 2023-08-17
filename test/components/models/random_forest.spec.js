@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import RandomForest from '@isle-project/components/models/random-forest';
 import heartdisease from './../fixtures/heartdisease.json';
 

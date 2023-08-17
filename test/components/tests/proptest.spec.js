@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import PropTest from '@isle-project/components/tests/proptest';
 import heartdisease from '../fixtures/heartdisease.json';
 

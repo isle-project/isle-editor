@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import KMeans from '@isle-project/components/models/kmeans';
 import heartdisease from './../fixtures/heartdisease.json';
 

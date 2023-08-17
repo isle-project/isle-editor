@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import LearnConditionalProbability from '@isle-project/components/learn/conditional-probability/main.js';
 
 

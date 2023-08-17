@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import LearnWordVennDiagram from '@isle-project/components/learn/word-venn-diagram/main.js';
 import data from './../fixtures/tdm_sparse.json';
 

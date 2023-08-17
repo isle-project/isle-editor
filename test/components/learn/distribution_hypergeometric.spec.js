@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import LearnHypergeometricDistribution from '@isle-project/components/learn/distribution-hypergeometric/main.js';
 
 

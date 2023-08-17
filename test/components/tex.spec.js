@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import '@isle-project/components/tex/init_mathjax.js';
 import TeX from '@isle-project/components/tex/main.js';
 

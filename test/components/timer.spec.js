@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Timer from '@isle-project/components/timer/main.js';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 
 // TESTS //

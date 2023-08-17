@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import Provider from '@isle-project/components/internal/provider';
 import Session from '@isle-project/session';
 import './../mocks/exec_command_mock.js';

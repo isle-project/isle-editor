@@ -2,7 +2,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import ScatterPlot from '@isle-project/components/plots/scatterplot';
 import heartdisease from './../fixtures/heartdisease.json';
 
