@@ -27,6 +27,7 @@ import TeX from '@isle-project/components/tex';
 *
 * @property {number} step - step size of the scroll input
 * @property {boolean} quantile - whether to show tab for calculating distribution quantiles
+* @property {number} maxDf - maximum degrees of freedom
 * @property {Object} style - CSS inline styles
 */
 class TProbs extends Component {
@@ -67,7 +68,7 @@ class TProbs extends Component {
 					defaultValue={df}
 					min={1e-3}
 					step={this.props.step}
-					max={25}
+					max={this.props.maxDf}
 					onChange={this.handleDFChange}
 				/>
 				{ type !== 'quantile' ? <SliderInput
@@ -455,6 +456,7 @@ TProbs.propTypes = {
 
 TProbs.defaultProps = {
 	step: 0.01,
+	maxDf: 100,
 	quantile: false,
 	style: {}
 };
