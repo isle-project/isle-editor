@@ -143,7 +143,7 @@
     "@stdlib/utils": "^0.0.12",
     "acorn": "^8.10.0",
     "ansi-to-react": "6.1.6",
-    "archiver": "^5.3.2",
+    "archiver": "^6.0.0",
     "autobind-decorator": "^2.4.0",
     "axios": "^1.4.0",
     "base16": "^1.0.0",
