@@ -300,7 +300,7 @@
     "electron-license": "^3.0.0",
     "esbuild-jest": "^0.5.0",
     "esbuild-jest-transform": "^1.1.1",
-    "esbuild-register": "^3.4.2",
+    "esbuild-register": "^3.5.0",
     "eslint-plugin-i18next": "^6.0.3",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jest": "^27.2.3",
