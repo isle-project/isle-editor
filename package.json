@@ -239,7 +239,7 @@
     "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-floater": "^0.7.6",
-    "react-grid-layout": "^1.3.4",
+    "react-grid-layout": "^1.4.3",
     "react-highlight-words": "^0.20.0",
     "react-i18next": "^13.2.2",
     "react-innertext": "^1.1.5",
