@@ -145,7 +145,7 @@
     "ansi-to-react": "6.1.6",
     "archiver": "^6.0.0",
     "autobind-decorator": "^2.4.0",
-    "axios": "^1.5.0",
+    "axios": "^1.6.1",
     "base16": "^1.0.0",
     "buffer": "^6.0.3",
     "classnames": "^2.3.2",
