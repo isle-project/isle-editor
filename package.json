@@ -59,7 +59,7 @@
     "build-main": "cross-env NODE_ENV=production rspack build --mode=production --config rspack.config.electron.js",
     "build-renderer": "cross-env NODE_ENV=production rspack build --mode=production --config rspack.config.production.js",
     "clean": "rm -rf node_modules",
-    "coverage": "jest && codecov",
+    "coverage": "jest",
     "dev": "cross-env START_HOT=1 npm run start-renderer-dev",
     "generate-license": "cross-env electron-license third-party-notices --markdown > THIRD_PARTY_LICENSES.md",
     "lint": "eslint @isle-project app test *.js && stylelint \"app/**/*.css\" \"@isle-project/**/*.css\"",
