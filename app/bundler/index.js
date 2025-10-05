@@ -5,14 +5,12 @@
 const { appendFileSync, copyFileSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } = require( 'fs' );
 const { copy, removeSync } = require( 'fs-extra' );
 const { basename, dirname, extname, resolve, join } = require( 'path' );
-const webpack = require( 'webpack' );
+const rspack = require( '@rspack/core' );
 const { EsbuildPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
-const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 const WorkboxWebpackPlugin = require( 'workbox-webpack-plugin' );
-const WebpackCdnPlugin = require( './../../@isle-project/webpack-cdn-plugin' );
+const WebpackCdnPlugin = require( './webpack_cdn_plugin' );
 const contains = require( '@stdlib/assert/contains' );
 const isURI = require( '@stdlib/assert/is-uri' );
 const isObject = require( '@stdlib/assert/is-object' );
@@ -403,24 +401,15 @@ function bundleLesson( options ) {
 			prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:alias/:version/:path',
 			modules: CDN_MODULES
 		}),
-		new WebpackManifestPlugin({
-			fileName: 'asset-manifest.json'
-		}),
-		new webpack.DefinePlugin({
+		new rspack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
 		}),
-		new webpack.ProgressPlugin({
-			activeModules: true,
-			entries: true,
+		new rspack.ProgressPlugin({
 			handler( percentage, message, ...args ) {
 				logMsg( `${( percentage * 100 ).toFixed( 2 )}%: ${message} ${args.join( ', ' )}` );
-			},
-			profile: true
-		}),
-		new SpeedMeasurePlugin({
-			outputTarget: logMsg
+			}
 		}),
 		new WorkboxWebpackPlugin.GenerateSW({
 			clientsClaim: true,
@@ -430,21 +419,19 @@ function bundleLesson( options ) {
 	];
 	if ( loadFromCDN ) {
 		plugins = [
-			new webpack.DllReferencePlugin({
+			new rspack.DllReferencePlugin({
 				manifest: LOCALES_MANIFEST
 			}),
-			new webpack.DllReferencePlugin({
+			new rspack.DllReferencePlugin({
 				manifest: SESSION_MANIFEST
 			}),
-			new webpack.DllReferencePlugin({
+			new rspack.DllReferencePlugin({
 				manifest: COMPONENTS_MANIFEST
 			})
 		].concat( plugins );
 	}
 	const config = {
-		cache: {
-			type: 'memory'
-		},
+		cache: false,
 		context: resolve( basePath ),
 		resolve: {
 			modules: modulePaths,
@@ -483,12 +470,15 @@ function bundleLesson( options ) {
 					basePath,
 					'./node_modules/stream-browserify'
 				),
-				'domain': false
+				'qs': resolve(
+				basePath,
+				'./node_modules/qs'
+			),
+			'domain': false
 			},
 			extensions: ['.js', '.json' ],
 			symlinks: false,
-			unsafeCache: true,
-			mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
+			mainFields: [ 'webpack', 'browser', 'web', 'browserify', 'jam', 'main' ]
 		},
 		module: {
 			rules: [
@@ -609,6 +599,15 @@ function bundleLesson( options ) {
 
 	writeFileSync( indexPath, str );
 
+	// Copy DLL files when not loading from CDN:
+	if ( !loadFromCDN ) {
+		logMsg( 'Copying DLL files for offline use...' );
+		const dllDir = resolve( basePath, '@isle-project/dll' );
+		copyFileSync( join( dllDir, 'dll.locales.js' ), join( appDir, 'dll.locales.js' ) );
+		copyFileSync( join( dllDir, 'dll.session.js' ), join( appDir, 'dll.session.js' ) );
+		copyFileSync( join( dllDir, 'dll.components.js' ), join( appDir, 'dll.components.js' ) );
+	}
+
 	// Copy asset directories:
 	const resourceDirName = `${fileName}-resources`;
 	mkdirSync( join( appDir, `${fileName}-resources` ) );
@@ -639,9 +638,9 @@ function bundleLesson( options ) {
 	};
 	let compiler;
 	try {
-		logMsg( 'Creating webpack configuration...' );
-		compiler = webpack( config );
-		logMsg( 'Webpack configuration created...' );
+		logMsg( 'Creating RSpack configuration...' );
+		compiler = rspack( config );
+		logMsg( 'RSpack configuration created...' );
 	} catch ( err ) {
 		return logMsg( 'Encountered an error while creating configuration object: '+err.message );
 	}

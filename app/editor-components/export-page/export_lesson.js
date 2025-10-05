@@ -146,6 +146,28 @@ class ExportLesson extends Component {
 					spinning: false
 				});
 			});
+			child.on('exit', ( code, signal ) => {
+				if ( code !== 0 && !this.state.finished ) {
+					const errorMsg = signal ?
+						`Bundler process terminated with signal ${signal}` :
+						`Bundler process exited with code ${code}`;
+					this.setState({
+						error: new Error( errorMsg ),
+						finished: true,
+						spinning: false
+					});
+				}
+			});
+			child.stderr.on('data', ( data ) => {
+				this.setState({
+					log: this.state.log + `[stderr] ${data}\n`
+				});
+			});
+			child.stdout.on('data', ( data ) => {
+				this.setState({
+					log: this.state.log + `[stdout] ${data}\n`
+				});
+			});
 		}
 	};
 

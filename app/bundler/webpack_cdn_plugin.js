@@ -12,15 +12,22 @@
 
 // MODULES //
 
+const path = require( 'path' );
+const logger = require( 'debug' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const readJSON = require( '@stdlib/fs/read-json' );
+const isArray = require( '@stdlib/assert/is-array' );
 
 
 // VARIABLES //
 
+const debug = logger( 'bundler:webpack-cdn-plugin' );
 const empty = '';
 const slash = '/';
+const packageJson = 'package.json';
 const paramsRegex = /:([a-z]+)/gi;
 const DEFAULT_MODULE_KEY = 'defaultCdnModuleKey____';
+const NODE_MODULES_DIR = path.resolve( __dirname, './../../../../node_modules' );
 
 
 // MAIN //
@@ -35,7 +42,7 @@ class WebpackCdnPlugin {
 		optimize = false,
 		crossOrigin = false
 	}) {
-		this.modules = Array.isArray( modules ) ? { [DEFAULT_MODULE_KEY]: modules } : modules;
+		this.modules = isArray( modules ) ? { [DEFAULT_MODULE_KEY]: modules } : modules;
 		this.prod = prod !== false;
 		this.prefix = publicPath;
 		this.url = this.prod ? prodUrl : devUrl;
@@ -103,17 +110,30 @@ class WebpackCdnPlugin {
 	}
 
 	/**
+	* Returns the version of a package
+	*/
+	static getVersion( name ) {
+		try {
+			return readJSON.sync( path.join( NODE_MODULES_DIR, name, packageJson ) ).version;
+		} catch ( e ) {
+			debug( 'Encountered an error: '+e.message );
+		}
+	}
+
+	/**
 	* Returns the list of all modules in the bundle
 	*/
 	static _getUsedModules(compilation) {
-		const usedModules = {};
-		compilation.getStats().toJson().chunks.forEach( c => {
-			c.modules.forEach( m => {
-				m.reasons.forEach( r => {
+		let usedModules = {};
+
+		compilation.getStats().toJson().chunks.forEach(c => {
+			c.modules.forEach(m => {
+				m.reasons.forEach(r => {
 					usedModules[r.userRequest] = true;
 				});
 			});
 		});
+
 		return usedModules;
 	}
 
@@ -122,8 +142,10 @@ class WebpackCdnPlugin {
 	* - construct the "paths" and "styles" arrays
 	* - add a default path if none provided
 	*/
-	static _cleanModules( modules ) {
+	static _cleanModules(modules) {
 		modules.forEach( p => {
+			p.version = p.version || WebpackCdnPlugin.getVersion( p.name );
+
 			if ( !p.paths ) {
 				p.paths = [];
 			}
@@ -132,7 +154,7 @@ class WebpackCdnPlugin {
 				p.path = void 0;
 			}
 			if ( p.paths.length === 0 && !p.cssOnly ) {
-				p.paths.push( require.resolve( p.name ).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/') );
+				p.paths.push( require.resolve(p.name).match(/[\\/]node_modules[\\/].+?[\\/](.*)/)[1].replace(/\\/g, '/') );
 			}
 			if ( !p.styles ) {
 				p.styles = [];
@@ -166,7 +188,8 @@ class WebpackCdnPlugin {
 	static _get( modules, url, prefix, prod, publicPath, pathsKey, localKey ) {
 		prefix = prefix || empty;
 		prod = prod !== false;
-		const files = [];
+
+		let files = [];
 		modules
 			.filter( p => p[ localKey ] )
 			.forEach( p => files.push( publicPath + p[ localKey ] ) );
@@ -185,6 +208,12 @@ class WebpackCdnPlugin {
 		return files;
 	}
 }
+
+
+// MAIN //
+
+const CDN_MODULES = require( './cdn_modules.json' );
+WebpackCdnPlugin.CDN_MODULES = CDN_MODULES;
 
 
 // EXPORTS //

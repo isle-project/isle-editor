@@ -3,8 +3,9 @@
 // MODULES //
 
 const path = require( 'path' );
-const webpack = require( 'webpack' );
-const baseConfig = require( './webpack.config.base' );
+const { spawn } = require( 'child_process' );
+const rspack = require( '@rspack/core' );
+const baseConfig = require( './rspack.config.base' );
 
 
 // VARIABLES //
@@ -45,25 +46,6 @@ const config = {
 		]
 	},
 
-	resolve: {
-		...baseConfig.resolve,
-		alias: {
-			...baseConfig.resolve.alias,
-			'v8-compile-cache': false,
-			'utils/load-requires': false
-		},
-		fallback: {
-			'path': path.resolve( './node_modules/path-browserify' ),
-			'stream': path.resolve( './node_modules/stream-browserify' ),
-			'os': path.resolve('./node_modules/os-browserify/browser' ),
-			'crypto': false,
-			'domain': false,
-			'fs': false,
-			'http': false,
-			'https': false
-		}
-	},
-
 	optimization: {
 		removeAvailableModules: false,
 		removeEmptyChunks: false,
@@ -72,27 +54,30 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.HotModuleReplacementPlugin({
-			multiStep: true
-		}),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.LoaderOptionsPlugin({
-			debug: true
+		new rspack.HotModuleReplacementPlugin(),
+		new rspack.DefinePlugin({
+			'process.env.NODE_ENV': '"development"'
 		})
 	],
 
-	target: 'web',
+	target: 'electron-renderer',
 
 	devServer: {
 		port,
 		compress: true,
+		allowedHosts: 'all',
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+			'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+		},
 		devMiddleware: {
 			stats: 'errors-only',
 			publicPath
 		},
-		firewall: false,
 		hot: true,
-		headers: { 'Access-Control-Allow-Origin': '*' },
+		client: false,
+		webSocketServer: false,
 		static: {
 			directory: path.join( __dirname, 'dist' )
 		},
@@ -100,11 +85,22 @@ const config = {
 			verbose: true,
 			disableDotRule: false
 		},
-		client: {
-			overlay: {
-				warnings: false,
-				errors: true
+		setupMiddlewares: (middlewares, devServer) => {
+			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
+				console.log( 'Starting Main Process...' ); // eslint-disable-line no-console
+				spawn(
+					'npm',
+					[ 'run', 'start-main-dev' ],
+					{
+						shell: true,
+						env: process.env, // eslint-disable-line no-process-env
+						stdio: 'inherit'
+					}
+				)
+					.on( 'close', code => process.exit(code) ) // eslint-disable-line no-process-exit
+					.on( 'error', spawnError => console.error(spawnError) ); // eslint-disable-line no-console
 			}
+			return middlewares;
 		}
 	}
 };

@@ -75,9 +75,13 @@
 			window._crypto = {};
 		</script>
 		<% if ( loadFromCDN ) { %>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.64/dll.locales.js" charset="utf-8"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.64/dll.session.js" charset="utf-8"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.64/dll.components.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.66/dll.locales.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.66/dll.session.js" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.66/dll.components.js" charset="utf-8"></script>
+		<% } else { %>
+		<script src="dll.locales.js" charset="utf-8"></script>
+		<script src="dll.session.js" charset="utf-8"></script>
+		<script src="dll.components.js" charset="utf-8"></script>
 		<% } %>
 	</body>
 </html>

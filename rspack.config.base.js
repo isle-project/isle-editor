@@ -117,7 +117,7 @@ const config = {
 			resolve( './node_modules' )
 		],
 		extensions: [ '.js', '.json' ],
-		mainFields: [ 'webpack', 'browser', 'web', 'browserify', [ 'jam', 'main' ], 'main' ]
+		mainFields: [ 'browser', 'module', 'main', 'webpack' ]
 	},
 	plugins: [
 		new MonacoWebpackPlugin({

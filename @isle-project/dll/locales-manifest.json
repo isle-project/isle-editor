@@ -1,1 +1,1 @@
-{"name":"locales_dll","content":{"./@isle-project/locales/index.js":{"id":84034,"buildMeta":{"exportsType":"namespace"},"exports":["changeLanguage","i18n"]}}}
+{"content":{"./@isle-project/locales/index.js":{"buildMeta":{"strictEsmModule":false,"hasTopLevelAwait":false,"esm":true,"exportsType":"namespace","defaultObject":"false","sideEffectFree":false},"exports":["changeLanguage","i18n"],"id":92502}},"name":"locales_dll"}

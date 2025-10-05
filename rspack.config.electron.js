@@ -1,21 +1,12 @@
 // MODULES //
 
-const webpack = require( 'webpack' );
-const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
-const baseConfig = require( './webpack.config.base' );
-
-
-// VARIABLES //
-
-const smp = new SpeedMeasurePlugin({
-	granularLoaderData: false,
-	disable: !process.env.MEASURE // eslint-disable-line no-process-env
-});
+const rspack = require( '@rspack/core' );
+const baseConfig = require( './rspack.config.base' );
 
 
 // MAIN //
 
-const config = smp.wrap({
+const config = {
 	...baseConfig,
 
 	devtool: 'cheap-source-map',
@@ -28,7 +19,7 @@ const config = smp.wrap({
 	},
 
 	plugins: [
-		new webpack.BannerPlugin({
+		new rspack.BannerPlugin({
 			banner: 'require("source-map-support").install();',
 			raw: true,
 			entryOnly: false
@@ -49,7 +40,7 @@ const config = smp.wrap({
 		'react',
 		'react-dom'
 	]
-});
+};
 
 
 // EXPORTS //

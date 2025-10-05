@@ -1,6 +1,6 @@
 // MODULES //
 
-const { DefinePlugin } = require( 'webpack' );
+const { DefinePlugin } = require( '@rspack/core' );
 const { join, resolve } = require( 'path' );
 const { EsbuildPlugin } = require( 'esbuild-loader' );
 

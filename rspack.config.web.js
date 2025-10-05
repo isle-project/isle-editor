@@ -3,25 +3,19 @@
 // MODULES //
 
 const path = require( 'path' );
-const { spawn } = require( 'child_process' );
-const webpack = require( 'webpack' );
-const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
-const baseConfig = require( './webpack.config.base' );
+const rspack = require( '@rspack/core' );
+const baseConfig = require( './rspack.config.base' );
 
 
 // VARIABLES //
 
-const smp = new SpeedMeasurePlugin({
-	granularLoaderData: false,
-	disable: !process.env.MEASURE // eslint-disable-line no-process-env
-});
 const port = process.env.PORT || 1212; // eslint-disable-line no-process-env
 const publicPath = `http://localhost:${port}/dist`; // eslint-disable-line i18next/no-literal-string
 
 
 // MAIN //
 
-const config = smp.wrap({
+const config = {
 	...baseConfig,
 	devtool: 'eval-cheap-source-map',
 
@@ -51,6 +45,25 @@ const config = smp.wrap({
 		]
 	},
 
+	resolve: {
+		...baseConfig.resolve,
+		alias: {
+			...baseConfig.resolve.alias,
+			'v8-compile-cache': false,
+			'utils/load-requires': false
+		},
+		fallback: {
+			'path': path.resolve( './node_modules/path-browserify' ),
+			'stream': path.resolve( './node_modules/stream-browserify' ),
+			'os': path.resolve('./node_modules/os-browserify/browser' ),
+			'crypto': false,
+			'domain': false,
+			'fs': false,
+			'http': false,
+			'https': false
+		}
+	},
+
 	optimization: {
 		removeAvailableModules: false,
 		removeEmptyChunks: false,
@@ -59,16 +72,13 @@ const config = smp.wrap({
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.HotModuleReplacementPlugin({
-			multiStep: true
-		}),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.LoaderOptionsPlugin({
-			debug: true
+		new rspack.HotModuleReplacementPlugin(),
+		new rspack.DefinePlugin({
+			'process.env.NODE_ENV': '"development"'
 		})
 	],
 
-	target: 'electron-renderer',
+	target: 'web',
 
 	devServer: {
 		port,
@@ -77,7 +87,9 @@ const config = smp.wrap({
 			stats: 'errors-only',
 			publicPath
 		},
+		firewall: false,
 		hot: true,
+		headers: { 'Access-Control-Allow-Origin': '*' },
 		static: {
 			directory: path.join( __dirname, 'dist' )
 		},
@@ -90,25 +102,9 @@ const config = smp.wrap({
 				warnings: false,
 				errors: true
 			}
-		},
-		onBeforeSetupMiddleware() {
-			if ( process.env.START_HOT ) { // eslint-disable-line no-process-env
-				console.log( 'Starting Main Process...' ); // eslint-disable-line no-console
-				spawn(
-					'npm',
-					[ 'run', 'start-main-dev' ],
-					{
-						shell: true,
-						env: process.env, // eslint-disable-line no-process-env
-						stdio: 'inherit'
-					}
-				)
-					.on( 'close', code => process.exit(code) ) // eslint-disable-line no-process-exit
-					.on( 'error', spawnError => console.error(spawnError) ); // eslint-disable-line no-console
-			}
 		}
 	}
-});
+};
 
 
 // EXPORTS //

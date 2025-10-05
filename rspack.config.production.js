@@ -1,25 +1,18 @@
 // MODULES //
 
-const webpack = require( 'webpack' );
+const rspack = require( '@rspack/core' );
 const path = require( 'path' );
 const esbuild = require( 'esbuild' );
-const SpeedMeasurePlugin = require( 'speed-measure-webpack-plugin' );
 const { EsbuildPlugin } = require( 'esbuild-loader' );
-const baseConfig = require( './webpack.config.base' );
-
-
-// VARIABLES //
-
-const smp = new SpeedMeasurePlugin({
-	granularLoaderData: false,
-	disable: !process.env.MEASURE // eslint-disable-line no-process-env
-});
+const baseConfig = require( './rspack.config.base' );
 
 
 // MAIN //
 
 const config = {
 	...baseConfig,
+
+	mode: 'production',
 
 	devtool: 'cheap-source-map',
 
@@ -97,7 +90,7 @@ const config = {
 
 	plugins: [
 		...baseConfig.plugins,
-		new webpack.DefinePlugin({
+		new rspack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
@@ -114,4 +107,4 @@ const config = {
 
 // EXPORTS //
 
-module.exports = smp.wrap( config );
+module.exports = config;

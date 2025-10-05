@@ -1,6 +1,6 @@
 // MODULES //
 
-const { DefinePlugin, DllPlugin } = require( 'webpack' );
+const { DefinePlugin, DllPlugin } = require( '@rspack/core' );
 const { join, resolve } = require( 'path' );
 const { EsbuildPlugin } = require( 'esbuild-loader' );
 const esbuild = require( 'esbuild' );
@@ -243,7 +243,7 @@ const config = {
 		path: join( __dirname, '@isle-project', 'dll' ),
 		filename: 'dll.[name].js',
 		library: '[name]_dll',
-		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.64/',
+		publicPath: 'https://cdn.jsdelivr.net/npm/@isle-project/dll@0.50.66/',
 		assetModuleFilename: 'static/media/[hash][ext][query]'
 	},
 	optimization: {

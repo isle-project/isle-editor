@@ -307,14 +307,34 @@ class UploadLesson extends Component {
 				});
 			}
 		});
-		child.on( 'exit', function onExit( code ) {
+		child.on( 'exit', ( code, signal ) => {
 			debug( 'Exited with code: '+code );
+			if ( code !== 0 && this.state.spinning ) {
+				const errorMsg = signal ?
+					`Bundler process terminated with signal ${signal}` :
+					`Bundler process exited with code ${code}`;
+				this.setState({
+					error: new Error( errorMsg ),
+					spinning: false,
+					dirname: randomstring( 16, 65, 90 )
+				});
+			}
 		});
 		child.on( 'error', ( err ) => {
 			this.setState({
 				error: err,
 				spinning: false,
 				dirname: randomstring( 16, 65, 90 )
+			});
+		});
+		child.stderr.on('data', ( data ) => {
+			this.setState({
+				log: this.state.log + `[stderr] ${data}\n`
+			});
+		});
+		child.stdout.on('data', ( data ) => {
+			this.setState({
+				log: this.state.log + `[stdout] ${data}\n`
 			});
 		});
 	};

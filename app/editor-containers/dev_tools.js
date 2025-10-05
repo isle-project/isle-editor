@@ -1,22 +1,16 @@
 // MODULES //
 
 import React from 'react';
-import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
 
 
 // MAIN //
 
-const DevTools = createDevTools(
-	<DockMonitor
-		toggleVisibilityKey="ctrl-h"
-		changePositionKey="ctrl-q"
-		defaultIsVisible={false}
-	>
-		<LogMonitor />
-	</DockMonitor>
-);
+// DevTools disabled - use Redux DevTools browser extension instead
+// The old redux-devtools-log-monitor has compatibility issues with RSpack
+const DevTools = () => null;
+
+// Add a no-op instrument function for compatibility with configure_store
+DevTools.instrument = () => f => f;
 
 
 // EXPORTS //

@@ -17,7 +17,7 @@ const mainPkgJson = require( './../package.json' );
 const RE_VERSION = /([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/g;
 const RE_DLL_FILE = /(\.js|\.js\.LICENSE\.txt|\.css)$/;
 const SEMVER = [ 'major', 'minor', 'patch' ];
-const FOLDERS = [ 'components', 'constants', 'dll', 'locales', 'session', 'utils', 'webpack-cdn-plugin', 'workers' ];
+const FOLDERS = [ 'components', 'constants', 'dll', 'locales', 'session', 'utils', 'workers' ];
 let newVersion;
 let oldVersion;
 let type = ENV.VERSION;
@@ -61,10 +61,10 @@ FOLDERS.forEach( folder => {
 });
 
 if ( type === 'major' || type === 'minor' || type === 'patch' ) {
-	const configPath = join( __dirname, '..', 'webpack.config.dll.js' );
+	const configPath = join( __dirname, '..', 'rspack.config.dll.js' );
 	const config = fs.readFileSync( configPath, 'utf8' );
 
-	console.log( `Replacing ${oldVersion} with ${newVersion} in webpack configuration...` );
+	console.log( `Replacing ${oldVersion} with ${newVersion} in rspack configuration...` );
 	let out = replace( config, oldVersion, newVersion );
 	fs.writeFileSync( configPath, out );
 
