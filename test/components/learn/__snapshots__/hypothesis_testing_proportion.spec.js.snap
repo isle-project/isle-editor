@@ -41,7 +41,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
               >
                 <div>
                   <div
-                    className=" css-b62m3t-container"
+                    className="css-b62m3t-container"
                     id="dynamic-select-input-1"
                     onKeyDown={[Function]}
                   >
@@ -56,20 +56,20 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                       className="css-1f43avz-a11yText-A11yText"
                     />
                     <div
-                      className=" css-15udvsq-control"
+                      className="css-15udvsq-control"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
                       <div
-                        className=" css-1fdsijx-ValueContainer"
+                        className="css-hlgwow"
                       >
                         <div
-                          className=" css-1dimb5e-singleValue"
+                          className="css-1dimb5e-singleValue"
                         >
                           One-Sample
                         </div>
                         <div
-                          className=" css-qbdosj-Input"
+                          className="css-19bb58m"
                           data-value=""
                         >
                           <input
@@ -111,14 +111,14 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                         </div>
                       </div>
                       <div
-                        className=" css-1hb7zxy-IndicatorsContainer"
+                        className="css-1wy0on6"
                       >
                         <span
-                          className=" css-1u9des2-indicatorSeparator"
+                          className="css-1u9des2-indicatorSeparator"
                         />
                         <div
                           aria-hidden="true"
-                          className=" css-1xc3v61-indicatorContainer"
+                          className="css-1xc3v61-indicatorContainer"
                           onMouseDown={[Function]}
                           onTouchEnd={[Function]}
                         >
@@ -471,7 +471,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
                 </g>
               </g>
               <g
-                clipPath="url(#victory-clip-4)"
+                clipPath="url(#victory-clip-5)"
                 style={
                   {
                     "height": "100%",
@@ -482,7 +482,7 @@ exports[`<LearnPropTest /> renders a learning component 1`] = `
               >
                 <defs>
                   <clipPath
-                    id="victory-clip-4"
+                    id="victory-clip-5"
                   >
                     <rect
                       height={200}
