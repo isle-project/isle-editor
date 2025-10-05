@@ -88,6 +88,7 @@
       "\\.(css|less)$": "<rootDir>/test/mocks/style_mock.js",
       "worker\\.js$": "<rootDir>/test/mocks/worker.js",
       "internal/text-clustering$": "<rootDir>/test/mocks/component_mock.js",
+      "^react-player$": "<rootDir>/test/mocks/react_player_mock.js",
       "^@isle-project/components/([^/]*)$": "@isle-project/components/$1/main.js"
     },
     "modulePaths": [
