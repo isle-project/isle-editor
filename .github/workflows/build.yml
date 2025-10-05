@@ -10,10 +10,10 @@ jobs:
   build_on_mac:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install & build
       run: |
         npm ci --legacy-peer-deps
@@ -33,10 +33,10 @@ jobs:
   build_on_win:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install & build
       run: |
         npm ci --legacy-peer-deps
@@ -56,10 +56,10 @@ jobs:
   build_on_ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install & build
       run: |
         npm ci --legacy-peer-deps
@@ -79,16 +79,16 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: Calculate Test Coverage
       run: |
         npm ci --legacy-peer-deps
         npm run coverage
     - name: Upload Test Coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 

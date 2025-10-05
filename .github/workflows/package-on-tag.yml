@@ -9,10 +9,10 @@ jobs:
   package_on_mac:
     runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install and package
       run: |
         npm ci --legacy-peer-deps
@@ -23,10 +23,10 @@ jobs:
   package_on_win:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install and package
       continue-on-error: true
       run: |
@@ -38,10 +38,10 @@ jobs:
   package_on_ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@master
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16.x
+        node-version: 22.x
     - name: npm install and package
       run: |
         npm ci --legacy-peer-deps
